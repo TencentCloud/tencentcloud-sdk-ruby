@@ -3110,10 +3110,13 @@ module TencentCloud
         # @type OutputParentKey: Boolean
         # @param ConfigAdvanced: 模版的单个属性配置
         # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
+        # @param OutputLanguage: cn时，添加的key为中文
+        # en时，添加的key为英语
+        # @type OutputLanguage: String
 
-        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
+        attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced, :OutputLanguage
 
-        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, itemnamesshowmode=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil)
+        def initialize(imageurl=nil, imagebase64=nil, pdfpagenumber=nil, itemnames=nil, itemnamesshowmode=nil, returnfulltext=nil, configid=nil, enablecoord=nil, outputparentkey=nil, configadvanced=nil, outputlanguage=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @PdfPageNumber = pdfpagenumber
@@ -3124,6 +3127,7 @@ module TencentCloud
           @EnableCoord = enablecoord
           @OutputParentKey = outputparentkey
           @ConfigAdvanced = configadvanced
+          @OutputLanguage = outputlanguage
         end
 
         def deserialize(params)
@@ -3140,6 +3144,7 @@ module TencentCloud
             @ConfigAdvanced = ConfigAdvanced.new
             @ConfigAdvanced.deserialize(params['ConfigAdvanced'])
           end
+          @OutputLanguage = params['OutputLanguage']
         end
       end
 

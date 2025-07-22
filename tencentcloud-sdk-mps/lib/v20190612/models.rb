@@ -527,10 +527,13 @@ module TencentCloud
         # Common：音视频类型
         # PureAudio：纯音频类型
         # @type DefinitionType: String
+        # @param SubtitleTemplate: 字幕参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
@@ -540,6 +543,7 @@ module TencentCloud
           @AddOnSubtitles = addonsubtitles
           @DrmInfo = drminfo
           @DefinitionType = definitiontype
+          @SubtitleTemplate = subtitletemplate
         end
 
         def deserialize(params)
@@ -572,6 +576,10 @@ module TencentCloud
             @DrmInfo.deserialize(params['DrmInfo'])
           end
           @DefinitionType = params['DefinitionType']
+          unless params['SubtitleTemplate'].nil?
+            @SubtitleTemplate = SubtitleTemplate.new
+            @SubtitleTemplate.deserialize(params['SubtitleTemplate'])
+          end
         end
       end
 

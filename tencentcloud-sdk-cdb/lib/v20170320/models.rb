@@ -11132,11 +11132,11 @@ module TencentCloud
 
       # ModifyInstanceParam请求参数结构体
       class ModifyInstanceParamRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例短 ID 列表。
+        # @param InstanceIds: 实例 ID 列表。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceIds: Array
         # @param ParamList: 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改成的值。
         # @type ParamList: Array
-        # @param TemplateId: 模板id，ParamList和TemplateId必须至少传其中之一
+        # @param TemplateId: 模板 ID，ParamList 和 TemplateId 必须至少传其中之一。可通过 [DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/236/32660) 接口获取。
         # @type TemplateId: Integer
         # @param WaitSwitch: 执行参数调整任务的方式，默认为 0。支持值包括：0 - 立刻执行，1 - 时间窗执行；当该值为 1 时，每次只能传一个实例（InstanceIds数量为1）
         # @type WaitSwitch: Integer
@@ -11195,19 +11195,19 @@ module TencentCloud
 
       # ModifyInstancePasswordComplexity请求参数结构体
       class ModifyInstancePasswordComplexityRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 要修改密码复杂度的实例 ID。
+        # @param InstanceIds: 要修改密码复杂度的实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # 说明：支持输入多个实例 ID 进行修改。
         # @type InstanceIds: Array
         # @param ParamList: 要修改的密码复杂度的选项。每一个选项是以组合形式写入的，一个组合包括 Name 和 CurrentValue，其中 Name 表示对应选项的参数名，CurrentValue 表示参数值。例如：[{"Name": "validate_password.length", "CurrentValue": "10"}]，表示将密码的最小字符数修改为10。
         # 说明：不同数据库版本的实例，支持修改的密码复杂度的选项如下。
         # 1. MySQL 8.0：
-        # 选项 validate_password.policy，表示密码复杂度的开关，值为 LOW 时表示关闭；值为 MEDIUM 时表示开启。温馨提示：如需修改具体的密码策略，此选项的值需为 MEDIUM。
+        # 选项 validate_password.policy，表示密码复杂度的开关，值为 LOW 时表示关闭；值为 MEDIUM 时表示开启。
         # 选项 validate_password.length，表示密码总长度的最小字符数。
         # 选项 validate_password.mixed_case_count，表示小写和大写字母的最小字符数。
         # 选项 validate_password.number_count，表示数字的最小字符数。
         # 选项 validate_password.special_char_count，表示特殊字符的最小字符数。
         # 2. MySQL 5.6、MySQL 5.7：
-        # 选项 validate_password_policy，表示密码复杂度的开关，值为 LOW 时表示关闭；值为 MEDIUM 时表示开启。温馨提示：如需修改具体的密码策略，此选项的值需为 MEDIUM。
+        # 选项 validate_password_policy，表示密码复杂度的开关，值为 LOW 时表示关闭；值为 MEDIUM 时表示开启。
         # 选项 validate_password_length，表示密码总长度的最小字符数。
         # 选项 validate_password_mixed_case_count，表示小写和大写字母的最小字符数。
         # 选项 validate_password_number_count，表示数字的最小字符数。
@@ -11584,6 +11584,46 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRoGroupVipVport请求参数结构体
+      class ModifyRoGroupVipVportRequest < TencentCloud::Common::AbstractModel
+        # @param UGroupId: RO组的ID。
+        # @type UGroupId: String
+        # @param DstIp: 目标IP。
+        # @type DstIp: String
+        # @param DstPort: 目标Port。
+        # @type DstPort: Integer
+
+        attr_accessor :UGroupId, :DstIp, :DstPort
+
+        def initialize(ugroupid=nil, dstip=nil, dstport=nil)
+          @UGroupId = ugroupid
+          @DstIp = dstip
+          @DstPort = dstport
+        end
+
+        def deserialize(params)
+          @UGroupId = params['UGroupId']
+          @DstIp = params['DstIp']
+          @DstPort = params['DstPort']
+        end
+      end
+
+      # ModifyRoGroupVipVport返回参数结构体
+      class ModifyRoGroupVipVportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

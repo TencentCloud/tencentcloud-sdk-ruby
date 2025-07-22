@@ -1926,14 +1926,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 限制量，默认为20，最大值为100
         # @type Limit: Integer
+        # @param RecentDays: 时间范围限制，以天数为单位
+        # @type RecentDays: Integer
 
-        attr_accessor :TaskIds, :Filter, :Offset, :Limit
+        attr_accessor :TaskIds, :Filter, :Offset, :Limit, :RecentDays
 
-        def initialize(taskids=nil, filter=nil, offset=nil, limit=nil)
+        def initialize(taskids=nil, filter=nil, offset=nil, limit=nil, recentdays=nil)
           @TaskIds = taskids
           @Filter = filter
           @Offset = offset
           @Limit = limit
+          @RecentDays = recentdays
         end
 
         def deserialize(params)
@@ -1948,6 +1951,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @RecentDays = params['RecentDays']
         end
       end
 

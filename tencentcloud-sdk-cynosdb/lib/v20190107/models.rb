@@ -13079,6 +13079,71 @@ module TencentCloud
         end
       end
 
+      # ReplayInstanceAuditLog请求参数结构体
+      class ReplayInstanceAuditLogRequest < TencentCloud::Common::AbstractModel
+        # @param SourceClusterId: 源集群id
+        # @type SourceClusterId: String
+        # @param SourceInstanceId: 源实例id
+        # @type SourceInstanceId: String
+        # @param TargetClusterId: 目标集群id
+        # 目标集群必须为原始集群三天内克隆出的集群。
+        # @type TargetClusterId: String
+        # @param TargetInstanceId: 目标实例id
+        # @type TargetInstanceId: String
+        # @param TargetUserName: 用户名.需要host为%的用户名
+        # @type TargetUserName: String
+        # @param TargetPassword: 密码
+        # @type TargetPassword: String
+        # @param StartTime: 开始时间。时间格式为：yyyy-DD-mm hh:mm:ss
+        # @type StartTime: String
+        # @param EndTime: 结束时间。时间格式为：yyyy-DD-mm hh:mm:ss
+        # @type EndTime: String
+
+        attr_accessor :SourceClusterId, :SourceInstanceId, :TargetClusterId, :TargetInstanceId, :TargetUserName, :TargetPassword, :StartTime, :EndTime
+
+        def initialize(sourceclusterid=nil, sourceinstanceid=nil, targetclusterid=nil, targetinstanceid=nil, targetusername=nil, targetpassword=nil, starttime=nil, endtime=nil)
+          @SourceClusterId = sourceclusterid
+          @SourceInstanceId = sourceinstanceid
+          @TargetClusterId = targetclusterid
+          @TargetInstanceId = targetinstanceid
+          @TargetUserName = targetusername
+          @TargetPassword = targetpassword
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SourceClusterId = params['SourceClusterId']
+          @SourceInstanceId = params['SourceInstanceId']
+          @TargetClusterId = params['TargetClusterId']
+          @TargetInstanceId = params['TargetInstanceId']
+          @TargetUserName = params['TargetUserName']
+          @TargetPassword = params['TargetPassword']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ReplayInstanceAuditLog返回参数结构体
+      class ReplayInstanceAuditLogResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetAccountPassword请求参数结构体
       class ResetAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param AccountName: 数据库账号名

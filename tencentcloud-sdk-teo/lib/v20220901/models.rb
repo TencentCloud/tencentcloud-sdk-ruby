@@ -5062,6 +5062,48 @@ module TencentCloud
         end
       end
 
+      # 独立 DDoS 防护配置。
+      class DDoSProtection < TencentCloud::Common::AbstractModel
+        # @param ProtectionOption: 指定独立 DDoS 的防护范围。取值为：
+        # <li> protect_all_domains：独立 DDoS 防护对站点内全部域名生效，新接入域名自动开启独立 DDoS 防护，入参为 protect_all_domains 时，入参 DomainDDoSProtections 不作处理；</li>
+        # <li> protect_specified_domains：仅对指定域名生效，具体范围可通过 DomainDDoSProtection 参数指定。</li>
+        # @type ProtectionOption: String
+        # @param DomainDDoSProtections: 域名的独立 DDoS 防护配置。在入参场景中：
+        # <li> 当 ProtectionOption 保持为 protect_specified_domains 时：未填写的域名维持原有独立 DDoS 防护配置不变，显式指定的域名​按传入参数更新；</li>
+        # <li> 当 ProtectionOption 由 protect_all_domains 切换为 protect_specified_domains 时：若 DomainDDoSProtections 传空，停用站点下全部域名的独立 DDoS 防护；若 DomainDDoSProtections 不为空，参数中指定的域名停用或保持独立 DDoS 防护，其余未列出的域名统一停用独立 DDoS 防护。</li>
+        # @type DomainDDoSProtections: Array
+        # @param SharedCNAMEDDoSProtections: 共享 CNAME 的独立 DDoS 防护配置。仅作为出参使用。
+        # @type SharedCNAMEDDoSProtections: Array
+
+        attr_accessor :ProtectionOption, :DomainDDoSProtections, :SharedCNAMEDDoSProtections
+
+        def initialize(protectionoption=nil, domainddosprotections=nil, sharedcnameddosprotections=nil)
+          @ProtectionOption = protectionoption
+          @DomainDDoSProtections = domainddosprotections
+          @SharedCNAMEDDoSProtections = sharedcnameddosprotections
+        end
+
+        def deserialize(params)
+          @ProtectionOption = params['ProtectionOption']
+          unless params['DomainDDoSProtections'].nil?
+            @DomainDDoSProtections = []
+            params['DomainDDoSProtections'].each do |i|
+              domainddosprotection_tmp = DomainDDoSProtection.new
+              domainddosprotection_tmp.deserialize(i)
+              @DomainDDoSProtections << domainddosprotection_tmp
+            end
+          end
+          unless params['SharedCNAMEDDoSProtections'].nil?
+            @SharedCNAMEDDoSProtections = []
+            params['SharedCNAMEDDoSProtections'].each do |i|
+              domainddosprotection_tmp = DomainDDoSProtection.new
+              domainddosprotection_tmp.deserialize(i)
+              @SharedCNAMEDDoSProtections << domainddosprotection_tmp
+            end
+          end
+        end
+      end
+
       # 适用于四层代理或 Web 站点服务的独立 DDoS 防护规格配置。
       class DDosProtectionConfig < TencentCloud::Common::AbstractModel
         # @param LevelMainland: 中国大陆地区独立 DDoS 防护的规格。详情请参考 [独立 DDoS 防护相关费用](https://cloud.tencent.com/document/product/1552/94162)
@@ -7053,6 +7095,45 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDDoSProtection请求参数结构体
+      class DescribeDDoSProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+
+        attr_accessor :ZoneId
+
+        def initialize(zoneid=nil)
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+        end
+      end
+
+      # DescribeDDoSProtection返回参数结构体
+      class DescribeDDoSProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param DDoSProtection: 独立 DDoS 防护配置。用于控制独立 DDoS 防护的生效范围。
+        # @type DDoSProtection: :class:`Tencentcloud::Teo.v20220901.models.DDoSProtection`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DDoSProtection, :RequestId
+
+        def initialize(ddosprotection=nil, requestid=nil)
+          @DDoSProtection = ddosprotection
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DDoSProtection'].nil?
+            @DDoSProtection = DDoSProtection.new
+            @DDoSProtection.deserialize(params['DDoSProtection'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10428,6 +10509,28 @@ module TencentCloud
         end
       end
 
+      # 域名的独立 DDoS 防护信息。
+      class DomainDDoSProtection < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名。
+        # @type Domain: String
+        # @param Switch: 域名的独立 DDoS 开关，取值为：
+        # <li> on：已开启；</li>
+        # <li> off：已关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Domain, :Switch
+
+        def initialize(domain=nil, switch=nil)
+          @Domain = domain
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Switch = params['Switch']
+        end
+      end
+
       # DownloadL4Logs请求参数结构体
       class DownloadL4LogsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -13702,6 +13805,45 @@ module TencentCloud
 
       # ModifyCustomErrorPage返回参数结构体
       class ModifyCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDDoSProtection请求参数结构体
+      class ModifyDDoSProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param DDoSProtection: 独立 DDoS 防护配置。
+        # @type DDoSProtection: :class:`Tencentcloud::Teo.v20220901.models.DDoSProtection`
+
+        attr_accessor :ZoneId, :DDoSProtection
+
+        def initialize(zoneid=nil, ddosprotection=nil)
+          @ZoneId = zoneid
+          @DDoSProtection = ddosprotection
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['DDoSProtection'].nil?
+            @DDoSProtection = DDoSProtection.new
+            @DDoSProtection.deserialize(params['DDoSProtection'])
+          end
+        end
+      end
+
+      # ModifyDDoSProtection返回参数结构体
+      class ModifyDDoSProtectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

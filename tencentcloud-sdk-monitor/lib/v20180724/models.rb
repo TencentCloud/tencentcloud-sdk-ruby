@@ -1078,7 +1078,7 @@ module TencentCloud
         # @type PolicyId: String
         # @param InstanceGroupId: 实例分组ID
         # @type InstanceGroupId: Integer
-        # @param Dimensions: 需要绑定的对象维度信息
+        # @param Dimensions: 需要绑定的对象维度信息，当为实例绑定渠道时，此处为必填信息
         # @type Dimensions: Array
         # @param EbSubject: 事件配置的告警
         # @type EbSubject: String

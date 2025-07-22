@@ -1724,6 +1724,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取站点的独立 DDoS 防护信息。
+
+        # @param request: Request instance for DescribeDDoSProtection.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeDDoSProtectionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeDDoSProtectionResponse`
+        def DescribeDDoSProtection(request)
+          body = send_request('DescribeDDoSProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDDoSProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询默认证书列表
 
         # @param request: Request instance for DescribeDefaultCertificates.
@@ -3294,6 +3318,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改站点的独立 DDoS 防护。
+
+        # @param request: Request instance for ModifyDDoSProtection.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyDDoSProtectionRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyDDoSProtectionResponse`
+        def ModifyDDoSProtection(request)
+          body = send_request('ModifyDDoSProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDDoSProtectionResponse.new
             model.deserialize(response['Response'])
             model
           else
