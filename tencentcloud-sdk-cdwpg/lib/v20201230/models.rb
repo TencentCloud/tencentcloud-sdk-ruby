@@ -268,6 +268,9 @@ module TencentCloud
         # @type TagItems: Array
 
         attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion, :TagItems
+        extend Gem::Deprecate
+        deprecate :Tags, :none, 2025, 7
+        deprecate :Tags=, :none, 2025, 7
 
         def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil, tagitems=nil)
           @InstanceName = instancename

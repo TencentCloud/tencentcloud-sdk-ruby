@@ -4337,13 +4337,19 @@ module TencentCloud
         # "concurrency-util":单个实例请求数量值。范围{1,100000}
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HpaMetrics: Array
+        # @param ScaleUpStabilizationWindowSeconds: 扩容观察期，单位秒
+        # @type ScaleUpStabilizationWindowSeconds: Integer
+        # @param ScaleDownStabilizationWindowSeconds: 缩容观察期，单位秒
+        # @type ScaleDownStabilizationWindowSeconds: Integer
 
-        attr_accessor :MinReplicas, :MaxReplicas, :HpaMetrics
+        attr_accessor :MinReplicas, :MaxReplicas, :HpaMetrics, :ScaleUpStabilizationWindowSeconds, :ScaleDownStabilizationWindowSeconds
 
-        def initialize(minreplicas=nil, maxreplicas=nil, hpametrics=nil)
+        def initialize(minreplicas=nil, maxreplicas=nil, hpametrics=nil, scaleupstabilizationwindowseconds=nil, scaledownstabilizationwindowseconds=nil)
           @MinReplicas = minreplicas
           @MaxReplicas = maxreplicas
           @HpaMetrics = hpametrics
+          @ScaleUpStabilizationWindowSeconds = scaleupstabilizationwindowseconds
+          @ScaleDownStabilizationWindowSeconds = scaledownstabilizationwindowseconds
         end
 
         def deserialize(params)
@@ -4357,6 +4363,8 @@ module TencentCloud
               @HpaMetrics << option_tmp
             end
           end
+          @ScaleUpStabilizationWindowSeconds = params['ScaleUpStabilizationWindowSeconds']
+          @ScaleDownStabilizationWindowSeconds = params['ScaleDownStabilizationWindowSeconds']
         end
       end
 

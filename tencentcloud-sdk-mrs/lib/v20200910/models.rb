@@ -2728,15 +2728,18 @@ module TencentCloud
         # @type OperationHistory: String
         # @param TransfusionHistory: 输血史
         # @type TransfusionHistory: String
+        # @param DiseasePresent: 现病史
+        # @type DiseasePresent: String
 
-        attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :OperationHistory, :TransfusionHistory
+        attr_accessor :MainDiseaseHistory, :AllergyHistory, :InfectHistory, :OperationHistory, :TransfusionHistory, :DiseasePresent
 
-        def initialize(maindiseasehistory=nil, allergyhistory=nil, infecthistory=nil, operationhistory=nil, transfusionhistory=nil)
+        def initialize(maindiseasehistory=nil, allergyhistory=nil, infecthistory=nil, operationhistory=nil, transfusionhistory=nil, diseasepresent=nil)
           @MainDiseaseHistory = maindiseasehistory
           @AllergyHistory = allergyhistory
           @InfectHistory = infecthistory
           @OperationHistory = operationhistory
           @TransfusionHistory = transfusionhistory
+          @DiseasePresent = diseasepresent
         end
 
         def deserialize(params)
@@ -2745,6 +2748,7 @@ module TencentCloud
           @InfectHistory = params['InfectHistory']
           @OperationHistory = params['OperationHistory']
           @TransfusionHistory = params['TransfusionHistory']
+          @DiseasePresent = params['DiseasePresent']
         end
       end
 
@@ -10787,6 +10791,8 @@ module TencentCloud
         extend Gem::Deprecate
         deprecate :DmissionCondition, :none, 2025, 7
         deprecate :DmissionCondition=, :none, 2025, 7
+        deprecate :DiseasePresent, :none, 2025, 7
+        deprecate :DiseasePresent=, :none, 2025, 7
 
         def initialize(dmissioncondition=nil, chiefcomplaint=nil, diseasepresent=nil, symptomsandsigns=nil, auxiliaryexamination=nil, bodyexamination=nil, specialistexamination=nil, mentalexamination=nil, checkrecord=nil, inspectresult=nil, incisionhealing=nil, treatmentsuggestion=nil, followuprequirements=nil, checkandtreatmentprocess=nil, surgerycondition=nil, conditionchanges=nil, dischargecondition=nil, ptnm=nil, ptnmm=nil, ptnmn=nil, ptnmt=nil, ecog=nil, nrs=nil, kps=nil, deathdate=nil, relapsedate=nil, observationdays=nil, admissioncondition=nil)
           @DmissionCondition = dmissioncondition

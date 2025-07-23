@@ -18174,10 +18174,10 @@ module TencentCloud
 
       # 集群日志开关集合
       class Switch < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
         # @param Audit: 审计开关的详细信息
         # @type Audit: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
         # @param Event: 事件开关的详细信息
         # @type Event: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
         # @param Log: 普通日志的详细信息
@@ -18185,22 +18185,22 @@ module TencentCloud
         # @param MasterLog: master 日志详细信息
         # @type MasterLog: :class:`Tencentcloud::Tke.v20180525.models.SwitchInfo`
 
-        attr_accessor :ClusterId, :Audit, :Event, :Log, :MasterLog
+        attr_accessor :Audit, :ClusterId, :Event, :Log, :MasterLog
 
-        def initialize(clusterid=nil, audit=nil, event=nil, log=nil, masterlog=nil)
-          @ClusterId = clusterid
+        def initialize(audit=nil, clusterid=nil, event=nil, log=nil, masterlog=nil)
           @Audit = audit
+          @ClusterId = clusterid
           @Event = event
           @Log = log
           @MasterLog = masterlog
         end
 
         def deserialize(params)
-          @ClusterId = params['ClusterId']
           unless params['Audit'].nil?
             @Audit = SwitchInfo.new
             @Audit.deserialize(params['Audit'])
           end
+          @ClusterId = params['ClusterId']
           unless params['Event'].nil?
             @Event = SwitchInfo.new
             @Event.deserialize(params['Event'])
@@ -18220,35 +18220,43 @@ module TencentCloud
       class SwitchInfo < TencentCloud::Common::AbstractModel
         # @param Enable: 开启标识符 true代表开启
         # @type Enable: Boolean
+        # @param ErrorMsg: 获取日志状态失败时，返回错误信息
+        # @type ErrorMsg: String
         # @param LogsetId: CLS日志集ID
         # @type LogsetId: String
+        # @param Status: 日志主题状态，opened表示已开启，opening开启中，closed表示已关闭，closing 表示关闭中
+        # @type Status: String
         # @param TopicId: CLS日志主题ID
         # @type TopicId: String
-        # @param Version: 当前log-agent版本
-        # @type Version: String
-        # @param UpgradeAble: 是否可升级
-        # @type UpgradeAble: Boolean
         # @param TopicRegion: CLS日志主题所属region
         # @type TopicRegion: String
+        # @param UpgradeAble: 是否可升级
+        # @type UpgradeAble: Boolean
+        # @param Version: 当前log-agent版本
+        # @type Version: String
 
-        attr_accessor :Enable, :LogsetId, :TopicId, :Version, :UpgradeAble, :TopicRegion
+        attr_accessor :Enable, :ErrorMsg, :LogsetId, :Status, :TopicId, :TopicRegion, :UpgradeAble, :Version
 
-        def initialize(enable=nil, logsetid=nil, topicid=nil, version=nil, upgradeable=nil, topicregion=nil)
+        def initialize(enable=nil, errormsg=nil, logsetid=nil, status=nil, topicid=nil, topicregion=nil, upgradeable=nil, version=nil)
           @Enable = enable
+          @ErrorMsg = errormsg
           @LogsetId = logsetid
+          @Status = status
           @TopicId = topicid
-          @Version = version
-          @UpgradeAble = upgradeable
           @TopicRegion = topicregion
+          @UpgradeAble = upgradeable
+          @Version = version
         end
 
         def deserialize(params)
           @Enable = params['Enable']
+          @ErrorMsg = params['ErrorMsg']
           @LogsetId = params['LogsetId']
+          @Status = params['Status']
           @TopicId = params['TopicId']
-          @Version = params['Version']
-          @UpgradeAble = params['UpgradeAble']
           @TopicRegion = params['TopicRegion']
+          @UpgradeAble = params['UpgradeAble']
+          @Version = params['Version']
         end
       end
 

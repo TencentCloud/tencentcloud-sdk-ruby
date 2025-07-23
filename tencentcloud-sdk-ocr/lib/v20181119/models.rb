@@ -5848,19 +5848,13 @@ module TencentCloud
 
       # MLIDCardOCR请求参数结构体
       class MLIDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。
         # @type ImageBase64: String
-        # @param BackImageBase64: 卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param BackImageBase64: 卡证背面图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type BackImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。( 中国地区之外不支持这个字段 )
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片的 Url 地址。( 中国地区之外不支持这个字段 )支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
-        # @param BackImageUrl: 卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param BackImageUrl: 卡证背面图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type BackImageUrl: String
         # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
@@ -5894,21 +5888,11 @@ module TencentCloud
         # @type Address: String
         # @param Sex: 性别
         # @type Sex: String
-        # @param Warn: 告警码
-        # -9103	证照翻拍告警
-        # -9102	证照复印件告警
-        # -9106       证件遮挡告警
-        # -9107       模糊图片告警
+        # @param Warn: 该字段已废弃， 将固定返回空数组，不建议使用。
         # @type Warn: Array
         # @param Image: 证件图片
         # @type Image: String
-        # @param AdvancedInfo: 此字段为扩展字段。
-        # 返回字段识别结果的置信度，格式如下
-        # {
-        #   字段名:{
-        #     Confidence:0.9999
-        #   }
-        # }
+        # @param AdvancedInfo: 该字段已废弃， 将固定返回"1"，不建议使用。
         # @type AdvancedInfo: String
         # @param Type: 证件类型
         # MyKad  身份证
@@ -5939,6 +5923,8 @@ module TencentCloud
         extend Gem::Deprecate
         deprecate :Warn, :none, 2025, 7
         deprecate :Warn=, :none, 2025, 7
+        deprecate :AdvancedInfo, :none, 2025, 7
+        deprecate :AdvancedInfo=, :none, 2025, 7
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -5973,11 +5959,11 @@ module TencentCloud
 
       # MLIDPassportOCR请求参数结构体
       class MLIDPassportOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。
+        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。
         # @type ImageBase64: String
         # @param RetImage: 是否返回图片，默认false
         # @type RetImage: Boolean
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 7M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
         # @type ImageUrl: String
 
         attr_accessor :ImageBase64, :RetImage, :ImageUrl
@@ -6011,22 +5997,11 @@ module TencentCloud
         # @type IssuingCountry: String
         # @param Nationality: 国家地区代码（机读码区的解析结果）
         # @type Nationality: String
-        # @param Warn: 告警码：
-        # -9103	证照翻拍告警
-        # -9102	证照复印件告警（包括黑白复印件、彩色复印件）
-        # -9106       证件遮挡告警
+        # @param Warn: 该字段已废弃， 将固定返回空数组，不建议使用。
         # @type Warn: Array
         # @param Image: 证件中的人像图片base64
         # @type Image: String
-        # @param AdvancedInfo: 扩展字段:
-        # {
-        #     ID:{
-        #         Confidence:0.9999
-        #     },
-        #     Name:{
-        #         Confidence:0.9996
-        #     }
-        # }
+        # @param AdvancedInfo: 该字段已废弃， 将固定返回"1"，不建议使用。
         # @type AdvancedInfo: String
         # @param CodeSet: 最下方第一行 MRZ Code 序列
         # @type CodeSet: String
@@ -6055,6 +6030,11 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :RequestId
+        extend Gem::Deprecate
+        deprecate :Warn, :none, 2025, 7
+        deprecate :Warn=, :none, 2025, 7
+        deprecate :AdvancedInfo, :none, 2025, 7
+        deprecate :AdvancedInfo=, :none, 2025, 7
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -9669,20 +9649,15 @@ module TencentCloud
         # -9108 证件模糊告警
         # -9109 告警能力未开通
         # @type WarnCardInfos: Array
-        # @param AdvancedInfo: 字段置信度：
-        # {
-        #     "ID": {
-        #         "Confidence": 0.9999
-        #     },
-        #     "ThaiName": {
-        #         "Confidence": 0.9996
-        #     }
-        # }
+        # @param AdvancedInfo: 该字段已废弃， 将固定返回"1"，不建议使用。
         # @type AdvancedInfo: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :RequestId
+        extend Gem::Deprecate
+        deprecate :AdvancedInfo, :none, 2025, 7
+        deprecate :AdvancedInfo=, :none, 2025, 7
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, requestid=nil)
           @ID = id
