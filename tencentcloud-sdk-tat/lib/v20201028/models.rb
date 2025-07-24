@@ -1645,6 +1645,8 @@ module TencentCloud
         # @type InvocationId: String
         # @param CommandId: 命令ID。
         # @type CommandId: String
+        # @param CommandName: 执行的命令的名称
+        # @type CommandName: String
         # @param InvocationStatus: 执行任务状态。取值范围：
 
         # - PENDING：等待下发
@@ -1695,11 +1697,12 @@ module TencentCloud
         # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
         # @type OutputCOSKeyPrefix: String
 
-        attr_accessor :InvocationId, :CommandId, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
+        attr_accessor :InvocationId, :CommandId, :CommandName, :InvocationStatus, :InvocationTaskBasicInfoSet, :Description, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :Parameters, :DefaultParameters, :InstanceKind, :Username, :InvocationSource, :CommandContent, :CommandType, :Timeout, :WorkingDirectory, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
 
-        def initialize(invocationid=nil, commandid=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
+        def initialize(invocationid=nil, commandid=nil, commandname=nil, invocationstatus=nil, invocationtaskbasicinfoset=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, parameters=nil, defaultparameters=nil, instancekind=nil, username=nil, invocationsource=nil, commandcontent=nil, commandtype=nil, timeout=nil, workingdirectory=nil, outputcosbucketurl=nil, outputcoskeyprefix=nil)
           @InvocationId = invocationid
           @CommandId = commandid
+          @CommandName = commandname
           @InvocationStatus = invocationstatus
           @InvocationTaskBasicInfoSet = invocationtaskbasicinfoset
           @Description = description
@@ -1723,6 +1726,7 @@ module TencentCloud
         def deserialize(params)
           @InvocationId = params['InvocationId']
           @CommandId = params['CommandId']
+          @CommandName = params['CommandName']
           @InvocationStatus = params['InvocationStatus']
           unless params['InvocationTaskBasicInfoSet'].nil?
             @InvocationTaskBasicInfoSet = []

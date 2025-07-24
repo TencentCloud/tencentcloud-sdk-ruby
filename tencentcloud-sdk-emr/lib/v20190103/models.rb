@@ -13164,10 +13164,12 @@ module TencentCloud
         # @type FailedReason: String
         # @param TimeConsuming: 步骤耗时
         # @type TimeConsuming: String
+        # @param Id: id，前端用
+        # @type Id: Integer
 
-        attr_accessor :Stage, :Name, :IsShow, :IsSubFlow, :SubFlowFlag, :Status, :Desc, :Progress, :Starttime, :Endtime, :HadWoodDetail, :WoodJobId, :LanguageKey, :FailedReason, :TimeConsuming
+        attr_accessor :Stage, :Name, :IsShow, :IsSubFlow, :SubFlowFlag, :Status, :Desc, :Progress, :Starttime, :Endtime, :HadWoodDetail, :WoodJobId, :LanguageKey, :FailedReason, :TimeConsuming, :Id
 
-        def initialize(stage=nil, name=nil, isshow=nil, issubflow=nil, subflowflag=nil, status=nil, desc=nil, progress=nil, starttime=nil, endtime=nil, hadwooddetail=nil, woodjobid=nil, languagekey=nil, failedreason=nil, timeconsuming=nil)
+        def initialize(stage=nil, name=nil, isshow=nil, issubflow=nil, subflowflag=nil, status=nil, desc=nil, progress=nil, starttime=nil, endtime=nil, hadwooddetail=nil, woodjobid=nil, languagekey=nil, failedreason=nil, timeconsuming=nil, id=nil)
           @Stage = stage
           @Name = name
           @IsShow = isshow
@@ -13183,6 +13185,7 @@ module TencentCloud
           @LanguageKey = languagekey
           @FailedReason = failedreason
           @TimeConsuming = timeconsuming
+          @Id = id
         end
 
         def deserialize(params)
@@ -13201,6 +13204,7 @@ module TencentCloud
           @LanguageKey = params['LanguageKey']
           @FailedReason = params['FailedReason']
           @TimeConsuming = params['TimeConsuming']
+          @Id = params['Id']
         end
       end
 

@@ -16319,15 +16319,18 @@ module TencentCloud
         # @type Professional: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param PrattWhitney: 轻量版 配置信息
         # @type PrattWhitney: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
+        # @param RASP: 重保授权包 配置信息
+        # @type RASP: :class:`Tencentcloud::Cwp.v20180228.models.VersionWhiteConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlagShip, :Professional, :PrattWhitney, :RequestId
+        attr_accessor :FlagShip, :Professional, :PrattWhitney, :RASP, :RequestId
 
-        def initialize(flagship=nil, professional=nil, prattwhitney=nil, requestid=nil)
+        def initialize(flagship=nil, professional=nil, prattwhitney=nil, rasp=nil, requestid=nil)
           @FlagShip = flagship
           @Professional = professional
           @PrattWhitney = prattwhitney
+          @RASP = rasp
           @RequestId = requestid
         end
 
@@ -16343,6 +16346,10 @@ module TencentCloud
           unless params['PrattWhitney'].nil?
             @PrattWhitney = VersionWhiteConfig.new
             @PrattWhitney.deserialize(params['PrattWhitney'])
+          end
+          unless params['RASP'].nil?
+            @RASP = VersionWhiteConfig.new
+            @RASP.deserialize(params['RASP'])
           end
           @RequestId = params['RequestId']
         end

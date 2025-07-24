@@ -7436,20 +7436,26 @@ module TencentCloud
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: AI 内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @type AiRecognitionTaskSet: Array
+        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
         # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
 
-        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :ReviewAudioVideoTask
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
+        extend Gem::Deprecate
+        deprecate :AiRecognitionTask, :none, 2025, 7
+        deprecate :AiRecognitionTask=, :none, 2025, 7
 
-        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
           @SubAppId = subappid
           @Comment = comment
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
+          @AiRecognitionTaskSet = airecognitiontaskset
           @AiRecognitionTask = airecognitiontask
           @ReviewAudioVideoTask = reviewaudiovideotask
         end
@@ -7469,6 +7475,14 @@ module TencentCloud
           unless params['AiAnalysisTask'].nil?
             @AiAnalysisTask = AiAnalysisTaskInput.new
             @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['AiRecognitionTaskSet'].nil?
+            @AiRecognitionTaskSet = []
+            params['AiRecognitionTaskSet'].each do |i|
+              airecognitiontaskinput_tmp = AiRecognitionTaskInput.new
+              airecognitiontaskinput_tmp.deserialize(i)
+              @AiRecognitionTaskSet << airecognitiontaskinput_tmp
+            end
           end
           unless params['AiRecognitionTask'].nil?
             @AiRecognitionTask = AiRecognitionTaskInput.new
@@ -21920,7 +21934,9 @@ module TencentCloud
         # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @type AiRecognitionTaskSet: Array
+        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
         # @param MiniProgramPublishTask: 微信小程序发布任务参数。
@@ -21934,15 +21950,19 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         # @type UpdateTime: String
 
-        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
+        attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
+        extend Gem::Deprecate
+        deprecate :AiRecognitionTask, :none, 2025, 7
+        deprecate :AiRecognitionTask=, :none, 2025, 7
 
-        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
+        def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
           @Type = type
           @Comment = comment
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
+          @AiRecognitionTaskSet = airecognitiontaskset
           @AiRecognitionTask = airecognitiontask
           @MiniProgramPublishTask = miniprogrampublishtask
           @ReviewAudioVideoTask = reviewaudiovideotask
@@ -21965,6 +21985,14 @@ module TencentCloud
           unless params['AiAnalysisTask'].nil?
             @AiAnalysisTask = AiAnalysisTaskInput.new
             @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['AiRecognitionTaskSet'].nil?
+            @AiRecognitionTaskSet = []
+            params['AiRecognitionTaskSet'].each do |i|
+              airecognitiontaskinput_tmp = AiRecognitionTaskInput.new
+              airecognitiontaskinput_tmp.deserialize(i)
+              @AiRecognitionTaskSet << airecognitiontaskinput_tmp
+            end
           end
           unless params['AiRecognitionTask'].nil?
             @AiRecognitionTask = AiRecognitionTaskInput.new
@@ -24733,20 +24761,26 @@ module TencentCloud
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: AI 智能内容分析类型任务参数。
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`
-        # @param AiRecognitionTask: AI 内容识别类型任务参数。
+        # @param AiRecognitionTaskSet: AI 内容识别类型任务参数。
+        # @type AiRecognitionTaskSet: Array
+        # @param AiRecognitionTask: 该参数已不推荐使用，建议使用 AiRecognitionTaskSet。
         # @type AiRecognitionTask: :class:`Tencentcloud::Vod.v20180717.models.AiRecognitionTaskInput`
         # @param ReviewAudioVideoTask: 音视频审核类型任务参数。
         # @type ReviewAudioVideoTask: :class:`Tencentcloud::Vod.v20180717.models.ProcedureReviewAudioVideoTaskInput`
 
-        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :ReviewAudioVideoTask
+        attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
+        extend Gem::Deprecate
+        deprecate :AiRecognitionTask, :none, 2025, 7
+        deprecate :AiRecognitionTask=, :none, 2025, 7
 
-        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
+        def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
           @SubAppId = subappid
           @Comment = comment
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
           @AiAnalysisTask = aianalysistask
+          @AiRecognitionTaskSet = airecognitiontaskset
           @AiRecognitionTask = airecognitiontask
           @ReviewAudioVideoTask = reviewaudiovideotask
         end
@@ -24766,6 +24800,14 @@ module TencentCloud
           unless params['AiAnalysisTask'].nil?
             @AiAnalysisTask = AiAnalysisTaskInput.new
             @AiAnalysisTask.deserialize(params['AiAnalysisTask'])
+          end
+          unless params['AiRecognitionTaskSet'].nil?
+            @AiRecognitionTaskSet = []
+            params['AiRecognitionTaskSet'].each do |i|
+              airecognitiontaskinput_tmp = AiRecognitionTaskInput.new
+              airecognitiontaskinput_tmp.deserialize(i)
+              @AiRecognitionTaskSet << airecognitiontaskinput_tmp
+            end
           end
           unless params['AiRecognitionTask'].nil?
             @AiRecognitionTask = AiRecognitionTaskInput.new

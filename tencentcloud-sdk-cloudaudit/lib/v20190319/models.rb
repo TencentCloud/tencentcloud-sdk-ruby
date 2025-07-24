@@ -133,10 +133,12 @@ module TencentCloud
         # @type EventNames: Array
         # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
         # @type TrackForAllMembers: Integer
+        # @param ExportId: 任务ID
+        # @type ExportId: String
 
-        attr_accessor :Name, :Status, :Storage, :ActionType, :ResourceType, :EventNames, :TrackForAllMembers
+        attr_accessor :Name, :Status, :Storage, :ActionType, :ResourceType, :EventNames, :TrackForAllMembers, :ExportId
 
-        def initialize(name=nil, status=nil, storage=nil, actiontype=nil, resourcetype=nil, eventnames=nil, trackforallmembers=nil)
+        def initialize(name=nil, status=nil, storage=nil, actiontype=nil, resourcetype=nil, eventnames=nil, trackforallmembers=nil, exportid=nil)
           @Name = name
           @Status = status
           @Storage = storage
@@ -144,6 +146,7 @@ module TencentCloud
           @ResourceType = resourcetype
           @EventNames = eventnames
           @TrackForAllMembers = trackforallmembers
+          @ExportId = exportid
         end
 
         def deserialize(params)
@@ -157,6 +160,7 @@ module TencentCloud
           @ResourceType = params['ResourceType']
           @EventNames = params['EventNames']
           @TrackForAllMembers = params['TrackForAllMembers']
+          @ExportId = params['ExportId']
         end
       end
 

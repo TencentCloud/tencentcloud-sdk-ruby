@@ -4558,6 +4558,54 @@ module TencentCloud
         end
       end
 
+      # ModifyLabel请求参数结构体
+      class ModifyLabelRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资产或风险主键ID
+        # @type Id: Integer
+        # @param CustomerId: 企业ID，在企业管理页面查看
+        # @type CustomerId: Integer
+        # @param Module: 模块，包括：enterprise：企业架构，domain：主域名，sub_domain：子域名，asset：IP资产，port：端口服务，http：HTTP资产，vul：漏洞信息，app：APP，wechat_applet：微信小程序，wechat_official_account：微信公众号，github：Github信息泄露，manage：管理后台暴露，config：目录爆破，dark_web：暗网泄露，net_disk：文库网盘泄露，supply_chain：供应链，weak_password：弱口令，sensitive_info：敏感信息泄露
+        # @type Module: String
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param Labels: 标签详情
+        # @type Labels: String
+
+        attr_accessor :Id, :CustomerId, :Module, :IsAggregation, :Labels
+
+        def initialize(id=nil, customerid=nil, _module=nil, isaggregation=nil, labels=nil)
+          @Id = id
+          @CustomerId = customerid
+          @Module = _module
+          @IsAggregation = isaggregation
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CustomerId = params['CustomerId']
+          @Module = params['Module']
+          @IsAggregation = params['IsAggregation']
+          @Labels = params['Labels']
+        end
+      end
+
+      # ModifyLabel返回参数结构体
+      class ModifyLabelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopJobRecord请求参数结构体
       class StopJobRecordRequest < TencentCloud::Common::AbstractModel
         # @param CustomerId: 企业ID

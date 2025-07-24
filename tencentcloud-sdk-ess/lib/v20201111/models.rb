@@ -4856,6 +4856,164 @@ module TencentCloud
         end
       end
 
+      # CreateMiniAppPrepareFlow请求参数结构体
+      class CreateMiniAppPrepareFlowRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+        # 支持填入集团子公司经办人 userId 代发合同。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ResourceType: 资源类型，取值有：
+        # <ul><li> **1**：模板</li>
+        # <li> **2**：文件 </li></ul>
+        # @type ResourceType: Integer
+        # @param ResourceId: 资源id，与ResourceType相对应，取值范围：
+        # <ul>
+        # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
+        # <li>模板Id（通过控制台创建模板后获取模板Id）</li>
+        # </ul>
+        # 注意：需要同时设置 ResourceType 参数指定资源类型
+        # @type ResourceId: String
+        # @param FlowName: 自定义的合同流程的名称，长度不能超过200个字符，只能由中文汉字、中文标点、英文字母、阿拉伯数字、空格、小括号、中括号、中划线、下划线以及（,）、（;）、（.）、(&)、（+）组成。
+
+        # 该名称还将用于合同签署完成后文件下载的默认文件名称。
+        # @type FlowName: String
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Approvers: 合同流程的参与方列表，最多可支持50个参与方，可在列表中指定企业B端签署方和个人C端签署方的联系和认证方式等信息。
+        # @type Approvers: Array
+        # @param CcInfos: 合同流程的抄送人列表，最多可支持50个抄送人，抄送人可查看合同内容及签署进度，但无需参与合同签署。
+
+        # **注：暂不支持通过NotifyType参数控制抄送人通知方式**
+        # @type CcInfos: Array
+        # @param Unordered: 合同流程的签署顺序类型：
+        # <ul><li> **false**：(默认)有序签署, 本合同多个参与人需要依次签署 </li>
+        # <li> **true**：无序签署, 本合同多个参与人没有先后签署限制</li></ul>
+
+        # **注：仅在文件发起模式下设置有效，模板发起以模板配置为准**
+        # @type Unordered: Boolean
+        # @param DeadlineAfterStartDays: 合同发起后经过多少天截止（1-30天可选），默认7天
+        # @type DeadlineAfterStartDays: Integer
+        # @param UserFlowTypeId: 用户自定义合同类型Id  该id为电子签企业内的合同类型id， 可以在控制台-合同-自定义合同类型处获取
+        # @type UserFlowTypeId: String
+        # @param FlowOption: 发起合同个性化参数
+        # 用于满足小程序合同创建的个性化要求
+        # 具体定制化内容详见数据接口说明
+        # @type FlowOption: :class:`Tencentcloud::Ess.v20201111.models.MiniAppCreateFlowOption`
+        # @param PageOption: 发起合同小程序页面个性化参数
+        # 用于满足小程序合同创建页面的个性化要求 具体定制化内容详见数据接口说明
+        # @type PageOption: :class:`Tencentcloud::Ess.v20201111.models.MiniAppCreateFlowPageOption`
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1000 长度。
+
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
+        # @type UserData: String
+
+        attr_accessor :Operator, :ResourceType, :ResourceId, :FlowName, :Agent, :Approvers, :CcInfos, :Unordered, :DeadlineAfterStartDays, :UserFlowTypeId, :FlowOption, :PageOption, :UserData
+
+        def initialize(operator=nil, resourcetype=nil, resourceid=nil, flowname=nil, agent=nil, approvers=nil, ccinfos=nil, unordered=nil, deadlineafterstartdays=nil, userflowtypeid=nil, flowoption=nil, pageoption=nil, userdata=nil)
+          @Operator = operator
+          @ResourceType = resourcetype
+          @ResourceId = resourceid
+          @FlowName = flowname
+          @Agent = agent
+          @Approvers = approvers
+          @CcInfos = ccinfos
+          @Unordered = unordered
+          @DeadlineAfterStartDays = deadlineafterstartdays
+          @UserFlowTypeId = userflowtypeid
+          @FlowOption = flowoption
+          @PageOption = pageoption
+          @UserData = userdata
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ResourceType = params['ResourceType']
+          @ResourceId = params['ResourceId']
+          @FlowName = params['FlowName']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+          unless params['Approvers'].nil?
+            @Approvers = []
+            params['Approvers'].each do |i|
+              miniappcreateapproverinfo_tmp = MiniAppCreateApproverInfo.new
+              miniappcreateapproverinfo_tmp.deserialize(i)
+              @Approvers << miniappcreateapproverinfo_tmp
+            end
+          end
+          unless params['CcInfos'].nil?
+            @CcInfos = []
+            params['CcInfos'].each do |i|
+              ccinfo_tmp = CcInfo.new
+              ccinfo_tmp.deserialize(i)
+              @CcInfos << ccinfo_tmp
+            end
+          end
+          @Unordered = params['Unordered']
+          @DeadlineAfterStartDays = params['DeadlineAfterStartDays']
+          @UserFlowTypeId = params['UserFlowTypeId']
+          unless params['FlowOption'].nil?
+            @FlowOption = MiniAppCreateFlowOption.new
+            @FlowOption.deserialize(params['FlowOption'])
+          end
+          unless params['PageOption'].nil?
+            @PageOption = MiniAppCreateFlowPageOption.new
+            @PageOption.deserialize(params['PageOption'])
+          end
+          @UserData = params['UserData']
+        end
+      end
+
+      # CreateMiniAppPrepareFlow返回参数结构体
+      class CreateMiniAppPrepareFlowResponse < TencentCloud::Common::AbstractModel
+        # @param LongUrl: H5跳转到电子签小程序链接, 一般用于发送短信中带的链接, 打开后进入腾讯电子签小程序
+        # @type LongUrl: String
+        # @param ShortUrl: H5跳转到电子签小程序链接的短链形式, 一般用于发送短信中带的链接, 打开后进入腾讯电子签小程序
+        # @type ShortUrl: String
+        # @param MiniAppPath: APP或小程序跳转电子签小程序链接, 一般用于客户小程序或者APP跳转过来, 打开后进入腾讯电子签小程序
+        # @type MiniAppPath: String
+        # @param FlowId: 创建的合同id（还未实际发起，也未扣费），每次调用会生成新的id，用户可以记录此字段对应后续在小程序发起的合同，若在小程序上未成功发起，则此字段无效。
+        # @type FlowId: String
+        # @param QrcodeUrl: 跳转至电子签小程序的二维码链接
+        # @type QrcodeUrl: String
+        # @param WeixinQrcodeUrl: 直接跳转至电子签小程序的二维码链接，无需通过中转页。需要自行将其转换为二维码，使用微信扫码后可直接进入。
+        # @type WeixinQrcodeUrl: String
+        # @param ExpiredOn: 链接过期时间，精确到秒，若在此过期时间前未使用，则链接失效。
+        # @type ExpiredOn: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LongUrl, :ShortUrl, :MiniAppPath, :FlowId, :QrcodeUrl, :WeixinQrcodeUrl, :ExpiredOn, :RequestId
+
+        def initialize(longurl=nil, shorturl=nil, miniapppath=nil, flowid=nil, qrcodeurl=nil, weixinqrcodeurl=nil, expiredon=nil, requestid=nil)
+          @LongUrl = longurl
+          @ShortUrl = shorturl
+          @MiniAppPath = miniapppath
+          @FlowId = flowid
+          @QrcodeUrl = qrcodeurl
+          @WeixinQrcodeUrl = weixinqrcodeurl
+          @ExpiredOn = expiredon
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LongUrl = params['LongUrl']
+          @ShortUrl = params['ShortUrl']
+          @MiniAppPath = params['MiniAppPath']
+          @FlowId = params['FlowId']
+          @QrcodeUrl = params['QrcodeUrl']
+          @WeixinQrcodeUrl = params['WeixinQrcodeUrl']
+          @ExpiredOn = params['ExpiredOn']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateModifyAdminAuthorizationUrl请求参数结构体
       class CreateModifyAdminAuthorizationUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -12243,6 +12401,112 @@ module TencentCloud
           @Video = params['Video']
           @ResultCode = params['ResultCode']
           @AsrResult = params['AsrResult']
+        end
+      end
+
+      # 创建流程的签署方信息
+      class MiniAppCreateApproverInfo < TencentCloud::Common::AbstractModel
+        # @param ApproverType: 在指定签署方时，可以选择企业B端或个人C端等不同的参与者类型，可选类型如下：
+
+        # <ul><li> <b>0</b> :企业B端。</li>
+        # <li> <b>1</b> :个人C端。</li>
+        # <li> <b>3</b> :企业B端静默（自动）签署，无需签署人参与，自动签署可以参考<a href="https://qian.tencent.com/developers/company/autosign_guide" target="_blank" rel="noopener noreferrer">自动签署使用说明</a>文档。</li>
+        # <li> <b>7</b> :个人C端自动签署，适用于个人自动签场景。注: <b>个人自动签场景为白名单功能，使用前请联系对接的客户经理沟通。</b> </li></ul>
+        # @type ApproverType: Integer
+        # @param OrganizationName: 组织机构名称。
+        # 请确认该名称与企业营业执照中注册的名称一致。
+        # 如果名称中包含英文括号()，请使用中文括号（）代替。
+
+        # 注: `当approverType=0(企业签署方) 或 approverType=3(企业静默签署)时，必须指定`
+
+        # @type OrganizationName: String
+        # @param ApproverName: 签署方经办人的姓名。
+        # 经办人的姓名将用于身份认证和电子签名，请确保填写的姓名为签署方的真实姓名，而非昵称等代名。
+
+        # 在未指定签署人电子签UserId情况下，为必填参数
+        # @type ApproverName: String
+        # @param ApproverMobile: 签署方经办人手机号码， 支持国内手机号11位数字(无需加+86前缀或其他字符)。 此手机号用于通知和用户的实名认证等环境，请确认手机号所有方为此合同签署方。
+
+        # 注：`在未指定签署人电子签UserId情况下，为必填参数`
+        # @type ApproverMobile: String
+        # @param ApproverIdCardType: 证件类型，支持以下类型
+        # <ul><li><b>ID_CARD</b>: 居民身份证 (默认值)</li>
+        # <li><b>HONGKONG_AND_MACAO</b> : 港澳居民来往内地通行证</li>
+        # <li><b>HONGKONG_MACAO_AND_TAIWAN</b> : 港澳台居民居住证(格式同居民身份证)</li></ul>
+        # @type ApproverIdCardType: String
+        # @param ApproverIdCardNumber: 证件号码，应符合以下规则
+        # <ul><li>中国大陆居民身份证号码应为18位字符串，由数字和大写字母X组成（如存在X，请大写）。</li>
+        # <li>中国港澳居民来往内地通行证号码共11位。第1位为字母，“H”字头签发给中国香港居民，“M”字头签发给中国澳门居民；第2位至第11位为数字。</li>
+        # <li>中国港澳台居民居住证号码编码规则与中国大陆身份证相同，应为18位字符串。</li></ul>
+        # @type ApproverIdCardNumber: String
+        # @param RecipientId: 签署方经办人在模板中配置的参与方ID，与控件绑定，是控件的归属方，ID为32位字符串。
+
+        # <b>模板发起合同时，该参数为必填项，可以通过[查询模板信息接口](https://qian.tencent.com/developers/companyApis/templatesAndFiles/DescribeFlowTemplates)获得。</b>
+        # <b>文件发起合同时，该参数无需传值。</b>
+
+        # 如果开发者后续用合同模板发起合同，建议保存此值，在用合同模板发起合同中需此值绑定对应的签署经办人 。
+        # @type RecipientId: String
+
+        attr_accessor :ApproverType, :OrganizationName, :ApproverName, :ApproverMobile, :ApproverIdCardType, :ApproverIdCardNumber, :RecipientId
+
+        def initialize(approvertype=nil, organizationname=nil, approvername=nil, approvermobile=nil, approveridcardtype=nil, approveridcardnumber=nil, recipientid=nil)
+          @ApproverType = approvertype
+          @OrganizationName = organizationname
+          @ApproverName = approvername
+          @ApproverMobile = approvermobile
+          @ApproverIdCardType = approveridcardtype
+          @ApproverIdCardNumber = approveridcardnumber
+          @RecipientId = recipientid
+        end
+
+        def deserialize(params)
+          @ApproverType = params['ApproverType']
+          @OrganizationName = params['OrganizationName']
+          @ApproverName = params['ApproverName']
+          @ApproverMobile = params['ApproverMobile']
+          @ApproverIdCardType = params['ApproverIdCardType']
+          @ApproverIdCardNumber = params['ApproverIdCardNumber']
+          @RecipientId = params['RecipientId']
+        end
+      end
+
+      # 小程序发起合同可选项
+      class MiniAppCreateFlowOption < TencentCloud::Common::AbstractModel
+        # @param RemindedOn: 到期提醒日（linux时间戳） 精确到天
+        # @type RemindedOn: Integer
+        # @param NeedCreateReview: 是否需要发起前进行审批
+        # @type NeedCreateReview: Boolean
+        # @param FlowDisplayType: 在短信通知、填写、签署流程中，若标题、按钮、合同详情等地方存在“合同”字样时，可根据此配置指定文案，可选文案如下：  <ul><li> <b>0</b> :合同（默认值）</li> <li> <b>1</b> :文件</li> <li> <b>2</b> :协议</li><li> <b>3</b> :文书</li></ul>效果如下:![FlowDisplayType](https://qcloudimg.tencent-cloud.cn/raw/e4a2c4d638717cc901d3dbd5137c9bbc.png)
+        # @type FlowDisplayType: Integer
+
+        attr_accessor :RemindedOn, :NeedCreateReview, :FlowDisplayType
+
+        def initialize(remindedon=nil, needcreatereview=nil, flowdisplaytype=nil)
+          @RemindedOn = remindedon
+          @NeedCreateReview = needcreatereview
+          @FlowDisplayType = flowdisplaytype
+        end
+
+        def deserialize(params)
+          @RemindedOn = params['RemindedOn']
+          @NeedCreateReview = params['NeedCreateReview']
+          @FlowDisplayType = params['FlowDisplayType']
+        end
+      end
+
+      # 小程序发起页面个性化配置参数
+      class MiniAppCreateFlowPageOption < TencentCloud::Common::AbstractModel
+        # @param HideSignCodeAfterStart: 发起后隐藏签署码
+        # @type HideSignCodeAfterStart: Boolean
+
+        attr_accessor :HideSignCodeAfterStart
+
+        def initialize(hidesigncodeafterstart=nil)
+          @HideSignCodeAfterStart = hidesigncodeafterstart
+        end
+
+        def deserialize(params)
+          @HideSignCodeAfterStart = params['HideSignCodeAfterStart']
         end
       end
 

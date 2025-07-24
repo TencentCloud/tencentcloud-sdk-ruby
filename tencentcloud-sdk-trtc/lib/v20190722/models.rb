@@ -114,10 +114,14 @@ module TencentCloud
         # @type VoicePrint: :class:`Tencentcloud::Trtc.v20190722.models.VoicePrint`
         # @param TurnDetection: 语义断句检测
         # @type TurnDetection: :class:`Tencentcloud::Trtc.v20190722.models.TurnDetection`
+        # @param SubtitleMode: 机器人字幕显示模式。
+        # - 0表示尽快显示，不会和音频播放进行同步。此时字幕全量下发，后面的字幕会包含前面的字幕。
+        # - 1表示句子级别的实时显示，会和音频播放进行同步，只有当前句子对应的音频播放完后，下一条字幕才会下发。此时字幕增量下发，端上需要把前后的字幕进行拼接才是完整字幕。
+        # @type SubtitleMode: Integer
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :TurnDetection
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :TurnDetection, :SubtitleMode
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, turndetection=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, turndetection=nil, subtitlemode=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -132,6 +136,7 @@ module TencentCloud
           @AmbientSound = ambientsound
           @VoicePrint = voiceprint
           @TurnDetection = turndetection
+          @SubtitleMode = subtitlemode
         end
 
         def deserialize(params)
@@ -158,6 +163,7 @@ module TencentCloud
             @TurnDetection = TurnDetection.new
             @TurnDetection.deserialize(params['TurnDetection'])
           end
+          @SubtitleMode = params['SubtitleMode']
         end
       end
 

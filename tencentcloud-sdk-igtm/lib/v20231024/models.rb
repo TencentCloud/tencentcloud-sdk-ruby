@@ -302,7 +302,7 @@ module TencentCloud
         # @type AccessSubDomain: String
         # @param Remark: 备注
         # @type Remark: String
-        # @param ResourceId: 套餐资源id，必填
+        # @param ResourceId: 套餐资源id
         # @type ResourceId: String
 
         attr_accessor :Domain, :AccessType, :GlobalTtl, :PackageType, :InstanceName, :AccessDomain, :AccessSubDomain, :Remark, :ResourceId

@@ -3766,6 +3766,83 @@ module TencentCloud
         end
       end
 
+      # DescribeResolveCount请求参数结构体
+      class DescribeResolveCountRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 要查询解析量的域名
+        # @type Domain: String
+        # @param StartDate: 查询的开始时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。
+        # @type StartDate: String
+        # @param EndDate: 查询的结束时间，格式：YYYY-MM-DD，最多允许查询最近32天的数据。
+        # @type EndDate: String
+        # @param DnsFormat: 数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据
+        # @type DnsFormat: String
+        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @type DomainId: Integer
+
+        attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId
+
+        def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, domainid=nil)
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+          @DnsFormat = dnsformat
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @DnsFormat = params['DnsFormat']
+          @DomainId = params['DomainId']
+        end
+      end
+
+      # DescribeResolveCount返回参数结构体
+      class DescribeResolveCountResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 解析量明细
+        # @type Data: Array
+        # @param Info: 解析量统计信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.ResolveCountInfo`
+        # @param AliasData: 别名解析量明细
+        # @type AliasData: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Info, :AliasData, :RequestId
+
+        def initialize(data=nil, info=nil, aliasdata=nil, requestid=nil)
+          @Data = data
+          @Info = info
+          @AliasData = aliasdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resolvecountdataitem_tmp = ResolveCountDataItem.new
+              resolvecountdataitem_tmp.deserialize(i)
+              @Data << resolvecountdataitem_tmp
+            end
+          end
+          unless params['Info'].nil?
+            @Info = ResolveCountInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['AliasData'].nil?
+            @AliasData = []
+            params['AliasData'].each do |i|
+              resolvecountaliasitem_tmp = ResolveCountAliasItem.new
+              resolvecountaliasitem_tmp.deserialize(i)
+              @AliasData << resolvecountaliasitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSnapshotConfig请求参数结构体
       class DescribeSnapshotConfigRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -6714,6 +6791,92 @@ module TencentCloud
           @TTL = params['TTL']
           @MX = params['MX']
           @DefaultNS = params['DefaultNS']
+        end
+      end
+
+      # 域名别名解析量统计信息
+      class ResolveCountAliasItem < TencentCloud::Common::AbstractModel
+        # @param Info: 域名解析量统计信息
+        # @type Info: :class:`Tencentcloud::Dnspod.v20210323.models.ResolveCountInfo`
+        # @param Data: 解析量明细
+        # @type Data: Array
+
+        attr_accessor :Info, :Data
+
+        def initialize(info=nil, data=nil)
+          @Info = info
+          @Data = data
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = ResolveCountInfo.new
+            @Info.deserialize(params['Info'])
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              resolvecountdataitem_tmp = ResolveCountDataItem.new
+              resolvecountdataitem_tmp.deserialize(i)
+              @Data << resolvecountdataitem_tmp
+            end
+          end
+        end
+      end
+
+      # 解析量小计
+      class ResolveCountDataItem < TencentCloud::Common::AbstractModel
+        # @param Num: 解析量
+        # @type Num: Integer
+        # @param DateKey: 统计的时间点
+        # @type DateKey: String
+
+        attr_accessor :Num, :DateKey
+
+        def initialize(num=nil, datekey=nil)
+          @Num = num
+          @DateKey = datekey
+        end
+
+        def deserialize(params)
+          @Num = params['Num']
+          @DateKey = params['DateKey']
+        end
+      end
+
+      # 域名解析量统计信息
+      class ResolveCountInfo < TencentCloud::Common::AbstractModel
+        # @param DnsTotal: 当前统计周期解析量总计
+        # @type DnsTotal: Integer
+        # @param Domain: 当前查询的域名
+        # @type Domain: String
+        # @param StartDate: 当前统计周期开始时间
+        # @type StartDate: String
+        # @param EndDate: 当前统计周期结束时间
+        # @type EndDate: String
+        # @param SubDomain: 当前统计的子域名
+        # @type SubDomain: String
+        # @param DnsFormat: 数据统计格式，取值为minute、hour、day，分别表示按十分钟、小时、天统计数据
+        # @type DnsFormat: String
+
+        attr_accessor :DnsTotal, :Domain, :StartDate, :EndDate, :SubDomain, :DnsFormat
+
+        def initialize(dnstotal=nil, domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnsformat=nil)
+          @DnsTotal = dnstotal
+          @Domain = domain
+          @StartDate = startdate
+          @EndDate = enddate
+          @SubDomain = subdomain
+          @DnsFormat = dnsformat
+        end
+
+        def deserialize(params)
+          @DnsTotal = params['DnsTotal']
+          @Domain = params['Domain']
+          @StartDate = params['StartDate']
+          @EndDate = params['EndDate']
+          @SubDomain = params['SubDomain']
+          @DnsFormat = params['DnsFormat']
         end
       end
 
