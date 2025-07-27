@@ -1397,7 +1397,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeBackupSummaries)用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
+        # 本接口（DescribeBackupSummaries）用于查询备份的统计情况，返回以实例为维度的备份占用容量，以及每个实例的数据备份和日志备份的个数和容量（容量单位为字节）。
 
         # @param request: Request instance for DescribeBackupSummaries.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeBackupSummariesRequest`
@@ -1781,7 +1781,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBInstanceLogToCLS)用于查询实例慢日志、错误日志投递CLS的配置，通过AppId、Region以及实例ID过滤出当前实例日志投递CLS的配置。
+        # 本接口（DescribeDBInstanceLogToCLS）用于查询实例慢日志、错误日志投递CLS的配置，通过AppId、Region以及实例ID过滤出当前实例日志投递CLS的配置。
 
         # @param request: Request instance for DescribeDBInstanceLogToCLS.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeDBInstanceLogToCLSRequest`
@@ -2434,7 +2434,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+        # 本接口（DescribeRollbackTaskDetail）用于查询云数据库实例回档任务详情。
 
         # @param request: Request instance for DescribeRollbackTaskDetail.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeRollbackTaskDetailRequest`
@@ -2555,7 +2555,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeTableColumns)用于查询云数据库实例的指定数据库表的列信息，仅支持主实例和灾备实例。
+        # 本接口（DescribeTableColumns）用于查询云数据库实例的指定数据库表的列信息，仅支持主实例和灾备实例。
 
         # @param request: Request instance for DescribeTableColumns.
         # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeTableColumnsRequest`
@@ -3016,7 +3016,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
+        # 本接口（ModifyBackupConfig）用于修改数据库备份配置信息。
 
         # @param request: Request instance for ModifyBackupConfig.
         # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyBackupConfigRequest`
@@ -3376,7 +3376,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该接口用于修改实例本地binlog保留策略。
+        # 本接口（ModifyLocalBinlogConfig）用于修改实例本地 binlog 保留策略。
 
         # @param request: Request instance for ModifyLocalBinlogConfig.
         # @type request: :class:`Tencentcloud::cdb::V20170320::ModifyLocalBinlogConfigRequest`

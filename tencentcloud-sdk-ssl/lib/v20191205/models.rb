@@ -643,10 +643,12 @@ module TencentCloud
         # @type Type: Integer
         # @param CaType: 只针对Dnspod系列证书有效，ca机构类型可为sectigo和digicert
         # @type CaType: String
+        # @param SignAlgo: 签名算法
+        # @type SignAlgo: String
 
-        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle, :Type, :CaType
+        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle, :Type, :CaType, :SignAlgo
 
-        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil, type=nil, catype=nil)
+        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil, type=nil, catype=nil, signalgo=nil)
           @CertId = certid
           @GenCsrType = gencsrtype
           @CertCommonName = certcommonname
@@ -687,6 +689,7 @@ module TencentCloud
           @TechTitle = techtitle
           @Type = type
           @CaType = catype
+          @SignAlgo = signalgo
         end
 
         def deserialize(params)
@@ -730,6 +733,7 @@ module TencentCloud
           @TechTitle = params['TechTitle']
           @Type = params['Type']
           @CaType = params['CaType']
+          @SignAlgo = params['SignAlgo']
         end
       end
 
@@ -6592,7 +6596,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param ValidType: 验证类型：DNS_AUTO = 自动DNS验证（仅支持在腾讯云解析且解析状态正常的域名使用该验证类型），DNS = 手动DNS验证，FILE = 文件验证。
         # @type ValidType: String
-        # @param CsrType: 类型，默认 Original。可选项：Original = 原证书 CSR，Upload = 手动上传，Online = 在线生成。
+        # @param CsrType: 类型，默认 original。可选项：original = 原证书 CSR，upload = 手动上传，online = 在线生成。
         # @type CsrType: String
         # @param CsrContent: CSR 内容，手动上传的时候需要。
         # @type CsrContent: String
@@ -6605,10 +6609,12 @@ module TencentCloud
         # @type CertCSREncryptAlgo: String
         # @param CertCSRKeyParameter: CSR加密参数，CsrEncryptAlgo为RSA时， 可选2048、4096等默认为2048；CsrEncryptAlgo为ECC时，可选prime256v1，secp384r1等，默认为prime256v1;
         # @type CertCSRKeyParameter: String
+        # @param SignAlgo: 签名算法
+        # @type SignAlgo: String
 
-        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason, :CertCSREncryptAlgo, :CertCSRKeyParameter
+        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason, :CertCSREncryptAlgo, :CertCSRKeyParameter, :SignAlgo
 
-        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil, certcsrencryptalgo=nil, certcsrkeyparameter=nil)
+        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil, certcsrencryptalgo=nil, certcsrkeyparameter=nil, signalgo=nil)
           @CertificateId = certificateid
           @ValidType = validtype
           @CsrType = csrtype
@@ -6617,6 +6623,7 @@ module TencentCloud
           @Reason = reason
           @CertCSREncryptAlgo = certcsrencryptalgo
           @CertCSRKeyParameter = certcsrkeyparameter
+          @SignAlgo = signalgo
         end
 
         def deserialize(params)
@@ -6628,6 +6635,7 @@ module TencentCloud
           @Reason = params['Reason']
           @CertCSREncryptAlgo = params['CertCSREncryptAlgo']
           @CertCSRKeyParameter = params['CertCSRKeyParameter']
+          @SignAlgo = params['SignAlgo']
         end
       end
 

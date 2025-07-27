@@ -1739,6 +1739,14 @@ module TencentCloud
         # @type Prompt: String
         # @param Flag: 云端特效标签。
         # @type Flag: String
+        # @param Status: 云端特效生成状态。
+        # 生成中 - GENERATING。
+        # 处理中 - PROCESSING。
+        # 生成失败 - FAILED。
+        # 已完成 - FINISH。
+        # @type Status: String
+        # @param Message: 特效信息，生成失败时，此处返回失败原因。
+        # @type Message: String
         # @param PreviewImageUrl: 云端特效预览图片。
         # @type PreviewImageUrl: String
         # @param Type: 云端特效类型。
@@ -1751,12 +1759,14 @@ module TencentCloud
         # @param UpdateTime: 云端特效更新时间。
         # @type UpdateTime: String
 
-        attr_accessor :Id, :Prompt, :Flag, :PreviewImageUrl, :Type, :CreateTime, :UpdateTime
+        attr_accessor :Id, :Prompt, :Flag, :Status, :Message, :PreviewImageUrl, :Type, :CreateTime, :UpdateTime
 
-        def initialize(id=nil, prompt=nil, flag=nil, previewimageurl=nil, type=nil, createtime=nil, updatetime=nil)
+        def initialize(id=nil, prompt=nil, flag=nil, status=nil, message=nil, previewimageurl=nil, type=nil, createtime=nil, updatetime=nil)
           @Id = id
           @Prompt = prompt
           @Flag = flag
+          @Status = status
+          @Message = message
           @PreviewImageUrl = previewimageurl
           @Type = type
           @CreateTime = createtime
@@ -1767,6 +1777,8 @@ module TencentCloud
           @Id = params['Id']
           @Prompt = params['Prompt']
           @Flag = params['Flag']
+          @Status = params['Status']
+          @Message = params['Message']
           @PreviewImageUrl = params['PreviewImageUrl']
           @Type = params['Type']
           @CreateTime = params['CreateTime']
@@ -6574,13 +6586,19 @@ module TencentCloud
       class DescribeLiveCloudEffectListResponse < TencentCloud::Common::AbstractModel
         # @param InfoList: 云端特效信息列表。
         # @type InfoList: Array
+        # @param EnableCreateNum: 允许创建的云端特效个数。
+        # @type EnableCreateNum: Integer
+        # @param TotalNum: 当前已有的特效总个数。
+        # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InfoList, :RequestId
+        attr_accessor :InfoList, :EnableCreateNum, :TotalNum, :RequestId
 
-        def initialize(infolist=nil, requestid=nil)
+        def initialize(infolist=nil, enablecreatenum=nil, totalnum=nil, requestid=nil)
           @InfoList = infolist
+          @EnableCreateNum = enablecreatenum
+          @TotalNum = totalnum
           @RequestId = requestid
         end
 
@@ -6593,6 +6611,8 @@ module TencentCloud
               @InfoList << cloudeffectinfo_tmp
             end
           end
+          @EnableCreateNum = params['EnableCreateNum']
+          @TotalNum = params['TotalNum']
           @RequestId = params['RequestId']
         end
       end

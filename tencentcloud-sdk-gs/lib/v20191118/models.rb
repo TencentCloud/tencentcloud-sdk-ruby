@@ -1288,16 +1288,19 @@ module TencentCloud
 
       # CreateCosCredential请求参数结构体
       class CreateCosCredentialRequest < TencentCloud::Common::AbstractModel
-        # @param CosType: Cos 密钥类型， Mobile 移动端, PC 桌面, AndroidApp 安卓应用
+        # @param CosType: Cos 密钥类型，取值： Mobile 云手游、PC 云端游、AndroidApp 云手机应用管理、AndroidAppFile 云手机文件管理、AndroidAppBackup 云手机备份还原
         # @type CosType: String
-        # @param AndroidAppCosInfo: 云手机 Cos 数据
+        # @param AndroidAppCosInfo: 云手机应用管理 Cos 数据
         # @type AndroidAppCosInfo: :class:`Tencentcloud::Gs.v20191118.models.AndroidAppCosInfo`
+        # @param AndroidAppFileCosInfo: 云手机文件管理 Cos 数据
+        # @type AndroidAppFileCosInfo: :class:`Tencentcloud::Gs.v20191118.models.FileCosInfo`
 
-        attr_accessor :CosType, :AndroidAppCosInfo
+        attr_accessor :CosType, :AndroidAppCosInfo, :AndroidAppFileCosInfo
 
-        def initialize(costype=nil, androidappcosinfo=nil)
+        def initialize(costype=nil, androidappcosinfo=nil, androidappfilecosinfo=nil)
           @CosType = costype
           @AndroidAppCosInfo = androidappcosinfo
+          @AndroidAppFileCosInfo = androidappfilecosinfo
         end
 
         def deserialize(params)
@@ -1305,6 +1308,10 @@ module TencentCloud
           unless params['AndroidAppCosInfo'].nil?
             @AndroidAppCosInfo = AndroidAppCosInfo.new
             @AndroidAppCosInfo.deserialize(params['AndroidAppCosInfo'])
+          end
+          unless params['AndroidAppFileCosInfo'].nil?
+            @AndroidAppFileCosInfo = FileCosInfo.new
+            @AndroidAppFileCosInfo.deserialize(params['AndroidAppFileCosInfo'])
           end
         end
       end
@@ -2579,6 +2586,22 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 应用文件 Cos 信息
+      class FileCosInfo < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件 Id
+        # @type FileId: String
+
+        attr_accessor :FileId
+
+        def initialize(fileid=nil)
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
         end
       end
 

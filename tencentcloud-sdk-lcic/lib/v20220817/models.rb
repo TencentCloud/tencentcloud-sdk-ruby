@@ -1413,7 +1413,7 @@ module TencentCloud
 
       # DeleteWhiteBoardSnapshot请求参数结构体
       class DeleteWhiteBoardSnapshotRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 房间ID
+        # @param RoomId: 课堂ID
         # @type RoomId: Integer
 
         attr_accessor :RoomId
@@ -3091,7 +3091,7 @@ module TencentCloud
 
       # EndRoom请求参数结构体
       class EndRoomRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 房间ID。
+        # @param RoomId: 课堂ID
         # @type RoomId: Integer
 
         attr_accessor :RoomId
@@ -3217,7 +3217,7 @@ module TencentCloud
       class ForbidSendMsgRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码互动课堂的SdkAppId。
         # @type SdkAppId: Integer
-        # @param RoomId: 房间ID。
+        # @param RoomId: 课堂ID
         # @type RoomId: Integer
         # @param MembersAccount: 需要禁言的用户账号，最多支持500个账号
         # @type MembersAccount: Array
@@ -5093,7 +5093,7 @@ module TencentCloud
 
       # StartRoom请求参数结构体
       class StartRoomRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 房间ID。
+        # @param RoomId: 课堂ID
         # @type RoomId: Integer
 
         attr_accessor :RoomId
@@ -5127,7 +5127,7 @@ module TencentCloud
       class StopRecordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 学校ID
         # @type SdkAppId: Integer
-        # @param RoomId: 房间ID
+        # @param RoomId: 课堂ID
         # @type RoomId: Integer
         # @param TaskId: 任务ID
         # @type TaskId: String

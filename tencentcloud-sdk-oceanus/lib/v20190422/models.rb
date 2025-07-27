@@ -2550,7 +2550,7 @@ module TencentCloud
 
       # DescribeTreeJobs请求参数结构体
       class DescribeTreeJobsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 筛选条件字段
+        # @param Filters: 筛选条件字段，使用了筛选字段后不支持分页，最多返回2000条记录
         # @type Filters: Array
         # @param WorkSpaceId: 工作空间 Serialid
         # @type WorkSpaceId: String
@@ -2650,16 +2650,24 @@ module TencentCloud
         # @param RequestId: 请求ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestId: String
+        # @param PageAttach: attach-000
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageAttach: String
+        # @param HasMore: bool
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasMore: Boolean
 
-        attr_accessor :ParentId, :Id, :Name, :JobSet, :Children, :RequestId
+        attr_accessor :ParentId, :Id, :Name, :JobSet, :Children, :RequestId, :PageAttach, :HasMore
 
-        def initialize(parentid=nil, id=nil, name=nil, jobset=nil, children=nil, requestid=nil)
+        def initialize(parentid=nil, id=nil, name=nil, jobset=nil, children=nil, requestid=nil, pageattach=nil, hasmore=nil)
           @ParentId = parentid
           @Id = id
           @Name = name
           @JobSet = jobset
           @Children = children
           @RequestId = requestid
+          @PageAttach = pageattach
+          @HasMore = hasmore
         end
 
         def deserialize(params)
@@ -2683,6 +2691,8 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+          @PageAttach = params['PageAttach']
+          @HasMore = params['HasMore']
         end
       end
 

@@ -2170,6 +2170,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 基于MLLM(多模态大语言模型)的表格识别能力，针对复杂表格的算法识别效果更佳，适配财务报表识别场景，并可输出直接对接业务系统的Excel数据。
+
+        # 默认接口请求频率限制：1次/秒。
+
+        # @param request: Request instance for RecognizeTableMultiOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::RecognizeTableMultiOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::RecognizeTableMultiOCRResponse`
+        def RecognizeTableMultiOCR(request)
+          body = send_request('RecognizeTableMultiOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeTableMultiOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持中英文图片/ PDF内常规表格、无线表格、多表格的检测和识别，支持日文有线表格识别，返回每个单元格的文字内容，支持旋转的表格图片识别，且支持将识别结果保存为 Excel 格式。
 
         # 默认接口请求频率限制：10次/秒。
