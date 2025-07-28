@@ -864,15 +864,18 @@ module TencentCloud
         # @type DiskBackupId: String
         # @param Tags: 快照绑定的标签。
         # @type Tags: Array
+        # @param DiskUsage: 快照关联云硬盘类型, SYSTEM_DISK: 系统盘, DATA_DISK: 数据盘,非必填参数，不填时快照类型与云盘类型保持一致， 该参数基于某些场景用户需要将系统盘创建出数据盘快照共享使用。
+        # @type DiskUsage: String
 
-        attr_accessor :DiskId, :SnapshotName, :Deadline, :DiskBackupId, :Tags
+        attr_accessor :DiskId, :SnapshotName, :Deadline, :DiskBackupId, :Tags, :DiskUsage
 
-        def initialize(diskid=nil, snapshotname=nil, deadline=nil, diskbackupid=nil, tags=nil)
+        def initialize(diskid=nil, snapshotname=nil, deadline=nil, diskbackupid=nil, tags=nil, diskusage=nil)
           @DiskId = diskid
           @SnapshotName = snapshotname
           @Deadline = deadline
           @DiskBackupId = diskbackupid
           @Tags = tags
+          @DiskUsage = diskusage
         end
 
         def deserialize(params)
@@ -888,6 +891,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @DiskUsage = params['DiskUsage']
         end
       end
 

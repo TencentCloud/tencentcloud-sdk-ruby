@@ -12577,7 +12577,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务。</li>
+        # @param TaskType: 任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -12657,12 +12657,14 @@ module TencentCloud
         # @param ComplexAdaptiveDynamicStreamingTask: 复杂自适应码流任务信息，仅当 TaskType 为 ComplexAdaptiveDynamicStreaming，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplexAdaptiveDynamicStreamingTask: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
+        # @param ProcessMediaByMPSTask: MPS 视频处理任务信息，仅当 TaskType 为 ProcessMediaByMPS，该字段有值。
+        # @type ProcessMediaByMPSTask: :class:`Tencentcloud::Vod.v20180717.models.ProcessMediaByMPS`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -12690,6 +12692,7 @@ module TencentCloud
           @QualityInspectTask = qualityinspecttask
           @QualityEnhanceTask = qualityenhancetask
           @ComplexAdaptiveDynamicStreamingTask = complexadaptivedynamicstreamingtask
+          @ProcessMediaByMPSTask = processmediabympstask
           @RequestId = requestid
         end
 
@@ -12786,6 +12789,10 @@ module TencentCloud
           unless params['ComplexAdaptiveDynamicStreamingTask'].nil?
             @ComplexAdaptiveDynamicStreamingTask = ComplexAdaptiveDynamicStreamingTask.new
             @ComplexAdaptiveDynamicStreamingTask.deserialize(params['ComplexAdaptiveDynamicStreamingTask'])
+          end
+          unless params['ProcessMediaByMPSTask'].nil?
+            @ProcessMediaByMPSTask = ProcessMediaByMPS.new
+            @ProcessMediaByMPSTask.deserialize(params['ProcessMediaByMPSTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -16159,6 +16166,101 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 用于描述 MPS 视频处理任务中的返回文件结果。
+      class MPSOutputFile < TencentCloud::Common::AbstractModel
+        # @param FileType: 文件类型。用于标识 MPS 视频处理任务执行结果中的特定返回文件。
+        # 取值：<li>AiAnalysis.DeLogo.Video: 智能擦除任务中产生的擦除后视频文件；</li><li>AiAnalysis.DeLogo.OriginSubtitle: 智能擦除任务中基于画面提取的字幕文件；</li><li>AiAnalysis.DeLogo.TranslateSubtitle: 智能擦除任务中基于画面提取的字幕翻译文件。</li>
+        # @type FileType: String
+        # @param StorageMode: 存储形式。用于表示该结果文件的存储形式，取值有：<li> Permanent：永久存储；</li><li> Temporary：临时存储。</li>
+        # @type StorageMode: String
+        # @param FileId: 媒体文件 ID。当 Type 为 Permanent 时有效，表示该结果文件以视频媒资形式存储在点播平台中，字段值为视频媒资的 FileId。
+        # @type FileId: String
+        # @param Url: 结果文件的可下载 Url。
+        # @type Url: String
+        # @param ExpiredTime: 过期时间。当 StorageMode 为 Temporary 时有效，表示 Url 的过期时间，单位为秒。
+        # @type ExpiredTime: Integer
+
+        attr_accessor :FileType, :StorageMode, :FileId, :Url, :ExpiredTime
+
+        def initialize(filetype=nil, storagemode=nil, fileid=nil, url=nil, expiredtime=nil)
+          @FileType = filetype
+          @StorageMode = storagemode
+          @FileId = fileid
+          @Url = url
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @StorageMode = params['StorageMode']
+          @FileId = params['FileId']
+          @Url = params['Url']
+          @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # MPS 具体子任务查询结果类型。
+      class MPSSubTaskResult < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型。MPS 的 WorkflowTask 结构中的具体子任务类型。取值：<li>AiAnalysis.DeLogo：智能擦除任务。</li>
+        # @type TaskType: String
+        # @param Status: 任务状态。有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码。返回0时成功，其他值为失败。
+        # @type ErrCode: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: MPS 视频处理任务输入。该字段对应 MPS 任务返回中的 Input 结果，以 JSON 格式返回。
+        # @type Input: String
+        # @param Output: MPS 视频处理任务输出。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MPSTaskOutput`
+
+        attr_accessor :TaskType, :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(tasktype=nil, status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @TaskType = tasktype
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Input = params['Input']
+          unless params['Output'].nil?
+            @Output = MPSTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # MPS 子任务输出返回结果。
+      class MPSTaskOutput < TencentCloud::Common::AbstractModel
+        # @param OutputFiles: 任务返回结果中的文件类型结果。如智能擦除中，擦除后的视频文件将被存入媒资，并在此字段中给出 FileId；基于画面提取的字幕文件 Url 将在此字段中给出。
+        # @type OutputFiles: Array
+
+        attr_accessor :OutputFiles
+
+        def initialize(outputfiles=nil)
+          @OutputFiles = outputfiles
+        end
+
+        def deserialize(params)
+          unless params['OutputFiles'].nil?
+            @OutputFiles = []
+            params['OutputFiles'].each do |i|
+              mpsoutputfile_tmp = MPSOutputFile.new
+              mpsoutputfile_tmp.deserialize(i)
+              @OutputFiles << mpsoutputfile_tmp
+            end
+          end
         end
       end
 
@@ -22066,6 +22168,45 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # MPS 媒体处理任务信息。
+      class ProcessMediaByMPS < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。源异常时返回对应异常 Message，否则请使用各个具体任务的 Message。
+        # @type Message: String
+        # @param SubTaskSet: MPS 视频处理任务。
+        # @type SubTaskSet: Array
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :SubTaskSet
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, subtaskset=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @SubTaskSet = subtaskset
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['SubTaskSet'].nil?
+            @SubTaskSet = []
+            params['SubTaskSet'].each do |i|
+              mpssubtaskresult_tmp = MPSSubTaskResult.new
+              mpssubtaskresult_tmp.deserialize(i)
+              @SubTaskSet << mpssubtaskresult_tmp
+            end
+          end
         end
       end
 

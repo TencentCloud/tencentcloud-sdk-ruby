@@ -9457,7 +9457,6 @@ module TencentCloud
         # “FluxPerSecond”：平均流量
         # “Flux”：流量
         # “Request”：请求数
-        # “Online”：并发连接数
         # @type StatType: String
         # @param PlayDomains: 播放域名列表。
         # @type PlayDomains: Array

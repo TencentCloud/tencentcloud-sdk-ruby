@@ -8217,10 +8217,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Repeatable: 相同的证书是否允许重复上传； true：允许上传相同指纹的证书；  false：不允许上传相同指纹的证书； 默认值：true
         # @type Repeatable: Boolean
+        # @param KeyPassword: 私钥密码
+        # @type KeyPassword: String
 
-        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Tags, :Repeatable
+        attr_accessor :CertificatePublicKey, :CertificatePrivateKey, :CertificateType, :Alias, :ProjectId, :CertificateUse, :Tags, :Repeatable, :KeyPassword
 
-        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, tags=nil, repeatable=nil)
+        def initialize(certificatepublickey=nil, certificateprivatekey=nil, certificatetype=nil, _alias=nil, projectid=nil, certificateuse=nil, tags=nil, repeatable=nil, keypassword=nil)
           @CertificatePublicKey = certificatepublickey
           @CertificatePrivateKey = certificateprivatekey
           @CertificateType = certificatetype
@@ -8229,6 +8231,7 @@ module TencentCloud
           @CertificateUse = certificateuse
           @Tags = tags
           @Repeatable = repeatable
+          @KeyPassword = keypassword
         end
 
         def deserialize(params)
@@ -8247,6 +8250,7 @@ module TencentCloud
             end
           end
           @Repeatable = params['Repeatable']
+          @KeyPassword = params['KeyPassword']
         end
       end
 

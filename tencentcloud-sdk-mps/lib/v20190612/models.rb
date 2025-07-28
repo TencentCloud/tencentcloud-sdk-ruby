@@ -204,6 +204,7 @@ module TencentCloud
         # <li>action-adaptive-substream：自适应码流</li>
         # <li>action-AIQualityControl：媒体质检</li>
         # <li>action-SmartSubtitles：智能字幕</li>
+        # <li>action-exec-rules：判断规则</li>
 
 
         # @type ActivityType: String
@@ -263,13 +264,16 @@ module TencentCloud
         # @param QualityControlTask: 媒体质检任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param ExecRulesTask: 任务条件判断
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecRulesTask: :class:`Tencentcloud::Mps.v20190612.models.ExecRulesTask`
         # @param SmartSubtitlesTask: 智能字幕任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :SmartSubtitlesTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :ExecRulesTask, :SmartSubtitlesTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, smartsubtitlestask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, execrulestask=nil, smartsubtitlestask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -280,6 +284,7 @@ module TencentCloud
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
           @QualityControlTask = qualitycontroltask
+          @ExecRulesTask = execrulestask
           @SmartSubtitlesTask = smartsubtitlestask
         end
 
@@ -324,6 +329,10 @@ module TencentCloud
             @QualityControlTask = AiQualityControlTaskInput.new
             @QualityControlTask.deserialize(params['QualityControlTask'])
           end
+          unless params['ExecRulesTask'].nil?
+            @ExecRulesTask = ExecRulesTask.new
+            @ExecRulesTask.deserialize(params['ExecRulesTask'])
+          end
           unless params['SmartSubtitlesTask'].nil?
             @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
             @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
@@ -363,13 +372,16 @@ module TencentCloud
         # @param QualityControlTask: 媒体质检任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleQualityControlTaskResult`
+        # @param ExecRuleTask: 条件判断任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecRuleTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleExecRuleTaskResult`
         # @param SmartSubtitlesTask: 智能字幕任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleSmartSubtitleTaskResult`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :SmartSubtitlesTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :ExecRuleTask, :SmartSubtitlesTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, smartsubtitlestask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, execruletask=nil, smartsubtitlestask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -380,6 +392,7 @@ module TencentCloud
           @ReviewTask = reviewtask
           @AnalysisTask = analysistask
           @QualityControlTask = qualitycontroltask
+          @ExecRuleTask = execruletask
           @SmartSubtitlesTask = smartsubtitlestask
         end
 
@@ -423,6 +436,10 @@ module TencentCloud
           unless params['QualityControlTask'].nil?
             @QualityControlTask = ScheduleQualityControlTaskResult.new
             @QualityControlTask.deserialize(params['QualityControlTask'])
+          end
+          unless params['ExecRuleTask'].nil?
+            @ExecRuleTask = ScheduleExecRuleTaskResult.new
+            @ExecRuleTask.deserialize(params['ExecRuleTask'])
           end
           unless params['SmartSubtitlesTask'].nil?
             @SmartSubtitlesTask = ScheduleSmartSubtitleTaskResult.new
@@ -530,10 +547,12 @@ module TencentCloud
         # @param SubtitleTemplate: 字幕参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
+        # @param StdExtInfo: 转码参数扩展字段
+        # @type StdExtInfo: String
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate
+        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate, :StdExtInfo
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil)
+        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil, stdextinfo=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
           @OutputStorage = outputstorage
@@ -544,6 +563,7 @@ module TencentCloud
           @DrmInfo = drminfo
           @DefinitionType = definitiontype
           @SubtitleTemplate = subtitletemplate
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -580,6 +600,7 @@ module TencentCloud
             @SubtitleTemplate = SubtitleTemplate.new
             @SubtitleTemplate.deserialize(params['SubtitleTemplate'])
           end
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -1082,14 +1103,18 @@ module TencentCloud
         # @type OriginSubtitlePath: String
         # @param TranslateSubtitlePath: 基于画面提取的字幕翻译文件路径。
         # @type TranslateSubtitlePath: String
+        # @param SubtitlePos: 擦除的字幕位置。**注意**：仅对字幕提取且开启返回字幕位置时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitlePos: :class:`Tencentcloud::Mps.v20190612.models.SubtitlePosition`
 
-        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath
+        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos
 
-        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil)
+        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil)
           @Path = path
           @OutputStorage = outputstorage
           @OriginSubtitlePath = originsubtitlepath
           @TranslateSubtitlePath = translatesubtitlepath
+          @SubtitlePos = subtitlepos
         end
 
         def deserialize(params)
@@ -1100,6 +1125,10 @@ module TencentCloud
           end
           @OriginSubtitlePath = params['OriginSubtitlePath']
           @TranslateSubtitlePath = params['TranslateSubtitlePath']
+          unless params['SubtitlePos'].nil?
+            @SubtitlePos = SubtitlePosition.new
+            @SubtitlePos.deserialize(params['SubtitlePos'])
+          end
         end
       end
 
@@ -12679,19 +12708,27 @@ module TencentCloud
         # @type Limit: Integer
         # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
         # @type ScrollToken: String
+        # @param StartTime: 查询任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 查询任务结束时间。
+        # @type EndTime: String
 
-        attr_accessor :Status, :Limit, :ScrollToken
+        attr_accessor :Status, :Limit, :ScrollToken, :StartTime, :EndTime
 
-        def initialize(status=nil, limit=nil, scrolltoken=nil)
+        def initialize(status=nil, limit=nil, scrolltoken=nil, starttime=nil, endtime=nil)
           @Status = status
           @Limit = limit
           @ScrollToken = scrolltoken
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
           @Status = params['Status']
           @Limit = params['Limit']
           @ScrollToken = params['ScrollToken']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -13878,6 +13915,46 @@ module TencentCloud
         end
       end
 
+      # 条件判断输出
+      class ExecRuleTaskData < TencentCloud::Common::AbstractModel
+        # @param RearDriveIndex: 质检条件判断需要执行的节点索引。
+        # @type RearDriveIndex: Array
+
+        attr_accessor :RearDriveIndex
+
+        def initialize(reardriveindex=nil)
+          @RearDriveIndex = reardriveindex
+        end
+
+        def deserialize(params)
+          @RearDriveIndex = params['RearDriveIndex']
+        end
+      end
+
+      # 任务判断条件
+      class ExecRulesTask < TencentCloud::Common::AbstractModel
+        # @param Rules: 条件判断信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              rules_tmp = Rules.new
+              rules_tmp.deserialize(i)
+              @Rules << rules_tmp
+            end
+          end
+        end
+      end
+
       # ExecuteFunction请求参数结构体
       class ExecuteFunctionRequest < TencentCloud::Common::AbstractModel
         # @param FunctionName: 调用后端接口名称。
@@ -14807,10 +14884,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentTags: Array
         # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginTime: String
         # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
 
         attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags, :BeginTime, :EndTime
@@ -15474,7 +15549,6 @@ module TencentCloud
         # @param ActivityType: 原子任务类型。
         # <li>LiveRecord：直播录制。</li>
         # <li>AiQualityControl：媒体质检。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActivityType: String
         # @param LiveActivityResItem: 原子任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15706,21 +15780,16 @@ module TencentCloud
       # 直播编排任务信息
       class LiveScheduleTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 直播编排任务 ID。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Status: 任务流状态，取值：
         # <li>PROCESSING：处理中；</li>
         # <li>FINISH：已完成。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param ErrCode: 源异常时返回非0错误码，返回0 时请使用各个具体任务的 ErrCode。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrCode: Integer
         # @param Message: 源异常时返回对应异常Message，否则请使用各个具体任务的 Message。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
         # @param Url: 直播流 URL。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
         # @param LiveActivityResultSet: 直播编排任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -16990,17 +17059,21 @@ module TencentCloud
         # @type Tag: String
         # @param Confidence: 标签的可信度，取值范围是 0 到 100。
         # @type Confidence: Float
+        # @param SpecialInfo: 根据不同类型决定
+        # @type SpecialInfo: String
 
-        attr_accessor :Tag, :Confidence
+        attr_accessor :Tag, :Confidence, :SpecialInfo
 
-        def initialize(tag=nil, confidence=nil)
+        def initialize(tag=nil, confidence=nil, specialinfo=nil)
           @Tag = tag
           @Confidence = confidence
+          @SpecialInfo = specialinfo
         end
 
         def deserialize(params)
           @Tag = params['Tag']
           @Confidence = params['Confidence']
+          @SpecialInfo = params['SpecialInfo']
         end
       end
 
@@ -17578,6 +17651,7 @@ module TencentCloud
         # @param Input: 对视频截雪碧图任务的输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.ImageSpriteTaskInput`
         # @param Output: 对视频截雪碧图任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaImageSpriteItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type BeginProcessTime: String
@@ -17777,6 +17851,7 @@ module TencentCloud
         # @param Input: 对视频做采样截图任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SampleSnapshotTaskInput`
         # @param Output: 对视频做采样截图任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSampleSnapshotItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type BeginProcessTime: String
@@ -17827,6 +17902,7 @@ module TencentCloud
         # @param Input: 对视频按指定时间点截图任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SnapshotByTimeOffsetTaskInput`
         # @param Output: 对视频按指定时间点截图任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.MediaSnapshotByTimeOffsetItem`
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type BeginProcessTime: String
@@ -21080,6 +21156,8 @@ module TencentCloud
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
         # @param AiQualityControlTask: 媒体质检类型任务参数。
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param SmartSubtitlesTask: 智能字幕
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
@@ -21094,17 +21172,15 @@ module TencentCloud
         # @type TaskType: String
         # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
         # @type ResourceId: String
-        # @param SmartSubtitlesTask: 智能字幕
-        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
         # @param SkipMateData: 是否跳过元信息获取，可选值：
         # 0：表示不跳过
         # 1：表示跳过
         # 默认值：0
         # @type SkipMateData: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SmartSubtitlesTask, :SkipMateData
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SkipMateData
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, smartsubtitlestask=nil, skipmatedata=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, skipmatedata=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -21114,13 +21190,13 @@ module TencentCloud
           @AiAnalysisTask = aianalysistask
           @AiRecognitionTask = airecognitiontask
           @AiQualityControlTask = aiqualitycontroltask
+          @SmartSubtitlesTask = smartsubtitlestask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @TaskType = tasktype
           @ResourceId = resourceid
-          @SmartSubtitlesTask = smartsubtitlestask
           @SkipMateData = skipmatedata
         end
 
@@ -21155,6 +21231,10 @@ module TencentCloud
             @AiQualityControlTask = AiQualityControlTaskInput.new
             @AiQualityControlTask.deserialize(params['AiQualityControlTask'])
           end
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
             @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
@@ -21164,10 +21244,6 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @TaskType = params['TaskType']
           @ResourceId = params['ResourceId']
-          unless params['SmartSubtitlesTask'].nil?
-            @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
-            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
-          end
           @SkipMateData = params['SkipMateData']
         end
       end
@@ -21353,22 +21429,16 @@ module TencentCloud
       # 媒体质检结果输出。
       class QualityControlData < TencentCloud::Common::AbstractModel
         # @param NoAudio: 为true时表示视频无音频轨。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoAudio: Boolean
         # @param NoVideo: 为true时表示视频无视频轨。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NoVideo: Boolean
         # @param QualityEvaluationScore: 视频无参考质量评分，百分制。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEvaluationScore: Integer
         # @param QualityEvaluationMeanOpinionScore: 视频无参考质量评分，MOS分数。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityEvaluationMeanOpinionScore: Float
         # @param QualityControlResultSet: 内容质检检出异常项。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlResultSet: Array
-        # @param ContainerDiagnoseResultSet: 格式诊断检出异常项
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ContainerDiagnoseResultSet: 格式诊断检出异常项。
         # @type ContainerDiagnoseResultSet: Array
 
         attr_accessor :NoAudio, :NoVideo, :QualityEvaluationScore, :QualityEvaluationMeanOpinionScore, :QualityControlResultSet, :ContainerDiagnoseResultSet
@@ -21586,6 +21656,30 @@ module TencentCloud
         end
       end
 
+      # 媒体质检检测策略。
+      class QualityControlStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyType: 策略类型。取值：
+        # - TimeSpotCheck
+        # @type StrategyType: String
+        # @param TimeSpotCheck: 根据时间的抽检策略。
+        # @type TimeSpotCheck: :class:`Tencentcloud::Mps.v20190612.models.TimeSpotCheck`
+
+        attr_accessor :StrategyType, :TimeSpotCheck
+
+        def initialize(strategytype=nil, timespotcheck=nil)
+          @StrategyType = strategytype
+          @TimeSpotCheck = timespotcheck
+        end
+
+        def deserialize(params)
+          @StrategyType = params['StrategyType']
+          unless params['TimeSpotCheck'].nil?
+            @TimeSpotCheck = TimeSpotCheck.new
+            @TimeSpotCheck.deserialize(params['TimeSpotCheck'])
+          end
+        end
+      end
+
       # 媒体质检模板详情
       class QualityControlTemplate < TencentCloud::Common::AbstractModel
         # @param Definition: 媒体质检模板唯一标识。
@@ -21610,10 +21704,12 @@ module TencentCloud
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param Strategy: 媒体质检的抽检策略。
+        # @type Strategy: :class:`Tencentcloud::Mps.v20190612.models.QualityControlStrategy`
 
-        attr_accessor :Definition, :Name, :Comment, :Type, :QualityControlItemSet, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Name, :Comment, :Type, :QualityControlItemSet, :CreateTime, :UpdateTime, :Strategy
 
-        def initialize(definition=nil, name=nil, comment=nil, type=nil, qualitycontrolitemset=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, qualitycontrolitemset=nil, createtime=nil, updatetime=nil, strategy=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -21621,6 +21717,7 @@ module TencentCloud
           @QualityControlItemSet = qualitycontrolitemset
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Strategy = strategy
         end
 
         def deserialize(params)
@@ -21638,6 +21735,10 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['Strategy'].nil?
+            @Strategy = QualityControlStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
         end
       end
 
@@ -22168,6 +22269,67 @@ module TencentCloud
         end
       end
 
+      # 规则条件配置。
+      class RuleConditionItem < TencentCloud::Common::AbstractModel
+        # @param Key: 质检项条件对应的Key。
+        # @type Key: String
+        # @param Value: 条件对应的Value。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 任务判断条件
+      class Rules < TencentCloud::Common::AbstractModel
+        # @param Id: 判断条件id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Conditions: 判断条件配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Conditions: Array
+        # @param Linker: 条件列表的链接符号，取值如下：
+
+        # - &&：逻辑与
+        # - ||：逻辑或
+        # @type Linker: String
+        # @param RearDriveIndexs: 满足判断条件执行节点索引；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RearDriveIndexs: Array
+
+        attr_accessor :Id, :Conditions, :Linker, :RearDriveIndexs
+
+        def initialize(id=nil, conditions=nil, linker=nil, reardriveindexs=nil)
+          @Id = id
+          @Conditions = conditions
+          @Linker = linker
+          @RearDriveIndexs = reardriveindexs
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Conditions'].nil?
+            @Conditions = []
+            params['Conditions'].each do |i|
+              ruleconditionitem_tmp = RuleConditionItem.new
+              ruleconditionitem_tmp.deserialize(i)
+              @Conditions << ruleconditionitem_tmp
+            end
+          end
+          @Linker = params['Linker']
+          @RearDriveIndexs = params['RearDriveIndexs']
+        end
+      end
+
       # AWS S3存储输入
       class S3InputInfo < TencentCloud::Common::AbstractModel
         # @param S3Bucket: S3 bucket。
@@ -22501,13 +22663,10 @@ module TencentCloud
         # @param Input: 分析任务的输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
         # @param Output: 分析任务的输出。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: Array
         # @param BeginProcessTime: 任务开始执行的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginProcessTime: String
         # @param FinishTime: 任务执行完毕的时间，采用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinishTime: String
 
         attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :BeginProcessTime, :FinishTime
@@ -22542,6 +22701,45 @@ module TencentCloud
           end
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 媒体质检任务结果类型
+      class ScheduleExecRuleTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 条件判断任务的输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.ExecRulesTask`
+        # @param Output: 条件判断任务的输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.ExecRuleTaskData`
+
+        attr_accessor :Status, :ErrCodeExt, :Message, :Input, :Output
+
+        def initialize(status=nil, errcodeext=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = ExecRulesTask.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = ExecRuleTaskData.new
+            @Output.deserialize(params['Output'])
+          end
         end
       end
 
@@ -23647,13 +23845,31 @@ module TencentCloud
         # @param RawParameter: 智能字幕自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定智能字幕参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawSmartSubtitleParameter`
+        # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
+        # **注意**：当InputInfo.Type为URL时，该参数是必填项。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputObjectPath: 生成字幕文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
 
-        attr_accessor :Definition, :UserExtPara, :RawParameter
+        # 相对路径示例:
+        # - 文件名_{变量名}.{format}
+        # - 文件名.{format}
 
-        def initialize(definition=nil, userextpara=nil, rawparameter=nil)
+        # 绝对路径示例：
+        # - /自定义路径/文件名_{变量名}.{format}
+
+        # 如果不填，则默认为相对路径: `{inputName}_smartsubtitle_{definition}.{format}`。
+        # @type OutputObjectPath: String
+
+        attr_accessor :Definition, :UserExtPara, :RawParameter, :OutputStorage, :OutputObjectPath
+
+        def initialize(definition=nil, userextpara=nil, rawparameter=nil, outputstorage=nil, outputobjectpath=nil)
           @Definition = definition
           @UserExtPara = userextpara
           @RawParameter = rawparameter
+          @OutputStorage = outputstorage
+          @OutputObjectPath = outputobjectpath
         end
 
         def deserialize(params)
@@ -23663,6 +23879,11 @@ module TencentCloud
             @RawParameter = RawSmartSubtitleParameter.new
             @RawParameter.deserialize(params['RawParameter'])
           end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputObjectPath = params['OutputObjectPath']
         end
       end
 
@@ -23954,6 +24175,22 @@ module TencentCloud
           @Label = params['Label']
           @Url = params['Url']
           @Type = params['Type']
+        end
+      end
+
+      # 字幕位置信息
+      class SubtitlePosition < TencentCloud::Common::AbstractModel
+        # @param CenterY: 居中位置时Y的坐标值
+        # @type CenterY: Integer
+
+        attr_accessor :CenterY
+
+        def initialize(centery=nil)
+          @CenterY = centery
+        end
+
+        def deserialize(params)
+          @CenterY = params['CenterY']
         end
       end
 
@@ -24652,6 +24889,37 @@ module TencentCloud
           @FontColor = params['FontColor']
           @FontAlpha = params['FontAlpha']
           @TextContent = params['TextContent']
+        end
+      end
+
+      # 媒体质检的检测策略。
+      class TimeSpotCheck < TencentCloud::Common::AbstractModel
+        # @param CheckDuration: 抽检策略的每次循环检测的时长。取值范围（单位s）：
+
+        # - 最小值：10
+        # - 最大值：86400
+        # @type CheckDuration: Integer
+        # @param CheckInterval: 抽检测略的检测间隔，表示在一次检测结束后，等待多长时间后，再次检测。
+        # @type CheckInterval: Integer
+        # @param SkipDuration: 片头跳过时长。
+        # @type SkipDuration: Integer
+        # @param CirclesNumber: 循环次数，该字段为空或 0 时，默认循环直至视频结束。
+        # @type CirclesNumber: Integer
+
+        attr_accessor :CheckDuration, :CheckInterval, :SkipDuration, :CirclesNumber
+
+        def initialize(checkduration=nil, checkinterval=nil, skipduration=nil, circlesnumber=nil)
+          @CheckDuration = checkduration
+          @CheckInterval = checkinterval
+          @SkipDuration = skipduration
+          @CirclesNumber = circlesnumber
+        end
+
+        def deserialize(params)
+          @CheckDuration = params['CheckDuration']
+          @CheckInterval = params['CheckInterval']
+          @SkipDuration = params['SkipDuration']
+          @CirclesNumber = params['CirclesNumber']
         end
       end
 

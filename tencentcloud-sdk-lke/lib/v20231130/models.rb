@@ -4457,12 +4457,16 @@ module TencentCloud
         # @type RagSearchUsage: Float
         # @param InternetSearchUsage: 联网搜索次数
         # @type InternetSearchUsage: Float
+        # @param DosageTypeLimit: dosage配额限制
+        # @type DosageTypeLimit: Float
+        # @param DosageTypeCurr: dosage当前用量
+        # @type DosageTypeCurr: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :SplitTokenUsage, :RagSearchUsage, :InternetSearchUsage, :RequestId
+        attr_accessor :TotalTokenUsage, :InputTokenUsage, :OutputTokenUsage, :ApiCallStats, :SearchUsage, :PageUsage, :SplitTokenUsage, :RagSearchUsage, :InternetSearchUsage, :DosageTypeLimit, :DosageTypeCurr, :RequestId
 
-        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, splittokenusage=nil, ragsearchusage=nil, internetsearchusage=nil, requestid=nil)
+        def initialize(totaltokenusage=nil, inputtokenusage=nil, outputtokenusage=nil, apicallstats=nil, searchusage=nil, pageusage=nil, splittokenusage=nil, ragsearchusage=nil, internetsearchusage=nil, dosagetypelimit=nil, dosagetypecurr=nil, requestid=nil)
           @TotalTokenUsage = totaltokenusage
           @InputTokenUsage = inputtokenusage
           @OutputTokenUsage = outputtokenusage
@@ -4472,6 +4476,8 @@ module TencentCloud
           @SplitTokenUsage = splittokenusage
           @RagSearchUsage = ragsearchusage
           @InternetSearchUsage = internetsearchusage
+          @DosageTypeLimit = dosagetypelimit
+          @DosageTypeCurr = dosagetypecurr
           @RequestId = requestid
         end
 
@@ -4485,6 +4491,8 @@ module TencentCloud
           @SplitTokenUsage = params['SplitTokenUsage']
           @RagSearchUsage = params['RagSearchUsage']
           @InternetSearchUsage = params['InternetSearchUsage']
+          @DosageTypeLimit = params['DosageTypeLimit']
+          @DosageTypeCurr = params['DosageTypeCurr']
           @RequestId = params['RequestId']
         end
       end
