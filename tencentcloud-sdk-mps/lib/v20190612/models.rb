@@ -7041,10 +7041,12 @@ module TencentCloud
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRISTSettings`
         # @param InputRegion: 输入节点的地区
         # @type InputRegion: String
+        # @param FailOverOption: 冷热备相关
+        # @type FailOverOption: :class:`Tencentcloud::Mps.v20190612.models.FailOverOption`
 
-        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion
+        attr_accessor :InputName, :Protocol, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion, :FailOverOption
 
-        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil)
+        def initialize(inputname=nil, protocol=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil, failoveroption=nil)
           @InputName = inputname
           @Protocol = protocol
           @Description = description
@@ -7060,6 +7062,7 @@ module TencentCloud
           @Zones = zones
           @RISTSettings = ristsettings
           @InputRegion = inputregion
+          @FailOverOption = failoveroption
         end
 
         def deserialize(params)
@@ -7099,6 +7102,10 @@ module TencentCloud
             @RISTSettings.deserialize(params['RISTSettings'])
           end
           @InputRegion = params['InputRegion']
+          unless params['FailOverOption'].nil?
+            @FailOverOption = FailOverOption.new
+            @FailOverOption.deserialize(params['FailOverOption'])
+          end
         end
       end
 
@@ -7782,14 +7789,17 @@ module TencentCloud
         # @param RecordFormat: 录制文件格式。可选值：
         # <li>PNG: PNG图片</li>
         # @type RecordFormat: String
+        # @param Strategy: 媒体质检抽检策略。
+        # @type Strategy: :class:`Tencentcloud::Mps.v20190612.models.QualityControlStrategy`
 
-        attr_accessor :Name, :QualityControlItemSet, :Comment, :RecordFormat
+        attr_accessor :Name, :QualityControlItemSet, :Comment, :RecordFormat, :Strategy
 
-        def initialize(name=nil, qualitycontrolitemset=nil, comment=nil, recordformat=nil)
+        def initialize(name=nil, qualitycontrolitemset=nil, comment=nil, recordformat=nil, strategy=nil)
           @Name = name
           @QualityControlItemSet = qualitycontrolitemset
           @Comment = comment
           @RecordFormat = recordformat
+          @Strategy = strategy
         end
 
         def deserialize(params)
@@ -7804,6 +7814,10 @@ module TencentCloud
           end
           @Comment = params['Comment']
           @RecordFormat = params['RecordFormat']
+          unless params['Strategy'].nil?
+            @Strategy = QualityControlStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
         end
       end
 
@@ -11526,7 +11540,6 @@ module TencentCloud
         # @param TotalCount: 符合过滤条件的记录总数。
         # @type TotalCount: Integer
         # @param QualityControlTemplateSet: 媒体质检模板详情列表。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type QualityControlTemplateSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14138,6 +14151,23 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Intensity = params['Intensity']
+        end
+      end
+
+      # type FailOverOption struct
+      # { FailOverType string json:"FailOverType" // 新增 冷/热备 COLDSTANDBY、HOTSTANDBY }
+      class FailOverOption < TencentCloud::Common::AbstractModel
+        # @param FailOverType: 热备
+        # @type FailOverType: String
+
+        attr_accessor :FailOverType
+
+        def initialize(failovertype=nil)
+          @FailOverType = failovertype
+        end
+
+        def deserialize(params)
+          @FailOverType = params['FailOverType']
         end
       end
 
@@ -18825,10 +18855,12 @@ module TencentCloud
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateInputRISTSettings`
         # @param InputRegion: 输入节点的地区
         # @type InputRegion: String
+        # @param FailOverOption: 冷热备相关
+        # @type FailOverOption: :class:`Tencentcloud::Mps.v20190612.models.FailOverOption`
 
-        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion
+        attr_accessor :InputId, :InputName, :Description, :AllowIpList, :SRTSettings, :RTPSettings, :Protocol, :FailOver, :RTMPPullSettings, :RTSPPullSettings, :HLSPullSettings, :ResilientStream, :SecurityGroupIds, :Zones, :RISTSettings, :InputRegion, :FailOverOption
 
-        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil)
+        def initialize(inputid=nil, inputname=nil, description=nil, allowiplist=nil, srtsettings=nil, rtpsettings=nil, protocol=nil, failover=nil, rtmppullsettings=nil, rtsppullsettings=nil, hlspullsettings=nil, resilientstream=nil, securitygroupids=nil, zones=nil, ristsettings=nil, inputregion=nil, failoveroption=nil)
           @InputId = inputid
           @InputName = inputname
           @Description = description
@@ -18845,6 +18877,7 @@ module TencentCloud
           @Zones = zones
           @RISTSettings = ristsettings
           @InputRegion = inputregion
+          @FailOverOption = failoveroption
         end
 
         def deserialize(params)
@@ -18885,6 +18918,10 @@ module TencentCloud
             @RISTSettings.deserialize(params['RISTSettings'])
           end
           @InputRegion = params['InputRegion']
+          unless params['FailOverOption'].nil?
+            @FailOverOption = FailOverOption.new
+            @FailOverOption.deserialize(params['FailOverOption'])
+          end
         end
       end
 
@@ -19122,15 +19159,18 @@ module TencentCloud
         # @param RecordFormat: 录制文件格式。可选值：
         # <li>PNG: PNG图片</li>
         # @type RecordFormat: String
+        # @param Strategy: 媒体质检抽检策略。
+        # @type Strategy: :class:`Tencentcloud::Mps.v20190612.models.QualityControlStrategy`
 
-        attr_accessor :Definition, :Name, :Comment, :QualityControlItemSet, :RecordFormat
+        attr_accessor :Definition, :Name, :Comment, :QualityControlItemSet, :RecordFormat, :Strategy
 
-        def initialize(definition=nil, name=nil, comment=nil, qualitycontrolitemset=nil, recordformat=nil)
+        def initialize(definition=nil, name=nil, comment=nil, qualitycontrolitemset=nil, recordformat=nil, strategy=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
           @QualityControlItemSet = qualitycontrolitemset
           @RecordFormat = recordformat
+          @Strategy = strategy
         end
 
         def deserialize(params)
@@ -19146,6 +19186,10 @@ module TencentCloud
             end
           end
           @RecordFormat = params['RecordFormat']
+          unless params['Strategy'].nil?
+            @Strategy = QualityControlStrategy.new
+            @Strategy.deserialize(params['Strategy'])
+          end
         end
       end
 

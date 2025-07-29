@@ -6026,17 +6026,19 @@ module TencentCloud
         # -9108 证件模糊告警
         # -9109 告警能力未开通
         # @type WarnCardInfos: Array
+        # @param CardCount: 输入图片中的卡证数量（仅请求曼谷地域[ap-bangkok]返回）
+        # @type CardCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
         deprecate :Warn, :none, 2025, 7
         deprecate :Warn=, :none, 2025, 7
         deprecate :AdvancedInfo, :none, 2025, 7
         deprecate :AdvancedInfo=, :none, 2025, 7
 
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -6054,6 +6056,7 @@ module TencentCloud
           @Type = type
           @PassportRecognizeInfos = passportrecognizeinfos
           @WarnCardInfos = warncardinfos
+          @CardCount = cardcount
           @RequestId = requestid
         end
 
@@ -6078,6 +6081,7 @@ module TencentCloud
             @PassportRecognizeInfos.deserialize(params['PassportRecognizeInfos'])
           end
           @WarnCardInfos = params['WarnCardInfos']
+          @CardCount = params['CardCount']
           @RequestId = params['RequestId']
         end
       end
@@ -9707,15 +9711,17 @@ module TencentCloud
         # @type WarnCardInfos: Array
         # @param AdvancedInfo: 该字段已废弃， 将固定返回"1"，不建议使用。
         # @type AdvancedInfo: String
+        # @param CardCount: 卡证正面图片中，证件主体的数量（仅请求曼谷地域[ap-bangkok]返回）
+        # @type CardCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
         deprecate :AdvancedInfo, :none, 2025, 7
         deprecate :AdvancedInfo=, :none, 2025, 7
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -9733,6 +9739,7 @@ module TencentCloud
           @PortraitImage = portraitimage
           @WarnCardInfos = warncardinfos
           @AdvancedInfo = advancedinfo
+          @CardCount = cardcount
           @RequestId = requestid
         end
 
@@ -9754,6 +9761,7 @@ module TencentCloud
           @PortraitImage = params['PortraitImage']
           @WarnCardInfos = params['WarnCardInfos']
           @AdvancedInfo = params['AdvancedInfo']
+          @CardCount = params['CardCount']
           @RequestId = params['RequestId']
         end
       end
@@ -11556,12 +11564,15 @@ module TencentCloud
         # 税号 、纳税人识别号 、纳税人名称 、金额合计大写 、金额合计小写 、填发日期 、税务机关 、填票人。
         # 示例值：纳税人识别号
         # @type Content: Array
+        # @param TableItems: 表格。
+        # @type TableItems: Array
 
-        attr_accessor :Title, :Content
+        attr_accessor :Title, :Content, :TableItems
 
-        def initialize(title=nil, content=nil)
+        def initialize(title=nil, content=nil, tableitems=nil)
           @Title = title
           @Content = content
+          @TableItems = tableitems
         end
 
         def deserialize(params)
@@ -11572,6 +11583,14 @@ module TencentCloud
               otherinvoiceitem_tmp = OtherInvoiceItem.new
               otherinvoiceitem_tmp.deserialize(i)
               @Content << otherinvoiceitem_tmp
+            end
+          end
+          unless params['TableItems'].nil?
+            @TableItems = []
+            params['TableItems'].each do |i|
+              otherinvoicelist_tmp = OtherInvoiceList.new
+              otherinvoicelist_tmp.deserialize(i)
+              @TableItems << otherinvoicelist_tmp
             end
           end
         end

@@ -169,10 +169,12 @@ module TencentCloud
         # @type ListenerName: String
         # @param Weight: 关联目标组的权重， 该参数只有v2新版目标组生效。
         # @type Weight: Integer
+        # @param RuleId: 高级路由规则ID
+        # @type RuleId: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Protocol, :Port, :Domain, :Url, :LoadBalancerName, :ListenerName, :Weight
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Protocol, :Port, :Domain, :Url, :LoadBalancerName, :ListenerName, :Weight, :RuleId
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, protocol=nil, port=nil, domain=nil, url=nil, loadbalancername=nil, listenername=nil, weight=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, protocol=nil, port=nil, domain=nil, url=nil, loadbalancername=nil, listenername=nil, weight=nil, ruleid=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @LocationId = locationid
@@ -183,6 +185,7 @@ module TencentCloud
           @LoadBalancerName = loadbalancername
           @ListenerName = listenername
           @Weight = weight
+          @RuleId = ruleid
         end
 
         def deserialize(params)
@@ -196,6 +199,7 @@ module TencentCloud
           @LoadBalancerName = params['LoadBalancerName']
           @ListenerName = params['ListenerName']
           @Weight = params['Weight']
+          @RuleId = params['RuleId']
         end
       end
 
@@ -1648,10 +1652,12 @@ module TencentCloud
         # @type LBChargeType: String
         # @param AccessLogTopicId: 七层访问日志主题ID
         # @type AccessLogTopicId: String
+        # @param AdvancedRoute: 是否开启七层高级路由
+        # @type AdvancedRoute: Boolean
 
-        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress, :LBChargePrepaid, :LBChargeType, :AccessLogTopicId
+        attr_accessor :LoadBalancerType, :Forward, :LoadBalancerName, :VpcId, :SubnetId, :ProjectId, :AddressIPVersion, :Number, :MasterZoneId, :ZoneId, :InternetAccessible, :VipIsp, :Tags, :Vip, :BandwidthPackageId, :ExclusiveCluster, :SlaType, :ClusterIds, :ClientToken, :SnatPro, :SnatIps, :ClusterTag, :SlaveZoneId, :EipAddressId, :LoadBalancerPassToTarget, :DynamicVip, :Egress, :LBChargePrepaid, :LBChargeType, :AccessLogTopicId, :AdvancedRoute
 
-        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil, lbchargeprepaid=nil, lbchargetype=nil, accesslogtopicid=nil)
+        def initialize(loadbalancertype=nil, forward=nil, loadbalancername=nil, vpcid=nil, subnetid=nil, projectid=nil, addressipversion=nil, number=nil, masterzoneid=nil, zoneid=nil, internetaccessible=nil, vipisp=nil, tags=nil, vip=nil, bandwidthpackageid=nil, exclusivecluster=nil, slatype=nil, clusterids=nil, clienttoken=nil, snatpro=nil, snatips=nil, clustertag=nil, slavezoneid=nil, eipaddressid=nil, loadbalancerpasstotarget=nil, dynamicvip=nil, egress=nil, lbchargeprepaid=nil, lbchargetype=nil, accesslogtopicid=nil, advancedroute=nil)
           @LoadBalancerType = loadbalancertype
           @Forward = forward
           @LoadBalancerName = loadbalancername
@@ -1682,6 +1688,7 @@ module TencentCloud
           @LBChargePrepaid = lbchargeprepaid
           @LBChargeType = lbchargetype
           @AccessLogTopicId = accesslogtopicid
+          @AdvancedRoute = advancedroute
         end
 
         def deserialize(params)
@@ -1738,6 +1745,7 @@ module TencentCloud
           end
           @LBChargeType = params['LBChargeType']
           @AccessLogTopicId = params['AccessLogTopicId']
+          @AdvancedRoute = params['AdvancedRoute']
         end
       end
 
@@ -7758,15 +7766,18 @@ module TencentCloud
         # @param Url: 转发规则的Url
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Url: String
+        # @param RuleId: 高级路由规则ID
+        # @type RuleId: String
         # @param Targets: 本规则上绑定的后端服务的健康检查状态
         # @type Targets: Array
 
-        attr_accessor :LocationId, :Domain, :Url, :Targets
+        attr_accessor :LocationId, :Domain, :Url, :RuleId, :Targets
 
-        def initialize(locationid=nil, domain=nil, url=nil, targets=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, ruleid=nil, targets=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
+          @RuleId = ruleid
           @Targets = targets
         end
 
@@ -7774,6 +7785,7 @@ module TencentCloud
           @LocationId = params['LocationId']
           @Domain = params['Domain']
           @Url = params['Url']
+          @RuleId = params['RuleId']
           unless params['Targets'].nil?
             @Targets = []
             params['Targets'].each do |i|

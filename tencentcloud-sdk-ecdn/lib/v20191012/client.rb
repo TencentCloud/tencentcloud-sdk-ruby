@@ -201,62 +201,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ECDN即将下线，如需要动态加速请使用EdgeOne
-
-        # DescribePurgeTasks 用于查询刷新任务提交历史记录及执行进度。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37873"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for DescribePurgeTasks.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::DescribePurgeTasksRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::DescribePurgeTasksResponse`
-        def DescribePurgeTasks(request)
-          body = send_request('DescribePurgeTasks', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePurgeTasksResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # ECDN即将下线，如需要动态加速请使用EdgeOne
-
-        # PurgeUrlsCache 用于批量刷新Url，一次提交将返回一个刷新任务id。
-
-        # >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/37870"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-
-        # @param request: Request instance for PurgeUrlsCache.
-        # @type request: :class:`Tencentcloud::ecdn::V20191012::PurgeUrlsCacheRequest`
-        # @rtype: :class:`Tencentcloud::ecdn::V20191012::PurgeUrlsCacheResponse`
-        def PurgeUrlsCache(request)
-          body = send_request('PurgeUrlsCache', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = PurgeUrlsCacheResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
 
       end
     end

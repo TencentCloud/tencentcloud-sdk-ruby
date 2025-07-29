@@ -10541,9 +10541,9 @@ module TencentCloud
         # @param ReferUrlType: 外部引用链接类型 0：系统链接 1：自定义链接
         # 值为1时，WebUrl 字段不能为空，否则不生效。
         # @type ReferUrlType: Integer
-        # @param ExpireStart: 有效开始时间，unix时间戳
+        # @param ExpireStart: 有效开始时间，unix秒级时间戳
         # @type ExpireStart: String
-        # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
+        # @param ExpireEnd: 有效结束时间，unix秒级时间戳，0代表永久有效
         # @type ExpireEnd: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean

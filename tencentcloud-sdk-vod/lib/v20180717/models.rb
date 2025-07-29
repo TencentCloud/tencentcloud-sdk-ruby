@@ -22210,6 +22210,54 @@ module TencentCloud
         end
       end
 
+      # ProcessMediaByMPS请求参数结构体
+      class ProcessMediaByMPSRequest < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type FileId: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param MPSProcessMediaParams: 该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。
+        # 视频处理参数详情请参考：[MPS 发起媒体处理](https://cloud.tencent.com/document/api/862/37578)。
+        # 填写说明：
+        # 1. 目前仅需要配置 MPS “发起媒体处理”接口中的 AiAnalysisTask 参数，其他参数无需填写，若包含其它参数，系统将自动忽略；
+        # 2. 当前仅支持通过此方式发起智能擦除任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数。
+        # @type MPSProcessMediaParams: String
+
+        attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams
+
+        def initialize(fileid=nil, subappid=nil, mpsprocessmediaparams=nil)
+          @FileId = fileid
+          @SubAppId = subappid
+          @MPSProcessMediaParams = mpsprocessmediaparams
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @SubAppId = params['SubAppId']
+          @MPSProcessMediaParams = params['MPSProcessMediaParams']
+        end
+      end
+
+      # ProcessMediaByMPS返回参数结构体
+      class ProcessMediaByMPSResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ProcessMediaByProcedure请求参数结构体
       class ProcessMediaByProcedureRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID。

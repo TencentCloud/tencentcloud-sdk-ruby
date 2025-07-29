@@ -3521,8 +3521,7 @@ module TencentCloud
         # 长度上限：255字节。
         # 仅支持中文、英文、数字、_、-。
         # @type TemplateName: String
-        # @param Duration: 时移时长。
-        # 单位：s。
+        # @param Duration: 时移时长。单位：s。取值范围：86400 259200 604800 1296000 2592000。
         # @type Duration: Integer
         # @param Description: 描述信息。
         # 仅支持中文、英文、数字、_、-。
