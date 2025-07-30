@@ -4186,6 +4186,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取下游任务信息批量
+
+        # @param request: Request instance for DescribeSuccessorTaskInfoList.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeSuccessorTaskInfoListRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeSuccessorTaskInfoListResponse`
+        def DescribeSuccessorTaskInfoList(request)
+          body = send_request('DescribeSuccessorTaskInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSuccessorTaskInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 元数据模型-表基础信息查询接口
 
         # @param request: Request instance for DescribeTableBasicInfo.

@@ -272,6 +272,8 @@ module TencentCloud
 
       # DescribeApps请求参数结构体
       class DescribeAppsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param EnterpriseUidList: 子公司ID列表
         # @type EnterpriseUidList: Array
         # @param IsNew: 是否新增数据
@@ -297,9 +299,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :EnterpriseUidList, :IsNew, :CustomerId, :Limit, :Offset, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :EnterpriseUidList, :IsNew, :CustomerId, :Limit, :Offset, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(enterpriseuidlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, enterpriseuidlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @EnterpriseUidList = enterpriseuidlist
           @IsNew = isnew
           @CustomerId = customerid
@@ -315,6 +318,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @EnterpriseUidList = params['EnterpriseUidList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -370,6 +374,8 @@ module TencentCloud
 
       # DescribeAssets请求参数结构体
       class DescribeAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -395,9 +401,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -413,6 +420,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -468,6 +476,8 @@ module TencentCloud
 
       # DescribeConfigs请求参数结构体
       class DescribeConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -495,9 +505,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -514,6 +525,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -644,6 +656,8 @@ module TencentCloud
 
       # DescribeDarkWebs请求参数结构体
       class DescribeDarkWebsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -669,9 +683,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -687,6 +702,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -742,6 +758,8 @@ module TencentCloud
 
       # DescribeDomains请求参数结构体
       class DescribeDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -767,9 +785,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -785,6 +804,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -840,6 +860,8 @@ module TencentCloud
 
       # DescribeEnterprises请求参数结构体
       class DescribeEnterprisesRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -867,9 +889,10 @@ module TencentCloud
         # @param IsShowStatistics: 是否展示统计数据
         # @type IsShowStatistics: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowStatistics
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowStatistics
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowstatistics=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowstatistics=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -886,6 +909,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -942,6 +966,8 @@ module TencentCloud
 
       # DescribeFakeApps请求参数结构体
       class DescribeFakeAppsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -967,9 +993,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -985,6 +1012,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -1041,6 +1069,8 @@ module TencentCloud
 
       # DescribeFakeMiniPrograms请求参数结构体
       class DescribeFakeMiniProgramsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -1066,9 +1096,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -1084,6 +1115,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -1140,6 +1172,8 @@ module TencentCloud
 
       # DescribeFakeWebsites请求参数结构体
       class DescribeFakeWebsitesRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -1165,9 +1199,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -1183,6 +1218,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -1239,6 +1275,8 @@ module TencentCloud
 
       # DescribeFakeWechatOfficials请求参数结构体
       class DescribeFakeWechatOfficialsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -1264,9 +1302,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -1282,6 +1321,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -1436,6 +1476,8 @@ module TencentCloud
 
       # DescribeHttps请求参数结构体
       class DescribeHttpsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -1467,9 +1509,10 @@ module TencentCloud
         # @param HasExpirationRisk: 是否仅显示过期风险资产
         # @type HasExpirationRisk: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowChange, :HasExpirationRisk
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowChange, :HasExpirationRisk
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowchange=nil, hasexpirationrisk=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowchange=nil, hasexpirationrisk=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -1488,6 +1531,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -1663,6 +1707,8 @@ module TencentCloud
 
       # DescribeLeakageCodes请求参数结构体
       class DescribeLeakageCodesRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -1690,9 +1736,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -1709,6 +1756,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -1766,6 +1814,8 @@ module TencentCloud
 
       # DescribeLeakageDatas请求参数结构体
       class DescribeLeakageDatasRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -1793,9 +1843,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -1812,6 +1863,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -1869,6 +1921,8 @@ module TencentCloud
 
       # DescribeLeakageEmails请求参数结构体
       class DescribeLeakageEmailsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -1896,9 +1950,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -1915,6 +1970,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -1972,6 +2028,8 @@ module TencentCloud
 
       # DescribeManages请求参数结构体
       class DescribeManagesRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -1999,9 +2057,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -2018,6 +2077,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -2074,6 +2134,8 @@ module TencentCloud
 
       # DescribeNetDisks请求参数结构体
       class DescribeNetDisksRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -2099,9 +2161,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -2117,6 +2180,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -2172,6 +2236,8 @@ module TencentCloud
 
       # DescribePorts请求参数结构体
       class DescribePortsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -2199,9 +2265,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -2218,6 +2285,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -2274,6 +2342,8 @@ module TencentCloud
 
       # DescribeSensitiveInfos请求参数结构体
       class DescribeSensitiveInfosRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -2301,9 +2371,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -2320,6 +2391,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -2376,6 +2448,8 @@ module TencentCloud
 
       # DescribeSubDomains请求参数结构体
       class DescribeSubDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -2403,9 +2477,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :IsAggregation, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :IsAggregation, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, isaggregation=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, isaggregation=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @IsAggregation = isaggregation
@@ -2422,6 +2497,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @IsAggregation = params['IsAggregation']
@@ -2478,6 +2554,8 @@ module TencentCloud
 
       # DescribeSuspiciousAssets请求参数结构体
       class DescribeSuspiciousAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param IsNew: 是否新增数据
@@ -2505,9 +2583,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
           @CustomerId = customerid
@@ -2524,6 +2603,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsAggregation = params['IsAggregation']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
@@ -2580,6 +2660,8 @@ module TencentCloud
 
       # DescribeVuls请求参数结构体
       class DescribeVulsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -2605,9 +2687,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -2623,6 +2706,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -2678,6 +2762,8 @@ module TencentCloud
 
       # DescribeWeakPasswords请求参数结构体
       class DescribeWeakPasswordsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -2703,9 +2789,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -2721,6 +2808,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -2776,6 +2864,8 @@ module TencentCloud
 
       # DescribeWechatApplets请求参数结构体
       class DescribeWechatAppletsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param CustomerId: 企业ID
         # @type CustomerId: Integer
         # @param IsNew: 是否新增数据
@@ -2801,9 +2891,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :CustomerId, :IsNew, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :CustomerId, :IsNew, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(customerid=nil, isnew=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, customerid=nil, isnew=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @CustomerId = customerid
           @IsNew = isnew
           @Limit = limit
@@ -2819,6 +2910,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @CustomerId = params['CustomerId']
           @IsNew = params['IsNew']
           @Limit = params['Limit']
@@ -2874,6 +2966,8 @@ module TencentCloud
 
       # DescribeWechatOfficialAccounts请求参数结构体
       class DescribeWechatOfficialAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param IsNew: 是否新增数据
         # @type IsNew: Boolean
         # @param CustomerId: 企业ID
@@ -2899,9 +2993,10 @@ module TencentCloud
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
 
-        attr_accessor :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
 
-        def initialize(isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+          @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
           @Limit = limit
@@ -2917,6 +3012,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @CustomerIdList = params['CustomerIdList']
           @IsNew = params['IsNew']
           @CustomerId = params['CustomerId']
           @Limit = params['Limit']
@@ -4560,33 +4656,41 @@ module TencentCloud
 
       # ModifyLabel请求参数结构体
       class ModifyLabelRequest < TencentCloud::Common::AbstractModel
+        # @param Module: 模块，包括：enterprise：企业架构，domain：主域名，sub_domain：子域名，asset：IP资产，port：端口服务，http：HTTP资产，vul：漏洞信息，app：APP，wechat_applet：微信小程序，wechat_official_account：微信公众号，github：Github信息泄露，manage：管理后台暴露，config：目录爆破，dark_web：暗网泄露，net_disk：文库网盘泄露，supply_chain：供应链，weak_password：弱口令，sensitive_info：敏感信息泄露
+        # @type Module: String
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
         # @param Id: 资产或风险主键ID
         # @type Id: Integer
         # @param CustomerId: 企业ID，在企业管理页面查看
         # @type CustomerId: Integer
-        # @param Module: 模块，包括：enterprise：企业架构，domain：主域名，sub_domain：子域名，asset：IP资产，port：端口服务，http：HTTP资产，vul：漏洞信息，app：APP，wechat_applet：微信小程序，wechat_official_account：微信公众号，github：Github信息泄露，manage：管理后台暴露，config：目录爆破，dark_web：暗网泄露，net_disk：文库网盘泄露，supply_chain：供应链，weak_password：弱口令，sensitive_info：敏感信息泄露
-        # @type Module: String
         # @param IsAggregation: 是否聚合数据
         # @type IsAggregation: Boolean
         # @param Labels: 标签详情
         # @type Labels: String
+        # @param Ids: 资产或风险主键ID列表
+        # @type Ids: Array
 
-        attr_accessor :Id, :CustomerId, :Module, :IsAggregation, :Labels
+        attr_accessor :Module, :CustomerIdList, :Id, :CustomerId, :IsAggregation, :Labels, :Ids
 
-        def initialize(id=nil, customerid=nil, _module=nil, isaggregation=nil, labels=nil)
+        def initialize(_module=nil, customeridlist=nil, id=nil, customerid=nil, isaggregation=nil, labels=nil, ids=nil)
+          @Module = _module
+          @CustomerIdList = customeridlist
           @Id = id
           @CustomerId = customerid
-          @Module = _module
           @IsAggregation = isaggregation
           @Labels = labels
+          @Ids = ids
         end
 
         def deserialize(params)
+          @Module = params['Module']
+          @CustomerIdList = params['CustomerIdList']
           @Id = params['Id']
           @CustomerId = params['CustomerId']
-          @Module = params['Module']
           @IsAggregation = params['IsAggregation']
           @Labels = params['Labels']
+          @Ids = params['Ids']
         end
       end
 

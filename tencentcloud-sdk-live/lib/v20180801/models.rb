@@ -3672,7 +3672,7 @@ module TencentCloud
         # @type Fps: Integer
         # @param Gop: 关键帧间隔，单位：秒。
         # 默认原始的间隔
-        # 范围2-6
+        # 范围1-6
         # @type Gop: Integer
         # @param Rotate: 旋转角度，默认0。
         # 可取值：0，90，180，270

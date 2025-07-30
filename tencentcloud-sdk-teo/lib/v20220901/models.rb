@@ -19539,7 +19539,7 @@ module TencentCloud
         # @param Status: 状态。取值有：
         # <li>processing：处理中；</li>
         # <li>success：成功；</li>
-        # <li> failed：失败；</li>
+        # <li>failed：失败；</li>
         # <li>timeout：超时；</li>
         # <li>canceled：已取消。</li>
         # @type Status: String
@@ -19547,10 +19547,19 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 任务完成时间。
         # @type UpdateTime: String
+        # @param FailType: 刷新、预热失败类型。取值有：
+        # <li>taskFailed：任务失败；</li>
+        # <li>quotaExceeded：配额超限；</li>
+        # <li>downloadManifestFailed：下载描述文件失败；</li>
+        # <li>accessDenied：访问被拒绝。</li>
+        # <li>originPullFailed：回源失败。</li>
+        # @type FailType: String
+        # @param FailMessage: 刷新、预热失败描述。
+        # @type FailMessage: String
 
-        attr_accessor :JobId, :Target, :Type, :Method, :Status, :CreateTime, :UpdateTime
+        attr_accessor :JobId, :Target, :Type, :Method, :Status, :CreateTime, :UpdateTime, :FailType, :FailMessage
 
-        def initialize(jobid=nil, target=nil, type=nil, method=nil, status=nil, createtime=nil, updatetime=nil)
+        def initialize(jobid=nil, target=nil, type=nil, method=nil, status=nil, createtime=nil, updatetime=nil, failtype=nil, failmessage=nil)
           @JobId = jobid
           @Target = target
           @Type = type
@@ -19558,6 +19567,8 @@ module TencentCloud
           @Status = status
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @FailType = failtype
+          @FailMessage = failmessage
         end
 
         def deserialize(params)
@@ -19568,6 +19579,8 @@ module TencentCloud
           @Status = params['Status']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @FailType = params['FailType']
+          @FailMessage = params['FailMessage']
         end
       end
 

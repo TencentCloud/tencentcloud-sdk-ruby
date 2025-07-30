@@ -1730,7 +1730,9 @@ module TencentCloud
         # @type Name: String
         # @param Bucket: COS存储桶
         # @type Bucket: String
-        # @param BucketRegion: COS存储桶所在地域
+        # @param BucketRegion: COS存储桶所在地域。
+
+        # - 通过[地域和访问域名](https://cloud.tencent.com/document/product/436/6224)获取地域信息。
         # @type BucketRegion: String
         # @param Prefix: COS文件所在文件夹的前缀
         # @type Prefix: String
@@ -1741,13 +1743,13 @@ module TencentCloud
         # @type Status: Integer
         # @param Enable: 是否启用:   0： 未启用  ， 1：启用
         # @type Enable: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。时间格式：YYYY-MM-DD HH:mm:ss
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间。时间格式：YYYY-MM-DD HH:mm:ss
         # @type UpdateTime: String
         # @param Progress: 进度条百分值
         # @type Progress: Integer
-        # @param Compress: supported: "", "gzip", "lzop", "snappy”; 默认空
+        # @param Compress: 压缩方式supported: "", "gzip", "lzop", "snappy”;  默认空不压缩
         # @type Compress: String
         # @param ExtractRuleInfo: 见： ExtractRuleInfo 结构描述
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
@@ -1979,8 +1981,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 6
-        deprecate :Enable=, :none, 2025, 6
+        deprecate :Enable, :none, 2025, 7
+        deprecate :Enable=, :none, 2025, 7
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2303,8 +2305,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 6
-        deprecate :LogFormat=, :none, 2025, 6
+        deprecate :LogFormat, :none, 2025, 7
+        deprecate :LogFormat=, :none, 2025, 7
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -2588,13 +2590,19 @@ module TencentCloud
 
       # CreateCosRecharge请求参数结构体
       class CreateCosRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题 ID
+        # @param TopicId: 日志主题Id。
+
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: 日志集Id。
+
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
-        # @param Name: 投递任务名称
+        # @param Name: COS导入任务名称,最大支持128个字节。
         # @type Name: String
         # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+
+        # - 通过[GET Service（List Buckets）](https://cloud.tencent.com/document/product/436/8291)获取COS存储桶。
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
@@ -2603,7 +2611,7 @@ module TencentCloud
         # @type LogType: String
         # @param Prefix: COS文件所在文件夹的前缀。默认为空，投递存储桶下所有的文件。
         # @type Prefix: String
-        # @param Compress: supported: "", "gzip", "lzop", "snappy"; 默认空
+        # @param Compress: supported: "", "gzip", "lzop", "snappy"。默认空，不压缩。
         # @type Compress: String
         # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
@@ -3345,15 +3353,18 @@ module TencentCloud
 
       # CreateShipper请求参数结构体
       class CreateShipperRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 创建的投递规则所属的日志主题ID
+        # @param TopicId: 创建的投递规则所属的日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+
+        # - 通过[GET Service（List Buckets）](https://cloud.tencent.com/document/product/436/8291)获取COS存储桶。
         # @type Bucket: String
         # @param Prefix: 投递规则投递的新的目录前缀。
         # - 仅支持0-9A-Za-z-_/
         # - 最大支持256个字符
         # @type Prefix: String
-        # @param ShipperName: 投递规则的名字
+        # @param ShipperName: 投递规则的名字。最大支持255个字符
         # @type ShipperName: String
         # @param Interval: 投递的时间间隔，单位 秒，默认300，范围 300-900
         # @type Interval: Integer
@@ -3375,15 +3386,17 @@ module TencentCloud
         # @param EndTime: 投递数据范围的结束时间点（秒级时间戳），不能填写未来时间。
         # 如果用户不填写，默认为持续投递，即无限。
         # @type EndTime: Integer
-        # @param StorageType: cos桶存储类型。支持：STANDARD_IA、ARCHIVE、DEEP_ARCHIVE、STANDARD、MAZ_STANDARD、MAZ_STANDARD_IA、INTELLIGENT_TIERING。
+        # @param StorageType: 对象存储类型，默认值为 STANDARD。枚举值请参见[ 存储类型概述](https://cloud.tencent.com/document/product/436/33417) 文档。
+        # 参考值有：
 
-        # 1. STANDARD_IA：低频存储；
-        # 2. ARCHIVE：归档存储；
-        # 3. DEEP_ARCHIVE：深度归档存储；
-        # 4. STANDARD：标准存储；
-        # 5. MAZ_STANDARD：标准存储（多 AZ）；
-        # 6. MAZ_STANDARD_IA：低频存储（多 AZ）；
-        # 7. INTELLIGENT_TIERING：智能分层存储。
+        # - STANDARD：标准存储
+        # - STANDARD_IA：低频存储
+        # - ARCHIVE：归档存储
+        # - DEEP_ARCHIVE：深度归档存储
+        # - MAZ_STANDARD：标准存储（多 AZ）
+        # - MAZ_STANDARD_IA：低频存储（多 AZ）
+        # - INTELLIGENT_TIERING：智能分层存储
+        # - MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
 
         attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime, :StorageType
@@ -3654,7 +3667,7 @@ module TencentCloud
         # @type DashboardName: String
         # @param Data: 仪表盘数据
         # @type Data: String
-        # @param CreateTime: 创建仪表盘的时间
+        # @param CreateTime: 创建仪表盘的时间。格式：YYYY-MM-DD HH:MM:SS
         # @type CreateTime: String
         # @param AssumerUin: AssumerUin非空则表示创建该日志主题的服务方Uin
         # @type AssumerUin: Integer
@@ -3666,7 +3679,7 @@ module TencentCloud
         # @type Tags: Array
         # @param DashboardRegion: 仪表盘所在地域： 为了兼容老的地域。
         # @type DashboardRegion: String
-        # @param UpdateTime: 修改仪表盘的时间
+        # @param UpdateTime: 修改仪表盘的时间。格式：YYYY-MM-DD HH:MM:SS
         # @type UpdateTime: String
         # @param DashboardTopicInfos: 仪表盘对应的topic相关信息
         # @type DashboardTopicInfos: Array
@@ -3834,7 +3847,29 @@ module TencentCloud
       class DashboardTopicInfo < TencentCloud::Common::AbstractModel
         # @param TopicId: 主题id
         # @type TopicId: String
-        # @param Region: topic所在的地域
+        # @param Region: topic所在的地域。
+        # - 1:广州
+        # - 4:上海
+        # - 5:中国香港
+        # - 7:上海金融
+        # - 8:北京
+        # - 9:新加坡
+        # - 11:深圳金融
+        # - 15:硅谷
+        # - 16:成都
+        # - 17:法兰克福
+        # - 18:首尔
+        # - 19:重庆
+        # - 22:弗吉尼亚
+        # - 23:曼谷
+        # - 25:东京
+        # - 33:南京
+        # - 36:天津
+        # - 39:台北
+        # - 46:北京金融
+        # - 72:雅加达
+        # - 74:圣保罗
+        # - 78:上海自动驾驶云
         # @type Region: String
 
         attr_accessor :TopicId, :Region
@@ -4279,9 +4314,11 @@ module TencentCloud
 
       # DeleteCosRecharge请求参数结构体
       class DeleteCosRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: COS导入配置Id
+        # @param Id: COS导入配置Id。
+        # - 通过[获取投递任务列表](https://cloud.tencent.com/document/api/614/58745)获取COS导入配置Id。
         # @type Id: String
-        # @param TopicId: 日志主题Id
+        # @param TopicId: 日志主题Id。
+        # -  通过[获取日志主题列表](https://cloud.tencent.com/document/api/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :Id, :TopicId
@@ -4651,7 +4688,8 @@ module TencentCloud
 
       # DeleteShipper请求参数结构体
       class DeleteShipperRequest < TencentCloud::Common::AbstractModel
-        # @param ShipperId: 投递规则ID
+        # @param ShipperId: 投递规则Id。
+        # - 通过 [获取投递任务列表](https://cloud.tencent.com/document/product/614/58745)获取ShipperId。
         # @type ShipperId: String
 
         attr_accessor :ShipperId
@@ -5461,7 +5499,8 @@ module TencentCloud
 
       # DescribeCosRecharges请求参数结构体
       class DescribeCosRechargesRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题 ID
+        # @param TopicId: 日志主题Id。
+        # -  通过[获取日志主题列表](https://cloud.tencent.com/document/api/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Status: 状态   status 0: 已创建, 1: 运行中, 2: 已停止, 3: 已完成, 4: 运行失败。
         # @type Status: Integer
@@ -5565,13 +5604,39 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: - dashboardId 按照【仪表盘id】进行过滤，类型：String， 必选：否。
         # - dashboardName 按照【仪表盘名字】进行模糊搜索过滤，类型：String，必选：否。
-        # - dashboardRegion 按照【仪表盘地域】进行过滤，为了兼容老的仪表盘，通过云API创建的仪表盘没有地域属性，类型：String，必选：否。
+        # - dashboardRegion 按照【仪表盘地域】进行过滤，为了兼容老的仪表盘，通过云API创建的仪表盘没有地域属性，类型：String，必选：否。 [地域和访问域名](https://cloud.tencent.com/document/product/614/18940)，例如：ap-guangzhou
         # - tagKey 按照【标签键】进行过滤，类型：String，必选：否。
         # - tag:tagKey 按照【标签键值对】进行过滤。tagKey使用具体的标签键进行替换，类型：String，必选：否，使用请参考[示例2](https://cloud.tencent.com/document/api/614/95636#4.-.E7.A4.BA.E4.BE.8B)。
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为100。
         # @type Filters: Array
         # @param TopicIdRegionFilter: 按照topicId和regionId过滤。
+
+        # - topicId:日志主题Id。
+        #     -  通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # - regionId
+        #     - 1:广州
+        #     - 4:上海
+        #     - 5:中国香港
+        #     - 7:上海金融
+        #     - 8:北京
+        #     - 9:新加坡
+        #     - 11:深圳金融
+        #     - 15:硅谷
+        #     - 16:成都
+        #     - 17:法兰克福
+        #     - 18:首尔
+        #     - 19:重庆
+        #     - 22:弗吉尼亚
+        #     - 23:曼谷
+        #     - 25:东京
+        #     - 33:南京
+        #     - 36:天津
+        #     - 39:台北
+        #     - 46:北京金融
+        #     - 72:雅加达
+        #     - 74:圣保罗
+        #     - 78:上海自动驾驶云
         # @type TopicIdRegionFilter: Array
 
         attr_accessor :Offset, :Limit, :Filters, :TopicIdRegionFilter
@@ -6339,34 +6404,36 @@ module TencentCloud
 
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 查询的机器组ID
+        # @param GroupId: 查询的机器组ID。
+
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组ID。
         # @type GroupId: String
         # @param Filters: ip
-        # - 按照【ip】进行过滤。
+        # - 按照ip进行过滤。
         # - 类型：String
         # - 必选：否
 
         # instance
-        # - 按照【instance】进行过滤。
+        # - 按照实例id进行过滤。
         # - 类型：String
         # - 必选：否
 
         # version
-        # - 按照【LogListener版本】进行过滤。
+        # - 按照LogListener版本进行过滤。
         # - 类型：String
         # - 必选：否
 
         # status
-        # - 按照【状态】进行过滤。
+        # - 按照机器状态进行过滤。
         # - 类型：String
         # - 必选：否
         # - 可选值：0：离线，1：正常
 
         # offlineTime
-        # - 按照【机器离线时间】进行过滤。
+        # - 按照机器离线时间进行过滤。
         # - 类型：String
         # - 必选：否
-        # - - 可选值：0：无离线时间，12：12小时内，24：一天内，48：两天内，99：两天前
+        # - -可选值：0：无离线时间，12：12小时内，24：一天内，48：两天内，99：两天前
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为100。
         # @type Filters: Array
@@ -6644,7 +6711,9 @@ module TencentCloud
 
       # DescribeShipperTasks请求参数结构体
       class DescribeShipperTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ShipperId: 投递规则ID
+        # @param ShipperId: 投递规则Id。
+
+        # - 通过 [获取投递任务列表](https://cloud.tencent.com/document/product/614/58745)获取ShipperId。
         # @type ShipperId: String
         # @param StartTime: 查询的开始时间戳，支持最近3天的查询， 毫秒。
         # StartTime必须小于EndTime
@@ -6707,10 +6776,9 @@ module TencentCloud
         # - topicId：按照【日志主题】进行过滤。
         #     类型：String。
         #     必选：否
-        # - taskStatus
-        # 按照【任务运行状态】进行过滤。 支持`0`：停止，`1`：运行中，`2`：异常
-        # 类型：String
-        # 必选：否
+        # - taskStatus：按照【任务运行状态】进行过滤。 支持`0`：停止，`1`：运行中，`2`：异常
+        #     类型：String
+        #     必选：否
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为10。
         # @type Filters: Array
@@ -8232,7 +8300,7 @@ module TencentCloud
         # @type InstanceID: String
         # @param Status: 机器状态，0:异常，1:正常
         # @type Status: Integer
-        # @param OfflineTime: 机器离线时间，空为正常，异常返回具体时间
+        # @param OfflineTime: 机器离线时间，空为正常，异常返回具体时间。时间格式：YYYY-MM-DD HH:mm:ss
         # @type OfflineTime: String
         # @param AutoUpdate: 机器是否开启自动升级。0:关闭，1:开启
         # @type AutoUpdate: Integer
@@ -8545,8 +8613,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 6
-        deprecate :Enable=, :none, 2025, 6
+        deprecate :Enable, :none, 2025, 7
+        deprecate :Enable=, :none, 2025, 7
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -8829,8 +8897,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 6
-        deprecate :LogFormat=, :none, 2025, 6
+        deprecate :LogFormat, :none, 2025, 7
+        deprecate :LogFormat=, :none, 2025, 7
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -9097,15 +9165,21 @@ module TencentCloud
 
       # ModifyCosRecharge请求参数结构体
       class ModifyCosRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: COS导入配置Id
+        # @param Id: COS导入配置Id。
+
+        # - 通过[获取cos导入配置](https://cloud.tencent.com/document/product/614/88099)接口获取COS导入配置Id。
         # @type Id: String
-        # @param TopicId: 日志主题Id
+        # @param TopicId: 日志主题Id。
+
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param Name: COS导入任务名称
+        # @param Name: COS导入任务名称,最大支持128个字节。
         # @type Name: String
         # @param Enable: 任务状态   0： 停用 ， 1：启用
         # @type Enable: Integer
         # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+
+        # - 通过[GET Service（List Buckets）](https://cloud.tencent.com/document/product/436/8291)获取COS存储桶。
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
@@ -9113,7 +9187,7 @@ module TencentCloud
         # @type Prefix: String
         # @param LogType: 采集的日志类型，json_log代表json格式日志，delimiter_log代表分隔符格式日志，minimalist_log代表单行全文； 默认为minimalist_log
         # @type LogType: String
-        # @param Compress: 解析格式。supported: "", "gzip", "lzop", "snappy"; 默认空
+        # @param Compress: 解析格式。supported: "", "gzip", "lzop", "snappy"。空串表示不压缩。
         # @type Compress: String
         # @param ExtractRuleInfo: 提取规则，如果设置了ExtractRule，则必须设置LogType
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
@@ -9734,9 +9808,13 @@ module TencentCloud
 
       # ModifyShipper请求参数结构体
       class ModifyShipperRequest < TencentCloud::Common::AbstractModel
-        # @param ShipperId: 投递规则ID
+        # @param ShipperId: 投递规则Id。
+
+        # - 通过 [获取投递任务列表](https://cloud.tencent.com/document/product/614/58745)获取ShipperId。
         # @type ShipperId: String
         # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+
+        # - 通过[GET Service（List Buckets）](https://cloud.tencent.com/document/product/436/8291)获取COS存储桶。
         # @type Bucket: String
         # @param Prefix: 投递规则投递的新的目录前缀。
         # - 仅支持0-9A-Za-z-_/
@@ -9760,15 +9838,17 @@ module TencentCloud
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名。
         # @type FilenameMode: Integer
-        # @param StorageType: cos桶存储类型。支持：STANDARD_IA、ARCHIVE、DEEP_ARCHIVE、STANDARD、MAZ_STANDARD、MAZ_STANDARD_IA、INTELLIGENT_TIERING。
+        # @param StorageType: 对象存储类型，默认值为 STANDARD。枚举值请参见[ 存储类型概述](https://cloud.tencent.com/document/product/436/33417) 文档。
+        # 参考值有：
 
-        # 1. STANDARD_IA：低频存储；
-        # 2. ARCHIVE：归档存储；
-        # 3. DEEP_ARCHIVE：深度归档存储；
-        # 4. STANDARD：标准存储；
-        # 5. MAZ_STANDARD：标准存储（多 AZ）；
-        # 6. MAZ_STANDARD_IA：低频存储（多 AZ）；
-        # 7. INTELLIGENT_TIERING：智能分层存储。
+        # - STANDARD：标准存储
+        # - STANDARD_IA：低频存储
+        # - ARCHIVE：归档存储
+        # - DEEP_ARCHIVE：深度归档存储
+        # - MAZ_STANDARD：标准存储（多 AZ）
+        # - MAZ_STANDARD_IA：低频存储（多 AZ）
+        # - INTELLIGENT_TIERING：智能分层存储
+        # - MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
 
         attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StorageType
@@ -10583,8 +10663,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 6
-        deprecate :DstTopicName=, :none, 2025, 6
+        deprecate :DstTopicName, :none, 2025, 7
+        deprecate :DstTopicName=, :none, 2025, 7
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -10711,9 +10791,13 @@ module TencentCloud
 
       # RetryShipperTask请求参数结构体
       class RetryShipperTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ShipperId: 投递规则ID
+        # @param ShipperId: 投递规则Id。
+
+        # - 通过 [获取投递任务列表](https://cloud.tencent.com/document/product/614/58745)获取ShipperId。
         # @type ShipperId: String
-        # @param TaskId: 投递任务ID
+        # @param TaskId: 投递任务Id。
+
+        # - 通过 [获取投递任务列表](https://cloud.tencent.com/document/product/614/58745) 获取TaskId。
         # @type TaskId: String
 
         attr_accessor :ShipperId, :TaskId
@@ -10996,19 +11080,24 @@ module TencentCloud
 
       # SearchCosRechargeInfo请求参数结构体
       class SearchCosRechargeInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题 ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: 日志集Id。
+
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
-        # @param Name: 投递任务名称
+        # @param Name: COS导入任务名称,最大支持128个字节。
         # @type Name: String
         # @param Bucket: COS存储桶，详见产品支持的[存储桶命名规范](https://cloud.tencent.com/document/product/436/13312)。
+
+        # - 通过[GET Service（List Buckets）](https://cloud.tencent.com/document/product/436/8291)获取COS存储桶。
         # @type Bucket: String
         # @param BucketRegion: COS存储桶所在地域，详见产品支持的[地域列表](https://cloud.tencent.com/document/product/436/6224)。
         # @type BucketRegion: String
         # @param Prefix: COS文件所在文件夹的前缀。默认为空，投递存储桶下所有的文件。
         # @type Prefix: String
-        # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy";   默认""
+        # @param Compress: 压缩模式:   "", "gzip", "lzop", "snappy"。  默认："" 不压缩
         # @type Compress: String
 
         attr_accessor :TopicId, :LogsetId, :Name, :Bucket, :BucketRegion, :Prefix, :Compress
@@ -11044,7 +11133,16 @@ module TencentCloud
         # @type Path: String
         # @param Msg: 预览获取数据失败原因
         # @type Msg: String
-        # @param Status: 状态
+        # @param Status: 状态。
+        # - 0：成功
+        # - 10000：参数错误，请确认参数
+        # - 10001：授权失败，请确认授权
+        # - 10002：获取文件列表失败，请稍后再试。若无法解决，请联系智能客服或提交工单
+        # - 10003：桶内无相应前缀文件，请使用正确的桶、文件前缀和压缩方式
+        # - 10004：文件下载失败，请稍后再试。若无法解决，请联系智能客服或提交工单
+        # - 10005：文件解压缩失败，请选择正确的压缩方式然后再试
+        # - 10006：读取文件内容失败，请确认文件可读
+        # - 10007：文件预览失败，请稍后再试。若无法解决，请联系智能客服或提交工单
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11425,7 +11523,7 @@ module TencentCloud
         # @type Compress: :class:`Tencentcloud::Cls.v20201016.models.CompressInfo`
         # @param Content: 投递日志的内容格式配置
         # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ContentInfo`
-        # @param CreateTime: 投递日志的创建时间
+        # @param CreateTime: 投递日志的创建时间。格式：YYYY-MM-DD HH:MM:SS
         # @type CreateTime: String
         # @param FilenameMode: 投递文件命名配置，0：随机数命名，1：投递时间命名，默认0（随机数命名）
         # @type FilenameMode: Integer
@@ -11444,7 +11542,16 @@ module TencentCloud
         # 3：任务运行异常
         # 4：任务运行结束
         # @type HistoryStatus: Integer
-        # @param StorageType: cos桶类型
+        # @param StorageType: 对象存储类型，默认值为 STANDARD。枚举值请参见[ 存储类型概述](https://cloud.tencent.com/document/product/436/33417) 文档。
+        # 参考值有：
+        # STANDARD：标准存储
+        # STANDARD_IA：低频存储
+        # ARCHIVE：归档存储
+        # DEEP_ARCHIVE：深度归档存储
+        # MAZ_STANDARD：标准存储（多 AZ）
+        # MAZ_STANDARD_IA：低频存储（多 AZ）
+        # INTELLIGENT_TIERING：智能分层存储
+        # MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
 
         attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType
@@ -11824,8 +11931,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 6
-        deprecate :HashKey=, :none, 2025, 6
+        deprecate :HashKey, :none, 2025, 7
+        deprecate :HashKey=, :none, 2025, 7
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -11933,10 +12040,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 6
-        deprecate :Headers=, :none, 2025, 6
-        deprecate :Body, :none, 2025, 6
-        deprecate :Body=, :none, 2025, 6
+        deprecate :Headers, :none, 2025, 7
+        deprecate :Headers=, :none, 2025, 7
+        deprecate :Body, :none, 2025, 7
+        deprecate :Body=, :none, 2025, 7
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

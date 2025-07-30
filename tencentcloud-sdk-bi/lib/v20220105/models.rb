@@ -255,10 +255,14 @@ module TencentCloud
         # @type DataOriginDatasourceId: String
         # @param ClusterId: 集群id
         # @type ClusterId: String
+        # @param Schema: 数据库schema
+        # @type Schema: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
 
-        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId
+        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :Schema, :DbVersion
 
-        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil)
+        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, schema=nil, dbversion=nil)
           @ServiceType = servicetype
           @DbType = dbtype
           @Charset = charset
@@ -279,6 +283,8 @@ module TencentCloud
           @DataOriginProjectId = dataoriginprojectid
           @DataOriginDatasourceId = dataorigindatasourceid
           @ClusterId = clusterid
+          @Schema = schema
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -302,6 +308,8 @@ module TencentCloud
           @DataOriginProjectId = params['DataOriginProjectId']
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
           @ClusterId = params['ClusterId']
+          @Schema = params['Schema']
+          @DbVersion = params['DbVersion']
         end
       end
 
@@ -393,10 +401,14 @@ module TencentCloud
         # @type UseVPC: Boolean
         # @param RegionId: 地域
         # @type RegionId: String
+        # @param Schema: 数据库schema
+        # @type Schema: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
 
-        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit, :UseVPC, :RegionId
+        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :OperationAuthLimit, :UseVPC, :RegionId, :Schema, :DbVersion
 
-        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, operationauthlimit=nil, usevpc=nil, regionid=nil)
+        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, operationauthlimit=nil, usevpc=nil, regionid=nil, schema=nil, dbversion=nil)
           @DbHost = dbhost
           @DbPort = dbport
           @ServiceType = servicetype
@@ -419,6 +431,8 @@ module TencentCloud
           @OperationAuthLimit = operationauthlimit
           @UseVPC = usevpc
           @RegionId = regionid
+          @Schema = schema
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -444,6 +458,8 @@ module TencentCloud
           @OperationAuthLimit = params['OperationAuthLimit']
           @UseVPC = params['UseVPC']
           @RegionId = params['RegionId']
+          @Schema = params['Schema']
+          @DbVersion = params['DbVersion']
         end
       end
 
@@ -1035,10 +1051,16 @@ module TencentCloud
         # @param OwnerName: 所属人名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerName: String
+        # @param Schema: 数据库schema
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Schema: String
+        # @param DbVersion: 数据库版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbVersion: String
 
-        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName, :UseVPC, :Owner, :OwnerName
+        attr_accessor :Id, :DbName, :ServiceType, :SourceName, :DbType, :DbHost, :DbPort, :DbUser, :Charset, :CreatedAt, :UpdatedAt, :CreatedUser, :Catalog, :ConnectType, :ProjectId, :Desc, :Status, :SourcePlat, :ExtraParam, :AddInfo, :ProjectName, :EngineType, :Manager, :OperatorWhitelist, :VpcId, :UniqVpcId, :RegionId, :StateAction, :UpdatedUser, :PermissionList, :AuthList, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :DbTypeName, :UseVPC, :Owner, :OwnerName, :Schema, :DbVersion
 
-        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil, usevpc=nil, owner=nil, ownername=nil)
+        def initialize(id=nil, dbname=nil, servicetype=nil, sourcename=nil, dbtype=nil, dbhost=nil, dbport=nil, dbuser=nil, charset=nil, createdat=nil, updatedat=nil, createduser=nil, catalog=nil, connecttype=nil, projectid=nil, desc=nil, status=nil, sourceplat=nil, extraparam=nil, addinfo=nil, projectname=nil, enginetype=nil, manager=nil, operatorwhitelist=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, stateaction=nil, updateduser=nil, permissionlist=nil, authlist=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, dbtypename=nil, usevpc=nil, owner=nil, ownername=nil, schema=nil, dbversion=nil)
           @Id = id
           @DbName = dbname
           @ServiceType = servicetype
@@ -1078,6 +1100,8 @@ module TencentCloud
           @UseVPC = usevpc
           @Owner = owner
           @OwnerName = ownername
+          @Schema = schema
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -1130,6 +1154,8 @@ module TencentCloud
           @UseVPC = params['UseVPC']
           @Owner = params['Owner']
           @OwnerName = params['OwnerName']
+          @Schema = params['Schema']
+          @DbVersion = params['DbVersion']
         end
       end
 
@@ -2254,10 +2280,14 @@ module TencentCloud
         # @type DataOriginDatasourceId: String
         # @param ClusterId: 集群id
         # @type ClusterId: String
+        # @param Schema: 数据库schema
+        # @type Schema: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
 
-        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Id, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId
+        attr_accessor :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :ProjectId, :Id, :Vip, :Vport, :VpcId, :UniqVpcId, :RegionId, :ExtraParam, :InstanceId, :ProdDbName, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ClusterId, :Schema, :DbVersion
 
-        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, id=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil)
+        def initialize(servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, projectid=nil, id=nil, vip=nil, vport=nil, vpcid=nil, uniqvpcid=nil, regionid=nil, extraparam=nil, instanceid=nil, proddbname=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, clusterid=nil, schema=nil, dbversion=nil)
           @ServiceType = servicetype
           @DbType = dbtype
           @Charset = charset
@@ -2279,6 +2309,8 @@ module TencentCloud
           @DataOriginProjectId = dataoriginprojectid
           @DataOriginDatasourceId = dataorigindatasourceid
           @ClusterId = clusterid
+          @Schema = schema
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -2303,6 +2335,8 @@ module TencentCloud
           @DataOriginProjectId = params['DataOriginProjectId']
           @DataOriginDatasourceId = params['DataOriginDatasourceId']
           @ClusterId = params['ClusterId']
+          @Schema = params['Schema']
+          @DbVersion = params['DbVersion']
         end
       end
 
@@ -2311,7 +2345,7 @@ module TencentCloud
         # @param ErrorInfo: 自定义错误信息对象
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
-        # @param Data: 成功无
+        # @param Data: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: String
         # @param Extra: 额外信息
@@ -2391,10 +2425,14 @@ module TencentCloud
         # @type UseVPC: Boolean
         # @param RegionId: 地域
         # @type RegionId: String
+        # @param Schema: 数据库schema
+        # @type Schema: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
 
-        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :Id, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :UseVPC, :RegionId
+        attr_accessor :DbHost, :DbPort, :ServiceType, :DbType, :Charset, :DbUser, :DbPwd, :DbName, :SourceName, :Id, :ProjectId, :Catalog, :DataOrigin, :DataOriginProjectId, :DataOriginDatasourceId, :ExtraParam, :UniqVpcId, :Vip, :Vport, :VpcId, :UseVPC, :RegionId, :Schema, :DbVersion
 
-        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, id=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, usevpc=nil, regionid=nil)
+        def initialize(dbhost=nil, dbport=nil, servicetype=nil, dbtype=nil, charset=nil, dbuser=nil, dbpwd=nil, dbname=nil, sourcename=nil, id=nil, projectid=nil, catalog=nil, dataorigin=nil, dataoriginprojectid=nil, dataorigindatasourceid=nil, extraparam=nil, uniqvpcid=nil, vip=nil, vport=nil, vpcid=nil, usevpc=nil, regionid=nil, schema=nil, dbversion=nil)
           @DbHost = dbhost
           @DbPort = dbport
           @ServiceType = servicetype
@@ -2417,6 +2455,8 @@ module TencentCloud
           @VpcId = vpcid
           @UseVPC = usevpc
           @RegionId = regionid
+          @Schema = schema
+          @DbVersion = dbversion
         end
 
         def deserialize(params)
@@ -2442,6 +2482,8 @@ module TencentCloud
           @VpcId = params['VpcId']
           @UseVPC = params['UseVPC']
           @RegionId = params['RegionId']
+          @Schema = params['Schema']
+          @DbVersion = params['DbVersion']
         end
       end
 

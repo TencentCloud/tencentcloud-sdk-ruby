@@ -924,13 +924,13 @@ module TencentCloud
         # @type StatusMsg: String
         # @param VerifyType: 验证类型：DNS_AUTO = 自动DNS验证，DNS = 手动DNS验证，FILE = 文件验证，DNS_PROXY = DNS代理验证。FILE_PROXY = 文件代理验证
         # @type VerifyType: String
-        # @param CertBeginTime: 证书生效时间。
+        # @param CertBeginTime: 证书生效时间。时区为GMT+8:00
         # @type CertBeginTime: String
-        # @param CertEndTime: 证书过期时间。
+        # @param CertEndTime: 证书过期时间。时区为GMT+8:00
         # @type CertEndTime: String
         # @param ValidityPeriod: 证书有效期，单位（月）。
         # @type ValidityPeriod: String
-        # @param InsertTime: 创建时间。
+        # @param InsertTime: 创建时间。时区为GMT+8:00
         # @type InsertTime: String
         # @param CertificateId: 证书 ID。
         # @type CertificateId: String
@@ -986,9 +986,9 @@ module TencentCloud
         # @type ReplaceOriCertIsDelete: Boolean
         # @param IsExpiring: 是否即将过期， 证书即将到期的30天内为即将过期
         # @type IsExpiring: Boolean
-        # @param DVAuthDeadline: DV证书添加验证截止时间
+        # @param DVAuthDeadline: DV证书添加验证截止时间，时区为GMT+8:00
         # @type DVAuthDeadline: String
-        # @param ValidationPassedTime: 域名验证通过时间
+        # @param ValidationPassedTime: 域名验证通过时间，时区为GMT+8:00
         # @type ValidationPassedTime: String
         # @param CertSANs: 证书关联的多域名
         # @type CertSANs: Array
@@ -1004,7 +1004,7 @@ module TencentCloud
         # @type KeyPasswordCustomFlag: Boolean
         # @param SupportDownloadType: 支持下载的WEB服务器类型： nginx、apache、iis、tomcat、jks、root、other
         # @type SupportDownloadType: :class:`Tencentcloud::Ssl.v20191205.models.SupportDownloadType`
-        # @param CertRevokedTime: 证书吊销完成时间
+        # @param CertRevokedTime: 证书吊销完成时间，时区为GMT+8:00
         # @type CertRevokedTime: String
         # @param HostingResourceTypes: 托管资源类型列表
         # @type HostingResourceTypes: Array
@@ -2558,10 +2558,12 @@ module TencentCloud
         # @type Algorithm: String
         # @param OldAlgorithm: 原证书加密算法
         # @type OldAlgorithm: String
+        # @param InstanceStatus: 实例状态，不同云产品状态不一样
+        # @type InstanceStatus: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url, :Algorithm, :OldAlgorithm
+        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url, :Algorithm, :OldAlgorithm, :InstanceStatus
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil, algorithm=nil, oldalgorithm=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil, algorithm=nil, oldalgorithm=nil, instancestatus=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -2586,6 +2588,7 @@ module TencentCloud
           @Url = url
           @Algorithm = algorithm
           @OldAlgorithm = oldalgorithm
+          @InstanceStatus = instancestatus
         end
 
         def deserialize(params)
@@ -2613,6 +2616,7 @@ module TencentCloud
           @Url = params['Url']
           @Algorithm = params['Algorithm']
           @OldAlgorithm = params['OldAlgorithm']
+          @InstanceStatus = params['InstanceStatus']
         end
       end
 
@@ -3635,16 +3639,16 @@ module TencentCloud
         # @param VulnerabilityStatus: 漏洞扫描状态。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VulnerabilityStatus: String
-        # @param CertBeginTime: 证书生效时间。
+        # @param CertBeginTime: 证书生效时间。时区为GMT+8:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertBeginTime: String
-        # @param CertEndTime: 证书失效时间。
+        # @param CertEndTime: 证书失效时间。时区为GMT+8:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CertEndTime: String
         # @param ValidityPeriod: 证书有效期：单位(月)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValidityPeriod: String
-        # @param InsertTime: 申请时间。
+        # @param InsertTime: 申请时间。时区为GMT+8:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InsertTime: String
         # @param OrderId: 订单 ID。
@@ -3701,7 +3705,7 @@ module TencentCloud
         # @param CACommonNames: CA证书的所有通用名称。仅证书类型CertificateType为CA有效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CACommonNames: Array
-        # @param CAEndTimes: CA证书所有的到期时间。仅证书类型CertificateType为CA有效
+        # @param CAEndTimes: CA证书所有的到期时间。仅证书类型CertificateType为CA有效，时区为GMT+8:00
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CAEndTimes: Array
         # @param DvRevokeAuthDetail: DV证书吊销验证值
@@ -4036,7 +4040,7 @@ module TencentCloud
       class DescribeDeployedResourcesRequest < TencentCloud::Common::AbstractModel
         # @param CertificateIds: 证书ID
         # @type CertificateIds: Array
-        # @param ResourceType: 资源类型:clb,cdn,live,waf,antiddos,teo
+        # @param ResourceType: 资源类型:clb,cdn,live,vod,waf,antiddos,teo
         # @type ResourceType: String
 
         attr_accessor :CertificateIds, :ResourceType
@@ -4599,7 +4603,7 @@ module TencentCloud
         # @type FailedTotalCount: Integer
         # @param RunningTotalCount: 部署中总数
         # @type RunningTotalCount: Integer
-        # @param PendingTotalCount: 带部署总数
+        # @param PendingTotalCount: 待部署总数
         # @type PendingTotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1392,8 +1392,10 @@ module TencentCloud
         # @param Date: 文件存储时间，时间格式：2016-03-17 02:10:37
         # @type Date: String
         # @param IntranetUrl: 下载地址
+        # 说明：此下载地址和参数 InternetUrl 的下载地址一样。
         # @type IntranetUrl: String
         # @param InternetUrl: 下载地址
+        # 说明：此下载地址和参数 IntranetUrl 的下载地址一样。
         # @type InternetUrl: String
         # @param Type: 日志具体类型，可能的值有：binlog - 二进制日志
         # @type Type: String
@@ -1413,6 +1415,9 @@ module TencentCloud
         # @type InstanceId: String
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId
+        extend Gem::Deprecate
+        deprecate :InstanceId, :none, 2025, 7
+        deprecate :InstanceId=, :none, 2025, 7
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil)
           @Name = name
@@ -5393,11 +5398,11 @@ module TencentCloud
 
       # DescribeBackups请求参数结构体
       class DescribeBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
         # @param Offset: 偏移量，最小值为0。
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为100。
+        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为1000。
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit
@@ -5516,7 +5521,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Offset: 偏移量，最小值为0。
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为100。
+        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为1000。
         # @type Limit: Integer
         # @param MinStartTime: binlog最早开始时间，时间格式：2016-03-17 02:10:37
         # @type MinStartTime: String
@@ -7076,13 +7081,13 @@ module TencentCloud
 
       # DescribeErrorLogData请求参数结构体
       class DescribeErrorLogDataRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID 。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
-        # @param StartTime: 开始时间戳。例如 1585142640 。
+        # @param StartTime: 开始时间戳。例如1585142640，秒级。
         # @type StartTime: Integer
-        # @param EndTime: 结束时间戳。例如 1585142640 。
+        # @param EndTime: 结束时间戳。例如1585142640，秒级。
         # @type EndTime: Integer
-        # @param KeyWords: 要匹配的关键字列表，最多支持15个关键字。
+        # @param KeyWords: 要匹配的关键字列表，最多支持15个关键字，支持模糊匹配。
         # @type KeyWords: Array
         # @param Limit: 分页的返回数量，默认为100，最大为400。
         # @type Limit: Integer
@@ -7513,7 +7518,7 @@ module TencentCloud
 
       # DescribeParamTemplateInfo请求参数结构体
       class DescribeParamTemplateInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模板 ID。
+        # @param TemplateId: 参数模板 ID。可通过 [DescribeParamTemplates](https://cloud.tencent.com/document/api/236/32659) 接口获取。
         # @type TemplateId: Integer
 
         attr_accessor :TemplateId
@@ -7533,7 +7538,7 @@ module TencentCloud
         # @type TemplateId: Integer
         # @param Name: 参数模板名称。
         # @type Name: String
-        # @param EngineVersion: 参数模板对应实例版本
+        # @param EngineVersion: 参数模板对应实例版本，可取值：5.5、5.6、5.7、8.0。
         # @type EngineVersion: String
         # @param TotalCount: 参数模板中的参数数量
         # @type TotalCount: Integer
@@ -7584,13 +7589,13 @@ module TencentCloud
 
       # DescribeParamTemplates请求参数结构体
       class DescribeParamTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param EngineVersions: 引擎版本，缺省则查询所有
+        # @param EngineVersions: 引擎版本，缺省则查询所有。可取值为：5.5、5.6、5.7、8.0。
         # @type EngineVersions: Array
-        # @param EngineTypes: 引擎类型，缺省则查询所有
+        # @param EngineTypes: 引擎类型，缺省则查询所有。可取值为：InnoDB、RocksDB，不区分大小写。
         # @type EngineTypes: Array
-        # @param TemplateNames: 模板名称，缺省则查询所有
+        # @param TemplateNames: 模板名称，缺省则查询所有。支持模糊匹配。
         # @type TemplateNames: Array
-        # @param TemplateIds: 模板id，缺省则查询所有
+        # @param TemplateIds: 模板 ID，缺省则查询所有。
         # @type TemplateIds: Array
 
         attr_accessor :EngineVersions, :EngineTypes, :TemplateNames, :TemplateIds
@@ -8119,7 +8124,7 @@ module TencentCloud
 
       # DescribeSlowLogData请求参数结构体
       class DescribeSlowLogDataRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
         # @type InstanceId: String
         # @param StartTime: 开始时间戳。例如 1585142640。
         # 说明：此参数单位为秒的时间戳。
@@ -8133,13 +8138,18 @@ module TencentCloud
         # @type UserNames: Array
         # @param DataBases: 访问的 数据库 列表。
         # @type DataBases: Array
-        # @param SortBy: 排序字段。当前支持：Timestamp,QueryTime,LockTime,RowsExamined,RowsSent 。
+        # @param SortBy: 排序字段，当前支持字段及含义如下，默认值为 Timestamp。
+        # 1. Timestamp：SQL 的执行时间
+        # 2. QueryTime：SQL 的执行时长（秒）
+        # 3. LockTime：锁时长（秒）
+        # 4. RowsExamined：扫描行数
+        # 5. RowsSent：结果集行数
         # @type SortBy: String
-        # @param OrderBy: 升序还是降序排列。当前支持：ASC,DESC 。
+        # @param OrderBy: 升序还是降序排列。当前支持值为 ASC - 升序，DESC - 降序 ，默认值为 ASC。
         # @type OrderBy: String
         # @param Offset: 偏移量，默认为0，最大为9999。
         # @type Offset: Integer
-        # @param Limit: 一次性返回的记录数量，默认为100，最大为400。
+        # @param Limit: 一次性返回的记录数量，默认为100，最大为800。
         # @type Limit: Integer
         # @param InstType: 仅在实例为主实例或者灾备实例时生效，可选值：slave，代表拉取从机的日志。
         # @type InstType: String
@@ -8216,7 +8226,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Offset: 偏移量，默认值为0，最小值为0。
         # @type Offset: Integer
-        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为100。
+        # @param Limit: 分页大小，默认值为20，最小值为1，最大值为1000。
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Offset, :Limit
@@ -12088,17 +12098,17 @@ module TencentCloud
 
       # 参数模板信息
       class ParamTemplateInfo < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 参数模板ID
+        # @param TemplateId: 参数模板 ID
         # @type TemplateId: Integer
         # @param Name: 参数模板名称
         # @type Name: String
         # @param Description: 参数模板描述
         # @type Description: String
-        # @param EngineVersion: 实例引擎版本
+        # @param EngineVersion: 实例引擎版本，值为：5.5、5.6、5.7、8.0。
         # @type EngineVersion: String
-        # @param TemplateType: 参数模板类型
+        # @param TemplateType: 参数模板类型，值为：HIGH_STABILITY、HIGH_PERFORMANCE。
         # @type TemplateType: String
-        # @param EngineType: 参数模板引擎
+        # @param EngineType: 参数模板引擎，值为：InnoDB、RocksDB。
         # @type EngineType: String
 
         attr_accessor :TemplateId, :Name, :Description, :EngineVersion, :TemplateType, :EngineType

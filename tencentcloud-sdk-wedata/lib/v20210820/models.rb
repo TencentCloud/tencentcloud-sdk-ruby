@@ -13609,8 +13609,6 @@ module TencentCloud
         # @type PageNum: Integer
         # @param PageSize: 每页条数
         # @type PageSize: Integer
-        # @param TenantId: 租户id
-        # @type TenantId: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
         # @param TaskId: 任务id
@@ -13630,12 +13628,11 @@ module TencentCloud
         # @param EndTime: 结束时间
         # @type EndTime: String
 
-        attr_accessor :PageNum, :PageSize, :TenantId, :ProjectId, :TaskId, :InstanceId, :JobId, :EngineTaskId, :ProductSource, :OnwerUid, :StartTime, :EndTime
+        attr_accessor :PageNum, :PageSize, :ProjectId, :TaskId, :InstanceId, :JobId, :EngineTaskId, :ProductSource, :OnwerUid, :StartTime, :EndTime
 
-        def initialize(pagenum=nil, pagesize=nil, tenantid=nil, projectid=nil, taskid=nil, instanceid=nil, jobid=nil, enginetaskid=nil, productsource=nil, onweruid=nil, starttime=nil, endtime=nil)
+        def initialize(pagenum=nil, pagesize=nil, projectid=nil, taskid=nil, instanceid=nil, jobid=nil, enginetaskid=nil, productsource=nil, onweruid=nil, starttime=nil, endtime=nil)
           @PageNum = pagenum
           @PageSize = pagesize
-          @TenantId = tenantid
           @ProjectId = projectid
           @TaskId = taskid
           @InstanceId = instanceid
@@ -13650,7 +13647,6 @@ module TencentCloud
         def deserialize(params)
           @PageNum = params['PageNum']
           @PageSize = params['PageSize']
-          @TenantId = params['TenantId']
           @ProjectId = params['ProjectId']
           @TaskId = params['TaskId']
           @InstanceId = params['InstanceId']
@@ -15334,6 +15330,53 @@ module TencentCloud
               taskopsdto_tmp = TaskOpsDto.new
               taskopsdto_tmp.deserialize(i)
               @Data << taskopsdto_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSuccessorTaskInfoList请求参数结构体
+      class DescribeSuccessorTaskInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: 任务id集合
+        # @type TaskIds: Array
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :TaskIds, :ProjectId
+
+        def initialize(taskids=nil, projectid=nil)
+          @TaskIds = taskids
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeSuccessorTaskInfoList返回参数结构体
+      class DescribeSuccessorTaskInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 出参
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              successortaskinfo_tmp = SuccessorTaskInfo.new
+              successortaskinfo_tmp.deserialize(i)
+              @Data << successortaskinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -34090,6 +34133,73 @@ module TencentCloud
         def deserialize(params)
           @HookType = params['HookType']
           @HookAddress = params['HookAddress']
+        end
+      end
+
+      # 下游任务列表
+      class SuccessorTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param WorkflowId: 所属工作流id
+        # @type WorkflowId: String
+        # @param TaskName: 任务名
+        # @type TaskName: String
+        # @param Layer: 层级，0表示当前任务
+        # @type Layer: Integer
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param TaskTypeId: 任务类型，-1表示跨流任务
+        # @type TaskTypeId: Integer
+        # @param InCharge: 责任人
+        # @type InCharge: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+        # @param WorkflowName: 所属工作流名称
+        # @type WorkflowName: String
+        # @param CycleUnit: 周期单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CycleUnit: String
+        # @param ScheduleDesc: 调度计划
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleDesc: String
+        # @param TaskTypeDesc: 任务类型描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskTypeDesc: String
+
+        attr_accessor :TaskId, :WorkflowId, :TaskName, :Layer, :Status, :TaskTypeId, :InCharge, :ProjectId, :ProjectName, :WorkflowName, :CycleUnit, :ScheduleDesc, :TaskTypeDesc
+
+        def initialize(taskid=nil, workflowid=nil, taskname=nil, layer=nil, status=nil, tasktypeid=nil, incharge=nil, projectid=nil, projectname=nil, workflowname=nil, cycleunit=nil, scheduledesc=nil, tasktypedesc=nil)
+          @TaskId = taskid
+          @WorkflowId = workflowid
+          @TaskName = taskname
+          @Layer = layer
+          @Status = status
+          @TaskTypeId = tasktypeid
+          @InCharge = incharge
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @WorkflowName = workflowname
+          @CycleUnit = cycleunit
+          @ScheduleDesc = scheduledesc
+          @TaskTypeDesc = tasktypedesc
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @WorkflowId = params['WorkflowId']
+          @TaskName = params['TaskName']
+          @Layer = params['Layer']
+          @Status = params['Status']
+          @TaskTypeId = params['TaskTypeId']
+          @InCharge = params['InCharge']
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @WorkflowName = params['WorkflowName']
+          @CycleUnit = params['CycleUnit']
+          @ScheduleDesc = params['ScheduleDesc']
+          @TaskTypeDesc = params['TaskTypeDesc']
         end
       end
 

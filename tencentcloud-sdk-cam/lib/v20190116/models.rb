@@ -1086,6 +1086,61 @@ module TencentCloud
         end
       end
 
+      # CreateSubAccountLoginIpPolicy请求参数结构体
+      class CreateSubAccountLoginIpPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param IpPolicies: IP策略集合
+        # @type IpPolicies: Array
+        # @param ApproverType: 审批人类型，目前支持的类型有：SubAccountLoginLimitApproval（子账号登录限制审批）
+        # @type ApproverType: String
+        # @param ApproverUin: 被添加为协助审批人的账号ID数组
+        # @type ApproverUin: Array
+        # @param DisablePolicy: 是否禁用策略：0：不禁用，1：禁用
+        # @type DisablePolicy: Integer
+        # @param PolicyType: 策略类型：1：更新IP策略，2：设置异地登录校验校验规则
+        # @type PolicyType: Integer
+
+        attr_accessor :IpPolicies, :ApproverType, :ApproverUin, :DisablePolicy, :PolicyType
+
+        def initialize(ippolicies=nil, approvertype=nil, approveruin=nil, disablepolicy=nil, policytype=nil)
+          @IpPolicies = ippolicies
+          @ApproverType = approvertype
+          @ApproverUin = approveruin
+          @DisablePolicy = disablepolicy
+          @PolicyType = policytype
+        end
+
+        def deserialize(params)
+          unless params['IpPolicies'].nil?
+            @IpPolicies = []
+            params['IpPolicies'].each do |i|
+              ippolicy_tmp = IpPolicy.new
+              ippolicy_tmp.deserialize(i)
+              @IpPolicies << ippolicy_tmp
+            end
+          end
+          @ApproverType = params['ApproverType']
+          @ApproverUin = params['ApproverUin']
+          @DisablePolicy = params['DisablePolicy']
+          @PolicyType = params['PolicyType']
+        end
+      end
+
+      # CreateSubAccountLoginIpPolicy返回参数结构体
+      class CreateSubAccountLoginIpPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserOIDCConfig请求参数结构体
       class CreateUserOIDCConfigRequest < TencentCloud::Common::AbstractModel
         # @param IdentityUrl: 身份提供商URL。OpenID Connect身份提供商标识。
@@ -2202,8 +2257,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2025, 6
-        deprecate :Idps=, :none, 2025, 6
+        deprecate :Idps, :none, 2025, 7
+        deprecate :Idps=, :none, 2025, 7
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -2959,6 +3014,26 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @IsReceiverOwner = params['IsReceiverOwner']
           @Remark = params['Remark']
+        end
+      end
+
+      # IP限制策略
+      class IpPolicy < TencentCloud::Common::AbstractModel
+        # @param IP: IP段
+        # @type IP: String
+        # @param Effect: 策略效力，Allow或Deny
+        # @type Effect: String
+
+        attr_accessor :IP, :Effect
+
+        def initialize(ip=nil, effect=nil)
+          @IP = ip
+          @Effect = effect
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @Effect = params['Effect']
         end
       end
 

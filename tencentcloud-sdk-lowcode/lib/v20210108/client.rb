@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 检查应用发布状态
+
+        # @param request: Request instance for CheckDeployApp.
+        # @type request: :class:`Tencentcloud::lowcode::V20210108::CheckDeployAppRequest`
+        # @rtype: :class:`Tencentcloud::lowcode::V20210108::CheckDeployAppResponse`
+        def CheckDeployApp(request)
+          body = send_request('CheckDeployApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckDeployAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建知识库
 
         # @param request: Request instance for CreateKnowledgeSet.
@@ -39,6 +63,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateKnowledgeSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除应用绑定小程序
+
+        # @param request: Request instance for DeleteAppBindWxApp.
+        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeleteAppBindWxAppRequest`
+        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeleteAppBindWxAppResponse`
+        def DeleteAppBindWxApp(request)
+          body = send_request('DeleteAppBindWxApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAppBindWxAppResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -87,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteKnowledgeSetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 发布应用
+
+        # @param request: Request instance for DeployApp.
+        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeployAppRequest`
+        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeployAppResponse`
+        def DeployApp(request)
+          body = send_request('DeployApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeployAppResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -183,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeKnowledgeSetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 接口提供应用绑定微信ID功能。
+
+        # @param request: Request instance for PutWxAppIdToWeApp.
+        # @type request: :class:`Tencentcloud::lowcode::V20210108::PutWxAppIdToWeAppRequest`
+        # @rtype: :class:`Tencentcloud::lowcode::V20210108::PutWxAppIdToWeAppResponse`
+        def PutWxAppIdToWeApp(request)
+          body = send_request('PutWxAppIdToWeApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PutWxAppIdToWeAppResponse.new
             model.deserialize(response['Response'])
             model
           else

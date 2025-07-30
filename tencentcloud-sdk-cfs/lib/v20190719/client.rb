@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 配置生命周期策略关联到的目录列表
+
+        # @param request: Request instance for ApplyPathLifecyclePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ApplyPathLifecyclePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ApplyPathLifecyclePolicyResponse`
+        def ApplyPathLifecyclePolicy(request)
+          body = send_request('ApplyPathLifecyclePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApplyPathLifecyclePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 文件系统绑定快照策略，可以同时绑定多个fs，一个fs 只能跟一个策略绑定
 
         # @param request: Request instance for BindAutoSnapshotPolicy.
@@ -197,6 +221,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建数据流动接口
+
+        # @param request: Request instance for CreateDataFlow.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateDataFlowResponse`
+        def CreateDataFlow(request)
+          body = send_request('CreateDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 支持主动沉降/预热接口
+
+        # @param request: Request instance for CreateLifecycleDataTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateLifecycleDataTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateLifecycleDataTaskResponse`
+        def CreateLifecycleDataTask(request)
+          body = send_request('CreateLifecycleDataTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLifecycleDataTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建文件存储生命周期策略
+
+        # @param request: Request instance for CreateLifecyclePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateLifecyclePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateLifecyclePolicyResponse`
+        def CreateLifecyclePolicy(request)
+          body = send_request('CreateLifecyclePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLifecyclePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 下载生命周期任务中文件列表
+
+        # @param request: Request instance for CreateLifecyclePolicyDownloadTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateLifecyclePolicyDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateLifecyclePolicyDownloadTaskResponse`
+        def CreateLifecyclePolicyDownloadTask(request)
+          body = send_request('CreateLifecyclePolicyDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLifecyclePolicyDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建迁移任务。
 
         # @param request: Request instance for CreateMigrationTask.
@@ -327,6 +447,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCfsSnapshotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除数据流动
+
+        # @param request: Request instance for DeleteDataFlow.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteDataFlowResponse`
+        def DeleteDataFlow(request)
+          body = send_request('DeleteDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除生命周期管理策略
+
+        # @param request: Request instance for DeleteLifecyclePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteLifecyclePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteLifecyclePolicyResponse`
+        def DeleteLifecyclePolicy(request)
+          body = send_request('DeleteLifecyclePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLifecyclePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -654,6 +822,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询数据流动信息接口
+
+        # @param request: Request instance for DescribeDataFlow.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeDataFlowResponse`
+        def DescribeDataFlow(request)
+          body = send_request('DescribeDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询生命周期任务的接口
+
+        # @param request: Request instance for DescribeLifecycleDataTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeLifecycleDataTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeLifecycleDataTaskResponse`
+        def DescribeLifecycleDataTask(request)
+          body = send_request('DescribeLifecycleDataTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLifecycleDataTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询生命周期管理策略
+
+        # @param request: Request instance for DescribeLifecyclePolicies.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeLifecyclePoliciesRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeLifecyclePoliciesResponse`
+        def DescribeLifecyclePolicies(request)
+          body = send_request('DescribeLifecyclePolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLifecyclePoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取迁移任务列表。
         # 此接口需提交工单，开启白名单之后才能使用。
 
@@ -751,6 +991,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改数据流动相关参数
+
+        # @param request: Request instance for ModifyDataFlow.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyDataFlowRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ModifyDataFlowResponse`
+        def ModifyDataFlow(request)
+          body = send_request('ModifyDataFlow', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDataFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用来设置文件系统扩容策略，该接口只支持turbo文件系统
 
         # @param request: Request instance for ModifyFileSystemAutoScaleUpRule.
@@ -761,6 +1025,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyFileSystemAutoScaleUpRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新文件存储生命周期策略
+
+        # @param request: Request instance for ModifyLifecyclePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyLifecyclePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ModifyLifecyclePolicyResponse`
+        def ModifyLifecyclePolicy(request)
+          body = send_request('ModifyLifecyclePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLifecyclePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -833,6 +1121,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SignUpCfsServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 终止生命周期任务的接口
+
+        # @param request: Request instance for StopLifecycleDataTask.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::StopLifecycleDataTaskRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::StopLifecycleDataTaskResponse`
+        def StopLifecycleDataTask(request)
+          body = send_request('StopLifecycleDataTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLifecycleDataTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

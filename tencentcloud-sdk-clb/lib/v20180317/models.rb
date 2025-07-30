@@ -1886,7 +1886,7 @@ module TencentCloud
         # @type TargetGroupInstances: Array
         # @param Type: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), 默认为v1(旧版目标组)。
         # @type Type: String
-        # @param Protocol: 目标组后端转发协议。v2新版目标组该项必填。目前支持tcp、udp。
+        # @param Protocol: 目标组后端转发协议。v2新版目标组该项必填。目前支持TCP、UDP、HTTP、HTTPS、GRPC。
         # @type Protocol: String
         # @param Tags: 标签。
         # @type Tags: Array
@@ -1897,11 +1897,11 @@ module TencentCloud
         # </ul>
         # v1 目标组类型不支持设置 Weight 参数。
         # @type Weight: Integer
-        # @param FullListenSwitch: 全监听目标组标识，为true表示是全监听目标组，false表示不是全监听目标组。
+        # @param FullListenSwitch: 全监听目标组标识，true表示是全监听目标组，false表示不是全监听目标组。仅V2新版类型目标组支持该参数。
         # @type FullListenSwitch: Boolean
         # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，0:关闭；1:开启， 默认关闭。
         # @type KeepaliveEnable: Boolean
-        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。
+        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。仅V2新版且后端转发协议为HTTP/HTTPS/GRPC目标组支持该参数。
         # @type SessionExpireTime: Integer
 
         attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
@@ -8559,11 +8559,10 @@ module TencentCloud
         # @param AssociatedRule: 关联到的规则数组。在DescribeTargetGroupList接口调用时无法获取到该参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedRule: Array
-        # @param Protocol: 后端转发协议类型，支持类型TCP， UDP。仅V2新版目标组支持返回该参数。
-
+        # @param Protocol: 目标组后端转发协议, 仅v2新版目标组返回有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
-        # @param TargetGroupType: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组), gwlb(全局负载均衡目标组)。
+        # @param TargetGroupType: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组)。默认为v1旧版目标组。
         # @type TargetGroupType: String
         # @param AssociatedRuleCount: 目标组已关联的规则数。
         # @type AssociatedRuleCount: Integer
@@ -8572,13 +8571,18 @@ module TencentCloud
         # @param Tag: 标签。
         # @type Tag: Array
         # @param Weight: 默认权重。只有v2类型目标组返回该字段。当返回为NULL时， 表示未设置默认权重。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param FullListenSwitch: 是否全监听目标组
+        # @param FullListenSwitch: 是否全监听目标组。
         # @type FullListenSwitch: Boolean
+        # @param KeepaliveEnable: 是否开启长连接,  仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
+        # @type KeepaliveEnable: Boolean
+        # @param SessionExpireTime: 会话保持时间，仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
+        # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch
+        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil)
+        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupId = targetgroupid
           @VpcId = vpcid
           @TargetGroupName = targetgroupname
@@ -8593,6 +8597,8 @@ module TencentCloud
           @Tag = tag
           @Weight = weight
           @FullListenSwitch = fulllistenswitch
+          @KeepaliveEnable = keepaliveenable
+          @SessionExpireTime = sessionexpiretime
         end
 
         def deserialize(params)
@@ -8624,6 +8630,8 @@ module TencentCloud
           end
           @Weight = params['Weight']
           @FullListenSwitch = params['FullListenSwitch']
+          @KeepaliveEnable = params['KeepaliveEnable']
+          @SessionExpireTime = params['SessionExpireTime']
         end
       end
 

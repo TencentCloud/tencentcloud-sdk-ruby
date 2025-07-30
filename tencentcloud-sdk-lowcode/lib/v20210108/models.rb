@@ -17,6 +17,50 @@
 module TencentCloud
   module Lowcode
     module V20210108
+      # CheckDeployApp请求参数结构体
+      class CheckDeployAppRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Id: 应用id
+        # @type Id: String
+        # @param BuildId: 构建 Id
+        # @type BuildId: String
+
+        attr_accessor :EnvId, :Id, :BuildId
+
+        def initialize(envid=nil, id=nil, buildid=nil)
+          @EnvId = envid
+          @Id = id
+          @BuildId = buildid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+          @BuildId = params['BuildId']
+        end
+      end
+
+      # CheckDeployApp返回参数结构体
+      class CheckDeployAppResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 状态：success、building、reviewFail、releaseSuccess、underReview
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateKnowledgeSet请求参数结构体
       class CreateKnowledgeSetRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -354,6 +398,38 @@ module TencentCloud
         end
       end
 
+      # DeleteAppBindWxApp请求参数结构体
+      class DeleteAppBindWxAppRequest < TencentCloud::Common::AbstractModel
+        # @param WeappId: 应用id
+        # @type WeappId: String
+
+        attr_accessor :WeappId
+
+        def initialize(weappid=nil)
+          @WeappId = weappid
+        end
+
+        def deserialize(params)
+          @WeappId = params['WeappId']
+        end
+      end
+
+      # DeleteAppBindWxApp返回参数结构体
+      class DeleteAppBindWxAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteKnowledgeDocumentSet请求参数结构体
       class DeleteKnowledgeDocumentSetRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -452,6 +528,67 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeployApp请求参数结构体
+      class DeployAppRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param Id: 应用id
+        # @type Id: String
+        # @param Mode: 发布体验preview/正式upload
+        # @type Mode: String
+        # @param BuildType: 构建类型：mp、pc、web、adminPortal
+        # @type BuildType: String
+        # @param SubAppIds: 子包数组
+        # @type SubAppIds: Array
+
+        attr_accessor :EnvId, :Id, :Mode, :BuildType, :SubAppIds
+
+        def initialize(envid=nil, id=nil, mode=nil, buildtype=nil, subappids=nil)
+          @EnvId = envid
+          @Id = id
+          @Mode = mode
+          @BuildType = buildtype
+          @SubAppIds = subappids
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Id = params['Id']
+          @Mode = params['Mode']
+          @BuildType = params['BuildType']
+          @SubAppIds = params['SubAppIds']
+        end
+      end
+
+      # DeployApp返回参数结构体
+      class DeployAppResponse < TencentCloud::Common::AbstractModel
+        # @param BuildId: 构建id
+        # @type BuildId: String
+        # @param DeployErrCode: 发布错误code
+        # @type DeployErrCode: Integer
+        # @param DeployErrMsg: 发布错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeployErrMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BuildId, :DeployErrCode, :DeployErrMsg, :RequestId
+
+        def initialize(buildid=nil, deployerrcode=nil, deployerrmsg=nil, requestid=nil)
+          @BuildId = buildid
+          @DeployErrCode = deployerrcode
+          @DeployErrMsg = deployerrmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BuildId = params['BuildId']
+          @DeployErrCode = params['DeployErrCode']
+          @DeployErrMsg = params['DeployErrMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -1047,6 +1184,42 @@ module TencentCloud
           @Offset = params['Offset']
           @OutputFields = params['OutputFields']
           @Filter = params['Filter']
+        end
+      end
+
+      # PutWxAppIdToWeApp请求参数结构体
+      class PutWxAppIdToWeAppRequest < TencentCloud::Common::AbstractModel
+        # @param WeAppId: 应用ID
+        # @type WeAppId: String
+        # @param WxAppId: 微信AppId
+        # @type WxAppId: String
+
+        attr_accessor :WeAppId, :WxAppId
+
+        def initialize(weappid=nil, wxappid=nil)
+          @WeAppId = weappid
+          @WxAppId = wxappid
+        end
+
+        def deserialize(params)
+          @WeAppId = params['WeAppId']
+          @WxAppId = params['WxAppId']
+        end
+      end
+
+      # PutWxAppIdToWeApp返回参数结构体
+      class PutWxAppIdToWeAppResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

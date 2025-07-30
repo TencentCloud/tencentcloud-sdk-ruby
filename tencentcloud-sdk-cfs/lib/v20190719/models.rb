@@ -17,6 +17,61 @@
 module TencentCloud
   module Cfs
     module V20190719
+      # ApplyPathLifecyclePolicy请求参数结构体
+      class ApplyPathLifecyclePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+        # @param Paths: 生命周期管理策略关联目录的绝对路径列表
+        # @type Paths: Array
+
+        attr_accessor :LifecyclePolicyID, :Paths
+
+        def initialize(lifecyclepolicyid=nil, paths=nil)
+          @LifecyclePolicyID = lifecyclepolicyid
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+          unless params['Paths'].nil?
+            @Paths = []
+            params['Paths'].each do |i|
+              pathinfo_tmp = PathInfo.new
+              pathinfo_tmp.deserialize(i)
+              @Paths << pathinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ApplyPathLifecyclePolicy返回参数结构体
+      class ApplyPathLifecyclePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param CheckResults: 有规则冲突时返回的已有冲突规则信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CheckResults, :RequestId
+
+        def initialize(checkresults=nil, requestid=nil)
+          @CheckResults = checkresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CheckResults'].nil?
+            @CheckResults = []
+            params['CheckResults'].each do |i|
+              checkresult_tmp = CheckResult.new
+              checkresult_tmp.deserialize(i)
+              @CheckResults << checkresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 自动扩容规则
       class AutoScaleUpRule < TencentCloud::Common::AbstractModel
         # @param Status: 自动扩容策略开启，关闭
@@ -313,6 +368,45 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Region = params['Region']
+        end
+      end
+
+      # 有规则冲突时返回的已有冲突规则信息列表
+      class CheckResult < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param Path: 目录绝对路径
+        # @type Path: String
+        # @param LifecycleRules: 生命周期管理策略关联的管理规则列表
+        # @type LifecycleRules: Array
+        # @param TargetPath: 目标路径
+        # @type TargetPath: String
+
+        attr_accessor :LifecyclePolicyID, :FileSystemId, :Path, :LifecycleRules, :TargetPath
+
+        def initialize(lifecyclepolicyid=nil, filesystemid=nil, path=nil, lifecyclerules=nil, targetpath=nil)
+          @LifecyclePolicyID = lifecyclepolicyid
+          @FileSystemId = filesystemid
+          @Path = path
+          @LifecycleRules = lifecyclerules
+          @TargetPath = targetpath
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+          @FileSystemId = params['FileSystemId']
+          @Path = params['Path']
+          unless params['LifecycleRules'].nil?
+            @LifecycleRules = []
+            params['LifecycleRules'].each do |i|
+              lifecyclerule_tmp = LifecycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifecycleRules << lifecyclerule_tmp
+            end
+          end
+          @TargetPath = params['TargetPath']
         end
       end
 
@@ -743,6 +837,209 @@ module TencentCloud
         end
       end
 
+      # CreateDataFlow请求参数结构体
+      class CreateDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID ，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @type FileSystemId: String
+        # @param SourceStorageType: 源端数据类型；包含S3_COS，S3_L5
+        # @type SourceStorageType: String
+        # @param SourceStorageAddress: 源端存储地址
+        # @type SourceStorageAddress: String
+        # @param SourcePath: 源端路径
+        # @type SourcePath: String
+        # @param TargetPath: 文件系统内目标路径
+        # @type TargetPath: String
+        # @param SecretId: 密钥 ID
+        # @type SecretId: String
+        # @param SecretKey: 密钥 key
+        # @type SecretKey: String
+        # @param DataFlowName: 数据流动名称；支持不超过64字符长度，支持中文、数字、_、-
+        # @type DataFlowName: String
+
+        attr_accessor :FileSystemId, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :SecretId, :SecretKey, :DataFlowName
+
+        def initialize(filesystemid=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, secretid=nil, secretkey=nil, dataflowname=nil)
+          @FileSystemId = filesystemid
+          @SourceStorageType = sourcestoragetype
+          @SourceStorageAddress = sourcestorageaddress
+          @SourcePath = sourcepath
+          @TargetPath = targetpath
+          @SecretId = secretid
+          @SecretKey = secretkey
+          @DataFlowName = dataflowname
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @SourceStorageType = params['SourceStorageType']
+          @SourceStorageAddress = params['SourceStorageAddress']
+          @SourcePath = params['SourcePath']
+          @TargetPath = params['TargetPath']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+          @DataFlowName = params['DataFlowName']
+        end
+      end
+
+      # CreateDataFlow返回参数结构体
+      class CreateDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param DataFlowId: 数据流动管理 ID
+        # @type DataFlowId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataFlowId, :RequestId
+
+        def initialize(dataflowid=nil, requestid=nil)
+          @DataFlowId = dataflowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataFlowId = params['DataFlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLifecycleDataTask请求参数结构体
+      class CreateLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统唯一 ID
+        # @type FileSystemId: String
+        # @param Type: 生命周期任务类型；archive：沉降；restore：预热；release：数据释放；metaload：元数据加载
+        # @type Type: String
+        # @param TaskPath: 需要沉降的路径或文件，仅支持传入1个路径，不允许为空。
+        # @type TaskPath: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param DataFlowId: 数据流动 ID ，该接口可以通过 DescribeDataFlow 查询
+        # @type DataFlowId: String
+
+        attr_accessor :FileSystemId, :Type, :TaskPath, :TaskName, :DataFlowId
+
+        def initialize(filesystemid=nil, type=nil, taskpath=nil, taskname=nil, dataflowid=nil)
+          @FileSystemId = filesystemid
+          @Type = type
+          @TaskPath = taskpath
+          @TaskName = taskname
+          @DataFlowId = dataflowid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Type = params['Type']
+          @TaskPath = params['TaskPath']
+          @TaskName = params['TaskName']
+          @DataFlowId = params['DataFlowId']
+        end
+      end
+
+      # CreateLifecycleDataTask返回参数结构体
+      class CreateLifecycleDataTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLifecyclePolicyDownloadTask请求参数结构体
+      class CreateLifecyclePolicyDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param Type: 下载文件的类型，包含 FileSuccessList，FileTotalList，FileFailedList
+        # @type Type: String
+
+        attr_accessor :TaskId, :Type
+
+        def initialize(taskid=nil, type=nil)
+          @TaskId = taskid
+          @Type = type
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Type = params['Type']
+        end
+      end
+
+      # CreateLifecyclePolicyDownloadTask返回参数结构体
+      class CreateLifecyclePolicyDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadAddress: 下载路径
+        # @type DownloadAddress: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DownloadAddress, :RequestId
+
+        def initialize(downloadaddress=nil, requestid=nil)
+          @DownloadAddress = downloadaddress
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DownloadAddress = params['DownloadAddress']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLifecyclePolicy请求参数结构体
+      class CreateLifecyclePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyName: 生命周期管理策略名称，中文/英文/数字/下划线/中划线的组合，不超过64个字符
+        # @type LifecyclePolicyName: String
+        # @param LifecycleRules: 生命周期管理策略关联的管理规则列表
+        # @type LifecycleRules: Array
+
+        attr_accessor :LifecyclePolicyName, :LifecycleRules
+
+        def initialize(lifecyclepolicyname=nil, lifecyclerules=nil)
+          @LifecyclePolicyName = lifecyclepolicyname
+          @LifecycleRules = lifecyclerules
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyName = params['LifecyclePolicyName']
+          unless params['LifecycleRules'].nil?
+            @LifecycleRules = []
+            params['LifecycleRules'].each do |i|
+              lifecyclerule_tmp = LifecycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifecycleRules << lifecyclerule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateLifecyclePolicy返回参数结构体
+      class CreateLifecyclePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LifecyclePolicyID, :RequestId
+
+        def initialize(lifecyclepolicyid=nil, requestid=nil)
+          @LifecyclePolicyID = lifecyclepolicyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateMigrationTask请求参数结构体
       class CreateMigrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskName: 迁移任务名称
@@ -836,6 +1133,57 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据流动信息
+      class DataFlowInfo < TencentCloud::Common::AbstractModel
+        # @param DataFlowId: 数据流动管理 ID
+        # @type DataFlowId: String
+        # @param DataFlowName: 数据流动名称
+        # @type DataFlowName: String
+        # @param SourceStorageType: 源端数据类型
+        # @type SourceStorageType: String
+        # @param SourceStorageAddress: 源端存储地址
+        # @type SourceStorageAddress: String
+        # @param SourcePath: 源端路径
+        # @type SourcePath: String
+        # @param TargetPath: 目录路径
+        # @type TargetPath: String
+        # @param Status: available：已生效
+        # pending：配置中
+        # unavailable：失效
+        # deleting：删除中
+        # @type Status: String
+        # @param CreationTime: 创建时间
+        # @type CreationTime: String
+        # @param FileSystemId: 文件系统 ID
+        # @type FileSystemId: String
+
+        attr_accessor :DataFlowId, :DataFlowName, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :Status, :CreationTime, :FileSystemId
+
+        def initialize(dataflowid=nil, dataflowname=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, status=nil, creationtime=nil, filesystemid=nil)
+          @DataFlowId = dataflowid
+          @DataFlowName = dataflowname
+          @SourceStorageType = sourcestoragetype
+          @SourceStorageAddress = sourcestorageaddress
+          @SourcePath = sourcepath
+          @TargetPath = targetpath
+          @Status = status
+          @CreationTime = creationtime
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @DataFlowId = params['DataFlowId']
+          @DataFlowName = params['DataFlowName']
+          @SourceStorageType = params['SourceStorageType']
+          @SourceStorageAddress = params['SourceStorageAddress']
+          @SourcePath = params['SourcePath']
+          @TargetPath = params['TargetPath']
+          @Status = params['Status']
+          @CreationTime = params['CreationTime']
+          @FileSystemId = params['FileSystemId']
         end
       end
 
@@ -1028,6 +1376,74 @@ module TencentCloud
 
         def deserialize(params)
           @SnapshotId = params['SnapshotId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDataFlow请求参数结构体
+      class DeleteDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param DataFlowId: 数据流动管理 ID
+        # @type DataFlowId: String
+        # @param FileSystemId: 文件系统 ID ，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @type FileSystemId: String
+
+        attr_accessor :DataFlowId, :FileSystemId
+
+        def initialize(dataflowid=nil, filesystemid=nil)
+          @DataFlowId = dataflowid
+          @FileSystemId = filesystemid
+        end
+
+        def deserialize(params)
+          @DataFlowId = params['DataFlowId']
+          @FileSystemId = params['FileSystemId']
+        end
+      end
+
+      # DeleteDataFlow返回参数结构体
+      class DeleteDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLifecyclePolicy请求参数结构体
+      class DeleteLifecyclePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+
+        attr_accessor :LifecyclePolicyID
+
+        def initialize(lifecyclepolicyid=nil)
+          @LifecyclePolicyID = lifecyclepolicyid
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+        end
+      end
+
+      # DeleteLifecyclePolicy返回参数结构体
+      class DeleteLifecyclePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1673,6 +2089,214 @@ module TencentCloud
         end
       end
 
+      # DescribeDataFlow请求参数结构体
+      class DescribeDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统 ID ，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @type FileSystemId: String
+        # @param DataFlowId: 数据流动 ID ，由创建数据流动返回
+        # @type DataFlowId: String
+        # @param Limit: 每次查询返回值个数，默认20；最大100
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param CfsVersion: 文件系统版本；版本号：v1.5，v3.0，v3.1，v4.0
+        # @type CfsVersion: String
+
+        attr_accessor :FileSystemId, :DataFlowId, :Limit, :Offset, :CfsVersion
+
+        def initialize(filesystemid=nil, dataflowid=nil, limit=nil, offset=nil, cfsversion=nil)
+          @FileSystemId = filesystemid
+          @DataFlowId = dataflowid
+          @Limit = limit
+          @Offset = offset
+          @CfsVersion = cfsversion
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @DataFlowId = params['DataFlowId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @CfsVersion = params['CfsVersion']
+        end
+      end
+
+      # DescribeDataFlow返回参数结构体
+      class DescribeDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数量
+        # @type TotalCount: Integer
+        # @param DataFlows: 无
+        # @type DataFlows: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DataFlows, :RequestId
+
+        def initialize(totalcount=nil, dataflows=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DataFlows = dataflows
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DataFlows'].nil?
+            @DataFlows = []
+            params['DataFlows'].each do |i|
+              dataflowinfo_tmp = DataFlowInfo.new
+              dataflowinfo_tmp.deserialize(i)
+              @DataFlows << dataflowinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLifecycleDataTask请求参数结构体
+      class DescribeLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param TaskId: 	任务ID
+        # @type TaskId: String
+        # @param Offset: Offset 分页码
+        # @type Offset: Integer
+        # @param Limit: Limit 页面大小
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，TaskName，FileSystemId，Type
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :TaskId, :Offset, :Limit, :Filters
+
+        def initialize(starttime=nil, endtime=nil, taskid=nil, offset=nil, limit=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskId = taskid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskId = params['TaskId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLifecycleDataTask返回参数结构体
+      class DescribeLifecycleDataTaskResponse < TencentCloud::Common::AbstractModel
+        # @param LifecycleDataTask: 任务数组
+        # @type LifecycleDataTask: Array
+        # @param TotalCount: 查询结果总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LifecycleDataTask, :TotalCount, :RequestId
+
+        def initialize(lifecycledatatask=nil, totalcount=nil, requestid=nil)
+          @LifecycleDataTask = lifecycledatatask
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LifecycleDataTask'].nil?
+            @LifecycleDataTask = []
+            params['LifecycleDataTask'].each do |i|
+              lifecycledatataskinfo_tmp = LifecycleDataTaskInfo.new
+              lifecycledatataskinfo_tmp.deserialize(i)
+              @LifecycleDataTask << lifecycledatataskinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLifecyclePolicies请求参数结构体
+      class DescribeLifecyclePoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyName: 生命周期管理策略名称
+        # @type LifecyclePolicyName: String
+        # @param PageSize: 每个分页包含的生命周期管理策略个数
+        # @type PageSize: Integer
+        # @param PageNumber: 列表的分页页码
+        # @type PageNumber: Integer
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+
+        attr_accessor :LifecyclePolicyName, :PageSize, :PageNumber, :FileSystemId, :LifecyclePolicyID
+
+        def initialize(lifecyclepolicyname=nil, pagesize=nil, pagenumber=nil, filesystemid=nil, lifecyclepolicyid=nil)
+          @LifecyclePolicyName = lifecyclepolicyname
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @FileSystemId = filesystemid
+          @LifecyclePolicyID = lifecyclepolicyid
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyName = params['LifecyclePolicyName']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @FileSystemId = params['FileSystemId']
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+        end
+      end
+
+      # DescribeLifecyclePolicies返回参数结构体
+      class DescribeLifecyclePoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 列表的分页页码
+        # @type PageNumber: Integer
+        # @param PageSize: 每个分页包含的生命周期管理策略个数
+        # @type PageSize: Integer
+        # @param TotalCount: 生命周期管理策略总数
+        # @type TotalCount: Integer
+        # @param LifecyclePolicies: 生命周期管理策略列表
+        # @type LifecyclePolicies: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PageNumber, :PageSize, :TotalCount, :LifecyclePolicies, :RequestId
+
+        def initialize(pagenumber=nil, pagesize=nil, totalcount=nil, lifecyclepolicies=nil, requestid=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @LifecyclePolicies = lifecyclepolicies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          unless params['LifecyclePolicies'].nil?
+            @LifecyclePolicies = []
+            params['LifecyclePolicies'].each do |i|
+              lifecyclepolicy_tmp = LifecyclePolicy.new
+              lifecyclepolicy_tmp.deserialize(i)
+              @LifecyclePolicies << lifecyclepolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMigrationTasks请求参数结构体
       class DescribeMigrationTasksRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页的偏移量，默认值为0。
@@ -2179,6 +2803,184 @@ module TencentCloud
         end
       end
 
+      # 生命周期任务
+      class LifecycleDataTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param TaskStatus: 任务状态.
+        # init：未执行
+        # running：执行中，finished：已完成
+        # ,failed：失败
+        # ,stopping：停止中,stopped：已停止
+        # @type TaskStatus: String
+        # @param CreationTime: 任务创建时间
+        # @type CreationTime: String
+        # @param FinishTime: 任务结束时间
+        # @type FinishTime: String
+        # @param FileTotalCount: 文件总数
+        # @type FileTotalCount: Integer
+        # @param FileSuccessedCount: 处理成功文件数量
+        # @type FileSuccessedCount: Integer
+        # @param FileFailedCount: 当前已经失败的文件数
+        # @type FileFailedCount: Integer
+        # @param FileTotalSize: 文件容量，单位Byte
+
+        # @type FileTotalSize: Integer
+        # @param FileSuccessedSize: 已处理完成的文件容量，单位Byte
+
+        # @type FileSuccessedSize: Integer
+        # @param FileFailedSize: 已处理失败文件容量，单位Byte
+        # @type FileFailedSize: Integer
+        # @param FileTotalList: 总文件列表
+        # @type FileTotalList: String
+        # @param FileSuccessedList: 成功的文件列表
+        # @type FileSuccessedList: String
+        # @param FileFailedList: 失败文件的列表
+        # @type FileFailedList: String
+        # @param FileSystemId: FileSystemId
+        # @type FileSystemId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param TaskPath: 任务路径
+        # @type TaskPath: String
+        # @param Type: 任务类型,archive:表示沉降任务，restore：表示拉取任务
+        # @type Type: String
+        # @param DataFlowId: 数据流动Id
+        # @type DataFlowId: String
+
+        attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId
+
+        def initialize(taskid=nil, taskstatus=nil, creationtime=nil, finishtime=nil, filetotalcount=nil, filesuccessedcount=nil, filefailedcount=nil, filetotalsize=nil, filesuccessedsize=nil, filefailedsize=nil, filetotallist=nil, filesuccessedlist=nil, filefailedlist=nil, filesystemid=nil, taskname=nil, taskpath=nil, type=nil, dataflowid=nil)
+          @TaskId = taskid
+          @TaskStatus = taskstatus
+          @CreationTime = creationtime
+          @FinishTime = finishtime
+          @FileTotalCount = filetotalcount
+          @FileSuccessedCount = filesuccessedcount
+          @FileFailedCount = filefailedcount
+          @FileTotalSize = filetotalsize
+          @FileSuccessedSize = filesuccessedsize
+          @FileFailedSize = filefailedsize
+          @FileTotalList = filetotallist
+          @FileSuccessedList = filesuccessedlist
+          @FileFailedList = filefailedlist
+          @FileSystemId = filesystemid
+          @TaskName = taskname
+          @TaskPath = taskpath
+          @Type = type
+          @DataFlowId = dataflowid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskStatus = params['TaskStatus']
+          @CreationTime = params['CreationTime']
+          @FinishTime = params['FinishTime']
+          @FileTotalCount = params['FileTotalCount']
+          @FileSuccessedCount = params['FileSuccessedCount']
+          @FileFailedCount = params['FileFailedCount']
+          @FileTotalSize = params['FileTotalSize']
+          @FileSuccessedSize = params['FileSuccessedSize']
+          @FileFailedSize = params['FileFailedSize']
+          @FileTotalList = params['FileTotalList']
+          @FileSuccessedList = params['FileSuccessedList']
+          @FileFailedList = params['FileFailedList']
+          @FileSystemId = params['FileSystemId']
+          @TaskName = params['TaskName']
+          @TaskPath = params['TaskPath']
+          @Type = params['Type']
+          @DataFlowId = params['DataFlowId']
+        end
+      end
+
+      # 生命周期管理策略信息
+      class LifecyclePolicy < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 生命周期管理策略创建的时间
+        # @type CreateTime: String
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+        # @param LifecyclePolicyName: 生命周期管理策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifecyclePolicyName: String
+        # @param LifecycleRules: 生命周期管理策略关联的管理规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifecycleRules: Array
+        # @param Paths: 生命周期管理策略关联目录的绝对路径列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paths: Array
+
+        attr_accessor :CreateTime, :LifecyclePolicyID, :LifecyclePolicyName, :LifecycleRules, :Paths
+
+        def initialize(createtime=nil, lifecyclepolicyid=nil, lifecyclepolicyname=nil, lifecyclerules=nil, paths=nil)
+          @CreateTime = createtime
+          @LifecyclePolicyID = lifecyclepolicyid
+          @LifecyclePolicyName = lifecyclepolicyname
+          @LifecycleRules = lifecyclerules
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+          @LifecyclePolicyName = params['LifecyclePolicyName']
+          unless params['LifecycleRules'].nil?
+            @LifecycleRules = []
+            params['LifecycleRules'].each do |i|
+              lifecyclerule_tmp = LifecycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifecycleRules << lifecyclerule_tmp
+            end
+          end
+          unless params['Paths'].nil?
+            @Paths = []
+            params['Paths'].each do |i|
+              pathinfo_tmp = PathInfo.new
+              pathinfo_tmp.deserialize(i)
+              @Paths << pathinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 生命周期管理策略关联的管理规则
+      class LifecycleRule < TencentCloud::Common::AbstractModel
+        # @param StorageType: 数据转储后的存储类型
+        # @type StorageType: String
+        # @param FileType: 数据转储文件类型
+        # @type FileType: String
+        # @param Action: 数据转储行为
+        # @type Action: String
+        # @param Interval: 数据转储触发时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Interval: String
+        # @param FileMaxSize: 数据转储文件最大规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMaxSize: String
+        # @param FileMinSize: 数据转储文件最小规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileMinSize: String
+
+        attr_accessor :StorageType, :FileType, :Action, :Interval, :FileMaxSize, :FileMinSize
+
+        def initialize(storagetype=nil, filetype=nil, action=nil, interval=nil, filemaxsize=nil, fileminsize=nil)
+          @StorageType = storagetype
+          @FileType = filetype
+          @Action = action
+          @Interval = interval
+          @FileMaxSize = filemaxsize
+          @FileMinSize = fileminsize
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          @FileType = params['FileType']
+          @Action = params['Action']
+          @Interval = params['Interval']
+          @FileMaxSize = params['FileMaxSize']
+          @FileMinSize = params['FileMinSize']
+        end
+      end
+
       # CFS数据迁移任务信息
       class MigrationTaskInfo < TencentCloud::Common::AbstractModel
         # @param TaskName: 迁移任务名称
@@ -2295,6 +3097,58 @@ module TencentCloud
         end
       end
 
+      # ModifyDataFlow请求参数结构体
+      class ModifyDataFlowRequest < TencentCloud::Common::AbstractModel
+        # @param DataFlowId: 数据流动管理 ID ，通过查询数据流动接口获取
+        # @type DataFlowId: String
+        # @param FileSystemId: 文件系统 ID ，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
+        # @type FileSystemId: String
+        # @param DataFlowName: 数据流动名称；支持不超过64字符长度，支持中文、数字、_、-
+        # @type DataFlowName: String
+        # @param SecretId: 密钥 ID
+        # @type SecretId: String
+        # @param SecretKey: 密钥 key
+        # @type SecretKey: String
+
+        attr_accessor :DataFlowId, :FileSystemId, :DataFlowName, :SecretId, :SecretKey
+
+        def initialize(dataflowid=nil, filesystemid=nil, dataflowname=nil, secretid=nil, secretkey=nil)
+          @DataFlowId = dataflowid
+          @FileSystemId = filesystemid
+          @DataFlowName = dataflowname
+          @SecretId = secretid
+          @SecretKey = secretkey
+        end
+
+        def deserialize(params)
+          @DataFlowId = params['DataFlowId']
+          @FileSystemId = params['FileSystemId']
+          @DataFlowName = params['DataFlowName']
+          @SecretId = params['SecretId']
+          @SecretKey = params['SecretKey']
+        end
+      end
+
+      # ModifyDataFlow返回参数结构体
+      class ModifyDataFlowResponse < TencentCloud::Common::AbstractModel
+        # @param DataFlowId: 数据流动管理 ID
+        # @type DataFlowId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataFlowId, :RequestId
+
+        def initialize(dataflowid=nil, requestid=nil)
+          @DataFlowId = dataflowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DataFlowId = params['DataFlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFileSystemAutoScaleUpRule请求参数结构体
       class ModifyFileSystemAutoScaleUpRuleRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统 ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
@@ -2351,6 +3205,57 @@ module TencentCloud
           @Status = params['Status']
           @ScaleUpThreshold = params['ScaleUpThreshold']
           @TargetThreshold = params['TargetThreshold']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLifecyclePolicy请求参数结构体
+      class ModifyLifecyclePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyName: 生命周期管理策略名称，中文/英文/数字/下划线/中划线的组合，不超过64个字符
+        # @type LifecyclePolicyName: String
+        # @param LifecycleRules: 生命周期管理策略关联的管理规则列表
+        # @type LifecycleRules: Array
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+
+        attr_accessor :LifecyclePolicyName, :LifecycleRules, :LifecyclePolicyID
+
+        def initialize(lifecyclepolicyname=nil, lifecyclerules=nil, lifecyclepolicyid=nil)
+          @LifecyclePolicyName = lifecyclepolicyname
+          @LifecycleRules = lifecyclerules
+          @LifecyclePolicyID = lifecyclepolicyid
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyName = params['LifecyclePolicyName']
+          unless params['LifecycleRules'].nil?
+            @LifecycleRules = []
+            params['LifecycleRules'].each do |i|
+              lifecyclerule_tmp = LifecycleRule.new
+              lifecyclerule_tmp.deserialize(i)
+              @LifecycleRules << lifecyclerule_tmp
+            end
+          end
+          @LifecyclePolicyID = params['LifecyclePolicyID']
+        end
+      end
+
+      # ModifyLifecyclePolicy返回参数结构体
+      class ModifyLifecyclePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @type LifecyclePolicyID: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LifecyclePolicyID, :RequestId
+
+        def initialize(lifecyclepolicyid=nil, requestid=nil)
+          @LifecyclePolicyID = lifecyclepolicyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LifecyclePolicyID = params['LifecyclePolicyID']
           @RequestId = params['RequestId']
         end
       end
@@ -2501,6 +3406,26 @@ module TencentCloud
           @RWPermission = params['RWPermission']
           @UserPermission = params['UserPermission']
           @Priority = params['Priority']
+        end
+      end
+
+      # 生命周期管理策略关联目录的绝对路径
+      class PathInfo < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 文件系统ID
+        # @type FileSystemId: String
+        # @param Path: 目录绝对路径
+        # @type Path: String
+
+        attr_accessor :FileSystemId, :Path
+
+        def initialize(filesystemid=nil, path=nil)
+          @FileSystemId = filesystemid
+          @Path = path
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Path = params['Path']
         end
       end
 
@@ -2777,6 +3702,38 @@ module TencentCloud
           @Region = params['Region']
           @SnapshotNumber = params['SnapshotNumber']
           @SnapshotSize = params['SnapshotSize']
+        end
+      end
+
+      # StopLifecycleDataTask请求参数结构体
+      class StopLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopLifecycleDataTask返回参数结构体
+      class StopLifecycleDataTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
