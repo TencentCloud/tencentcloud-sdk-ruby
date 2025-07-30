@@ -12946,6 +12946,8 @@ module TencentCloud
 
       # DescribeProjectUsers请求参数结构体
       class DescribeProjectUsersRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
         # @param PageNumber: 分页号
         # @type PageNumber: Integer
         # @param PageSize: 分页大小
@@ -12957,9 +12959,10 @@ module TencentCloud
         # @param IsProjectAdmin: 是否项目管理员
         # @type IsProjectAdmin: Boolean
 
-        attr_accessor :PageNumber, :PageSize, :Filters, :OrderFields, :IsProjectAdmin
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields, :IsProjectAdmin
 
-        def initialize(pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, isprojectadmin=nil)
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil, isprojectadmin=nil)
+          @ProjectId = projectid
           @PageNumber = pagenumber
           @PageSize = pagesize
           @Filters = filters
@@ -12968,6 +12971,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
           unless params['Filters'].nil?
