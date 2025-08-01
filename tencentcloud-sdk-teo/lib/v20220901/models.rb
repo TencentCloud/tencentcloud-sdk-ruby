@@ -17,6 +17,66 @@
 module TencentCloud
   module Teo
     module V20220901
+      # API 资源。
+      class APIResource < TencentCloud::Common::AbstractModel
+        # @param Id: 资源 ID。
+        # @type Id: String
+        # @param Name: 资源名称。
+        # @type Name: String
+        # @param APIServiceIds: API 资源关联的 API 服务 ID 列表。
+        # @type APIServiceIds: Array
+        # @param Path: 资源路径。
+        # @type Path: String
+        # @param Methods: 请求方法列表。支持以下取值：GET, POST, PUT, HEAD, PATCH, OPTIONS, DELETE。
+        # @type Methods: Array
+        # @param RequestConstraint: 请求内容匹配规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @type RequestConstraint: String
+
+        attr_accessor :Id, :Name, :APIServiceIds, :Path, :Methods, :RequestConstraint
+
+        def initialize(id=nil, name=nil, apiserviceids=nil, path=nil, methods=nil, requestconstraint=nil)
+          @Id = id
+          @Name = name
+          @APIServiceIds = apiserviceids
+          @Path = path
+          @Methods = methods
+          @RequestConstraint = requestconstraint
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @APIServiceIds = params['APIServiceIds']
+          @Path = params['Path']
+          @Methods = params['Methods']
+          @RequestConstraint = params['RequestConstraint']
+        end
+      end
+
+      # API 服务配置。
+      class APIService < TencentCloud::Common::AbstractModel
+        # @param Id: API 服务 ID。
+        # @type Id: String
+        # @param Name: API 服务名称。
+        # @type Name: String
+        # @param BasePath: 基础路径。
+        # @type BasePath: String
+
+        attr_accessor :Id, :Name, :BasePath
+
+        def initialize(id=nil, name=nil, basepath=nil)
+          @Id = id
+          @Name = name
+          @BasePath = basepath
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @BasePath = params['BasePath']
+        end
+      end
+
       # 中国大陆加速优化配置。
       class AccelerateMainland < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启中国大陆加速优化配置，取值有：
@@ -1105,6 +1165,27 @@ module TencentCloud
           @Subdomain = params['Subdomain']
           @RecordType = params['RecordType']
           @RecordValue = params['RecordValue']
+        end
+      end
+
+      # 音频流配置参数。
+      class AudioTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param Codec: 音频流的编码格式。可选值为：
+        # <li>libfdk_aac。</li>
+        # @type Codec: String
+        # @param AudioChannel: 音频通道数，可选值：<li>2：双通道。</li>默认值：2。
+        # @type AudioChannel: Integer
+
+        attr_accessor :Codec, :AudioChannel
+
+        def initialize(codec=nil, audiochannel=nil)
+          @Codec = codec
+          @AudioChannel = audiochannel
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @AudioChannel = params['AudioChannel']
         end
       end
 
@@ -2488,6 +2569,61 @@ module TencentCloud
         end
       end
 
+      # 认证选项配置。
+      class ClientAttester < TencentCloud::Common::AbstractModel
+        # @param Id: 认证选项 ID。
+        # @type Id: String
+        # @param Name: 认证选项名称。
+        # @type Name: String
+        # @param Type: 认证规则类型。仅出参返回，取值有：
+        # <li>PRESET: 系统预置规则，仅允许修改 AttesterDuration；</li>
+        # <li>CUSTOM: 用户自定义规则。</li>
+        # @type Type: String
+        # @param AttesterSource: 认证方法。取值有：
+        # <li>TC-RCE: 使用全栈式风控引擎进行认证；</li>
+        # <li>TC-CAPTCHA: 使用天御验证码进行认证。</li>
+        # @type AttesterSource: String
+        # @param AttesterDuration: 认证有效时间。默认为 60s，支持的单位有：
+        # <li>s：秒，取值范围 60～43200；</li>
+        # <li>m：分，取值范围 1～720；</li>
+        # <li>h：小时，取值范围 1～12。</li>
+        # @type AttesterDuration: String
+        # @param TCRCEOption: TC-RCE 认证的配置信息。
+        # <li>当 AttesterSource 参数值为 TC-RCE 时，此字段必填。</li>
+        # @type TCRCEOption: :class:`Tencentcloud::Teo.v20220901.models.TCRCEOption`
+        # @param TCCaptchaOption: TC-CAPTCHA 认证的配置信息。
+        # <li>当 AttesterSource 参数值为 TC-CAPTCHA 时，此字段必填。</li>
+        # @type TCCaptchaOption: :class:`Tencentcloud::Teo.v20220901.models.TCCaptchaOption`
+
+        attr_accessor :Id, :Name, :Type, :AttesterSource, :AttesterDuration, :TCRCEOption, :TCCaptchaOption
+
+        def initialize(id=nil, name=nil, type=nil, attestersource=nil, attesterduration=nil, tcrceoption=nil, tccaptchaoption=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @AttesterSource = attestersource
+          @AttesterDuration = attesterduration
+          @TCRCEOption = tcrceoption
+          @TCCaptchaOption = tccaptchaoption
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @AttesterSource = params['AttesterSource']
+          @AttesterDuration = params['AttesterDuration']
+          unless params['TCRCEOption'].nil?
+            @TCRCEOption = TCRCEOption.new
+            @TCRCEOption.deserialize(params['TCRCEOption'])
+          end
+          unless params['TCCaptchaOption'].nil?
+            @TCCaptchaOption = TCCaptchaOption.new
+            @TCCaptchaOption.deserialize(params['TCCaptchaOption'])
+          end
+        end
+      end
+
       # 智能客户端过滤
       class ClientFiltering < TencentCloud::Common::AbstractModel
         # @param Enabled: 智能客户端过滤是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
@@ -3509,6 +3645,76 @@ module TencentCloud
         end
       end
 
+      # CreateJustInTimeTranscodeTemplate请求参数结构体
+      class CreateJustInTimeTranscodeTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param TemplateName: 即时转码模板名称，长度限制：64 个字符。
+        # @type TemplateName: String
+        # @param Comment: 模板描述信息，长度限制：256 个字符。默认为空。
+        # @type Comment: String
+        # @param VideoStreamSwitch: 启用视频流开关，取值：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>默认值：on。
+        # @type VideoStreamSwitch: String
+        # @param AudioStreamSwitch: 启用音频流开关，取值：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>默认值：on。
+        # @type AudioStreamSwitch: String
+        # @param VideoTemplate: 视频流配置参数，当 VideoStreamSwitch 为 on，该字段必填。
+        # @type VideoTemplate: :class:`Tencentcloud::Teo.v20220901.models.VideoTemplateInfo`
+        # @param AudioTemplate: 音频流配置参数，当 AudioStreamSwitch 为 on，该字段必填。
+        # @type AudioTemplate: :class:`Tencentcloud::Teo.v20220901.models.AudioTemplateInfo`
+
+        attr_accessor :ZoneId, :TemplateName, :Comment, :VideoStreamSwitch, :AudioStreamSwitch, :VideoTemplate, :AudioTemplate
+
+        def initialize(zoneid=nil, templatename=nil, comment=nil, videostreamswitch=nil, audiostreamswitch=nil, videotemplate=nil, audiotemplate=nil)
+          @ZoneId = zoneid
+          @TemplateName = templatename
+          @Comment = comment
+          @VideoStreamSwitch = videostreamswitch
+          @AudioStreamSwitch = audiostreamswitch
+          @VideoTemplate = videotemplate
+          @AudioTemplate = audiotemplate
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TemplateName = params['TemplateName']
+          @Comment = params['Comment']
+          @VideoStreamSwitch = params['VideoStreamSwitch']
+          @AudioStreamSwitch = params['AudioStreamSwitch']
+          unless params['VideoTemplate'].nil?
+            @VideoTemplate = VideoTemplateInfo.new
+            @VideoTemplate.deserialize(params['VideoTemplate'])
+          end
+          unless params['AudioTemplate'].nil?
+            @AudioTemplate = AudioTemplateInfo.new
+            @AudioTemplate.deserialize(params['AudioTemplate'])
+          end
+        end
+      end
+
+      # CreateJustInTimeTranscodeTemplate返回参数结构体
+      class CreateJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 即时转码模板唯一标识，用于即时转码 URL 拼接。
+        # @type TemplateId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TemplateId, :RequestId
+
+        def initialize(templateid=nil, requestid=nil)
+          @TemplateId = templateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateL4Proxy请求参数结构体
       class CreateL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -4439,6 +4645,147 @@ module TencentCloud
         end
       end
 
+      # CreateSecurityAPIResource请求参数结构体
+      class CreateSecurityAPIResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIResources:  API 资源列表。
+        # @type APIResources: Array
+
+        attr_accessor :ZoneId, :APIResources
+
+        def initialize(zoneid=nil, apiresources=nil)
+          @ZoneId = zoneid
+          @APIResources = apiresources
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['APIResources'].nil?
+            @APIResources = []
+            params['APIResources'].each do |i|
+              apiresource_tmp = APIResource.new
+              apiresource_tmp.deserialize(i)
+              @APIResources << apiresource_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSecurityAPIResource返回参数结构体
+      class CreateSecurityAPIResourceResponse < TencentCloud::Common::AbstractModel
+        # @param APIResourceIds: API 资源 ID 列表。
+        # @type APIResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :APIResourceIds, :RequestId
+
+        def initialize(apiresourceids=nil, requestid=nil)
+          @APIResourceIds = apiresourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @APIResourceIds = params['APIResourceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSecurityAPIService请求参数结构体
+      class CreateSecurityAPIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIServices:  API 服务列表。
+        # @type APIServices: Array
+
+        attr_accessor :ZoneId, :APIServices
+
+        def initialize(zoneid=nil, apiservices=nil)
+          @ZoneId = zoneid
+          @APIServices = apiservices
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['APIServices'].nil?
+            @APIServices = []
+            params['APIServices'].each do |i|
+              apiservice_tmp = APIService.new
+              apiservice_tmp.deserialize(i)
+              @APIServices << apiservice_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSecurityAPIService返回参数结构体
+      class CreateSecurityAPIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param APIServiceIds: API 服务 ID 列表。
+        # @type APIServiceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :APIServiceIds, :RequestId
+
+        def initialize(apiserviceids=nil, requestid=nil)
+          @APIServiceIds = apiserviceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @APIServiceIds = params['APIServiceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSecurityClientAttester请求参数结构体
+      class CreateSecurityClientAttesterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ClientAttesters: 认证选项列表。
+        # @type ClientAttesters: Array
+
+        attr_accessor :ZoneId, :ClientAttesters
+
+        def initialize(zoneid=nil, clientattesters=nil)
+          @ZoneId = zoneid
+          @ClientAttesters = clientattesters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['ClientAttesters'].nil?
+            @ClientAttesters = []
+            params['ClientAttesters'].each do |i|
+              clientattester_tmp = ClientAttester.new
+              clientattester_tmp.deserialize(i)
+              @ClientAttesters << clientattester_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSecurityClientAttester返回参数结构体
+      class CreateSecurityClientAttesterResponse < TencentCloud::Common::AbstractModel
+        # @param ClientAttesterIds: 认证选项 ID 列表。
+        # @type ClientAttesterIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClientAttesterIds, :RequestId
+
+        def initialize(clientattesterids=nil, requestid=nil)
+          @ClientAttesterIds = clientattesterids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClientAttesterIds = params['ClientAttesterIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSecurityIPGroup请求参数结构体
       class CreateSecurityIPGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 Id。
@@ -4478,6 +4825,53 @@ module TencentCloud
 
         def deserialize(params)
           @GroupId = params['GroupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSecurityJSInjectionRule请求参数结构体
+      class CreateSecurityJSInjectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param JSInjectionRules: JavaScript 注入规则列表。
+        # @type JSInjectionRules: Array
+
+        attr_accessor :ZoneId, :JSInjectionRules
+
+        def initialize(zoneid=nil, jsinjectionrules=nil)
+          @ZoneId = zoneid
+          @JSInjectionRules = jsinjectionrules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['JSInjectionRules'].nil?
+            @JSInjectionRules = []
+            params['JSInjectionRules'].each do |i|
+              jsinjectionrule_tmp = JSInjectionRule.new
+              jsinjectionrule_tmp.deserialize(i)
+              @JSInjectionRules << jsinjectionrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateSecurityJSInjectionRule返回参数结构体
+      class CreateSecurityJSInjectionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param JSInjectionRuleIds: JavaScript 注入规则 ID 列表。
+        # @type JSInjectionRuleIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JSInjectionRuleIds, :RequestId
+
+        def initialize(jsinjectionruleids=nil, requestid=nil)
+          @JSInjectionRuleIds = jsinjectionruleids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JSInjectionRuleIds = params['JSInjectionRuleIds']
           @RequestId = params['RequestId']
         end
       end
@@ -5526,6 +5920,42 @@ module TencentCloud
         end
       end
 
+      # DeleteJustInTimeTranscodeTemplates请求参数结构体
+      class DeleteJustInTimeTranscodeTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param TemplateIds: 需删除的即时转码模板唯一标识数组，长度限制：100。
+        # @type TemplateIds: Array
+
+        attr_accessor :ZoneId, :TemplateIds
+
+        def initialize(zoneid=nil, templateids=nil)
+          @ZoneId = zoneid
+          @TemplateIds = templateids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @TemplateIds = params['TemplateIds']
+        end
+      end
+
+      # DeleteJustInTimeTranscodeTemplates返回参数结构体
+      class DeleteJustInTimeTranscodeTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteL4Proxy请求参数结构体
       class DeleteL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -5858,6 +6288,114 @@ module TencentCloud
         end
       end
 
+      # DeleteSecurityAPIResource请求参数结构体
+      class DeleteSecurityAPIResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIResourceIds: 需要删除的 API 资源 ID 列表。
+        # @type APIResourceIds: Array
+
+        attr_accessor :ZoneId, :APIResourceIds
+
+        def initialize(zoneid=nil, apiresourceids=nil)
+          @ZoneId = zoneid
+          @APIResourceIds = apiresourceids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @APIResourceIds = params['APIResourceIds']
+        end
+      end
+
+      # DeleteSecurityAPIResource返回参数结构体
+      class DeleteSecurityAPIResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSecurityAPIService请求参数结构体
+      class DeleteSecurityAPIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIServiceIds: API 服务 ID 列表。
+        # @type APIServiceIds: Array
+
+        attr_accessor :ZoneId, :APIServiceIds
+
+        def initialize(zoneid=nil, apiserviceids=nil)
+          @ZoneId = zoneid
+          @APIServiceIds = apiserviceids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @APIServiceIds = params['APIServiceIds']
+        end
+      end
+
+      # DeleteSecurityAPIService返回参数结构体
+      class DeleteSecurityAPIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSecurityClientAttester请求参数结构体
+      class DeleteSecurityClientAttesterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ClientAttesterIds: 客户端认证选项 ID。
+        # @type ClientAttesterIds: Array
+
+        attr_accessor :ZoneId, :ClientAttesterIds
+
+        def initialize(zoneid=nil, clientattesterids=nil)
+          @ZoneId = zoneid
+          @ClientAttesterIds = clientattesterids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ClientAttesterIds = params['ClientAttesterIds']
+        end
+      end
+
+      # DeleteSecurityClientAttester返回参数结构体
+      class DeleteSecurityClientAttesterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSecurityIPGroup请求参数结构体
       class DeleteSecurityIPGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 Id。
@@ -5880,6 +6418,42 @@ module TencentCloud
 
       # DeleteSecurityIPGroup返回参数结构体
       class DeleteSecurityIPGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSecurityJSInjectionRule请求参数结构体
+      class DeleteSecurityJSInjectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param JSInjectionRuleIds: JavaScript 注入规则 ID 列表。
+        # @type JSInjectionRuleIds: Array
+
+        attr_accessor :ZoneId, :JSInjectionRuleIds
+
+        def initialize(zoneid=nil, jsinjectionruleids=nil)
+          @ZoneId = zoneid
+          @JSInjectionRuleIds = jsinjectionruleids
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @JSInjectionRuleIds = params['JSInjectionRuleIds']
+        end
+      end
+
+      # DeleteSecurityJSInjectionRule返回参数结构体
+      class DeleteSecurityJSInjectionRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7742,6 +8316,80 @@ module TencentCloud
         end
       end
 
+      # DescribeJustInTimeTranscodeTemplates请求参数结构体
+      class DescribeJustInTimeTranscodeTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Filters: 过滤条件，Filters 的上限为 20，Filters.Values 的上限为 20。该参数不填写时，默认返回当前 ZoneId 下有权限的即时转码模板。详细的过滤条件如下：<li>template-name：按照模版名批量进行过滤。例如：mytemplate；</li><li>template-type：按照模板类型批量进行过滤。例如：preset 或 custom。</li><li>template-id：按照模板 ID 批量进行过滤。例如：C1LZ7982VgTpYhJ7M。</li>默认为空。
+        # @type Filters: Array
+        # @param SortBy: 排序字段，取值有：<li>createTime：模板创建时间。</li>默认值为：createTime。
+        # @type SortBy: String
+        # @param SortOrder: 排序方式，取值有：<li>asc：升序方式；</li><li>desc：降序方式。</li>默认值为：desc。
+        # @type SortOrder: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：20，最大值：1000。
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :Filters, :SortBy, :SortOrder, :Offset, :Limit
+
+        def initialize(zoneid=nil, filters=nil, sortby=nil, sortorder=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @Filters = filters
+          @SortBy = sortby
+          @SortOrder = sortorder
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @SortOrder = params['SortOrder']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeJustInTimeTranscodeTemplates返回参数结构体
+      class DescribeJustInTimeTranscodeTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param TemplateSet: 模板详情列表。
+        # @type TemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TemplateSet, :RequestId
+
+        def initialize(totalcount=nil, templateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TemplateSet = templateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TemplateSet'].nil?
+            @TemplateSet = []
+            params['TemplateSet'].each do |i|
+              justintimetranscodetemplate_tmp = JustInTimeTranscodeTemplate.new
+              justintimetranscodetemplate_tmp.deserialize(i)
+              @TemplateSet << justintimetranscodetemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeL4Proxy请求参数结构体
       class DescribeL4ProxyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 四层代理实例所属站点的 ID。
@@ -9020,6 +9668,223 @@ module TencentCloud
         end
       end
 
+      # DescribeSecurityAPIResource请求参数结构体
+      class DescribeSecurityAPIResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Limit, :Offset
+
+        def initialize(zoneid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityAPIResource返回参数结构体
+      class DescribeSecurityAPIResourceResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: API 资源总数量。
+        # @type TotalCount: Integer
+        # @param APIResources: API 资源列表。
+        # @type APIResources: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :APIResources, :RequestId
+
+        def initialize(totalcount=nil, apiresources=nil, requestid=nil)
+          @TotalCount = totalcount
+          @APIResources = apiresources
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['APIResources'].nil?
+            @APIResources = []
+            params['APIResources'].each do |i|
+              apiresource_tmp = APIResource.new
+              apiresource_tmp.deserialize(i)
+              @APIResources << apiresource_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityAPIService请求参数结构体
+      class DescribeSecurityAPIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Limit, :Offset
+
+        def initialize(zoneid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityAPIService返回参数结构体
+      class DescribeSecurityAPIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: API 服务总数量。
+        # @type TotalCount: Integer
+        # @param APIServices: API 服务列表。
+        # @type APIServices: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :APIServices, :RequestId
+
+        def initialize(totalcount=nil, apiservices=nil, requestid=nil)
+          @TotalCount = totalcount
+          @APIServices = apiservices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['APIServices'].nil?
+            @APIServices = []
+            params['APIServices'].each do |i|
+              apiservice_tmp = APIService.new
+              apiservice_tmp.deserialize(i)
+              @APIServices << apiservice_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityClientAttester请求参数结构体
+      class DescribeSecurityClientAttesterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Limit, :Offset
+
+        def initialize(zoneid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityClientAttester返回参数结构体
+      class DescribeSecurityClientAttesterResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 认证选项总数量。
+        # @type TotalCount: Integer
+        # @param ClientAttesters: 认证选项列表。
+        # @type ClientAttesters: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ClientAttesters, :RequestId
+
+        def initialize(totalcount=nil, clientattesters=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ClientAttesters = clientattesters
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ClientAttesters'].nil?
+            @ClientAttesters = []
+            params['ClientAttesters'].each do |i|
+              clientattester_tmp = ClientAttester.new
+              clientattester_tmp.deserialize(i)
+              @ClientAttesters << clientattester_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityIPGroupContent请求参数结构体
+      class DescribeSecurityIPGroupContentRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GroupId: IP 组 ID。
+        # @type GroupId: Integer
+        # @param Limit: 分页查询限制数目。默认值：2000，最大值：100000。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :GroupId, :Limit, :Offset
+
+        def initialize(zoneid=nil, groupid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityIPGroupContent返回参数结构体
+      class DescribeSecurityIPGroupContentResponse < TencentCloud::Common::AbstractModel
+        # @param IPTotalCount: IP 组中正在生效的 IP 或网段个数。
+        # @type IPTotalCount: Integer
+        # @param IPList: 满足查询条件的 IP 或网段列表。受 Limit 和 Offset 参数限制。
+        # @type IPList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IPTotalCount, :IPList, :RequestId
+
+        def initialize(iptotalcount=nil, iplist=nil, requestid=nil)
+          @IPTotalCount = iptotalcount
+          @IPList = iplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IPTotalCount = params['IPTotalCount']
+          @IPList = params['IPList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityIPGroupInfo请求参数结构体
       class DescribeSecurityIPGroupInfoRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点的 ID ，用于指定查询的站点范围。
@@ -9116,6 +9981,61 @@ module TencentCloud
               ipgroup_tmp = IPGroup.new
               ipgroup_tmp.deserialize(i)
               @IPGroups << ipgroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecurityJSInjectionRule请求参数结构体
+      class DescribeSecurityJSInjectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量。默认值：0。
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :Limit, :Offset
+
+        def initialize(zoneid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeSecurityJSInjectionRule返回参数结构体
+      class DescribeSecurityJSInjectionRuleResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: JavaScript 注入规则总数量。
+        # @type TotalCount: Integer
+        # @param JSInjectionRules: JavaScript 注入规则列表。
+        # @type JSInjectionRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :JSInjectionRules, :RequestId
+
+        def initialize(totalcount=nil, jsinjectionrules=nil, requestid=nil)
+          @TotalCount = totalcount
+          @JSInjectionRules = jsinjectionrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['JSInjectionRules'].nil?
+            @JSInjectionRules = []
+            params['JSInjectionRules'].each do |i|
+              jsinjectionrule_tmp = JSInjectionRule.new
+              jsinjectionrule_tmp.deserialize(i)
+              @JSInjectionRules << jsinjectionrule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -12591,6 +13511,98 @@ module TencentCloud
         end
       end
 
+      # JavaScript 注入规则。
+      class JSInjectionRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则 ID。
+        # @type RuleId: String
+        # @param Name: 规则名称。
+        # @type Name: String
+        # @param Priority: 规则优先级，数值越小越优先执行，范围是 0 ~ 100，默认为 0。
+        # @type Priority: Integer
+        # @param Condition: 匹配条件内容。需符合表达式语法，详细规范参见产品文档。
+        # @type Condition: String
+        # @param InjectJS: JavaScript 注入选项。默认值为 run-attestations，取值有：
+        # <li> no-injection: 不注入 JavaScript;</li>
+        # <li> inject-sdk-only: 注入当前支持的所有认证方式的 SDK，当前支持：TC-RCE 和 TC-CAPTCHA。注意：若需执行认证检测，请配置挑战规则。</li>
+        # @type InjectJS: String
+
+        attr_accessor :RuleId, :Name, :Priority, :Condition, :InjectJS
+
+        def initialize(ruleid=nil, name=nil, priority=nil, condition=nil, injectjs=nil)
+          @RuleId = ruleid
+          @Name = name
+          @Priority = priority
+          @Condition = condition
+          @InjectJS = injectjs
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @Priority = params['Priority']
+          @Condition = params['Condition']
+          @InjectJS = params['InjectJS']
+        end
+      end
+
+      # 即时转码模板详情。
+      class JustInTimeTranscodeTemplate < TencentCloud::Common::AbstractModel
+        # @param TemplateId: 即时转码模板唯一标识。
+        # @type TemplateId: String
+        # @param TemplateName: 转码模板名称。
+        # @type TemplateName: String
+        # @param Comment: 模板描述信息。
+        # @type Comment: String
+        # @param Type: 模板类型，取值：<li>preset：系统预置模板；</li><li>custom：用户自定义模板。</li>
+        # @type Type: String
+        # @param VideoStreamSwitch: 启用视频流开关，取值：<li>on：开启；</li><li>off：关闭。</li>
+        # @type VideoStreamSwitch: String
+        # @param AudioStreamSwitch: 启用音频流开关，取值：<li>on：开启；</li><li>off：关闭。</li>
+        # @type AudioStreamSwitch: String
+        # @param VideoTemplate: 视频流配置参数，仅当 VideoStreamSwitch 为 on，该字段有效。
+        # @type VideoTemplate: :class:`Tencentcloud::Teo.v20220901.models.VideoTemplateInfo`
+        # @param AudioTemplate: 音频流配置参数，仅当 AudioStreamSwitch 为 on，该字段有效。
+        # @type AudioTemplate: :class:`Tencentcloud::Teo.v20220901.models.AudioTemplateInfo`
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+
+        attr_accessor :TemplateId, :TemplateName, :Comment, :Type, :VideoStreamSwitch, :AudioStreamSwitch, :VideoTemplate, :AudioTemplate, :CreateTime, :UpdateTime
+
+        def initialize(templateid=nil, templatename=nil, comment=nil, type=nil, videostreamswitch=nil, audiostreamswitch=nil, videotemplate=nil, audiotemplate=nil, createtime=nil, updatetime=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @Comment = comment
+          @Type = type
+          @VideoStreamSwitch = videostreamswitch
+          @AudioStreamSwitch = audiostreamswitch
+          @VideoTemplate = videotemplate
+          @AudioTemplate = audiotemplate
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          @VideoStreamSwitch = params['VideoStreamSwitch']
+          @AudioStreamSwitch = params['AudioStreamSwitch']
+          unless params['VideoTemplate'].nil?
+            @VideoTemplate = VideoTemplateInfo.new
+            @VideoTemplate.deserialize(params['VideoTemplate'])
+          end
+          unless params['AudioTemplate'].nil?
+            @AudioTemplate = AudioTemplateInfo.new
+            @AudioTemplate.deserialize(params['AudioTemplate'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 离线日志详细信息
       class L4OfflineLog < TencentCloud::Common::AbstractModel
         # @param ProxyId: 四层代理实例 ID。
@@ -15079,6 +16091,135 @@ module TencentCloud
         end
       end
 
+      # ModifySecurityAPIResource请求参数结构体
+      class ModifySecurityAPIResourceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIResources: API 资源列表。
+        # @type APIResources: Array
+
+        attr_accessor :ZoneId, :APIResources
+
+        def initialize(zoneid=nil, apiresources=nil)
+          @ZoneId = zoneid
+          @APIResources = apiresources
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['APIResources'].nil?
+            @APIResources = []
+            params['APIResources'].each do |i|
+              apiresource_tmp = APIResource.new
+              apiresource_tmp.deserialize(i)
+              @APIResources << apiresource_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySecurityAPIResource返回参数结构体
+      class ModifySecurityAPIResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecurityAPIService请求参数结构体
+      class ModifySecurityAPIServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param APIServices: API 服务列表。
+        # @type APIServices: Array
+
+        attr_accessor :ZoneId, :APIServices
+
+        def initialize(zoneid=nil, apiservices=nil)
+          @ZoneId = zoneid
+          @APIServices = apiservices
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['APIServices'].nil?
+            @APIServices = []
+            params['APIServices'].each do |i|
+              apiservice_tmp = APIService.new
+              apiservice_tmp.deserialize(i)
+              @APIServices << apiservice_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySecurityAPIService返回参数结构体
+      class ModifySecurityAPIServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecurityClientAttester请求参数结构体
+      class ModifySecurityClientAttesterRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param ClientAttesters: 认证选项列表。
+        # @type ClientAttesters: Array
+
+        attr_accessor :ZoneId, :ClientAttesters
+
+        def initialize(zoneid=nil, clientattesters=nil)
+          @ZoneId = zoneid
+          @ClientAttesters = clientattesters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['ClientAttesters'].nil?
+            @ClientAttesters = []
+            params['ClientAttesters'].each do |i|
+              clientattester_tmp = ClientAttester.new
+              clientattester_tmp.deserialize(i)
+              @ClientAttesters << clientattester_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySecurityClientAttester返回参数结构体
+      class ModifySecurityClientAttesterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySecurityIPGroup请求参数结构体
       class ModifySecurityIPGroupRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 Id。
@@ -15108,6 +16249,49 @@ module TencentCloud
 
       # ModifySecurityIPGroup返回参数结构体
       class ModifySecurityIPGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySecurityJSInjectionRule请求参数结构体
+      class ModifySecurityJSInjectionRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param JSInjectionRules: JavaScript 注入规则列表。
+        # @type JSInjectionRules: Array
+
+        attr_accessor :ZoneId, :JSInjectionRules
+
+        def initialize(zoneid=nil, jsinjectionrules=nil)
+          @ZoneId = zoneid
+          @JSInjectionRules = jsinjectionrules
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['JSInjectionRules'].nil?
+            @JSInjectionRules = []
+            params['JSInjectionRules'].each do |i|
+              jsinjectionrule_tmp = JSInjectionRule.new
+              jsinjectionrule_tmp.deserialize(i)
+              @JSInjectionRules << jsinjectionrule_tmp
+            end
+          end
+        end
+      end
+
+      # ModifySecurityJSInjectionRule返回参数结构体
+      class ModifySecurityJSInjectionRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -19482,6 +20666,42 @@ module TencentCloud
         end
       end
 
+      # 验证码认证实例信息。
+      class TCCaptchaOption < TencentCloud::Common::AbstractModel
+        # @param CaptchaAppId: CaptchaAppId 信息。
+        # @type CaptchaAppId: String
+        # @param AppSecretKey: AppSecretKey 信息。
+        # @type AppSecretKey: String
+
+        attr_accessor :CaptchaAppId, :AppSecretKey
+
+        def initialize(captchaappid=nil, appsecretkey=nil)
+          @CaptchaAppId = captchaappid
+          @AppSecretKey = appsecretkey
+        end
+
+        def deserialize(params)
+          @CaptchaAppId = params['CaptchaAppId']
+          @AppSecretKey = params['AppSecretKey']
+        end
+      end
+
+      # RCE 认证选项实例信息。
+      class TCRCEOption < TencentCloud::Common::AbstractModel
+        # @param Channel: Channel 信息。
+        # @type Channel: String
+
+        attr_accessor :Channel
+
+        def initialize(channel=nil)
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @Channel = params['Channel']
+        end
+      end
+
       # SSL/TLS 安全配置参数。
       class TLSConfigParameters < TencentCloud::Common::AbstractModel
         # @param Version: TLS 版本。至少填写一个，如果是多个时，需要为连续版本号，例如：开启 TLS1、1.1、1.2 和 1.3，不可仅开启 1 和 1.2 而关闭 1.1。取值有：<li>TLSv1：TLSv1 版本；</li><li>TLSv1.1：TLSv1.1 版本；</li><li>TLSv1.2：TLSv1.2 版本；</li><li>TLSv1.3：TLSv1.3 版本。</li>
@@ -20186,6 +21406,50 @@ module TencentCloud
           @Status = params['Status']
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 视频流配置参数。
+      class VideoTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param Codec: 视频流的编码格式，可选值：<li>H.264: 使用 H.264 编码；</li><li>H.265: 使用 H.265 编码。</li>
+        # @type Codec: String
+        # @param Fps: 视频帧率，取值范围：[0, 30]，单位：Hz。
+        # 取值为 0，表示帧率和原始视频保持一致，但最大不超过 30。
+        # 默认值：0。
+        # @type Fps: Float
+        # @param Bitrate: 视频流的码率，取值范围：0 和 [128, 10000]，单位：kbps。
+        # 取值为 0，表示自动根据视频画面和质量选择视频码率。
+        # 默认值：0。
+        # @type Bitrate: Integer
+        # @param ResolutionAdaptive: 分辨率自适应，可选值：<li>open：开启，此时，Width 代表视频的长边，Height 表示视频的短边；</li><li>close：关闭，此时，Width 代表视频的宽度，Height 表示视频的高度。</li>默认值：open。
+        # @type ResolutionAdaptive: String
+        # @param Width: 视频流宽度（或长边）的最大值，取值范围：0 和 [128, 1920]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @type Width: Integer
+        # @param Height: 视频流高度（或短边）的最大值，取值范围：0 和 [128, 1080]，单位：px。<li>当 Width、Height 均为 0，则分辨率同源；</li><li>当 Width 为 0，Height 非 0，则 Width 按比例缩放；</li><li>当 Width 非 0，Height 为 0，则 Height 按比例缩放；</li><li>当 Width、Height 均非 0，则分辨率按用户指定。</li>默认值：0。
+        # @type Height: Integer
+        # @param FillType: 填充方式，当视频流配置宽高参数与原始视频的宽高比不一致时，对转码的处理方式，即为“填充”。可选填充方式：<li> stretch：拉伸，对每一帧进行拉伸，填满整个画面，可能导致转码后的视频被“压扁”或者“拉长”。</li><li>black：留黑，保持视频宽高比不变，边缘剩余部分使用黑色填充。</li><li>white：留白，保持视频宽高比不变，边缘剩余部分使用白色填充。</li><li>gauss：高斯模糊，保持视频宽高比不变，边缘剩余部分使用高斯模糊填充。</li>默认值：black 。
+        # @type FillType: String
+
+        attr_accessor :Codec, :Fps, :Bitrate, :ResolutionAdaptive, :Width, :Height, :FillType
+
+        def initialize(codec=nil, fps=nil, bitrate=nil, resolutionadaptive=nil, width=nil, height=nil, filltype=nil)
+          @Codec = codec
+          @Fps = fps
+          @Bitrate = bitrate
+          @ResolutionAdaptive = resolutionadaptive
+          @Width = width
+          @Height = height
+          @FillType = filltype
+        end
+
+        def deserialize(params)
+          @Codec = params['Codec']
+          @Fps = params['Fps']
+          @Bitrate = params['Bitrate']
+          @ResolutionAdaptive = params['ResolutionAdaptive']
+          @Width = params['Width']
+          @Height = params['Height']
+          @FillType = params['FillType']
         end
       end
 

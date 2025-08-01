@@ -531,19 +531,20 @@ module TencentCloud
       class ControlAIConversationRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一标识
         # @type TaskId: String
-        # @param Command: 控制命令，目前支持命令如下：
-
-        # - ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本
+        # @param Command: 控制命令，目前支持命令如下：- ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本. - InvokeLLM，服务端发送文本给大模型，触发对话
         # @type Command: String
         # @param ServerPushText: 服务端发送播报文本命令，当Command为ServerPushText时必填
         # @type ServerPushText: :class:`Tencentcloud::Trtc.v20190722.models.ServerPushText`
+        # @param InvokeLLM: 服务端发送命令主动请求大模型,当Command为InvokeLLM时会把content请求到大模型,头部增加X-Invoke-LLM="1"
+        # @type InvokeLLM: :class:`Tencentcloud::Trtc.v20190722.models.InvokeLLM`
 
-        attr_accessor :TaskId, :Command, :ServerPushText
+        attr_accessor :TaskId, :Command, :ServerPushText, :InvokeLLM
 
-        def initialize(taskid=nil, command=nil, serverpushtext=nil)
+        def initialize(taskid=nil, command=nil, serverpushtext=nil, invokellm=nil)
           @TaskId = taskid
           @Command = command
           @ServerPushText = serverpushtext
+          @InvokeLLM = invokellm
         end
 
         def deserialize(params)
@@ -552,6 +553,10 @@ module TencentCloud
           unless params['ServerPushText'].nil?
             @ServerPushText = ServerPushText.new
             @ServerPushText.deserialize(params['ServerPushText'])
+          end
+          unless params['InvokeLLM'].nil?
+            @InvokeLLM = InvokeLLM.new
+            @InvokeLLM.deserialize(params['InvokeLLM'])
           end
         end
       end
@@ -3109,6 +3114,26 @@ module TencentCloud
         end
       end
 
+      # 调用服务端主动发起请求到LLM
+      class InvokeLLM < TencentCloud::Common::AbstractModel
+        # @param Content: 请求LLM的内容
+        # @type Content: String
+        # @param Interrupt: 是否允许该文本打断机器人说话
+        # @type Interrupt: Boolean
+
+        attr_accessor :Content, :Interrupt
+
+        def initialize(content=nil, interrupt=nil)
+          @Content = content
+          @Interrupt = interrupt
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Interrupt = params['Interrupt']
+        end
+      end
+
       # MCU混流布局参数
       class LayoutParams < TencentCloud::Common::AbstractModel
         # @param Template: 混流布局模板ID，0为悬浮模板(默认);1为九宫格模板;2为屏幕分享模板;3为画中画模板;4为自定义模板。
@@ -4714,10 +4739,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 7
-        deprecate :Model=, :none, 2025, 7
-        deprecate :TranslationLanguage, :none, 2025, 7
-        deprecate :TranslationLanguage=, :none, 2025, 7
+        deprecate :Model, :none, 2025, 8
+        deprecate :Model=, :none, 2025, 8
+        deprecate :TranslationLanguage, :none, 2025, 8
+        deprecate :TranslationLanguage=, :none, 2025, 8
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil)
           @Language = language
@@ -5830,12 +5855,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 7
-        deprecate :VideoEncodeParams=, :none, 2025, 7
-        deprecate :AudioEncodeParams, :none, 2025, 7
-        deprecate :AudioEncodeParams=, :none, 2025, 7
-        deprecate :SourceUrl, :none, 2025, 7
-        deprecate :SourceUrl=, :none, 2025, 7
+        deprecate :VideoEncodeParams, :none, 2025, 8
+        deprecate :VideoEncodeParams=, :none, 2025, 8
+        deprecate :AudioEncodeParams, :none, 2025, 8
+        deprecate :AudioEncodeParams=, :none, 2025, 8
+        deprecate :SourceUrl, :none, 2025, 8
+        deprecate :SourceUrl=, :none, 2025, 8
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -6517,10 +6542,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 7
-        deprecate :IMAdminUserId=, :none, 2025, 7
-        deprecate :IMAdminUserSig, :none, 2025, 7
-        deprecate :IMAdminUserSig=, :none, 2025, 7
+        deprecate :IMAdminUserId, :none, 2025, 8
+        deprecate :IMAdminUserId=, :none, 2025, 8
+        deprecate :IMAdminUserSig, :none, 2025, 8
+        deprecate :IMAdminUserSig=, :none, 2025, 8
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil)
           @UserId = userid

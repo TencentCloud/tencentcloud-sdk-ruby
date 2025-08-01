@@ -2129,8 +2129,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 7
-        deprecate :OutputStorage=, :none, 2025, 7
+        deprecate :OutputStorage, :none, 2025, 8
+        deprecate :OutputStorage=, :none, 2025, 8
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -13854,8 +13854,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2025, 7
-        deprecate :ContrastInfoSet=, :none, 2025, 7
+        deprecate :ContrastInfoSet, :none, 2025, 8
+        deprecate :ContrastInfoSet=, :none, 2025, 8
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -15924,10 +15924,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 7
-        deprecate :QualityControlResults=, :none, 2025, 7
-        deprecate :DiagnoseResults, :none, 2025, 7
-        deprecate :DiagnoseResults=, :none, 2025, 7
+        deprecate :QualityControlResults, :none, 2025, 8
+        deprecate :QualityControlResults=, :none, 2025, 8
+        deprecate :DiagnoseResults, :none, 2025, 8
+        deprecate :DiagnoseResults=, :none, 2025, 8
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -24938,16 +24938,24 @@ module TencentCloud
 
       # 媒体质检的检测策略。
       class TimeSpotCheck < TencentCloud::Common::AbstractModel
-        # @param CheckDuration: 抽检策略的每次循环检测的时长。取值范围（单位s）：
+        # @param CheckDuration: 每次循环检测的时长。取值范围（单位s）：
 
         # - 最小值：10
         # - 最大值：86400
         # @type CheckDuration: Integer
-        # @param CheckInterval: 抽检测略的检测间隔，表示在一次检测结束后，等待多长时间后，再次检测。
+        # @param CheckInterval: 抽检间隔，表示在一次检测结束后，等待多长时间后，再次检测。取值范围（单位 s）：
+        # - 最小值：10
+        # - 最大值：3600
         # @type CheckInterval: Integer
-        # @param SkipDuration: 片头跳过时长。
+        # @param SkipDuration: 片头跳过时长。取值范围（单位 s）：
+        # - 最小值：1
+        # - 最大值：1800
         # @type SkipDuration: Integer
-        # @param CirclesNumber: 循环次数，该字段为空或 0 时，默认循环直至视频结束。
+        # @param CirclesNumber: 循环次数。取值范围:
+        # - 最小值：0
+        # - 最大值：1000
+
+        # 取值为 0 或为空时，表示循环至视频结束。
         # @type CirclesNumber: Integer
 
         attr_accessor :CheckDuration, :CheckInterval, :SkipDuration, :CirclesNumber

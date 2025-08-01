@@ -669,6 +669,61 @@ module TencentCloud
         end
       end
 
+      # AssociateDatasourceHouse请求参数结构体
+      class AssociateDatasourceHouseRequest < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionName: 网络配置名称
+        # @type DatasourceConnectionName: String
+        # @param DatasourceConnectionType: 数据源类型
+        # @type DatasourceConnectionType: String
+        # @param DatasourceConnectionConfig: 数据源网络配置
+        # @type DatasourceConnectionConfig: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionConfig`
+        # @param DataEngineNames: 引擎名称，只允许绑定一个引擎
+        # @type DataEngineNames: Array
+        # @param NetworkConnectionType: 网络类型，2-跨源型，4-增强型
+        # @type NetworkConnectionType: Integer
+        # @param NetworkConnectionDesc: 网络配置描述
+        # @type NetworkConnectionDesc: String
+
+        attr_accessor :DatasourceConnectionName, :DatasourceConnectionType, :DatasourceConnectionConfig, :DataEngineNames, :NetworkConnectionType, :NetworkConnectionDesc
+
+        def initialize(datasourceconnectionname=nil, datasourceconnectiontype=nil, datasourceconnectionconfig=nil, dataenginenames=nil, networkconnectiontype=nil, networkconnectiondesc=nil)
+          @DatasourceConnectionName = datasourceconnectionname
+          @DatasourceConnectionType = datasourceconnectiontype
+          @DatasourceConnectionConfig = datasourceconnectionconfig
+          @DataEngineNames = dataenginenames
+          @NetworkConnectionType = networkconnectiontype
+          @NetworkConnectionDesc = networkconnectiondesc
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DatasourceConnectionType = params['DatasourceConnectionType']
+          unless params['DatasourceConnectionConfig'].nil?
+            @DatasourceConnectionConfig = DatasourceConnectionConfig.new
+            @DatasourceConnectionConfig.deserialize(params['DatasourceConnectionConfig'])
+          end
+          @DataEngineNames = params['DataEngineNames']
+          @NetworkConnectionType = params['NetworkConnectionType']
+          @NetworkConnectionDesc = params['NetworkConnectionDesc']
+        end
+      end
+
+      # AssociateDatasourceHouse返回参数结构体
+      class AssociateDatasourceHouseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AttachUserPolicy请求参数结构体
       class AttachUserPolicyRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
@@ -1779,8 +1834,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 7
-        deprecate :DefaultDataEngine=, :none, 2025, 7
+        deprecate :DefaultDataEngine, :none, 2025, 8
+        deprecate :DefaultDataEngine=, :none, 2025, 8
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -2869,6 +2924,154 @@ module TencentCloud
         end
       end
 
+      # CreateStandardEngineResourceGroup请求参数结构体
+      class CreateStandardEngineResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 标准引擎资源组名称
+        # @type EngineResourceGroupName: String
+        # @param DataEngineName: 标准引擎名称
+        # @type DataEngineName: String
+        # @param AutoLaunch: 自动启动，（任务提交自动拉起资源组）0-自动启动，1-不自动启动
+        # @type AutoLaunch: Integer
+        # @param AutoPause: 自动挂起资源组。0-自动挂起，1-不自动挂起
+        # @type AutoPause: Integer
+        # @param DriverCuSpec: driver的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type DriverCuSpec: String
+        # @param ExecutorCuSpec: executor的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type ExecutorCuSpec: String
+        # @param MinExecutorNums: executor最小数量，
+        # @type MinExecutorNums: Integer
+        # @param MaxExecutorNums: executor最大数量
+        # @type MaxExecutorNums: Integer
+        # @param IsLaunchNow: 创建资源组后是否直接拉起，0-拉起，1-不拉起
+        # @type IsLaunchNow: Integer
+        # @param AutoPauseTime: 自动挂起时间，单位分钟，取值范围在1-999（在无任务AutoPauseTime后，资源组自动挂起）
+        # @type AutoPauseTime: Integer
+        # @param StaticConfigPairs: 资源组静态参数，需要重启资源组生效
+        # @type StaticConfigPairs: Array
+        # @param DynamicConfigPairs: 资源组动态参数，下一个任务生效。
+        # @type DynamicConfigPairs: Array
+        # @param MaxConcurrency: 任务并发数，默人是5个
+        # @type MaxConcurrency: Integer
+        # @param NetworkConfigNames: 网络配置名称
+        # @type NetworkConfigNames: Array
+        # @param PublicDomain: 自定义镜像域名
+        # @type PublicDomain: String
+        # @param RegistryId: 自定义镜像实例id
+        # @type RegistryId: String
+        # @param FrameType: AI类型资源组的框架类型，machine-learning，python，spark-ml，不填默认为machine-learning
+        # @type FrameType: String
+        # @param ImageType: 镜像类型，bulit-in：内置，custom：自定义，不填默认为bulit-in
+        # @type ImageType: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ImageVersion: 镜像id
+        # @type ImageVersion: String
+        # @param Size: AI资源组有效，资源组可用资源上限，该值需要小于引擎资源上限
+        # @type Size: Integer
+        # @param ResourceGroupScene: 资源组场景
+        # @type ResourceGroupScene: String
+        # @param RegionName: 自定义镜像所在地域
+        # @type RegionName: String
+        # @param PythonCuSpec: python类型资源组python单机节点资源上限，该值要小于资源组的资源上限.small:1cu medium:2cu large:4cu xlarge:8cu 4xlarge:16cu 8xlarge:32cu 16xlarge:64cu，如果是高内存型资源，在类型前面加上m.
+        # @type PythonCuSpec: String
+        # @param SparkSpecMode: 仅SQL资源组资源配置模式，fast：快速模式，custom：自定义模式
+        # @type SparkSpecMode: String
+        # @param SparkSize: 仅SQL资源组资源上限，仅用于快速模块
+        # @type SparkSize: Integer
+
+        attr_accessor :EngineResourceGroupName, :DataEngineName, :AutoLaunch, :AutoPause, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsLaunchNow, :AutoPauseTime, :StaticConfigPairs, :DynamicConfigPairs, :MaxConcurrency, :NetworkConfigNames, :PublicDomain, :RegistryId, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :ResourceGroupScene, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize
+
+        def initialize(engineresourcegroupname=nil, dataenginename=nil, autolaunch=nil, autopause=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, islaunchnow=nil, autopausetime=nil, staticconfigpairs=nil, dynamicconfigpairs=nil, maxconcurrency=nil, networkconfignames=nil, publicdomain=nil, registryid=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, resourcegroupscene=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+          @DataEngineName = dataenginename
+          @AutoLaunch = autolaunch
+          @AutoPause = autopause
+          @DriverCuSpec = drivercuspec
+          @ExecutorCuSpec = executorcuspec
+          @MinExecutorNums = minexecutornums
+          @MaxExecutorNums = maxexecutornums
+          @IsLaunchNow = islaunchnow
+          @AutoPauseTime = autopausetime
+          @StaticConfigPairs = staticconfigpairs
+          @DynamicConfigPairs = dynamicconfigpairs
+          @MaxConcurrency = maxconcurrency
+          @NetworkConfigNames = networkconfignames
+          @PublicDomain = publicdomain
+          @RegistryId = registryid
+          @FrameType = frametype
+          @ImageType = imagetype
+          @ImageName = imagename
+          @ImageVersion = imageversion
+          @Size = size
+          @ResourceGroupScene = resourcegroupscene
+          @RegionName = regionname
+          @PythonCuSpec = pythoncuspec
+          @SparkSpecMode = sparkspecmode
+          @SparkSize = sparksize
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          @DataEngineName = params['DataEngineName']
+          @AutoLaunch = params['AutoLaunch']
+          @AutoPause = params['AutoPause']
+          @DriverCuSpec = params['DriverCuSpec']
+          @ExecutorCuSpec = params['ExecutorCuSpec']
+          @MinExecutorNums = params['MinExecutorNums']
+          @MaxExecutorNums = params['MaxExecutorNums']
+          @IsLaunchNow = params['IsLaunchNow']
+          @AutoPauseTime = params['AutoPauseTime']
+          unless params['StaticConfigPairs'].nil?
+            @StaticConfigPairs = []
+            params['StaticConfigPairs'].each do |i|
+              engineresourcegroupconfigpair_tmp = EngineResourceGroupConfigPair.new
+              engineresourcegroupconfigpair_tmp.deserialize(i)
+              @StaticConfigPairs << engineresourcegroupconfigpair_tmp
+            end
+          end
+          unless params['DynamicConfigPairs'].nil?
+            @DynamicConfigPairs = []
+            params['DynamicConfigPairs'].each do |i|
+              engineresourcegroupconfigpair_tmp = EngineResourceGroupConfigPair.new
+              engineresourcegroupconfigpair_tmp.deserialize(i)
+              @DynamicConfigPairs << engineresourcegroupconfigpair_tmp
+            end
+          end
+          @MaxConcurrency = params['MaxConcurrency']
+          @NetworkConfigNames = params['NetworkConfigNames']
+          @PublicDomain = params['PublicDomain']
+          @RegistryId = params['RegistryId']
+          @FrameType = params['FrameType']
+          @ImageType = params['ImageType']
+          @ImageName = params['ImageName']
+          @ImageVersion = params['ImageVersion']
+          @Size = params['Size']
+          @ResourceGroupScene = params['ResourceGroupScene']
+          @RegionName = params['RegionName']
+          @PythonCuSpec = params['PythonCuSpec']
+          @SparkSpecMode = params['SparkSpecMode']
+          @SparkSize = params['SparkSize']
+        end
+      end
+
+      # CreateStandardEngineResourceGroup返回参数结构体
+      class CreateStandardEngineResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStoreLocation请求参数结构体
       class CreateStoreLocationRequest < TencentCloud::Common::AbstractModel
         # @param StoreLocation: 计算结果存储cos路径，如：cosn://bucketname/
@@ -3179,6 +3382,54 @@ module TencentCloud
 
       # CreateUser返回参数结构体
       class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserVpcConnection请求参数结构体
+      class CreateUserVpcConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param UserVpcId: 用户vpcid
+        # @type UserVpcId: String
+        # @param UserSubnetId: 用户子网
+        # @type UserSubnetId: String
+        # @param UserVpcEndpointName: 用户终端节点名称
+        # @type UserVpcEndpointName: String
+        # @param EngineNetworkId: 引擎网络ID
+        # @type EngineNetworkId: String
+        # @param UserVpcEndpointVip: 手动指定vip，不填自动分配子网下的一个ip
+        # @type UserVpcEndpointVip: String
+
+        attr_accessor :UserVpcId, :UserSubnetId, :UserVpcEndpointName, :EngineNetworkId, :UserVpcEndpointVip
+
+        def initialize(uservpcid=nil, usersubnetid=nil, uservpcendpointname=nil, enginenetworkid=nil, uservpcendpointvip=nil)
+          @UserVpcId = uservpcid
+          @UserSubnetId = usersubnetid
+          @UserVpcEndpointName = uservpcendpointname
+          @EngineNetworkId = enginenetworkid
+          @UserVpcEndpointVip = uservpcendpointvip
+        end
+
+        def deserialize(params)
+          @UserVpcId = params['UserVpcId']
+          @UserSubnetId = params['UserSubnetId']
+          @UserVpcEndpointName = params['UserVpcEndpointName']
+          @EngineNetworkId = params['EngineNetworkId']
+          @UserVpcEndpointVip = params['UserVpcEndpointVip']
+        end
+      end
+
+      # CreateUserVpcConnection返回参数结构体
+      class CreateUserVpcConnectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3842,6 +4093,83 @@ module TencentCloud
         def deserialize(params)
           @ConfigItem = params['ConfigItem']
           @ConfigValue = params['ConfigValue']
+        end
+      end
+
+      # 集群Session配置信息.
+      class DataEngineImageSessionParameter < TencentCloud::Common::AbstractModel
+        # @param ParameterId: 配置id
+        # @type ParameterId: String
+        # @param ChildImageVersionId: 小版本镜像ID
+        # @type ChildImageVersionId: String
+        # @param EngineType: 集群类型：SparkSQL/PrestoSQL/SparkBatch
+        # @type EngineType: String
+        # @param KeyName: 参数key
+        # @type KeyName: String
+        # @param KeyDescription: Key描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KeyDescription: String
+        # @param ValueType: value类型
+        # @type ValueType: String
+        # @param ValueLengthLimit: value长度限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueLengthLimit: String
+        # @param ValueRegexpLimit: value正则限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueRegexpLimit: String
+        # @param ValueDefault: value默认值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueDefault: String
+        # @param IsPublic: 是否为公共版本：1：公共；2：私有
+        # @type IsPublic: Integer
+        # @param ParameterType: 配置类型：1：session配置（默认）；2：common配置；3：cluster配置
+        # @type ParameterType: Integer
+        # @param SubmitMethod: 提交方式：User(用户)、BackGround（后台）
+        # @type SubmitMethod: String
+        # @param Operator: 操作者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
+        # @param InsertTime: 插入时间
+        # @type InsertTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :ParameterId, :ChildImageVersionId, :EngineType, :KeyName, :KeyDescription, :ValueType, :ValueLengthLimit, :ValueRegexpLimit, :ValueDefault, :IsPublic, :ParameterType, :SubmitMethod, :Operator, :InsertTime, :UpdateTime
+
+        def initialize(parameterid=nil, childimageversionid=nil, enginetype=nil, keyname=nil, keydescription=nil, valuetype=nil, valuelengthlimit=nil, valueregexplimit=nil, valuedefault=nil, ispublic=nil, parametertype=nil, submitmethod=nil, operator=nil, inserttime=nil, updatetime=nil)
+          @ParameterId = parameterid
+          @ChildImageVersionId = childimageversionid
+          @EngineType = enginetype
+          @KeyName = keyname
+          @KeyDescription = keydescription
+          @ValueType = valuetype
+          @ValueLengthLimit = valuelengthlimit
+          @ValueRegexpLimit = valueregexplimit
+          @ValueDefault = valuedefault
+          @IsPublic = ispublic
+          @ParameterType = parametertype
+          @SubmitMethod = submitmethod
+          @Operator = operator
+          @InsertTime = inserttime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ParameterId = params['ParameterId']
+          @ChildImageVersionId = params['ChildImageVersionId']
+          @EngineType = params['EngineType']
+          @KeyName = params['KeyName']
+          @KeyDescription = params['KeyDescription']
+          @ValueType = params['ValueType']
+          @ValueLengthLimit = params['ValueLengthLimit']
+          @ValueRegexpLimit = params['ValueRegexpLimit']
+          @ValueDefault = params['ValueDefault']
+          @IsPublic = params['IsPublic']
+          @ParameterType = params['ParameterType']
+          @SubmitMethod = params['SubmitMethod']
+          @Operator = params['Operator']
+          @InsertTime = params['InsertTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -4875,6 +5203,46 @@ module TencentCloud
         end
       end
 
+      # DeleteNativeSparkSession请求参数结构体
+      class DeleteNativeSparkSessionRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎id
+        # @type DataEngineId: String
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
+        # @param EngineSessionName: spark session名称
+        # @type EngineSessionName: String
+
+        attr_accessor :DataEngineId, :ResourceGroupId, :EngineSessionName
+
+        def initialize(dataengineid=nil, resourcegroupid=nil, enginesessionname=nil)
+          @DataEngineId = dataengineid
+          @ResourceGroupId = resourcegroupid
+          @EngineSessionName = enginesessionname
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupId = params['ResourceGroupId']
+          @EngineSessionName = params['EngineSessionName']
+        end
+      end
+
+      # DeleteNativeSparkSession返回参数结构体
+      class DeleteNativeSparkSessionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNotebookSession请求参数结构体
       class DeleteNotebookSessionRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: Session唯一标识
@@ -4975,6 +5343,38 @@ module TencentCloud
         end
       end
 
+      # DeleteStandardEngineResourceGroup请求参数结构体
+      class DeleteStandardEngineResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 标准引擎资源组名称
+        # @type EngineResourceGroupName: String
+
+        attr_accessor :EngineResourceGroupName
+
+        def initialize(engineresourcegroupname=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+        end
+      end
+
+      # DeleteStandardEngineResourceGroup返回参数结构体
+      class DeleteStandardEngineResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTable请求参数结构体
       class DeleteTableRequest < TencentCloud::Common::AbstractModel
         # @param TableBaseInfo: 表基本信息
@@ -5055,6 +5455,42 @@ module TencentCloud
 
       # DeleteUser返回参数结构体
       class DeleteUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUserVpcConnection请求参数结构体
+      class DeleteUserVpcConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param EngineNetworkId: 引擎网络ID
+        # @type EngineNetworkId: String
+        # @param UserVpcEndpointId: 终端节点ID
+        # @type UserVpcEndpointId: String
+
+        attr_accessor :EngineNetworkId, :UserVpcEndpointId
+
+        def initialize(enginenetworkid=nil, uservpcendpointid=nil)
+          @EngineNetworkId = enginenetworkid
+          @UserVpcEndpointId = uservpcendpointid
+        end
+
+        def deserialize(params)
+          @EngineNetworkId = params['EngineNetworkId']
+          @UserVpcEndpointId = params['UserVpcEndpointId']
+        end
+      end
+
+      # DeleteUserVpcConnection返回参数结构体
+      class DeleteUserVpcConnectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5970,6 +6406,53 @@ module TencentCloud
         end
       end
 
+      # DescribeDataEngineSessionParameters请求参数结构体
+      class DescribeDataEngineSessionParametersRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎id
+        # @type DataEngineId: String
+        # @param DataEngineName: 引擎名称，当指定引擎名称后优先使用名称获取配置
+        # @type DataEngineName: String
+
+        attr_accessor :DataEngineId, :DataEngineName
+
+        def initialize(dataengineid=nil, dataenginename=nil)
+          @DataEngineId = dataengineid
+          @DataEngineName = dataenginename
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @DataEngineName = params['DataEngineName']
+        end
+      end
+
+      # DescribeDataEngineSessionParameters返回参数结构体
+      class DescribeDataEngineSessionParametersResponse < TencentCloud::Common::AbstractModel
+        # @param DataEngineParameters: 集群Session配置列表
+        # @type DataEngineParameters: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataEngineParameters, :RequestId
+
+        def initialize(dataengineparameters=nil, requestid=nil)
+          @DataEngineParameters = dataengineparameters
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataEngineParameters'].nil?
+            @DataEngineParameters = []
+            params['DataEngineParameters'].each do |i|
+              dataengineimagesessionparameter_tmp = DataEngineImageSessionParameter.new
+              dataengineimagesessionparameter_tmp.deserialize(i)
+              @DataEngineParameters << dataengineimagesessionparameter_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataEngines请求参数结构体
       class DescribeDataEnginesRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量，默认为0。
@@ -6292,6 +6775,132 @@ module TencentCloud
         end
       end
 
+      # DescribeEngineNetworks请求参数结构体
+      class DescribeEngineNetworksRequest < TencentCloud::Common::AbstractModel
+        # @param SortBy: 排序字段
+        # @type SortBy: String
+        # @param Sorting: 升序，降序
+        # @type Sorting: String
+        # @param Filters: 过滤条件可选，engine-network-id--引擎网络ID，engine-network-state--引擎网络状态
+        # @type Filters: Array
+        # @param Limit: 数据条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :SortBy, :Sorting, :Filters, :Limit, :Offset
+
+        def initialize(sortby=nil, sorting=nil, filters=nil, limit=nil, offset=nil)
+          @SortBy = sortby
+          @Sorting = sorting
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeEngineNetworks返回参数结构体
+      class DescribeEngineNetworksResponse < TencentCloud::Common::AbstractModel
+        # @param EngineNetworkInfos: 引擎网络信息
+        # @type EngineNetworkInfos: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EngineNetworkInfos, :Total, :RequestId
+
+        def initialize(enginenetworkinfos=nil, total=nil, requestid=nil)
+          @EngineNetworkInfos = enginenetworkinfos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EngineNetworkInfos'].nil?
+            @EngineNetworkInfos = []
+            params['EngineNetworkInfos'].each do |i|
+              enginenetworkinfo_tmp = EngineNetworkInfo.new
+              enginenetworkinfo_tmp.deserialize(i)
+              @EngineNetworkInfos << enginenetworkinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEngineNodeSpec请求参数结构体
+      class DescribeEngineNodeSpecRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineName: 引擎名称
+        # @type DataEngineName: String
+
+        attr_accessor :DataEngineName
+
+        def initialize(dataenginename=nil)
+          @DataEngineName = dataenginename
+        end
+
+        def deserialize(params)
+          @DataEngineName = params['DataEngineName']
+        end
+      end
+
+      # DescribeEngineNodeSpec返回参数结构体
+      class DescribeEngineNodeSpecResponse < TencentCloud::Common::AbstractModel
+        # @param DriverSpec: driver可用的规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DriverSpec: Array
+        # @param ExecutorSpec: executor可用的规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorSpec: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DriverSpec, :ExecutorSpec, :RequestId
+
+        def initialize(driverspec=nil, executorspec=nil, requestid=nil)
+          @DriverSpec = driverspec
+          @ExecutorSpec = executorspec
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DriverSpec'].nil?
+            @DriverSpec = []
+            params['DriverSpec'].each do |i|
+              specinfo_tmp = SpecInfo.new
+              specinfo_tmp.deserialize(i)
+              @DriverSpec << specinfo_tmp
+            end
+          end
+          unless params['ExecutorSpec'].nil?
+            @ExecutorSpec = []
+            params['ExecutorSpec'].each do |i|
+              specinfo_tmp = SpecInfo.new
+              specinfo_tmp.deserialize(i)
+              @ExecutorSpec << specinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEngineUsageInfo请求参数结构体
       class DescribeEngineUsageInfoRequest < TencentCloud::Common::AbstractModel
         # @param DataEngineId: 数据引擎ID
@@ -6463,6 +7072,120 @@ module TencentCloud
           unless params['AccessToken'].nil?
             @AccessToken = LakeFileSystemToken.new
             @AccessToken.deserialize(params['AccessToken'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNativeSparkSessions请求参数结构体
+      class DescribeNativeSparkSessionsRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param ResourceGroupId: 资源组ID
+        # @type ResourceGroupId: String
+
+        attr_accessor :DataEngineId, :ResourceGroupId
+
+        def initialize(dataengineid=nil, resourcegroupid=nil)
+          @DataEngineId = dataengineid
+          @ResourceGroupId = resourcegroupid
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupId = params['ResourceGroupId']
+        end
+      end
+
+      # DescribeNativeSparkSessions返回参数结构体
+      class DescribeNativeSparkSessionsResponse < TencentCloud::Common::AbstractModel
+        # @param SparkSessionsList: spark session列表
+        # @type SparkSessionsList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SparkSessionsList, :RequestId
+
+        def initialize(sparksessionslist=nil, requestid=nil)
+          @SparkSessionsList = sparksessionslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SparkSessionsList'].nil?
+            @SparkSessionsList = []
+            params['SparkSessionsList'].each do |i|
+              sparksessioninfo_tmp = SparkSessionInfo.new
+              sparksessioninfo_tmp.deserialize(i)
+              @SparkSessionsList << sparksessioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkConnections请求参数结构体
+      class DescribeNetworkConnectionsRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkConnectionType: 网络配置类型
+        # @type NetworkConnectionType: Integer
+        # @param DataEngineName: 计算引擎名称
+        # @type DataEngineName: String
+        # @param DatasourceConnectionVpcId: 数据源vpcid
+        # @type DatasourceConnectionVpcId: String
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param NetworkConnectionName: 网络配置名称
+        # @type NetworkConnectionName: String
+
+        attr_accessor :NetworkConnectionType, :DataEngineName, :DatasourceConnectionVpcId, :Limit, :Offset, :NetworkConnectionName
+
+        def initialize(networkconnectiontype=nil, dataenginename=nil, datasourceconnectionvpcid=nil, limit=nil, offset=nil, networkconnectionname=nil)
+          @NetworkConnectionType = networkconnectiontype
+          @DataEngineName = dataenginename
+          @DatasourceConnectionVpcId = datasourceconnectionvpcid
+          @Limit = limit
+          @Offset = offset
+          @NetworkConnectionName = networkconnectionname
+        end
+
+        def deserialize(params)
+          @NetworkConnectionType = params['NetworkConnectionType']
+          @DataEngineName = params['DataEngineName']
+          @DatasourceConnectionVpcId = params['DatasourceConnectionVpcId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @NetworkConnectionName = params['NetworkConnectionName']
+        end
+      end
+
+      # DescribeNetworkConnections返回参数结构体
+      class DescribeNetworkConnectionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param NetworkConnectionSet: 网络配置列表
+        # @type NetworkConnectionSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :NetworkConnectionSet, :RequestId
+
+        def initialize(totalcount=nil, networkconnectionset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @NetworkConnectionSet = networkconnectionset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['NetworkConnectionSet'].nil?
+            @NetworkConnectionSet = []
+            params['NetworkConnectionSet'].each do |i|
+              networkconnection_tmp = NetworkConnection.new
+              networkconnection_tmp.deserialize(i)
+              @NetworkConnectionSet << networkconnection_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -7006,6 +7729,54 @@ module TencentCloud
         end
       end
 
+      # DescribeSessionImageVersion请求参数结构体
+      class DescribeSessionImageVersionRequest < TencentCloud::Common::AbstractModel
+        # @param DataEngineId: 引擎Id
+        # @type DataEngineId: String
+        # @param FrameworkType: 框架类型：machine-learning、python、spark-ml
+        # @type FrameworkType: String
+
+        attr_accessor :DataEngineId, :FrameworkType
+
+        def initialize(dataengineid=nil, frameworktype=nil)
+          @DataEngineId = dataengineid
+          @FrameworkType = frameworktype
+        end
+
+        def deserialize(params)
+          @DataEngineId = params['DataEngineId']
+          @FrameworkType = params['FrameworkType']
+        end
+      end
+
+      # DescribeSessionImageVersion返回参数结构体
+      class DescribeSessionImageVersionResponse < TencentCloud::Common::AbstractModel
+        # @param EngineSessionImages: 扩展镜像列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineSessionImages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EngineSessionImages, :RequestId
+
+        def initialize(enginesessionimages=nil, requestid=nil)
+          @EngineSessionImages = enginesessionimages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EngineSessionImages'].nil?
+            @EngineSessionImages = []
+            params['EngineSessionImages'].each do |i|
+              enginesessionimage_tmp = EngineSessionImage.new
+              enginesessionimage_tmp.deserialize(i)
+              @EngineSessionImages << enginesessionimage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSparkAppJob请求参数结构体
       class DescribeSparkAppJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: spark作业Id，与JobName同时存在时，JobName无效，JobId与JobName至少存在一个
@@ -7367,6 +8138,146 @@ module TencentCloud
               @LogSet << sparksessionbatchlog_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStandardEngineResourceGroupConfigInfo请求参数结构体
+      class DescribeStandardEngineResourceGroupConfigInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SortBy: 排序字段
+        # @type SortBy: String
+        # @param Sorting: 升序，降序
+        # @type Sorting: String
+        # @param Filters: 过滤条件可选，engine-resource-group-id--引擎资源组ID，engine-id---引擎ID
+        # @type Filters: Array
+        # @param Limit: 数据条数，默认10
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+
+        attr_accessor :SortBy, :Sorting, :Filters, :Limit, :Offset
+
+        def initialize(sortby=nil, sorting=nil, filters=nil, limit=nil, offset=nil)
+          @SortBy = sortby
+          @Sorting = sorting
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeStandardEngineResourceGroupConfigInfo返回参数结构体
+      class DescribeStandardEngineResourceGroupConfigInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param StandardEngineResourceGroupConfigInfos: 标准引擎资源组，配置相关信息
+        # @type StandardEngineResourceGroupConfigInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :StandardEngineResourceGroupConfigInfos, :RequestId
+
+        def initialize(total=nil, standardengineresourcegroupconfiginfos=nil, requestid=nil)
+          @Total = total
+          @StandardEngineResourceGroupConfigInfos = standardengineresourcegroupconfiginfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['StandardEngineResourceGroupConfigInfos'].nil?
+            @StandardEngineResourceGroupConfigInfos = []
+            params['StandardEngineResourceGroupConfigInfos'].each do |i|
+              standardengineresourcegroupconfiginfo_tmp = StandardEngineResourceGroupConfigInfo.new
+              standardengineresourcegroupconfiginfo_tmp.deserialize(i)
+              @StandardEngineResourceGroupConfigInfos << standardengineresourcegroupconfiginfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStandardEngineResourceGroups请求参数结构体
+      class DescribeStandardEngineResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param SortBy: 排序字段
+        # @type SortBy: String
+        # @param Sorting: 升序，降序
+        # @type Sorting: String
+        # @param Filters: 过滤条件可选，app-id--用户appID，engine-resource-group-id--引擎资源组ID，data-engine-name--引擎名称，engine-resource-group-name---引擎资源组名称（模糊查询），engine-resource-group-state---引擎资源组状态engine-resource-group-name-unique --引擎资源组名称（完全匹配）
+        # @type Filters: Array
+        # @param Limit: 数据条数，默认10
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认0
+        # @type Offset: Integer
+
+        attr_accessor :SortBy, :Sorting, :Filters, :Limit, :Offset
+
+        def initialize(sortby=nil, sorting=nil, filters=nil, limit=nil, offset=nil)
+          @SortBy = sortby
+          @Sorting = sorting
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeStandardEngineResourceGroups返回参数结构体
+      class DescribeStandardEngineResourceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param UserEngineResourceGroupInfos: 标准引擎资源组信息
+        # @type UserEngineResourceGroupInfos: Array
+        # @param Total: 资源组总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserEngineResourceGroupInfos, :Total, :RequestId
+
+        def initialize(userengineresourcegroupinfos=nil, total=nil, requestid=nil)
+          @UserEngineResourceGroupInfos = userengineresourcegroupinfos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserEngineResourceGroupInfos'].nil?
+            @UserEngineResourceGroupInfos = []
+            params['UserEngineResourceGroupInfos'].each do |i|
+              standardengineresourcegroupinfo_tmp = StandardEngineResourceGroupInfo.new
+              standardengineresourcegroupinfo_tmp.deserialize(i)
+              @UserEngineResourceGroupInfos << standardengineresourcegroupinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -8618,6 +9529,54 @@ module TencentCloud
         end
       end
 
+      # DescribeUserVpcConnection请求参数结构体
+      class DescribeUserVpcConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param EngineNetworkId: 引擎网络ID
+        # @type EngineNetworkId: String
+        # @param DataEngineIds: 引擎ID集合
+        # @type DataEngineIds: Array
+
+        attr_accessor :EngineNetworkId, :DataEngineIds
+
+        def initialize(enginenetworkid=nil, dataengineids=nil)
+          @EngineNetworkId = enginenetworkid
+          @DataEngineIds = dataengineids
+        end
+
+        def deserialize(params)
+          @EngineNetworkId = params['EngineNetworkId']
+          @DataEngineIds = params['DataEngineIds']
+        end
+      end
+
+      # DescribeUserVpcConnection返回参数结构体
+      class DescribeUserVpcConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param UserVpcConnectionInfos: 用户vpc连接信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserVpcConnectionInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserVpcConnectionInfos, :RequestId
+
+        def initialize(uservpcconnectioninfos=nil, requestid=nil)
+          @UserVpcConnectionInfos = uservpcconnectioninfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserVpcConnectionInfos'].nil?
+            @UserVpcConnectionInfos = []
+            params['UserVpcConnectionInfos'].each do |i|
+              uservpcconnectioninfo_tmp = UserVpcConnectionInfo.new
+              uservpcconnectioninfo_tmp.deserialize(i)
+              @UserVpcConnectionInfos << uservpcconnectioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUsers请求参数结构体
       class DescribeUsersRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 指定查询的子用户uin，用户需要通过CreateUser接口创建。
@@ -9252,6 +10211,125 @@ module TencentCloud
         end
       end
 
+      # 引擎网络信息
+      class EngineNetworkInfo < TencentCloud::Common::AbstractModel
+        # @param EngineNetworkName: 引擎网络名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkName: String
+        # @param EngineNetworkState: 引擎网络状态，0--初始化，2--可用，-1--已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkState: Integer
+        # @param EngineNetworkCidr: 引擎网络cidr
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkCidr: String
+        # @param EngineNetworkId: 引擎网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param PrivateLinkNumber: 私有连接个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateLinkNumber: Integer
+        # @param EngineNumber: 计算引擎个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNumber: Integer
+        # @param GateWayInfo: 网关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GateWayInfo: Array
+
+        attr_accessor :EngineNetworkName, :EngineNetworkState, :EngineNetworkCidr, :EngineNetworkId, :CreateTime, :UpdateTime, :PrivateLinkNumber, :EngineNumber, :GateWayInfo
+
+        def initialize(enginenetworkname=nil, enginenetworkstate=nil, enginenetworkcidr=nil, enginenetworkid=nil, createtime=nil, updatetime=nil, privatelinknumber=nil, enginenumber=nil, gatewayinfo=nil)
+          @EngineNetworkName = enginenetworkname
+          @EngineNetworkState = enginenetworkstate
+          @EngineNetworkCidr = enginenetworkcidr
+          @EngineNetworkId = enginenetworkid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @PrivateLinkNumber = privatelinknumber
+          @EngineNumber = enginenumber
+          @GateWayInfo = gatewayinfo
+        end
+
+        def deserialize(params)
+          @EngineNetworkName = params['EngineNetworkName']
+          @EngineNetworkState = params['EngineNetworkState']
+          @EngineNetworkCidr = params['EngineNetworkCidr']
+          @EngineNetworkId = params['EngineNetworkId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @PrivateLinkNumber = params['PrivateLinkNumber']
+          @EngineNumber = params['EngineNumber']
+          unless params['GateWayInfo'].nil?
+            @GateWayInfo = []
+            params['GateWayInfo'].each do |i|
+              gatewayinfo_tmp = GatewayInfo.new
+              gatewayinfo_tmp.deserialize(i)
+              @GateWayInfo << gatewayinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 引擎资源组参数 配置项
+      class EngineResourceGroupConfigPair < TencentCloud::Common::AbstractModel
+        # @param ConfigItem: 配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigItem: String
+        # @param ConfigValue: 配置项的值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigValue: String
+
+        attr_accessor :ConfigItem, :ConfigValue
+
+        def initialize(configitem=nil, configvalue=nil)
+          @ConfigItem = configitem
+          @ConfigValue = configvalue
+        end
+
+        def deserialize(params)
+          @ConfigItem = params['ConfigItem']
+          @ConfigValue = params['ConfigValue']
+        end
+      end
+
+      # TensorFlow、Pytorch、SK-learn镜像信息列表
+      class EngineSessionImage < TencentCloud::Common::AbstractModel
+        # @param SparkImageId: Spark镜像唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkImageId: String
+        # @param SparkImageVersion: Spark镜像版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkImageVersion: String
+        # @param SparkImageType: 小版本镜像类型.1:TensorFlow、2:Pytorch、3:SK-learn
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkImageType: Integer
+        # @param SparkImageTag: 镜像地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkImageTag: String
+
+        attr_accessor :SparkImageId, :SparkImageVersion, :SparkImageType, :SparkImageTag
+
+        def initialize(sparkimageid=nil, sparkimageversion=nil, sparkimagetype=nil, sparkimagetag=nil)
+          @SparkImageId = sparkimageid
+          @SparkImageVersion = sparkimageversion
+          @SparkImageType = sparkimagetype
+          @SparkImageTag = sparkimagetag
+        end
+
+        def deserialize(params)
+          @SparkImageId = params['SparkImageId']
+          @SparkImageVersion = params['SparkImageVersion']
+          @SparkImageType = params['SparkImageType']
+          @SparkImageTag = params['SparkImageTag']
+        end
+      end
+
       # SQL语句对象
       class Execution < TencentCloud::Common::AbstractModel
         # @param SQL: 自动生成SQL语句。
@@ -9313,6 +10391,48 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 网关基础信息，包括id，名称，规格和状态
+      class GatewayInfo < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关ID，
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param GatewayName: 网关名称，全局唯一
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayName: String
+        # @param Size: 网关的规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param State: -2已删除 -1失败 0初始化中 1挂起 2运行中 3准备删除 4删除中 5挂起中 6启动中 7隔离中 8隔离 9续费中 10变配中 11冲正中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param PayMode: 计费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
+        # @param Mode: 模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: Integer
+
+        attr_accessor :GatewayId, :GatewayName, :Size, :State, :PayMode, :Mode
+
+        def initialize(gatewayid=nil, gatewayname=nil, size=nil, state=nil, paymode=nil, mode=nil)
+          @GatewayId = gatewayid
+          @GatewayName = gatewayname
+          @Size = size
+          @State = state
+          @PayMode = paymode
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @GatewayName = params['GatewayName']
+          @Size = params['Size']
+          @State = params['State']
+          @PayMode = params['PayMode']
+          @Mode = params['Mode']
         end
       end
 
@@ -9809,6 +10929,50 @@ module TencentCloud
           @ShortName = params['ShortName']
           @Description = params['Description']
           @Status = params['Status']
+        end
+      end
+
+      # LaunchStandardEngineResourceGroups请求参数结构体
+      class LaunchStandardEngineResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupNames: 标准引擎资源组名称
+        # @type EngineResourceGroupNames: Array
+
+        attr_accessor :EngineResourceGroupNames
+
+        def initialize(engineresourcegroupnames=nil)
+          @EngineResourceGroupNames = engineresourcegroupnames
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupNames = params['EngineResourceGroupNames']
+        end
+      end
+
+      # LaunchStandardEngineResourceGroups返回参数结构体
+      class LaunchStandardEngineResourceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param OperateEngineResourceGroupFailMessages: 批量操作资源组时，操作失败的资源组相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateEngineResourceGroupFailMessages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperateEngineResourceGroupFailMessages, :RequestId
+
+        def initialize(operateengineresourcegroupfailmessages=nil, requestid=nil)
+          @OperateEngineResourceGroupFailMessages = operateengineresourcegroupfailmessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OperateEngineResourceGroupFailMessages'].nil?
+            @OperateEngineResourceGroupFailMessages = []
+            params['OperateEngineResourceGroupFailMessages'].each do |i|
+              operateengineresourcegroupfailmessage_tmp = OperateEngineResourceGroupFailMessage.new
+              operateengineresourcegroupfailmessage_tmp.deserialize(i)
+              @OperateEngineResourceGroupFailMessages << operateengineresourcegroupfailmessage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -11008,6 +12172,26 @@ module TencentCloud
         end
       end
 
+      # 操作资源组，返回的操作失败信息
+      class OperateEngineResourceGroupFailMessage < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 引擎资源组名称
+        # @type EngineResourceGroupName: String
+        # @param FailMessage: 操作失败的提示信息
+        # @type FailMessage: String
+
+        attr_accessor :EngineResourceGroupName, :FailMessage
+
+        def initialize(engineresourcegroupname=nil, failmessage=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+          @FailMessage = failmessage
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          @FailMessage = params['FailMessage']
+        end
+      end
+
       # 数据优化引擎信息
       class OptimizerEngineInfo < TencentCloud::Common::AbstractModel
         # @param HouseName: 引擎资源名称
@@ -11103,6 +12287,30 @@ module TencentCloud
         end
       end
 
+      # 对指定参数的更新、增加、删除
+      class Param < TencentCloud::Common::AbstractModel
+        # @param ConfigItem: 参数key，例如：
+        # @type ConfigItem: String
+        # @param ConfigValue: 参数值
+        # @type ConfigValue: String
+        # @param Operate: 下发操作，支持：ADD、DELETE、MODIFY
+        # @type Operate: String
+
+        attr_accessor :ConfigItem, :ConfigValue, :Operate
+
+        def initialize(configitem=nil, configvalue=nil, operate=nil)
+          @ConfigItem = configitem
+          @ConfigValue = configvalue
+          @Operate = operate
+        end
+
+        def deserialize(params)
+          @ConfigItem = params['ConfigItem']
+          @ConfigValue = params['ConfigValue']
+          @Operate = params['Operate']
+        end
+      end
+
       # 数据表分块信息。
       class Partition < TencentCloud::Common::AbstractModel
         # @param Name: 分区列名。
@@ -11137,6 +12345,50 @@ module TencentCloud
           @Transform = params['Transform']
           @TransformArgs = params['TransformArgs']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # PauseStandardEngineResourceGroups请求参数结构体
+      class PauseStandardEngineResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupNames: 标准引擎资源组名称
+        # @type EngineResourceGroupNames: Array
+
+        attr_accessor :EngineResourceGroupNames
+
+        def initialize(engineresourcegroupnames=nil)
+          @EngineResourceGroupNames = engineresourcegroupnames
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupNames = params['EngineResourceGroupNames']
+        end
+      end
+
+      # PauseStandardEngineResourceGroups返回参数结构体
+      class PauseStandardEngineResourceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param OperateEngineResourceGroupFailMessages: 批量操作资源组时，操作失败的资源组相关信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateEngineResourceGroupFailMessages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OperateEngineResourceGroupFailMessages, :RequestId
+
+        def initialize(operateengineresourcegroupfailmessages=nil, requestid=nil)
+          @OperateEngineResourceGroupFailMessages = operateengineresourcegroupfailmessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OperateEngineResourceGroupFailMessages'].nil?
+            @OperateEngineResourceGroupFailMessages = []
+            params['OperateEngineResourceGroupFailMessages'].each do |i|
+              operateengineresourcegroupfailmessage_tmp = OperateEngineResourceGroupFailMessage.new
+              operateengineresourcegroupfailmessage_tmp.deserialize(i)
+              @OperateEngineResourceGroupFailMessages << operateengineresourcegroupfailmessage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12382,6 +13634,321 @@ module TencentCloud
         end
       end
 
+      # spark session详细信息
+      class SparkSessionInfo < TencentCloud::Common::AbstractModel
+        # @param SparkSessionId: spark session id
+        # @type SparkSessionId: String
+        # @param SparkSessionName: spark session名称
+        # @type SparkSessionName: String
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
+        # @param EngineSessionId: engine session id
+        # @type EngineSessionId: String
+        # @param EngineSessionName: engine session
+        # name
+        # @type EngineSessionName: String
+        # @param IdleTimeoutMin: 自动销毁时间
+        # @type IdleTimeoutMin: Integer
+        # @param DriverSpec: driver规格
+        # @type DriverSpec: String
+        # @param ExecutorSpec: executor规格
+        # @type ExecutorSpec: String
+        # @param ExecutorNumMin: executor最小数量
+        # @type ExecutorNumMin: Integer
+        # @param ExecutorNumMax: executor最大数量
+        # @type ExecutorNumMax: Integer
+        # @param TotalSpecMin: 总规格最小
+        # @type TotalSpecMin: Integer
+        # @param TotalSpecMax: 总规格最大
+        # @type TotalSpecMax: Integer
+
+        attr_accessor :SparkSessionId, :SparkSessionName, :ResourceGroupId, :EngineSessionId, :EngineSessionName, :IdleTimeoutMin, :DriverSpec, :ExecutorSpec, :ExecutorNumMin, :ExecutorNumMax, :TotalSpecMin, :TotalSpecMax
+
+        def initialize(sparksessionid=nil, sparksessionname=nil, resourcegroupid=nil, enginesessionid=nil, enginesessionname=nil, idletimeoutmin=nil, driverspec=nil, executorspec=nil, executornummin=nil, executornummax=nil, totalspecmin=nil, totalspecmax=nil)
+          @SparkSessionId = sparksessionid
+          @SparkSessionName = sparksessionname
+          @ResourceGroupId = resourcegroupid
+          @EngineSessionId = enginesessionid
+          @EngineSessionName = enginesessionname
+          @IdleTimeoutMin = idletimeoutmin
+          @DriverSpec = driverspec
+          @ExecutorSpec = executorspec
+          @ExecutorNumMin = executornummin
+          @ExecutorNumMax = executornummax
+          @TotalSpecMin = totalspecmin
+          @TotalSpecMax = totalspecmax
+        end
+
+        def deserialize(params)
+          @SparkSessionId = params['SparkSessionId']
+          @SparkSessionName = params['SparkSessionName']
+          @ResourceGroupId = params['ResourceGroupId']
+          @EngineSessionId = params['EngineSessionId']
+          @EngineSessionName = params['EngineSessionName']
+          @IdleTimeoutMin = params['IdleTimeoutMin']
+          @DriverSpec = params['DriverSpec']
+          @ExecutorSpec = params['ExecutorSpec']
+          @ExecutorNumMin = params['ExecutorNumMin']
+          @ExecutorNumMax = params['ExecutorNumMax']
+          @TotalSpecMin = params['TotalSpecMin']
+          @TotalSpecMax = params['TotalSpecMax']
+        end
+      end
+
+      # 节点规格信息
+      class SpecInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 规格名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Cu: 当前规格的cu数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cu: Integer
+        # @param Cpu: 当前规格的cpu数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: 当前规格的内存数，单位G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+
+        attr_accessor :Name, :Cu, :Cpu, :Memory
+
+        def initialize(name=nil, cu=nil, cpu=nil, memory=nil)
+          @Name = name
+          @Cu = cu
+          @Cpu = cpu
+          @Memory = memory
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Cu = params['Cu']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+        end
+      end
+
+      # 标准引擎资源组，配置相关信息
+      class StandardEngineResourceGroupConfigInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 引擎资源组 ID
+        # @type ResourceGroupId: String
+        # @param DataEngineId: 引擎ID
+        # @type DataEngineId: String
+        # @param StaticConfigPairs: 资源组静态参数，需要重启资源组生效
+        # @type StaticConfigPairs: Array
+        # @param DynamicConfigPairs: 资源组动态参数，下一个任务生效。
+        # @type DynamicConfigPairs: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :ResourceGroupId, :DataEngineId, :StaticConfigPairs, :DynamicConfigPairs, :CreateTime, :UpdateTime
+
+        def initialize(resourcegroupid=nil, dataengineid=nil, staticconfigpairs=nil, dynamicconfigpairs=nil, createtime=nil, updatetime=nil)
+          @ResourceGroupId = resourcegroupid
+          @DataEngineId = dataengineid
+          @StaticConfigPairs = staticconfigpairs
+          @DynamicConfigPairs = dynamicconfigpairs
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @DataEngineId = params['DataEngineId']
+          unless params['StaticConfigPairs'].nil?
+            @StaticConfigPairs = []
+            params['StaticConfigPairs'].each do |i|
+              engineresourcegroupconfigpair_tmp = EngineResourceGroupConfigPair.new
+              engineresourcegroupconfigpair_tmp.deserialize(i)
+              @StaticConfigPairs << engineresourcegroupconfigpair_tmp
+            end
+          end
+          unless params['DynamicConfigPairs'].nil?
+            @DynamicConfigPairs = []
+            params['DynamicConfigPairs'].each do |i|
+              engineresourcegroupconfigpair_tmp = EngineResourceGroupConfigPair.new
+              engineresourcegroupconfigpair_tmp.deserialize(i)
+              @DynamicConfigPairs << engineresourcegroupconfigpair_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 用户标准引擎资源组信息
+      class StandardEngineResourceGroupInfo < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupId: 标准引擎资源组ID
+        # @type EngineResourceGroupId: String
+        # @param EngineResourceGroupName: 标准引擎资源组名称，支持1-50个英文、汉字、数字、连接线-或下划线_
+        # @type EngineResourceGroupName: String
+        # @param Creator: 创建者
+        # @type Creator: String
+        # @param ResourceGroupState: 资源组 状态，-1--删除、0--启动中、2--运行、3--暂停、4--暂停中、7--切换引擎中、8--配置修改中。9--资源组重启中，10--因为变配导致资源组启动、11--因为隔离导致资源组挂起、12- 资源配置下发中、 13-接入点隔离导致资源组挂起中
+        # @type ResourceGroupState: Integer
+        # @param AutoLaunch: 自动启动，（任务提交自动拉起资源组）0-自动启动，1-不自动启动
+        # @type AutoLaunch: Integer
+        # @param AutoPause: 自动挂起资源组。0-自动挂起，1-不自动挂起
+        # @type AutoPause: Integer
+        # @param AutoPauseTime: 自动挂起时间，单位分钟，取值范围在1-999（在无任务AutoPauseTime后，资源组自动挂起）
+        # @type AutoPauseTime: Integer
+        # @param DriverCuSpec: driver的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type DriverCuSpec: String
+        # @param ExecutorCuSpec: executor的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type ExecutorCuSpec: String
+        # @param MaxConcurrency: 任务并发数
+        # @type MaxConcurrency: Integer
+        # @param MinExecutorNums: executor最小数量，
+        # @type MinExecutorNums: Integer
+        # @param MaxExecutorNums: executor最大数量，
+        # @type MaxExecutorNums: Integer
+        # @param CreateTime: 创建时间戳
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间戳
+        # @type UpdateTime: Integer
+        # @param NeedRestart: 是否待重启，作为有资源参数，静态参数修改未重启生效的标识；0-- 不需要重启、1--因为资源参数待重启、2--因静态参数重启、3--因资源和静态参数而待重启、4--因网络配置而待重启、5--因网络配置和资源配置而待重启、6--因网络配置和静态参数而待重启、7--因网络配置，资源参数和静态参数而待重启、
+        # @type NeedRestart: Integer
+        # @param DataEngineName: 绑定的引擎名称
+        # @type DataEngineName: String
+        # @param DataEngineId: 绑定的引擎ID
+        # @type DataEngineId: String
+        # @param DataEngineState: 绑定的引擎状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineState: Integer
+        # @param AccessPointId: 接入点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointId: String
+        # @param AccessPointName: 接入点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointName: String
+        # @param AccessPointState: 接入点状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessPointState: Integer
+        # @param ResourceGroupType: 资源组类型，console/ default
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupType: String
+        # @param EngineNetworkId: 引擎网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkId: String
+        # @param NetworkConfigNames: 网络配置名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkConfigNames: Array
+        # @param FrameType: AI类型资源组的框架类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameType: String
+        # @param ImageType: AI类型资源组的镜像类型，内置：bulit-in，自定义：custom
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageType: String
+        # @param ImageName: 镜像名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageName: String
+        # @param ImageVersion: 镜像id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageVersion: String
+        # @param Size: AI资源组的可用资源上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param IsDefault: 是否是默认资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDefault: Boolean
+        # @param ResourceGroupScene: 资源组场景
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupScene: String
+        # @param PythonCuSpec: python类型资源组python单机节点资源上限，该值要小于资源组的资源上限.small:1cu medium:2cu large:4cu xlarge:8cu 4xlarge:16cu 8xlarge:32cu 16xlarge:64cu，如果是高内存型资源，在类型前面加上m.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PythonCuSpec: String
+        # @param SparkSpecMode: Spark类型资源组资源配置模式，fast：快速模式，custom：自定义模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkSpecMode: String
+        # @param SparkSize: Spark类型资源组资源上限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkSize: Integer
+        # @param SparkMinSize: Spark类型资源组资源最小值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkMinSize: Integer
+
+        attr_accessor :EngineResourceGroupId, :EngineResourceGroupName, :Creator, :ResourceGroupState, :AutoLaunch, :AutoPause, :AutoPauseTime, :DriverCuSpec, :ExecutorCuSpec, :MaxConcurrency, :MinExecutorNums, :MaxExecutorNums, :CreateTime, :UpdateTime, :NeedRestart, :DataEngineName, :DataEngineId, :DataEngineState, :AccessPointId, :AccessPointName, :AccessPointState, :ResourceGroupType, :EngineNetworkId, :NetworkConfigNames, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :IsDefault, :ResourceGroupScene, :PythonCuSpec, :SparkSpecMode, :SparkSize, :SparkMinSize
+
+        def initialize(engineresourcegroupid=nil, engineresourcegroupname=nil, creator=nil, resourcegroupstate=nil, autolaunch=nil, autopause=nil, autopausetime=nil, drivercuspec=nil, executorcuspec=nil, maxconcurrency=nil, minexecutornums=nil, maxexecutornums=nil, createtime=nil, updatetime=nil, needrestart=nil, dataenginename=nil, dataengineid=nil, dataenginestate=nil, accesspointid=nil, accesspointname=nil, accesspointstate=nil, resourcegrouptype=nil, enginenetworkid=nil, networkconfignames=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, isdefault=nil, resourcegroupscene=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil, sparkminsize=nil)
+          @EngineResourceGroupId = engineresourcegroupid
+          @EngineResourceGroupName = engineresourcegroupname
+          @Creator = creator
+          @ResourceGroupState = resourcegroupstate
+          @AutoLaunch = autolaunch
+          @AutoPause = autopause
+          @AutoPauseTime = autopausetime
+          @DriverCuSpec = drivercuspec
+          @ExecutorCuSpec = executorcuspec
+          @MaxConcurrency = maxconcurrency
+          @MinExecutorNums = minexecutornums
+          @MaxExecutorNums = maxexecutornums
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @NeedRestart = needrestart
+          @DataEngineName = dataenginename
+          @DataEngineId = dataengineid
+          @DataEngineState = dataenginestate
+          @AccessPointId = accesspointid
+          @AccessPointName = accesspointname
+          @AccessPointState = accesspointstate
+          @ResourceGroupType = resourcegrouptype
+          @EngineNetworkId = enginenetworkid
+          @NetworkConfigNames = networkconfignames
+          @FrameType = frametype
+          @ImageType = imagetype
+          @ImageName = imagename
+          @ImageVersion = imageversion
+          @Size = size
+          @IsDefault = isdefault
+          @ResourceGroupScene = resourcegroupscene
+          @PythonCuSpec = pythoncuspec
+          @SparkSpecMode = sparkspecmode
+          @SparkSize = sparksize
+          @SparkMinSize = sparkminsize
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupId = params['EngineResourceGroupId']
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          @Creator = params['Creator']
+          @ResourceGroupState = params['ResourceGroupState']
+          @AutoLaunch = params['AutoLaunch']
+          @AutoPause = params['AutoPause']
+          @AutoPauseTime = params['AutoPauseTime']
+          @DriverCuSpec = params['DriverCuSpec']
+          @ExecutorCuSpec = params['ExecutorCuSpec']
+          @MaxConcurrency = params['MaxConcurrency']
+          @MinExecutorNums = params['MinExecutorNums']
+          @MaxExecutorNums = params['MaxExecutorNums']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @NeedRestart = params['NeedRestart']
+          @DataEngineName = params['DataEngineName']
+          @DataEngineId = params['DataEngineId']
+          @DataEngineState = params['DataEngineState']
+          @AccessPointId = params['AccessPointId']
+          @AccessPointName = params['AccessPointName']
+          @AccessPointState = params['AccessPointState']
+          @ResourceGroupType = params['ResourceGroupType']
+          @EngineNetworkId = params['EngineNetworkId']
+          @NetworkConfigNames = params['NetworkConfigNames']
+          @FrameType = params['FrameType']
+          @ImageType = params['ImageType']
+          @ImageName = params['ImageName']
+          @ImageVersion = params['ImageVersion']
+          @Size = params['Size']
+          @IsDefault = params['IsDefault']
+          @ResourceGroupScene = params['ResourceGroupScene']
+          @PythonCuSpec = params['PythonCuSpec']
+          @SparkSpecMode = params['SparkSpecMode']
+          @SparkSize = params['SparkSize']
+          @SparkMinSize = params['SparkMinSize']
+        end
+      end
+
       # statement信息
       class StatementInformation < TencentCloud::Common::AbstractModel
         # @param TaskId: SQL任务唯一ID
@@ -12795,10 +14362,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 7
-        deprecate :GovernPolicy=, :none, 2025, 7
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 7
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 7
+        deprecate :GovernPolicy, :none, 2025, 8
+        deprecate :GovernPolicy=, :none, 2025, 8
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 8
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 8
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename
@@ -13534,6 +15101,38 @@ module TencentCloud
         end
       end
 
+      # UnboundDatasourceHouse请求参数结构体
+      class UnboundDatasourceHouseRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkConnectionName: 网络配置名称
+        # @type NetworkConnectionName: String
+
+        attr_accessor :NetworkConnectionName
+
+        def initialize(networkconnectionname=nil)
+          @NetworkConnectionName = networkconnectionname
+        end
+
+        def deserialize(params)
+          @NetworkConnectionName = params['NetworkConnectionName']
+        end
+      end
+
+      # UnboundDatasourceHouse返回参数结构体
+      class UnboundDatasourceHouseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UnlockMetaData请求参数结构体
       class UnlockMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param LockId: 锁ID
@@ -13567,6 +15166,33 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 配置下发参数
+      class UpdateConfContext < TencentCloud::Common::AbstractModel
+        # @param ConfigType: 参数类型，可选：StaticConfigType，DynamicConfigType
+        # @type ConfigType: String
+        # @param Params: 参数的配置数组
+        # @type Params: Array
+
+        attr_accessor :ConfigType, :Params
+
+        def initialize(configtype=nil, params=nil)
+          @ConfigType = configtype
+          @Params = params
+        end
+
+        def deserialize(params)
+          @ConfigType = params['ConfigType']
+          unless params['Params'].nil?
+            @Params = []
+            params['Params'].each do |i|
+              param_tmp = Param.new
+              param_tmp.deserialize(i)
+              @Params << param_tmp
+            end
+          end
         end
       end
 
@@ -13708,6 +15334,82 @@ module TencentCloud
         end
       end
 
+      # UpdateEngineResourceGroupNetworkConfigInfo请求参数结构体
+      class UpdateEngineResourceGroupNetworkConfigInfoRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupId: 引擎资源组ID
+        # @type EngineResourceGroupId: String
+        # @param IsEffectiveNow: 是否立即重启资源组生效，0--立即生效，1--只保持不重启生效
+        # @type IsEffectiveNow: Integer
+        # @param NetworkConfigNames: 资源组绑定的网络配置名称集合
+        # @type NetworkConfigNames: Array
+
+        attr_accessor :EngineResourceGroupId, :IsEffectiveNow, :NetworkConfigNames
+
+        def initialize(engineresourcegroupid=nil, iseffectivenow=nil, networkconfignames=nil)
+          @EngineResourceGroupId = engineresourcegroupid
+          @IsEffectiveNow = iseffectivenow
+          @NetworkConfigNames = networkconfignames
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupId = params['EngineResourceGroupId']
+          @IsEffectiveNow = params['IsEffectiveNow']
+          @NetworkConfigNames = params['NetworkConfigNames']
+        end
+      end
+
+      # UpdateEngineResourceGroupNetworkConfigInfo返回参数结构体
+      class UpdateEngineResourceGroupNetworkConfigInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateNetworkConnection请求参数结构体
+      class UpdateNetworkConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkConnectionDesc: 网络配置描述
+        # @type NetworkConnectionDesc: String
+        # @param NetworkConnectionName: 网络配置名称
+        # @type NetworkConnectionName: String
+
+        attr_accessor :NetworkConnectionDesc, :NetworkConnectionName
+
+        def initialize(networkconnectiondesc=nil, networkconnectionname=nil)
+          @NetworkConnectionDesc = networkconnectiondesc
+          @NetworkConnectionName = networkconnectionname
+        end
+
+        def deserialize(params)
+          @NetworkConnectionDesc = params['NetworkConnectionDesc']
+          @NetworkConnectionName = params['NetworkConnectionName']
+        end
+      end
+
+      # UpdateNetworkConnection返回参数结构体
+      class UpdateNetworkConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateRowFilter请求参数结构体
       class UpdateRowFilterRequest < TencentCloud::Common::AbstractModel
         # @param PolicyId: 行过滤策略的id，此值可以通过DescribeUserInfo或者DescribeWorkGroupInfo接口获取
@@ -13733,6 +15435,199 @@ module TencentCloud
 
       # UpdateRowFilter返回参数结构体
       class UpdateRowFilterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupBaseInfo请求参数结构体
+      class UpdateStandardEngineResourceGroupBaseInfoRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 引擎资源组名称
+        # @type EngineResourceGroupName: String
+        # @param AutoLaunch: 自动启动，（任务提交自动拉起资源组）0-自动启动，1-不自动启动
+        # @type AutoLaunch: Integer
+        # @param AutoPause: 自动挂起资源组。0-自动挂起，1-不自动挂起
+        # @type AutoPause: Integer
+        # @param AutoPauseTime: 自动挂起时间，单位分钟，取值范围在1-999（在无任务AutoPauseTime后，资源组自动挂起）
+        # @type AutoPauseTime: Integer
+        # @param MaxConcurrency: 任务并发数
+        # @type MaxConcurrency: Integer
+
+        attr_accessor :EngineResourceGroupName, :AutoLaunch, :AutoPause, :AutoPauseTime, :MaxConcurrency
+
+        def initialize(engineresourcegroupname=nil, autolaunch=nil, autopause=nil, autopausetime=nil, maxconcurrency=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+          @AutoLaunch = autolaunch
+          @AutoPause = autopause
+          @AutoPauseTime = autopausetime
+          @MaxConcurrency = maxconcurrency
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          @AutoLaunch = params['AutoLaunch']
+          @AutoPause = params['AutoPause']
+          @AutoPauseTime = params['AutoPauseTime']
+          @MaxConcurrency = params['MaxConcurrency']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupBaseInfo返回参数结构体
+      class UpdateStandardEngineResourceGroupBaseInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupConfigInfo请求参数结构体
+      class UpdateStandardEngineResourceGroupConfigInfoRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 引擎资源组名称
+        # @type EngineResourceGroupName: String
+        # @param UpdateConfContext: 需要更新的配置
+        # @type UpdateConfContext: Array
+        # @param IsEffectiveNow: 是否立即重启资源组生效，0--立即生效，1--只保持不重启生效
+        # @type IsEffectiveNow: Integer
+
+        attr_accessor :EngineResourceGroupName, :UpdateConfContext, :IsEffectiveNow
+
+        def initialize(engineresourcegroupname=nil, updateconfcontext=nil, iseffectivenow=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+          @UpdateConfContext = updateconfcontext
+          @IsEffectiveNow = iseffectivenow
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          unless params['UpdateConfContext'].nil?
+            @UpdateConfContext = []
+            params['UpdateConfContext'].each do |i|
+              updateconfcontext_tmp = UpdateConfContext.new
+              updateconfcontext_tmp.deserialize(i)
+              @UpdateConfContext << updateconfcontext_tmp
+            end
+          end
+          @IsEffectiveNow = params['IsEffectiveNow']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupConfigInfo返回参数结构体
+      class UpdateStandardEngineResourceGroupConfigInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupResourceInfo请求参数结构体
+      class UpdateStandardEngineResourceGroupResourceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param EngineResourceGroupName: 引擎资源组名称
+        # @type EngineResourceGroupName: String
+        # @param DriverCuSpec: driver的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type DriverCuSpec: String
+        # @param ExecutorCuSpec: executor的cu规格：
+        # 当前支持：small（默认，1cu）、medium（2cu）、large（4cu）、xlarge（8cu），内存型cu为cpu：men=1:8，m.small（1cu内存型）、m.medium（2cu内存型）、m.large（4cu内存型）、m.xlarge（8cu内存型）
+        # @type ExecutorCuSpec: String
+        # @param MinExecutorNums: executor最小数量，
+        # @type MinExecutorNums: Integer
+        # @param MaxExecutorNums: executor最大数量
+        # @type MaxExecutorNums: Integer
+        # @param IsEffectiveNow: 是否立即重启资源组生效，0--立即生效，1--只保持不重启生效
+        # @type IsEffectiveNow: Integer
+        # @param Size: AI资源组资源上限
+        # @type Size: Integer
+        # @param ImageType: 镜像类型，内置镜像：built-in，自定义镜像：custom
+        # @type ImageType: String
+        # @param ImageName: 镜像名称
+        # @type ImageName: String
+        # @param ImageVersion: 镜像版本，镜像id
+        # @type ImageVersion: String
+        # @param FrameType: 框架类型
+        # @type FrameType: String
+        # @param PublicDomain: 自定义镜像域名
+        # @type PublicDomain: String
+        # @param RegistryId: 自定义镜像实例id
+        # @type RegistryId: String
+        # @param RegionName: 自定义镜像所属地域
+        # @type RegionName: String
+        # @param PythonCuSpec: python类型资源组python单机节点资源上限，该值要小于资源组的资源上限.small:1cu medium:2cu large:4cu xlarge:8cu 4xlarge:16cu 8xlarge:32cu 16xlarge:64cu，如果是高内存型资源，在类型前面加上m.
+        # @type PythonCuSpec: String
+        # @param SparkSpecMode: 仅SQL资源组资源配置模式，fast：快速模式，custom：自定义模式
+        # @type SparkSpecMode: String
+        # @param SparkSize: 仅SQL资源组资源上限，仅用于快速模式
+        # @type SparkSize: Integer
+
+        attr_accessor :EngineResourceGroupName, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsEffectiveNow, :Size, :ImageType, :ImageName, :ImageVersion, :FrameType, :PublicDomain, :RegistryId, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize
+
+        def initialize(engineresourcegroupname=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, iseffectivenow=nil, size=nil, imagetype=nil, imagename=nil, imageversion=nil, frametype=nil, publicdomain=nil, registryid=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil)
+          @EngineResourceGroupName = engineresourcegroupname
+          @DriverCuSpec = drivercuspec
+          @ExecutorCuSpec = executorcuspec
+          @MinExecutorNums = minexecutornums
+          @MaxExecutorNums = maxexecutornums
+          @IsEffectiveNow = iseffectivenow
+          @Size = size
+          @ImageType = imagetype
+          @ImageName = imagename
+          @ImageVersion = imageversion
+          @FrameType = frametype
+          @PublicDomain = publicdomain
+          @RegistryId = registryid
+          @RegionName = regionname
+          @PythonCuSpec = pythoncuspec
+          @SparkSpecMode = sparkspecmode
+          @SparkSize = sparksize
+        end
+
+        def deserialize(params)
+          @EngineResourceGroupName = params['EngineResourceGroupName']
+          @DriverCuSpec = params['DriverCuSpec']
+          @ExecutorCuSpec = params['ExecutorCuSpec']
+          @MinExecutorNums = params['MinExecutorNums']
+          @MaxExecutorNums = params['MaxExecutorNums']
+          @IsEffectiveNow = params['IsEffectiveNow']
+          @Size = params['Size']
+          @ImageType = params['ImageType']
+          @ImageName = params['ImageName']
+          @ImageVersion = params['ImageVersion']
+          @FrameType = params['FrameType']
+          @PublicDomain = params['PublicDomain']
+          @RegistryId = params['RegistryId']
+          @RegionName = params['RegionName']
+          @PythonCuSpec = params['PythonCuSpec']
+          @SparkSpecMode = params['SparkSpecMode']
+          @SparkSize = params['SparkSize']
+        end
+      end
+
+      # UpdateStandardEngineResourceGroupResourceInfo返回参数结构体
+      class UpdateStandardEngineResourceGroupResourceInfoResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14086,6 +15981,43 @@ module TencentCloud
           end
           @PermissionJson = params['PermissionJson']
           @IsDefault = params['IsDefault']
+        end
+      end
+
+      # 用户vpc网络连接信息
+      class UserVpcConnectionInfo < TencentCloud::Common::AbstractModel
+        # @param EngineNetworkId: 引擎网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineNetworkId: String
+        # @param UserVpcId: 用户vpcid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserVpcId: String
+        # @param UserVpcEndpointId: 用户终端节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserVpcEndpointId: String
+        # @param UserVpcEndpointName: 用户终端节点名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserVpcEndpointName: String
+        # @param AccessConnectionInfos: 接入点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessConnectionInfos: Array
+
+        attr_accessor :EngineNetworkId, :UserVpcId, :UserVpcEndpointId, :UserVpcEndpointName, :AccessConnectionInfos
+
+        def initialize(enginenetworkid=nil, uservpcid=nil, uservpcendpointid=nil, uservpcendpointname=nil, accessconnectioninfos=nil)
+          @EngineNetworkId = enginenetworkid
+          @UserVpcId = uservpcid
+          @UserVpcEndpointId = uservpcendpointid
+          @UserVpcEndpointName = uservpcendpointname
+          @AccessConnectionInfos = accessconnectioninfos
+        end
+
+        def deserialize(params)
+          @EngineNetworkId = params['EngineNetworkId']
+          @UserVpcId = params['UserVpcId']
+          @UserVpcEndpointId = params['UserVpcEndpointId']
+          @UserVpcEndpointName = params['UserVpcEndpointName']
+          @AccessConnectionInfos = params['AccessConnectionInfos']
         end
       end
 

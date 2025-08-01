@@ -2001,9 +2001,9 @@ module TencentCloud
 
       # DescribeCfsSnapshots请求参数结构体
       class DescribeCfsSnapshotsRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统ID
+        # @param FileSystemId: 文件系统 ID，通过查询文件系统 [DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170) 获取
         # @type FileSystemId: String
-        # @param SnapshotId: 快照ID
+        # @param SnapshotId: 快照 ID
         # @type SnapshotId: String
         # @param Offset: 分页起始位置，默认为0
         # @type Offset: Integer
@@ -2014,14 +2014,13 @@ module TencentCloud
         # <br>SnapshotName - Array of String - 是否必填：否 -（过滤条件）按照快照名称过滤。
         # <br>FileSystemId - Array of String - 是否必填：否 -（过滤条件）按文件系统ID过滤。
         # <br>FsName - Array of String - 是否必填：否 -（过滤条件）按文件系统名过滤。
-        # <br>Status - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤
-        # (creating：创建中 | available：运行中| deleting: 删除中 | rollbacking_new：由快照创建新文件系统中| create-failed 创建失败）
+        # <br>Status - Array of String - 是否必填：否 -（过滤条件）按照快照状态过滤。状态分类：creating：创建中 | available：运行中 | deleting：删除中 | rollbacking_new：由快照创建新文件系统中 | create-failed：创建失败。
         # <br>tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键进行过滤。
-        # <br>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。
+        # <br>tag:tag-key - Array of String - 是否必填：否 -（过滤条件）按照标签键值对进行过滤。 tag-key 使用具体的标签键进行替换。
         # @type Filters: Array
         # @param OrderField: 按创建时间排序取值
         # @type OrderField: String
-        # @param Order: 排序 升序或者降序
+        # @param Order: 排序；升序或者降序
         # @type Order: String
 
         attr_accessor :FileSystemId, :SnapshotId, :Offset, :Limit, :Filters, :OrderField, :Order
@@ -3568,7 +3567,7 @@ module TencentCloud
         # @type SnapshotName: String
         # @param SnapshotId: 快照ID
         # @type SnapshotId: String
-        # @param Status: 快照状态，createing-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败
+        # @param Status: 快照状态，creating-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败
         # @type Status: String
         # @param RegionName: 地域名称
         # @type RegionName: String
@@ -3588,10 +3587,10 @@ module TencentCloud
         # @type FsName: String
         # @param Tags: 快照标签
         # @type Tags: Array
-        # @param SnapshotType: 快照类型, general为通用系列快照，turbo为Turbo系列快照
+        # @param SnapshotType: 快照类型，general为通用系列快照，turbo为Turbo系列快照
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotType: String
-        # @param SnapshotTime: 实际快照时间，反应快照对应文件系统某个时刻的数据。
+        # @param SnapshotTime: 实际快照时间，反映快照对应文件系统某个时刻的数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotTime: String
 

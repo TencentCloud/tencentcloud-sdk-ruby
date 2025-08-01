@@ -6456,8 +6456,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 7
-        deprecate :Containers=, :none, 2025, 7
+        deprecate :Containers, :none, 2025, 8
+        deprecate :Containers=, :none, 2025, 8
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil)
           @Name = name
@@ -7244,15 +7244,17 @@ module TencentCloud
         # @param MonitorSource: 用于监控查询的Source
         # 枚举值，部分情况下与CreateSource不同，通过该字段兼容
         # @type MonitorSource: String
+        # @param SubUinName: 服务创建者的子账号名称
+        # @type SubUinName: String
 
-        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource
+        attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 7
-        deprecate :ServiceLimit=, :none, 2025, 7
-        deprecate :ScheduledAction, :none, 2025, 7
-        deprecate :ScheduledAction=, :none, 2025, 7
+        deprecate :ServiceLimit, :none, 2025, 8
+        deprecate :ServiceLimit=, :none, 2025, 8
+        deprecate :ScheduledAction, :none, 2025, 8
+        deprecate :ScheduledAction=, :none, 2025, 8
 
-        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil)
+        def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil)
           @ServiceGroupId = servicegroupid
           @ServiceId = serviceid
           @ServiceGroupName = servicegroupname
@@ -7287,6 +7289,7 @@ module TencentCloud
           @DeployType = deploytype
           @InstancePerReplicas = instanceperreplicas
           @MonitorSource = monitorsource
+          @SubUinName = subuinname
         end
 
         def deserialize(params)
@@ -7340,6 +7343,7 @@ module TencentCloud
           @DeployType = params['DeployType']
           @InstancePerReplicas = params['InstancePerReplicas']
           @MonitorSource = params['MonitorSource']
+          @SubUinName = params['SubUinName']
         end
       end
 
@@ -7776,10 +7780,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 7
-        deprecate :PodList=, :none, 2025, 7
-        deprecate :Pods, :none, 2025, 7
-        deprecate :Pods=, :none, 2025, 7
+        deprecate :PodList, :none, 2025, 8
+        deprecate :PodList=, :none, 2025, 8
+        deprecate :Pods, :none, 2025, 8
+        deprecate :Pods=, :none, 2025, 8
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil)
           @Replicas = replicas
@@ -9033,8 +9037,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 7
-        deprecate :StatefulSetCondition=, :none, 2025, 7
+        deprecate :StatefulSetCondition, :none, 2025, 8
+        deprecate :StatefulSetCondition=, :none, 2025, 8
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

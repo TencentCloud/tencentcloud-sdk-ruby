@@ -504,15 +504,18 @@ module TencentCloud
         # @param FailedPages: 失败的页码。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FailedPages: Array
+        # @param Usage: 消耗页数
+        # @type Usage: :class:`Tencentcloud::Es.v20250101.models.PageUsage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DocumentParseResultUrl, :FailedPages, :RequestId
+        attr_accessor :Status, :DocumentParseResultUrl, :FailedPages, :Usage, :RequestId
 
-        def initialize(status=nil, documentparseresulturl=nil, failedpages=nil, requestid=nil)
+        def initialize(status=nil, documentparseresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
           @Status = status
           @DocumentParseResultUrl = documentparseresulturl
           @FailedPages = failedpages
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -520,6 +523,10 @@ module TencentCloud
           @Status = params['Status']
           @DocumentParseResultUrl = params['DocumentParseResultUrl']
           @FailedPages = params['FailedPages']
+          unless params['Usage'].nil?
+            @Usage = PageUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -635,6 +642,22 @@ module TencentCloud
           @Role = params['Role']
           @Content = params['Content']
           @ReasoningContent = params['ReasoningContent']
+        end
+      end
+
+      # 消耗页数
+      class PageUsage < TencentCloud::Common::AbstractModel
+        # @param TotalPages: 消耗总页数
+        # @type TotalPages: Integer
+
+        attr_accessor :TotalPages
+
+        def initialize(totalpages=nil)
+          @TotalPages = totalpages
+        end
+
+        def deserialize(params)
+          @TotalPages = params['TotalPages']
         end
       end
 
@@ -758,15 +781,18 @@ module TencentCloud
         # @type DocumentParseResultUrl: String
         # @param FailedPages: 失败页码。
         # @type FailedPages: Array
+        # @param Usage: 消耗页数
+        # @type Usage: :class:`Tencentcloud::Es.v20250101.models.PageUsage`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
         # @type RequestId: String
 
-        attr_accessor :Progress, :DocumentParseResultUrl, :FailedPages, :RequestId
+        attr_accessor :Progress, :DocumentParseResultUrl, :FailedPages, :Usage, :RequestId
 
-        def initialize(progress=nil, documentparseresulturl=nil, failedpages=nil, requestid=nil)
+        def initialize(progress=nil, documentparseresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
           @Progress = progress
           @DocumentParseResultUrl = documentparseresulturl
           @FailedPages = failedpages
+          @Usage = usage
           @RequestId = requestid
         end
 
@@ -774,6 +800,10 @@ module TencentCloud
           @Progress = params['Progress']
           @DocumentParseResultUrl = params['DocumentParseResultUrl']
           @FailedPages = params['FailedPages']
+          unless params['Usage'].nil?
+            @Usage = PageUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
           @RequestId = params['RequestId']
         end
       end

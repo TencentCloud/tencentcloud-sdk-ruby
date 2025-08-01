@@ -1680,7 +1680,7 @@ module TencentCloud
 
       # 投递日志的内容格式配置
       class ContentInfo < TencentCloud::Common::AbstractModel
-        # @param Format: 内容格式，支持json、csv
+        # @param Format: 内容格式，支持json，csv，parquet
         # @type Format: String
         # @param Csv: csv格式内容描述
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1981,8 +1981,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 7
-        deprecate :Enable=, :none, 2025, 7
+        deprecate :Enable, :none, 2025, 8
+        deprecate :Enable=, :none, 2025, 8
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2305,8 +2305,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 7
-        deprecate :LogFormat=, :none, 2025, 7
+        deprecate :LogFormat, :none, 2025, 8
+        deprecate :LogFormat=, :none, 2025, 8
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -7672,6 +7672,11 @@ module TencentCloud
         # @param EnableTag: 启用标志
         # @type EnableTag: Boolean
         # @param MetaFields: 元数据信息列表, 可选值为 __SOURCE__、__FILENAME__、__TIMESTAMP__、__HOSTNAME__。
+
+        # - __SOURCE__：日志采集的源 IP，示例：10.0.1.2
+        # - __FILENAME__：日志采集的文件名，示例：/data/log/nginx/access.log
+        # - __TIMESTAMP__：日志时间戳（毫秒级别 Unix 时间戳），按时间范围检索日志时，将自动使用该时间对日志进行检索，在控制台显示为“日志时间”，示例：1640005601188
+        # - __HOSTNAME__：日志来源机器名称，需使用2.7.4及以上版本的 Loglistener 才会采集该字段，示例：localhost
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MetaFields: Array
         # @param JsonType: 投递Json格式，0：字符串方式投递；1:以结构化方式投递
@@ -8613,8 +8618,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 7
-        deprecate :Enable=, :none, 2025, 7
+        deprecate :Enable, :none, 2025, 8
+        deprecate :Enable=, :none, 2025, 8
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -8897,8 +8902,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 7
-        deprecate :LogFormat=, :none, 2025, 7
+        deprecate :LogFormat, :none, 2025, 8
+        deprecate :LogFormat=, :none, 2025, 8
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -10663,8 +10668,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 7
-        deprecate :DstTopicName=, :none, 2025, 7
+        deprecate :DstTopicName, :none, 2025, 8
+        deprecate :DstTopicName=, :none, 2025, 8
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -11632,7 +11637,11 @@ module TencentCloud
         # @type StartTime: Integer
         # @param EndTime: 本次投递任务的结束时间戳， 毫秒
         # @type EndTime: Integer
-        # @param Status: 本次投递的结果，"success","running","failed"
+        # @param Status: 本次投递的结果。"success"，"running"，"failed"
+
+        # - success：任务成功。
+        # - running：任务处理中。
+        # - failed：任务失败。
         # @type Status: String
         # @param Message: 结果的详细信息
         # @type Message: String
@@ -11931,8 +11940,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 7
-        deprecate :HashKey=, :none, 2025, 7
+        deprecate :HashKey, :none, 2025, 8
+        deprecate :HashKey=, :none, 2025, 8
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -12040,10 +12049,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 7
-        deprecate :Headers=, :none, 2025, 7
-        deprecate :Body, :none, 2025, 7
-        deprecate :Body=, :none, 2025, 7
+        deprecate :Headers, :none, 2025, 8
+        deprecate :Headers=, :none, 2025, 8
+        deprecate :Body, :none, 2025, 8
+        deprecate :Body=, :none, 2025, 8
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

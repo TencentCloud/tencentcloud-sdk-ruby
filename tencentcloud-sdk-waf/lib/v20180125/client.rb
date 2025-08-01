@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加规则引擎白名单
+
+        # @param request: Request instance for CreateOwaspWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateOwaspWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateOwaspWhiteRuleResponse`
+        def CreateOwaspWhiteRule(request)
+          body = send_request('CreateOwaspWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOwaspWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建CKafka投递流任务
 
         # @param request: Request instance for CreatePostCKafkaFlow.
@@ -711,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteIpAccessControlV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户规则引擎白名单
+
+        # @param request: Request instance for DeleteOwaspWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteOwaspWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteOwaspWhiteRuleResponse`
+        def DeleteOwaspWhiteRule(request)
+          body = send_request('DeleteOwaspWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOwaspWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1815,6 +1863,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeObjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取规则引擎白名单列表
+
+        # @param request: Request instance for DescribeOwaspWhiteRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeOwaspWhiteRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeOwaspWhiteRulesResponse`
+        def DescribeOwaspWhiteRules(request)
+          body = send_request('DescribeOwaspWhiteRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOwaspWhiteRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3450,6 +3522,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyObjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 编辑规则引擎白名单
+
+        # @param request: Request instance for ModifyOwaspWhiteRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspWhiteRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspWhiteRuleResponse`
+        def ModifyOwaspWhiteRule(request)
+          body = send_request('ModifyOwaspWhiteRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspWhiteRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

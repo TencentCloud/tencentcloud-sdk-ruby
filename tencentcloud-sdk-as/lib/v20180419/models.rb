@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 7
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 7
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 8
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 8
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2746,8 +2746,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 7
-        deprecate :AutomationService=, :none, 2025, 7
+        deprecate :AutomationService, :none, 2025, 8
+        deprecate :AutomationService=, :none, 2025, 8
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3299,7 +3299,7 @@ module TencentCloud
         # @param BandwidthPackageId: 带宽包ID。可通过[DescribeBandwidthPackages](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BandwidthPackageId: String
-        # @param InternetServiceProvider: 线路类型。各种线路类型详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：BGP。
+        # @param InternetServiceProvider: 线路类型。各种线路类型及支持地区详情可参考：[EIP 的 IP 地址类型](https://cloud.tencent.com/document/product/1199/41646)。默认值：BGP。
 
         # <li>BGP：常规 BGP 线路</li>
         # 已开通静态单线IP白名单的用户，可选值：

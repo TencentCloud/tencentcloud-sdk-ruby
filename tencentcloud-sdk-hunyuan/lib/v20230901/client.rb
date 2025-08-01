@@ -466,30 +466,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询混元生3D任务
-
-        # @param request: Request instance for QueryHunyuanTo3DJob.
-        # @type request: :class:`Tencentcloud::hunyuan::V20230901::QueryHunyuanTo3DJobRequest`
-        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::QueryHunyuanTo3DJobResponse`
-        def QueryHunyuanTo3DJob(request)
-          body = send_request('QueryHunyuanTo3DJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = QueryHunyuanTo3DJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 腾讯混元大模型是由腾讯研发的大语言模型，具备强大的中文创作能力，复杂语境下的逻辑推理能力，以及可靠的任务执行能力。本接口支持流式或非流式调用，当使用流式调用时为 SSE 协议。
 
         #  1. 本接口暂不支持返回图片内容。
@@ -583,30 +559,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitHunyuanImageJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 提交混元生3D任务
-
-        # @param request: Request instance for SubmitHunyuanTo3DJob.
-        # @type request: :class:`Tencentcloud::hunyuan::V20230901::SubmitHunyuanTo3DJobRequest`
-        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::SubmitHunyuanTo3DJobResponse`
-        def SubmitHunyuanTo3DJob(request)
-          body = send_request('SubmitHunyuanTo3DJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SubmitHunyuanTo3DJobResponse.new
             model.deserialize(response['Response'])
             model
           else

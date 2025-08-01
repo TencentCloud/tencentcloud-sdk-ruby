@@ -11557,14 +11557,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2025, 7
-        deprecate :AlarmNotifyPeriod=, :none, 2025, 7
-        deprecate :AlarmNotifyType, :none, 2025, 7
-        deprecate :AlarmNotifyType=, :none, 2025, 7
-        deprecate :EventID, :none, 2025, 7
-        deprecate :EventID=, :none, 2025, 7
-        deprecate :RuleID, :none, 2025, 7
-        deprecate :RuleID=, :none, 2025, 7
+        deprecate :AlarmNotifyPeriod, :none, 2025, 8
+        deprecate :AlarmNotifyPeriod=, :none, 2025, 8
+        deprecate :AlarmNotifyType, :none, 2025, 8
+        deprecate :AlarmNotifyType=, :none, 2025, 8
+        deprecate :EventID, :none, 2025, 8
+        deprecate :EventID=, :none, 2025, 8
+        deprecate :RuleID, :none, 2025, 8
+        deprecate :RuleID=, :none, 2025, 8
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -14307,10 +14307,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 7
-        deprecate :MaxBlockSize=, :none, 2025, 7
-        deprecate :Label, :none, 2025, 7
-        deprecate :Label=, :none, 2025, 7
+        deprecate :MaxBlockSize, :none, 2025, 8
+        deprecate :MaxBlockSize=, :none, 2025, 8
+        deprecate :Label, :none, 2025, 8
+        deprecate :Label=, :none, 2025, 8
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

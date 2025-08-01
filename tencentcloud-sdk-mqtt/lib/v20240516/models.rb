@@ -1950,12 +1950,18 @@ module TencentCloud
         # @type AutoSubscriptionPolicyLimit: Integer
         # @param MaxTopicFilterPerAutoSubscriptionPolicy: 单条自动订阅规则TopicFilter数限制
         # @type MaxTopicFilterPerAutoSubscriptionPolicy: Integer
+        # @param UseDefaultServerCert: 是否使用默认的服务端证书
+        # @type UseDefaultServerCert: Boolean
+        # @param TrustedCaLimit: 服务端CA最大数量
+        # @type TrustedCaLimit: Integer
+        # @param ServerCertLimit: 服务端证书最大数量
+        # @type ServerCertLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1984,6 +1990,9 @@ module TencentCloud
           @MaxTopicFilterPerSharedSubscriptionGroup = maxtopicfilterpersharedsubscriptiongroup
           @AutoSubscriptionPolicyLimit = autosubscriptionpolicylimit
           @MaxTopicFilterPerAutoSubscriptionPolicy = maxtopicfilterperautosubscriptionpolicy
+          @UseDefaultServerCert = usedefaultservercert
+          @TrustedCaLimit = trustedcalimit
+          @ServerCertLimit = servercertlimit
           @RequestId = requestid
         end
 
@@ -2016,6 +2025,9 @@ module TencentCloud
           @MaxTopicFilterPerSharedSubscriptionGroup = params['MaxTopicFilterPerSharedSubscriptionGroup']
           @AutoSubscriptionPolicyLimit = params['AutoSubscriptionPolicyLimit']
           @MaxTopicFilterPerAutoSubscriptionPolicy = params['MaxTopicFilterPerAutoSubscriptionPolicy']
+          @UseDefaultServerCert = params['UseDefaultServerCert']
+          @TrustedCaLimit = params['TrustedCaLimit']
+          @ServerCertLimit = params['ServerCertLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -2772,14 +2784,17 @@ module TencentCloud
         # @type Lag: Integer
         # @param Inflight: 投递未确认数量
         # @type Inflight: Integer
+        # @param UserProperties: 用户属性
+        # @type UserProperties: Array
 
-        attr_accessor :TopicFilter, :Qos, :Lag, :Inflight
+        attr_accessor :TopicFilter, :Qos, :Lag, :Inflight, :UserProperties
 
-        def initialize(topicfilter=nil, qos=nil, lag=nil, inflight=nil)
+        def initialize(topicfilter=nil, qos=nil, lag=nil, inflight=nil, userproperties=nil)
           @TopicFilter = topicfilter
           @Qos = qos
           @Lag = lag
           @Inflight = inflight
+          @UserProperties = userproperties
         end
 
         def deserialize(params)
@@ -2787,6 +2802,14 @@ module TencentCloud
           @Qos = params['Qos']
           @Lag = params['Lag']
           @Inflight = params['Inflight']
+          unless params['UserProperties'].nil?
+            @UserProperties = []
+            params['UserProperties'].each do |i|
+              subscriptionuserproperty_tmp = SubscriptionUserProperty.new
+              subscriptionuserproperty_tmp.deserialize(i)
+              @UserProperties << subscriptionuserproperty_tmp
+            end
+          end
         end
       end
 
@@ -3010,12 +3033,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 6
-        deprecate :DeadLetterResendTimes=, :none, 2025, 6
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 6
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 6
-        deprecate :SubTopic, :none, 2025, 6
-        deprecate :SubTopic=, :none, 2025, 6
+        deprecate :DeadLetterResendTimes, :none, 2025, 8
+        deprecate :DeadLetterResendTimes=, :none, 2025, 8
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 8
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 8
+        deprecate :SubTopic, :none, 2025, 8
+        deprecate :SubTopic=, :none, 2025, 8
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3399,15 +3422,21 @@ module TencentCloud
         # @type AutomaticActivation: Boolean
         # @param AuthorizationPolicy: 授权策略开关
         # @type AuthorizationPolicy: Boolean
+        # @param UseDefaultServerCert: 是否使用默认的服务端证书
+        # @type UseDefaultServerCert: Boolean
+        # @param X509Mode: TLS：单向认证
+        # mTLS；双向认证
+        # BYOC：一机一证
+        # @type X509Mode: String
 
-        attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy
+        attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 6
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 6
-        deprecate :AutomaticActivation, :none, 2025, 6
-        deprecate :AutomaticActivation=, :none, 2025, 6
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 8
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 8
+        deprecate :AutomaticActivation, :none, 2025, 8
+        deprecate :AutomaticActivation=, :none, 2025, 8
 
-        def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
@@ -3415,6 +3444,8 @@ module TencentCloud
           @DeviceCertificateProvisionType = devicecertificateprovisiontype
           @AutomaticActivation = automaticactivation
           @AuthorizationPolicy = authorizationpolicy
+          @UseDefaultServerCert = usedefaultservercert
+          @X509Mode = x509mode
         end
 
         def deserialize(params)
@@ -3425,6 +3456,8 @@ module TencentCloud
           @DeviceCertificateProvisionType = params['DeviceCertificateProvisionType']
           @AutomaticActivation = params['AutomaticActivation']
           @AuthorizationPolicy = params['AuthorizationPolicy']
+          @UseDefaultServerCert = params['UseDefaultServerCert']
+          @X509Mode = params['X509Mode']
         end
       end
 
@@ -3525,8 +3558,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 6
-        deprecate :Text=, :none, 2025, 6
+        deprecate :Text, :none, 2025, 8
+        deprecate :Text=, :none, 2025, 8
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid
@@ -3976,6 +4009,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 订阅的UserProperty结构
+      class SubscriptionUserProperty < TencentCloud::Common::AbstractModel
+        # @param Key: 订阅的UserProperty键
+        # @type Key: String
+        # @param Value: 订阅的UserProperty值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

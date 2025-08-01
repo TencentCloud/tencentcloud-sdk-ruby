@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2025, 7
-        deprecate :BTime=, :none, 2025, 7
+        deprecate :BTime, :none, 2025, 8
+        deprecate :BTime=, :none, 2025, 8
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -595,8 +595,8 @@ module TencentCloud
 
         attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 7
-        deprecate :Bypass=, :none, 2025, 7
+        deprecate :Bypass, :none, 2025, 8
+        deprecate :Bypass=, :none, 2025, 8
 
         def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil)
           @Name = name
@@ -954,16 +954,16 @@ module TencentCloud
 
         attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 7
-        deprecate :ResourceId=, :none, 2025, 7
-        deprecate :IsGray, :none, 2025, 7
-        deprecate :IsGray=, :none, 2025, 7
-        deprecate :GrayAreas, :none, 2025, 7
-        deprecate :GrayAreas=, :none, 2025, 7
-        deprecate :Edition, :none, 2025, 7
-        deprecate :Edition=, :none, 2025, 7
-        deprecate :Anycast, :none, 2025, 7
-        deprecate :Anycast=, :none, 2025, 7
+        deprecate :ResourceId, :none, 2025, 8
+        deprecate :ResourceId=, :none, 2025, 8
+        deprecate :IsGray, :none, 2025, 8
+        deprecate :IsGray=, :none, 2025, 8
+        deprecate :GrayAreas, :none, 2025, 8
+        deprecate :GrayAreas=, :none, 2025, 8
+        deprecate :Edition, :none, 2025, 8
+        deprecate :Edition=, :none, 2025, 8
+        deprecate :Anycast, :none, 2025, 8
+        deprecate :Anycast=, :none, 2025, 8
 
         def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
@@ -1548,10 +1548,10 @@ module TencentCloud
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
         extend Gem::Deprecate
-        deprecate :Id, :none, 2025, 7
-        deprecate :Id=, :none, 2025, 7
-        deprecate :Ip, :none, 2025, 7
-        deprecate :Ip=, :none, 2025, 7
+        deprecate :Id, :none, 2025, 8
+        deprecate :Id=, :none, 2025, 8
+        deprecate :Ip, :none, 2025, 8
+        deprecate :Ip=, :none, 2025, 8
 
         def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
@@ -3104,8 +3104,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 7
-        deprecate :ValidTS=, :none, 2025, 7
+        deprecate :ValidTS, :none, 2025, 8
+        deprecate :ValidTS=, :none, 2025, 8
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -3140,6 +3140,84 @@ module TencentCloud
       # CreateIpAccessControl返回参数结构体
       class CreateIpAccessControlResponse < TencentCloud::Common::AbstractModel
         # @param RuleId: 新增的规则对应的ID
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RequestId
+
+        def initialize(ruleid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateOwaspWhiteRule请求参数结构体
+      class CreateOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Strategies: 规则匹配策略列表
+        # @type Strategies: Array
+        # @param Ids: 加白的规则ID列表
+        # @type Ids: Array
+        # @param Type: 加白的类型，0:按照特定规则ID加白, 1:按照规则类型加白
+        # @type Type: Integer
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @type ExpireTime: Integer
+        # @param Status: 规则状态，0：关闭、1：开启，默认为开启
+        # @type Status: Integer
+
+        attr_accessor :Name, :Domain, :Strategies, :Ids, :Type, :JobType, :JobDateTime, :ExpireTime, :Status
+
+        def initialize(name=nil, domain=nil, strategies=nil, ids=nil, type=nil, jobtype=nil, jobdatetime=nil, expiretime=nil, status=nil)
+          @Name = name
+          @Domain = domain
+          @Strategies = strategies
+          @Ids = ids
+          @Type = type
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @ExpireTime = expiretime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Domain = params['Domain']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Ids = params['Ids']
+          @Type = params['Type']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+        end
+      end
+
+      # CreateOwaspWhiteRule返回参数结构体
+      class CreateOwaspWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
         # @type RuleId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3903,6 +3981,42 @@ module TencentCloud
         end
       end
 
+      # DeleteOwaspWhiteRule请求参数结构体
+      class DeleteOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 规则白名单ID列表
+        # @type Ids: Array
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :Ids, :Domain
+
+        def initialize(ids=nil, domain=nil)
+          @Ids = ids
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteOwaspWhiteRule返回参数结构体
+      class DeleteOwaspWhiteRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteSession请求参数结构体
       class DeleteSessionRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -4061,8 +4175,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2025, 7
-        deprecate :TopicId=, :none, 2025, 7
+        deprecate :TopicId, :none, 2025, 8
+        deprecate :TopicId=, :none, 2025, 8
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -6759,10 +6873,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 7
-        deprecate :VtsMin=, :none, 2025, 7
-        deprecate :VtsMax, :none, 2025, 7
-        deprecate :VtsMax=, :none, 2025, 7
+        deprecate :VtsMin, :none, 2025, 8
+        deprecate :VtsMin=, :none, 2025, 8
+        deprecate :VtsMax, :none, 2025, 8
+        deprecate :VtsMax=, :none, 2025, 8
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil)
           @Domain = domain
@@ -6865,10 +6979,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2025, 7
-        deprecate :VtsMin=, :none, 2025, 7
-        deprecate :VtsMax, :none, 2025, 7
-        deprecate :VtsMax=, :none, 2025, 7
+        deprecate :VtsMin, :none, 2025, 8
+        deprecate :VtsMin=, :none, 2025, 8
+        deprecate :VtsMax, :none, 2025, 8
+        deprecate :VtsMax=, :none, 2025, 8
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -7040,6 +7154,80 @@ module TencentCloud
               clbobject_tmp = ClbObject.new
               clbobject_tmp.deserialize(i)
               @ClbObjects << clbobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOwaspWhiteRules请求参数结构体
+      class DescribeOwaspWhiteRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Offset: 分页分页，默认为0
+        # @type Offset: Integer
+        # @param Limit: 每页容量，默认为10
+        # @type Limit: Integer
+        # @param By: 排序的字段，支持CreateTime：新建时间、UpdateTime：修改时间
+        # @type By: String
+        # @param Order: 排序方式，支持asc、desc
+        # @type Order: String
+        # @param Filters: 筛选条件，支持RuleId：加白规则ID、 Name：规则名称、RuleType：加白的规则类型、Status：规则开关状态、ValidStatus：规则生效状态、TimerType：生效方式、ID：具体的加白id，根据RuleType来判断是规则id还是类型id
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeOwaspWhiteRules返回参数结构体
+      class DescribeOwaspWhiteRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param List: 规则白名单列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              owaspwhiterule_tmp = OwaspWhiteRule.new
+              owaspwhiterule_tmp.deserialize(i)
+              @List << owaspwhiterule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8967,8 +9155,8 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2025, 7
-        deprecate :IsGray=, :none, 2025, 7
+        deprecate :IsGray, :none, 2025, 8
+        deprecate :IsGray=, :none, 2025, 8
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
@@ -11998,8 +12186,8 @@ module TencentCloud
 
         attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2025, 7
-        deprecate :Bypass=, :none, 2025, 7
+        deprecate :Bypass, :none, 2025, 8
+        deprecate :Bypass=, :none, 2025, 8
 
         def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil)
           @Domain = domain
@@ -12923,8 +13111,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2025, 7
-        deprecate :ValidTS=, :none, 2025, 7
+        deprecate :ValidTS, :none, 2025, 8
+        deprecate :ValidTS=, :none, 2025, 8
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -13072,6 +13260,84 @@ module TencentCloud
 
       # ModifyObject返回参数结构体
       class ModifyObjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOwaspWhiteRule请求参数结构体
+      class ModifyOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param Name: 规则名称
+        # @type Name: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Strategies: 规则匹配策略列表
+        # @type Strategies: Array
+        # @param Ids: 加白的规则ID列表
+        # @type Ids: Array
+        # @param Type: 加白的类型，0:按照特定规则ID加白, 1:按照规则类型加白
+        # @type Type: Integer
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ExpireTime: 如果没有设置JobDateTime字段则用此字段，0表示永久生效，其它表示定时生效的截止时间（单位为秒）
+        # @type ExpireTime: Integer
+        # @param Status: 规则状态，0：关闭、1：开启，默认为开启
+        # @type Status: Integer
+
+        attr_accessor :RuleId, :Name, :Domain, :Strategies, :Ids, :Type, :JobType, :JobDateTime, :ExpireTime, :Status
+
+        def initialize(ruleid=nil, name=nil, domain=nil, strategies=nil, ids=nil, type=nil, jobtype=nil, jobdatetime=nil, expiretime=nil, status=nil)
+          @RuleId = ruleid
+          @Name = name
+          @Domain = domain
+          @Strategies = strategies
+          @Ids = ids
+          @Type = type
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @ExpireTime = expiretime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @Domain = params['Domain']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @Ids = params['Ids']
+          @Type = params['Type']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyOwaspWhiteRule返回参数结构体
+      class ModifyOwaspWhiteRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13281,10 +13547,10 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2025, 7
-        deprecate :IsGray=, :none, 2025, 7
-        deprecate :Anycast, :none, 2025, 7
-        deprecate :Anycast=, :none, 2025, 7
+        deprecate :IsGray, :none, 2025, 8
+        deprecate :IsGray=, :none, 2025, 8
+        deprecate :Anycast, :none, 2025, 8
+        deprecate :Anycast=, :none, 2025, 8
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
           @Domain = domain
@@ -13767,6 +14033,76 @@ module TencentCloud
           @AntiDDosEip = params['AntiDDosEip']
           @AntiDDosEipStatus = params['AntiDDosEipStatus']
           @VipStatus = params['VipStatus']
+        end
+      end
+
+      # 规则引擎白名单
+      class OwaspWhiteRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 白名单的规则ID
+        # @type RuleId: Integer
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Ids: 加白的规则ID列表
+        # @type Ids: Array
+        # @param Status: 白名单规则的状态，0：关闭、1：开启
+        # @type Status: Integer
+        # @param Type: 加白的类型，0:按照特定规则ID加白、1:按照规则类型加白
+        # @type Type: Integer
+        # @param Strategies: 规则匹配策略列表
+        # @type Strategies: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: String
+        # @param JobType: 定时任务类型
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param CronType: 周期任务粒度
+        # @type CronType: String
+        # @param ValidStatus: 当前是否有效
+        # @type ValidStatus: Boolean
+
+        attr_accessor :RuleId, :Name, :Ids, :Status, :Type, :Strategies, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :ValidStatus
+
+        def initialize(ruleid=nil, name=nil, ids=nil, status=nil, type=nil, strategies=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, validstatus=nil)
+          @RuleId = ruleid
+          @Name = name
+          @Ids = ids
+          @Status = status
+          @Type = type
+          @Strategies = strategies
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @CronType = crontype
+          @ValidStatus = validstatus
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Name = params['Name']
+          @Ids = params['Ids']
+          @Status = params['Status']
+          @Type = params['Type']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @Strategies << strategy_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @CronType = params['CronType']
+          @ValidStatus = params['ValidStatus']
         end
       end
 
@@ -14547,10 +14883,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2025, 7
-        deprecate :ColNames=, :none, 2025, 7
-        deprecate :AnalysisResults, :none, 2025, 7
-        deprecate :AnalysisResults=, :none, 2025, 7
+        deprecate :ColNames, :none, 2025, 8
+        deprecate :ColNames=, :none, 2025, 8
+        deprecate :AnalysisResults, :none, 2025, 8
+        deprecate :AnalysisResults=, :none, 2025, 8
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context

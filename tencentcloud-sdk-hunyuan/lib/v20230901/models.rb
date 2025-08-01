@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 7
-        deprecate :ModerationLevel=, :none, 2025, 7
+        deprecate :ModerationLevel, :none, 2025, 8
+        deprecate :ModerationLevel=, :none, 2025, 8
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -729,49 +729,6 @@ module TencentCloud
         end
       end
 
-      # 3D文件
-      class File3D < TencentCloud::Common::AbstractModel
-        # @param Type: 3D文件的格式。取值范围：GIF, OBJ
-        # @type Type: String
-        # @param Url: 文件的Url（有效期24小时）
-        # @type Url: String
-
-        attr_accessor :Type, :Url
-
-        def initialize(type=nil, url=nil)
-          @Type = type
-          @Url = url
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          @Url = params['Url']
-        end
-      end
-
-      # 3D文件列表
-      class File3Ds < TencentCloud::Common::AbstractModel
-        # @param File3D: 3D文件列表
-        # @type File3D: Array
-
-        attr_accessor :File3D
-
-        def initialize(file3d=nil)
-          @File3D = file3d
-        end
-
-        def deserialize(params)
-          unless params['File3D'].nil?
-            @File3D = []
-            params['File3D'].each do |i|
-              file3d_tmp = File3D.new
-              file3d_tmp.deserialize(i)
-              @File3D << file3d_tmp
-            end
-          end
-        end
-      end
-
       # 已上传的文件对象。
       class FileObject < TencentCloud::Common::AbstractModel
         # @param ID: 文件标识符，可在各个API中引用。
@@ -1068,10 +1025,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 7
-        deprecate :FirstID=, :none, 2025, 7
-        deprecate :LastID, :none, 2025, 7
-        deprecate :LastID=, :none, 2025, 7
+        deprecate :FirstID, :none, 2025, 8
+        deprecate :FirstID=, :none, 2025, 8
+        deprecate :LastID, :none, 2025, 8
+        deprecate :LastID=, :none, 2025, 8
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -2101,61 +2058,6 @@ module TencentCloud
         end
       end
 
-      # QueryHunyuanTo3DJob请求参数结构体
-      class QueryHunyuanTo3DJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID
-        # @type JobId: String
-
-        attr_accessor :JobId
-
-        def initialize(jobid=nil)
-          @JobId = jobid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-        end
-      end
-
-      # QueryHunyuanTo3DJob返回参数结构体
-      class QueryHunyuanTo3DJobResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
-        # @type Status: String
-        # @param ResultFile3Ds: 生成的3D文件数组
-        # @type ResultFile3Ds: Array
-        # @param ErrorCode: 错误码
-        # @type ErrorCode: String
-        # @param ErrorMessage: 错误信息
-        # @type ErrorMessage: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :ResultFile3Ds, :ErrorCode, :ErrorMessage, :RequestId
-
-        def initialize(status=nil, resultfile3ds=nil, errorcode=nil, errormessage=nil, requestid=nil)
-          @Status = status
-          @ResultFile3Ds = resultfile3ds
-          @ErrorCode = errorcode
-          @ErrorMessage = errormessage
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          unless params['ResultFile3Ds'].nil?
-            @ResultFile3Ds = []
-            params['ResultFile3Ds'].each do |i|
-              file3ds_tmp = File3Ds.new
-              file3ds_tmp.deserialize(i)
-              @ResultFile3Ds << file3ds_tmp
-            end
-          end
-          @ErrorCode = params['ErrorCode']
-          @ErrorMessage = params['ErrorMessage']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 翻译对话参考示例
       class Reference < TencentCloud::Common::AbstractModel
         # @param Type: 翻译文本类型，枚举"sentence"表示句子, "term"表示术语
@@ -2673,60 +2575,6 @@ module TencentCloud
       # SubmitHunyuanImageJob返回参数结构体
       class SubmitHunyuanImageJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 ID。
-        # @type JobId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :JobId, :RequestId
-
-        def initialize(jobid=nil, requestid=nil)
-          @JobId = jobid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # SubmitHunyuanTo3DJob请求参数结构体
-      class SubmitHunyuanTo3DJobRequest < TencentCloud::Common::AbstractModel
-        # @param Prompt: 3D内容的描述，中文正向提示词。最多支持200个 utf-8 字符，ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
-        # @type Prompt: String
-        # @param ImageBase64: 输入图 Base64 数据。
-        # 大小：单边分辨率要求不小于50，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过6m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
-        # @type ImageBase64: String
-        # @param ImageUrl: 输入图Url。
-        # 大小：单边分辨率要求不小于50，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过6m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64/ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
-        # @type ImageUrl: String
-        # @param Num: 生成数量。默认1，当前限制只能为1。
-        # @type Num: Integer
-
-        attr_accessor :Prompt, :ImageBase64, :ImageUrl, :Num
-
-        def initialize(prompt=nil, imagebase64=nil, imageurl=nil, num=nil)
-          @Prompt = prompt
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @Num = num
-        end
-
-        def deserialize(params)
-          @Prompt = params['Prompt']
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @Num = params['Num']
-        end
-      end
-
-      # SubmitHunyuanTo3DJob返回参数结构体
-      class SubmitHunyuanTo3DJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务id（有效期24小时）
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
