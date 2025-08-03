@@ -1259,7 +1259,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
+        # 本接口（TerminateDBInstances）用于退还包年包月计费实例。
 
         # @param request: Request instance for TerminateDBInstances.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::TerminateDBInstancesRequest`

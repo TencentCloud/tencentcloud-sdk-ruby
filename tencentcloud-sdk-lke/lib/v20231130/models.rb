@@ -4721,6 +4721,26 @@ module TencentCloud
         end
       end
 
+      # 重复文档处理方式
+      class DuplicateFileHandle < TencentCloud::Common::AbstractModel
+        # @param CheckType: 重复文档判断方式，1：按文档内容，即cos_hash字段判断是否重复
+        # @type CheckType: Integer
+        # @param HandleType: 重复文档处理方式，1：返回报错，2：跳过，返回重复的文档业务ID
+        # @type HandleType: Integer
+
+        attr_accessor :CheckType, :HandleType
+
+        def initialize(checktype=nil, handletype=nil)
+          @CheckType = checktype
+          @HandleType = handletype
+        end
+
+        def deserialize(params)
+          @CheckType = params['CheckType']
+          @HandleType = params['HandleType']
+        end
+      end
+
       # ExportAttributeLabel请求参数结构体
       class ExportAttributeLabelRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -10553,10 +10573,12 @@ module TencentCloud
         # @type CateBizId: String
         # @param IsDownload: 是否可下载，IsRefer为true并且ReferUrlType为0时，该值才有意义
         # @type IsDownload: Boolean
+        # @param DuplicateFileHandles: 重复文档处理方式，按顺序匹配第一个满足条件的方式处理
+        # @type DuplicateFileHandles: Array
 
-        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId, :IsDownload
+        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId, :IsDownload, :DuplicateFileHandles
 
-        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil, isdownload=nil)
+        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil, isdownload=nil, duplicatefilehandles=nil)
           @BotBizId = botbizid
           @FileName = filename
           @FileType = filetype
@@ -10575,6 +10597,7 @@ module TencentCloud
           @Opt = opt
           @CateBizId = catebizid
           @IsDownload = isdownload
+          @DuplicateFileHandles = duplicatefilehandles
         end
 
         def deserialize(params)
@@ -10603,6 +10626,14 @@ module TencentCloud
           @Opt = params['Opt']
           @CateBizId = params['CateBizId']
           @IsDownload = params['IsDownload']
+          unless params['DuplicateFileHandles'].nil?
+            @DuplicateFileHandles = []
+            params['DuplicateFileHandles'].each do |i|
+              duplicatefilehandle_tmp = DuplicateFileHandle.new
+              duplicatefilehandle_tmp.deserialize(i)
+              @DuplicateFileHandles << duplicatefilehandle_tmp
+            end
+          end
         end
       end
 
@@ -10616,16 +10647,19 @@ module TencentCloud
         # @type ErrorLink: String
         # @param ErrorLinkText: 错误链接文本
         # @type ErrorLinkText: String
+        # @param DuplicateFileCheckType: 重复类型，0：未重复，其他取值请参考入参DuplicateFileHandle结构体的CheckType字段
+        # @type DuplicateFileCheckType: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocBizId, :ErrorMsg, :ErrorLink, :ErrorLinkText, :RequestId
+        attr_accessor :DocBizId, :ErrorMsg, :ErrorLink, :ErrorLinkText, :DuplicateFileCheckType, :RequestId
 
-        def initialize(docbizid=nil, errormsg=nil, errorlink=nil, errorlinktext=nil, requestid=nil)
+        def initialize(docbizid=nil, errormsg=nil, errorlink=nil, errorlinktext=nil, duplicatefilechecktype=nil, requestid=nil)
           @DocBizId = docbizid
           @ErrorMsg = errormsg
           @ErrorLink = errorlink
           @ErrorLinkText = errorlinktext
+          @DuplicateFileCheckType = duplicatefilechecktype
           @RequestId = requestid
         end
 
@@ -10634,6 +10668,7 @@ module TencentCloud
           @ErrorMsg = params['ErrorMsg']
           @ErrorLink = params['ErrorLink']
           @ErrorLinkText = params['ErrorLinkText']
+          @DuplicateFileCheckType = params['DuplicateFileCheckType']
           @RequestId = params['RequestId']
         end
       end

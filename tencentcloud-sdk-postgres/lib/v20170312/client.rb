@@ -441,7 +441,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 可对实例进行网络的删除操作。
+        # 可对实例进行网络的删除操作（实例内至少保留一个网络）。
 
         # @param request: Request instance for DeleteDBInstanceNetworkAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteDBInstanceNetworkAccessRequest`
@@ -537,7 +537,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 可对RO组进行网络的删除操作。
+        # 可对RO组进行网络的删除操作（网络数量至少保留1个）。
 
         # @param request: Request instance for DeleteReadOnlyGroupNetworkAccess.
         # @type request: :class:`Tencentcloud::postgres::V20170312::DeleteReadOnlyGroupNetworkAccessRequest`

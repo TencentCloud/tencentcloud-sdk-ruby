@@ -540,9 +540,9 @@ module TencentCloud
 
       # CloseDBExtranetAccess请求参数结构体
       class CloseDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如postgres-6r233v55
+        # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。形如postgres-6r233v55
         # @type DBInstanceId: String
-        # @param IsIpv6: 是否关闭Ipv6外网，1：是，0：否
+        # @param IsIpv6: 是否关闭Ipv6外网，1：是，0：否。默认值：0。
         # @type IsIpv6: Integer
 
         attr_accessor :DBInstanceId, :IsIpv6
@@ -1168,8 +1168,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2025, 7
-        deprecate :DBVersion=, :none, 2025, 7
+        deprecate :DBVersion, :none, 2025, 8
+        deprecate :DBVersion=, :none, 2025, 8
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil)
           @Zone = zone
@@ -2077,7 +2077,7 @@ module TencentCloud
 
       # DeleteDBInstanceNetworkAccess请求参数结构体
       class DeleteDBInstanceNetworkAccessRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。
+        # @param DBInstanceId: 实例ID，形如：postgres-6bwgamo3。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
         # @type DBInstanceId: String
         # @param VpcId: 私有网络统一 ID，若是基础网络则传"0"。
         # @type VpcId: String
@@ -2193,7 +2193,7 @@ module TencentCloud
 
       # DeleteReadOnlyGroupNetworkAccess请求参数结构体
       class DeleteReadOnlyGroupNetworkAccessRequest < TencentCloud::Common::AbstractModel
-        # @param ReadOnlyGroupId: RO组ID，形如：pgro-4t9c6g7k。
+        # @param ReadOnlyGroupId: RO组ID，形如：pgrogrp-4t9c6g7k。可通过[DescribeReadOnlyGroups](https://cloud.tencent.com/document/api/409/52599)接口获取
         # @type ReadOnlyGroupId: String
         # @param VpcId: 私有网络统一 ID，若是基础网络则传"0"。
         # @type VpcId: String
@@ -3603,13 +3603,14 @@ module TencentCloud
 
       # DescribeDatabases请求参数结构体
       class DescribeDatabasesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID
+        # @param DBInstanceId: 实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/product/409/16773)接口获取
         # @type DBInstanceId: String
         # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：database-name：按照数据库名称过滤，类型为string。此处使用模糊匹配搜索符合条件的数据库。
         # @type Filters: Array
         # @param Offset: 数据偏移量，从0开始。
         # @type Offset: Integer
-        # @param Limit: 单次显示数量
+        # @param Limit: 单次显示数量。建议最大取值100。
+        # 默认值：20
         # @type Limit: Integer
 
         attr_accessor :DBInstanceId, :Filters, :Offset, :Limit
@@ -5069,9 +5070,10 @@ module TencentCloud
 
       # InquiryPriceRenewDBInstance请求参数结构体
       class InquiryPriceRenewDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID
+        # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)获取。
+        # （此接口仅支持预付费实例的查询）
         # @type DBInstanceId: String
-        # @param Period: 续费周期，按月计算，最大不超过48
+        # @param Period: 续费周期，按月计算
         # @type Period: Integer
 
         attr_accessor :DBInstanceId, :Period
@@ -5131,8 +5133,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2025, 7
-        deprecate :InstanceChargeType=, :none, 2025, 7
+        deprecate :InstanceChargeType, :none, 2025, 8
+        deprecate :InstanceChargeType=, :none, 2025, 8
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -5301,9 +5303,9 @@ module TencentCloud
 
       # ModifyAccountPrivileges请求参数结构体
       class ModifyAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID。
+        # @param DBInstanceId: 实例ID。	可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
         # @type DBInstanceId: String
-        # @param UserName: 修改此账号对某数据库对象的权限。
+        # @param UserName: 修改此账号对某数据库对象的权限。可通过[DescribeAccounts](https://cloud.tencent.com/document/api/409/18109)接口获取
         # @type UserName: String
         # @param ModifyPrivilegeSet: 修改的权限信息，支持批量修改，一次最高修改50条。
         # @type ModifyPrivilegeSet: Array
@@ -5895,9 +5897,9 @@ module TencentCloud
         # 安全组信息可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的sgId字段来查询。
         # **注意：**该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIdSet: Array
-        # @param DBInstanceId: 实例ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId
+        # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果都传，忽略ReadOnlyGroupId。
         # @type DBInstanceId: String
-        # @param ReadOnlyGroupId: 只读组ID，DBInstanceId和ReadOnlyGroupId至少传一个；如果要修改只读组关联的安全组，只传ReadOnlyGroupId
+        # @param ReadOnlyGroupId: 只读组ID，可通过[DescribeReadOnlyGroups](https://cloud.tencent.com/document/api/409/52599)接口获取。DBInstanceId和ReadOnlyGroupId至少传一个；如果要修改只读组关联的安全组，只传ReadOnlyGroupId
         # @type ReadOnlyGroupId: String
 
         attr_accessor :SecurityGroupIdSet, :DBInstanceId, :ReadOnlyGroupId

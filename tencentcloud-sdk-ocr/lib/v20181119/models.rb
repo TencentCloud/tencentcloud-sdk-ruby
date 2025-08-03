@@ -4326,14 +4326,17 @@ module TencentCloud
         # @type Type: String
         # @param OCRResult: ocr结果
         # @type OCRResult: :class:`Tencentcloud::Ocr.v20181119.models.OCRResult`
+        # @param RequestIdInfos: requestid 信息
+        # @type RequestIdInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Type, :OCRResult, :RequestId
+        attr_accessor :Type, :OCRResult, :RequestIdInfos, :RequestId
 
-        def initialize(type=nil, ocrresult=nil, requestid=nil)
+        def initialize(type=nil, ocrresult=nil, requestidinfos=nil, requestid=nil)
           @Type = type
           @OCRResult = ocrresult
+          @RequestIdInfos = requestidinfos
           @RequestId = requestid
         end
 
@@ -4342,6 +4345,14 @@ module TencentCloud
           unless params['OCRResult'].nil?
             @OCRResult = OCRResult.new
             @OCRResult.deserialize(params['OCRResult'])
+          end
+          unless params['RequestIdInfos'].nil?
+            @RequestIdInfos = []
+            params['RequestIdInfos'].each do |i|
+              requestidinfo_tmp = RequestIdInfo.new
+              requestidinfo_tmp.deserialize(i)
+              @RequestIdInfos << requestidinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -10002,6 +10013,30 @@ module TencentCloud
 
         def deserialize(params)
           @Position = params['Position']
+        end
+      end
+
+      # 请求 id 信息
+      class RequestIdInfo < TencentCloud::Common::AbstractModel
+        # @param ApiRequestId: 请求 api 的 requestid
+        # @type ApiRequestId: String
+        # @param ApiErrorCode: 请求 api 的错误码
+        # @type ApiErrorCode: String
+        # @param WarnCodes: 告警码
+        # @type WarnCodes: Array
+
+        attr_accessor :ApiRequestId, :ApiErrorCode, :WarnCodes
+
+        def initialize(apirequestid=nil, apierrorcode=nil, warncodes=nil)
+          @ApiRequestId = apirequestid
+          @ApiErrorCode = apierrorcode
+          @WarnCodes = warncodes
+        end
+
+        def deserialize(params)
+          @ApiRequestId = params['ApiRequestId']
+          @ApiErrorCode = params['ApiErrorCode']
+          @WarnCodes = params['WarnCodes']
         end
       end
 

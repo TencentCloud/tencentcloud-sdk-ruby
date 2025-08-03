@@ -865,7 +865,7 @@ module TencentCloud
 
       # CreateRepositoryPersonal请求参数结构体
       class CreateRepositoryPersonalRequest < TencentCloud::Common::AbstractModel
-        # @param RepoName: 仓库名称
+        # @param RepoName: 仓库名称，格式为 {Namespace}/{lmageName}。
         # @type RepoName: String
         # @param Public: 是否公共,1:公共,0:私有
         # @type Public: Integer

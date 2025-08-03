@@ -163,16 +163,19 @@ module TencentCloud
         # @type ServerName: String
         # @param DeployInfo: 部署信息
         # @type DeployInfo: :class:`Tencentcloud::Tcbr.v20220217.models.DeployParam`
-        # @param ServerConfig: 服务配置信息
+        # @param ServerConfig: 服务配置信息(已废弃)
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
+        # @param Items: 服务配置信息
+        # @type Items: Array
 
-        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig
+        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Items
 
-        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil)
+        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, items=nil)
           @EnvId = envid
           @ServerName = servername
           @DeployInfo = deployinfo
           @ServerConfig = serverconfig
+          @Items = items
         end
 
         def deserialize(params)
@@ -185,6 +188,14 @@ module TencentCloud
           unless params['ServerConfig'].nil?
             @ServerConfig = ServerBaseConfig.new
             @ServerConfig.deserialize(params['ServerConfig'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diffconfigitem_tmp = DiffConfigItem.new
+              diffconfigitem_tmp.deserialize(i)
+              @Items << diffconfigitem_tmp
+            end
           end
         end
       end
@@ -561,6 +572,98 @@ module TencentCloud
             @Task.deserialize(params['Task'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 服务配置入参
+      class DiffConfigItem < TencentCloud::Common::AbstractModel
+        # @param Key: 配置项 Key
+        # MinNum 最小副本数
+        # MaxNum 最大副本数
+        # PolicyDetails 扩缩容策略
+        # AccessTypes 访问类型
+        # TimerScale 定时扩缩容
+        # InternalAccess 内网访问
+        # OperationMode 运行模式 noScale | condScale | alwaysScale | custom ｜ manualScale
+        # SessionAffinity 会话亲和性 open | close
+        # CpuSpecs cpu 规格
+        # MemSpecs mem规格
+        # EnvParam 环境变量
+        # LogPath 日志采集路径
+        # Port 端口
+        # Dockerfile dockerfile 文件名
+        # BuildDir 目标目录
+        # Tag 服务标签
+        # LogType 日志类型 none | default | custom
+        # LogSetId 日志集Id
+        # LogTopicId 日志主题ID
+        # LogParseType 日志解析类型 json ｜ line
+        # EntryPoint entrypoint 命令
+        # Cmd cmd命令
+        # VpcConf 网络信息
+        # @type Key: String
+        # @param Value: 字符串类型配置项值
+        # InternalAccess、OperationMode、SessionAffinity、EnvParam、LogPath、Dockerfile、BuildDir、Tag、LogType、LogSetId、LogTopicId、LogParseType
+        # @type Value: String
+        # @param IntValue: int 类型配置项值
+        # MinNum、MaxNum、Port
+        # @type IntValue: Integer
+        # @param BoolValue: bool 类型配置项值
+        # @type BoolValue: Boolean
+        # @param FloatValue: 浮点型配置项值
+        # CpuSpecs、MemSpecs
+        # @type FloatValue: Float
+        # @param ArrayValue: 字符串数组配置项值
+        # AccessTypes，EntryPoint，Cmd
+        # @type ArrayValue: Array
+        # @param PolicyDetails: 扩缩容策略配置项值
+        # @type PolicyDetails: Array
+        # @param TimerScale: 定时扩缩容配置项值
+        # @type TimerScale: Array
+        # @param VpcConf: 配置内网访问时网络信息
+        # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
+
+        attr_accessor :Key, :Value, :IntValue, :BoolValue, :FloatValue, :ArrayValue, :PolicyDetails, :TimerScale, :VpcConf
+
+        def initialize(key=nil, value=nil, intvalue=nil, boolvalue=nil, floatvalue=nil, arrayvalue=nil, policydetails=nil, timerscale=nil, vpcconf=nil)
+          @Key = key
+          @Value = value
+          @IntValue = intvalue
+          @BoolValue = boolvalue
+          @FloatValue = floatvalue
+          @ArrayValue = arrayvalue
+          @PolicyDetails = policydetails
+          @TimerScale = timerscale
+          @VpcConf = vpcconf
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @IntValue = params['IntValue']
+          @BoolValue = params['BoolValue']
+          @FloatValue = params['FloatValue']
+          @ArrayValue = params['ArrayValue']
+          unless params['PolicyDetails'].nil?
+            @PolicyDetails = []
+            params['PolicyDetails'].each do |i|
+              hpapolicy_tmp = HpaPolicy.new
+              hpapolicy_tmp.deserialize(i)
+              @PolicyDetails << hpapolicy_tmp
+            end
+          end
+          unless params['TimerScale'].nil?
+            @TimerScale = []
+            params['TimerScale'].each do |i|
+              timerscale_tmp = TimerScale.new
+              timerscale_tmp.deserialize(i)
+              @TimerScale << timerscale_tmp
+            end
+          end
+          unless params['VpcConf'].nil?
+            @VpcConf = VpcConf.new
+            @VpcConf.deserialize(params['VpcConf'])
+          end
         end
       end
 
@@ -1460,19 +1563,22 @@ module TencentCloud
         # @type ServerName: String
         # @param DeployInfo: 部署信息
         # @type DeployInfo: :class:`Tencentcloud::Tcbr.v20220217.models.DeployParam`
-        # @param ServerConfig: 服务配置信息
+        # @param ServerConfig: 服务配置信息(已废弃)
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
         # @param Business: 业务类型，默认tcr
         # @type Business: String
+        # @param Items: 服务配置信息
+        # @type Items: Array
 
-        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Business
+        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Business, :Items
 
-        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, business=nil)
+        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, business=nil, items=nil)
           @EnvId = envid
           @ServerName = servername
           @DeployInfo = deployinfo
           @ServerConfig = serverconfig
           @Business = business
+          @Items = items
         end
 
         def deserialize(params)
@@ -1487,6 +1593,14 @@ module TencentCloud
             @ServerConfig.deserialize(params['ServerConfig'])
           end
           @Business = params['Business']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              diffconfigitem_tmp = DiffConfigItem.new
+              diffconfigitem_tmp.deserialize(i)
+              @Items << diffconfigitem_tmp
+            end
+          end
         end
       end
 

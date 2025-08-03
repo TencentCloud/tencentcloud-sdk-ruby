@@ -4352,7 +4352,7 @@ module TencentCloud
 
       # DeleteDashboardSubscribe请求参数结构体
       class DeleteDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 仪表盘订阅记录id。
+        # @param Id: 仪表盘订阅记录id。通过 [获取仪表盘订阅列表](https://cloud.tencent.com/document/api/614/105779)接口获取Id。
         # @type Id: Integer
 
         attr_accessor :Id
@@ -5551,7 +5551,11 @@ module TencentCloud
 
       # DescribeDashboardSubscribes请求参数结构体
       class DescribeDashboardSubscribesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <br><li/> dashboardId：按照【仪表盘id】进行过滤。类型：String必选：否<br><br><li/> 每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @param Filters: dashboardId：按照【仪表盘id】进行过滤。类型：String必选：否
+
+        # - 仪表盘id。通过 [获取仪表盘](https://cloud.tencent.com/document/api/614/95636)接口获取DashboardId。
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为100。
         # @type Filters: Array
         # @param Offset: 分页的偏移量，默认值为0。
         # @type Offset: Integer
@@ -9255,11 +9259,11 @@ module TencentCloud
 
       # ModifyDashboardSubscribe请求参数结构体
       class ModifyDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 仪表盘订阅id。
+        # @param Id: 仪表盘订阅id。通过 [获取仪表盘订阅列表](https://cloud.tencent.com/document/api/614/105779)接口获取Id。
         # @type Id: Integer
-        # @param DashboardId: 仪表盘id。
+        # @param DashboardId: 仪表盘id。通过 [获取仪表盘](https://cloud.tencent.com/document/api/614/95636)接口获取DashboardId。
         # @type DashboardId: String
-        # @param Name: 仪表盘订阅名称。
+        # @param Name: 仪表盘订阅名称。最大支持128个字符，且不支持'|'字符。
         # @type Name: String
         # @param Cron: 订阅时间cron表达式，格式为：{秒数} {分钟} {小时} {日期} {月份} {星期}；（有效数据为：{分钟} {小时} {日期} {月份} {星期}）。
         # @type Cron: String
@@ -11175,13 +11179,13 @@ module TencentCloud
 
       # SearchDashboardSubscribe请求参数结构体
       class SearchDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
-        # @param DashboardId: 仪表盘id。
+        # @param DashboardId: 仪表盘id。通过 [获取仪表盘](https://cloud.tencent.com/document/api/614/95636)接口获取DashboardId。
         # @type DashboardId: String
         # @param SubscribeData: 仪表盘订阅数据。
         # @type SubscribeData: :class:`Tencentcloud::Cls.v20201016.models.DashboardSubscribeData`
-        # @param Id: 仪表盘订阅Id。
+        # @param Id: 仪表盘订阅Id。通过 [获取仪表盘订阅列表](https://cloud.tencent.com/document/api/614/105779)接口获取Id。
         # @type Id: Integer
-        # @param Name: 仪表盘订阅名称。
+        # @param Name: 仪表盘订阅名称。通过 [获取仪表盘订阅列表](https://cloud.tencent.com/document/api/614/105779)接口获取Name。
         # @type Name: String
 
         attr_accessor :DashboardId, :SubscribeData, :Id, :Name

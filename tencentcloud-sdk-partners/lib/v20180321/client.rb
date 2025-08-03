@@ -248,7 +248,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 供代理商拉取缓存的全量预付费客户订单
+        # 供代理商拉取全量预付费普通客户订单
+        # （对应控制台：客户订单-预付费-普通订单）
 
         # @param request: Request instance for DescribeAgentDealsByCache.
         # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentDealsByCacheRequest`

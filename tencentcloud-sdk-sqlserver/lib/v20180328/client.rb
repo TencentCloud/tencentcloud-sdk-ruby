@@ -1181,7 +1181,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(DescribeDBInstances)用于查询实例列表。
+        # 本接口（DescribeDBInstances）用于查询实例列表。
 
         # @param request: Request instance for DescribeDBInstances.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeDBInstancesRequest`

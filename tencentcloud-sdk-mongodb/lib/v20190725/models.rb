@@ -3623,8 +3623,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 7
-        deprecate :OplogSize=, :none, 2025, 7
+        deprecate :OplogSize, :none, 2025, 8
+        deprecate :OplogSize=, :none, 2025, 8
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid

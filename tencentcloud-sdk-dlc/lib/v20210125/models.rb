@@ -4387,10 +4387,12 @@ module TencentCloud
         # @param IsAIEngine: 1:AI引擎，0:非AI引擎
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAIEngine: Integer
+        # @param ScheduleElasticityConf: 引擎资源弹性伸缩策略
+        # @type ScheduleElasticityConf: :class:`Tencentcloud::Dlc.v20210125.models.ScheduleElasticityConf`
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode, :IsSupportAI, :GatewayId, :GatewayState, :IsAIGateway, :IsAIEngine
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode, :IsSupportAI, :GatewayId, :GatewayState, :IsAIGateway, :IsAIEngine, :ScheduleElasticityConf
 
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil, issupportai=nil, gatewayid=nil, gatewaystate=nil, isaigateway=nil, isaiengine=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil, issupportai=nil, gatewayid=nil, gatewaystate=nil, isaigateway=nil, isaiengine=nil, scheduleelasticityconf=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -4450,6 +4452,7 @@ module TencentCloud
           @GatewayState = gatewaystate
           @IsAIGateway = isaigateway
           @IsAIEngine = isaiengine
+          @ScheduleElasticityConf = scheduleelasticityconf
         end
 
         def deserialize(params)
@@ -4539,6 +4542,10 @@ module TencentCloud
           @GatewayState = params['GatewayState']
           @IsAIGateway = params['IsAIGateway']
           @IsAIEngine = params['IsAIEngine']
+          unless params['ScheduleElasticityConf'].nil?
+            @ScheduleElasticityConf = ScheduleElasticityConf.new
+            @ScheduleElasticityConf.deserialize(params['ScheduleElasticityConf'])
+          end
         end
       end
 
@@ -6481,10 +6488,12 @@ module TencentCloud
         # @type EngineGeneration: String
         # @param EngineTypeDetail: 引擎类型，支持：SparkSQL、SparkBatch、PrestoSQL、Kyuubi
         # @type EngineTypeDetail: String
+        # @param ListHasListener: 默认 false, 为 true 时仅列出具有洞察 listener 的引擎
+        # @type ListHasListener: Boolean
 
-        attr_accessor :Offset, :Filters, :SortBy, :Sorting, :Limit, :DatasourceConnectionName, :ExcludePublicEngine, :AccessTypes, :EngineExecType, :EngineType, :DatasourceConnectionNameSet, :EngineGeneration, :EngineTypeDetail
+        attr_accessor :Offset, :Filters, :SortBy, :Sorting, :Limit, :DatasourceConnectionName, :ExcludePublicEngine, :AccessTypes, :EngineExecType, :EngineType, :DatasourceConnectionNameSet, :EngineGeneration, :EngineTypeDetail, :ListHasListener
 
-        def initialize(offset=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, datasourceconnectionname=nil, excludepublicengine=nil, accesstypes=nil, engineexectype=nil, enginetype=nil, datasourceconnectionnameset=nil, enginegeneration=nil, enginetypedetail=nil)
+        def initialize(offset=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, datasourceconnectionname=nil, excludepublicengine=nil, accesstypes=nil, engineexectype=nil, enginetype=nil, datasourceconnectionnameset=nil, enginegeneration=nil, enginetypedetail=nil, listhaslistener=nil)
           @Offset = offset
           @Filters = filters
           @SortBy = sortby
@@ -6498,6 +6507,7 @@ module TencentCloud
           @DatasourceConnectionNameSet = datasourceconnectionnameset
           @EngineGeneration = enginegeneration
           @EngineTypeDetail = enginetypedetail
+          @ListHasListener = listhaslistener
         end
 
         def deserialize(params)
@@ -6521,6 +6531,7 @@ module TencentCloud
           @DatasourceConnectionNameSet = params['DatasourceConnectionNameSet']
           @EngineGeneration = params['EngineGeneration']
           @EngineTypeDetail = params['EngineTypeDetail']
+          @ListHasListener = params['ListHasListener']
         end
       end
 
@@ -10154,6 +10165,38 @@ module TencentCloud
         end
       end
 
+      # 引擎资源弹性伸缩计划
+      class ElasticPlan < TencentCloud::Common::AbstractModel
+        # @param MinElasticClusters: 最小集群数
+        # @type MinElasticClusters: Integer
+        # @param MaxElasticClusters: 最大集群数
+        # @type MaxElasticClusters: Integer
+        # @param TolerableQueueTime: 最大排队时间
+        # @type TolerableQueueTime: Integer
+        # @param StartTime: 开始时间，Once格式：yyyy-MM-dd HH:mm:ss; 非Once格式： HH:mm:ss
+        # @type StartTime: String
+        # @param EndTime: 结束时间，Once格式：yyyy-MM-dd HH:mm:ss; 非Once格式： HH:mm:ss
+        # @type EndTime: String
+
+        attr_accessor :MinElasticClusters, :MaxElasticClusters, :TolerableQueueTime, :StartTime, :EndTime
+
+        def initialize(minelasticclusters=nil, maxelasticclusters=nil, tolerablequeuetime=nil, starttime=nil, endtime=nil)
+          @MinElasticClusters = minelasticclusters
+          @MaxElasticClusters = maxelasticclusters
+          @TolerableQueueTime = tolerablequeuetime
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @MinElasticClusters = params['MinElasticClusters']
+          @MaxElasticClusters = params['MaxElasticClusters']
+          @TolerableQueueTime = params['TolerableQueueTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # Elasticsearch数据源的详细信息
       class ElasticsearchInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 数据源ID
@@ -13062,6 +13105,45 @@ module TencentCloud
         end
       end
 
+      # 引擎资源弹性伸缩策略
+      class ScheduleElasticityConf < TencentCloud::Common::AbstractModel
+        # @param ScheduledElasticityEnabled: 是否开启弹性伸缩：true/false
+        # @type ScheduledElasticityEnabled: Boolean
+        # @param ScheduleType: 调度类型：ONCE（一次性调度），DAILY（每日调度），WEEKLY（每周调度），MONTHLY（每月调度）
+        # @type ScheduleType: String
+        # @param ScheduleDays: 调度日期：WEEKLY传：1~7； MONTHLY传:1~31；其它类型不传
+        # @type ScheduleDays: Array
+        # @param TimeZone: 调度时区
+        # @type TimeZone: String
+        # @param ElasticPlans: 弹性伸缩计划
+        # @type ElasticPlans: Array
+
+        attr_accessor :ScheduledElasticityEnabled, :ScheduleType, :ScheduleDays, :TimeZone, :ElasticPlans
+
+        def initialize(scheduledelasticityenabled=nil, scheduletype=nil, scheduledays=nil, timezone=nil, elasticplans=nil)
+          @ScheduledElasticityEnabled = scheduledelasticityenabled
+          @ScheduleType = scheduletype
+          @ScheduleDays = scheduledays
+          @TimeZone = timezone
+          @ElasticPlans = elasticplans
+        end
+
+        def deserialize(params)
+          @ScheduledElasticityEnabled = params['ScheduledElasticityEnabled']
+          @ScheduleType = params['ScheduleType']
+          @ScheduleDays = params['ScheduleDays']
+          @TimeZone = params['TimeZone']
+          unless params['ElasticPlans'].nil?
+            @ElasticPlans = []
+            params['ElasticPlans'].each do |i|
+              elasticplan_tmp = ElasticPlan.new
+              elasticplan_tmp.deserialize(i)
+              @ElasticPlans << elasticplan_tmp
+            end
+          end
+        end
+      end
+
       # script实例。
       class Script < TencentCloud::Common::AbstractModel
         # @param ScriptId: 脚本Id，长度36字节。
@@ -15272,10 +15354,12 @@ module TencentCloud
         # @type ElasticLimit: Integer
         # @param SessionResourceTemplate: Spark批作业集群Session资源配置模板
         # @type SessionResourceTemplate: :class:`Tencentcloud::Dlc.v20210125.models.SessionResourceTemplate`
+        # @param ScheduleElasticityConf: 引擎资源弹性伸缩策略
+        # @type ScheduleElasticityConf: :class:`Tencentcloud::Dlc.v20210125.models.ScheduleElasticityConf`
 
-        attr_accessor :Size, :MinClusters, :MaxClusters, :AutoResume, :DataEngineName, :Message, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate
+        attr_accessor :Size, :MinClusters, :MaxClusters, :AutoResume, :DataEngineName, :Message, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :ScheduleElasticityConf
 
-        def initialize(size=nil, minclusters=nil, maxclusters=nil, autoresume=nil, dataenginename=nil, message=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil)
+        def initialize(size=nil, minclusters=nil, maxclusters=nil, autoresume=nil, dataenginename=nil, message=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, scheduleelasticityconf=nil)
           @Size = size
           @MinClusters = minclusters
           @MaxClusters = maxclusters
@@ -15291,6 +15375,7 @@ module TencentCloud
           @ElasticSwitch = elasticswitch
           @ElasticLimit = elasticlimit
           @SessionResourceTemplate = sessionresourcetemplate
+          @ScheduleElasticityConf = scheduleelasticityconf
         end
 
         def deserialize(params)
@@ -15314,6 +15399,10 @@ module TencentCloud
           unless params['SessionResourceTemplate'].nil?
             @SessionResourceTemplate = SessionResourceTemplate.new
             @SessionResourceTemplate.deserialize(params['SessionResourceTemplate'])
+          end
+          unless params['ScheduleElasticityConf'].nil?
+            @ScheduleElasticityConf = ScheduleElasticityConf.new
+            @ScheduleElasticityConf.deserialize(params['ScheduleElasticityConf'])
           end
         end
       end
