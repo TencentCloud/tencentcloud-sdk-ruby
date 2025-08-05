@@ -225,6 +225,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DeleteJob) 用于删除一个作业任务。
+
+        # @param request: Request instance for DeleteJob.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DeleteJobRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DeleteJobResponse`
+        def DeleteJob(request)
+          body = send_request('DeleteJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
 
         # @param request: Request instance for DeleteNodes.
@@ -382,6 +406,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInitNodeScriptsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询作业的提交信息。
+
+        # @param request: Request instance for DescribeJobSubmitInfo.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeJobSubmitInfoRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeJobSubmitInfoResponse`
+        def DescribeJobSubmitInfo(request)
+          body = send_request('DescribeJobSubmitInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobSubmitInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeJobs) 用于查询作业任务列表信息。
+
+        # @param request: Request instance for DescribeJobs.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeJobsRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeJobsResponse`
+        def DescribeJobs(request)
+          body = send_request('DescribeJobs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeJobs) 用于查询作业任务列表信息。
+
+        # @param request: Request instance for DescribeJobsOverview.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::DescribeJobsOverviewRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::DescribeJobsOverviewResponse`
+        def DescribeJobsOverview(request)
+          body = send_request('DescribeJobsOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeJobsOverviewResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -574,6 +670,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetAutoScalingConfigurationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (SubmitJob) 用于提交一个作业任务。
+
+        # @param request: Request instance for SubmitJob.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::SubmitJobRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::SubmitJobResponse`
+        def SubmitJob(request)
+          body = send_request('SubmitJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (TerminateJob) 用于终止一个作业任务。
+
+        # @param request: Request instance for TerminateJob.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::TerminateJobRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::TerminateJobResponse`
+        def TerminateJob(request)
+          body = send_request('TerminateJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateJobResponse.new
             model.deserialize(response['Response'])
             model
           else

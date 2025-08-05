@@ -2932,7 +2932,8 @@ module TencentCloud
 
       # CreateIndex请求参数结构体
       class CreateIndexRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Rule: 索引规则
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
@@ -3071,7 +3072,9 @@ module TencentCloud
 
       # CreateLogset请求参数结构体
       class CreateLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetName: 日志集名字，不能重名
+        # @param LogsetName: 日志集名字。
+
+        # - 最大支持255个字符。不支持`|`字符。
         # @type LogsetName: String
         # @param Tags: 标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对
         # @type Tags: Array
@@ -4448,7 +4451,8 @@ module TencentCloud
 
       # DeleteIndex请求参数结构体
       class DeleteIndexRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -4516,7 +4520,7 @@ module TencentCloud
 
       # DeleteLogset请求参数结构体
       class DeleteLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: 日志集Id。通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
 
         attr_accessor :LogsetId
@@ -5859,7 +5863,8 @@ module TencentCloud
 
       # DescribeIndex请求参数结构体
       class DescribeIndexRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -5875,14 +5880,15 @@ module TencentCloud
 
       # DescribeIndex返回参数结构体
       class DescribeIndexResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
         # @type TopicId: String
-        # @param Status: 是否生效
+        # @param Status: 索引状态。true：开启状态，false：关闭状态
+        # 开启后可对日志进行检索分析，将产生索引流量、索引存储及相应费用。[费用详情](https://cloud.tencent.com/document/product/614/45802#.E8.AE.A1.E8.B4.B9.E9.A1.B9)
         # @type Status: Boolean
         # @param Rule: 索引配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
-        # @param ModifyTime: 索引修改时间，初始值为索引创建时间。
+        # @param ModifyTime: 索引修改时间，初始值为索引创建时间。格式 `YYYY-MM-DD HH:MM:SS`
         # @type ModifyTime: String
         # @param IncludeInternalFields: 内置保留字段（`__FILENAME__`，`__HOSTNAME__`及`__SOURCE__`）是否包含至全文索引
         # * false:不包含
@@ -6199,11 +6205,12 @@ module TencentCloud
         # - 按照【日志集名称】进行过滤。
         # - 类型：String
         # - 必选：否
-
+        # - 通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集名称。
         # logsetId
         # - 按照【日志集ID】进行过滤。
         # - 类型：String
         # - 必选：否
+        # - 通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
 
         # tagKey
         # - 按照【标签键】进行过滤。
@@ -8161,7 +8168,7 @@ module TencentCloud
         # @type LogsetId: String
         # @param LogsetName: 日志集名称
         # @type LogsetName: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。格式 `YYYY-MM-DD HH:MM:SS`
         # @type CreateTime: String
         # @param AssumerName: 云产品标识，日志集由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
         # @type AssumerName: String
@@ -9555,9 +9562,9 @@ module TencentCloud
 
       # ModifyLogset请求参数结构体
       class ModifyLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集ID
+        # @param LogsetId: 日志集Id。通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
-        # @param LogsetName: 日志集名称
+        # @param LogsetName: 日志集名字。- 最大支持255个字符。不支持`|`字符。
         # @type LogsetName: String
         # @param Tags: 日志集的绑定的标签键值对。最大支持10个标签键值对，同一个资源只能同时绑定一个标签键。
         # @type Tags: Array

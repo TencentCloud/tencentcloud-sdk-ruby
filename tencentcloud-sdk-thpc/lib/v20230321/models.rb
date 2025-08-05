@@ -235,6 +235,74 @@ module TencentCloud
         end
       end
 
+      # 任务的应用环境配置信息。
+      class Application < TencentCloud::Common::AbstractModel
+        # @param Commands: 待执行脚本命令。
+        # @type Commands: Array
+        # @param StorageMounts: 存储目录挂载配置。
+        # @type StorageMounts: Array
+        # @param EnvVars: 用户自定义环境变量。
+        # @type EnvVars: Array
+        # @param Docker: 容器配置信息。
+        # @type Docker: :class:`Tencentcloud::Thpc.v20230321.models.Docker`
+        # @param OutputRedirect: 无
+        # @type OutputRedirect: :class:`Tencentcloud::Thpc.v20230321.models.OutputRedirect`
+        # @param JobType: 表示所选训练框架，支持可选参数
+
+        # - PyTorch：表示提交PyTorch训练作业
+        # - Custom：表示用户自定义作业
+
+        # 默认参数为：Custom
+        # @type JobType: String
+
+        attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType
+
+        def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil)
+          @Commands = commands
+          @StorageMounts = storagemounts
+          @EnvVars = envvars
+          @Docker = docker
+          @OutputRedirect = outputredirect
+          @JobType = jobtype
+        end
+
+        def deserialize(params)
+          unless params['Commands'].nil?
+            @Commands = []
+            params['Commands'].each do |i|
+              commanditem_tmp = CommandItem.new
+              commanditem_tmp.deserialize(i)
+              @Commands << commanditem_tmp
+            end
+          end
+          unless params['StorageMounts'].nil?
+            @StorageMounts = []
+            params['StorageMounts'].each do |i|
+              storagemount_tmp = StorageMount.new
+              storagemount_tmp.deserialize(i)
+              @StorageMounts << storagemount_tmp
+            end
+          end
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @EnvVars << envvar_tmp
+            end
+          end
+          unless params['Docker'].nil?
+            @Docker = Docker.new
+            @Docker.deserialize(params['Docker'])
+          end
+          unless params['OutputRedirect'].nil?
+            @OutputRedirect = OutputRedirect.new
+            @OutputRedirect.deserialize(params['OutputRedirect'])
+          end
+          @JobType = params['JobType']
+        end
+      end
+
       # AttachNodes请求参数结构体
       class AttachNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -519,6 +587,22 @@ module TencentCloud
           @AutoScalingType = params['AutoScalingType']
           @VpcId = params['VpcId']
           @ClusterType = params['ClusterType']
+        end
+      end
+
+      # 任务执行命令脚本。
+      class CommandItem < TencentCloud::Common::AbstractModel
+        # @param Command: 脚本命令
+        # @type Command: String
+
+        attr_accessor :Command
+
+        def initialize(command=nil)
+          @Command = command
+        end
+
+        def deserialize(params)
+          @Command = params['Command']
         end
       end
 
@@ -1010,6 +1094,38 @@ module TencentCloud
         end
       end
 
+      # DeleteJob请求参数结构体
+      class DeleteJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业任务ID
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DeleteJob返回参数结构体
+      class DeleteJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNodes请求参数结构体
       class DeleteNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -1347,6 +1463,146 @@ module TencentCloud
         end
       end
 
+      # DescribeJobSubmitInfo请求参数结构体
+      class DescribeJobSubmitInfoRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业ID
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeJobSubmitInfo返回参数结构体
+      class DescribeJobSubmitInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param QueueName: 队列名称
+        # @type QueueName: String
+        # @param Job: 作业信息
+        # @type Job: :class:`Tencentcloud::Thpc.v20230321.models.Job`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterId, :QueueName, :Job, :RequestId
+
+        def initialize(clusterid=nil, queuename=nil, job=nil, requestid=nil)
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @Job = job
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          unless params['Job'].nil?
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobsOverview请求参数结构体
+      class DescribeJobsOverviewRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeJobsOverview返回参数结构体
+      class DescribeJobsOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeJobs请求参数结构体
+      class DescribeJobsRequest < TencentCloud::Common::AbstractModel
+        # @param JobIds: 作业任务ID列表
+        # @type JobIds: Array
+        # @param Filters: 过滤列表
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。 关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @type Limit: Integer
+
+        attr_accessor :JobIds, :Filters, :Offset, :Limit
+
+        def initialize(jobids=nil, filters=nil, offset=nil, limit=nil)
+          @JobIds = jobids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @JobIds = params['JobIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeJobs返回参数结构体
+      class DescribeJobsResponse < TencentCloud::Common::AbstractModel
+        # @param JobSet: 作业任务概览列表
+        # @type JobSet: Array
+        # @param TotalCount: 符合条件的作业任务数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobSet, :TotalCount, :RequestId
+
+        def initialize(jobset=nil, totalcount=nil, requestid=nil)
+          @JobSet = jobset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['JobSet'].nil?
+            @JobSet = []
+            params['JobSet'].each do |i|
+              jobview_tmp = JobView.new
+              jobview_tmp.deserialize(i)
+              @JobSet << jobview_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNodes请求参数结构体
       class DescribeNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
@@ -1587,6 +1843,26 @@ module TencentCloud
         end
       end
 
+      # 容器配置信息。
+      class Docker < TencentCloud::Common::AbstractModel
+        # @param Image: 容器镜像地址
+        # @type Image: String
+        # @param RunArgs: 容器运行参数
+        # @type RunArgs: Array
+
+        attr_accessor :Image, :RunArgs
+
+        def initialize(image=nil, runargs=nil)
+          @Image = image
+          @RunArgs = runargs
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @RunArgs = params['RunArgs']
+        end
+      end
+
       # 描述了实例的增强服务启用情况与其设置，如云安全，腾讯云可观测平台等实例 Agent
       class EnhancedService < TencentCloud::Common::AbstractModel
         # @param SecurityService: 开启云安全服务。若不指定该参数，则默认开启云安全服务。
@@ -1617,6 +1893,26 @@ module TencentCloud
             @AutomationService = RunAutomationServiceEnabled.new
             @AutomationService.deserialize(params['AutomationService'])
           end
+        end
+      end
+
+      # 用户自定义环境变量。
+      class EnvVar < TencentCloud::Common::AbstractModel
+        # @param Name: ENV
+        # @type Name: String
+        # @param Value: test
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -1906,6 +2202,105 @@ module TencentCloud
         def deserialize(params)
           @InternetChargeType = params['InternetChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+        end
+      end
+
+      # 提交Job作业信息
+      class Job < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务配置信息。
+        # @type Tasks: Array
+        # @param JobName: 作业名称。
+        # @type JobName: String
+        # @param JobDescription: 作业描述。
+        # @type JobDescription: String
+        # @param Priority: 作业优先级，数值越大，优先级越高，数值范围1～100。
+        # @type Priority: Integer
+        # @param TaskDependencies: 描述任务的依赖关系，DAG有向无环图。
+        # @type TaskDependencies: Array
+
+        attr_accessor :Tasks, :JobName, :JobDescription, :Priority, :TaskDependencies
+
+        def initialize(tasks=nil, jobname=nil, jobdescription=nil, priority=nil, taskdependencies=nil)
+          @Tasks = tasks
+          @JobName = jobname
+          @JobDescription = jobdescription
+          @Priority = priority
+          @TaskDependencies = taskdependencies
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
+            end
+          end
+          @JobName = params['JobName']
+          @JobDescription = params['JobDescription']
+          @Priority = params['Priority']
+          unless params['TaskDependencies'].nil?
+            @TaskDependencies = []
+            params['TaskDependencies'].each do |i|
+              taskdependence_tmp = TaskDependence.new
+              taskdependence_tmp.deserialize(i)
+              @TaskDependencies << taskdependence_tmp
+            end
+          end
+        end
+      end
+
+      # 作业概览信息
+      class JobView < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业ID
+        # @type JobId: String
+        # @param JobName: 作业名称
+        # @type JobName: String
+        # @param JobDescription: 作业描述
+        # @type JobDescription: String
+        # @param Priority: 作业优先级
+        # @type Priority: Integer
+        # @param JobState: 作业状态，包括CREATED, QUEING, STARTNG, RUNING, TERMINATING, TERMINATED, SUCCESS,
+        # FAILED
+        # @type JobState: String
+        # @param ClusterId: 作业所属集群ID
+        # @type ClusterId: String
+        # @param QueueName: 作业所属队列名称
+        # @type QueueName: String
+        # @param OccupyResources: 完成作业任务所需资源
+        # @type OccupyResources: String
+        # @param CreateTime: 作业任务创建时间
+        # @type CreateTime: String
+        # @param EndTime: 作业任务结束时间
+        # @type EndTime: String
+
+        attr_accessor :JobId, :JobName, :JobDescription, :Priority, :JobState, :ClusterId, :QueueName, :OccupyResources, :CreateTime, :EndTime
+
+        def initialize(jobid=nil, jobname=nil, jobdescription=nil, priority=nil, jobstate=nil, clusterid=nil, queuename=nil, occupyresources=nil, createtime=nil, endtime=nil)
+          @JobId = jobid
+          @JobName = jobname
+          @JobDescription = jobdescription
+          @Priority = priority
+          @JobState = jobstate
+          @ClusterId = clusterid
+          @QueueName = queuename
+          @OccupyResources = occupyresources
+          @CreateTime = createtime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @JobName = params['JobName']
+          @JobDescription = params['JobDescription']
+          @Priority = params['Priority']
+          @JobState = params['JobState']
+          @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
+          @OccupyResources = params['OccupyResources']
+          @CreateTime = params['CreateTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -2323,6 +2718,26 @@ module TencentCloud
         def deserialize(params)
           @ScriptPath = params['ScriptPath']
           @Timeout = params['Timeout']
+        end
+      end
+
+      # 输出重定向配置
+      class OutputRedirect < TencentCloud::Common::AbstractModel
+        # @param Driver: 输出driver类型
+        # @type Driver: String
+        # @param Options: 重定向配置参数
+        # @type Options: Array
+
+        attr_accessor :Driver, :Options
+
+        def initialize(driver=nil, options=nil)
+          @Driver = driver
+          @Options = options
+        end
+
+        def deserialize(params)
+          @Driver = params['Driver']
+          @Options = params['Options']
         end
       end
 
@@ -2968,6 +3383,30 @@ module TencentCloud
         end
       end
 
+      # 存储目录挂载配置。
+      class StorageMount < TencentCloud::Common::AbstractModel
+        # @param Source: 挂载源
+        # @type Source: String
+        # @param Target: 目标挂载位置
+        # @type Target: String
+        # @param StorageType: 挂载的存储类型，目前仅支持：local
+        # @type StorageType: String
+
+        attr_accessor :Source, :Target, :StorageType
+
+        def initialize(source=nil, target=nil, storagetype=nil)
+          @Source = source
+          @Target = target
+          @StorageType = storagetype
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Target = params['Target']
+          @StorageType = params['StorageType']
+        end
+      end
+
       # 描述集群文件系统选项
       class StorageOption < TencentCloud::Common::AbstractModel
         # @param CFSOptions: 集群挂载CFS文件系统选项。
@@ -3058,6 +3497,33 @@ module TencentCloud
         end
       end
 
+      # SubmitJob请求参数结构体
+      class SubmitJobRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SubmitJob返回参数结构体
+      class SubmitJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 描述了操作系统所在块设备即系统盘的信息
       class SystemDisk < TencentCloud::Common::AbstractModel
         # @param DiskType: 系统盘类型。系统盘类型限制详见存储概述。取值范围：
@@ -3129,6 +3595,89 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # 作业任务配置信息。
+      class Task < TencentCloud::Common::AbstractModel
+        # @param Application: 作业任务的应用环境配置信息。
+        # @type Application: :class:`Tencentcloud::Thpc.v20230321.models.Application`
+        # @param TaskName: 作业任务名称。
+        # @type TaskName: String
+        # @param TaskInstanceNum: 作业任务所需的节点数/副本数。
+        # @type TaskInstanceNum: Integer
+        # @param Timeout: 任务超时时间(单位：秒)。
+        # @type Timeout: Integer
+
+        attr_accessor :Application, :TaskName, :TaskInstanceNum, :Timeout
+
+        def initialize(application=nil, taskname=nil, taskinstancenum=nil, timeout=nil)
+          @Application = application
+          @TaskName = taskname
+          @TaskInstanceNum = taskinstancenum
+          @Timeout = timeout
+        end
+
+        def deserialize(params)
+          unless params['Application'].nil?
+            @Application = Application.new
+            @Application.deserialize(params['Application'])
+          end
+          @TaskName = params['TaskName']
+          @TaskInstanceNum = params['TaskInstanceNum']
+          @Timeout = params['Timeout']
+        end
+      end
+
+      # 任务的依赖关系。
+      class TaskDependence < TencentCloud::Common::AbstractModel
+        # @param StartTask: 依赖关系的起点任务名称。
+        # @type StartTask: String
+        # @param EndTask: 依赖关系的终点任务名称。
+        # @type EndTask: String
+
+        attr_accessor :StartTask, :EndTask
+
+        def initialize(starttask=nil, endtask=nil)
+          @StartTask = starttask
+          @EndTask = endtask
+        end
+
+        def deserialize(params)
+          @StartTask = params['StartTask']
+          @EndTask = params['EndTask']
+        end
+      end
+
+      # TerminateJob请求参数结构体
+      class TerminateJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业任务ID
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # TerminateJob返回参数结构体
+      class TerminateJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

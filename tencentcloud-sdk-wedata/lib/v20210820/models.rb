@@ -5588,6 +5588,8 @@ module TencentCloud
         # @type TaskName: String
         # @param TaskType: 26离线同步，30Python，31PySpark，32DLC，33Impala，34Hive SQL，35Shell，36Spark SQL，39Spark，40CDW PG，92MapReduce
         # @type TaskType: Integer
+        # @param Content: （必填参数）指定脚本内容，base64编码
+        # @type Content: String
         # @param TaskExt: 扩展属性
         # @type TaskExt: Array
         # @param ProductName: 产品名称
@@ -5600,25 +5602,23 @@ module TencentCloud
         # @type TopCoordinate: Float
         # @param TaskFolderId: 工作流目录ID
         # @type TaskFolderId: String
-        # @param Content: （必填参数）指定脚本内容，base64编码
-        # @type Content: String
         # @param CodeTemplateId: 代码模板ID
         # @type CodeTemplateId: String
 
-        attr_accessor :ProjectId, :WorkflowId, :TaskName, :TaskType, :TaskExt, :ProductName, :InstanceInitStrategy, :LeftCoordinate, :TopCoordinate, :TaskFolderId, :Content, :CodeTemplateId
+        attr_accessor :ProjectId, :WorkflowId, :TaskName, :TaskType, :Content, :TaskExt, :ProductName, :InstanceInitStrategy, :LeftCoordinate, :TopCoordinate, :TaskFolderId, :CodeTemplateId
 
-        def initialize(projectid=nil, workflowid=nil, taskname=nil, tasktype=nil, taskext=nil, productname=nil, instanceinitstrategy=nil, leftcoordinate=nil, topcoordinate=nil, taskfolderid=nil, content=nil, codetemplateid=nil)
+        def initialize(projectid=nil, workflowid=nil, taskname=nil, tasktype=nil, content=nil, taskext=nil, productname=nil, instanceinitstrategy=nil, leftcoordinate=nil, topcoordinate=nil, taskfolderid=nil, codetemplateid=nil)
           @ProjectId = projectid
           @WorkflowId = workflowid
           @TaskName = taskname
           @TaskType = tasktype
+          @Content = content
           @TaskExt = taskext
           @ProductName = productname
           @InstanceInitStrategy = instanceinitstrategy
           @LeftCoordinate = leftcoordinate
           @TopCoordinate = topcoordinate
           @TaskFolderId = taskfolderid
-          @Content = content
           @CodeTemplateId = codetemplateid
         end
 
@@ -5627,6 +5627,7 @@ module TencentCloud
           @WorkflowId = params['WorkflowId']
           @TaskName = params['TaskName']
           @TaskType = params['TaskType']
+          @Content = params['Content']
           unless params['TaskExt'].nil?
             @TaskExt = []
             params['TaskExt'].each do |i|
@@ -5640,7 +5641,6 @@ module TencentCloud
           @LeftCoordinate = params['LeftCoordinate']
           @TopCoordinate = params['TopCoordinate']
           @TaskFolderId = params['TaskFolderId']
-          @Content = params['Content']
           @CodeTemplateId = params['CodeTemplateId']
         end
       end

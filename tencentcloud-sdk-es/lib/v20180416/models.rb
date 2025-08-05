@@ -17,6 +17,53 @@
 module TencentCloud
   module Es
     module V20180416
+      # cvm 自动扩盘参数
+      class AutoScaleDiskInfo < TencentCloud::Common::AbstractModel
+        # @param NodeType: 节点类型 hotData,warmData
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeType: String
+        # @param ScaleType: 0:百分比扩容;1:绝对值扩容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaleType: Integer
+        # @param Threshold: 触发阈值,单位%,例如80%
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: Integer
+        # @param Duration: 触发持续时间,单位分钟,例如60
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Integer
+        # @param PercentSize: 每次扩容比例,单位%,例如20%
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PercentSize: Integer
+        # @param FixSize: 绝对值扩容,单位GB,例如100GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FixSize: Integer
+        # @param MaxSize: 扩容上限,单位GB,例如500GB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxSize: Integer
+
+        attr_accessor :NodeType, :ScaleType, :Threshold, :Duration, :PercentSize, :FixSize, :MaxSize
+
+        def initialize(nodetype=nil, scaletype=nil, threshold=nil, duration=nil, percentsize=nil, fixsize=nil, maxsize=nil)
+          @NodeType = nodetype
+          @ScaleType = scaletype
+          @Threshold = threshold
+          @Duration = duration
+          @PercentSize = percentsize
+          @FixSize = fixsize
+          @MaxSize = maxsize
+        end
+
+        def deserialize(params)
+          @NodeType = params['NodeType']
+          @ScaleType = params['ScaleType']
+          @Threshold = params['Threshold']
+          @Duration = params['Duration']
+          @PercentSize = params['PercentSize']
+          @FixSize = params['FixSize']
+          @MaxSize = params['MaxSize']
+        end
+      end
+
       # 后备索引元数据字段
       class BackingIndexMetaField < TencentCloud::Common::AbstractModel
         # @param IndexName: 后备索引名
@@ -590,10 +637,14 @@ module TencentCloud
         # @type EnableScheduleRecoverGroup: Boolean
         # @param EnableScheduleOperationDuration: 置放群组开启异步任务的可维护时间段
         # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
+        # @param AutoScaleDiskInfoList: 自动扩盘参数列表
+        # @type AutoScaleDiskInfoList: Array
+        # @param EnableKibanaPublicAccess: 是否开启kibana公网访问，不传默认开启
+        # @type EnableKibanaPublicAccess: String
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -634,6 +685,8 @@ module TencentCloud
           @ReadWriteMode = readwritemode
           @EnableScheduleRecoverGroup = enableschedulerecovergroup
           @EnableScheduleOperationDuration = enablescheduleoperationduration
+          @AutoScaleDiskInfoList = autoscalediskinfolist
+          @EnableKibanaPublicAccess = enablekibanapublicaccess
         end
 
         def deserialize(params)
@@ -707,6 +760,15 @@ module TencentCloud
             @EnableScheduleOperationDuration = EnableScheduleOperationDuration.new
             @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
           end
+          unless params['AutoScaleDiskInfoList'].nil?
+            @AutoScaleDiskInfoList = []
+            params['AutoScaleDiskInfoList'].each do |i|
+              autoscalediskinfo_tmp = AutoScaleDiskInfo.new
+              autoscalediskinfo_tmp.deserialize(i)
+              @AutoScaleDiskInfoList << autoscalediskinfo_tmp
+            end
+          end
+          @EnableKibanaPublicAccess = params['EnableKibanaPublicAccess']
         end
       end
 
@@ -5387,10 +5449,12 @@ module TencentCloud
         # @param SubAccountUin: 操作者Uin
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
+        # @param AutoScaleTag: 自动扩容标识：0-非自动，1-自动
+        # @type AutoScaleTag: Integer
 
-        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress, :RollbackTag, :SubAccountUin
+        attr_accessor :Id, :StartTime, :Type, :Detail, :Result, :Tasks, :Progress, :RollbackTag, :SubAccountUin, :AutoScaleTag
 
-        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil, rollbacktag=nil, subaccountuin=nil)
+        def initialize(id=nil, starttime=nil, type=nil, detail=nil, result=nil, tasks=nil, progress=nil, rollbacktag=nil, subaccountuin=nil, autoscaletag=nil)
           @Id = id
           @StartTime = starttime
           @Type = type
@@ -5400,6 +5464,7 @@ module TencentCloud
           @Progress = progress
           @RollbackTag = rollbacktag
           @SubAccountUin = subaccountuin
+          @AutoScaleTag = autoscaletag
         end
 
         def deserialize(params)
@@ -5422,6 +5487,7 @@ module TencentCloud
           @Progress = params['Progress']
           @RollbackTag = params['RollbackTag']
           @SubAccountUin = params['SubAccountUin']
+          @AutoScaleTag = params['AutoScaleTag']
         end
       end
 
@@ -6925,10 +6991,14 @@ module TencentCloud
         # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
         # @param EnableDestroyProtection: 开启集群保护：OPEN-开启，CLOSE-关闭
         # @type EnableDestroyProtection: String
+        # @param AutoScaleDiskInfoList: 自动扩盘参数
+        # @type AutoScaleDiskInfoList: Array
+        # @param AutoScaleDiskDeleteNodeTypeList: 自动扩盘删除参数
+        # @type AutoScaleDiskDeleteNodeTypeList: Array
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :AutoScaleDiskInfoList, :AutoScaleDiskDeleteNodeTypeList
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, autoscalediskinfolist=nil, autoscalediskdeletenodetypelist=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -6973,6 +7043,8 @@ module TencentCloud
           @EnableScheduleRecoverGroup = enableschedulerecovergroup
           @EnableScheduleOperationDuration = enablescheduleoperationduration
           @EnableDestroyProtection = enabledestroyprotection
+          @AutoScaleDiskInfoList = autoscalediskinfolist
+          @AutoScaleDiskDeleteNodeTypeList = autoscalediskdeletenodetypelist
         end
 
         def deserialize(params)
@@ -7062,6 +7134,15 @@ module TencentCloud
             @EnableScheduleOperationDuration.deserialize(params['EnableScheduleOperationDuration'])
           end
           @EnableDestroyProtection = params['EnableDestroyProtection']
+          unless params['AutoScaleDiskInfoList'].nil?
+            @AutoScaleDiskInfoList = []
+            params['AutoScaleDiskInfoList'].each do |i|
+              autoscalediskinfo_tmp = AutoScaleDiskInfo.new
+              autoscalediskinfo_tmp.deserialize(i)
+              @AutoScaleDiskInfoList << autoscalediskinfo_tmp
+            end
+          end
+          @AutoScaleDiskDeleteNodeTypeList = params['AutoScaleDiskDeleteNodeTypeList']
         end
       end
 

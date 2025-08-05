@@ -5459,15 +5459,23 @@ module TencentCloud
         # @type ManagerId: Integer
         # @param StatusInfo: 审核状态详细信息
         # @type StatusInfo: Array
+        # @param ManagerIdType: 管理员证件类型，SFZ代表身份证，HZ代表护照
+        # @type ManagerIdType: String
+        # @param ManagerIdNumber: 管理员证件号码
+        # @type ManagerIdNumber: String
+        # @param ContactIdType: 联系人证件类型，SFZ代表身份证，HZ代表护照
+        # @type ContactIdType: String
+        # @param ContactIdNumber: 联系人证件号码
+        # @type ContactIdNumber: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :RequestId
+        attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :ManagerIdType, :ManagerIdNumber, :ContactIdType, :ContactIdNumber, :RequestId
         extend Gem::Deprecate
         deprecate :Status, :none, 2025, 8
         deprecate :Status=, :none, 2025, 8
 
-        def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, requestid=nil)
+        def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, manageridtype=nil, manageridnumber=nil, contactidtype=nil, contactidnumber=nil, requestid=nil)
           @Status = status
           @ManagerFirstName = managerfirstname
           @ManagerMail = managermail
@@ -5487,6 +5495,10 @@ module TencentCloud
           @CompanyId = companyid
           @ManagerId = managerid
           @StatusInfo = statusinfo
+          @ManagerIdType = manageridtype
+          @ManagerIdNumber = manageridnumber
+          @ContactIdType = contactidtype
+          @ContactIdNumber = contactidnumber
           @RequestId = requestid
         end
 
@@ -5520,6 +5532,10 @@ module TencentCloud
               @StatusInfo << managerstatusinfo_tmp
             end
           end
+          @ManagerIdType = params['ManagerIdType']
+          @ManagerIdNumber = params['ManagerIdNumber']
+          @ContactIdType = params['ContactIdType']
+          @ContactIdNumber = params['ContactIdNumber']
           @RequestId = params['RequestId']
         end
       end

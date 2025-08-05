@@ -127,10 +127,15 @@ module TencentCloud
         # @param FullNamespaceV4: 4.x的完整命名空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullNamespaceV4: String
+        # @param SubscribeTopicNum: 订阅的主题个数
+        # @type SubscribeTopicNum: Integer
+        # @param CreateTime: 1753153590
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4, :SubscribeTopicNum, :CreateTime
 
-        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil)
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil, subscribetopicnum=nil, createtime=nil)
           @InstanceId = instanceid
           @ConsumerGroup = consumergroup
           @ConsumeEnable = consumeenable
@@ -141,6 +146,8 @@ module TencentCloud
           @NamespaceV4 = namespacev4
           @ConsumerGroupV4 = consumergroupv4
           @FullNamespaceV4 = fullnamespacev4
+          @SubscribeTopicNum = subscribetopicnum
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -154,6 +161,8 @@ module TencentCloud
           @NamespaceV4 = params['NamespaceV4']
           @ConsumerGroupV4 = params['ConsumerGroupV4']
           @FullNamespaceV4 = params['FullNamespaceV4']
+          @SubscribeTopicNum = params['SubscribeTopicNum']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -1286,15 +1295,25 @@ module TencentCloud
         # @type Limit: Integer
         # @param FromTopic: 查询指定主题下的消费组
         # @type FromTopic: String
+        # @param SortedBy: 按照指定字段排序，枚举值如下：
+        # - subscribeNum：订阅 Topic 个数
+        # @type SortedBy: String
+        # @param SortOrder: 按升序或降序排列，枚举值如下：
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromTopic
+        # - asc：升序
+        # - desc：降序
+        # @type SortOrder: String
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromtopic=nil)
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromTopic, :SortedBy, :SortOrder
+
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromtopic=nil, sortedby=nil, sortorder=nil)
           @InstanceId = instanceid
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @FromTopic = fromtopic
+          @SortedBy = sortedby
+          @SortOrder = sortorder
         end
 
         def deserialize(params)
@@ -1310,6 +1329,8 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @FromTopic = params['FromTopic']
+          @SortedBy = params['SortedBy']
+          @SortOrder = params['SortOrder']
         end
       end
 

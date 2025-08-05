@@ -6380,8 +6380,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 7
-        deprecate :QueryDlqMsg=, :none, 2025, 7
+        deprecate :QueryDlqMsg, :none, 2025, 8
+        deprecate :QueryDlqMsg=, :none, 2025, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6486,8 +6486,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 7
-        deprecate :QueryDLQMsg=, :none, 2025, 7
+        deprecate :QueryDLQMsg, :none, 2025, 8
+        deprecate :QueryDLQMsg=, :none, 2025, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7327,8 +7327,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 7
-        deprecate :QueryDlqMsg=, :none, 2025, 7
+        deprecate :QueryDlqMsg, :none, 2025, 8
+        deprecate :QueryDlqMsg=, :none, 2025, 8
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -11806,8 +11806,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 7
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 7
+        deprecate :MaxTpsPerNamespace, :none, 2025, 8
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 8
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -11953,10 +11953,22 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param IsFrozen: 是否已冻结
         # @type IsFrozen: Boolean
+        # @param AutoCreateTopicEnabled: 是否开启自动创建主题
+        # @type AutoCreateTopicEnabled: Boolean
+        # @param AdminFeatureEnabled: 是否开启集群Admin能力
+        # @type AdminFeatureEnabled: Boolean
+        # @param AdminAccessKey: Admin AK
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminAccessKey: String
+        # @param AdminSecretKey: Admin SK
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdminSecretKey: String
+        # @param EnableDeletionProtection: 是否开启删除保护
+        # @type EnableDeletionProtection: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds, :IsFrozen
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :PublicEndPoint, :VpcEndPoint, :SupportNamespaceEndpoint, :Vpcs, :IsVip, :RocketMQFlag, :Status, :IsolateTime, :HttpPublicEndpoint, :HttpVpcEndpoint, :InternalEndpoint, :HttpInternalEndpoint, :AclEnabled, :PublicClbId, :Vip, :VpcId, :SupportMigration, :InstanceStatus, :ZoneId, :ZoneIds, :IsFrozen, :AutoCreateTopicEnabled, :AdminFeatureEnabled, :AdminAccessKey, :AdminSecretKey, :EnableDeletionProtection
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil, isfrozen=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, publicendpoint=nil, vpcendpoint=nil, supportnamespaceendpoint=nil, vpcs=nil, isvip=nil, rocketmqflag=nil, status=nil, isolatetime=nil, httppublicendpoint=nil, httpvpcendpoint=nil, internalendpoint=nil, httpinternalendpoint=nil, aclenabled=nil, publicclbid=nil, vip=nil, vpcid=nil, supportmigration=nil, instancestatus=nil, zoneid=nil, zoneids=nil, isfrozen=nil, autocreatetopicenabled=nil, adminfeatureenabled=nil, adminaccesskey=nil, adminsecretkey=nil, enabledeletionprotection=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -11983,6 +11995,11 @@ module TencentCloud
           @ZoneId = zoneid
           @ZoneIds = zoneids
           @IsFrozen = isfrozen
+          @AutoCreateTopicEnabled = autocreatetopicenabled
+          @AdminFeatureEnabled = adminfeatureenabled
+          @AdminAccessKey = adminaccesskey
+          @AdminSecretKey = adminsecretkey
+          @EnableDeletionProtection = enabledeletionprotection
         end
 
         def deserialize(params)
@@ -12019,6 +12036,11 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @ZoneIds = params['ZoneIds']
           @IsFrozen = params['IsFrozen']
+          @AutoCreateTopicEnabled = params['AutoCreateTopicEnabled']
+          @AdminFeatureEnabled = params['AdminFeatureEnabled']
+          @AdminAccessKey = params['AdminAccessKey']
+          @AdminSecretKey = params['AdminSecretKey']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
         end
       end
 
@@ -12184,10 +12206,17 @@ module TencentCloud
         # @param Namespace: 命名空间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Namespace: String
+        # @param SubscribeTopicNum: 订阅的主题个数
+        # @type SubscribeTopicNum: Integer
 
-        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace
+        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum
+        extend Gem::Deprecate
+        deprecate :TPS, :none, 2025, 8
+        deprecate :TPS=, :none, 2025, 8
+        deprecate :TotalAccumulative, :none, 2025, 8
+        deprecate :TotalAccumulative=, :none, 2025, 8
 
-        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil)
+        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil)
           @Name = name
           @ConsumerNum = consumernum
           @TPS = tps
@@ -12205,6 +12234,7 @@ module TencentCloud
           @RetryMaxTimes = retrymaxtimes
           @InstanceId = instanceid
           @Namespace = namespace
+          @SubscribeTopicNum = subscribetopicnum
         end
 
         def deserialize(params)
@@ -12225,6 +12255,7 @@ module TencentCloud
           @RetryMaxTimes = params['RetryMaxTimes']
           @InstanceId = params['InstanceId']
           @Namespace = params['Namespace']
+          @SubscribeTopicNum = params['SubscribeTopicNum']
         end
       end
 
