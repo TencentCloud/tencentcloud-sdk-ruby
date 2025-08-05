@@ -1157,6 +1157,63 @@ module TencentCloud
         end
       end
 
+      # 项目信息
+      class BaseProject < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 项目标识，英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param DisplayName: 项目显示名称，可以为中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param TenantId: 项目的所在租户ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TenantId: String
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param Status: 项目状态：0：禁用，1：启用，-3:禁用中，2：启用中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: String
+
+        attr_accessor :ProjectName, :DisplayName, :Region, :TenantId, :ProjectId, :Description, :CreateTime, :Status, :Model
+
+        def initialize(projectname=nil, displayname=nil, region=nil, tenantid=nil, projectid=nil, description=nil, createtime=nil, status=nil, model=nil)
+          @ProjectName = projectname
+          @DisplayName = displayname
+          @Region = region
+          @TenantId = tenantid
+          @ProjectId = projectid
+          @Description = description
+          @CreateTime = createtime
+          @Status = status
+          @Model = model
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          @DisplayName = params['DisplayName']
+          @Region = params['Region']
+          @TenantId = params['TenantId']
+          @ProjectId = params['ProjectId']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @Model = params['Model']
+        end
+      end
+
       # 基础角色对象
       class BaseRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
@@ -2740,8 +2797,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 7
-        deprecate :TaskId=, :none, 2025, 7
+        deprecate :TaskId, :none, 2025, 8
+        deprecate :TaskId=, :none, 2025, 8
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -4210,12 +4267,20 @@ module TencentCloud
 
       # CreateBaseProject请求参数结构体
       class CreateBaseProjectRequest < TencentCloud::Common::AbstractModel
+        # @param Project: 项目信息
+        # @type Project: :class:`Tencentcloud::Wedata.v20210820.models.BaseProject`
 
+        attr_accessor :Project
 
-        def initialize()
+        def initialize(project=nil)
+          @Project = project
         end
 
         def deserialize(params)
+          unless params['Project'].nil?
+            @Project = BaseProject.new
+            @Project.deserialize(params['Project'])
+          end
         end
       end
 
@@ -6324,10 +6389,12 @@ module TencentCloud
         # @param DataSourceEnvInfos:  数据源环境信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceEnvInfos: Array
+        # @param ForbidProbe: 禁止数据探查
+        # @type ForbidProbe: Boolean
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus, :DisplayType, :Env, :DatasourceUrn, :Model, :DataSourceEnvInfos
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus, :DisplayType, :Env, :DatasourceUrn, :Model, :DataSourceEnvInfos, :ForbidProbe
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil, displaytype=nil, env=nil, datasourceurn=nil, model=nil, datasourceenvinfos=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil, displaytype=nil, env=nil, datasourceurn=nil, model=nil, datasourceenvinfos=nil, forbidprobe=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -6368,6 +6435,7 @@ module TencentCloud
           @DatasourceUrn = datasourceurn
           @Model = model
           @DataSourceEnvInfos = datasourceenvinfos
+          @ForbidProbe = forbidprobe
         end
 
         def deserialize(params)
@@ -6421,6 +6489,7 @@ module TencentCloud
               @DataSourceEnvInfos << datasourceenvinfo_tmp
             end
           end
+          @ForbidProbe = params['ForbidProbe']
         end
       end
 
@@ -9260,7 +9329,7 @@ module TencentCloud
         # @type Filters: :class:`Tencentcloud::Wedata.v20210820.models.Filter`
         # @param OrderFields: 排序配置
         # @type OrderFields: :class:`Tencentcloud::Wedata.v20210820.models.OrderField`
-        # @param Type: 数据源类型，必选（如MYSQL、DLC等）
+        # @param Type: 数据源类型，MYSQL,TENCENT_MYSQL,TDSQL_MYSQL,HIVE,KAFKA,POSTGRE,CDW,ORACLE,SQLSERVER,FTP,HDFS,ICEBERG,HBASE,TDSQL,TDSQLC,SPARK,VIRTUAL,TBASE,DB2,DM,TDENGINE,GAUSSDB,GBASE,IMPALA,ES,TENCENT_ES,S3_DATAINSIGHT,GREENPLUM,PHOENIX,SAP_HANA,SFTP,OCEANBASE,CLICKHOUSE,TCHOUSE_C,KUDU,VERTICA,REDIS,COS,S3,DLC,DORIS,CKAFKA,TDMQ_PULSAR,MONGODB,TENCENT_MONGODB,FTP_FILE,HDFS_FILE,DTS_KAFKA,REST_API,FILE,TIDB,SYBASE,TCHOUSE_X,TDSQL_POSTGRE,TCHOUSE_P,TCHOUSE_D,STARROCKS,EMR_STARROCKS,TBDS_STARROCKS,TRINO,KYUUBI,GDB,INFLUXDB,BIG_QUERY,BLOB,FILESYSTEM,SHAREPOINT,KINGBASEES,HUDI等
         # @type Type: String
         # @param DatasourceName: 数据源名称过滤
         # @type DatasourceName: String
@@ -10253,12 +10322,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 7
-        deprecate :EventType=, :none, 2025, 7
-        deprecate :EventBroadcastType, :none, 2025, 7
-        deprecate :EventBroadcastType=, :none, 2025, 7
-        deprecate :Status, :none, 2025, 7
-        deprecate :Status=, :none, 2025, 7
+        deprecate :EventType, :none, 2025, 8
+        deprecate :EventType=, :none, 2025, 8
+        deprecate :EventBroadcastType, :none, 2025, 8
+        deprecate :EventBroadcastType=, :none, 2025, 8
+        deprecate :Status, :none, 2025, 8
+        deprecate :Status=, :none, 2025, 8
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil)
           @ProjectId = projectid
@@ -17833,8 +17902,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 7
-        deprecate :DimType=, :none, 2025, 7
+        deprecate :DimType, :none, 2025, 8
+        deprecate :DimType=, :none, 2025, 8
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -25969,6 +26038,10 @@ module TencentCloud
       class ModifyProjectRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 目标修改的项目ID
         # @type ProjectId: String
+        # @param DisplayName: 项目显示名称，可以为中文名,需要租户范围内唯一
+        # @type DisplayName: String
+        # @param Description: 备注
+        # @type Description: String
         # @param TaskSubmitApproval: true/false则修改，不带该参数不修改。
         # @type TaskSubmitApproval: Boolean
         # @param ResourcePoolInfo: 资源池信息
@@ -25983,11 +26056,15 @@ module TencentCloud
         # @type Model: String
         # @param ProjectOwner: 项目负责人
         # @type ProjectOwner: Array
+        # @param ModifyType: 更新类型
+        # @type ModifyType: String
 
-        attr_accessor :ProjectId, :TaskSubmitApproval, :ResourcePoolInfo, :ProjectManagers, :TaskStrictMode, :ExtraOptions, :Model, :ProjectOwner
+        attr_accessor :ProjectId, :DisplayName, :Description, :TaskSubmitApproval, :ResourcePoolInfo, :ProjectManagers, :TaskStrictMode, :ExtraOptions, :Model, :ProjectOwner, :ModifyType
 
-        def initialize(projectid=nil, tasksubmitapproval=nil, resourcepoolinfo=nil, projectmanagers=nil, taskstrictmode=nil, extraoptions=nil, model=nil, projectowner=nil)
+        def initialize(projectid=nil, displayname=nil, description=nil, tasksubmitapproval=nil, resourcepoolinfo=nil, projectmanagers=nil, taskstrictmode=nil, extraoptions=nil, model=nil, projectowner=nil, modifytype=nil)
           @ProjectId = projectid
+          @DisplayName = displayname
+          @Description = description
           @TaskSubmitApproval = tasksubmitapproval
           @ResourcePoolInfo = resourcepoolinfo
           @ProjectManagers = projectmanagers
@@ -25995,10 +26072,13 @@ module TencentCloud
           @ExtraOptions = extraoptions
           @Model = model
           @ProjectOwner = projectowner
+          @ModifyType = modifytype
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
           @TaskSubmitApproval = params['TaskSubmitApproval']
           unless params['ResourcePoolInfo'].nil?
             @ResourcePoolInfo = ResourcePoolInfo.new
@@ -26009,6 +26089,7 @@ module TencentCloud
           @ExtraOptions = params['ExtraOptions']
           @Model = params['Model']
           @ProjectOwner = params['ProjectOwner']
+          @ModifyType = params['ModifyType']
         end
       end
 
@@ -26644,8 +26725,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 7
-        deprecate :InCharge=, :none, 2025, 7
+        deprecate :InCharge, :none, 2025, 8
+        deprecate :InCharge=, :none, 2025, 8
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -26961,7 +27042,7 @@ module TencentCloud
         # @type ProjectId: String
         # @param TaskId: 任务ID
         # @type TaskId: String
-        # @param ScriptContent: 必填，脚本内容 base64编码
+        # @param ScriptContent: 存在脚本的任务必填（shell任务、Hive任务、python任务等），脚本内容 base64编码
         # @type ScriptContent: String
         # @param IntegrationNodeDetails: 集成任务脚本配置
         # @type IntegrationNodeDetails: Array
@@ -29224,12 +29305,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 7
-        deprecate :EventType=, :none, 2025, 7
-        deprecate :EventBroadcastType, :none, 2025, 7
-        deprecate :EventBroadcastType=, :none, 2025, 7
-        deprecate :DimensionFormat, :none, 2025, 7
-        deprecate :DimensionFormat=, :none, 2025, 7
+        deprecate :EventType, :none, 2025, 8
+        deprecate :EventType=, :none, 2025, 8
+        deprecate :EventBroadcastType, :none, 2025, 8
+        deprecate :EventBroadcastType=, :none, 2025, 8
+        deprecate :DimensionFormat, :none, 2025, 8
+        deprecate :DimensionFormat=, :none, 2025, 8
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil)
           @ProjectId = projectid

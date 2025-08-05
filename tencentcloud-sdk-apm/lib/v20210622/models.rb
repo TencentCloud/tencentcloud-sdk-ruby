@@ -204,16 +204,19 @@ module TencentCloud
         # @type LastPeriodValue: Array
         # @param CompareVal: 同比指标值，已弃用，不建议使用
         # @type CompareVal: String
+        # @param NameCN: 指标中文名
+        # @type NameCN: String
 
-        attr_accessor :Key, :Value, :Unit, :CompareVals, :LastPeriodValue, :CompareVal
+        attr_accessor :Key, :Value, :Unit, :CompareVals, :LastPeriodValue, :CompareVal, :NameCN
 
-        def initialize(key=nil, value=nil, unit=nil, comparevals=nil, lastperiodvalue=nil, compareval=nil)
+        def initialize(key=nil, value=nil, unit=nil, comparevals=nil, lastperiodvalue=nil, compareval=nil, namecn=nil)
           @Key = key
           @Value = value
           @Unit = unit
           @CompareVals = comparevals
           @LastPeriodValue = lastperiodvalue
           @CompareVal = compareval
+          @NameCN = namecn
         end
 
         def deserialize(params)
@@ -237,6 +240,7 @@ module TencentCloud
             end
           end
           @CompareVal = params['CompareVal']
+          @NameCN = params['NameCN']
         end
       end
 

@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 7
-        deprecate :MiniProgramAppId=, :none, 2025, 7
+        deprecate :MiniProgramAppId, :none, 2025, 8
+        deprecate :MiniProgramAppId=, :none, 2025, 8
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 7
-        deprecate :DeviceList=, :none, 2025, 7
+        deprecate :DeviceList, :none, 2025, 8
+        deprecate :DeviceList=, :none, 2025, 8
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -2235,10 +2235,12 @@ module TencentCloud
         # - `minutely`：分钟级（默认值）
         # - `immediate`：立即
         # @type SummaryQOS: String
+        # @param SummaryConfig: 摘要输出配置
+        # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
 
-        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig
 
-        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil)
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @InputURL = inputurl
@@ -2250,6 +2252,7 @@ module TencentCloud
           @IsCustomDevice = iscustomdevice
           @InputType = inputtype
           @SummaryQOS = summaryqos
+          @SummaryConfig = summaryconfig
         end
 
         def deserialize(params)
@@ -2264,6 +2267,10 @@ module TencentCloud
           @IsCustomDevice = params['IsCustomDevice']
           @InputType = params['InputType']
           @SummaryQOS = params['SummaryQOS']
+          unless params['SummaryConfig'].nil?
+            @SummaryConfig = VisionSummaryConfig.new
+            @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
         end
       end
 
@@ -6051,8 +6058,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 7
-        deprecate :ModelId=, :none, 2025, 7
+        deprecate :ModelId, :none, 2025, 8
+        deprecate :ModelId=, :none, 2025, 8
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7650,8 +7657,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 7
-        deprecate :MiniProgramAppId=, :none, 2025, 7
+        deprecate :MiniProgramAppId, :none, 2025, 8
+        deprecate :MiniProgramAppId=, :none, 2025, 8
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -8235,10 +8242,12 @@ module TencentCloud
         # - `minutely`：分钟级（默认值）
         # - `immediate`：立即
         # @type SummaryQOS: String
+        # @param SummaryConfig: 摘要输出配置
+        # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
 
-        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig
 
-        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil)
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @InputURL = inputurl
@@ -8250,6 +8259,7 @@ module TencentCloud
           @IsCustomDevice = iscustomdevice
           @InputType = inputtype
           @SummaryQOS = summaryqos
+          @SummaryConfig = summaryconfig
         end
 
         def deserialize(params)
@@ -8264,6 +8274,10 @@ module TencentCloud
           @IsCustomDevice = params['IsCustomDevice']
           @InputType = params['InputType']
           @SummaryQOS = params['SummaryQOS']
+          unless params['SummaryConfig'].nil?
+            @SummaryConfig = VisionSummaryConfig.new
+            @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
         end
       end
 
@@ -9551,10 +9565,12 @@ module TencentCloud
         # @type EnableSearch: Boolean
         # @param Config: 配置参数，不传则不修改
         # @type Config: String
+        # @param SummaryConfig: 视频摘要配置参数，不传则不修改
+        # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
 
-        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId, :EnableSummary, :EnableSearch, :Config
+        attr_accessor :ProductId, :DeviceName, :UserId, :ChannelId, :EnableSummary, :EnableSearch, :Config, :SummaryConfig
 
-        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil, enablesummary=nil, enablesearch=nil, config=nil)
+        def initialize(productid=nil, devicename=nil, userid=nil, channelid=nil, enablesummary=nil, enablesearch=nil, config=nil, summaryconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @UserId = userid
@@ -9562,6 +9578,7 @@ module TencentCloud
           @EnableSummary = enablesummary
           @EnableSearch = enablesearch
           @Config = config
+          @SummaryConfig = summaryconfig
         end
 
         def deserialize(params)
@@ -9572,6 +9589,10 @@ module TencentCloud
           @EnableSummary = params['EnableSummary']
           @EnableSearch = params['EnableSearch']
           @Config = params['Config']
+          unless params['SummaryConfig'].nil?
+            @SummaryConfig = VisionSummaryConfig.new
+            @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
         end
       end
 
@@ -11001,8 +11022,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 7
-        deprecate :ModelId=, :none, 2025, 7
+        deprecate :ModelId, :none, 2025, 8
+        deprecate :ModelId=, :none, 2025, 8
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -11032,10 +11053,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 7
-        deprecate :ModelId=, :none, 2025, 7
-        deprecate :ActiveNum, :none, 2025, 7
-        deprecate :ActiveNum=, :none, 2025, 7
+        deprecate :ModelId, :none, 2025, 8
+        deprecate :ModelId=, :none, 2025, 8
+        deprecate :ActiveNum, :none, 2025, 8
+        deprecate :ActiveNum=, :none, 2025, 8
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -11695,7 +11716,7 @@ module TencentCloud
 
       # TWeSee 语义理解结果
       class VisionRecognitionResult < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功）
+        # @param Status: 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功；4：执行中）
         # @type Status: Integer
         # @param DetectedClassifications: 识别到的目标类型。可能取值：
 
@@ -11712,14 +11733,20 @@ module TencentCloud
         # @type Summary: String
         # @param AlternativeSummary: 摘要文本（次选语言）
         # @type AlternativeSummary: String
+        # @param ErrorCode: 错误码，可能取值：
 
-        attr_accessor :Status, :DetectedClassifications, :Summary, :AlternativeSummary
+        # - `DownloadFailed`：下载视频/图片文件失败
+        # - `ReadFailed`：读取视频/图片文件失败
+        # @type ErrorCode: String
 
-        def initialize(status=nil, detectedclassifications=nil, summary=nil, alternativesummary=nil)
+        attr_accessor :Status, :DetectedClassifications, :Summary, :AlternativeSummary, :ErrorCode
+
+        def initialize(status=nil, detectedclassifications=nil, summary=nil, alternativesummary=nil, errorcode=nil)
           @Status = status
           @DetectedClassifications = detectedclassifications
           @Summary = summary
           @AlternativeSummary = alternativesummary
+          @ErrorCode = errorcode
         end
 
         def deserialize(params)
@@ -11727,6 +11754,61 @@ module TencentCloud
           @DetectedClassifications = params['DetectedClassifications']
           @Summary = params['Summary']
           @AlternativeSummary = params['AlternativeSummary']
+          @ErrorCode = params['ErrorCode']
+        end
+      end
+
+      # 视频摘要配置
+      class VisionSummaryConfig < TencentCloud::Common::AbstractModel
+        # @param OutputLang: 主输出语言
+
+        # 支持列表如下：
+        # zh 中文
+        # en 英语
+        # ja 日语
+        # ko 韩文
+        # pt-BR 葡萄牙语（巴西）
+        # th 泰语
+        # @type OutputLang: String
+        # @param AlternativeOutputLang: 可选输出语言
+
+        # 支持列表如下：
+        # zh 中文
+        # en 英语
+        # ja 日语
+        # ko 韩文
+        # pt-BR 葡萄牙语（巴西）
+        # th 泰语
+        # @type AlternativeOutputLang: String
+        # @param MultiCameraLayout: 多摄像头布局定义。可能取值：
+
+        # - 单摄（默认值）：`Single`
+
+        # - 双摄（纵向排列）- 全部画面：`Vertical,Num=2,Index=0;1`
+        # - 双摄（纵向排列）- 画面1：`Vertical,Num=2,Index=0`
+        # - 双摄（纵向排列）- 画面2：`Vertical,Num=2,Index=1`
+
+        # - 三摄（纵向排列）- 全部画面：`Vertical,Num=3,Index=0;1;2`
+        # - 三摄（纵向排列）- 画面1：`Vertical,Num=3,Index=0`
+        # - 三摄（纵向排列）- 画面2：`Vertical,Num=3,Index=1`
+        # - 三摄（纵向排列）- 画面3：`Vertical,Num=3,Index=2`
+        # - 三摄（纵向排列）- 画面1+2：`Vertical,Num=3,Index=0;1`
+        # - 三摄（纵向排列）- 画面1+3：`Vertical,Num=3,Index=0;2`
+        # - 三摄（纵向排列）- 画面2+3：`Vertical,Num=3,Index=1;2`
+        # @type MultiCameraLayout: String
+
+        attr_accessor :OutputLang, :AlternativeOutputLang, :MultiCameraLayout
+
+        def initialize(outputlang=nil, alternativeoutputlang=nil, multicameralayout=nil)
+          @OutputLang = outputlang
+          @AlternativeOutputLang = alternativeoutputlang
+          @MultiCameraLayout = multicameralayout
+        end
+
+        def deserialize(params)
+          @OutputLang = params['OutputLang']
+          @AlternativeOutputLang = params['AlternativeOutputLang']
+          @MultiCameraLayout = params['MultiCameraLayout']
         end
       end
 

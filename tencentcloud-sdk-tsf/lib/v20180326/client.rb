@@ -2990,6 +2990,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询许可列表
+
+        # @param request: Request instance for DescribeLicenses.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeLicensesRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeLicensesResponse`
+        def DescribeLicenses(request)
+          body = send_request('DescribeLicenses', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLicensesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户日志使用量
+
+        # @param request: Request instance for DescribeLogCapacity.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeLogCapacityRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeLogCapacityResponse`
+        def DescribeLogCapacity(request)
+          body = send_request('DescribeLogCapacity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogCapacityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询微服务详情
 
         # @param request: Request instance for DescribeMicroservice.
@@ -3432,6 +3480,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRepositoryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 无
+
+        # @param request: Request instance for DescribeResourceConfig.
+        # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeResourceConfigRequest`
+        # @rtype: :class:`Tencentcloud::tsf::V20180326::DescribeResourceConfigResponse`
+        def DescribeResourceConfig(request)
+          body = send_request('DescribeResourceConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeResourceConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

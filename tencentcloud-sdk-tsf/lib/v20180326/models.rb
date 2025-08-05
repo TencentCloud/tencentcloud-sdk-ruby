@@ -1324,8 +1324,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2025, 7
-        deprecate :ConfigAssociatedGroups=, :none, 2025, 7
+        deprecate :ConfigAssociatedGroups, :none, 2025, 8
+        deprecate :ConfigAssociatedGroups=, :none, 2025, 8
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil)
           @ConfigId = configid
@@ -2376,6 +2376,56 @@ module TencentCloud
         end
       end
 
+      # 应用使用容器部署时需要的额外资源
+      class ContainerAdditionalResourceRequirement < TencentCloud::Common::AbstractModel
+        # @param Cpu: CPU 核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: String
+        # @param Mem: 内存 MiB 数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mem: String
+
+        attr_accessor :Cpu, :Mem
+
+        def initialize(cpu=nil, mem=nil)
+          @Cpu = cpu
+          @Mem = mem
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+        end
+      end
+
+      # 不同类型的应用的容器部署组，部署时的额外资源要求
+      class ContainerAdditionalResourceRequirementMap < TencentCloud::Common::AbstractModel
+        # @param M: Mesh 应用部署时需要的额外资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type M: :class:`Tencentcloud::Tsf.v20180326.models.ContainerAdditionalResourceRequirement`
+        # @param N: 普通应用部署时需要的额外资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type N: :class:`Tencentcloud::Tsf.v20180326.models.ContainerAdditionalResourceRequirement`
+
+        attr_accessor :M, :N
+
+        def initialize(m=nil, n=nil)
+          @M = m
+          @N = n
+        end
+
+        def deserialize(params)
+          unless params['M'].nil?
+            @M = ContainerAdditionalResourceRequirement.new
+            @M.deserialize(params['M'])
+          end
+          unless params['N'].nil?
+            @N = ContainerAdditionalResourceRequirement.new
+            @N.deserialize(params['N'])
+          end
+        end
+      end
+
       # 返回容器的事件，比如 k8s deployment 或者 pod 的 events
       class ContainerEvent < TencentCloud::Common::AbstractModel
         # @param FirstTimestamp: 第一次出现的时间，以 ms 为单位的时间戳
@@ -2996,6 +3046,26 @@ module TencentCloud
         end
       end
 
+      # 容器部署组相关的参数配置
+      class ContainerGroupResourceConfig < TencentCloud::Common::AbstractModel
+        # @param AdditionalResourceRequirement: 不同类型的应用的容器部署组，部署时的额外资源要求
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdditionalResourceRequirement: :class:`Tencentcloud::Tsf.v20180326.models.ContainerAdditionalResourceRequirementMap`
+
+        attr_accessor :AdditionalResourceRequirement
+
+        def initialize(additionalresourcerequirement=nil)
+          @AdditionalResourceRequirement = additionalresourcerequirement
+        end
+
+        def deserialize(params)
+          unless params['AdditionalResourceRequirement'].nil?
+            @AdditionalResourceRequirement = ContainerAdditionalResourceRequirementMap.new
+            @AdditionalResourceRequirement.deserialize(params['AdditionalResourceRequirement'])
+          end
+        end
+      end
+
       # 服务治理相关配置项
       class ContainerGroupServiceGovernanceConfig < TencentCloud::Common::AbstractModel
         # @param EnableGovernance: 是否开启服务治理
@@ -3220,6 +3290,33 @@ module TencentCloud
           @RunCommand = params['RunCommand']
           @RunArg = params['RunArg']
           @ContainerName = params['ContainerName']
+        end
+      end
+
+      # 容器实例相关的参数配置
+      class ContainerInstanceResourceConfig < TencentCloud::Common::AbstractModel
+        # @param ImportMode: 实例导入方式，可多个，公有云为 ["R"]，独立版的取值有 "M" 脚本模式、"S" SSH 模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportMode: Array
+        # @param MasterNumLimit: SSH 模式时，前端应该限制用户填这个数量的 master 主机信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MasterNumLimit: Integer
+        # @param NodeNumLimitPerSetup: SSH 模式时，前端应该限制用户填的最高数量的 node 主机信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeNumLimitPerSetup: Integer
+
+        attr_accessor :ImportMode, :MasterNumLimit, :NodeNumLimitPerSetup
+
+        def initialize(importmode=nil, masternumlimit=nil, nodenumlimitpersetup=nil)
+          @ImportMode = importmode
+          @MasterNumLimit = masternumlimit
+          @NodeNumLimitPerSetup = nodenumlimitpersetup
+        end
+
+        def deserialize(params)
+          @ImportMode = params['ImportMode']
+          @MasterNumLimit = params['MasterNumLimit']
+          @NodeNumLimitPerSetup = params['NodeNumLimitPerSetup']
         end
       end
 
@@ -3605,10 +3702,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2025, 7
-        deprecate :ApplicationLogConfig=, :none, 2025, 7
-        deprecate :ApplicationResourceType, :none, 2025, 7
-        deprecate :ApplicationResourceType=, :none, 2025, 7
+        deprecate :ApplicationLogConfig, :none, 2025, 8
+        deprecate :ApplicationLogConfig=, :none, 2025, 8
+        deprecate :ApplicationResourceType, :none, 2025, 8
+        deprecate :ApplicationResourceType=, :none, 2025, 8
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -6932,12 +7029,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2025, 7
-        deprecate :Reponame=, :none, 2025, 7
-        deprecate :VolumeInfos, :none, 2025, 7
-        deprecate :VolumeInfos=, :none, 2025, 7
-        deprecate :VolumeMountInfos, :none, 2025, 7
-        deprecate :VolumeMountInfos=, :none, 2025, 7
+        deprecate :Reponame, :none, 2025, 8
+        deprecate :Reponame=, :none, 2025, 8
+        deprecate :VolumeInfos, :none, 2025, 8
+        deprecate :VolumeInfos=, :none, 2025, 8
+        deprecate :VolumeMountInfos, :none, 2025, 8
+        deprecate :VolumeMountInfos=, :none, 2025, 8
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -10358,6 +10455,85 @@ module TencentCloud
         end
       end
 
+      # DescribeLicenses请求参数结构体
+      class DescribeLicensesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLicenses返回参数结构体
+      class DescribeLicensesResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 许可标签列表分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageLicenseTag`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = TsfPageLicenseTag.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogCapacity请求参数结构体
+      class DescribeLogCapacityRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLogCapacity返回参数结构体
+      class DescribeLogCapacityResponse < TencentCloud::Common::AbstractModel
+        # @param UsedSpace: 使用日志容量大小
+        # @type UsedSpace: Float
+        # @param Capacity: 日志总容量大小
+        # @type Capacity: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UsedSpace, :Capacity, :RequestId
+
+        def initialize(usedspace=nil, capacity=nil, requestid=nil)
+          @UsedSpace = usedspace
+          @Capacity = capacity
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UsedSpace = params['UsedSpace']
+          @Capacity = params['Capacity']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMicroservice请求参数结构体
       class DescribeMicroserviceRequest < TencentCloud::Common::AbstractModel
         # @param MicroserviceId: 微服务ID
@@ -11361,6 +11537,249 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 返回给前端的控制信息
+      class DescribeResourceConfigCluster < TencentCloud::Common::AbstractModel
+        # @param Container: 返回给前端的控制信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Container: :class:`Tencentcloud::Tsf.v20180326.models.DescribeResourceConfigClusterContainer`
+
+        attr_accessor :Container
+
+        def initialize(container=nil)
+          @Container = container
+        end
+
+        def deserialize(params)
+          unless params['Container'].nil?
+            @Container = DescribeResourceConfigClusterContainer.new
+            @Container.deserialize(params['Container'])
+          end
+        end
+      end
+
+      # 返回给前端的控制信息
+      class DescribeResourceConfigClusterContainer < TencentCloud::Common::AbstractModel
+        # @param NeedSubnetWhenCreatingCluster: 是否需要子网
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NeedSubnetWhenCreatingCluster: Boolean
+
+        attr_accessor :NeedSubnetWhenCreatingCluster
+
+        def initialize(needsubnetwhencreatingcluster=nil)
+          @NeedSubnetWhenCreatingCluster = needsubnetwhencreatingcluster
+        end
+
+        def deserialize(params)
+          @NeedSubnetWhenCreatingCluster = params['NeedSubnetWhenCreatingCluster']
+        end
+      end
+
+      # DescribeResourceConfig
+      class DescribeResourceConfigLicense < TencentCloud::Common::AbstractModel
+        # @param Function: 功能
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Function: Array
+        # @param Resource: 资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: Array
+        # @param ExpireTime: utc时间 单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: Integer
+        # @param Countdown: utc时间 单位秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Countdown: Integer
+        # @param Spec: 规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: String
+
+        attr_accessor :Function, :Resource, :ExpireTime, :Countdown, :Spec
+
+        def initialize(function=nil, resource=nil, expiretime=nil, countdown=nil, spec=nil)
+          @Function = function
+          @Resource = resource
+          @ExpireTime = expiretime
+          @Countdown = countdown
+          @Spec = spec
+        end
+
+        def deserialize(params)
+          unless params['Function'].nil?
+            @Function = []
+            params['Function'].each do |i|
+              describeresourceconfiglicensefunction_tmp = DescribeResourceConfigLicenseFunction.new
+              describeresourceconfiglicensefunction_tmp.deserialize(i)
+              @Function << describeresourceconfiglicensefunction_tmp
+            end
+          end
+          unless params['Resource'].nil?
+            @Resource = []
+            params['Resource'].each do |i|
+              describeresourceconfiglicenseresource_tmp = DescribeResourceConfigLicenseResource.new
+              describeresourceconfiglicenseresource_tmp.deserialize(i)
+              @Resource << describeresourceconfiglicenseresource_tmp
+            end
+          end
+          @ExpireTime = params['ExpireTime']
+          @Countdown = params['Countdown']
+          @Spec = params['Spec']
+        end
+      end
+
+      # DescribeResourceConfig
+      class DescribeResourceConfigLicenseFunction < TencentCloud::Common::AbstractModel
+        # @param Name: name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Enable: enable
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+
+        attr_accessor :Name, :Enable
+
+        def initialize(name=nil, enable=nil)
+          @Name = name
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Enable = params['Enable']
+        end
+      end
+
+      # DescribeResourceConfig
+      class DescribeResourceConfigLicenseResource < TencentCloud::Common::AbstractModel
+        # @param Name: Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Quota: Quota
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quota: Integer
+
+        attr_accessor :Name, :Quota
+
+        def initialize(name=nil, quota=nil)
+          @Name = name
+          @Quota = quota
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Quota = params['Quota']
+        end
+      end
+
+      # DescribeResourceConfig请求参数结构体
+      class DescribeResourceConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeResourceConfig返回参数结构体
+      class DescribeResourceConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 配置详情
+        # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.DescribeResourceConfigResultV2`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescribeResourceConfigResultV2.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceConfig
+      class DescribeResourceConfigResultV2 < TencentCloud::Common::AbstractModel
+        # @param Sts: STS参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Sts: :class:`Tencentcloud::Tsf.v20180326.models.DescribeResourceConfigSts`
+        # @param License: 许可信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type License: :class:`Tencentcloud::Tsf.v20180326.models.DescribeResourceConfigLicense`
+        # @param Group: 部署组相关的参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Group: :class:`Tencentcloud::Tsf.v20180326.models.GroupResourceConfig`
+        # @param Instance: 实例相关的参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instance: :class:`Tencentcloud::Tsf.v20180326.models.InstanceResourceConfig`
+        # @param Cluster: Cluster相关配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cluster: :class:`Tencentcloud::Tsf.v20180326.models.DescribeResourceConfigCluster`
+        # @param Package: 程序包相关配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Package: :class:`Tencentcloud::Tsf.v20180326.models.PackageConfig`
+
+        attr_accessor :Sts, :License, :Group, :Instance, :Cluster, :Package
+
+        def initialize(sts=nil, license=nil, group=nil, instance=nil, cluster=nil, package=nil)
+          @Sts = sts
+          @License = license
+          @Group = group
+          @Instance = instance
+          @Cluster = cluster
+          @Package = package
+        end
+
+        def deserialize(params)
+          unless params['Sts'].nil?
+            @Sts = DescribeResourceConfigSts.new
+            @Sts.deserialize(params['Sts'])
+          end
+          unless params['License'].nil?
+            @License = DescribeResourceConfigLicense.new
+            @License.deserialize(params['License'])
+          end
+          unless params['Group'].nil?
+            @Group = GroupResourceConfig.new
+            @Group.deserialize(params['Group'])
+          end
+          unless params['Instance'].nil?
+            @Instance = InstanceResourceConfig.new
+            @Instance.deserialize(params['Instance'])
+          end
+          unless params['Cluster'].nil?
+            @Cluster = DescribeResourceConfigCluster.new
+            @Cluster.deserialize(params['Cluster'])
+          end
+          unless params['Package'].nil?
+            @Package = PackageConfig.new
+            @Package.deserialize(params['Package'])
+          end
+        end
+      end
+
+      # DescribeResourceConfig
+      class DescribeResourceConfigSts < TencentCloud::Common::AbstractModel
+        # @param Uin: uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+
+        attr_accessor :Uin
+
+        def initialize(uin=nil)
+          @Uin = uin
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
         end
       end
 
@@ -13927,6 +14346,26 @@ module TencentCloud
         end
       end
 
+      # 部署组相关的参数配置
+      class GroupResourceConfig < TencentCloud::Common::AbstractModel
+        # @param Container: 容器部署组相关的参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Container: :class:`Tencentcloud::Tsf.v20180326.models.ContainerGroupResourceConfig`
+
+        attr_accessor :Container
+
+        def initialize(container=nil)
+          @Container = container
+        end
+
+        def deserialize(params)
+          unless params['Container'].nil?
+            @Container = ContainerGroupResourceConfig.new
+            @Container.deserialize(params['Container'])
+          end
+        end
+      end
+
       # 单元化API使用详情统计对象列表
       class GroupUnitApiDailyUseStatistics < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间ID
@@ -14238,8 +14677,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2025, 7
-        deprecate :ApplicationName=, :none, 2025, 7
+        deprecate :ApplicationName, :none, 2025, 8
+        deprecate :ApplicationName=, :none, 2025, 8
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -14789,6 +15228,34 @@ module TencentCloud
               instanceenrichedinfo_tmp.deserialize(i)
               @Content << instanceenrichedinfo_tmp
             end
+          end
+        end
+      end
+
+      # 实例相关的参数配置
+      class InstanceResourceConfig < TencentCloud::Common::AbstractModel
+        # @param Container: 容器实例相关的参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Container: :class:`Tencentcloud::Tsf.v20180326.models.ContainerInstanceResourceConfig`
+        # @param Vm: 虚拟机实例相关的参数配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vm: :class:`Tencentcloud::Tsf.v20180326.models.VmInstanceResourceConfig`
+
+        attr_accessor :Container, :Vm
+
+        def initialize(container=nil, vm=nil)
+          @Container = container
+          @Vm = vm
+        end
+
+        def deserialize(params)
+          unless params['Container'].nil?
+            @Container = ContainerInstanceResourceConfig.new
+            @Container.deserialize(params['Container'])
+          end
+          unless params['Vm'].nil?
+            @Vm = VmInstanceResourceConfig.new
+            @Vm.deserialize(params['Vm'])
           end
         end
       end
@@ -15407,6 +15874,35 @@ module TencentCloud
               lanerule_tmp = LaneRule.new
               lanerule_tmp.deserialize(i)
               @Content << lanerule_tmp
+            end
+          end
+        end
+      end
+
+      # 许可标签
+      class LicenseTag < TencentCloud::Common::AbstractModel
+        # @param LicenseId: 许可ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LicenseId: String
+        # @param Tags: 标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+
+        attr_accessor :LicenseId, :Tags
+
+        def initialize(licenseid=nil, tags=nil)
+          @LicenseId = licenseid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
             end
           end
         end
@@ -16978,6 +17474,23 @@ module TencentCloud
           @GroupCount = params['GroupCount']
           @PackageSpaceUsed = params['PackageSpaceUsed']
           @ConsulInstanceCount = params['ConsulInstanceCount']
+        end
+      end
+
+      # 程序包相关配置信息
+      class PackageConfig < TencentCloud::Common::AbstractModel
+        # @param SpaceSize: 程序包存储空间大小，单位字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpaceSize: Integer
+
+        attr_accessor :SpaceSize
+
+        def initialize(spacesize=nil)
+          @SpaceSize = spacesize
+        end
+
+        def deserialize(params)
+          @SpaceSize = params['SpaceSize']
         end
       end
 
@@ -19772,8 +20285,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2025, 7
-        deprecate :DeamonThreadCount=, :none, 2025, 7
+        deprecate :DeamonThreadCount, :none, 2025, 8
+        deprecate :DeamonThreadCount=, :none, 2025, 8
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount
@@ -20399,6 +20912,35 @@ module TencentCloud
               instance_tmp = Instance.new
               instance_tmp.deserialize(i)
               @Content << instance_tmp
+            end
+          end
+        end
+      end
+
+      # LicenseTag 翻页对象
+      class TsfPageLicenseTag < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 记录总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Content: 记录实体列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: Array
+
+        attr_accessor :TotalCount, :Content
+
+        def initialize(totalcount=nil, content=nil)
+          @TotalCount = totalcount
+          @Content = content
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              licensetag_tmp = LicenseTag.new
+              licensetag_tmp.deserialize(i)
+              @Content << licensetag_tmp
             end
           end
         end
@@ -21795,6 +22337,23 @@ module TencentCloud
           @UpdatedTime = params['UpdatedTime']
           @DeployDesc = params['DeployDesc']
           @Alias = params['Alias']
+        end
+      end
+
+      # 虚拟机实例相关的参数配置
+      class VmInstanceResourceConfig < TencentCloud::Common::AbstractModel
+        # @param ImportMode: 实例导入方式，可多个，公有云为 ["R", "M"]，独立版的取值仅有 "M" 脚本模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImportMode: Array
+
+        attr_accessor :ImportMode
+
+        def initialize(importmode=nil)
+          @ImportMode = importmode
+        end
+
+        def deserialize(params)
+          @ImportMode = params['ImportMode']
         end
       end
 

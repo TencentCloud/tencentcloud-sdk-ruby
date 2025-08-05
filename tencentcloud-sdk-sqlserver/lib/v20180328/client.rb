@@ -1757,7 +1757,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
+        # 本接口（DescribeProductConfig）用于查询售卖规格配置。
 
         # @param request: Request instance for DescribeProductConfig.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeProductConfigRequest`
@@ -2213,7 +2213,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口 (DescribeZones) 用于查询当前可售卖的可用区信息。
+        # 本接口（DescribeZones）用于查询当前可售卖的可用区信息。
 
         # @param request: Request instance for DescribeZones.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::DescribeZonesRequest`

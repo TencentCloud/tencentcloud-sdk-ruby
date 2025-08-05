@@ -5931,7 +5931,7 @@ module TencentCloud
 
       # DescribeProductConfig请求参数结构体
       class DescribeProductConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区英文ID，形如ap-guangzhou-1
+        # @param Zone: 可用区英文 ID
         # @type Zone: String
         # @param InstanceType: 购买实例的类型 HA-本地盘高可用(包括双机高可用，alwaysOn集群)，RO-本地盘只读副本，SI-云盘版单节点,BI-商业智能服务，cvmHA-云盘版高可用，cvmRO-云盘版只读副本，MultiHA-多节点，cvmMultiHA-云盘多节点
         # @type InstanceType: String
@@ -11865,9 +11865,9 @@ module TencentCloud
 
       # 某个地域可用区下的规格售卖状态。
       class ZoneStatus < TencentCloud::Common::AbstractModel
-        # @param Zone: 规格地域
+        # @param Zone: 规格可用区
         # @type Zone: String
-        # @param Region: 规格可用区
+        # @param Region: 规格地域
         # @type Region: String
         # @param Status: 规格在该可用区的售卖状态 1-正常 2-关闭售卖但是可以升级 3-完全关闭售卖
         # @type Status: Integer

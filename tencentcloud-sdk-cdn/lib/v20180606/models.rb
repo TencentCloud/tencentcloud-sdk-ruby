@@ -1595,6 +1595,8 @@ module TencentCloud
         # off：关闭全路径缓存（即开启参数忽略）
         # @type FullUrlCache: String
         # @param IgnoreCase: 是否忽略大小写缓存
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreCase: String
         # @param QueryString: CacheKey中包含请求参数
@@ -6449,6 +6451,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullUrlCache: String
         # @param IgnoreCase: 是否忽略大小写缓存
+        # on：开启
+        # off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IgnoreCase: String
         # @param QueryString: CacheKey中包含请求参数

@@ -6936,15 +6936,18 @@ module TencentCloud
         # @type Used: Integer
         # @param Available: 剩余集群规格
         # @type Available: Integer
+        # @param AvailPercent: 剩余集群规格百分比
+        # @type AvailPercent: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :Used, :Available, :RequestId
+        attr_accessor :Total, :Used, :Available, :AvailPercent, :RequestId
 
-        def initialize(total=nil, used=nil, available=nil, requestid=nil)
+        def initialize(total=nil, used=nil, available=nil, availpercent=nil, requestid=nil)
           @Total = total
           @Used = used
           @Available = available
+          @AvailPercent = availpercent
           @RequestId = requestid
         end
 
@@ -6952,6 +6955,7 @@ module TencentCloud
           @Total = params['Total']
           @Used = params['Used']
           @Available = params['Available']
+          @AvailPercent = params['AvailPercent']
           @RequestId = params['RequestId']
         end
       end
@@ -11021,8 +11025,6 @@ module TencentCloud
 
       # ListTaskJobLogDetail请求参数结构体
       class ListTaskJobLogDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 列表返回的Id
-        # @type TaskId: String
         # @param StartTime: 开始运行时间，unix时间戳（毫秒）
         # @type StartTime: Integer
         # @param EndTime: 结束运行时间，unix时间戳（毫秒）
@@ -11031,32 +11033,40 @@ module TencentCloud
         # @type Limit: Integer
         # @param Context: 下一次分页参数，第一次传空
         # @type Context: String
+        # @param TaskId: 列表返回的Id
+        # @type TaskId: String
         # @param Asc: 最近1000条日志是否升序排列，true:升序排序，false:倒序，默认false，倒序排列
         # @type Asc: Boolean
         # @param Filters: 预览日志的通用过滤条件
         # @type Filters: Array
         # @param BatchId: SparkSQL任务唯一ID
         # @type BatchId: String
+        # @param DataEngineId: 引擎id
+        # @type DataEngineId: String
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
 
-        attr_accessor :TaskId, :StartTime, :EndTime, :Limit, :Context, :Asc, :Filters, :BatchId
+        attr_accessor :StartTime, :EndTime, :Limit, :Context, :TaskId, :Asc, :Filters, :BatchId, :DataEngineId, :ResourceGroupId
 
-        def initialize(taskid=nil, starttime=nil, endtime=nil, limit=nil, context=nil, asc=nil, filters=nil, batchid=nil)
-          @TaskId = taskid
+        def initialize(starttime=nil, endtime=nil, limit=nil, context=nil, taskid=nil, asc=nil, filters=nil, batchid=nil, dataengineid=nil, resourcegroupid=nil)
           @StartTime = starttime
           @EndTime = endtime
           @Limit = limit
           @Context = context
+          @TaskId = taskid
           @Asc = asc
           @Filters = filters
           @BatchId = batchid
+          @DataEngineId = dataengineid
+          @ResourceGroupId = resourcegroupid
         end
 
         def deserialize(params)
-          @TaskId = params['TaskId']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Limit = params['Limit']
           @Context = params['Context']
+          @TaskId = params['TaskId']
           @Asc = params['Asc']
           unless params['Filters'].nil?
             @Filters = []
@@ -11067,6 +11077,8 @@ module TencentCloud
             end
           end
           @BatchId = params['BatchId']
+          @DataEngineId = params['DataEngineId']
+          @ResourceGroupId = params['ResourceGroupId']
         end
       end
 
@@ -13951,10 +13963,18 @@ module TencentCloud
         # @param SparkMinSize: Spark类型资源组资源最小值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SparkMinSize: Integer
+        # @param PublicDomain: 自定义镜像容器镜像服务domain 名称
+        # @type PublicDomain: String
+        # @param RegistryId: 自定义镜像容器镜像服务tcr实例id
+        # @type RegistryId: String
+        # @param RegionName: 容器镜像服务tcr所在地域
+        # @type RegionName: String
+        # @param LaunchTime: 资源组启动耗时
+        # @type LaunchTime: String
 
-        attr_accessor :EngineResourceGroupId, :EngineResourceGroupName, :Creator, :ResourceGroupState, :AutoLaunch, :AutoPause, :AutoPauseTime, :DriverCuSpec, :ExecutorCuSpec, :MaxConcurrency, :MinExecutorNums, :MaxExecutorNums, :CreateTime, :UpdateTime, :NeedRestart, :DataEngineName, :DataEngineId, :DataEngineState, :AccessPointId, :AccessPointName, :AccessPointState, :ResourceGroupType, :EngineNetworkId, :NetworkConfigNames, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :IsDefault, :ResourceGroupScene, :PythonCuSpec, :SparkSpecMode, :SparkSize, :SparkMinSize
+        attr_accessor :EngineResourceGroupId, :EngineResourceGroupName, :Creator, :ResourceGroupState, :AutoLaunch, :AutoPause, :AutoPauseTime, :DriverCuSpec, :ExecutorCuSpec, :MaxConcurrency, :MinExecutorNums, :MaxExecutorNums, :CreateTime, :UpdateTime, :NeedRestart, :DataEngineName, :DataEngineId, :DataEngineState, :AccessPointId, :AccessPointName, :AccessPointState, :ResourceGroupType, :EngineNetworkId, :NetworkConfigNames, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :IsDefault, :ResourceGroupScene, :PythonCuSpec, :SparkSpecMode, :SparkSize, :SparkMinSize, :PublicDomain, :RegistryId, :RegionName, :LaunchTime
 
-        def initialize(engineresourcegroupid=nil, engineresourcegroupname=nil, creator=nil, resourcegroupstate=nil, autolaunch=nil, autopause=nil, autopausetime=nil, drivercuspec=nil, executorcuspec=nil, maxconcurrency=nil, minexecutornums=nil, maxexecutornums=nil, createtime=nil, updatetime=nil, needrestart=nil, dataenginename=nil, dataengineid=nil, dataenginestate=nil, accesspointid=nil, accesspointname=nil, accesspointstate=nil, resourcegrouptype=nil, enginenetworkid=nil, networkconfignames=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, isdefault=nil, resourcegroupscene=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil, sparkminsize=nil)
+        def initialize(engineresourcegroupid=nil, engineresourcegroupname=nil, creator=nil, resourcegroupstate=nil, autolaunch=nil, autopause=nil, autopausetime=nil, drivercuspec=nil, executorcuspec=nil, maxconcurrency=nil, minexecutornums=nil, maxexecutornums=nil, createtime=nil, updatetime=nil, needrestart=nil, dataenginename=nil, dataengineid=nil, dataenginestate=nil, accesspointid=nil, accesspointname=nil, accesspointstate=nil, resourcegrouptype=nil, enginenetworkid=nil, networkconfignames=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, isdefault=nil, resourcegroupscene=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil, sparkminsize=nil, publicdomain=nil, registryid=nil, regionname=nil, launchtime=nil)
           @EngineResourceGroupId = engineresourcegroupid
           @EngineResourceGroupName = engineresourcegroupname
           @Creator = creator
@@ -13990,6 +14010,10 @@ module TencentCloud
           @SparkSpecMode = sparkspecmode
           @SparkSize = sparksize
           @SparkMinSize = sparkminsize
+          @PublicDomain = publicdomain
+          @RegistryId = registryid
+          @RegionName = regionname
+          @LaunchTime = launchtime
         end
 
         def deserialize(params)
@@ -14028,6 +14052,10 @@ module TencentCloud
           @SparkSpecMode = params['SparkSpecMode']
           @SparkSize = params['SparkSize']
           @SparkMinSize = params['SparkMinSize']
+          @PublicDomain = params['PublicDomain']
+          @RegistryId = params['RegistryId']
+          @RegionName = params['RegionName']
+          @LaunchTime = params['LaunchTime']
         end
       end
 

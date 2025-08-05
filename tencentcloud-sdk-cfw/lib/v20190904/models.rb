@@ -1310,79 +1310,6 @@ module TencentCloud
         end
       end
 
-      # CreateIdsWhiteRule请求参数结构体
-      class CreateIdsWhiteRuleRequest < TencentCloud::Common::AbstractModel
-        # @param IdsRuleId: 入侵防御规则ID
-        # @type IdsRuleId: String
-        # @param WhiteRuleType: 白名单类型：
-        # src 针对源放通
-        # dst 针对目的放通
-        # srcdst 针对源和目的放通
-        # @type WhiteRuleType: String
-        # @param FwType: 白名单生效防火墙范围：
-        # 1 边界防火墙
-        # 2 nat防火墙
-        # 4 vpc防火墙
-        # 7 = 1+2+4  所有防火墙
-        # @type FwType: Integer
-        # @param SrcIp: 源IP
-        # @type SrcIp: String
-        # @param DstIp: 目的IP
-        # @type DstIp: String
-
-        attr_accessor :IdsRuleId, :WhiteRuleType, :FwType, :SrcIp, :DstIp
-
-        def initialize(idsruleid=nil, whiteruletype=nil, fwtype=nil, srcip=nil, dstip=nil)
-          @IdsRuleId = idsruleid
-          @WhiteRuleType = whiteruletype
-          @FwType = fwtype
-          @SrcIp = srcip
-          @DstIp = dstip
-        end
-
-        def deserialize(params)
-          @IdsRuleId = params['IdsRuleId']
-          @WhiteRuleType = params['WhiteRuleType']
-          @FwType = params['FwType']
-          @SrcIp = params['SrcIp']
-          @DstIp = params['DstIp']
-        end
-      end
-
-      # CreateIdsWhiteRule返回参数结构体
-      class CreateIdsWhiteRuleResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnCode: 返回状态码：
-        # 0 成功
-        # 非0 失败
-        # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息：
-        # success 成功
-        # 其他
-        # @type ReturnMsg: String
-        # @param Status: 返回状态码：
-        # 0  处置成功
-        # -1 通用错误，不用处理
-        # @type Status: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
-
-        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
-          @ReturnCode = returncode
-          @ReturnMsg = returnmsg
-          @Status = status
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ReturnCode = params['ReturnCode']
-          @ReturnMsg = params['ReturnMsg']
-          @Status = params['Status']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateNatFwInstance请求参数结构体
       class CreateNatFwInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 防火墙实例名称
@@ -2145,57 +2072,6 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DeleteIdsWhiteRule请求参数结构体
-      class DeleteIdsWhiteRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 入侵防御白名单id
-        # 参考DescribeIdsWhiteRule接口返回的Id字段
-        # @type Id: Integer
-
-        attr_accessor :Id
-
-        def initialize(id=nil)
-          @Id = id
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-        end
-      end
-
-      # DeleteIdsWhiteRule返回参数结构体
-      class DeleteIdsWhiteRuleResponse < TencentCloud::Common::AbstractModel
-        # @param ReturnCode: 返回状态码：
-        # 0 成功
-        # 非0 失败
-        # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息：
-        # success 成功
-        # 其他
-        # @type ReturnMsg: String
-        # @param Status: 返回状态码：
-        # 0  处置成功
-        # -1 通用错误，不用处理
-        # @type Status: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ReturnCode, :ReturnMsg, :Status, :RequestId
-
-        def initialize(returncode=nil, returnmsg=nil, status=nil, requestid=nil)
-          @ReturnCode = returncode
-          @ReturnMsg = returnmsg
-          @Status = status
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ReturnCode = params['ReturnCode']
-          @ReturnMsg = params['ReturnMsg']
-          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -3901,84 +3777,6 @@ module TencentCloud
               ipdefendstatus_tmp = IPDefendStatus.new
               ipdefendstatus_tmp.deserialize(i)
               @StatusList << ipdefendstatus_tmp
-            end
-          end
-          @ReturnCode = params['ReturnCode']
-          @ReturnMsg = params['ReturnMsg']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeIdsWhiteRule请求参数结构体
-      class DescribeIdsWhiteRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页条数
-        # @type Limit: Integer
-        # @param Offset: 偏移值
-        # @type Offset: Integer
-        # @param Filters: 过滤条件组合
-        # @type Filters: Array
-        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
-        # @type Order: String
-        # @param By: 排序所用到的字段
-        # @type By: String
-
-        attr_accessor :Limit, :Offset, :Filters, :Order, :By
-
-        def initialize(limit=nil, offset=nil, filters=nil, order=nil, by=nil)
-          @Limit = limit
-          @Offset = offset
-          @Filters = filters
-          @Order = order
-          @By = by
-        end
-
-        def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              commonfilter_tmp = CommonFilter.new
-              commonfilter_tmp.deserialize(i)
-              @Filters << commonfilter_tmp
-            end
-          end
-          @Order = params['Order']
-          @By = params['By']
-        end
-      end
-
-      # DescribeIdsWhiteRule返回参数结构体
-      class DescribeIdsWhiteRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总条数
-        # @type Total: Integer
-        # @param Data: 规则详情
-        # @type Data: Array
-        # @param ReturnCode: 返回状态码 0 成功 非0不成功
-        # @type ReturnCode: Integer
-        # @param ReturnMsg: 返回信息  success 成功 其他 不成功
-        # @type ReturnMsg: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Total, :Data, :ReturnCode, :ReturnMsg, :RequestId
-
-        def initialize(total=nil, data=nil, returncode=nil, returnmsg=nil, requestid=nil)
-          @Total = total
-          @Data = data
-          @ReturnCode = returncode
-          @ReturnMsg = returnmsg
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Total = params['Total']
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              idswhiteinfo_tmp = IdsWhiteInfo.new
-              idswhiteinfo_tmp.deserialize(i)
-              @Data << idswhiteinfo_tmp
             end
           end
           @ReturnCode = params['ReturnCode']
@@ -6047,42 +5845,6 @@ module TencentCloud
         end
       end
 
-      # 入侵防御规则白名单详情
-      class IdsWhiteInfo < TencentCloud::Common::AbstractModel
-        # @param Id: 白名单唯一ID
-        # @type Id: Integer
-        # @param SrcIp: 源IP
-        # @type SrcIp: String
-        # @param DstIp: 目的IP
-        # @type DstIp: String
-        # @param WhiteRuleType: 规则类型
-        # @type WhiteRuleType: String
-        # @param FwType: 白名单生效防火墙范围： 1 边界防火墙 2 nat防火墙 4 vpc防火墙 7 = 1+2+4 所有防火墙
-        # @type FwType: Integer
-        # @param RuleId: 入侵防御规则ID
-        # @type RuleId: String
-
-        attr_accessor :Id, :SrcIp, :DstIp, :WhiteRuleType, :FwType, :RuleId
-
-        def initialize(id=nil, srcip=nil, dstip=nil, whiteruletype=nil, fwtype=nil, ruleid=nil)
-          @Id = id
-          @SrcIp = srcip
-          @DstIp = dstip
-          @WhiteRuleType = whiteruletype
-          @FwType = fwtype
-          @RuleId = ruleid
-        end
-
-        def deserialize(params)
-          @Id = params['Id']
-          @SrcIp = params['SrcIp']
-          @DstIp = params['DstIp']
-          @WhiteRuleType = params['WhiteRuleType']
-          @FwType = params['FwType']
-          @RuleId = params['RuleId']
-        end
-      end
-
       # 实例详情结果
       class InstanceInfo < TencentCloud::Common::AbstractModel
         # @param AppId: appid信息
@@ -6474,8 +6236,7 @@ module TencentCloud
         # @param IpString: Type为1，ip模板eg：1.1.1.1,2.2.2.2；
         # Type为5，域名模板eg：www.qq.com,www.tencent.com
         # @type IpString: String
-        # @param Type: 1 ip模板
-        # 5 域名模板
+        # @param Type: 1 ip模板  5 域名模板
         # @type Type: Integer
         # @param ProtocolType: 协议端口模板，协议类型，4:4层协议，7:7层协议。Type=6时必填。
         # @type ProtocolType: String
@@ -6507,20 +6268,24 @@ module TencentCloud
         # @type Status: Integer
         # @param Uuid: 唯一Id
         # @type Uuid: String
+        # @param RuleLimitNum: 规则数上限配置
+        # @type RuleLimitNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :Uuid, :RequestId
+        attr_accessor :Status, :Uuid, :RuleLimitNum, :RequestId
 
-        def initialize(status=nil, uuid=nil, requestid=nil)
+        def initialize(status=nil, uuid=nil, rulelimitnum=nil, requestid=nil)
           @Status = status
           @Uuid = uuid
+          @RuleLimitNum = rulelimitnum
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
           @Uuid = params['Uuid']
+          @RuleLimitNum = params['RuleLimitNum']
           @RequestId = params['RequestId']
         end
       end
@@ -6601,18 +6366,22 @@ module TencentCloud
       class ModifyAllRuleStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 0: 修改成功, 其他: 修改失败
         # @type Status: Integer
+        # @param RuleLimitNum: 规则限制数量
+        # @type RuleLimitNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :RuleLimitNum, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, rulelimitnum=nil, requestid=nil)
           @Status = status
+          @RuleLimitNum = rulelimitnum
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @RuleLimitNum = params['RuleLimitNum']
           @RequestId = params['RequestId']
         end
       end

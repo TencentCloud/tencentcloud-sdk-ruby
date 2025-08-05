@@ -4493,7 +4493,6 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmallHeadImage: String
         # @param WarningCode: 该字段已废弃， 将固定返回空数组，不建议使用。
-        # This field is deprecated and will always return an empty array. Usage is not recommended.
         # @type WarningCode: Array
         # @param WarnCardInfos: 告警码
         # -9101 证件边框不完整告警
