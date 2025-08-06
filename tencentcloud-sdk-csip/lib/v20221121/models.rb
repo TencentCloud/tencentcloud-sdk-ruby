@@ -2809,8 +2809,7 @@ module TencentCloud
         # 0:控制台调用
         # 1:API
         # @type EventType: Integer
-        # @param UserType: 用户类型
-        # CAMUser/root/AssumedRole
+        # @param UserType: 用户类型CAMUser/root/AssumedRole
         # @type UserType: String
         # @param UserName: 用户/角色名称
         # @type UserName: String
@@ -2837,10 +2836,12 @@ module TencentCloud
         # @type ShowStatus: Boolean
         # @param ISP: 运营商
         # @type ISP: String
+        # @param VpcInfo: 账号外vpc信息列表
+        # @type VpcInfo: Array
 
-        attr_accessor :CallID, :AccessKey, :AccessKeyRemark, :AccessKeyID, :SourceIP, :SourceIPRemark, :Region, :IPType, :EventName, :ProductName, :EventType, :UserType, :UserName, :PolicySet, :CallCount, :Code, :FirstCallTime, :LastCallTime, :InstanceID, :InstanceName, :Date, :AppID, :ShowStatus, :ISP
+        attr_accessor :CallID, :AccessKey, :AccessKeyRemark, :AccessKeyID, :SourceIP, :SourceIPRemark, :Region, :IPType, :EventName, :ProductName, :EventType, :UserType, :UserName, :PolicySet, :CallCount, :Code, :FirstCallTime, :LastCallTime, :InstanceID, :InstanceName, :Date, :AppID, :ShowStatus, :ISP, :VpcInfo
 
-        def initialize(callid=nil, accesskey=nil, accesskeyremark=nil, accesskeyid=nil, sourceip=nil, sourceipremark=nil, region=nil, iptype=nil, eventname=nil, productname=nil, eventtype=nil, usertype=nil, username=nil, policyset=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, instanceid=nil, instancename=nil, date=nil, appid=nil, showstatus=nil, isp=nil)
+        def initialize(callid=nil, accesskey=nil, accesskeyremark=nil, accesskeyid=nil, sourceip=nil, sourceipremark=nil, region=nil, iptype=nil, eventname=nil, productname=nil, eventtype=nil, usertype=nil, username=nil, policyset=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, instanceid=nil, instancename=nil, date=nil, appid=nil, showstatus=nil, isp=nil, vpcinfo=nil)
           @CallID = callid
           @AccessKey = accesskey
           @AccessKeyRemark = accesskeyremark
@@ -2865,6 +2866,7 @@ module TencentCloud
           @AppID = appid
           @ShowStatus = showstatus
           @ISP = isp
+          @VpcInfo = vpcinfo
         end
 
         def deserialize(params)
@@ -2892,6 +2894,14 @@ module TencentCloud
           @AppID = params['AppID']
           @ShowStatus = params['ShowStatus']
           @ISP = params['ISP']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              sourceipvpcinfo_tmp = SourceIPVpcInfo.new
+              sourceipvpcinfo_tmp.deserialize(i)
+              @VpcInfo << sourceipvpcinfo_tmp
+            end
+          end
         end
       end
 
@@ -4934,15 +4944,18 @@ module TencentCloud
         # @type AccessKeyID: Integer
         # @param SourceIPID: 调用源IP的ID
         # @type SourceIPID: Integer
+        # @param AccUin: 访问账号uin
+        # @type AccUin: String
         # @param Filter: 过滤器
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :MemberId, :AccessKeyID, :SourceIPID, :Filter
+        attr_accessor :MemberId, :AccessKeyID, :SourceIPID, :AccUin, :Filter
 
-        def initialize(memberid=nil, accesskeyid=nil, sourceipid=nil, filter=nil)
+        def initialize(memberid=nil, accesskeyid=nil, sourceipid=nil, accuin=nil, filter=nil)
           @MemberId = memberid
           @AccessKeyID = accesskeyid
           @SourceIPID = sourceipid
+          @AccUin = accuin
           @Filter = filter
         end
 
@@ -4950,6 +4963,7 @@ module TencentCloud
           @MemberId = params['MemberId']
           @AccessKeyID = params['AccessKeyID']
           @SourceIPID = params['SourceIPID']
+          @AccUin = params['AccUin']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])
@@ -5285,6 +5299,124 @@ module TencentCloud
               filterdataobject_tmp = FilterDataObject.new
               filterdataobject_tmp.deserialize(i)
               @AppIdList << filterdataobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConfigCheckRules请求参数结构体
+      class DescribeConfigCheckRulesRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: 集团账号的成员id
+        # @type MemberId: Array
+        # @param Filters: 过滤内容
+        # @type Filters: Array
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Order: 排序类型
+        # @type Order: String
+        # @param By: 排序字段
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeConfigCheckRules返回参数结构体
+      class DescribeConfigCheckRulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 风险规则数量
+        # @type TotalCount: Integer
+        # @param RuleList: 风险规则列表
+        # @type RuleList: Array
+        # @param ProviderList: 云厂商类型选项
+        # @type ProviderList: Array
+        # @param RiskLevelList: 风险等级类型选项
+        # @type RiskLevelList: Array
+        # @param DispositionTypeList: 处置分类选项
+        # @type DispositionTypeList: Array
+        # @param CheckTypeList: 检查类型选项
+        # @type CheckTypeList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RuleList, :ProviderList, :RiskLevelList, :DispositionTypeList, :CheckTypeList, :RequestId
+
+        def initialize(totalcount=nil, rulelist=nil, providerlist=nil, risklevellist=nil, dispositiontypelist=nil, checktypelist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RuleList = rulelist
+          @ProviderList = providerlist
+          @RiskLevelList = risklevellist
+          @DispositionTypeList = dispositiontypelist
+          @CheckTypeList = checktypelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              riskruleinfo_tmp = RiskRuleInfo.new
+              riskruleinfo_tmp.deserialize(i)
+              @RuleList << riskruleinfo_tmp
+            end
+          end
+          unless params['ProviderList'].nil?
+            @ProviderList = []
+            params['ProviderList'].each do |i|
+              attributeoptionset_tmp = AttributeOptionSet.new
+              attributeoptionset_tmp.deserialize(i)
+              @ProviderList << attributeoptionset_tmp
+            end
+          end
+          unless params['RiskLevelList'].nil?
+            @RiskLevelList = []
+            params['RiskLevelList'].each do |i|
+              attributeoptionset_tmp = AttributeOptionSet.new
+              attributeoptionset_tmp.deserialize(i)
+              @RiskLevelList << attributeoptionset_tmp
+            end
+          end
+          unless params['DispositionTypeList'].nil?
+            @DispositionTypeList = []
+            params['DispositionTypeList'].each do |i|
+              attributeoptionset_tmp = AttributeOptionSet.new
+              attributeoptionset_tmp.deserialize(i)
+              @DispositionTypeList << attributeoptionset_tmp
+            end
+          end
+          unless params['CheckTypeList'].nil?
+            @CheckTypeList = []
+            params['CheckTypeList'].each do |i|
+              attributeoptionset_tmp = AttributeOptionSet.new
+              attributeoptionset_tmp.deserialize(i)
+              @CheckTypeList << attributeoptionset_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9413,10 +9545,16 @@ module TencentCloud
         # @type AppId: Integer
         # @param AppIdStr: 租户ID字符串
         # @type AppIdStr: String
+        # @param ExposureID: 记录ID
+        # @type ExposureID: Integer
+        # @param PortDetectCount: 端口开放数量
+        # @type PortDetectCount: Integer
+        # @param PortDetectResult: 端口开放结果
+        # @type PortDetectResult: String
 
-        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr
+        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr, :ExposureID, :PortDetectCount, :PortDetectResult
 
-        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil)
+        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil, exposureid=nil, portdetectcount=nil, portdetectresult=nil)
           @Provider = provider
           @CloudAccountName = cloudaccountname
           @CloudAccountId = cloudaccountid
@@ -9446,6 +9584,9 @@ module TencentCloud
           @HasScan = hasscan
           @AppId = appid
           @AppIdStr = appidstr
+          @ExposureID = exposureid
+          @PortDetectCount = portdetectcount
+          @PortDetectResult = portdetectresult
         end
 
         def deserialize(params)
@@ -9478,6 +9619,9 @@ module TencentCloud
           @HasScan = params['HasScan']
           @AppId = params['AppId']
           @AppIdStr = params['AppIdStr']
+          @ExposureID = params['ExposureID']
+          @PortDetectCount = params['PortDetectCount']
+          @PortDetectResult = params['PortDetectResult']
         end
       end
 
@@ -11035,6 +11179,54 @@ module TencentCloud
       end
 
       # 风险规则
+      class RiskRuleInfo < TencentCloud::Common::AbstractModel
+        # @param RuleID: 风险检查项ID
+        # @type RuleID: String
+        # @param Provider: 云厂商名称
+        # @type Provider: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param RiskTitle: 风险名称
+        # @type RiskTitle: String
+        # @param CheckType: 检查类型
+        # @type CheckType: String
+        # @param RiskLevel: 风险等级
+        # @type RiskLevel: String
+        # @param RiskInfluence: 风险危害
+        # @type RiskInfluence: String
+        # @param RiskFixAdvance: 风险修复指引报告链接
+        # @type RiskFixAdvance: String
+        # @param DispositionType: 边界管控
+        # @type DispositionType: String
+
+        attr_accessor :RuleID, :Provider, :InstanceType, :RiskTitle, :CheckType, :RiskLevel, :RiskInfluence, :RiskFixAdvance, :DispositionType
+
+        def initialize(ruleid=nil, provider=nil, instancetype=nil, risktitle=nil, checktype=nil, risklevel=nil, riskinfluence=nil, riskfixadvance=nil, dispositiontype=nil)
+          @RuleID = ruleid
+          @Provider = provider
+          @InstanceType = instancetype
+          @RiskTitle = risktitle
+          @CheckType = checktype
+          @RiskLevel = risklevel
+          @RiskInfluence = riskinfluence
+          @RiskFixAdvance = riskfixadvance
+          @DispositionType = dispositiontype
+        end
+
+        def deserialize(params)
+          @RuleID = params['RuleID']
+          @Provider = params['Provider']
+          @InstanceType = params['InstanceType']
+          @RiskTitle = params['RiskTitle']
+          @CheckType = params['CheckType']
+          @RiskLevel = params['RiskLevel']
+          @RiskInfluence = params['RiskInfluence']
+          @RiskFixAdvance = params['RiskFixAdvance']
+          @DispositionType = params['DispositionType']
+        end
+      end
+
+      # 风险规则
       class RiskRuleItem < TencentCloud::Common::AbstractModel
         # @param ItemId: 风险检查项ID
         # @type ItemId: String
@@ -11708,6 +11900,34 @@ module TencentCloud
           @Nickname = params['Nickname']
           @ShowStatus = params['ShowStatus']
           @ISP = params['ISP']
+        end
+      end
+
+      # 调用源IP 外部账号信息
+      class SourceIPVpcInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 账号名称
+        # @type Name: String
+        # @param AppID: vpc所属appid
+        # @type AppID: Integer
+        # @param VpcID: vpc id
+        # @type VpcID: String
+        # @param VpcName: vpc 名称
+        # @type VpcName: String
+
+        attr_accessor :Name, :AppID, :VpcID, :VpcName
+
+        def initialize(name=nil, appid=nil, vpcid=nil, vpcname=nil)
+          @Name = name
+          @AppID = appid
+          @VpcID = vpcid
+          @VpcName = vpcname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AppID = params['AppID']
+          @VpcID = params['VpcID']
+          @VpcName = params['VpcName']
         end
       end
 

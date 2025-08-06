@@ -6220,7 +6220,7 @@ module TencentCloud
         # @type FilterTopic: String
         # @param FilterGroup: 按消费组名称查询消费组，支持模糊查询
         # @type FilterGroup: String
-        # @param SortedBy: 按照指定字段排序，可选值为tps，accumulative
+        # @param SortedBy: 按照指定字段排序，可选值为 subscribeNum: 订阅 Topic 个数
         # @type SortedBy: String
         # @param SortOrder: 按升序或降序排列，可选值为asc，desc
         # @type SortOrder: String
@@ -11635,16 +11635,19 @@ module TencentCloud
         # @type Topic: String
         # @param ResetTimestamp: 重置指定的时间戳，仅在 Type 为1是生效，以毫秒为单位
         # @type ResetTimestamp: Integer
+        # @param RetryFlag: 重置的是否是retry topic
+        # @type RetryFlag: Boolean
 
-        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Type, :Topic, :ResetTimestamp
+        attr_accessor :ClusterId, :NamespaceId, :GroupId, :Type, :Topic, :ResetTimestamp, :RetryFlag
 
-        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, type=nil, topic=nil, resettimestamp=nil)
+        def initialize(clusterid=nil, namespaceid=nil, groupid=nil, type=nil, topic=nil, resettimestamp=nil, retryflag=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @GroupId = groupid
           @Type = type
           @Topic = topic
           @ResetTimestamp = resettimestamp
+          @RetryFlag = retryflag
         end
 
         def deserialize(params)
@@ -11654,6 +11657,7 @@ module TencentCloud
           @Type = params['Type']
           @Topic = params['Topic']
           @ResetTimestamp = params['ResetTimestamp']
+          @RetryFlag = params['RetryFlag']
         end
       end
 

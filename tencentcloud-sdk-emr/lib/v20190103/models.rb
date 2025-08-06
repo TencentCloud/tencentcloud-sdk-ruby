@@ -3911,16 +3911,19 @@ module TencentCloud
         # @type Page: Integer
         # @param Type: 查询类型,支持HIVE,SPARK,DLC_SPARK,SPARK_SQL,SCHEDULE,MAPREDUCE,TRINO等类型,默认查询全部
         # @type Type: String
+        # @param MustHasContext: 是否包含具体参数建议等信息
+        # @type MustHasContext: Boolean
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page, :Type
+        attr_accessor :InstanceId, :StartTime, :EndTime, :PageSize, :Page, :Type, :MustHasContext
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil, type=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, pagesize=nil, page=nil, type=nil, musthascontext=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @PageSize = pagesize
           @Page = page
           @Type = type
+          @MustHasContext = musthascontext
         end
 
         def deserialize(params)
@@ -3930,6 +3933,7 @@ module TencentCloud
           @PageSize = params['PageSize']
           @Page = params['Page']
           @Type = params['Type']
+          @MustHasContext = params['MustHasContext']
         end
       end
 

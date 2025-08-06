@@ -559,20 +559,21 @@ module TencentCloud
         # @type MountDiskType: Integer
         # @param HAZk: 是否是ZK高可用
         # @type HAZk: Boolean
-        # @param CommonSpec: ZK节点
-        # SpecName从DescribeSpec接口中返回的CommonSpec.Name（ZK节点）获取
+        # @param CommonSpec: ZK节点SpecName从DescribeSpec接口中返回的CommonSpec结构体的Name（ZK节点）获取
         # @type CommonSpec: :class:`Tencentcloud::Cdwch.v20200915.models.NodeSpec`
         # @param TagItems: 标签列表
         # @type TagItems: Array
-        # @param SecondaryZoneInfo: 副可用去信息
+        # @param SecondaryZoneInfo: 副可用区信息
         # @type SecondaryZoneInfo: Array
+        # @param CkDefaultUserPwd: default账号登陆实例的密码。8-16个字符，至少包含大写字母、小写字母、数字和特殊字符!@#%^*中的三种，第一个字符不能为特殊字符
+        # @type CkDefaultUserPwd: String
 
-        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo
+        attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 7
-        deprecate :Tags=, :none, 2025, 7
+        deprecate :Tags, :none, 2025, 8
+        deprecate :Tags=, :none, 2025, 8
 
-        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil)
+        def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
           @Zone = zone
           @HaFlag = haflag
           @UserVPCId = uservpcid
@@ -589,6 +590,7 @@ module TencentCloud
           @CommonSpec = commonspec
           @TagItems = tagitems
           @SecondaryZoneInfo = secondaryzoneinfo
+          @CkDefaultUserPwd = ckdefaultuserpwd
         end
 
         def deserialize(params)
@@ -634,6 +636,7 @@ module TencentCloud
               @SecondaryZoneInfo << secondaryzoneinfo_tmp
             end
           end
+          @CkDefaultUserPwd = params['CkDefaultUserPwd']
         end
       end
 

@@ -11154,7 +11154,7 @@ module TencentCloud
         # @type InstanceIds: Array
         # @param ParamList: 要修改的参数列表。每一个元素是 Name 和 CurrentValue 的组合。Name 是参数名，CurrentValue 是要修改成的值。
         # @type ParamList: Array
-        # @param TemplateId: 模板 ID，ParamList 和 TemplateId 必须至少传其中之一。可通过 [DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/236/32660) 接口获取。
+        # @param TemplateId: 模板 ID，ParamList 和 TemplateId 必须至少传其中之一。可通过 [DescribeParamTemplates](https://cloud.tencent.com/document/api/236/32659) 接口获取。
         # @type TemplateId: Integer
         # @param WaitSwitch: 执行参数调整任务的方式，默认为 0。支持值包括：0 - 立刻执行，1 - 时间窗执行；当该值为 1 时，每次只能传一个实例（InstanceIds数量为1）
         # @type WaitSwitch: Integer
@@ -11412,7 +11412,7 @@ module TencentCloud
 
       # ModifyParamTemplate请求参数结构体
       class ModifyParamTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板 ID。可通过 [DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/236/32660) 接口获取。
+        # @param TemplateId: 模板 ID。可通过 [DescribeParamTemplates](https://cloud.tencent.com/document/api/236/32659) 接口获取。
         # @type TemplateId: Integer
         # @param Name: 模板名称，仅支持数字、英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@,且长度不能超过60。
         # @type Name: String

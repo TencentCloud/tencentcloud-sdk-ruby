@@ -288,10 +288,12 @@ module TencentCloud
         # @type TaskActionCustomConfiguration: String
         # @param TaskPauseDuration: 演练自动暂停时间，单位分钟, 不填则默认为60
         # @type TaskPauseDuration: Integer
+        # @param TaskTags: 标签列表
+        # @type TaskTags: Array
 
-        attr_accessor :TaskActionId, :TaskInstances, :TaskTitle, :TaskDescription, :TaskActionGeneralConfiguration, :TaskActionCustomConfiguration, :TaskPauseDuration
+        attr_accessor :TaskActionId, :TaskInstances, :TaskTitle, :TaskDescription, :TaskActionGeneralConfiguration, :TaskActionCustomConfiguration, :TaskPauseDuration, :TaskTags
 
-        def initialize(taskactionid=nil, taskinstances=nil, tasktitle=nil, taskdescription=nil, taskactiongeneralconfiguration=nil, taskactioncustomconfiguration=nil, taskpauseduration=nil)
+        def initialize(taskactionid=nil, taskinstances=nil, tasktitle=nil, taskdescription=nil, taskactiongeneralconfiguration=nil, taskactioncustomconfiguration=nil, taskpauseduration=nil, tasktags=nil)
           @TaskActionId = taskactionid
           @TaskInstances = taskinstances
           @TaskTitle = tasktitle
@@ -299,6 +301,7 @@ module TencentCloud
           @TaskActionGeneralConfiguration = taskactiongeneralconfiguration
           @TaskActionCustomConfiguration = taskactioncustomconfiguration
           @TaskPauseDuration = taskpauseduration
+          @TaskTags = tasktags
         end
 
         def deserialize(params)
@@ -309,6 +312,14 @@ module TencentCloud
           @TaskActionGeneralConfiguration = params['TaskActionGeneralConfiguration']
           @TaskActionCustomConfiguration = params['TaskActionCustomConfiguration']
           @TaskPauseDuration = params['TaskPauseDuration']
+          unless params['TaskTags'].nil?
+            @TaskTags = []
+            params['TaskTags'].each do |i|
+              tagwithcreate_tmp = TagWithCreate.new
+              tagwithcreate_tmp.deserialize(i)
+              @TaskTags << tagwithcreate_tmp
+            end
+          end
         end
       end
 
@@ -2070,8 +2081,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 7
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 7
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 8
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 8
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid

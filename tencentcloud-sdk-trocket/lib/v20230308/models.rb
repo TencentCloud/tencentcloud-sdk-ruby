@@ -296,12 +296,12 @@ module TencentCloud
         # @type Name: String
         # @param SkuCode: 商品规格，从 [DescribeProductSKUs](https://cloud.tencent.com/document/api/1493/107676) 接口中的 [ProductSKU](https://cloud.tencent.com/document/api/1493/96031#ProductSKU) 出参获得。
         # @type SkuCode: String
+        # @param VpcList: 集群绑定的VPC信息
+        # @type VpcList: Array
         # @param Remark: 备注信息
         # @type Remark: String
         # @param TagList: 标签列表
         # @type TagList: Array
-        # @param VpcList: 集群绑定的VPC信息，必填
-        # @type VpcList: Array
         # @param EnablePublic: 是否开启公网，默认值为false表示不开启
         # @type EnablePublic: Boolean
         # @param BillingFlow: 公网是否按流量计费，默认值为false表示不按流量计费
@@ -330,15 +330,15 @@ module TencentCloud
         # @param ZoneIds: 部署可用区列表，从 [DescribeZones](https://cloud.tencent.com/document/product/1596/77929) 接口返回中的 [ZoneInfo](https://cloud.tencent.com/document/api/1596/77932#ZoneInfo) 数据结构中获得。
         # @type ZoneIds: Array
 
-        attr_accessor :InstanceType, :Name, :SkuCode, :Remark, :TagList, :VpcList, :EnablePublic, :BillingFlow, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum, :ZoneIds
+        attr_accessor :InstanceType, :Name, :SkuCode, :VpcList, :Remark, :TagList, :EnablePublic, :BillingFlow, :Bandwidth, :IpRules, :MessageRetention, :PayMode, :RenewFlag, :TimeSpan, :MaxTopicNum, :ZoneIds
 
-        def initialize(instancetype=nil, name=nil, skucode=nil, remark=nil, taglist=nil, vpclist=nil, enablepublic=nil, billingflow=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil, zoneids=nil)
+        def initialize(instancetype=nil, name=nil, skucode=nil, vpclist=nil, remark=nil, taglist=nil, enablepublic=nil, billingflow=nil, bandwidth=nil, iprules=nil, messageretention=nil, paymode=nil, renewflag=nil, timespan=nil, maxtopicnum=nil, zoneids=nil)
           @InstanceType = instancetype
           @Name = name
           @SkuCode = skucode
+          @VpcList = vpclist
           @Remark = remark
           @TagList = taglist
-          @VpcList = vpclist
           @EnablePublic = enablepublic
           @BillingFlow = billingflow
           @Bandwidth = bandwidth
@@ -355,6 +355,14 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @Name = params['Name']
           @SkuCode = params['SkuCode']
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcList << vpcinfo_tmp
+            end
+          end
           @Remark = params['Remark']
           unless params['TagList'].nil?
             @TagList = []
@@ -362,14 +370,6 @@ module TencentCloud
               tag_tmp = Tag.new
               tag_tmp.deserialize(i)
               @TagList << tag_tmp
-            end
-          end
-          unless params['VpcList'].nil?
-            @VpcList = []
-            params['VpcList'].each do |i|
-              vpcinfo_tmp = VpcInfo.new
-              vpcinfo_tmp.deserialize(i)
-              @VpcList << vpcinfo_tmp
             end
           end
           @EnablePublic = params['EnablePublic']

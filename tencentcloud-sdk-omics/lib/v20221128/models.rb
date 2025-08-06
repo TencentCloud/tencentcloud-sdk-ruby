@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2025, 7
-        deprecate :GitInfo=, :none, 2025, 7
+        deprecate :GitInfo, :none, 2025, 8
+        deprecate :GitInfo=, :none, 2025, 8
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -276,16 +276,22 @@ module TencentCloud
         # @type Description: String
         # @param Capacity: 缓存卷大小（GB），Turbo系列需要指定。
         # @type Capacity: Integer
+        # @param EnableAutoScaleUp: 是否开启默认扩容，仅turbo类型文件存储支持
+        # @type EnableAutoScaleUp: Boolean
+        # @param MetaType: turbo文件系统元数据属性，basic：标准型元数据；enhanced：增强型元数据
+        # @type MetaType: String
 
-        attr_accessor :EnvironmentId, :Name, :Type, :Spec, :Description, :Capacity
+        attr_accessor :EnvironmentId, :Name, :Type, :Spec, :Description, :Capacity, :EnableAutoScaleUp, :MetaType
 
-        def initialize(environmentid=nil, name=nil, type=nil, spec=nil, description=nil, capacity=nil)
+        def initialize(environmentid=nil, name=nil, type=nil, spec=nil, description=nil, capacity=nil, enableautoscaleup=nil, metatype=nil)
           @EnvironmentId = environmentid
           @Name = name
           @Type = type
           @Spec = spec
           @Description = description
           @Capacity = capacity
+          @EnableAutoScaleUp = enableautoscaleup
+          @MetaType = metatype
         end
 
         def deserialize(params)
@@ -295,6 +301,8 @@ module TencentCloud
           @Spec = params['Spec']
           @Description = params['Description']
           @Capacity = params['Capacity']
+          @EnableAutoScaleUp = params['EnableAutoScaleUp']
+          @MetaType = params['MetaType']
         end
       end
 
@@ -1556,8 +1564,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2025, 7
-        deprecate :Option=, :none, 2025, 7
+        deprecate :Option, :none, 2025, 8
+        deprecate :Option=, :none, 2025, 8
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid
@@ -2168,19 +2176,27 @@ module TencentCloud
         # - turbo标准型起售40TiB，即40960GiB；扩容步长20TiB，即20480 GiB。
         # - turbo性能型起售20TiB，即20480 GiB；扩容步长10TiB，即10240 GiB。
         # @type Capacity: Integer
+        # @param EnableAutoScaleUp: 是否开启默认扩容，仅turbo类型文件存储支持
+        # @type EnableAutoScaleUp: Boolean
+        # @param MetaType: turbo文件系统元数据属性，basic：标准型元数据；enhanced：增强型元数据
+        # @type MetaType: String
 
-        attr_accessor :StorageType, :Zone, :Capacity
+        attr_accessor :StorageType, :Zone, :Capacity, :EnableAutoScaleUp, :MetaType
 
-        def initialize(storagetype=nil, zone=nil, capacity=nil)
+        def initialize(storagetype=nil, zone=nil, capacity=nil, enableautoscaleup=nil, metatype=nil)
           @StorageType = storagetype
           @Zone = zone
           @Capacity = capacity
+          @EnableAutoScaleUp = enableautoscaleup
+          @MetaType = metatype
         end
 
         def deserialize(params)
           @StorageType = params['StorageType']
           @Zone = params['Zone']
           @Capacity = params['Capacity']
+          @EnableAutoScaleUp = params['EnableAutoScaleUp']
+          @MetaType = params['MetaType']
         end
       end
 
@@ -2376,10 +2392,16 @@ module TencentCloud
         # @type IsDefault: Boolean
         # @param Status: 状态。
         # @type Status: String
+        # @param AutoScaleUpRule: turbo自动扩容策略
+        # @type AutoScaleUpRule: :class:`Tencentcloud::Omics.v20221128.models.VolumeAutoScaleUpRule`
+        # @param MetaType: turbo元数据属性
+        # @type MetaType: String
+        # @param Zone: 可用区
+        # @type Zone: String
 
-        attr_accessor :VolumeId, :Name, :Description, :EnvironmentId, :Type, :Spec, :Capacity, :Usage, :BandwidthLimit, :DefaultMountPath, :IsDefault, :Status
+        attr_accessor :VolumeId, :Name, :Description, :EnvironmentId, :Type, :Spec, :Capacity, :Usage, :BandwidthLimit, :DefaultMountPath, :IsDefault, :Status, :AutoScaleUpRule, :MetaType, :Zone
 
-        def initialize(volumeid=nil, name=nil, description=nil, environmentid=nil, type=nil, spec=nil, capacity=nil, usage=nil, bandwidthlimit=nil, defaultmountpath=nil, isdefault=nil, status=nil)
+        def initialize(volumeid=nil, name=nil, description=nil, environmentid=nil, type=nil, spec=nil, capacity=nil, usage=nil, bandwidthlimit=nil, defaultmountpath=nil, isdefault=nil, status=nil, autoscaleuprule=nil, metatype=nil, zone=nil)
           @VolumeId = volumeid
           @Name = name
           @Description = description
@@ -2392,6 +2414,9 @@ module TencentCloud
           @DefaultMountPath = defaultmountpath
           @IsDefault = isdefault
           @Status = status
+          @AutoScaleUpRule = autoscaleuprule
+          @MetaType = metatype
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -2407,6 +2432,37 @@ module TencentCloud
           @DefaultMountPath = params['DefaultMountPath']
           @IsDefault = params['IsDefault']
           @Status = params['Status']
+          unless params['AutoScaleUpRule'].nil?
+            @AutoScaleUpRule = VolumeAutoScaleUpRule.new
+            @AutoScaleUpRule.deserialize(params['AutoScaleUpRule'])
+          end
+          @MetaType = params['MetaType']
+          @Zone = params['Zone']
+        end
+      end
+
+      # 缓存卷自动扩容策略
+      class VolumeAutoScaleUpRule < TencentCloud::Common::AbstractModel
+        # @param Status: 自动扩容策略开启，关闭
+        # 示例值：open,close
+        # @type Status: String
+        # @param ScaleThreshold: 集群用量占比，到达这个值后开始扩容,范围[10-90]
+        # @type ScaleThreshold: Integer
+        # @param TargetThreshold: 扩容后使用量跟集群总量比例,范围[10-90]
+        # @type TargetThreshold: Integer
+
+        attr_accessor :Status, :ScaleThreshold, :TargetThreshold
+
+        def initialize(status=nil, scalethreshold=nil, targetthreshold=nil)
+          @Status = status
+          @ScaleThreshold = scalethreshold
+          @TargetThreshold = targetthreshold
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ScaleThreshold = params['ScaleThreshold']
+          @TargetThreshold = params['TargetThreshold']
         end
       end
 

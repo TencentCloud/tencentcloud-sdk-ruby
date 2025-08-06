@@ -15881,17 +15881,22 @@ module TencentCloud
       class LiveStreamAiAnalysisResultItem < TencentCloud::Common::AbstractModel
         # @param Type: 结果的类型，取值范围：
         # <li>SegmentRecognition：拆条。</li>
+        # <li>Highlight ：集锦。</li>
         # @type Type: String
         # @param SegmentResultSet: 拆条结果，当 Type 为
         # SegmentRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentResultSet: Array
+        # @param HighlightResultSet: 集锦结果，当Type 为 Highlight 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighlightResultSet: Array
 
-        attr_accessor :Type, :SegmentResultSet
+        attr_accessor :Type, :SegmentResultSet, :HighlightResultSet
 
-        def initialize(type=nil, segmentresultset=nil)
+        def initialize(type=nil, segmentresultset=nil, highlightresultset=nil)
           @Type = type
           @SegmentResultSet = segmentresultset
+          @HighlightResultSet = highlightresultset
         end
 
         def deserialize(params)
@@ -15902,6 +15907,14 @@ module TencentCloud
               segmentrecognitionitem_tmp = SegmentRecognitionItem.new
               segmentrecognitionitem_tmp.deserialize(i)
               @SegmentResultSet << segmentrecognitionitem_tmp
+            end
+          end
+          unless params['HighlightResultSet'].nil?
+            @HighlightResultSet = []
+            params['HighlightResultSet'].each do |i|
+              mediaaianalysishighlightitem_tmp = MediaAiAnalysisHighlightItem.new
+              mediaaianalysishighlightitem_tmp.deserialize(i)
+              @HighlightResultSet << mediaaianalysishighlightitem_tmp
             end
           end
         end

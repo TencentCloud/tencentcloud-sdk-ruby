@@ -12307,6 +12307,45 @@ module TencentCloud
         end
       end
 
+      # 高频扫描防护配置选项，当某一访客的请求频繁命中「配置为拦截」的托管规则时，在一段时间内封禁该访客所有请求。
+      class FrequentScanningProtection < TencentCloud::Common::AbstractModel
+        # @param Enabled: 高频扫描防护规则是否开启。取值有：<li>on：开启，高频扫描防护规则生效；</li><li>off：关闭，高频扫描防护规则不生效。</li>
+        # @type Enabled: String
+        # @param Action: 高频扫描防护的处置动作。 当 Enabled 为 on 时，此字段必填。SecurityAction 的 Name 取值支持：<li>Deny：拦截，响应拦截页面；</li><li>Monitor：观察，不处理请求记录安全事件到日志中；</li><li>JSChallenge：JavaScript 挑战，响应 JavaScript 挑战页面。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param CountBy: 请求统计的匹配方式，当 Enabled 为 on 时，此字段必填。取值有：<li>http.request.xff_header_ip：客户端 IP（优先匹配 XFF 头部）；</li><li>http.request.ip：客户端 IP。</li>
+        # @type CountBy: String
+        # @param BlockThreshold: 此参数指定高频扫描防护的阈值，即在 CountingPeriod 所设置时间范围内命中「配置为拦截」的托管规则时的累计拦截次数，取值范围 1 ~ 4294967294，例如 100，当超过此统计值时，后续请求将触发 Action 所设置的处置动作。当 Enabled 为 on 时，此字段必填。
+        # @type BlockThreshold: Integer
+        # @param CountingPeriod: 此参数指定高频扫描防护所统计的时间窗口，即命中「配置为拦截」的托管规则的请求的统计时间窗口，取值 5 ~ 1800，单位仅支持秒（s），例如 5s。 当 Enabled 为 on 时，此字段必填。
+        # @type CountingPeriod: String
+        # @param ActionDuration: 此参数指定高频扫描防护 Action 参数所设置处置动作的持续时长，取值范围 60 ~ 86400，单位仅支持秒（s），例如 60s。当 Enabled 为 on 时，此字段必填。
+        # @type ActionDuration: String
+
+        attr_accessor :Enabled, :Action, :CountBy, :BlockThreshold, :CountingPeriod, :ActionDuration
+
+        def initialize(enabled=nil, action=nil, countby=nil, blockthreshold=nil, countingperiod=nil, actionduration=nil)
+          @Enabled = enabled
+          @Action = action
+          @CountBy = countby
+          @BlockThreshold = blockthreshold
+          @CountingPeriod = countingperiod
+          @ActionDuration = actionduration
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+          @CountBy = params['CountBy']
+          @BlockThreshold = params['BlockThreshold']
+          @CountingPeriod = params['CountingPeriod']
+          @ActionDuration = params['ActionDuration']
+        end
+      end
+
       # 边缘函数详情
       class Function < TencentCloud::Common::AbstractModel
         # @param FunctionId: 函数 ID。
@@ -14155,15 +14194,18 @@ module TencentCloud
         # @type AutoUpdate: :class:`Tencentcloud::Teo.v20220901.models.ManagedRuleAutoUpdate`
         # @param ManagedRuleGroups: 托管规则组的配置。如果此结构传空数组或 GroupId 未包含在列表内将按照默认方式处理。
         # @type ManagedRuleGroups: Array
+        # @param FrequentScanningProtection: 高频扫描防护配置选项，当某一访客的请求频繁命中「配置为拦截」的托管规则时，在一段时间内封禁该访客所有请求。
+        # @type FrequentScanningProtection: :class:`Tencentcloud::Teo.v20220901.models.FrequentScanningProtection`
 
-        attr_accessor :Enabled, :DetectionOnly, :SemanticAnalysis, :AutoUpdate, :ManagedRuleGroups
+        attr_accessor :Enabled, :DetectionOnly, :SemanticAnalysis, :AutoUpdate, :ManagedRuleGroups, :FrequentScanningProtection
 
-        def initialize(enabled=nil, detectiononly=nil, semanticanalysis=nil, autoupdate=nil, managedrulegroups=nil)
+        def initialize(enabled=nil, detectiononly=nil, semanticanalysis=nil, autoupdate=nil, managedrulegroups=nil, frequentscanningprotection=nil)
           @Enabled = enabled
           @DetectionOnly = detectiononly
           @SemanticAnalysis = semanticanalysis
           @AutoUpdate = autoupdate
           @ManagedRuleGroups = managedrulegroups
+          @FrequentScanningProtection = frequentscanningprotection
         end
 
         def deserialize(params)
@@ -14181,6 +14223,10 @@ module TencentCloud
               managedrulegroup_tmp.deserialize(i)
               @ManagedRuleGroups << managedrulegroup_tmp
             end
+          end
+          unless params['FrequentScanningProtection'].nil?
+            @FrequentScanningProtection = FrequentScanningProtection.new
+            @FrequentScanningProtection.deserialize(params['FrequentScanningProtection'])
           end
         end
       end

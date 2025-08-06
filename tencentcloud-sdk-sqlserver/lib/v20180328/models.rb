@@ -4384,12 +4384,16 @@ module TencentCloud
         # @type MultiDrReadableInfo: Array
         # @param IsDiskEncryptFlag: 是否开启磁盘加密，1-开启，0-未开启
         # @type IsDiskEncryptFlag: Integer
+        # @param IsSafetyLimited: 是否安全限制部分功能，0-没有限制，1-有限制。限制的功能有：修改可用区、迁移变配、DTS数据迁移等
+        # @type IsSafetyLimited: Integer
+        # @param IsSupportSA: 是否支持创建SA权限账号，0-不支持，1-支持
+        # @type IsSupportSA: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :IsDiskEncryptFlag, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :IsDiskEncryptFlag, :IsSafetyLimited, :IsSupportSA, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, isdiskencryptflag=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, isdiskencryptflag=nil, issafetylimited=nil, issupportsa=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4405,6 +4409,8 @@ module TencentCloud
           @XEventStatus = xeventstatus
           @MultiDrReadableInfo = multidrreadableinfo
           @IsDiskEncryptFlag = isdiskencryptflag
+          @IsSafetyLimited = issafetylimited
+          @IsSupportSA = issupportsa
           @RequestId = requestid
         end
 
@@ -4447,6 +4453,8 @@ module TencentCloud
             end
           end
           @IsDiskEncryptFlag = params['IsDiskEncryptFlag']
+          @IsSafetyLimited = params['IsSafetyLimited']
+          @IsSupportSA = params['IsSupportSA']
           @RequestId = params['RequestId']
         end
       end
