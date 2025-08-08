@@ -1405,7 +1405,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取DSPA评估模版关联的评估控制项列表
+        # 获取DSPA评估模板关联的评估控制项列表
 
         # @param request: Request instance for DescribeDSPAAssessmentTemplateControlItems.
         # @type request: :class:`Tencentcloud::dsgc::V20190723::DescribeDSPAAssessmentTemplateControlItemsRequest`

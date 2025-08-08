@@ -364,8 +364,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 6
-        deprecate :Vpcs=, :none, 2025, 6
+        deprecate :Vpcs, :none, 2025, 8
+        deprecate :Vpcs=, :none, 2025, 8
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
@@ -420,7 +420,7 @@ module TencentCloud
 
       # CreatePrivateZone返回参数结构体
       class CreatePrivateZoneResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 私有域ID, zone-12345678
+        # @param ZoneId: 私有域ID, zone-12sa5ce78
         # @type ZoneId: String
         # @param Domain: 私有域名
         # @type Domain: String
@@ -969,7 +969,7 @@ module TencentCloud
 
       # DescribePrivateZoneRecordList请求参数结构体
       class DescribePrivateZoneRecordListRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 私有域ID: zone-xxxxxx
+        # @param ZoneId: 私有域ID: zone-12c5a6e8
         # @type ZoneId: String
         # @param Filters: 过滤参数（支持使用Value、RecordType过滤）
         # @type Filters: Array
@@ -1477,7 +1477,7 @@ module TencentCloud
 
       # ModifyPrivateZoneVpc返回参数结构体
       class ModifyPrivateZoneVpcResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 私有域ID, zone-12345ds6
+        # @param ZoneId: 私有域ID, zone-12e45ds6
         # @type ZoneId: String
         # @param VpcSet: 解析域关联的VPC列表
         # @type VpcSet: Array

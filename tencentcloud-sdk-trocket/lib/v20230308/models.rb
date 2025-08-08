@@ -3457,14 +3457,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 查询结果限制数量，默认20。
         # @type Limit: Integer
+        # @param FromGroup: 按照消费组查询订阅的主题
+        # @type FromGroup: String
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit
+        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromGroup
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromgroup=nil)
           @InstanceId = instanceid
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @FromGroup = fromgroup
         end
 
         def deserialize(params)
@@ -3479,6 +3482,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @FromGroup = params['FromGroup']
         end
       end
 

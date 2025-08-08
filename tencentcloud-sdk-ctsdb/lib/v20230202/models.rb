@@ -67,10 +67,10 @@ module TencentCloud
 
         attr_accessor :AppID, :ClusterID, :AccountID, :Name, :Region, :Zones, :Networks, :Spec, :Status, :Period, :CreatedAt, :UpdatedAt, :Tenant, :Tags, :Security
         extend Gem::Deprecate
-        deprecate :Networks, :none, 2025, 7
-        deprecate :Networks=, :none, 2025, 7
-        deprecate :Spec, :none, 2025, 7
-        deprecate :Spec=, :none, 2025, 7
+        deprecate :Networks, :none, 2025, 8
+        deprecate :Networks=, :none, 2025, 8
+        deprecate :Spec, :none, 2025, 8
+        deprecate :Spec=, :none, 2025, 8
 
         def initialize(appid=nil, clusterid=nil, accountid=nil, name=nil, region=nil, zones=nil, networks=nil, spec=nil, status=nil, period=nil, createdat=nil, updatedat=nil, tenant=nil, tags=nil, security=nil)
           @AppID = appid
