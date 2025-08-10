@@ -11458,7 +11458,7 @@ module TencentCloud
         # 注意 approver中的顺序需要和模板中的顺序保持一致， 否则会导致模板中配置的信息无效。
         # @type Approvers: Array
         # @param FileIds: 文件资源ID，通过多文件上传[UploadFiles](https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles)接口获得，为32位字符串。
-        # 建议开发者保存此资源ID，后续创建合同或创建合同流程需此资源ID。
+        # 注：此字段定义为数组，但仅支持单个文件
         # @type FileIds: Array
         # @param TemplateId: 合同模板ID，为32位字符串。
         # 建议开发者保存此模板ID，后续用此模板发起合同流程需要此参数。
@@ -12480,13 +12480,16 @@ module TencentCloud
 
         # 注：`选择点头模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可点头同意。`
         # @type IntentionActions: Array
+        # @param RuleIdConfig: 视频核身相关配置
+        # @type RuleIdConfig: :class:`Tencentcloud::Ess.v20201111.models.RuleIdConfig`
 
-        attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions
+        attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions, :RuleIdConfig
 
-        def initialize(intentiontype=nil, intentionquestions=nil, intentionactions=nil)
+        def initialize(intentiontype=nil, intentionquestions=nil, intentionactions=nil, ruleidconfig=nil)
           @IntentionType = intentiontype
           @IntentionQuestions = intentionquestions
           @IntentionActions = intentionactions
+          @RuleIdConfig = ruleidconfig
         end
 
         def deserialize(params)
@@ -12506,6 +12509,10 @@ module TencentCloud
               intentionaction_tmp.deserialize(i)
               @IntentionActions << intentionaction_tmp
             end
+          end
+          unless params['RuleIdConfig'].nil?
+            @RuleIdConfig = RuleIdConfig.new
+            @RuleIdConfig.deserialize(params['RuleIdConfig'])
           end
         end
       end
@@ -14314,6 +14321,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Description = params['Description']
+        end
+      end
+
+      # 视频核身相关配置
+      class RuleIdConfig < TencentCloud::Common::AbstractModel
+        # @param Speed: 意愿核身语音播报速度，配置后问答模式和点头模式的语音播报环节都会生效，默认值为0：
+        # 0-智能语速（根据播报文案的长度自动调整语音播报速度）
+        # 1-固定1倍速
+        # 2-固定1.2倍速
+        # 3-固定1.5倍速
+        # @type Speed: Integer
+
+        attr_accessor :Speed
+
+        def initialize(speed=nil)
+          @Speed = speed
+        end
+
+        def deserialize(params)
+          @Speed = params['Speed']
         end
       end
 

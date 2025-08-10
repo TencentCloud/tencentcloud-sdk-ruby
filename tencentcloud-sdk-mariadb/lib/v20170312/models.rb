@@ -4553,7 +4553,7 @@ module TencentCloud
         # @type Product: String
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。<br>注意：改入参会全量替换存量已有安全组集合，并非增量更新。修改需传入全量的预期集合。
+        # @param SecurityGroupIds: 要修改的安全组 ID 列表，一个或者多个安全组 ID 组成的数组。<br>注意：该入参会全量替换存量已有安全组集合，并非增量更新。修改需传入全量的预期集合。
         # @type SecurityGroupIds: Array
 
         attr_accessor :Product, :InstanceId, :SecurityGroupIds

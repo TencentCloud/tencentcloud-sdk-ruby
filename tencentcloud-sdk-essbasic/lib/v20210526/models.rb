@@ -10694,13 +10694,16 @@ module TencentCloud
 
         # 注：`选择点头模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可点头同意。`
         # @type IntentionActions: Array
+        # @param RuleIdConfig: 视频核身相关配置
+        # @type RuleIdConfig: :class:`Tencentcloud::Essbasic.v20210526.models.RuleIdConfig`
 
-        attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions
+        attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions, :RuleIdConfig
 
-        def initialize(intentiontype=nil, intentionquestions=nil, intentionactions=nil)
+        def initialize(intentiontype=nil, intentionquestions=nil, intentionactions=nil, ruleidconfig=nil)
           @IntentionType = intentiontype
           @IntentionQuestions = intentionquestions
           @IntentionActions = intentionactions
+          @RuleIdConfig = ruleidconfig
         end
 
         def deserialize(params)
@@ -10720,6 +10723,10 @@ module TencentCloud
               intentionaction_tmp.deserialize(i)
               @IntentionActions << intentionaction_tmp
             end
+          end
+          unless params['RuleIdConfig'].nil?
+            @RuleIdConfig = RuleIdConfig.new
+            @RuleIdConfig.deserialize(params['RuleIdConfig'])
           end
         end
       end
@@ -12231,6 +12238,26 @@ module TencentCloud
           @Url = params['Url']
           @Name = params['Name']
           @Type = params['Type']
+        end
+      end
+
+      # 视频核身相关配置
+      class RuleIdConfig < TencentCloud::Common::AbstractModel
+        # @param Speed: 意愿核身语音播报速度，配置后问答模式和点头模式的语音播报环节都会生效，默认值为0：
+        # 0-智能语速（根据播报文案的长度自动调整语音播报速度）
+        # 1-固定1倍速
+        # 2-固定1.2倍速
+        # 3-固定1.5倍速
+        # @type Speed: Integer
+
+        attr_accessor :Speed
+
+        def initialize(speed=nil)
+          @Speed = speed
+        end
+
+        def deserialize(params)
+          @Speed = params['Speed']
         end
       end
 

@@ -1656,7 +1656,7 @@ module TencentCloud
 
       # GetDetectInfoEnhanced返回参数结构体
       class GetDetectInfoEnhancedResponse < TencentCloud::Common::AbstractModel
-        # @param Text: 文本类信息。
+        # @param Text: 人脸核身识别结果及文本类信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Text: :class:`Tencentcloud::Faceid.v20180301.models.DetectInfoText`
         # @param IdCardData: 身份证照片信息。
@@ -1687,12 +1687,24 @@ module TencentCloud
         # @param EncryptedBody: 加密后的数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptedBody: String
+        # @param IsVerifyIntention: 本次请求是否配置开启意愿校验。
+        # false：未开启意愿校验
+        # true：已开启意愿校验
+        # 说明：若请求开启了意愿校验，可结合IntentionVerifyType中具体使用的校验模式从对应的出参Result中获取最终的核验结果；若请求没有开启意愿校验，则可在出参Text中获取最终的核验结果。
+        # @type IsVerifyIntention: Boolean
+        # @param IntentionVerifyType: 本次请求意愿校验使用的具体模式。
+        # 0：问答模式
+        # 1：点头确认模式
+        # 2：朗读模式
+        # 若未使用意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值
+        # @type IntentionVerifyType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :EncryptedBody, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :VideoData, :Encryption, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :EncryptedBody, :IsVerifyIntention, :IntentionVerifyType, :RequestId
 
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, encryptedbody=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, videodata=nil, encryption=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, encryptedbody=nil, isverifyintention=nil, intentionverifytype=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
@@ -1702,6 +1714,8 @@ module TencentCloud
           @IntentionQuestionResult = intentionquestionresult
           @IntentionActionResult = intentionactionresult
           @EncryptedBody = encryptedbody
+          @IsVerifyIntention = isverifyintention
+          @IntentionVerifyType = intentionverifytype
           @RequestId = requestid
         end
 
@@ -1739,6 +1753,8 @@ module TencentCloud
             @IntentionActionResult.deserialize(params['IntentionActionResult'])
           end
           @EncryptedBody = params['EncryptedBody']
+          @IsVerifyIntention = params['IsVerifyIntention']
+          @IntentionVerifyType = params['IntentionVerifyType']
           @RequestId = params['RequestId']
         end
       end
@@ -1886,7 +1902,7 @@ module TencentCloud
 
       # GetEidResult返回参数结构体
       class GetEidResultResponse < TencentCloud::Common::AbstractModel
-        # @param Text: 文本类信息。
+        # @param Text: 人脸核身识别结果及文本类信息。
         # - 基于对敏感信息的保护，验证使用的姓名和身份证号统一通过加密后从EidInfo参数中返回。
         # - 如需获取请在控制台申请返回身份信息，详见[E证通获取实名信息指引](https://cloud.tencent.com/document/product/1007/63370)。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1916,12 +1932,24 @@ module TencentCloud
         # - 若未使用该意愿核身功能，该字段返回值可以不处理。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IntentionActionResult: :class:`Tencentcloud::Faceid.v20180301.models.IntentionActionResult`
+        # @param IsVerifyIntention: 本次请求是否配置开启意愿校验。
+        # false：未开启意愿校验
+        # true：已开启意愿校验
+        # 说明：若请求开启了意愿校验，可结合IntentionVerifyType中具体使用的校验模式从对应的出参Result中获取最终的核验结果；若请求没有开启意愿校验，则可在出参Text中获取最终的核验结果。
+        # @type IsVerifyIntention: Boolean
+        # @param IntentionVerifyType: 本次请求意愿校验使用的具体模式。
+        # 0：问答模式
+        # 1：点头确认模式
+        # 2：朗读模式
+        # 若未使用意愿核身功能，该字段返回值可以不处理。
+        # 注意：此字段可能返回 null，表示取不到有效值
+        # @type IntentionVerifyType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :RequestId
+        attr_accessor :Text, :IdCardData, :BestFrame, :EidInfo, :IntentionVerifyData, :IntentionQuestionResult, :IntentionActionResult, :IsVerifyIntention, :IntentionVerifyType, :RequestId
 
-        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, requestid=nil)
+        def initialize(text=nil, idcarddata=nil, bestframe=nil, eidinfo=nil, intentionverifydata=nil, intentionquestionresult=nil, intentionactionresult=nil, isverifyintention=nil, intentionverifytype=nil, requestid=nil)
           @Text = text
           @IdCardData = idcarddata
           @BestFrame = bestframe
@@ -1929,6 +1957,8 @@ module TencentCloud
           @IntentionVerifyData = intentionverifydata
           @IntentionQuestionResult = intentionquestionresult
           @IntentionActionResult = intentionactionresult
+          @IsVerifyIntention = isverifyintention
+          @IntentionVerifyType = intentionverifytype
           @RequestId = requestid
         end
 
@@ -1961,6 +1991,8 @@ module TencentCloud
             @IntentionActionResult = IntentionActionResult.new
             @IntentionActionResult.deserialize(params['IntentionActionResult'])
           end
+          @IsVerifyIntention = params['IsVerifyIntention']
+          @IntentionVerifyType = params['IntentionVerifyType']
           @RequestId = params['RequestId']
         end
       end

@@ -897,6 +897,8 @@ module TencentCloud
         # @type KafkaType: Integer
         # @param KafkaInstance: 腾讯云CKafka实例ID。
         # KafkaType为0时，KafkaInstance必填
+
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取实例id。
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址。
         # KafkaType为1时，ServerAddr必填
@@ -930,7 +932,20 @@ module TencentCloud
 
       # CheckRechargeKafkaServer返回参数结构体
       class CheckRechargeKafkaServerResponse < TencentCloud::Common::AbstractModel
-        # @param Status: Kafka集群可访问状态，0：可正常访问 ...
+        # @param Status: Kafka集群可访问状态。
+
+        # - 0：可正常访问
+        # - -1：broker 连接失败
+        # - -2：sasl 鉴权失败
+        # - -3：ckafka 角色未授权
+        # - -4：topic 列表不存在
+        # - -5：topic 内暂无数据
+        # - -6：用户没有 ckafka 权限
+        # - -7：消费组已经存在
+        # - -8：kafka 实例不存在或已销毁
+        # - -9：Broker 列表为空
+        # - -10：Broker 地址格式不正确
+        # - -11：Broker 端口非整型
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1652,7 +1667,12 @@ module TencentCloud
 
       # 自建k8s-工作负载信息
       class ContainerWorkLoadInfo < TencentCloud::Common::AbstractModel
-        # @param Kind: 工作负载的类型
+        # @param Kind: 工作负载的类型，支持
+        # - deployment
+        # - statefulset
+        # - daemonset
+        # - job
+        # - cronjob
         # @type Kind: String
         # @param Name: 工作负载的名称
         # @type Name: String
@@ -4484,9 +4504,13 @@ module TencentCloud
 
       # DeleteKafkaRecharge请求参数结构体
       class DeleteKafkaRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: Kafka导入配置ID
+        # @param Id: Kafka导入配置Id。
+
+        # - 通过 [创建Kafka数据订阅任务](https://cloud.tencent.com/document/product/614/94448)获取Kafka导入配置Id。
+        # - 通过 [获取Kafka数据订阅任务列表](https://cloud.tencent.com/document/product/614/94446)获取Kafka导入配置Id。
         # @type Id: String
-        # @param TopicId: 导入CLS目标topic ID
+        # @param TopicId: 导入CLS目标日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :Id, :TopicId
@@ -7088,11 +7112,16 @@ module TencentCloud
 
       # Windows事件日志采集配置
       class EventLog < TencentCloud::Common::AbstractModel
-        # @param EventChannel: 事件通道，支持Application，Security，Setup，System，ALL
+        # @param EventChannel: 事件通道，支持
+        # - Application 应用日志
+        # - Security 安全日志
+        # - Setup 启动日志
+        # - System 系统日志
+        # - ALL 所有日志
         # @type EventChannel: String
         # @param TimeType: 时间类型，1:用户自定义，2:当前时间
         # @type TimeType: Integer
-        # @param Timestamp: 时间，用户选择自定义时间类型时，需要指定时间
+        # @param Timestamp: 时间，用户选择自定义时间类型时，需要指定时间，单位秒
         # @type Timestamp: Integer
         # @param EventIDs: 事件ID过滤列表
 
@@ -7820,9 +7849,9 @@ module TencentCloud
         # @type Status: Integer
         # @param Offset: 导入数据位置，-2:最早（默认），-1：最晚
         # @type Offset: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。格式`YYYY-MM-DD HH:MM:SS`
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间。格式`YYYY-MM-DD HH:MM:SS`
         # @type UpdateTime: String
         # @param LogRechargeRule: 日志导入规则
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
@@ -8859,17 +8888,19 @@ module TencentCloud
       # ModifyConfigExtra请求参数结构体
       class ModifyConfigExtraRequest < TencentCloud::Common::AbstractModel
         # @param ConfigExtraId: 采集配置扩展信息id
+        # - 通过[获取特殊采集配置](https://cloud.tencent.com/document/api/614/71164)获取采集配置扩展信息id。
         # @type ConfigExtraId: String
         # @param Name: 采集配置规程名称，最长63个字符，只能包含小写字符、数字及分隔符（“-”），且必须以小写字符开头，数字或小写字符结尾
         # @type Name: String
         # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param HostFile: 节点文件配置信息
+        # @param HostFile: 自建k8s-节点文件配置信息,包括文件路径、名称及元数据相关信息，详细参考https://cloud.tencent.com/document/api/614/56471#HostFileInfo
         # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
         # @param ContainerFile: 采集配置标记。
         # - 目前只支持label_k8s，用于标记自建k8s集群使用的采集配置
         # @type ContainerFile: :class:`Tencentcloud::Cls.v20201016.models.ContainerFileInfo`
-        # @param ContainerStdout: 容器标准输出信息
+        # @param ContainerStdout: 自建k8s-容器标准输出信息，包括容器、命名空间等，详细参考https://cloud.tencent.com/document/api/614/56471#ContainerStdoutInfo
         # @type ContainerStdout: :class:`Tencentcloud::Cls.v20201016.models.ContainerStdoutInfo`
         # @param LogType: 采集的日志类型，默认为minimalist_log。支持以下类型：
         # - json_log代表：JSON-文件日志（详见[使用 JSON 提取模式采集日志](https://cloud.tencent.com/document/product/614/17419)）；
@@ -8892,17 +8923,24 @@ module TencentCloud
         # - 取值参考：[使用组合解析提取模式采集日志
         # ](https://cloud.tencent.com/document/product/614/61310)
         # @type UserDefineRule: String
-        # @param Type: 类型：container_stdout、container_file、host_file
+        # @param Type: 容器场景，日志采集输入类型，支持以下三种类型
+        # - container_stdout 标准输出
+        # - container_file 容器文件
+        # - host_file 主机节点文件
         # @type Type: String
         # @param GroupId: 机器组ID
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组Id。
         # @type GroupId: String
         # @param ConfigFlag: 自建采集配置标
         # @type ConfigFlag: String
         # @param LogsetId: 日志集ID
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/api/614/58624)获取日志集Id。
         # @type LogsetId: String
-        # @param LogsetName: 日志集name
+        # @param LogsetName: 日志集名称
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/api/614/58624)获取日志集名称。
         # @type LogsetName: String
-        # @param TopicName: 日志主题name
+        # @param TopicName: 日志主题名称
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题名称。
         # @type TopicName: String
         # @param AdvancedConfig: 高级采集配置。 Json字符串， Key/Value定义为如下：
         # - ClsAgentFileTimeout(超时属性), 取值范围: 大于等于0的整数， 0为不超时
@@ -10584,6 +10622,7 @@ module TencentCloud
         # @param Offset: 导入数据位置，-2：最早；-1：最晚。
         # @type Offset: Integer
         # @param KafkaInstance: 腾讯云CKafka实例ID，当KafkaType为0时参数KafkaInstance有效且必填。
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取实例id。
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址。
         # KafkaType为1时ServerAddr必填。
@@ -10594,7 +10633,9 @@ module TencentCloud
         # @param Protocol: 加密访问协议。
         # KafkaType为1并且IsEncryptionAddr为true时Protocol必填。
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
-        # @param ConsumerGroupName: 用户Kafka消费组
+        # @param ConsumerGroupName: 用户Kafka消费组。
+
+        # - 消费组是 Kafka 提供的可扩展且具有容错性的消费者机制，一个消费组中存在多个消费者，组内的所有消费者共同消费订阅 Topic 中的消息。一个消费者可同时消费多个 Partition，但一个 Partition 只能被消费组内的一个消费者消费。
         # @type ConsumerGroupName: String
         # @param LogRechargeRule: 日志导入规则
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
@@ -11942,11 +11983,14 @@ module TencentCloud
 
       # UploadLog请求参数结构体
       class UploadLogRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 主题id
+        # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param HashKey: 该参数已废弃，请勿使用
         # @type HashKey: String
-        # @param CompressType: 压缩方法
+        # @param CompressType: 压缩方法，目前支持
+        # - lz4
+        # - zstd
         # @type CompressType: String
 
         attr_accessor :TopicId, :HashKey, :CompressType

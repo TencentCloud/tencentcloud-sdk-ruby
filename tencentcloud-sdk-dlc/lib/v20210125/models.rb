@@ -1789,9 +1789,9 @@ module TencentCloud
         # @type Size: Integer
         # @param PayMode: 计费类型，后付费：0，预付费：1。当前只支持后付费，不填默认为后付费。
         # @type PayMode: Integer
-        # @param TimeSpan: 资源使用时长，后付费：固定填3600，预付费：最少填1，代表购买资源一个月，最长不超过120。默认1
+        # @param TimeSpan: 资源使用时长，后付费：固定填1，预付费：最少填1，代表购买资源一个月，最长不超过120。默认1
         # @type TimeSpan: Integer
-        # @param TimeUnit: 资源使用时长的单位，后付费：s，预付费：m。默认为s
+        # @param TimeUnit: 资源使用时长的单位，后付费：h，预付费：m。默认为h
         # @type TimeUnit: String
         # @param AutoRenew: 资源的自动续费标志。后付费无需续费，固定填0；预付费下：0表示手动续费、1代表自动续费、2代表不续费，在0下如果是大客户，会自动帮大客户续费。默认为0
         # @type AutoRenew: Integer
@@ -1803,7 +1803,7 @@ module TencentCloud
         # @type CrontabResumeSuspend: Integer
         # @param CrontabResumeSuspendStrategy: 定时启停策略，复杂类型：包含启停时间、挂起集群策略
         # @type CrontabResumeSuspendStrategy: :class:`Tencentcloud::Dlc.v20210125.models.CrontabResumeSuspendStrategy`
-        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH，默认为SQL
+        # @param EngineExecType: 引擎执行任务类型，有效值：SQL/BATCH，标准引擎默认为BATCH
         # @type EngineExecType: String
         # @param MaxConcurrency: 单个集群最大并发任务数，默认5
         # @type MaxConcurrency: Integer
