@@ -2047,18 +2047,29 @@ module TencentCloud
       class CreateAttributeLabelResponse < TencentCloud::Common::AbstractModel
         # @param AttrBizId: 标签ID
         # @type AttrBizId: String
+        # @param Labels: 标签值ID与名称
+        # @type Labels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttrBizId, :RequestId
+        attr_accessor :AttrBizId, :Labels, :RequestId
 
-        def initialize(attrbizid=nil, requestid=nil)
+        def initialize(attrbizid=nil, labels=nil, requestid=nil)
           @AttrBizId = attrbizid
+          @Labels = labels
           @RequestId = requestid
         end
 
         def deserialize(params)
           @AttrBizId = params['AttrBizId']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              attributelabel_tmp = AttributeLabel.new
+              attributelabel_tmp.deserialize(i)
+              @Labels << attributelabel_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6574,72 +6585,6 @@ module TencentCloud
         end
       end
 
-      # ListAppCategory请求参数结构体
-      class ListAppCategoryRequest < TencentCloud::Common::AbstractModel
-
-
-        def initialize()
-        end
-
-        def deserialize(params)
-        end
-      end
-
-      # ListAppCategory返回参数结构体
-      class ListAppCategoryResponse < TencentCloud::Common::AbstractModel
-        # @param List: 应用类型列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type List: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :List, :RequestId
-
-        def initialize(list=nil, requestid=nil)
-          @List = list
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['List'].nil?
-            @List = []
-            params['List'].each do |i|
-              listappcategoryrspoption_tmp = ListAppCategoryRspOption.new
-              listappcategoryrspoption_tmp.deserialize(i)
-              @List << listappcategoryrspoption_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # 应用类型详情
-      class ListAppCategoryRspOption < TencentCloud::Common::AbstractModel
-        # @param Text: 类型名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Text: String
-        # @param Value: 类型值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Value: String
-        # @param Logo: 类型log
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Logo: String
-
-        attr_accessor :Text, :Value, :Logo
-
-        def initialize(text=nil, value=nil, logo=nil)
-          @Text = text
-          @Value = value
-          @Logo = logo
-        end
-
-        def deserialize(params)
-          @Text = params['Text']
-          @Value = params['Value']
-          @Logo = params['Logo']
-        end
-      end
-
       # ListAppKnowledgeDetail请求参数结构体
       class ListAppKnowledgeDetailRequest < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码
@@ -8637,18 +8582,29 @@ module TencentCloud
       class ModifyAttributeLabelResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
         # @type TaskId: String
+        # @param Labels: 标签ID与名称
+        # @type Labels: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :Labels, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, labels=nil, requestid=nil)
           @TaskId = taskid
+          @Labels = labels
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              attributelabel_tmp = AttributeLabel.new
+              attributelabel_tmp.deserialize(i)
+              @Labels << attributelabel_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

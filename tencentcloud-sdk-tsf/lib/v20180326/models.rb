@@ -3322,7 +3322,7 @@ module TencentCloud
 
       # ContinueRunFailedTaskBatch请求参数结构体
       class ContinueRunFailedTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 批次ID。
+        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入执行记录页，第一列即为任务批次ID，在[任务执行记录](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=task)页能查看所有任务批次ID。
         # @type BatchId: String
 
         attr_accessor :BatchId
@@ -3878,21 +3878,23 @@ module TencentCloud
 
       # CreateConfig请求参数结构体
       class CreateConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本，只能包含小写字母、数字及分隔符("-"，".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigValue: 配置项值
+        # @param ConfigValue: 配置项值。
         # @type ConfigValue: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigType: 配置项值类型
+        # @param ConfigType: 配置项值类型，固定值。
         # @type ConfigType: String
-        # @param EncodeWithBase64: Base64编码的配置项
+        # @param EncodeWithBase64: Base64编码的配置项。
+        # - true：开启
+        # - false：关闭
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ApplicationId, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
@@ -3922,7 +3924,9 @@ module TencentCloud
 
       # CreateConfig返回参数结构体
       class CreateConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：创建成功；false：创建失败
+        # @param Result: 创建结果。
+        # - true：创建成功
+        # - false：创建失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3942,15 +3946,19 @@ module TencentCloud
 
       # CreateConfigTemplate请求参数结构体
       class CreateConfigTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateName: 配置模板名称
+        # @param ConfigTemplateName: 配置模板名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”），且不能以分隔符开头或结尾。
         # @type ConfigTemplateName: String
-        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @param ConfigTemplateType: 配置模板对应的微服务框架。
+        # - Ribbon：Ribbon类型配置模板
+        # - Hystrix：Hystrix类型配置模板
+        # - Zuul：Zuul类型配置模板
+        # - customize：自定义类型配置模板
         # @type ConfigTemplateType: String
-        # @param ConfigTemplateValue: 配置模板数据
+        # @param ConfigTemplateValue: 配置模板数据。
         # @type ConfigTemplateValue: String
-        # @param ConfigTemplateDesc: 配置模板描述
+        # @param ConfigTemplateDesc: 配置模板描述，最多支持200个字符。
         # @type ConfigTemplateDesc: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc, :ProgramIdList
@@ -3974,7 +3982,9 @@ module TencentCloud
 
       # CreateConfigTemplate返回参数结构体
       class CreateConfigTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：创建成功；false：创建失败
+        # @param Result: 创建结果。
+        # - true：创建成功
+        # - false：创建失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3994,15 +4004,15 @@ module TencentCloud
 
       # CreateConfigTemplateWithDetailResp请求参数结构体
       class CreateConfigTemplateWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateName: 配置模板名称
+        # @param ConfigTemplateName: 配置模板名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”），且不能以分隔符开头或结尾。
         # @type ConfigTemplateName: String
-        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @param ConfigTemplateType: 配置模板对应的微服务框架。- Ribbon：Ribbon类型配置模板- Hystrix：Hystrix类型配置模板- Zuul：Zuul类型配置模板- customize：自定义类型配置模板。
         # @type ConfigTemplateType: String
-        # @param ConfigTemplateValue: 配置模板数据
+        # @param ConfigTemplateValue: 配置模板数据。
         # @type ConfigTemplateValue: String
-        # @param ConfigTemplateDesc: 配置模板描述
+        # @param ConfigTemplateDesc: 配置模板描述，最多支持200个字符。
         # @type ConfigTemplateDesc: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc, :ProgramIdList
@@ -4026,7 +4036,7 @@ module TencentCloud
 
       # CreateConfigTemplateWithDetailResp返回参数结构体
       class CreateConfigTemplateWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 创建成功，返回 ID
+        # @param Result: 创建成功，返回配置模板ID。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigTemplate`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4049,21 +4059,23 @@ module TencentCloud
 
       # CreateConfigWithDetailResp请求参数结构体
       class CreateConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本，只能包含小写字母、数字及分隔符("-"，".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigValue: 配置项值
+        # @param ConfigValue: 配置项值。
         # @type ConfigValue: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigType: 配置项值类型
+        # @param ConfigType: 配置项值类型，固定值。
         # @type ConfigType: String
-        # @param EncodeWithBase64: Base64编码的配置项
+        # @param EncodeWithBase64: Base64编码的配置项。
+        # - true：开启
+        # - false：关闭
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ApplicationId, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
@@ -4093,7 +4105,7 @@ module TencentCloud
 
       # CreateConfigWithDetailResp返回参数结构体
       class CreateConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 配置项
+        # @param Result: 配置项。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4253,27 +4265,29 @@ module TencentCloud
 
       # CreateFileConfig请求参数结构体
       class CreateFileConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本，只能包含小写字母、数字及分隔符("-"，".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigFileName: 配置项文件名
+        # @param ConfigFileName: 配置项文件名，最多支持60个字符，只能包含英文、数字、"-"（英文）、"_"（英文）、"."（英文）。
         # @type ConfigFileName: String
         # @param ConfigFileValue: 配置项文件内容（原始内容编码需要 utf-8 格式，如果 ConfigFileCode 为 gbk，后台会进行转换）
         # @type ConfigFileValue: String
-        # @param ApplicationId: 配置项关联应用ID
+        # @param ApplicationId: 配置项关联应用ID，该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ConfigFilePath: 发布路径
+        # @param ConfigFilePath: 发布路径。
         # @type ConfigFilePath: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持
+        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持。
         # @type ConfigFileCode: String
-        # @param ConfigPostCmd: 后置命令
+        # @param ConfigPostCmd: 后置命令。
         # @type ConfigPostCmd: String
-        # @param EncodeWithBase64: Base64编码的配置项
+        # @param EncodeWithBase64: Base64编码的配置项。
+        # - true：开启
+        # - false：关闭
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64, :ProgramIdList
@@ -4309,7 +4323,9 @@ module TencentCloud
 
       # CreateFileConfig返回参数结构体
       class CreateFileConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：创建成功；false：创建失败
+        # @param Result: 创建结果。
+        # - true：创建成功
+        # - false：创建失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4329,27 +4345,27 @@ module TencentCloud
 
       # CreateFileConfigWithDetailResp请求参数结构体
       class CreateFileConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本，只能包含小写字母、数字及分隔符("-"，".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigFileName: 配置项文件名
+        # @param ConfigFileName: 配置项文件名，不超过60个字符，只能包含英文、数字、"-"（英文）、"_"（英文）、"."（英文）。
         # @type ConfigFileName: String
-        # @param ConfigFileValue: 配置项文件内容（原始内容编码需要 utf-8 格式，如果 ConfigFileCode 为 gbk，后台会进行转换）
+        # @param ConfigFileValue: 配置项文件内容（原始内容编码需要 utf-8 格式，如果 ConfigFileCode 为 gbk，后台会进行转换）。
         # @type ConfigFileValue: String
-        # @param ApplicationId: 配置项关联应用ID
+        # @param ApplicationId: 配置项关联应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ConfigFilePath: 发布路径
+        # @param ConfigFilePath: 发布路径。
         # @type ConfigFilePath: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持
+        # @param ConfigFileCode: 配置项文件编码，utf-8 或 gbk。注：如果选择 gbk，需要新版本 tsf-consul-template （公有云虚拟机需要使用 1.32 tsf-agent，容器需要从文档中获取最新的 tsf-consul-template-docker.tar.gz）的支持。
         # @type ConfigFileCode: String
-        # @param ConfigPostCmd: 后置命令
+        # @param ConfigPostCmd: 后置命令。
         # @type ConfigPostCmd: String
         # @param EncodeWithBase64: Base64编码的配置项
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigFileName, :ConfigFileValue, :ApplicationId, :ConfigFilePath, :ConfigVersionDesc, :ConfigFileCode, :ConfigPostCmd, :EncodeWithBase64, :ProgramIdList
@@ -4385,7 +4401,7 @@ module TencentCloud
 
       # CreateFileConfigWithDetailResp返回参数结构体
       class CreateFileConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 文件配置项
+        # @param Result: 文件配置项。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.FileConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4530,13 +4546,13 @@ module TencentCloud
 
       # CreateLane请求参数结构体
       class CreateLaneRequest < TencentCloud::Common::AbstractModel
-        # @param LaneName: 泳道名称
+        # @param LaneName: 泳道配置名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”），且不能以分隔符开头或结尾。
         # @type LaneName: String
-        # @param Remark: 泳道备注
+        # @param Remark: 泳道配置备注，最多支持200个字符。
         # @type Remark: String
-        # @param LaneGroupList: 泳道部署组信息
+        # @param LaneGroupList: 泳道部署组信息。
         # @type LaneGroupList: Array
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :LaneName, :Remark, :LaneGroupList, :ProgramIdList
@@ -4565,7 +4581,7 @@ module TencentCloud
 
       # CreateLane返回参数结构体
       class CreateLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 泳道ID
+        # @param Result: 泳道配置ID。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4585,17 +4601,19 @@ module TencentCloud
 
       # CreateLaneRule请求参数结构体
       class CreateLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleName: 泳道规则名称
+        # @param RuleName: 灰度发布规则名称，最多支持60个字符，支持中英文字符。
         # @type RuleName: String
-        # @param Remark: 泳道规则备注
+        # @param Remark: 灰度发布规则备注，最多支持200个字符。
         # @type Remark: String
-        # @param RuleTagList: 泳道规则标签列表
+        # @param RuleTagList: 灰度发布规则标签列表。
         # @type RuleTagList: Array
-        # @param RuleTagRelationship: 泳道规则标签关系
+        # @param RuleTagRelationship: 灰度发布规则标签关系。
+        # - RELEATION_AND：与
+        # - RELEATION_OR：或
         # @type RuleTagRelationship: String
-        # @param LaneId: 泳道Id
+        # @param LaneId: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
         # @type LaneId: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :RuleName, :Remark, :RuleTagList, :RuleTagRelationship, :LaneId, :ProgramIdList
@@ -4628,7 +4646,7 @@ module TencentCloud
 
       # CreateLaneRule返回参数结构体
       class CreateLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 泳道规则Id
+        # @param Result: 灰度发布规则ID。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4648,11 +4666,11 @@ module TencentCloud
 
       # CreateMicroservice请求参数结构体
       class CreateMicroserviceRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param MicroserviceName: 微服务名称
+        # @param MicroserviceName: 微服务名称。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceName 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceName: String
-        # @param MicroserviceDesc: 微服务描述信息
+        # @param MicroserviceDesc: 微服务备注信息，最多支持200个字符。
         # @type MicroserviceDesc: String
 
         attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc
@@ -4672,7 +4690,7 @@ module TencentCloud
 
       # CreateMicroservice返回参数结构体
       class CreateMicroserviceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 新增微服务是否成功。
+        # @param Result: 新增结果。
         # true：操作成功。
         # false：操作失败。
         # @type Result: Boolean
@@ -4694,11 +4712,11 @@ module TencentCloud
 
       # CreateMicroserviceWithDetailResp请求参数结构体
       class CreateMicroserviceWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param MicroserviceName: 微服务名称
+        # @param MicroserviceName: 微服务名称，最多支持128个字符。
         # @type MicroserviceName: String
-        # @param MicroserviceDesc: 微服务描述信息
+        # @param MicroserviceDesc: 微服务描述信息，最多支持200个字符。
         # @type MicroserviceDesc: String
 
         attr_accessor :NamespaceId, :MicroserviceName, :MicroserviceDesc
@@ -4718,7 +4736,7 @@ module TencentCloud
 
       # CreateMicroserviceWithDetailResp返回参数结构体
       class CreateMicroserviceWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务ID
+        # @param Result: 微服务ID。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4939,19 +4957,21 @@ module TencentCloud
 
       # CreatePublicConfig请求参数结构体
       class CreatePublicConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置名称，最长60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置版本，只能包含小写字母、数字及分隔符("-"，".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigValue: 配置项值，总是接收yaml格式的内容
+        # @param ConfigValue: 配置项值，总是接收yaml格式的内容。
         # @type ConfigValue: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigType: 配置项类型
+        # @param ConfigType: 配置项类型，固定值。
         # @type ConfigType: String
-        # @param EncodeWithBase64: Base64编码的配置项
+        # @param EncodeWithBase64: Base64编码的配置项。
+        # - true：开启
+        # - false：关闭
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
@@ -4979,7 +4999,9 @@ module TencentCloud
 
       # CreatePublicConfig返回参数结构体
       class CreatePublicConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：创建成功；false：创建失败
+        # @param Result: 创建结果。
+        # - true：创建成功
+        # - false：创建失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4999,19 +5021,21 @@ module TencentCloud
 
       # CreatePublicConfigWithDetailResp请求参数结构体
       class CreatePublicConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”、“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本，最多支持60个字符，只能包含小写字母、数字及分隔符("-",".")，且必须以小写字母或数字开头、以小写字母或数字结尾，中间不能有连续的"-"或"."。
         # @type ConfigVersion: String
-        # @param ConfigValue: 配置项值，总是接收yaml格式的内容
+        # @param ConfigValue: 配置项值，总是接收yaml格式的内容。
         # @type ConfigValue: String
-        # @param ConfigVersionDesc: 配置项版本描述
+        # @param ConfigVersionDesc: 配置项版本描述，最多支持200个字符。
         # @type ConfigVersionDesc: String
-        # @param ConfigType: 配置项类型
+        # @param ConfigType: 配置项类型，固定值。
         # @type ConfigType: String
-        # @param EncodeWithBase64: Base64编码的配置项
+        # @param EncodeWithBase64: Base64编码的配置项。
+        # - true：开启
+        # - false：关闭
         # @type EncodeWithBase64: Boolean
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 需要绑定的数据集ID。该参数可以通过调用 [DescribePrograms](https://cloud.tencent.com/document/product/649/73477) 的返回值中的 ProgramId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/privilege?tab=program&roleId=role-yrle4doy)查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
 
         attr_accessor :ConfigName, :ConfigVersion, :ConfigValue, :ConfigVersionDesc, :ConfigType, :EncodeWithBase64, :ProgramIdList
@@ -5039,7 +5063,7 @@ module TencentCloud
 
       # CreatePublicConfigWithDetailResp返回参数结构体
       class CreatePublicConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 公共配置项 ID
+        # @param Result: 公共配置项ID。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5066,9 +5090,9 @@ module TencentCloud
         # @type RepositoryName: String
         # @param RepositoryType: 仓库类型（默认仓库：default，私有仓库：private）
         # @type RepositoryType: String
-        # @param BucketName: 仓库所在桶名称
+        # @param BucketName: 仓库所在桶名称，[存储桶概述和创建](https://cloud.tencent.com/document/product/436/13312)
         # @type BucketName: String
-        # @param BucketRegion: 仓库所在桶地域
+        # @param BucketRegion: 仓库所在桶地域，[存储桶概述和创建](https://cloud.tencent.com/document/product/436/13312)
         # @type BucketRegion: String
         # @param Directory: 目录
         # @type Directory: String
@@ -5184,13 +5208,13 @@ module TencentCloud
         # @type TaskName: String
         # @param TaskContent: 任务内容，长度限制65536个字节
         # @type TaskContent: String
-        # @param ExecuteType: 执行类型，unicast/broadcast
+        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
         # @type ExecuteType: String
-        # @param TaskType: 任务类型,java
+        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
         # @type TaskType: String
-        # @param TimeOut: 任务超时时间， 时间单位 ms
+        # @param TimeOut: 任务超时时间，取值大于0，单位：毫秒（ms）
         # @type TimeOut: Integer
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。在[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)，点击应用ID进入应用部署页查看部署组ID。
         # @type GroupId: String
         # @param TaskRule: 触发规则
         # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
@@ -5198,7 +5222,7 @@ module TencentCloud
         # @type RetryCount: Integer
         # @param RetryInterval: 重试间隔， 0 <= RetryInterval <= 600000， 时间单位 ms
         # @type RetryInterval: Integer
-        # @param ShardCount: 分片数量
+        # @param ShardCount: 分片数量，仅当任务执行方式为分片执行时需要设置该值，取值范围2~1000
         # @type ShardCount: Integer
         # @param ShardArguments: 分片参数
         # @type ShardArguments: Array
@@ -5210,7 +5234,7 @@ module TencentCloud
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
         # @param TaskArgument: 任务参数，长度限制10000个字符
         # @type TaskArgument: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 数据集列表
         # @type ProgramIdList: Array
 
         attr_accessor :TaskName, :TaskContent, :ExecuteType, :TaskType, :TimeOut, :GroupId, :TaskRule, :RetryCount, :RetryInterval, :ShardCount, :ShardArguments, :SuccessOperator, :SuccessRatio, :AdvanceSettings, :TaskArgument, :ProgramIdList
@@ -5687,7 +5711,7 @@ module TencentCloud
 
       # DeleteConfig请求参数结构体
       class DeleteConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -5703,7 +5727,9 @@ module TencentCloud
 
       # DeleteConfig返回参数结构体
       class DeleteConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：删除成功；false：删除失败
+        # @param Result: 删除结果。
+        # - true：删除成功
+        # - false：删除失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5723,7 +5749,7 @@ module TencentCloud
 
       # DeleteConfigTemplate请求参数结构体
       class DeleteConfigTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateId: 无
+        # @param ConfigTemplateId: 配置模板ID。该参数可以通过调用 [DescribeConfigTemplate](https://cloud.tencent.com/document/product/649/85856) 的返回值中的 ConfigTemplateId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=template)查看；也可以调用[CreateConfigTemplate](https://cloud.tencent.com/document/product/649/85861)创建新的配置模板。
         # @type ConfigTemplateId: String
 
         attr_accessor :ConfigTemplateId
@@ -5797,7 +5823,7 @@ module TencentCloud
 
       # DeleteFileConfig请求参数结构体
       class DeleteFileConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 文件配置项ID
+        # @param ConfigId: 文件配置项ID。该参数可以通过调用 [DescribeFileConfigs](https://cloud.tencent.com/document/product/649/58593) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=file)-详情页查看；也可以调用[CreateFileConfig](https://cloud.tencent.com/document/product/649/58594)创建新的文件配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -5813,7 +5839,9 @@ module TencentCloud
 
       # DeleteFileConfig返回参数结构体
       class DeleteFileConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除结果
+        # @param Result: 删除结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5980,7 +6008,7 @@ module TencentCloud
 
       # DeleteLane请求参数结构体
       class DeleteLaneRequest < TencentCloud::Common::AbstractModel
-        # @param LaneId: 泳道Idl
+        # @param LaneId: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
         # @type LaneId: String
 
         attr_accessor :LaneId
@@ -5996,7 +6024,9 @@ module TencentCloud
 
       # DeleteLane返回参数结构体
       class DeleteLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除成功: true / 删除失败: false
+        # @param Result: 删除结果。
+        # - true：删除成功
+        # - false：删除失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6016,7 +6046,7 @@ module TencentCloud
 
       # DeleteLaneRule请求参数结构体
       class DeleteLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 泳道规则Id
+        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的泳道规则。
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -6032,7 +6062,9 @@ module TencentCloud
 
       # DeleteLaneRule返回参数结构体
       class DeleteLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态
+        # @param Result: 删除结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6052,7 +6084,7 @@ module TencentCloud
 
       # DeleteMicroservice请求参数结构体
       class DeleteMicroserviceRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
 
         attr_accessor :MicroserviceId
@@ -6068,9 +6100,9 @@ module TencentCloud
 
       # DeleteMicroservice返回参数结构体
       class DeleteMicroserviceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除微服务是否成功。
-        # true：操作成功。
-        # false：操作失败。
+        # @param Result: 删除结果。
+        # - true：操作成功
+        # - false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6168,13 +6200,13 @@ module TencentCloud
 
       # DeletePkgs请求参数结构体
       class DeletePkgsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
         # @type ApplicationId: String
-        # @param PkgIds: 需要删除的程序包ID列表
+        # @param PkgIds: 软件包ID所形成的列表，软件包ID可通过调用DescribeUploadInfo接口时[获取上传程序包信息](https://cloud.tencent.com/document/api/649/36078)返回的COS上传信息获取，登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type PkgIds: Array
-        # @param RepositoryType: 程序包仓库类型
+        # @param RepositoryType: 程序包仓库类型（允许值："public-demo"TSF公共demo仓库, "private"自定义仓库, "default"TSF公共仓库）
         # @type RepositoryType: String
-        # @param RepositoryId: 程序包仓库id
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
 
         attr_accessor :ApplicationId, :PkgIds, :RepositoryType, :RepositoryId
@@ -6212,7 +6244,7 @@ module TencentCloud
 
       # DeletePublicConfig请求参数结构体
       class DeletePublicConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -6228,7 +6260,9 @@ module TencentCloud
 
       # DeletePublicConfig返回参数结构体
       class DeletePublicConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：删除成功；false：删除失败
+        # @param Result: 删除结果。
+        # - true：删除成功
+        # - false：删除失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6248,7 +6282,7 @@ module TencentCloud
 
       # DeleteRepository请求参数结构体
       class DeleteRepositoryRequest < TencentCloud::Common::AbstractModel
-        # @param RepositoryId: 仓库ID
+        # @param RepositoryId: 删除对应仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
 
         attr_accessor :RepositoryId
@@ -6320,7 +6354,7 @@ module TencentCloud
 
       # DeleteTask请求参数结构体
       class DeleteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -6336,7 +6370,7 @@ module TencentCloud
 
       # DeleteTask返回参数结构体
       class DeleteTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 删除成功or失败
+        # @param Result: true：删除成功，false：删除失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7316,15 +7350,22 @@ module TencentCloud
 
       # DescribeApiDetail请求参数结构体
       class DescribeApiDetailRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务id
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
-        # @param Path: 请求路径
+        # @param Path: 请求路径。
         # @type Path: String
-        # @param Method: 请求方法
+        # @param Method: 请求方法。
+        # - GET
+        # - POST
+        # - PUT
+        # - DELETE
+        # - HEAD
+        # - PATCH
+        # - OPTIONS
         # @type Method: String
-        # @param PkgVersion: 包版本
+        # @param PkgVersion: 应用包版本号。
         # @type PkgVersion: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
 
         attr_accessor :MicroserviceId, :Path, :Method, :PkgVersion, :ApplicationId
@@ -7348,7 +7389,7 @@ module TencentCloud
 
       # DescribeApiDetail返回参数结构体
       class DescribeApiDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Result: API 详情
+        # @param Result: API详情。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ApiDetailResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7575,11 +7616,18 @@ module TencentCloud
 
       # DescribeApiVersions请求参数结构体
       class DescribeApiVersionsRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
-        # @param Path: API 请求路径
+        # @param Path: API请求路径。
         # @type Path: String
-        # @param Method: 请求方法
+        # @param Method: API请求方法。
+        # - GET
+        # - POST
+        # - PUT
+        # - DELETE
+        # - HEAD
+        # - PATCH
+        # - OPTIONS
         # @type Method: String
 
         attr_accessor :MicroserviceId, :Path, :Method
@@ -7599,7 +7647,7 @@ module TencentCloud
 
       # DescribeApiVersions返回参数结构体
       class DescribeApiVersionsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: API版本列表
+        # @param Result: API版本列表。
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8035,17 +8083,17 @@ module TencentCloud
 
       # DescribeConfigReleaseLogs请求参数结构体
       class DescribeConfigReleaseLogsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，不传入时查询全量
+        # @param GroupId: 部署组ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数，默认为20
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param NamespaceId: 命名空间ID，不传入时查询全量
+        # @param NamespaceId: 命名空间ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param ClusterId: 集群ID，不传入时查询全量
+        # @param ClusterId: 集群ID，不传入时查询全量。该参数可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/649/85857) 的返回值中的 ClusterId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
-        # @param ApplicationId: 应用ID，不传入时查询全量
+        # @param ApplicationId: 应用ID，不传入时查询全量。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
 
         attr_accessor :GroupId, :Offset, :Limit, :NamespaceId, :ClusterId, :ApplicationId
@@ -8071,7 +8119,7 @@ module TencentCloud
 
       # DescribeConfigReleaseLogs返回参数结构体
       class DescribeConfigReleaseLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页的配置项发布历史列表
+        # @param Result: 分页的配置项发布历史列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfigReleaseLog`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8094,21 +8142,21 @@ module TencentCloud
 
       # DescribeConfigReleases请求参数结构体
       class DescribeConfigReleasesRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称，不传入时查询全量
+        # @param ConfigName: 配置项名称，不传入时查询全量。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigName 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigName: String
-        # @param GroupId: 部署组ID，不传入时查询全量
+        # @param GroupId: 部署组ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param NamespaceId: 命名空间ID，不传入时查询全量
+        # @param NamespaceId: 命名空间ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param ClusterId: 集群ID，不传入时查询全量
+        # @param ClusterId: 集群ID，不传入时查询全量。该参数可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/649/85857) 的返回值中的 ClusterId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
-        # @param Limit: 每页条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param ConfigId: 配置ID，不传入时查询全量
+        # @param ConfigId: 配置ID，不传入时查询全量。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
-        # @param ApplicationId: 应用ID，不传入时查询全量
+        # @param ApplicationId: 应用ID，不传入时查询全量。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
 
         attr_accessor :ConfigName, :GroupId, :NamespaceId, :ClusterId, :Limit, :Offset, :ConfigId, :ApplicationId
@@ -8138,7 +8186,7 @@ module TencentCloud
 
       # DescribeConfigReleases返回参数结构体
       class DescribeConfigReleasesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页的配置发布信息
+        # @param Result: 分页的配置发布信息。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfigRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8161,7 +8209,7 @@ module TencentCloud
 
       # DescribeConfig请求参数结构体
       class DescribeConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -8177,7 +8225,7 @@ module TencentCloud
 
       # DescribeConfig返回参数结构体
       class DescribeConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 配置项
+        # @param Result: 配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8201,23 +8249,27 @@ module TencentCloud
 
       # DescribeConfigSummary请求参数结构体
       class DescribeConfigSummaryRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID，不传入时查询全量
+        # @param ApplicationId: 应用ID，不传入时查询全量。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param SearchWord: 查询关键字，模糊查询：应用名称，配置项名称，不传入时查询全量
+        # @param SearchWord: 查询关键字，模糊查询：应用名称，配置项名称，不传入时查询全量。
         # @type SearchWord: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数，默认为20
+        # @param Limit: 返回数量，默认为20，最大值为50。
         # @type Limit: Integer
-        # @param OrderBy: 按时间排序：creation_time；按名称排序：config_name
+        # @param OrderBy: 排序字段。
+        # - creation_time：按时间排序
+        # - config_name：按名称排序
         # @type OrderBy: String
-        # @param OrderType: 升序传 0，降序传 1
+        # @param OrderType: 排序顺序。
+        # - 0：升序
+        # - 1：降序
         # @type OrderType: Integer
-        # @param ConfigTagList: 无
+        # @param ConfigTagList: TAG标签资源值。
         # @type ConfigTagList: Array
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 忽略传参，业务预留字段。
         # @type DisableProgramAuthCheck: Boolean
-        # @param ConfigIdList: 无
+        # @param ConfigIdList: 配置ID列表。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigIdList: Array
 
         attr_accessor :ApplicationId, :SearchWord, :Offset, :Limit, :OrderBy, :OrderType, :ConfigTagList, :DisableProgramAuthCheck, :ConfigIdList
@@ -8249,7 +8301,7 @@ module TencentCloud
 
       # DescribeConfigSummary返回参数结构体
       class DescribeConfigSummaryResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 配置项分页对象
+        # @param Result: 配置项分页对象。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8272,7 +8324,7 @@ module TencentCloud
 
       # DescribeConfigTemplate请求参数结构体
       class DescribeConfigTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateId: 配置模板Id
+        # @param ConfigTemplateId: 配置模板ID。该参数可以通过调用 [DescribeConfigTemplate](https://cloud.tencent.com/document/product/649/85856) 的返回值中的 ConfigTemplateId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=template)查看；也可以调用[CreateConfigTemplate](https://cloud.tencent.com/document/product/649/85861)创建新的配置模板。
         # @type ConfigTemplateId: String
 
         attr_accessor :ConfigTemplateId
@@ -8288,7 +8340,7 @@ module TencentCloud
 
       # DescribeConfigTemplate返回参数结构体
       class DescribeConfigTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 导入结果
+        # @param Result: 导入结果。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigTemplate`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8311,19 +8363,19 @@ module TencentCloud
 
       # DescribeConfigs请求参数结构体
       class DescribeConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID，不传入时查询全量
+        # @param ApplicationId: 应用ID，不传入时查询全量。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ConfigId: 配置项ID，不传入时查询全量，高优先级
+        # @param ConfigId: 配置ID，不传入时查询全量，高优先级。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param ConfigIdList: 配置项ID列表，不传入时查询全量，低优先级
+        # @param ConfigIdList: 配置ID列表，不传入时查询全量，低优先级。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigIdList: Array
-        # @param ConfigName: 配置项名称，精确查询，不传入时查询全量
+        # @param ConfigName: 配置项名称，精确查询，不传入时查询全量。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本，精确查询，不传入时查询全量
+        # @param ConfigVersion: 配置项版本，精确查询，不传入时查询全量。
         # @type ConfigVersion: String
 
         attr_accessor :ApplicationId, :ConfigId, :Offset, :Limit, :ConfigIdList, :ConfigName, :ConfigVersion
@@ -8351,7 +8403,7 @@ module TencentCloud
 
       # DescribeConfigs返回参数结构体
       class DescribeConfigsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页后的配置项列表
+        # @param Result: 分页后的配置项列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8629,9 +8681,9 @@ module TencentCloud
 
       # DescribeCreateGatewayApiStatus请求参数结构体
       class DescribeCreateGatewayApiStatusRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 所属分组ID
+        # @param GroupId: 网关分组ID。该参数可以通过调用 [DescribeApiGroups](https://cloud.tencent.com/document/product/649/50636) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app?tab=middleware&subTab=app)-网关应用详情-Java网关实例-实例详情-分组管理页查看；也可以调用[CreateApiGroup](https://cloud.tencent.com/document/product/649/50641)创建新的网关分组。
         # @type GroupId: String
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
 
         attr_accessor :GroupId, :MicroserviceId
@@ -8649,7 +8701,9 @@ module TencentCloud
 
       # DescribeCreateGatewayApiStatus返回参数结构体
       class DescribeCreateGatewayApiStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 是否已完成导入任务
+        # @param Result: 导入任务状态执行结果。
+        # - true：已完成
+        # - false：未完成
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8802,13 +8856,13 @@ module TencentCloud
 
       # DescribeDownloadInfo请求参数结构体
       class DescribeDownloadInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
         # @type ApplicationId: String
-        # @param PkgId: 程序包ID
+        # @param PkgId: 软件包ID可通过调用DescribeUploadInfo接口时[获取上传程序包信息](https://cloud.tencent.com/document/api/649/36078)返回的COS上传信息获取，登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type PkgId: String
-        # @param RepositoryId: 程序包仓库ID
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
-        # @param RepositoryType: 程序包仓库类型
+        # @param RepositoryType: 程序包仓库类型（允许值："public-demo"TSF公共demo仓库, "private"自定义仓库, "default"TSF公共仓库）
         # @type RepositoryType: String
 
         attr_accessor :ApplicationId, :PkgId, :RepositoryId, :RepositoryType
@@ -8892,21 +8946,21 @@ module TencentCloud
 
       # DescribeFileConfigReleases请求参数结构体
       class DescribeFileConfigReleasesRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeFileConfigs](https://cloud.tencent.com/document/product/649/58593) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?rid=1&subTab=file)配置详情-配置版本页查看；也可以调用[CreateFileConfig](https://cloud.tencent.com/document/product/649/58594)创建新的配置。
         # @type ConfigId: String
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”,“_”），且不能以分隔符开头或结尾。
         # @type ConfigName: String
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID。该参数可以通过调用 [DescribeClusters](https://cloud.tencent.com/document/product/649/85857) 的返回值中的 ClusterId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :ConfigId, :ConfigName, :GroupId, :NamespaceId, :ClusterId, :ApplicationId, :Offset, :Limit
@@ -8936,7 +8990,7 @@ module TencentCloud
 
       # DescribeFileConfigReleases返回参数结构体
       class DescribeFileConfigReleasesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 配置项发布信息列表
+        # @param Result: 配置项发布信息列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageFileConfigRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8959,19 +9013,19 @@ module TencentCloud
 
       # DescribeFileConfigs请求参数结构体
       class DescribeFileConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeFileConfigs](https://cloud.tencent.com/document/product/649/58593) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?rid=1&subTab=file)配置详情-配置版本页查看；也可以调用[CreateFileConfig](https://cloud.tencent.com/document/product/649/58594)创建新的配置。
         # @type ConfigId: String
-        # @param ConfigIdList: 配置项ID列表
+        # @param ConfigIdList: 配置项ID列表。该参数可以通过调用 [DescribeFileConfigs](https://cloud.tencent.com/document/product/649/58593) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?rid=1&subTab=file)配置详情-配置版本页查看；也可以调用[CreateFileConfig](https://cloud.tencent.com/document/product/649/58594)创建新的配置。
         # @type ConfigIdList: Array
-        # @param ConfigName: 配置项名称
+        # @param ConfigName: 配置项名称。
         # @type ConfigName: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。该参数可以通过调用 [DescribeApplications](https://cloud.tencent.com/document/product/649/36090) 的返回值中的 ApplicationId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/app)查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param ConfigVersion: 配置项版本
+        # @param ConfigVersion: 配置项版本。
         # @type ConfigVersion: String
 
         attr_accessor :ConfigId, :ConfigIdList, :ConfigName, :ApplicationId, :Offset, :Limit, :ConfigVersion
@@ -8999,7 +9053,7 @@ module TencentCloud
 
       # DescribeFileConfigs返回参数结构体
       class DescribeFileConfigsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 文件配置项列表
+        # @param Result: 文件配置项列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageFileConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9022,7 +9076,7 @@ module TencentCloud
 
       # DescribeFlowLastBatchState请求参数结构体
       class DescribeFlowLastBatchStateRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID
+        # @param FlowId: 工作流 ID。前往[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)，在工作流列表第一列和工作流详情页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -9441,7 +9495,7 @@ module TencentCloud
 
       # DescribeGroupRelease请求参数结构体
       class DescribeGroupReleaseRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -9457,7 +9511,7 @@ module TencentCloud
 
       # DescribeGroupRelease返回参数结构体
       class DescribeGroupReleaseResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 部署组发布的相关信息
+        # @param Result: 部署组发布的相关信息。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.GroupRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10347,15 +10401,15 @@ module TencentCloud
 
       # DescribeLaneRules请求参数结构体
       class DescribeLaneRulesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页展示的条数
+        # @param Limit: 返回数量，默认为20，最大值为500。
         # @type Limit: Integer
-        # @param Offset: 翻页偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param SearchWord: 搜索关键词
+        # @param SearchWord: 搜索关键词。
         # @type SearchWord: String
-        # @param RuleId: 泳道规则ID（用于精确搜索）
+        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleId: String
-        # @param RuleIdList: 无
+        # @param RuleIdList: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleIdList: Array
 
         attr_accessor :Limit, :Offset, :SearchWord, :RuleId, :RuleIdList
@@ -10379,7 +10433,7 @@ module TencentCloud
 
       # DescribeLaneRules返回参数结构体
       class DescribeLaneRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 泳道规则列表
+        # @param Result: 灰度发布规则列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.LaneRules`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10402,15 +10456,15 @@ module TencentCloud
 
       # DescribeLanes请求参数结构体
       class DescribeLanesRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页展示的条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 翻页偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param SearchWord: 搜索关键字
+        # @param SearchWord: 搜索关键字。
         # @type SearchWord: String
-        # @param LaneIdList: 无
+        # @param LaneIdList: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
         # @type LaneIdList: Array
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 忽略传参，业务预留字段。
         # @type DisableProgramAuthCheck: Boolean
 
         attr_accessor :Limit, :Offset, :SearchWord, :LaneIdList, :DisableProgramAuthCheck
@@ -10434,7 +10488,7 @@ module TencentCloud
 
       # DescribeLanes返回参数结构体
       class DescribeLanesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 泳道列表
+        # @param Result: 泳道配置列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.LaneInfos`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10536,15 +10590,21 @@ module TencentCloud
 
       # DescribeMicroservice请求参数结构体
       class DescribeMicroserviceRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 返回数量，默认为20，最大值为50。
         # @type Limit: Integer
-        # @param GroupIds: 可选，根据部署组ID进行过滤
+        # @param GroupIds: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupIds: Array
-        # @param Filters: 过滤条件。多个 filter 之间是与关系，单个 filter 多个 value 之间是或关系。filter name 取值有：id（实例id）、name（实例名）、lan-ip（内网ip）、node-ip（所在节点ip）
+        # @param Filters: 过滤条件。多个 filter 之间是与关系，单个 filter 多个 value 之间是或关系。
+        # 参考：[{"Name":"LanIp","Values":["172.16.16.139"]}]
+        # filter name 取值范围：
+        # - id：实例ID
+        # - name：实例名
+        # - lan-ip：内网IP
+        # - node-ip：所在节点IP
         # @type Filters: Array
 
         attr_accessor :MicroserviceId, :Offset, :Limit, :GroupIds, :Filters
@@ -10575,7 +10635,7 @@ module TencentCloud
 
       # DescribeMicroservice返回参数结构体
       class DescribeMicroserviceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务详情实例列表
+        # @param Result: 微服务详情实例列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageMsInstance`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10598,7 +10658,7 @@ module TencentCloud
 
       # DescribeMicroservicesByGroupIds请求参数结构体
       class DescribeMicroservicesByGroupIdsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIds: 部署组ID列表
+        # @param GroupIds: 部署组ID列表。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupIds: Array
 
         attr_accessor :GroupIds
@@ -10614,7 +10674,7 @@ module TencentCloud
 
       # DescribeMicroservicesByGroupIds返回参数结构体
       class DescribeMicroservicesByGroupIdsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务信息分页列表
+        # @param Result: 微服务信息分页列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageMicroservice`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10637,25 +10697,32 @@ module TencentCloud
 
       # DescribeMicroservices请求参数结构体
       class DescribeMicroservicesRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param SearchWord: 搜索字段
+        # @param SearchWord: 搜索字段。
         # @type SearchWord: String
-        # @param OrderBy: 排序字段
+        # @param OrderBy: 排序字段。
+        # - create_time：创建时间
+        # 默认为创建时间，暂不支持其他值。
         # @type OrderBy: String
-        # @param OrderType: 排序类型
+        # @param OrderType: 排序类型。
+        # - 1：倒序
+        # 默认为倒序，暂不支持其他值。
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 返回数量，默认为20，最大值为50。
         # @type Limit: Integer
-        # @param Status: 状态过滤，online、offline、single_online
+        # @param Status: 状态。
+        # - online：在线
+        # - offline：离线
+        # - single_online：单点在线
         # @type Status: Array
-        # @param MicroserviceIdList: IdList
+        # @param MicroserviceIdList: 微服务ID列表。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceIdList: Array
-        # @param MicroserviceNameList: 搜索的服务名列表
+        # @param MicroserviceNameList: 微服务名称列表。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceName 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceNameList: Array
-        # @param ConfigCenterInstanceId: 注册中心实例id
+        # @param ConfigCenterInstanceId: 注册中心实例ID。业务预留参数，忽略传参。
         # @type ConfigCenterInstanceId: String
 
         attr_accessor :NamespaceId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :Status, :MicroserviceIdList, :MicroserviceNameList, :ConfigCenterInstanceId
@@ -10689,7 +10756,7 @@ module TencentCloud
 
       # DescribeMicroservices返回参数结构体
       class DescribeMicroservicesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 微服务分页列表信息
+        # @param Result: 微服务分页列表信息。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageMicroservice`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10712,13 +10779,13 @@ module TencentCloud
 
       # DescribeMsApiList请求参数结构体
       class DescribeMsApiListRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
-        # @param SearchWord: 搜索关键字
+        # @param SearchWord: 搜索关键字。
         # @type SearchWord: String
-        # @param Limit: 每页的数量
+        # @param Limit: 返回数量，默认为20，最大值为50。
         # @type Limit: Integer
-        # @param Offset: 翻页偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
 
         attr_accessor :MicroserviceId, :SearchWord, :Limit, :Offset
@@ -10740,7 +10807,7 @@ module TencentCloud
 
       # DescribeMsApiList返回参数结构体
       class DescribeMsApiListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 相应结果
+        # @param Result: 微服务API列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfApiListResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10912,21 +10979,21 @@ module TencentCloud
 
       # DescribePkgs请求参数结构体
       class DescribePkgsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID（只传入应用ID，返回该应用下所有软件包信息）
+        # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
         # @type ApplicationId: String
         # @param SearchWord: 查询关键字（支持根据包ID，包名，包版本号搜索）
         # @type SearchWord: String
-        # @param OrderBy: 排序关键字（默认为"UploadTime"：上传时间）
+        # @param OrderBy: 排序关键字（默认值"UploadTime"），允许值："UploadTime"上传时间, "name"程序包名, "size"应用大小, "id"程序包ID
         # @type OrderBy: String
         # @param OrderType: 升序：0/降序：1（默认降序）
         # @type OrderType: Integer
-        # @param Offset: 查询起始偏移
+        # @param Offset: 查询起始偏移，大于等于0，默认值为0
         # @type Offset: Integer
         # @param Limit: 返回数量限制
         # @type Limit: Integer
-        # @param RepositoryType: 程序包仓库类型
+        # @param RepositoryType: 程序包仓库类型，允许值："public-demo"TSF公共demo仓库, "private"自定义仓库, "default"TSF公共仓库
         # @type RepositoryType: String
-        # @param RepositoryId: 程序包仓库id
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
         # @param PackageTypeList: 程序包类型数组支持（fatjar jar war tar.gz zip）
         # @type PackageTypeList: Array
@@ -11148,11 +11215,11 @@ module TencentCloud
 
       # DescribePublicConfigReleaseLogs请求参数结构体
       class DescribePublicConfigReleaseLogsRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID，不传入时查询全量
+        # @param NamespaceId: 命名空间ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数，默认为20
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
 
         attr_accessor :NamespaceId, :Offset, :Limit
@@ -11172,7 +11239,7 @@ module TencentCloud
 
       # DescribePublicConfigReleaseLogs返回参数结构体
       class DescribePublicConfigReleaseLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页后的公共配置项发布历史列表
+        # @param Result: 分页后的公共配置项发布历史列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfigReleaseLog`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11195,15 +11262,15 @@ module TencentCloud
 
       # DescribePublicConfigReleases请求参数结构体
       class DescribePublicConfigReleasesRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置项名称，不传入时查询全量
+        # @param ConfigName: 配置名称，不传入时查询全量。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigName 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigName: String
-        # @param NamespaceId: 命名空间ID，不传入时查询全量
+        # @param NamespaceId: 命名空间ID，不传入时查询全量。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param Limit: 每页条数
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param ConfigId: 配置项ID，不传入时查询全量
+        # @param ConfigId: 配置项ID，不传入时查询全量。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigName, :NamespaceId, :Limit, :Offset, :ConfigId
@@ -11227,7 +11294,7 @@ module TencentCloud
 
       # DescribePublicConfigReleases返回参数结构体
       class DescribePublicConfigReleasesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 公共配置发布信息
+        # @param Result: 公共配置发布信息。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfigRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11250,7 +11317,7 @@ module TencentCloud
 
       # DescribePublicConfig请求参数结构体
       class DescribePublicConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 需要查询的配置项ID
+        # @param ConfigId: 需要查询的配置ID。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -11266,7 +11333,7 @@ module TencentCloud
 
       # DescribePublicConfig返回参数结构体
       class DescribePublicConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 全局配置
+        # @param Result: 全局配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.Config`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -11290,21 +11357,25 @@ module TencentCloud
 
       # DescribePublicConfigSummary请求参数结构体
       class DescribePublicConfigSummaryRequest < TencentCloud::Common::AbstractModel
-        # @param SearchWord: 查询关键字，模糊查询：配置项名称，不传入时查询全量
+        # @param SearchWord: 查询关键字，模糊查询：配置项名称，不传入时查询全量。
         # @type SearchWord: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数，默认为20
+        # @param Limit: 返回数量，默认为20，最大值为50。
         # @type Limit: Integer
-        # @param OrderBy: 按时间排序：creation_time；按名称排序：config_name
+        # @param OrderBy: 排序字段。
+        # - creation_time：按时间排序
+        # - config_name：按名称排序
         # @type OrderBy: String
-        # @param OrderType: 升序传 0，降序传 1
+        # @param OrderType: 排序顺序。
+        # - 0：升序
+        # - 1：降序
         # @type OrderType: Integer
-        # @param ConfigTagList: 无
+        # @param ConfigTagList: TAG标签资源值。
         # @type ConfigTagList: Array
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 忽略传参，业务预留字段。
         # @type DisableProgramAuthCheck: Boolean
-        # @param ConfigIdList: 无
+        # @param ConfigIdList: 配置ID。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigIdList: Array
 
         attr_accessor :SearchWord, :Offset, :Limit, :OrderBy, :OrderType, :ConfigTagList, :DisableProgramAuthCheck, :ConfigIdList
@@ -11334,7 +11405,7 @@ module TencentCloud
 
       # DescribePublicConfigSummary返回参数结构体
       class DescribePublicConfigSummaryResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页的全局配置统计信息列表
+        # @param Result: 分页的全局配置统计信息列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11357,17 +11428,17 @@ module TencentCloud
 
       # DescribePublicConfigs请求参数结构体
       class DescribePublicConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID，不传入时查询全量，高优先级
+        # @param ConfigId: 配置ID。不传入时查询全量，高优先级。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigId: String
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
-        # @param Limit: 每页条数，默认为20
+        # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: Integer
-        # @param ConfigIdList: 配置项ID列表，不传入时查询全量，低优先级
+        # @param ConfigIdList: 配置ID列表，不传入时查询全量，低优先级。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigIdList: Array
-        # @param ConfigName: 配置项名称，精确查询，不传入时查询全量
+        # @param ConfigName: 配置项名称，精确查询，不传入时查询全量。
         # @type ConfigName: String
-        # @param ConfigVersion: 配置项版本，精确查询，不传入时查询全量
+        # @param ConfigVersion: 配置项版本，精确查询，不传入时查询全量。
         # @type ConfigVersion: String
 
         attr_accessor :ConfigId, :Offset, :Limit, :ConfigIdList, :ConfigName, :ConfigVersion
@@ -11393,7 +11464,7 @@ module TencentCloud
 
       # DescribePublicConfigs返回参数结构体
       class DescribePublicConfigsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 分页后的全局配置项列表
+        # @param Result: 分页后的全局配置项列表。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.TsfPageConfig`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11416,7 +11487,7 @@ module TencentCloud
 
       # DescribeReleasedConfig请求参数结构体
       class DescribeReleasedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -11432,7 +11503,7 @@ module TencentCloud
 
       # DescribeReleasedConfig返回参数结构体
       class DescribeReleasedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 已发布的配置内容
+        # @param Result: 已发布的配置内容。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11454,11 +11525,11 @@ module TencentCloud
       class DescribeRepositoriesRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 查询关键字（按照仓库名称搜索）
         # @type SearchWord: String
-        # @param Offset: 查询起始偏移
+        # @param Offset: 查询起始偏移，大于等于0，默认值为0
         # @type Offset: Integer
-        # @param Limit: 返回数量限制
+        # @param Limit: 返回数量限制，大于0，默认为不分页
         # @type Limit: Integer
-        # @param RepositoryType: 仓库类型（默认仓库：default，私有仓库：private）
+        # @param RepositoryType: 仓库类型（默认仓库：default，私有仓库：private，公共仓库：public-demo）
         # @type RepositoryType: String
 
         attr_accessor :SearchWord, :Offset, :Limit, :RepositoryType
@@ -11503,7 +11574,7 @@ module TencentCloud
 
       # DescribeRepository请求参数结构体
       class DescribeRepositoryRequest < TencentCloud::Common::AbstractModel
-        # @param RepositoryId: 仓库ID
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
 
         attr_accessor :RepositoryId
@@ -12210,9 +12281,9 @@ module TencentCloud
 
       # DescribeTaskDetail请求参数结构体
       class DescribeTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
         # @type TaskId: String
-        # @param TaskLogId: 任务历史ID
+        # @param TaskLogId: 任务历史ID。查询任务列表 [DescribeTaskRecords](https://cloud.tencent.com/document/api/649/56136) 返回值字段 TaskLogId
         # @type TaskLogId: String
 
         attr_accessor :TaskId, :TaskLogId
@@ -12253,7 +12324,7 @@ module TencentCloud
 
       # DescribeTaskLastStatus请求参数结构体
       class DescribeTaskLastStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列和任务基本信息页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -12292,21 +12363,21 @@ module TencentCloud
 
       # DescribeTaskRecords请求参数结构体
       class DescribeTaskRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 翻页偏移量。
+        # @param Offset: 翻页偏移量。默认值为0
         # @type Offset: Integer
-        # @param Limit: 翻页查询单页数量。
+        # @param Limit: 翻页查询单页数量。默认值为 20，最大值为 1000
         # @type Limit: Integer
         # @param SearchWord: 模糊查询关键字，支持任务ID和任务名称。
         # @type SearchWord: String
-        # @param TaskState: 任务启用状态。enabled/disabled
+        # @param TaskState: 任务启用状态。一共2种状态可选，ENABLED：启用，DISABLED：停用
         # @type TaskState: String
-        # @param GroupId: 分组ID。
+        # @param GroupId: 部署组ID。前往应用管理 - 应用部署，部署组列表页面获取部署组ID。
         # @type GroupId: String
-        # @param TaskType: 任务类型。
+        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
         # @type TaskType: String
-        # @param ExecuteType: 任务触发类型，UNICAST、BROADCAST。
+        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
         # @type ExecuteType: String
-        # @param Ids: 无
+        # @param Ids: 任务ID列表。
         # @type Ids: Array
 
         attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType, :Ids
@@ -12634,7 +12705,7 @@ module TencentCloud
 
       # DescribeUploadInfo请求参数结构体
       class DescribeUploadInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
         # @type ApplicationId: String
         # @param PkgName: 程序包名
         # @type PkgName: String
@@ -12644,9 +12715,9 @@ module TencentCloud
         # @type PkgType: String
         # @param PkgDesc: 程序包介绍
         # @type PkgDesc: String
-        # @param RepositoryType: 程序包仓库类型
+        # @param RepositoryType: 仓库类型（默认仓库：default，私有仓库：private，公共仓库：public-demo）
         # @type RepositoryType: String
-        # @param RepositoryId: 程序包仓库id
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
 
         attr_accessor :ApplicationId, :PkgName, :PkgVersion, :PkgType, :PkgDesc, :RepositoryType, :RepositoryId
@@ -12744,7 +12815,7 @@ module TencentCloud
 
       # DisableLaneRule请求参数结构体
       class DisableLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 泳道规则ID
+        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -12760,7 +12831,9 @@ module TencentCloud
 
       # DisableLaneRule返回参数结构体
       class DisableLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态。成功：true，失败：false
+        # @param Result: 操作状态。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12780,7 +12853,7 @@ module TencentCloud
 
       # DisableTaskFlow请求参数结构体
       class DisableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID
+        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -12816,7 +12889,7 @@ module TencentCloud
 
       # DisableTask请求参数结构体
       class DisableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列或是任务基本信息页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -12832,7 +12905,7 @@ module TencentCloud
 
       # DisableTask返回参数结构体
       class DisableTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功 or 失败
+        # @param Result: true：操作成功，false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13068,7 +13141,7 @@ module TencentCloud
 
       # EnableLaneRule请求参数结构体
       class EnableLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 泳道规则ID
+        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleId: String
 
         attr_accessor :RuleId
@@ -13084,7 +13157,9 @@ module TencentCloud
 
       # EnableLaneRule返回参数结构体
       class EnableLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态。成功：true，失败：false
+        # @param Result: 操作状态。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13104,7 +13179,7 @@ module TencentCloud
 
       # EnableTaskFlow请求参数结构体
       class EnableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID
+        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -13140,7 +13215,7 @@ module TencentCloud
 
       # EnableTask请求参数结构体
       class EnableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 启用任务
+        # @param TaskId: 任务ID。在任务管理列表页面和任务基本信息页可以查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -13156,7 +13231,7 @@ module TencentCloud
 
       # EnableTask返回参数结构体
       class EnableTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功or失败
+        # @param Result: true：操作成功，false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13312,7 +13387,7 @@ module TencentCloud
 
       # ExecuteTaskFlow请求参数结构体
       class ExecuteTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID
+        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -13328,7 +13403,7 @@ module TencentCloud
 
       # ExecuteTaskFlow返回参数结构体
       class ExecuteTaskFlowResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作流批次ID
+        # @param Result: 操作成功返回工作流批次ID，操作失败返回空字符串。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13348,7 +13423,7 @@ module TencentCloud
 
       # ExecuteTask请求参数结构体
       class ExecuteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: 任务ID。在任务管理列表页面第一列或是任务基本信息页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -13364,7 +13439,7 @@ module TencentCloud
 
       # ExecuteTask返回参数结构体
       class ExecuteTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 成功/失败
+        # @param Result: 操作成功返回任务批次ID，操作失败返回空字符串。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13550,7 +13625,7 @@ module TencentCloud
         # @param ReleaseDesc: 发布描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseDesc: String
-        # @param ReleaseTime: 发布时间
+        # @param ReleaseTime: 发布时间。格式为 YYYY-MM-DD hh:mm:ss。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReleaseTime: String
         # @param GroupId: 部署组ID
@@ -16522,11 +16597,11 @@ module TencentCloud
 
       # ModifyLane请求参数结构体
       class ModifyLaneRequest < TencentCloud::Common::AbstractModel
-        # @param LaneId: 泳道ID
+        # @param LaneId: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
         # @type LaneId: String
-        # @param LaneName: 泳道名称
+        # @param LaneName: 泳道配置名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”），且不能以分隔符开头或结尾。
         # @type LaneName: String
-        # @param Remark: 备注
+        # @param Remark: 备注，最多支持200个字符。
         # @type Remark: String
 
         attr_accessor :LaneId, :LaneName, :Remark
@@ -16546,7 +16621,9 @@ module TencentCloud
 
       # ModifyLane返回参数结构体
       class ModifyLaneResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 更新成功: true / 更新失败: false
+        # @param Result: 更新结果。
+        # - true：更新成功
+        # - false：更新失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16566,19 +16643,21 @@ module TencentCloud
 
       # ModifyLaneRule请求参数结构体
       class ModifyLaneRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RuleId: 泳道规则ID
+        # @param RuleId: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleId: String
-        # @param RuleName: 泳道规则名称
+        # @param RuleName: 灰度发布规则名称，最多支持60个字符，支持中英文字符。
         # @type RuleName: String
-        # @param Remark: 泳道规则备注
+        # @param Remark: 灰度发布规则备注，最多支持200个字符。
         # @type Remark: String
-        # @param RuleTagList: 泳道规则标签列表
+        # @param RuleTagList: 灰度发布规则标签列表。
         # @type RuleTagList: Array
-        # @param RuleTagRelationship: 泳道规则标签关系
+        # @param RuleTagRelationship: 灰度发布规则标签关系。- RELEATION_AND：与- RELEATION_OR：或
         # @type RuleTagRelationship: String
-        # @param LaneId: 泳道ID
+        # @param LaneId: 泳道配置ID。该参数可以通过调用 [DescribeLanes](https://cloud.tencent.com/document/product/649/44504) 的返回值中的 LaneId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lane)查看；也可以调用[CreateLane](https://cloud.tencent.com/document/product/649/44508)创建新的泳道配置。
         # @type LaneId: String
-        # @param Enable: 开启状态
+        # @param Enable: 开启状态。
+        # - true：开启
+        # - false：关闭
         # @type Enable: Boolean
 
         attr_accessor :RuleId, :RuleName, :Remark, :RuleTagList, :RuleTagRelationship, :LaneId, :Enable
@@ -16613,7 +16692,9 @@ module TencentCloud
 
       # ModifyLaneRule返回参数结构体
       class ModifyLaneRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作状态。成功：true，失败：false
+        # @param Result: 修改结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16633,9 +16714,9 @@ module TencentCloud
 
       # ModifyMicroservice请求参数结构体
       class ModifyMicroserviceRequest < TencentCloud::Common::AbstractModel
-        # @param MicroserviceId: 微服务 ID
+        # @param MicroserviceId: 微服务ID。该参数可以通过调用 [DescribeMicroservices](https://cloud.tencent.com/document/product/649/36084) 的返回值中的 MicroserviceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=service)查看；也可以调用[CreateMicroserviceWithDetailResp](https://cloud.tencent.com/document/product/649/85860)创建新的微服务。
         # @type MicroserviceId: String
-        # @param MicroserviceDesc: 微服务备注信息
+        # @param MicroserviceDesc: 微服务备注信息，最多支持200个字符。
         # @type MicroserviceDesc: String
 
         attr_accessor :MicroserviceId, :MicroserviceDesc
@@ -16653,9 +16734,9 @@ module TencentCloud
 
       # ModifyMicroservice返回参数结构体
       class ModifyMicroserviceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 修改微服务详情是否成功。
-        # true：操作成功。
-        # false：操作失败。
+        # @param Result: 修改结果。
+        # - true：修改成功
+        # - false：修改失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16834,23 +16915,23 @@ module TencentCloud
 
       # ModifyTask请求参数结构体
       class ModifyTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在任务管理列表页面第一列查看任务ID。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: 任务名称，长度限制为64字符。在任务管理列表页面第一列或是任务基本信息页查看任务名称。
         # @type TaskName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
         # @type TaskType: String
-        # @param TaskContent: 任务内容
+        # @param TaskContent: 任务内容，长度限制为 65536 字节
         # @type TaskContent: String
-        # @param ExecuteType: 任务执行类型
+        # @param ExecuteType: 任务执行方式，枚举值。unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
         # @type ExecuteType: String
         # @param TaskRule: 触发规则
         # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param TimeOut: 超时时间，单位 ms
+        # @param TimeOut: 超时时间，取值大于0，单位：毫秒（ms）
         # @type TimeOut: Integer
-        # @param GroupId: 分组ID
+        # @param GroupId: 部署组ID。在[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)，点击应用ID进入应用部署页查看部署组ID。
         # @type GroupId: String
-        # @param ShardCount: 分片数量
+        # @param ShardCount: 分片数量，取值范围2~1000
         # @type ShardCount: Integer
         # @param ShardArguments: 分片参数
         # @type ShardArguments: Array
@@ -16858,15 +16939,15 @@ module TencentCloud
         # @type AdvanceSettings: :class:`Tencentcloud::Tsf.v20180326.models.AdvanceSettings`
         # @param SuccessOperator: 判断任务成功的操作符 GT/GTE
         # @type SuccessOperator: String
-        # @param SuccessRatio: 判断任务成功率的阈值
+        # @param SuccessRatio: 判断任务成功率的阈值，取值范围：1-100，单位：百分比（%）
         # @type SuccessRatio: Integer
-        # @param RetryCount: 重试次数
+        # @param RetryCount: 重试次数，取值范围 0 - 10，单位：次
         # @type RetryCount: Integer
-        # @param RetryInterval: 重试间隔
+        # @param RetryInterval: 重试间隔，取值范围 0-600，单位：秒（s）
         # @type RetryInterval: Integer
         # @param TaskArgument: 任务参数，长度限制10000个字符
         # @type TaskArgument: String
-        # @param ProgramIdList: 无
+        # @param ProgramIdList: 数据集列表。
         # @type ProgramIdList: Array
 
         attr_accessor :TaskId, :TaskName, :TaskType, :TaskContent, :ExecuteType, :TaskRule, :TimeOut, :GroupId, :ShardCount, :ShardArguments, :AdvanceSettings, :SuccessOperator, :SuccessRatio, :RetryCount, :RetryInterval, :TaskArgument, :ProgramIdList
@@ -16927,7 +17008,7 @@ module TencentCloud
 
       # ModifyTask返回参数结构体
       class ModifyTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 更新是否成功
+        # @param Result: 更新是否成功。true：操作成功、false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16947,9 +17028,9 @@ module TencentCloud
 
       # ModifyUploadInfo请求参数结构体
       class ModifyUploadInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，通过调用DescribeApplications接口[获取应用列表](https://cloud.tencent.com/document/api/649/36090)从而获取应用ID，或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看，调用CreateApplication接口[创建应用](https://cloud.tencent.com/document/product/649/36094)时的返回值
         # @type ApplicationId: String
-        # @param PkgId: 调用DescribeUploadInfo接口时返回的软件包ID
+        # @param PkgId: 软件包ID可通过调用DescribeUploadInfo接口时[获取上传程序包信息](https://cloud.tencent.com/document/api/649/36078)返回的COS上传信息获取，登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type PkgId: String
         # @param Result: COS返回上传结果（默认为0：成功，其他值表示失败）
         # @type Result: Integer
@@ -16959,7 +17040,7 @@ module TencentCloud
         # @type Size: Integer
         # @param RepositoryType: 程序包仓库类型
         # @type RepositoryType: String
-        # @param RepositoryId: 程序包仓库id
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
 
         attr_accessor :ApplicationId, :PkgId, :Result, :Md5, :Size, :RepositoryType, :RepositoryId
@@ -17981,9 +18062,9 @@ module TencentCloud
 
       # RedoTaskBatch请求参数结构体
       class RedoTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在任务管理列表页面可以查看任务ID。
         # @type TaskId: String
-        # @param BatchId: 批次ID
+        # @param BatchId: 任务批次ID。在任务管理页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
         # @type BatchId: String
 
         attr_accessor :TaskId, :BatchId
@@ -18001,7 +18082,7 @@ module TencentCloud
 
       # RedoTaskBatch返回参数结构体
       class RedoTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 批次ID
+        # @param Result: 批次流水ID
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18021,11 +18102,11 @@ module TencentCloud
 
       # RedoTaskExecute请求参数结构体
       class RedoTaskExecuteRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 任务批次ID
+        # @param BatchId: 任务批次ID。在任务管理页面第一列点击任务ID进入任务详情，进入执行记录列表页，第一列内容即为任务批次ID。
         # @type BatchId: String
-        # @param ExecuteId: 任务执行ID
+        # @param ExecuteId: 任务执行ID。在任务管理页面第一列点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
         # @type ExecuteId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在任务管理列表页面可以查看任务ID。
         # @type TaskId: String
 
         attr_accessor :BatchId, :ExecuteId, :TaskId
@@ -18045,7 +18126,7 @@ module TencentCloud
 
       # RedoTaskExecute返回参数结构体
       class RedoTaskExecuteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 成功失败
+        # @param Result: 成功返回执行批次流水ID。失败返回空字符串。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18065,7 +18146,7 @@ module TencentCloud
 
       # RedoTaskFlowBatch请求参数结构体
       class RedoTaskFlowBatchRequest < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 工作流批次 ID
+        # @param FlowBatchId: 工作流批次 ID。在工作流管理页面，点击第一列的工作流ID进入工作流执行记录列表页面，第一列的内容即为工作流批次ID。
         # @type FlowBatchId: String
 
         attr_accessor :FlowBatchId
@@ -18081,7 +18162,7 @@ module TencentCloud
 
       # RedoTaskFlowBatch返回参数结构体
       class RedoTaskFlowBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作流批次历史 ID
+        # @param Result: 工作流批次历史 ID。操作失败时不返回该字段，返回错误码。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18101,7 +18182,7 @@ module TencentCloud
 
       # RedoTask请求参数结构体
       class RedoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在任务管理列表页面第一列查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -18117,7 +18198,7 @@ module TencentCloud
 
       # RedoTask返回参数结构体
       class RedoTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功or失败
+        # @param Result: 操作成功任务批次ID。操作失败返回空字符串。
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18173,11 +18254,11 @@ module TencentCloud
 
       # ReleaseConfig请求参数结构体
       class ReleaseConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param ReleaseDesc: 发布描述
+        # @param ReleaseDesc: 发布描述，最多支持200个字符。
         # @type ReleaseDesc: String
 
         attr_accessor :ConfigId, :GroupId, :ReleaseDesc
@@ -18197,7 +18278,9 @@ module TencentCloud
 
       # ReleaseConfig返回参数结构体
       class ReleaseConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：发布成功；false：发布失败
+        # @param Result: 发布结果。
+        # - true：发布成功
+        # - false：发布失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18217,11 +18300,11 @@ module TencentCloud
 
       # ReleaseConfigWithDetailResp请求参数结构体
       class ReleaseConfigWithDetailRespRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeConfigs](https://cloud.tencent.com/document/product/649/38340) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-配置版本页查看；也可以调用[CreateConfig](https://cloud.tencent.com/document/product/649/38348)创建新的配置。
         # @type ConfigId: String
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param ReleaseDesc: 发布描述
+        # @param ReleaseDesc: 发布描述，最多支持200个字符。
         # @type ReleaseDesc: String
 
         attr_accessor :ConfigId, :GroupId, :ReleaseDesc
@@ -18241,7 +18324,7 @@ module TencentCloud
 
       # ReleaseConfigWithDetailResp返回参数结构体
       class ReleaseConfigWithDetailRespResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 配置项发布 ID
+        # @param Result: 配置项发布ID。
         # @type Result: :class:`Tencentcloud::Tsf.v20180326.models.ConfigRelease`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18264,11 +18347,11 @@ module TencentCloud
 
       # ReleaseFileConfig请求参数结构体
       class ReleaseFileConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribeFileConfigs](https://cloud.tencent.com/document/product/649/58593) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?rid=1&subTab=file)配置详情-配置版本页查看；也可以调用[CreateFileConfig](https://cloud.tencent.com/document/product/649/58594)创建新的配置。
         # @type ConfigId: String
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param ReleaseDesc: 发布描述
+        # @param ReleaseDesc: 发布描述，最多支持200个字符。
         # @type ReleaseDesc: String
 
         attr_accessor :ConfigId, :GroupId, :ReleaseDesc
@@ -18288,7 +18371,9 @@ module TencentCloud
 
       # ReleaseFileConfig返回参数结构体
       class ReleaseFileConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 发布结果，成功：true，失败：false。
+        # @param Result: 发布结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18308,11 +18393,11 @@ module TencentCloud
 
       # ReleasePublicConfig请求参数结构体
       class ReleasePublicConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置ID
+        # @param ConfigId: 配置ID。该参数可以通过调用 [DescribePublicConfigs](https://cloud.tencent.com/document/product/649/38335) 的返回值中的 ConfigId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=public)配置详情-配置版本页查看；也可以调用[CreatePublicConfig](https://cloud.tencent.com/document/product/649/38347)创建新的配置。
         # @type ConfigId: String
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。该参数可以通过调用 [DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096) 的返回值中的 NamespaceId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?tab=namespace)查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param ReleaseDesc: 发布描述
+        # @param ReleaseDesc: 发布描述，最多支持200个字符。
         # @type ReleaseDesc: String
 
         attr_accessor :ConfigId, :NamespaceId, :ReleaseDesc
@@ -18332,7 +18417,9 @@ module TencentCloud
 
       # ReleasePublicConfig返回参数结构体
       class ReleasePublicConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：发布成功；false：发布失败
+        # @param Result: 发布结果。
+        # - true：发布成功
+        # - false：发布失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18571,7 +18658,7 @@ module TencentCloud
 
       # RevocationConfig请求参数结构体
       class RevocationConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigReleaseId: 配置项发布ID
+        # @param ConfigReleaseId: 配置项发布ID。该参数可以通过调用 [DescribeConfigReleases](https://cloud.tencent.com/document/product/649/38342) 的返回值中的 ConfigReleaseId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-发布情况页查看。
         # @type ConfigReleaseId: String
 
         attr_accessor :ConfigReleaseId
@@ -18587,7 +18674,9 @@ module TencentCloud
 
       # RevocationConfig返回参数结构体
       class RevocationConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：回滚成功；false：回滚失败
+        # @param Result: 撤回结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -18643,7 +18732,7 @@ module TencentCloud
 
       # RevokeFileConfig请求参数结构体
       class RevokeFileConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigReleaseId: 配置项发布ID
+        # @param ConfigReleaseId: 按照【配置项发布ID】进行撤回。可通过调用[DescribeFileConfigReleases](https://cloud.tencent.com/document/product/649/85855)查询已发布的文件配置列表或登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=file)-查看发布信息-发布情况进行查看；也可以调用[ReleaseFileConfig](https://cloud.tencent.com/document/product/649/58592)发布文件配置。
         # @type ConfigReleaseId: String
 
         attr_accessor :ConfigReleaseId
@@ -18679,9 +18768,9 @@ module TencentCloud
 
       # RollbackConfig请求参数结构体
       class RollbackConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigReleaseLogId: 配置项发布历史ID
+        # @param ConfigReleaseLogId: 配置项发布历史ID。该参数可以通过调用 [DescribeConfigReleaseLogs](https://cloud.tencent.com/document/product/649/38343) 的返回值中的 ConfigReleaseLogId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=app)配置详情-发布情况页查看。
         # @type ConfigReleaseLogId: String
-        # @param ReleaseDesc: 回滚描述
+        # @param ReleaseDesc: 回滚描述，最多支持200个字符。
         # @type ReleaseDesc: String
 
         attr_accessor :ConfigReleaseLogId, :ReleaseDesc
@@ -18699,7 +18788,9 @@ module TencentCloud
 
       # RollbackConfig返回参数结构体
       class RollbackConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：回滚成功；false：回滚失败
+        # @param Result: 回滚结果。
+        # - true：回滚成功
+        # - false：回滚失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19446,9 +19537,9 @@ module TencentCloud
 
       # ShrinkInstances请求参数结构体
       class ShrinkInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[获取虚拟机部署组列表](https://cloud.tencent.com/document/api/649/36065)接口时出参中的Result.Content.GroupId，或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-aaaaaaaa&tab=publish&subTab=group)选择对应应用进入应用部署页面查看，同时也是调用[创建部署组](https://cloud.tencent.com/document/api/649/36074)接口返回的Result值
         # @type GroupId: String
-        # @param InstanceIdList: 下线机器实例ID列表
+        # @param InstanceIdList: 实例ID列表，实例ID可通过调用[查询虚拟机部署组云主机列表](https://cloud.tencent.com/document/product/649/36066)接口时出参中的Result.Content.InstanceId，或登录[控制台](https://console.cloud.tencent.com/tsf/resource-detail?rid=1&id=cluster-aaaaaaaa)选择对应的虚拟机集群查看云主机信息，同时也是[集群添加云主机](https://cloud.tencent.com/document/product/649/41225?ls=doc-search!current)接口的的返回值Result中的节点列表
         # @type InstanceIdList: Array
 
         attr_accessor :GroupId, :InstanceIdList
@@ -19925,29 +20016,29 @@ module TencentCloud
 
       # 工作流图中的边
       class TaskFlowEdge < TencentCloud::Common::AbstractModel
-        # @param NodeId: 节点 ID
+        # @param NodeId: 节点 ID，节点类型为任务时为任务ID，节点类型为逻辑节点"且"时为 AND，为逻辑节点"或"时为 OR，节点类型为头节点时为字符串"head"
         # @type NodeId: String
-        # @param ChildNodeId: 子节点 ID
+        # @param ChildNodeId: 子节点 ID，节点类型为任务时为任务ID，节点类型为逻辑节点"且"时为 AND，为逻辑节点"或"时为 OR
         # @type ChildNodeId: String
         # @param CoreNode: 是否核心任务,Y/N
         # @type CoreNode: String
-        # @param EdgeType: 边类型
+        # @param EdgeType: 边类型，上下游任务依赖触发关系。一共2个值，Y：成功触发，N：失败触发
         # @type EdgeType: String
-        # @param NodeType: 任务节点类型
+        # @param NodeType: 任务节点类型，一共有4种类型，AND：逻辑节点且，OR：逻辑节点或，TASK：任务节点，START：头节点
         # @type NodeType: String
         # @param PositionX: X轴坐标位置
         # @type PositionX: String
         # @param PositionY: Y轴坐标位置
         # @type PositionY: String
-        # @param GraphId: 图 ID
+        # @param GraphId: 图 ID，新建工作流时自动生成，不需要填写，查看工作流图时后端返回
         # @type GraphId: String
-        # @param FlowId: 工作流 ID
+        # @param FlowId: 工作流 ID，新建工作流时自动生成，不需要填写，查看工作流图时后端返回
         # @type FlowId: String
         # @param NodeName: 节点名称
         # @type NodeName: String
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID，新建工作流时不需要填写，查看工作流图时后端返回
         # @type TaskId: String
-        # @param TaskLogId: 任务历史ID
+        # @param TaskLogId: 任务历史ID，新建工作流时不需要填写，查看工作流图时后端返回
         # @type TaskLogId: String
 
         attr_accessor :NodeId, :ChildNodeId, :CoreNode, :EdgeType, :NodeType, :PositionX, :PositionY, :GraphId, :FlowId, :NodeName, :TaskId, :TaskLogId
@@ -20053,21 +20144,21 @@ module TencentCloud
         # @type TaskName: String
         # @param TaskType: 任务类型
         # @type TaskType: String
-        # @param ExecuteType: 执行类型
+        # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
         # @type ExecuteType: String
         # @param TaskContent: 任务内容，长度限制65535字节
         # @type TaskContent: String
         # @param GroupId: 分组ID
         # @type GroupId: String
-        # @param TimeOut: 超时时间
+        # @param TimeOut: 超时时间，单位：毫秒。
         # @type TimeOut: Integer
         # @param RetryCount: 重试次数
         # @type RetryCount: Integer
-        # @param RetryInterval: 重试间隔
+        # @param RetryInterval: 重试间隔，单位：毫秒。
         # @type RetryInterval: Integer
         # @param TaskRule: 触发规则
         # @type TaskRule: :class:`Tencentcloud::Tsf.v20180326.models.TaskRule`
-        # @param TaskState: 是否启用任务,ENABLED/DISABLED
+        # @param TaskState: 任务启用状态。一共2种状态可选，ENABLED：启用，DISABLED：停用
         # @type TaskState: String
         # @param TaskId: 任务ID
         # @type TaskId: String
@@ -20085,7 +20176,7 @@ module TencentCloud
         # @type BelongFlowIds: Array
         # @param TaskLogId: 任务历史ID
         # @type TaskLogId: String
-        # @param TriggerType: 触发类型
+        # @param TriggerType: 触发类型，一共3种类型，WorkFlow：工作流触发，Cron：定时触发，FixRate：周期触发
         # @type TriggerType: String
         # @param TaskArgument: 任务参数，长度限制10000个字符
         # @type TaskArgument: String
@@ -20181,7 +20272,7 @@ module TencentCloud
 
       # 任务规则
       class TaskRule < TencentCloud::Common::AbstractModel
-        # @param RuleType: 触发规则类型, Cron/Repeat
+        # @param RuleType: 触发规则类型，枚举值。一共3个值，Cron：定时触发，Repeat：周期触发，WorkFlow：工作流触发
         # @type RuleType: String
         # @param Expression: Cron类型规则，cron表达式。
         # @type Expression: String
@@ -20238,7 +20329,7 @@ module TencentCloud
 
       # TerminateTaskFlowBatch请求参数结构体
       class TerminateTaskFlowBatchRequest < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 工作流批次 ID
+        # @param FlowBatchId: 工作流批次 ID，在[工作流执行记录](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=taskflow)列表页第一列获取。
         # @type FlowBatchId: String
 
         attr_accessor :FlowBatchId
@@ -20254,7 +20345,7 @@ module TencentCloud
 
       # TerminateTaskFlowBatch返回参数结构体
       class TerminateTaskFlowBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 是否停止成功
+        # @param Result: 是否停止成功，true：停止成功，false：停止失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20396,7 +20487,9 @@ module TencentCloud
 
       # 配置中心
       class TsfConfigCenter < TencentCloud::Common::AbstractModel
-        # @param ConfigType: 配置中心类型
+        # @param ConfigType: 配置中心类型。
+        # - SHARE：共享型
+        # - EXCLUSIVE：独占型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigType: String
         # @param ConfigCenterInstanceId: 配置中心实例id
@@ -21686,15 +21779,19 @@ module TencentCloud
 
       # UpdateConfigTemplate请求参数结构体
       class UpdateConfigTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigTemplateId: 配置模板id
+        # @param ConfigTemplateId: 配置模板ID。该参数可以通过调用 [DescribeConfigTemplate](https://cloud.tencent.com/document/product/649/85856) 的返回值中的 ConfigTemplateId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?subTab=template)查看；也可以调用[CreateConfigTemplate](https://cloud.tencent.com/document/product/649/85861)创建新的配置模板。
         # @type ConfigTemplateId: String
-        # @param ConfigTemplateName: 配置模板名称
+        # @param ConfigTemplateName: 配置模板名称，最多支持60个字符，只能包含字母、数字及分隔符（“-”），且不能以分隔符开头或结尾。
         # @type ConfigTemplateName: String
-        # @param ConfigTemplateType: 配置模板对应的微服务框架
+        # @param ConfigTemplateType: 配置模板对应的微服务框架。
+        # - Ribbon：Ribbon类型配置模板
+        # - Hystrix：Hystrix类型配置模板
+        # - Zuul：Zuul类型配置模板
+        # - customize：自定义类型配置模板
         # @type ConfigTemplateType: String
-        # @param ConfigTemplateValue: 配置模板数据
+        # @param ConfigTemplateValue: 配置模板数据。
         # @type ConfigTemplateValue: String
-        # @param ConfigTemplateDesc: 配置模板描述
+        # @param ConfigTemplateDesc: 配置模板描述，最多支持200个字符。
         # @type ConfigTemplateDesc: String
 
         attr_accessor :ConfigTemplateId, :ConfigTemplateName, :ConfigTemplateType, :ConfigTemplateValue, :ConfigTemplateDesc
@@ -21718,7 +21815,9 @@ module TencentCloud
 
       # UpdateConfigTemplate返回参数结构体
       class UpdateConfigTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 更新成功: true / 更新失败: false
+        # @param Result: 更新结果。
+        # - true：成功
+        # - false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -21843,7 +21942,7 @@ module TencentCloud
 
       # UpdateRepository请求参数结构体
       class UpdateRepositoryRequest < TencentCloud::Common::AbstractModel
-        # @param RepositoryId: 仓库ID
+        # @param RepositoryId: 仓库ID，可通过调用[仓库信息查询类](https://cloud.tencent.com/document/api/649/45925)接口时出参中的RepositoryId，或登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type RepositoryId: String
         # @param RepositoryDesc: 仓库描述
         # @type RepositoryDesc: String

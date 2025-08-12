@@ -271,6 +271,22 @@ module TencentCloud
         end
       end
 
+      # TTS音频输出的格式
+      class AudioFormat < TencentCloud::Common::AbstractModel
+        # @param Format: 生成的音频格式，默认pcm，目前支持的格式列表：[pcm]。
+        # @type Format: String
+
+        attr_accessor :Format
+
+        def initialize(format=nil)
+          @Format = format
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+        end
+      end
+
       # 录制音频转码参数。
       class AudioParams < TencentCloud::Common::AbstractModel
         # @param SampleRate: 音频采样率枚举值:(注意1 代表48000HZ, 2 代表44100HZ, 3 代表16000HZ)
@@ -6497,6 +6513,118 @@ module TencentCloud
         end
       end
 
+      # TextToSpeech请求参数结构体
+      class TextToSpeechRequest < TencentCloud::Common::AbstractModel
+        # @param Text: 需要转语音的文字内容，长度范围：[1, 255]
+        # @type Text: String
+        # @param Voice: 文本转语音的声音配置
+        # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
+        # @param SdkAppId: TRTC的SdkAppId
+        # @type SdkAppId: Integer
+        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
+        # @param APIKey: TTS的API密钥
+        # @type APIKey: String
+
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey
+
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil)
+          @Text = text
+          @Voice = voice
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+          @APIKey = apikey
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          unless params['Voice'].nil?
+            @Voice = Voice.new
+            @Voice.deserialize(params['Voice'])
+          end
+          @SdkAppId = params['SdkAppId']
+          unless params['AudioFormat'].nil?
+            @AudioFormat = AudioFormat.new
+            @AudioFormat.deserialize(params['AudioFormat'])
+          end
+          @APIKey = params['APIKey']
+        end
+      end
+
+      # TextToSpeech返回参数结构体
+      class TextToSpeechResponse < TencentCloud::Common::AbstractModel
+        # @param Audio: Base64编码的音频数据
+        # @type Audio: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Audio, :RequestId
+
+        def initialize(audio=nil, requestid=nil)
+          @Audio = audio
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Audio = params['Audio']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # TextToSpeechSSE请求参数结构体
+      class TextToSpeechSSERequest < TencentCloud::Common::AbstractModel
+        # @param Text: 需要转语音的文字内容，长度范围：[1, 255]
+        # @type Text: String
+        # @param Voice: 文本转语音的声音配置
+        # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
+        # @param SdkAppId: TRTC的SdkAppId
+        # @type SdkAppId: Integer
+        # @param AudioFormat: 文本转语音的输出音频的格式
+        # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
+        # @param APIKey: TTS的API密钥
+        # @type APIKey: String
+
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey
+
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil)
+          @Text = text
+          @Voice = voice
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+          @APIKey = apikey
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          unless params['Voice'].nil?
+            @Voice = Voice.new
+            @Voice.deserialize(params['Voice'])
+          end
+          @SdkAppId = params['SdkAppId']
+          unless params['AudioFormat'].nil?
+            @AudioFormat = AudioFormat.new
+            @AudioFormat.deserialize(params['AudioFormat'])
+          end
+          @APIKey = params['APIKey']
+        end
+      end
+
+      # TextToSpeechSSE返回参数结构体
+      class TextToSpeechSSEResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。本接口为流式响应接口，当请求成功时，RequestId 会被放在 HTTP 响应的 Header "X-TC-RequestId" 中。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 返回的质量数据，时间:值
       class TimeValue < TencentCloud::Common::AbstractModel
         # @param Time: 时间，unix时间戳（1590065877s)
@@ -7042,6 +7170,74 @@ module TencentCloud
           @Fps = params['Fps']
           @BitRate = params['BitRate']
           @Gop = params['Gop']
+        end
+      end
+
+      # TTS的声音参数
+      class Voice < TencentCloud::Common::AbstractModel
+        # @param VoiceId: TTS的声音的ID
+        # @type VoiceId: String
+
+        attr_accessor :VoiceId
+
+        def initialize(voiceid=nil)
+          @VoiceId = voiceid
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+        end
+      end
+
+      # VoiceClone请求参数结构体
+      class VoiceCloneRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: TRTC的SdkAppId
+        # @type SdkAppId: Integer
+        # @param APIKey: TTS的API密钥
+        # @type APIKey: String
+        # @param VoiceName: 声音克隆的名字
+        # @type VoiceName: String
+        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在5秒～12秒之间
+        # @type PromptAudio: String
+        # @param PromptText: 声音克隆的参考文本，为参考音频对应的文字。
+        # @type PromptText: String
+
+        attr_accessor :SdkAppId, :APIKey, :VoiceName, :PromptAudio, :PromptText
+
+        def initialize(sdkappid=nil, apikey=nil, voicename=nil, promptaudio=nil, prompttext=nil)
+          @SdkAppId = sdkappid
+          @APIKey = apikey
+          @VoiceName = voicename
+          @PromptAudio = promptaudio
+          @PromptText = prompttext
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @APIKey = params['APIKey']
+          @VoiceName = params['VoiceName']
+          @PromptAudio = params['PromptAudio']
+          @PromptText = params['PromptText']
+        end
+      end
+
+      # VoiceClone返回参数结构体
+      class VoiceCloneResponse < TencentCloud::Common::AbstractModel
+        # @param VoiceId: 克隆出的音色ID，可以用此id进行语音合成
+        # @type VoiceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoiceId, :RequestId
+
+        def initialize(voiceid=nil, requestid=nil)
+          @VoiceId = voiceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+          @RequestId = params['RequestId']
         end
       end
 

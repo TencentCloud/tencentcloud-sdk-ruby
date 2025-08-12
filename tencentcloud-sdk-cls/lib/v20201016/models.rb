@@ -416,9 +416,9 @@ module TencentCloud
         # @param Status: 规则状态。
         # 0：暂未生效，1：生效中，2：已失效
         # @type Status: Integer
-        # @param CreateTime: 规则创建时间。
+        # @param CreateTime: 规则创建时间。秒级时间戳(s)
         # @type CreateTime: Integer
-        # @param UpdateTime: 规则更新时间。
+        # @param UpdateTime: 规则更新时间。秒级时间戳(s)
         # @type UpdateTime: Integer
 
         attr_accessor :AlarmNoticeId, :TaskId, :StartTime, :EndTime, :Type, :Rule, :Reason, :Source, :Operator, :Status, :CreateTime, :UpdateTime
@@ -767,8 +767,10 @@ module TencentCloud
       # ApplyConfigToMachineGroup请求参数结构体
       class ApplyConfigToMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集配置ID
+        #  - 通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)获取采集配置Id。
         # @type ConfigId: String
         # @param GroupId: 机器组ID
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组Id。
         # @type GroupId: String
 
         attr_accessor :ConfigId, :GroupId
@@ -838,9 +840,15 @@ module TencentCloud
 
       # CheckFunction请求参数结构体
       class CheckFunctionRequest < TencentCloud::Common::AbstractModel
-        # @param EtlContent: 用户输入的加工语句
+        # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
+
+        # 其他参考文档：
+
+        # - [创建加工任务](https://cloud.tencent.com/document/product/614/63940)
+        # -  [函数总览](https://cloud.tencent.com/document/product/614/70395)
         # @type EtlContent: String
-        # @param DstResources: 加工任务目的topic_id以及别名
+        # @param DstResources: 加工任务目标topic_id以及别名，当 FuncType 为 1 时，必填。
+        # 目标日志主题ID通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type DstResources: Array
         # @param FuncType: 数据加工目标主题的类型. 1 固定主题 2动态创建
         # @type FuncType: Integer
@@ -965,17 +973,31 @@ module TencentCloud
 
       # CKafka的描述-需要投递到的kafka信息
       class Ckafka < TencentCloud::Common::AbstractModel
-        # @param InstanceId: Ckafka 的 InstanceId
+        # @param InstanceId: Ckafka 的 InstanceId。
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取实例id。
+        # - 通过 [创建实例](https://cloud.tencent.com/document/product/597/53207) 获取实例id。
         # @type InstanceId: String
-        # @param TopicName: Ckafka 的 TopicName
+        # @param TopicName: Ckafka 的 TopicName。
+        # - 通过 [创建 Topic](https://cloud.tencent.com/document/product/597/73566) 获得TopicName。
+        # - 通过 [获取主题列表](https://cloud.tencent.com/document/product/597/40847) 获得TopicName。
         # @type TopicName: String
-        # @param Vip: Ckafka 的 Vip
+        # @param Vip: Ckafka 的 Vip。
+        # - 通过 [获取实例属性 ](https://cloud.tencent.com/document/product/597/40836) 获取vip信息。
+        # - 如果是通过 角色ARN 方式创建投递任务，则Vip字段可为空。
         # @type Vip: String
-        # @param Vport: Ckafka 的 Vport
+        # @param Vport: Ckafka 的 Vport。
+        # - 通过 [获取实例属性 ](https://cloud.tencent.com/document/product/597/40836) 获取vip port信息。
+        # - 如果是通过 角色ARN 方式创建投递任务，则Vport字段可为空。
         # @type Vport: String
-        # @param InstanceName: Ckafka 的 InstanceName
+        # @param InstanceName: Ckafka 的 InstanceName。
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取InstanceName。
+        # - 通过 [创建实例](https://cloud.tencent.com/document/product/597/53207) 获取InstanceName。
+        # - 如果是通过 角色ARN 方式创建投递任务，则InstanceName字段可为空。
         # @type InstanceName: String
-        # @param TopicId: Ckafka 的 TopicId
+        # @param TopicId: Ckafka 的 TopicId。
+        # - 通过 [创建 Topic](https://cloud.tencent.com/document/product/597/73566) 获得TopicId。
+        # - 通过 [获取主题列表](https://cloud.tencent.com/document/product/597/40847) 获得TopicId。
+        # - 如果是通过 角色ARN 方式创建投递任务，则TopicId字段可为空。
         # @type TopicId: String
 
         attr_accessor :InstanceId, :TopicName, :Vip, :Vport, :InstanceName, :TopicId
@@ -1001,7 +1023,9 @@ module TencentCloud
 
       # CloseKafkaConsumer请求参数结构体
       class CloseKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题ID
+        # @param FromTopicId: 日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type FromTopicId: String
 
         attr_accessor :FromTopicId
@@ -1190,7 +1214,10 @@ module TencentCloud
         # @type Name: String
         # @param TopicId: 日志主题ID
         # @type TopicId: String
-        # @param Type: 类型：container_stdout、container_file、host_file
+        # @param Type: 自建k8s集群日志采集类型，支持
+        # - container_stdout 标准输出
+        # - container_file 标准文件
+        # - host_file 节点文件
         # @type Type: String
         # @param HostFile: 节点文件配置信息
         # @type HostFile: :class:`Tencentcloud::Cls.v20201016.models.HostFileInfo`
@@ -1208,16 +1235,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludePaths: Array
         # @param UpdateTime: 更新时间
+        # - 时间格式：yyyy-MM-dd HH:mm:ss
         # @type UpdateTime: String
         # @param CreateTime: 创建时间
+        # - 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param UserDefineRule: 用户自定义解析字符串
         # @type UserDefineRule: String
         # @param GroupId: 机器组ID
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组Id。
         # @type GroupId: String
         # @param ConfigFlag: 自建采集配置标
         # @type ConfigFlag: String
         # @param LogsetId: 日志集ID
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/api/614/58624)获取日志集Id。
         # @type LogsetId: String
         # @param LogsetName: 日志集name
         # @type LogsetName: String
@@ -1338,8 +1369,10 @@ module TencentCloud
         # @param Output: 采集配置所属日志主题ID即TopicId
         # @type Output: String
         # @param UpdateTime: 更新时间
+        # - 时间格式：yyyy-MM-dd HH:mm:ss
         # @type UpdateTime: String
         # @param CreateTime: 创建时间
+        # - 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param UserDefineRule: 用户自定义解析字符串，详见[使用组合解析提取模式采集日志](https://cloud.tencent.com/document/product/614/61310)。
         # @type UserDefineRule: String
@@ -1471,6 +1504,63 @@ module TencentCloud
           @IsLockTimeRange = params['IsLockTimeRange']
           @IsLockQuery = params['IsLockQuery']
           @IsSupportLogExport = params['IsSupportLogExport']
+        end
+      end
+
+      # 控制台分享信息
+      class ConsoleSharingInfo < TencentCloud::Common::AbstractModel
+        # @param SharingId: 分享ID
+        # @type SharingId: String
+        # @param SharingUrl: 分享链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharingUrl: String
+        # @param SharingConfig: 匿名分享配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharingConfig: :class:`Tencentcloud::Cls.v20201016.models.ConsoleSharingConfig`
+        # @param ExpiredTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param Status: 分享链接状态
+        # 1: 正常
+        # -1: 因内容安全审查异常导致被封禁(存在于使用公网域名分享时)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ContentSafetyCode: 10001-广告 20001-政治 20002-色情 20004-社会事件 20011-暴力 20012-低俗 20006-违法犯罪 20007-谩骂 20008-欺诈 20013-版权 20104-谣言 21000-其他, 10086-聚合, 24001-暴恐（天御独有恶意类型），20472-违法，
+        # 24005-社会
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentSafetyCode: Integer
+
+        attr_accessor :SharingId, :SharingUrl, :SharingConfig, :ExpiredTime, :CreateTime, :UpdateTime, :Status, :ContentSafetyCode
+
+        def initialize(sharingid=nil, sharingurl=nil, sharingconfig=nil, expiredtime=nil, createtime=nil, updatetime=nil, status=nil, contentsafetycode=nil)
+          @SharingId = sharingid
+          @SharingUrl = sharingurl
+          @SharingConfig = sharingconfig
+          @ExpiredTime = expiredtime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Status = status
+          @ContentSafetyCode = contentsafetycode
+        end
+
+        def deserialize(params)
+          @SharingId = params['SharingId']
+          @SharingUrl = params['SharingUrl']
+          unless params['SharingConfig'].nil?
+            @SharingConfig = ConsoleSharingConfig.new
+            @SharingConfig.deserialize(params['SharingConfig'])
+          end
+          @ExpiredTime = params['ExpiredTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Status = params['Status']
+          @ContentSafetyCode = params['ContentSafetyCode']
         end
       end
 
@@ -2169,12 +2259,13 @@ module TencentCloud
       # CreateCloudProductLogCollection请求参数结构体
       class CreateCloudProductLogCollectionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
+        # - 通过各个接入云产品官方文档获取
         # @type InstanceId: String
         # @param AssumerName: 云产品标识，支持枚举：CDS、CWP、CDB、TDSQL-C、MongoDB、TDStore、DCDB、MariaDB、PostgreSQL、BH、APIS
         # @type AssumerName: String
         # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
         # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
+        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：
         # - CDS所有日志类型：ap-guangzhou
         # - CDB-AUDIT: gz
         # - TDSQL-C-AUDIT:  gz
@@ -2189,16 +2280,19 @@ module TencentCloud
         # - APIS所有日志类型：gz
         # @type CloudProductRegion: String
         # @param ClsRegion: CLS目标地域
+        # - 支持地域参考  [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档
         # @type ClsRegion: String
         # @param LogsetName: 日志集名称，未填LogsetId时必填。若日志集不存在, 将自动创建
         # @type LogsetName: String
         # @param TopicName: 日志主题名称，在未填TopicId时必填。 若日志主题不存在，将自动创建
         # @type TopicName: String
-        # @param Extend: 日志配置拓展信息， 一般用于存储额外的日志投递配置
+        # @param Extend: 日志配置扩展信息， 一般用于存储额外的日志投递配置
         # @type Extend: String
         # @param LogsetId: 日志集id
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/api/614/58624)获取日志集Id。
         # @type LogsetId: String
         # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :InstanceId, :AssumerName, :LogType, :CloudProductRegion, :ClsRegion, :LogsetName, :TopicName, :Extend, :LogsetId, :TopicId
@@ -2422,8 +2516,11 @@ module TencentCloud
       # CreateConfig请求参数结构体
       class CreateConfigRequest < TencentCloud::Common::AbstractModel
         # @param Name: 采集配置名称
+        # - 名称种不得包含特殊字符｜
+        # - 名称最长255字符，超过截断
         # @type Name: String
         # @param Output: 采集配置所属日志主题ID即TopicId
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type Output: String
         # @param Path: 日志采集路径，包含文件名，支持多个路径，多个路径之间英文逗号分隔，文件采集情况下必填
         # @type Path: String
@@ -2554,7 +2651,9 @@ module TencentCloud
 
       # CreateConsumer请求参数结构体
       class CreateConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @param TopicId: 投递任务绑定的日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
         # @param NeedContent: 是否投递日志的元数据信息，默认为 true。
         # 当NeedContent为true时：字段Content有效。
@@ -2697,10 +2796,21 @@ module TencentCloud
       # CreateDashboardSubscribe请求参数结构体
       class CreateDashboardSubscribeRequest < TencentCloud::Common::AbstractModel
         # @param Name: 仪表盘订阅名称。
+        # 输入限制：
+        # - 不能为空
+        # - 长度不能超过128字节
+        # - 不能包含字符'|'
         # @type Name: String
-        # @param DashboardId: 仪表盘id。
+        # @param DashboardId: 仪表盘Id。
+        # - 通过[获取仪表盘](https://cloud.tencent.com/document/product/614/95636)获取仪表盘Id。
         # @type DashboardId: String
-        # @param Cron: 订阅时间cron表达式，格式为：{秒数} {分钟} {小时} {日期} {月份} {星期}；（有效数据为：{分钟} {小时} {日期} {月份} {星期}）。<br><li/>{秒数} 取值范围： 0 ~ 59 <br><li/>{分钟} 取值范围： 0 ~ 59  <br><li/>{小时} 取值范围： 0 ~ 23  <br><li/>{日期} 取值范围： 1 ~ 31 AND (dayOfMonth最后一天： L) <br><li/>{月份} 取值范围： 1 ~ 12 <br><li/>{星期} 取值范围： 0 ~ 6 【0:星期日， 6星期六】
+        # @param Cron: 订阅时间cron表达式，格式为：{秒数} {分钟} {小时} {日期} {月份} {星期}；（有效数据为：{分钟} {小时} {日期} {月份} {星期}）。
+        # - {秒数} 取值范围： 0 ~ 59
+        # - {分钟} 取值范围： 0 ~ 59
+        # - {小时} 取值范围： 0 ~ 23
+        # - {日期} 取值范围： 1 ~ 31 AND (dayOfMonth最后一天： L)
+        # - {月份} 取值范围： 1 ~ 12
+        # - {星期} 取值范围： 0 ~ 6 【0:星期日， 6星期六】
         # @type Cron: String
         # @param SubscribeData: 仪表盘订阅数据。
         # @type SubscribeData: :class:`Tencentcloud::Cls.v20201016.models.DashboardSubscribeData`
@@ -2831,17 +2941,22 @@ module TencentCloud
 
       # CreateDeliverCloudFunction请求参数结构体
       class CreateDeliverCloudFunctionRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 投递规则属于的 topic id
+        # @param TopicId: 投递规则属于的TopicId。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
         # @param FunctionName: 投递的云函数名字。仅支持[事件函数](https://cloud.tencent.com/document/product/583/9694#scf-.E4.BA.8B.E4.BB.B6.E5.87.BD.E6.95.B0) （[函数类型选型](https://cloud.tencent.com/document/product/583/73483)）
+        # 通过 [获取函数列表](https://cloud.tencent.com/document/product/583/18582) 获取函数信息。
         # @type FunctionName: String
-        # @param Namespace: 命名空间
+        # @param Namespace: 命名空间。参考 [命名空间管理](https://cloud.tencent.com/document/product/583/35913)
+        # - 通过 [列出命名空间列表](https://cloud.tencent.com/document/product/583/37158) 获取Name。
         # @type Namespace: String
-        # @param Qualifier: 函数版本
+        # @param Qualifier: 函数版本。
+        # - 通过 [查询函数版本 ](https://cloud.tencent.com/document/product/583/37162) 获取函数版本。
         # @type Qualifier: String
-        # @param Timeout: 投递最长等待时间，单位：秒
+        # @param Timeout: 投递最长等待时间，单位：秒。 默认：60
         # @type Timeout: Integer
-        # @param MaxMsgNum: 投递最大消息数
+        # @param MaxMsgNum: 投递最大消息数。默认为100。支持范围[1,10000]
         # @type MaxMsgNum: Integer
 
         attr_accessor :TopicId, :FunctionName, :Namespace, :Qualifier, :Timeout, :MaxMsgNum
@@ -2883,7 +2998,8 @@ module TencentCloud
 
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Count: 日志导出数量,  最大值5000万
         # @type Count: Integer
@@ -3009,7 +3125,9 @@ module TencentCloud
 
       # CreateKafkaRecharge请求参数结构体
       class CreateKafkaRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 导入CLS目标topic ID
+        # @param TopicId: 导入CLS目标TopicId。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
         # @param Name: Kafka导入配置名称
         # @type Name: String
@@ -3022,6 +3140,7 @@ module TencentCloud
         # @param LogRechargeRule: 日志导入规则。
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
         # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填。
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取实例id。
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址，KafkaType为1时必填。
         # @type ServerAddr: String
@@ -3030,7 +3149,8 @@ module TencentCloud
         # @param Protocol: 加密访问协议。
         # KafkaType为1并且IsEncryptionAddr为true时Protocol必填。
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
-        # @param ConsumerGroupName: 用户Kafka消费组名称
+        # @param ConsumerGroupName: 用户Kafka消费组名称。
+        # - 消费组是 Kafka 提供的可扩展且具有容错性的消费者机制，一个消费组中存在多个消费者，组内的所有消费者共同消费订阅 Topic 中的消息。一个消费者可同时消费多个 Partition，但一个 Partition 只能被消费组内的一个消费者消费。
         # @type ConsumerGroupName: String
 
         attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :LogRechargeRule, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName
@@ -3289,9 +3409,9 @@ module TencentCloud
 
       # CreateScheduledSql请求参数结构体
       class CreateScheduledSqlRequest < TencentCloud::Common::AbstractModel
-        # @param SrcTopicId: 源日志主题
+        # @param SrcTopicId: 源日志主题ID- 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type SrcTopicId: String
-        # @param Name: 任务名称
+        # @param Name: 任务名称，0~255字符
         # @type Name: String
         # @param EnableFlag: 任务启动状态.  1开启,  2关闭
         # @type EnableFlag: Integer
@@ -3303,13 +3423,13 @@ module TencentCloud
         # @type ProcessStartTime: Integer
         # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
         # @type ProcessType: Integer
-        # @param ProcessPeriod: 调度周期(分钟)
+        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
         # @type ProcessPeriod: Integer
         # @param ProcessTimeWindow: 单次查询的时间窗口,如果您的目标主题为指标主题，建议该参数的大小不超过30分钟，否则可能转指标失败。
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)
+        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息
+        # @param SrcTopicRegion: 源topicId的地域信息,支持地域见 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档
         # @type SrcTopicRegion: String
         # @param ProcessEndTime: 调度结束时间，当ProcessType=2时为必传字段, Unix时间戳，单位ms
         # @type ProcessEndTime: Integer
@@ -3495,8 +3615,13 @@ module TencentCloud
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
+        # - 通过[获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
         # @param TopicName: 日志主题名称
+        # 名称限制
+        # - 不能为空字符串
+        # - 不能包含字符'|'
+        # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
         # @type TopicName: String
         # @param PartitionCount: 日志主题分区个数。默认创建1个，最大支持创建10个分区。
         # @type PartitionCount: Integer
@@ -3758,7 +3883,9 @@ module TencentCloud
         # <li/>Uin：腾讯云用户<br>
         # <li/>Group：腾讯云用户组<br>
         # <li/>Email：自定义Email<br>
-        # <li/>WeCom: 企业微信回调
+        # <li/>WeCom: 企业微信回调<br>
+        # <li/>DingTalk：钉钉<br>
+        # <li/>Lark：飞书
         # @type ReceiverType: String
         # @param Values: 知方式对应的值。
         # <br> <li/> 当ReceiverType不是 WeCom 时，Values必填。
@@ -4077,9 +4204,9 @@ module TencentCloud
 
       # DeleteAlarmShield请求参数结构体
       class DeleteAlarmShieldRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 屏蔽规则id。
+        # @param TaskId: 屏蔽规则id。通过[获取告警屏蔽配置规则](https://cloud.tencent.com/document/api/614/103650)获取屏蔽规则ID
         # @type TaskId: String
-        # @param AlarmNoticeId: 通知渠道组id。
+        # @param AlarmNoticeId: 通知渠道组id。通过[获取告警屏蔽配置规则](https://cloud.tencent.com/document/api/614/103650)获取通知渠道组id
         # @type AlarmNoticeId: String
 
         attr_accessor :TaskId, :AlarmNoticeId
@@ -4119,7 +4246,7 @@ module TencentCloud
         # @type AssumerName: String
         # @param LogType: 日志类型，支持枚举：CDS-AUDIT、CDS-RISK、CDB-AUDIT、TDSQL-C-AUDIT、MongoDB-AUDIT、MongoDB-SlowLog、MongoDB-ErrorLog、TDMYSQL-SLOW、DCDB-AUDIT、DCDB-SLOW、DCDB-ERROR、MariaDB-AUDIT、MariaDB-SLOW、MariaDB-ERROR、PostgreSQL-SLOW、PostgreSQL-ERROR、PostgreSQL-AUDIT、BH-FILELOG、BH-COMMANDLOG、APIS-ACCESS
         # @type LogType: String
-        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入參格式存在差异， 请参考如下示例：
+        # @param CloudProductRegion: 云产品地域。 不同日志类型(LogType)地域入参格式存在差异， 请参考如下示例：
         # - CDS所有日志类型：ap-guangzhou
         # - CDB-AUDIT: gz
         # - TDSQL-C-AUDIT: gz
@@ -4174,6 +4301,7 @@ module TencentCloud
       # DeleteConfigExtra请求参数结构体
       class DeleteConfigExtraRequest < TencentCloud::Common::AbstractModel
         # @param ConfigExtraId: 特殊采集规则扩展配置ID
+        # - 通过[获取特殊采集配置](https://cloud.tencent.com/document/api/614/71164)特殊采集规则扩展配置ID。
         # @type ConfigExtraId: String
 
         attr_accessor :ConfigExtraId
@@ -4206,8 +4334,10 @@ module TencentCloud
       # DeleteConfigFromMachineGroup请求参数结构体
       class DeleteConfigFromMachineGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 机器组ID
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组Id。
         # @type GroupId: String
         # @param ConfigId: 采集配置ID
+        #  - 通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)获取采集配置Id。
         # @type ConfigId: String
 
         attr_accessor :GroupId, :ConfigId
@@ -4241,7 +4371,8 @@ module TencentCloud
 
       # DeleteConfig请求参数结构体
       class DeleteConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 采集规则配置ID
+        # @param ConfigId: 采集配置ID
+        #  - 通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)获取采集配置Id。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -4273,7 +4404,9 @@ module TencentCloud
 
       # DeleteConsoleSharing请求参数结构体
       class DeleteConsoleSharingRequest < TencentCloud::Common::AbstractModel
-        # @param SharingId: 免密分享Id
+        # @param SharingId: 免密分享Id。
+        # - 通过 [获取免密分享列表](https://cloud.tencent.com/document/product/614/109798) 获取免密分享Id。
+        # - 通过 [创建免密分享](https://cloud.tencent.com/document/product/614/109800) 获取免密分享Id。
         # @type SharingId: String
 
         attr_accessor :SharingId
@@ -4305,7 +4438,9 @@ module TencentCloud
 
       # DeleteConsumer请求参数结构体
       class DeleteConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @param TopicId: 投递任务绑定的日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -4407,7 +4542,7 @@ module TencentCloud
 
       # DeleteDataTransform请求参数结构体
       class DeleteDataTransformRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 数据加工任务id
+        # @param TaskId: 数据加工任务ID- 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务Id。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -4439,7 +4574,8 @@ module TencentCloud
 
       # DeleteExport请求参数结构体
       class DeleteExportRequest < TencentCloud::Common::AbstractModel
-        # @param ExportId: 日志导出ID
+        # @param ExportId: 日志导出任务Id
+        # - 通过[获取日志下载任务列表](https://cloud.tencent.com/document/product/614/56449)获取日志导出任务Id。
         # @type ExportId: String
 
         attr_accessor :ExportId
@@ -4576,7 +4712,8 @@ module TencentCloud
 
       # DeleteMachineGroupInfo请求参数结构体
       class DeleteMachineGroupInfoRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 机器组ID
+        # @param GroupId: 机器组Id
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/product/614/56438)获取机器组Id。
         # @type GroupId: String
         # @param MachineGroupType: 机器组类型
         # 目前type支持 ip 和 label
@@ -4616,7 +4753,8 @@ module TencentCloud
 
       # DeleteMachineGroup请求参数结构体
       class DeleteMachineGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 机器组ID
+        # @param GroupId: 机器组Id
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/product/614/56438)获取机器组Id。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -4680,9 +4818,9 @@ module TencentCloud
 
       # DeleteScheduledSql请求参数结构体
       class DeleteScheduledSqlRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
         # @type TaskId: String
-        # @param SrcTopicId: 源日志主题ID
+        # @param SrcTopicId: 源日志主题ID，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
         # @type SrcTopicId: String
 
         attr_accessor :TaskId, :SrcTopicId
@@ -4750,6 +4888,7 @@ module TencentCloud
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -5239,18 +5378,22 @@ module TencentCloud
         # name
         # - 按照【特殊采集配置名称】进行模糊匹配过滤。
         # - 类型：String
+        # - 示例：test-config
 
         # configExtraId
         # - 按照【特殊采集配置ID】进行过滤。
         # - 类型：String
+        # - 示例：3b83f9d6-3a4d-47f9-9b7f-285c868b2f9a
 
         # topicId
         # - 按照【日志主题】进行过滤。
         # - 类型：String
+        # - 示例：3581a3be-aa41-423b-995a-54ec84da6264
 
         # machineGroupId
         # - 按照【机器组ID】进行过滤。
         # - 类型：String
+        # - 示例：f948972f-a063-408c-a59f-8c3230bddaf6
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为5。
         # @type Filters: Array
@@ -5316,6 +5459,7 @@ module TencentCloud
       # DescribeConfigMachineGroups请求参数结构体
       class DescribeConfigMachineGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 采集配置ID
+        # - 通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)获取采集配置Id。
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -5363,16 +5507,20 @@ module TencentCloud
         # - 按照【采集配置名称】进行模糊匹配过滤。
         # - 类型：String
         # - 必选：否
+        # - 示例：test-config
 
         # configId
         # - 按照【采集配置ID】进行过滤。
         # - 类型：String
         # - 必选：否
+        # - 示例：3581a3be-aa41-423b-995a-54ec84da6264
 
         # topicId
         # - 按照【日志主题】进行过滤。
         # - 类型：String
         # - 必选：否
+        # - 示例：3b83f9d6-3a4d-47f9-9b7f-285c868b2f9a
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为5。
         # @type Filters: Array
@@ -5450,25 +5598,38 @@ module TencentCloud
       class DescribeConsoleSharingListResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 分页的总数目
         # @type TotalCount: Integer
+        # @param ConsoleSharingInfos: 控制台免密分享列表
+        # @type ConsoleSharingInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :ConsoleSharingInfos, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, consolesharinginfos=nil, requestid=nil)
           @TotalCount = totalcount
+          @ConsoleSharingInfos = consolesharinginfos
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['ConsoleSharingInfos'].nil?
+            @ConsoleSharingInfos = []
+            params['ConsoleSharingInfos'].each do |i|
+              consolesharinginfo_tmp = ConsoleSharingInfo.new
+              consolesharinginfo_tmp.deserialize(i)
+              @ConsoleSharingInfos << consolesharinginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeConsumer请求参数结构体
       class DescribeConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @param TopicId: 投递任务绑定的日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -5832,7 +5993,8 @@ module TencentCloud
 
       # DescribeExports请求参数结构体
       class DescribeExportsRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Offset: 分页的偏移量，默认值为0
         # @type Offset: Integer
@@ -5954,7 +6116,9 @@ module TencentCloud
 
       # DescribeKafkaConsumer请求参数结构体
       class DescribeKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题ID
+        # @param FromTopicId: 日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type FromTopicId: String
 
         attr_accessor :FromTopicId
@@ -6005,11 +6169,14 @@ module TencentCloud
 
       # DescribeKafkaRecharges请求参数结构体
       class DescribeKafkaRechargesRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题 ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param Id: 导入配置ID
+        # @param Id: 导入配置Id。
+        # - 通过 [创建Kafka数据订阅任务](https://cloud.tencent.com/document/product/614/94448)获取Kafka导入配置Id。
+        # - 通过 [获取Kafka数据订阅任务列表](https://cloud.tencent.com/document/product/614/94446)获取Kafka导入配置Id。
         # @type Id: String
-        # @param Status: 状态   status 1: 运行中, 2: 暂停...
+        # @param Status: 状态。1: 运行中，2: 暂停，3：错误
         # @type Status: Integer
 
         attr_accessor :TopicId, :Id, :Status
@@ -6156,9 +6323,12 @@ module TencentCloud
         # @type From: Integer
         # @param To: 要查询的日志的结束时间，Unix时间戳，单位ms
         # @type To: Integer
-        # @param Query: 查询语句
+        # @param Query: 检索分析语句。
+        # 语句由 [检索条件] | [SQL语句]构成，无需对日志进行统计分析时，可省略其中的管道符 | 及SQL语句。
+        # 使用*或空字符串可查询所有日志。
         # @type Query: String
         # @param TopicId: 要查询的日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Interval: 时间间隔: 单位ms  限制性条件：(To-From) / interval <= 200
         # @type Interval: Integer
@@ -6309,6 +6479,7 @@ module TencentCloud
       # DescribeMachineGroupConfigs请求参数结构体
       class DescribeMachineGroupConfigsRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 机器组ID
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/api/614/56438)获取机器组Id。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -6352,7 +6523,8 @@ module TencentCloud
 
       # DescribeMachineGroups请求参数结构体
       class DescribeMachineGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: machineGroupName
+        # @param Filters: 过滤条件
+        # machineGroupName
         # - 按照【机器组名称】进行过滤。
         # - 类型：String
         # - 必选：否
@@ -6363,7 +6535,7 @@ module TencentCloud
         # - 必选：否
 
         # osType
-        # - 按照【操作系统类型】进行过滤。
+        # - 按照【操作系统类型】进行过滤。0： Linux；1： Windows
         # - 类型：Int
         # - 必选：否
 
@@ -6626,7 +6798,8 @@ module TencentCloud
 
       # DescribePartitions请求参数结构体
       class DescribePartitionsRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -6677,14 +6850,14 @@ module TencentCloud
         # @type Name: String
         # @param TaskId: 任务id。
         # @type TaskId: String
-        # @param Filters: <li>srcTopicName按照【源日志主题名称】进行过滤，模糊匹配。类型：String。必选：否</li>
-        # <li>dstTopicName按照【目标日志主题名称】进行过滤，模糊匹配。类型：String。必选：否</li>
-        # <li>srcTopicId按照【源日志主题ID】进行过滤。类型：String。必选：否</li>
-        # <li>dstTopicId按照【目标日志主题ID】进行过滤。类型：String。必选：否</li>
-        # <li>bizType按照【主题类型】进行过滤，0：日志主题；1：指标主题。类型：String。必选：否</li>
-        # <li>status按照【任务状态】进行过滤，1：运行；2：停止。类型：String。必选：否</li>
-        # <li>taskName按照【任务名称】进行过滤，模糊匹配。类型：String。必选：否</li>
-        # <li>taskId按照【任务ID】进行过滤，模糊匹配。类型：String。必选：否</li>
+        # @param Filters: - srcTopicName按照【源日志主题名称】进行过滤，模糊匹配。类型：String。必选：否。示例：业务日志主题1 ，通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题名称。
+        # - dstTopicName按照【目标日志主题名称】进行过滤，模糊匹配。类型：String。必选：否。示例：业务日志主题 2，通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题名称。
+        # - srcTopicId按照【源日志主题ID】进行过滤。类型：String。必选：否。示例：a4478687-2382-4486-9692-de7986350f6b ，通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题id。
+        # - dstTopicId按照【目标日志主题ID】进行过滤。类型：String。必选：否。示例：bd4d3375-d72a-4cd2-988d-d8eda2bd62b0，通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题id。
+        # - bizType按照【主题类型】进行过滤，0：日志主题；1：指标主题。类型：String。必选：否
+        # - status按照【任务状态】进行过滤，1：运行；2：停止；3：异常。类型：String。必选：否
+        # - taskName按照【任务名称】进行过滤，模糊匹配。类型：String。必选：否。示例：metricTask ，通过 [获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519) 获取任务名称。
+        # - taskId按照【任务ID】进行过滤，模糊匹配。类型：String。必选：否。示例：9c64f9c1-a14e-4b59-b074-5b73cac3dd66 ，通过 [获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519) 获取任务id。
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Name, :TaskId, :Filters
@@ -6884,7 +7057,7 @@ module TencentCloud
         # @param Filters: <ul><li>topicName 按照【日志主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
         # <li>logsetName 按照【日志集名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
         # <li>topicId 按照【日志主题ID】进行过滤。类型：String。必选：否</li>
-        # <li>logsetId 按照【日志集ID】进行过滤，可通过调用 DescribeLogsets 查询已创建的日志集列表或登录控制台进行查看；也可以调用 CreateLogset 创建新的日志集。类型：String。必选：否</li>
+        # <li>logsetId 按照【日志集ID】进行过滤，可通过调用 <a href="https://cloud.tencent.com/document/product/614/58624">DescribeLogsets</a> 查询已创建的日志集列表或登录控制台进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/614/58626">CreateLogset</a> 创建新的日志集。类型：String。必选：否</li>
         # <li>tagKey 按照【标签键】进行过滤。类型：String。必选：否</li>
         # <li>tag:tagKey 按照【标签键值对】进行过滤。tagKey 使用具体的标签键进行替换，例如 tag:exampleKey。类型：String。必选：否</li>
         # <li>storageType 按照【日志主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String。必选：否</li></ul>
@@ -7119,9 +7292,12 @@ module TencentCloud
         # - System 系统日志
         # - ALL 所有日志
         # @type EventChannel: String
-        # @param TimeType: 时间类型，1:用户自定义，2:当前时间
+        # @param TimeType: 时间字段（Timestamp）支持的类型
+        # - 1（用户自定义时间）
+        # - 2（当前时间）
         # @type TimeType: Integer
         # @param Timestamp: 时间，用户选择自定义时间类型时，需要指定时间，单位秒
+        # 格式：时间戳，1754897446
         # @type Timestamp: Integer
         # @param EventIDs: 事件ID过滤列表
 
@@ -7187,13 +7363,14 @@ module TencentCloud
         # @type Count: Integer
         # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
         # @type Status: String
-        # @param From: 日志导出起始时间
+        # @param From: 日志导出起始时间，毫秒时间戳
         # @type From: Integer
-        # @param To: 日志导出结束时间
+        # @param To: 日志导出结束时间，毫秒时间戳
         # @type To: Integer
         # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
         # @type CosPath: String
         # @param CreateTime: 日志导出创建时间
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param SyntaxRule: 语法规则。 默认值为0。
         # 0：Lucene语法，1：CQL语法。
@@ -7242,9 +7419,10 @@ module TencentCloud
 
       # 日志提取规则
       class ExtractRuleInfo < TencentCloud::Common::AbstractModel
-        # @param TimeKey: 时间字段的key名字，TikeKey和TimeFormat必须成对出现
+        # @param TimeKey: 时间字段的key名字，TimeKey和TimeFormat必须成对出现
         # @type TimeKey: String
         # @param TimeFormat: 时间字段的格式，参考c语言的strftime函数对于时间的格式说明输出参数
+        # - 参考 [配置时间格式](https://cloud.tencent.com/document/product/614/38614) 文档
         # @type TimeFormat: String
         # @param Delimiter: 分隔符类型日志的分隔符，只有LogType为delimiter_log时有效
         # @type Delimiter: String
@@ -7500,7 +7678,9 @@ module TencentCloud
         # @type To: Integer
         # @param Query: 查询过滤条件，例如：
         # - 按告警策略ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971"`
+        #    - 通过[获取告警策略列表](https://cloud.tencent.com/document/api/614/56461)获取告警策略ID
         # - 按监控对象ID查询：`monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b" `
+        #   - 通过[获取告警策略列表](https://cloud.tencent.com/document/api/614/56461)获取监控对象ID
         # - 按告警策略ID及监控对象ID查询：`alert_id:"alarm-0745ec00-e605-xxxx-b50b-54afe61fc971" AND monitored_object:"823d8bfa-76a7-xxxx-8399-8cda74d4009b"`
         # - 按告警策略ID及监控对象ID查询支持SQL语句：`(alert_id:"alarm-5ce45495-09e8-4d58-xxxx-768134bf330c") AND (monitored_object:"3c514e84-6f1f-46ec-xxxx-05de6163f7fe") AND NOT condition_evaluate_result: "Skip" AND condition_evaluate_result:[* TO *] | SELECT count(*) as top50StatisticsTotalCount, count_if(condition_evaluate_result='ProcessError') as top50StatisticsFailureCount, count_if(notification_send_result!='NotSend') as top50NoticeTotalCount, count_if(notification_send_result='SendPartFail' or notification_send_result='SendFail') as top50NoticeFailureCount, alert_id, alert_name, monitored_object, topic_type, happen_threshold, alert_threshold, notify_template group by alert_id, alert_name, monitored_object,topic_type, happen_threshold, alert_threshold, notify_template order by top50StatisticsTotalCount desc limit 1`
         # @type Query: String
@@ -7794,10 +7974,21 @@ module TencentCloud
       # Kafka访问协议
       class KafkaProtocolInfo < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议类型，支持的协议类型包括 plaintext、sasl_plaintext 或 sasl_ssl。建议使用 sasl_ssl，此协议会进行连接加密同时需要用户认证。
-        # 入参必填
+
+        # - 当IsEncryptionAddr为true时，Protocol必填。
+        # - 支持的协议类型如下：
+        #     - plaintext：纯文本无加密协议
+        #     - sasl_ssl：SASL 认证 + SSL 加密
+        #     - ssl：纯 SSL/TLS 加密协议
+        #     - sasl_plaintext：SASL 认证 + 非加密通道
         # @type Protocol: String
         # @param Mechanism: 加密类型，支持 PLAIN、SCRAM-SHA-256 或 SCRAM-SHA-512。
-        # 当Protocol为sasl_plaintext或sasl_ssl时必填
+
+        # - 当Protocol为  `sasl_plaintext` 或 `sasl_ssl` 时 Mechanism 必填。
+        # - 支持加密类型如下
+        #     -  PLAIN：明文认证
+        #     -  SCRAM-SHA-256：基于挑战-响应机制，使用PBKDF2-HMAC-SHA256算法
+        #     -  SCRAM-SHA-512：增强版SCRAM，使用PBKDF2-HMAC-SHA512算法
         # @type Mechanism: String
         # @param UserName: 用户名。
         # 当Protocol为sasl_plaintext或sasl_ssl时必填
@@ -8125,7 +8316,7 @@ module TencentCloud
         # @type RechargeType: String
         # @param EncodingFormat: 解析编码格式，0: UTF-8（默认值），1: GBK
         # @type EncodingFormat: Integer
-        # @param DefaultTimeSwitch: 使用默认时间，true：开启（默认值）， flase：关闭
+        # @param DefaultTimeSwitch: 使用默认时间状态。true：开启后将使用系统当前时间或 Kafka 消息时间戳作为日志时间戳；false：关闭将使用日志中的时间字段作为日志时间戳。 默认：true
         # @type DefaultTimeSwitch: Boolean
         # @param LogRegex: 整条日志匹配规则，只有RechargeType为fullregex_log时有效
         # @type LogRegex: String
@@ -8137,13 +8328,100 @@ module TencentCloud
         # @type UnMatchLogTimeSrc: Integer
         # @param DefaultTimeSrc: 默认时间来源，0: 系统当前时间，1: Kafka消息时间戳
         # @type DefaultTimeSrc: Integer
-        # @param TimeKey: 时间字段
+        # @param TimeKey: 时间字段，日志中代表时间的字段名。
+
+        # - 当DefaultTimeSwitch为false，且RechargeType数据提取模式为 `json_log` JSON-文件日志 或 `fullregex_log` 单行完全正则-文件日志时， TimeKey不能为空。
         # @type TimeKey: String
-        # @param TimeRegex: 时间提取正则表达式
+        # @param TimeRegex: 时间提取正则表达式。
+        # - 当DefaultTimeSwitch为false，且RechargeType数据提取模式为 `minimalist_log` 单行全文-文件日志时， TimeRegex不能为空。
+        # - 仅需输入日志中代表时间的字段的正则表达式即可；若匹配到多个字段，将使用第一个。
+        #    例：日志原文为：message with time 2022-08-08 14:20:20，则您可以设置提取时间正则为\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d
         # @type TimeRegex: String
-        # @param TimeFormat: 时间字段格式
+        # @param TimeFormat: 时间字段格式。
+        # - 当DefaultTimeSwitch为false时， TimeFormat不能为空。
         # @type TimeFormat: String
-        # @param TimeZone: 时间字段时区
+        # @param TimeZone: 时间字段时区。
+        # - 当DefaultTimeSwitch为false时， TimeZone不能为空。
+        # - 时区格式规则
+        # ​前缀​：使用 GMT 或 UTC 作为时区基准
+        # ​偏移量​：
+        #     - `-` 表示西时区（比基准时间晚）
+        #     - `+` 表示东时区（比基准时间早）
+        #     -  格式为 ±HH:MM（小时:分钟）
+
+        # - 当前支持：
+        # ```
+        # "GMT-12:00"
+        # "GMT-11:00"
+        # "GMT-10:00"
+        # "GMT-09:30"
+        # "GMT-09:00"
+        # "GMT-08:00"
+        # "GMT-07:00"
+        # "GMT-06:00"
+        # "GMT-05:00"
+        # "GMT-04:00"
+        # "GMT-03:30"
+        # "GMT-03:00"
+        # "GMT-02:00"
+        # "GMT-01:00"
+        # "GMT+00:00"
+        # "GMT+01:00"
+        # "GMT+02:00"
+        # "GMT+03:30"
+        # "GMT+04:00"
+        # "GMT+04:30"
+        # "GMT+05:00"
+        # "GMT+05:30"
+        # "GMT+05:45"
+        # "GMT+06:00"
+        # "GMT+06:30"
+        # "GMT+07:00"
+        # "GMT+08:00"
+        # "GMT+09:00"
+        # "GMT+09:30"
+        # "GMT+10:00"
+        # "GMT+10:30"
+        # "GMT+11:00"
+        # "GMT+11:30"
+        # "GMT+12:00"
+        # "GMT+12:45"
+        # "GMT+13:00"
+        # "GMT+14:00"
+        # "UTC-11:00"
+        # "UTC-10:00"
+        # "UTC-09:00"
+        # "UTC-08:00"
+        # "UTC-12:00"
+        # "UTC-07:00"
+        # "UTC-06:00"
+        # "UTC-05:00"
+        # "UTC-04:30"
+        # "UTC-04:00"
+        # "UTC-03:30"
+        # "UTC-03:00"
+        # "UTC-02:00"
+        # "UTC-01:00"
+        # "UTC+00:00"
+        # "UTC+01:00"
+        # "UTC+02:00"
+        # "UTC+03:00"
+        # "UTC+03:30"
+        # "UTC+04:00"
+        # "UTC+04:30"
+        # "UTC+05:00"
+        # "UTC+05:45"
+        # "UTC+06:00"
+        # "UTC+06:30"
+        # "UTC+07:00"
+        # "UTC+08:00"
+        # "UTC+09:00"
+        # "UTC+09:30"
+        # "UTC+10:00"
+        # "UTC+11:00"
+        # "UTC+12:00"
+        # "UTC+13:00"
+        # ```
         # @type TimeZone: String
         # @param Metadata: 元数据信息，Kafka导入支持kafka_topic,kafka_partition,kafka_offset,kafka_timestamp
         # @type Metadata: Array
@@ -8247,18 +8525,21 @@ module TencentCloud
         # @param MachineGroupType: 机器组类型
         # @type MachineGroupType: :class:`Tencentcloud::Cls.v20201016.models.MachineGroupTypeInfo`
         # @param CreateTime: 创建时间
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param Tags: 机器组绑定的标签列表
         # @type Tags: Array
         # @param AutoUpdate: 是否开启机器组自动更新
         # @type AutoUpdate: String
         # @param UpdateStartTime: 升级开始时间，建议业务低峰期升级LogListener
+        # 时间格式：HH:mm:ss
         # @type UpdateStartTime: String
         # @param UpdateEndTime: 升级结束时间，建议业务低峰期升级LogListener
+        # 时间格式：HH:mm:ss
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
-        # @param DelayCleanupTime: 机器组中机器离线定期清理时间
+        # @param DelayCleanupTime: 机器组中机器离线定期清理时间，单位天，默认设置30天。
         # @type DelayCleanupTime: Integer
         # @param MetaTags: 机器组元数据信息列表
         # @type MetaTags: Array
@@ -8389,9 +8670,10 @@ module TencentCloud
 
       # MergePartition请求参数结构体
       class MergePartitionRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param PartitionId: 合并的PartitionId（找到下一个分区InclusiveBeginKey与入参PartitionId对应的ExclusiveEndKey相等，且找到的分区必须是读写分区（Staus:readwrite），入参PartitionId与找到的PartitionId设置为只读分区（Status:readonly）,再新建一个新的读写分区） 。[获取分区列表](https://cloud.tencent.com/document/product/614/56469)
+        # @param PartitionId: 合并的PartitionId（找到下一个分区InclusiveBeginKey与入参PartitionId对应的ExclusiveEndKey相等，且找到的分区必须是读写分区（Status:readwrite），入参PartitionId与找到的PartitionId设置为只读分区（Status:readonly）,再新建一个新的读写分区） 。[获取分区列表](https://cloud.tencent.com/document/product/614/56470)
 
         # 1. 入参PartitionId只能是读写分区（Status的值有readonly，readwrite），且能找到入参PartitionId的下一个可读写分区（找到下一个分区InclusiveBeginKey与入参PartitionId对应的ExclusiveEndKey相等）；
         # 2. 入参PartitionId不能是最后一个分区（PartitionId的ExclusiveEndKey不能是ffffffffffffffffffffffffffffffff）；
@@ -9037,6 +9319,8 @@ module TencentCloud
         # @param ConfigId: 采集规则配置ID，通过[获取采集规则配置](https://cloud.tencent.com/document/product/614/58616)返回信息获取。
         # @type ConfigId: String
         # @param Name: 采集规则配置名称
+        # - 不能包含特殊字符｜
+        # - 长度不能超过255字符，超过会被截断
         # @type Name: String
         # @param Path: 日志采集路径，包含文件名
         # @type Path: String
@@ -9057,6 +9341,7 @@ module TencentCloud
         # @param ExcludePaths: 采集黑名单路径列表
         # @type ExcludePaths: Array
         # @param Output: 采集配置关联的日志主题（TopicId）
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type Output: String
         # @param UserDefineRule: 用户自定义解析字符串，Json格式序列化的字符串。
         # @type UserDefineRule: String
@@ -9123,7 +9408,9 @@ module TencentCloud
 
       # ModifyConsoleSharing请求参数结构体
       class ModifyConsoleSharingRequest < TencentCloud::Common::AbstractModel
-        # @param SharingId: 免密分享链接Id
+        # @param SharingId: 免密分享Id。
+        # - 通过 [获取免密分享列表](https://cloud.tencent.com/document/product/614/109798) 获取免密分享Id。
+        # - 通过 [创建免密分享](https://cloud.tencent.com/document/product/614/109800) 获取免密分享Id。
         # @type SharingId: String
         # @param DurationMilliseconds: 指定分享链接有效期，单位：毫秒，最长可设定有效期为30天
         # @type DurationMilliseconds: Integer
@@ -9159,7 +9446,9 @@ module TencentCloud
 
       # ModifyConsumer请求参数结构体
       class ModifyConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 投递任务绑定的日志主题 ID
+        # @param TopicId: 投递任务绑定的日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
         # @param Effective: 投递任务是否生效，默认不生效
         # @type Effective: Boolean
@@ -9475,9 +9764,11 @@ module TencentCloud
 
       # ModifyKafkaConsumer请求参数结构体
       class ModifyKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题ID
+        # @param FromTopicId: 日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type FromTopicId: String
-        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # @param Compression: 压缩方式。0：不压缩；2：使用Snappy压缩；3：使用LZ4压缩
         # @type Compression: Integer
         # @param ConsumerContent: kafka协议消费数据格式
         # @type ConsumerContent: :class:`Tencentcloud::Cls.v20201016.models.KafkaConsumerContent`
@@ -9518,15 +9809,20 @@ module TencentCloud
 
       # ModifyKafkaRecharge请求参数结构体
       class ModifyKafkaRechargeRequest < TencentCloud::Common::AbstractModel
-        # @param Id: Kafka导入配置ID
+        # @param Id: 导入配置Id。
+        # - 通过 [创建Kafka数据订阅任务](https://cloud.tencent.com/document/product/614/94448)获取Kafka导入配置Id。
+        # - 通过 [获取Kafka数据订阅任务列表](https://cloud.tencent.com/document/product/614/94446)获取Kafka导入配置Id。
         # @type Id: String
-        # @param TopicId: 导入CLS目标topic ID
+        # @param TopicId: 导入CLS目标TopicId。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456)获取日志主题Id。
         # @type TopicId: String
         # @param Name: Kafka导入配置名称
         # @type Name: String
         # @param KafkaType: 导入Kafka类型，0：腾讯云CKafka：1：用户自建Kafka。
         # @type KafkaType: Integer
         # @param KafkaInstance: 腾讯云CKafka实例ID，KafkaType为0时必填。
+        # - 通过 [获取实例列表信息](https://cloud.tencent.com/document/product/597/40835) 获取实例id。
         # @type KafkaInstance: String
         # @param ServerAddr: 服务地址，KafkaType为1时必填。
         # @type ServerAddr: String
@@ -9534,13 +9830,15 @@ module TencentCloud
         # @type IsEncryptionAddr: Boolean
         # @param Protocol: 加密访问协议，KafkaType参数为1并且IsEncryptionAddr参数为true时必填。
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
-        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开
+        # @param UserKafkaTopics: 用户需要导入的Kafka相关topic列表，多个topic之间使用半角逗号隔开。
+
+        # - Kafka类型为腾讯云CKafka时：通过 [获取主题列表](https://cloud.tencent.com/document/product/597/40847) 获取TopicName。
         # @type UserKafkaTopics: String
         # @param ConsumerGroupName: 用户Kafka消费组名称
         # @type ConsumerGroupName: String
         # @param LogRechargeRule: 日志导入规则
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
-        # @param StatusControl: 导入控制，1：暂停；2：继续。
+        # @param StatusControl: 导入控制，1：暂停；2：启动。
         # @type StatusControl: Integer
 
         attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :LogRechargeRule, :StatusControl
@@ -9647,9 +9945,13 @@ module TencentCloud
 
       # ModifyMachineGroup请求参数结构体
       class ModifyMachineGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 机器组ID
+        # @param GroupId: 机器组Id
+        # - 通过[获取机器组列表](https://cloud.tencent.com/document/product/614/56438)获取机器组Id。
         # @type GroupId: String
         # @param GroupName: 机器组名称
+        # 输入限制：
+        # - 不能为空字符串
+        # - 不能包含字符'|'
         # @type GroupName: String
         # @param MachineGroupType: 机器组类型。
         # Type：ip，Values中为ip字符串列表机器组；
@@ -9660,8 +9962,10 @@ module TencentCloud
         # @param AutoUpdate: 是否开启机器组自动更新
         # @type AutoUpdate: Boolean
         # @param UpdateStartTime: 升级开始时间，建议业务低峰期升级LogListener
+        # 时间格式：HH:mm:ss
         # @type UpdateStartTime: String
         # @param UpdateEndTime: 升级结束时间，建议业务低峰期升级LogListener
+        # 时间格式：HH:mm:ss
         # @type UpdateEndTime: String
         # @param ServiceLogging: 是否开启服务日志，用于记录因Loglistener 服务自身产生的log，开启后，会创建内部日志集cls_service_logging和日志主题loglistener_status,loglistener_alarm,loglistener_business，不产生计费
         # @type ServiceLogging: Boolean
@@ -9787,9 +10091,9 @@ module TencentCloud
 
       # ModifyScheduledSql请求参数结构体
       class ModifyScheduledSqlRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
         # @type TaskId: String
-        # @param SrcTopicId: 源日志主题
+        # @param SrcTopicId: 源日志主题，通过[获取定时SQL分析任务列表](https://cloud.tencent.com/document/product/614/95519)获取
         # @type SrcTopicId: String
         # @param EnableFlag: 任务启动状态.   1开启,  2关闭
         # @type EnableFlag: Integer
@@ -9797,15 +10101,15 @@ module TencentCloud
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
         # @param ScheduledSqlContent: 查询语句
         # @type ScheduledSqlContent: String
-        # @param ProcessPeriod: 调度周期(分钟)
+        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
         # @type ProcessPeriod: Integer
         # @param ProcessTimeWindow: 单次查询的时间窗口. 例子中为近15分钟
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)
+        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息
+        # @param SrcTopicRegion: 源topicId的地域信息,支持地域见(https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
         # @type SrcTopicRegion: String
-        # @param Name: 任务名称
+        # @param Name: 任务名称，0~255字符
         # @type Name: String
         # @param SyntaxRule: 语法规则。 默认值为0。 0：Lucene语法，1：CQL语法
         # @type SyntaxRule: Integer
@@ -9972,8 +10276,13 @@ module TencentCloud
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param TopicName: 日志主题名称
+        # 输入限制：
+        # - 不能为空字符串
+        # - 不能包含字符'|'
+        # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
         # @type TopicName: String
         # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，并且不能有重复的键值对。
         # @type Tags: Array
@@ -9982,7 +10291,8 @@ module TencentCloud
         # @type Status: Boolean
         # @param AutoSplit: 是否开启自动分裂
         # @type AutoSplit: Boolean
-        # @param MaxSplitPartitions: 若开启最大分裂，该主题能够能够允许的最大分区数
+        # @param MaxSplitPartitions: 若开启最大分裂，该主题能够能够允许的最大分区数；
+        # 默认为50；必须为正数
         # @type MaxSplitPartitions: Integer
         # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         # @type Period: Integer
@@ -9996,9 +10306,15 @@ module TencentCloud
         # @type IsWebTracking: Boolean
         # @param Extends: 日志主题扩展信息
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
-        # @param PartitionCount: 日志主题分区数量
+        # @param PartitionCount: 日志主题分区数量。
+        # 默认为1；
+        # 取值范围及约束：
+        # - 当输入值<=0，系统自动调整为1。
+        # - 如果未传MaxSplitPartitions，需要PartitionCount<=50；
+        # - 如果传递了MaxSplitPartitions，需要PartitionCount<=MaxSplitPartitions；
         # @type PartitionCount: Integer
         # @param CancelTopicAsyncTaskID: 取消切换存储任务的id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取取消切换存储任务的id。
         # @type CancelTopicAsyncTaskID: String
 
         attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID
@@ -10227,7 +10543,7 @@ module TencentCloud
       # 通知模板内容
       class NoticeContentInfo < TencentCloud::Common::AbstractModel
         # @param Title: 通知内容模板标题信息。
-        # 部分通知渠道类型不支持“标题”，请参照腾讯云控制台页面。
+        # 部分通知渠道类型不支持“标题”，请参照[腾讯云控制台页面](https://console.cloud.tencent.com/cls/alarm/notice-template)。
         # @type Title: String
         # @param Content: 通知内容模板正文信息。
         # @type Content: String
@@ -10481,7 +10797,9 @@ module TencentCloud
 
       # OpenKafkaConsumer请求参数结构体
       class OpenKafkaConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param FromTopicId: 日志主题ID
+        # @param FromTopicId: 日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type FromTopicId: String
         # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]，默认：0
         # @type Compression: Integer
@@ -10584,8 +10902,10 @@ module TencentCloud
         # @param ExclusiveEndKey: 分区哈希键结束key
         # @type ExclusiveEndKey: String
         # @param CreateTime: 分区创建时间
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param LastWriteTime: 只读分区数据停止写入时间
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LastWriteTime: String
 
@@ -10745,8 +11065,10 @@ module TencentCloud
       # QueryMetric请求参数结构体
       class QueryMetricRequest < TencentCloud::Common::AbstractModel
         # @param Query: 查询语句，使用PromQL语法
+        # - 参考 [语法规则](https://cloud.tencent.com/document/product/614/90334) 文档
         # @type Query: String
         # @param TopicId: 指标主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Time: 查询时间，秒级Unix时间戳。为空时代表当前时间戳。
         # @type Time: Integer
@@ -10768,7 +11090,11 @@ module TencentCloud
 
       # QueryMetric返回参数结构体
       class QueryMetricResponse < TencentCloud::Common::AbstractModel
-        # @param ResultType: 指标查询结果类型
+        # @param ResultType: 指标查询结果类型，支持
+        # - scalar 标量值
+        # - string 字符串值
+        # - vector 瞬时向量
+        # - matrix 区间向量
         # @type ResultType: String
         # @param Result: 指标查询结果
         # @type Result: String
@@ -10793,8 +11119,10 @@ module TencentCloud
       # QueryRangeMetric请求参数结构体
       class QueryRangeMetricRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 指标主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Query: 查询语句，使用PromQL语法
+        # - 参考 [语法规则](https://cloud.tencent.com/document/product/614/90334) 文档
         # @type Query: String
         # @param Start: 查询起始时间，秒级Unix时间戳
         # @type Start: Integer
@@ -10824,7 +11152,11 @@ module TencentCloud
 
       # QueryRangeMetric返回参数结构体
       class QueryRangeMetricResponse < TencentCloud::Common::AbstractModel
-        # @param ResultType: 指标查询结果类型
+        # @param ResultType: 指标查询结果类型，支持
+        # - scalar 标量值
+        # - string 字符串值
+        # - vector 瞬时向量
+        # - matrix 区间向量
         # @type ResultType: String
         # @param Result: 指标查询结果
         # @type Result: String
@@ -10987,9 +11319,9 @@ module TencentCloud
 
       # ScheduledSql的资源信息
       class ScheduledSqlResouceInfo < TencentCloud::Common::AbstractModel
-        # @param TopicId: 目标主题id
+        # @param TopicId: 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
         # @type TopicId: String
-        # @param Region: 主题的地域信息
+        # @param Region: 主题的地域信息，当前不支持跨地域，支持地域参考 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档。
         # @type Region: String
         # @param BizType: 主题类型：0为日志主题，1为指标主题
         # @type BizType: Integer
@@ -11050,9 +11382,9 @@ module TencentCloud
         # @type SrcTopicName: String
         # @param DstResource: 定时SQL分析目标主题
         # @type DstResource: :class:`Tencentcloud::Cls.v20201016.models.ScheduledSqlResouceInfo`
-        # @param CreateTime: 任务创建时间
+        # @param CreateTime: 任务创建时间。格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
-        # @param UpdateTime: 任务更新时间
+        # @param UpdateTime: 任务更新时间，格式：yyyy-MM-dd HH:mm:ss
         # @type UpdateTime: String
         # @param Status: 任务状态，1:运行 2:停止 3:异常-找不到源日志主题 4:异常-找不到目标主题
 
@@ -11062,19 +11394,19 @@ module TencentCloud
         # @type EnableFlag: Integer
         # @param ScheduledSqlContent: 查询语句
         # @type ScheduledSqlContent: String
-        # @param ProcessStartTime: 调度开始时间
+        # @param ProcessStartTime: 调度开始时间，格式：yyyy-MM-dd HH:mm:ss
         # @type ProcessStartTime: String
         # @param ProcessType: 调度类型，1:持续运行 2:指定时间范围
         # @type ProcessType: Integer
-        # @param ProcessEndTime: 调度结束时间，当process_type=2时为必传字段
+        # @param ProcessEndTime: 调度结束时间，格式：yyyy-MM-dd HH:mm:ss，当process_type=2时为必传字段
         # @type ProcessEndTime: String
-        # @param ProcessPeriod: 调度周期(分钟)
+        # @param ProcessPeriod: 调度周期(分钟)，1~1440分钟
         # @type ProcessPeriod: Integer
         # @param ProcessTimeWindow: 查询的时间窗口. @m-15m, @m，意为近15分钟
         # @type ProcessTimeWindow: String
-        # @param ProcessDelay: 执行延迟(秒)
+        # @param ProcessDelay: 执行延迟(秒)，0~120秒，默认60秒
         # @type ProcessDelay: Integer
-        # @param SrcTopicRegion: 源topicId的地域信息
+        # @param SrcTopicRegion: 源topicId的地域信息，支持地域见 [地域列表](https://cloud.tencent.com/document/api/614/56474#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8) 文档。
         # @type SrcTopicRegion: String
         # @param SyntaxRule: 语法规则，0：Lucene语法，1：CQL语法
         # @type SyntaxRule: Integer
@@ -11876,6 +12208,7 @@ module TencentCloud
         # @param AssumerName: 云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
         # @type AssumerName: String
         # @param CreateTime: 创建时间
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
         # 创建日志主题时默认开启，可通过SDK调用ModifyTopic修改此字段。
@@ -11914,8 +12247,13 @@ module TencentCloud
         # @param TopicAsyncTaskID: 异步迁移任务ID
         # @type TopicAsyncTaskID: String
         # @param MigrationStatus: 异步迁移状态
+        # - 1：进行中
+        # - 2：已完成
+        # - 3：失败
+        # - 4：已取消
         # @type MigrationStatus: Integer
         # @param EffectiveDate: 异步迁移完成后，预计生效日期
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type EffectiveDate: String
 
         attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate

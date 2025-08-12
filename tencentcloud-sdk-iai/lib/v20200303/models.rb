@@ -325,10 +325,14 @@ module TencentCloud
         # - 本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。
         # - 若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         # @type NeedRotateDetection: Integer
+        # @param FaceMatchingStrategy: 若图片中包含多张人脸，指定选取策略，默认为0。
+        # - 0：选取其中置信度最高的人脸
+        # - 1：选取其中面积最大的人脸。
+        # @type FaceMatchingStrategy: Integer
 
-        attr_accessor :ImageA, :ImageB, :UrlA, :UrlB, :FaceModelVersion, :QualityControl, :NeedRotateDetection
+        attr_accessor :ImageA, :ImageB, :UrlA, :UrlB, :FaceModelVersion, :QualityControl, :NeedRotateDetection, :FaceMatchingStrategy
 
-        def initialize(imagea=nil, imageb=nil, urla=nil, urlb=nil, facemodelversion=nil, qualitycontrol=nil, needrotatedetection=nil)
+        def initialize(imagea=nil, imageb=nil, urla=nil, urlb=nil, facemodelversion=nil, qualitycontrol=nil, needrotatedetection=nil, facematchingstrategy=nil)
           @ImageA = imagea
           @ImageB = imageb
           @UrlA = urla
@@ -336,6 +340,7 @@ module TencentCloud
           @FaceModelVersion = facemodelversion
           @QualityControl = qualitycontrol
           @NeedRotateDetection = needrotatedetection
+          @FaceMatchingStrategy = facematchingstrategy
         end
 
         def deserialize(params)
@@ -346,6 +351,7 @@ module TencentCloud
           @FaceModelVersion = params['FaceModelVersion']
           @QualityControl = params['QualityControl']
           @NeedRotateDetection = params['NeedRotateDetection']
+          @FaceMatchingStrategy = params['FaceMatchingStrategy']
         end
       end
 

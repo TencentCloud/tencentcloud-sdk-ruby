@@ -509,7 +509,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建文件配置项，返回详细信息
+        # 创建文件配置项，返回详细信息。
 
         # @param request: Request instance for CreateFileConfigWithDetailResp.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateFileConfigWithDetailRespRequest`
@@ -581,7 +581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建泳道
+        # 创建泳道配置
 
         # @param request: Request instance for CreateLane.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateLaneRequest`
@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建泳道规则
+        # 创建灰度发布规则
 
         # @param request: Request instance for CreateLaneRule.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateLaneRuleRequest`
@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 新增微服务返回id
+        # 新增微服务返回ID
 
         # @param request: Request instance for CreateMicroserviceWithDetailResp.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreateMicroserviceWithDetailRespRequest`
@@ -797,7 +797,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建公共配置项，并返回配置项详细信息
+        # 创建公共配置项，并返回配置项详细信息。
 
         # @param request: Request instance for CreatePublicConfigWithDetailResp.
         # @type request: :class:`Tencentcloud::tsf::V20180326::CreatePublicConfigWithDetailRespRequest`
@@ -1229,7 +1229,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除泳道
+        # 删除泳道配置
 
         # @param request: Request instance for DeleteLane.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DeleteLaneRequest`
@@ -1253,7 +1253,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除泳道规则
+        # 删除灰度发布规则
 
         # @param request: Request instance for DeleteLaneRule.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DeleteLaneRuleRequest`
@@ -1712,7 +1712,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询API 版本
+        # 查询API版本
 
         # @param request: Request instance for DescribeApiVersions.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeApiVersionsRequest`
@@ -2292,7 +2292,7 @@ module TencentCloud
         end
 
         # TSF上传的程序包存放在腾讯云对象存储（COS）中，通过该API可以获取从COS下载程序包需要的信息，包括包所在的桶、存储路径、鉴权信息等，之后使用COS API（或SDK）进行下载。
-        # COS相关文档请查阅：https://cloud.tencent.com/document/product/436
+        # 请查阅[COS相关文档](https://cloud.tencent.com/document/product/436)
 
         # @param request: Request instance for DescribeDownloadInfo.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeDownloadInfoRequest`
@@ -2942,7 +2942,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询泳道规则列表
+        # 查询灰度发布规则列表
 
         # @param request: Request instance for DescribeLaneRules.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeLaneRulesRequest`
@@ -2966,7 +2966,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询泳道列表
+        # 查询泳道配置列表
 
         # @param request: Request instance for DescribeLanes.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeLanesRequest`
@@ -3422,7 +3422,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询group发布的配置
+        # 查询部署组发布的配置
 
         # @param request: Request instance for DescribeReleasedConfig.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeReleasedConfigRequest`
@@ -3855,7 +3855,7 @@ module TencentCloud
         end
 
         # TSF会将软件包上传到腾讯云对象存储（COS）。调用此接口获取上传信息，如目标地域，桶，包Id，存储路径，鉴权信息等，之后请使用COS API（或SDK）进行上传。
-        # COS相关文档请查阅：https://cloud.tencent.com/document/product/436
+        # 请查阅[COS相关文档](https://cloud.tencent.com/document/product/436)
 
         # @param request: Request instance for DescribeUploadInfo.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeUploadInfoRequest`
@@ -3903,7 +3903,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 禁用泳道规则
+        # 禁用灰度发布规则
 
         # @param request: Request instance for DisableLaneRule.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DisableLaneRuleRequest`
@@ -4095,7 +4095,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启用泳道规则
+        # 启用灰度发布规则
 
         # @param request: Request instance for EnableLaneRule.
         # @type request: :class:`Tencentcloud::tsf::V20180326::EnableLaneRuleRequest`
@@ -4407,7 +4407,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新泳道信息
+        # 更新泳道配置信息
 
         # @param request: Request instance for ModifyLane.
         # @type request: :class:`Tencentcloud::tsf::V20180326::ModifyLaneRequest`
@@ -4431,7 +4431,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新泳道规则
+        # 更新灰度发布规则
 
         # @param request: Request instance for ModifyLaneRule.
         # @type request: :class:`Tencentcloud::tsf::V20180326::ModifyLaneRuleRequest`
@@ -4794,7 +4794,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发布配置,并且返回配置 ID
+        # 发布配置，并且返回配置ID。
 
         # @param request: Request instance for ReleaseConfigWithDetailResp.
         # @type request: :class:`Tencentcloud::tsf::V20180326::ReleaseConfigWithDetailRespRequest`

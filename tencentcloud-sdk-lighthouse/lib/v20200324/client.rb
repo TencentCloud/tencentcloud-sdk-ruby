@@ -1223,6 +1223,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 (DescribeImagesToShare) 用于查询CVM的自定义镜像列表共享到轻量应用服务器。
+
+        # @param request: Request instance for DescribeImagesToShare.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeImagesToShareRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeImagesToShareResponse`
+        def DescribeImagesToShare(request)
+          body = send_request('DescribeImagesToShare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImagesToShareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。
 
         # * 仅处于 `RUNNING`，`RESCUE_MODE` 状态的机器，且当前机器无变更中操作，才可使用此功能。
@@ -2092,6 +2116,37 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyFirewallTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (ModifyImageSharePermission) 用于共享和取消共享CVM自定义镜像到轻量应用服务器服务。
+        # CVM镜像共享到轻量应用服务器镜像需要满足如下条件：
+        # 1.已共享过的镜像不支持再次共享。
+        # 2.外部导入的镜像不支持共享。
+        # 3.整机镜像不支持共享。
+        # 4.镜像要支持Cloudinit才支持共享。
+        # 5.镜像的Platform和OsName要满足。
+        # 6.NORMAL状态的镜像才支持共享。
+
+        # @param request: Request instance for ModifyImageSharePermission.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::ModifyImageSharePermissionRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::ModifyImageSharePermissionResponse`
+        def ModifyImageSharePermission(request)
+          body = send_request('ModifyImageSharePermission', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyImageSharePermissionResponse.new
             model.deserialize(response['Response'])
             model
           else

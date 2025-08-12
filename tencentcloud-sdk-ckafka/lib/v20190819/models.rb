@@ -1781,8 +1781,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 7
-        deprecate :PrivateLinkParam=, :none, 2025, 7
+        deprecate :PrivateLinkParam, :none, 2025, 8
+        deprecate :PrivateLinkParam=, :none, 2025, 8
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2047,9 +2047,9 @@ module TencentCloud
         # @type Period: String
         # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
         # @type InstanceType: Integer
-        # @param VpcId: 私有网络Id，必填
+        # @param VpcId: 私有网络Id
         # @type VpcId: String
-        # @param SubnetId: 子网id，必填
+        # @param SubnetId: 子网id
         # @type SubnetId: String
         # @param MsgRetentionTime: 可选。实例日志的最长保留时间，单位分钟，默认为10080（7天），最大30天，不填默认0，代表不开启日志保留时间回收策略
         # @type MsgRetentionTime: Integer
@@ -2158,8 +2158,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 7
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 7
+        deprecate :DeleteRouteTimestamp, :none, 2025, 8
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 8
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2251,10 +2251,10 @@ module TencentCloud
 
       # CreatePostPaidInstance请求参数结构体
       class CreatePostPaidInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: 私有网络Id  创建的实例默认接入点所在的 vpc 对应 vpcId
+        # @type VpcId: String
         # @param InstanceName: ckafka集群实例名称，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
         # @type InstanceName: String
-        # @param VpcId: 私有网络Id  创建的实例默认接入点所在的 vpc 对应 vpcId。目前不支持创建基础网络实例，因此该参数必填
-        # @type VpcId: String
         # @param SubnetId: 子网id。创建实例默认接入点所在的子网对应的子网 id
         # @type SubnetId: String
         # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
@@ -2292,11 +2292,11 @@ module TencentCloud
         # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认)
         # @type ElasticBandwidthSwitch: Integer
 
-        attr_accessor :InstanceName, :VpcId, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
+        attr_accessor :VpcId, :InstanceName, :SubnetId, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
 
-        def initialize(instancename=nil, vpcid=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
-          @InstanceName = instancename
+        def initialize(vpcid=nil, instancename=nil, subnetid=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
           @VpcId = vpcid
+          @InstanceName = instancename
           @SubnetId = subnetid
           @InstanceType = instancetype
           @MsgRetentionTime = msgretentiontime
@@ -2318,8 +2318,8 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @InstanceName = params['InstanceName']
           @VpcId = params['VpcId']
+          @InstanceName = params['InstanceName']
           @SubnetId = params['SubnetId']
           @InstanceType = params['InstanceType']
           @MsgRetentionTime = params['MsgRetentionTime']
@@ -5219,8 +5219,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 7
-        deprecate :InstanceIds=, :none, 2025, 7
+        deprecate :InstanceIds, :none, 2025, 8
+        deprecate :InstanceIds=, :none, 2025, 8
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5305,8 +5305,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 7
-        deprecate :TagKey=, :none, 2025, 7
+        deprecate :TagKey, :none, 2025, 8
+        deprecate :TagKey=, :none, 2025, 8
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -6701,7 +6701,7 @@ module TencentCloud
         # @type Name: String
         # @param Partition: 分区id
         # @type Partition: Integer
-        # @param Offset: 位点信息，必填
+        # @param Offset: 位点信息
         # @type Offset: Integer
 
         attr_accessor :Name, :Partition, :Offset
@@ -6805,7 +6805,7 @@ module TencentCloud
         # @type Topic: String
         # @param Partition: 分区id
         # @type Partition: Integer
-        # @param Offset: 位点信息，必填
+        # @param Offset: 位点信息
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Topic, :Partition, :Offset
@@ -9067,8 +9067,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 7
-        deprecate :DynamicDiskConfig=, :none, 2025, 7
+        deprecate :DynamicDiskConfig, :none, 2025, 8
+        deprecate :DynamicDiskConfig=, :none, 2025, 8
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
@@ -12104,8 +12104,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 7
-        deprecate :Exflag=, :none, 2025, 7
+        deprecate :Exflag, :none, 2025, 8
+        deprecate :Exflag=, :none, 2025, 8
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

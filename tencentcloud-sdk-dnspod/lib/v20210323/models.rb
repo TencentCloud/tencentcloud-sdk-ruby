@@ -5362,7 +5362,7 @@ module TencentCloud
       class ModifyDomainOwnerRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Account: 域名需要转入的账号，支持Uin或者邮箱格式
+        # @param Account: 域名需要转入的账号Uin
         # @type Account: String
         # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
@@ -7590,10 +7590,12 @@ module TencentCloud
         # @param Dnssec: dnssec
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Dnssec: String
+        # @param RegistrarType: 腾讯注册商资质
+        # @type RegistrarType: String
 
-        attr_accessor :Contacts, :CreationDate, :ExpirationDate, :IsQcloud, :IsQcloudOwner, :NameServers, :Raw, :Registrar, :Status, :UpdatedDate, :Dnssec
+        attr_accessor :Contacts, :CreationDate, :ExpirationDate, :IsQcloud, :IsQcloudOwner, :NameServers, :Raw, :Registrar, :Status, :UpdatedDate, :Dnssec, :RegistrarType
 
-        def initialize(contacts=nil, creationdate=nil, expirationdate=nil, isqcloud=nil, isqcloudowner=nil, nameservers=nil, raw=nil, registrar=nil, status=nil, updateddate=nil, dnssec=nil)
+        def initialize(contacts=nil, creationdate=nil, expirationdate=nil, isqcloud=nil, isqcloudowner=nil, nameservers=nil, raw=nil, registrar=nil, status=nil, updateddate=nil, dnssec=nil, registrartype=nil)
           @Contacts = contacts
           @CreationDate = creationdate
           @ExpirationDate = expirationdate
@@ -7605,6 +7607,7 @@ module TencentCloud
           @Status = status
           @UpdatedDate = updateddate
           @Dnssec = dnssec
+          @RegistrarType = registrartype
         end
 
         def deserialize(params)
@@ -7622,6 +7625,7 @@ module TencentCloud
           @Status = params['Status']
           @UpdatedDate = params['UpdatedDate']
           @Dnssec = params['Dnssec']
+          @RegistrarType = params['RegistrarType']
         end
       end
 

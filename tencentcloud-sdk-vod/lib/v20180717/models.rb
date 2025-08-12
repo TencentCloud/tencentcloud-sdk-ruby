@@ -5353,14 +5353,17 @@ module TencentCloud
         # <li>YES：设置为默认音频；</li>
         # <li>NO：不设置为默认音频（默认值）。</li>
         # @type Default: String
+        # @param AudioTrackIdx: 音轨序号，表示选择音频源中的第几个音轨，从0开始计数。默认值为0，表示选择最靠前的音轨。
+        # @type AudioTrackIdx: Integer
 
-        attr_accessor :FileId, :Name, :Language, :Default
+        attr_accessor :FileId, :Name, :Language, :Default, :AudioTrackIdx
 
-        def initialize(fileid=nil, name=nil, language=nil, default=nil)
+        def initialize(fileid=nil, name=nil, language=nil, default=nil, audiotrackidx=nil)
           @FileId = fileid
           @Name = name
           @Language = language
           @Default = default
+          @AudioTrackIdx = audiotrackidx
         end
 
         def deserialize(params)
@@ -5368,6 +5371,7 @@ module TencentCloud
           @Name = params['Name']
           @Language = params['Language']
           @Default = params['Default']
+          @AudioTrackIdx = params['AudioTrackIdx']
         end
       end
 

@@ -1299,10 +1299,14 @@ module TencentCloud
         # @type BlurCheck: Integer
         # @param BlurScore: 模糊分数， 范围：0.0-1.0，分数越高越模糊，建议阈值为0.5
         # @type BlurScore: Float
+        # @param ElectronCheck: 是否电子身份证
+        # 0：否
+        # 1：是电子身份证
+        # @type ElectronCheck: Integer
 
-        attr_accessor :BorderCheck, :OcclusionCheck, :CopyCheck, :ReshootCheck, :PSCheck, :BlurCheck, :BlurScore
+        attr_accessor :BorderCheck, :OcclusionCheck, :CopyCheck, :ReshootCheck, :PSCheck, :BlurCheck, :BlurScore, :ElectronCheck
 
-        def initialize(bordercheck=nil, occlusioncheck=nil, copycheck=nil, reshootcheck=nil, pscheck=nil, blurcheck=nil, blurscore=nil)
+        def initialize(bordercheck=nil, occlusioncheck=nil, copycheck=nil, reshootcheck=nil, pscheck=nil, blurcheck=nil, blurscore=nil, electroncheck=nil)
           @BorderCheck = bordercheck
           @OcclusionCheck = occlusioncheck
           @CopyCheck = copycheck
@@ -1310,6 +1314,7 @@ module TencentCloud
           @PSCheck = pscheck
           @BlurCheck = blurcheck
           @BlurScore = blurscore
+          @ElectronCheck = electroncheck
         end
 
         def deserialize(params)
@@ -1320,6 +1325,7 @@ module TencentCloud
           @PSCheck = params['PSCheck']
           @BlurCheck = params['BlurCheck']
           @BlurScore = params['BlurScore']
+          @ElectronCheck = params['ElectronCheck']
         end
       end
 
@@ -9871,10 +9877,12 @@ module TencentCloud
         # @type EnableWordCheck: Boolean
         # @param EnableQualityCheck: 默认值为false，打开返回证件是否模糊。
         # @type EnableQualityCheck: Boolean
+        # @param EnableElectronCheck: 默认值为false，打开返回是否存在电子身份证判断。
+        # @type EnableElectronCheck: Boolean
 
-        attr_accessor :ImageBase64, :ImageUrl, :CardType, :EnablePortrait, :EnableCropImage, :EnableBorderCheck, :EnableOcclusionCheck, :EnableCopyCheck, :EnableReshootCheck, :EnablePSCheck, :EnableWordCheck, :EnableQualityCheck
+        attr_accessor :ImageBase64, :ImageUrl, :CardType, :EnablePortrait, :EnableCropImage, :EnableBorderCheck, :EnableOcclusionCheck, :EnableCopyCheck, :EnableReshootCheck, :EnablePSCheck, :EnableWordCheck, :EnableQualityCheck, :EnableElectronCheck
 
-        def initialize(imagebase64=nil, imageurl=nil, cardtype=nil, enableportrait=nil, enablecropimage=nil, enablebordercheck=nil, enableocclusioncheck=nil, enablecopycheck=nil, enablereshootcheck=nil, enablepscheck=nil, enablewordcheck=nil, enablequalitycheck=nil)
+        def initialize(imagebase64=nil, imageurl=nil, cardtype=nil, enableportrait=nil, enablecropimage=nil, enablebordercheck=nil, enableocclusioncheck=nil, enablecopycheck=nil, enablereshootcheck=nil, enablepscheck=nil, enablewordcheck=nil, enablequalitycheck=nil, enableelectroncheck=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @CardType = cardtype
@@ -9887,6 +9895,7 @@ module TencentCloud
           @EnablePSCheck = enablepscheck
           @EnableWordCheck = enablewordcheck
           @EnableQualityCheck = enablequalitycheck
+          @EnableElectronCheck = enableelectroncheck
         end
 
         def deserialize(params)
@@ -9902,6 +9911,7 @@ module TencentCloud
           @EnablePSCheck = params['EnablePSCheck']
           @EnableWordCheck = params['EnableWordCheck']
           @EnableQualityCheck = params['EnableQualityCheck']
+          @EnableElectronCheck = params['EnableElectronCheck']
         end
       end
 

@@ -23,21 +23,30 @@ module TencentCloud
         # @type Query: String
         # @param Mode: 返回结果类型，0-自然检索结果(默认)，1-多模态VR结果，2-混合结果（多模态VR结果+自然检索结果）
         # @type Mode: Integer
-        # @param Site: 指定域名站内搜索（用于过滤自然检索结果）  注意：  mode=1模式下，参数无效 mode=0模式下对所有结果生效 mode=2模式下对输出的自然结果生效
+        # @param Site: 指定域名站内搜索（用于过滤自然检索结果）
+        # 注意： mode=1模式下，参数无效；mode=0模式下，对所有结果生效；mode=2模式下，对输出的自然结果生效
         # @type Site: String
-        # @param FromTime: 起始时间（用于过滤自然检索结果），精确到秒时间戳格式  注意：  mode=1模式下，参数无效 mode=0模式下对所有结果生效 mode=2模式下对输出的自然结果生效
+        # @param FromTime: 起始时间（用于过滤自然检索结果），精确到秒时间戳格式
+        # 注意： mode=1模式下，参数无效；mode=0模式下，对所有结果生效；mode=2模式下，对输出的自然结果生效
         # @type FromTime: Integer
-        # @param ToTime: 结束时间（用于过滤自然检索结果），精确到秒时间戳格式  注意：  mode=1模式下，参数无效 mode=0模式下对所有结果生效 mode=2模式下对输出的自然结果生效
+        # @param ToTime: 结束时间（用于过滤自然检索结果），精确到秒时间戳格式
+        # 注意：mode=1模式下，参数无效；mode=0模式下，对所有结果生效；mode=2模式下，对输出的自然结果生效
         # @type ToTime: Integer
+        # @param Cnt: cnt=10/20/30/40/50，最多可支持返回50条搜索结果，**仅限尊享版使用**
+        # @type Cnt: Integer
+        # @param Industry: Industry=gov/news/acad，对应党政机关、新闻、学术，**仅限尊享版使用**
+        # @type Industry: String
 
-        attr_accessor :Query, :Mode, :Site, :FromTime, :ToTime
+        attr_accessor :Query, :Mode, :Site, :FromTime, :ToTime, :Cnt, :Industry
 
-        def initialize(query=nil, mode=nil, site=nil, fromtime=nil, totime=nil)
+        def initialize(query=nil, mode=nil, site=nil, fromtime=nil, totime=nil, cnt=nil, industry=nil)
           @Query = query
           @Mode = mode
           @Site = site
           @FromTime = fromtime
           @ToTime = totime
+          @Cnt = cnt
+          @Industry = industry
         end
 
         def deserialize(params)
@@ -46,6 +55,8 @@ module TencentCloud
           @Site = params['Site']
           @FromTime = params['FromTime']
           @ToTime = params['ToTime']
+          @Cnt = params['Cnt']
+          @Industry = params['Industry']
         end
       end
 

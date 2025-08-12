@@ -2950,6 +2950,90 @@ module TencentCloud
         end
       end
 
+      # DescribeImagesToShare请求参数结构体
+      class DescribeImagesToShareRequest < TencentCloud::Common::AbstractModel
+        # @param ImageIds: CVM镜像 ID 列表。可通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回值中的ImageId获取。
+        # @type ImageIds: Array
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Limit: Integer
+        # @param Filters: 过滤器列表。
+        # <li>image-id</li>按照【CVM镜像ID】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # <li>image-name</li>按照【CVM镜像名称】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # <li>image-type</li>按照【CVM镜像类型】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 取值范围：
+        # PRIVATE_IMAGE: 私有镜像 (本账户创建的镜像)
+        # PUBLIC_IMAGE: 公共镜像 (腾讯云官方镜像)
+        # SHARED_IMAGE: 共享镜像(其他账户共享给本账户的镜像) 。
+
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。
+        # 参数不可以同时指定ImageIds和Filters。
+        # @type Filters: Array
+
+        attr_accessor :ImageIds, :Offset, :Limit, :Filters
+
+        def initialize(imageids=nil, offset=nil, limit=nil, filters=nil)
+          @ImageIds = imageids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ImageIds = params['ImageIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeImagesToShare返回参数结构体
+      class DescribeImagesToShareResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的镜像数量。
+        # @type TotalCount: Integer
+        # @param ImageSet: CVM镜像详细信息列表。
+        # @type ImageSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ImageSet, :RequestId
+
+        def initialize(totalcount=nil, imageset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ImageSet = imageset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ImageSet'].nil?
+            @ImageSet = []
+            params['ImageSet'].each do |i|
+              image_tmp = Image.new
+              image_tmp.deserialize(i)
+              @ImageSet << image_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceVncUrl请求参数结构体
       class DescribeInstanceVncUrlRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -4901,6 +4985,85 @@ module TencentCloud
         end
       end
 
+      # CVM镜像信息。
+      class Image < TencentCloud::Common::AbstractModel
+        # @param ImageId: CVM镜像 ID ，是Image的唯一标识。
+        # @type ImageId: String
+        # @param ImageName: 镜像名称。
+        # @type ImageName: String
+        # @param ImageDescription: 镜像描述。
+        # @type ImageDescription: String
+        # @param ImageSize: 镜像大小。单位GB。
+        # @type ImageSize: Integer
+        # @param ImageSource: 镜像来源。
+        # <li>CREATE_IMAGE：自定义镜像</li>
+        # <li>EXTERNAL_IMPORT：外部导入镜像</li>
+        # @type ImageSource: String
+        # @param ImageClass: 镜像分类
+        # <li>SystemImage：系统盘镜像</li>
+        # <li>InstanceImage：整机镜像</li>
+        # @type ImageClass: String
+        # @param ImageState: 镜像状态
+        # CREATING:创建中
+        # NORMAL:正常
+        # CREATEFAILED:创建失败
+        # USING:使用中
+        # SYNCING:同步中
+        # IMPORTING:导入中
+        # IMPORTFAILED:导入失败
+        # @type ImageState: String
+        # @param IsSupportCloudinit: 镜像是否支持Cloudinit。
+        # @type IsSupportCloudinit: Boolean
+        # @param Architecture: 镜像架构。
+        # @type Architecture: String
+        # @param OsName: 镜像操作系统。
+        # @type OsName: String
+        # @param Platform: 镜像来源平台。
+        # @type Platform: String
+        # @param CreatedTime: 镜像创建时间。
+        # @type CreatedTime: String
+        # @param IsShareable: 镜像是否可共享到轻量应用服务器。
+        # @type IsShareable: Boolean
+        # @param UnshareableReason: 不可共享的原因。
+        # @type UnshareableReason: String
+
+        attr_accessor :ImageId, :ImageName, :ImageDescription, :ImageSize, :ImageSource, :ImageClass, :ImageState, :IsSupportCloudinit, :Architecture, :OsName, :Platform, :CreatedTime, :IsShareable, :UnshareableReason
+
+        def initialize(imageid=nil, imagename=nil, imagedescription=nil, imagesize=nil, imagesource=nil, imageclass=nil, imagestate=nil, issupportcloudinit=nil, architecture=nil, osname=nil, platform=nil, createdtime=nil, isshareable=nil, unshareablereason=nil)
+          @ImageId = imageid
+          @ImageName = imagename
+          @ImageDescription = imagedescription
+          @ImageSize = imagesize
+          @ImageSource = imagesource
+          @ImageClass = imageclass
+          @ImageState = imagestate
+          @IsSupportCloudinit = issupportcloudinit
+          @Architecture = architecture
+          @OsName = osname
+          @Platform = platform
+          @CreatedTime = createdtime
+          @IsShareable = isshareable
+          @UnshareableReason = unshareablereason
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ImageName = params['ImageName']
+          @ImageDescription = params['ImageDescription']
+          @ImageSize = params['ImageSize']
+          @ImageSource = params['ImageSource']
+          @ImageClass = params['ImageClass']
+          @ImageState = params['ImageState']
+          @IsSupportCloudinit = params['IsSupportCloudinit']
+          @Architecture = params['Architecture']
+          @OsName = params['OsName']
+          @Platform = params['Platform']
+          @CreatedTime = params['CreatedTime']
+          @IsShareable = params['IsShareable']
+          @UnshareableReason = params['UnshareableReason']
+        end
+      end
+
       # ImportKeyPair请求参数结构体
       class ImportKeyPairRequest < TencentCloud::Common::AbstractModel
         # @param KeyName: 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
@@ -6255,6 +6418,47 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyImageSharePermission请求参数结构体
+      class ModifyImageSharePermissionRequest < TencentCloud::Common::AbstractModel
+        # @param ImageId: 镜像 ID。可通过[DescribeImages](https://cloud.tencent.com/document/api/213/15715)接口返回值中的ImageId获取。
+        # @type ImageId: String
+        # @param Permission: 共享属性，包括 SHARE，CANCEL。其中SHARE代表共享，CANCEL代表取消共享。
+        # @type Permission: String
+
+        attr_accessor :ImageId, :Permission
+
+        def initialize(imageid=nil, permission=nil)
+          @ImageId = imageid
+          @Permission = permission
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @Permission = params['Permission']
+        end
+      end
+
+      # ModifyImageSharePermission返回参数结构体
+      class ModifyImageSharePermissionResponse < TencentCloud::Common::AbstractModel
+        # @param BlueprintId: CVM自定义镜像共享到轻量应用服务器后的镜像ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlueprintId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BlueprintId, :RequestId
+
+        def initialize(blueprintid=nil, requestid=nil)
+          @BlueprintId = blueprintid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BlueprintId = params['BlueprintId']
           @RequestId = params['RequestId']
         end
       end

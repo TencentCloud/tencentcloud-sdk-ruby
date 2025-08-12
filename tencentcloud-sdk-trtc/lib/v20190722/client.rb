@@ -1774,6 +1774,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 语音合成接口
+
+        # @param request: Request instance for TextToSpeech.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::TextToSpeechRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::TextToSpeechResponse`
+        def TextToSpeech(request)
+          body = send_request('TextToSpeech', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # SSE流式文本转语音
+
+        # @param request: Request instance for TextToSpeechSSE.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::TextToSpeechSSERequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::TextToSpeechSSEResponse`
+        def TextToSpeechSSE(request)
+          body = send_request('TextToSpeechSSE', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextToSpeechSSEResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新AIConversation参数
 
         # @param request: Request instance for UpdateAIConversation.
@@ -1858,6 +1906,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateVoicePrintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 声音克隆
+
+        # @param request: Request instance for VoiceClone.
+        # @type request: :class:`Tencentcloud::trtc::V20190722::VoiceCloneRequest`
+        # @rtype: :class:`Tencentcloud::trtc::V20190722::VoiceCloneResponse`
+        def VoiceClone(request)
+          body = send_request('VoiceClone', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VoiceCloneResponse.new
             model.deserialize(response['Response'])
             model
           else

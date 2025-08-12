@@ -3141,15 +3141,15 @@ module TencentCloud
 
       # DescribeResourceToShareMember请求参数结构体
       class DescribeResourceToShareMemberRequest < TencentCloud::Common::AbstractModel
-        # @param Area: 地域
+        # @param Area: 共享地域。可通过接口[DescribeShareAreas](https://cloud.tencent.com/document/product/850/103050)获取支持共享的地域。
         # @type Area: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
         # @type Offset: Integer
-        # @param Limit: 每页条数
+        # @param Limit: 限制数目。取值范围：1~50。
         # @type Limit: Integer
-        # @param SearchKey: 搜索关键字，支持业务资源ID搜索
+        # @param SearchKey: 搜索关键字，支持业务资源ID搜索。
         # @type SearchKey: String
-        # @param Type: 资源类型
+        # @param Type: 共享资源类型。支持共享的资源类型,请参见[资源共享概述](https://cloud.tencent.com/document/product/850/59489)
         # @type Type: String
         # @param ProductResourceIds: 业务资源ID。最大50个
         # @type ProductResourceIds: Array
@@ -7435,20 +7435,19 @@ module TencentCloud
 
       # 与我共享的资源
       class ShareResourceToMember < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: 共享单元资源ID。
         # @type ResourceId: String
-        # @param Type: 资源类型
+        # @param Type: 资源类型。
         # @type Type: String
-        # @param UnitId: 共享单元ID
+        # @param UnitId: 共享单元ID。
         # @type UnitId: String
-        # @param UnitName: 共享单元名
+        # @param UnitName: 共享单元名称。
         # @type UnitName: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间。
         # @type CreateTime: String
-        # @param ProductResourceId: 业务资源ID
+        # @param ProductResourceId: 业务资源ID。
         # @type ProductResourceId: String
-        # @param ShareManagerUin: 共享管理员uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ShareManagerUin: 共享账号Uin。
         # @type ShareManagerUin: Integer
 
         attr_accessor :ResourceId, :Type, :UnitId, :UnitName, :CreateTime, :ProductResourceId, :ShareManagerUin
