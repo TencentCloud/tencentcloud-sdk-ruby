@@ -622,10 +622,12 @@ module TencentCloud
         # @type TimerScale: Array
         # @param VpcConf: 配置内网访问时网络信息
         # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
+        # @param VolumesConf: 存储配置信息
+        # @type VolumesConf: Array
 
-        attr_accessor :Key, :Value, :IntValue, :BoolValue, :FloatValue, :ArrayValue, :PolicyDetails, :TimerScale, :VpcConf
+        attr_accessor :Key, :Value, :IntValue, :BoolValue, :FloatValue, :ArrayValue, :PolicyDetails, :TimerScale, :VpcConf, :VolumesConf
 
-        def initialize(key=nil, value=nil, intvalue=nil, boolvalue=nil, floatvalue=nil, arrayvalue=nil, policydetails=nil, timerscale=nil, vpcconf=nil)
+        def initialize(key=nil, value=nil, intvalue=nil, boolvalue=nil, floatvalue=nil, arrayvalue=nil, policydetails=nil, timerscale=nil, vpcconf=nil, volumesconf=nil)
           @Key = key
           @Value = value
           @IntValue = intvalue
@@ -635,6 +637,7 @@ module TencentCloud
           @PolicyDetails = policydetails
           @TimerScale = timerscale
           @VpcConf = vpcconf
+          @VolumesConf = volumesconf
         end
 
         def deserialize(params)
@@ -663,6 +666,14 @@ module TencentCloud
           unless params['VpcConf'].nil?
             @VpcConf = VpcConf.new
             @VpcConf.deserialize(params['VpcConf'])
+          end
+          unless params['VolumesConf'].nil?
+            @VolumesConf = []
+            params['VolumesConf'].each do |i|
+              volumeconf_tmp = VolumeConf.new
+              volumeconf_tmp.deserialize(i)
+              @VolumesConf << volumeconf_tmp
+            end
           end
         end
       end
@@ -1179,10 +1190,12 @@ module TencentCloud
         # @type SessionAffinity: String
         # @param VpcConf: Vpc 配置参数
         # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
+        # @param VolumesConf: 存储配置信息
+        # @type VolumesConf: Array
 
-        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity, :VpcConf
+        attr_accessor :EnvId, :ServerName, :OpenAccessTypes, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :CustomLogs, :EnvParams, :InitialDelaySeconds, :CreateTime, :Port, :HasDockerfile, :Dockerfile, :BuildDir, :LogType, :LogSetId, :LogTopicId, :LogParseType, :Tag, :InternalAccess, :InternalDomain, :OperationMode, :TimerScale, :EntryPoint, :Cmd, :SessionAffinity, :VpcConf, :VolumesConf
 
-        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil, vpcconf=nil)
+        def initialize(envid=nil, servername=nil, openaccesstypes=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, customlogs=nil, envparams=nil, initialdelayseconds=nil, createtime=nil, port=nil, hasdockerfile=nil, dockerfile=nil, builddir=nil, logtype=nil, logsetid=nil, logtopicid=nil, logparsetype=nil, tag=nil, internalaccess=nil, internaldomain=nil, operationmode=nil, timerscale=nil, entrypoint=nil, cmd=nil, sessionaffinity=nil, vpcconf=nil, volumesconf=nil)
           @EnvId = envid
           @ServerName = servername
           @OpenAccessTypes = openaccesstypes
@@ -1212,6 +1225,7 @@ module TencentCloud
           @Cmd = cmd
           @SessionAffinity = sessionaffinity
           @VpcConf = vpcconf
+          @VolumesConf = volumesconf
         end
 
         def deserialize(params)
@@ -1260,6 +1274,14 @@ module TencentCloud
           unless params['VpcConf'].nil?
             @VpcConf = VpcConf.new
             @VpcConf.deserialize(params['VpcConf'])
+          end
+          unless params['VolumesConf'].nil?
+            @VolumesConf = []
+            params['VolumesConf'].each do |i|
+              volumeconf_tmp = VolumeConf.new
+              volumeconf_tmp.deserialize(i)
+              @VolumesConf << volumeconf_tmp
+            end
           end
         end
       end
@@ -1660,6 +1682,42 @@ module TencentCloud
             @UrlParam.deserialize(params['UrlParam'])
           end
           @Priority = params['Priority']
+        end
+      end
+
+      # 存储配置
+      class VolumeConf < TencentCloud::Common::AbstractModel
+        # @param Type: 存储类型
+        # @type Type: String
+        # @param BucketName: 对象存储桶名称
+        # @type BucketName: String
+        # @param Endpoint: 存储连接地址
+        # @type Endpoint: String
+        # @param KeyID: 存储连接用户密码
+        # @type KeyID: String
+        # @param DstPath: 存储挂载目的目录
+        # @type DstPath: String
+        # @param SrcPath: 存储挂载源目录
+        # @type SrcPath: String
+
+        attr_accessor :Type, :BucketName, :Endpoint, :KeyID, :DstPath, :SrcPath
+
+        def initialize(type=nil, bucketname=nil, endpoint=nil, keyid=nil, dstpath=nil, srcpath=nil)
+          @Type = type
+          @BucketName = bucketname
+          @Endpoint = endpoint
+          @KeyID = keyid
+          @DstPath = dstpath
+          @SrcPath = srcpath
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @BucketName = params['BucketName']
+          @Endpoint = params['Endpoint']
+          @KeyID = params['KeyID']
+          @DstPath = params['DstPath']
+          @SrcPath = params['SrcPath']
         end
       end
 

@@ -3143,6 +3143,76 @@ module TencentCloud
         end
       end
 
+      # DescribeProducerList请求参数结构体
+      class DescribeProducerListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param Filters: 过滤查询条件列表，请在引用此参数的API说明中了解使用方法。
+        # @type Filters: Array
+        # @param Limit: 查询结果限制数量，默认20。
+        # @type Limit: Integer
+        # @param Offset: 查询起始位置，默认为0。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Topic, :Filters, :Limit, :Offset
+
+        def initialize(instanceid=nil, topic=nil, filters=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeProducerList返回参数结构体
+      class DescribeProducerListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询总数
+        # @type TotalCount: Integer
+        # @param ProducerList: 生产者信息列表
+        # @type ProducerList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ProducerList, :RequestId
+
+        def initialize(totalcount=nil, producerlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ProducerList = producerlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ProducerList'].nil?
+            @ProducerList = []
+            params['ProducerList'].each do |i|
+              producerinfo_tmp = ProducerInfo.new
+              producerinfo_tmp.deserialize(i)
+              @ProducerList << producerinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeProductSKUs请求参数结构体
       class DescribeProductSKUsRequest < TencentCloud::Common::AbstractModel
 
@@ -5338,6 +5408,64 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Step = params['Step']
+        end
+      end
+
+      # 生产者信息
+      class ProducerInfo < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param ClientIp: 客户端IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIp: String
+        # @param Language: 客户端语言
+        # - JAVA((byte) 0)
+        # - CPP((byte) 1)
+        # - DOTNET((byte) 2)
+        # - PYTHON((byte) 3)
+        # - DELPHI((byte) 4)
+        # - ERLANG((byte) 5)
+        # - RUBY((byte) 6)
+        # - OTHER((byte) 7)
+        # - HTTP((byte) 8)
+        # - GO((byte) 9)
+        # - PHP((byte) 10)
+        # - OMS((byte) 11)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Language: String
+        # @param Version: 客户端版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param LastUpdateTimestamp: 最后生产时间，**Unix时间戳（秒）**
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTimestamp: Integer
+        # @param ChannelProtocol: 生产者客户端协议类型，枚举如下：
+
+        # - grpc：GRpc协议
+        # - remoting：Remoting协议
+        # - http：HTTP协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChannelProtocol: String
+
+        attr_accessor :ClientId, :ClientIp, :Language, :Version, :LastUpdateTimestamp, :ChannelProtocol
+
+        def initialize(clientid=nil, clientip=nil, language=nil, version=nil, lastupdatetimestamp=nil, channelprotocol=nil)
+          @ClientId = clientid
+          @ClientIp = clientip
+          @Language = language
+          @Version = version
+          @LastUpdateTimestamp = lastupdatetimestamp
+          @ChannelProtocol = channelprotocol
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientIp = params['ClientIp']
+          @Language = params['Language']
+          @Version = params['Version']
+          @LastUpdateTimestamp = params['LastUpdateTimestamp']
+          @ChannelProtocol = params['ChannelProtocol']
         end
       end
 

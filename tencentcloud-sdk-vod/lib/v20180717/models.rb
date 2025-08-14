@@ -14009,6 +14009,7 @@ module TencentCloud
         # <li>QualityEnhanceComplete：音画质重生任务完成；</li>
         # <li>PersistenceComplete：剪辑固化完成；</li>
         # <li>ComplexAdaptiveDynamicStreamingComplete：复杂自适应码流任务完成。</li>
+        # <li>ProcessMediaByMPSComplete：MPS视频处理完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -14097,10 +14098,12 @@ module TencentCloud
         # @param ComplexAdaptiveDynamicStreamingCompleteEvent: 自适应码流任务信息，仅当 EventType 为ComplexAdaptiveDynamicStreamingComplete 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComplexAdaptiveDynamicStreamingCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
+        # @param ProcessMediaByMPSCompleteEvent: MPS 视频处理任务信息，仅当 EventType 为 ProcessMediaByMPSComplete 时有效。
+        # @type ProcessMediaByMPSCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ProcessMediaByMPS`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent, :ProcessMediaByMPSCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil, processmediabympscompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -14130,6 +14133,7 @@ module TencentCloud
           @MediaCastStatusChangedEvent = mediacaststatuschangedevent
           @PersistenceCompleteEvent = persistencecompleteevent
           @ComplexAdaptiveDynamicStreamingCompleteEvent = complexadaptivedynamicstreamingcompleteevent
+          @ProcessMediaByMPSCompleteEvent = processmediabympscompleteevent
         end
 
         def deserialize(params)
@@ -14242,6 +14246,10 @@ module TencentCloud
           unless params['ComplexAdaptiveDynamicStreamingCompleteEvent'].nil?
             @ComplexAdaptiveDynamicStreamingCompleteEvent = ComplexAdaptiveDynamicStreamingTask.new
             @ComplexAdaptiveDynamicStreamingCompleteEvent.deserialize(params['ComplexAdaptiveDynamicStreamingCompleteEvent'])
+          end
+          unless params['ProcessMediaByMPSCompleteEvent'].nil?
+            @ProcessMediaByMPSCompleteEvent = ProcessMediaByMPS.new
+            @ProcessMediaByMPSCompleteEvent.deserialize(params['ProcessMediaByMPSCompleteEvent'])
           end
         end
       end
@@ -16178,7 +16186,7 @@ module TencentCloud
       # 用于描述 MPS 视频处理任务中的返回文件结果。
       class MPSOutputFile < TencentCloud::Common::AbstractModel
         # @param FileType: 文件类型。用于标识 MPS 视频处理任务执行结果中的特定返回文件。
-        # 取值：<li>AiAnalysis.DeLogo.Video: 智能擦除任务中产生的擦除后视频文件；</li><li>AiAnalysis.DeLogo.OriginSubtitle: 智能擦除任务中基于画面提取的字幕文件；</li><li>AiAnalysis.DeLogo.TranslateSubtitle: 智能擦除任务中基于画面提取的字幕翻译文件。</li>
+        # 取值：<li>AiAnalysis.DeLogo.Video: 智能擦除任务中产生的擦除后视频文件，默认以原文件类型存储；</li><li>AiAnalysis.DeLogo.OriginSubtitle: 智能擦除任务中基于画面提取的字幕文件；</li><li>AiAnalysis.DeLogo.TranslateSubtitle: 智能擦除任务中基于画面提取的字幕翻译文件。</li><li>MediaProcess.Transcode.Video: 音视频增强任务中增强后的音视频文件，默认以转码文件类型存储。</li>
         # @type FileType: String
         # @param StorageMode: 存储形式。用于表示该结果文件的存储形式，取值有：<li> Permanent：永久存储；</li><li> Temporary：临时存储。</li>
         # @type StorageMode: String
@@ -16186,16 +16194,19 @@ module TencentCloud
         # @type FileId: String
         # @param Url: 结果文件的可下载 Url。
         # @type Url: String
+        # @param Definition: 转码规格 ID。当 FileType 等于 MediaProcess.Transcode.Video时有效，取值为0表示原始文件。
+        # @type Definition: String
         # @param ExpiredTime: 过期时间。当 StorageMode 为 Temporary 时有效，表示 Url 的过期时间，单位为秒。
         # @type ExpiredTime: Integer
 
-        attr_accessor :FileType, :StorageMode, :FileId, :Url, :ExpiredTime
+        attr_accessor :FileType, :StorageMode, :FileId, :Url, :Definition, :ExpiredTime
 
-        def initialize(filetype=nil, storagemode=nil, fileid=nil, url=nil, expiredtime=nil)
+        def initialize(filetype=nil, storagemode=nil, fileid=nil, url=nil, definition=nil, expiredtime=nil)
           @FileType = filetype
           @StorageMode = storagemode
           @FileId = fileid
           @Url = url
+          @Definition = definition
           @ExpiredTime = expiredtime
         end
 
@@ -16204,13 +16215,14 @@ module TencentCloud
           @StorageMode = params['StorageMode']
           @FileId = params['FileId']
           @Url = params['Url']
+          @Definition = params['Definition']
           @ExpiredTime = params['ExpiredTime']
         end
       end
 
       # MPS 具体子任务查询结果类型。
       class MPSSubTaskResult < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型。MPS 的 WorkflowTask 结构中的具体子任务类型。取值：<li>AiAnalysis.DeLogo：智能擦除任务。</li>
+        # @param TaskType: 任务类型。MPS 的 WorkflowTask 结构中的具体子任务类型。取值：<li>AiAnalysis.DeLogo：智能擦除任务。</li><li>MediaProcess.Transcode：音视频增强任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态。有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -16219,6 +16231,7 @@ module TencentCloud
         # @param Message: 错误信息。
         # @type Message: String
         # @param Input: MPS 视频处理任务输入。该字段对应 MPS 任务返回中的 Input 结果，以 JSON 格式返回。
+        # 示例：{"Definition": 24}
         # @type Input: String
         # @param Output: MPS 视频处理任务输出。
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.MPSTaskOutput`
@@ -22225,22 +22238,28 @@ module TencentCloud
         # @param MPSProcessMediaParams: 该参数用于透传至媒体处理服务（MPS），以便从云点播侧发起 MPS 视频处理任务。
         # 视频处理参数详情请参考：[MPS 发起媒体处理](https://cloud.tencent.com/document/api/862/37578)。
         # 填写说明：
-        # 1. 目前仅需要配置 MPS “发起媒体处理”接口中的 AiAnalysisTask 参数，其他参数无需填写，若包含其它参数，系统将自动忽略；
-        # 2. 当前仅支持通过此方式发起智能擦除任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数。
+        # 1. 目前仅需要配置 MPS “发起媒体处理”接口中任务配置相关的参数，如 AiAnalysisTask 与 MediaProcessTask，其他参数无需填写。若包含其它参数，系统将自动忽略；
+        # 2. 当前仅支持通过此方式发起智能擦除及音视频增强任务。若配置了其他任务类型的相关参数，系统将自动忽略这些参数；
+        # 3. 音视频增强任务目前不支持使用预置模板发起，可通过 [CreateMPSTemplate](document/product/266/57382) 接口创建自定义模板。
+        # 示例：{"AiAnalysisTask":{"Definition":25}}
         # @type MPSProcessMediaParams: String
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
 
-        attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams
+        attr_accessor :FileId, :SubAppId, :MPSProcessMediaParams, :ExtInfo
 
-        def initialize(fileid=nil, subappid=nil, mpsprocessmediaparams=nil)
+        def initialize(fileid=nil, subappid=nil, mpsprocessmediaparams=nil, extinfo=nil)
           @FileId = fileid
           @SubAppId = subappid
           @MPSProcessMediaParams = mpsprocessmediaparams
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
           @FileId = params['FileId']
           @SubAppId = params['SubAppId']
           @MPSProcessMediaParams = params['MPSProcessMediaParams']
+          @ExtInfo = params['ExtInfo']
         end
       end
 

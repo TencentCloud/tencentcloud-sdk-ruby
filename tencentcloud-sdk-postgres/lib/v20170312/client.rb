@@ -343,32 +343,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
-
-        # 【接口下线中，请勿使用】本接口 (CreateServerlessDBInstance) 用于创建一个ServerlessDB实例，创建成功返回实例ID。
-
-        # @param request: Request instance for CreateServerlessDBInstance.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::CreateServerlessDBInstanceRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::CreateServerlessDBInstanceResponse`
-        def CreateServerlessDBInstance(request)
-          body = send_request('CreateServerlessDBInstance', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateServerlessDBInstanceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 此接口用于删除数据库账号，需要同时输入Oid与UserName，避免误删。注：该接口可重入，如果账号已经不存在，调用此接口进行删除时不会报错。
 
         # @param request: Request instance for DeleteAccount.
@@ -1019,32 +993,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 早期接口不规范，已提供新接口 DescribeSlowQueryList 替换
-
-        # 本接口（DescribeDBSlowlogs）用于获取慢查询日志。本接口已于2021.09.01日废弃，后续此接口将不再返回任何数据，推荐使用接口[DescribeSlowQueryList](https://cloud.tencent.com/document/api/409/60540)替代。
-
-        # @param request: Request instance for DescribeDBSlowlogs.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeDBSlowlogsRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeDBSlowlogsResponse`
-        def DescribeDBSlowlogs(request)
-          body = send_request('DescribeDBSlowlogs', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDBSlowlogsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口（DescribeDBVersions）用于查询支持的数据库版本。
 
         # @param request: Request instance for DescribeDBVersions.
@@ -1415,32 +1363,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRegionsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 该产品形态需要下线，已完成客户实例全部下线、后端服务下线等
-
-        # 【接口下线中，请勿使用】用于查询一个或多个serverlessDB实例的详细信息
-
-        # @param request: Request instance for DescribeServerlessDBInstances.
-        # @type request: :class:`Tencentcloud::postgres::V20170312::DescribeServerlessDBInstancesRequest`
-        # @rtype: :class:`Tencentcloud::postgres::V20170312::DescribeServerlessDBInstancesResponse`
-        def DescribeServerlessDBInstances(request)
-          body = send_request('DescribeServerlessDBInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeServerlessDBInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

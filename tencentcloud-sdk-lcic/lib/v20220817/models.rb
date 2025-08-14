@@ -905,8 +905,10 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
-        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放)注：大班课的布局(layout)只有三分屏
+        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放); 3 圆桌会议 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
+        # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
+        # @type Guests: Array
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
         # @param LiveType: 直播类型：0 常规（默认）1 伪直播 2 RTMP推流直播
@@ -917,8 +919,12 @@ module TencentCloud
         # @type EnableAutoStart: Integer
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # @type RecordBackground: String
-        # @param RecordScene: 录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。
-        # 数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+        # @param RecordScene: 录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+
+        # 自定义场景参数的含义。如下：
+        #      scene：自定义js/css对应的场景值。如scene=recordScene，会加载 recordScene 场景对应的 js/css，这样就可以自定义录制页面的元素。
+        #     lng：录制页面对应的语种。如lng=en，则录制界面为en。（枚举值：en,zh，zh-TW，jp，ar，kr，vi）
+        #      customToken：录制页面中涉及客户自己的服务需要鉴权时进行配置。一般情况下，无需配置。
         # @type RecordScene: String
         # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
         # @type RecordLang: String
@@ -929,14 +935,14 @@ module TencentCloud
         # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
         # @type SubtitlesTranscription: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 7
-        deprecate :RTCAudienceNumber=, :none, 2025, 7
-        deprecate :RecordLang, :none, 2025, 7
-        deprecate :RecordLang=, :none, 2025, 7
+        deprecate :RTCAudienceNumber, :none, 2025, 8
+        deprecate :RTCAudienceNumber=, :none, 2025, 8
+        deprecate :RecordLang, :none, 2025, 8
+        deprecate :RecordLang=, :none, 2025, 8
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -959,6 +965,7 @@ module TencentCloud
           @VideoOrientation = videoorientation
           @IsGradingRequiredPostClass = isgradingrequiredpostclass
           @RoomType = roomtype
+          @Guests = guests
           @EndDelayTime = enddelaytime
           @LiveType = livetype
           @RecordLiveUrl = recordliveurl
@@ -994,6 +1001,7 @@ module TencentCloud
           @VideoOrientation = params['VideoOrientation']
           @IsGradingRequiredPostClass = params['IsGradingRequiredPostClass']
           @RoomType = params['RoomType']
+          @Guests = params['Guests']
           @EndDelayTime = params['EndDelayTime']
           @LiveType = params['LiveType']
           @RecordLiveUrl = params['RecordLiveUrl']
@@ -2487,7 +2495,7 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 该课堂是否开启了课后评分功能。0：未开启  1：开启
         # @type IsGradingRequiredPostClass: Integer
-        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)注：大班课的布局(layout)只有三分屏
+        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放); 3 圆桌会议 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param VideoDuration: 录制时长
         # @type VideoDuration: Integer
@@ -2503,7 +2511,7 @@ module TencentCloud
         # @type RecordBackground: String
         # @param RTMPStreamingURL: RTMP推流链接
         # @type RTMPStreamingURL: String
-        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效
+        # @param RecordScene: 录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。自定义场景参数的含义。如下：     scene：自定义js/css对应的场景值。如scene=recordScene，会加载 recordScene 场景对应的 js/css，这样就可以自定义录制页面的元素。     lng：录制页面对应的语种。如lng=en，则录制界面为en。（枚举值：en,zh，zh-TW，jp，ar，kr，vi）     customToken：录制页面中涉及客户自己的服务需要鉴权时进行配置。一般情况下，无需配置。
         # @type RecordScene: String
         # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
         # @type RecordLang: String
@@ -2515,12 +2523,14 @@ module TencentCloud
         # @type WhiteBoardSnapshotMode: Integer
         # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
         # @type SubtitlesTranscription: Integer
+        # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
+        # @type Guests: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2555,6 +2565,7 @@ module TencentCloud
           @RecordLayout = recordlayout
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
+          @Guests = guests
           @RequestId = requestid
         end
 
@@ -2593,6 +2604,7 @@ module TencentCloud
           @RecordLayout = params['RecordLayout']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
+          @Guests = params['Guests']
           @RequestId = params['RequestId']
         end
       end
@@ -4114,8 +4126,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2025, 7
-        deprecate :RecordLang=, :none, 2025, 7
+        deprecate :RecordLang, :none, 2025, 8
+        deprecate :RecordLang=, :none, 2025, 8
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
           @RoomId = roomid
@@ -4440,8 +4452,7 @@ module TencentCloud
         # @type VideoOrientation: Integer
         # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
         # @type IsGradingRequiredPostClass: Integer
-        # @param RoomType: 房间类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (后续扩展)
-        # 注：大班课的布局(layout)只有三分屏
+        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放); 3 圆桌会议 注：大班课的布局(layout)只有三分屏
         # @type RoomType: Integer
         # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
         # @type EndDelayTime: Integer
@@ -4453,7 +4464,7 @@ module TencentCloud
         # @type EnableAutoStart: Integer
         # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
         # @type RecordBackground: String
-        # @param RecordScene: 录制自定义场景，仅recordlayout=9的时候此参数有效,数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
+        # @param RecordScene: 录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。自定义场景参数的含义。如下：     scene：自定义js/css对应的场景值。如scene=recordScene，会加载 recordScene 场景对应的 js/css，这样就可以自定义录制页面的元素。     lng：录制页面对应的语种。如lng=en，则录制界面为en。（枚举值：en,zh，zh-TW，jp，ar，kr，vi）     customToken：录制页面中涉及客户自己的服务需要鉴权时进行配置。一般情况下，无需配置。
         # @type RecordScene: String
         # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
         # @type RecordLang: String
@@ -4463,15 +4474,17 @@ module TencentCloud
         # @type WhiteBoardSnapshotMode: Integer
         # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
         # @type SubtitlesTranscription: Integer
+        # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
+        # @type Guests: Array
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 7
-        deprecate :RTCAudienceNumber=, :none, 2025, 7
-        deprecate :RecordLang, :none, 2025, 7
-        deprecate :RecordLang=, :none, 2025, 7
+        deprecate :RTCAudienceNumber, :none, 2025, 8
+        deprecate :RTCAudienceNumber=, :none, 2025, 8
+        deprecate :RecordLang, :none, 2025, 8
+        deprecate :RecordLang=, :none, 2025, 8
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -4503,6 +4516,7 @@ module TencentCloud
           @RecordStream = recordstream
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
+          @Guests = guests
         end
 
         def deserialize(params)
@@ -4537,6 +4551,7 @@ module TencentCloud
           @RecordStream = params['RecordStream']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
+          @Guests = params['Guests']
         end
       end
 

@@ -14917,16 +14917,22 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
         # @type EndTime: String
+        # @param Title: 集锦标题。
+        # @type Title: String
+        # @param Summary: 集锦概要。
+        # @type Summary: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags, :BeginTime, :EndTime
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :SegmentTags, :BeginTime, :EndTime, :Title, :Summary
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenttags=nil, begintime=nil, endtime=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, segmenttags=nil, begintime=nil, endtime=nil, title=nil, summary=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @SegmentTags = segmenttags
           @BeginTime = begintime
           @EndTime = endtime
+          @Title = title
+          @Summary = summary
         end
 
         def deserialize(params)
@@ -14936,6 +14942,8 @@ module TencentCloud
           @SegmentTags = params['SegmentTags']
           @BeginTime = params['BeginTime']
           @EndTime = params['EndTime']
+          @Title = params['Title']
+          @Summary = params['Summary']
         end
       end
 
@@ -17069,15 +17077,23 @@ module TencentCloud
         # @type Duration: Float
         # @param SegmentSet: 智能精彩集锦子片段列表。
         # @type SegmentSet: Array
+        # @param HighlightUrl: 智能精彩集锦地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighlightUrl: String
+        # @param CovImgUrl: 智能精彩集锦封面地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CovImgUrl: String
 
-        attr_accessor :HighlightPath, :CovImgPath, :Confidence, :Duration, :SegmentSet
+        attr_accessor :HighlightPath, :CovImgPath, :Confidence, :Duration, :SegmentSet, :HighlightUrl, :CovImgUrl
 
-        def initialize(highlightpath=nil, covimgpath=nil, confidence=nil, duration=nil, segmentset=nil)
+        def initialize(highlightpath=nil, covimgpath=nil, confidence=nil, duration=nil, segmentset=nil, highlighturl=nil, covimgurl=nil)
           @HighlightPath = highlightpath
           @CovImgPath = covimgpath
           @Confidence = confidence
           @Duration = duration
           @SegmentSet = segmentset
+          @HighlightUrl = highlighturl
+          @CovImgUrl = covimgurl
         end
 
         def deserialize(params)
@@ -17093,6 +17109,8 @@ module TencentCloud
               @SegmentSet << highlightsegmentitem_tmp
             end
           end
+          @HighlightUrl = params['HighlightUrl']
+          @CovImgUrl = params['CovImgUrl']
         end
       end
 

@@ -1383,77 +1383,6 @@ module TencentCloud
         end
       end
 
-      # CreateServerlessDBInstance请求参数结构体
-      class CreateServerlessDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区ID。公测阶段仅支持ap-shanghai-2、ap-beijing-1,ap-guangzhou-2.
-        # @type Zone: String
-        # @param DBInstanceName: DB实例名称，同一个账号下该值必须唯一。
-        # @type DBInstanceName: String
-        # @param DBVersion: PostgreSQL内核版本，目前只支持：10.4。
-        # @type DBVersion: String
-        # @param DBCharset: PostgreSQL数据库字符集，目前支持UTF8。
-        # @type DBCharset: String
-        # @param ProjectId: 项目ID。
-        # @type ProjectId: Integer
-        # @param VpcId: 私有网络ID。
-        # @type VpcId: String
-        # @param SubnetId: 私有网络子网ID。
-        # @type SubnetId: String
-        # @param TagList: 实例需要绑定的标签数组信息
-        # @type TagList: Array
-
-        attr_accessor :Zone, :DBInstanceName, :DBVersion, :DBCharset, :ProjectId, :VpcId, :SubnetId, :TagList
-
-        def initialize(zone=nil, dbinstancename=nil, dbversion=nil, dbcharset=nil, projectid=nil, vpcid=nil, subnetid=nil, taglist=nil)
-          @Zone = zone
-          @DBInstanceName = dbinstancename
-          @DBVersion = dbversion
-          @DBCharset = dbcharset
-          @ProjectId = projectid
-          @VpcId = vpcid
-          @SubnetId = subnetid
-          @TagList = taglist
-        end
-
-        def deserialize(params)
-          @Zone = params['Zone']
-          @DBInstanceName = params['DBInstanceName']
-          @DBVersion = params['DBVersion']
-          @DBCharset = params['DBCharset']
-          @ProjectId = params['ProjectId']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
-          unless params['TagList'].nil?
-            @TagList = []
-            params['TagList'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @TagList << tag_tmp
-            end
-          end
-        end
-      end
-
-      # CreateServerlessDBInstance返回参数结构体
-      class CreateServerlessDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，该ID全局唯一，如：postgres-xxxxx
-        # @type DBInstanceId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DBInstanceId, :RequestId
-
-        def initialize(dbinstanceid=nil, requestid=nil)
-          @DBInstanceId = dbinstanceid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DBInstanceId = params['DBInstanceId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 数据库备份信息
       class DBBackup < TencentCloud::Common::AbstractModel
         # @param Id: 备份文件唯一标识
@@ -2652,12 +2581,12 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
         # db-instance-id：按照实例ID过滤，类型为string。
-        # db-instance-name：按照实例名过滤，类型为string。
+        # db-instance-name：按照实例名过滤，支持模糊匹配，类型为string。
         # db-instance-ip：按照实例私有网络IP地址过滤，类型为string。
         # @type Filters: Array
-        # @param OrderBy: 排序字段，支持TotalBackupSize,LogBackupSize,ManualBaseBackupSize,AutoBaseBackupSize。
+        # @param OrderBy: 排序字段，支持TotalBackupSize - 备份总大小、LogBackupSize - 备份日志的大小、ManualBaseBackupSize - 手动备份数据大小、AutoBaseBackupSize - 自动备份数据大小。当不传入该参数时，默认不进行排序。
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，包括升序：asc，降序：desc。
+        # @param OrderByType: 排序方式，包括升序：asc，降序：desc。默认值：asc。
         # @type OrderByType: String
 
         attr_accessor :Limit, :Offset, :Filters, :OrderBy, :OrderByType
@@ -3359,77 +3288,6 @@ module TencentCloud
               dbinstance_tmp.deserialize(i)
               @DBInstanceSet << dbinstance_tmp
             end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeDBSlowlogs请求参数结构体
-      class DescribeDBSlowlogsRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID，形如postgres-lnp6j617
-        # @type DBInstanceId: String
-        # @param StartTime: 查询起始时间，形如2018-06-10 17:06:38，起始时间不得小于7天以前
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间，形如2018-06-10 17:06:38
-        # @type EndTime: String
-        # @param DatabaseName: 数据库名字
-        # @type DatabaseName: String
-        # @param OrderBy: 按照何种指标排序，取值为sum_calls或者sum_cost_time。sum_calls-总调用次数；sum_cost_time-总的花费时间
-        # @type OrderBy: String
-        # @param OrderByType: 排序规则。desc-降序；asc-升序
-        # @type OrderByType: String
-        # @param Limit: 分页返回结果，每页最大返回数量，取值为1-100，默认20
-        # @type Limit: Integer
-        # @param Offset: 分页返回结果，返回结果的第几页，从0开始计数
-        # @type Offset: Integer
-
-        attr_accessor :DBInstanceId, :StartTime, :EndTime, :DatabaseName, :OrderBy, :OrderByType, :Limit, :Offset
-
-        def initialize(dbinstanceid=nil, starttime=nil, endtime=nil, databasename=nil, orderby=nil, orderbytype=nil, limit=nil, offset=nil)
-          @DBInstanceId = dbinstanceid
-          @StartTime = starttime
-          @EndTime = endtime
-          @DatabaseName = databasename
-          @OrderBy = orderby
-          @OrderByType = orderbytype
-          @Limit = limit
-          @Offset = offset
-        end
-
-        def deserialize(params)
-          @DBInstanceId = params['DBInstanceId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @DatabaseName = params['DatabaseName']
-          @OrderBy = params['OrderBy']
-          @OrderByType = params['OrderByType']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-        end
-      end
-
-      # DescribeDBSlowlogs返回参数结构体
-      class DescribeDBSlowlogsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 本次返回多少条数据
-        # @type TotalCount: Integer
-        # @param Detail: 慢查询日志详情
-        # @type Detail: :class:`Tencentcloud::Postgres.v20170312.models.SlowlogDetail`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Detail, :RequestId
-
-        def initialize(totalcount=nil, detail=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Detail = detail
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Detail'].nil?
-            @Detail = SlowlogDetail.new
-            @Detail.deserialize(params['Detail'])
           end
           @RequestId = params['RequestId']
         end
@@ -4334,82 +4192,6 @@ module TencentCloud
               regioninfo_tmp = RegionInfo.new
               regioninfo_tmp.deserialize(i)
               @RegionSet << regioninfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeServerlessDBInstances请求参数结构体
-      class DescribeServerlessDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filter: 查询条件。按照一个或者多个过滤条件进行查询，目前支持的过滤条件类型（name字段指定）有：
-
-        # - db-instance-id：按照实例ID过滤，类型为string
-        # - db-instance-name：按照实例名过滤，类型为string
-        # - db-tag-key：按照实例的tag过滤，类型为string
-
-        # value字段指定该类型过滤条件下具体要过滤的实例ID/实例名/实例tag-key。
-        # @type Filter: Array
-        # @param Limit: 查询个数
-        # @type Limit: Integer
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param OrderBy: 排序指标，目前支持实例创建时间CreateTime
-        # @type OrderBy: String
-        # @param OrderByType: 排序方式，包括升序、降序
-        # @type OrderByType: String
-
-        attr_accessor :Filter, :Limit, :Offset, :OrderBy, :OrderByType
-
-        def initialize(filter=nil, limit=nil, offset=nil, orderby=nil, orderbytype=nil)
-          @Filter = filter
-          @Limit = limit
-          @Offset = offset
-          @OrderBy = orderby
-          @OrderByType = orderbytype
-        end
-
-        def deserialize(params)
-          unless params['Filter'].nil?
-            @Filter = []
-            params['Filter'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filter << filter_tmp
-            end
-          end
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @OrderBy = params['OrderBy']
-          @OrderByType = params['OrderByType']
-        end
-      end
-
-      # DescribeServerlessDBInstances返回参数结构体
-      class DescribeServerlessDBInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 查询结果数
-        # @type TotalCount: Integer
-        # @param DBInstanceSet: 查询结果
-        # @type DBInstanceSet: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :DBInstanceSet, :RequestId
-
-        def initialize(totalcount=nil, dbinstanceset=nil, requestid=nil)
-          @TotalCount = totalcount
-          @DBInstanceSet = dbinstanceset
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['DBInstanceSet'].nil?
-            @DBInstanceSet = []
-            params['DBInstanceSet'].each do |i|
-              serverlessdbinstance_tmp = ServerlessDBInstance.new
-              serverlessdbinstance_tmp.deserialize(i)
-              @DBInstanceSet << serverlessdbinstance_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6402,78 +6184,6 @@ module TencentCloud
         end
       end
 
-      # 单条SlowQuery信息
-      class NormalQueryItem < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名
-        # @type UserName: String
-        # @param Calls: 调用次数
-        # @type Calls: Integer
-        # @param CallsGrids: 粒度点
-        # @type CallsGrids: Array
-        # @param CostTime: 花费总时间
-        # @type CostTime: Float
-        # @param Rows: 影响的行数
-        # @type Rows: Integer
-        # @param MinCostTime: 花费最小时间
-        # @type MinCostTime: Float
-        # @param MaxCostTime: 花费最大时间
-        # @type MaxCostTime: Float
-        # @param FirstTime: 最早一条慢SQL时间
-        # @type FirstTime: String
-        # @param LastTime: 最晚一条慢SQL时间
-        # @type LastTime: String
-        # @param SharedReadBlks: 读共享内存块数
-        # @type SharedReadBlks: Integer
-        # @param SharedWriteBlks: 写共享内存块数
-        # @type SharedWriteBlks: Integer
-        # @param ReadCostTime: 读io总耗时
-        # @type ReadCostTime: Integer
-        # @param WriteCostTime: 写io总耗时
-        # @type WriteCostTime: Integer
-        # @param DatabaseName: 数据库名字
-        # @type DatabaseName: String
-        # @param NormalQuery: 脱敏后的慢SQL
-        # @type NormalQuery: String
-
-        attr_accessor :UserName, :Calls, :CallsGrids, :CostTime, :Rows, :MinCostTime, :MaxCostTime, :FirstTime, :LastTime, :SharedReadBlks, :SharedWriteBlks, :ReadCostTime, :WriteCostTime, :DatabaseName, :NormalQuery
-
-        def initialize(username=nil, calls=nil, callsgrids=nil, costtime=nil, rows=nil, mincosttime=nil, maxcosttime=nil, firsttime=nil, lasttime=nil, sharedreadblks=nil, sharedwriteblks=nil, readcosttime=nil, writecosttime=nil, databasename=nil, normalquery=nil)
-          @UserName = username
-          @Calls = calls
-          @CallsGrids = callsgrids
-          @CostTime = costtime
-          @Rows = rows
-          @MinCostTime = mincosttime
-          @MaxCostTime = maxcosttime
-          @FirstTime = firsttime
-          @LastTime = lasttime
-          @SharedReadBlks = sharedreadblks
-          @SharedWriteBlks = sharedwriteblks
-          @ReadCostTime = readcosttime
-          @WriteCostTime = writecosttime
-          @DatabaseName = databasename
-          @NormalQuery = normalquery
-        end
-
-        def deserialize(params)
-          @UserName = params['UserName']
-          @Calls = params['Calls']
-          @CallsGrids = params['CallsGrids']
-          @CostTime = params['CostTime']
-          @Rows = params['Rows']
-          @MinCostTime = params['MinCostTime']
-          @MaxCostTime = params['MaxCostTime']
-          @FirstTime = params['FirstTime']
-          @LastTime = params['LastTime']
-          @SharedReadBlks = params['SharedReadBlks']
-          @SharedWriteBlks = params['SharedWriteBlks']
-          @ReadCostTime = params['ReadCostTime']
-          @WriteCostTime = params['WriteCostTime']
-          @DatabaseName = params['DatabaseName']
-          @NormalQuery = params['NormalQuery']
-        end
-      end
-
       # OpenDBExtranetAccess请求参数结构体
       class OpenDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-hez4fh0v。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。
@@ -7309,163 +7019,6 @@ module TencentCloud
         end
       end
 
-      # serverless账号描述
-      class ServerlessDBAccount < TencentCloud::Common::AbstractModel
-        # @param DBUser: 用户名
-        # @type DBUser: String
-        # @param DBPassword: 密码
-        # @type DBPassword: String
-        # @param DBConnLimit: 连接数限制
-        # @type DBConnLimit: Integer
-
-        attr_accessor :DBUser, :DBPassword, :DBConnLimit
-
-        def initialize(dbuser=nil, dbpassword=nil, dbconnlimit=nil)
-          @DBUser = dbuser
-          @DBPassword = dbpassword
-          @DBConnLimit = dbconnlimit
-        end
-
-        def deserialize(params)
-          @DBUser = params['DBUser']
-          @DBPassword = params['DBPassword']
-          @DBConnLimit = params['DBConnLimit']
-        end
-      end
-
-      # serverless实例描述
-      class ServerlessDBInstance < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例id，唯一标识符
-        # @type DBInstanceId: String
-        # @param DBInstanceName: 实例名称
-        # @type DBInstanceName: String
-        # @param DBInstanceStatus: 实例状态
-        # @type DBInstanceStatus: String
-        # @param Region: 地域
-        # @type Region: String
-        # @param Zone: 可用区
-        # @type Zone: String
-        # @param ProjectId: 项目id
-        # @type ProjectId: Integer
-        # @param VpcId: 私有网络Id
-        # @type VpcId: String
-        # @param SubnetId: 子网id
-        # @type SubnetId: String
-        # @param DBCharset: 字符集
-        # @type DBCharset: String
-        # @param DBVersion: 数据库版本
-        # @type DBVersion: String
-        # @param CreateTime: 创建时间
-        # @type CreateTime: String
-        # @param DBInstanceNetInfo: 实例网络信息
-        # @type DBInstanceNetInfo: Array
-        # @param DBAccountSet: 实例账户信息
-        # @type DBAccountSet: Array
-        # @param DBDatabaseList: 实例下的db信息
-        # @type DBDatabaseList: Array
-        # @param TagList: 实例绑定的标签数组
-        # @type TagList: Array
-        # @param DBKernelVersion: 数据库内核版本
-        # @type DBKernelVersion: String
-        # @param DBMajorVersion: 数据库主要版本
-        # @type DBMajorVersion: String
-
-        attr_accessor :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :Region, :Zone, :ProjectId, :VpcId, :SubnetId, :DBCharset, :DBVersion, :CreateTime, :DBInstanceNetInfo, :DBAccountSet, :DBDatabaseList, :TagList, :DBKernelVersion, :DBMajorVersion
-
-        def initialize(dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, region=nil, zone=nil, projectid=nil, vpcid=nil, subnetid=nil, dbcharset=nil, dbversion=nil, createtime=nil, dbinstancenetinfo=nil, dbaccountset=nil, dbdatabaselist=nil, taglist=nil, dbkernelversion=nil, dbmajorversion=nil)
-          @DBInstanceId = dbinstanceid
-          @DBInstanceName = dbinstancename
-          @DBInstanceStatus = dbinstancestatus
-          @Region = region
-          @Zone = zone
-          @ProjectId = projectid
-          @VpcId = vpcid
-          @SubnetId = subnetid
-          @DBCharset = dbcharset
-          @DBVersion = dbversion
-          @CreateTime = createtime
-          @DBInstanceNetInfo = dbinstancenetinfo
-          @DBAccountSet = dbaccountset
-          @DBDatabaseList = dbdatabaselist
-          @TagList = taglist
-          @DBKernelVersion = dbkernelversion
-          @DBMajorVersion = dbmajorversion
-        end
-
-        def deserialize(params)
-          @DBInstanceId = params['DBInstanceId']
-          @DBInstanceName = params['DBInstanceName']
-          @DBInstanceStatus = params['DBInstanceStatus']
-          @Region = params['Region']
-          @Zone = params['Zone']
-          @ProjectId = params['ProjectId']
-          @VpcId = params['VpcId']
-          @SubnetId = params['SubnetId']
-          @DBCharset = params['DBCharset']
-          @DBVersion = params['DBVersion']
-          @CreateTime = params['CreateTime']
-          unless params['DBInstanceNetInfo'].nil?
-            @DBInstanceNetInfo = []
-            params['DBInstanceNetInfo'].each do |i|
-              serverlessdbinstancenetinfo_tmp = ServerlessDBInstanceNetInfo.new
-              serverlessdbinstancenetinfo_tmp.deserialize(i)
-              @DBInstanceNetInfo << serverlessdbinstancenetinfo_tmp
-            end
-          end
-          unless params['DBAccountSet'].nil?
-            @DBAccountSet = []
-            params['DBAccountSet'].each do |i|
-              serverlessdbaccount_tmp = ServerlessDBAccount.new
-              serverlessdbaccount_tmp.deserialize(i)
-              @DBAccountSet << serverlessdbaccount_tmp
-            end
-          end
-          @DBDatabaseList = params['DBDatabaseList']
-          unless params['TagList'].nil?
-            @TagList = []
-            params['TagList'].each do |i|
-              tag_tmp = Tag.new
-              tag_tmp.deserialize(i)
-              @TagList << tag_tmp
-            end
-          end
-          @DBKernelVersion = params['DBKernelVersion']
-          @DBMajorVersion = params['DBMajorVersion']
-        end
-      end
-
-      # serverless实例网络信息描述
-      class ServerlessDBInstanceNetInfo < TencentCloud::Common::AbstractModel
-        # @param Address: 地址
-        # @type Address: String
-        # @param Ip: ip地址
-        # @type Ip: String
-        # @param Port: 端口号
-        # @type Port: Integer
-        # @param Status: 状态
-        # @type Status: String
-        # @param NetType: 网络类型
-        # @type NetType: String
-
-        attr_accessor :Address, :Ip, :Port, :Status, :NetType
-
-        def initialize(address=nil, ip=nil, port=nil, status=nil, nettype=nil)
-          @Address = address
-          @Ip = ip
-          @Port = port
-          @Status = status
-          @NetType = nettype
-        end
-
-        def deserialize(params)
-          @Address = params['Address']
-          @Ip = params['Ip']
-          @Port = params['Port']
-          @Status = params['Status']
-          @NetType = params['NetType']
-        end
-      end
-
       # SetAutoRenewFlag请求参数结构体
       class SetAutoRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceIdSet: 实例ID集合。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。仅支持预付费（包年包月）的实例。支持同时操作多个实例。
@@ -7503,37 +7056,6 @@ module TencentCloud
         def deserialize(params)
           @Count = params['Count']
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 慢查询详情
-      class SlowlogDetail < TencentCloud::Common::AbstractModel
-        # @param TotalTime: 花费总时间
-        # @type TotalTime: Float
-        # @param TotalCalls: 调用总次数
-        # @type TotalCalls: Integer
-        # @param NormalQueries: 脱敏后的慢SQL列表
-        # @type NormalQueries: Array
-
-        attr_accessor :TotalTime, :TotalCalls, :NormalQueries
-
-        def initialize(totaltime=nil, totalcalls=nil, normalqueries=nil)
-          @TotalTime = totaltime
-          @TotalCalls = totalcalls
-          @NormalQueries = normalqueries
-        end
-
-        def deserialize(params)
-          @TotalTime = params['TotalTime']
-          @TotalCalls = params['TotalCalls']
-          unless params['NormalQueries'].nil?
-            @NormalQueries = []
-            params['NormalQueries'].each do |i|
-              normalqueryitem_tmp = NormalQueryItem.new
-              normalqueryitem_tmp.deserialize(i)
-              @NormalQueries << normalqueryitem_tmp
-            end
-          end
         end
       end
 

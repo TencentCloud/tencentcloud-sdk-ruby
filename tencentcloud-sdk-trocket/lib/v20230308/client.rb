@@ -1164,6 +1164,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询主题关联的生产者列表信息，Filters支持以下筛选条件：
+        # - ClientIP，客户端IP
+        # - ClientID，客户端ID
+
+        # @param request: Request instance for DescribeProducerList.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeProducerListRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::DescribeProducerListResponse`
+        def DescribeProducerList(request)
+          body = send_request('DescribeProducerList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProducerListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询产品售卖规格，针对 RocketMQ 5.x 集群。
 
         # @param request: Request instance for DescribeProductSKUs.

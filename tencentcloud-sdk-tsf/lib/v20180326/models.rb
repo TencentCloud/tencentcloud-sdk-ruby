@@ -19,9 +19,9 @@ module TencentCloud
     module V20180326
       # AddClusterInstances请求参数结构体
       class AddClusterInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
-        # @param InstanceIdList: 云主机ID列表
+        # @param InstanceIdList: 云主机ID列表，可通过调用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)查询已创建的云主机列表或登录控制台进行查看；也可以调用[RunInstances](https://cloud.tencent.com/document/api/213/15730)创建新的云主机。
         # @type InstanceIdList: Array
         # @param OsName: 操作系统名称
         # @type OsName: String
@@ -134,9 +134,9 @@ module TencentCloud
 
       # AddInstances请求参数结构体
       class AddInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
-        # @param InstanceIdList: 云主机ID列表
+        # @param InstanceIdList: 云主机ID列表，可通过调用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)查询已创建的云主机列表或登录控制台进行查看；也可以调用[RunInstances](https://cloud.tencent.com/document/api/213/15730)创建新的云主机。
         # @type InstanceIdList: Array
         # @param OsName: 操作系统名称
         # @type OsName: String
@@ -999,9 +999,11 @@ module TencentCloud
 
       # AssociateBusinessLogConfig请求参数结构体
       class AssociateBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: TSF分组ID
+        # @param GroupId: 部署组ID
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupId: String
         # @param ConfigIdList: 日志配置项ID列表
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigIdList: Array
 
         attr_accessor :GroupId, :ConfigIdList
@@ -1019,7 +1021,7 @@ module TencentCloud
 
       # AssociateBusinessLogConfig返回参数结构体
       class AssociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作结果
+        # @param Result: 操作结果，true：成功，false：失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1039,15 +1041,18 @@ module TencentCloud
 
       # AssociateConfigWithGroup请求参数结构体
       class AssociateConfigWithGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项id
+        # @param ConfigId: 配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigId: String
         # @param Groups: 部署组信息
         # @type Groups: Array
         # @param SelectAll: 是否选择全部投递，1 表示全部，0或不填表示非全部
         # @type SelectAll: Integer
-        # @param NamespaceId: 命名空间id
+        # @param NamespaceId: 命名空间ID
+        # 可通过[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已经创建的命名空间，也可以通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)查看
         # @type NamespaceId: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: 集群ID
+        # 可通过[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已经创建的集群列表，也可以通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1)查看
         # @type ClusterId: String
         # @param SearchWord: 模糊搜索关键词
         # @type SearchWord: String
@@ -1304,10 +1309,10 @@ module TencentCloud
         # @type ConfigTags: String
         # @param ConfigPipeline: 配置项对应的ES管道
         # @type ConfigPipeline: String
-        # @param ConfigCreateTime: 配置项创建时间
+        # @param ConfigCreateTime: 配置项创建时间，格式为yyyy-MM-dd HH:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigCreateTime: String
-        # @param ConfigUpdateTime: 配置项更新时间
+        # @param ConfigUpdateTime: 配置项更新时间，格式为yyyy-MM-dd HH:mm:ss
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigUpdateTime: String
         # @param ConfigSchema: 配置项解析规则
@@ -1321,13 +1326,21 @@ module TencentCloud
         # @type FilebeatConfigEnable: Boolean
         # @param FilebeatCloseTimeout: close_timeout参数
         # @type FilebeatCloseTimeout: Integer
+        # @param FilebeatIgnoreOlder: filebeat ignore_older参数
+        # @type FilebeatIgnoreOlder: Integer
+        # @param FilebeatHarvesterLimit: filebeat harvester_limit参数
+        # @type FilebeatHarvesterLimit: Integer
+        # @param FilebeatCloseInactive: filebeat close_inactive参数
+        # @type FilebeatCloseInactive: Integer
+        # @param FilebeatCleanInactive: filebeat clean_inactive参数
+        # @type FilebeatCleanInactive: Integer
 
-        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout
+        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive
         extend Gem::Deprecate
         deprecate :ConfigAssociatedGroups, :none, 2025, 8
         deprecate :ConfigAssociatedGroups=, :none, 2025, 8
 
-        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil)
+        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil)
           @ConfigId = configid
           @ConfigName = configname
           @ConfigPath = configpath
@@ -1341,6 +1354,10 @@ module TencentCloud
           @ConfigAssociatedGroupList = configassociatedgrouplist
           @FilebeatConfigEnable = filebeatconfigenable
           @FilebeatCloseTimeout = filebeatclosetimeout
+          @FilebeatIgnoreOlder = filebeatignoreolder
+          @FilebeatHarvesterLimit = filebeatharvesterlimit
+          @FilebeatCloseInactive = filebeatcloseinactive
+          @FilebeatCleanInactive = filebeatcleaninactive
         end
 
         def deserialize(params)
@@ -1374,6 +1391,10 @@ module TencentCloud
           end
           @FilebeatConfigEnable = params['FilebeatConfigEnable']
           @FilebeatCloseTimeout = params['FilebeatCloseTimeout']
+          @FilebeatIgnoreOlder = params['FilebeatIgnoreOlder']
+          @FilebeatHarvesterLimit = params['FilebeatHarvesterLimit']
+          @FilebeatCloseInactive = params['FilebeatCloseInactive']
+          @FilebeatCleanInactive = params['FilebeatCleanInactive']
         end
       end
 
@@ -1387,7 +1408,7 @@ module TencentCloud
         # @type ApplicationId: String
         # @param ApplicationName: 部署组所属应用名称
         # @type ApplicationName: String
-        # @param ApplicationType: 部署组所属应用类型
+        # @param ApplicationType: 部署组所属应用类型，C：容器应用，V：虚拟机应用
         # @type ApplicationType: String
         # @param NamespaceId: 部署组所属命名空间ID
         # @type NamespaceId: String
@@ -1397,9 +1418,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterName: 部署组所属集群名称
         # @type ClusterName: String
-        # @param ClusterType: 部署组所属集群类型
+        # @param ClusterType: 部署组所属集群类型，C：容器集群，V：虚拟机集群
         # @type ClusterType: String
-        # @param AssociatedTime: 部署组关联日志配置时间
+        # @param AssociatedTime: 部署组关联日志配置时间，格式yyyy-MM-dd HH:mm:ss
         # @type AssociatedTime: String
 
         attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :NamespaceId, :NamespaceName, :ClusterId, :ClusterName, :ClusterType, :AssociatedTime
@@ -1435,7 +1456,7 @@ module TencentCloud
 
       # 业务日志配置解析规则
       class BusinessLogConfigSchema < TencentCloud::Common::AbstractModel
-        # @param SchemaType: 解析规则类型
+        # @param SchemaType: 解析规则类型。可选值 0（SPRING_BOOT：默认Spring Boot格式），1（NONE：无解析规则），4（NGINX_ACCESS：nginx access日志），5（CUSTOM_LOGBACK：自定义Logback），6（CUSTOM_LOG4J：自定义Log4J），7（CUSTOM_LOG4J2：自定义Log4J2），8（TEXT：单行/多行文本），9（ENVOY_MSGW_ACCESS：envoy access日志）。
         # @type SchemaType: Integer
         # @param SchemaContent: 解析规则内容
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1446,7 +1467,7 @@ module TencentCloud
         # @param SchemaMultilinePattern: 解析规则对应的多行匹配规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaMultilinePattern: String
-        # @param SchemaCreateTime: 解析规则创建时间
+        # @param SchemaCreateTime: 解析规则创建时间，格式为yyyy-MM-dd HH:mm:ss
         # @type SchemaCreateTime: String
         # @param SchemaPatternLayout: 用户填写的解析规则
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1479,7 +1500,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Content: 日志内容
         # @type Content: String
-        # @param Timestamp: 日志时间戳
+        # @param Timestamp: 日志时间戳，单位毫秒
         # @type Timestamp: Integer
         # @param InstanceIp: 实例IP
         # @type InstanceIp: String
@@ -1689,7 +1710,7 @@ module TencentCloud
         # @param ClusterDesc: 集群描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterDesc: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，C表示容器集群，V表示虚拟机集群
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: String
         # @param VpcId: 集群所属私有网络ID
@@ -1725,10 +1746,10 @@ module TencentCloud
         # @param DeleteFlag: 删除标记：true：可以删除；false：不可删除
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeleteFlag: Boolean
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，格式为​​YYYY-MM-DD HH:MM:SS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间，格式为​​YYYY-MM-DD HH:MM:SS
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param TsfRegionId: 集群所属TSF地域ID
@@ -1782,7 +1803,7 @@ module TencentCloud
         # @param KuberneteApiServer: api地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KuberneteApiServer: String
-        # @param KuberneteNativeType: K : kubeconfig, S : service account
+        # @param KuberneteNativeType: K 表示通过kubeconfig 导入, S 表示通过service account导入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KuberneteNativeType: String
         # @param KuberneteNativeSecret: native secret
@@ -2560,7 +2581,7 @@ module TencentCloud
         # @param TcrRepoInfo: TcrRepoInfo值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
-        # @param VolumeInfos: 数据卷信息，list
+        # @param VolumeInfos: 数据卷信息，数组结构
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumeInfos: Array
         # @param VolumeMountInfos: 数据卷挂载信息，list
@@ -3780,9 +3801,12 @@ module TencentCloud
       class CreateClusterRequest < TencentCloud::Common::AbstractModel
         # @param ClusterName: 集群名称
         # @type ClusterName: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 指定集群类型，目前支持：
+        # - `V`：虚拟机集群
+        # - `C`：容器集群
+        # - `S`：Serverless 集群
         # @type ClusterType: String
-        # @param VpcId: 私有网络ID
+        # @param VpcId: 私有网络ID，可通过调用[DescribeVpcEx](https://cloud.tencent.com/document/api/215/1372)查询已创建的私有网络列表或登录控制台进行查看；也可以调用[CreateVpc](https://cloud.tencent.com/document/api/215/1309)创建新的私有网络。
         # @type VpcId: String
         # @param ClusterCIDR: 分配给集群容器和服务IP的CIDR
         # @type ClusterCIDR: String
@@ -4758,26 +4782,28 @@ module TencentCloud
       class CreateNamespaceRequest < TencentCloud::Common::AbstractModel
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
         # @param NamespaceDesc: 命名空间描述
         # @type NamespaceDesc: String
-        # @param NamespaceResourceType: 命名空间资源类型(默认值为DEF)
+        # @param NamespaceResourceType: 命名空间资源类型(默认值为DEF)。DEF：默认普通命名空间。GLOBAL：全局命名空间
         # @type NamespaceResourceType: String
         # @param NamespaceType: 是否是全局命名空间(默认是DEF，表示普通命名空间；GLOBAL表示全局命名空间)
         # @type NamespaceType: String
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
         # @param IsHaEnable: 是否开启高可用，1 表示开启，0 表示不开启
         # @type IsHaEnable: String
-        # @param ProgramId: 需要绑定的数据集ID
+        # @param ProgramId: 需要绑定的数据集ID，可通过调用[DescribePrograms](https://cloud.tencent.com/document/api/649/73477)查询已创建的数据集列表或登录控制台进行查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/api/649/108544)创建新的数据集。
         # @type ProgramId: String
-        # @param ProgramIdList: 需要绑定的数据集ID
+        # @param ProgramIdList: 需要绑定的数据集ID列表，可通过调用[DescribePrograms](https://cloud.tencent.com/document/api/649/73477)查询已创建的数据集列表或登录控制台进行查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/api/649/108544)创建新的数据集。
         # @type ProgramIdList: Array
+        # @param CreateK8sNamespaceFlag: 是否创建k8s命名空间标识
+        # @type CreateK8sNamespaceFlag: Boolean
 
-        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId, :ProgramIdList
+        attr_accessor :NamespaceName, :ClusterId, :NamespaceDesc, :NamespaceResourceType, :NamespaceType, :NamespaceId, :IsHaEnable, :ProgramId, :ProgramIdList, :CreateK8sNamespaceFlag
 
-        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil, programid=nil, programidlist=nil)
+        def initialize(namespacename=nil, clusterid=nil, namespacedesc=nil, namespaceresourcetype=nil, namespacetype=nil, namespaceid=nil, ishaenable=nil, programid=nil, programidlist=nil, createk8snamespaceflag=nil)
           @NamespaceName = namespacename
           @ClusterId = clusterid
           @NamespaceDesc = namespacedesc
@@ -4787,6 +4813,7 @@ module TencentCloud
           @IsHaEnable = ishaenable
           @ProgramId = programid
           @ProgramIdList = programidlist
+          @CreateK8sNamespaceFlag = createk8snamespaceflag
         end
 
         def deserialize(params)
@@ -4799,6 +4826,7 @@ module TencentCloud
           @IsHaEnable = params['IsHaEnable']
           @ProgramId = params['ProgramId']
           @ProgramIdList = params['ProgramIdList']
+          @CreateK8sNamespaceFlag = params['CreateK8sNamespaceFlag']
         end
       end
 
@@ -5477,7 +5505,7 @@ module TencentCloud
         # @type Label: String
         # @param Value: 当前坐标 Y轴的值
         # @type Value: String
-        # @param Timestamp: 该坐标点时间戳
+        # @param Timestamp: 该坐标点时间戳，单位毫秒
         # @type Timestamp: String
 
         attr_accessor :Label, :Value, :Timestamp
@@ -5627,7 +5655,7 @@ module TencentCloud
 
       # DeleteApplication请求参数结构体
       class DeleteApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
         # @param SyncDeleteImageRepository: 是否删除镜像仓库
         # @type SyncDeleteImageRepository: Boolean
@@ -5669,7 +5697,7 @@ module TencentCloud
 
       # DeleteCluster请求参数结构体
       class DeleteClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用DescribeClusters查询已创建的项目列表或登录控制台进行查看；也可以调用CreateCluster创建新的项目。集群ID例如：cls-6a79x94v。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
         # @param Unbind: 是否只解绑，不删除容器集群，默认不传则删除容器集群。
         # @type Unbind: Boolean
@@ -5785,7 +5813,7 @@ module TencentCloud
 
       # DeleteContainerGroup请求参数结构体
       class DeleteContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，分组唯一标识
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -5901,7 +5929,7 @@ module TencentCloud
 
       # DeleteGroup请求参数结构体
       class DeleteGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -5959,7 +5987,7 @@ module TencentCloud
 
       # DeleteImageTags请求参数结构体
       class DeleteImageTagsRequest < TencentCloud::Common::AbstractModel
-        # @param ImageTags: 镜像版本数组
+        # @param ImageTags: 需要删除的镜像版本列表，可通过调用[DescribeImageTags](https://cloud.tencent.com/document/api/649/36052)查询已创建的镜像版本列表或登录控制台进行查看。
         # @type ImageTags: Array
         # @param RepoType: 企业: tcr ；个人: personal或者不填
         # @type RepoType: String
@@ -6122,9 +6150,9 @@ module TencentCloud
 
       # DeleteNamespace请求参数结构体
       class DeleteNamespaceRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
 
         attr_accessor :NamespaceId, :ClusterId
@@ -6474,15 +6502,15 @@ module TencentCloud
         # @type CollectPath: Array
         # @param Groups: 关联部署组信息
         # @type Groups: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 创建时间，格式yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
-        # @param KafkaVIp: KafkaVIp
+        # @param KafkaVIp: Kafka的vip
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaVIp: String
-        # @param KafkaAddress: KafkaAddress
+        # @param KafkaAddress: Kafka地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaAddress: String
-        # @param KafkaVPort: KafkaVPort
+        # @param KafkaVPort: Kafka端口
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaVPort: String
         # @param Topic: Topic
@@ -6490,18 +6518,18 @@ module TencentCloud
         # @param LineRule: LineRule
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineRule: String
-        # @param CustomRule: CustomRule
+        # @param CustomRule: 自定义规则
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CustomRule: String
         # @param EnableGlobalLineRule: EnableGlobalLineRule
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableGlobalLineRule: Boolean
-        # @param EnableAuth: EnableAuth
+        # @param EnableAuth: 是否开启认证
         # @type EnableAuth: Boolean
-        # @param Username: Username
+        # @param Username: 用户名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Username: String
-        # @param Password: Password
+        # @param Password: 密码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param KafkaInfos: KafkaInfos
@@ -6984,7 +7012,7 @@ module TencentCloud
 
       # DeployContainerGroup请求参数结构体
       class DeployContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，分组唯一标识
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param TagName: 镜像版本名称,如v1
         # @type TagName: String
@@ -7713,7 +7741,7 @@ module TencentCloud
 
       # DescribeApplication请求参数结构体
       class DescribeApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
 
         attr_accessor :ApplicationId
@@ -7757,11 +7785,13 @@ module TencentCloud
         # @type SearchWord: String
         # @param OrderBy: 排序字段
         # @type OrderBy: String
-        # @param OrderType: 排序类型
+        # @param OrderType: 指定排序类型，目前支持：
+        # `0`：降序
+        # `1`：升序
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
         # @param ApplicationType: 应用类型
         # @type ApplicationType: String
@@ -7867,7 +7897,8 @@ module TencentCloud
 
       # DescribeBusinessLogConfig请求参数结构体
       class DescribeBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项ID
+        # @param ConfigId: 日志配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -7912,9 +7943,10 @@ module TencentCloud
         # @type Limit: Integer
         # @param SearchWord: 模糊匹配关键词
         # @type SearchWord: String
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 是否禁用数据集鉴权
         # @type DisableProgramAuthCheck: Boolean
-        # @param ConfigIdList: 无
+        # @param ConfigIdList: 日志配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigIdList: Array
 
         attr_accessor :Offset, :Limit, :SearchWord, :DisableProgramAuthCheck, :ConfigIdList
@@ -7961,17 +7993,17 @@ module TencentCloud
 
       # DescribeClusterInstances请求参数结构体
       class DescribeClusterInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID。调用[DescribeSimpleClusters](https://cloud.tencent.com/document/api/649/36047)查询已创建的集群或通过[CreateCluster](https://cloud.tencent.com/document/api/649/36049)接口创建新的集群。
         # @type ClusterId: String
         # @param SearchWord: 搜索字段
         # @type SearchWord: String
         # @param OrderBy: 排序字段
         # @type OrderBy: String
-        # @param OrderType: 排序类型
+        # @param OrderType: 排序类型；0：升序，1：降序。
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值：0。
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 分页个数，默认值：20。
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit
@@ -8020,17 +8052,17 @@ module TencentCloud
 
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
-        # @param SearchWord: 搜索词
+        # @param SearchWord: 搜索词，可以搜索ID/名称/备注/标签
         # @type SearchWord: String
-        # @param OrderBy: 排序字段
+        # @param OrderBy: 排序字段，例如创建时间
         # @type OrderBy: String
-        # @param OrderType: 排序方式
+        # @param OrderType: 排序方式，0表示升序，1表示倒序
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认0
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 分页个数，0-50 之间，默认20
         # @type Limit: Integer
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，C表示容器集群，V表示虚拟机集群
         # @type ClusterType: String
         # @param ClusterIdList: idList
         # @type ClusterIdList: Array
@@ -8426,19 +8458,19 @@ module TencentCloud
 
       # DescribeContainerEvents请求参数结构体
       class DescribeContainerEventsRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceType: event 的资源类型, group 或者 instance
+        # @param ResourceType: event 的资源类型, 仅支持 group
         # @type ResourceType: String
-        # @param ResourceId: event 的资源 id
+        # @param ResourceId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd
         # @type ResourceId: String
         # @param Offset: 偏移量，取值从0开始
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~50
         # @type Limit: Integer
-        # @param GroupId: 当类型是 instance 时需要
+        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。
         # @type GroupId: String
-        # @param Kind: event的资源kind
+        # @param Kind: event的资源种类
         # @type Kind: String
-        # @param Type: event 的type
+        # @param Type: event 的事件级别
         # @type Type: String
         # @param ResourceName: 资源名称
         # @type ResourceName: String
@@ -8536,7 +8568,7 @@ module TencentCloud
 
       # DescribeContainerGroupDeployInfo请求参数结构体
       class DescribeContainerGroupDeployInfoRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 实例所属 groupId
+        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -8723,7 +8755,8 @@ module TencentCloud
 
       # DescribeDeliveryConfigByGroupId请求参数结构体
       class DescribeDeliveryConfigByGroupIdRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组id
+        # @param GroupId: 部署组ID
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -8762,7 +8795,8 @@ module TencentCloud
 
       # DescribeDeliveryConfig请求参数结构体
       class DescribeDeliveryConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 投递配置id
+        # @param ConfigId: 日志配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigId: String
 
         attr_accessor :ConfigId
@@ -8807,9 +8841,11 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 搜索条数
         # @type Limit: Integer
-        # @param ProgramIdList: 数据集idList
+        # @param ProgramIdList: 数据集ID列表
+        # 可通过调用[DescribePrograms](https://cloud.tencent.com/document/product/649/73477)查询已创建的数据集列表或登录[控制台](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program&roleId=role-a22gwdwa)进行查看
         # @type ProgramIdList: Array
-        # @param ConfigIdList: ConfigIdList
+        # @param ConfigIdList: 日志配置项ID列表
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigIdList: Array
 
         attr_accessor :SearchWord, :Offset, :Limit, :ProgramIdList, :ConfigIdList
@@ -9256,7 +9292,7 @@ module TencentCloud
 
       # DescribeGroupAttribute请求参数结构体
       class DescribeGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID字段
+        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -9346,7 +9382,8 @@ module TencentCloud
 
       # DescribeGroupBusinessLogConfigs请求参数结构体
       class DescribeGroupBusinessLogConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 分组ID
+        # @param GroupId: 部署组ID
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -9436,17 +9473,17 @@ module TencentCloud
 
       # DescribeGroupInstances请求参数结构体
       class DescribeGroupInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
         # @type GroupId: String
         # @param SearchWord: 搜索字段
         # @type SearchWord: String
         # @param OrderBy: 排序字段
         # @type OrderBy: String
-        # @param OrderType: 排序类型
+        # @param OrderType: 排序类型；0：升序，1：降序
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值：0
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 分页个数；默认值：20
         # @type Limit: Integer
 
         attr_accessor :GroupId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit
@@ -9534,7 +9571,7 @@ module TencentCloud
 
       # DescribeGroup请求参数结构体
       class DescribeGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -9630,19 +9667,19 @@ module TencentCloud
       class DescribeGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 搜索字段
         # @type SearchWord: String
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID。调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用或通过[CreateApplication](https://cloud.tencent.com/document/api/649/36094)接口创建新的应用。
         # @type ApplicationId: String
         # @param OrderBy: 排序字段
         # @type OrderBy: String
-        # @param OrderType: 排序方式
+        # @param OrderType: 排序方式，0：升序，1：降序
         # @type OrderType: Integer
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量，默认值：0
         # @type Offset: Integer
-        # @param Limit: 分页个数
+        # @param Limit: 分页个数，默认值：20
         # @type Limit: Integer
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID。调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/api/649/36096)查询已创建的命名空间或通过[CreateNamespace](https://cloud.tencent.com/document/api/649/36098)接口创建新的集群。
         # @type NamespaceId: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID。调用[DescribeSimpleClusters](https://cloud.tencent.com/document/api/649/36047)查询已创建的集群或通过[CreateCluster](https://cloud.tencent.com/document/api/649/36049)接口创建新的集群。
         # @type ClusterId: String
         # @param GroupResourceTypeList: 部署组资源类型列表
         # @type GroupResourceTypeList: Array
@@ -9768,13 +9805,13 @@ module TencentCloud
       class DescribeImageRepositoryRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 仓库名，搜索关键字,不带命名空间的
         # @type SearchWord: String
-        # @param Offset: 偏移量，取值从0开始
+        # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Offset: Integer
-        # @param Limit: 分页个数，默认为20， 取值应为1~100
+        # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
         # @param RepoType: 企业: tcr ；个人: personal或者不填
         # @type RepoType: String
-        # @param ApplicationId: 应用id
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
         # @param TcrRepoInfo: TcrRepoInfo值
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
@@ -9832,11 +9869,11 @@ module TencentCloud
 
       # DescribeImageTags请求参数结构体
       class DescribeImageTagsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用Id
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param Offset: 偏移量，取值从0开始
+        # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Offset: Integer
-        # @param Limit: 分页个数，默认为20， 取值应为1~100
+        # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
         # @param QueryImageIdFlag: 不填和0:查询 1:不查询
         # @type QueryImageIdFlag: Integer
@@ -9986,7 +10023,7 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件
+        # @param Filters: 过滤条件，name表示过滤字段，value表示过滤字段值。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -10040,17 +10077,17 @@ module TencentCloud
 
       # DescribeInvocationMetricDataCurve请求参数结构体
       class DescribeInvocationMetricDataCurveRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间
+        # @param StartTime: 开始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 查询结束时间
+        # @param EndTime: 结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
-        # @param Period: 查询时间粒度，单位秒可选值：60、3600、86400
+        # @param Period: 查询时间粒度，单位秒。可选值：60、3600、86400
         # @type Period: Integer
-        # @param MetricDimensions: 查询指标维度，不能为空，支持 ServiceName, OperationName, PeerServiceName, PeerOperationName
+        # @param MetricDimensions: 查询指标维度，不能为空
         # @type MetricDimensions: Array
-        # @param Metrics: 查询指标名，不能为空.
+        # @param Metrics: 查询指标名，不能为空
         # @type Metrics: Array
-        # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @param Kind: 视图视角。可选值：SERVER：服务端，CLIENT：客户端。默认为SERVER
         # @type Kind: String
         # @param Type: 类型。组件监控使用，可选值：SQL 或者 NoSQL
         # @type Type: String
@@ -10121,19 +10158,19 @@ module TencentCloud
 
       # DescribeInvocationMetricDataDimension请求参数结构体
       class DescribeInvocationMetricDataDimensionRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
         # @param Offset: 开始index
         # @type Offset: Integer
         # @param Limit: 分页大小
         # @type Limit: Integer
-        # @param DimensionName: 聚合维度
+        # @param DimensionName: 聚合维度。可选值 NamespaceId：命名空间ID，GroupId：部署组ID，InstanceId：实例ID，ApplicationId：应用ID，OperationMethod：执行方法，OperationName：执行名称，ServiceName：服务名，UpstreamNamespaceId：上游命名空间ID
         # @type DimensionName: String
         # @param SearchWord: 搜索关键字
         # @type SearchWord: String
-        # @param MetricDimensionValues: 维度
+        # @param MetricDimensionValues: 构建维度
         # @type MetricDimensionValues: Array
 
         attr_accessor :StartTime, :EndTime, :Offset, :Limit, :DimensionName, :SearchWord, :MetricDimensionValues
@@ -10191,15 +10228,15 @@ module TencentCloud
 
       # DescribeInvocationMetricDataPoint请求参数结构体
       class DescribeInvocationMetricDataPointRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
-        # @param MetricDimensionValues: 维度，并且 维度 key value 不能为空
+        # @param MetricDimensionValues: 查询指标维度, 不能为空
         # @type MetricDimensionValues: Array
-        # @param Metrics: 指标，并且 key, value 不能为空
+        # @param Metrics: 指标，不能为空
         # @type Metrics: Array
-        # @param Kind: 调用视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @param Kind: 视图视角。可选值：SERVER：服务端, CLIENT：客户端。默认为SERVER
         # @type Kind: String
 
         attr_accessor :StartTime, :EndTime, :MetricDimensionValues, :Metrics, :Kind
@@ -10264,17 +10301,17 @@ module TencentCloud
 
       # DescribeInvocationMetricScatterPlot请求参数结构体
       class DescribeInvocationMetricScatterPlotRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间
+        # @param StartTime: 查询开始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 查询结束时间
+        # @param EndTime: 查询结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
-        # @param Period: 查询时间粒度，单位秒。可选值：60、3600、86400。
+        # @param Period: 查询时间粒度，单位秒。可选值：60、3600、86400
         # @type Period: Integer
-        # @param MetricDimensions: 查询指标维度, 不能为空。可选 NamespaceId, GroupId, InstanceId, OperationName, ServiceName, PeerServiceName, PeerOperationName
+        # @param MetricDimensions: 查询指标维度, 不能为空。Name, Valeu键值对形式。Name可选值 NamespaceId：命名空间ID，GroupId：部署组ID，InstanceId：实例ID，ApplicationId：应用ID，OperationMethod：执行方法，OperationName：执行名称，ServiceName：服务名，UpstreamNamespaceId：上游命名空间ID
         # @type MetricDimensions: Array
-        # @param Metrics: 查询指标名， 不能为空。仅支持 range_count_duratioin 为 key 下的 sum 方法
+        # @param Metrics: 查询指标名， 不能为空。仅支持 range_count_duration（响应耗时分布） 为 key 下的 sum（求和） 方法
         # @type Metrics: Array
-        # @param Kind: 视图视角。可选值：SERVER, CLIENT。默认为SERVER
+        # @param Kind: 视图视角。可选值：SERVER：服务端, CLIENT：客户端。默认为SERVER
         # @type Kind: String
 
         attr_accessor :StartTime, :EndTime, :Period, :MetricDimensions, :Metrics, :Kind
@@ -10338,9 +10375,11 @@ module TencentCloud
 
       # DescribeJvmMonitor请求参数结构体
       class DescribeJvmMonitorRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 查询的实例Id
+        # @param InstanceId: 查询的实例ID
+        # 可通过调用[DescribeClusterInstances](https://cloud.tencent.com/document/product/649/36048)查询已导入的实例列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=instance)进行查询。实例ID例如：ins-6decplwk
         # @type InstanceId: String
-        # @param ApplicationId: 实例所属应用Id
+        # @param ApplicationId: 实例所属应用ID
+        # 可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已经存在的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)查看。应用ID例如：application-v378ewna
         # @type ApplicationId: String
         # @param TimeGranularity: 时间粒度,单位:秒
         # @type TimeGranularity: Integer
@@ -10348,7 +10387,8 @@ module TencentCloud
         # @type From: String
         # @param To: 查询数据结束时间格式(yyyy-MM-dd HH:mm:ss)
         # @type To: String
-        # @param RequiredPictures: 查询的监控图列表,以返回值属性名作为入参
+        # @param RequiredPictures: 查询的监控图列表，以返回值属性名作为入参，可选值：
+        # heapMemory：堆内存监控图；nonHeapMemory：非堆内存监控图；edenSpace：伊甸区监控图；survivorSpace：幸存者区监控图；oldSpace：老年代监控图；metaSpace：元空间监控图；youngGC：youngGC增量监控图；fullGC：fullGC增量监控图；cpuUsage：cpu使用率监控图；classCount：加载类数监控图；threadPicture：线程图
         # @type RequiredPictures: Array
         # @param Tag: 扩展字段
         # @type Tag: String
@@ -10831,14 +10871,15 @@ module TencentCloud
       # DescribeOverviewInvocation请求参数结构体
       class DescribeOverviewInvocationRequest < TencentCloud::Common::AbstractModel
         # @param NamespaceId: 命名空间ID， 此参数必填
+        # 可通过[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已经创建的命名空间，也可以通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)查看
         # @type NamespaceId: String
-        # @param Type: 监控统计类型，必填，可选值：SumReqAmount、AvgFailureRate、AvgTimeCost，分别对应请求量、请求错误率、平均响应耗时
+        # @param Type: 监控统计类型，必填，取值范围 SumReqAmount：请求量，AvgFailureRate：请求错误率，AvgTimeCost：平均响应耗时
         # @type Type: String
         # @param Period: 监控统计数据粒度，可选值：60、3600、86400，分别对应1分钟、1小时、1天
         # @type Period: Integer
-        # @param StartTime: 查询开始时间，默认为当天的 00:00:00
+        # @param StartTime: 查询开始时间，格式为yyyy-MM-dd HH:mm:ss，默认为当天的 00:00:00
         # @type StartTime: String
-        # @param EndTime: 查询结束时间，默认为当前时间
+        # @param EndTime: 查询结束时间，格式为yyyy-MM-dd HH:mm:ss，默认为当前时间
         # @type EndTime: String
 
         attr_accessor :NamespaceId, :Type, :Period, :StartTime, :EndTime
@@ -11109,17 +11150,17 @@ module TencentCloud
 
       # DescribePodInstances请求参数结构体
       class DescribePodInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 实例所属groupId
+        # @param GroupId: 实例所属部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。部署组所在集群必须是活跃状态的。
         # @type GroupId: String
         # @param Offset: 偏移量，取值从0开始
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~50
         # @type Limit: Integer
-        # @param PodNameList: 过滤字段
+        # @param PodNameList: 用于通过PodName字段过滤返回结果。
         # @type PodNameList: Array
-        # @param DeployVersion: 新老版本pod批次标识
+        # @param DeployVersion: 新老版本pod批次标识，old表示老版本，new表示新版本。
         # @type DeployVersion: String
-        # @param TaskId: 任务ID
+        # @param TaskId: 实例所属任务ID，登录控制台进行查看。
         # @type TaskId: String
 
         attr_accessor :GroupId, :Offset, :Limit, :PodNameList, :DeployVersion, :TaskId
@@ -11856,7 +11897,7 @@ module TencentCloud
 
       # DescribeResourceTaskStatus请求参数结构体
       class DescribeResourceTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 容器实例任务ID，可通过调用 ListContainerTask 查询已创建的变更记录总数或登录控制台进行查看。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -11895,13 +11936,16 @@ module TencentCloud
 
       # DescribeSimpleApplications请求参数结构体
       class DescribeSimpleApplicationsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationIdList: 应用ID列表
+        # @param ApplicationIdList: 应用ID列表，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationIdList: Array
-        # @param ApplicationType: 应用类型
+        # @param ApplicationType: 指定应用类型，目前支持：
+        # - `V`：普通应用/CVM应用
+        # - `C`：容器应用
+        # - `S`：serverless 应用
         # @type ApplicationType: String
-        # @param Limit: 每页条数
+        # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
-        # @param Offset: 起始偏移量
+        # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Offset: Integer
         # @param MicroserviceType: 微服务类型
         # @type MicroserviceType: String
@@ -11909,7 +11953,7 @@ module TencentCloud
         # @type ApplicationResourceTypeList: Array
         # @param SearchWord: 通过id和name进行关键词过滤
         # @type SearchWord: String
-        # @param DisableProgramAuthCheck: 无
+        # @param DisableProgramAuthCheck: 是否关闭鉴权查询
         # @type DisableProgramAuthCheck: Boolean
         # @param MicroserviceTypeList: 查询指定微服务类型的应用列表
         # @type MicroserviceTypeList: Array
@@ -12096,25 +12140,25 @@ module TencentCloud
 
       # DescribeSimpleNamespaces请求参数结构体
       class DescribeSimpleNamespacesRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceIdList: 命名空间ID列表，不传入时查询全量
+        # @param NamespaceIdList: 命名空间ID列表，按照【命名空间ID列表】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceIdList: Array
-        # @param ClusterId: 集群ID，不传入时查询全量
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
-        # @param Limit: 每页条数
+        # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
-        # @param Offset: 起始偏移量
+        # @param Offset: 偏移量，默认为0。关于Offset详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Offset: Integer
-        # @param NamespaceId: 命名空间ID，不传入时查询全量
+        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
         # @param NamespaceResourceTypeList: 查询资源类型列表
         # @type NamespaceResourceTypeList: Array
         # @param SearchWord: 通过id和name进行过滤
         # @type SearchWord: String
-        # @param NamespaceTypeList: 查询的命名空间类型列表
+        # @param NamespaceTypeList: 查询的命名空间类型列表。DEF：默认普通命名空间。GLOBAL：全局命名空间。
         # @type NamespaceTypeList: Array
         # @param NamespaceName: 通过命名空间名精确过滤
         # @type NamespaceName: String
-        # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认命名空间。1：非默认命名空间
+        # @param IsDefault: 通过是否是默认命名空间过滤，不传表示拉取全部命名空间。0：默认命名空间。1：非默认命名空间。
         # @type IsDefault: String
         # @param DisableProgramAuthCheck: 是否关闭鉴权查询
         # @type DisableProgramAuthCheck: Boolean
@@ -12175,15 +12219,16 @@ module TencentCloud
 
       # DescribeStatistics请求参数结构体
       class DescribeStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 类型：Interface、Service、Group、Instance、SQL、NoSQL
+        # @param Type: 统计类型。可选值 Interface：接口类型、Service：服务类型、Group：部署组类型、Instance：实例类型、SQL：SQL类型、NoSQL：NoSQL类型
         # @type Type: String
-        # @param TimeStep: 步长，单位s：60、3600、86400
+        # @param TimeStep: 步长，单位秒。可选值 60、3600、86400
         # @type TimeStep: Integer
         # @param Offset: 偏移量，取值范围大于等于0，默认值为0
         # @type Offset: Integer
         # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
         # @type Limit: Integer
-        # @param NamespaceId: 命名空间Id,此字段，和 NamespaceIdList 或者 MetricDimensionValues 字段包含 namespaceId 维度信息。三者选其一。
+        # @param NamespaceId: 命名空间ID。此字段，和 NamespaceIdList 或者 MetricDimensionValues 字段包含 namespaceId 维度信息。三者选其一。
+        # 可通过[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已经创建的命名空间，也可以通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)查看
         # @type NamespaceId: String
         # @param OrderBy: 排序字段:AvgTimeConsuming[默认]、RequestCount、ErrorRate。实例监控还支持 CpuPercent
         # @type OrderBy: String
@@ -12197,15 +12242,16 @@ module TencentCloud
         # @type ServiceName: String
         # @param SearchWord: 搜索关键词
         # @type SearchWord: String
-        # @param MetricDimensionValues: 维度
+        # @param MetricDimensionValues: 维度。此字段，和 NamespaceIdList 或者 MetricDimensionValues 字段包含 namespaceId 维度信息。三者选其一
         # @type MetricDimensionValues: Array
         # @param BucketKey: 聚合关键词
         # @type BucketKey: String
-        # @param DbName: 数据库
+        # @param DbName: 数据库名称
         # @type DbName: String
-        # @param NamespaceIdList: 命名空间id数组
+        # @param NamespaceIdList: 命名空间ID数组。此字段，和 NamespaceIdList 或者 MetricDimensionValues 字段包含 namespaceId 维度信息。三者选其一
         # @type NamespaceIdList: Array
-        # @param ConfigCenterInstanceId: 独占配置中心的ID
+        # @param ConfigCenterInstanceId: 独占配置中心的ID。
+        # 可通过调用[DescribeClusterInstances](https://cloud.tencent.com/document/product/649/36048)查询已导入的实例列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=instance)进行查询。实例ID例如：ins-6decplwk。
         # @type ConfigCenterInstanceId: String
 
         attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList, :ConfigCenterInstanceId
@@ -12371,13 +12417,13 @@ module TencentCloud
         # @type SearchWord: String
         # @param TaskState: 任务启用状态。一共2种状态可选，ENABLED：启用，DISABLED：停用
         # @type TaskState: String
-        # @param GroupId: 部署组ID。前往应用管理 - 应用部署，部署组列表页面获取部署组ID。
+        # @param GroupId: 部署组ID。前往[应用管理](https://console.cloud.tencent.com/tsf/app?rid=1)点击应用ID进入应用部署列表页面获取部署组ID。
         # @type GroupId: String
         # @param TaskType: 任务类型。当前只支持一种任务类型。枚举值，java：Java类任务
         # @type TaskType: String
         # @param ExecuteType: 任务执行方式，unicast：随机单节点执行，broadcast：广播执行，shard：分片执行
         # @type ExecuteType: String
-        # @param Ids: 任务ID列表。
+        # @param Ids: 任务ID列表。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列查看任务ID。
         # @type Ids: Array
 
         attr_accessor :Offset, :Limit, :SearchWord, :TaskState, :GroupId, :TaskType, :ExecuteType, :Ids
@@ -12853,7 +12899,7 @@ module TencentCloud
 
       # DisableTaskFlow请求参数结构体
       class DisableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
+        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -12889,7 +12935,7 @@ module TencentCloud
 
       # DisableTask请求参数结构体
       class DisableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页第一列或是任务基本信息页查看任务ID。
+        # @param TaskId: 任务ID。[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -12998,8 +13044,10 @@ module TencentCloud
       # DisassociateBusinessLogConfig请求参数结构体
       class DisassociateBusinessLogConfigRequest < TencentCloud::Common::AbstractModel
         # @param ConfigIdList: 业务日志配置项ID列表
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigIdList: Array
-        # @param GroupId: TSF分组ID
+        # @param GroupId: 部署组ID
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupId: String
 
         attr_accessor :ConfigIdList, :GroupId
@@ -13017,7 +13065,7 @@ module TencentCloud
 
       # DisassociateBusinessLogConfig返回参数结构体
       class DisassociateBusinessLogConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作结果
+        # @param Result: 操作结果，true：成功，false：失败。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13037,9 +13085,11 @@ module TencentCloud
 
       # DisassociateKafkaConfig请求参数结构体
       class DisassociateKafkaConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置项id
+        # @param ConfigId: 日志配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigId: String
-        # @param GroupIds: 部署组id
+        # @param GroupIds: 部署组ID列表
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupIds: Array
 
         attr_accessor :ConfigId, :GroupIds
@@ -13057,7 +13107,7 @@ module TencentCloud
 
       # DisassociateKafkaConfig返回参数结构体
       class DisassociateKafkaConfigResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 解除绑定是否成功
+        # @param Result: 解除绑定是否成功，true：成功，false：失败。
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13179,7 +13229,7 @@ module TencentCloud
 
       # EnableTaskFlow请求参数结构体
       class EnableTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
+        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -13215,7 +13265,7 @@ module TencentCloud
 
       # EnableTask请求参数结构体
       class EnableTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在任务管理列表页面和任务基本信息页可以查看任务ID。
+        # @param TaskId: 任务ID。[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -13351,17 +13401,17 @@ module TencentCloud
 
       # 独占实例
       class ExclusiveInstance < TencentCloud::Common::AbstractModel
-        # @param CenterType: 配置中心类型[Registration、Configuration]
+        # @param CenterType: 配置中心类型[注册中心Registration、配置中心Configuration]
         # @type CenterType: String
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例id，通过北极星控制台获取
         # @type InstanceId: String
-        # @param InstanceType: 实例类型[Polaris]
+        # @param InstanceType: 实例类型，例如北极星Polaris
         # @type InstanceType: String
         # @param InstanceName: 实例名称
         # @type InstanceName: String
-        # @param RegionId: 实例地域id
+        # @param RegionId: 实例地域id，通过北极星控制台获取
         # @type RegionId: String
-        # @param InstanceNamespaceId: 实例命名空间ID
+        # @param InstanceNamespaceId: 实例命名空间ID，通过北极星控制台获取
         # @type InstanceNamespaceId: String
 
         attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId
@@ -13387,7 +13437,7 @@ module TencentCloud
 
       # ExecuteTaskFlow请求参数结构体
       class ExecuteTaskFlowRequest < TencentCloud::Common::AbstractModel
-        # @param FlowId: 工作流 ID。前往工作流管理，在工作流列表第一列和工作流详情页查看工作流ID。
+        # @param FlowId: 工作流 ID。[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)列表页查看工作流ID。
         # @type FlowId: String
 
         attr_accessor :FlowId
@@ -13423,7 +13473,7 @@ module TencentCloud
 
       # ExecuteTask请求参数结构体
       class ExecuteTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在任务管理列表页面第一列或是任务基本信息页查看任务ID。
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -13459,9 +13509,9 @@ module TencentCloud
 
       # ExpandGroup请求参数结构体
       class ExpandGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
         # @type GroupId: String
-        # @param InstanceIdList: 扩容的机器实例ID列表
+        # @param InstanceIdList: 扩容的机器实例ID列表，调用[DescribeClusters](https://console.cloud.tencent.com/tsf/resource?rid=1)接口，选定一个虚拟机集群，选择部署组，选择应用扩容可获取实例列表
         # @type InstanceIdList: Array
 
         attr_accessor :GroupId, :InstanceIdList
@@ -14211,19 +14261,21 @@ module TencentCloud
 
       # 日志投递kafka用，描述部署组信息
       class GroupInfo < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组id
+        # @param GroupId: 部署组ID
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看。
         # @type GroupId: String
         # @param GroupName: 部署组名称
         # @type GroupName: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，C：容器集群，V：虚拟机集群
         # @type ClusterType: String
-        # @param ClusterId: 集群id
+        # @param ClusterId: 集群ID
+        # 可通过[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已经创建的集群列表，也可以通过登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1)查看。
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
-        # @param AssociateTime: 绑定时间
+        # @param AssociateTime: 绑定时间，格式yyyy-MM-dd HH:mm:ss
         # @type AssociateTime: String
 
         attr_accessor :GroupId, :GroupName, :ClusterType, :ClusterId, :ClusterName, :NamespaceName, :AssociateTime
@@ -14267,13 +14319,13 @@ module TencentCloud
         # @type RestartCount: Integer
         # @param ReadyCount: 实例中已就绪容器的个数
         # @type ReadyCount: Integer
-        # @param Runtime: 运行时长
+        # @param Runtime: 运行时长，单位秒
         # @type Runtime: String
-        # @param CreatedAt: 实例启动时间
+        # @param CreatedAt: 实例启动时的时间戳
         # @type CreatedAt: String
-        # @param ServiceInstanceStatus: 服务实例状态
+        # @param ServiceInstanceStatus: 服务实例状态，枚举值为Starting/Running/Stopping/Stopped/StopFailed/Abnormal/Unknown
         # @type ServiceInstanceStatus: String
-        # @param InstanceAvailableStatus: 机器实例可使用状态
+        # @param InstanceAvailableStatus: 机器实例可使用状态，枚举值为Starting/Running/Stopping/Stopped/StopFailed/Abnormal/Unknown
         # @type InstanceAvailableStatus: String
         # @param InstanceStatus: 机器实例状态
         # @type InstanceStatus: String
@@ -14585,13 +14637,13 @@ module TencentCloud
         # @param ActionType: 健康检查方法。HTTP：通过 HTTP 接口检查；CMD：通过执行命令检查；TCP：通过建立 TCP 连接检查。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ActionType: String
-        # @param InitialDelaySeconds: 容器延时启动健康检查的时间。
+        # @param InitialDelaySeconds: 容器延时启动健康检查的时间，单位秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitialDelaySeconds: Integer
-        # @param TimeoutSeconds: 每次健康检查响应的最大超时时间。
+        # @param TimeoutSeconds: 每次健康检查响应的最大超时时间，单位秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeoutSeconds: Integer
-        # @param PeriodSeconds: 进行健康检查的时间间隔。
+        # @param PeriodSeconds: 进行健康检查的时间间隔，单位秒。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PeriodSeconds: Integer
         # @param SuccessThreshold: 表示后端容器从失败到成功的连续健康检查成功次数。
@@ -15220,13 +15272,13 @@ module TencentCloud
         # @type ApplicationId: String
         # @param ApplicationName: 应用名称
         # @type ApplicationName: String
-        # @param ApplicationType: 应用类型
+        # @param ApplicationType: 应用类型，C表示容器应用，V表示虚拟机应用
         # @type ApplicationType: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，C表示容器集群，V表示虚拟机集群
         # @type ClusterType: String
         # @param NamespaceId: 命名空间ID
         # @type NamespaceId: String
@@ -16067,7 +16119,7 @@ module TencentCloud
       class Metric < TencentCloud::Common::AbstractModel
         # @param Name: 指标名称
         # @type Name: String
-        # @param Function: 指标计算方式
+        # @param Function: 指标计算方式，可选值： none：无，sum：求和，exclusive：独占值，avg：平均值，max：最大值，min：最小值，percentage_50：50分位数，percentage_75：75分位数，percentage_95：95分位数，percentage_99：99分位数，bucket_5：分桶统计。
         # @type Function: String
 
         attr_accessor :Name, :Function
@@ -16231,7 +16283,7 @@ module TencentCloud
         end
       end
 
-      # 指标维度多值匹配
+      # 指标维度多值匹配。可选值 NamespaceId：命名空间ID，GroupId：部署组ID，InstanceId：实例ID，ApplicationId：应用ID，OperationMethod：执行方法，OperationName：执行名称，ServiceName：服务名，UpstreamNamespaceId：上游命名空间ID
       class MetricDimensionValue < TencentCloud::Common::AbstractModel
         # @param Name: 维度名
         # @type Name: String
@@ -16315,11 +16367,11 @@ module TencentCloud
         # @type ApplicationRemarkName: String
         # @param ServiceConfigList: 服务配置信息列表
         # @type ServiceConfigList: Array
-        # @param MicroserviceType: 应用的微服务类型
+        # @param MicroserviceType: 应用的微服务类型，N表示普通应用，M表示Mesh应用，G表示网关应用，NATIVE表示原生应用，RAW表示裸应用
         # @type MicroserviceType: String
         # @param ServiceGovernanceConfig: 注册配置治理信息
         # @type ServiceGovernanceConfig: :class:`Tencentcloud::Tsf.v20180326.models.ServiceGovernanceConfig`
-        # @param FrameworkType: 应用开发框架
+        # @param FrameworkType: 应用开发框架，SpringCloud表示SpringCloud应用，Dubbo表示Dubbo应用，Go-GRPC表示Go-GRPC应用，Other表示其他应用
         # @type FrameworkType: String
 
         attr_accessor :ApplicationId, :ApplicationName, :ApplicationDesc, :ApplicationRemarkName, :ServiceConfigList, :MicroserviceType, :ServiceGovernanceConfig, :FrameworkType
@@ -16359,8 +16411,7 @@ module TencentCloud
 
       # ModifyApplication返回参数结构体
       class ModifyApplicationResponse < TencentCloud::Common::AbstractModel
-        # @param Result: true：操作成功
-        # false：操作失败
+        # @param Result: true表示修改成功，false表示修改失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16380,7 +16431,7 @@ module TencentCloud
 
       # ModifyCluster请求参数结构体
       class ModifyClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用DescribeClusters查询已创建的项目列表或登录控制台进行查看；也可以调用CreateCluster创建新的项目。集群ID例如：cls-6a79x94v。
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
@@ -16388,9 +16439,9 @@ module TencentCloud
         # @type ClusterDesc: String
         # @param ClusterRemarkName: 备注名
         # @type ClusterRemarkName: String
-        # @param EnableLogCollection: 是否开启cls日志功能
+        # @param EnableLogCollection: 是否开启cls日志功能，true表示开启，false表示关闭
         # @type EnableLogCollection: Boolean
-        # @param RepairLog: 是否修复cls日志功能
+        # @param RepairLog: 是否修复cls日志功能，true表示修复，false表示不修复
         # @type RepairLog: Boolean
 
         attr_accessor :ClusterId, :ClusterName, :ClusterDesc, :ClusterRemarkName, :EnableLogCollection, :RepairLog
@@ -16438,7 +16489,7 @@ module TencentCloud
 
       # ModifyContainerGroup请求参数结构体
       class ModifyContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的项目列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的项目。
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param AccessType: 0:公网 1:集群内访问 2：NodePort
         # @type AccessType: Integer
@@ -16448,7 +16499,7 @@ module TencentCloud
         # @type UpdateType: Integer
         # @param UpdateIvl: 更新间隔,单位秒
         # @type UpdateIvl: Integer
-        # @param SubnetId: 子网ID，可通过调用[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)查询已创建的项目列表或登录控制台进行查看；也可以调用[CreateSubnet](https://cloud.tencent.com/document/product/1108/43594)创建新的项目。
+        # @param SubnetId: 子网ID，可通过调用[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)查询已创建的子网列表或登录控制台进行查看；也可以调用[CreateSubnet](https://cloud.tencent.com/document/product/1108/43594)创建新的子网。
         # @type SubnetId: String
         # @param Alias: 部署组备注
         # @type Alias: String
@@ -16507,7 +16558,7 @@ module TencentCloud
 
       # ModifyContainerReplicas请求参数结构体
       class ModifyContainerReplicasRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，部署组唯一标识
+        # @param GroupId: 部署组ID，部署组唯一标识，调用[DescribeClusters](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=docker)接口，选定一个容器集群，选择部署组，查看DescribeSingleContainerGroups接口返回的GroupId
         # @type GroupId: String
         # @param InstanceNum: 实例数量
         # @type InstanceNum: Integer
@@ -16547,7 +16598,7 @@ module TencentCloud
 
       # ModifyGroup请求参数结构体
       class ModifyGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。
         # @type GroupId: String
         # @param GroupName: 部署组名称
         # @type GroupName: String
@@ -16756,13 +16807,13 @@ module TencentCloud
 
       # ModifyNamespace请求参数结构体
       class ModifyNamespaceRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID
+        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用DescribeNamespaces查询已创建的项目列表或登录控制台进行查看；也可以调用CreateNamespace创建新的项目。命名空间ID例如：namespace-6a79x94v。
         # @type NamespaceId: String
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String
         # @param NamespaceDesc: 命名空间备注
         # @type NamespaceDesc: String
-        # @param IsHaEnable: 是否开启高可用
+        # @param IsHaEnable: 是否开启高可用，0表示不开启，1表示开启
         # @type IsHaEnable: String
 
         attr_accessor :NamespaceId, :NamespaceName, :NamespaceDesc, :IsHaEnable
@@ -16915,7 +16966,7 @@ module TencentCloud
 
       # ModifyTask请求参数结构体
       class ModifyTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在任务管理列表页面第一列查看任务ID。
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
         # @param TaskName: 任务名称，长度限制为64字符。在任务管理列表页面第一列或是任务基本信息页查看任务名称。
         # @type TaskName: String
@@ -17424,9 +17475,11 @@ module TencentCloud
 
       # OperateApplicationTcrBinding请求参数结构体
       class OperateApplicationTcrBindingRequest < TencentCloud::Common::AbstractModel
-        # @param Command: bind 或 unbind
+        # @param Command: 指定操作类型，目前支持：
+        # - `bind`：绑定（默认）
+        # - `unbind`：解除绑定
         # @type Command: String
-        # @param ApplicationId: 应用id
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
         # @param TcrRepoInfo: TcrRepoInfo值
         # @type TcrRepoInfo: :class:`Tencentcloud::Tsf.v20180326.models.TcrRepoInfo`
@@ -17815,7 +17868,7 @@ module TencentCloud
       class Ports < TencentCloud::Common::AbstractModel
         # @param TargetPort: 服务端口
         # @type TargetPort: Integer
-        # @param Protocol: 端口协议
+        # @param Protocol: 端口协议，TCP或者UDP
         # @type Protocol: String
 
         attr_accessor :TargetPort, :Protocol
@@ -17882,7 +17935,7 @@ module TencentCloud
 
       # tsf-privilege模块，数据项
       class ProgramItem < TencentCloud::Common::AbstractModel
-        # @param ProgramItemId: 数据项ID
+        # @param ProgramItemId: 数据项ID，调用[DescribePrograms](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program)接口查询已创建的数据集或登陆控制台进行查看；也可以通过调用[CreateProgram](https://cloud.tencent.com/document/api/649/108544)创建新的数据集。
         # @type ProgramItemId: String
         # @param Resource: 资源
         # @type Resource: :class:`Tencentcloud::Tsf.v20180326.models.Resource`
@@ -17890,13 +17943,13 @@ module TencentCloud
         # @type ValueList: Array
         # @param IsAll: 全选标识，true: 全选；false: 非全选
         # @type IsAll: Boolean
-        # @param CreationTime: 创建时间
+        # @param CreationTime: 创建时间，时间戳格式【Long】
         # @type CreationTime: Integer
-        # @param LastUpdateTime: 最后更新时间
+        # @param LastUpdateTime: 最后更新时间，时间戳格式【Long】，单位毫秒
         # @type LastUpdateTime: Integer
         # @param DeleteFlag: 删除标识，true: 可删除；false: 不可删除
         # @type DeleteFlag: Boolean
-        # @param ProgramId: 数据集ID
+        # @param ProgramId: 数据集ID，调用[DescribePrograms](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program)查询接口获取
         # @type ProgramId: String
 
         attr_accessor :ProgramItemId, :Resource, :ValueList, :IsAll, :CreationTime, :LastUpdateTime, :DeleteFlag, :ProgramId
@@ -18062,9 +18115,9 @@ module TencentCloud
 
       # RedoTaskBatch请求参数结构体
       class RedoTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在任务管理列表页面可以查看任务ID。
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
-        # @param BatchId: 任务批次ID。在任务管理页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
+        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
         # @type BatchId: String
 
         attr_accessor :TaskId, :BatchId
@@ -18102,11 +18155,11 @@ module TencentCloud
 
       # RedoTaskExecute请求参数结构体
       class RedoTaskExecuteRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 任务批次ID。在任务管理页面第一列点击任务ID进入任务详情，进入执行记录列表页，第一列内容即为任务批次ID。
+        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面第一列点击任务ID进入任务详情，进入执行记录列表页，第一列内容即为任务批次ID。
         # @type BatchId: String
-        # @param ExecuteId: 任务执行ID。在任务管理页面第一列点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
+        # @param ExecuteId: 任务执行ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面第一列点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
         # @type ExecuteId: String
-        # @param TaskId: 任务ID。在任务管理列表页面可以查看任务ID。
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :BatchId, :ExecuteId, :TaskId
@@ -18146,7 +18199,7 @@ module TencentCloud
 
       # RedoTaskFlowBatch请求参数结构体
       class RedoTaskFlowBatchRequest < TencentCloud::Common::AbstractModel
-        # @param FlowBatchId: 工作流批次 ID。在工作流管理页面，点击第一列的工作流ID进入工作流执行记录列表页面，第一列的内容即为工作流批次ID。
+        # @param FlowBatchId: 工作流批次 ID。在[工作流管理](https://console.cloud.tencent.com/tsf/tct?rid=1&tab=workflowManage)页面，点击第一列的工作流ID进入工作流执行记录列表页面，第一列的内容即为工作流批次ID。
         # @type FlowBatchId: String
 
         attr_accessor :FlowBatchId
@@ -18182,7 +18235,7 @@ module TencentCloud
 
       # RedoTask请求参数结构体
       class RedoTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID。在任务管理列表页面第一列查看任务ID。
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页查看任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -18439,7 +18492,7 @@ module TencentCloud
 
       # RemoveInstances请求参数结构体
       class RemoveInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 ID
+        # @param ClusterId: 集群 ID。调用[DescribeSimpleClusters](https://cloud.tencent.com/document/api/649/36047)查询已创建的集群或通过[CreateCluster](https://cloud.tencent.com/document/api/649/36049)接口创建新的集群。
         # @type ClusterId: String
         # @param InstanceIdList: 云主机 ID 列表
         # @type InstanceIdList: Array
@@ -18554,25 +18607,25 @@ module TencentCloud
 
       # tsf-privilege 模块，资源
       class Resource < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID
+        # @param ResourceId: 资源ID，调用[DescribeResource](https://console.cloud.tencent.com/tsf/privilege-program-create?rid=1)查询接口获取
         # @type ResourceId: String
-        # @param ResourceCode: 资源编码
+        # @param ResourceCode: 资源编码，枚举值描述【cluster、namespace、config】
         # @type ResourceCode: String
         # @param ResourceName: 资源名称
         # @type ResourceName: String
-        # @param ServiceCode: 资源所属产品编码
+        # @param ServiceCode: 资源所属产品编码，枚举值描述【tsf】
         # @type ServiceCode: String
-        # @param ResourceAction: 选取资源使用的Action
+        # @param ResourceAction: 选取资源使用的Action，枚举值描述【DescribeSimpleCluster、DescribeLanes、DescribeTaskRecords】
         # @type ResourceAction: String
-        # @param IdField: 资源数据查询的ID字段名
+        # @param IdField: 资源数据查询的ID字段名，调用[DescribeResource](https://console.cloud.tencent.com/tsf/privilege-program-create?rid=1)查询接口获取
         # @type IdField: String
         # @param NameField: 资源数据查询的名称字段名
         # @type NameField: String
         # @param SelectIdsField: 资源数据查询的ID过滤字段名
         # @type SelectIdsField: String
-        # @param CreationTime: 创建时间
+        # @param CreationTime: 创建时间，时间戳格式【Long】
         # @type CreationTime: Integer
-        # @param LastUpdateTime: 最后更新时间
+        # @param LastUpdateTime: 最后更新时间，时间戳格式【Long】
         # @type LastUpdateTime: Integer
         # @param DeleteFlag: 删除标识
         # @type DeleteFlag: Boolean
@@ -18582,7 +18635,7 @@ module TencentCloud
         # @type CanSelectAll: Boolean
         # @param SearchWordField: 资源数据查询的模糊查询字段名
         # @type SearchWordField: String
-        # @param Index: 排序
+        # @param Index: 排序，枚举值描述【10、20、77】
         # @type Index: Integer
 
         attr_accessor :ResourceId, :ResourceCode, :ResourceName, :ServiceCode, :ResourceAction, :IdField, :NameField, :SelectIdsField, :CreationTime, :LastUpdateTime, :DeleteFlag, :ResourceDesc, :CanSelectAll, :SearchWordField, :Index
@@ -18642,7 +18695,10 @@ module TencentCloud
 
       # 资源任务转态结果
       class ResourceTaskStatusResult < TencentCloud::Common::AbstractModel
-        # @param TaskStatus: 任务的执行状态
+        # @param TaskStatus: 变更状态：
+        # - `0`：成功
+        # - `1`：失败
+        # - `2`：执行中
         # @type TaskStatus: Integer
 
         attr_accessor :TaskStatus
@@ -18957,12 +19013,13 @@ module TencentCloud
       # SearchBusinessLog请求参数结构体
       class SearchBusinessLogRequest < TencentCloud::Common::AbstractModel
         # @param ConfigId: 日志配置项ID
+        # 可通过调用[DescribeBusinessLogConfigs](https://cloud.tencent.com/document/product/649/75777)查询已创建的日志配置项列表或登录[控制台](https://console.cloud.tencent.com/tsf/observable/log?rid=1)进行查看
         # @type ConfigId: String
         # @param InstanceIds: 机器实例ID，不传表示全部实例
         # @type InstanceIds: Array
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
         # @param Offset: 请求偏移量，取值范围大于等于0，默认值为0
         # @type Offset: Integer
@@ -18975,10 +19032,11 @@ module TencentCloud
         # @param SearchWords: 检索关键词
         # @type SearchWords: Array
         # @param GroupIds: 部署组ID列表，不传表示全部部署组
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupIds: Array
-        # @param SearchWordType: 检索类型，取值"LUCENE", "REGEXP", "NORMAL"
+        # @param SearchWordType: 检索类型，取值 LUCENE：Lucene检索，REGEXP：正则检索，NORMAL：普通检索
         # @type SearchWordType: String
-        # @param BatchType: 批量请求类型，取值"page"或"scroll"
+        # @param BatchType: 批量请求类型，取值 PAGE：分页查询，SCROLL：滚动查询，SEARCHAFTER：游标查询，默认值PAGE
         # @type BatchType: String
         # @param ScrollId: 游标ID
         # @type ScrollId: String
@@ -19047,31 +19105,32 @@ module TencentCloud
 
       # SearchStdoutLog请求参数结构体
       class SearchStdoutLogRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 机器实例ID， 和  实例 ID 二者必选其一，不能同时为空
+        # @param InstanceId: 机器实例ID， 和 部署组 ID 二者必选其一，不能同时为空
+        # 可通过调用[DescribeClusterInstances](https://cloud.tencent.com/document/product/649/36048)查询已导入的实例列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=instance)进行查询。实例ID例如：ins-6decplwk
+
+
         # @type InstanceId: String
         # @param Limit: 单页请求配置数量，取值范围[1, 500]，默认值为100
         # @type Limit: Integer
         # @param SearchWords: 检索关键词
         # @type SearchWords: Array
-        # @param StartTime: 查询起始时间
+        # @param StartTime: 查询起始时间，格式yyyy-MM-dd HH:mm:ss
         # @type StartTime: String
         # @param GroupId: 部署组ID，和 InstanceId 二者必选其一，不能同时为空
+        # 可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)或[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-yo7kp9dv&tab=publish&subTab=group)进行查看
         # @type GroupId: String
-        # @param EndTime: 查询结束时间
+        # @param EndTime: 查询结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
         # @param Offset: 请求偏移量，取值范围大于等于0，默认值为
         # 0
         # @type Offset: Integer
-        # @param OrderBy: 排序规则，默认值"time"
+        # @param OrderBy: 排序规则，time：按时间排序，score：按检索值排序，默认值"time"
         # @type OrderBy: String
-        # @param OrderType: 排序方式，取值"asc"或"desc"，默认
-        # 值"desc"
+        # @param OrderType: 排序方式，取值 asc：升序 或 desc：降序，默认值desc
         # @type OrderType: String
-        # @param SearchWordType: 检索类型，取值"LUCENE", "REGEXP",
-        # "NORMAL"
+        # @param SearchWordType: 检索类型，取值 LUCENE：Lucene检索，REGEXP：正则检索，NORMAL：普通检索
         # @type SearchWordType: String
-        # @param BatchType: 批量请求类型，取值"page"或"scroll"，默认
-        # 值"page"
+        # @param BatchType: 批量请求类型，取值 PAGE：分页查询，SCROLL：滚动查询，SEARCHAFTER：游标查询，默认值PAGE
         # @type BatchType: String
         # @param ScrollId: 游标ID
         # @type ScrollId: String
@@ -19174,7 +19233,7 @@ module TencentCloud
       class ServiceGovernanceConfig < TencentCloud::Common::AbstractModel
         # @param EnableGovernance: 是否开启服务注册治理
         # @type EnableGovernance: Boolean
-        # @param GovernanceType: 服务治理类型（枚举：SHARE、EXCLUSIVE）
+        # @param GovernanceType: 服务治理类型（枚举：SHARE表示共享型、EXCLUSIVE表示独占型）
         # @type GovernanceType: String
         # @param ExclusiveInstances: 独享实例列表
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -19228,7 +19287,7 @@ module TencentCloud
         # @type ExternalTrafficPolicy: String
         # @param LoadBalancerProvisioner: 负载均衡提供者
         # @type LoadBalancerProvisioner: String
-        # @param LoadBalancingType: 负载均衡类型
+        # @param LoadBalancingType: 负载均衡类型，Intranet表示内网，Internet表示外网
         # @type LoadBalancingType: String
         # @param ClusterIp: k8s负载均衡内网vip
         # @type ClusterIp: String
@@ -19315,7 +19374,7 @@ module TencentCloud
         # @type Path: String
         # @param Method: 请求方法:type为接口时返回，服务时不返回
         # @type Method: String
-        # @param MicroserviceId: 微服务Id
+        # @param MicroserviceId: 微服务ID
         # @type MicroserviceId: String
         # @param MicroserviceName: 微服务名称
         # @type MicroserviceName: String
@@ -19331,19 +19390,19 @@ module TencentCloud
         # @type InstanceId: String
         # @param InstanceName: 实例name
         # @type InstanceName: String
-        # @param GroupId: 部署组id
+        # @param GroupId: 部署组ID
         # @type GroupId: String
         # @param GroupName: 部署组name
         # @type GroupName: String
-        # @param ClusterType: 部署组类型
+        # @param ClusterType: 集群类型，C：容器集群，V：虚拟机集群
         # @type ClusterType: String
         # @param GroupExist: 部署组是否存在
         # @type GroupExist: Integer
         # @param InstanceExist: 实例是否存在，仅限cvm
         # @type InstanceExist: Integer
-        # @param ApplicationId: 应用id
+        # @param ApplicationId: 应用ID
         # @type ApplicationId: String
-        # @param MicroserviceType: 微服务类型
+        # @param MicroserviceType: 微服务类型。RAW：裸应用，M：mesh应用，N：普通应用，G：网关应用
         # @type MicroserviceType: String
         # @param CpuPercent: cpu使用率
         # @type CpuPercent: Integer
@@ -19363,13 +19422,13 @@ module TencentCloud
         # @type InstanceOnlineCount: Integer
         # @param InstanceTotalCount: 实例总数
         # @type InstanceTotalCount: Integer
-        # @param Status: normal/error
+        # @param Status: 状态。normal：正常，warn：警告，error：错误
         # @type Status: String
-        # @param ErrorRateLevel: normal/warn/error
+        # @param ErrorRateLevel: 请求错误率等级。normal：正常，warn：警告，error：错误
         # @type ErrorRateLevel: String
-        # @param AvgTimeConsumingLevel: normal/warn/error
+        # @param AvgTimeConsumingLevel: 请求平均耗时等级。normal：正常，warn：警告，error：错误
         # @type AvgTimeConsumingLevel: String
-        # @param ApdexLevel: normal/warn/error
+        # @param ApdexLevel: 应用程序性能指数等级。normal：正常，warn：警告，error：错误
         # @type ApdexLevel: String
 
         attr_accessor :Path, :Method, :MicroserviceId, :MicroserviceName, :RequestCount, :ErrorRate, :AvgTimeConsuming, :MetricDataCurves, :InstanceId, :InstanceName, :GroupId, :GroupName, :ClusterType, :GroupExist, :InstanceExist, :ApplicationId, :MicroserviceType, :CpuPercent, :HeapUsed, :DbName, :Script, :DbType, :Apdex, :Qps, :InstanceOnlineCount, :InstanceTotalCount, :Status, :ErrorRateLevel, :AvgTimeConsumingLevel, :ApdexLevel
@@ -19498,7 +19557,7 @@ module TencentCloud
 
       # ShrinkGroup请求参数结构体
       class ShrinkGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeGroups](https://cloud.tencent.com/document/api/649/36065)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/api/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -19730,7 +19789,7 @@ module TencentCloud
 
       # StartContainerGroup请求参数结构体
       class StartContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -19811,7 +19870,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Content: 日志内容
         # @type Content: String
-        # @param Timestamp: 日志时间戳
+        # @param Timestamp: 日志时间戳，单位毫秒
         # @type Timestamp: Integer
         # @param InstanceIp: 实例IP
         # @type InstanceIp: String
@@ -19835,7 +19894,7 @@ module TencentCloud
 
       # StopContainerGroup请求参数结构体
       class StopContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -19912,9 +19971,9 @@ module TencentCloud
 
       # StopTaskBatch请求参数结构体
       class StopTaskBatchRequest < TencentCloud::Common::AbstractModel
-        # @param BatchId: 批次ID
+        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
         # @type BatchId: String
-        # @param TaskId: 参数ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页面可以查看任务ID。
         # @type TaskId: String
 
         attr_accessor :BatchId, :TaskId
@@ -19932,7 +19991,7 @@ module TencentCloud
 
       # StopTaskBatch返回参数结构体
       class StopTaskBatchResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功 or 失败
+        # @param Result: 返回 true 或 false。true：操作成功，false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19952,11 +20011,11 @@ module TencentCloud
 
       # StopTaskExecute请求参数结构体
       class StopTaskExecuteRequest < TencentCloud::Common::AbstractModel
-        # @param ExecuteId: 任务执行ID
+        # @param ExecuteId: 任务执行ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录页，点击批次ID进入执行详情列表页，第一列即为任务执行ID。
         # @type ExecuteId: String
-        # @param BatchId: 任务批次ID
+        # @param BatchId: 任务批次ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)页面点击任务ID进入任务详情，进入执行记录列表页，第一列即为任务批次ID。
         # @type BatchId: String
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务ID。在[任务管理](https://console.cloud.tencent.com/tsf/tct?rid=1)列表页面可以查看任务ID。
         # @type TaskId: String
 
         attr_accessor :ExecuteId, :BatchId, :TaskId
@@ -19976,7 +20035,7 @@ module TencentCloud
 
       # StopTaskExecute返回参数结构体
       class StopTaskExecuteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作成功 or 失败
+        # @param Result: 返回 true 或 false。true：操作成功，false：操作失败
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -20655,7 +20714,7 @@ module TencentCloud
         # @param ScrollId: 游标ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScrollId: String
-        # @param Status: 查询状态
+        # @param Status: 查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SearchAfter: 查询es时，使用searchAfter返回的游标
@@ -21187,10 +21246,10 @@ module TencentCloud
         # @param ScrollId: 游标ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScrollId: String
-        # @param Status: 查询状态
+        # @param Status: 查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param SearchAfter: 游标ID
+        # @param SearchAfter: 查询es使用searchAfter时，游标
         # @type SearchAfter: Array
 
         attr_accessor :TotalCount, :Content, :ScrollId, :Status, :SearchAfter
@@ -21893,7 +21952,7 @@ module TencentCloud
 
       # UpdateHealthCheckSettings请求参数结构体
       class UpdateHealthCheckSettingsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param EnableHealthCheck: 是否开启健康检查
         # @type EnableHealthCheck: Boolean
@@ -22315,7 +22374,7 @@ module TencentCloud
         # @type RunInstanceCount: Integer
         # @param OffInstanceCount: 部署组中停止实例数
         # @type OffInstanceCount: Integer
-        # @param GroupStatus: 部署组状态
+        # @param GroupStatus: 部署组状态，Running运行中，Waiting等待中，Paused暂停中，Updating更新中，RollingBack回滚中，Abnormal异常，Unknown未知
         # @type GroupStatus: String
         # @param IsNotEqualServiceConfig: 服务配置信息是否匹配
         # @type IsNotEqualServiceConfig: Boolean
@@ -22456,6 +22515,30 @@ module TencentCloud
         end
       end
 
+      # VolumeClaim模板项
+      class VolumeClaimTemplatesOption < TencentCloud::Common::AbstractModel
+        # @param StorageClass: StorageClass名称
+        # @type StorageClass: String
+        # @param AccessModes: 访问模式
+        # @type AccessModes: Array
+        # @param StorageRequest: 卷空间的预占声明
+        # @type StorageRequest: Integer
+
+        attr_accessor :StorageClass, :AccessModes, :StorageRequest
+
+        def initialize(storageclass=nil, accessmodes=nil, storagerequest=nil)
+          @StorageClass = storageclass
+          @AccessModes = accessmodes
+          @StorageRequest = storagerequest
+        end
+
+        def deserialize(params)
+          @StorageClass = params['StorageClass']
+          @AccessModes = params['AccessModes']
+          @StorageRequest = params['StorageRequest']
+        end
+      end
+
       # 容器卷挂载信息
       class VolumeInfo < TencentCloud::Common::AbstractModel
         # @param VolumeType: 数据卷类型
@@ -22468,15 +22551,18 @@ module TencentCloud
         # @type ConfigMapOptions: Array
         # @param EmptyDirOption: -
         # @type EmptyDirOption: :class:`Tencentcloud::Tsf.v20180326.models.EmptyDirOption`
+        # @param VolumeClaimTemplateOption: 数据卷PVC声明模板
+        # @type VolumeClaimTemplateOption: :class:`Tencentcloud::Tsf.v20180326.models.VolumeClaimTemplatesOption`
 
-        attr_accessor :VolumeType, :VolumeName, :VolumeConfig, :ConfigMapOptions, :EmptyDirOption
+        attr_accessor :VolumeType, :VolumeName, :VolumeConfig, :ConfigMapOptions, :EmptyDirOption, :VolumeClaimTemplateOption
 
-        def initialize(volumetype=nil, volumename=nil, volumeconfig=nil, configmapoptions=nil, emptydiroption=nil)
+        def initialize(volumetype=nil, volumename=nil, volumeconfig=nil, configmapoptions=nil, emptydiroption=nil, volumeclaimtemplateoption=nil)
           @VolumeType = volumetype
           @VolumeName = volumename
           @VolumeConfig = volumeconfig
           @ConfigMapOptions = configmapoptions
           @EmptyDirOption = emptydiroption
+          @VolumeClaimTemplateOption = volumeclaimtemplateoption
         end
 
         def deserialize(params)
@@ -22494,6 +22580,10 @@ module TencentCloud
           unless params['EmptyDirOption'].nil?
             @EmptyDirOption = EmptyDirOption.new
             @EmptyDirOption.deserialize(params['EmptyDirOption'])
+          end
+          unless params['VolumeClaimTemplateOption'].nil?
+            @VolumeClaimTemplateOption = VolumeClaimTemplatesOption.new
+            @VolumeClaimTemplateOption.deserialize(params['VolumeClaimTemplateOption'])
           end
         end
       end
@@ -22530,7 +22620,7 @@ module TencentCloud
       class WarmupSetting < TencentCloud::Common::AbstractModel
         # @param Enabled: 是否开启预热
         # @type Enabled: Boolean
-        # @param WarmupTime: 预热时间
+        # @param WarmupTime: 预热时间，单位秒
         # @type WarmupTime: Integer
         # @param Curvature: 预热曲率，取值 1~5
         # @type Curvature: Integer

@@ -749,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 解除门神规则的状态锁
+
+        # @param request: Request instance for DeleteOwaspRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteOwaspRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteOwaspRuleStatusResponse`
+        def DeleteOwaspRuleStatus(request)
+          body = send_request('DeleteOwaspRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOwaspRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户规则引擎白名单
 
         # @param request: Request instance for DeleteOwaspWhiteRule.
@@ -1863,6 +1887,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeObjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询规则引擎的规则类型列表
+
+        # @param request: Request instance for DescribeOwaspRuleTypes.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeOwaspRuleTypesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeOwaspRuleTypesResponse`
+        def DescribeOwaspRuleTypes(request)
+          body = send_request('DescribeOwaspRuleTypes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOwaspRuleTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询规则引擎的规则列表
+
+        # @param request: Request instance for DescribeOwaspRules.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeOwaspRulesRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeOwaspRulesResponse`
+        def DescribeOwaspRules(request)
+          body = send_request('DescribeOwaspRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOwaspRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3522,6 +3594,102 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyObjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新规则的开关
+
+        # @param request: Request instance for ModifyOwaspRuleStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleStatusResponse`
+        def ModifyOwaspRuleStatus(request)
+          body = send_request('ModifyOwaspRuleStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspRuleStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新规则类型的防护模式
+
+        # @param request: Request instance for ModifyOwaspRuleTypeAction.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeActionRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeActionResponse`
+        def ModifyOwaspRuleTypeAction(request)
+          body = send_request('ModifyOwaspRuleTypeAction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspRuleTypeActionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新规则类型的防护等级
+
+        # @param request: Request instance for ModifyOwaspRuleTypeLevel.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeLevelRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeLevelResponse`
+        def ModifyOwaspRuleTypeLevel(request)
+          body = send_request('ModifyOwaspRuleTypeLevel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspRuleTypeLevelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新规则类型的开关
+
+        # @param request: Request instance for ModifyOwaspRuleTypeStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyOwaspRuleTypeStatusResponse`
+        def ModifyOwaspRuleTypeStatus(request)
+          body = send_request('ModifyOwaspRuleTypeStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyOwaspRuleTypeStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

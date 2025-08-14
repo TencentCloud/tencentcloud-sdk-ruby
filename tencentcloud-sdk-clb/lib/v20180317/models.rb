@@ -1878,7 +1878,7 @@ module TencentCloud
       class CreateTargetGroupRequest < TencentCloud::Common::AbstractModel
         # @param TargetGroupName: 目标组名称，限定50个字符
         # @type TargetGroupName: String
-        # @param VpcId: 目标组的vpcid属性，不填则使用默认vpc
+        # @param VpcId: 目标组的vpcId属性，不填则使用默认vpc。
         # @type VpcId: String
         # @param Port: 目标组的默认端口， 后续添加服务器时可使用该默认端口。全监听目标组不支持此参数，非全监听目标组Port和TargetGroupInstances.N中的port二者必填其一。
         # @type Port: Integer
@@ -1888,14 +1888,15 @@ module TencentCloud
         # @type Type: String
         # @param Protocol: 目标组后端转发协议。v2新版目标组该项必填。目前支持TCP、UDP、HTTP、HTTPS、GRPC。
         # @type Protocol: String
+        # @param HealthCheck: 健康检查。
+        # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.TargetGroupHealthCheck`
+        # @param ScheduleAlgorithm: 调度算法，仅V2新版目标组，且后端转发协议为(HTTP|HTTPS|GRPC)时该参数有效。可选值：
+        # <ur><li>WRR:按权重轮询。</li><li>LEAST_CONN:最小连接数。</li><li>IP_HASH:按IP哈希。</li><li>默认为 WRR。</li><ur>
+        # @type ScheduleAlgorithm: String
         # @param Tags: 标签。
         # @type Tags: Array
-        # @param Weight: 后端服务默认权重。
-        # <ul>
-        #     <li>取值范围[0, 100]</li>
-        #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
-        # </ul>
-        # v1 目标组类型不支持设置 Weight 参数。
+        # @param Weight: 后端服务默认权重, 其中：
+        # <ul><li>取值范围[0, 100]</li><li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li><li>v1 目标组类型不支持设置 Weight 参数。</li></ul>
         # @type Weight: Integer
         # @param FullListenSwitch: 全监听目标组标识，true表示是全监听目标组，false表示不是全监听目标组。仅V2新版类型目标组支持该参数。
         # @type FullListenSwitch: Boolean
@@ -1904,15 +1905,17 @@ module TencentCloud
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。仅V2新版且后端转发协议为HTTP/HTTPS/GRPC目标组支持该参数。
         # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :HealthCheck, :ScheduleAlgorithm, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, tags=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, tags=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
           @TargetGroupInstances = targetgroupinstances
           @Type = type
           @Protocol = protocol
+          @HealthCheck = healthcheck
+          @ScheduleAlgorithm = schedulealgorithm
           @Tags = tags
           @Weight = weight
           @FullListenSwitch = fulllistenswitch
@@ -1934,6 +1937,11 @@ module TencentCloud
           end
           @Type = params['Type']
           @Protocol = params['Protocol']
+          unless params['HealthCheck'].nil?
+            @HealthCheck = TargetGroupHealthCheck.new
+            @HealthCheck.deserialize(params['HealthCheck'])
+          end
+          @ScheduleAlgorithm = params['ScheduleAlgorithm']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -6916,24 +6924,26 @@ module TencentCloud
         # @type TargetGroupName: String
         # @param Port: 目标组的新默认端口。全监听目标组不支持此参数。
         # @type Port: Integer
-        # @param Weight: 后端服务默认权重。
-        # <ul>
-        #     <li>取值范围[0, 100]</li>
-        #     <li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li>
-        # </ul>
-        # v1目标组类型不支持设置Weight参数。
+        # @param ScheduleAlgorithm: 调度算法，仅V2新版目标组，且后端转发协议为(HTTP|HTTPS|GRPC)时该参数有效。可选值：
+        # <ur><li>WRR:按权重轮询。</li><li>LEAST_CONN:最小连接数。</li><li>IP_HASH:按IP哈希。</li><li>默认为 WRR。</li><ur>
+        # @type ScheduleAlgorithm: String
+        # @param HealthCheck: 健康检查详情。
+        # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.TargetGroupHealthCheck`
+        # @param Weight: 后端服务默认权重, 其中：<ul><li>取值范围[0, 100]</li><li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li><li>v1目标组类型不支持设置Weight参数。</li> </ul>
         # @type Weight: Integer
         # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，true:关闭；false:开启， 默认关闭。
         # @type KeepaliveEnable: Boolean
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。
         # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :Weight, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :ScheduleAlgorithm, :HealthCheck, :Weight, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, weight=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, schedulealgorithm=nil, healthcheck=nil, weight=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
           @Port = port
+          @ScheduleAlgorithm = schedulealgorithm
+          @HealthCheck = healthcheck
           @Weight = weight
           @KeepaliveEnable = keepaliveenable
           @SessionExpireTime = sessionexpiretime
@@ -6943,6 +6953,11 @@ module TencentCloud
           @TargetGroupId = params['TargetGroupId']
           @TargetGroupName = params['TargetGroupName']
           @Port = params['Port']
+          @ScheduleAlgorithm = params['ScheduleAlgorithm']
+          unless params['HealthCheck'].nil?
+            @HealthCheck = TargetGroupHealthCheck.new
+            @HealthCheck.deserialize(params['HealthCheck'])
+          end
           @Weight = params['Weight']
           @KeepaliveEnable = params['KeepaliveEnable']
           @SessionExpireTime = params['SessionExpireTime']
@@ -8541,6 +8556,96 @@ module TencentCloud
         end
       end
 
+      # 目标组健康检查详情
+      class TargetGroupHealthCheck < TencentCloud::Common::AbstractModel
+        # @param HealthSwitch: 是否开启健康检查。
+        # @type HealthSwitch: Boolean
+        # @param Protocol: 健康检查方式， 其中仅V2新版目标组类型支持该参数， 支持取值 TCP | HTTP | HTTPS | PING | CUSTOM，其中:
+        # <ur><li>当目标组后端转发协议为TCP时， 健康检查方式支持 TCP/HTTP/CUSTOM， 默认为TCP。</li><li>当目标组后端转发协议为UDP时， 健康检查方式支持 PING/CUSTOM，默认为PING。</li><li>当目标组后端转发协议为HTTP时， 健康检查方式支持 HTTP/TCP， 默认为HTTP。</li><li>当目标组后端转发协议为HTTPS时， 健康检查方式支持 HTTPS/TCP， 默认为HTTPS。</li><li>当目标组后端转发协议为GRPC时， 健康检查方式支持GRPC/TCP， 默认为GRPC。</li></ur>
+        # @type Protocol: String
+        # @param Port: 自定义探测相关参数。健康检查端口，默认为后端服务的端口，除非您希望指定特定端口，否则建议留空。（仅适用于TCP/UDP目标组）。
+        # @type Port: Integer
+        # @param Timeout: 健康检查超时时间。 默认为2秒。 可配置范围：2 - 30秒。
+        # @type Timeout: Integer
+        # @param GapTime: 检测间隔时间。 默认为5秒。 可配置范围：2 - 300秒。
+        # @type GapTime: Integer
+        # @param GoodLimit: 检测健康阈值。 默认为3秒。 可配置范围：2 - 10次。
+        # @type GoodLimit: Integer
+        # @param BadLimit: 检测不健康阈值。 默认为3秒。 可配置范围：2 - 10次。
+        # @type BadLimit: Integer
+        # @param JumboFrame: 目标组下的所有rs的探测包是否开启巨帧。默认开启。仅GWLB类型目标组支持该参数。
+        # @type JumboFrame: Boolean
+        # @param HttpCode: 健康检查状态码（仅适用于HTTP/HTTPS目标组、TCP目标组的HTTP健康检查方式）。可选值：1~31，默认 31，其中：<url> <li>1 表示探测后返回值 1xx 代表健康。</li><li>2 表示返回 2xx 代表健康。</li><li>4 表示返回 3xx 代表健康。</li><li>8 表示返回 4xx 代表健康。</li><li>16 表示返回 5xx 代表健康。</li></url>若希望多种返回码都可代表健康，则将相应的值相加。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpCode: Integer
+        # @param HttpCheckDomain: 健康检查域名， 其中：<ur><li>仅适用于HTTP/HTTPS目标组和TCP目标组的HTTP健康检查方式。</li><li>针对HTTP/HTTPS目标组，当使用HTTP健康检查方式时，该参数为必填项。</li></ur>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpCheckDomain: String
+        # @param HttpCheckPath: 健康检查路径（仅适用于HTTP/HTTPS转发规则、TCP监听器的HTTP健康检查方式）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpCheckPath: String
+        # @param HttpCheckMethod: 健康检查方法（仅适用于HTTP/HTTPS转发规则、TCP监听器的HTTP健康检查方式），默认值：HEAD，可选值HEAD或GET。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpCheckMethod: String
+        # @param ContextType: 健康检查的输入格式，健康检查方式取CUSTOM时，必填此字段，可取值：HEX或TEXT，其中：<ur><li>TEXT：文本格式。</li><li>HEX：十六进制格式， SendContext和RecvContext的字符只能在0123456789ABCDEF中选取且长度必须是偶数位。</li><li>仅适用于TCP/UDP目标组。</li></ur>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContextType: String
+        # @param SendContext: 自定义探测相关参数。健康检查协议CheckType的值取CUSTOM时，必填此字段，代表健康检查发送的请求内容，只允许ASCII可见字符，最大长度限制500。（仅适用于TCP/UDP目标组）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendContext: String
+        # @param RecvContext: 自定义探测相关参数。健康检查协议CheckType的值取CUSTOM时，必填此字段，代表健康检查返回的结果，只允许ASCII可见字符，最大长度限制500。（仅适用于TCP/UDP目标组）。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecvContext: String
+        # @param HttpVersion: HTTP版本, 其中：<ur><li>健康检查协议CheckType的值取HTTP时，必传此字段。</li><li>支持配置选项：HTTP/1.0, HTTP/1.1。</li><li>仅适用于TCP目标组。</li></ur>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpVersion: String
+        # @param ExtendedCode: GRPC健康检查状态码（仅适用于后端转发协议为GRPC的目标组）。默认值为 12，可输入值为数值、多个数值、或者范围，例如 20 或 20,25 或 0-99。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtendedCode: String
+
+        attr_accessor :HealthSwitch, :Protocol, :Port, :Timeout, :GapTime, :GoodLimit, :BadLimit, :JumboFrame, :HttpCode, :HttpCheckDomain, :HttpCheckPath, :HttpCheckMethod, :ContextType, :SendContext, :RecvContext, :HttpVersion, :ExtendedCode
+
+        def initialize(healthswitch=nil, protocol=nil, port=nil, timeout=nil, gaptime=nil, goodlimit=nil, badlimit=nil, jumboframe=nil, httpcode=nil, httpcheckdomain=nil, httpcheckpath=nil, httpcheckmethod=nil, contexttype=nil, sendcontext=nil, recvcontext=nil, httpversion=nil, extendedcode=nil)
+          @HealthSwitch = healthswitch
+          @Protocol = protocol
+          @Port = port
+          @Timeout = timeout
+          @GapTime = gaptime
+          @GoodLimit = goodlimit
+          @BadLimit = badlimit
+          @JumboFrame = jumboframe
+          @HttpCode = httpcode
+          @HttpCheckDomain = httpcheckdomain
+          @HttpCheckPath = httpcheckpath
+          @HttpCheckMethod = httpcheckmethod
+          @ContextType = contexttype
+          @SendContext = sendcontext
+          @RecvContext = recvcontext
+          @HttpVersion = httpversion
+          @ExtendedCode = extendedcode
+        end
+
+        def deserialize(params)
+          @HealthSwitch = params['HealthSwitch']
+          @Protocol = params['Protocol']
+          @Port = params['Port']
+          @Timeout = params['Timeout']
+          @GapTime = params['GapTime']
+          @GoodLimit = params['GoodLimit']
+          @BadLimit = params['BadLimit']
+          @JumboFrame = params['JumboFrame']
+          @HttpCode = params['HttpCode']
+          @HttpCheckDomain = params['HttpCheckDomain']
+          @HttpCheckPath = params['HttpCheckPath']
+          @HttpCheckMethod = params['HttpCheckMethod']
+          @ContextType = params['ContextType']
+          @SendContext = params['SendContext']
+          @RecvContext = params['RecvContext']
+          @HttpVersion = params['HttpVersion']
+          @ExtendedCode = params['ExtendedCode']
+        end
+      end
+
       # 目标组信息
       class TargetGroupInfo < TencentCloud::Common::AbstractModel
         # @param TargetGroupId: 目标组ID
@@ -8562,6 +8667,18 @@ module TencentCloud
         # @param Protocol: 目标组后端转发协议, 仅v2新版目标组返回有效值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
+        # @param ScheduleAlgorithm: 调度算法，仅后端转发协议为(HTTP、HTTPS、GRPC)的目标组返回有效值， 可选值：
+        # <ur>
+        # <li>WRR:按权重轮询。</li>
+        # <li>LEAST_CONN:最小连接数。</li>
+        # <li>IP_HASH:按IP哈希。</li>
+        # </ur>
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleAlgorithm: String
+        # @param HealthCheck: 健康检查详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.TargetGroupHealthCheck`
         # @param TargetGroupType: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组)。默认为v1旧版目标组。
         # @type TargetGroupType: String
         # @param AssociatedRuleCount: 目标组已关联的规则数。
@@ -8580,9 +8697,9 @@ module TencentCloud
         # @param SessionExpireTime: 会话保持时间，仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
         # @type SessionExpireTime: Integer
 
-        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :ScheduleAlgorithm, :HealthCheck, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
 
-        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, schedulealgorithm=nil, healthcheck=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
           @TargetGroupId = targetgroupid
           @VpcId = vpcid
           @TargetGroupName = targetgroupname
@@ -8591,6 +8708,8 @@ module TencentCloud
           @UpdatedTime = updatedtime
           @AssociatedRule = associatedrule
           @Protocol = protocol
+          @ScheduleAlgorithm = schedulealgorithm
+          @HealthCheck = healthcheck
           @TargetGroupType = targetgrouptype
           @AssociatedRuleCount = associatedrulecount
           @RegisteredInstancesCount = registeredinstancescount
@@ -8617,6 +8736,11 @@ module TencentCloud
             end
           end
           @Protocol = params['Protocol']
+          @ScheduleAlgorithm = params['ScheduleAlgorithm']
+          unless params['HealthCheck'].nil?
+            @HealthCheck = TargetGroupHealthCheck.new
+            @HealthCheck.deserialize(params['HealthCheck'])
+          end
           @TargetGroupType = params['TargetGroupType']
           @AssociatedRuleCount = params['AssociatedRuleCount']
           @RegisteredInstancesCount = params['RegisteredInstancesCount']

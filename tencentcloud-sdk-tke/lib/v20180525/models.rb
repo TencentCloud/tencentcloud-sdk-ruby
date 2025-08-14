@@ -875,6 +875,8 @@ module TencentCloud
         # @type CiliumMode: String
         # @param ContainerRuntime: 集群使用的runtime类型，包括"docker"和"containerd"两种类型，默认为"docker"
         # @type ContainerRuntime: String
+        # @param DataPlaneV2: 是否启用 DataPlaneV2（cilium替代kube-proxy）
+        # @type DataPlaneV2: Boolean
         # @param DeletionProtection: 是否启用集群删除保护
         # @type DeletionProtection: Boolean
         # @param EnableCustomizedPodCIDR: 是否开节点podCIDR大小的自定义模式
@@ -897,7 +899,7 @@ module TencentCloud
         # 1. 集群版本必须为1.14及以上；
         # 2. 系统镜像必须是: Tencent Linux 2.4；
         # @type KubeProxyMode: String
-        # @param NetworkType: 集群网络类型（包括GR(全局路由)和VPC-CNI两种模式，默认为GR。
+        # @param NetworkType: 集群网络类型。包括GR（全局路由）和VPC-CNI两种模式，默认为GR。
         # @type NetworkType: String
         # @param NodeNameType: 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
         # @type NodeNameType: String
@@ -908,9 +910,9 @@ module TencentCloud
         # @param VpcCniType: 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
         # @type VpcCniType: String
 
-        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType
+        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DataPlaneV2, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType
 
-        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil)
+        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, dataplanev2=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil)
           @AsEnabled = asenabled
           @AuditEnabled = auditenabled
           @AuditLogTopicId = auditlogtopicid
@@ -918,6 +920,7 @@ module TencentCloud
           @BasePodNumber = basepodnumber
           @CiliumMode = ciliummode
           @ContainerRuntime = containerruntime
+          @DataPlaneV2 = dataplanev2
           @DeletionProtection = deletionprotection
           @EnableCustomizedPodCIDR = enablecustomizedpodcidr
           @EtcdOverrideConfigs = etcdoverrideconfigs
@@ -941,6 +944,7 @@ module TencentCloud
           @BasePodNumber = params['BasePodNumber']
           @CiliumMode = params['CiliumMode']
           @ContainerRuntime = params['ContainerRuntime']
+          @DataPlaneV2 = params['DataPlaneV2']
           @DeletionProtection = params['DeletionProtection']
           @EnableCustomizedPodCIDR = params['EnableCustomizedPodCIDR']
           unless params['EtcdOverrideConfigs'].nil?

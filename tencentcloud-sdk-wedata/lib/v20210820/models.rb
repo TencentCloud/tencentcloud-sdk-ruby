@@ -3940,14 +3940,18 @@ module TencentCloud
         # @param TriggerRows: 检测不通过行数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerRows: Integer
+        # @param ComputeExpression: 比较关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeExpression: String
 
-        attr_accessor :Items, :TotalRows, :PassRows, :TriggerRows
+        attr_accessor :Items, :TotalRows, :PassRows, :TriggerRows, :ComputeExpression
 
-        def initialize(items=nil, totalrows=nil, passrows=nil, triggerrows=nil)
+        def initialize(items=nil, totalrows=nil, passrows=nil, triggerrows=nil, computeexpression=nil)
           @Items = items
           @TotalRows = totalrows
           @PassRows = passrows
           @TriggerRows = triggerrows
+          @ComputeExpression = computeexpression
         end
 
         def deserialize(params)
@@ -3962,6 +3966,7 @@ module TencentCloud
           @TotalRows = params['TotalRows']
           @PassRows = params['PassRows']
           @TriggerRows = params['TriggerRows']
+          @ComputeExpression = params['ComputeExpression']
         end
       end
 
@@ -31106,10 +31111,43 @@ module TencentCloud
         # @param TriggerCondition: 触发条件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TriggerCondition: String
+        # @param RuleGroupName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupName: String
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatasourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SchemaName: 模式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param RuleGroupExist: 判断是否屏蔽监控 0.屏蔽 1.不屏蔽
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupExist: Integer
+        # @param DatasourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: Integer
+        # @param RuleGroupTableId: 数据表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupTableId: Integer
+        # @param MonitorType: 监控方式 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorType: Integer
+        # @param FinishTime: 执行结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
 
-        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr, :StartTime, :AlarmLevel, :TriggerCondition
+        attr_accessor :RuleExecId, :RuleGroupExecId, :RuleGroupId, :RuleId, :RuleName, :RuleType, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionExpression, :ExecResultStatus, :TriggerResult, :CompareResult, :TemplateName, :QualityDim, :TargetDBTableName, :TargetObjectValue, :TargetObjectDataType, :FieldConfig, :RelConditionExpr, :StartTime, :AlarmLevel, :TriggerCondition, :RuleGroupName, :DatasourceId, :DatasourceName, :DatabaseName, :SchemaName, :TableName, :RuleGroupExist, :DatasourceType, :RuleGroupTableId, :MonitorType, :FinishTime
 
-        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil, starttime=nil, alarmlevel=nil, triggercondition=nil)
+        def initialize(ruleexecid=nil, rulegroupexecid=nil, rulegroupid=nil, ruleid=nil, rulename=nil, ruletype=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditionexpression=nil, execresultstatus=nil, triggerresult=nil, compareresult=nil, templatename=nil, qualitydim=nil, targetdbtablename=nil, targetobjectvalue=nil, targetobjectdatatype=nil, fieldconfig=nil, relconditionexpr=nil, starttime=nil, alarmlevel=nil, triggercondition=nil, rulegroupname=nil, datasourceid=nil, datasourcename=nil, databasename=nil, schemaname=nil, tablename=nil, rulegroupexist=nil, datasourcetype=nil, rulegrouptableid=nil, monitortype=nil, finishtime=nil)
           @RuleExecId = ruleexecid
           @RuleGroupExecId = rulegroupexecid
           @RuleGroupId = rulegroupid
@@ -31132,6 +31170,17 @@ module TencentCloud
           @StartTime = starttime
           @AlarmLevel = alarmlevel
           @TriggerCondition = triggercondition
+          @RuleGroupName = rulegroupname
+          @DatasourceId = datasourceid
+          @DatasourceName = datasourcename
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableName = tablename
+          @RuleGroupExist = rulegroupexist
+          @DatasourceType = datasourcetype
+          @RuleGroupTableId = rulegrouptableid
+          @MonitorType = monitortype
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -31163,6 +31212,17 @@ module TencentCloud
           @StartTime = params['StartTime']
           @AlarmLevel = params['AlarmLevel']
           @TriggerCondition = params['TriggerCondition']
+          @RuleGroupName = params['RuleGroupName']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceName = params['DatasourceName']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableName = params['TableName']
+          @RuleGroupExist = params['RuleGroupExist']
+          @DatasourceType = params['DatasourceType']
+          @RuleGroupTableId = params['RuleGroupTableId']
+          @MonitorType = params['MonitorType']
+          @FinishTime = params['FinishTime']
         end
       end
 

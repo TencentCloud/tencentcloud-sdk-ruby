@@ -3981,6 +3981,42 @@ module TencentCloud
         end
       end
 
+      # DeleteOwaspRuleStatus请求参数结构体
+      class DeleteOwaspRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RuleIDs: 规则ID列表
+        # @type RuleIDs: Array
+
+        attr_accessor :Domain, :RuleIDs
+
+        def initialize(domain=nil, ruleids=nil)
+          @Domain = domain
+          @RuleIDs = ruleids
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleIDs = params['RuleIDs']
+        end
+      end
+
+      # DeleteOwaspRuleStatus返回参数结构体
+      class DeleteOwaspRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteOwaspWhiteRule请求参数结构体
       class DeleteOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Ids: 规则白名单ID列表
@@ -7154,6 +7190,146 @@ module TencentCloud
               clbobject_tmp = ClbObject.new
               clbobject_tmp.deserialize(i)
               @ClbObjects << clbobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOwaspRuleTypes请求参数结构体
+      class DescribeOwaspRuleTypesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 查询域名
+        # @type Domain: String
+        # @param Offset: 分页页数，默认为0
+        # @type Offset: Integer
+        # @param Limit: 每页容量，默认为10
+        # @type Limit: Integer
+        # @param Filters: 筛选条件，支持 RuleId：规则ID、CveID：CVE编号、Desc：描述
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeOwaspRuleTypes返回参数结构体
+      class DescribeOwaspRuleTypesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则类型数量
+        # @type Total: Integer
+        # @param List: 规则类型列表及信息
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              owaspruletype_tmp = OwaspRuleType.new
+              owaspruletype_tmp.deserialize(i)
+              @List << owaspruletype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOwaspRules请求参数结构体
+      class DescribeOwaspRulesRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 需要查询的域名
+        # @type Domain: String
+        # @param Offset: 分页页数，默认为0
+        # @type Offset: Integer
+        # @param Limit: 每页容量，默认为10
+        # @type Limit: Integer
+        # @param By: 排序字段，支持 RuleId, UpdateTime
+        # @type By: String
+        # @param Order: 排序方式，支持asc、desc
+        # @type Order: String
+        # @param Filters: 筛选条件，支持 RuleId：规则ID、TypeId：规则类型、Desc：规则描述 、CveID：CVE编号、Status：规则状态、VulLevel：威胁等级
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Offset, :Limit, :By, :Order, :Filters
+
+        def initialize(domain=nil, offset=nil, limit=nil, by=nil, order=nil, filters=nil)
+          @Domain = domain
+          @Offset = offset
+          @Limit = limit
+          @By = by
+          @Order = order
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @By = params['By']
+          @Order = params['Order']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeOwaspRules返回参数结构体
+      class DescribeOwaspRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 规则总数
+        # @type Total: Integer
+        # @param List: 规则列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              owasprule_tmp = OwaspRule.new
+              owasprule_tmp.deserialize(i)
+              @List << owasprule_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13274,6 +13450,178 @@ module TencentCloud
         end
       end
 
+      # ModifyOwaspRuleStatus请求参数结构体
+      class ModifyOwaspRuleStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param RuleStatus: 规则开关，0：关闭、1：开启、2：只观察
+        # @type RuleStatus: Integer
+        # @param SelectAll: 是否全选
+        # @type SelectAll: Boolean
+        # @param RuleIDs: 规则ID列表
+        # @type RuleIDs: Array
+        # @param TypeId: 如果反转需要传入类型
+        # @type TypeId: Integer
+        # @param Reason: 修改原因 0：无(兼容记录为空) 1：业务自身特性误报避免 2：规则误报上报 3：核心业务规则灰度 4：其它
+        # @type Reason: Integer
+
+        attr_accessor :Domain, :RuleStatus, :SelectAll, :RuleIDs, :TypeId, :Reason
+
+        def initialize(domain=nil, rulestatus=nil, selectall=nil, ruleids=nil, typeid=nil, reason=nil)
+          @Domain = domain
+          @RuleStatus = rulestatus
+          @SelectAll = selectall
+          @RuleIDs = ruleids
+          @TypeId = typeid
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleStatus = params['RuleStatus']
+          @SelectAll = params['SelectAll']
+          @RuleIDs = params['RuleIDs']
+          @TypeId = params['TypeId']
+          @Reason = params['Reason']
+        end
+      end
+
+      # ModifyOwaspRuleStatus返回参数结构体
+      class ModifyOwaspRuleStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOwaspRuleTypeAction请求参数结构体
+      class ModifyOwaspRuleTypeActionRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TypeIDs: 规则类型ID列表
+        # @type TypeIDs: Array
+        # @param RuleTypeAction: 规则类型的防护模式，0：观察、1：拦截
+        # @type RuleTypeAction: Integer
+
+        attr_accessor :Domain, :TypeIDs, :RuleTypeAction
+
+        def initialize(domain=nil, typeids=nil, ruletypeaction=nil)
+          @Domain = domain
+          @TypeIDs = typeids
+          @RuleTypeAction = ruletypeaction
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TypeIDs = params['TypeIDs']
+          @RuleTypeAction = params['RuleTypeAction']
+        end
+      end
+
+      # ModifyOwaspRuleTypeAction返回参数结构体
+      class ModifyOwaspRuleTypeActionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOwaspRuleTypeLevel请求参数结构体
+      class ModifyOwaspRuleTypeLevelRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TypeIDs: 规则类型ID列表
+        # @type TypeIDs: Array
+        # @param RuleTypeLevel: 规则的防护等级，100：宽松、200：正常、300：严格、400：超严格
+        # @type RuleTypeLevel: Integer
+
+        attr_accessor :Domain, :TypeIDs, :RuleTypeLevel
+
+        def initialize(domain=nil, typeids=nil, ruletypelevel=nil)
+          @Domain = domain
+          @TypeIDs = typeids
+          @RuleTypeLevel = ruletypelevel
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TypeIDs = params['TypeIDs']
+          @RuleTypeLevel = params['RuleTypeLevel']
+        end
+      end
+
+      # ModifyOwaspRuleTypeLevel返回参数结构体
+      class ModifyOwaspRuleTypeLevelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyOwaspRuleTypeStatus请求参数结构体
+      class ModifyOwaspRuleTypeStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TypeIDs: 规则类型ID列表
+        # @type TypeIDs: Array
+        # @param RuleTypeStatus: 规则类型的开关状态，0：关闭、1：开启
+        # @type RuleTypeStatus: Integer
+
+        attr_accessor :Domain, :TypeIDs, :RuleTypeStatus
+
+        def initialize(domain=nil, typeids=nil, ruletypestatus=nil)
+          @Domain = domain
+          @TypeIDs = typeids
+          @RuleTypeStatus = ruletypestatus
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TypeIDs = params['TypeIDs']
+          @RuleTypeStatus = params['RuleTypeStatus']
+        end
+      end
+
+      # ModifyOwaspRuleTypeStatus返回参数结构体
+      class ModifyOwaspRuleTypeStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOwaspWhiteRule请求参数结构体
       class ModifyOwaspWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则ID
@@ -14033,6 +14381,115 @@ module TencentCloud
           @AntiDDosEip = params['AntiDDosEip']
           @AntiDDosEipStatus = params['AntiDDosEipStatus']
           @VipStatus = params['VipStatus']
+        end
+      end
+
+      # Owasp规则
+      class OwaspRule < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: Integer
+        # @param Description: 规则描述
+        # @type Description: String
+        # @param Status: 规则开关，0：关闭、1：开启、2：只观察
+        # @type Status: Integer
+        # @param Level: 规则的防护等级，100：宽松、200：正常、300：严格、400：超严格
+        # @type Level: Integer
+        # @param VulLevel: 威胁等级，0：未知，100：低危，200：中危，300：高危，400：危急
+        # @type VulLevel: Integer
+        # @param CveID: CVE ID
+        # @type CveID: String
+        # @param TypeId: 规则所属的类型ID
+        # @type TypeId: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 更新时间
+        # @type ModifyTime: String
+        # @param Locked: 是否被锁定
+        # @type Locked: Integer
+        # @param Reason: 修改原因
+        # 0：无(兼容记录为空)
+        # 1：业务自身特性误报避免
+        # 2：规则误报上报
+        # 3：核心业务规则灰度
+        # 4：其它
+        # @type Reason: Integer
+
+        attr_accessor :RuleId, :Description, :Status, :Level, :VulLevel, :CveID, :TypeId, :CreateTime, :ModifyTime, :Locked, :Reason
+
+        def initialize(ruleid=nil, description=nil, status=nil, level=nil, vullevel=nil, cveid=nil, typeid=nil, createtime=nil, modifytime=nil, locked=nil, reason=nil)
+          @RuleId = ruleid
+          @Description = description
+          @Status = status
+          @Level = level
+          @VulLevel = vullevel
+          @CveID = cveid
+          @TypeId = typeid
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Locked = locked
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Description = params['Description']
+          @Status = params['Status']
+          @Level = params['Level']
+          @VulLevel = params['VulLevel']
+          @CveID = params['CveID']
+          @TypeId = params['TypeId']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Locked = params['Locked']
+          @Reason = params['Reason']
+        end
+      end
+
+      # Owasp规则类型
+      class OwaspRuleType < TencentCloud::Common::AbstractModel
+        # @param TypeId: 类型ID
+        # @type TypeId: Integer
+        # @param TypeName: 类型名称
+        # @type TypeName: String
+        # @param Description: 类型描述
+        # @type Description: String
+        # @param Classification: 类型分类
+        # @type Classification: String
+        # @param Action: 规则类型的防护模式，0：观察、1：拦截
+        # @type Action: Integer
+        # @param Level: 规则类型的防护等级，100：宽松、200：正常、300：严格、400：超严格
+        # @type Level: Integer
+        # @param Status: 规则类型的开关状态，0：关闭、1：开启
+        # @type Status: Integer
+        # @param TotalRule: 规则类型下的所有规则总是
+        # @type TotalRule: Integer
+        # @param ActiveRule: 规则类型下的启用的规则总数
+        # @type ActiveRule: Integer
+
+        attr_accessor :TypeId, :TypeName, :Description, :Classification, :Action, :Level, :Status, :TotalRule, :ActiveRule
+
+        def initialize(typeid=nil, typename=nil, description=nil, classification=nil, action=nil, level=nil, status=nil, totalrule=nil, activerule=nil)
+          @TypeId = typeid
+          @TypeName = typename
+          @Description = description
+          @Classification = classification
+          @Action = action
+          @Level = level
+          @Status = status
+          @TotalRule = totalrule
+          @ActiveRule = activerule
+        end
+
+        def deserialize(params)
+          @TypeId = params['TypeId']
+          @TypeName = params['TypeName']
+          @Description = params['Description']
+          @Classification = params['Classification']
+          @Action = params['Action']
+          @Level = params['Level']
+          @Status = params['Status']
+          @TotalRule = params['TotalRule']
+          @ActiveRule = params['ActiveRule']
         end
       end
 

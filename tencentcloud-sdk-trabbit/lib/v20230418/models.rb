@@ -101,10 +101,12 @@ module TencentCloud
         # @type Internal: Boolean
         # @param AlternateExchange: 替代 exchange, 如果消息无法发送到当前 exchange, 就会发送到该替代 exchange
         # @type AlternateExchange: String
+        # @param DelayedExchangeType: 延迟类型的exchange背后对应的exchange类型, 支持 "fanout","direct","topic","headers"
+        # @type DelayedExchangeType: String
 
-        attr_accessor :InstanceId, :VirtualHost, :ExchangeName, :ExchangeType, :Remark, :Durable, :AutoDelete, :Internal, :AlternateExchange
+        attr_accessor :InstanceId, :VirtualHost, :ExchangeName, :ExchangeType, :Remark, :Durable, :AutoDelete, :Internal, :AlternateExchange, :DelayedExchangeType
 
-        def initialize(instanceid=nil, virtualhost=nil, exchangename=nil, exchangetype=nil, remark=nil, durable=nil, autodelete=nil, internal=nil, alternateexchange=nil)
+        def initialize(instanceid=nil, virtualhost=nil, exchangename=nil, exchangetype=nil, remark=nil, durable=nil, autodelete=nil, internal=nil, alternateexchange=nil, delayedexchangetype=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @ExchangeName = exchangename
@@ -114,6 +116,7 @@ module TencentCloud
           @AutoDelete = autodelete
           @Internal = internal
           @AlternateExchange = alternateexchange
+          @DelayedExchangeType = delayedexchangetype
         end
 
         def deserialize(params)
@@ -126,6 +129,7 @@ module TencentCloud
           @AutoDelete = params['AutoDelete']
           @Internal = params['Internal']
           @AlternateExchange = params['AlternateExchange']
+          @DelayedExchangeType = params['DelayedExchangeType']
         end
       end
 
@@ -2058,10 +2062,14 @@ module TencentCloud
         # @type InstanceType: Integer
         # @param MessageRetainTime: 消息保留时间，单位小时
         # @type MessageRetainTime: Integer
+        # @param SendReceiveRatio: 发送消息流量比例
+        # @type SendReceiveRatio: Float
+        # @param TraceTime: 消息轨迹保留时间，单位小时
+        # @type TraceTime: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime, :SendReceiveRatio, :TraceTime
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil, sendreceiveratio=nil, tracetime=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -2087,6 +2095,8 @@ module TencentCloud
           @PayMode = paymode
           @InstanceType = instancetype
           @MessageRetainTime = messageretaintime
+          @SendReceiveRatio = sendreceiveratio
+          @TraceTime = tracetime
         end
 
         def deserialize(params)
@@ -2122,6 +2132,8 @@ module TencentCloud
           @PayMode = params['PayMode']
           @InstanceType = params['InstanceType']
           @MessageRetainTime = params['MessageRetainTime']
+          @SendReceiveRatio = params['SendReceiveRatio']
+          @TraceTime = params['TraceTime']
         end
       end
 
@@ -2462,17 +2474,21 @@ module TencentCloud
         # @type PublicAccessEndpoint: String
         # @param PublicDataStreamStatus: 公网状态
         # @type PublicDataStreamStatus: String
+        # @param PublicClbId: 公网CLB实例ID
+        # @type PublicClbId: String
 
-        attr_accessor :PublicAccessEndpoint, :PublicDataStreamStatus
+        attr_accessor :PublicAccessEndpoint, :PublicDataStreamStatus, :PublicClbId
 
-        def initialize(publicaccessendpoint=nil, publicdatastreamstatus=nil)
+        def initialize(publicaccessendpoint=nil, publicdatastreamstatus=nil, publicclbid=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @PublicDataStreamStatus = publicdatastreamstatus
+          @PublicClbId = publicclbid
         end
 
         def deserialize(params)
           @PublicAccessEndpoint = params['PublicAccessEndpoint']
           @PublicDataStreamStatus = params['PublicDataStreamStatus']
+          @PublicClbId = params['PublicClbId']
         end
       end
 

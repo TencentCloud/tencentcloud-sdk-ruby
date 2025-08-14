@@ -2889,7 +2889,7 @@ module TencentCloud
         # RideHailingTransportLicense -- 网约车运输证
         # WayBill -- 快递运单
         # AccountOpeningPermit -- 银行开户许可证
-        # InvoiceEng -- 海外发票模版
+        # InvoiceEng -- 国际发票模板
         # Coin --钱币识别模板
         # OnboardingDocuments -- 入职材料识别
         # PropertyOwnershipCertificate -- 房产证识别
@@ -2994,7 +2994,7 @@ module TencentCloud
         # @type EnableCoord: Boolean
         # @param OutputParentKey: 是否开启父子key识别，默认是
         # @type OutputParentKey: Boolean
-        # @param ConfigAdvanced: 模版的单个属性配置
+        # @param ConfigAdvanced: 模板的单个属性配置
         # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
 
         attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ItemNames, :ItemNamesShowMode, :ReturnFullText, :ConfigId, :EnableCoord, :OutputParentKey, :ConfigAdvanced
@@ -3093,7 +3093,7 @@ module TencentCloud
         # @type ReturnFullText: Boolean
         # @param ConfigId: 配置id支持：
         # General -- 通用场景
-        # InvoiceEng -- 国际invoice模版
+        # InvoiceEng -- 国际invoice模板
         # WayBillEng --海运订单模板
         # CustomsDeclaration -- 进出口报关单
         # WeightNote -- 磅单
@@ -3103,18 +3103,18 @@ module TencentCloud
         # Statement -- 对账单识别模板
         # BookingConfirmation -- 配舱通知书识别模板
         # AirWayBill -- 航空运单识别模板
-        # Table -- 表格模版
+        # Table -- 表格模板
         # SteelLabel -- 实物标签识别模板
         # CarInsurance -- 车辆保险单识别模板
         # MultiRealEstateCertificate -- 房产材料识别模板
         # MultiRealEstateMaterial -- 房产证明识别模板
-        # HongKongUtilityBill -- 香港水电煤单识别模板
+        # HongKongUtilityBill -- 中国香港水电煤单识别模板
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
         # @param OutputParentKey: 是否开启父子key识别，默认是
         # @type OutputParentKey: Boolean
-        # @param ConfigAdvanced: 模版的单个属性配置
+        # @param ConfigAdvanced: 模板的单个属性配置
         # @type ConfigAdvanced: :class:`Tencentcloud::Ocr.v20181119.models.ConfigAdvanced`
         # @param OutputLanguage: cn时，添加的key为中文
         # en时，添加的key为英语
@@ -3820,10 +3820,12 @@ module TencentCloud
         # @type PdfPageNumber: Integer
         # @param EnableDetectText: 文本检测开关，默认为true。设置为false可直接进行单行识别，适用于仅包含正向单行文本的图片场景。
         # @type EnableDetectText: Boolean
+        # @param ConfigID: 配置ID支持：  OCR -- 通用场景  MulOCR--多语种场景
+        # @type ConfigID: String
 
-        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText
+        attr_accessor :ImageBase64, :ImageUrl, :IsWords, :EnableDetectSplit, :IsPdf, :PdfPageNumber, :EnableDetectText, :ConfigID
 
-        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil)
+        def initialize(imagebase64=nil, imageurl=nil, iswords=nil, enabledetectsplit=nil, ispdf=nil, pdfpagenumber=nil, enabledetecttext=nil, configid=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @IsWords = iswords
@@ -3831,6 +3833,7 @@ module TencentCloud
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
           @EnableDetectText = enabledetecttext
+          @ConfigID = configid
         end
 
         def deserialize(params)
@@ -3841,6 +3844,7 @@ module TencentCloud
           @IsPdf = params['IsPdf']
           @PdfPageNumber = params['PdfPageNumber']
           @EnableDetectText = params['EnableDetectText']
+          @ConfigID = params['ConfigID']
         end
       end
 
@@ -4571,10 +4575,10 @@ module TencentCloud
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
         # @type PdfPageNumber: Integer
         # @param ConfigId: 配置id支持：
-        # ArticleRecognize -- 手写作文模版
+        # ArticleRecognize -- 手写作文模板
         # 默认：ArticleRecognize
         # @type ConfigId: String
-        # @param Scene: 模版的单个属性配置
+        # @param Scene: 模板的单个属性配置
         # @type Scene: String
 
         attr_accessor :ImageUrl, :ImageBase64, :PdfPageNumber, :ConfigId, :Scene
