@@ -722,9 +722,9 @@ module TencentCloud
         # @type HasOverdueBill: Integer
         # @param ClientRemark: 客户备注
         # @type ClientRemark: String
-        # @param Offset: 偏移量
+        # @param Offset: 偏移量 请保持必传
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: 限制数目 请保持必传，最大2000
         # @type Limit: Integer
         # @param ClientType: 可以为new(自拓)/assign(指派)/old(官网)/direct(直销)/direct_newopp(直销(新商机))/空
         # @type ClientType: String

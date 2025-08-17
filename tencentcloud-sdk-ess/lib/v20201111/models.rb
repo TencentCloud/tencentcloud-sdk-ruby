@@ -6741,10 +6741,12 @@ module TencentCloud
         # <li>2.印章类型SealType是INVOICE类型，且该字段没有传入值或传入空时，会取该企业对应的统一社会信用代码作为默认的企业税号（<font color="red">如果是通过授权书授权方式认证的企业，此参数必传不能为空</font>）</li>
         # </ul>
         # @type TaxIdentifyCode: String
+        # @param SealDescription: 印章描述内容
+        # @type SealDescription: String
 
-        attr_accessor :Operator, :SealName, :Agent, :GenerateSource, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken, :SealStyle, :SealSize, :TaxIdentifyCode
+        attr_accessor :Operator, :SealName, :Agent, :GenerateSource, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken, :SealStyle, :SealSize, :TaxIdentifyCode, :SealDescription
 
-        def initialize(operator=nil, sealname=nil, agent=nil, generatesource=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil)
+        def initialize(operator=nil, sealname=nil, agent=nil, generatesource=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil, sealdescription=nil)
           @Operator = operator
           @SealName = sealname
           @Agent = agent
@@ -6762,6 +6764,7 @@ module TencentCloud
           @SealStyle = sealstyle
           @SealSize = sealsize
           @TaxIdentifyCode = taxidentifycode
+          @SealDescription = sealdescription
         end
 
         def deserialize(params)
@@ -6788,6 +6791,7 @@ module TencentCloud
           @SealStyle = params['SealStyle']
           @SealSize = params['SealSize']
           @TaxIdentifyCode = params['TaxIdentifyCode']
+          @SealDescription = params['SealDescription']
         end
       end
 
@@ -13223,10 +13227,20 @@ module TencentCloud
         # @type AuthorizedUsers: Array
         # @param ExtendScene: 印章扩展数据信息
         # @type ExtendScene: :class:`Tencentcloud::Ess.v20201111.models.ExtendScene`
+        # @param RealWidth: 印章的真实宽度，单位毫米
+        # @type RealWidth: Integer
+        # @param RealHeight: 印章的真实高度，单位毫米
+        # @type RealHeight: Integer
+        # @param SubSealType: 自定义子类型印章
+        # @type SubSealType: String
+        # @param SubSealName: 自定义子类型印章名称
+        # @type SubSealName: String
+        # @param SealDescription: 印章描述
+        # @type SealDescription: String
 
-        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers, :ExtendScene
+        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers, :ExtendScene, :RealWidth, :RealHeight, :SubSealType, :SubSealName, :SealDescription
 
-        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil, extendscene=nil)
+        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil, extendscene=nil, realwidth=nil, realheight=nil, subsealtype=nil, subsealname=nil, sealdescription=nil)
           @SealId = sealid
           @SealName = sealname
           @CreateOn = createon
@@ -13239,6 +13253,11 @@ module TencentCloud
           @IsAllTime = isalltime
           @AuthorizedUsers = authorizedusers
           @ExtendScene = extendscene
+          @RealWidth = realwidth
+          @RealHeight = realheight
+          @SubSealType = subsealtype
+          @SubSealName = subsealname
+          @SealDescription = sealdescription
         end
 
         def deserialize(params)
@@ -13264,6 +13283,11 @@ module TencentCloud
             @ExtendScene = ExtendScene.new
             @ExtendScene.deserialize(params['ExtendScene'])
           end
+          @RealWidth = params['RealWidth']
+          @RealHeight = params['RealHeight']
+          @SubSealType = params['SubSealType']
+          @SubSealName = params['SubSealName']
+          @SealDescription = params['SealDescription']
         end
       end
 
@@ -13450,19 +13474,23 @@ module TencentCloud
         # @type ErrorMessage: String
         # @param SubTaskId: 企业批量注册的唯一 Id， 此 Id 可以用在[创建企业批量认证链接-单链接](https://qian.tencent.com/developers/companyApis/organizations/CreateBatchOrganizationAuthorizationUrl)。
         # @type SubTaskId: String
+        # @param OrganizationName: 企业批量注册 传递过来的企业名称，方便客户定位企业
+        # @type OrganizationName: String
 
-        attr_accessor :AuthUrl, :ErrorMessage, :SubTaskId
+        attr_accessor :AuthUrl, :ErrorMessage, :SubTaskId, :OrganizationName
 
-        def initialize(authurl=nil, errormessage=nil, subtaskid=nil)
+        def initialize(authurl=nil, errormessage=nil, subtaskid=nil, organizationname=nil)
           @AuthUrl = authurl
           @ErrorMessage = errormessage
           @SubTaskId = subtaskid
+          @OrganizationName = organizationname
         end
 
         def deserialize(params)
           @AuthUrl = params['AuthUrl']
           @ErrorMessage = params['ErrorMessage']
           @SubTaskId = params['SubTaskId']
+          @OrganizationName = params['OrganizationName']
         end
       end
 

@@ -1704,14 +1704,17 @@ module TencentCloud
         # @type Remark: String
         # @param TraceFlag: 是否开启trace
         # @type TraceFlag: Boolean
+        # @param SendReceiveRatio: 限流生产消费比例
+        # @type SendReceiveRatio: Float
 
-        attr_accessor :InstanceId, :ClusterName, :Remark, :TraceFlag
+        attr_accessor :InstanceId, :ClusterName, :Remark, :TraceFlag, :SendReceiveRatio
 
-        def initialize(instanceid=nil, clustername=nil, remark=nil, traceflag=nil)
+        def initialize(instanceid=nil, clustername=nil, remark=nil, traceflag=nil, sendreceiveratio=nil)
           @InstanceId = instanceid
           @ClusterName = clustername
           @Remark = remark
           @TraceFlag = traceflag
+          @SendReceiveRatio = sendreceiveratio
         end
 
         def deserialize(params)
@@ -1719,6 +1722,7 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @Remark = params['Remark']
           @TraceFlag = params['TraceFlag']
+          @SendReceiveRatio = params['SendReceiveRatio']
         end
       end
 

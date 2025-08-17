@@ -2147,7 +2147,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
+        # 容器部署组详情（已废弃，请使用  [DescribeContainerGroupDeployInfo](https://cloud.tencent.com/document/product/649/67221)）
 
         # @param request: Request instance for DescribeContainerGroupDetail.
         # @type request: :class:`Tencentcloud::tsf::V20180326::DescribeContainerGroupDetailRequest`

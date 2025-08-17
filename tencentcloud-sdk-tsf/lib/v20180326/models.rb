@@ -3688,7 +3688,7 @@ module TencentCloud
 
       # CreateApplication请求参数结构体
       class CreateApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationName: 应用名称
+        # @param ApplicationName: 应用名称，最长60字符
         # @type ApplicationName: String
         # @param ApplicationType: 应用类型，V：虚拟机应用；C：容器应用；S：serverless应用
         # @type ApplicationType: String
@@ -3702,7 +3702,7 @@ module TencentCloud
         # @type ApplicationResourceType: String
         # @param ApplicationRuntimeType: 应用runtime类型
         # @type ApplicationRuntimeType: String
-        # @param ProgramId: 需要绑定的数据集ID
+        # @param ProgramId: 【数据集ID】。可通过调用[DescribePrograms](https://cloud.tencent.com/document/product/649/73477)查询已创建的数据集列表或登录[控制台](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program&roleId=role-a26486wy)进行查看；也可以调用[CreateProgram](https://cloud.tencent.com/document/product/649/108544)创建新的数据集。
         # @type ProgramId: String
         # @param ServiceConfigList: 服务配置信息列表
         # @type ServiceConfigList: Array
@@ -4152,9 +4152,9 @@ module TencentCloud
 
       # CreateContainGroup请求参数结构体
       class CreateContainGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 分组所属应用ID
+        # @param ApplicationId: 分组所属【应用ID】，可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param NamespaceId: 分组所属命名空间ID
+        # @param NamespaceId: 分组所属【命名空间ID】，可通过调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
         # @param GroupName: 分组名称字段，长度1~60，字母或下划线开头，可包含字母数字下划线
         # @type GroupName: String
@@ -4180,11 +4180,9 @@ module TencentCloud
         # @type CpuRequest: String
         # @param MemRequest: 初始分配的内存 MiB 数，对应 K8S request
         # @type MemRequest: String
-        # @param GroupResourceType: 部署组资源类型；
-        # DEF — 默认资源类型；
-        # GW — 网关资源类型；
+        # @param GroupResourceType: 部署组资源类型；DEF 表示默认资源类型
         # @type GroupResourceType: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: 分组所属【子网ID】，可前往TKE侧集群[控制台](https://console.cloud.tencent.com/tke2/cluster/sub/list/basic/info/base?rid=1&clusterId=cls-2nhp3g1i)进行获取
         # @type SubnetId: String
         # @param AgentCpuRequest: agent 容器分配的 CPU 核数，对应 K8S 的 request
         # @type AgentCpuRequest: String
@@ -4499,26 +4497,28 @@ module TencentCloud
 
       # CreateGroup请求参数结构体
       class CreateGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 部署组所属的应用ID
+        # @param ApplicationId: 部署组所属的【应用ID】，可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param NamespaceId: 部署组所属命名空间ID
+        # @param NamespaceId: 部署组所属【命名空间ID】，可通过调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
         # @param GroupName: 部署组名称
         # @type GroupName: String
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 部署组所属的【集群ID】，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=docker)进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
         # @param GroupDesc: 部署组描述
         # @type GroupDesc: String
-        # @param GroupResourceType: 部署组资源类型；DEF 表示默认资源类型；GW 表示网关资源类型
+        # @param GroupResourceType: 部署组资源类型；DEF 表示默认资源类型
         # @type GroupResourceType: String
         # @param Alias: 部署组备注
         # @type Alias: String
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param K8sNamespaceName: k8s命名空间名称
+        # @type K8sNamespaceName: String
 
-        attr_accessor :ApplicationId, :NamespaceId, :GroupName, :ClusterId, :GroupDesc, :GroupResourceType, :Alias, :Tags
+        attr_accessor :ApplicationId, :NamespaceId, :GroupName, :ClusterId, :GroupDesc, :GroupResourceType, :Alias, :Tags, :K8sNamespaceName
 
-        def initialize(applicationid=nil, namespaceid=nil, groupname=nil, clusterid=nil, groupdesc=nil, groupresourcetype=nil, _alias=nil, tags=nil)
+        def initialize(applicationid=nil, namespaceid=nil, groupname=nil, clusterid=nil, groupdesc=nil, groupresourcetype=nil, _alias=nil, tags=nil, k8snamespacename=nil)
           @ApplicationId = applicationid
           @NamespaceId = namespaceid
           @GroupName = groupname
@@ -4527,6 +4527,7 @@ module TencentCloud
           @GroupResourceType = groupresourcetype
           @Alias = _alias
           @Tags = tags
+          @K8sNamespaceName = k8snamespacename
         end
 
         def deserialize(params)
@@ -4545,6 +4546,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @K8sNamespaceName = params['K8sNamespaceName']
         end
       end
 
@@ -4786,9 +4788,9 @@ module TencentCloud
         # @type ClusterId: String
         # @param NamespaceDesc: 命名空间描述
         # @type NamespaceDesc: String
-        # @param NamespaceResourceType: 命名空间资源类型(默认值为DEF)。DEF：默认普通命名空间。GLOBAL：全局命名空间
+        # @param NamespaceResourceType: 命名空间资源类型；DEF：表示默认资源类型；GW：表示网关资源类型
         # @type NamespaceResourceType: String
-        # @param NamespaceType: 是否是全局命名空间(默认是DEF，表示普通命名空间；GLOBAL表示全局命名空间)
+        # @param NamespaceType: 命名空间类型；DEF 表示默认普通命名空间；GLOBAL 表示全局命名空间
         # @type NamespaceType: String
         # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
@@ -6764,10 +6766,18 @@ module TencentCloud
         # @type EnvClean: Boolean
         # @param DeployDesc: 本次部署的描述信息
         # @type DeployDesc: String
+        # @param K8sNamespaceName: k8s命名空间名称
+        # @type K8sNamespaceName: String
+        # @param StaticIpEnabled: 是否启用静态IP
+        # @type StaticIpEnabled: Boolean
+        # @param PodManagementPolicyType: 启动策略[OrderedReady/Parallel]
+        # @type PodManagementPolicyType: String
+        # @param Partition: 滚动更新分区序号
+        # @type Partition: Integer
 
-        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc
+        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition
 
-        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil)
+        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil)
           @ApplicationId = applicationid
           @ObservabilityConfig = observabilityconfig
           @ClusterId = clusterid
@@ -6825,6 +6835,10 @@ module TencentCloud
           @ServiceClean = serviceclean
           @EnvClean = envclean
           @DeployDesc = deploydesc
+          @K8sNamespaceName = k8snamespacename
+          @StaticIpEnabled = staticipenabled
+          @PodManagementPolicyType = podmanagementpolicytype
+          @Partition = partition
         end
 
         def deserialize(params)
@@ -6959,6 +6973,10 @@ module TencentCloud
           @ServiceClean = params['ServiceClean']
           @EnvClean = params['EnvClean']
           @DeployDesc = params['DeployDesc']
+          @K8sNamespaceName = params['K8sNamespaceName']
+          @StaticIpEnabled = params['StaticIpEnabled']
+          @PodManagementPolicyType = params['PodManagementPolicyType']
+          @Partition = params['Partition']
         end
       end
 
@@ -7249,9 +7267,9 @@ module TencentCloud
 
       # DeployGroup请求参数结构体
       class DeployGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
-        # @param PkgId: 程序包ID
+        # @param PkgId: 软件包ID，可通过调用DescribeUploadInfo接口时[获取上传程序包信息](https://cloud.tencent.com/document/api/649/36078)返回的COS上传信息获取，登录[控制台](https://console.cloud.tencent.com/tsf/product?rid=1)进行查看
         # @type PkgId: String
         # @param StartupParameters: 部署组启动参数
         # @type StartupParameters: String
@@ -7271,7 +7289,7 @@ module TencentCloud
         # @type DeployBatch: Array
         # @param DeployExeMode: 滚动发布的执行方式，auto表示自动， manual表示手动
         # @type DeployExeMode: String
-        # @param DeployWaitTime: 滚动发布每个批次的时间间隔
+        # @param DeployWaitTime: 滚动发布每个批次的时间间隔，单位min。默认值是0，不等待。
         # @type DeployWaitTime: Integer
         # @param StartScript: 启动脚本 base64编码
         # @type StartScript: String
@@ -7702,7 +7720,7 @@ module TencentCloud
 
       # DescribeApplicationAttribute请求参数结构体
       class DescribeApplicationAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 【应用ID】，可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
 
         attr_accessor :ApplicationId
@@ -7793,11 +7811,14 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 数量限制，默认为20，最大值为100。关于Limit详见[API简介](https://cloud.tencent.com/document/api/213/568#.E8.BE.93.E5.85.A5.E5.8F.82.E6.95.B0.E4.B8.8E.E8.BF.94.E5.9B.9E.E5.8F.82.E6.95.B0.E9.87.8A.E4.B9.89)
         # @type Limit: Integer
-        # @param ApplicationType: 应用类型
+        # @param ApplicationType: 指定应用类型，目前支持：
+        # - `V`：普通应用/CVM应用
+        # - `C`：容器应用
+        # - `S`：serverless 应用
         # @type ApplicationType: String
         # @param MicroserviceType: 应用的微服务类型
         # @type MicroserviceType: String
-        # @param ApplicationResourceTypeList: 应用资源类型数组
+        # @param ApplicationResourceTypeList: 应用资源类型列表；DEF 表示默认资源类型；GW 表示网关资源类型
         # @type ApplicationResourceTypeList: Array
         # @param ApplicationIdList: IdList
         # @type ApplicationIdList: Array
@@ -8529,7 +8550,7 @@ module TencentCloud
 
       # DescribeContainerGroupAttribute请求参数结构体
       class DescribeContainerGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -8646,7 +8667,7 @@ module TencentCloud
 
       # DescribeContainerGroups请求参数结构体
       class DescribeContainerGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 分组所属应用ID。
+        # @param ApplicationId: 分组所属【应用ID】，可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
         # @param SearchWord: 搜索字段，模糊搜索groupName字段
         # @type SearchWord: String
@@ -8658,9 +8679,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~50
         # @type Limit: Integer
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 分组所属【集群ID】，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=docker)进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间 ID
+        # @param NamespaceId: 分组所属【命名空间 ID】，可通过调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
 
         attr_accessor :ApplicationId, :SearchWord, :OrderBy, :OrderType, :Offset, :Limit, :ClusterId, :NamespaceId
@@ -11211,9 +11232,9 @@ module TencentCloud
       class DescribeProgramsRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 模糊查询数据集ID，数据集名称，不传入时查询全量
         # @type SearchWord: String
-        # @param Limit: 每页数量
+        # @param Limit: 每页数量，默认值20
         # @type Limit: Integer
-        # @param Offset: 起始偏移量
+        # @param Offset: 起始偏移量，默认值0
         # @type Offset: Integer
 
         attr_accessor :SearchWord, :Limit, :Offset
@@ -11949,7 +11970,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param MicroserviceType: 微服务类型
         # @type MicroserviceType: String
-        # @param ApplicationResourceTypeList: 资源类型数组
+        # @param ApplicationResourceTypeList: 应用资源类型列表；DEF 表示默认资源类型；GW 表示网关资源类型
         # @type ApplicationResourceTypeList: Array
         # @param SearchWord: 通过id和name进行关键词过滤
         # @type SearchWord: String
@@ -12069,17 +12090,17 @@ module TencentCloud
 
       # DescribeSimpleGroups请求参数结构体
       class DescribeSimpleGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupIdList: 部署组ID列表，不填写时查询全量
+        # @param GroupIdList: 按照【部署组ID】进行过滤，不填写时查询全量。可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-zvw6zp9a&tab=publish&subTab=group)进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupIdList: Array
-        # @param ApplicationId: 应用ID，不填写时查询全量
+        # @param ApplicationId: 按照【应用ID】进行过滤，不填写时查询全量。可通过调用[DescribeApplications](https://cloud.tencent.com/document/product/649/36090)查询已创建的应用列表或登录[控制台](https://console.cloud.tencent.com/tsf/app?rid=1)进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/product/649/36094)创建新的应用。
         # @type ApplicationId: String
-        # @param ClusterId: 集群ID，不填写时查询全量
+        # @param ClusterId: 按照【集群ID】进行过滤，不填写时查询全量。可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=docker)进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间ID，不填写时查询全量
+        # @param NamespaceId: 按照【命名空间ID】进行过滤，不填写时查询全量。可通过调用[DescribeSimpleNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=namespace)进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新的命名空间。
         # @type NamespaceId: String
-        # @param Limit: 每页条数
+        # @param Limit: 每页条数，默认值20，无上限
         # @type Limit: Integer
-        # @param Offset: 起始偏移量
+        # @param Offset: 起始偏移量，默认值0
         # @type Offset: Integer
         # @param GroupId: 部署组ID，不填写时查询全量
         # @type GroupId: String
@@ -12150,7 +12171,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
-        # @param NamespaceResourceTypeList: 查询资源类型列表
+        # @param NamespaceResourceTypeList: 查询资源类型列表；DEF 表示默认资源类型；GW 表示网关资源类型
         # @type NamespaceResourceTypeList: Array
         # @param SearchWord: 通过id和name进行过滤
         # @type SearchWord: String
@@ -13979,10 +14000,14 @@ module TencentCloud
         # @param Status: 发布状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param DeleteDisabled: 是否禁用删除
+        # @type DeleteDisabled: Boolean
+        # @param DeleteDisabledReason: 禁用原因
+        # @type DeleteDisabledReason: String
 
-        attr_accessor :Id, :Name, :Type, :Description, :CreatedTime, :UpdatedTime, :Status
+        attr_accessor :Id, :Name, :Type, :Description, :CreatedTime, :UpdatedTime, :Status, :DeleteDisabled, :DeleteDisabledReason
 
-        def initialize(id=nil, name=nil, type=nil, description=nil, createdtime=nil, updatedtime=nil, status=nil)
+        def initialize(id=nil, name=nil, type=nil, description=nil, createdtime=nil, updatedtime=nil, status=nil, deletedisabled=nil, deletedisabledreason=nil)
           @Id = id
           @Name = name
           @Type = type
@@ -13990,6 +14015,8 @@ module TencentCloud
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
           @Status = status
+          @DeleteDisabled = deletedisabled
+          @DeleteDisabledReason = deletedisabledreason
         end
 
         def deserialize(params)
@@ -14000,6 +14027,8 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @UpdatedTime = params['UpdatedTime']
           @Status = params['Status']
+          @DeleteDisabled = params['DeleteDisabled']
+          @DeleteDisabledReason = params['DeleteDisabledReason']
         end
       end
 
@@ -15801,10 +15830,16 @@ module TencentCloud
         # @param LaneGroupId: 泳道部署组ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LaneGroupId: String
+        # @param DeleteDisabled: 是否禁用删除。
+        # true：禁用
+        # false：取消禁用
+        # @type DeleteDisabled: Boolean
+        # @param DeleteDisabledReason: 禁用原因
+        # @type DeleteDisabledReason: String
 
-        attr_accessor :LaneId, :LaneName, :Remark, :CreateTime, :UpdateTime, :LaneGroupList, :Entrance, :NamespaceIdList, :LaneGroupId
+        attr_accessor :LaneId, :LaneName, :Remark, :CreateTime, :UpdateTime, :LaneGroupList, :Entrance, :NamespaceIdList, :LaneGroupId, :DeleteDisabled, :DeleteDisabledReason
 
-        def initialize(laneid=nil, lanename=nil, remark=nil, createtime=nil, updatetime=nil, lanegrouplist=nil, entrance=nil, namespaceidlist=nil, lanegroupid=nil)
+        def initialize(laneid=nil, lanename=nil, remark=nil, createtime=nil, updatetime=nil, lanegrouplist=nil, entrance=nil, namespaceidlist=nil, lanegroupid=nil, deletedisabled=nil, deletedisabledreason=nil)
           @LaneId = laneid
           @LaneName = lanename
           @Remark = remark
@@ -15814,6 +15849,8 @@ module TencentCloud
           @Entrance = entrance
           @NamespaceIdList = namespaceidlist
           @LaneGroupId = lanegroupid
+          @DeleteDisabled = deletedisabled
+          @DeleteDisabledReason = deletedisabledreason
         end
 
         def deserialize(params)
@@ -15833,6 +15870,8 @@ module TencentCloud
           @Entrance = params['Entrance']
           @NamespaceIdList = params['NamespaceIdList']
           @LaneGroupId = params['LaneGroupId']
+          @DeleteDisabled = params['DeleteDisabled']
+          @DeleteDisabledReason = params['DeleteDisabledReason']
         end
       end
 
@@ -16907,7 +16946,7 @@ module TencentCloud
 
       # ModifyProgram请求参数结构体
       class ModifyProgramRequest < TencentCloud::Common::AbstractModel
-        # @param ProgramId: 数据集ID
+        # @param ProgramId: 数据集ID，调用[DescribePrograms](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program)查询接口会返回数据集信息，包括programId
         # @type ProgramId: String
         # @param ProgramName: 数据集名称，不传入时不更新
         # @type ProgramName: String
@@ -19729,10 +19768,12 @@ module TencentCloud
         # @type GroupResourceType: String
         # @param AppMicroServiceType: 应用微服务类型
         # @type AppMicroServiceType: String
+        # @param K8sNamespaceName: k8s 命名空间名称
+        # @type K8sNamespaceName: String
 
-        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :ClusterId, :ClusterName, :ClusterType, :NamespaceId, :NamespaceName, :StartupParameters, :GroupResourceType, :AppMicroServiceType
+        attr_accessor :GroupId, :GroupName, :ApplicationId, :ApplicationName, :ApplicationType, :ClusterId, :ClusterName, :ClusterType, :NamespaceId, :NamespaceName, :StartupParameters, :GroupResourceType, :AppMicroServiceType, :K8sNamespaceName
 
-        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, clusterid=nil, clustername=nil, clustertype=nil, namespaceid=nil, namespacename=nil, startupparameters=nil, groupresourcetype=nil, appmicroservicetype=nil)
+        def initialize(groupid=nil, groupname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, clusterid=nil, clustername=nil, clustertype=nil, namespaceid=nil, namespacename=nil, startupparameters=nil, groupresourcetype=nil, appmicroservicetype=nil, k8snamespacename=nil)
           @GroupId = groupid
           @GroupName = groupname
           @ApplicationId = applicationid
@@ -19746,6 +19787,7 @@ module TencentCloud
           @StartupParameters = startupparameters
           @GroupResourceType = groupresourcetype
           @AppMicroServiceType = appmicroservicetype
+          @K8sNamespaceName = k8snamespacename
         end
 
         def deserialize(params)
@@ -19762,6 +19804,7 @@ module TencentCloud
           @StartupParameters = params['StartupParameters']
           @GroupResourceType = params['GroupResourceType']
           @AppMicroServiceType = params['AppMicroServiceType']
+          @K8sNamespaceName = params['K8sNamespaceName']
         end
       end
 
@@ -19827,7 +19870,7 @@ module TencentCloud
 
       # StartGroup请求参数结构体
       class StartGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 按照【部署组ID】进行部署组启动，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-zvw6zp9a&tab=publish&subTab=group)进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -19932,7 +19975,7 @@ module TencentCloud
 
       # StopGroup请求参数结构体
       class StopGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID
+        # @param GroupId: 按照【部署组ID】进行部署组删除，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-zvw6zp9a&tab=publish&subTab=group)进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId

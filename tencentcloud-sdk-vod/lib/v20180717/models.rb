@@ -7349,6 +7349,55 @@ module TencentCloud
         end
       end
 
+      # CreateMPSTemplate请求参数结构体
+      class CreateMPSTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param TemplateType: 需要创建的 MPS 模板的类型。取值：
+        # <li>Transcode: 创建转码模板，目前仅支持创建增强模板。</li>
+        # @type TemplateType: String
+        # @param MPSCreateTemplateParams: MPS 创建模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧创建用户自定义的 MPS 任务模板。
+        # 目前仅支持通过此方式创建以下任务类型的模板：
+        # 1. 音视频增强：仅支持填写“[创建转码模板](https://cloud.tencent.com/document/product/862/37605)”接口中的 Container 、Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数。其中 EnhanceConfig 此处必填。
+
+        # 目前模板中仅支持配置以上参数，其他参数无需填写。若包含其它参数，系统将自动忽略。以上透传参数以JSON形式表示。
+        # @type MPSCreateTemplateParams: String
+
+        attr_accessor :SubAppId, :TemplateType, :MPSCreateTemplateParams
+
+        def initialize(subappid=nil, templatetype=nil, mpscreatetemplateparams=nil)
+          @SubAppId = subappid
+          @TemplateType = templatetype
+          @MPSCreateTemplateParams = mpscreatetemplateparams
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @TemplateType = params['TemplateType']
+          @MPSCreateTemplateParams = params['MPSCreateTemplateParams']
+        end
+      end
+
+      # CreateMPSTemplate返回参数结构体
+      class CreateMPSTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: MPS 任务模板唯一标识。该模板独立于直接在 MPS 服务中创建的模板。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePersonSample请求参数结构体
       class CreatePersonSampleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 素材名称，长度限制：20 个字符。
@@ -8984,6 +9033,47 @@ module TencentCloud
 
       # DeleteJustInTimeTranscodeTemplate返回参数结构体
       class DeleteJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMPSTemplate请求参数结构体
+      class DeleteMPSTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param TemplateType: 需要删除的 MPS 模板的类型。取值：
+        # <li>Transcode: 删除转码模板。</li>
+        # @type TemplateType: String
+        # @param Definition: MPS 任务模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :SubAppId, :TemplateType, :Definition
+
+        def initialize(subappid=nil, templatetype=nil, definition=nil)
+          @SubAppId = subappid
+          @TemplateType = templatetype
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @TemplateType = params['TemplateType']
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteMPSTemplate返回参数结构体
+      class DeleteMPSTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11368,6 +11458,63 @@ module TencentCloud
               licenseusagedataitem_tmp = LicenseUsageDataItem.new
               licenseusagedataitem_tmp.deserialize(i)
               @LicenseUsageDataSet << licenseusagedataitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMPSTemplates请求参数结构体
+      class DescribeMPSTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param TemplateType: MPS 模板类型。根据需要查询的 MPS 模板的类型对结果进行过滤。取值：
+        # <li>Transcode: 查询转码模板列表。</li>
+        # @type TemplateType: String
+        # @param MPSDescribeTemplateParams: MPS 查询模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧查询 MPS 任务模板列表。目前仅支持通过此方式查询以下任务类型的模板：
+        # 1. 音视频增强：仅支持填写“[获取转码模板列表](https://cloud.tencent.com/document/product/862/37593)”接口中的 Definitions、Offset 和 Limit 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # @type MPSDescribeTemplateParams: String
+
+        attr_accessor :SubAppId, :TemplateType, :MPSDescribeTemplateParams
+
+        def initialize(subappid=nil, templatetype=nil, mpsdescribetemplateparams=nil)
+          @SubAppId = subappid
+          @TemplateType = templatetype
+          @MPSDescribeTemplateParams = mpsdescribetemplateparams
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @TemplateType = params['TemplateType']
+          @MPSDescribeTemplateParams = params['MPSDescribeTemplateParams']
+        end
+      end
+
+      # DescribeMPSTemplates返回参数结构体
+      class DescribeMPSTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param MPSTemplateSet: MPS 任务模板详情列表。
+        # @type MPSTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MPSTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, mpstemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MPSTemplateSet = mpstemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MPSTemplateSet'].nil?
+            @MPSTemplateSet = []
+            params['MPSTemplateSet'].each do |i|
+              mpstemplate_tmp = MPSTemplate.new
+              mpstemplate_tmp.deserialize(i)
+              @MPSTemplateSet << mpstemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16283,6 +16430,28 @@ module TencentCloud
         end
       end
 
+      # MPS 任务模板详情。
+      class MPSTemplate < TencentCloud::Common::AbstractModel
+        # @param TaskType: MPS 模板的类型。取值：
+        # <li>Transcode: 转码模板。</li>
+        # @type TaskType: String
+        # @param MPSTemplateInfo: MPS 任务模板详情内容。
+        # 示例：{"Definition":24214,"Name":"test","Comment":"","Type":"Preset","EnhanceConfig":{"VideoEnhance":{"FrameRate":{"Switch":"ON","Fps":50},"SuperResolution":{"Switch":"ON","Type":"lq"}}}}
+        # @type MPSTemplateInfo: String
+
+        attr_accessor :TaskType, :MPSTemplateInfo
+
+        def initialize(tasktype=nil, mpstemplateinfo=nil)
+          @TaskType = tasktype
+          @MPSTemplateInfo = mpstemplateinfo
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @MPSTemplateInfo = params['MPSTemplateInfo']
+        end
+      end
+
       # ManageTask请求参数结构体
       class ManageTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 视频处理的任务 ID。
@@ -19500,6 +19669,50 @@ module TencentCloud
 
       # ModifyJustInTimeTranscodeTemplate返回参数结构体
       class ModifyJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMPSTemplate请求参数结构体
+      class ModifyMPSTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param TemplateType: 需要修改的 MPS 模板的类型。取值：
+        # <li>Transcode: 创建转码模板，目前仅支持修改增强参数。</li>
+        # @type TemplateType: String
+        # @param MPSModifyTemplateParams: MPS 修改模板参数。该参数用于透传至媒体处理服务（MPS），从云点播侧修改用户自定义的 MPS 任务模板。
+        #  目前仅支持通过此方式修改以下任务类型的模板：
+        # 1. 音视频增强：仅支持填写“[修改转码模板](https://cloud.tencent.com/document/api/862/37578)”接口中的 Name、Comment、RemoveVideo、RemoveAudio、VideoTemplate、AudioTemplate 和 EnhanceConfig 几个参数的内容。目前仅支持在模板中配置以上参数，其他参数无需填写，若包含其它参数，系统将自动忽略。
+        # 示例：{"Definition":24214,"Container":"mp4","Name":"test","RemoveAudio":1,"VideoTemplate":{"Codec":"h264","Fps":0,"Bitrate":0},"EnhanceConfig":{"VideoEnhance":{"FrameRate":{"Switch":"ON","Fps":50}}}}
+        # @type MPSModifyTemplateParams: String
+
+        attr_accessor :SubAppId, :TemplateType, :MPSModifyTemplateParams
+
+        def initialize(subappid=nil, templatetype=nil, mpsmodifytemplateparams=nil)
+          @SubAppId = subappid
+          @TemplateType = templatetype
+          @MPSModifyTemplateParams = mpsmodifytemplateparams
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @TemplateType = params['TemplateType']
+          @MPSModifyTemplateParams = params['MPSModifyTemplateParams']
+        end
+      end
+
+      # ModifyMPSTemplate返回参数结构体
+      class ModifyMPSTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -7297,13 +7297,15 @@ module TencentCloud
         # <li>2.印章类型SealType是INVOICE类型，且该字段没有传入值或传入空时，会取该企业对应的统一社会信用代码作为默认的企业税号（<font color="red">如果是通过授权书授权方式认证的企业，此参数必传不能为空</font>）</li>
         # </ul>
         # @type TaxIdentifyCode: String
+        # @param SealDescription: 印章描述内容
+        # @type SealDescription: String
 
-        attr_accessor :Agent, :SealName, :SealImage, :Operator, :GenerateSource, :SealType, :SealHorizontalText, :SealStyle, :SealSize, :TaxIdentifyCode
+        attr_accessor :Agent, :SealName, :SealImage, :Operator, :GenerateSource, :SealType, :SealHorizontalText, :SealStyle, :SealSize, :TaxIdentifyCode, :SealDescription
         extend Gem::Deprecate
         deprecate :Operator, :none, 2025, 8
         deprecate :Operator=, :none, 2025, 8
 
-        def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil, generatesource=nil, sealtype=nil, sealhorizontaltext=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil)
+        def initialize(agent=nil, sealname=nil, sealimage=nil, operator=nil, generatesource=nil, sealtype=nil, sealhorizontaltext=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil, sealdescription=nil)
           @Agent = agent
           @SealName = sealname
           @SealImage = sealimage
@@ -7314,6 +7316,7 @@ module TencentCloud
           @SealStyle = sealstyle
           @SealSize = sealsize
           @TaxIdentifyCode = taxidentifycode
+          @SealDescription = sealdescription
         end
 
         def deserialize(params)
@@ -7333,6 +7336,7 @@ module TencentCloud
           @SealStyle = params['SealStyle']
           @SealSize = params['SealSize']
           @TaxIdentifyCode = params['TaxIdentifyCode']
+          @SealDescription = params['SealDescription']
         end
       end
 
@@ -11133,10 +11137,16 @@ module TencentCloud
         # @type IsAllTime: Boolean
         # @param AuthorizedUsers: 授权人列表
         # @type AuthorizedUsers: Array
+        # @param RealWidth: 印章的真实宽度，单位毫米
+        # @type RealWidth: Integer
+        # @param RealHeight: 印章的真实高度，单位毫米
+        # @type RealHeight: Integer
+        # @param SealDescription: 印章描述
+        # @type SealDescription: String
 
-        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers
+        attr_accessor :SealId, :SealName, :CreateOn, :Creator, :SealPolicyId, :SealStatus, :FailReason, :Url, :SealType, :IsAllTime, :AuthorizedUsers, :RealWidth, :RealHeight, :SealDescription
 
-        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil)
+        def initialize(sealid=nil, sealname=nil, createon=nil, creator=nil, sealpolicyid=nil, sealstatus=nil, failreason=nil, url=nil, sealtype=nil, isalltime=nil, authorizedusers=nil, realwidth=nil, realheight=nil, sealdescription=nil)
           @SealId = sealid
           @SealName = sealname
           @CreateOn = createon
@@ -11148,6 +11158,9 @@ module TencentCloud
           @SealType = sealtype
           @IsAllTime = isalltime
           @AuthorizedUsers = authorizedusers
+          @RealWidth = realwidth
+          @RealHeight = realheight
+          @SealDescription = sealdescription
         end
 
         def deserialize(params)
@@ -11169,6 +11182,9 @@ module TencentCloud
               @AuthorizedUsers << authorizeduser_tmp
             end
           end
+          @RealWidth = params['RealWidth']
+          @RealHeight = params['RealHeight']
+          @SealDescription = params['SealDescription']
         end
       end
 

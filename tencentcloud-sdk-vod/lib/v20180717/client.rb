@@ -541,6 +541,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建自定义模板，模板用于 ProcessMediaByMPS 接口的部分功能。
+        # 创建模板时，需要将 MPS 相关参数以 JSON 格式填入 MPSCreateTemplateParams 参数中。关于具体的任务参数配置方法，请参考 MPS 任务模板相关文档说明。
+        # 当前支持创建自定义模板的 MPS 功能：
+        # 1. [音视频增强](https://cloud.tencent.com/document/product/862/118703)。
+
+        # > 以该种方式创建的任务模板：
+        # > 1. 模板的管理仍在点播平台中完成。
+        # > 2. 该功能目前仍在内测中，如需测试体验，您可以联系我们获得支持。
+
+        # @param request: Request instance for CreateMPSTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateMPSTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateMPSTemplateResponse`
+        def CreateMPSTemplate(request)
+          body = send_request('CreateMPSTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMPSTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、不适宜视频识别等视频处理。
 
         # @param request: Request instance for CreatePersonSample.
@@ -1188,6 +1219,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义 MPS 任务模板。
+
+        # @param request: Request instance for DeleteMPSTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteMPSTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteMPSTemplateResponse`
+        def DeleteMPSTemplate(request)
+          body = send_request('DeleteMPSTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMPSTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2301,6 +2356,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLicenseUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取用户自定义媒体处理服务（MPS）任务模板。
+        # 查询模板列表时，需要将 MPS 相关参数以 JSON 格式填入 MPSDescribeTemplateParams 参数中。关于具体的任务参数配置方法，请参考 MPS 任务模板相关文档说明。
+
+        # @param request: Request instance for DescribeMPSTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeMPSTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeMPSTemplatesResponse`
+        def DescribeMPSTemplates(request)
+          body = send_request('DescribeMPSTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMPSTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3570,6 +3650,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义 MPS 任务模板。
+        # 修改模板时，需要将 MPS 相关参数以 JSON 格式填入 MPSModifyTemplateParams 参数中。关于具体的任务参数配置方法，请参考 MPS 任务模板相关文档说明。
+
+        # @param request: Request instance for ModifyMPSTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyMPSTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyMPSTemplateResponse`
+        def ModifyMPSTemplate(request)
+          body = send_request('ModifyMPSTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMPSTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

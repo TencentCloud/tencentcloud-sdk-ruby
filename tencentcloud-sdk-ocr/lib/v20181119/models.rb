@@ -13379,10 +13379,12 @@ module TencentCloud
         # @type TaxMark: String
         # @param CompanySealMark: 是否有公司印章（0：没有，1：有）
         # @type CompanySealMark: Integer
+        # @param InvoicePageIndex: 全电类型的多页pdf票据中，支持输出票面页码：当前第几页，一共第几页。
+        # @type InvoicePageIndex: String
 
-        attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems, :ServiceTypeLabel, :TotalCnMark, :TotalMark, :PretaxAmountMark, :TaxMark, :CompanySealMark
+        attr_accessor :Title, :Number, :Date, :PretaxAmount, :Tax, :Total, :TotalCn, :Seller, :SellerTaxID, :Buyer, :BuyerTaxID, :Issuer, :Remark, :SubTotal, :SubTax, :VatElectronicItems, :ServiceTypeLabel, :TotalCnMark, :TotalMark, :PretaxAmountMark, :TaxMark, :CompanySealMark, :InvoicePageIndex
 
-        def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil, servicetypelabel=nil, totalcnmark=nil, totalmark=nil, pretaxamountmark=nil, taxmark=nil, companysealmark=nil)
+        def initialize(title=nil, number=nil, date=nil, pretaxamount=nil, tax=nil, total=nil, totalcn=nil, seller=nil, sellertaxid=nil, buyer=nil, buyertaxid=nil, issuer=nil, remark=nil, subtotal=nil, subtax=nil, vatelectronicitems=nil, servicetypelabel=nil, totalcnmark=nil, totalmark=nil, pretaxamountmark=nil, taxmark=nil, companysealmark=nil, invoicepageindex=nil)
           @Title = title
           @Number = number
           @Date = date
@@ -13405,6 +13407,7 @@ module TencentCloud
           @PretaxAmountMark = pretaxamountmark
           @TaxMark = taxmark
           @CompanySealMark = companysealmark
+          @InvoicePageIndex = invoicepageindex
         end
 
         def deserialize(params)
@@ -13437,6 +13440,7 @@ module TencentCloud
           @PretaxAmountMark = params['PretaxAmountMark']
           @TaxMark = params['TaxMark']
           @CompanySealMark = params['CompanySealMark']
+          @InvoicePageIndex = params['InvoicePageIndex']
         end
       end
 
