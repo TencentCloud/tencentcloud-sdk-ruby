@@ -724,6 +724,45 @@ module TencentCloud
         end
       end
 
+      # AttachDataMaskPolicy请求参数结构体
+      class AttachDataMaskPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param DataMaskStrategyPolicySet: 要绑定的数据脱敏策略权限对象集合
+        # @type DataMaskStrategyPolicySet: Array
+
+        attr_accessor :DataMaskStrategyPolicySet
+
+        def initialize(datamaskstrategypolicyset=nil)
+          @DataMaskStrategyPolicySet = datamaskstrategypolicyset
+        end
+
+        def deserialize(params)
+          unless params['DataMaskStrategyPolicySet'].nil?
+            @DataMaskStrategyPolicySet = []
+            params['DataMaskStrategyPolicySet'].each do |i|
+              datamaskstrategypolicy_tmp = DataMaskStrategyPolicy.new
+              datamaskstrategypolicy_tmp.deserialize(i)
+              @DataMaskStrategyPolicySet << datamaskstrategypolicy_tmp
+            end
+          end
+        end
+      end
+
+      # AttachDataMaskPolicy返回参数结构体
+      class AttachDataMaskPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AttachUserPolicy请求参数结构体
       class AttachUserPolicyRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户Id，和子用户uin相同，需要先使用CreateUser接口创建用户。可以使用DescribeUsers接口查看。
@@ -1946,6 +1985,41 @@ module TencentCloud
 
         def deserialize(params)
           @DataEngineId = params['DataEngineId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDataMaskStrategy请求参数结构体
+      class CreateDataMaskStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Strategy: 数据脱敏策略详情
+        # @type Strategy: :class:`Tencentcloud::Dlc.v20210125.models.DataMaskStrategyInfo`
+
+        attr_accessor :Strategy
+
+        def initialize(strategy=nil)
+          @Strategy = strategy
+        end
+
+        def deserialize(params)
+          unless params['Strategy'].nil?
+            @Strategy = DataMaskStrategyInfo.new
+            @Strategy.deserialize(params['Strategy'])
+          end
+        end
+      end
+
+      # CreateDataMaskStrategy返回参数结构体
+      class CreateDataMaskStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4685,6 +4759,85 @@ module TencentCloud
       end
 
       # 数据脱敏策略信息
+      class DataMaskStrategy < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyId: String
+        # @param UserAppId: 用户AppId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAppId: String
+        # @param Uin: 用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param SubAccountUin: 操作用户子账号uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubAccountUin: String
+        # @param StrategyName: 策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
+        # @param StrategyType: MASK_SHOW_FIRST_4; MASK_SHOW_LAST_4;MASK_HASH; MASK_DATE_SHOW_YEAR; MASK_NULL; MASK_DEFAULT 等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyType: String
+        # @param StrategyDesc: 策略描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyDesc: String
+        # @param Groups: 用户组策略列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param Users: 用户子账号uin列表，按;拼接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Users: String
+        # @param State: 1: 生效中； 0：已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param CreateTime: 策略创建时间，毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 策略更新时间，毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+
+        attr_accessor :StrategyId, :UserAppId, :Uin, :SubAccountUin, :StrategyName, :StrategyType, :StrategyDesc, :Groups, :Users, :State, :CreateTime, :UpdateTime
+
+        def initialize(strategyid=nil, userappid=nil, uin=nil, subaccountuin=nil, strategyname=nil, strategytype=nil, strategydesc=nil, groups=nil, users=nil, state=nil, createtime=nil, updatetime=nil)
+          @StrategyId = strategyid
+          @UserAppId = userappid
+          @Uin = uin
+          @SubAccountUin = subaccountuin
+          @StrategyName = strategyname
+          @StrategyType = strategytype
+          @StrategyDesc = strategydesc
+          @Groups = groups
+          @Users = users
+          @State = state
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+          @UserAppId = params['UserAppId']
+          @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @StrategyName = params['StrategyName']
+          @StrategyType = params['StrategyType']
+          @StrategyDesc = params['StrategyDesc']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @Groups << groupinfo_tmp
+            end
+          end
+          @Users = params['Users']
+          @State = params['State']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 数据脱敏策略信息
       class DataMaskStrategyInfo < TencentCloud::Common::AbstractModel
         # @param StrategyName: 策略名称
         # @type StrategyName: String
@@ -4725,6 +4878,36 @@ module TencentCloud
           end
           @Users = params['Users']
           @StrategyId = params['StrategyId']
+        end
+      end
+
+      # 数据脱敏策略权限对象
+      class DataMaskStrategyPolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyInfo: 数据脱敏权限对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policy`
+        # @param DataMaskStrategyId: 数据脱敏策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataMaskStrategyId: String
+        # @param ColumnType: 绑定字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+
+        attr_accessor :PolicyInfo, :DataMaskStrategyId, :ColumnType
+
+        def initialize(policyinfo=nil, datamaskstrategyid=nil, columntype=nil)
+          @PolicyInfo = policyinfo
+          @DataMaskStrategyId = datamaskstrategyid
+          @ColumnType = columntype
+        end
+
+        def deserialize(params)
+          unless params['PolicyInfo'].nil?
+            @PolicyInfo = Policy.new
+            @PolicyInfo.deserialize(params['PolicyInfo'])
+          end
+          @DataMaskStrategyId = params['DataMaskStrategyId']
+          @ColumnType = params['ColumnType']
         end
       end
 
@@ -5196,6 +5379,38 @@ module TencentCloud
 
       # DeleteDataEngine返回参数结构体
       class DeleteDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDataMaskStrategy请求参数结构体
+      class DeleteDataMaskStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 数据脱敏策略Id
+        # @type StrategyId: String
+
+        attr_accessor :StrategyId
+
+        def initialize(strategyid=nil)
+          @StrategyId = strategyid
+        end
+
+        def deserialize(params)
+          @StrategyId = params['StrategyId']
+        end
+      end
+
+      # DeleteDataMaskStrategy返回参数结构体
+      class DeleteDataMaskStrategyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6613,6 +6828,68 @@ module TencentCloud
               dataenginescaleinfo_tmp = DataEngineScaleInfo.new
               dataenginescaleinfo_tmp.deserialize(i)
               @Scales << dataenginescaleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDataMaskStrategies请求参数结构体
+      class DescribeDataMaskStrategiesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页参数，单页返回数据量，默认10
+        # @type Limit: Integer
+        # @param Offset: 分页参数，数据便偏移量，默认0
+        # @type Offset: Integer
+        # @param Filters: 过滤字段，strategy-name: 按策略名称搜索
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDataMaskStrategies返回参数结构体
+      class DescribeDataMaskStrategiesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数据脱敏策略数
+        # @type TotalCount: Integer
+        # @param Strategies: 数据脱敏策略列表
+        # @type Strategies: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Strategies, :RequestId
+
+        def initialize(totalcount=nil, strategies=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Strategies = strategies
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Strategies'].nil?
+            @Strategies = []
+            params['Strategies'].each do |i|
+              datamaskstrategy_tmp = DataMaskStrategy.new
+              datamaskstrategy_tmp.deserialize(i)
+              @Strategies << datamaskstrategy_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9179,6 +9456,57 @@ module TencentCloud
           unless params['UserInfo'].nil?
             @UserInfo = OpendThirdAccessUserInfo.new
             @UserInfo.deserialize(params['UserInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUDFPolicy请求参数结构体
+      class DescribeUDFPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: udf名称
+        # @type Name: String
+        # @param DatabaseName: 数据库名(全局UDF：global-function)
+        # @type DatabaseName: String
+        # @param CatalogName: 数据目录名
+        # @type CatalogName: String
+
+        attr_accessor :Name, :DatabaseName, :CatalogName
+
+        def initialize(name=nil, databasename=nil, catalogname=nil)
+          @Name = name
+          @DatabaseName = databasename
+          @CatalogName = catalogname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DatabaseName = params['DatabaseName']
+          @CatalogName = params['CatalogName']
+        end
+      end
+
+      # DescribeUDFPolicy返回参数结构体
+      class DescribeUDFPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param UDFPolicyInfos: UDF权限信息
+        # @type UDFPolicyInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UDFPolicyInfos, :RequestId
+
+        def initialize(udfpolicyinfos=nil, requestid=nil)
+          @UDFPolicyInfos = udfpolicyinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UDFPolicyInfos'].nil?
+            @UDFPolicyInfos = []
+            params['UDFPolicyInfos'].each do |i|
+              udfpolicyinfo_tmp = UDFPolicyInfo.new
+              udfpolicyinfo_tmp.deserialize(i)
+              @UDFPolicyInfos << udfpolicyinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -15180,6 +15508,31 @@ module TencentCloud
         end
       end
 
+      # UDF权限信息
+      class UDFPolicyInfo < TencentCloud::Common::AbstractModel
+        # @param Accesses: 权限类型
+        # 示例：select，alter，drop
+        # @type Accesses: Array
+        # @param Users: 拥有权限的用户信息
+        # @type Users: Array
+        # @param Groups: 拥有权限的工作组的信息
+        # @type Groups: Array
+
+        attr_accessor :Accesses, :Users, :Groups
+
+        def initialize(accesses=nil, users=nil, groups=nil)
+          @Accesses = accesses
+          @Users = users
+          @Groups = groups
+        end
+
+        def deserialize(params)
+          @Accesses = params['Accesses']
+          @Users = params['Users']
+          @Groups = params['Groups']
+        end
+      end
+
       # UnbindWorkGroupsFromUser请求参数结构体
       class UnbindWorkGroupsFromUserRequest < TencentCloud::Common::AbstractModel
         # @param AddInfo: 解绑的工作组Id和用户Id的关联关系
@@ -15441,6 +15794,41 @@ module TencentCloud
 
       # UpdateDataEngine返回参数结构体
       class UpdateDataEngineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataMaskStrategy请求参数结构体
+      class UpdateDataMaskStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param Strategy: 数据脱敏策略详情
+        # @type Strategy: :class:`Tencentcloud::Dlc.v20210125.models.DataMaskStrategyInfo`
+
+        attr_accessor :Strategy
+
+        def initialize(strategy=nil)
+          @Strategy = strategy
+        end
+
+        def deserialize(params)
+          unless params['Strategy'].nil?
+            @Strategy = DataMaskStrategyInfo.new
+            @Strategy.deserialize(params['Strategy'])
+          end
+        end
+      end
+
+      # UpdateDataMaskStrategy返回参数结构体
+      class UpdateDataMaskStrategyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15759,6 +16147,68 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateUDFPolicy请求参数结构体
+      class UpdateUDFPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: UDF名称
+        # @type Name: String
+        # @param DatabaseName: 数据库名
+        # @type DatabaseName: String
+        # @param CatalogName: 数据目录名
+        # @type CatalogName: String
+        # @param UDFPolicyInfos: UDF权限信息
+        # @type UDFPolicyInfos: Array
+
+        attr_accessor :Name, :DatabaseName, :CatalogName, :UDFPolicyInfos
+
+        def initialize(name=nil, databasename=nil, catalogname=nil, udfpolicyinfos=nil)
+          @Name = name
+          @DatabaseName = databasename
+          @CatalogName = catalogname
+          @UDFPolicyInfos = udfpolicyinfos
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DatabaseName = params['DatabaseName']
+          @CatalogName = params['CatalogName']
+          unless params['UDFPolicyInfos'].nil?
+            @UDFPolicyInfos = []
+            params['UDFPolicyInfos'].each do |i|
+              udfpolicyinfo_tmp = UDFPolicyInfo.new
+              udfpolicyinfo_tmp.deserialize(i)
+              @UDFPolicyInfos << udfpolicyinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateUDFPolicy返回参数结构体
+      class UpdateUDFPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param UDFPolicyInfos: UDF权限信息
+        # @type UDFPolicyInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UDFPolicyInfos, :RequestId
+
+        def initialize(udfpolicyinfos=nil, requestid=nil)
+          @UDFPolicyInfos = udfpolicyinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UDFPolicyInfos'].nil?
+            @UDFPolicyInfos = []
+            params['UDFPolicyInfos'].each do |i|
+              udfpolicyinfo_tmp = UDFPolicyInfo.new
+              udfpolicyinfo_tmp.deserialize(i)
+              @UDFPolicyInfos << udfpolicyinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

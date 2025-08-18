@@ -7294,14 +7294,17 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param RecordType: 录制类型，取值为video（音视频录制）、audio（纯音频录制）、auto（自动探测）。不填时默认值为video。
+        # @type RecordType: String
 
-        attr_accessor :HLSConfigure, :MP4Configure, :Name, :Comment
+        attr_accessor :HLSConfigure, :MP4Configure, :Name, :Comment, :RecordType
 
-        def initialize(hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil)
+        def initialize(hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil, recordtype=nil)
           @HLSConfigure = hlsconfigure
           @MP4Configure = mp4configure
           @Name = name
           @Comment = comment
+          @RecordType = recordtype
         end
 
         def deserialize(params)
@@ -7315,6 +7318,7 @@ module TencentCloud
           end
           @Name = params['Name']
           @Comment = params['Comment']
+          @RecordType = params['RecordType']
         end
       end
 
@@ -15726,10 +15730,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param RecordType: 录制类型，取值为video（音视频录制）、audio（纯音频录制）、auto（自动探测）。
+        # @type RecordType: String
 
-        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment, :Type, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment, :Type, :CreateTime, :UpdateTime, :RecordType
 
-        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil, type=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil, type=nil, createtime=nil, updatetime=nil, recordtype=nil)
           @Definition = definition
           @HLSConfigure = hlsconfigure
           @MP4Configure = mp4configure
@@ -15738,6 +15744,7 @@ module TencentCloud
           @Type = type
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @RecordType = recordtype
         end
 
         def deserialize(params)
@@ -15755,6 +15762,7 @@ module TencentCloud
           @Type = params['Type']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @RecordType = params['RecordType']
         end
       end
 
@@ -16747,20 +16755,20 @@ module TencentCloud
       # 任务处理的事件通知配置。
       class LiveStreamTaskNotifyConfig < TencentCloud::Common::AbstractModel
         # @param NotifyType: 通知类型：
-        # "CMQ"：回调消息写入cmq队列；
+        # TDMQ-CMQ：消息队列
         # "URL"： 指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同[解析直播事件通知接口](https://cloud.tencent.com/document/product/862/39229) 的输出参数
 
         # <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         # @type NotifyType: String
         # @param NotifyUrl: HTTP回调地址，NotifyType为URL时必填。
         # @type NotifyUrl: String
-        # @param CmqModel: CMQ 的模型，有 Queue 和 Topic 两种，目前仅支持 Queue。
+        # @param CmqModel: 有 Queue 和 Topic 两种模型。
         # @type CmqModel: String
-        # @param CmqRegion: CMQ 的园区，如 sh，bj 等。
+        # @param CmqRegion: TDMQ-CMQ 的园区，如 sh，bj 等。
         # @type CmqRegion: String
-        # @param QueueName: 当模型为 Queue 时有效，表示接收事件通知的 CMQ 的队列名。
+        # @param QueueName: 当模型为 Queue 时有效，表示接收事件通知的 TDMQ-CMQ 的队列名。
         # @type QueueName: String
-        # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 CMQ 的主题名。
+        # @param TopicName: 当模型为 Topic 时有效，表示接收事件通知的 TDMQ-CMQ 的主题名。
         # @type TopicName: String
         # @param NotifyKey: 用于生成回调签名的 Key。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -18968,15 +18976,18 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param RecordType: 录制类型，取值为video（音视频录制）、audio（纯音频录制）、auto（自动探测）。
+        # @type RecordType: String
 
-        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment
+        attr_accessor :Definition, :HLSConfigure, :MP4Configure, :Name, :Comment, :RecordType
 
-        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil)
+        def initialize(definition=nil, hlsconfigure=nil, mp4configure=nil, name=nil, comment=nil, recordtype=nil)
           @Definition = definition
           @HLSConfigure = hlsconfigure
           @MP4Configure = mp4configure
           @Name = name
           @Comment = comment
+          @RecordType = recordtype
         end
 
         def deserialize(params)
@@ -18991,6 +19002,7 @@ module TencentCloud
           end
           @Name = params['Name']
           @Comment = params['Comment']
+          @RecordType = params['RecordType']
         end
       end
 

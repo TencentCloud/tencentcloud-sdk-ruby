@@ -355,8 +355,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2025, 7
-        deprecate :Timestamp=, :none, 2025, 7
+        deprecate :Timestamp, :none, 2025, 8
+        deprecate :Timestamp=, :none, 2025, 8
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -573,8 +573,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2025, 7
-        deprecate :SkillGroupList=, :none, 2025, 7
+        deprecate :SkillGroupList, :none, 2025, 8
+        deprecate :SkillGroupList=, :none, 2025, 8
 
         def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
           @SdkAppId = sdkappid
@@ -1048,8 +1048,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 7
-        deprecate :PromptVariables=, :none, 2025, 7
+        deprecate :PromptVariables, :none, 2025, 8
+        deprecate :PromptVariables=, :none, 2025, 8
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -1340,13 +1340,18 @@ module TencentCloud
         # @type VadLevel: Integer
         # @param ToneWord: 衔接语
         # @type ToneWord: :class:`Tencentcloud::Ccc.v20200210.models.ToneWordInfo`
+        # @param EnableComplianceAudio: 合规提示音，
+        # 该参数传true（默认）表示通话开始播放摩斯码，提示对话内容为 AI 生成。
+        # 该参数传false表示关闭合规提示音。该参数传false则代表您知晓并同意以下协议：
+        # 我方充分知悉和理解，根据[《网络安全法》](https://www.gov.cn/xinwen/2016-11/07/content_5129723.htm)[《互联网信息服务深度合成管理规定》](https://www.gov.cn/zhengce/zhengceku/2022-12/12/content_5731431.htm)[《生成式人工智能服务管理暂行办法》](https://www.gov.cn/zhengce/zhengceku/202307/content_6891752.htm)[《人工智能生成合成内容标识办法》](https://www.gov.cn/zhengce/zhengceku/202503/content_7014286.htm)的法律法规的规定，对人工智能生成合成内容应当添加显式标识和隐式标识。我方基于业务需求，请腾讯云对生成合成内容不添加显式标识，我方承诺合法合规使用生成合成内容，避免造成混淆、误认；如果使用生成合成内容对公众提供服务的，或通过网络传播的，我方将自觉主动添加符合法律规定和国家标准要求的显式标识，承担人工智能生成合成内容标识的法律义务。我方未能恰当、合理地履行人工智能内容标识义务造成不良后果的，或遭受主管部门责罚的，相关责任由我方完全承担。
+        # @type EnableComplianceAudio: Boolean
 
-        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord
+        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 7
-        deprecate :PromptVariables=, :none, 2025, 7
+        deprecate :PromptVariables, :none, 2025, 8
+        deprecate :PromptVariables=, :none, 2025, 8
 
-        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil)
+        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @LLMType = llmtype
@@ -1379,6 +1384,7 @@ module TencentCloud
           @TopP = topp
           @VadLevel = vadlevel
           @ToneWord = toneword
+          @EnableComplianceAudio = enablecomplianceaudio
         end
 
         def deserialize(params)
@@ -1445,6 +1451,7 @@ module TencentCloud
             @ToneWord = ToneWordInfo.new
             @ToneWord.deserialize(params['ToneWord'])
           end
+          @EnableComplianceAudio = params['EnableComplianceAudio']
         end
       end
 
@@ -1763,8 +1770,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 7
-        deprecate :Uui=, :none, 2025, 7
+        deprecate :Uui, :none, 2025, 8
+        deprecate :Uui=, :none, 2025, 8
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -3107,10 +3114,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 7
-        deprecate :InstanceId=, :none, 2025, 7
-        deprecate :CdrId, :none, 2025, 7
-        deprecate :CdrId=, :none, 2025, 7
+        deprecate :InstanceId, :none, 2025, 8
+        deprecate :InstanceId=, :none, 2025, 8
+        deprecate :CdrId, :none, 2025, 8
+        deprecate :CdrId=, :none, 2025, 8
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -3436,8 +3443,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 7
-        deprecate :InstanceId=, :none, 2025, 7
+        deprecate :InstanceId, :none, 2025, 8
+        deprecate :InstanceId=, :none, 2025, 8
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -3474,8 +3481,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2025, 7
-        deprecate :IMCdrs=, :none, 2025, 7
+        deprecate :IMCdrs, :none, 2025, 8
+        deprecate :IMCdrs=, :none, 2025, 8
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -3967,8 +3974,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 7
-        deprecate :TelCdrs=, :none, 2025, 7
+        deprecate :TelCdrs, :none, 2025, 8
+        deprecate :TelCdrs=, :none, 2025, 8
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4233,8 +4240,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2025, 7
-        deprecate :VoipCallInCount=, :none, 2025, 7
+        deprecate :VoipCallInCount, :none, 2025, 8
+        deprecate :VoipCallInCount=, :none, 2025, 8
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -4282,8 +4289,8 @@ module TencentCloud
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 7
-        deprecate :InstanceId=, :none, 2025, 7
+        deprecate :InstanceId, :none, 2025, 8
+        deprecate :InstanceId=, :none, 2025, 8
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
@@ -4325,8 +4332,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 7
-        deprecate :TelCdrs=, :none, 2025, 7
+        deprecate :TelCdrs, :none, 2025, 8
+        deprecate :TelCdrs=, :none, 2025, 8
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -5951,10 +5958,10 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber, :ForwardingConfig
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2025, 7
-        deprecate :RoleId=, :none, 2025, 7
-        deprecate :RoleIdList, :none, 2025, 7
-        deprecate :RoleIdList=, :none, 2025, 7
+        deprecate :RoleId, :none, 2025, 8
+        deprecate :RoleId=, :none, 2025, 8
+        deprecate :RoleIdList, :none, 2025, 8
+        deprecate :RoleIdList=, :none, 2025, 8
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil, forwardingconfig=nil)
           @Name = name
@@ -6358,8 +6365,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 7
-        deprecate :Uui=, :none, 2025, 7
+        deprecate :Uui, :none, 2025, 8
+        deprecate :Uui=, :none, 2025, 8
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller

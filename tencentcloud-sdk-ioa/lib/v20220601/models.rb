@@ -200,26 +200,26 @@ module TencentCloud
 
       # CreateDeviceVirtualGroup请求参数结构体
       class CreateDeviceVirtualGroupRequest < TencentCloud::Common::AbstractModel
-        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
-        # @type DomainInstanceId: String
         # @param DeviceVirtualGroupName: 必填，终端自定义分组名
         # @type DeviceVirtualGroupName: String
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
         # @param Description: 详情
         # @type Description: String
-        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios ）(只支持32位)
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios ； 默认值0）(只支持32位)
         # @type OsType: Integer
-        # @param TimeType: 必填，分组类型（0:手动分组；非0为自动划分分组；具体枚举值为：1:自动每小时划分分组、2:自动每天划分分组、3:自定义时间划分分组）(只支持32位)
+        # @param TimeType: 分组类型（0:手动分组；非0为自动划分分组；具体枚举值为：1:自动每小时划分分组、2:自动每天划分分组、3:自定义时间划分分组； 默认值0）(只支持32位)
         # @type TimeType: Integer
         # @param AutoMinute: 选填，TimeType=3时的自动划分时间，其他情况为0（单位min）(只支持32位)
         # @type AutoMinute: Integer
         # @param AutoRules: 选填，手动分组不填，自动划分分组的划分规则数据
         # @type AutoRules: :class:`Tencentcloud::Ioa.v20220601.models.ComplexRule`
 
-        attr_accessor :DomainInstanceId, :DeviceVirtualGroupName, :Description, :OsType, :TimeType, :AutoMinute, :AutoRules
+        attr_accessor :DeviceVirtualGroupName, :DomainInstanceId, :Description, :OsType, :TimeType, :AutoMinute, :AutoRules
 
-        def initialize(domaininstanceid=nil, devicevirtualgroupname=nil, description=nil, ostype=nil, timetype=nil, autominute=nil, autorules=nil)
-          @DomainInstanceId = domaininstanceid
+        def initialize(devicevirtualgroupname=nil, domaininstanceid=nil, description=nil, ostype=nil, timetype=nil, autominute=nil, autorules=nil)
           @DeviceVirtualGroupName = devicevirtualgroupname
+          @DomainInstanceId = domaininstanceid
           @Description = description
           @OsType = ostype
           @TimeType = timetype
@@ -228,8 +228,8 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @DomainInstanceId = params['DomainInstanceId']
           @DeviceVirtualGroupName = params['DeviceVirtualGroupName']
+          @DomainInstanceId = params['DomainInstanceId']
           @Description = params['Description']
           @OsType = params['OsType']
           @TimeType = params['TimeType']
@@ -282,28 +282,31 @@ module TencentCloud
 
       # CreatePrivilegeCode请求参数结构体
       class CreatePrivilegeCodeRequest < TencentCloud::Common::AbstractModel
-        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
-        # @type DomainInstanceId: String
         # @param Mid: 必填；设备唯一标识符;
         # @type Mid: String
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios ）；默认值0
+        # @type OsType: Integer
 
-        attr_accessor :DomainInstanceId, :Mid
+        attr_accessor :Mid, :DomainInstanceId, :OsType
 
-        def initialize(domaininstanceid=nil, mid=nil)
-          @DomainInstanceId = domaininstanceid
+        def initialize(mid=nil, domaininstanceid=nil, ostype=nil)
           @Mid = mid
+          @DomainInstanceId = domaininstanceid
+          @OsType = ostype
         end
 
         def deserialize(params)
-          @DomainInstanceId = params['DomainInstanceId']
           @Mid = params['Mid']
+          @DomainInstanceId = params['DomainInstanceId']
+          @OsType = params['OsType']
         end
       end
 
       # CreatePrivilegeCode返回参数结构体
       class CreatePrivilegeCodeResponse < TencentCloud::Common::AbstractModel
         # @param Data: 业务响应数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreatePrivilegeCodeRspData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -629,10 +632,12 @@ module TencentCloud
         # @type HardDiskSize: String
         # @param Monitor: 显示器品牌型号
         # @type Monitor: String
+        # @param RemarkName: 终端备注名
+        # @type RemarkName: String
 
-        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor
+        attr_accessor :Id, :Mid, :OsType, :Name, :UserName, :Status, :GroupId, :GroupName, :GroupNamePath, :AccountName, :Ip, :MacAddr, :Cpu, :Memory, :HardDiskSize, :Monitor, :RemarkName
 
-        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil)
+        def initialize(id=nil, mid=nil, ostype=nil, name=nil, username=nil, status=nil, groupid=nil, groupname=nil, groupnamepath=nil, accountname=nil, ip=nil, macaddr=nil, cpu=nil, memory=nil, harddisksize=nil, monitor=nil, remarkname=nil)
           @Id = id
           @Mid = mid
           @OsType = ostype
@@ -649,6 +654,7 @@ module TencentCloud
           @Memory = memory
           @HardDiskSize = harddisksize
           @Monitor = monitor
+          @RemarkName = remarkname
         end
 
         def deserialize(params)
@@ -668,6 +674,7 @@ module TencentCloud
           @Memory = params['Memory']
           @HardDiskSize = params['HardDiskSize']
           @Monitor = params['Monitor']
+          @RemarkName = params['RemarkName']
         end
       end
 
@@ -2207,30 +2214,28 @@ module TencentCloud
 
       # ModifyVirtualDeviceGroups请求参数结构体
       class ModifyVirtualDeviceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceList: 必填，操作的设备列表数据
+        # @type DeviceList: Array
         # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
         # @type DomainInstanceId: String
         # @param DeviceVirtualGroupId: 添加到的终端自定义分组id。和DeviceVirtualGroupIds互斥，必填其一，优先使用本参数
         # @type DeviceVirtualGroupId: Integer
-        # @param DeviceList: 必填，操作的设备列表数据
-        # @type DeviceList: Array
         # @param DeviceVirtualGroupIds: 要添加的终端自定义分组id列表
         # @type DeviceVirtualGroupIds: Array
-        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，3: win_srv，4：android，5：ios   默认值0）
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios   默认值0）
         # @type OsType: Integer
 
-        attr_accessor :DomainInstanceId, :DeviceVirtualGroupId, :DeviceList, :DeviceVirtualGroupIds, :OsType
+        attr_accessor :DeviceList, :DomainInstanceId, :DeviceVirtualGroupId, :DeviceVirtualGroupIds, :OsType
 
-        def initialize(domaininstanceid=nil, devicevirtualgroupid=nil, devicelist=nil, devicevirtualgroupids=nil, ostype=nil)
+        def initialize(devicelist=nil, domaininstanceid=nil, devicevirtualgroupid=nil, devicevirtualgroupids=nil, ostype=nil)
+          @DeviceList = devicelist
           @DomainInstanceId = domaininstanceid
           @DeviceVirtualGroupId = devicevirtualgroupid
-          @DeviceList = devicelist
           @DeviceVirtualGroupIds = devicevirtualgroupids
           @OsType = ostype
         end
 
         def deserialize(params)
-          @DomainInstanceId = params['DomainInstanceId']
-          @DeviceVirtualGroupId = params['DeviceVirtualGroupId']
           unless params['DeviceList'].nil?
             @DeviceList = []
             params['DeviceList'].each do |i|
@@ -2239,6 +2244,8 @@ module TencentCloud
               @DeviceList << modifyvirtualdevicegroupsreqitem_tmp
             end
           end
+          @DomainInstanceId = params['DomainInstanceId']
+          @DeviceVirtualGroupId = params['DeviceVirtualGroupId']
           @DeviceVirtualGroupIds = params['DeviceVirtualGroupIds']
           @OsType = params['OsType']
         end

@@ -3499,17 +3499,21 @@ module TencentCloud
         # @type GatewayId: String
         # @param Name: 服务名字，服务ID
         # @type Name: String
+        # @param DeleteRoutes: 是否同步删除服务上绑定的路由
+        # @type DeleteRoutes: Boolean
 
-        attr_accessor :GatewayId, :Name
+        attr_accessor :GatewayId, :Name, :DeleteRoutes
 
-        def initialize(gatewayid=nil, name=nil)
+        def initialize(gatewayid=nil, name=nil, deleteroutes=nil)
           @GatewayId = gatewayid
           @Name = name
+          @DeleteRoutes = deleteroutes
         end
 
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @Name = params['Name']
+          @DeleteRoutes = params['DeleteRoutes']
         end
       end
 

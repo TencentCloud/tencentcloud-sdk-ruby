@@ -3635,6 +3635,26 @@ module TencentCloud
         end
       end
 
+      # 节点Gpu信息
+      class GpuInfo < TencentCloud::Common::AbstractModel
+        # @param GpuCount: Gpu块数
+        # @type GpuCount: Integer
+        # @param GpuType: Gpu类型
+        # @type GpuType: String
+
+        attr_accessor :GpuCount, :GpuType
+
+        def initialize(gpucount=nil, gputype=nil)
+          @GpuCount = gpucount
+          @GpuType = gputype
+        end
+
+        def deserialize(params)
+          @GpuCount = params['GpuCount']
+          @GpuType = params['GpuType']
+        end
+      end
+
       # 索引元数据字段
       class IndexMetaField < TencentCloud::Common::AbstractModel
         # @param IndexType: 索引类型
@@ -4219,10 +4239,12 @@ module TencentCloud
         # @type EnableDestroyProtection: String
         # @param ShowKibanaIpPort: kibana内网访问地址
         # @type ShowKibanaIpPort: String
+        # @param IsCdzLite: 是否为CDZLite可用区
+        # @type IsCdzLite: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort, :IsCdzLite
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil, iscdzlite=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -4318,6 +4340,7 @@ module TencentCloud
           @EnableScheduleOperationDuration = enablescheduleoperationduration
           @EnableDestroyProtection = enabledestroyprotection
           @ShowKibanaIpPort = showkibanaipport
+          @IsCdzLite = iscdzlite
         end
 
         def deserialize(params)
@@ -4485,6 +4508,7 @@ module TencentCloud
           end
           @EnableDestroyProtection = params['EnableDestroyProtection']
           @ShowKibanaIpPort = params['ShowKibanaIpPort']
+          @IsCdzLite = params['IsCdzLite']
         end
       end
 
@@ -5299,10 +5323,13 @@ module TencentCloud
         # @param DiskEnhance: /
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskEnhance: Integer
+        # @param GpuInfo: 节点Gpu信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GpuInfo: :class:`Tencentcloud::Es.v20180416.models.GpuInfo`
 
-        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt, :CpuNum, :MemSize, :DiskEnhance
+        attr_accessor :NodeNum, :NodeType, :Type, :DiskType, :DiskSize, :LocalDiskInfo, :DiskCount, :DiskEncrypt, :CpuNum, :MemSize, :DiskEnhance, :GpuInfo
 
-        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil, cpunum=nil, memsize=nil, diskenhance=nil)
+        def initialize(nodenum=nil, nodetype=nil, type=nil, disktype=nil, disksize=nil, localdiskinfo=nil, diskcount=nil, diskencrypt=nil, cpunum=nil, memsize=nil, diskenhance=nil, gpuinfo=nil)
           @NodeNum = nodenum
           @NodeType = nodetype
           @Type = type
@@ -5314,6 +5341,7 @@ module TencentCloud
           @CpuNum = cpunum
           @MemSize = memsize
           @DiskEnhance = diskenhance
+          @GpuInfo = gpuinfo
         end
 
         def deserialize(params)
@@ -5331,6 +5359,10 @@ module TencentCloud
           @CpuNum = params['CpuNum']
           @MemSize = params['MemSize']
           @DiskEnhance = params['DiskEnhance']
+          unless params['GpuInfo'].nil?
+            @GpuInfo = GpuInfo.new
+            @GpuInfo.deserialize(params['GpuInfo'])
+          end
         end
       end
 

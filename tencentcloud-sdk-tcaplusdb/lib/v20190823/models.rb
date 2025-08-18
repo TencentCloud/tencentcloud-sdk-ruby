@@ -28,7 +28,6 @@ module TencentCloud
         # @param ClusterName: 集群名称
         # @type ClusterName: String
         # @param TableGroupName: 表格组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupName: String
         # @param TableName: 表格名称
         # @type TableName: String
@@ -43,22 +42,16 @@ module TencentCloud
         # @param TaskId: 已提交的任务Id，未提交申请为0
         # @type TaskId: String
         # @param TableInstanceId: 腾讯云上table的唯一键
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
         # @param ExecuteUser: 审批人
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteUser: String
         # @param ExecuteStatus: 执行状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecuteStatus: String
         # @param CanCensor: 该申请单是否可以被当前用户审批
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanCensor: Boolean
         # @param CanWithdrawal: 该申请单是否可以被当前用户撤回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanWithdrawal: Boolean
 
         attr_accessor :ApplicationId, :ApplicationType, :ClusterId, :ClusterName, :TableGroupName, :TableName, :Applicant, :CreatedTime, :ApplicationStatus, :TableGroupId, :TaskId, :TableInstanceId, :UpdateTime, :ExecuteUser, :ExecuteStatus, :CanCensor, :CanWithdrawal
@@ -111,13 +104,10 @@ module TencentCloud
         # @param ApplicationType: 申请类型
         # @type ApplicationType: Integer
         # @param ApplicationStatus: 处理状态 0-待审核 1-已经审核并提交任务 2-已驳回
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationStatus: Integer
         # @param TaskId: 已提交的任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ApplicationId, :ApplicationType, :ApplicationStatus, :TaskId, :Error
@@ -350,54 +340,38 @@ module TencentCloud
         # @param ApiAccessPort: TcaplusDB SDK连接参数，接入端口
         # @type ApiAccessPort: Integer
         # @param OldPasswordExpireTime: 如果PasswordStatus是unmodifiable说明有旧密码还未过期，此字段将显示旧密码过期的时间，否则为空
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldPasswordExpireTime: String
         # @param ApiAccessIpv6: TcaplusDB SDK连接参数，接入ipv6地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAccessIpv6: String
         # @param ClusterType: 集群类型，0,1:共享集群; 2:独立集群
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterType: Integer
         # @param ClusterStatus: 集群状态, 0：表示正常运行中，1：表示冻结隔离一般欠费进入此状态，2：表示待回收，一般用户主动触发删除进入这个状态，3：待释放，进入这个状态，表示可以释放此表占用的资源了，4：变更中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterStatus: Integer
         # @param ReadCapacityUnit: 读CU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReadCapacityUnit: Integer
         # @param WriteCapacityUnit: 写CU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WriteCapacityUnit: Integer
         # @param DiskVolume: 磁盘容量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskVolume: Integer
         # @param ServerList: 独占server机器信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServerList: Array
         # @param ProxyList: 独占proxy机器信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProxyList: Array
         # @param Censorship: 是否开启审核 0-不开启 1-开启
         # @type Censorship: Integer
         # @param DbaUins: 审批人uin列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbaUins: Array
         # @param DataFlowStatus: 是否开启了数据订阅
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataFlowStatus: Integer
         # @param KafkaInfo: 数据订阅的kafka信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KafkaInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.KafkaInfo`
         # @param TxhBackupExpireDay: 集群Txh备份文件多少天后过期删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxhBackupExpireDay: Integer
         # @param UlogBackupExpireDay: 集群Ulog备份文件多少天后过期删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UlogBackupExpireDay: Integer
         # @param IsReadOnlyUlogBackupExpireDay: 集群Ulog备份文件过期策略是否为只读， 0： UlogBackupExpire是只读，不可修改， 1： UlogBackupExpire可以修改（当前业务存在Svrid第二段等于clusterid的机器）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsReadOnlyUlogBackupExpireDay: Integer
         # @param RestProxyStatus: restproxy状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RestProxyStatus: Integer
 
         attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay, :RestProxyStatus
@@ -580,28 +554,20 @@ module TencentCloud
       # 比较表格的Meta信息
       class CompareTablesInfo < TencentCloud::Common::AbstractModel
         # @param SrcTableClusterId: 源表格的集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableClusterId: String
         # @param SrcTableGroupId: 源表格的表格组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableGroupId: String
         # @param SrcTableName: 源表格的表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableName: String
         # @param DstTableClusterId: 目标表格的集群id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableClusterId: String
         # @param DstTableGroupId: 目标表格的表格组id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableGroupId: String
         # @param DstTableName: 目标表格的表名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableName: String
         # @param SrcTableInstanceId: 源表格的实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SrcTableInstanceId: String
         # @param DstTableInstanceId: 目标表格的实例id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DstTableInstanceId: String
 
         attr_accessor :SrcTableClusterId, :SrcTableGroupId, :SrcTableName, :DstTableClusterId, :DstTableGroupId, :DstTableName, :SrcTableInstanceId, :DstTableInstanceId
@@ -663,10 +629,8 @@ module TencentCloud
       # CreateBackup返回参数结构体
       class CreateBackupResponse < TencentCloud::Common::AbstractModel
         # @param TaskIds: 创建的备份任务ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIds: Array
         # @param ApplicationIds: 创建的备份申请ID列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1006,7 +970,6 @@ module TencentCloud
       # DeleteBackupRecords返回参数结构体
       class DeleteBackupRecordsResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1547,10 +1510,8 @@ module TencentCloud
       # DescribeClusterTags返回参数结构体
       class DescribeClusterTagsResponse < TencentCloud::Common::AbstractModel
         # @param Rows: 集群标签信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rows: Array
         # @param TotalCount: 返回结果个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1888,10 +1849,8 @@ module TencentCloud
       # DescribeTableGroupTags返回参数结构体
       class DescribeTableGroupTagsResponse < TencentCloud::Common::AbstractModel
         # @param Rows: 表格组标签信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rows: Array
         # @param TotalCount: 返回结果个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2461,10 +2420,8 @@ module TencentCloud
         # @param FileSize: 文件大小（Bytes）
         # @type FileSize: Integer
         # @param FileId: 文件ID，对于已上传的文件有意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: Integer
         # @param FileContent: 文件内容，对于本次新上传的文件有意义
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileContent: String
 
         attr_accessor :FileName, :FileType, :FileExtType, :FileSize, :FileId, :FileContent
@@ -2491,22 +2448,16 @@ module TencentCloud
       # 表定义描述文件详情，不包含文件内容
       class IdlFileInfoWithoutContent < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名称，不包含扩展名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileName: String
         # @param FileType: 数据描述语言（IDL）类型
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileType: String
         # @param FileExtType: 文件扩展名
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileExtType: String
         # @param FileSize: 文件大小（Bytes）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: Integer
         # @param FileId: 文件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: Integer
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :FileName, :FileType, :FileExtType, :FileSize, :FileId, :Error
@@ -2582,10 +2533,8 @@ module TencentCloud
       # ImportSnapshots返回参数结构体
       class ImportSnapshotsResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param ApplicationId: ApplicationId由 AppInstanceId-applicationId 组成，以区分不同集群的申请
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2608,22 +2557,16 @@ module TencentCloud
       # ckafka地址信息
       class KafkaInfo < TencentCloud::Common::AbstractModel
         # @param Address: Kafka address
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Address: String
         # @param Topic: Kafka topic
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Topic: String
         # @param User: kafka username
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type User: String
         # @param Password: kafka password
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Password: String
         # @param Instance: ckafka实例
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Instance: String
         # @param IsVpc: 是否走VPC
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsVpc: Integer
 
         attr_accessor :Address, :Topic, :User, :Password, :Instance, :IsVpc
@@ -2698,15 +2641,12 @@ module TencentCloud
       # 合服结果
       class MergeTableResult < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Error: 成功时此字段返回 null，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param Table: 对比的表格信息
         # @type Table: :class:`Tencentcloud::Tcaplusdb.v20190823.models.CompareTablesInfo`
         # @param ApplicationId: 申请单Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
 
         attr_accessor :TaskId, :Error, :Table, :ApplicationId
@@ -2838,7 +2778,6 @@ module TencentCloud
         # @param ClusterId: 集群id
         # @type ClusterId: String
         # @param Uins: 已加入审批人的uin
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uins: Array
         # @param Censorship: 集群是否开启审核 0-关闭 1-开启
         # @type Censorship: Integer
@@ -3049,7 +2988,6 @@ module TencentCloud
       # ModifyClusterTags返回参数结构体
       class ModifyClusterTagsResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3210,7 +3148,6 @@ module TencentCloud
       # ModifyTableGroupTags返回参数结构体
       class ModifyTableGroupTagsResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3496,58 +3433,40 @@ module TencentCloud
       # 从IDL表描述文件中解析出来的表信息
       class ParsedTableInfoNew < TencentCloud::Common::AbstractModel
         # @param TableIdlType: 表格描述语言类型：`PROTO`或`TDR`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIdlType: String
         # @param TableInstanceId: 表格实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TableType: 表格数据结构类型：`GENERIC`或`LIST`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableType: String
         # @param KeyFields: 主键字段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyFields: String
         # @param OldKeyFields: 原主键字段信息，改表校验时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldKeyFields: String
         # @param ValueFields: 非主键字段信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueFields: String
         # @param OldValueFields: 原非主键字段信息，改表校验时有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OldValueFields: String
         # @param TableGroupId: 所属表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param SumKeyFieldSize: 主键字段总大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SumKeyFieldSize: Integer
         # @param SumValueFieldSize: 非主键字段总大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SumValueFieldSize: Integer
         # @param IndexKeySet: 索引键集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexKeySet: String
         # @param ShardingKeySet: 分表因子集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardingKeySet: String
         # @param TdrVersion: TDR版本号
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TdrVersion: Integer
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param ListElementNum: LIST类型表格元素个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListElementNum: Integer
         # @param SortFieldNum: SORTLIST类型表格排序字段个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SortFieldNum: Integer
         # @param SortRule: SORTLIST类型表格排序顺序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SortRule: Integer
 
         attr_accessor :TableIdlType, :TableInstanceId, :TableName, :TableType, :KeyFields, :OldKeyFields, :ValueFields, :OldValueFields, :TableGroupId, :SumKeyFieldSize, :SumValueFieldSize, :IndexKeySet, :ShardingKeySet, :TdrVersion, :Error, :ListElementNum, :SortFieldNum, :SortRule
@@ -3657,7 +3576,6 @@ module TencentCloud
         # @param SlowProcessSpeed: 慢处理包速度
         # @type SlowProcessSpeed: Integer
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :ProxyUid, :MachineType, :ProcessSpeed, :AverageProcessDelay, :SlowProcessSpeed, :Version
@@ -3994,7 +3912,6 @@ module TencentCloud
         # @param WriteNum: 写次数
         # @type WriteNum: Integer
         # @param Version: 版本
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Version: String
 
         attr_accessor :ServerUid, :MachineType, :MemoryRate, :DiskRate, :ReadNum, :WriteNum, :Version
@@ -4070,7 +3987,6 @@ module TencentCloud
       # SetBackupExpireRule返回参数结构体
       class SetBackupExpireRuleResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: TaskId由 AppInstanceId-taskId 组成，以区分不同集群的任务
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4267,37 +4183,26 @@ module TencentCloud
       # 创建快照结果
       class SnapshotResult < TencentCloud::Common::AbstractModel
         # @param TableGroupId: 表格所属表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TaskId: 任务ID，对于创建单任务的接口有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param SnapshotName: 快照名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotName: String
         # @param SnapshotTime: 快照的时间点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotTime: String
         # @param SnapshotDeadTime: 快照的过期时间点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotDeadTime: String
         # @param SnapshotCreateTime: 快照创建时间点
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotCreateTime: String
         # @param SnapshotSize: 快照大小
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotSize: Integer
         # @param SnapshotStatus: 快照状态，0 生成中 1 正常 2 删除中 3 已失效 4 回档使用中
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotStatus: Integer
         # @param ApplicationId: 申请单ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
 
         attr_accessor :TableGroupId, :TableName, :TaskId, :Error, :SnapshotName, :SnapshotTime, :SnapshotDeadTime, :SnapshotCreateTime, :SnapshotSize, :SnapshotStatus, :ApplicationId
@@ -4437,15 +4342,12 @@ module TencentCloud
         # @param TotalSize: 表格组包含的表格存储总量（MB）
         # @type TotalSize: Integer
         # @param TxhBackupExpireDay: 表格Txh备份文件多少天后过期删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxhBackupExpireDay: Integer
         # @param EnableMysql: 是否开启mysql负载均衡,0未开启 1开启中 2已开启
         # @type EnableMysql: Integer
         # @param MysqlConnIp: mysql负载均衡vip
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MysqlConnIp: String
         # @param MysqlConnPort: mysql负载均衡vport
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MysqlConnPort: Integer
 
         attr_accessor :TableGroupId, :TableGroupName, :CreatedTime, :TableCount, :TotalSize, :TxhBackupExpireDay, :EnableMysql, :MysqlConnIp, :MysqlConnPort
@@ -4478,91 +4380,62 @@ module TencentCloud
       # 表格详情信息
       class TableInfoNew < TencentCloud::Common::AbstractModel
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TableInstanceId: 表格实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param TableType: 表格数据结构类型，如：`GENERIC`或`LIST`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableType: String
         # @param TableIdlType: 表格数据描述语言（IDL）类型，如：`PROTO`或`TDR`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIdlType: String
         # @param ClusterId: 表格所属集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param ClusterName: 表格所属集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
         # @param TableGroupId: 表格所属表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param TableGroupName: 表格所属表格组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupName: String
         # @param KeyStruct: 表格主键字段结构json字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyStruct: String
         # @param ValueStruct: 表格非主键字段结构json字符串
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueStruct: String
         # @param ShardingKeySet: 表格分表因子集合，对PROTO类型表格有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ShardingKeySet: String
         # @param IndexStruct: 表格索引键字段集合，对PROTO类型表格有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStruct: String
         # @param ListElementNum: LIST类型表格元素个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ListElementNum: Integer
         # @param IdlFiles: 表格所关联IDL文件信息列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdlFiles: Array
         # @param ReservedVolume: 表格预留容量（GB）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReservedVolume: Integer
         # @param ReservedReadQps: 表格预留读CU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReservedReadQps: Integer
         # @param ReservedWriteQps: 表格预留写CU
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReservedWriteQps: Integer
         # @param TableSize: 表格实际数据量大小（MB）
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableSize: Integer
         # @param Status: 表格状态
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param CreatedTime: 表格创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedTime: String
         # @param UpdatedTime: 表格最后一次修改时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedTime: String
         # @param Memo: 表格备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Memo: String
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param ApiAccessId: TcaplusDB SDK数据访问接入ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApiAccessId: String
         # @param SortFieldNum: SORTLIST类型表格排序字段个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SortFieldNum: Integer
         # @param SortRule: SORTLIST类型表格排序顺序
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SortRule: Integer
         # @param DbClusterInfoStruct: 表格分布式索引/缓写、kafka数据订阅信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbClusterInfoStruct: String
         # @param TxhBackupExpireDay: 表格Txh备份文件多少天后过期删除
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TxhBackupExpireDay: Integer
         # @param SyncTableInfo: 表格的缓写信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SyncTableInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.SyncTableInfo`
 
         attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay, :SyncTableInfo
@@ -4648,31 +4521,22 @@ module TencentCloud
       # 表处理结果信息
       class TableResultNew < TencentCloud::Common::AbstractModel
         # @param TableInstanceId: 表格实例ID，形如：tcaplus-3be64cbb
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param TaskId: 任务ID，对于创建单任务的接口有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TableType: 表格数据结构类型，如：`GENERIC`或`LIST`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableType: String
         # @param TableIdlType: 表数据描述语言（IDL）类型，如：`PROTO`或`TDR`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIdlType: String
         # @param TableGroupId: 表格所属表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param TaskIds: 任务ID列表，对于创建多任务的接口有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIds: Array
         # @param ApplicationId: 腾讯云申请审核单Id
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplicationId: String
 
         attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :ApplicationId
@@ -4708,37 +4572,26 @@ module TencentCloud
       # 表格回档结果信息
       class TableRollbackResultNew < TencentCloud::Common::AbstractModel
         # @param TableInstanceId: 表格实例ID，形如：tcaplus-3be64cbb
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param TaskId: 任务ID，对于创建单任务的接口有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TableType: 表格数据结构类型，如：`GENERIC`或`LIST`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableType: String
         # @param TableIdlType: 表格数据描述语言（IDL）类型，如：`PROTO`或`TDR`
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableIdlType: String
         # @param TableGroupId: 表格所属表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
         # @param TaskIds: 任务ID列表，对于创建多任务的接口有效
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskIds: Array
         # @param FileId: 上传的key文件ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileId: String
         # @param SuccKeyNum: 校验成功Key数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuccKeyNum: Integer
         # @param TotalKeyNum: Key文件中包含总的Key数量
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalKeyNum: Integer
 
         attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :FileId, :SuccKeyNum, :TotalKeyNum
@@ -4780,7 +4633,6 @@ module TencentCloud
         # @param TagKey: 标签键
         # @type TagKey: String
         # @param TagValue: 标签值
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
@@ -4799,13 +4651,10 @@ module TencentCloud
       # 集群的标签信息
       class TagsInfoOfCluster < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ClusterId, :Tags, :Error
@@ -4836,19 +4685,14 @@ module TencentCloud
       # 表格标签信息
       class TagsInfoOfTable < TencentCloud::Common::AbstractModel
         # @param TableInstanceId: 表格实例ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableInstanceId: String
         # @param TableName: 表格名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
         # @param TableGroupId: 表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :TableInstanceId, :TableName, :TableGroupId, :Tags, :Error
@@ -4883,16 +4727,12 @@ module TencentCloud
       # 表格组标签信息
       class TagsInfoOfTableGroup < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
         # @param TableGroupId: 表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param Tags: 标签信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
         # @param Error: 错误信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
 
         attr_accessor :ClusterId, :TableGroupId, :Tags, :Error
@@ -4945,13 +4785,10 @@ module TencentCloud
         # @param Content: 任务详情
         # @type Content: String
         # @param TableGroupId: 表格组ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupId: String
         # @param TableGroupName: 表格组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGroupName: String
         # @param TableName: 表名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableName: String
 
         attr_accessor :TaskId, :TaskType, :TransId, :ClusterId, :ClusterName, :Progress, :StartTime, :UpdateTime, :Operator, :Content, :TableGroupId, :TableGroupName, :TableName
@@ -5015,7 +4852,6 @@ module TencentCloud
       # UpdateApply返回参数结构体
       class UpdateApplyResponse < TencentCloud::Common::AbstractModel
         # @param ApplyResults: 已更新的申请单列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyResults: Array
         # @param TotalCount: 更新数量
         # @type TotalCount: Integer

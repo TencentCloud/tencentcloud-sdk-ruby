@@ -3730,7 +3730,7 @@ module TencentCloud
         # @type TaskId: String
         # @param TopicName: 主题名称，可在[DescribeMigratingTopicList](https://cloud.tencent.com/document/api/1493/118007)接口返回的[MigratingTopic](https://cloud.tencent.com/document/api/1493/96031#MigratingTopic)数据结构中获得。
         # @type TopicName: String
-        # @param IgnoreCheck: 必填，是否忽略当前检查
+        # @param IgnoreCheck: 是否忽略当前检查
         # @type IgnoreCheck: Boolean
         # @param Namespace: 命名空间，仅迁移至4.x集群有效，可在[DescribeMigratingTopicList](https://cloud.tencent.com/document/api/1493/118007)接口返回的[MigratingTopic](https://cloud.tencent.com/document/api/1493/96031#MigratingTopic)数据结构中获得。
         # @type Namespace: String

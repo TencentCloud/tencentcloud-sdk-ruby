@@ -448,8 +448,8 @@ module TencentCloud
 
         attr_accessor :CertName, :CertCtx, :Cert, :RequestId
         extend Gem::Deprecate
-        deprecate :CertCtx, :none, 2025, 6
-        deprecate :CertCtx=, :none, 2025, 6
+        deprecate :CertCtx, :none, 2025, 8
+        deprecate :CertCtx=, :none, 2025, 8
 
         def initialize(certname=nil, certctx=nil, cert=nil, requestid=nil)
           @CertName = certname
@@ -1085,9 +1085,9 @@ module TencentCloud
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
-        # @param FuncName: 合约方法名
+        # @param FuncName: 合约方法名，由合约代码定义，可以参考合约详情中的合约调用定义
         # @type FuncName: String
-        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map
+        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map，由合约代码定义，可以参考合约详情中的合约调用定义
         # @type FuncParam: String
         # @param AsyncFlag: 是否异步执行，1为是，否则为0；如果异步执行，可使用返回值中的交易TxID查询执行结果
         # @type AsyncFlag: Integer
@@ -1272,8 +1272,8 @@ module TencentCloud
 
         attr_accessor :Txid, :Events, :TxId, :RequestId
         extend Gem::Deprecate
-        deprecate :Txid, :none, 2025, 6
-        deprecate :Txid=, :none, 2025, 6
+        deprecate :Txid, :none, 2025, 8
+        deprecate :Txid=, :none, 2025, 8
 
         def initialize(events=nil, txid=nil, requestid=nil)
           @Events = events
@@ -1379,9 +1379,9 @@ module TencentCloud
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
-        # @param FuncName: 合约方法名
+        # @param FuncName: 合约方法名，由合约代码定义
         # @type FuncName: String
-        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map
+        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map，由合约代码定义
         # @type FuncParam: String
 
         attr_accessor :ClusterId, :ChainId, :ContractName, :FuncName, :FuncParam
@@ -1497,9 +1497,9 @@ module TencentCloud
         # @type ChainId: String
         # @param ContractName: 合约名称，可在合约管理中获取
         # @type ContractName: String
-        # @param FuncName: 合约方法名
+        # @param FuncName: 合约方法名，由合约代码定义，可以参考合约详情中的合约调用定义
         # @type FuncName: String
-        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map
+        # @param FuncParam: 合约方法入参，json格式字符串，key/value都是string类型的map，由合约代码定义，可以参考合约详情中的合约调用定义
         # @type FuncParam: String
 
         attr_accessor :ClusterId, :ChainId, :ContractName, :FuncName, :FuncParam

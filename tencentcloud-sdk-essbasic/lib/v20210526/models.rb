@@ -8822,14 +8822,21 @@ module TencentCloud
         # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
         # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
         # @type ForbidEditWatermark: Boolean
+        # @param SealDescription: 印章描述
+        # @type SealDescription: String
+        # @param ForbidEditSealDescription: 是否禁止编辑印章描述内容
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditSealDescription: String
 
-        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark, :SealDescription, :ForbidEditSealDescription
 
-        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil)
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil, sealdescription=nil, forbideditsealdescription=nil)
           @ShowFlowDetailComponent = showflowdetailcomponent
           @ShowTemplateComponent = showtemplatecomponent
           @SkipUploadFile = skipuploadfile
           @ForbidEditWatermark = forbideditwatermark
+          @SealDescription = sealdescription
+          @ForbidEditSealDescription = forbideditsealdescription
         end
 
         def deserialize(params)
@@ -8837,6 +8844,8 @@ module TencentCloud
           @ShowTemplateComponent = params['ShowTemplateComponent']
           @SkipUploadFile = params['SkipUploadFile']
           @ForbidEditWatermark = params['ForbidEditWatermark']
+          @SealDescription = params['SealDescription']
+          @ForbidEditSealDescription = params['ForbidEditSealDescription']
         end
       end
 
@@ -11396,17 +11405,25 @@ module TencentCloud
         # @type AuthUrl: String
         # @param ErrorMessage: 企业批量注册的错误信息，例如：企业三要素不通过
         # @type ErrorMessage: String
+        # @param OrganizationName: 企业批量注册 传递过来的企业名称，方便客户定位企业
+        # @type OrganizationName: String
+        # @param SubTaskId: 企业批量注册的唯一 Id， 此 Id 可以用在[创建企业批量认证链接-单链接](https://qian.tencent.com/developers/partnerApis/accounts/CreateBatchOrganizationRegistrationTasks)。
+        # @type SubTaskId: String
 
-        attr_accessor :AuthUrl, :ErrorMessage
+        attr_accessor :AuthUrl, :ErrorMessage, :OrganizationName, :SubTaskId
 
-        def initialize(authurl=nil, errormessage=nil)
+        def initialize(authurl=nil, errormessage=nil, organizationname=nil, subtaskid=nil)
           @AuthUrl = authurl
           @ErrorMessage = errormessage
+          @OrganizationName = organizationname
+          @SubTaskId = subtaskid
         end
 
         def deserialize(params)
           @AuthUrl = params['AuthUrl']
           @ErrorMessage = params['ErrorMessage']
+          @OrganizationName = params['OrganizationName']
+          @SubTaskId = params['SubTaskId']
         end
       end
 

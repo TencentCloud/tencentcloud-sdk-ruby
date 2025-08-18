@@ -10292,14 +10292,21 @@ module TencentCloud
         # @param ForbidEditWatermark: 是否禁止编辑（展示）水印控件属性
         # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
         # @type ForbidEditWatermark: Boolean
+        # @param SealDescription: 印章描述
+        # @type SealDescription: String
+        # @param ForbidEditSealDescription: 是否禁止编辑印章描述内容
+        # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
+        # @type ForbidEditSealDescription: String
 
-        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark
+        attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark, :SealDescription, :ForbidEditSealDescription
 
-        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil)
+        def initialize(showflowdetailcomponent=nil, showtemplatecomponent=nil, skipuploadfile=nil, forbideditwatermark=nil, sealdescription=nil, forbideditsealdescription=nil)
           @ShowFlowDetailComponent = showflowdetailcomponent
           @ShowTemplateComponent = showtemplatecomponent
           @SkipUploadFile = skipuploadfile
           @ForbidEditWatermark = forbideditwatermark
+          @SealDescription = sealdescription
+          @ForbidEditSealDescription = forbideditsealdescription
         end
 
         def deserialize(params)
@@ -10307,6 +10314,8 @@ module TencentCloud
           @ShowTemplateComponent = params['ShowTemplateComponent']
           @SkipUploadFile = params['SkipUploadFile']
           @ForbidEditWatermark = params['ForbidEditWatermark']
+          @SealDescription = params['SealDescription']
+          @ForbidEditSealDescription = params['ForbidEditSealDescription']
         end
       end
 

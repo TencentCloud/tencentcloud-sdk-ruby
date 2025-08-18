@@ -4174,14 +4174,14 @@ module TencentCloud
 
       # DescribeEnvironmentRoles请求参数结构体
       class DescribeEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 必填字段，环境（命名空间）名称。
+        # @param ClusterId: Pulsar 集群的ID
+        # @type ClusterId: String
+        # @param EnvironmentId: 环境（命名空间）名称。
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
         # @param Limit: 返回数量，不填则默认为10，最大值为20。
         # @type Limit: Integer
-        # @param ClusterId: 必填字段，Pulsar 集群的ID
-        # @type ClusterId: String
         # @param RoleName: 角色名称
         # @type RoleName: String
         # @param Filters: * RoleName
@@ -4190,22 +4190,22 @@ module TencentCloud
         # 必选：否
         # @type Filters: Array
 
-        attr_accessor :EnvironmentId, :Offset, :Limit, :ClusterId, :RoleName, :Filters
+        attr_accessor :ClusterId, :EnvironmentId, :Offset, :Limit, :RoleName, :Filters
 
-        def initialize(environmentid=nil, offset=nil, limit=nil, clusterid=nil, rolename=nil, filters=nil)
+        def initialize(clusterid=nil, environmentid=nil, offset=nil, limit=nil, rolename=nil, filters=nil)
+          @ClusterId = clusterid
           @EnvironmentId = environmentid
           @Offset = offset
           @Limit = limit
-          @ClusterId = clusterid
           @RoleName = rolename
           @Filters = filters
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
           @EnvironmentId = params['EnvironmentId']
           @Offset = params['Offset']
           @Limit = params['Limit']
-          @ClusterId = params['ClusterId']
           @RoleName = params['RoleName']
           unless params['Filters'].nil?
             @Filters = []
@@ -8219,6 +8219,33 @@ module TencentCloud
         def deserialize(params)
           @MaxExchange = params['MaxExchange']
           @UsedExchange = params['UsedExchange']
+        end
+      end
+
+      # ExecuteDisasterRecovery请求参数结构体
+      class ExecuteDisasterRecoveryRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ExecuteDisasterRecovery返回参数结构体
+      class ExecuteDisasterRecoveryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

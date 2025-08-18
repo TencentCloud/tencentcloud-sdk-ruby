@@ -2550,23 +2550,27 @@ module TencentCloud
       class InquiryPriceResizeDiskRequest < TencentCloud::Common::AbstractModel
         # @param DiskSize: 云硬盘扩容后的大小，单位为GiB，不得小于当前云硬盘大小。云盘大小取值范围参见云硬盘[产品分类](/document/product/362/2353)的说明。
         # @type DiskSize: Integer
-        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。
+        # @param DiskId: 云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询。与参数DiskIds互斥。
         # @type DiskId: String
         # @param ProjectId: 云硬盘所属项目ID。该参数可以通过调用[DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。 如传入则仅用于鉴权。
         # @type ProjectId: Integer
+        # @param DiskIds: 云硬盘ID列表， 通过[DescribeDisks](/document/product/362/16315)接口查询。与参数DiskId互斥。
+        # @type DiskIds: Array
 
-        attr_accessor :DiskSize, :DiskId, :ProjectId
+        attr_accessor :DiskSize, :DiskId, :ProjectId, :DiskIds
 
-        def initialize(disksize=nil, diskid=nil, projectid=nil)
+        def initialize(disksize=nil, diskid=nil, projectid=nil, diskids=nil)
           @DiskSize = disksize
           @DiskId = diskid
           @ProjectId = projectid
+          @DiskIds = diskids
         end
 
         def deserialize(params)
           @DiskSize = params['DiskSize']
           @DiskId = params['DiskId']
           @ProjectId = params['ProjectId']
+          @DiskIds = params['DiskIds']
         end
       end
 

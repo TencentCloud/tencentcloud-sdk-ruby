@@ -5815,7 +5815,8 @@ module TencentCloud
 
       # DeleteContainerGroup请求参数结构体
       class DeleteContainerGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或[登录控制台](https://console.cloud.tencent.com/tsf/app-group-docker-detail?rid=1&id=group-aedpen6v)
+        # 进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -11763,10 +11764,10 @@ module TencentCloud
 
       # DescribeResourceConfig
       class DescribeResourceConfigLicenseFunction < TencentCloud::Common::AbstractModel
-        # @param Name: name
+        # @param Name: 功能名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param Enable: enable
+        # @param Enable: 是否启用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enable: Boolean
 
@@ -11918,7 +11919,7 @@ module TencentCloud
 
       # DescribeResourceTaskStatus请求参数结构体
       class DescribeResourceTaskStatusRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 容器实例任务ID，可通过调用 ListContainerTask 查询已创建的变更记录总数或登录控制台进行查看。
+        # @param TaskId: 容器实例任务ID，可通过调用 [DeployContainerGroup](https://cloud.tencent.com/document/product/649/120669) 部署容器应用，查询其返回内容中的任务ID。
         # @type TaskId: String
 
         attr_accessor :TaskId

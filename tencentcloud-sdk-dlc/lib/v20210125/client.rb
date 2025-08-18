@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 绑定数据脱敏策略
+
+        # @param request: Request instance for AttachDataMaskPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::AttachDataMaskPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::AttachDataMaskPolicyResponse`
+        def AttachDataMaskPolicy(request)
+          body = send_request('AttachDataMaskPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AttachDataMaskPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定鉴权策略到用户
 
         # @param request: Request instance for AttachUserPolicy.
@@ -591,6 +615,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建数据脱敏策略
+
+        # @param request: Request instance for CreateDataMaskStrategy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::CreateDataMaskStrategyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::CreateDataMaskStrategyResponse`
+        def CreateDataMaskStrategy(request)
+          body = send_request('CreateDataMaskStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDataMaskStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1169,6 +1217,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataEngineResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除数据脱敏策略
+
+        # @param request: Request instance for DeleteDataMaskStrategy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DeleteDataMaskStrategyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DeleteDataMaskStrategyResponse`
+        def DeleteDataMaskStrategy(request)
+          body = send_request('DeleteDataMaskStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDataMaskStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1769,6 +1841,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataEnginesScaleDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询数据脱敏列表接口
+
+        # @param request: Request instance for DescribeDataMaskStrategies.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeDataMaskStrategiesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeDataMaskStrategiesResponse`
+        def DescribeDataMaskStrategies(request)
+          body = send_request('DescribeDataMaskStrategies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataMaskStrategiesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2801,6 +2897,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeThirdPartyAccessUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取UDF权限信息
+
+        # @param request: Request instance for DescribeUDFPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribeUDFPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribeUDFPolicyResponse`
+        def DescribeUDFPolicy(request)
+          body = send_request('DescribeUDFPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUDFPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3991,6 +4111,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新数据脱敏策略
+
+        # @param request: Request instance for UpdateDataMaskStrategy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateDataMaskStrategyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateDataMaskStrategyResponse`
+        def UpdateDataMaskStrategy(request)
+          body = send_request('UpdateDataMaskStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateDataMaskStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新标准引擎资源组网络配置信息
 
         # @param request: Request instance for UpdateEngineResourceGroupNetworkConfigInfo.
@@ -4121,6 +4265,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateStandardEngineResourceGroupResourceInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # UDP权限修改
+
+        # @param request: Request instance for UpdateUDFPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::UpdateUDFPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::UpdateUDFPolicyResponse`
+        def UpdateUDFPolicy(request)
+          body = send_request('UpdateUDFPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateUDFPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
