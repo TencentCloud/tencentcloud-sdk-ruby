@@ -504,10 +504,12 @@ module TencentCloud
         # @type Filters: Array
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
+        # @param OrderBy: 支持按照响应长度排序，例如：+ContentLength或-ContentLength，+是递增，-是递减
+        # @type OrderBy: String
 
-        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :OrderBy
 
-        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, orderby=nil)
           @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
@@ -522,6 +524,7 @@ module TencentCloud
           @UpdateAtEnd = updateatend
           @Filters = filters
           @Ignored = ignored
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -546,6 +549,7 @@ module TencentCloud
             end
           end
           @Ignored = params['Ignored']
+          @OrderBy = params['OrderBy']
         end
       end
 
@@ -3243,15 +3247,18 @@ module TencentCloud
         # @type Url: String
         # @param DisplayToolCommon: 公共字段
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Status: 状态：unrepaired:未修复，repaired:已修复，ignore:已忽略
+        # @type Status: String
 
-        attr_accessor :Id, :Content, :MatchedKeywords, :Url, :DisplayToolCommon
+        attr_accessor :Id, :Content, :MatchedKeywords, :Url, :DisplayToolCommon, :Status
 
-        def initialize(id=nil, content=nil, matchedkeywords=nil, url=nil, displaytoolcommon=nil)
+        def initialize(id=nil, content=nil, matchedkeywords=nil, url=nil, displaytoolcommon=nil, status=nil)
           @Id = id
           @Content = content
           @MatchedKeywords = matchedkeywords
           @Url = url
           @DisplayToolCommon = displaytoolcommon
+          @Status = status
         end
 
         def deserialize(params)
@@ -3263,6 +3270,7 @@ module TencentCloud
             @DisplayToolCommon = DisplayToolCommon.new
             @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
           end
+          @Status = params['Status']
         end
       end
 

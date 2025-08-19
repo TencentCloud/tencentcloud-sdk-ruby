@@ -2776,6 +2776,71 @@ module TencentCloud
         end
       end
 
+      # DescribeOrganizationMembersAuthPolicy请求参数结构体
+      class DescribeOrganizationMembersAuthPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量。取值是limit的整数倍。默认值 : 0。
+        # @type Offset: Integer
+        # @param Limit: 限制数目。取值范围：1~50。默认值：10。
+        # @type Limit: Integer
+        # @param MemberUin: 成员uin。
+        # @type MemberUin: Integer
+        # @param OrgSubAccountUin: 集团管理员子账号uin。
+        # @type OrgSubAccountUin: Integer
+        # @param PolicyId: 成员访问策略Id。
+        # @type PolicyId: Integer
+
+        attr_accessor :Offset, :Limit, :MemberUin, :OrgSubAccountUin, :PolicyId
+
+        def initialize(offset=nil, limit=nil, memberuin=nil, orgsubaccountuin=nil, policyid=nil)
+          @Offset = offset
+          @Limit = limit
+          @MemberUin = memberuin
+          @OrgSubAccountUin = orgsubaccountuin
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @MemberUin = params['MemberUin']
+          @OrgSubAccountUin = params['OrgSubAccountUin']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DescribeOrganizationMembersAuthPolicy返回参数结构体
+      class DescribeOrganizationMembersAuthPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 访问授权策略列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Total: 总数目。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Items, :Total, :RequestId
+
+        def initialize(items=nil, total=nil, requestid=nil)
+          @Items = items
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              orgmembersauthpolicy_tmp = OrgMembersAuthPolicy.new
+              orgmembersauthpolicy_tmp.deserialize(i)
+              @Items << orgmembersauthpolicy_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationMembers请求参数结构体
       class DescribeOrganizationMembersRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 偏移量。取值是limit的整数倍，默认值 : 0
@@ -6334,6 +6399,85 @@ module TencentCloud
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 组织成员访问授权策略
+      class OrgMembersAuthPolicy < TencentCloud::Common::AbstractModel
+        # @param IdentityId: 身份Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityId: Integer
+        # @param IdentityRoleName: 身份的角色名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityRoleName: String
+        # @param IdentityRoleAliasName: 身份的角色别名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IdentityRoleAliasName: String
+        # @param CreateTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param PolicyId: 成员访问策略Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyId: Integer
+        # @param PolicyName: 成员访问策略名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PolicyName: String
+        # @param MemberUin: 成员uin。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberUin: Integer
+        # @param MemberName: 成员名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberName: String
+        # @param OrgSubAccountUin: 子账号uin或者用户组Id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgSubAccountUin: Integer
+        # @param OrgSubAccountName: 子账号名称或者用户组名称。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OrgSubAccountName: String
+        # @param BindType: 绑定类型。1-子账号、2-用户组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BindType: Integer
+        # @param Members: 成员信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Members: Array
+
+        attr_accessor :IdentityId, :IdentityRoleName, :IdentityRoleAliasName, :CreateTime, :PolicyId, :PolicyName, :MemberUin, :MemberName, :OrgSubAccountUin, :OrgSubAccountName, :BindType, :Members
+
+        def initialize(identityid=nil, identityrolename=nil, identityrolealiasname=nil, createtime=nil, policyid=nil, policyname=nil, memberuin=nil, membername=nil, orgsubaccountuin=nil, orgsubaccountname=nil, bindtype=nil, members=nil)
+          @IdentityId = identityid
+          @IdentityRoleName = identityrolename
+          @IdentityRoleAliasName = identityrolealiasname
+          @CreateTime = createtime
+          @PolicyId = policyid
+          @PolicyName = policyname
+          @MemberUin = memberuin
+          @MemberName = membername
+          @OrgSubAccountUin = orgsubaccountuin
+          @OrgSubAccountName = orgsubaccountname
+          @BindType = bindtype
+          @Members = members
+        end
+
+        def deserialize(params)
+          @IdentityId = params['IdentityId']
+          @IdentityRoleName = params['IdentityRoleName']
+          @IdentityRoleAliasName = params['IdentityRoleAliasName']
+          @CreateTime = params['CreateTime']
+          @PolicyId = params['PolicyId']
+          @PolicyName = params['PolicyName']
+          @MemberUin = params['MemberUin']
+          @MemberName = params['MemberName']
+          @OrgSubAccountUin = params['OrgSubAccountUin']
+          @OrgSubAccountName = params['OrgSubAccountName']
+          @BindType = params['BindType']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              membermaininfo_tmp = MemberMainInfo.new
+              membermaininfo_tmp.deserialize(i)
+              @Members << membermaininfo_tmp
+            end
+          end
         end
       end
 

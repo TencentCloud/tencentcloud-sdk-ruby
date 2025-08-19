@@ -2705,6 +2705,29 @@ module TencentCloud
         end
       end
 
+      # 批量查询设备接口返回数据
+      class DescribeDeviceListData < TencentCloud::Common::AbstractModel
+        # @param List: 设备详情列表
+        # @type List: Array
+
+        attr_accessor :List
+
+        def initialize(list=nil)
+          @List = list
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              describedevicedata_tmp = DescribeDeviceData.new
+              describedevicedata_tmp.deserialize(i)
+              @List << describedevicedata_tmp
+            end
+          end
+        end
+      end
+
       # 查询设备预置位返回数据
       class DescribeDevicePresetData < TencentCloud::Common::AbstractModel
         # @param Index: 预置位索引    只支持1-10的索引
@@ -4113,6 +4136,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = TaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserDeviceList请求参数结构体
+      class DescribeUserDeviceListRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIds: 设备Id列表
+        # @type DeviceIds: Array
+
+        attr_accessor :DeviceIds
+
+        def initialize(deviceids=nil)
+          @DeviceIds = deviceids
+        end
+
+        def deserialize(params)
+          @DeviceIds = params['DeviceIds']
+        end
+      end
+
+      # DescribeUserDeviceList返回参数结构体
+      class DescribeUserDeviceListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回结果
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.DescribeDeviceListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceListData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

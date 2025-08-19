@@ -168,16 +168,20 @@ module TencentCloud
 
       # CreateDeviceTask请求参数结构体
       class CreateDeviceTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
         # @param Mid: 终端id
         # @type Mid: String
 
-        attr_accessor :Mid
+        attr_accessor :DomainInstanceId, :Mid
 
-        def initialize(mid=nil)
+        def initialize(domaininstanceid=nil, mid=nil)
+          @DomainInstanceId = domaininstanceid
           @Mid = mid
         end
 
         def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
           @Mid = params['Mid']
         end
       end
@@ -764,19 +768,23 @@ module TencentCloud
 
       # DescribeDeviceInfo请求参数结构体
       class DescribeDeviceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
         # @param Mid: 终端id
         # @type Mid: String
         # @param Type: 查询类型  process_list network_list service_list
         # @type Type: String
 
-        attr_accessor :Mid, :Type
+        attr_accessor :DomainInstanceId, :Mid, :Type
 
-        def initialize(mid=nil, type=nil)
+        def initialize(domaininstanceid=nil, mid=nil, type=nil)
+          @DomainInstanceId = domaininstanceid
           @Mid = mid
           @Type = type
         end
 
         def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
           @Mid = params['Mid']
           @Type = params['Type']
         end
@@ -1398,10 +1406,12 @@ module TencentCloud
         # @param PiracyRisk: 盗版风险（1=风险;2=未知）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PiracyRisk: Integer
+        # @param RemarkName: 终端备注名
+        # @type RemarkName: String
 
-        attr_accessor :UserName, :MacAddr, :Name, :GroupNamePath, :Ip, :Mid, :IoaUserName, :GroupId, :GroupName, :Id, :SoftNum, :PiracyRisk
+        attr_accessor :UserName, :MacAddr, :Name, :GroupNamePath, :Ip, :Mid, :IoaUserName, :GroupId, :GroupName, :Id, :SoftNum, :PiracyRisk, :RemarkName
 
-        def initialize(username=nil, macaddr=nil, name=nil, groupnamepath=nil, ip=nil, mid=nil, ioausername=nil, groupid=nil, groupname=nil, id=nil, softnum=nil, piracyrisk=nil)
+        def initialize(username=nil, macaddr=nil, name=nil, groupnamepath=nil, ip=nil, mid=nil, ioausername=nil, groupid=nil, groupname=nil, id=nil, softnum=nil, piracyrisk=nil, remarkname=nil)
           @UserName = username
           @MacAddr = macaddr
           @Name = name
@@ -1414,6 +1424,7 @@ module TencentCloud
           @Id = id
           @SoftNum = softnum
           @PiracyRisk = piracyrisk
+          @RemarkName = remarkname
         end
 
         def deserialize(params)
@@ -1429,6 +1440,7 @@ module TencentCloud
           @Id = params['Id']
           @SoftNum = params['SoftNum']
           @PiracyRisk = params['PiracyRisk']
+          @RemarkName = params['RemarkName']
         end
       end
 
@@ -1466,24 +1478,28 @@ module TencentCloud
 
       # DescribeSoftCensusListByDevice请求参数结构体
       class DescribeSoftCensusListByDeviceRequest < TencentCloud::Common::AbstractModel
-        # @param OsType: 必填，系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）
-        # @type OsType: Integer
         # @param GroupId: 必填，终端分组ID
         # @type GroupId: Integer
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios  ）；默认值0
+        # @type OsType: Integer
         # @param Condition: 过滤条件、分页参数   <li>Name - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，终端名。</li> 	<li>UserName - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，终端用户名。</li> 	<li>IoaUserName - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，最近登录账号。</li> 	<li>Ip - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，IP地址。</li> 	<li>MacAddr - String - 是否必填：否 - 操作符: eq,like,ilike  - 排序支持：否 - 备注：字段含义，MAC地址。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
 
-        attr_accessor :OsType, :GroupId, :Condition
+        attr_accessor :GroupId, :DomainInstanceId, :OsType, :Condition
 
-        def initialize(ostype=nil, groupid=nil, condition=nil)
-          @OsType = ostype
+        def initialize(groupid=nil, domaininstanceid=nil, ostype=nil, condition=nil)
           @GroupId = groupid
+          @DomainInstanceId = domaininstanceid
+          @OsType = ostype
           @Condition = condition
         end
 
         def deserialize(params)
-          @OsType = params['OsType']
           @GroupId = params['GroupId']
+          @DomainInstanceId = params['DomainInstanceId']
+          @OsType = params['OsType']
           unless params['Condition'].nil?
             @Condition = Condition.new
             @Condition.deserialize(params['Condition'])
@@ -1494,7 +1510,6 @@ module TencentCloud
       # DescribeSoftCensusListByDevice返回参数结构体
       class DescribeSoftCensusListByDeviceResponse < TencentCloud::Common::AbstractModel
         # @param Data: 业务响应数据
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeSoftCensusListByDevicePageData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

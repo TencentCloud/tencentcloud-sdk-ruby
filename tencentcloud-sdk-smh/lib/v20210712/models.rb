@@ -761,6 +761,8 @@ module TencentCloud
         # @type BucketName: String
         # @param BucketRegion: 媒体库绑定的 COS 存储桶所在的地域
         # @type BucketRegion: String
+        # @param AccessDomain: 该媒体库的业务 API 访问域名
+        # @type AccessDomain: String
         # @param CreationTime: 媒体库创建时间
         # @type CreationTime: String
         # @param LibraryExtension: 媒体库配置项
@@ -772,14 +774,15 @@ module TencentCloud
         # @param FileNum: 媒体库文件数，由于数字类型精度限制，该字段为 String 类型。
         # @type FileNum: String
 
-        attr_accessor :LibraryId, :Name, :Remark, :BucketName, :BucketRegion, :CreationTime, :LibraryExtension, :Size, :DirNum, :FileNum
+        attr_accessor :LibraryId, :Name, :Remark, :BucketName, :BucketRegion, :AccessDomain, :CreationTime, :LibraryExtension, :Size, :DirNum, :FileNum
 
-        def initialize(libraryid=nil, name=nil, remark=nil, bucketname=nil, bucketregion=nil, creationtime=nil, libraryextension=nil, size=nil, dirnum=nil, filenum=nil)
+        def initialize(libraryid=nil, name=nil, remark=nil, bucketname=nil, bucketregion=nil, accessdomain=nil, creationtime=nil, libraryextension=nil, size=nil, dirnum=nil, filenum=nil)
           @LibraryId = libraryid
           @Name = name
           @Remark = remark
           @BucketName = bucketname
           @BucketRegion = bucketregion
+          @AccessDomain = accessdomain
           @CreationTime = creationtime
           @LibraryExtension = libraryextension
           @Size = size
@@ -793,6 +796,7 @@ module TencentCloud
           @Remark = params['Remark']
           @BucketName = params['BucketName']
           @BucketRegion = params['BucketRegion']
+          @AccessDomain = params['AccessDomain']
           @CreationTime = params['CreationTime']
           unless params['LibraryExtension'].nil?
             @LibraryExtension = LibraryExtension.new
@@ -823,10 +827,10 @@ module TencentCloud
         # @type DenyOnQuotaLessThanUsage: Boolean
         # @param EnableFileHistory: 是否开启历史版本。默认为 false。
         # @type EnableFileHistory: Boolean
-        # @param FileHistoryCount: 当开启历史版本时，指定单个文件保留的历史版本的数量上限，不能超过 999，指定为 0 则不限制，默认为 0。当未开启历史版本时，该属性为 null。
+        # @param FileHistoryCount: 当开启历史版本时，指定单个文件保留的历史版本的数量上限，取值范围为 1 到 999。当未开启历史版本时，该属性可能为 null。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileHistoryCount: Integer
-        # @param FileHistoryExpireDay: 当开启历史版本时，指定历史版本保留的最长天数，不能超过 999，指定为 0 则不限制，默认为 0。当未开启历史版本时，该属性为 null。
+        # @param FileHistoryExpireDay: 当开启历史版本时，指定历史版本保留的最长天数，取值范围为 0 到 999，当指定为 0 时代表永久保留。当未开启历史版本时，该属性可能为 null。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileHistoryExpireDay: Integer
         # @param MaxDirFileNameLength: 目录或文件名的最长长度，不能超过 255，默认为 255。修改该参数不会影响存量目录或文件名，即如果将该字段的值改小，已经存在的长度超过目标值的目录或文件名不会发生变化。

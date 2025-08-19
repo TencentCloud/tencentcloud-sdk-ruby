@@ -6365,13 +6365,15 @@ module TencentCloud
 
       # DescribeLogContext请求参数结构体
       class DescribeLogContextRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 要查询的日志主题ID
+        # @param TopicId: 要查询的日志主题Id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
         # @type TopicId: String
-        # @param BTime: 日志时间,  即SearchLog接口返回信息中Results结构体中的Time，需按照 UTC+8 时区将该毫秒级Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。
+        # @param BTime: 日志时间,  即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构体中的Time，需按照 UTC+8 时区将该毫秒级Unix时间戳转换为 YYYY-mm-dd HH:MM:SS.FFF 格式的字符串。
         # @type BTime: String
-        # @param PkgId: 日志包序号，即SearchLog接口返回信息中Results结构体中的PkgId。
+        # @param PkgId: 日志包序号，即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构体中的PkgId。
         # @type PkgId: String
-        # @param PkgLogId: 日志包内一条日志的序号，即SearchLog接口返回信息中Results结构中的PkgLogId。
+        # @param PkgLogId: 日志包内一条日志的序号，即 [检索分析日志](https://cloud.tencent.com/document/product/614/56447) 接口返回信息中Results结构中的PkgLogId。
         # @type PkgLogId: Integer
         # @param PrevLogs: 前${PrevLogs}条日志，默认值10。
         # @type PrevLogs: Integer
@@ -9852,9 +9854,11 @@ module TencentCloud
 
       # ModifyIndex请求参数结构体
       class ModifyIndexRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param Status: 默认不生效
+        # @param Status: 索引状态。false：关闭索引， true：开启索引
+        # 开启后可对日志进行检索分析，将产生索引流量、索引存储及相应费用。[费用详情](https://cloud.tencent.com/document/product/614/45802#.E8.AE.A1.E8.B4.B9.E9.A1.B9)
         # @type Status: Boolean
         # @param Rule: 索引规则
         # @type Rule: :class:`Tencentcloud::Cls.v20201016.models.RuleInfo`
@@ -12203,9 +12207,11 @@ module TencentCloud
 
       # SplitPartition请求参数结构体
       class SplitPartitionRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
-        # @param PartitionId: 待分裂分区ID
+        # @param PartitionId: 待分裂分区Id
+        # - 通过[获取分区列表](https://cloud.tencent.com/document/product/614/56470)获取待分裂分区Id。
         # @type PartitionId: Integer
         # @param SplitKey: 分区切分的哈希key的位置，只在Number=2时有意义
         # @type SplitKey: String
