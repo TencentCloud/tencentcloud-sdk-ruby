@@ -2237,10 +2237,16 @@ module TencentCloud
         # @type SummaryQOS: String
         # @param SummaryConfig: 摘要输出配置
         # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
+        # @param ServiceType: 算法类型，可能取值：
+        # - `Summary`：视频/图片摘要
+        # - `ObjectDetect`：目标检测
+        # @type ServiceType: String
+        # @param ObjectDetectConfig: 目标检测配置
+        # @type ObjectDetectConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionObjectDetectConfig`
 
-        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig, :ServiceType, :ObjectDetectConfig
 
-        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil)
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil, servicetype=nil, objectdetectconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @InputURL = inputurl
@@ -2253,6 +2259,8 @@ module TencentCloud
           @InputType = inputtype
           @SummaryQOS = summaryqos
           @SummaryConfig = summaryconfig
+          @ServiceType = servicetype
+          @ObjectDetectConfig = objectdetectconfig
         end
 
         def deserialize(params)
@@ -2270,6 +2278,11 @@ module TencentCloud
           unless params['SummaryConfig'].nil?
             @SummaryConfig = VisionSummaryConfig.new
             @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
+          @ServiceType = params['ServiceType']
+          unless params['ObjectDetectConfig'].nil?
+            @ObjectDetectConfig = VisionObjectDetectConfig.new
+            @ObjectDetectConfig.deserialize(params['ObjectDetectConfig'])
           end
         end
       end
@@ -8244,10 +8257,16 @@ module TencentCloud
         # @type SummaryQOS: String
         # @param SummaryConfig: 摘要输出配置
         # @type SummaryConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionSummaryConfig`
+        # @param ServiceType: 算法类型，可能取值：
+        # - `Summary`：视频/图片摘要
+        # - `ObjectDetect`：目标检测
+        # @type ServiceType: String
+        # @param ObjectDetectConfig: 目标检测配置
+        # @type ObjectDetectConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionObjectDetectConfig`
 
-        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig
+        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig, :ServiceType, :ObjectDetectConfig
 
-        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil)
+        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil, servicetype=nil, objectdetectconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @InputURL = inputurl
@@ -8260,6 +8279,8 @@ module TencentCloud
           @InputType = inputtype
           @SummaryQOS = summaryqos
           @SummaryConfig = summaryconfig
+          @ServiceType = servicetype
+          @ObjectDetectConfig = objectdetectconfig
         end
 
         def deserialize(params)
@@ -8277,6 +8298,11 @@ module TencentCloud
           unless params['SummaryConfig'].nil?
             @SummaryConfig = VisionSummaryConfig.new
             @SummaryConfig.deserialize(params['SummaryConfig'])
+          end
+          @ServiceType = params['ServiceType']
+          unless params['ObjectDetectConfig'].nil?
+            @ObjectDetectConfig = VisionObjectDetectConfig.new
+            @ObjectDetectConfig.deserialize(params['ObjectDetectConfig'])
           end
         end
       end
@@ -11711,6 +11737,24 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @UsedCount = params['UsedCount']
           @ExpiresSoonCount = params['ExpiresSoonCount']
+        end
+      end
+
+      # 目标检测配置
+      class VisionObjectDetectConfig < TencentCloud::Common::AbstractModel
+        # @param DetectTypes: 检测类别，可选值：
+        # - `adult`：成年人
+        # - `child`：儿童
+        # @type DetectTypes: Array
+
+        attr_accessor :DetectTypes
+
+        def initialize(detecttypes=nil)
+          @DetectTypes = detecttypes
+        end
+
+        def deserialize(params)
+          @DetectTypes = params['DetectTypes']
         end
       end
 

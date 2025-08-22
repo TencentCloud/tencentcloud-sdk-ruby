@@ -3539,7 +3539,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发送RocketMQ消息
+        # 发送 RocketMQ 消息，该接口仅用于控制台发送少量测试消息，不保证SLA，且云 API 存在限流，在真实业务场景下，请使用 RocketMQ SDK 发送消息。
 
         # @param request: Request instance for SendRocketMQMessage.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::SendRocketMQMessageRequest`

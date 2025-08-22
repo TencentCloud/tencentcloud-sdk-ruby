@@ -85,9 +85,11 @@ module TencentCloud
       # 用户权限
       class Auth < TencentCloud::Common::AbstractModel
         # @param Mask: 当前账号具有的权限信息。<ul><li>0：无权限。</li><li>1：只读。</li><li>2：只写。</li><li>3：读写。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mask: Integer
         # @param NameSpace: 指具有当前账号权限的数据库名。
         # <ul><li>* ：表示所有数据库。</li><li>db.name：表示特定name的数据库。</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameSpace: String
 
         attr_accessor :Mask, :NameSpace
@@ -4779,15 +4781,18 @@ module TencentCloud
         # @type UpdateTime: String
         # @param UserDesc: 备注信息。
         # @type UserDesc: String
+        # @param ConsolePassUpdateTime: 控制台密码更新时间
+        # @type ConsolePassUpdateTime: String
 
-        attr_accessor :UserName, :AuthRole, :CreateTime, :UpdateTime, :UserDesc
+        attr_accessor :UserName, :AuthRole, :CreateTime, :UpdateTime, :UserDesc, :ConsolePassUpdateTime
 
-        def initialize(username=nil, authrole=nil, createtime=nil, updatetime=nil, userdesc=nil)
+        def initialize(username=nil, authrole=nil, createtime=nil, updatetime=nil, userdesc=nil, consolepassupdatetime=nil)
           @UserName = username
           @AuthRole = authrole
           @CreateTime = createtime
           @UpdateTime = updatetime
           @UserDesc = userdesc
+          @ConsolePassUpdateTime = consolepassupdatetime
         end
 
         def deserialize(params)
@@ -4803,6 +4808,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @UserDesc = params['UserDesc']
+          @ConsolePassUpdateTime = params['ConsolePassUpdateTime']
         end
       end
 

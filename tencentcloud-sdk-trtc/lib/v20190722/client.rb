@@ -738,6 +738,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云监控monitor接口已下线，trtc同步下线接口
+
         # 查询TRTC监控仪表盘-数据大盘质量指标（包括下列指标）
         # joinSuccessRate：加入频道成功率。
         # joinSuccessIn5sRate：5s内加入频道成功率。
@@ -801,6 +803,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 云监控monitor接口已下线，trtc同步下线接口
+
         # 查询TRTC监控仪表盘-数据大盘规模指标（会返回通话人数，通话房间数，峰值同时在线人数，峰值同时在线频道数）
         # userCount：通话人数，
         # roomCount：通话房间数，从有用户加入频道到所有用户离开频道计为一个通话频道。
@@ -860,6 +864,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 云监控monitor接口已下线，trtc同步下线接口
 
         # 查询TRTC监控仪表盘-实时监控质量指标（会返回下列指标）
         # -视频卡顿率

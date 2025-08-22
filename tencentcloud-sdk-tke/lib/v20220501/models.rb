@@ -175,14 +175,18 @@ module TencentCloud
         # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
         # @param DataDisks: 原生节点池数据盘列表
         # @type DataDisks: Array
+        # @param QGPUEnable: qgpu开关
+        # @type QGPUEnable: Boolean
         # @param KeyIds: 节点池ssh公钥id数组
         # @type KeyIds: Array
         # @param MachineType: 节点池类型
         # @type MachineType: String
+        # @param AutomationService: 原生节点池安装节点自动化助手开关
+        # @type AutomationService: Boolean
 
-        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :KeyIds, :MachineType
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService
 
-        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, keyids=nil, machinetype=nil)
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @InstanceChargeType = instancechargetype
@@ -202,8 +206,10 @@ module TencentCloud
           @Replicas = replicas
           @InternetAccessible = internetaccessible
           @DataDisks = datadisks
+          @QGPUEnable = qgpuenable
           @KeyIds = keyids
           @MachineType = machinetype
+          @AutomationService = automationservice
         end
 
         def deserialize(params)
@@ -254,8 +260,10 @@ module TencentCloud
               @DataDisks << datadisk_tmp
             end
           end
+          @QGPUEnable = params['QGPUEnable']
           @KeyIds = params['KeyIds']
           @MachineType = params['MachineType']
+          @AutomationService = params['AutomationService']
         end
       end
 
@@ -277,7 +285,7 @@ module TencentCloud
         # @type DeletionProtection: Boolean
         # @param Unschedulable: 节点是否默认不可调度
         # @type Unschedulable: Boolean
-        # @param Native: 原生节点池创建参数
+        # @param Native: 原生节点池创建参数（Type字段设置为Native时需填写）
         # @type Native: :class:`Tencentcloud::Tke.v20220501.models.CreateNativeNodePoolParam`
         # @param Annotations: 节点 Annotation 列表
         # @type Annotations: Array

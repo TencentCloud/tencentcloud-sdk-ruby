@@ -2868,9 +2868,14 @@ module TencentCloud
       class CreateDataTransformRequest < TencentCloud::Common::AbstractModel
         # @param FuncType: 任务类型. 1: 指定主题；2:动态创建。详情请参考[创建加工任务文档](https://cloud.tencent.com/document/product/614/63940)。
         # @type FuncType: Integer
-        # @param SrcTopicId: 源日志主题
+        # @param SrcTopicId: 日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type SrcTopicId: String
         # @param Name: 加工任务名称
+        # 名称限制
+        # - 不能为空字符串
+        # - 不能包含字符'|'
+        # - 最长 255 个字符
         # @type Name: String
         # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
 
@@ -2882,11 +2887,14 @@ module TencentCloud
         # @param TaskType: 加工类型。
         # 1：使用源日志主题中的随机数据，进行加工预览；2：使用用户自定义测试数据，进行加工预览；3：创建真实加工任务。
         # @type TaskType: Integer
-        # @param DstResources: 加工任务目的topic_id以及别名,当FuncType=1时，该参数必填，当FuncType=2时，无需填写。
+        # @param DstResources: 加工任务目标topic_id以及别名,当FuncType=1时，该参数必填，当FuncType=2时，无需填写。
+        # 目标topic_id，通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # 别名限制 1.不能为空字符串，2. 不能包含字符'|'。
         # @type DstResources: Array
         # @param EnableFlag: 任务启动状态.   默认为1:开启,  2:关闭
         # @type EnableFlag: Integer
         # @param PreviewLogStatistics: 用于预览加工结果的测试数据
+        # 目标日志主题ID通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type PreviewLogStatistics: Array
         # @param DataTransformType: 数据加工类型。0：标准加工任务； 1：前置加工任务。前置加工任务将采集的日志处理完成后，再写入日志主题。
         # @type DataTransformType: Integer
@@ -4151,7 +4159,7 @@ module TencentCloud
         # @type TaskId: String
         # @param EnableFlag: 任务启用状态，默认为1，正常开启,  2关闭
         # @type EnableFlag: Integer
-        # @param Type: 加工任务类型，1： DSL， 2：SQL
+        # @param Type: 加工任务类型，1： DSL(使用自定义加工语言的加工任务)， 2：SQL(使用sql的加工任务)
         # @type Type: Integer
         # @param SrcTopicId: 源日志主题
         # @type SrcTopicId: String
@@ -4160,8 +4168,10 @@ module TencentCloud
         # @param CreateTime: 加工任务创建时间
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间
+        # 示例值：2025-06-18 16:55:54
         # @type UpdateTime: String
         # @param LastEnableTime: 最后启用时间，如果需要重建集群，修改该时间
+        # 示例值：2025-06-18 19:55:54
         # @type LastEnableTime: String
         # @param SrcTopicName: 日志主题名称
         # @type SrcTopicName: String
@@ -6038,28 +6048,40 @@ module TencentCloud
         # 按照【加工任务名称】进行过滤。
         # 类型：String
         # 必选：否
+        # 示例：test-task
 
         # - taskId
         # 按照【加工任务id】进行过滤。
         # 类型：String
         # 必选：否
+        # 示例：a3622556-6402-4942-b4ff-5ae32ec29810
+        # 数据加工任务ID- 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务Id。
 
         # - topicId
         # 按照【源topicId】进行过滤。
         # 类型：String
         # 必选：否
+        # 示例：756cec3e-a0a5-44c3-85a8-090870582000
+        # 日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+
         # - status
         # 按照【 任务运行状态】进行过滤。 1：准备中，2：运行中，3：停止中，4：已停止
         # 类型：String
         # 必选：否
+        # 示例：1
+
         # - hasServiceLog
         # 按照【是否开启服务日志】进行过滤。 1：未开启，2：已开启
         # 类型：String
         # 必选：否
+        # 示例：1
+
         # - dstTopicType
         # 按照【目标topic类型】进行过滤。  1：固定，2：动态
         # 类型：String
         # 必选：否
+        # 示例：1
 
         # 每次请求的Filters的上限为10，Filter.Values的上限为100。
         # @type Filters: Array
@@ -6070,6 +6092,7 @@ module TencentCloud
         # @param Type: 默认值为2.   1: 获取单个任务的详细信息 2：获取任务列表
         # @type Type: Integer
         # @param TaskId: Type为1， 此参数必填
+        # 数据加工任务ID- 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务Id。
         # @type TaskId: String
 
         attr_accessor :Filters, :Offset, :Limit, :Type, :TaskId
@@ -9790,9 +9813,16 @@ module TencentCloud
 
       # ModifyDataTransform请求参数结构体
       class ModifyDataTransformRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 加工任务id
+        # @param TaskId: 数据加工任务ID
+        # - 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务Id。
         # @type TaskId: String
         # @param Name: 加工任务名称
+        # - 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务名称。
+
+        # 名称限制
+        # - 不能为空字符串
+        # - 不能包含字符'|'
+        # - 最长 255 个字符
         # @type Name: String
         # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
 

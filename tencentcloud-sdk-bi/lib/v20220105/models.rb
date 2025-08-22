@@ -181,6 +181,73 @@ module TencentCloud
         end
       end
 
+      # ClearEmbedToken请求参数结构体
+      class ClearEmbedTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserCorpId: 主账号id
+        # @type UserCorpId: String
+        # @param Scope: panel , page
+        # @type Scope: String
+        # @param PageId: page id
+        # @type PageId: String
+
+        attr_accessor :ProjectId, :UserCorpId, :Scope, :PageId
+
+        def initialize(projectid=nil, usercorpid=nil, scope=nil, pageid=nil)
+          @ProjectId = projectid
+          @UserCorpId = usercorpid
+          @Scope = scope
+          @PageId = pageid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserCorpId = params['UserCorpId']
+          @Scope = params['Scope']
+          @PageId = params['PageId']
+        end
+      end
+
+      # ClearEmbedToken返回参数结构体
+      class ClearEmbedTokenResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Extra: 额外消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Msg: 提示消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Data: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Extra, :Msg, :Data, :RequestId
+
+        def initialize(errorinfo=nil, extra=nil, msg=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Extra = extra
+          @Msg = msg
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Extra = params['Extra']
+          @Msg = params['Msg']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 企业用户列表
       class CorpUserListData < TencentCloud::Common::AbstractModel
         # @param List: 列表
@@ -743,8 +810,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 7
-        deprecate :UserList=, :none, 2025, 7
+        deprecate :UserList, :none, 2025, 8
+        deprecate :UserList=, :none, 2025, 8
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -830,8 +897,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 7
-        deprecate :UserList=, :none, 2025, 7
+        deprecate :UserList, :none, 2025, 8
+        deprecate :UserList=, :none, 2025, 8
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist

@@ -20389,15 +20389,18 @@ module TencentCloud
         # @type RouteECMPFlag: Boolean
         # @param RouteOverlapFlag: 是否开启路由重叠功能。`False` 不开启，`True` 开启。
         # @type RouteOverlapFlag: Boolean
+        # @param TrafficMarkingPolicyFlag: 是否开启qos功能。`False` 不开启，`True` 开启。
+        # @type TrafficMarkingPolicyFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :RouteECMPFlag, :RouteOverlapFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, routeecmpflag=nil, routeoverlapflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
           @RouteECMPFlag = routeecmpflag
           @RouteOverlapFlag = routeoverlapflag
+          @TrafficMarkingPolicyFlag = trafficmarkingpolicyflag
         end
 
         def deserialize(params)
@@ -20406,6 +20409,7 @@ module TencentCloud
           @CcnDescription = params['CcnDescription']
           @RouteECMPFlag = params['RouteECMPFlag']
           @RouteOverlapFlag = params['RouteOverlapFlag']
+          @TrafficMarkingPolicyFlag = params['TrafficMarkingPolicyFlag']
         end
       end
 

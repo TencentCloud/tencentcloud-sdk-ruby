@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一机一密设备签名
+
+        # @param request: Request instance for CreateDeviceIdentity.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateDeviceIdentityRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateDeviceIdentityResponse`
+        def CreateDeviceIdentity(request)
+          body = send_request('CreateDeviceIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个HTTP的认证器
 
         # @param request: Request instance for CreateHttpAuthenticator.
@@ -437,6 +461,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除一机一密设备签名
+
+        # @param request: Request instance for DeleteDeviceIdentity.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteDeviceIdentityRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteDeviceIdentityResponse`
+        def DeleteDeviceIdentity(request)
+          body = send_request('DeleteDeviceIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDeviceIdentityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除MQTT实例的公网接入点
 
         # @param request: Request instance for DeleteInsPublicEndpoint.
@@ -687,6 +735,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceCertificatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询集群下设备标识列表
+
+        # @param request: Request instance for DescribeDeviceIdentities.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentitiesRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentitiesResponse`
+        def DescribeDeviceIdentities(request)
+          body = send_request('DescribeDeviceIdentities', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceIdentitiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询设备一机一密标识
+
+        # @param request: Request instance for DescribeDeviceIdentity.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentityRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeDeviceIdentityResponse`
+        def DescribeDeviceIdentity(request)
+          body = send_request('DescribeDeviceIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceIdentityResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1009,6 +1105,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAuthorizationPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改一机一密设备签名
+
+        # @param request: Request instance for ModifyDeviceIdentity.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyDeviceIdentityRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyDeviceIdentityResponse`
+        def ModifyDeviceIdentity(request)
+          body = send_request('ModifyDeviceIdentity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDeviceIdentityResponse.new
             model.deserialize(response['Response'])
             model
           else

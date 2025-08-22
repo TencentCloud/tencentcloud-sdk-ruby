@@ -22066,10 +22066,13 @@ module TencentCloud
         # @param EnhanceConfig: 音视频增强配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnhanceConfig: :class:`Tencentcloud::Mps.v20190612.models.EnhanceConfig`
+        # @param SubtitleTemplate: 字幕参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
 
-        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :StdExtInfo, :EnhanceConfig
+        attr_accessor :Container, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :StdExtInfo, :EnhanceConfig, :SubtitleTemplate
 
-        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, stdextinfo=nil, enhanceconfig=nil)
+        def initialize(container=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, stdextinfo=nil, enhanceconfig=nil, subtitletemplate=nil)
           @Container = container
           @RemoveVideo = removevideo
           @RemoveAudio = removeaudio
@@ -22078,6 +22081,7 @@ module TencentCloud
           @TEHDConfig = tehdconfig
           @StdExtInfo = stdextinfo
           @EnhanceConfig = enhanceconfig
+          @SubtitleTemplate = subtitletemplate
         end
 
         def deserialize(params)
@@ -22100,6 +22104,10 @@ module TencentCloud
           unless params['EnhanceConfig'].nil?
             @EnhanceConfig = EnhanceConfig.new
             @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
+          unless params['SubtitleTemplate'].nil?
+            @SubtitleTemplate = SubtitleTemplate.new
+            @SubtitleTemplate.deserialize(params['SubtitleTemplate'])
           end
         end
       end
@@ -24293,6 +24301,9 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StreamIndex: Integer
+        # @param SubtitleFileInput: 要压制到视频中的字幕文件的输入信息，目前仅支持存储在COS的字幕文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubtitleFileInput: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
         # @param FontType: 字体类型，支持：
         # <li>hei.ttf：黑体</li>
         # <li>song.ttf：宋体</li>
@@ -24368,12 +24379,37 @@ module TencentCloud
         # 默认值：0.8。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardAlpha: Float
+        # @param OutlineWidth: 描边宽度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutlineWidth: Float
+        # @param OutlineColor: 描边颜色。6位16进制RGB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutlineColor: String
+        # @param OutlineAlpha: 描边透明度。(0，1] 正浮点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutlineAlpha: Float
+        # @param ShadowWidth: 阴影宽度。浮点数  [0, 1000]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShadowWidth: Float
+        # @param ShadowColor: 阴影颜色。6位16进制RGB
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShadowColor: String
+        # @param ShadowAlpha: 阴影透明度。(0，1] 正浮点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShadowAlpha: Float
+        # @param LineSpacing: 行间距。正整数  [0, 1000]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineSpacing: Integer
+        # @param Alignment: 对齐方式，，取值：top: 顶部对齐，字幕顶部按位置固定，底部随行数变化。bottom: 底部对齐，字幕底部按位置固定，顶部随行数变化。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Alignment: String
 
-        attr_accessor :Path, :StreamIndex, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha
+        attr_accessor :Path, :StreamIndex, :SubtitleFileInput, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha, :OutlineWidth, :OutlineColor, :OutlineAlpha, :ShadowWidth, :ShadowColor, :ShadowAlpha, :LineSpacing, :Alignment
 
-        def initialize(path=nil, streamindex=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil)
+        def initialize(path=nil, streamindex=nil, subtitlefileinput=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil, outlinewidth=nil, outlinecolor=nil, outlinealpha=nil, shadowwidth=nil, shadowcolor=nil, shadowalpha=nil, linespacing=nil, alignment=nil)
           @Path = path
           @StreamIndex = streamindex
+          @SubtitleFileInput = subtitlefileinput
           @FontType = fonttype
           @FontSize = fontsize
           @FontColor = fontcolor
@@ -24384,11 +24420,23 @@ module TencentCloud
           @BoardHeight = boardheight
           @BoardColor = boardcolor
           @BoardAlpha = boardalpha
+          @OutlineWidth = outlinewidth
+          @OutlineColor = outlinecolor
+          @OutlineAlpha = outlinealpha
+          @ShadowWidth = shadowwidth
+          @ShadowColor = shadowcolor
+          @ShadowAlpha = shadowalpha
+          @LineSpacing = linespacing
+          @Alignment = alignment
         end
 
         def deserialize(params)
           @Path = params['Path']
           @StreamIndex = params['StreamIndex']
+          unless params['SubtitleFileInput'].nil?
+            @SubtitleFileInput = MediaInputInfo.new
+            @SubtitleFileInput.deserialize(params['SubtitleFileInput'])
+          end
           @FontType = params['FontType']
           @FontSize = params['FontSize']
           @FontColor = params['FontColor']
@@ -24399,6 +24447,14 @@ module TencentCloud
           @BoardHeight = params['BoardHeight']
           @BoardColor = params['BoardColor']
           @BoardAlpha = params['BoardAlpha']
+          @OutlineWidth = params['OutlineWidth']
+          @OutlineColor = params['OutlineColor']
+          @OutlineAlpha = params['OutlineAlpha']
+          @ShadowWidth = params['ShadowWidth']
+          @ShadowColor = params['ShadowColor']
+          @ShadowAlpha = params['ShadowAlpha']
+          @LineSpacing = params['LineSpacing']
+          @Alignment = params['Alignment']
         end
       end
 

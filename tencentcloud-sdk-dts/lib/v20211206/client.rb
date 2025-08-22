@@ -1409,6 +1409,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重置已经结束的同步任务，重置后可以重新配置启动任务。
+
+        # @param request: Request instance for ResetSyncJob.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ResetSyncJobRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ResetSyncJobResponse`
+        def ResetSyncJob(request)
+          body = send_request('ResetSyncJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetSyncJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调整同步任务规格，此接口只支持按量计费任务的调整，调用此接口后不会立即生效，后台调整时间大概为3~5分钟。调用此接口后可通过查询同步任务信息接口DescribeSyncJobs，获取变配后的状态。
 
         # @param request: Request instance for ResizeSyncJob.

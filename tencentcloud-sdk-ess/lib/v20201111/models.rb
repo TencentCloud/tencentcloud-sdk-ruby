@@ -2479,6 +2479,67 @@ module TencentCloud
         end
       end
 
+      # CreateContractReviewWebUrl请求参数结构体
+      class CreateContractReviewWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ResourceId: 需要审查的合同文件资源ID,可通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+
+        # 注:  `目前，每个文件限制在10M以下，文件仅支持pdf、doc、docx格式`
+        # @type ResourceId: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
+
+        attr_accessor :Operator, :ResourceId, :UserData
+
+        def initialize(operator=nil, resourceid=nil, userdata=nil)
+          @Operator = operator
+          @ResourceId = resourceid
+          @UserData = userdata
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ResourceId = params['ResourceId']
+          @UserData = params['UserData']
+        end
+      end
+
+      # CreateContractReviewWebUrl返回参数结构体
+      class CreateContractReviewWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 接口返回的合同审查任务ID，可以调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/DescribeContractReviewWebUrl" target="_blank">获取合同审查结果web页面</a>查看审查任务的结果。
+
+        # 注意： `当ResourceId参数不为空时才会返回此值。`
+        # @type TaskId: String
+        # @param WebUrl: 合同审查嵌入式web页面链接。
+
+        # 注意：`链接有效期为5分钟，且链接仅能使用一次。如果上传的合同文件为word时不能进行iframe方式嵌入到贵方系统的网页中，需要单独页面打开此链接显示`
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :WebUrl, :RequestId
+
+        def initialize(taskid=nil, weburl=nil, requestid=nil)
+          @TaskId = taskid
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConvertTaskApi请求参数结构体
       class CreateConvertTaskApiRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: 需要进行转换的资源文件类型
@@ -8375,6 +8436,64 @@ module TencentCloud
         end
       end
 
+      # DescribeContractReviewWebUrl请求参数结构体
+      class DescribeContractReviewWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同审查任务ID，该参数通过调用接口<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateContractReviewWebUrl" target="_blank">创建合同审查web页面</a>获取。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeContractReviewWebUrl返回参数结构体
+      class DescribeContractReviewWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 合同审查嵌入式web页面链接。
+        # 注意：`链接有效期为5分钟，且链接仅能使用一次。如果上传的合同文件为word时不能进行iframe方式嵌入到贵方系统的网页中，需要单独页面打开此链接显示`
+        # @type WebUrl: String
+        # @param Status: 合同审查任务状态。任务状态为`5`时没有WebUrl链接。
+        # 状态如下：
+        # <ul>
+        #     <li>**1** - 合同审查任务创建成功</li>
+        #     <li>**2** - 合同审查任务排队中</li>
+        #     <li>**3** - 合同审查任务执行中</li>
+        #     <li>**4** - 合同审查任务执行成功</li>
+        #     <li>**5** - 合同审查任务执行失败</li>
+        # </ul>
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :Status, :RequestId
+
+        def initialize(weburl=nil, status=nil, requestid=nil)
+          @WebUrl = weburl
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExtendedServiceAuthDetail请求参数结构体
       class DescribeExtendedServiceAuthDetailRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -10296,7 +10415,7 @@ module TencentCloud
         # @type SealDescription: String
         # @param ForbidEditSealDescription: 是否禁止编辑印章描述内容
         # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
-        # @type ForbidEditSealDescription: String
+        # @type ForbidEditSealDescription: Boolean
 
         attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark, :SealDescription, :ForbidEditSealDescription
 

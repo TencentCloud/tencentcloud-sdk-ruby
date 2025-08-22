@@ -297,7 +297,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 可以查询代理商代付的预付费订单
+        # 查询最近15天内的代理商代付订单
 
         # @param request: Request instance for DescribeAgentPayDealsV2.
         # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentPayDealsV2Request`
@@ -345,7 +345,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询代理商名下指定代客的自付订单（预付费）
+        # 查询代理商名下指定代客最近15天内的自付订单（预付费）
 
         # @param request: Request instance for DescribeAgentSelfPayDealsV2.
         # @type request: :class:`Tencentcloud::partners::V20180321::DescribeAgentSelfPayDealsV2Request`

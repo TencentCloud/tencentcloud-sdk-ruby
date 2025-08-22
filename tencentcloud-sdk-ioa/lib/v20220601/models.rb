@@ -17,6 +17,77 @@
 module TencentCloud
   module Ioa
     module V20220601
+      # 按版本聚合后的软件列表
+      class AggrCategorySoftDetailRow < TencentCloud::Common::AbstractModel
+        # @param ID: ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Name: 软件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param PiracyRisk: 盗版风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyRisk: Integer
+        # @param OsType: 系统平台
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsType: Integer
+        # @param CorpName: 企业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CorpName: String
+        # @param InstalledDeviceNum: 安装设备数量(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstalledDeviceNum: Integer
+        # @param PiracyInstalledDeviceNum: 盗版安装设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyInstalledDeviceNum: Integer
+        # @param InstalledUserNum: 已安装用户数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstalledUserNum: Integer
+        # @param PiracyInstalledUserNum: 盗版软件用户数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyInstalledUserNum: Integer
+        # @param AuthNum: 授权总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthNum: Integer
+        # @param GenuineRate: 正版率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenuineRate: Float
+        # @param UpgradableDeviceNum: 有新版本可升级的设备数量
+        # @type UpgradableDeviceNum: Integer
+
+        attr_accessor :ID, :Name, :PiracyRisk, :OsType, :CorpName, :InstalledDeviceNum, :PiracyInstalledDeviceNum, :InstalledUserNum, :PiracyInstalledUserNum, :AuthNum, :GenuineRate, :UpgradableDeviceNum
+
+        def initialize(id=nil, name=nil, piracyrisk=nil, ostype=nil, corpname=nil, installeddevicenum=nil, piracyinstalleddevicenum=nil, installedusernum=nil, piracyinstalledusernum=nil, authnum=nil, genuinerate=nil, upgradabledevicenum=nil)
+          @ID = id
+          @Name = name
+          @PiracyRisk = piracyrisk
+          @OsType = ostype
+          @CorpName = corpname
+          @InstalledDeviceNum = installeddevicenum
+          @PiracyInstalledDeviceNum = piracyinstalleddevicenum
+          @InstalledUserNum = installedusernum
+          @PiracyInstalledUserNum = piracyinstalledusernum
+          @AuthNum = authnum
+          @GenuineRate = genuinerate
+          @UpgradableDeviceNum = upgradabledevicenum
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @PiracyRisk = params['PiracyRisk']
+          @OsType = params['OsType']
+          @CorpName = params['CorpName']
+          @InstalledDeviceNum = params['InstalledDeviceNum']
+          @PiracyInstalledDeviceNum = params['PiracyInstalledDeviceNum']
+          @InstalledUserNum = params['InstalledUserNum']
+          @PiracyInstalledUserNum = params['PiracyInstalledUserNum']
+          @AuthNum = params['AuthNum']
+          @GenuineRate = params['GenuineRate']
+          @UpgradableDeviceNum = params['UpgradableDeviceNum']
+        end
+      end
+
       # 自动划分规则数据
       class ComplexRule < TencentCloud::Common::AbstractModel
         # @param SimpleRules: 简单规则表达式
@@ -531,6 +602,82 @@ module TencentCloud
         end
       end
 
+      # 业务响应数据
+      class DescribeAggrSoftCategorySoftListData < TencentCloud::Common::AbstractModel
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Total: 总数(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param AggrSoftCategorySoftList: 行数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggrSoftCategorySoftList: Array
+
+        attr_accessor :Page, :Total, :AggrSoftCategorySoftList
+
+        def initialize(page=nil, total=nil, aggrsoftcategorysoftlist=nil)
+          @Page = page
+          @Total = total
+          @AggrSoftCategorySoftList = aggrsoftcategorysoftlist
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          @Total = params['Total']
+          unless params['AggrSoftCategorySoftList'].nil?
+            @AggrSoftCategorySoftList = []
+            params['AggrSoftCategorySoftList'].each do |i|
+              aggrcategorysoftdetailrow_tmp = AggrCategorySoftDetailRow.new
+              aggrcategorysoftdetailrow_tmp.deserialize(i)
+              @AggrSoftCategorySoftList << aggrcategorysoftdetailrow_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAggrSoftCategorySoftList请求参数结构体
+      class DescribeAggrSoftCategorySoftListRequest < TencentCloud::Common::AbstractModel
+        # @param OsType: os类别(只支持32位)
+        # @type OsType: Integer
+
+        attr_accessor :OsType
+
+        def initialize(ostype=nil)
+          @OsType = ostype
+        end
+
+        def deserialize(params)
+          @OsType = params['OsType']
+        end
+      end
+
+      # DescribeAggrSoftCategorySoftList返回参数结构体
+      class DescribeAggrSoftCategorySoftListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAggrSoftCategorySoftListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAggrSoftCategorySoftListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询文件检测结果响应数据
       class DescribeDLPFileDetectResultData < TencentCloud::Common::AbstractModel
         # @param FileMd5: 提交任务时的文件md5
@@ -599,6 +746,91 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceChildGroups请求参数结构体
+      class DescribeDeviceChildGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: 过滤条件参数（字段含义请参考接口返回值）
+        # - Name, 类型String，支持操作：【like，ilike】，支持排序
+
+
+
+
+        # 分页参数
+        # - PageNum 从1开始，小于等于0时使用默认参数
+        # - PageSize 最大值5000，最好不超过100
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param ParentId: 父分组id，默认0：表示获取全网终端分组
+        # @type ParentId: Integer
+        # @param OsType: 操作系统类型（0：win，1：linux，2：mac，4：android，5：ios；默认0：系统win）
+        # @type OsType: Integer
+
+        attr_accessor :DomainInstanceId, :Condition, :ParentId, :OsType
+
+        def initialize(domaininstanceid=nil, condition=nil, parentid=nil, ostype=nil)
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+          @ParentId = parentid
+          @OsType = ostype
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+          @ParentId = params['ParentId']
+          @OsType = params['OsType']
+        end
+      end
+
+      # DescribeDeviceChildGroups返回参数结构体
+      class DescribeDeviceChildGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询设备组子分组详情响应结构
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceChildGroupsRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceChildGroupsRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询设备组子分组详情响应结构
+      class DescribeDeviceChildGroupsRspData < TencentCloud::Common::AbstractModel
+        # @param Items: 返回的数组列表
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              devicegroupdetail_tmp = DeviceGroupDetail.new
+              devicegroupdetail_tmp.deserialize(i)
+              @Items << devicegroupdetail_tmp
+            end
+          end
         end
       end
 
@@ -1900,6 +2132,90 @@ module TencentCloud
           @AccountName = params['AccountName']
           @AccountGroupId = params['AccountGroupId']
           @RemarkName = params['RemarkName']
+        end
+      end
+
+      # 返回的数组列表
+      class DeviceGroupDetail < TencentCloud::Common::AbstractModel
+        # @param Id: 设备组id
+        # @type Id: Integer
+        # @param Name: 设备组名称
+        # @type Name: String
+        # @param Description: 设备组描述
+        # @type Description: String
+        # @param ParentId: 父节点id
+        # @type ParentId: Integer
+        # @param IdPath: 基于id的节点路径
+        # @type IdPath: String
+        # @param NamePath: 基于名称的节点路径
+        # @type NamePath: String
+        # @param Locked: 分组锁定状态
+        # @type Locked: Integer
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios   ）
+        # @type OsType: Integer
+        # @param Sort: 排序
+        # @type Sort: Integer
+        # @param FromAuto: 是否自动调整
+        # @type FromAuto: Integer
+        # @param Count: 子节点数量
+        # @type Count: Integer
+        # @param Icon: 图标
+        # @type Icon: String
+        # @param WithIp: 是否有ip
+        # @type WithIp: Integer
+        # @param HasIp: 是否有组ip
+        # @type HasIp: Boolean
+        # @param IsLeaf: 是否是叶子节点
+        # @type IsLeaf: Boolean
+        # @param ReadOnly: 是否只读
+        # @type ReadOnly: Boolean
+        # @param BindAccount: 对应绑定的账号id
+        # @type BindAccount: Integer
+        # @param BindAccountName: 绑定账号的用户名
+        # @type BindAccountName: String
+
+        attr_accessor :Id, :Name, :Description, :ParentId, :IdPath, :NamePath, :Locked, :OsType, :Sort, :FromAuto, :Count, :Icon, :WithIp, :HasIp, :IsLeaf, :ReadOnly, :BindAccount, :BindAccountName
+
+        def initialize(id=nil, name=nil, description=nil, parentid=nil, idpath=nil, namepath=nil, locked=nil, ostype=nil, sort=nil, fromauto=nil, count=nil, icon=nil, withip=nil, hasip=nil, isleaf=nil, readonly=nil, bindaccount=nil, bindaccountname=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @ParentId = parentid
+          @IdPath = idpath
+          @NamePath = namepath
+          @Locked = locked
+          @OsType = ostype
+          @Sort = sort
+          @FromAuto = fromauto
+          @Count = count
+          @Icon = icon
+          @WithIp = withip
+          @HasIp = hasip
+          @IsLeaf = isleaf
+          @ReadOnly = readonly
+          @BindAccount = bindaccount
+          @BindAccountName = bindaccountname
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ParentId = params['ParentId']
+          @IdPath = params['IdPath']
+          @NamePath = params['NamePath']
+          @Locked = params['Locked']
+          @OsType = params['OsType']
+          @Sort = params['Sort']
+          @FromAuto = params['FromAuto']
+          @Count = params['Count']
+          @Icon = params['Icon']
+          @WithIp = params['WithIp']
+          @HasIp = params['HasIp']
+          @IsLeaf = params['IsLeaf']
+          @ReadOnly = params['ReadOnly']
+          @BindAccount = params['BindAccount']
+          @BindAccountName = params['BindAccountName']
         end
       end
 

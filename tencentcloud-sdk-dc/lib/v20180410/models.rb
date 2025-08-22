@@ -488,6 +488,8 @@ module TencentCloud
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
         # @type FaultReportContactNumber: String
+        # @param FaultReportContactEmail: 报障联系邮箱。
+        # @type FaultReportContactEmail: String
         # @param SignLaw: 物理专线申请者是否签署了用户使用协议。默认已签署。
         # @type SignLaw: Boolean
         # @param Tags: 标签键值对
@@ -495,9 +497,9 @@ module TencentCloud
         # @param IsMacSec: 是否MACsec需求
         # @type IsMacSec: Boolean
 
-        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Tags, :IsMacSec
+        attr_accessor :DirectConnectName, :AccessPointId, :LineOperator, :PortType, :CircuitCode, :Location, :Bandwidth, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :FaultReportContactEmail, :SignLaw, :Tags, :IsMacSec
 
-        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, tags=nil, ismacsec=nil)
+        def initialize(directconnectname=nil, accesspointid=nil, lineoperator=nil, porttype=nil, circuitcode=nil, location=nil, bandwidth=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, faultreportcontactemail=nil, signlaw=nil, tags=nil, ismacsec=nil)
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
           @LineOperator = lineoperator
@@ -514,6 +516,7 @@ module TencentCloud
           @CustomerContactNumber = customercontactnumber
           @FaultReportContactPerson = faultreportcontactperson
           @FaultReportContactNumber = faultreportcontactnumber
+          @FaultReportContactEmail = faultreportcontactemail
           @SignLaw = signlaw
           @Tags = tags
           @IsMacSec = ismacsec
@@ -536,6 +539,7 @@ module TencentCloud
           @CustomerContactNumber = params['CustomerContactNumber']
           @FaultReportContactPerson = params['FaultReportContactPerson']
           @FaultReportContactNumber = params['FaultReportContactNumber']
+          @FaultReportContactEmail = params['FaultReportContactEmail']
           @SignLaw = params['SignLaw']
           unless params['Tags'].nil?
             @Tags = []
@@ -2024,14 +2028,16 @@ module TencentCloud
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
         # @type FaultReportContactNumber: String
+        # @param FaultReportContactEmail: 报障联系邮箱。
+        # @type FaultReportContactEmail: String
         # @param SignLaw: 物理专线申请者补签用户使用协议。
         # @type SignLaw: Boolean
         # @param Bandwidth: 物理专线带宽。
         # @type Bandwidth: Integer
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :SignLaw, :Bandwidth
+        attr_accessor :DirectConnectId, :DirectConnectName, :CircuitCode, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :FaultReportContactPerson, :FaultReportContactNumber, :FaultReportContactEmail, :SignLaw, :Bandwidth
 
-        def initialize(directconnectid=nil, directconnectname=nil, circuitcode=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, signlaw=nil, bandwidth=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, circuitcode=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, faultreportcontactemail=nil, signlaw=nil, bandwidth=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @CircuitCode = circuitcode
@@ -2043,6 +2049,7 @@ module TencentCloud
           @CustomerContactNumber = customercontactnumber
           @FaultReportContactPerson = faultreportcontactperson
           @FaultReportContactNumber = faultreportcontactnumber
+          @FaultReportContactEmail = faultreportcontactemail
           @SignLaw = signlaw
           @Bandwidth = bandwidth
         end
@@ -2059,6 +2066,7 @@ module TencentCloud
           @CustomerContactNumber = params['CustomerContactNumber']
           @FaultReportContactPerson = params['FaultReportContactPerson']
           @FaultReportContactNumber = params['FaultReportContactNumber']
+          @FaultReportContactEmail = params['FaultReportContactEmail']
           @SignLaw = params['SignLaw']
           @Bandwidth = params['Bandwidth']
         end

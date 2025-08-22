@@ -7725,15 +7725,21 @@ module TencentCloud
         # @type CustomConf: :class:`Tencentcloud::Cdb.v20170320.models.CustomConfig`
         # @param WeightRule: 权重限制
         # @type WeightRule: :class:`Tencentcloud::Cdb.v20170320.models.Rule`
+        # @param CustomConfInfo: 代理配置
+        # @type CustomConfInfo: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Count, :CustomConf, :WeightRule, :RequestId
+        attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
+        extend Gem::Deprecate
+        deprecate :CustomConf, :none, 2025, 8
+        deprecate :CustomConf=, :none, 2025, 8
 
-        def initialize(count=nil, customconf=nil, weightrule=nil, requestid=nil)
+        def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
           @CustomConf = customconf
           @WeightRule = weightrule
+          @CustomConfInfo = customconfinfo
           @RequestId = requestid
         end
 
@@ -7746,6 +7752,14 @@ module TencentCloud
           unless params['WeightRule'].nil?
             @WeightRule = Rule.new
             @WeightRule.deserialize(params['WeightRule'])
+          end
+          unless params['CustomConfInfo'].nil?
+            @CustomConfInfo = []
+            params['CustomConfInfo'].each do |i|
+              customconfig_tmp = CustomConfig.new
+              customconfig_tmp.deserialize(i)
+              @CustomConfInfo << customconfig_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -13991,7 +14005,7 @@ module TencentCloud
 
       # StopRollback请求参数结构体
       class StopRollbackRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 撤销回档任务对应的实例Id。
+        # @param InstanceId: 撤销回档任务对应的实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/api/236/15872) 接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -14007,7 +14021,7 @@ module TencentCloud
 
       # StopRollback返回参数结构体
       class StopRollbackResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 执行请求的异步任务ID
+        # @param AsyncRequestId: 执行请求的异步任务 ID。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

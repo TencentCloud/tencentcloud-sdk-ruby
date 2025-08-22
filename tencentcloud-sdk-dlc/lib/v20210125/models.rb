@@ -3504,16 +3504,20 @@ module TencentCloud
 
       # CreateUserVpcConnection返回参数结构体
       class CreateUserVpcConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param UserVpcEndpointId: 终端节点IP
+        # @type UserVpcEndpointId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :UserVpcEndpointId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(uservpcendpointid=nil, requestid=nil)
+          @UserVpcEndpointId = uservpcendpointid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @UserVpcEndpointId = params['UserVpcEndpointId']
           @RequestId = params['RequestId']
         end
       end
@@ -9878,17 +9882,21 @@ module TencentCloud
         # @type EngineNetworkId: String
         # @param DataEngineIds: 引擎ID集合
         # @type DataEngineIds: Array
+        # @param UserVpcEndpointIds: 终端节点ID集合
+        # @type UserVpcEndpointIds: Array
 
-        attr_accessor :EngineNetworkId, :DataEngineIds
+        attr_accessor :EngineNetworkId, :DataEngineIds, :UserVpcEndpointIds
 
-        def initialize(enginenetworkid=nil, dataengineids=nil)
+        def initialize(enginenetworkid=nil, dataengineids=nil, uservpcendpointids=nil)
           @EngineNetworkId = enginenetworkid
           @DataEngineIds = dataengineids
+          @UserVpcEndpointIds = uservpcendpointids
         end
 
         def deserialize(params)
           @EngineNetworkId = params['EngineNetworkId']
           @DataEngineIds = params['DataEngineIds']
+          @UserVpcEndpointIds = params['UserVpcEndpointIds']
         end
       end
 

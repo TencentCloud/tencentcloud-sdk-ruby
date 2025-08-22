@@ -545,7 +545,7 @@ module TencentCloud
         end
       end
 
-      # 批量认证企业任务详情信息，其中包括 TaskId，状态信息等等
+      # 批量认证企业任务详情信息，其中包括 TaskId，状态信息等
       class BatchOrganizationRegistrationTasksDetails < TencentCloud::Common::AbstractModel
         # @param TaskId: 生成注册链接的任务Id
         # @type TaskId: String
@@ -8826,7 +8826,7 @@ module TencentCloud
         # @type SealDescription: String
         # @param ForbidEditSealDescription: 是否禁止编辑印章描述内容
         # <ul><li>（默认） false -否</li> <li> true - 禁止编辑</li></ul>
-        # @type ForbidEditSealDescription: String
+        # @type ForbidEditSealDescription: Boolean
 
         attr_accessor :ShowFlowDetailComponent, :ShowTemplateComponent, :SkipUploadFile, :ForbidEditWatermark, :SealDescription, :ForbidEditSealDescription
 
@@ -12814,7 +12814,7 @@ module TencentCloud
         # <ul><li>1：启用（默认），表示模板处于启用状态，可以被用户正常使用。</li>
         # <li>2：停用，表示模板处于停用状态，禁止用户使用该模板。</li></ul>
         # @type Available: Integer
-        # @param UserFlowType: 模版的用户合同类型
+        # @param UserFlowType: 模板的用户合同类型
         # @type UserFlowType: :class:`Tencentcloud::Essbasic.v20210526.models.UserFlowType`
 
         attr_accessor :TemplateId, :TemplateName, :Description, :Components, :Recipients, :SignComponents, :TemplateType, :IsPromoter, :Creator, :CreatedOn, :PreviewUrl, :PdfUrl, :ChannelTemplateId, :ChannelTemplateName, :ChannelAutoSave, :TemplateVersion, :Available, :UserFlowType
@@ -12889,13 +12889,13 @@ module TencentCloud
         end
       end
 
-      # 模版对应的合同类型
+      # 模板对应的合同类型
       class TemplateUserFlowType < TencentCloud::Common::AbstractModel
         # @param UserFlowTypeId: 合同类型id
         # @type UserFlowTypeId: String
         # @param Name: 用户合同类型名称
         # @type Name: String
-        # @param TemplateNum: 每个合同类型绑定的模版数量
+        # @param TemplateNum: 每个合同类型绑定的模板数量
         # @type TemplateNum: Integer
         # @param Description: 合同类型的具体描述
         # @type Description: String

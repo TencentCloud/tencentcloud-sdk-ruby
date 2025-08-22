@@ -11557,24 +11557,30 @@ module TencentCloud
 
       # DescribeBanStatus返回参数结构体
       class DescribeBanStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 阻断开关状态:
-        #  0 -- 关闭
-        #  1 -- 高级阻断
-        #  2 -- 基础阻断(只阻断情报库黑ip)
+        # @param Status: (已废弃) 阻断开关状态: 0 -- 关闭  1 -- 高级阻断 2 -- 基础阻断(只阻断情报库黑ip)
         # @type Status: Integer
         # @param ShowTips: 是否弹窗提示信息 false: 关闭，true: 开启
         # @type ShowTips: Boolean
         # @param OpenSmartMode: 是否开启智能过白模式
         # @type OpenSmartMode: Boolean
+        # @param BanBlackIp: 是否开启情报IP阻断
+        # @type BanBlackIp: Boolean
+        # @param BanVulIp: 是否开启漏洞IP阻断
+        # @type BanVulIp: Boolean
+        # @param BanByRule: 是否开启规则阻断
+        # @type BanByRule: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :ShowTips, :OpenSmartMode, :RequestId
+        attr_accessor :Status, :ShowTips, :OpenSmartMode, :BanBlackIp, :BanVulIp, :BanByRule, :RequestId
 
-        def initialize(status=nil, showtips=nil, opensmartmode=nil, requestid=nil)
+        def initialize(status=nil, showtips=nil, opensmartmode=nil, banblackip=nil, banvulip=nil, banbyrule=nil, requestid=nil)
           @Status = status
           @ShowTips = showtips
           @OpenSmartMode = opensmartmode
+          @BanBlackIp = banblackip
+          @BanVulIp = banvulip
+          @BanByRule = banbyrule
           @RequestId = requestid
         end
 
@@ -11582,6 +11588,9 @@ module TencentCloud
           @Status = params['Status']
           @ShowTips = params['ShowTips']
           @OpenSmartMode = params['OpenSmartMode']
+          @BanBlackIp = params['BanBlackIp']
+          @BanVulIp = params['BanVulIp']
+          @BanByRule = params['BanByRule']
           @RequestId = params['RequestId']
         end
       end
@@ -30013,7 +30022,7 @@ module TencentCloud
         # @param Quuid: 主机quuid
         # @type Quuid: String
         # @param Desc: 高危信息说明：
-        # ABROAD - 海外IP；
+        # ABROAD - 境外IP；
         # XTI - 威胁情报
         # @type Desc: String
         # @param MachineExtraInfo: 附加信息
@@ -31107,7 +31116,7 @@ module TencentCloud
         # @type ModifyTime: String
         # @param Uuid: 服务器Uuid
         # @type Uuid: String
-        # @param Locations: 登陆地
+        # @param Locations: 登录地
         # @type Locations: String
 
         attr_accessor :Places, :UserName, :SrcIp, :Locale, :Remark, :StartTime, :EndTime, :IsGlobal, :Name, :Desc, :Id, :CreateTime, :ModifyTime, :Uuid, :Locations
@@ -35390,7 +35399,7 @@ module TencentCloud
         # @type CityId: Integer
         # @param ProvinceId: 省份 ID。
         # @type ProvinceId: Integer
-        # @param CountryId: 国家ID，暂只支持国内：1。
+        # @param CountryId: 国家ID，暂只支持境内：1。
         # @type CountryId: Integer
         # @param Location: 位置名称
         # @type Location: String

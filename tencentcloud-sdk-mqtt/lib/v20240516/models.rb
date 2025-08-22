@@ -424,6 +424,66 @@ module TencentCloud
         end
       end
 
+      # CreateDeviceIdentity请求参数结构体
+      class CreateDeviceIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param Status: 1:ENABLED-可用（默认）
+        # 2:DISABLE-不可用
+        # @type Status: String
+        # @param PrimaryKey: 主要签名key，不传则由系统自动生成，需要base64编码。
+        # @type PrimaryKey: String
+        # @param SecondaryKey: 次要签名key，不传则油系统自动生成，需要base64编码。
+        # @type SecondaryKey: String
+        # @param PropagatingProperties: 该设备id的传播属性设置
+        # @type PropagatingProperties: Array
+
+        attr_accessor :InstanceId, :DeviceId, :Status, :PrimaryKey, :SecondaryKey, :PropagatingProperties
+
+        def initialize(instanceid=nil, deviceid=nil, status=nil, primarykey=nil, secondarykey=nil, propagatingproperties=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+          @Status = status
+          @PrimaryKey = primarykey
+          @SecondaryKey = secondarykey
+          @PropagatingProperties = propagatingproperties
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @PrimaryKey = params['PrimaryKey']
+          @SecondaryKey = params['SecondaryKey']
+          unless params['PropagatingProperties'].nil?
+            @PropagatingProperties = []
+            params['PropagatingProperties'].each do |i|
+              propagatingproperty_tmp = PropagatingProperty.new
+              propagatingproperty_tmp.deserialize(i)
+              @PropagatingProperties << propagatingproperty_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDeviceIdentity返回参数结构体
+      class CreateDeviceIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateHttpAuthenticator请求参数结构体
       class CreateHttpAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -1087,6 +1147,42 @@ module TencentCloud
         end
       end
 
+      # DeleteDeviceIdentity请求参数结构体
+      class DeleteDeviceIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+
+        attr_accessor :InstanceId, :DeviceId
+
+        def initialize(instanceid=nil, deviceid=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # DeleteDeviceIdentity返回参数结构体
+      class DeleteDeviceIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInsPublicEndpoint请求参数结构体
       class DeleteInsPublicEndpointRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -1674,6 +1770,129 @@ module TencentCloud
               devicecertificateitem_tmp = DeviceCertificateItem.new
               devicecertificateitem_tmp.deserialize(i)
               @Data << devicecertificateitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceIdentities请求参数结构体
+      class DescribeDeviceIdentitiesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param Offset: 查询起始位置
+        # @type Offset: Integer
+        # @param Limit: 查询结果限制数量
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDeviceIdentities返回参数结构体
+      class DescribeDeviceIdentitiesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回的设备标识列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              deviceidentityitem_tmp = DeviceIdentityItem.new
+              deviceidentityitem_tmp.deserialize(i)
+              @Data << deviceidentityitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDeviceIdentity请求参数结构体
+      class DescribeDeviceIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+
+        attr_accessor :InstanceId, :DeviceId
+
+        def initialize(instanceid=nil, deviceid=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # DescribeDeviceIdentity返回参数结构体
+      class DescribeDeviceIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param Status: 1:ENABLED-可用
+        #  2:DISABLE-不可用
+        # @type Status: Integer
+        # @param PrimaryKey: 主要签名key
+        # @type PrimaryKey: String
+        # @param SecondaryKey: 次要签名key
+        # @type SecondaryKey: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: Integer
+        # @param PropagatingProperties: 该设备id的传播属性
+        # @type PropagatingProperties: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :DeviceId, :Status, :PrimaryKey, :SecondaryKey, :CreatedTime, :PropagatingProperties, :RequestId
+
+        def initialize(instanceid=nil, deviceid=nil, status=nil, primarykey=nil, secondarykey=nil, createdtime=nil, propagatingproperties=nil, requestid=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+          @Status = status
+          @PrimaryKey = primarykey
+          @SecondaryKey = secondarykey
+          @CreatedTime = createdtime
+          @PropagatingProperties = propagatingproperties
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @PrimaryKey = params['PrimaryKey']
+          @SecondaryKey = params['SecondaryKey']
+          @CreatedTime = params['CreatedTime']
+          unless params['PropagatingProperties'].nil?
+            @PropagatingProperties = []
+            params['PropagatingProperties'].each do |i|
+              propagatingproperty_tmp = PropagatingProperty.new
+              propagatingproperty_tmp.deserialize(i)
+              @PropagatingProperties << propagatingproperty_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -2583,6 +2802,53 @@ module TencentCloud
         end
       end
 
+      # 设备标识列表
+      class DeviceIdentityItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param Status: 1:ENABLED-可用2:DISABLE-不可用
+        # @type Status: Integer
+        # @param PrimaryKey: 主要签名key，不传则由系统自动生成
+        # @type PrimaryKey: String
+        # @param SecondaryKey: 次要签名key，不传则由系统自动生成
+        # @type SecondaryKey: String
+        # @param CreatedTime: 创建时间
+        # @type CreatedTime: Integer
+        # @param PropagatingProperties: 传播属性列表
+        # @type PropagatingProperties: Array
+
+        attr_accessor :InstanceId, :DeviceId, :Status, :PrimaryKey, :SecondaryKey, :CreatedTime, :PropagatingProperties
+
+        def initialize(instanceid=nil, deviceid=nil, status=nil, primarykey=nil, secondarykey=nil, createdtime=nil, propagatingproperties=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+          @Status = status
+          @PrimaryKey = primarykey
+          @SecondaryKey = secondarykey
+          @CreatedTime = createdtime
+          @PropagatingProperties = propagatingproperties
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @PrimaryKey = params['PrimaryKey']
+          @SecondaryKey = params['SecondaryKey']
+          @CreatedTime = params['CreatedTime']
+          unless params['PropagatingProperties'].nil?
+            @PropagatingProperties = []
+            params['PropagatingProperties'].each do |i|
+              propagatingproperty_tmp = PropagatingProperty.new
+              propagatingproperty_tmp.deserialize(i)
+              @PropagatingProperties << propagatingproperty_tmp
+            end
+          end
+        end
+      end
+
       # 查询过滤器
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 过滤条件名
@@ -3216,6 +3482,66 @@ module TencentCloud
         end
       end
 
+      # ModifyDeviceIdentity请求参数结构体
+      class ModifyDeviceIdentityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param DeviceId: 设备id
+        # @type DeviceId: String
+        # @param Status: 1:ENABLED-可用
+        # 2:DISABLE-不可用
+        # @type Status: String
+        # @param PrimaryKey: 主要签名key，需要Base64编码。
+        # @type PrimaryKey: String
+        # @param SecondaryKey: 次要签名key，需要Base64编码。
+        # @type SecondaryKey: String
+        # @param PropagatingProperties: 该设备id的传播属性设置
+        # @type PropagatingProperties: Array
+
+        attr_accessor :InstanceId, :DeviceId, :Status, :PrimaryKey, :SecondaryKey, :PropagatingProperties
+
+        def initialize(instanceid=nil, deviceid=nil, status=nil, primarykey=nil, secondarykey=nil, propagatingproperties=nil)
+          @InstanceId = instanceid
+          @DeviceId = deviceid
+          @Status = status
+          @PrimaryKey = primarykey
+          @SecondaryKey = secondarykey
+          @PropagatingProperties = propagatingproperties
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DeviceId = params['DeviceId']
+          @Status = params['Status']
+          @PrimaryKey = params['PrimaryKey']
+          @SecondaryKey = params['SecondaryKey']
+          unless params['PropagatingProperties'].nil?
+            @PropagatingProperties = []
+            params['PropagatingProperties'].each do |i|
+              propagatingproperty_tmp = PropagatingProperty.new
+              propagatingproperty_tmp.deserialize(i)
+              @PropagatingProperties << propagatingproperty_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDeviceIdentity返回参数结构体
+      class ModifyDeviceIdentityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyHttpAuthenticator请求参数结构体
       class ModifyHttpAuthenticatorRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -3766,6 +4092,26 @@ module TencentCloud
               @PriceTags << pricetag_tmp
             end
           end
+        end
+      end
+
+      # 传播属性结构
+      class PropagatingProperty < TencentCloud::Common::AbstractModel
+        # @param Key: 传播属性key
+        # @type Key: String
+        # @param Value: 传播属性value
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

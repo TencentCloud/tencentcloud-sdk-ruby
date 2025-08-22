@@ -481,6 +481,36 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateContractReviewWebUrl）用来创建合同审查web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+
+        # 适用场景：根据合同内容识别出合同的风险信息。审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。
+
+        # 注:
+        # 1. pdf、word格式限制大小为10M以下
+        # 2. 如果文件资源为word类型生成的链接不能进行iframe嵌入，需要在单独窗口打开
+
+        # @param request: Request instance for CreateContractReviewWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateContractReviewWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateContractReviewWebUrlResponse`
+        def CreateContractReviewWebUrl(request)
+          body = send_request('CreateContractReviewWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateContractReviewWebUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateConvertTaskApi）用来将word、excel、html、图片、txt类型文件转换为PDF文件。<br />
         # 前提条件：源文件已经通过 <a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">文件上传接口</a>完成上传，并得到了源文件的资源Id。<br />
         # 适用场景1：已经上传了一个word文件，希望将该word文件转换成pdf文件后发起合同
@@ -2573,6 +2603,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeContractReviewTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeContractReviewWebUrl）用来创建合同审查web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+
+        # 适用场景：根据合同内容识别出合同的风险信息。审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。
+
+        # 注意:  `如果文件资源为word类型生成的链接不能进行iframe嵌入，需要在单独窗口打开`
+
+        # @param request: Request instance for DescribeContractReviewWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeContractReviewWebUrlResponse`
+        def DescribeContractReviewWebUrl(request)
+          body = send_request('DescribeContractReviewWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeContractReviewWebUrlResponse.new
             model.deserialize(response['Response'])
             model
           else

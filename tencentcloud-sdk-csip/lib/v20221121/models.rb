@@ -21,7 +21,7 @@ module TencentCloud
       class AKInfo < TencentCloud::Common::AbstractModel
         # @param ID: ak对应id
         # @type ID: Integer
-        # @param Name: ak具体值
+        # @param Name: ak具体值\n
         # 临时密钥时返回临时密钥
         # @type Name: String
         # @param User: 所属账号
@@ -12033,7 +12033,7 @@ module TencentCloud
         # @type ConfigRiskCount: Integer
         # @param ActionRiskCount: 危险行为告警
         # @type ActionRiskCount: Integer
-        # @param IsAccessCloudAudit: 是否接入云审计日志
+        # @param IsAccessCloudAudit: 是否接入操作审计日志
         # @type IsAccessCloudAudit: Boolean
         # @param IsAccessCheck: 是否配置风险的安全体检
         # @type IsAccessCheck: Boolean

@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 聚合的分类软件列表
+
+        # @param request: Request instance for DescribeAggrSoftCategorySoftList.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftCategorySoftListRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftCategorySoftListResponse`
+        def DescribeAggrSoftCategorySoftList(request)
+          body = send_request('DescribeAggrSoftCategorySoftList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAggrSoftCategorySoftListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # webservice查询文件检测结果
 
         # @param request: Request instance for DescribeDLPFileDetectResult.
@@ -159,6 +183,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDLPFileDetectResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询设备组子分组详情，私有化调用path为：capi/Assets/Device/DescribeDeviceChildGroups
+
+        # @param request: Request instance for DescribeDeviceChildGroups.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceChildGroupsRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceChildGroupsResponse`
+        def DescribeDeviceChildGroups(request)
+          body = send_request('DescribeDeviceChildGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceChildGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
