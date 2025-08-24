@@ -1677,33 +1677,41 @@ module TencentCloud
 
         # 注:  `目前，此接口仅支持5个文件发起。每个文件限制在10M以下，文件必须是PDF格式`
         # @type ResourceIds: Array
-        # @param PolicyType: 合同审查的审查立场方。
+        # @param PolicyType: 合同审查的审查尺度。默认为`0`严格尺度
 
-        # 审查立场方如下：
+        # 审查尺度如下：
         # <ul>
         #     <li>**0** - 【严格】以保护己方利益为核心，对合同条款进行严格把控，尽可能争取对己方有利的条款，同时对对方提出的不合理条款可进行坚决修改或删除。</li>
         #     <li>**1** - 【中立】以公平合理为原则，平衡双方的权利义务，既不过分强调己方利益，也不过度让步，力求达成双方均可接受的条款。</li>
         #     <li>**2** - 【宽松】以促成交易为核心，对合同条款的修改要求较为宽松，倾向于接受对方提出的条款，以尽快达成合作。</li>
         # </ul>
         # @type PolicyType: Integer
-        # @param Role: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。
+        # @param Role: 合同审查中的角色信息，通过明确入参角色的名称和描述，可以提高合同审查的效率和准确性。用户不做配置时大模型会根据合同内容推荐出风险识别角色的名称和描述信息。
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
         # @param ChecklistId: 用户配置的审查清单ID，基于此清单ID批量创建合同审查任务，为32位字符串。
-        # [点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)
+        # [点击查看审查清单ID在控制台上的位置](https://qcloudimg.tencent-cloud.cn/raw/2c6588549e28ca49bd8bb7f4a072b19e.png)。如果用户不做此配置大模型会根据合同内容在当前企业下的审查清单和系统默认的清单中选择一个清单进行审查。
         # @type ChecklistId: String
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Comment: 备注信息，长度不能超过100个字符
+        # @type Comment: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
 
-        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :ChecklistId, :Agent
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
 
-        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, checklistid=nil, agent=nil)
+        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :ChecklistId, :Agent, :Comment, :UserData
+
+        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, checklistid=nil, agent=nil, comment=nil, userdata=nil)
           @Operator = operator
           @ResourceIds = resourceids
           @PolicyType = policytype
           @Role = role
           @ChecklistId = checklistid
           @Agent = agent
+          @Comment = comment
+          @UserData = userdata
         end
 
         def deserialize(params)
@@ -1722,6 +1730,8 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          @Comment = params['Comment']
+          @UserData = params['UserData']
         end
       end
 
@@ -8359,7 +8369,7 @@ module TencentCloud
 
       # DescribeContractReviewTask返回参数结构体
       class DescribeContractReviewTaskResponse < TencentCloud::Common::AbstractModel
-        # @param ChecklistId: 用于审查任务的审查清单ID。
+        # @param ChecklistId: 用于审查任务的审查清单ID。注意：如果用户没有配置清单时此值可能为空，需要等大模型根据合同内容推荐出可以使用的审查清单。
         # @type ChecklistId: String
         # @param CreatedOn: 合同审查任务创建时间。
         # @type CreatedOn: Integer
@@ -8380,7 +8390,8 @@ module TencentCloud
 
         # 注意：`审查结果由AI生成，仅供参考。请结合相关法律法规和公司制度要求综合判断。`
         # @type Risks: Array
-        # @param Role: 合同审查中的角色信息。
+        # @param Role: 合同审查中的角色信息。注意：注意：如果用户没有配置审查角色时此值可能为null，需要等大模型根据合同内容推荐出审查角色信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Role: :class:`Tencentcloud::Ess.v20201111.models.RiskIdentificationRoleInfo`
         # @param Status: 合同审查任务状态。
         # 状态如下：
@@ -8394,12 +8405,18 @@ module TencentCloud
         # @type Status: Integer
         # @param TaskId: 合同审查任务ID
         # @type TaskId: String
+        # @param Comment: 审查任务备注信息，长度不能超过100个字符
+        # @type Comment: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :RequestId
+        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :RequestId
 
-        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, requestid=nil)
+        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, requestid=nil)
           @ChecklistId = checklistid
           @CreatedOn = createdon
           @FinishedOn = finishedon
@@ -8409,6 +8426,8 @@ module TencentCloud
           @Role = role
           @Status = status
           @TaskId = taskid
+          @Comment = comment
+          @UserData = userdata
           @RequestId = requestid
         end
 
@@ -8432,6 +8451,8 @@ module TencentCloud
           end
           @Status = params['Status']
           @TaskId = params['TaskId']
+          @Comment = params['Comment']
+          @UserData = params['UserData']
           @RequestId = params['RequestId']
         end
       end
@@ -13755,12 +13776,14 @@ module TencentCloud
         # @type RiskPresentation: Array
         # @param Content: PDF风险原文内容
         # @type Content: String
+        # @param Positions: 审查出的PDF段落位置信息
+        # @type Positions: Array
         # @param RiskBasis: 审查依据
         # @type RiskBasis: String
 
-        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :RiskBasis
+        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis
 
-        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, riskbasis=nil)
+        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil)
           @RiskId = riskid
           @RiskName = riskname
           @RiskDescription = riskdescription
@@ -13768,6 +13791,7 @@ module TencentCloud
           @RiskAdvice = riskadvice
           @RiskPresentation = riskpresentation
           @Content = content
+          @Positions = positions
           @RiskBasis = riskbasis
         end
 
@@ -13779,6 +13803,14 @@ module TencentCloud
           @RiskAdvice = params['RiskAdvice']
           @RiskPresentation = params['RiskPresentation']
           @Content = params['Content']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positioninfo_tmp = PositionInfo.new
+              positioninfo_tmp.deserialize(i)
+              @Positions << positioninfo_tmp
+            end
+          end
           @RiskBasis = params['RiskBasis']
         end
       end
@@ -13950,6 +13982,42 @@ module TencentCloud
               @Permissions << permission_tmp
             end
           end
+        end
+      end
+
+      # 坐标详情
+      class PositionInfo < TencentCloud::Common::AbstractModel
+        # @param X: PDF文件页X坐标位置,以PDF单页左上角为坐标原点
+        # @type X: Float
+        # @param Y: PDF文件页Y坐标位置,以PDF单页左上角为坐标原点
+        # @type Y: Float
+        # @param Width: 距离X坐标的宽度，用于在PDF文件进行画框。
+        # @type Width: Float
+        # @param Height: 距离Y坐标的高度，用于在PDF文件进行画框。
+        # @type Height: Float
+        # @param PageIndex: PDF文件页码索引，此值加1就是对应PDF文件的页码。
+        # @type PageIndex: Integer
+        # @param Id: 系统生成的唯一ID值
+        # @type Id: String
+
+        attr_accessor :X, :Y, :Width, :Height, :PageIndex, :Id
+
+        def initialize(x=nil, y=nil, width=nil, height=nil, pageindex=nil, id=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+          @PageIndex = pageindex
+          @Id = id
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+          @PageIndex = params['PageIndex']
+          @Id = params['Id']
         end
       end
 

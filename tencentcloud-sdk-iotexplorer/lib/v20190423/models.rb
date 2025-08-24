@@ -5817,6 +5817,51 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeSeeRecognitionTask请求参数结构体
+      class DescribeTWeSeeRecognitionTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param FileURLExpireTime: 下载 URL 的过期时间。
+
+        # 若传入该参数，则响应中将包含所有文件的下载 URL
+        # @type FileURLExpireTime: Integer
+
+        attr_accessor :TaskId, :FileURLExpireTime
+
+        def initialize(taskid=nil, fileurlexpiretime=nil)
+          @TaskId = taskid
+          @FileURLExpireTime = fileurlexpiretime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @FileURLExpireTime = params['FileURLExpireTime']
+        end
+      end
+
+      # DescribeTWeSeeRecognitionTask返回参数结构体
+      class DescribeTWeSeeRecognitionTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfo: 任务信息
+        # @type TaskInfo: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionRecognitionTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfo, :RequestId
+
+        def initialize(taskinfo=nil, requestid=nil)
+          @TaskInfo = taskinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfo'].nil?
+            @TaskInfo = VisionRecognitionTask.new
+            @TaskInfo.deserialize(params['TaskInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicPolicy请求参数结构体
       class DescribeTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -11799,6 +11844,88 @@ module TencentCloud
           @Summary = params['Summary']
           @AlternativeSummary = params['AlternativeSummary']
           @ErrorCode = params['ErrorCode']
+        end
+      end
+
+      # TWeSee 语义理解任务信息
+      class VisionRecognitionTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 云存 AI 服务任务 ID
+        # @type TaskId: String
+        # @param ProductId: 产品 ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param StartTime: 对应云存视频的起始时间（秒级 UNIX 时间戳）
+        # @type StartTime: Integer
+        # @param StartTimeMs: 对应云存视频的起始时间（毫秒级 UNIX 时间戳）
+        # @type StartTimeMs: Integer
+        # @param EndTime: 对应云存视频的结束时间（秒级 UNIX 时间戳）
+        # @type EndTime: Integer
+        # @param EndTimeMs: 对应云存视频的结束时间（毫秒级 UNIX 时间戳）
+        # @type EndTimeMs: Integer
+        # @param Status: 任务状态（1：分析失败；2：下载/读取视频/图片失败；3：成功；4：执行中）
+        # @type Status: Integer
+        # @param Result: 任务结果
+        # @type Result: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionRecognitionResult`
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 最后更新时间
+        # @type UpdateTime: Integer
+        # @param CustomId: 自定义任务 ID
+        # @type CustomId: String
+        # @param Files: 任务输出文件列表
+        # @type Files: Array
+        # @param FilesInfo: 任务输出文件信息列表
+        # @type FilesInfo: Array
+
+        attr_accessor :TaskId, :ProductId, :DeviceName, :ChannelId, :StartTime, :StartTimeMs, :EndTime, :EndTimeMs, :Status, :Result, :CreateTime, :UpdateTime, :CustomId, :Files, :FilesInfo
+
+        def initialize(taskid=nil, productid=nil, devicename=nil, channelid=nil, starttime=nil, starttimems=nil, endtime=nil, endtimems=nil, status=nil, result=nil, createtime=nil, updatetime=nil, customid=nil, files=nil, filesinfo=nil)
+          @TaskId = taskid
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @StartTime = starttime
+          @StartTimeMs = starttimems
+          @EndTime = endtime
+          @EndTimeMs = endtimems
+          @Status = status
+          @Result = result
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @CustomId = customid
+          @Files = files
+          @FilesInfo = filesinfo
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @StartTime = params['StartTime']
+          @StartTimeMs = params['StartTimeMs']
+          @EndTime = params['EndTime']
+          @EndTimeMs = params['EndTimeMs']
+          @Status = params['Status']
+          unless params['Result'].nil?
+            @Result = VisionRecognitionResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @CustomId = params['CustomId']
+          @Files = params['Files']
+          unless params['FilesInfo'].nil?
+            @FilesInfo = []
+            params['FilesInfo'].each do |i|
+              cloudstorageaiservicetaskfileinfo_tmp = CloudStorageAIServiceTaskFileInfo.new
+              cloudstorageaiservicetaskfileinfo_tmp.deserialize(i)
+              @FilesInfo << cloudstorageaiservicetaskfileinfo_tmp
+            end
+          end
         end
       end
 

@@ -9406,8 +9406,10 @@ module TencentCloud
         # @param LogicBackupTimeEnd: 自动逻辑备份结束时间
         # @type LogicBackupTimeEnd: Integer
         # @param LogicReserveDuration: 自动逻辑备份保留时间
+        # 单位：秒
         # @type LogicReserveDuration: Integer
         # @param LogicCrossRegionsEnable: 是否开启跨地域逻辑备份
+        # 可选值：ON/OFF
         # @type LogicCrossRegionsEnable: String
         # @param LogicCrossRegions: 逻辑备份所跨地域
         # 注意：此字段可能返回 null，表示取不到有效值。

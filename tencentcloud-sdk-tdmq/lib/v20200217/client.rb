@@ -2191,6 +2191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 RocketMQ 指定主题下的生产者客户端列表。
+
+        # @param request: Request instance for DescribeRocketMQProducers.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQProducersRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQProducersResponse`
+        def DescribeRocketMQProducers(request)
+          body = send_request('DescribeRocketMQProducers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQProducersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 从腾讯云可观测平台拉取公网指标监控数据，目前仅支持客户端到 LB 的入带宽和出宽带指标。
 
         # @param request: Request instance for DescribeRocketMQPublicAccessMonitorData.

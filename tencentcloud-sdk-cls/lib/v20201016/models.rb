@@ -4133,7 +4133,8 @@ module TencentCloud
 
       # 数据加工的资源信息
       class DataTransformResouceInfo < TencentCloud::Common::AbstractModel
-        # @param TopicId: 目标主题id
+        # @param TopicId: 日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Alias: 别名
         # @type Alias: String
@@ -4166,12 +4167,16 @@ module TencentCloud
         # @param Status: 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
         # @type Status: Integer
         # @param CreateTime: 加工任务创建时间
+        # 示例值：2025-03-18 19:55:54
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间
-        # 示例值：2025-06-18 16:55:54
+        # 示例值：2025-04-18 16:55:54
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type UpdateTime: String
         # @param LastEnableTime: 最后启用时间，如果需要重建集群，修改该时间
-        # 示例值：2025-06-18 19:55:54
+        # 示例值：2025-05-18 19:55:54
+        # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type LastEnableTime: String
         # @param SrcTopicName: 日志主题名称
         # @type SrcTopicName: String

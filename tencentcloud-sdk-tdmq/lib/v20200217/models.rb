@@ -6600,6 +6600,83 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQProducers请求参数结构体
+      class DescribeRocketMQProducersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param Topic: 主题名
+        # @type Topic: String
+        # @param Offset: 分页offset
+        # @type Offset: Integer
+        # @param Limit: 分页limit
+        # @type Limit: Integer
+        # @param Filters: 过滤查询条件列表，支持以下过滤参数：
+
+        # - ClientId：生产者客户端ID
+        # - ClientIp：生产者客户端IP
+        # @type Filters: Array
+
+        attr_accessor :ClusterId, :NamespaceId, :Topic, :Offset, :Limit, :Filters
+
+        def initialize(clusterid=nil, namespaceid=nil, topic=nil, offset=nil, limit=nil, filters=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @Topic = topic
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @Topic = params['Topic']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRocketMQProducers返回参数结构体
+      class DescribeRocketMQProducersResponse < TencentCloud::Common::AbstractModel
+        # @param Producers: 生产者客户端列表
+        # @type Producers: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Producers, :TotalCount, :RequestId
+
+        def initialize(producers=nil, totalcount=nil, requestid=nil)
+          @Producers = producers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Producers'].nil?
+            @Producers = []
+            params['Producers'].each do |i|
+              producerinfo_tmp = ProducerInfo.new
+              producerinfo_tmp.deserialize(i)
+              @Producers << producerinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQPublicAccessMonitorData请求参数结构体
       class DescribeRocketMQPublicAccessMonitorDataRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 专享集群ID
@@ -9991,6 +10068,55 @@ module TencentCloud
           @ProducerCount = params['ProducerCount']
           @TotalSize = params['TotalSize']
           @TopicType = params['TopicType']
+        end
+      end
+
+      # 生产者客户端详情
+      class ProducerInfo < TencentCloud::Common::AbstractModel
+        # @param ClientId: 客户端ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param ClientIp: 客户端IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientIp: String
+        # @param Language: 客户端语言
+        # JAVA((byte) 0),
+        #     CPP((byte) 1),
+        #     DOTNET((byte) 2),
+        #     PYTHON((byte) 3),
+        #     DELPHI((byte) 4),
+        #     ERLANG((byte) 5),
+        #     RUBY((byte) 6),
+        #     OTHER((byte) 7),
+        #     HTTP((byte) 8),
+        #     GO((byte) 9),
+        #     PHP((byte) 10),
+        #     OMS((byte) 11);
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Language: String
+        # @param Version: 客户端版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param LastUpdateTimestamp: 最后生产时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdateTimestamp: Integer
+
+        attr_accessor :ClientId, :ClientIp, :Language, :Version, :LastUpdateTimestamp
+
+        def initialize(clientid=nil, clientip=nil, language=nil, version=nil, lastupdatetimestamp=nil)
+          @ClientId = clientid
+          @ClientIp = clientip
+          @Language = language
+          @Version = version
+          @LastUpdateTimestamp = lastupdatetimestamp
+        end
+
+        def deserialize(params)
+          @ClientId = params['ClientId']
+          @ClientIp = params['ClientIp']
+          @Language = params['Language']
+          @Version = params['Version']
+          @LastUpdateTimestamp = params['LastUpdateTimestamp']
         end
       end
 

@@ -2313,6 +2313,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 TWeSee 语义理解任务
+
+        # @param request: Request instance for DescribeTWeSeeRecognitionTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeSeeRecognitionTaskResponse`
+        def DescribeTWeSeeRecognitionTask(request)
+          body = send_request('DescribeTWeSeeRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeTopicPolicy）用于查看Topic详细信息
 
         # @param request: Request instance for DescribeTopicPolicy.

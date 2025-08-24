@@ -118,10 +118,13 @@ module TencentCloud
         # - 0表示尽快显示，不会和音频播放进行同步。此时字幕全量下发，后面的字幕会包含前面的字幕。
         # - 1表示句子级别的实时显示，会和音频播放进行同步，只有当前句子对应的音频播放完后，下一条字幕才会下发。此时字幕增量下发，端上需要把前后的字幕进行拼接才是完整字幕。
         # @type SubtitleMode: Integer
+        # @param InterruptWordList: 打断词列表，在AI说话期间，只有说出列表中的打断词才会打断AI说话。
+        # 注意：打断词不会触发AI回复。
+        # @type InterruptWordList: Array
 
-        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :TurnDetection, :SubtitleMode
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :TurnDetection, :SubtitleMode, :InterruptWordList
 
-        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, turndetection=nil, subtitlemode=nil)
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, turndetection=nil, subtitlemode=nil, interruptwordlist=nil)
           @UserId = userid
           @UserSig = usersig
           @TargetUserId = targetuserid
@@ -137,6 +140,7 @@ module TencentCloud
           @VoicePrint = voiceprint
           @TurnDetection = turndetection
           @SubtitleMode = subtitlemode
+          @InterruptWordList = interruptwordlist
         end
 
         def deserialize(params)
@@ -164,6 +168,7 @@ module TencentCloud
             @TurnDetection.deserialize(params['TurnDetection'])
           end
           @SubtitleMode = params['SubtitleMode']
+          @InterruptWordList = params['InterruptWordList']
         end
       end
 

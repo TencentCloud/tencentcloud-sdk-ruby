@@ -567,15 +567,18 @@ module TencentCloud
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
         # @param Resolution: 视频输出分辨率，默认值：360p  - 枚举值：  720p  360p。
         # @type Resolution: String
+        # @param BGM: 是否为生成的视频添加背景音乐。默认：false，  传 true 时系统将从预设 BGM 库中自动挑选合适的音乐并添加；不传或为 false 则不添加 BGM。
+        # @type BGM: Boolean
 
-        attr_accessor :Template, :Images, :LogoAdd, :LogoParam, :Resolution
+        attr_accessor :Template, :Images, :LogoAdd, :LogoParam, :Resolution, :BGM
 
-        def initialize(template=nil, images=nil, logoadd=nil, logoparam=nil, resolution=nil)
+        def initialize(template=nil, images=nil, logoadd=nil, logoparam=nil, resolution=nil, bgm=nil)
           @Template = template
           @Images = images
           @LogoAdd = logoadd
           @LogoParam = logoparam
           @Resolution = resolution
+          @BGM = bgm
         end
 
         def deserialize(params)
@@ -594,6 +597,7 @@ module TencentCloud
             @LogoParam.deserialize(params['LogoParam'])
           end
           @Resolution = params['Resolution']
+          @BGM = params['BGM']
         end
       end
 
