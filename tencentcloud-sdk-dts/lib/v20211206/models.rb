@@ -597,10 +597,14 @@ module TencentCloud
         # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream，不填也是默认changeStream。
         # 其他业务暂没有可选参数。
         # @type ExtraAttr: Array
+        # @param ConsumerVpcId: vpc id
+        # @type ConsumerVpcId: String
+        # @param ConsumerSubnetId: subnet id
+        # @type ConsumerSubnetId: String
 
-        attr_accessor :SubscribeId, :SubscribeMode, :AccessType, :Endpoints, :KafkaConfig, :SubscribeObjects, :Protocol, :PipelineInfo, :ExtraAttr
+        attr_accessor :SubscribeId, :SubscribeMode, :AccessType, :Endpoints, :KafkaConfig, :SubscribeObjects, :Protocol, :PipelineInfo, :ExtraAttr, :ConsumerVpcId, :ConsumerSubnetId
 
-        def initialize(subscribeid=nil, subscribemode=nil, accesstype=nil, endpoints=nil, kafkaconfig=nil, subscribeobjects=nil, protocol=nil, pipelineinfo=nil, extraattr=nil)
+        def initialize(subscribeid=nil, subscribemode=nil, accesstype=nil, endpoints=nil, kafkaconfig=nil, subscribeobjects=nil, protocol=nil, pipelineinfo=nil, extraattr=nil, consumervpcid=nil, consumersubnetid=nil)
           @SubscribeId = subscribeid
           @SubscribeMode = subscribemode
           @AccessType = accesstype
@@ -610,6 +614,8 @@ module TencentCloud
           @Protocol = protocol
           @PipelineInfo = pipelineinfo
           @ExtraAttr = extraattr
+          @ConsumerVpcId = consumervpcid
+          @ConsumerSubnetId = consumersubnetid
         end
 
         def deserialize(params)
@@ -653,6 +659,8 @@ module TencentCloud
               @ExtraAttr << keyvaluepairoption_tmp
             end
           end
+          @ConsumerVpcId = params['ConsumerVpcId']
+          @ConsumerSubnetId = params['ConsumerSubnetId']
         end
       end
 
@@ -1212,10 +1220,12 @@ module TencentCloud
         # @type Tags: Array
         # @param Name: 任务名，自定义
         # @type Name: String
+        # @param InstanceClass: 订阅实例规格，当前仅支持small、medium、large
+        # @type InstanceClass: String
 
-        attr_accessor :Product, :PayType, :Duration, :AutoRenew, :Count, :Tags, :Name
+        attr_accessor :Product, :PayType, :Duration, :AutoRenew, :Count, :Tags, :Name, :InstanceClass
 
-        def initialize(product=nil, paytype=nil, duration=nil, autorenew=nil, count=nil, tags=nil, name=nil)
+        def initialize(product=nil, paytype=nil, duration=nil, autorenew=nil, count=nil, tags=nil, name=nil, instanceclass=nil)
           @Product = product
           @PayType = paytype
           @Duration = duration
@@ -1223,6 +1233,7 @@ module TencentCloud
           @Count = count
           @Tags = tags
           @Name = name
+          @InstanceClass = instanceclass
         end
 
         def deserialize(params)
@@ -1240,6 +1251,7 @@ module TencentCloud
             end
           end
           @Name = params['Name']
+          @InstanceClass = params['InstanceClass']
         end
       end
 
@@ -2794,12 +2806,20 @@ module TencentCloud
         # mysql选填参数：ProcessXA-是否处理XA事务，为true处理，其他不处理。
         # mongo选填参数：SubscribeType-订阅类型，目前只支持changeStream。
         # @type ExtraAttr: Array
+        # @param SubscribeVersion: 数据订阅版本, 当前支持kafka和kafkaPro（专业版）
+        # @type SubscribeVersion: String
+        # @param ConsumerVpcId: 消费端地址所在vpc
+        # @type ConsumerVpcId: String
+        # @param ConsumerSubnetId: 消费端地址所在子网
+        # @type ConsumerSubnetId: String
+        # @param InstanceClass: 订阅实例规格
+        # @type InstanceClass: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :Topic, :Broker, :SubscribeMode, :Protocol, :SubscribeObjects, :KafkaConfig, :KafkaVersion, :AccessType, :Endpoints, :PipelineInfo, :Tags, :Errors, :ExtraAttr, :RequestId
+        attr_accessor :SubscribeId, :SubscribeName, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :Topic, :Broker, :SubscribeMode, :Protocol, :SubscribeObjects, :KafkaConfig, :KafkaVersion, :AccessType, :Endpoints, :PipelineInfo, :Tags, :Errors, :ExtraAttr, :SubscribeVersion, :ConsumerVpcId, :ConsumerSubnetId, :InstanceClass, :RequestId
 
-        def initialize(subscribeid=nil, subscribename=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, topic=nil, broker=nil, subscribemode=nil, protocol=nil, subscribeobjects=nil, kafkaconfig=nil, kafkaversion=nil, accesstype=nil, endpoints=nil, pipelineinfo=nil, tags=nil, errors=nil, extraattr=nil, requestid=nil)
+        def initialize(subscribeid=nil, subscribename=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, topic=nil, broker=nil, subscribemode=nil, protocol=nil, subscribeobjects=nil, kafkaconfig=nil, kafkaversion=nil, accesstype=nil, endpoints=nil, pipelineinfo=nil, tags=nil, errors=nil, extraattr=nil, subscribeversion=nil, consumervpcid=nil, consumersubnetid=nil, instanceclass=nil, requestid=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @Product = product
@@ -2828,6 +2848,10 @@ module TencentCloud
           @Tags = tags
           @Errors = errors
           @ExtraAttr = extraattr
+          @SubscribeVersion = subscribeversion
+          @ConsumerVpcId = consumervpcid
+          @ConsumerSubnetId = consumersubnetid
+          @InstanceClass = instanceclass
           @RequestId = requestid
         end
 
@@ -2905,6 +2929,10 @@ module TencentCloud
               @ExtraAttr << keyvaluepairoption_tmp
             end
           end
+          @SubscribeVersion = params['SubscribeVersion']
+          @ConsumerVpcId = params['ConsumerVpcId']
+          @ConsumerSubnetId = params['ConsumerSubnetId']
+          @InstanceClass = params['InstanceClass']
           @RequestId = params['RequestId']
         end
       end
@@ -6536,7 +6564,7 @@ module TencentCloud
         # @type AccessType: String
         # @param Endpoints: 数据库节点信息
         # @type Endpoints: Array
-        # @param SubscribeVersion: 数据订阅版本, 当前只支持 kafka 版本。
+        # @param SubscribeVersion: 数据订阅版本, 当前支持kafka和kafkaPro（专业版）
         # @type SubscribeVersion: String
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6544,10 +6572,12 @@ module TencentCloud
         # @param Errors: 任务报错信息，如果有的话。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Errors: Array
+        # @param InstanceClass: 订阅实例规格
+        # @type InstanceClass: String
 
-        attr_accessor :SubscribeId, :SubscribeName, :Topic, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :AccessType, :Endpoints, :SubscribeVersion, :Tags, :Errors
+        attr_accessor :SubscribeId, :SubscribeName, :Topic, :Product, :InstanceId, :InstanceStatus, :Status, :SubsStatus, :ModifyTime, :CreateTime, :IsolateTime, :ExpireTime, :OfflineTime, :PayType, :AutoRenewFlag, :Region, :AccessType, :Endpoints, :SubscribeVersion, :Tags, :Errors, :InstanceClass
 
-        def initialize(subscribeid=nil, subscribename=nil, topic=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, accesstype=nil, endpoints=nil, subscribeversion=nil, tags=nil, errors=nil)
+        def initialize(subscribeid=nil, subscribename=nil, topic=nil, product=nil, instanceid=nil, instancestatus=nil, status=nil, subsstatus=nil, modifytime=nil, createtime=nil, isolatetime=nil, expiretime=nil, offlinetime=nil, paytype=nil, autorenewflag=nil, region=nil, accesstype=nil, endpoints=nil, subscribeversion=nil, tags=nil, errors=nil, instanceclass=nil)
           @SubscribeId = subscribeid
           @SubscribeName = subscribename
           @Topic = topic
@@ -6569,6 +6599,7 @@ module TencentCloud
           @SubscribeVersion = subscribeversion
           @Tags = tags
           @Errors = errors
+          @InstanceClass = instanceclass
         end
 
         def deserialize(params)
@@ -6614,6 +6645,7 @@ module TencentCloud
               @Errors << subserr_tmp
             end
           end
+          @InstanceClass = params['InstanceClass']
         end
       end
 

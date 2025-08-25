@@ -2213,32 +2213,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 无效API，没有上线过的业务功能
-
-        # 分页查询试运行实例列表
-
-        # @param request: Request instance for DescribeDrInstancePage.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeDrInstancePageRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeDrInstancePageResponse`
-        def DescribeDrInstancePage(request)
-          body = send_request('DescribeDrInstancePage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDrInstancePageResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询目录树
 
         # @param request: Request instance for DescribeDsFolderTree.
@@ -4498,34 +4472,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 能够调通但该API已经没有使用了，看北京数据最后一次上报是23年10月，有接近一千万条数据历史无效数据。当前策略，云API示例修订然后已经分析出来的无效API走预下线流程。
-        # https://capi.woa.com/api/detail?product=wedata&env=api_formal&version=2021-08-20&action=DescribeTaskByCycleReport
-        # 这两天在分析API的时候 有较多运维大屏的原始API当前已经没有使用了，但API没有下线。预计需要专项去梳理这一系列待下线API。
-
-        # 任务状态周期增长趋势
-
-        # @param request: Request instance for DescribeTaskByCycleReport.
-        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTaskByCycleReportRequest`
-        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTaskByCycleReportResponse`
-        def DescribeTaskByCycleReport(request)
-          body = send_request('DescribeTaskByCycleReport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTaskByCycleReportResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 任务状态趋势
 
         # @param request: Request instance for DescribeTaskByStatusReport.
@@ -4800,6 +4746,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTenantProjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取编排空间试运行历史
+
+        # @param request: Request instance for DescribeTestRunningRecord.
+        # @type request: :class:`Tencentcloud::wedata::V20210820::DescribeTestRunningRecordRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20210820::DescribeTestRunningRecordResponse`
+        def DescribeTestRunningRecord(request)
+          body = send_request('DescribeTestRunningRecord', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTestRunningRecordResponse.new
             model.deserialize(response['Response'])
             model
           else

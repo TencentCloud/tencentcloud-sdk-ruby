@@ -133,10 +133,14 @@ module TencentCloud
         # @type InstrumentList: Array
         # @param TraceSquash: 链路压缩开关（已废弃）
         # @type TraceSquash: Boolean
+        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @type DisableMemoryUsed: Integer
+        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @type DisableCpuUsed: Integer
 
-        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash
+        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :DisableMemoryUsed, :DisableCpuUsed
 
-        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil)
+        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, disablememoryused=nil, disablecpuused=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @OperationNameFilter = operationnamefilter
@@ -156,6 +160,8 @@ module TencentCloud
           @AgentEnable = agentenable
           @InstrumentList = instrumentlist
           @TraceSquash = tracesquash
+          @DisableMemoryUsed = disablememoryused
+          @DisableCpuUsed = disablecpuused
         end
 
         def deserialize(params)
@@ -185,6 +191,8 @@ module TencentCloud
             end
           end
           @TraceSquash = params['TraceSquash']
+          @DisableMemoryUsed = params['DisableMemoryUsed']
+          @DisableCpuUsed = params['DisableCpuUsed']
         end
       end
 
