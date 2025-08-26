@@ -992,6 +992,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeInstanceSSLAttributes）用于拉取实例SSL认证属性
+
+        # @param request: Request instance for DescribeInstanceSSLAttributes.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeInstanceSSLAttributesRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeInstanceSSLAttributesResponse`
+        def DescribeInstanceSSLAttributes(request)
+          body = send_request('DescribeInstanceSSLAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceSSLAttributesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
 
         # @param request: Request instance for DescribeLogFileRetentionPeriod.
@@ -1050,6 +1074,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeOrdersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口 (DescribeProcessList) 用于查询当前正在运行的线程（连接/查询）信息。
+
+        # - 可以根据客户端IP，DB，执行时间等信息来查询实例正在运行的线程信息。过滤信息详细请见过滤器Filter。
+        # - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的线程信息。
+
+        # @param request: Request instance for DescribeProcessList.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::DescribeProcessListRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::DescribeProcessListResponse`
+        def DescribeProcessList(request)
+          body = send_request('DescribeProcessList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProcessListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1659,6 +1710,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceNetworkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于修改实例的保护属性
+
+        # @param request: Request instance for ModifyInstanceProtectedProperty.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceProtectedPropertyRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceProtectedPropertyResponse`
+        def ModifyInstanceProtectedProperty(request)
+          body = send_request('ModifyInstanceProtectedProperty', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceProtectedPropertyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口  （ModifyInstanceSSLAttributes）用于修改实例SSL认证功能属性
+
+        # @param request: Request instance for ModifyInstanceSSLAttributes.
+        # @type request: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceSSLAttributesRequest`
+        # @rtype: :class:`Tencentcloud::dcdb::V20180411::ModifyInstanceSSLAttributesResponse`
+        def ModifyInstanceSSLAttributes(request)
+          body = send_request('ModifyInstanceSSLAttributes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceSSLAttributesResponse.new
             model.deserialize(response['Response'])
             model
           else

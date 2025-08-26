@@ -549,7 +549,7 @@ module TencentCloud
 
       # SubmitTemplateToVideoJob请求参数结构体
       class SubmitTemplateToVideoJobRequest < TencentCloud::Common::AbstractModel
-        # @param Template: 特效模板名称。请在 [视频特效模版列表](https://cloud.tencent.com/document/product/1616/119194)  中选择想要生成的特效对应的 template 名称。
+        # @param Template: 特效模板名称。请在 [视频特效模板列表](https://cloud.tencent.com/document/product/1616/119194)  中选择想要生成的特效对应的 template 名称。
         # @type Template: String
         # @param Images: 参考图像，最多输入2张图。
         # - 支持传入图片Base64编码或图片URL（确保可访问）

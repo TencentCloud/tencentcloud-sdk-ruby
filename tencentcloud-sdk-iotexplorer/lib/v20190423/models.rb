@@ -2307,6 +2307,54 @@ module TencentCloud
         end
       end
 
+      # CreateTWeTalkProductConfig请求参数结构体
+      class CreateTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param SystemPrompt: 系统提示词
+        # @type SystemPrompt: String
+        # @param GreetingMessage: 欢迎语
+        # @type GreetingMessage: String
+        # @param VoiceType: 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+        # @type VoiceType: Integer
+        # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
+        # @type TargetLanguage: String
+
+        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :TargetLanguage
+
+        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, targetlanguage=nil)
+          @ProductId = productid
+          @SystemPrompt = systemprompt
+          @GreetingMessage = greetingmessage
+          @VoiceType = voicetype
+          @TargetLanguage = targetlanguage
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @SystemPrompt = params['SystemPrompt']
+          @GreetingMessage = params['GreetingMessage']
+          @VoiceType = params['VoiceType']
+          @TargetLanguage = params['TargetLanguage']
+        end
+      end
+
+      # CreateTWeTalkProductConfig返回参数结构体
+      class CreateTWeTalkProductConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopicPolicy请求参数结构体
       class CreateTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -5862,6 +5910,49 @@ module TencentCloud
         end
       end
 
+      # DescribeTWeTalkProductConfig请求参数结构体
+      class DescribeTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
+        # @type TargetLanguage: String
+
+        attr_accessor :ProductId, :TargetLanguage
+
+        def initialize(productid=nil, targetlanguage=nil)
+          @ProductId = productid
+          @TargetLanguage = targetlanguage
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TargetLanguage = params['TargetLanguage']
+        end
+      end
+
+      # DescribeTWeTalkProductConfig返回参数结构体
+      class DescribeTWeTalkProductConfigResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 配置信息
+        # @type Data: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkProductConfigInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TalkProductConfigInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopicPolicy请求参数结构体
       class DescribeTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -7759,6 +7850,65 @@ module TencentCloud
               @TWeCallActiveInfos << twecallactiveinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTWeTalkProductConfigList请求参数结构体
+      class GetTWeTalkProductConfigListRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TargetLanguage: 	支持的语言，zh-中文；en-英文；默认zh
+        # @type TargetLanguage: String
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param Limit: 偏移量，10-100
+        # @type Limit: Integer
+
+        attr_accessor :ProductId, :TargetLanguage, :Offset, :Limit
+
+        def initialize(productid=nil, targetlanguage=nil, offset=nil, limit=nil)
+          @ProductId = productid
+          @TargetLanguage = targetlanguage
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TargetLanguage = params['TargetLanguage']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # GetTWeTalkProductConfigList返回参数结构体
+      class GetTWeTalkProductConfigListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 配置信息列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              talkproductconfiginfo_tmp = TalkProductConfigInfo.new
+              talkproductconfiginfo_tmp.deserialize(i)
+              @Data << talkproductconfiginfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -9683,6 +9833,54 @@ module TencentCloud
         end
       end
 
+      # ModifyTWeTalkProductConfig请求参数结构体
+      class ModifyTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param SystemPrompt: 系统提示词
+        # @type SystemPrompt: String
+        # @param GreetingMessage: 欢迎语
+        # @type GreetingMessage: String
+        # @param VoiceType: 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+        # @type VoiceType: Integer
+        # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
+        # @type TargetLanguage: String
+
+        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :TargetLanguage
+
+        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, targetlanguage=nil)
+          @ProductId = productid
+          @SystemPrompt = systemprompt
+          @GreetingMessage = greetingmessage
+          @VoiceType = voicetype
+          @TargetLanguage = targetlanguage
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @SystemPrompt = params['SystemPrompt']
+          @GreetingMessage = params['GreetingMessage']
+          @VoiceType = params['VoiceType']
+          @TargetLanguage = params['TargetLanguage']
+        end
+      end
+
+      # ModifyTWeTalkProductConfig返回参数结构体
+      class ModifyTWeTalkProductConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyTopicPolicy请求参数结构体
       class ModifyTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -11163,6 +11361,46 @@ module TencentCloud
           @TWeCallType = params['TWeCallType']
           @TotalNum = params['TotalNum']
           @UsedNum = params['UsedNum']
+        end
+      end
+
+      # Talk配置信息描述。
+      class TalkProductConfigInfo < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
+        # @type TargetLanguage: String
+        # @param SystemPrompt:  系统提示词
+        # @type SystemPrompt: String
+        # @param GreetingMessage: 欢迎语
+        # @type GreetingMessage: String
+        # @param VoiceType: 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
+        # @type VoiceType: Integer
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :ProductId, :TargetLanguage, :SystemPrompt, :GreetingMessage, :VoiceType, :CreateTime, :UpdateTime
+
+        def initialize(productid=nil, targetlanguage=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, createtime=nil, updatetime=nil)
+          @ProductId = productid
+          @TargetLanguage = targetlanguage
+          @SystemPrompt = systemprompt
+          @GreetingMessage = greetingmessage
+          @VoiceType = voicetype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TargetLanguage = params['TargetLanguage']
+          @SystemPrompt = params['SystemPrompt']
+          @GreetingMessage = params['GreetingMessage']
+          @VoiceType = params['VoiceType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

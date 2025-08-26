@@ -20786,7 +20786,7 @@ module TencentCloud
         # <li>accessDenied：访问被拒绝。</li>
         # <li>originPullFailed：回源失败。</li>
         # @type FailType: String
-        # @param FailMessage: 刷新、预热失败描述。
+        # @param FailMessage: 清除缓存、预热缓存的失败原因描述。
         # @type FailMessage: String
 
         attr_accessor :JobId, :Target, :Type, :Method, :Status, :CreateTime, :UpdateTime, :FailType, :FailMessage

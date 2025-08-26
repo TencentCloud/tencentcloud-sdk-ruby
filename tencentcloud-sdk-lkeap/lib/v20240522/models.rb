@@ -1627,9 +1627,12 @@ module TencentCloud
 
       # QueryRewrite请求参数结构体
       class QueryRewriteRequest < TencentCloud::Common::AbstractModel
-        # @param Messages: 需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入，由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写
+        # @param Messages: 说明：需要改写的多轮历史会话，每轮历史对话需要包含user（问）和assistant（答）成对输入
+        # 备注：由于模型字符限制，最多提供4轮对话。针对最后一轮对话进行改写。四轮对话最多包含3600个字符。
         # @type Messages: Array
-        # @param Model: 模型名称
+        # @param Model: 说明：模型名称
+        # 备注：仅一个模型可选
+        # 默认值：lke-query-rewrite-base
         # @type Model: String
 
         attr_accessor :Messages, :Model
@@ -2002,11 +2005,15 @@ module TencentCloud
 
       # RunRerank请求参数结构体
       class RunRerankRequest < TencentCloud::Common::AbstractModel
-        # @param Query: 查询内容
+        # @param Query: 说明：查询内容
+        # 备注：用于匹配的query
         # @type Query: String
-        # @param Docs: 文档列表，最多20个
+        # @param Docs: 说明：文档列表
+        # 备注：最多60个，Query字段和Docs字段的总长度上限为2000字符
         # @type Docs: Array
-        # @param Model: 模型名称, 默认: lke-reranker-base
+        # @param Model: 说明：模型名称
+        # 备注：仅一个模型可选
+        # 默认值：lke-reranker-base
         # @type Model: String
 
         attr_accessor :Query, :Docs, :Model

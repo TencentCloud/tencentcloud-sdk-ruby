@@ -3764,6 +3764,42 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceSSLAttributes请求参数结构体
+      class DescribeInstanceSSLAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceSSLAttributes返回参数结构体
+      class DescribeInstanceSSLAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 实例SSL认证功能当前状态。1-开启中；2-已开启；3-已关闭；4-关闭中
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogFileRetentionPeriod请求参数结构体
       class DescribeLogFileRetentionPeriodRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如：tdsql-ow728lmc。
@@ -3904,6 +3940,121 @@ module TencentCloud
               deal_tmp = Deal.new
               deal_tmp.deserialize(i)
               @Deals << deal_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProcessList请求参数结构体
+      class DescribeProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。
+        # @type InstanceId: String
+        # @param NodeId: 节点ID。
+        # @type NodeId: String
+        # @param ShardId: 分片ID，与ShardSerialId设置一个。
+        # @type ShardId: String
+        # @param ShardSerialId: 分片序列ID，与ShardId设置一个。
+        # @type ShardSerialId: String
+        # @param Filters: <li><strong>id</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>会话ID</strong>】进行过滤。会话ID例如：125700。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：精确匹配</p>
+
+        # <li><strong>user</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>用户名</strong>】进行过滤。用户名例如：root。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：精确匹配</p>
+        # <li><strong>host</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>客户端Host</strong>】进行过滤。客户端Host例如：127.0.0.1:46295。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：前缀匹配，例如可以查询客户端IP不加端口：127.0.0.1。</p>
+        # <li><strong>state</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>线程状态</strong>】进行过滤。线程状态例如：Updating。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：精确匹配</p>
+        # <li><strong>db</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>数据库名称</strong>】进行过滤。数据库名称例如：mysql。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：精确匹配</p>
+        # <li><strong>command</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>命令类型</strong>】进行过滤。命令类型例如：Query。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：精确匹配</p>
+        # <li><strong>info</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>执行语句</strong>】进行过滤。执行语句例如：select id, name from demo.table1 where id > 10。</p>
+        #     <p style="padding-left: 30px;">类型：String</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：前缀匹配，例如SQL较长，可以输入SQL前缀：select  id, name from demo.table1。</p>
+        # <li><strong>time</strong></li>
+        #     <p style="padding-left: 30px;">按照【<strong>执行时间大于多少（秒）</strong>】进行过滤。例如：10，表示查询执行时间超过10秒的会话。</p>
+        #     <p style="padding-left: 30px;">类型：Integer</p>
+        #     <p style="padding-left: 30px;">必选：否</p>
+        #     <p style="padding-left: 30px;">匹配类型：范围匹配，Values值只支持输入1个。</p>
+        # 每次请求的`Filters`的上限为10，`Filter.Values`的上限为50。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :NodeId, :ShardId, :ShardSerialId, :Filters, :Offset, :Limit
+
+        def initialize(instanceid=nil, nodeid=nil, shardid=nil, shardserialid=nil, filters=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @NodeId = nodeid
+          @ShardId = shardid
+          @ShardSerialId = shardserialid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeId = params['NodeId']
+          @ShardId = params['ShardId']
+          @ShardSerialId = params['ShardSerialId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeProcessList返回参数结构体
+      class DescribeProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param ProcessList: 当前正在运行的线程（连接/查询）信息列表。
+        # @type ProcessList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProcessList, :RequestId
+
+        def initialize(processlist=nil, requestid=nil)
+          @ProcessList = processlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProcessList'].nil?
+            @ProcessList = []
+            params['ProcessList'].each do |i|
+              process_tmp = Process.new
+              process_tmp.deserialize(i)
+              @ProcessList << process_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4262,6 +4413,29 @@ module TencentCloud
           @ShardMemory = params['ShardMemory']
           @ShardStorage = params['ShardStorage']
           @ShardNodeCount = params['ShardNodeCount']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+
+      # 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
+      # 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段。
+        # @type Name: String
+        # @param Values: 字段的过滤值。
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 
@@ -5227,6 +5401,78 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceProtectedProperty请求参数结构体
+      class ModifyInstanceProtectedPropertyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param ProtectedProperty: 0-允许删除，无销毁保护，1-禁止删除，有销毁保护
+        # @type ProtectedProperty: Integer
+
+        attr_accessor :InstanceId, :ProtectedProperty
+
+        def initialize(instanceid=nil, protectedproperty=nil)
+          @InstanceId = instanceid
+          @ProtectedProperty = protectedproperty
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProtectedProperty = params['ProtectedProperty']
+        end
+      end
+
+      # ModifyInstanceProtectedProperty返回参数结构体
+      class ModifyInstanceProtectedPropertyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceSSLAttributes请求参数结构体
+      class ModifyInstanceSSLAttributesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SSLEnabled: 是否开启实例的SSL认证。0-关闭；1-开启
+        # @type SSLEnabled: Integer
+
+        attr_accessor :InstanceId, :SSLEnabled
+
+        def initialize(instanceid=nil, sslenabled=nil)
+          @InstanceId = instanceid
+          @SSLEnabled = sslenabled
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SSLEnabled = params['SSLEnabled']
+        end
+      end
+
+      # ModifyInstanceSSLAttributes返回参数结构体
+      class ModifyInstanceSSLAttributesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceVip请求参数结构体
       class ModifyInstanceVipRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -5553,6 +5799,66 @@ module TencentCloud
         def deserialize(params)
           @Param = params['Param']
           @Code = params['Code']
+        end
+      end
+
+      # 用于显示当前正在运行的线程（连接/查询）信息，数据源来自系统表：information_schema.processlist。
+      class Process < TencentCloud::Common::AbstractModel
+        # @param Id: 线程ID​​：唯一标识当前连接/线程的整数。
+        # @type Id: Integer
+        # @param User: 用户名​​：发起连接的 MySQL 用户。
+        # @type User: String
+        # @param Host: 客户端地址​​：发起连接的客户端主机名及端口（格式：host:port）。
+        # @type Host: String
+        # @param Db: 当前数据库​​：线程正在使用的数据库名（未选择数据库时为 空串）。
+        # @type Db: String
+        # @param Command: 命令类型​​：线程正在执行的命令类型。常见值：
+
+        # - Sleep：空闲等待状态（等待新查询）。
+        # - Query：正在执行查询或 SQL 语句。
+        # - Binlog Dump：主服务器线程向从服务器发送二进制日志。
+        # - Connect：客户端正在连接。
+        # - Killed：线程被终止但未完全退出。
+        # @type Command: String
+        # @param Time: 执行时间（秒）​​：线程在当前状态持续的秒数。
+        # @type Time: Integer
+        # @param ProcessStartTime: 执行开始时间（秒）​​：线程在当前状态开始执行的时间。
+        # @type ProcessStartTime: String
+        # @param State: ​​状态描述​​：线程当前的详细操作状态。常见值：
+
+        # - Sending data：正在处理/发送数据。
+        # - Locked：等待表锁释放（例如 MyISAM 表级锁）。
+        # - Sorting result：排序查询结果。
+        # - Updating：更新表中数据。
+        # - 当为NULL返回空串：无明确状态（如 Sleep 时）。
+        # @type State: String
+        # @param Info: 执行语句​​：正在执行的 SQL 语句（前 1024 字符）。
+        # @type Info: String
+
+        attr_accessor :Id, :User, :Host, :Db, :Command, :Time, :ProcessStartTime, :State, :Info
+
+        def initialize(id=nil, user=nil, host=nil, db=nil, command=nil, time=nil, processstarttime=nil, state=nil, info=nil)
+          @Id = id
+          @User = user
+          @Host = host
+          @Db = db
+          @Command = command
+          @Time = time
+          @ProcessStartTime = processstarttime
+          @State = state
+          @Info = info
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @User = params['User']
+          @Host = params['Host']
+          @Db = params['Db']
+          @Command = params['Command']
+          @Time = params['Time']
+          @ProcessStartTime = params['ProcessStartTime']
+          @State = params['State']
+          @Info = params['Info']
         end
       end
 

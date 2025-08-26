@@ -4182,7 +4182,7 @@ module TencentCloud
         # @type ModerationSupplier: String
         # @param ModerationSupplierParam: 第三方审核商送审需要配置信息
         # @type ModerationSupplierParam: :class:`Tencentcloud::Trtc.v20190722.models.ModerationSupplierParam`
-        # @param SaveModerationFile: 是否保存命中文件 0 默认不保存  1 保存命中文件
+        # @param SaveModerationFile: 是否保存文件  0不保存文件 1保存所有文件 2仅保存命中文件
         # @type SaveModerationFile: Integer
         # @param CallbackAllResults: 是否回调所有审核结果:
         # 0 默认回调所有结果

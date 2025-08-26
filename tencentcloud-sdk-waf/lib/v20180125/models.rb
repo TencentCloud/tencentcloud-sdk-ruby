@@ -13700,6 +13700,42 @@ module TencentCloud
         end
       end
 
+      # ModifyProtectionLevel请求参数结构体
+      class ModifyProtectionLevelRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 客户域名
+        # @type Domain: String
+        # @param Level: 防护等级,100,200,300
+        # @type Level: Integer
+
+        attr_accessor :Domain, :Level
+
+        def initialize(domain=nil, level=nil)
+          @Domain = domain
+          @Level = level
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Level = params['Level']
+        end
+      end
+
+      # ModifyProtectionLevel返回参数结构体
+      class ModifyProtectionLevelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyProtectionStatus请求参数结构体
       class ModifyProtectionStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
