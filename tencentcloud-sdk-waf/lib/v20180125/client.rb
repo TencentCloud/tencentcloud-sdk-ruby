@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口仅创建下载任务，任务返回的下载地址，请用户调用DescribeExports查看任务列表。其中有下载地址CosPath参数。参考文档https://cloud.tencent.com/document/product/614/56449
+
+        # @param request: Request instance for CreateExport.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateExportRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateExportResponse`
+        def CreateExport(request)
+          body = send_request('CreateExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # clb-waf中添加防护域名
 
         # @param request: Request instance for CreateHost.
@@ -663,6 +687,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDomainWhiteRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除日志下载任务
+
+        # @param request: Request instance for DeleteExport.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteExportRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteExportResponse`
+        def DeleteExport(request)
+          body = send_request('DeleteExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1637,6 +1685,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于获取日志下载任务列表
+
+        # @param request: Request instance for DescribeExports.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeExportsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeExportsResponse`
+        def DescribeExports(request)
+          body = send_request('DescribeExports', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExportsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取发现域名列表接口
 
         # @param request: Request instance for DescribeFindDomainList.
@@ -1839,6 +1911,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeIpHitItemsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于构建日志数量直方图
+
+        # @param request: Request instance for DescribeLogHistogram.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeLogHistogramRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeLogHistogramResponse`
+        def DescribeLogHistogram(request)
+          body = send_request('DescribeLogHistogram', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLogHistogramResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2271,6 +2367,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTopAttackDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于获取日志主题列表，支持分页
+
+        # @param request: Request instance for DescribeTopics.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeTopicsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeTopicsResponse`
+        def DescribeTopics(request)
+          body = send_request('DescribeTopics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopicsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4074,6 +4194,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchAttackLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于检索分析日志，使用该接口时请注意如下事项：
+        # 1. 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
+        # 2. 检索语法建议使用CQL语法规则，请使用SyntaxRule参数，将值设置为1。
+        # 3. API返回数据包最大49MB，建议启用 gzip 压缩（HTTP Request Header Accept-Encoding:gzip）。
+
+        # @param request: Request instance for SearchLog.
+        # @type request: :class:`Tencentcloud::waf::V20180125::SearchLogRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::SearchLogResponse`
+        def SearchLog(request)
+          body = send_request('SearchLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchLogResponse.new
             model.deserialize(response['Response'])
             model
           else

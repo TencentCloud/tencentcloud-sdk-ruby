@@ -7725,7 +7725,7 @@ module TencentCloud
 
       # RemoveReplicationGroup请求参数结构体
       class RemoveReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 复制组ID
+        # @param GroupId: 复制组ID。请登录 [Redis控制台的全球复制](https://console.cloud.tencent.com/redis/replication) 页面获取复制组 ID。
         # @type GroupId: String
 
         attr_accessor :GroupId

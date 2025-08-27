@@ -175,13 +175,22 @@ module TencentCloud
         # @type UserInputValue: :class:`Tencentcloud::Lke.v20231130.models.AgentInputUserInputValue`
         # @param CustomVarId: 自定义变量（API参数）
         # @type CustomVarId: String
+        # @param EnvVarId: 环境变量参数
+        # @type EnvVarId: String
+        # @param AppVarId: 应用变量参数
+        # @type AppVarId: String
+        # @param SystemVariable: 系统参数
+        # @type SystemVariable: :class:`Tencentcloud::Lke.v20231130.models.AgentInputSystemVariable`
 
-        attr_accessor :InputType, :UserInputValue, :CustomVarId
+        attr_accessor :InputType, :UserInputValue, :CustomVarId, :EnvVarId, :AppVarId, :SystemVariable
 
-        def initialize(inputtype=nil, userinputvalue=nil, customvarid=nil)
+        def initialize(inputtype=nil, userinputvalue=nil, customvarid=nil, envvarid=nil, appvarid=nil, systemvariable=nil)
           @InputType = inputtype
           @UserInputValue = userinputvalue
           @CustomVarId = customvarid
+          @EnvVarId = envvarid
+          @AppVarId = appvarid
+          @SystemVariable = systemvariable
         end
 
         def deserialize(params)
@@ -191,6 +200,32 @@ module TencentCloud
             @UserInputValue.deserialize(params['UserInputValue'])
           end
           @CustomVarId = params['CustomVarId']
+          @EnvVarId = params['EnvVarId']
+          @AppVarId = params['AppVarId']
+          unless params['SystemVariable'].nil?
+            @SystemVariable = AgentInputSystemVariable.new
+            @SystemVariable.deserialize(params['SystemVariable'])
+          end
+        end
+      end
+
+      # 系统参数
+      class AgentInputSystemVariable < TencentCloud::Common::AbstractModel
+        # @param Name: 系统参数名
+        # @type Name: String
+        # @param DialogHistoryLimit: 对话历史轮数的配置；如果Input是系统变量中的“对话历史”时才使用；
+        # @type DialogHistoryLimit: Integer
+
+        attr_accessor :Name, :DialogHistoryLimit
+
+        def initialize(name=nil, dialoghistorylimit=nil)
+          @Name = name
+          @DialogHistoryLimit = dialoghistorylimit
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DialogHistoryLimit = params['DialogHistoryLimit']
         end
       end
 
@@ -1286,10 +1321,13 @@ module TencentCloud
         # @type ThoughtModelAliasName: String
         # @param PermissionIds: 权限位信息
         # @type PermissionIds: Array
+        # @param Creator: 创建人昵称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
 
-        attr_accessor :AppType, :AppTypeDesc, :AppBizId, :Name, :Avatar, :Desc, :AppStatus, :AppStatusDesc, :UpdateTime, :Operator, :ModelName, :ModelAliasName, :Pattern, :ThoughtModelAliasName, :PermissionIds
+        attr_accessor :AppType, :AppTypeDesc, :AppBizId, :Name, :Avatar, :Desc, :AppStatus, :AppStatusDesc, :UpdateTime, :Operator, :ModelName, :ModelAliasName, :Pattern, :ThoughtModelAliasName, :PermissionIds, :Creator
 
-        def initialize(apptype=nil, apptypedesc=nil, appbizid=nil, name=nil, avatar=nil, desc=nil, appstatus=nil, appstatusdesc=nil, updatetime=nil, operator=nil, modelname=nil, modelaliasname=nil, pattern=nil, thoughtmodelaliasname=nil, permissionids=nil)
+        def initialize(apptype=nil, apptypedesc=nil, appbizid=nil, name=nil, avatar=nil, desc=nil, appstatus=nil, appstatusdesc=nil, updatetime=nil, operator=nil, modelname=nil, modelaliasname=nil, pattern=nil, thoughtmodelaliasname=nil, permissionids=nil, creator=nil)
           @AppType = apptype
           @AppTypeDesc = apptypedesc
           @AppBizId = appbizid
@@ -1305,6 +1343,7 @@ module TencentCloud
           @Pattern = pattern
           @ThoughtModelAliasName = thoughtmodelaliasname
           @PermissionIds = permissionids
+          @Creator = creator
         end
 
         def deserialize(params)
@@ -1323,6 +1362,7 @@ module TencentCloud
           @Pattern = params['Pattern']
           @ThoughtModelAliasName = params['ThoughtModelAliasName']
           @PermissionIds = params['PermissionIds']
+          @Creator = params['Creator']
         end
       end
 
@@ -6629,10 +6669,13 @@ module TencentCloud
         # @param UseRecommended: 是否打开推荐问题开关
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UseRecommended: Boolean
+        # @param RecommendedPromptMode: 推荐问模式，0.结合知识库&对话历史推荐问题Prompt(默认) 1.仅结合知识库输出推荐问的prompt
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecommendedPromptMode: Integer
 
-        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords, :UseRecommended
+        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords, :UseRecommended, :RecommendedPromptMode
 
-        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil, userecommended=nil)
+        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil, userecommended=nil, recommendedpromptmode=nil)
           @Method = method
           @UseGeneralKnowledge = usegeneralknowledge
           @BareAnswer = bareanswer
@@ -6640,6 +6683,7 @@ module TencentCloud
           @UseQuestionClarify = usequestionclarify
           @QuestionClarifyKeywords = questionclarifykeywords
           @UseRecommended = userecommended
+          @RecommendedPromptMode = recommendedpromptmode
         end
 
         def deserialize(params)
@@ -6650,6 +6694,7 @@ module TencentCloud
           @UseQuestionClarify = params['UseQuestionClarify']
           @QuestionClarifyKeywords = params['QuestionClarifyKeywords']
           @UseRecommended = params['UseRecommended']
+          @RecommendedPromptMode = params['RecommendedPromptMode']
         end
       end
 

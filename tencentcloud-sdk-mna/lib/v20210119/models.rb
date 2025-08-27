@@ -2419,6 +2419,42 @@ module TencentCloud
         end
       end
 
+      # 返回上报的订单信息
+      class OrderInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: 父帐号uin
+        # @type Uin: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PackageType: 用量类型
+        # @type PackageType: String
+        # @param OrderId: 订单编号唯一标识符
+        # @type OrderId: String
+        # @param ReportMonth: 上报月份，默认当前月
+        # @type ReportMonth: String
+        # @param Updated: 数据更新时间
+        # @type Updated: String
+
+        attr_accessor :Uin, :ProjectId, :PackageType, :OrderId, :ReportMonth, :Updated
+
+        def initialize(uin=nil, projectid=nil, packagetype=nil, orderid=nil, reportmonth=nil, updated=nil)
+          @Uin = uin
+          @ProjectId = projectid
+          @PackageType = packagetype
+          @OrderId = orderid
+          @ReportMonth = reportmonth
+          @Updated = updated
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @ProjectId = params['ProjectId']
+          @PackageType = params['PackageType']
+          @OrderId = params['OrderId']
+          @ReportMonth = params['ReportMonth']
+          @Updated = params['Updated']
+        end
+      end
+
       # OrderPerLicense请求参数结构体
       class OrderPerLicenseRequest < TencentCloud::Common::AbstractModel
         # @param DeviceId: 购买永久授权License的设备ID，如果是厂商未激活设备采用HardwareId
@@ -2469,6 +2505,57 @@ module TencentCloud
 
         def deserialize(params)
           @ResourceId = params['ResourceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReportOrder请求参数结构体
+      class ReportOrderRequest < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单编号唯一标识符
+        # @type OrderId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PackageType: 用量类型
+        # @type PackageType: String
+        # @param ReportMonth: 上报月份，默认当前月
+        # @type ReportMonth: String
+
+        attr_accessor :OrderId, :ProjectId, :PackageType, :ReportMonth
+
+        def initialize(orderid=nil, projectid=nil, packagetype=nil, reportmonth=nil)
+          @OrderId = orderid
+          @ProjectId = projectid
+          @PackageType = packagetype
+          @ReportMonth = reportmonth
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @ProjectId = params['ProjectId']
+          @PackageType = params['PackageType']
+          @ReportMonth = params['ReportMonth']
+        end
+      end
+
+      # ReportOrder返回参数结构体
+      class ReportOrderResponse < TencentCloud::Common::AbstractModel
+        # @param OrderInfo: 订单信息
+        # @type OrderInfo: :class:`Tencentcloud::Mna.v20210119.models.OrderInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderInfo, :RequestId
+
+        def initialize(orderinfo=nil, requestid=nil)
+          @OrderInfo = orderinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['OrderInfo'].nil?
+            @OrderInfo = OrderInfo.new
+            @OrderInfo.deserialize(params['OrderInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end

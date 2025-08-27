@@ -7076,13 +7076,16 @@ module TencentCloud
         # @type ListOver: Boolean
         # @param Results: 日志内容信息
         # @type Results: Array
+        # @param AnalysisRecords: 日志聚合结果
+        # @type AnalysisRecords: Array
 
-        attr_accessor :Context, :ListOver, :Results
+        attr_accessor :Context, :ListOver, :Results, :AnalysisRecords
 
-        def initialize(context=nil, listover=nil, results=nil)
+        def initialize(context=nil, listover=nil, results=nil, analysisrecords=nil)
           @Context = context
           @ListOver = listover
           @Results = results
+          @AnalysisRecords = analysisrecords
         end
 
         def deserialize(params)
@@ -7096,6 +7099,7 @@ module TencentCloud
               @Results << logobject_tmp
             end
           end
+          @AnalysisRecords = params['AnalysisRecords']
         end
       end
 

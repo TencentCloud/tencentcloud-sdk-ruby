@@ -698,10 +698,12 @@ module TencentCloud
         # @type EnvType: String
         # @param SubnetIds: 子网id
         # @type SubnetIds: String
+        # @param Recycle: 回收标志，为空则表示正常，recycle表示已回收
+        # @type Recycle: String
 
-        attr_accessor :EnvId, :PackageType, :VpcId, :CreateTime, :Alias, :Status, :Region, :EnvType, :SubnetIds
+        attr_accessor :EnvId, :PackageType, :VpcId, :CreateTime, :Alias, :Status, :Region, :EnvType, :SubnetIds, :Recycle
 
-        def initialize(envid=nil, packagetype=nil, vpcid=nil, createtime=nil, _alias=nil, status=nil, region=nil, envtype=nil, subnetids=nil)
+        def initialize(envid=nil, packagetype=nil, vpcid=nil, createtime=nil, _alias=nil, status=nil, region=nil, envtype=nil, subnetids=nil, recycle=nil)
           @EnvId = envid
           @PackageType = packagetype
           @VpcId = vpcid
@@ -711,6 +713,7 @@ module TencentCloud
           @Region = region
           @EnvType = envtype
           @SubnetIds = subnetids
+          @Recycle = recycle
         end
 
         def deserialize(params)
@@ -723,6 +726,7 @@ module TencentCloud
           @Region = params['Region']
           @EnvType = params['EnvType']
           @SubnetIds = params['SubnetIds']
+          @Recycle = params['Recycle']
         end
       end
 

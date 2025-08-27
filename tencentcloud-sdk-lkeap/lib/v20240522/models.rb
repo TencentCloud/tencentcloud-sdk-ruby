@@ -921,7 +921,7 @@ module TencentCloud
         # @type SuccessPageNum: Integer
         # @param FailPageNum: 解析失败页数
         # @type FailPageNum: Integer
-        # @param FileSize: 文件大小，单位KB
+        # @param FileSize: 文件大小，单位：字节
         # @type FileSize: Integer
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens, :SuccessPageNum, :FailPageNum, :FileSize
@@ -965,6 +965,26 @@ module TencentCloud
 
         def deserialize(params)
           @Embedding = params['Embedding']
+        end
+      end
+
+      # 错误信息
+      class ErrorInfo < TencentCloud::Common::AbstractModel
+        # @param Code: 错误码
+        # @type Code: String
+        # @param Message: 错误信息
+        # @type Message: String
+
+        attr_accessor :Code, :Message
+
+        def initialize(code=nil, message=nil)
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
         end
       end
 
@@ -1091,16 +1111,19 @@ module TencentCloud
         # @type FailedPages: Array
         # @param Usage: 文档拆分任务的用量
         # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.DocumentUsage`
+        # @param Error: 文档解析任务失败错误信息，当文档解析任务失败会返回具体的错误信息
+        # @type Error: :class:`Tencentcloud::Lkeap.v20240522.models.ErrorInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :RequestId
+        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
 
-        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
+        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
           @Status = status
           @DocumentRecognizeResultUrl = documentrecognizeresulturl
           @FailedPages = failedpages
           @Usage = usage
+          @Error = error
           @RequestId = requestid
         end
 
@@ -1118,6 +1141,10 @@ module TencentCloud
           unless params['Usage'].nil?
             @Usage = DocumentUsage.new
             @Usage.deserialize(params['Usage'])
+          end
+          unless params['Error'].nil?
+            @Error = ErrorInfo.new
+            @Error.deserialize(params['Error'])
           end
           @RequestId = params['RequestId']
         end
@@ -1165,19 +1192,22 @@ module TencentCloud
         # @type FailedPages: Array
         # @param Usage: 文档拆分任务的用量
         # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.DocumentUsage`
+        # @param Error: 文档拆分失败的错误信息，当拆分任务失败时返回该错误信息
+        # @type Error: :class:`Tencentcloud::Lkeap.v20240522.models.ErrorInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :RequestId
+        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
         extend Gem::Deprecate
         deprecate :FailedPages, :none, 2025, 8
         deprecate :FailedPages=, :none, 2025, 8
 
-        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, requestid=nil)
+        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
           @Status = status
           @DocumentRecognizeResultUrl = documentrecognizeresulturl
           @FailedPages = failedpages
           @Usage = usage
+          @Error = error
           @RequestId = requestid
         end
 
@@ -1195,6 +1225,10 @@ module TencentCloud
           unless params['Usage'].nil?
             @Usage = DocumentUsage.new
             @Usage.deserialize(params['Usage'])
+          end
+          unless params['Error'].nil?
+            @Error = ErrorInfo.new
+            @Error.deserialize(params['Error'])
           end
           @RequestId = params['RequestId']
         end

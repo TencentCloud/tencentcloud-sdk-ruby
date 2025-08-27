@@ -18134,15 +18134,15 @@ module TencentCloud
 
       # 超级节点上的资源统计
       class SuperNodeResource < TencentCloud::Common::AbstractModel
-        # @param NodeName: 节点名称
+        # @param NodeName: 节点名称，此字段在出参中有效。
         # @type NodeName: String
-        # @param Num: 节点上的资源总数
+        # @param Num: 节点上的资源总数，QuotaType为 exact 时，表示创建指定规格的精确配额数量。
         # @type Num: Integer
-        # @param Cpu: 节点上的总核数
+        # @param Cpu: 节点上的总核数，QuotaType为 exact 时表示指定规格的核数。
         # @type Cpu: Float
-        # @param Memory: 节点上的总内存数
+        # @param Memory: 节点上的总内存数，QuotaType为 exact 时表示指定规格的内存，单位：Gi
         # @type Memory: Float
-        # @param Gpu: 节点上的总 GPU 卡数
+        # @param Gpu: 节点上的总 GPU 卡数，QuotaType为 exact 时表示指定规格的GPU卡数。
         # @type Gpu: Float
         # @param QuotaType: 节点资源的配额类型，exact表示精确配额，fuzzy 表示模糊配额。
         # @type QuotaType: String
@@ -18150,7 +18150,7 @@ module TencentCloud
         # @type ChargeType: String
         # @param ResourceType: QuotaType为 exact 时，此字段有效，表示精确配额的资源类型。
         # @type ResourceType: String
-        # @param DisasterRecoverGroupId: 置放群组 ID
+        # @param DisasterRecoverGroupId: 置放群组 ID，QuotaType为 exact 时有效，表示购买的精确配额需满足置放群组。可通过 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810) 接口返回值中的DisasterRecoverGroupId获取。
         # @type DisasterRecoverGroupId: String
 
         attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu, :QuotaType, :ChargeType, :ResourceType, :DisasterRecoverGroupId

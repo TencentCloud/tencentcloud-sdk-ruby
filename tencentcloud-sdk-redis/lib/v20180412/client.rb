@@ -2335,7 +2335,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除复制组
+        # 本接口（RemoveReplicationGroup）用于删除复制组。
 
         # @param request: Request instance for RemoveReplicationGroup.
         # @type request: :class:`Tencentcloud::redis::V20180412::RemoveReplicationGroupRequest`
