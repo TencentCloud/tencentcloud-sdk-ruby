@@ -1206,6 +1206,65 @@ module TencentCloud
         end
       end
 
+      # CreateMcpServer请求参数结构体
+      class CreateMcpServerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param Name: MCP Server名称。最大长度：64
+        # @type Name: String
+        # @param Command: Base64编码后的MCP Server启动命令。最大长度：2048
+        # @type Command: String
+        # @param Description: MCP Server备注。最大长度：2048
+        # @type Description: String
+        # @param Envs: MCP Server环境变量。最大长度：10
+        # @type Envs: Array
+
+        attr_accessor :InstanceId, :Name, :Command, :Description, :Envs
+
+        def initialize(instanceid=nil, name=nil, command=nil, description=nil, envs=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Command = command
+          @Description = description
+          @Envs = envs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Command = params['Command']
+          @Description = params['Description']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              mcpserverenv_tmp = McpServerEnv.new
+              mcpserverenv_tmp.deserialize(i)
+              @Envs << mcpserverenv_tmp
+            end
+          end
+        end
+      end
+
+      # CreateMcpServer返回参数结构体
+      class CreateMcpServerResponse < TencentCloud::Common::AbstractModel
+        # @param McpServerId: MCP Server ID。
+        # @type McpServerId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :McpServerId, :RequestId
+
+        def initialize(mcpserverid=nil, requestid=nil)
+          @McpServerId = mcpserverid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @McpServerId = params['McpServerId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据盘价格
       class DataDiskPrice < TencentCloud::Common::AbstractModel
         # @param DiskId: 云硬盘ID。
@@ -3443,6 +3502,73 @@ module TencentCloud
               @KeyPairSet << keypair_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMcpServers请求参数结构体
+      class DescribeMcpServersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerIds: MCP Server ID列表。列表为空时此条件不生效。最大长度：10
+        # @type McpServerIds: Array
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :McpServerIds, :Limit, :Offset
+
+        def initialize(instanceid=nil, mcpserverids=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @McpServerIds = mcpserverids
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerIds = params['McpServerIds']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeMcpServers返回参数结构体
+      class DescribeMcpServersResponse < TencentCloud::Common::AbstractModel
+        # @param McpServerSet: MCP Server列表。
+        # @type McpServerSet: Array
+        # @param TotalCount: 符合条件的MCP Server数量。
+        # @type TotalCount: Integer
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称。
+        # @type InstanceName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :McpServerSet, :TotalCount, :InstanceId, :InstanceName, :RequestId
+
+        def initialize(mcpserverset=nil, totalcount=nil, instanceid=nil, instancename=nil, requestid=nil)
+          @McpServerSet = mcpserverset
+          @TotalCount = totalcount
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['McpServerSet'].nil?
+            @McpServerSet = []
+            params['McpServerSet'].each do |i|
+              mcpserver_tmp = McpServer.new
+              mcpserver_tmp.deserialize(i)
+              @McpServerSet << mcpserver_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
           @RequestId = params['RequestId']
         end
       end
@@ -5982,6 +6108,106 @@ module TencentCloud
         end
       end
 
+      # MCP Server信息
+      class McpServer < TencentCloud::Common::AbstractModel
+        # @param McpServerId: MCP Server ID。
+        # @type McpServerId: String
+        # @param Name: MCP Server名称。最大长度：64
+        # @type Name: String
+        # @param McpServerType: MCP Server类型。枚举值：PUBLIC_PACKAGE，公共包安装；AGENT_GENERATED，AI生成。
+        # @type McpServerType: String
+        # @param IconUrl: MCP Server图标地址
+        # @type IconUrl: String
+        # @param Command: Base64编码后的MCP Server启动命令。最大长度：2048
+        # @type Command: String
+        # @param State: MCP Server状态。枚举值如下：
+
+        # PENDING：表示创建中
+        # LAUNCH_FAILED：表示创建失败
+        # RUNNING：表示运行中
+        # STOPPED：表示关闭
+        # STARTING：表示开启中
+        # STOPPING：表示关闭中
+        # RESTARTING：表示重启中
+        # REMOVING：表示删除中
+        # UNKNOWN：表示未知
+        # ENV_ERROR：表示环境错误
+        # @type State: String
+        # @param ServerUrl: MCP Server访问地址。
+        # @type ServerUrl: String
+        # @param Config: MCP Server配置
+        # @type Config: String
+        # @param Description: MCP Server备注
+        # @type Description: String
+        # @param CreatedTime: MCP Server创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # @type CreatedTime: String
+        # @param UpdatedTime: MCP Server修改时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        # 格式为： YYYY-MM-DDThh:mm:ssZ。
+        # @type UpdatedTime: String
+        # @param EnvSet: MCP Server环境变量
+        # @type EnvSet: Array
+
+        attr_accessor :McpServerId, :Name, :McpServerType, :IconUrl, :Command, :State, :ServerUrl, :Config, :Description, :CreatedTime, :UpdatedTime, :EnvSet
+
+        def initialize(mcpserverid=nil, name=nil, mcpservertype=nil, iconurl=nil, command=nil, state=nil, serverurl=nil, config=nil, description=nil, createdtime=nil, updatedtime=nil, envset=nil)
+          @McpServerId = mcpserverid
+          @Name = name
+          @McpServerType = mcpservertype
+          @IconUrl = iconurl
+          @Command = command
+          @State = state
+          @ServerUrl = serverurl
+          @Config = config
+          @Description = description
+          @CreatedTime = createdtime
+          @UpdatedTime = updatedtime
+          @EnvSet = envset
+        end
+
+        def deserialize(params)
+          @McpServerId = params['McpServerId']
+          @Name = params['Name']
+          @McpServerType = params['McpServerType']
+          @IconUrl = params['IconUrl']
+          @Command = params['Command']
+          @State = params['State']
+          @ServerUrl = params['ServerUrl']
+          @Config = params['Config']
+          @Description = params['Description']
+          @CreatedTime = params['CreatedTime']
+          @UpdatedTime = params['UpdatedTime']
+          unless params['EnvSet'].nil?
+            @EnvSet = []
+            params['EnvSet'].each do |i|
+              mcpserverenv_tmp = McpServerEnv.new
+              mcpserverenv_tmp.deserialize(i)
+              @EnvSet << mcpserverenv_tmp
+            end
+          end
+        end
+      end
+
+      # MCP Server环境变量
+      class McpServerEnv < TencentCloud::Common::AbstractModel
+        # @param Key: MCP Server的环境变量键。最大长度：128
+        # @type Key: String
+        # @param Value: MCP Server的环境变量值。最大长度：1024。该字段可能存储密钥，出参时将固定返回“**********”，避免明文泄露。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyBlueprintAttribute请求参数结构体
       class ModifyBlueprintAttributeRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -6584,6 +6810,65 @@ module TencentCloud
         end
       end
 
+      # ModifyMcpServer请求参数结构体
+      class ModifyMcpServerRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。可以通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerId: MCP Server ID。可以通过DescribeMcpServers接口返回值中的McpServerId获取。
+        # @type McpServerId: String
+        # @param Name: MCP Server名称。最大长度：64
+        # @type Name: String
+        # @param Command: Base64编码后的MCP Server启动命令。最大长度：2048
+        # @type Command: String
+        # @param Description: MCP Server备注。最大长度：2048
+        # @type Description: String
+        # @param Envs: MCP Server环境变量。最大长度：10。用于完整替换MCP Server的环境变量。当该字段为空时，系统将清除当前所有环境变量。若无需修改环境变量，请勿传递该字段。
+        # @type Envs: Array
+
+        attr_accessor :InstanceId, :McpServerId, :Name, :Command, :Description, :Envs
+
+        def initialize(instanceid=nil, mcpserverid=nil, name=nil, command=nil, description=nil, envs=nil)
+          @InstanceId = instanceid
+          @McpServerId = mcpserverid
+          @Name = name
+          @Command = command
+          @Description = description
+          @Envs = envs
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerId = params['McpServerId']
+          @Name = params['Name']
+          @Command = params['Command']
+          @Description = params['Description']
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              mcpserverenv_tmp = McpServerEnv.new
+              mcpserverenv_tmp.deserialize(i)
+              @Envs << mcpserverenv_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyMcpServer返回参数结构体
+      class ModifyMcpServerResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySnapshotAttribute请求参数结构体
       class ModifySnapshotAttributeRequest < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 快照 ID, 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388">DescribeSnapshots</a> 查询。
@@ -6770,6 +7055,42 @@ module TencentCloud
 
         def deserialize(params)
           @DockerActivityId = params['DockerActivityId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveMcpServers请求参数结构体
+      class RemoveMcpServersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID。可以通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerIds: MCP Server ID列表。可通过DescribeMcpServers接口返回值中的McpServerId获取。最大长度：10
+        # @type McpServerIds: Array
+
+        attr_accessor :InstanceId, :McpServerIds
+
+        def initialize(instanceid=nil, mcpserverids=nil)
+          @InstanceId = instanceid
+          @McpServerIds = mcpserverids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerIds = params['McpServerIds']
+        end
+      end
+
+      # RemoveMcpServers返回参数结构体
+      class RemoveMcpServersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -7321,6 +7642,42 @@ module TencentCloud
         end
       end
 
+      # RestartMcpServers请求参数结构体
+      class RestartMcpServersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerIds: MCP Server ID列表。可通过DescribeMcpServers接口返回值中的McpServerId获取。最大长度：10
+        # @type McpServerIds: Array
+
+        attr_accessor :InstanceId, :McpServerIds
+
+        def initialize(instanceid=nil, mcpserverids=nil)
+          @InstanceId = instanceid
+          @McpServerIds = mcpserverids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerIds = params['McpServerIds']
+        end
+      end
+
+      # RestartMcpServers返回参数结构体
+      class RestartMcpServersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # RunDockerContainers请求参数结构体
       class RunDockerContainersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
@@ -7678,6 +8035,42 @@ module TencentCloud
         end
       end
 
+      # StartMcpServers请求参数结构体
+      class StartMcpServersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerIds: MCP Server ID列表。可通过DescribeMcpServers接口返回值中的McpServerId获取。最大长度：10
+        # @type McpServerIds: Array
+
+        attr_accessor :InstanceId, :McpServerIds
+
+        def initialize(instanceid=nil, mcpserverids=nil)
+          @InstanceId = instanceid
+          @McpServerIds = mcpserverids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerIds = params['McpServerIds']
+        end
+      end
+
+      # StartMcpServers返回参数结构体
+      class StartMcpServersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopDockerContainers请求参数结构体
       class StopDockerContainersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/product/1207/47573)接口返回值中的InstanceId获取。
@@ -7736,6 +8129,42 @@ module TencentCloud
 
       # StopInstances返回参数结构体
       class StopInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopMcpServers请求参数结构体
+      class StopMcpServersRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
+        # @type InstanceId: String
+        # @param McpServerIds: MCP Server ID列表。可通过DescribeMcpServers接口返回值中的McpServerId获取。最大长度：10
+        # @type McpServerIds: Array
+
+        attr_accessor :InstanceId, :McpServerIds
+
+        def initialize(instanceid=nil, mcpserverids=nil)
+          @InstanceId = instanceid
+          @McpServerIds = mcpserverids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @McpServerIds = params['McpServerIds']
+        end
+      end
+
+      # StopMcpServers返回参数结构体
+      class StopMcpServersResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

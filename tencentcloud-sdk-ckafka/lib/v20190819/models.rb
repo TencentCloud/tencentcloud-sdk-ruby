@@ -148,11 +148,11 @@ module TencentCloud
       class AclRuleInfo < TencentCloud::Common::AbstractModel
         # @param Operation: Acl操作方式，枚举值(所有操作: All, 读：Read，写：Write)
         # @type Operation: String
-        # @param PermissionType: 权限类型，(Deny，Allow)
+        # @param PermissionType: 权限类型，Deny：拒绝，Allow：允许。
         # @type PermissionType: String
-        # @param Host: 默认为\*，表示任何host都可以访问，当前ckafka不支持host为\* 和 ip网段
+        # @param Host: 表示任何host都可以访问
         # @type Host: String
-        # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入格式需要带【User:】前缀。例如用户A，传入为User:A。
+        # @param Principal: 用户，User:*表示任何user都可以访问，当前用户只能是用户列表中包含的用户。传入格式需要带【User:】前缀。例如用户A，传入为User:A。
         # @type Principal: String
 
         attr_accessor :Operation, :PermissionType, :Host, :Principal
@@ -276,7 +276,7 @@ module TencentCloud
 
       # AuthorizeToken请求参数结构体
       class AuthorizeTokenRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id, 可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param User: 用户
         # @type User: String
@@ -356,13 +356,13 @@ module TencentCloud
 
       # BatchCreateAcl请求参数结构体
       class BatchCreateAclRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型，(2:TOPIC）
         # @type ResourceType: Integer
-        # @param ResourceNames: 资源列表数组
+        # @param ResourceNames: 资源列表数组，可通过DescribeTopic接口获取。
         # @type ResourceNames: Array
-        # @param RuleList: 设置的ACL规则列表
+        # @param RuleList: 设置的ACL规则列表，可通过DescribeAclRule接口获取。
         # @type RuleList: Array
 
         attr_accessor :InstanceId, :ResourceType, :ResourceNames, :RuleList
@@ -615,7 +615,7 @@ module TencentCloud
         # @type TopicName: String
         # @param TopicId: 主题Id
         # @type TopicId: String
-        # @param DataSize: 主题占用Broker 容量大小
+        # @param DataSize: 主题占用Broker 容量大小，单位为Bytes。
         # @type DataSize: Integer
 
         attr_accessor :TopicName, :TopicId, :DataSize
@@ -659,7 +659,7 @@ module TencentCloud
 
       # CancelAuthorizationToken请求参数结构体
       class CancelAuthorizationTokenRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param User: 用户
         # @type User: String
@@ -1376,7 +1376,7 @@ module TencentCloud
 
       # CreateAcl请求参数结构体
       class CreateAclRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型，(2:TOPIC，3:GROUP，4:CLUSTER)
         # @type ResourceType: Integer
@@ -1443,7 +1443,7 @@ module TencentCloud
 
       # CreateAclRule请求参数结构体
       class CreateAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型,目前只支持Topic,枚举值列表：Topic
         # @type ResourceType: String
@@ -1453,9 +1453,9 @@ module TencentCloud
         # @type RuleName: String
         # @param RuleList: 设置的ACL规则列表
         # @type RuleList: Array
-        # @param Pattern: 表示前缀匹配的前缀的值
+        # @param Pattern: 表示前缀匹配的前缀的值 (当PatternType取值为PREFIXED时，此参数必填)
         # @type Pattern: String
-        # @param IsApplied: 预设ACL规则是否应用到新增的topic中
+        # @param IsApplied: 预设ACL规则是否应用到新增的topic中。默认为0，表示否。取值为1时表示是。
         # @type IsApplied: Integer
         # @param Comment: ACL规则的备注
         # @type Comment: String
@@ -1705,7 +1705,7 @@ module TencentCloud
 
       # CreateConsumer请求参数结构体
       class CreateConsumerRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param GroupName: 消费分组名称
         # @type GroupName: String
@@ -1756,7 +1756,7 @@ module TencentCloud
 
       # CreateDatahubTask请求参数结构体
       class CreateDatahubTaskRequest < TencentCloud::Common::AbstractModel
-        # @param TaskName: 任务名称
+        # @param TaskName: 任务名称,只能以字母起始,允许包含字母、数字、- 、.  、 下划线且长度不超过64 (、为分割符号规则不包含)
         # @type TaskName: String
         # @param TaskType: 任务类型，SOURCE数据接入，SINK数据流出
         # @type TaskType: String
@@ -2039,7 +2039,7 @@ module TencentCloud
 
       # CreateInstancePre请求参数结构体
       class CreateInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: ckafka集群实例Name，是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param InstanceName: ckafka集群实例Name，是一个不超过 128 个字符的任意字符串。
         # @type InstanceName: String
         # @param ZoneId: 可用区。当购买多可用区实例时，当前参数为主可用区。  [查看可用区](https://cloud.tencent.com/document/product/597/55246)
         # @type ZoneId: Integer
@@ -2051,21 +2051,21 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网id
         # @type SubnetId: String
-        # @param MsgRetentionTime: 可选。实例日志的最长保留时间，单位分钟，默认为10080（7天），最大30天，不填默认0，代表不开启日志保留时间回收策略
+        # @param MsgRetentionTime: 可选。实例日志的最长保留时间，单位分钟，不填默认为1440（1天），可设置范围为1分钟到90天。
         # @type MsgRetentionTime: Integer
         # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id
         # @type ClusterId: Integer
         # @param RenewFlag: 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
         # @type RenewFlag: Integer
-        # @param KafkaVersion: CKafka版本号[0.10.2、1.1.1、2.4.1、2.4.2、2.8.1、3.2.3], 默认是1.1.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
+        # @param KafkaVersion: CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
         # @type KafkaVersion: String
         # @param SpecificationsType: 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession",[高级版实例]填写"premium"
         # @type SpecificationsType: String
-        # @param DiskSize: 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功
+        # @param DiskSize: 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功。默认取值为500，步长设置为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562
         # @type DiskSize: Integer
-        # @param BandWidth: 实例带宽,单位MB/s; 最小值:20MB/s, 高级版最大值:360MB/s,专业版最大值:100000MB/s  标准版固定带宽规格: 40MB/s, 100MB/s, 150MB/s
+        # @param BandWidth: 实例带宽,默认值为40，单位MB/s; 最小值:20MB/s, 高级版最大值:360MB/s,专业版最大值:100000MB/s  标准版固定带宽规格: 40MB/s, 100MB/s, 150MB/s。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745
         # @type BandWidth: Integer
-        # @param Partition: 分区大小，如果跟控制台规格配比不相符，则无法创建成功
+        # @param Partition: 分区大小，如果跟控制台规格配比不相符，则无法创建成功。默认值为800，步长为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122563
         # @type Partition: Integer
         # @param Tags: 标签
         # @type Tags: Array
@@ -2204,11 +2204,11 @@ module TencentCloud
 
       # CreatePartition请求参数结构体
       class CreatePartitionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param TopicName: 主题名称
+        # @param TopicName: 主题名称，可通过DescribeTopic接口获取。
         # @type TopicName: String
-        # @param PartitionNum: 主题分区个数
+        # @param PartitionNum: 主题分区个数，传入参数为修改后的分区数，而不是增加的分区数，因此传入参数需要大于当前主题分区个数。
         # @type PartitionNum: Integer
 
         attr_accessor :InstanceId, :TopicName, :PartitionNum
@@ -2373,7 +2373,7 @@ module TencentCloud
 
       # CreatePrometheus请求参数结构体
       class CreatePrometheusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param VpcId: 私有网络Id
         # @type VpcId: String
@@ -2420,21 +2420,21 @@ module TencentCloud
 
       # CreateRoute请求参数结构体
       class CreateRouteRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例唯一id
+        # @param InstanceId: ckafka集群实例id,可通过DescribeInstances接口获取
         # @type InstanceId: String
-        # @param VipType: 路由网络类型(3:vpc路由;7:内部支撑路由)
+        # @param VipType: 路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)
         # @type VipType: Integer
-        # @param VpcId: vpc网络Id
+        # @param VpcId: vpc网络Id,当vipType为3时必填
         # @type VpcId: String
-        # @param SubnetId: vpc子网id
+        # @param SubnetId: vpc子网id,当vipType为3时必填
         # @type SubnetId: String
-        # @param AccessType: 访问类型：0-plaintext；1-sasl_plaintext；2-ssl；3-sasl_ssl
+        # @param AccessType: 访问类型：0-plaintext；1-sasl_plaintext；2-ssl；3-sasl_ssl,默认为0
         # @type AccessType: Integer
-        # @param AuthFlag: 是否需要权限管理
+        # @param AuthFlag: 是否需要权限管理,该字段已废弃
         # @type AuthFlag: Integer
         # @param CallerAppid: 调用方appId
         # @type CallerAppid: Integer
-        # @param PublicNetwork: 公网带宽
+        # @param PublicNetwork: 公网带宽,公网路由必传,且必选时3的倍数,无默认值
         # @type PublicNetwork: Integer
         # @param Ip: vip地址
         # @type Ip: String
@@ -2491,7 +2491,7 @@ module TencentCloud
 
       # CreateToken请求参数结构体
       class CreateTokenRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param User: 用户名
         # @type User: String
@@ -2531,11 +2531,11 @@ module TencentCloud
 
       # CreateTopicIpWhiteList请求参数结构体
       class CreateTopicIpWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param TopicName: 主题名称
+        # @param TopicName: 主题名称，可通过DescribeTopic接口获取
         # @type TopicName: String
-        # @param IpWhiteList: ip白名单列表
+        # @param IpWhiteList: ip白名单列表，最大值为512，即最大允许传入512个ip。
         # @type IpWhiteList: Array
 
         attr_accessor :InstanceId, :TopicName, :IpWhiteList
@@ -2704,7 +2704,7 @@ module TencentCloud
 
       # CreateUser请求参数结构体
       class CreateUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param Name: 用户名称
         # @type Name: String
@@ -2845,7 +2845,7 @@ module TencentCloud
       class CvmAndIpInfo < TencentCloud::Common::AbstractModel
         # @param CkafkaInstanceId: ckafka集群实例Id
         # @type CkafkaInstanceId: String
-        # @param InstanceId: CVM实例ID
+        # @param InstanceId: CVM实例ID(ins-test )或POD IP(10.0.0.30)
         # @type InstanceId: String
         # @param Ip: IP地址
         # @type Ip: String
@@ -2867,7 +2867,35 @@ module TencentCloud
 
       # Datahub资源配置
       class DatahubResource < TencentCloud::Common::AbstractModel
-        # @param Type: 资源类型
+        # @param Type: 资源类型  type类型如下:
+        # KAFKA,
+        # EB_ES,
+        # EB_COS,
+        # EB_CLS,
+        # EB_,
+        # MONGODB,
+        # HTTP,
+        # TDW,
+        # ES,
+        # CLICKHOUSE,
+        # DTS,
+        # CLS,
+        # COS,
+        # TOPIC,
+        # MYSQL,
+        # MQTT,
+        # MYSQL_DATA,
+        # DORIS,
+        # POSTGRESQL,
+        # TDSQL_C_POSTGRESQL,
+        # TDSQL_POSTGRESQL,
+        # WAREHOUSE_POSTGRESQL,
+        # TDSQL_C_MYSQL,
+        # MARIADB,
+        # SQLSERVER,
+        # CTSDB,
+        # SCF
+
         # @type Type: String
         # @param KafkaParam: ckafka配置，Type为KAFKA时必填
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -3209,7 +3237,7 @@ module TencentCloud
 
       # DeleteAcl请求参数结构体
       class DeleteAclRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型，(2:TOPIC，3:GROUP，4:CLUSTER)
         # @type ResourceType: Integer
@@ -3221,7 +3249,7 @@ module TencentCloud
         # @type PermissionType: Integer
         # @param Host: 默认为\*，表示任何host都可以访问，当前ckafka不支持host为\*，但是后面开源kafka的产品化会直接支持
         # @type Host: String
-        # @param Principal: 用户列表，默认为*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户
+        # @param Principal: 用户列表，默认为User:*，表示任何user都可以访问，当前用户只能是用户列表中包含的用户
         # @type Principal: String
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Operation, :PermissionType, :Host, :Principal
@@ -3272,9 +3300,9 @@ module TencentCloud
 
       # DeleteAclRule请求参数结构体
       class DeleteAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id信息
+        # @param InstanceId: 实例id信息，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param RuleName: acl规则名称
+        # @param RuleName: acl规则名称，可通过DescribeAclRule接口获取。
         # @type RuleName: String
 
         attr_accessor :InstanceId, :RuleName
@@ -3429,9 +3457,9 @@ module TencentCloud
 
       # DeleteGroup请求参数结构体
       class DeleteGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param Group: 消费分组
+        # @param Group: 消费组名称，可通过DescribeConsumerGroup接口获取。
         # @type Group: String
 
         attr_accessor :InstanceId, :Group
@@ -3472,7 +3500,7 @@ module TencentCloud
 
       # DeleteInstancePost请求参数结构体
       class DeleteInstancePostRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3511,7 +3539,7 @@ module TencentCloud
 
       # DeleteInstancePre请求参数结构体
       class DeleteInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3550,13 +3578,13 @@ module TencentCloud
 
       # DeleteRoute请求参数结构体
       class DeleteRouteRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
-        # @param RouteId: 路由id
+        # @param RouteId: 路由id,可通过DescribeRoute接口获取
         # @type RouteId: Integer
         # @param CallerAppid: 调用方appId
         # @type CallerAppid: Integer
-        # @param DeleteRouteTime: 设置定时删除路由时间,若DeleteRouteTime < now ,设置时间小于当前接口提交时间则立即执行;DeleteRouteTime > now,设置时间大于当前接口提交时间,则按照设置的时间,定时执行删除;  该参数设置提交后,无法撤销!!!
+        # @param DeleteRouteTime: 设置定时删除路由时间,仅类型为公网路由支持定时删除,可选择未来的24小时的任意时间
         # @type DeleteRouteTime: String
 
         attr_accessor :InstanceId, :RouteId, :CallerAppid, :DeleteRouteTime
@@ -3601,7 +3629,7 @@ module TencentCloud
 
       # DeleteRouteTriggerTime请求参数结构体
       class DeleteRouteTriggerTimeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param DelayTime: 修改删除路由的定时时间
         # @type DelayTime: String
@@ -3637,9 +3665,9 @@ module TencentCloud
 
       # DeleteTopicIpWhiteList请求参数结构体
       class DeleteTopicIpWhiteListRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param TopicName: 主题名
+        # @param TopicName: 主题名，可通过DescribeTopic接口获取。
         # @type TopicName: String
         # @param IpWhiteList: ip白名单列表
         # @type IpWhiteList: Array
@@ -3727,9 +3755,9 @@ module TencentCloud
 
       # DeleteUser请求参数结构体
       class DeleteUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param Name: 用户名称
+        # @param Name: 用户名称，可通过DescribeUser接口获取。
         # @type Name: String
 
         attr_accessor :InstanceId, :Name
@@ -3770,7 +3798,7 @@ module TencentCloud
 
       # DescribeACL请求参数结构体
       class DescribeACLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param ResourceType: Acl资源类型，(2:TOPIC，3:GROUP，4:CLUSTER)
         # @type ResourceType: Integer
@@ -3778,7 +3806,7 @@ module TencentCloud
         # @type ResourceName: String
         # @param Offset: 偏移位置
         # @type Offset: Integer
-        # @param Limit: 个数限制
+        # @param Limit: 个数限制，默认值为50，最大值为50。
         # @type Limit: Integer
         # @param SearchWord: 关键字匹配
         # @type SearchWord: String
@@ -3829,13 +3857,13 @@ module TencentCloud
 
       # DescribeAclRule请求参数结构体
       class DescribeAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
         # @param RuleName: ACL规则名
         # @type RuleName: String
-        # @param PatternType: ACL规则匹配类型
+        # @param PatternType: ACL规则匹配类型 （PREFIXED：前缀匹配，PRESET：预设策略）
         # @type PatternType: String
-        # @param IsSimplified: 是否读取简略的ACL规则
+        # @param IsSimplified: 是否读取简略的ACL规则，默认值为false，表示不读取简略的ACL规则。
         # @type IsSimplified: Boolean
 
         attr_accessor :InstanceId, :RuleName, :PatternType, :IsSimplified
@@ -4164,7 +4192,7 @@ module TencentCloud
         # @type Description: String
         # @param Type: 连接源类型
         # @type Type: String
-        # @param Status: 连接源的状态
+        # @param Status: 连接源的状态  枚举值: -1 (创建失败) 、0 (创建中) 、 1 (运行中)、 2 (删除中) 、 4 (删除失败) 、 5 (配置更改中) 、 6 (配置更改失败) 、 7 (异常)
         # @type Status: Integer
         # @param CreateTime: 连接源的创建时间
         # @type CreateTime: String
@@ -4461,7 +4489,7 @@ module TencentCloud
 
       # DescribeCvmInfo请求参数结构体
       class DescribeCvmInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5354,7 +5382,7 @@ module TencentCloud
 
       # DescribePrometheus请求参数结构体
       class DescribePrometheusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -6697,7 +6725,7 @@ module TencentCloud
 
       # FetchDatahubMessageByOffset请求参数结构体
       class FetchDatahubMessageByOffsetRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 弹性topic名称
+        # @param Name: 弹性topic名称，可通过DescribeDatahubTopics接口获取。
         # @type Name: String
         # @param Partition: 分区id
         # @type Partition: Integer
@@ -6799,9 +6827,9 @@ module TencentCloud
 
       # FetchMessageByOffset请求参数结构体
       class FetchMessageByOffsetRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param Topic: 主题名
+        # @param Topic: 主题名，可通过DescribeTopic接口获取。
         # @type Topic: String
         # @param Partition: 分区id
         # @type Partition: Integer
@@ -7342,6 +7370,8 @@ module TencentCloud
         # @param Topic: 购买实例topic数, 单位个 (购买时必填)
         # @type Topic: Integer
         # @param Partition: 购买实例分区数, 单位个 (购买时必填，专业版/高级版询价时带宽信息必填)
+        # 分区上限 最大值: 40000,步长: 100
+        # 可以通过以下链接查看规格限制: https://cloud.tencent.com/document/product/597/122563
         # @type Partition: Integer
         # @param ZoneIds: 购买地域, 可通过查看DescribeCkafkaZone这个接口获取ZoneId
         # @type ZoneIds: Array
@@ -7349,7 +7379,7 @@ module TencentCloud
         # @type CategoryAction: String
         # @param BillType: 国内站购买的版本, sv_ckafka_instance_s2_1(入门型), sv_ckafka_instance_s2_2(标准版), sv_ckafka_instance_s2_3(进阶型), 如果instanceType为standards2, 但该参数为空, 则默认值为sv_ckafka_instance_s2_1
         # @type BillType: String
-        # @param PublicNetworkParam: 公网带宽计费模式, 目前只有专业版支持公网带宽 (购买公网带宽时必填)
+        # @param PublicNetworkParam: 公网带宽计费模式, 目前只有专业版支持公网带宽 (购买公网带宽时必填),取值为3的倍数
         # @type PublicNetworkParam: :class:`Tencentcloud::Ckafka.v20190819.models.InquiryPublicNetworkParam`
         # @param InstanceId: 续费时的实例id, 续费时填写
         # @type InstanceId: String
@@ -8209,16 +8239,20 @@ module TencentCloud
 
       # InstanceScalingDown请求参数结构体
       class InstanceScalingDownRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param UpgradeStrategy: 缩容模式  1:稳定变配
         # 2.高速变配
         # @type UpgradeStrategy: Integer
-        # @param DiskSize: 磁盘大小 单位 GB
+        # @param DiskSize: 磁盘大小 单位 GB     最大值为500000,步长100
+        # 可以通过以下链接查看规格限制：https://cloud.tencent.com/document/product/597/122562
+
         # @type DiskSize: Integer
         # @param BandWidth: 峰值带宽 单位 MB/s
+        # 可以通过以下链接查看规格限制及对应步长: https://cloud.tencent.com/document/product/597/11745
         # @type BandWidth: Integer
-        # @param Partition: 分区上限
+        # @param Partition: 分区上限 最大值: 40000, 步长: 100
+        # 可以通过以下链接查看规格限制: https://cloud.tencent.com/document/product/597/122563
         # @type Partition: Integer
 
         attr_accessor :InstanceId, :UpgradeStrategy, :DiskSize, :BandWidth, :Partition
@@ -9020,9 +9054,9 @@ module TencentCloud
       class ModifyInstanceAttributesConfig < TencentCloud::Common::AbstractModel
         # @param AutoCreateTopicEnable: 自动创建 true 表示开启，false 表示不开启
         # @type AutoCreateTopicEnable: Boolean
-        # @param DefaultNumPartitions: 可选，如果auto.create.topic.enable设置为true没有设置该值时，默认设置为3
+        # @param DefaultNumPartitions: 新创建主题的默认分区数,如果AutoCreateTopicEnable设置为true没有设置该值时，默认设置为3
         # @type DefaultNumPartitions: Integer
-        # @param DefaultReplicationFactor: 如果auto.create.topic.enable设置为true没有指定该值时默认设置为2
+        # @param DefaultReplicationFactor: 新创建主题的默认副本数,如果AutoCreateTopicEnable设置为true没有指定该值时默认设置为2
         # @type DefaultReplicationFactor: Integer
 
         attr_accessor :AutoCreateTopicEnable, :DefaultNumPartitions, :DefaultReplicationFactor
@@ -9042,9 +9076,9 @@ module TencentCloud
 
       # ModifyInstanceAttributes请求参数结构体
       class ModifyInstanceAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
-        # @param MsgRetentionTime: 实例日志的最长保留时间，单位分钟，最大90天，0代表不开启日志保留时间回收策略
+        # @param MsgRetentionTime: 实例日志的最长保留时间，单位分钟，最大90天，最小为1min
         # @type MsgRetentionTime: Integer
         # @param InstanceName: ckafka集群实例Name
         # @type InstanceName: String
@@ -9060,7 +9094,7 @@ module TencentCloud
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
         # @param MaxMessageByte: 实例级别单条消息大小（单位byte)  最大 12582912(不包含)  最小1024(不包含)
         # @type MaxMessageByte: Integer
-        # @param UncleanLeaderElectionEnable: 集群topic默认 unclean.leader.election.enable配置: 1 开启  0 关闭
+        # @param UncleanLeaderElectionEnable: 是否允许未同步的副本选为 leader: 1 开启  0 关闭
         # @type UncleanLeaderElectionEnable: Integer
         # @param DeleteProtectionEnable: 实例删除保护开关: 1 开启  0 关闭
         # @type DeleteProtectionEnable: Integer
@@ -9133,13 +9167,16 @@ module TencentCloud
 
       # ModifyInstancePre请求参数结构体
       class ModifyInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
-        # @param DiskSize: 预计磁盘，根据磁盘步长，规格向上调整。
+        # @param DiskSize: 磁盘大小 单位 GB     最大值为500000,步长100
+        # 可以通过以下链接查看规格限制：https://cloud.tencent.com/document/product/597/122562
         # @type DiskSize: Integer
-        # @param BandWidth: 预计带宽，根据带宽步长，规格向上调整。
+        # @param BandWidth: 峰值带宽 单位 MB/s
+        # 可以通过以下链接查看规格限制及对应步长: https://cloud.tencent.com/document/product/597/11745
         # @type BandWidth: Integer
-        # @param Partition: 预计分区，根据带宽步长，规格向上调整。
+        # @param Partition: 分区上限 最大值: 40000, 步长: 100
+        # 可以通过以下链接查看规格限制: https://cloud.tencent.com/document/product/597/122563
         # @type Partition: Integer
 
         attr_accessor :InstanceId, :DiskSize, :BandWidth, :Partition
@@ -9184,9 +9221,9 @@ module TencentCloud
 
       # ModifyPassword请求参数结构体
       class ModifyPasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 实例Id，可通过DescribeInstances接口获取。
         # @type InstanceId: String
-        # @param Name: 用户名称
+        # @param Name: 用户名称，可通过DescribeUser接口获取。
         # @type Name: String
         # @param Password: 用户当前密码
         # @type Password: String
@@ -9235,9 +9272,9 @@ module TencentCloud
 
       # ModifyRoutineMaintenanceTask请求参数结构体
       class ModifyRoutineMaintenanceTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: ckafka集群实例id,可通过DescribeInstances接口获取
         # @type InstanceId: String
-        # @param MaintenanceType: 自动化运维类别
+        # @param MaintenanceType: 自动化运维类别, 类别如下: QUOTA、ANALYSIS、RE_BALANCE、ELASTIC_BANDWIDTH
         # @type MaintenanceType: String
         # @param MaintenanceSubtype: INSTANCE_STORAGE_CAPACITY(磁盘自动扩容)/MESSAGE_RETENTION_PERIOD(磁盘动态消息保留策略)
         # @type MaintenanceSubtype: String
@@ -9253,7 +9290,7 @@ module TencentCloud
         # @type PlannedTime: Integer
         # @param ExtraConfig: 任务额外信息
         # @type ExtraConfig: String
-        # @param Status: 任务状态
+        # @param Status: 任务状态,0 开启,1 关闭
         # @type Status: Integer
         # @param Week: 执行week day
         # @type Week: String
@@ -10377,7 +10414,7 @@ module TencentCloud
 
       # RenewCkafkaInstance请求参数结构体
       class RenewCkafkaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: ckafka集群实例Id,可通过DescribeInstances接口获取
         # @type InstanceId: String
         # @param TimeSpan: 续费时长, 默认为1, 单位是月
         # @type TimeSpan: Integer
@@ -11558,9 +11595,9 @@ module TencentCloud
         # @type PartitionNum: Integer
         # @param ReplicaNum: 副本数
         # @type ReplicaNum: Integer
-        # @param TopicTraffic: Topic 流量
+        # @param TopicTraffic: Topic 流量，单位为MB。
         # @type TopicTraffic: String
-        # @param MessageHeap: topic消息堆积/占用磁盘
+        # @param MessageHeap: topic消息堆积/占用磁盘，单位为Bytes。
         # @type MessageHeap: Integer
 
         attr_accessor :TopicId, :TopicName, :PartitionNum, :ReplicaNum, :TopicTraffic, :MessageHeap
@@ -11630,7 +11667,7 @@ module TencentCloud
       class TopicPartitionDO < TencentCloud::Common::AbstractModel
         # @param Partition: Partition 分区ID
         # @type Partition: Integer
-        # @param LeaderStatus: Leader 运行状态
+        # @param LeaderStatus: Leader 运行状态，0表示正常运行
         # @type LeaderStatus: Integer
         # @param IsrNum: ISR 个数
         # @type IsrNum: Integer
@@ -12091,7 +12128,7 @@ module TencentCloud
         # @type Flag: Boolean
         # @param ZoneName: 可用区名称
         # @type ZoneName: String
-        # @param ZoneStatus: 可用区状态
+        # @param ZoneStatus: 可用区状态  枚举示例:  3: 开启，4: 关闭;  可用区状态以SoldOut为准
         # @type ZoneStatus: Integer
         # @param Exflag: 额外标识
         # @type Exflag: String

@@ -1806,7 +1806,7 @@ module TencentCloud
         # @param KuberneteNativeType: K 表示通过kubeconfig 导入, S 表示通过service account导入
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KuberneteNativeType: String
-        # @param KuberneteNativeSecret: native secret
+        # @param KuberneteNativeSecret: Kubernetes 密钥
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KuberneteNativeSecret: String
         # @param EnableLogCollection: 是否开启cls日志功能
@@ -2455,7 +2455,7 @@ module TencentCloud
         # @type LastTimestamp: Integer
         # @param Type: 级别
         # @type Type: String
-        # @param Kind: 资源类型
+        # @param Kind: Kubernetes 资源类型，典型取值有 Deployment、Pod、Service 等
         # @type Kind: String
         # @param Name: 资源名称
         # @type Name: String
@@ -5699,7 +5699,7 @@ module TencentCloud
 
       # DeleteCluster请求参数结构体
       class DeleteClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用DescribeClusters查询已创建的项目列表或登录控制台进行查看；也可以调用CreateCluster创建新的项目。集群ID例如：cls-6a79x94v。仅在集群下无部署组、命名空间、云主机时可以删除。
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
         # @param Unbind: 是否只解绑，不删除容器集群，默认不传则删除容器集群。
         # @type Unbind: Boolean
@@ -8075,7 +8075,7 @@ module TencentCloud
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
         # @param SearchWord: 搜索词，可以搜索ID/名称/备注/标签
         # @type SearchWord: String
-        # @param OrderBy: 排序字段，例如创建时间
+        # @param OrderBy: 排序字段，目前仅支持使用“创建时间”
         # @type OrderBy: String
         # @param OrderType: 排序方式，0表示升序，1表示倒序
         # @type OrderType: Integer
@@ -8487,7 +8487,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页个数，默认为20， 取值应为1~50
         # @type Limit: Integer
-        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param Kind: event的资源种类
         # @type Kind: String
@@ -8550,7 +8550,7 @@ module TencentCloud
 
       # DescribeContainerGroupAttribute请求参数结构体
       class DescribeContainerGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -8589,7 +8589,7 @@ module TencentCloud
 
       # DescribeContainerGroupDeployInfo请求参数结构体
       class DescribeContainerGroupDeployInfoRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -9313,7 +9313,7 @@ module TencentCloud
 
       # DescribeGroupAttribute请求参数结构体
       class DescribeGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-ab958z6y
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
 
         attr_accessor :GroupId
@@ -11171,7 +11171,7 @@ module TencentCloud
 
       # DescribePodInstances请求参数结构体
       class DescribePodInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 实例所属部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。部署组所在集群必须是活跃状态的。
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param Offset: 偏移量，取值从0开始
         # @type Offset: Integer
@@ -13424,15 +13424,15 @@ module TencentCloud
       class ExclusiveInstance < TencentCloud::Common::AbstractModel
         # @param CenterType: 配置中心类型[注册中心Registration、配置中心Configuration]
         # @type CenterType: String
-        # @param InstanceId: 实例id，通过北极星控制台获取
+        # @param InstanceId: 实例id，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
         # @type InstanceId: String
         # @param InstanceType: 实例类型，例如北极星Polaris
         # @type InstanceType: String
         # @param InstanceName: 实例名称
         # @type InstanceName: String
-        # @param RegionId: 实例地域id，通过北极星控制台获取
+        # @param RegionId: 实例地域id，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
         # @type RegionId: String
-        # @param InstanceNamespaceId: 实例命名空间ID，通过北极星控制台获取
+        # @param InstanceNamespaceId: 实例命名空间ID，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
         # @type InstanceNamespaceId: String
 
         attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId
@@ -14350,11 +14350,25 @@ module TencentCloud
         # @type ReadyCount: Integer
         # @param Runtime: 运行时长，单位秒
         # @type Runtime: String
-        # @param CreatedAt: 实例启动时的时间戳
+        # @param CreatedAt: 实例启动时的时间戳，单位秒
         # @type CreatedAt: String
-        # @param ServiceInstanceStatus: 服务实例状态，枚举值为Starting/Running/Stopping/Stopped/StopFailed/Abnormal/Unknown
+        # @param ServiceInstanceStatus: 服务实例状态，枚举值为：
+        # - `Starting`：启动中
+        # - `Running`：运行中
+        # - `Stopping`：停止中
+        # - `Stopped`: 已停止
+        # - `StopFailed`: 停止失败
+        # - `Abnormal`: 异常
+        # - `Unknown`: 未知
         # @type ServiceInstanceStatus: String
-        # @param InstanceAvailableStatus: 机器实例可使用状态，枚举值为Starting/Running/Stopping/Stopped/StopFailed/Abnormal/Unknown
+        # @param InstanceAvailableStatus: 机器实例可使用状态，枚举值为：
+        # - `Starting`：启动中
+        # - `Running`：运行中
+        # - `Stopping`：停止中
+        # - `Stopped`: 已停止
+        # - `StopFailed`: 停止失败
+        # - `Abnormal`: 异常
+        # - `Unknown`: 未知
         # @type InstanceAvailableStatus: String
         # @param InstanceStatus: 机器实例状态
         # @type InstanceStatus: String
@@ -15293,7 +15307,16 @@ module TencentCloud
         # @type WanIp: String
         # @param VpcId: 机器所在VPC
         # @type VpcId: String
-        # @param InstanceStatus: 机器运行状态 Pending Running Stopped Rebooting Starting Stopping Abnormal Unknown
+        # @param InstanceStatus: 机器运行状态，枚举值为：
+        # - `Pending`: 准备中
+        # -  `Running`: 运行中
+        # -  `Stopped`: 已停止
+        # -  `Rebooting`: 重启中
+        # -  `Starting`: 启动中
+        # -  `Stopping`: 停止中
+        # -  `Abnormal`: 异常
+        # -  `Unknown`: 未知
+        # -  `Offline`: 离线
         # @type InstanceStatus: String
         # @param InstanceAvailableStatus: 机器可用状态（表示机器上的Agent在线）
         # @type InstanceAvailableStatus: String
@@ -16396,7 +16419,7 @@ module TencentCloud
 
       # ModifyApplication请求参数结构体
       class ModifyApplicationRequest < TencentCloud::Common::AbstractModel
-        # @param ApplicationId: 应用ID
+        # @param ApplicationId: 应用ID，可通过调用[DescribeApplications](https://cloud.tencent.com/document/api/649/36090)查询已创建的应用列表或登录控制台进行查看；也可以调用[CreateApplication](https://cloud.tencent.com/document/api/649/36094)创建新的应用。
         # @type ApplicationId: String
         # @param ApplicationName: 应用名称
         # @type ApplicationName: String
@@ -16470,7 +16493,7 @@ module TencentCloud
 
       # ModifyCluster请求参数结构体
       class ModifyClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用DescribeClusters查询已创建的项目列表或登录控制台进行查看；也可以调用CreateCluster创建新的项目。集群ID例如：cls-6a79x94v。
+        # @param ClusterId: 集群ID，按照【集群ID】进行过滤，可通过调用[DescribeClusters](https://cloud.tencent.com/document/product/649/85857)查询已创建的集群列表或登录控制台进行查看；也可以调用[CreateCluster](https://cloud.tencent.com/document/product/649/36049)创建新的集群。仅在集群下无部署组、命名空间、云主机时可以删除。
         # @type ClusterId: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
@@ -16637,7 +16660,7 @@ module TencentCloud
 
       # ModifyGroup请求参数结构体
       class ModifyGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd。
+        # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。
         # @type GroupId: String
         # @param GroupName: 部署组名称
         # @type GroupName: String
@@ -16846,7 +16869,7 @@ module TencentCloud
 
       # ModifyNamespace请求参数结构体
       class ModifyNamespaceRequest < TencentCloud::Common::AbstractModel
-        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用DescribeNamespaces查询已创建的项目列表或登录控制台进行查看；也可以调用CreateNamespace创建新的项目。命名空间ID例如：namespace-6a79x94v。
+        # @param NamespaceId: 命名空间ID，按照【命名空间ID】进行过滤，可通过调用[DescribeNamespaces](https://cloud.tencent.com/document/product/649/36096)查询已创建的命名空间列表或登录控制台进行查看；也可以调用[CreateNamespace](https://cloud.tencent.com/document/product/649/36098)创建新命名空间。
         # @type NamespaceId: String
         # @param NamespaceName: 命名空间名称
         # @type NamespaceName: String

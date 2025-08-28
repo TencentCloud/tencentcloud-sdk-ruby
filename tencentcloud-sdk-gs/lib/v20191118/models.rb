@@ -275,8 +275,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2025, 7
-        deprecate :PackageVersion=, :none, 2025, 7
+        deprecate :PackageVersion, :none, 2025, 8
+        deprecate :PackageVersion=, :none, 2025, 8
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -537,19 +537,23 @@ module TencentCloud
         # @type FileURL: String
         # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
         # @type DestinationDirectory: String
+        # @param DestinationFileName: 目标文件名
+        # @type DestinationFileName: String
 
-        attr_accessor :AndroidInstanceId, :FileURL, :DestinationDirectory
+        attr_accessor :AndroidInstanceId, :FileURL, :DestinationDirectory, :DestinationFileName
 
-        def initialize(androidinstanceid=nil, fileurl=nil, destinationdirectory=nil)
+        def initialize(androidinstanceid=nil, fileurl=nil, destinationdirectory=nil, destinationfilename=nil)
           @AndroidInstanceId = androidinstanceid
           @FileURL = fileurl
           @DestinationDirectory = destinationdirectory
+          @DestinationFileName = destinationfilename
         end
 
         def deserialize(params)
           @AndroidInstanceId = params['AndroidInstanceId']
           @FileURL = params['FileURL']
           @DestinationDirectory = params['DestinationDirectory']
+          @DestinationFileName = params['DestinationFileName']
         end
       end
 
@@ -1891,8 +1895,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2025, 7
-        deprecate :Labels=, :none, 2025, 7
+        deprecate :Labels, :none, 2025, 8
+        deprecate :Labels=, :none, 2025, 8
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -2337,19 +2341,23 @@ module TencentCloud
         # @type FileURL: String
         # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
         # @type DestinationDirectory: String
+        # @param DestinationFileName: 目标文件名
+        # @type DestinationFileName: String
 
-        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory
+        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory, :DestinationFileName
 
-        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil)
+        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil, destinationfilename=nil)
           @AndroidInstanceIds = androidinstanceids
           @FileURL = fileurl
           @DestinationDirectory = destinationdirectory
+          @DestinationFileName = destinationfilename
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @FileURL = params['FileURL']
           @DestinationDirectory = params['DestinationDirectory']
+          @DestinationFileName = params['DestinationFileName']
         end
       end
 
@@ -4382,19 +4390,23 @@ module TencentCloud
         # @type FileURL: String
         # @param DestinationDirectory: 上传目标目录，只能上传到 /sdcard/ 目录或其子目录下
         # @type DestinationDirectory: String
+        # @param DestinationFileName: 目标文件名
+        # @type DestinationFileName: String
 
-        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory
+        attr_accessor :AndroidInstanceIds, :FileURL, :DestinationDirectory, :DestinationFileName
 
-        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil)
+        def initialize(androidinstanceids=nil, fileurl=nil, destinationdirectory=nil, destinationfilename=nil)
           @AndroidInstanceIds = androidinstanceids
           @FileURL = fileurl
           @DestinationDirectory = destinationdirectory
+          @DestinationFileName = destinationfilename
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @FileURL = params['FileURL']
           @DestinationDirectory = params['DestinationDirectory']
+          @DestinationFileName = params['DestinationFileName']
         end
       end
 

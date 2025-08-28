@@ -435,7 +435,7 @@ module TencentCloud
         # @type Status: String
         # @param PrimaryKey: 主要签名key，不传则由系统自动生成，需要base64编码。
         # @type PrimaryKey: String
-        # @param SecondaryKey: 次要签名key，不传则油系统自动生成，需要base64编码。
+        # @param SecondaryKey: 次要签名key，不传则由系统自动生成，需要base64编码。
         # @type SecondaryKey: String
         # @param PropagatingProperties: 该设备id的传播属性设置
         # @type PropagatingProperties: Array
