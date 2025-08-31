@@ -1337,8 +1337,8 @@ module TencentCloud
 
         attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive
         extend Gem::Deprecate
-        deprecate :ConfigAssociatedGroups, :none, 2025, 8
-        deprecate :ConfigAssociatedGroups=, :none, 2025, 8
+        deprecate :ConfigAssociatedGroups, :none, 2025, 9
+        deprecate :ConfigAssociatedGroups=, :none, 2025, 9
 
         def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil)
           @ConfigId = configid
@@ -2455,7 +2455,7 @@ module TencentCloud
         # @type LastTimestamp: Integer
         # @param Type: 级别
         # @type Type: String
-        # @param Kind: Kubernetes 资源类型，典型取值有 Deployment、Pod、Service 等
+        # @param Kind: Kubernetes 资源类型，典型取值有 Deployment(部署资源)、Pod(容器组)、Service(服务资源) 等
         # @type Kind: String
         # @param Name: 资源名称
         # @type Name: String
@@ -3723,10 +3723,10 @@ module TencentCloud
 
         attr_accessor :ApplicationName, :ApplicationType, :MicroserviceType, :ApplicationDesc, :ApplicationLogConfig, :ApplicationResourceType, :ApplicationRuntimeType, :ProgramId, :ServiceConfigList, :IgnoreCreateImageRepository, :ProgramIdList, :ApmInstanceId, :ProgramLanguage, :FrameworkType, :ServiceGovernanceConfig, :CreateSameNameImageRepository
         extend Gem::Deprecate
-        deprecate :ApplicationLogConfig, :none, 2025, 8
-        deprecate :ApplicationLogConfig=, :none, 2025, 8
-        deprecate :ApplicationResourceType, :none, 2025, 8
-        deprecate :ApplicationResourceType=, :none, 2025, 8
+        deprecate :ApplicationLogConfig, :none, 2025, 9
+        deprecate :ApplicationLogConfig=, :none, 2025, 9
+        deprecate :ApplicationResourceType, :none, 2025, 9
+        deprecate :ApplicationResourceType=, :none, 2025, 9
 
         def initialize(applicationname=nil, applicationtype=nil, microservicetype=nil, applicationdesc=nil, applicationlogconfig=nil, applicationresourcetype=nil, applicationruntimetype=nil, programid=nil, serviceconfiglist=nil, ignorecreateimagerepository=nil, programidlist=nil, apminstanceid=nil, programlanguage=nil, frameworktype=nil, servicegovernanceconfig=nil, createsamenameimagerepository=nil)
           @ApplicationName = applicationname
@@ -4182,7 +4182,7 @@ module TencentCloud
         # @type MemRequest: String
         # @param GroupResourceType: 部署组资源类型；DEF 表示默认资源类型
         # @type GroupResourceType: String
-        # @param SubnetId: 分组所属【子网ID】，可前往TKE侧集群[控制台](https://console.cloud.tencent.com/tke2/cluster/sub/list/basic/info/base?rid=1&clusterId=cls-2nhp3g1i)进行获取
+        # @param SubnetId: 分组所属【子网ID】，可前往私有网络[控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1&unVpcId=vpc-6bs8ytjd)进行获取
         # @type SubnetId: String
         # @param AgentCpuRequest: agent 容器分配的 CPU 核数，对应 K8S 的 request
         # @type AgentCpuRequest: String
@@ -7109,12 +7109,12 @@ module TencentCloud
 
         attr_accessor :GroupId, :TagName, :InstanceNum, :Server, :Reponame, :CpuLimit, :MemLimit, :JvmOpts, :CpuRequest, :MemRequest, :DoNotStart, :RepoName, :UpdateType, :UpdateIvl, :AgentCpuRequest, :AgentCpuLimit, :AgentMemRequest, :AgentMemLimit, :IstioCpuRequest, :IstioCpuLimit, :IstioMemRequest, :IstioMemLimit, :MaxSurge, :MaxUnavailable, :HealthCheckSettings, :Envs, :ServiceSetting, :DeployAgent, :SchedulingStrategy, :IncrementalDeployment, :RepoType, :VolumeInfos, :VolumeMountInfos, :VolumeInfoList, :VolumeMountInfoList, :VolumeClean, :AgentProfileList, :WarmupSetting
         extend Gem::Deprecate
-        deprecate :Reponame, :none, 2025, 8
-        deprecate :Reponame=, :none, 2025, 8
-        deprecate :VolumeInfos, :none, 2025, 8
-        deprecate :VolumeInfos=, :none, 2025, 8
-        deprecate :VolumeMountInfos, :none, 2025, 8
-        deprecate :VolumeMountInfos=, :none, 2025, 8
+        deprecate :Reponame, :none, 2025, 9
+        deprecate :Reponame=, :none, 2025, 9
+        deprecate :VolumeInfos, :none, 2025, 9
+        deprecate :VolumeInfos=, :none, 2025, 9
+        deprecate :VolumeMountInfos, :none, 2025, 9
+        deprecate :VolumeMountInfos=, :none, 2025, 9
 
         def initialize(groupid=nil, tagname=nil, instancenum=nil, server=nil, cpulimit=nil, memlimit=nil, jvmopts=nil, cpurequest=nil, memrequest=nil, donotstart=nil, reponame=nil, updatetype=nil, updateivl=nil, agentcpurequest=nil, agentcpulimit=nil, agentmemrequest=nil, agentmemlimit=nil, istiocpurequest=nil, istiocpulimit=nil, istiomemrequest=nil, istiomemlimit=nil, maxsurge=nil, maxunavailable=nil, healthchecksettings=nil, envs=nil, servicesetting=nil, deployagent=nil, schedulingstrategy=nil, incrementaldeployment=nil, repotype=nil, volumeinfos=nil, volumemountinfos=nil, volumeinfolist=nil, volumemountinfolist=nil, volumeclean=nil, agentprofilelist=nil, warmupsetting=nil)
           @GroupId = groupid
@@ -7962,7 +7962,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
         # @type Limit: Integer
-        # @param SearchWord: 模糊匹配关键词
+        # @param SearchWord: 模糊匹配关键词，可搜索配置项ID或配置项名称
         # @type SearchWord: String
         # @param DisableProgramAuthCheck: 是否禁用数据集鉴权
         # @type DisableProgramAuthCheck: Boolean
@@ -8481,7 +8481,7 @@ module TencentCloud
       class DescribeContainerEventsRequest < TencentCloud::Common::AbstractModel
         # @param ResourceType: event 的资源类型, 仅支持 group
         # @type ResourceType: String
-        # @param ResourceId: 部署组ID，按照【部署组ID】进行过滤，可通过调用DescribeGroups查询已创建的项目列表或登录控制台进行查看；也可以调用CreateGroup创建新的项目。部署组ID例如：group-9yn2q8yd
+        # @param ResourceId: 部署组ID，按照【部署组ID】进行过滤，可通过调用[DescribeGroups](https://cloud.tencent.com/document/product/649/36065)查询已创建的项目列表或登录控制台进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的项目。
         # @type ResourceId: String
         # @param Offset: 偏移量，取值从0开始
         # @type Offset: Integer
@@ -8856,11 +8856,11 @@ module TencentCloud
 
       # DescribeDeliveryConfigs请求参数结构体
       class DescribeDeliveryConfigsRequest < TencentCloud::Common::AbstractModel
-        # @param SearchWord: 关键字
+        # @param SearchWord: 搜索关键字，可搜索日志投递配置项ID或日志投递配置项名称
         # @type SearchWord: String
-        # @param Offset: 偏移
+        # @param Offset: 偏移量，取值范围大于等于0，默认值为0
         # @type Offset: Integer
-        # @param Limit: 搜索条数
+        # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
         # @type Limit: Integer
         # @param ProgramIdList: 数据集ID列表
         # 可通过调用[DescribePrograms](https://cloud.tencent.com/document/product/649/73477)查询已创建的数据集列表或登录[控制台](https://console.cloud.tencent.com/tsf/privilege?rid=1&tab=program&roleId=role-a22gwdwa)进行查看
@@ -10044,7 +10044,12 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，name表示过滤字段，value表示过滤字段值。
+        # @param Filters: 过滤条件。多个 filter 之间是与关系，单个 filter 多个 value 之间是或关系。
+        # 参考：[{"Name":"ip","Values":["172.16.16.139"]}]
+        # filter name 取值范围：
+        # - `id`：实例ID
+        # - ` name `：实例名
+        # - ` ip `：内网IP（可填wan_ip或lan_ip）
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
@@ -10183,9 +10188,9 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，格式yyyy-MM-dd HH:mm:ss
         # @type EndTime: String
-        # @param Offset: 开始index
+        # @param Offset: 开始index，取值范围大于等于0，默认值为0
         # @type Offset: Integer
-        # @param Limit: 分页大小
+        # @param Limit: 单页请求配置数量，取值范围[1, 50]，默认值为10
         # @type Limit: Integer
         # @param DimensionName: 聚合维度。可选值 NamespaceId：命名空间ID，GroupId：部署组ID，InstanceId：实例ID，ApplicationId：应用ID，OperationMethod：执行方法，OperationName：执行名称，ServiceName：服务名，UpstreamNamespaceId：上游命名空间ID
         # @type DimensionName: String
@@ -14847,8 +14852,8 @@ module TencentCloud
 
         attr_accessor :Reponame, :Repotype, :TagCount, :IsPublic, :IsUserFavor, :IsQcloudOfficial, :FavorCount, :PullCount, :Description, :CreationTime, :UpdateTime, :TcrRepoInfo, :TcrBindingId, :ApplicationId, :ApplicationName, :ApplicationNameReal, :Public, :CreateMode, :RepoName, :RepoType
         extend Gem::Deprecate
-        deprecate :ApplicationName, :none, 2025, 8
-        deprecate :ApplicationName=, :none, 2025, 8
+        deprecate :ApplicationName, :none, 2025, 9
+        deprecate :ApplicationName=, :none, 2025, 9
 
         def initialize(reponame=nil, repotype=nil, tagcount=nil, ispublic=nil, isuserfavor=nil, isqcloudofficial=nil, favorcount=nil, pullcount=nil, description=nil, creationtime=nil, updatetime=nil, tcrrepoinfo=nil, tcrbindingid=nil, applicationid=nil, applicationname=nil, applicationnamereal=nil, public=nil, createmode=nil, reponame=nil, repotype=nil)
           @Reponame = reponame
@@ -20501,8 +20506,8 @@ module TencentCloud
 
         attr_accessor :ThreadCount, :ThreadActive, :DeamonThreadCount, :DaemonThreadCount
         extend Gem::Deprecate
-        deprecate :DeamonThreadCount, :none, 2025, 8
-        deprecate :DeamonThreadCount=, :none, 2025, 8
+        deprecate :DeamonThreadCount, :none, 2025, 9
+        deprecate :DeamonThreadCount=, :none, 2025, 9
 
         def initialize(threadcount=nil, threadactive=nil, deamonthreadcount=nil, daemonthreadcount=nil)
           @ThreadCount = threadcount

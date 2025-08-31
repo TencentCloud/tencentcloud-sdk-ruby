@@ -777,12 +777,14 @@ module TencentCloud
         # @type Electronic: Boolean
         # @param BusinessCertificate: 非营业执照的营业类证件识别结果，将以结构化形式呈现。
         # @type BusinessCertificate: Array
+        # @param Important: 重要提示字段
+        # @type Important: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :Electronic, :BusinessCertificate, :RequestId
+        attr_accessor :RegNum, :Name, :Capital, :Person, :Address, :Business, :Type, :Period, :ComposingForm, :SetDate, :RecognizeWarnCode, :RecognizeWarnMsg, :IsDuplication, :RegistrationDate, :Angle, :NationalEmblem, :QRCode, :Seal, :Title, :SerialNumber, :RegistrationAuthority, :Electronic, :BusinessCertificate, :Important, :RequestId
 
-        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, electronic=nil, businesscertificate=nil, requestid=nil)
+        def initialize(regnum=nil, name=nil, capital=nil, person=nil, address=nil, business=nil, type=nil, period=nil, composingform=nil, setdate=nil, recognizewarncode=nil, recognizewarnmsg=nil, isduplication=nil, registrationdate=nil, angle=nil, nationalemblem=nil, qrcode=nil, seal=nil, title=nil, serialnumber=nil, registrationauthority=nil, electronic=nil, businesscertificate=nil, important=nil, requestid=nil)
           @RegNum = regnum
           @Name = name
           @Capital = capital
@@ -806,6 +808,7 @@ module TencentCloud
           @RegistrationAuthority = registrationauthority
           @Electronic = electronic
           @BusinessCertificate = businesscertificate
+          @Important = important
           @RequestId = requestid
         end
 
@@ -840,6 +843,7 @@ module TencentCloud
               @BusinessCertificate << businesscertificateinfo_tmp
             end
           end
+          @Important = params['Important']
           @RequestId = params['RequestId']
         end
       end
@@ -3861,8 +3865,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 8
-        deprecate :Angel=, :none, 2025, 8
+        deprecate :Angel, :none, 2025, 9
+        deprecate :Angel=, :none, 2025, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -3968,8 +3972,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 8
-        deprecate :Angel=, :none, 2025, 8
+        deprecate :Angel, :none, 2025, 9
+        deprecate :Angel=, :none, 2025, 9
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4065,8 +4069,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 8
-        deprecate :Angel=, :none, 2025, 8
+        deprecate :Angel, :none, 2025, 9
+        deprecate :Angel=, :none, 2025, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4212,8 +4216,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 8
-        deprecate :Angel=, :none, 2025, 8
+        deprecate :Angel, :none, 2025, 9
+        deprecate :Angel=, :none, 2025, 9
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4447,8 +4451,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2025, 8
-        deprecate :DetectFake=, :none, 2025, 8
+        deprecate :DetectFake, :none, 2025, 9
+        deprecate :DetectFake=, :none, 2025, 9
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4520,10 +4524,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2025, 8
-        deprecate :FakeDetectResult=, :none, 2025, 8
-        deprecate :WarningCode, :none, 2025, 8
-        deprecate :WarningCode=, :none, 2025, 8
+        deprecate :FakeDetectResult, :none, 2025, 9
+        deprecate :FakeDetectResult=, :none, 2025, 9
+        deprecate :WarningCode, :none, 2025, 9
+        deprecate :WarningCode=, :none, 2025, 9
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -4990,8 +4994,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2025, 8
-        deprecate :EnableDateVerify=, :none, 2025, 8
+        deprecate :EnableDateVerify, :none, 2025, 9
+        deprecate :EnableDateVerify=, :none, 2025, 9
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5941,10 +5945,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 8
-        deprecate :Warn=, :none, 2025, 8
-        deprecate :AdvancedInfo, :none, 2025, 8
-        deprecate :AdvancedInfo=, :none, 2025, 8
+        deprecate :Warn, :none, 2025, 9
+        deprecate :Warn=, :none, 2025, 9
+        deprecate :AdvancedInfo, :none, 2025, 9
+        deprecate :AdvancedInfo=, :none, 2025, 9
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -6053,10 +6057,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 8
-        deprecate :Warn=, :none, 2025, 8
-        deprecate :AdvancedInfo, :none, 2025, 8
-        deprecate :AdvancedInfo=, :none, 2025, 8
+        deprecate :Warn, :none, 2025, 9
+        deprecate :Warn=, :none, 2025, 9
+        deprecate :AdvancedInfo, :none, 2025, 9
+        deprecate :AdvancedInfo=, :none, 2025, 9
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -8177,16 +8181,19 @@ module TencentCloud
         # @type EnableImageCrop: Boolean
         # @param EnableOnlyDetectBorder: 是否只返回检测框，默认false
         # @type EnableOnlyDetectBorder: Boolean
+        # @param UseNewModel: false: 使用当前默认模型  true: 使用新的多模态推理模型，速度更快推理效果更强，仅 `EnableOnlyDetectBorder` 为 `true` 时生效，公测中
+        # @type UseNewModel: Boolean
 
-        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop, :EnableOnlyDetectBorder
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop, :EnableOnlyDetectBorder, :UseNewModel
 
-        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil, enableonlydetectborder=nil)
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil, enableonlydetectborder=nil, usenewmodel=nil)
           @ImageUrl = imageurl
           @ImageBase64 = imagebase64
           @IsPdf = ispdf
           @PdfPageNumber = pdfpagenumber
           @EnableImageCrop = enableimagecrop
           @EnableOnlyDetectBorder = enableonlydetectborder
+          @UseNewModel = usenewmodel
         end
 
         def deserialize(params)
@@ -8196,6 +8203,7 @@ module TencentCloud
           @PdfPageNumber = params['PdfPageNumber']
           @EnableImageCrop = params['EnableImageCrop']
           @EnableOnlyDetectBorder = params['EnableOnlyDetectBorder']
+          @UseNewModel = params['UseNewModel']
         end
       end
 
@@ -9738,8 +9746,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2025, 8
-        deprecate :AdvancedInfo=, :none, 2025, 8
+        deprecate :AdvancedInfo, :none, 2025, 9
+        deprecate :AdvancedInfo=, :none, 2025, 9
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id

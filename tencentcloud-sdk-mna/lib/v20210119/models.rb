@@ -2421,7 +2421,7 @@ module TencentCloud
 
       # 返回上报的订单信息
       class OrderInfo < TencentCloud::Common::AbstractModel
-        # @param Uin: 父帐号uin
+        # @param Uin: 父账号uin
         # @type Uin: String
         # @param ProjectId: 项目id
         # @type ProjectId: String
