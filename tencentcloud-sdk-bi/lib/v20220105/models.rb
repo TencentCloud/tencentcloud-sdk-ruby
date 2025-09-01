@@ -718,6 +718,100 @@ module TencentCloud
         end
       end
 
+      # CreatePermissionRanks请求参数结构体
+      class CreatePermissionRanksRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 页数
+        # @type TableId: Integer
+        # @param Mode: 条数
+        # @type Mode: String
+        # @param RoleType: 角色类型
+        # @type RoleType: String
+        # @param RoleId: 所有页码
+        # @type RoleId: Integer
+        # @param RulerInfo: 规则信息
+        # @type RulerInfo: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param OpenStatus: 状态
+        # @type OpenStatus: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
+        # @param RowColumnConfigList: 行列权限配置
+        # @type RowColumnConfigList: Array
+
+        attr_accessor :TableId, :Mode, :RoleType, :RoleId, :RulerInfo, :Type, :OpenStatus, :ProjectId, :RowColumnConfigList
+
+        def initialize(tableid=nil, mode=nil, roletype=nil, roleid=nil, rulerinfo=nil, type=nil, openstatus=nil, projectid=nil, rowcolumnconfiglist=nil)
+          @TableId = tableid
+          @Mode = mode
+          @RoleType = roletype
+          @RoleId = roleid
+          @RulerInfo = rulerinfo
+          @Type = type
+          @OpenStatus = openstatus
+          @ProjectId = projectid
+          @RowColumnConfigList = rowcolumnconfiglist
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @Mode = params['Mode']
+          @RoleType = params['RoleType']
+          @RoleId = params['RoleId']
+          @RulerInfo = params['RulerInfo']
+          @Type = params['Type']
+          @OpenStatus = params['OpenStatus']
+          @ProjectId = params['ProjectId']
+          unless params['RowColumnConfigList'].nil?
+            @RowColumnConfigList = []
+            params['RowColumnConfigList'].each do |i|
+              rowcolumnconfig_tmp = RowColumnConfig.new
+              rowcolumnconfig_tmp.deserialize(i)
+              @RowColumnConfigList << rowcolumnconfig_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePermissionRanks返回参数结构体
+      class CreatePermissionRanksResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Extra: 112
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Msg, :Extra, :Data, :RequestId
+
+        def initialize(errorinfo=nil, msg=nil, extra=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Msg = msg
+          @Extra = extra
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Msg = params['Msg']
+          @Extra = params['Extra']
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProject请求参数结构体
       class CreateProjectRequest < TencentCloud::Common::AbstractModel
         # @param Name: 项目名称
@@ -810,8 +904,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 8
-        deprecate :UserList=, :none, 2025, 8
+        deprecate :UserList, :none, 2025, 9
+        deprecate :UserList=, :none, 2025, 9
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -897,8 +991,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 8
-        deprecate :UserList=, :none, 2025, 8
+        deprecate :UserList, :none, 2025, 9
+        deprecate :UserList=, :none, 2025, 9
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
@@ -1631,6 +1725,224 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePermissionRanksInfo请求参数结构体
+      class DescribePermissionRanksInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 页数
+        # @type TableId: Integer
+        # @param Mode: 条数
+        # @type Mode: String
+        # @param RoleType: 角色类型
+        # @type RoleType: String
+        # @param RoleId: 所有页码
+        # @type RoleId: Integer
+        # @param Type: 类型
+        # @type Type: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
+
+        attr_accessor :TableId, :Mode, :RoleType, :RoleId, :Type, :ProjectId
+
+        def initialize(tableid=nil, mode=nil, roletype=nil, roleid=nil, type=nil, projectid=nil)
+          @TableId = tableid
+          @Mode = mode
+          @RoleType = roletype
+          @RoleId = roleid
+          @Type = type
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @Mode = params['Mode']
+          @RoleType = params['RoleType']
+          @RoleId = params['RoleId']
+          @Type = params['Type']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribePermissionRanksInfo返回参数结构体
+      class DescribePermissionRanksInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Extra: 112
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.RankInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Msg, :Extra, :Data, :RequestId
+
+        def initialize(errorinfo=nil, msg=nil, extra=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Msg = msg
+          @Extra = extra
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Msg = params['Msg']
+          @Extra = params['Extra']
+          unless params['Data'].nil?
+            @Data = RankInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePermissionRoleInfo请求参数结构体
+      class DescribePermissionRoleInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: Integer
+        # @param PageNo: 页数
+        # @type PageNo: Integer
+        # @param PageSize: 条数
+        # @type PageSize: Integer
+        # @param AllPage: 所有页码
+        # @type AllPage: Boolean
+
+        attr_accessor :ProjectId, :PageNo, :PageSize, :AllPage
+
+        def initialize(projectid=nil, pageno=nil, pagesize=nil, allpage=nil)
+          @ProjectId = projectid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @AllPage = allpage
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @AllPage = params['AllPage']
+        end
+      end
+
+      # DescribePermissionRoleInfo返回参数结构体
+      class DescribePermissionRoleInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Data: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Extra: 112
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Data, :Msg, :Extra, :RequestId
+
+        def initialize(errorinfo=nil, data=nil, msg=nil, extra=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Data = data
+          @Msg = msg
+          @Extra = extra
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @Data << role_tmp
+            end
+          end
+          @Msg = params['Msg']
+          @Extra = params['Extra']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePermissionStatusInfo请求参数结构体
+      class DescribePermissionStatusInfoRequest < TencentCloud::Common::AbstractModel
+        # @param TableId: 页数
+        # @type TableId: Integer
+        # @param Type: 类型
+        # @type Type: String
+        # @param ProjectId: 1
+        # @type ProjectId: String
+
+        attr_accessor :TableId, :Type, :ProjectId
+
+        def initialize(tableid=nil, type=nil, projectid=nil)
+          @TableId = tableid
+          @Type = type
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @Type = params['Type']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribePermissionStatusInfo返回参数结构体
+      class DescribePermissionStatusInfoResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorInfo: 自定义错误信息对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorInfo: :class:`Tencentcloud::Bi.v20220105.models.ErrorInfo`
+        # @param Msg: 消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Extra: 112
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Extra: String
+        # @param Data: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Bi.v20220105.models.RowColumnStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorInfo, :Msg, :Extra, :Data, :RequestId
+
+        def initialize(errorinfo=nil, msg=nil, extra=nil, data=nil, requestid=nil)
+          @ErrorInfo = errorinfo
+          @Msg = msg
+          @Extra = extra
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @Msg = params['Msg']
+          @Extra = params['Extra']
+          unless params['Data'].nil?
+            @Data = RowColumnStatus.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3227,6 +3539,229 @@ module TencentCloud
           end
           @Total = params['Total']
           @TotalPages = params['TotalPages']
+        end
+      end
+
+      # 行列权限内容
+      class RankInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Mode: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param RulerInfo: `
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulerInfo: String
+        # @param RoleId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: Integer
+        # @param RoleType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleType: String
+        # @param TableId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: Integer
+        # @param RowColumnConfigList: 行列权限配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RowColumnConfigList: Array
+
+        attr_accessor :Type, :Mode, :RulerInfo, :RoleId, :RoleType, :TableId, :RowColumnConfigList
+
+        def initialize(type=nil, mode=nil, rulerinfo=nil, roleid=nil, roletype=nil, tableid=nil, rowcolumnconfiglist=nil)
+          @Type = type
+          @Mode = mode
+          @RulerInfo = rulerinfo
+          @RoleId = roleid
+          @RoleType = roletype
+          @TableId = tableid
+          @RowColumnConfigList = rowcolumnconfiglist
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Mode = params['Mode']
+          @RulerInfo = params['RulerInfo']
+          @RoleId = params['RoleId']
+          @RoleType = params['RoleType']
+          @TableId = params['TableId']
+          unless params['RowColumnConfigList'].nil?
+            @RowColumnConfigList = []
+            params['RowColumnConfigList'].each do |i|
+              rowcolumnconfig_tmp = RowColumnConfig.new
+              rowcolumnconfig_tmp.deserialize(i)
+              @RowColumnConfigList << rowcolumnconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 角色
+      class Role < TencentCloud::Common::AbstractModel
+        # @param Id: 角色ID
+        # @type Id: Integer
+        # @param RoleName: 角色名称
+        # @type RoleName: String
+        # @param CorpId: 企业ID
+        # @type CorpId: String
+        # @param RoleType: 角色类型
+        # @type RoleType: String
+        # @param Scope: 范围
+        # @type Scope: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param CreatedAt: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param CreatedUser: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedUser: String
+        # @param UpdatedAt: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param UpdatedUser: 更新人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedUser: String
+        # @param ScopeType: 是否为全局角色（0 不是， 1 是）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScopeType: Integer
+        # @param CanChoose: 是否可被选
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanChoose: Boolean
+        # @param ModuleCollection: 角色key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModuleCollection: String
+
+        attr_accessor :Id, :RoleName, :CorpId, :RoleType, :Scope, :Description, :CreatedAt, :CreatedUser, :UpdatedAt, :UpdatedUser, :ScopeType, :CanChoose, :ModuleCollection
+
+        def initialize(id=nil, rolename=nil, corpid=nil, roletype=nil, scope=nil, description=nil, createdat=nil, createduser=nil, updatedat=nil, updateduser=nil, scopetype=nil, canchoose=nil, modulecollection=nil)
+          @Id = id
+          @RoleName = rolename
+          @CorpId = corpid
+          @RoleType = roletype
+          @Scope = scope
+          @Description = description
+          @CreatedAt = createdat
+          @CreatedUser = createduser
+          @UpdatedAt = updatedat
+          @UpdatedUser = updateduser
+          @ScopeType = scopetype
+          @CanChoose = canchoose
+          @ModuleCollection = modulecollection
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RoleName = params['RoleName']
+          @CorpId = params['CorpId']
+          @RoleType = params['RoleType']
+          @Scope = params['Scope']
+          @Description = params['Description']
+          @CreatedAt = params['CreatedAt']
+          @CreatedUser = params['CreatedUser']
+          @UpdatedAt = params['UpdatedAt']
+          @UpdatedUser = params['UpdatedUser']
+          @ScopeType = params['ScopeType']
+          @CanChoose = params['CanChoose']
+          @ModuleCollection = params['ModuleCollection']
+        end
+      end
+
+      # 行列权限配置
+      class RowColumnConfig < TencentCloud::Common::AbstractModel
+        # @param RulerInfo: 行列权限规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulerInfo: String
+        # @param TagValueList: 标签值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValueList: Array
+
+        attr_accessor :RulerInfo, :TagValueList
+
+        def initialize(rulerinfo=nil, tagvaluelist=nil)
+          @RulerInfo = rulerinfo
+          @TagValueList = tagvaluelist
+        end
+
+        def deserialize(params)
+          @RulerInfo = params['RulerInfo']
+          unless params['TagValueList'].nil?
+            @TagValueList = []
+            params['TagValueList'].each do |i|
+              rowcolumntagvalue_tmp = RowColumnTagValue.new
+              rowcolumntagvalue_tmp.deserialize(i)
+              @TagValueList << rowcolumntagvalue_tmp
+            end
+          end
+        end
+      end
+
+      # 行列权限初始状态
+      class RowColumnStatus < TencentCloud::Common::AbstractModel
+        # @param TableId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: Integer
+        # @param Type: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Mode: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param OpenStatus: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenStatus: String
+        # @param RoleType: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleType: String
+        # @param RoleId: 1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: Integer
+
+        attr_accessor :TableId, :Type, :Mode, :OpenStatus, :RoleType, :RoleId
+
+        def initialize(tableid=nil, type=nil, mode=nil, openstatus=nil, roletype=nil, roleid=nil)
+          @TableId = tableid
+          @Type = type
+          @Mode = mode
+          @OpenStatus = openstatus
+          @RoleType = roletype
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @TableId = params['TableId']
+          @Type = params['Type']
+          @Mode = params['Mode']
+          @OpenStatus = params['OpenStatus']
+          @RoleType = params['RoleType']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # 行列权限标签出入参
+      class RowColumnTagValue < TencentCloud::Common::AbstractModel
+        # @param Id: 标签id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Values: 标签值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Id, :Name, :Values
+
+        def initialize(id=nil, name=nil, values=nil)
+          @Id = id
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Values = params['Values']
         end
       end
 

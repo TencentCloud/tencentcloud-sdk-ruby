@@ -11408,7 +11408,7 @@ module TencentCloud
         # @type Module: String
         # @param PolicyId: 告警策略 ID
         # @type PolicyId: String
-        # @param TriggerTasks: 告警策略触发任务列表，空数据代表解绑
+        # @param TriggerTasks: 告警策略触发任务列表，空数据代表解绑示例值： { "Type": "AS", "TaskConfig": "{\"Region\":\"ap-guangzhou\",\"Group\":\"asg-0zhspjx\",\"Policy\":\"asp-ganig28\"}" }
         # @type TriggerTasks: Array
 
         attr_accessor :Module, :PolicyId, :TriggerTasks
@@ -11557,14 +11557,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2025, 8
-        deprecate :AlarmNotifyPeriod=, :none, 2025, 8
-        deprecate :AlarmNotifyType, :none, 2025, 8
-        deprecate :AlarmNotifyType=, :none, 2025, 8
-        deprecate :EventID, :none, 2025, 8
-        deprecate :EventID=, :none, 2025, 8
-        deprecate :RuleID, :none, 2025, 8
-        deprecate :RuleID=, :none, 2025, 8
+        deprecate :AlarmNotifyPeriod, :none, 2025, 9
+        deprecate :AlarmNotifyPeriod=, :none, 2025, 9
+        deprecate :AlarmNotifyType, :none, 2025, 9
+        deprecate :AlarmNotifyType=, :none, 2025, 9
+        deprecate :EventID, :none, 2025, 9
+        deprecate :EventID=, :none, 2025, 9
+        deprecate :RuleID, :none, 2025, 9
+        deprecate :RuleID=, :none, 2025, 9
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -14307,10 +14307,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 8
-        deprecate :MaxBlockSize=, :none, 2025, 8
-        deprecate :Label, :none, 2025, 8
-        deprecate :Label=, :none, 2025, 8
+        deprecate :MaxBlockSize, :none, 2025, 9
+        deprecate :MaxBlockSize=, :none, 2025, 9
+        deprecate :Label, :none, 2025, 9
+        deprecate :Label=, :none, 2025, 9
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

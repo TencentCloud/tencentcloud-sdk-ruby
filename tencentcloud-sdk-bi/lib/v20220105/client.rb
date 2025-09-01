@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建行列权限
+
+        # @param request: Request instance for CreatePermissionRanks.
+        # @type request: :class:`Tencentcloud::bi::V20220105::CreatePermissionRanksRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::CreatePermissionRanksResponse`
+        def CreatePermissionRanks(request)
+          body = send_request('CreatePermissionRanks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePermissionRanksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建项目
 
         # @param request: Request instance for CreateProject.
@@ -351,6 +375,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePageWidgetListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据角色或标签查询行列权限配置
+
+        # @param request: Request instance for DescribePermissionRanksInfo.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribePermissionRanksInfoRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribePermissionRanksInfoResponse`
+        def DescribePermissionRanksInfo(request)
+          body = send_request('DescribePermissionRanksInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePermissionRanksInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 行列权限项目内角色列表接口1
+
+        # @param request: Request instance for DescribePermissionRoleInfo.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribePermissionRoleInfoRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribePermissionRoleInfoResponse`
+        def DescribePermissionRoleInfo(request)
+          body = send_request('DescribePermissionRoleInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePermissionRoleInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询行列权限初始状态1
+
+        # @param request: Request instance for DescribePermissionStatusInfo.
+        # @type request: :class:`Tencentcloud::bi::V20220105::DescribePermissionStatusInfoRequest`
+        # @rtype: :class:`Tencentcloud::bi::V20220105::DescribePermissionStatusInfoResponse`
+        def DescribePermissionStatusInfo(request)
+          body = send_request('DescribePermissionStatusInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePermissionStatusInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

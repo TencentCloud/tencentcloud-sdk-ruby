@@ -2092,8 +2092,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 8
-        deprecate :Enable=, :none, 2025, 8
+        deprecate :Enable, :none, 2025, 9
+        deprecate :Enable=, :none, 2025, 9
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2432,8 +2432,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 8
-        deprecate :LogFormat=, :none, 2025, 8
+        deprecate :LogFormat, :none, 2025, 9
+        deprecate :LogFormat=, :none, 2025, 9
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -4167,15 +4167,12 @@ module TencentCloud
         # @param Status: 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
         # @type Status: Integer
         # @param CreateTime: 加工任务创建时间
-        # 示例值：2025-03-18 19:55:54
         # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间
-        # 示例值：2025-04-18 16:55:54
         # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type UpdateTime: String
         # @param LastEnableTime: 最后启用时间，如果需要重建集群，修改该时间
-        # 示例值：2025-05-18 19:55:54
         # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type LastEnableTime: String
         # @param SrcTopicName: 日志主题名称
@@ -9108,8 +9105,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 8
-        deprecate :Enable=, :none, 2025, 8
+        deprecate :Enable, :none, 2025, 9
+        deprecate :Enable=, :none, 2025, 9
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -9407,8 +9404,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 8
-        deprecate :LogFormat=, :none, 2025, 8
+        deprecate :LogFormat, :none, 2025, 9
+        deprecate :LogFormat=, :none, 2025, 9
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -11208,7 +11205,8 @@ module TencentCloud
         # @type LogContent: String
         # @param LineNum: 行号。从0开始
         # @type LineNum: Integer
-        # @param DstTopicId: 目标日志主题
+        # @param DstTopicId: 目标日志主题ID
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type DstTopicId: String
         # @param FailReason: 失败错误信息， 空字符串""表示正常
         # @type FailReason: String
@@ -11223,8 +11221,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 8
-        deprecate :DstTopicName=, :none, 2025, 8
+        deprecate :DstTopicName, :none, 2025, 9
+        deprecate :DstTopicName=, :none, 2025, 9
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -12518,8 +12516,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 8
-        deprecate :HashKey=, :none, 2025, 8
+        deprecate :HashKey, :none, 2025, 9
+        deprecate :HashKey=, :none, 2025, 9
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -12627,10 +12625,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 8
-        deprecate :Headers=, :none, 2025, 8
-        deprecate :Body, :none, 2025, 8
-        deprecate :Body=, :none, 2025, 8
+        deprecate :Headers, :none, 2025, 9
+        deprecate :Headers=, :none, 2025, 9
+        deprecate :Body, :none, 2025, 9
+        deprecate :Body=, :none, 2025, 9
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype
