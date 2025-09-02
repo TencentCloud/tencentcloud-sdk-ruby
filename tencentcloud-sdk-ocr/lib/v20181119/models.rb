@@ -3113,6 +3113,11 @@ module TencentCloud
         # MultiRealEstateCertificate -- 房产材料识别模板
         # MultiRealEstateMaterial -- 房产证明识别模板
         # HongKongUtilityBill -- 中国香港水电煤单识别模板
+        # OverseasCheques -- 海外支票
+        # RegistrationCertificate -- 备案证
+        # ​GridPhoto -- 电网系统照片
+        # ​SignaturePage -- 签署页
+
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别
         # @type EnableCoord: Boolean
@@ -13324,12 +13329,16 @@ module TencentCloud
         # @param Coord: 四点坐标
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Coord: :class:`Tencentcloud::Ocr.v20181119.models.Polygon`
+        # @param PageIndex: 页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageIndex: String
 
-        attr_accessor :AutoContent, :Coord
+        attr_accessor :AutoContent, :Coord, :PageIndex
 
-        def initialize(autocontent=nil, coord=nil)
+        def initialize(autocontent=nil, coord=nil, pageindex=nil)
           @AutoContent = autocontent
           @Coord = coord
+          @PageIndex = pageindex
         end
 
         def deserialize(params)
@@ -13338,6 +13347,7 @@ module TencentCloud
             @Coord = Polygon.new
             @Coord.deserialize(params['Coord'])
           end
+          @PageIndex = params['PageIndex']
         end
       end
 
