@@ -1873,8 +1873,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 8
-        deprecate :DefaultDataEngine=, :none, 2025, 8
+        deprecate :DefaultDataEngine, :none, 2025, 9
+        deprecate :DefaultDataEngine=, :none, 2025, 9
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -3407,6 +3407,90 @@ module TencentCloud
         def deserialize(params)
           @BatchId = params['BatchId']
           @TaskIdSet = params['TaskIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTcIcebergTable请求参数结构体
+      class CreateTcIcebergTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableBaseInfo: 表基本信息
+        # @type TableBaseInfo: :class:`Tencentcloud::Dlc.v20210125.models.TableBaseInfo`
+        # @param Columns: 表字段信息
+        # @type Columns: Array
+        # @param DryRun: 为true时只获取sql而不执行
+        # @type DryRun: Boolean
+        # @param Partitions: 表分区信息
+        # @type Partitions: Array
+        # @param Properties: 表属性信息
+        # @type Properties: Array
+
+        attr_accessor :TableBaseInfo, :Columns, :DryRun, :Partitions, :Properties
+
+        def initialize(tablebaseinfo=nil, columns=nil, dryrun=nil, partitions=nil, properties=nil)
+          @TableBaseInfo = tablebaseinfo
+          @Columns = columns
+          @DryRun = dryrun
+          @Partitions = partitions
+          @Properties = properties
+        end
+
+        def deserialize(params)
+          unless params['TableBaseInfo'].nil?
+            @TableBaseInfo = TableBaseInfo.new
+            @TableBaseInfo.deserialize(params['TableBaseInfo'])
+          end
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              tcolumn_tmp = TColumn.new
+              tcolumn_tmp.deserialize(i)
+              @Columns << tcolumn_tmp
+            end
+          end
+          @DryRun = params['DryRun']
+          unless params['Partitions'].nil?
+            @Partitions = []
+            params['Partitions'].each do |i|
+              tpartition_tmp = TPartition.new
+              tpartition_tmp.deserialize(i)
+              @Partitions << tpartition_tmp
+            end
+          end
+          unless params['Properties'].nil?
+            @Properties = []
+            params['Properties'].each do |i|
+              property_tmp = Property.new
+              property_tmp.deserialize(i)
+              @Properties << property_tmp
+            end
+          end
+        end
+      end
+
+      # CreateTcIcebergTable返回参数结构体
+      class CreateTcIcebergTableResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: amoro的SessionId
+        # @type SessionId: String
+        # @param SQL: 执行的sql
+        # @type SQL: String
+        # @param DryRun: 为true时只返回sql而不实际执行
+        # @type DryRun: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SessionId, :SQL, :DryRun, :RequestId
+
+        def initialize(sessionid=nil, sql=nil, dryrun=nil, requestid=nil)
+          @SessionId = sessionid
+          @SQL = sql
+          @DryRun = dryrun
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @SQL = params['SQL']
+          @DryRun = params['DryRun']
           @RequestId = params['RequestId']
         end
       end
@@ -14808,10 +14892,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 8
-        deprecate :GovernPolicy=, :none, 2025, 8
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 8
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 8
+        deprecate :GovernPolicy, :none, 2025, 9
+        deprecate :GovernPolicy=, :none, 2025, 9
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 9
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 9
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

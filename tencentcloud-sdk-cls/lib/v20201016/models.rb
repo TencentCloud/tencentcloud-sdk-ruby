@@ -4137,6 +4137,7 @@ module TencentCloud
         # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
         # @param Alias: 别名
+        # 限制：不能包含字符 |。
         # @type Alias: String
 
         attr_accessor :TopicId, :Alias
