@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 8
-        deprecate :Idcard=, :none, 2025, 8
+        deprecate :Idcard, :none, 2025, 9
+        deprecate :Idcard=, :none, 2025, 9
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -3188,19 +3188,24 @@ module TencentCloud
         # @param AsrResultSimilarity: 本次流程用户语音与传入文本比对的相似度分值，取值范围 [0.00, 100.00]。只有配置了相似度阈值后才进行语音校验并返回相似度分值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrResultSimilarity: String
+        # @param IntentionVerifyAudio: 意愿确认环节中录制的音频（base64）。
+        # - 若不存在则为空字符串。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntentionVerifyAudio: String
 
-        attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity
+        attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 8
-        deprecate :AsrResultSimilarity=, :none, 2025, 8
+        deprecate :AsrResultSimilarity, :none, 2025, 9
+        deprecate :AsrResultSimilarity=, :none, 2025, 9
 
-        def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil)
+        def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo
           @AsrResult = asrresult
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @IntentionVerifyBestFrame = intentionverifybestframe
           @AsrResultSimilarity = asrresultsimilarity
+          @IntentionVerifyAudio = intentionverifyaudio
         end
 
         def deserialize(params)
@@ -3210,6 +3215,7 @@ module TencentCloud
           @ErrorMessage = params['ErrorMessage']
           @IntentionVerifyBestFrame = params['IntentionVerifyBestFrame']
           @AsrResultSimilarity = params['AsrResultSimilarity']
+          @IntentionVerifyAudio = params['IntentionVerifyAudio']
         end
       end
 

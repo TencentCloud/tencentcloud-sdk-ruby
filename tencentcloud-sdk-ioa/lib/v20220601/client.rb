@@ -173,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 聚合的软件详情
+
+        # @param request: Request instance for DescribeAggrSoftDetail.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftDetailRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftDetailResponse`
+        def DescribeAggrSoftDetail(request)
+          body = send_request('DescribeAggrSoftDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAggrSoftDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 聚合软件的已安装终端列表
+
+        # @param request: Request instance for DescribeAggrSoftDeviceList.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftDeviceListRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeAggrSoftDeviceListResponse`
+        def DescribeAggrSoftDeviceList(request)
+          body = send_request('DescribeAggrSoftDeviceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAggrSoftDeviceListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # webservice查询文件检测结果
 
         # @param request: Request instance for DescribeDLPFileDetectResult.
@@ -207,6 +255,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceChildGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 基于软件查看终端详情列表,私有化调用path为：capi/Software/DescribeDeviceDetailList
+
+        # @param request: Request instance for DescribeDeviceDetailList.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceDetailListRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::DescribeDeviceDetailListResponse`
+        def DescribeDeviceDetailList(request)
+          body = send_request('DescribeDeviceDetailList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDeviceDetailListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -423,6 +495,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVirtualDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出基于指定终端查看软件信息详情列表查询,私有化调用path为：capi/Software/ExportSoftwareInformationList
+
+        # @param request: Request instance for ExportSoftwareInformationList.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ExportSoftwareInformationListRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ExportSoftwareInformationListResponse`
+        def ExportSoftwareInformationList(request)
+          body = send_request('ExportSoftwareInformationList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportSoftwareInformationListResponse.new
             model.deserialize(response['Response'])
             model
           else

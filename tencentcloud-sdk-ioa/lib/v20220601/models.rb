@@ -88,6 +88,105 @@ module TencentCloud
         end
       end
 
+      # 聚合软件的已安装终端列表中的一行数据
+      class AggrSoftDeviceRow < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 终端名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceName: String
+        # @param LastLoginAccount: 最近登录账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastLoginAccount: String
+        # @param DeviceUserName: 终端用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceUserName: String
+        # @param Version: 软件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param PiracyRisk: 是否盗版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyRisk: Integer
+        # @param PiracyReason: 盗版原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyReason: String
+        # @param InstallTime: 安装时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstallTime: String
+        # @param UserPath: 用户目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserPath: String
+        # @param UserGroup: 所在分组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserGroup: String
+        # @param IP: IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IP: String
+        # @param MAC: MAC
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MAC: String
+        # @param UseTime: 使用时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UseTime: Integer
+        # @param DeviceId: 设备ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DeviceId: Integer
+        # @param FullSoftName: 软件全名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullSoftName: String
+        # @param Id: 数据ID（唯一）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param NewVersion: 该终端此款软件可升级到的目标版本号
+        # @type NewVersion: String
+        # @param UpgradeSoftId: 该软件对应运营配置的可升级id
+        # @type UpgradeSoftId: Integer
+        # @param RemarkName: 终端备注名
+        # @type RemarkName: String
+
+        attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName
+
+        def initialize(devicename=nil, lastloginaccount=nil, deviceusername=nil, version=nil, piracyrisk=nil, piracyreason=nil, installtime=nil, userpath=nil, usergroup=nil, ip=nil, mac=nil, usetime=nil, deviceid=nil, fullsoftname=nil, id=nil, newversion=nil, upgradesoftid=nil, remarkname=nil)
+          @DeviceName = devicename
+          @LastLoginAccount = lastloginaccount
+          @DeviceUserName = deviceusername
+          @Version = version
+          @PiracyRisk = piracyrisk
+          @PiracyReason = piracyreason
+          @InstallTime = installtime
+          @UserPath = userpath
+          @UserGroup = usergroup
+          @IP = ip
+          @MAC = mac
+          @UseTime = usetime
+          @DeviceId = deviceid
+          @FullSoftName = fullsoftname
+          @Id = id
+          @NewVersion = newversion
+          @UpgradeSoftId = upgradesoftid
+          @RemarkName = remarkname
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @LastLoginAccount = params['LastLoginAccount']
+          @DeviceUserName = params['DeviceUserName']
+          @Version = params['Version']
+          @PiracyRisk = params['PiracyRisk']
+          @PiracyReason = params['PiracyReason']
+          @InstallTime = params['InstallTime']
+          @UserPath = params['UserPath']
+          @UserGroup = params['UserGroup']
+          @IP = params['IP']
+          @MAC = params['MAC']
+          @UseTime = params['UseTime']
+          @DeviceId = params['DeviceId']
+          @FullSoftName = params['FullSoftName']
+          @Id = params['Id']
+          @NewVersion = params['NewVersion']
+          @UpgradeSoftId = params['UpgradeSoftId']
+          @RemarkName = params['RemarkName']
+        end
+      end
+
       # 自动划分规则数据
       class ComplexRule < TencentCloud::Common::AbstractModel
         # @param SimpleRules: 简单规则表达式
@@ -678,6 +777,223 @@ module TencentCloud
         end
       end
 
+      # 聚合软件详情数据
+      class DescribeAggrSoftDetailData < TencentCloud::Common::AbstractModel
+        # @param Name: 软件名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param OsType: 平台
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OsType: Integer
+        # @param PiracyRisk: 盗版风险
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyRisk: Integer
+        # @param Corp: 厂商
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Corp: String
+        # @param SoftVersionDist: 已安装版本分布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SoftVersionDist: Array
+        # @param PiracyVersionDist: 盗版版本安装
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyVersionDist: Array
+        # @param InstalledDeviceNum: 安装设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstalledDeviceNum: Integer
+        # @param PiracyInstalledDeviceNum: 盗版安装设备数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyInstalledDeviceNum: Integer
+        # @param InstalledUserNum: 安装用户数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstalledUserNum: Integer
+        # @param PiracyInstalledUserNum: 盗版安装用户数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PiracyInstalledUserNum: Integer
+        # @param AuthNum: 授权数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuthNum: Integer
+        # @param GenuineRate: 正版率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GenuineRate: Float
+        # @param UpgradableDeviceNum: 有新版本可升级的设备数量
+        # @type UpgradableDeviceNum: Integer
+        # @param UpgradableVersions: 当前可升级的最新版本信息, 每一项均为json字符串
+        # @type UpgradableVersions: Array
+
+        attr_accessor :Name, :OsType, :PiracyRisk, :Corp, :SoftVersionDist, :PiracyVersionDist, :InstalledDeviceNum, :PiracyInstalledDeviceNum, :InstalledUserNum, :PiracyInstalledUserNum, :AuthNum, :GenuineRate, :UpgradableDeviceNum, :UpgradableVersions
+
+        def initialize(name=nil, ostype=nil, piracyrisk=nil, corp=nil, softversiondist=nil, piracyversiondist=nil, installeddevicenum=nil, piracyinstalleddevicenum=nil, installedusernum=nil, piracyinstalledusernum=nil, authnum=nil, genuinerate=nil, upgradabledevicenum=nil, upgradableversions=nil)
+          @Name = name
+          @OsType = ostype
+          @PiracyRisk = piracyrisk
+          @Corp = corp
+          @SoftVersionDist = softversiondist
+          @PiracyVersionDist = piracyversiondist
+          @InstalledDeviceNum = installeddevicenum
+          @PiracyInstalledDeviceNum = piracyinstalleddevicenum
+          @InstalledUserNum = installedusernum
+          @PiracyInstalledUserNum = piracyinstalledusernum
+          @AuthNum = authnum
+          @GenuineRate = genuinerate
+          @UpgradableDeviceNum = upgradabledevicenum
+          @UpgradableVersions = upgradableversions
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @OsType = params['OsType']
+          @PiracyRisk = params['PiracyRisk']
+          @Corp = params['Corp']
+          unless params['SoftVersionDist'].nil?
+            @SoftVersionDist = []
+            params['SoftVersionDist'].each do |i|
+              softversionandnum_tmp = SoftVersionAndNum.new
+              softversionandnum_tmp.deserialize(i)
+              @SoftVersionDist << softversionandnum_tmp
+            end
+          end
+          unless params['PiracyVersionDist'].nil?
+            @PiracyVersionDist = []
+            params['PiracyVersionDist'].each do |i|
+              softversionandnum_tmp = SoftVersionAndNum.new
+              softversionandnum_tmp.deserialize(i)
+              @PiracyVersionDist << softversionandnum_tmp
+            end
+          end
+          @InstalledDeviceNum = params['InstalledDeviceNum']
+          @PiracyInstalledDeviceNum = params['PiracyInstalledDeviceNum']
+          @InstalledUserNum = params['InstalledUserNum']
+          @PiracyInstalledUserNum = params['PiracyInstalledUserNum']
+          @AuthNum = params['AuthNum']
+          @GenuineRate = params['GenuineRate']
+          @UpgradableDeviceNum = params['UpgradableDeviceNum']
+          @UpgradableVersions = params['UpgradableVersions']
+        end
+      end
+
+      # DescribeAggrSoftDetail请求参数结构体
+      class DescribeAggrSoftDetailRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 软件名称
+        # @type Name: String
+        # @param OsType: 操作系统
+        # @type OsType: Integer
+
+        attr_accessor :Name, :OsType
+
+        def initialize(name=nil, ostype=nil)
+          @Name = name
+          @OsType = ostype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @OsType = params['OsType']
+        end
+      end
+
+      # DescribeAggrSoftDetail返回参数结构体
+      class DescribeAggrSoftDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAggrSoftDetailData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAggrSoftDetailData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 聚合软件-已安装终端列表
+      class DescribeAggrSoftDeviceListData < TencentCloud::Common::AbstractModel
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param AggrSoftDeviceList: 详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AggrSoftDeviceList: Array
+
+        attr_accessor :Page, :Total, :AggrSoftDeviceList
+
+        def initialize(page=nil, total=nil, aggrsoftdevicelist=nil)
+          @Page = page
+          @Total = total
+          @AggrSoftDeviceList = aggrsoftdevicelist
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          @Total = params['Total']
+          unless params['AggrSoftDeviceList'].nil?
+            @AggrSoftDeviceList = []
+            params['AggrSoftDeviceList'].each do |i|
+              aggrsoftdevicerow_tmp = AggrSoftDeviceRow.new
+              aggrsoftdevicerow_tmp.deserialize(i)
+              @AggrSoftDeviceList << aggrsoftdevicerow_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeAggrSoftDeviceList请求参数结构体
+      class DescribeAggrSoftDeviceListRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 软件名
+        # @type Name: String
+        # @param OsType: 操作系统
+        # @type OsType: Integer
+
+        attr_accessor :Name, :OsType
+
+        def initialize(name=nil, ostype=nil)
+          @Name = name
+          @OsType = ostype
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @OsType = params['OsType']
+        end
+      end
+
+      # DescribeAggrSoftDeviceList返回参数结构体
+      class DescribeAggrSoftDeviceListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 已安装终端列表
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeAggrSoftDeviceListData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAggrSoftDeviceListData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询文件检测结果响应数据
       class DescribeDLPFileDetectResultData < TencentCloud::Common::AbstractModel
         # @param FileMd5: 提交任务时的文件md5
@@ -831,6 +1147,187 @@ module TencentCloud
               @Items << devicegroupdetail_tmp
             end
           end
+        end
+      end
+
+      # 终端详情响应对象集合
+      class DescribeDeviceDetailListData < TencentCloud::Common::AbstractModel
+        # @param UserName: 账号名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param ComputerName: 计算机名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputerName: String
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param AccountGroupIdPath: 用户组IdPath
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupIdPath: String
+        # @param AccountGroupId: 用户组id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupId: Integer
+        # @param GroupNamePath: 终端组名path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupNamePath: String
+        # @param Ip: Ip地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ip: String
+        # @param AccountGroupName: 用户组名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupName: String
+        # @param GroupIdPath: 终端组IdPath
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupIdPath: String
+        # @param Mid: 唯一标识Mid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mid: String
+        # @param IoaUserName: IOA账号名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IoaUserName: String
+        # @param GroupId: 所在分组Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: Integer
+        # @param GroupName: 所在分组Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupName: String
+        # @param Mac: Mac地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mac: String
+        # @param Version: 软件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param AccountGroupNamePath: 用户组名Path
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountGroupNamePath: String
+        # @param Id: 列表Id(只支持32位)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :UserName, :ComputerName, :Name, :AccountGroupIdPath, :AccountGroupId, :GroupNamePath, :Ip, :AccountGroupName, :GroupIdPath, :Mid, :IoaUserName, :GroupId, :GroupName, :Mac, :Version, :AccountGroupNamePath, :Id
+
+        def initialize(username=nil, computername=nil, name=nil, accountgroupidpath=nil, accountgroupid=nil, groupnamepath=nil, ip=nil, accountgroupname=nil, groupidpath=nil, mid=nil, ioausername=nil, groupid=nil, groupname=nil, mac=nil, version=nil, accountgroupnamepath=nil, id=nil)
+          @UserName = username
+          @ComputerName = computername
+          @Name = name
+          @AccountGroupIdPath = accountgroupidpath
+          @AccountGroupId = accountgroupid
+          @GroupNamePath = groupnamepath
+          @Ip = ip
+          @AccountGroupName = accountgroupname
+          @GroupIdPath = groupidpath
+          @Mid = mid
+          @IoaUserName = ioausername
+          @GroupId = groupid
+          @GroupName = groupname
+          @Mac = mac
+          @Version = version
+          @AccountGroupNamePath = accountgroupnamepath
+          @Id = id
+        end
+
+        def deserialize(params)
+          @UserName = params['UserName']
+          @ComputerName = params['ComputerName']
+          @Name = params['Name']
+          @AccountGroupIdPath = params['AccountGroupIdPath']
+          @AccountGroupId = params['AccountGroupId']
+          @GroupNamePath = params['GroupNamePath']
+          @Ip = params['Ip']
+          @AccountGroupName = params['AccountGroupName']
+          @GroupIdPath = params['GroupIdPath']
+          @Mid = params['Mid']
+          @IoaUserName = params['IoaUserName']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @Mac = params['Mac']
+          @Version = params['Version']
+          @AccountGroupNamePath = params['AccountGroupNamePath']
+          @Id = params['Id']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeDeviceDetailListPageData < TencentCloud::Common::AbstractModel
+        # @param Items: 终端详情响应对象集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param Page: 分页公共对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describedevicedetaillistdata_tmp = DescribeDeviceDetailListData.new
+              describedevicedetaillistdata_tmp.deserialize(i)
+              @Items << describedevicedetaillistdata_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # DescribeDeviceDetailList请求参数结构体
+      class DescribeDeviceDetailListRequest < TencentCloud::Common::AbstractModel
+        # @param OsType: 系统类型(只支持32位)
+        # @type OsType: Integer
+        # @param GroupId: 终端分组id(只支持32位)
+        # @type GroupId: Integer
+        # @param Condition: 过滤条件、分页参数
+        # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :OsType, :GroupId, :Condition
+
+        def initialize(ostype=nil, groupid=nil, condition=nil)
+          @OsType = ostype
+          @GroupId = groupid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @OsType = params['OsType']
+          @GroupId = params['GroupId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeDeviceDetailList返回参数结构体
+      class DescribeDeviceDetailListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDeviceDetailListPageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDeviceDetailListPageData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2400,6 +2897,74 @@ module TencentCloud
         end
       end
 
+      # 业务响应数据
+      class ExportSoftwareDownloadUrlRspData < TencentCloud::Common::AbstractModel
+        # @param DownloadURL: 下载的url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadURL: String
+        # @param TaskId: 超过一定时间走异步任务
+        # @type TaskId: Integer
+
+        attr_accessor :DownloadURL, :TaskId
+
+        def initialize(downloadurl=nil, taskid=nil)
+          @DownloadURL = downloadurl
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @DownloadURL = params['DownloadURL']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # ExportSoftwareInformationList请求参数结构体
+      class ExportSoftwareInformationListRequest < TencentCloud::Common::AbstractModel
+        # @param Mid: 终端唯一标识Mid
+        # @type Mid: String
+        # @param Condition: 过滤条件、分页参数
+        # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :Mid, :Condition
+
+        def initialize(mid=nil, condition=nil)
+          @Mid = mid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @Mid = params['Mid']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # ExportSoftwareInformationList返回参数结构体
+      class ExportSoftwareInformationListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.ExportSoftwareDownloadUrlRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ExportSoftwareDownloadUrlRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # Filters 条件过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Field: 过滤字段
@@ -2709,6 +3274,28 @@ module TencentCloud
             end
           end
           @Relation = params['Relation']
+        end
+      end
+
+      # 软件版本与安装数量
+      class SoftVersionAndNum < TencentCloud::Common::AbstractModel
+        # @param Version: 软件版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Version: String
+        # @param Num: 安装数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Num: Integer
+
+        attr_accessor :Version, :Num
+
+        def initialize(version=nil, num=nil)
+          @Version = version
+          @Num = num
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Num = params['Num']
         end
       end
 
