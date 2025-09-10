@@ -65,6 +65,123 @@ module TencentCloud
         end
       end
 
+      # 机器人参数
+      class AgentConfig < TencentCloud::Common::AbstractModel
+        # @param UserId: 机器人的UserId，用于进房发起任务。【注意】这个UserId不能与当前房间内的主播观众UserId重复。如果一个房间发起多个任务时，机器人的UserId也不能相互重复，否则会中断前一个任务。需要保证机器人UserId在房间内唯一。
+        # @type UserId: String
+        # @param UserSig: 机器人UserId对应的校验签名，即UserId和UserSig相当于机器人进房的登录密码。
+        # @type UserSig: String
+        # @param TargetUserId: 机器人拉流的UserId, 填写后，机器人会拉取该UserId的流进行实时处理
+        # @type TargetUserId: String
+        # @param MaxIdleTime: 房间内超过MaxIdleTime 没有推流，后台自动关闭任务，默认值是60s。
+        # @type MaxIdleTime: Integer
+        # @param WelcomeMessage: 机器人的欢迎语
+        # @type WelcomeMessage: String
+        # @param InterruptMode: 智能打断模式，默认为0，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断。
+        # @type InterruptSpeechDuration: Integer
+        # @param TurnDetectionMode: 控制新一轮对话的触发方式，默认为0。
+        # - 0表示当服务端语音识别检测出的完整一句话后，自动触发一轮新的对话。
+        # - 1表示客户端在收到字幕消息后，自行决定是否手动发送聊天信令触发一轮新的对话。
+        # @type TurnDetectionMode: Integer
+        # @param FilterOneWord: 是否过滤掉用户只说了一个字的句子，true表示过滤，false表示不过滤，默认值为true
+        # @type FilterOneWord: Boolean
+        # @param WelcomeMessagePriority: 欢迎消息优先级，0默认，1高优，高优不能被打断。
+        # @type WelcomeMessagePriority: Integer
+        # @param FilterBracketsContent: 用于过滤LLM返回内容，不播放括号中的内容。
+        # 1：中文括号（）
+        # 2：英文括号()
+        # 3：中文方括号【】
+        # 4：英文方括号[]
+        # 5：英文花括号{}
+        # 默认值为空，表示不进行过滤。
+        # @type FilterBracketsContent: Integer
+        # @param AmbientSound: 环境音设置
+        # @type AmbientSound: :class:`Tencentcloud::Gme.v20180711.models.AmbientSound`
+        # @param VoicePrint: 声纹配置
+        # @type VoicePrint: :class:`Tencentcloud::Gme.v20180711.models.VoicePrint`
+        # @param InitLLMMessage: 与WelcomeMessage参数互斥，当该参数有值时，WelcomeMessage将失效。\n在对话开始后把该消息送到大模型来获取欢迎语。
+        # @type InitLLMMessage: String
+        # @param TurnDetection: 语义断句检测
+        # @type TurnDetection: :class:`Tencentcloud::Gme.v20180711.models.TurnDetection`
+        # @param SubtitleMode: 机器人字幕显示模式。 - 0表示尽快显示，不会和音频播放进行同步。此时字幕全量下发，后面的字幕会包含前面的字幕。 - 1表示句子级别的实时显示，会和音频播放进行同步，只有当前句子对应的音频播放完后，下一条字幕才会下发。此时字幕增量下发，端上需要把前后的字幕进行拼接才是完整字幕。
+        # @type SubtitleMode: Integer
+
+        attr_accessor :UserId, :UserSig, :TargetUserId, :MaxIdleTime, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :TurnDetectionMode, :FilterOneWord, :WelcomeMessagePriority, :FilterBracketsContent, :AmbientSound, :VoicePrint, :InitLLMMessage, :TurnDetection, :SubtitleMode
+
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, maxidletime=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, turndetectionmode=nil, filteroneword=nil, welcomemessagepriority=nil, filterbracketscontent=nil, ambientsound=nil, voiceprint=nil, initllmmessage=nil, turndetection=nil, subtitlemode=nil)
+          @UserId = userid
+          @UserSig = usersig
+          @TargetUserId = targetuserid
+          @MaxIdleTime = maxidletime
+          @WelcomeMessage = welcomemessage
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
+          @TurnDetectionMode = turndetectionmode
+          @FilterOneWord = filteroneword
+          @WelcomeMessagePriority = welcomemessagepriority
+          @FilterBracketsContent = filterbracketscontent
+          @AmbientSound = ambientsound
+          @VoicePrint = voiceprint
+          @InitLLMMessage = initllmmessage
+          @TurnDetection = turndetection
+          @SubtitleMode = subtitlemode
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @TargetUserId = params['TargetUserId']
+          @MaxIdleTime = params['MaxIdleTime']
+          @WelcomeMessage = params['WelcomeMessage']
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @TurnDetectionMode = params['TurnDetectionMode']
+          @FilterOneWord = params['FilterOneWord']
+          @WelcomeMessagePriority = params['WelcomeMessagePriority']
+          @FilterBracketsContent = params['FilterBracketsContent']
+          unless params['AmbientSound'].nil?
+            @AmbientSound = AmbientSound.new
+            @AmbientSound.deserialize(params['AmbientSound'])
+          end
+          unless params['VoicePrint'].nil?
+            @VoicePrint = VoicePrint.new
+            @VoicePrint.deserialize(params['VoicePrint'])
+          end
+          @InitLLMMessage = params['InitLLMMessage']
+          unless params['TurnDetection'].nil?
+            @TurnDetection = TurnDetection.new
+            @TurnDetection.deserialize(params['TurnDetection'])
+          end
+          @SubtitleMode = params['SubtitleMode']
+        end
+      end
+
+      # 背景音设置，将在通话中添加环境音效，使体验更加逼真。目前支持以下选项：
+      # coffee_shops: 咖啡店氛围，背景中有人聊天。
+      # busy_office: 客服中心
+      # street_traffic: 户外街道
+      # evening_mountain: 户外山林
+      class AmbientSound < TencentCloud::Common::AbstractModel
+        # @param Scene: 环境场景选择
+        # @type Scene: String
+        # @param Volume: 控制环境音的音量。取值的范围是 [0,2]。值越低，环境音越小；值越高，环境音越响亮。如果未设置，则使用默认值 1。
+        # @type Volume: Float
+
+        attr_accessor :Scene, :Volume
+
+        def initialize(scene=nil, volume=nil)
+          @Scene = scene
+          @Volume = volume
+        end
+
+        def deserialize(params)
+          @Scene = params['Scene']
+          @Volume = params['Volume']
+        end
+      end
+
       # 应用用量统计数据
       class AppStatisticsItem < TencentCloud::Common::AbstractModel
         # @param RealtimeSpeechStatisticsItem: 实时语音统计数据
@@ -366,6 +483,56 @@ module TencentCloud
 
         def deserialize(params)
           @Data = params['Data']
+        end
+      end
+
+      # ControlAIConversation请求参数结构体
+      class ControlAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务唯一标识
+        # @type TaskId: String
+        # @param Command: 控制命令，目前支持命令如下：- ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本. - InvokeLLM，服务端发送文本给大模型，触发对话
+        # @type Command: String
+        # @param ServerPushText: 服务端发送播报文本命令，当Command为ServerPushText时必填
+        # @type ServerPushText: :class:`Tencentcloud::Gme.v20180711.models.ServerPushText`
+        # @param InvokeLLM: 服务端发送命令主动请求大模型,当Command为InvokeLLM时会把content请求到大模型,头部增加X-Invoke-LLM="1"
+        # @type InvokeLLM: :class:`Tencentcloud::Gme.v20180711.models.InvokeLLM`
+
+        attr_accessor :TaskId, :Command, :ServerPushText, :InvokeLLM
+
+        def initialize(taskid=nil, command=nil, serverpushtext=nil, invokellm=nil)
+          @TaskId = taskid
+          @Command = command
+          @ServerPushText = serverpushtext
+          @InvokeLLM = invokellm
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Command = params['Command']
+          unless params['ServerPushText'].nil?
+            @ServerPushText = ServerPushText.new
+            @ServerPushText.deserialize(params['ServerPushText'])
+          end
+          unless params['InvokeLLM'].nil?
+            @InvokeLLM = InvokeLLM.new
+            @InvokeLLM.deserialize(params['InvokeLLM'])
+          end
+        end
+      end
+
+      # ControlAIConversation返回参数结构体
+      class ControlAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -863,6 +1030,90 @@ module TencentCloud
 
         def deserialize(params)
           @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVoicePrint请求参数结构体
+      class DeleteVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+
+        attr_accessor :VoicePrintId
+
+        def initialize(voiceprintid=nil)
+          @VoicePrintId = voiceprintid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+        end
+      end
+
+      # DeleteVoicePrint返回参数结构体
+      class DeleteVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIConversation请求参数结构体
+      class DescribeAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: GME的SdkAppId，和开启转录任务的房间使用的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param TaskId: 唯一标识一次任务。
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAIConversation返回参数结构体
+      class DescribeAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 任务开始时间。
+        # @type StartTime: String
+        # @param Status: 任务状态。有4个值：1、Idle表示任务未开始2、Preparing表示任务准备中3、InProgress表示任务正在运行4、Stopped表示任务已停止，正在清理资源中
+        # @type Status: String
+        # @param TaskId: 唯一标识一次任务。
+        # @type TaskId: String
+        # @param SessionId: 开启对话任务时填写的SessionId，如果没写则不返回。
+        # @type SessionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :Status, :TaskId, :SessionId, :RequestId
+
+        def initialize(starttime=nil, status=nil, taskid=nil, sessionid=nil, requestid=nil)
+          @StartTime = starttime
+          @Status = status
+          @TaskId = taskid
+          @SessionId = sessionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
       end
@@ -1535,6 +1786,65 @@ module TencentCloud
         end
       end
 
+      # DescribeVoicePrint请求参数结构体
+      class DescribeVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param DescribeMode: 查询方式，0表示查询特定VoicePrintId，1表示分页查询
+        # @type DescribeMode: Integer
+        # @param VoicePrintIdList: 声纹ID
+        # @type VoicePrintIdList: Array
+        # @param PageIndex: 当前页码,从1开始,DescribeMode为1时填写
+        # @type PageIndex: Integer
+        # @param PageSize: 每页条数 最少20,DescribeMode为1时填写
+        # @type PageSize: Integer
+
+        attr_accessor :DescribeMode, :VoicePrintIdList, :PageIndex, :PageSize
+
+        def initialize(describemode=nil, voiceprintidlist=nil, pageindex=nil, pagesize=nil)
+          @DescribeMode = describemode
+          @VoicePrintIdList = voiceprintidlist
+          @PageIndex = pageindex
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @DescribeMode = params['DescribeMode']
+          @VoicePrintIdList = params['VoicePrintIdList']
+          @PageIndex = params['PageIndex']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeVoicePrint返回参数结构体
+      class DescribeVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总的条数
+        # @type TotalCount: Integer
+        # @param Data: 声纹信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              voiceprintinfo_tmp = VoicePrintInfo.new
+              voiceprintinfo_tmp.deserialize(i)
+              @Data << voiceprintinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查找过滤
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 要过滤的字段名, 比如"AppName"
@@ -1615,6 +1925,26 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # 调用服务端主动发起请求到LLM
+      class InvokeLLM < TencentCloud::Common::AbstractModel
+        # @param Content: 请求LLM的内容
+        # @type Content: String
+        # @param Interrupt: 是否允许该文本打断机器人说话
+        # @type Interrupt: Boolean
+
+        attr_accessor :Content, :Interrupt
+
+        def initialize(content=nil, interrupt=nil)
+          @Content = content
+          @Interrupt = interrupt
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Interrupt = params['Interrupt']
         end
       end
 
@@ -1996,6 +2326,58 @@ module TencentCloud
         end
       end
 
+      # RegisterVoicePrint请求参数结构体
+      class RegisterVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k采样率, 16bit位深, 单声道, 4到18秒音频时长,有效音频不小于3秒(不能有太多静音段), 编码数据大小不超过2M, 为了识别准确率，建议音频长度为8秒
+        # @type Audio: String
+        # @param ReqTimestamp: 毫秒时间戳
+        # @type ReqTimestamp: Integer
+        # @param AudioFormat: 音频格式,目前只支持0,代表wav
+        # @type AudioFormat: Integer
+        # @param AudioName: 音频名称,长度不要超过32
+        # @type AudioName: String
+        # @param AudioMetaInfo: 和声纹绑定的MetaInfo，长度最大不超过512
+        # @type AudioMetaInfo: String
+
+        attr_accessor :Audio, :ReqTimestamp, :AudioFormat, :AudioName, :AudioMetaInfo
+
+        def initialize(audio=nil, reqtimestamp=nil, audioformat=nil, audioname=nil, audiometainfo=nil)
+          @Audio = audio
+          @ReqTimestamp = reqtimestamp
+          @AudioFormat = audioformat
+          @AudioName = audioname
+          @AudioMetaInfo = audiometainfo
+        end
+
+        def deserialize(params)
+          @Audio = params['Audio']
+          @ReqTimestamp = params['ReqTimestamp']
+          @AudioFormat = params['AudioFormat']
+          @AudioName = params['AudioName']
+          @AudioMetaInfo = params['AudioMetaInfo']
+        end
+      end
+
+      # RegisterVoicePrint返回参数结构体
+      class RegisterVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :RequestId
+
+        def initialize(voiceprintid=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 房间内用户信息
       class RoomUser < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间id
@@ -2021,6 +2403,84 @@ module TencentCloud
           @Uins = params['Uins']
           @StrRoomId = params['StrRoomId']
           @StrUins = params['StrUins']
+        end
+      end
+
+      # 语音转文字参数
+      class STTConfig < TencentCloud::Common::AbstractModel
+        # @param Language: 语音转文字支持识别的语言，默认是"zh" 中文
+
+        # 可通过购买「AI智能识别时长包」解锁或领取包月套餐体验版解锁不同语言.
+
+        # 语音转文本不同套餐版本支持的语言如下：
+
+        # **基础版**：
+        # - "zh": 中文（简体）
+        # - "zh-TW": 中文（繁体）
+        # - "en": 英语
+
+        # **标准版：**
+        # - "8k_zh_large": 普方大模型引擎. 当前模型同时支持中文等语言的识别，模型参数量极大，语言模型性能增强，针对电话音频中各类场景、各类中文方言的识别准确率极大提升.
+        # - "16k_zh_large": 普方英大模型引擎. 当前模型同时支持中文、英文、多种中文方言等语言的识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远等低质量音频的识别准确率极大提升.
+        # - "16k_multi_lang": 多语种大模型引擎. 当前模型同时支持英语、日语、韩语、阿拉伯语、菲律宾语、法语、印地语、印尼语、马来语、葡萄牙语、西班牙语、泰语、土耳其语、越南语、德语的识别，可实现15个语种的自动识别(句子/段落级别).
+        # - "16k_zh_en": 中英大模型引擎. 当前模型同时支持中文、英语识别，模型参数量极大，语言模型性能增强，针对噪声大、回音大、人声小、人声远等低质量音频的识别准确率极大提升.
+
+        # **高级版：**
+        # - "zh-dialect": 中国方言
+        # - "zh-yue": 中国粤语
+        # - "vi": 越南语
+        # - "ja": 日语
+        # - "ko": 韩语
+        # - "id": 印度尼西亚语
+        # - "th": 泰语
+        # - "pt": 葡萄牙语
+        # - "tr": 土耳其语
+        # - "ar": 阿拉伯语
+        # - "es": 西班牙语
+        # - "hi": 印地语
+        # - "fr": 法语
+        # - "ms": 马来语
+        # - "fil": 菲律宾语
+        # - "de": 德语
+        # - "it": 意大利语
+        # - "ru": 俄语
+        # - "sv": 瑞典语
+        # - "da": 丹麦语
+        # - "no": 挪威语
+
+        # **注意：**
+        # 如果缺少满足您需求的语言，请联系我们技术人员。
+        # @type Language: String
+        # @param AlternativeLanguage: **发起模糊识别为高级版能力,默认按照高级版收费,仅支持填写基础版和高级版语言.**
+        # 注意：不支持填写"zh-dialect"
+        # @type AlternativeLanguage: Array
+        # @param CustomParam: 自定义参数，联系后台使用
+        # @type CustomParam: String
+        # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
+        # @type VadSilenceTime: Integer
+        # @param HotWordList: 热词表：该参数用于提升识别准确率。 单个热词限制："热词|权重"，单个热词不超过30个字符（最多10个汉字），权重[1-11]或者100，如：“腾讯云|5” 或 “ASR|11”； 热词表限制：多个热词用英文逗号分割，最多支持128个热词，如：“腾讯云|10,语音识别|5,ASR|11”；
+        # @type HotWordList: String
+        # @param VadLevel: vad的远场人声抑制能力（不会对asr识别效果造成影响），范围为[0, 3]，默认为0。推荐设置为2，有较好的远场人声抑制能力。
+        # @type VadLevel: Integer
+
+        attr_accessor :Language, :AlternativeLanguage, :CustomParam, :VadSilenceTime, :HotWordList, :VadLevel
+
+        def initialize(language=nil, alternativelanguage=nil, customparam=nil, vadsilencetime=nil, hotwordlist=nil, vadlevel=nil)
+          @Language = language
+          @AlternativeLanguage = alternativelanguage
+          @CustomParam = customparam
+          @VadSilenceTime = vadsilencetime
+          @HotWordList = hotwordlist
+          @VadLevel = vadlevel
+        end
+
+        def deserialize(params)
+          @Language = params['Language']
+          @AlternativeLanguage = params['AlternativeLanguage']
+          @CustomParam = params['CustomParam']
+          @VadSilenceTime = params['VadSilenceTime']
+          @HotWordList = params['HotWordList']
+          @VadLevel = params['VadLevel']
         end
       end
 
@@ -2237,6 +2697,52 @@ module TencentCloud
         end
       end
 
+      # 服务端控制AI对话机器人播报指定文本
+      class ServerPushText < TencentCloud::Common::AbstractModel
+        # @param Text: 服务端推送播报文本
+        # @type Text: String
+        # @param Interrupt: 是否允许该文本打断机器人说话
+        # @type Interrupt: Boolean
+        # @param StopAfterPlay: 播报完文本后，是否自动关闭对话任务
+        # @type StopAfterPlay: Boolean
+        # @param Audio: 服务端推送播报音频
+        #     格式说明：音频必须为单声道，采样率必须跟对应TTS的采样率保持一致，编码为Base64字符串。
+        #     输入规则：当提供Audio字段时，将不接受Text字段的输入。系统将直接播放Audio字段中的音频内容。
+        # @type Audio: String
+        # @param DropMode: 默认为0，仅在Interrupt为false时有效
+        # - 0表示当前有交互发生时，会丢弃Interrupt为false的消息
+        # - 1表示当前有交互发生时，不会丢弃Interrupt为false的消息，而是缓存下来，等待当前交互结束后，再去处理
+
+        # 注意：DropMode为1时，允许缓存多个消息，如果后续出现了打断，缓存的消息会被清空
+        # @type DropMode: Integer
+        # @param Priority: ServerPushText消息的优先级，0表示可被打断，1表示不会被打断。**目前仅支持传入0，如果需要传入1，请提工单联系我们添加权限。**
+        # 注意：在接收到Priority=1的消息后，后续其他任何消息都会被忽略（包括Priority=1的消息），直到Priority=1的消息处理结束。该字段可与Interrupt、DropMode字段配合使用。
+        # 例子：
+        # - Priority=1、Interrupt=true，会打断现有交互，立刻播报，播报过程中不会被打断
+        # - Priority=1、Interrupt=false、DropMode=1，会等待当前交互结束，再进行播报，播报过程中不会被打断
+        # @type Priority: Integer
+
+        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority
+
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil)
+          @Text = text
+          @Interrupt = interrupt
+          @StopAfterPlay = stopafterplay
+          @Audio = audio
+          @DropMode = dropmode
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @Interrupt = params['Interrupt']
+          @StopAfterPlay = params['StopAfterPlay']
+          @Audio = params['Audio']
+          @DropMode = params['DropMode']
+          @Priority = params['Priority']
+        end
+      end
+
       # 服务开关状态
       class ServiceStatus < TencentCloud::Common::AbstractModel
         # @param RealTimeSpeech: 实时语音服务开关状态
@@ -2288,6 +2794,77 @@ module TencentCloud
             @TextTranslate = StatusInfo.new
             @TextTranslate.deserialize(params['TextTranslate'])
           end
+        end
+      end
+
+      # StartAIConversation请求参数结构体
+      class StartAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: GME的SdkAppId和开启转录任务的房间使用的SdkAppId相同。
+        # @type SdkAppId: Integer
+        # @param RoomId: GME的RoomId表示开启对话任务的房间号。
+        # @type RoomId: String
+        # @param AgentConfig: 机器人参数
+        # @type AgentConfig: :class:`Tencentcloud::Gme.v20180711.models.AgentConfig`
+        # @param STTConfig: 语音识别配置。
+        # @type STTConfig: :class:`Tencentcloud::Gme.v20180711.models.STTConfig`
+        # @param LLMConfig: LLM配置。需符合openai规范，为JSON字符串，示例如下：
+        # <pre> { <br> &emsp;  "LLMType": "大模型类型",  // String 必填，如："openai" <br> &emsp;  "Model": "您的模型名称", // String 必填，指定使用的模型<br>    "APIKey": "您的LLM API密钥", // String 必填 <br> &emsp;  "APIUrl": "https://api.xxx.com/chat/completions", // String 必填，LLM API访问的URL<br> &emsp;  "Streaming": true // Boolean 非必填，指定是否使用流式传输<br> &emsp;} </pre>
+        # @type LLMConfig: String
+        # @param TTSConfig:                                         "description": "TTS配置，为JSON字符串，腾讯云TTS示例如下： <pre>{ <br> &emsp; \"AppId\": 您的应用ID, // Integer 必填<br> &emsp; \"TTSType\": \"TTS类型\", // String TTS类型, 固定为\"tencent\"<br> &emsp; \"SecretId\": \"您的密钥ID\", // String 必填<br> &emsp; \"SecretKey\":  \"您的密钥Key\", // String 必填<br> &emsp; \"VoiceType\": 101001, // Integer  必填，音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色。<br> &emsp; \"Speed\": 1.25, // Integer 非必填，语速，范围：[-2，6]，分别对应不同语速： -2: 代表0.6倍 -1: 代表0.8倍 0: 代表1.0倍（默认） 1: 代表1.2倍 2: 代表1.5倍  6: 代表2.5倍  如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。 参数值与实际语速转换\"Volume\": 5, // Integer 非必填，音量大小，范围：[0，10]，分别对应11个等级的音量，默认值为0，代表正常音量。<br> &emsp; \"EmotionCategory\":  \"angry\", // String 非必填 控制合成音频的情感，仅支持多情感音色使用。取值: neutral(中性)、sad(悲伤)、happy(高兴)、angry(生气)、fear(恐惧)、news(新闻)、story(故事)、radio(广播)、poetry(诗歌)、call(客服)、sajiao(撒娇)、disgusted(厌恶)、amaze(震惊)、peaceful(平静)、exciting(兴奋)、aojiao(傲娇)、jieshuo(解说)。<br> &emsp; \"EmotionIntensity\":  150 // Integer 非必填 控制合成音频情感程度，取值范围为 [50,200]，默认为 100；只有 EmotionCategory 不为空时生效。<br> &emsp; }</pre>",
+        # @type TTSConfig: String
+        # @param AvatarConfig: 数字人配置，为JSON字符串。**数字人配置需要提工单加白后才能使用**
+        # @type AvatarConfig: String
+        # @param ExperimentalParams: 实验性参数,联系后台使用
+        # @type ExperimentalParams: String
+
+        attr_accessor :SdkAppId, :RoomId, :AgentConfig, :STTConfig, :LLMConfig, :TTSConfig, :AvatarConfig, :ExperimentalParams
+
+        def initialize(sdkappid=nil, roomid=nil, agentconfig=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, avatarconfig=nil, experimentalparams=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @AgentConfig = agentconfig
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+          @AvatarConfig = avatarconfig
+          @ExperimentalParams = experimentalparams
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = AgentConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          unless params['STTConfig'].nil?
+            @STTConfig = STTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          @LLMConfig = params['LLMConfig']
+          @TTSConfig = params['TTSConfig']
+          @AvatarConfig = params['AvatarConfig']
+          @ExperimentalParams = params['ExperimentalParams']
+        end
+      end
+
+      # StartAIConversation返回参数结构体
+      class StartAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 用于唯一标识对话任务。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2375,6 +2952,38 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # StopAIConversation请求参数结构体
+      class StopAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识任务。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # StopAIConversation返回参数结构体
+      class StopAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2500,6 +3109,90 @@ module TencentCloud
         end
       end
 
+      # 断句配置
+      class TurnDetection < TencentCloud::Common::AbstractModel
+        # @param SemanticEagerness: TurnDetectionMode为3时生效，语义断句的灵敏程度
+
+
+        # 功能简介：根据用户所说的话来判断其已完成发言来分割音频
+
+
+        # 可选: "low" | "medium" | "high" | "auto"
+
+
+        # auto 是默认值，与 medium 相同。
+        # low 将让用户有足够的时间说话。
+        # high 将尽快对音频进行分块。
+
+
+        # 如果您希望模型在对话模式下更频繁地响应，可以将 SemanticEagerness 设置为 high
+        # 如果您希望在用户停顿时，AI能够等待片刻，可以将 SemanticEagerness 设置为 low
+        # 无论什么模式，最终都会分割送个大模型进行回复
+        # @type SemanticEagerness: String
+
+        attr_accessor :SemanticEagerness
+
+        def initialize(semanticeagerness=nil)
+          @SemanticEagerness = semanticeagerness
+        end
+
+        def deserialize(params)
+          @SemanticEagerness = params['SemanticEagerness']
+        end
+      end
+
+      # UpdateAIConversation请求参数结构体
+      class UpdateAIConversationRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 唯一标识一个任务
+        # @type TaskId: String
+        # @param WelcomeMessage: 不填写则不进行更新，机器人的欢迎语
+        # @type WelcomeMessage: String
+        # @param InterruptMode: 不填写则不进行更新。智能打断模式，0表示服务端自动打断，1表示服务端不打断，由端上发送打断信令进行打断
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: 不填写则不进行更新。InterruptMode为0时使用，单位为毫秒，默认为500ms。表示服务端检测到持续InterruptSpeechDuration毫秒的人声则进行打断
+        # @type InterruptSpeechDuration: Integer
+        # @param LLMConfig: 不填写则不进行更新，LLM配置，详情见StartAIConversation接口
+        # @type LLMConfig: String
+        # @param TTSConfig: 不填写则不进行更新，TTS配置，详情见StartAIConversation接口
+        # @type TTSConfig: String
+
+        attr_accessor :TaskId, :WelcomeMessage, :InterruptMode, :InterruptSpeechDuration, :LLMConfig, :TTSConfig
+
+        def initialize(taskid=nil, welcomemessage=nil, interruptmode=nil, interruptspeechduration=nil, llmconfig=nil, ttsconfig=nil)
+          @TaskId = taskid
+          @WelcomeMessage = welcomemessage
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @WelcomeMessage = params['WelcomeMessage']
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @LLMConfig = params['LLMConfig']
+          @TTSConfig = params['TTSConfig']
+        end
+      end
+
+      # UpdateAIConversation返回参数结构体
+      class UpdateAIConversationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateScanRooms请求参数结构体
       class UpdateScanRoomsRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID
@@ -2584,6 +3277,54 @@ module TencentCloud
 
         def deserialize(params)
           @ErrorCode = params['ErrorCode']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateVoicePrint请求参数结构体
+      class UpdateVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹信息ID
+        # @type VoicePrintId: String
+        # @param ReqTimestamp: 毫秒时间戳
+        # @type ReqTimestamp: Integer
+        # @param AudioFormat: 音频格式,目前只支持0,代表wav
+        # @type AudioFormat: Integer
+        # @param Audio: 整个wav音频文件的base64字符串,其中wav文件限定为16k采样率, 16bit位深, 单声道, 8到18秒音频时长,有效音频不小于6秒(不能有太多静音段),编码数据大小不超过2M
+        # @type Audio: String
+        # @param AudioMetaInfo: 和声纹绑定的MetaInfo，长度最大不超过512
+        # @type AudioMetaInfo: String
+
+        attr_accessor :VoicePrintId, :ReqTimestamp, :AudioFormat, :Audio, :AudioMetaInfo
+
+        def initialize(voiceprintid=nil, reqtimestamp=nil, audioformat=nil, audio=nil, audiometainfo=nil)
+          @VoicePrintId = voiceprintid
+          @ReqTimestamp = reqtimestamp
+          @AudioFormat = audioformat
+          @Audio = audio
+          @AudioMetaInfo = audiometainfo
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @ReqTimestamp = params['ReqTimestamp']
+          @AudioFormat = params['AudioFormat']
+          @Audio = params['Audio']
+          @AudioMetaInfo = params['AudioMetaInfo']
+        end
+      end
+
+      # UpdateVoicePrint返回参数结构体
+      class UpdateVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2688,6 +3429,70 @@ module TencentCloud
 
         def deserialize(params)
           @Dau = params['Dau']
+        end
+      end
+
+      # 声纹配置参数
+      class VoicePrint < TencentCloud::Common::AbstractModel
+        # @param Mode: 默认为0，表示不启用声纹。1表示启用声纹，此时需要填写voiceprint id。
+        # @type Mode: Integer
+        # @param IdList: VoicePrint Mode为1时需要填写，目前仅支持填写一个声纹id
+        # @type IdList: Array
+
+        attr_accessor :Mode, :IdList
+
+        def initialize(mode=nil, idlist=nil)
+          @Mode = mode
+          @IdList = idlist
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @IdList = params['IdList']
+        end
+      end
+
+      # 声纹查询数据
+      class VoicePrintInfo < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹ID
+        # @type VoicePrintId: String
+        # @param AppId: 应用id
+        # @type AppId: Integer
+        # @param VoicePrintMetaInfo: 和声纹绑定的MetaInfo
+        # @type VoicePrintMetaInfo: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param AudioFormat: 音频格式,当前只有0(代表wav)
+        # @type AudioFormat: Integer
+        # @param AudioName: 音频名称
+        # @type AudioName: String
+        # @param ReqTimestamp: 请求毫秒时间戳
+        # @type ReqTimestamp: Integer
+
+        attr_accessor :VoicePrintId, :AppId, :VoicePrintMetaInfo, :CreateTime, :UpdateTime, :AudioFormat, :AudioName, :ReqTimestamp
+
+        def initialize(voiceprintid=nil, appid=nil, voiceprintmetainfo=nil, createtime=nil, updatetime=nil, audioformat=nil, audioname=nil, reqtimestamp=nil)
+          @VoicePrintId = voiceprintid
+          @AppId = appid
+          @VoicePrintMetaInfo = voiceprintmetainfo
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AudioFormat = audioformat
+          @AudioName = audioname
+          @ReqTimestamp = reqtimestamp
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @AppId = params['AppId']
+          @VoicePrintMetaInfo = params['VoicePrintMetaInfo']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AudioFormat = params['AudioFormat']
+          @AudioName = params['AudioName']
+          @ReqTimestamp = params['ReqTimestamp']
         end
       end
 

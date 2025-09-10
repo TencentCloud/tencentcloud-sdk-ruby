@@ -291,6 +291,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询文档处理任务。文档处理领域里常见的通用Agent 如抽取、比对之类的，目前我们提供的抽取，但未来可以根据实际情况和客户需求扩展。
+
+        # @param request: Request instance for DescribeExtractDocAgentJob.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::DescribeExtractDocAgentJobRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::DescribeExtractDocAgentJobResponse`
+        def DescribeExtractDocAgentJob(request)
+          body = send_request('DescribeExtractDocAgentJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtractDocAgentJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
 
         # 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
@@ -2442,6 +2466,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SmartStructuralOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 文档处理领域里常见的通用Agent 如抽取、比对之类的，目前我们提供的抽取，但未来可以根据实际情况和客户需求扩展。
+
+        # @param request: Request instance for SubmitExtractDocAgentJob.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::SubmitExtractDocAgentJobRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::SubmitExtractDocAgentJobResponse`
+        def SubmitExtractDocAgentJob(request)
+          body = send_request('SubmitExtractDocAgentJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitExtractDocAgentJobResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -740,16 +740,23 @@ module TencentCloud
 
       # DescribeAggrSoftCategorySoftList请求参数结构体
       class DescribeAggrSoftCategorySoftListRequest < TencentCloud::Common::AbstractModel
-        # @param OsType: os类别(只支持32位)
+        # @param Condition: 过滤条件、分页参数<li>Name - String - 过滤支持：是 - 操作符:eq,neq,like,ilike,nlike - 排序支持：是 - 按类别名称过滤或排序。</li><li>CorpName - String - 过滤支持：是 - 操作符:eq,neq,like,ilike,nlike - 排序支持：是 - 按CorpName过滤或排序。</li><li>Version - String - 过滤支持：否 - 操作符:eq,like - 排序支持：是 - 按版本排序。</li><li>InstalledDeviceCount - int - 过滤支持：否 - 操作符:eq,like - 排序支持：是 - 按安装设备数量排序。</li><li>GenuineRate - float - 过滤支持：否 - 操作符:eq,like - 排序支持：是 - 按正版率排序。</li><li>AuthNum - int - 过滤支持：否 - 操作符:eq,like - 排序支持：是 - 按授权数量排序。</li><li>CategoryNamePath - String - 过滤支持：否 - 操作符:eq,like - 排序支持：是 - 按类别路径名排序。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param OsType: 操作系统类型（0: win，1：linux，2: mac，4：android，5：ios 默认值0）
         # @type OsType: Integer
 
-        attr_accessor :OsType
+        attr_accessor :Condition, :OsType
 
-        def initialize(ostype=nil)
+        def initialize(condition=nil, ostype=nil)
+          @Condition = condition
           @OsType = ostype
         end
 
         def deserialize(params)
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
           @OsType = params['OsType']
         end
       end
@@ -953,19 +960,26 @@ module TencentCloud
 
       # DescribeAggrSoftDeviceList请求参数结构体
       class DescribeAggrSoftDeviceListRequest < TencentCloud::Common::AbstractModel
+        # @param Condition: 过滤条件
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
         # @param Name: 软件名
         # @type Name: String
-        # @param OsType: 操作系统
+        # @param OsType: 0:win 2:mac
         # @type OsType: Integer
 
-        attr_accessor :Name, :OsType
+        attr_accessor :Condition, :Name, :OsType
 
-        def initialize(name=nil, ostype=nil)
+        def initialize(condition=nil, name=nil, ostype=nil)
+          @Condition = condition
           @Name = name
           @OsType = ostype
         end
 
         def deserialize(params)
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
           @Name = params['Name']
           @OsType = params['OsType']
         end
@@ -2300,12 +2314,15 @@ module TencentCloud
         # @param Condition: 过滤条件、分页参数
         # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param OsType: 0:win 2:mac
+        # @type OsType: Integer
 
-        attr_accessor :Mid, :Condition
+        attr_accessor :Mid, :Condition, :OsType
 
-        def initialize(mid=nil, condition=nil)
+        def initialize(mid=nil, condition=nil, ostype=nil)
           @Mid = mid
           @Condition = condition
+          @OsType = ostype
         end
 
         def deserialize(params)
@@ -2314,6 +2331,7 @@ module TencentCloud
             @Condition = Condition.new
             @Condition.deserialize(params['Condition'])
           end
+          @OsType = params['OsType']
         end
       end
 
@@ -2925,12 +2943,15 @@ module TencentCloud
         # @param Condition: 过滤条件、分页参数
         # <li>Name - String - 过滤支持：是 - 操作符:eq,like - 排序支持：是 。</li>
         # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+        # @param OsType: 系统类型0:win 2:mac
+        # @type OsType: Integer
 
-        attr_accessor :Mid, :Condition
+        attr_accessor :Mid, :Condition, :OsType
 
-        def initialize(mid=nil, condition=nil)
+        def initialize(mid=nil, condition=nil, ostype=nil)
           @Mid = mid
           @Condition = condition
+          @OsType = ostype
         end
 
         def deserialize(params)
@@ -2939,6 +2960,7 @@ module TencentCloud
             @Condition = Condition.new
             @Condition.deserialize(params['Condition'])
           end
+          @OsType = params['OsType']
         end
       end
 

@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（BatchUpdateFirmware）用于批量更新设备固件
+
+        # @param request: Request instance for BatchUpdateFirmware.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchUpdateFirmwareRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchUpdateFirmwareResponse`
+        def BatchUpdateFirmware(request)
+          body = send_request('BatchUpdateFirmware', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchUpdateFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定云存用户
 
         # @param request: Request instance for BindCloudStorageUser.
@@ -559,6 +583,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateOtaModule）用于新建OTA模块
+
+        # @param request: Request instance for CreateOtaModule.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateOtaModuleRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateOtaModuleResponse`
+        def CreateOtaModule(request)
+          body = send_request('CreateOtaModule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOtaModuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建围栏。
 
         # @param request: Request instance for CreatePositionFence.
@@ -905,6 +953,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteLoRaGatewayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteOtaModule）用于删除OTA模块
+
+        # @param request: Request instance for DeleteOtaModule.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteOtaModuleRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteOtaModuleResponse`
+        def DeleteOtaModule(request)
+          body = send_request('DeleteOtaModule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteOtaModuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1915,6 +1987,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeFirmwareTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询固件升级任务的设备列表
+
+        # @param request: Request instance for DescribeFirmwareTaskDevices.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTaskDevicesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTaskDevicesResponse`
+        def DescribeFirmwareTaskDevices(request)
+          body = send_request('DescribeFirmwareTaskDevices', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirmwareTaskDevicesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 搜索固件升级任务列表
+
+        # @param request: Request instance for DescribeFirmwareTasks.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTasksRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeFirmwareTasksResponse`
+        def DescribeFirmwareTasks(request)
+          body = send_request('DescribeFirmwareTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFirmwareTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3225,6 +3345,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ListOtaModules）用于获取OTA模块列表
+
+        # @param request: Request instance for ListOtaModules.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ListOtaModulesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ListOtaModulesResponse`
+        def ListOtaModules(request)
+          body = send_request('ListOtaModules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListOtaModulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ListProductOtaModules）用于获取产品OTA模块列表
+
+        # @param request: Request instance for ListProductOtaModules.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ListProductOtaModulesRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ListProductOtaModulesResponse`
+        def ListProductOtaModules(request)
+          body = send_request('ListProductOtaModules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListProductOtaModulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ListTopicPolicy）用于获取Topic列表
 
         # @param request: Request instance for ListTopicPolicy.
@@ -4175,6 +4343,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateFirmwareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateOtaModule）用于修改OTA模块
+
+        # @param request: Request instance for UpdateOtaModule.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdateOtaModuleRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdateOtaModuleResponse`
+        def UpdateOtaModule(request)
+          body = send_request('UpdateOtaModule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOtaModuleResponse.new
             model.deserialize(response['Response'])
             model
           else

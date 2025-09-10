@@ -295,6 +295,102 @@ module TencentCloud
         end
       end
 
+      # BatchUpdateFirmware请求参数结构体
+      class BatchUpdateFirmwareRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件新版本号
+        # @type FirmwareVersion: String
+        # @param FirmwareOriVersion: 固件原版本号
+        # @type FirmwareOriVersion: String
+        # @param UpgradeMethod: 升级方式，0 静默升级  1 用户确认升级。 不填默认为静默升级方式
+        # @type UpgradeMethod: Integer
+        # @param FileName: 设备列表文件名称，根据文件列表升级固件需要填写此参数
+        # @type FileName: String
+        # @param FileMd5: 设备列表的文件md5值
+        # @type FileMd5: String
+        # @param FileSize: 设备列表的文件大小值
+        # @type FileSize: Integer
+        # @param DeviceNames: 需要升级的设备名称列表
+        # @type DeviceNames: Array
+        # @param TimeoutInterval: 固件升级任务，默认超时时间。 最小取值120秒，最大为900秒
+        # @type TimeoutInterval: Integer
+        # @param Type: 固件升级任务类型，默认静态升级值为空或1，动态升级值为7
+        # @type Type: Integer
+        # @param DelayTime: 任务延迟时间
+        # @type DelayTime: Integer
+        # @param OverrideMode: 是否覆盖，0不覆盖，1覆盖
+        # @type OverrideMode: Integer
+        # @param MaxRetryNum: 失败重试次数
+        # @type MaxRetryNum: Integer
+        # @param RetryInterval: 重试间隔min
+        # @type RetryInterval: Integer
+        # @param FwType: 固件模块
+        # @type FwType: String
+        # @param TaskUserDefine: 用户自定义信息
+        # @type TaskUserDefine: String
+
+        attr_accessor :ProductID, :FirmwareVersion, :FirmwareOriVersion, :UpgradeMethod, :FileName, :FileMd5, :FileSize, :DeviceNames, :TimeoutInterval, :Type, :DelayTime, :OverrideMode, :MaxRetryNum, :RetryInterval, :FwType, :TaskUserDefine
+
+        def initialize(productid=nil, firmwareversion=nil, firmwareoriversion=nil, upgrademethod=nil, filename=nil, filemd5=nil, filesize=nil, devicenames=nil, timeoutinterval=nil, type=nil, delaytime=nil, overridemode=nil, maxretrynum=nil, retryinterval=nil, fwtype=nil, taskuserdefine=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+          @FirmwareOriVersion = firmwareoriversion
+          @UpgradeMethod = upgrademethod
+          @FileName = filename
+          @FileMd5 = filemd5
+          @FileSize = filesize
+          @DeviceNames = devicenames
+          @TimeoutInterval = timeoutinterval
+          @Type = type
+          @DelayTime = delaytime
+          @OverrideMode = overridemode
+          @MaxRetryNum = maxretrynum
+          @RetryInterval = retryinterval
+          @FwType = fwtype
+          @TaskUserDefine = taskuserdefine
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+          @FirmwareOriVersion = params['FirmwareOriVersion']
+          @UpgradeMethod = params['UpgradeMethod']
+          @FileName = params['FileName']
+          @FileMd5 = params['FileMd5']
+          @FileSize = params['FileSize']
+          @DeviceNames = params['DeviceNames']
+          @TimeoutInterval = params['TimeoutInterval']
+          @Type = params['Type']
+          @DelayTime = params['DelayTime']
+          @OverrideMode = params['OverrideMode']
+          @MaxRetryNum = params['MaxRetryNum']
+          @RetryInterval = params['RetryInterval']
+          @FwType = params['FwType']
+          @TaskUserDefine = params['TaskUserDefine']
+        end
+      end
+
+      # BatchUpdateFirmware返回参数结构体
+      class BatchUpdateFirmwareResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindCloudStorageUser请求参数结构体
       class BindCloudStorageUserRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -1936,6 +2032,50 @@ module TencentCloud
         end
       end
 
+      # CreateOtaModule请求参数结构体
+      class CreateOtaModuleRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FwType: 模块类型
+        # @type FwType: String
+        # @param Name: 模块类型名称
+        # @type Name: String
+        # @param Remark: 类型描述
+        # @type Remark: String
+
+        attr_accessor :ProductID, :FwType, :Name, :Remark
+
+        def initialize(productid=nil, fwtype=nil, name=nil, remark=nil)
+          @ProductID = productid
+          @FwType = fwtype
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FwType = params['FwType']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateOtaModule返回参数结构体
+      class CreateOtaModuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePositionFence请求参数结构体
       class CreatePositionFenceRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: 位置空间Id
@@ -2678,6 +2818,42 @@ module TencentCloud
 
       # DeleteLoRaGateway返回参数结构体
       class DeleteLoRaGatewayResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteOtaModule请求参数结构体
+      class DeleteOtaModuleRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FwType: 模块类型
+        # @type FwType: String
+
+        attr_accessor :ProductID, :FwType
+
+        def initialize(productid=nil, fwtype=nil)
+          @ProductID = productid
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FwType = params['FwType']
+        end
+      end
+
+      # DeleteOtaModule返回参数结构体
+      class DeleteOtaModuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4961,6 +5137,82 @@ module TencentCloud
         end
       end
 
+      # DescribeFirmwareTaskDevices请求参数结构体
+      class DescribeFirmwareTaskDevicesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件版本
+        # @type FirmwareVersion: String
+        # @param Filters: 筛选条件
+        # @type Filters: Array
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 查询的数量
+        # @type Limit: Integer
+        # @param FwType: 固件类型
+        # @type FwType: String
+
+        attr_accessor :ProductID, :FirmwareVersion, :Filters, :Offset, :Limit, :FwType
+
+        def initialize(productid=nil, firmwareversion=nil, filters=nil, offset=nil, limit=nil, fwtype=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              searchkeyword_tmp = SearchKeyword.new
+              searchkeyword_tmp.deserialize(i)
+              @Filters << searchkeyword_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FwType = params['FwType']
+        end
+      end
+
+      # DescribeFirmwareTaskDevices返回参数结构体
+      class DescribeFirmwareTaskDevicesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 固件升级任务的设备总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Devices: 固件升级任务的设备列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Devices: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Devices, :RequestId
+
+        def initialize(total=nil, devices=nil, requestid=nil)
+          @Total = total
+          @Devices = devices
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Devices'].nil?
+            @Devices = []
+            params['Devices'].each do |i|
+              deviceupdatestatus_tmp = DeviceUpdateStatus.new
+              deviceupdatestatus_tmp.deserialize(i)
+              @Devices << deviceupdatestatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFirmwareTask请求参数结构体
       class DescribeFirmwareTaskRequest < TencentCloud::Common::AbstractModel
         # @param ProductID: 产品ID
@@ -5069,6 +5321,82 @@ module TencentCloud
           @RetryInterval = params['RetryInterval']
           @OverrideMode = params['OverrideMode']
           @TaskUserDefine = params['TaskUserDefine']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeFirmwareTasks请求参数结构体
+      class DescribeFirmwareTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FirmwareVersion: 固件版本号
+        # @type FirmwareVersion: String
+        # @param Offset: 查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回查询结果条数
+        # @type Limit: Integer
+        # @param Filters: 搜索过滤条件
+        # @type Filters: Array
+        # @param FwType: 固件类型
+        # @type FwType: String
+
+        attr_accessor :ProductID, :FirmwareVersion, :Offset, :Limit, :Filters, :FwType
+
+        def initialize(productid=nil, firmwareversion=nil, offset=nil, limit=nil, filters=nil, fwtype=nil)
+          @ProductID = productid
+          @FirmwareVersion = firmwareversion
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FirmwareVersion = params['FirmwareVersion']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              searchkeyword_tmp = SearchKeyword.new
+              searchkeyword_tmp.deserialize(i)
+              @Filters << searchkeyword_tmp
+            end
+          end
+          @FwType = params['FwType']
+        end
+      end
+
+      # DescribeFirmwareTasks返回参数结构体
+      class DescribeFirmwareTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TaskInfos: 固件升级任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfos: Array
+        # @param Total: 固件升级任务总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskInfos, :Total, :RequestId
+
+        def initialize(taskinfos=nil, total=nil, requestid=nil)
+          @TaskInfos = taskinfos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskInfos'].nil?
+            @TaskInfos = []
+            params['TaskInfos'].each do |i|
+              firmwaretaskinfo_tmp = FirmwareTaskInfo.new
+              firmwaretaskinfo_tmp.deserialize(i)
+              @TaskInfos << firmwaretaskinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -6478,6 +6806,65 @@ module TencentCloud
         end
       end
 
+      # 设备固件更新状态
+      class DeviceUpdateStatus < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param LastProcessTime: 最后处理时间
+        # @type LastProcessTime: Integer
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param ErrMsg: 错误消息
+        # @type ErrMsg: String
+        # @param Retcode: 返回码
+        # @type Retcode: Integer
+        # @param DstVersion: 目标更新版本
+        # @type DstVersion: String
+        # @param Percent: 下载中状态时的下载进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+        # @param OriVersion: 原版本号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriVersion: String
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param FwType: 固件类型
+        # @type FwType: String
+        # @param RetryNum: 重试次数
+        # @type RetryNum: Integer
+
+        attr_accessor :DeviceName, :LastProcessTime, :Status, :ErrMsg, :Retcode, :DstVersion, :Percent, :OriVersion, :TaskId, :FwType, :RetryNum
+
+        def initialize(devicename=nil, lastprocesstime=nil, status=nil, errmsg=nil, retcode=nil, dstversion=nil, percent=nil, oriversion=nil, taskid=nil, fwtype=nil, retrynum=nil)
+          @DeviceName = devicename
+          @LastProcessTime = lastprocesstime
+          @Status = status
+          @ErrMsg = errmsg
+          @Retcode = retcode
+          @DstVersion = dstversion
+          @Percent = percent
+          @OriVersion = oriversion
+          @TaskId = taskid
+          @FwType = fwtype
+          @RetryNum = retrynum
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @LastProcessTime = params['LastProcessTime']
+          @Status = params['Status']
+          @ErrMsg = params['ErrMsg']
+          @Retcode = params['Retcode']
+          @DstVersion = params['DstVersion']
+          @Percent = params['Percent']
+          @OriVersion = params['OriVersion']
+          @TaskId = params['TaskId']
+          @FwType = params['FwType']
+          @RetryNum = params['RetryNum']
+        end
+      end
+
       # 设备的用户
       class DeviceUser < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID
@@ -6989,6 +7376,57 @@ module TencentCloud
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
           @UserDefined = params['UserDefined']
+        end
+      end
+
+      # 固件升级任务信息
+      class FirmwareTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: Integer
+        # @param Status: 任务状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Type: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param CreatorNickName: 创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorNickName: String
+        # @param CreateUserId: 创建者ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserId: Integer
+        # @param CronTime: 任务启动时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CronTime: Integer
+        # @param FwType: 固件类型
+        # @type FwType: String
+
+        attr_accessor :TaskId, :Status, :Type, :CreateTime, :CreatorNickName, :CreateUserId, :CronTime, :FwType
+
+        def initialize(taskid=nil, status=nil, type=nil, createtime=nil, creatornickname=nil, createuserid=nil, crontime=nil, fwtype=nil)
+          @TaskId = taskid
+          @Status = status
+          @Type = type
+          @CreateTime = createtime
+          @CreatorNickName = creatornickname
+          @CreateUserId = createuserid
+          @CronTime = crontime
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @CreatorNickName = params['CreatorNickName']
+          @CreateUserId = params['CreateUserId']
+          @CronTime = params['CronTime']
+          @FwType = params['FwType']
         end
       end
 
@@ -8965,6 +9403,111 @@ module TencentCloud
         end
       end
 
+      # ListOtaModules请求参数结构体
+      class ListOtaModulesRequest < TencentCloud::Common::AbstractModel
+        # @param PageNum: 获取的页数
+        # @type PageNum: Integer
+        # @param PageSize: 分页的大小
+        # @type PageSize: Integer
+        # @param Filters: 搜索过滤条件
+        # @type Filters: Array
+
+        attr_accessor :PageNum, :PageSize, :Filters
+
+        def initialize(pagenum=nil, pagesize=nil, filters=nil)
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              searchkeyword_tmp = SearchKeyword.new
+              searchkeyword_tmp.deserialize(i)
+              @Filters << searchkeyword_tmp
+            end
+          end
+        end
+      end
+
+      # ListOtaModules返回参数结构体
+      class ListOtaModulesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 固件总数
+        # @type TotalCount: Integer
+        # @param Modules: 固件列表
+        # @type Modules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Modules, :RequestId
+
+        def initialize(totalcount=nil, modules=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Modules = modules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Modules'].nil?
+            @Modules = []
+            params['Modules'].each do |i|
+              otamoduleinfo_tmp = OtaModuleInfo.new
+              otamoduleinfo_tmp.deserialize(i)
+              @Modules << otamoduleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListProductOtaModules请求参数结构体
+      class ListProductOtaModulesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+
+        attr_accessor :ProductID
+
+        def initialize(productid=nil)
+          @ProductID = productid
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+        end
+      end
+
+      # ListProductOtaModules返回参数结构体
+      class ListProductOtaModulesResponse < TencentCloud::Common::AbstractModel
+        # @param Modules: 固件列表
+        # @type Modules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Modules, :RequestId
+
+        def initialize(modules=nil, requestid=nil)
+          @Modules = modules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Modules'].nil?
+            @Modules = []
+            params['Modules'].each do |i|
+              otamoduleinfo_tmp = OtaModuleInfo.new
+              otamoduleinfo_tmp.deserialize(i)
+              @Modules << otamoduleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListTopicPolicy请求参数结构体
       class ListTopicPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -10021,6 +10564,46 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 升级包类型详细信息
+      class OtaModuleInfo < TencentCloud::Common::AbstractModel
+        # @param CreateTime: 模块创建时间
+        # @type CreateTime: Integer
+        # @param ProductName: 产品名称
+        # @type ProductName: String
+        # @param Name: 模块名称
+        # @type Name: String
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FwType: 模块类型
+        # @type FwType: String
+        # @param IsBuildIn: 是否系统内置升级包类型
+        # @type IsBuildIn: Boolean
+        # @param Remark: 模块描述
+        # @type Remark: String
+
+        attr_accessor :CreateTime, :ProductName, :Name, :ProductID, :FwType, :IsBuildIn, :Remark
+
+        def initialize(createtime=nil, productname=nil, name=nil, productid=nil, fwtype=nil, isbuildin=nil, remark=nil)
+          @CreateTime = createtime
+          @ProductName = productname
+          @Name = name
+          @ProductID = productid
+          @FwType = fwtype
+          @IsBuildIn = isbuildin
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @ProductName = params['ProductName']
+          @Name = params['Name']
+          @ProductID = params['ProductID']
+          @FwType = params['FwType']
+          @IsBuildIn = params['IsBuildIn']
+          @Remark = params['Remark']
         end
       end
 
@@ -11985,6 +12568,50 @@ module TencentCloud
 
       # UpdateFirmware返回参数结构体
       class UpdateFirmwareResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateOtaModule请求参数结构体
+      class UpdateOtaModuleRequest < TencentCloud::Common::AbstractModel
+        # @param ProductID: 产品ID
+        # @type ProductID: String
+        # @param FwType: 模块类型
+        # @type FwType: String
+        # @param Name: 模块类型名称
+        # @type Name: String
+        # @param Remark: 模块类型描述
+        # @type Remark: String
+
+        attr_accessor :ProductID, :FwType, :Name, :Remark
+
+        def initialize(productid=nil, fwtype=nil, name=nil, remark=nil)
+          @ProductID = productid
+          @FwType = fwtype
+          @Name = name
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ProductID = params['ProductID']
+          @FwType = params['FwType']
+          @Name = params['Name']
+          @Remark = params['Remark']
+        end
+      end
+
+      # UpdateOtaModule返回参数结构体
+      class UpdateOtaModuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

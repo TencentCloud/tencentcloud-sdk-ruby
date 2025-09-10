@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 8
-        deprecate :ModerationLevel=, :none, 2025, 8
+        deprecate :ModerationLevel, :none, 2025, 9
+        deprecate :ModerationLevel=, :none, 2025, 9
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -1025,10 +1025,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 8
-        deprecate :FirstID=, :none, 2025, 8
-        deprecate :LastID, :none, 2025, 8
-        deprecate :LastID=, :none, 2025, 8
+        deprecate :FirstID, :none, 2025, 9
+        deprecate :FirstID=, :none, 2025, 9
+        deprecate :LastID, :none, 2025, 9
+        deprecate :LastID=, :none, 2025, 9
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -3089,13 +3089,19 @@ module TencentCloud
         # @type UserLocation: :class:`Tencentcloud::Hunyuan.v20230901.models.UserLocation`
         # @param Processes: 打开开关，会返回搜索状态
         # @type Processes: Boolean
+        # @param EnableImage: 是否开启图文混排
+        # @type EnableImage: Boolean
+        # @param EnableMusic: 是否开启音乐
+        # @type EnableMusic: Boolean
 
-        attr_accessor :Knowledge, :UserLocation, :Processes
+        attr_accessor :Knowledge, :UserLocation, :Processes, :EnableImage, :EnableMusic
 
-        def initialize(knowledge=nil, userlocation=nil, processes=nil)
+        def initialize(knowledge=nil, userlocation=nil, processes=nil, enableimage=nil, enablemusic=nil)
           @Knowledge = knowledge
           @UserLocation = userlocation
           @Processes = processes
+          @EnableImage = enableimage
+          @EnableMusic = enablemusic
         end
 
         def deserialize(params)
@@ -3112,6 +3118,8 @@ module TencentCloud
             @UserLocation.deserialize(params['UserLocation'])
           end
           @Processes = params['Processes']
+          @EnableImage = params['EnableImage']
+          @EnableMusic = params['EnableMusic']
         end
       end
 

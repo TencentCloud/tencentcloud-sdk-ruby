@@ -332,12 +332,20 @@ module TencentCloud
 
       # 文档信息
       class Document < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。
-        # 支持的文件类型：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2
-        # 支持的文件大小：
-        # - PDF、DOC、DOCX、PPT、PPTX 支持100M
-        # - MD、TXT、XLS、XLSX、CSV 支持10M
-        # - 其他支持20M
+        # @param FileType: 支持的文件类型：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、
+        # XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、
+        # IM、PCX、PPM、TIFF、XBM、HEIF、JP2
+
+        # 文档解析支持的文件大小：
+        # -PDF、DOC、DOCX、PPT、PPTX支持100M
+        # -MD、TXT、XLS、XLSX、CSV支特10M
+        # -其他支持20M
+
+        # 文本切片支持的文件大小：
+        # -PDF最大300M
+        # -D0CX、D0C、PPT、PPTX最大200M
+        # -TXT、MD最大10M
+        # -其他最大20M
         # @type FileType: String
         # @param FileUrl: 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，使用腾讯云COS 文件地址。
         # @type FileUrl: String
@@ -587,21 +595,36 @@ module TencentCloud
 
       # 会话内容，按对话时间从旧到新在数组中排列，长度受模型窗口大小限制。
       class Message < TencentCloud::Common::AbstractModel
-        # @param Role: 角色, ‘system', ‘user'，'assistant'或者'tool', 在message中, 除了system，其他必须是user与assistant交替(一问一答)
+        # @param Role: 角色，可选值包括 system、user、assistant、 tool。
         # @type Role: String
         # @param Content: 具体文本内容
         # @type Content: String
+        # @param ToolCallId: 当role为tool时传入，标识具体的函数调用
+        # @type ToolCallId: String
+        # @param ToolCalls: 模型生成的工具调用
+        # @type ToolCalls: Array
 
-        attr_accessor :Role, :Content
+        attr_accessor :Role, :Content, :ToolCallId, :ToolCalls
 
-        def initialize(role=nil, content=nil)
+        def initialize(role=nil, content=nil, toolcallid=nil, toolcalls=nil)
           @Role = role
           @Content = content
+          @ToolCallId = toolcallid
+          @ToolCalls = toolcalls
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+          @ToolCallId = params['ToolCallId']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
         end
       end
 
@@ -629,19 +652,30 @@ module TencentCloud
         # @type Content: String
         # @param ReasoningContent: 推理内容
         # @type ReasoningContent: String
+        # @param ToolCalls: 模型生成的工具调用
+        # @type ToolCalls: Array
 
-        attr_accessor :Role, :Content, :ReasoningContent
+        attr_accessor :Role, :Content, :ReasoningContent, :ToolCalls
 
-        def initialize(role=nil, content=nil, reasoningcontent=nil)
+        def initialize(role=nil, content=nil, reasoningcontent=nil, toolcalls=nil)
           @Role = role
           @Content = content
           @ReasoningContent = reasoningcontent
+          @ToolCalls = toolcalls
         end
 
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
           @ReasoningContent = params['ReasoningContent']
+          unless params['ToolCalls'].nil?
+            @ToolCalls = []
+            params['ToolCalls'].each do |i|
+              toolcall_tmp = ToolCall.new
+              toolcall_tmp.deserialize(i)
+              @ToolCalls << toolcall_tmp
+            end
+          end
         end
       end
 
@@ -663,18 +697,27 @@ module TencentCloud
 
       # 文档信息
       class ParseDocument < TencentCloud::Common::AbstractModel
-        # @param FileType: 文件类型。
-        # 支持的文件类型：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、IM、PCX、PPM、TIFF、XBM、HEIF、JP2
-        # 支持的文件大小：
-        # - PDF、DOC、DOCX、PPT、PPTX 支持100M
-        # - MD、TXT、XLS、XLSX、CSV 支持10M
-        # - 其他支持20M
+        # @param FileType: 支持的文件类型：PDF、DOC、DOCX、PPT、PPTX、MD、TXT、XLS、
+        # XLSX、CSV、PNG、JPG、JPEG、BMP、GIF、WEBP、HEIC、EPS、ICNS、
+        # IM、PCX、PPM、TIFF、XBM、HEIF、JP2
+
+        # 文档解析支持的文件大小：
+        # -PDF、DOC、DOCX、PPT、PPTX支持100M
+        # -MD、TXT、XLS、XLSX、CSV支特10M
+        # -其他支持20M
+
+        # 文本切片支持的文件大小：
+        # -PDF最大300M
+        # -D0CX、D0C、PPT、PPTX最大200M
+        # -TXT、MD最大10M
+        # -其他最大20M
         # @type FileType: String
         # @param FileUrl: 文件存储于腾讯云的 URL 可保障更高的下载速度和稳定性，使用腾讯云COS 文件地址。
         # @type FileUrl: String
         # @param FileContent: 文件的 base64 值，携带 MineType前缀信息。编码后的后的文件不超过 10M。
         # 支持的文件大小：所下载文件经Base64编码后不超过 8M。文件下载时间不超过3秒。
         # 支持的图片像素：单边介于20-10000px之间。
+        # 文件的 FileUrl、FileContent必须提供一个，如果都提供只使用 FileUrl。
         # @type FileContent: String
         # @param DocumentParseConfig: 文档解析配置
         # @type DocumentParseConfig: :class:`Tencentcloud::Es.v20250101.models.DocumentParseConfig`
@@ -922,6 +965,57 @@ module TencentCloud
           @PromptTokens = params['PromptTokens']
           @CompletionTokens = params['CompletionTokens']
           @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 模型生成的工具调用
+      class ToolCall < TencentCloud::Common::AbstractModel
+        # @param Id: 工具调用id
+        # @type Id: String
+        # @param Type: 工具调用类型，当前只支持function
+        # @type Type: String
+        # @param Function: 具体的function调用
+        # @type Function: :class:`Tencentcloud::Es.v20250101.models.ToolCallFunction`
+        # @param Index: 索引值
+        # @type Index: Integer
+
+        attr_accessor :Id, :Type, :Function, :Index
+
+        def initialize(id=nil, type=nil, function=nil, index=nil)
+          @Id = id
+          @Type = type
+          @Function = function
+          @Index = index
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          unless params['Function'].nil?
+            @Function = ToolCallFunction.new
+            @Function.deserialize(params['Function'])
+          end
+          @Index = params['Index']
+        end
+      end
+
+      # 具体的function调用
+      class ToolCallFunction < TencentCloud::Common::AbstractModel
+        # @param Name: function名称
+        # @type Name: String
+        # @param Arguments: function参数，一般为json字符串
+        # @type Arguments: String
+
+        attr_accessor :Name, :Arguments
+
+        def initialize(name=nil, arguments=nil)
+          @Name = name
+          @Arguments = arguments
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Arguments = params['Arguments']
         end
       end
 

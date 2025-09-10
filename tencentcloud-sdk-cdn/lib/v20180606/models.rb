@@ -5888,7 +5888,7 @@ module TencentCloud
         # @param HeaderName: http 头部名称，最多可设置 100 个字符
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeaderName: String
-        # @param HeaderValue: http 头部值，最多可设置 2000 个字符
+        # @param HeaderValue: http 头部值，自定义请求头中最多可设置 1000 个字符，自定义响应头中最多可以设置 2000 个字符
         # Mode 为 del 时非必填
         # Mode 为 add/set 时必填
         # 注意：此字段可能返回 null，表示取不到有效值。

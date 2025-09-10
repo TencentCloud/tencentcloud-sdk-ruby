@@ -410,10 +410,12 @@ module TencentCloud
         # @type VisitReason: Array
         # @param VisitRemark: 到访说明
         # @type VisitRemark: String
+        # @param CarSet: 到访人员车辆信息
+        # @type CarSet: Array
 
-        attr_accessor :PersonnelSet, :IdcId, :IdcUnitIdSet, :EnterStartTime, :EnterEndTime, :VisitReason, :VisitRemark
+        attr_accessor :PersonnelSet, :IdcId, :IdcUnitIdSet, :EnterStartTime, :EnterEndTime, :VisitReason, :VisitRemark, :CarSet
 
-        def initialize(personnelset=nil, idcid=nil, idcunitidset=nil, enterstarttime=nil, enterendtime=nil, visitreason=nil, visitremark=nil)
+        def initialize(personnelset=nil, idcid=nil, idcunitidset=nil, enterstarttime=nil, enterendtime=nil, visitreason=nil, visitremark=nil, carset=nil)
           @PersonnelSet = personnelset
           @IdcId = idcid
           @IdcUnitIdSet = idcunitidset
@@ -421,6 +423,7 @@ module TencentCloud
           @EnterEndTime = enterendtime
           @VisitReason = visitreason
           @VisitRemark = visitremark
+          @CarSet = carset
         end
 
         def deserialize(params)
@@ -438,6 +441,14 @@ module TencentCloud
           @EnterEndTime = params['EnterEndTime']
           @VisitReason = params['VisitReason']
           @VisitRemark = params['VisitRemark']
+          unless params['CarSet'].nil?
+            @CarSet = []
+            params['CarSet'].each do |i|
+              personnelvisitcar_tmp = PersonnelVisitCar.new
+              personnelvisitcar_tmp.deserialize(i)
+              @CarSet << personnelvisitcar_tmp
+            end
+          end
         end
       end
 
@@ -1887,17 +1898,20 @@ module TencentCloud
         # @type OrderStatus: String
         # @param RejectReason: 拒绝原因
         # @type RejectReason: String
+        # @param CarSet: 到访人员车辆信息
+        # @type CarSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StepSet, :BaseInfo, :PersonnelSet, :OrderStatus, :RejectReason, :RequestId
+        attr_accessor :StepSet, :BaseInfo, :PersonnelSet, :OrderStatus, :RejectReason, :CarSet, :RequestId
 
-        def initialize(stepset=nil, baseinfo=nil, personnelset=nil, orderstatus=nil, rejectreason=nil, requestid=nil)
+        def initialize(stepset=nil, baseinfo=nil, personnelset=nil, orderstatus=nil, rejectreason=nil, carset=nil, requestid=nil)
           @StepSet = stepset
           @BaseInfo = baseinfo
           @PersonnelSet = personnelset
           @OrderStatus = orderstatus
           @RejectReason = rejectreason
+          @CarSet = carset
           @RequestId = requestid
         end
 
@@ -1924,6 +1938,14 @@ module TencentCloud
           end
           @OrderStatus = params['OrderStatus']
           @RejectReason = params['RejectReason']
+          unless params['CarSet'].nil?
+            @CarSet = []
+            params['CarSet'].each do |i|
+              personnelvisitcar_tmp = PersonnelVisitCar.new
+              personnelvisitcar_tmp.deserialize(i)
+              @CarSet << personnelvisitcar_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3480,6 +3502,30 @@ module TencentCloud
         end
       end
 
+      # 人员到访时的车辆信息
+      class PersonnelVisitCar < TencentCloud::Common::AbstractModel
+        # @param CarNumber: 车牌号
+        # @type CarNumber: String
+        # @param DriverName: 驾驶人姓名
+        # @type DriverName: String
+        # @param DriverNumber: 驾驶人身份证号
+        # @type DriverNumber: String
+
+        attr_accessor :CarNumber, :DriverName, :DriverNumber
+
+        def initialize(carnumber=nil, drivername=nil, drivernumber=nil)
+          @CarNumber = carnumber
+          @DriverName = drivername
+          @DriverNumber = drivernumber
+        end
+
+        def deserialize(params)
+          @CarNumber = params['CarNumber']
+          @DriverName = params['DriverName']
+          @DriverNumber = params['DriverNumber']
+        end
+      end
+
       # 机位信息
       class Position < TencentCloud::Common::AbstractModel
         # @param PositionId: 机位ID
@@ -3948,10 +3994,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param FinishTime: 工单完成时间
         # @type FinishTime: String
+        # @param TicketId: 工单关联的dcops单号
+        # @type TicketId: String
 
-        attr_accessor :WorkOrderId, :ServiceType, :OrderType, :OrderStatus, :Creator, :CreateTime, :FinishTime
+        attr_accessor :WorkOrderId, :ServiceType, :OrderType, :OrderStatus, :Creator, :CreateTime, :FinishTime, :TicketId
 
-        def initialize(workorderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, creator=nil, createtime=nil, finishtime=nil)
+        def initialize(workorderid=nil, servicetype=nil, ordertype=nil, orderstatus=nil, creator=nil, createtime=nil, finishtime=nil, ticketid=nil)
           @WorkOrderId = workorderid
           @ServiceType = servicetype
           @OrderType = ordertype
@@ -3959,6 +4007,7 @@ module TencentCloud
           @Creator = creator
           @CreateTime = createtime
           @FinishTime = finishtime
+          @TicketId = ticketid
         end
 
         def deserialize(params)
@@ -3969,6 +4018,7 @@ module TencentCloud
           @Creator = params['Creator']
           @CreateTime = params['CreateTime']
           @FinishTime = params['FinishTime']
+          @TicketId = params['TicketId']
         end
       end
 

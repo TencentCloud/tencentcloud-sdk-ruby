@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 提供服务端控制机器人的功能
+
+        # @param request: Request instance for ControlAIConversation.
+        # @type request: :class:`Tencentcloud::gme::V20180711::ControlAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::ControlAIConversationResponse`
+        def ControlAIConversation(request)
+          body = send_request('ControlAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ControlAIConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 目前该功能底层能力已不具备，不对外提供，目前需要下线，走预下线流程。
 
         # 用于创建年龄语音识别任务的接口，请求频率10次/秒。该接口目前通过白名单开放试用，如有需求，请提交工单申请。
@@ -195,6 +219,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteScanUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 传入声纹ID，删除之前注册的声纹信息
+
+        # @param request: Request instance for DeleteVoicePrint.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DeleteVoicePrintRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DeleteVoicePrintResponse`
+        def DeleteVoicePrint(request)
+          body = send_request('DeleteVoicePrint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteVoicePrintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询AI对话任务状态。
+
+        # @param request: Request instance for DescribeAIConversation.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeAIConversationResponse`
+        def DescribeAIConversation(request)
+          body = send_request('DescribeAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIConversationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -452,6 +524,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询先前注册的声纹信息
+
+        # @param request: Request instance for DescribeVoicePrint.
+        # @type request: :class:`Tencentcloud::gme::V20180711::DescribeVoicePrintRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::DescribeVoicePrintResponse`
+        def DescribeVoicePrint(request)
+          body = send_request('DescribeVoicePrint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVoicePrintResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询语音消息转文本热句模型列表
 
         # @param request: Request instance for GetCustomizationList.
@@ -584,6 +680,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyUserMicStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 传入音频base64串，注册声纹信息，返回声纹ID
+
+        # @param request: Request instance for RegisterVoicePrint.
+        # @type request: :class:`Tencentcloud::gme::V20180711::RegisterVoicePrintRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::RegisterVoicePrintResponse`
+        def RegisterVoicePrint(request)
+          body = send_request('RegisterVoicePrint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RegisterVoicePrintResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -757,6 +877,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动AI对话任务，AI通道机器人进入GME房间，与房间内指定的成员进行AI对话，适用于智能客服，AI口语教师等场景
+
+        # GME AI对话功能内置语音转文本能力，同时提供通道服务，即客户可灵活指定第三方AI模型（LLM）服务和文本转音频（TTS)服务，更多[功能说明](https://cloud.tencent.com/document/product/647/108901)。
+
+        # @param request: Request instance for StartAIConversation.
+        # @type request: :class:`Tencentcloud::gme::V20180711::StartAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::StartAIConversationResponse`
+        def StartAIConversation(request)
+          body = send_request('StartAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartAIConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开启录制
 
         # @param request: Request instance for StartRecord.
@@ -781,6 +927,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 停止AI对话任务
+
+        # @param request: Request instance for StopAIConversation.
+        # @type request: :class:`Tencentcloud::gme::V20180711::StopAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::StopAIConversationResponse`
+        def StopAIConversation(request)
+          body = send_request('StopAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopAIConversationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止录制
 
         # @param request: Request instance for StopRecord.
@@ -791,6 +961,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新AIConversation参数
+
+        # @param request: Request instance for UpdateAIConversation.
+        # @type request: :class:`Tencentcloud::gme::V20180711::UpdateAIConversationRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::UpdateAIConversationResponse`
+        def UpdateAIConversation(request)
+          body = send_request('UpdateAIConversation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateAIConversationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -840,6 +1034,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateScanUsersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 传入声纹ID以及对应音频信息，更新对应声纹信息
+
+        # @param request: Request instance for UpdateVoicePrint.
+        # @type request: :class:`Tencentcloud::gme::V20180711::UpdateVoicePrintRequest`
+        # @rtype: :class:`Tencentcloud::gme::V20180711::UpdateVoicePrintResponse`
+        def UpdateVoicePrint(request)
+          body = send_request('UpdateVoicePrint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateVoicePrintResponse.new
             model.deserialize(response['Response'])
             model
           else

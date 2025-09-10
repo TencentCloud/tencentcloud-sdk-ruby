@@ -3147,10 +3147,18 @@ module TencentCloud
         # @type Isp: String
         # @param DisplayToolCommon: 公共字段
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Ports: 端口数据
+        # @type Ports: String
+        # @param Services: 服务数据
+        # @type Services: String
+        # @param Domains: 域名数据
+        # @type Domains: String
+        # @param LastModify: 端口和服务最近更新时间
+        # @type LastModify: String
 
-        attr_accessor :Id, :Os, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon
+        attr_accessor :Id, :Os, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :Ports, :Services, :Domains, :LastModify
 
-        def initialize(id=nil, os=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil)
+        def initialize(id=nil, os=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, ports=nil, services=nil, domains=nil, lastmodify=nil)
           @Id = id
           @Os = os
           @Ip = ip
@@ -3159,6 +3167,10 @@ module TencentCloud
           @City = city
           @Isp = isp
           @DisplayToolCommon = displaytoolcommon
+          @Ports = ports
+          @Services = services
+          @Domains = domains
+          @LastModify = lastmodify
         end
 
         def deserialize(params)
@@ -3173,6 +3185,10 @@ module TencentCloud
             @DisplayToolCommon = DisplayToolCommon.new
             @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
           end
+          @Ports = params['Ports']
+          @Services = params['Services']
+          @Domains = params['Domains']
+          @LastModify = params['LastModify']
         end
       end
 

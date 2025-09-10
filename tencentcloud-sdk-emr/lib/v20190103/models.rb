@@ -642,10 +642,14 @@ module TencentCloud
         # @type EmrResourceId: String
         # @param UnderwriteExpiredTime: 包销到期时间
         # @type UnderwriteExpiredTime: String
+        # @param Tags: 标签
+        # @type Tags: Array
+        # @param ThroughputPerformance: 云硬盘额外性能值，单位：MB/s
+        # @type ThroughputPerformance: Integer
 
-        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable, :EmrResourceId, :UnderwriteExpiredTime
+        attr_accessor :DiskId, :DiskUsage, :DiskName, :DiskSize, :DiskType, :DeleteWithInstance, :DiskChargeType, :DiskState, :RenewFlag, :DeadlineTime, :Attached, :DifferDaysOfDeadline, :InstanceIdList, :InstanceId, :Shareable, :EmrResourceId, :UnderwriteExpiredTime, :Tags, :ThroughputPerformance
 
-        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil, emrresourceid=nil, underwriteexpiredtime=nil)
+        def initialize(diskid=nil, diskusage=nil, diskname=nil, disksize=nil, disktype=nil, deletewithinstance=nil, diskchargetype=nil, diskstate=nil, renewflag=nil, deadlinetime=nil, attached=nil, differdaysofdeadline=nil, instanceidlist=nil, instanceid=nil, shareable=nil, emrresourceid=nil, underwriteexpiredtime=nil, tags=nil, throughputperformance=nil)
           @DiskId = diskid
           @DiskUsage = diskusage
           @DiskName = diskname
@@ -663,6 +667,8 @@ module TencentCloud
           @Shareable = shareable
           @EmrResourceId = emrresourceid
           @UnderwriteExpiredTime = underwriteexpiredtime
+          @Tags = tags
+          @ThroughputPerformance = throughputperformance
         end
 
         def deserialize(params)
@@ -683,6 +689,15 @@ module TencentCloud
           @Shareable = params['Shareable']
           @EmrResourceId = params['EmrResourceId']
           @UnderwriteExpiredTime = params['UnderwriteExpiredTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @ThroughputPerformance = params['ThroughputPerformance']
         end
       end
 
@@ -1093,10 +1108,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 8
-        deprecate :Ftitle=, :none, 2025, 8
-        deprecate :Config, :none, 2025, 8
-        deprecate :Config=, :none, 2025, 8
+        deprecate :Ftitle, :none, 2025, 9
+        deprecate :Ftitle=, :none, 2025, 9
+        deprecate :Config, :none, 2025, 9
+        deprecate :Config=, :none, 2025, 9
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -1669,8 +1684,8 @@ module TencentCloud
         # <li>55:表示EMR-TKE-V1.0.1</li>
         # <li>52:表示EMR-TKE-V1.0.0</li>
         # @type ProductId: Integer
-        # @param ClientToken: 客户端token，唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，小于等于64个字符，例如 a9a90aa6----fae36063280
-        # 示例值：a9a90aa6----fae36063280
+        # @param ClientToken: 客户端token，唯一随机标识，时效5分钟，需要调用者指定 防止客户端重新创建资源，小于等于64个字符，例如 a9a90aa6fae36063280
+        # 示例值：a9a90aa6fae36063280
         # @type ClientToken: String
         # @param VPCSettings: 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
         # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
@@ -1685,16 +1700,20 @@ module TencentCloud
         # @type MetaDBInfo: :class:`Tencentcloud::Emr.v20190103.models.CustomMetaDBInfo`
         # @param Tags: 标签信息
         # @type Tags: Array
-        # @param LoginSettings: 登陆密码，LoginSettings中的Password字段
+        # @param LoginSettings: 登录密码，LoginSettings中的Password字段
         # @type LoginSettings: :class:`Tencentcloud::Emr.v20190103.models.LoginSettings`
         # @param ExternalService: 共享服务信息
         # @type ExternalService: Array
         # @param ZoneId: 可用区id
         # @type ZoneId: Integer
+        # @param DefaultMetaVersion: 数据库版本
+        # @type DefaultMetaVersion: String
+        # @param NeedCdbAudit: 是否开通审计
+        # @type NeedCdbAudit: Integer
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -1711,6 +1730,8 @@ module TencentCloud
           @LoginSettings = loginsettings
           @ExternalService = externalservice
           @ZoneId = zoneid
+          @DefaultMetaVersion = defaultmetaversion
+          @NeedCdbAudit = needcdbaudit
         end
 
         def deserialize(params)
@@ -1760,6 +1781,8 @@ module TencentCloud
             end
           end
           @ZoneId = params['ZoneId']
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @NeedCdbAudit = params['NeedCdbAudit']
         end
       end
 
@@ -1850,10 +1873,14 @@ module TencentCloud
         # @type NodeMarks: Array
         # @param LoadBalancerId: clb id
         # @type LoadBalancerId: String
+        # @param DefaultMetaVersion: 数据库版本：mysql8/tdsql8/mysql5
+        # @type DefaultMetaVersion: String
+        # @param NeedCdbAudit: 是否开通数据库审计
+        # @type NeedCdbAudit: Integer
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1877,6 +1904,8 @@ module TencentCloud
           @CosBucket = cosbucket
           @NodeMarks = nodemarks
           @LoadBalancerId = loadbalancerid
+          @DefaultMetaVersion = defaultmetaversion
+          @NeedCdbAudit = needcdbaudit
         end
 
         def deserialize(params)
@@ -1950,6 +1979,8 @@ module TencentCloud
             end
           end
           @LoadBalancerId = params['LoadBalancerId']
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @NeedCdbAudit = params['NeedCdbAudit']
         end
       end
 
@@ -2138,10 +2169,14 @@ module TencentCloud
         # @type NodeMarks: Array
         # @param LoadBalancerId: CLB id
         # @type LoadBalancerId: String
+        # @param DefaultMetaVersion: 数据库类型：mysql8/tdsql8
+        # @type DefaultMetaVersion: String
+        # @param NeedCdbAudit: 是否开通审计：0:不开通,1:开通
+        # @type NeedCdbAudit: Integer
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2177,6 +2212,8 @@ module TencentCloud
           @CosBucket = cosbucket
           @NodeMarks = nodemarks
           @LoadBalancerId = loadbalancerid
+          @DefaultMetaVersion = defaultmetaversion
+          @NeedCdbAudit = needcdbaudit
         end
 
         def deserialize(params)
@@ -2268,6 +2305,8 @@ module TencentCloud
             end
           end
           @LoadBalancerId = params['LoadBalancerId']
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @NeedCdbAudit = params['NeedCdbAudit']
         end
       end
 
@@ -4384,16 +4423,20 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 数据偏移值
         # @type Offset: Integer
+        # @param Scene: 场景值：
+        # ModifyDiskExtraPerformance ：调整数据盘额外性能
+        # @type Scene: String
 
-        attr_accessor :InstanceId, :CvmInstanceIds, :Filters, :InnerSearch, :Limit, :Offset
+        attr_accessor :InstanceId, :CvmInstanceIds, :Filters, :InnerSearch, :Limit, :Offset, :Scene
 
-        def initialize(instanceid=nil, cvminstanceids=nil, filters=nil, innersearch=nil, limit=nil, offset=nil)
+        def initialize(instanceid=nil, cvminstanceids=nil, filters=nil, innersearch=nil, limit=nil, offset=nil, scene=nil)
           @InstanceId = instanceid
           @CvmInstanceIds = cvminstanceids
           @Filters = filters
           @InnerSearch = innersearch
           @Limit = limit
           @Offset = offset
+          @Scene = scene
         end
 
         def deserialize(params)
@@ -4410,6 +4453,7 @@ module TencentCloud
           @InnerSearch = params['InnerSearch']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @Scene = params['Scene']
         end
       end
 
@@ -4422,15 +4466,18 @@ module TencentCloud
         # @type CBSList: Array
         # @param MaxSize: 云盘最大容量
         # @type MaxSize: Integer
+        # @param MaxThroughputPerformance: 云硬盘最大额外性能值
+        # @type MaxThroughputPerformance: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :CBSList, :MaxSize, :RequestId
+        attr_accessor :TotalCount, :CBSList, :MaxSize, :MaxThroughputPerformance, :RequestId
 
-        def initialize(totalcount=nil, cbslist=nil, maxsize=nil, requestid=nil)
+        def initialize(totalcount=nil, cbslist=nil, maxsize=nil, maxthroughputperformance=nil, requestid=nil)
           @TotalCount = totalcount
           @CBSList = cbslist
           @MaxSize = maxsize
+          @MaxThroughputPerformance = maxthroughputperformance
           @RequestId = requestid
         end
 
@@ -4445,6 +4492,7 @@ module TencentCloud
             end
           end
           @MaxSize = params['MaxSize']
+          @MaxThroughputPerformance = params['MaxThroughputPerformance']
           @RequestId = params['RequestId']
         end
       end
@@ -7092,10 +7140,14 @@ module TencentCloud
         # @type VersionID: Integer
         # @param MultiZoneSettings: 可用区的规格信息
         # @type MultiZoneSettings: Array
+        # @param DefaultMetaVersion: 数据库版本
+        # @type DefaultMetaVersion: String
+        # @param NeedCdbAudit: 0:不开通审计；1:开通审计
+        # @type NeedCdbAudit: Integer
 
-        attr_accessor :TimeUnit, :TimeSpan, :Currency, :PayMode, :SupportHA, :Software, :ResourceSpec, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName, :ExternalService, :VersionID, :MultiZoneSettings
+        attr_accessor :TimeUnit, :TimeSpan, :Currency, :PayMode, :SupportHA, :Software, :ResourceSpec, :Placement, :VPCSettings, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ProductId, :SceneName, :ExternalService, :VersionID, :MultiZoneSettings, :DefaultMetaVersion, :NeedCdbAudit
 
-        def initialize(timeunit=nil, timespan=nil, currency=nil, paymode=nil, supportha=nil, software=nil, resourcespec=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil, externalservice=nil, versionid=nil, multizonesettings=nil)
+        def initialize(timeunit=nil, timespan=nil, currency=nil, paymode=nil, supportha=nil, software=nil, resourcespec=nil, placement=nil, vpcsettings=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, productid=nil, scenename=nil, externalservice=nil, versionid=nil, multizonesettings=nil, defaultmetaversion=nil, needcdbaudit=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @Currency = currency
@@ -7113,6 +7165,8 @@ module TencentCloud
           @ExternalService = externalservice
           @VersionID = versionid
           @MultiZoneSettings = multizonesettings
+          @DefaultMetaVersion = defaultmetaversion
+          @NeedCdbAudit = needcdbaudit
         end
 
         def deserialize(params)
@@ -7159,6 +7213,8 @@ module TencentCloud
               @MultiZoneSettings << multizonesetting_tmp
             end
           end
+          @DefaultMetaVersion = params['DefaultMetaVersion']
+          @NeedCdbAudit = params['NeedCdbAudit']
         end
       end
 
@@ -7991,6 +8047,8 @@ module TencentCloud
         # @type GraceDownFlag: Boolean
         # @param GraceDownTime: 优雅缩容等待时间
         # @type GraceDownTime: Integer
+        # @param GraceDownProtectFlag: 是否开启任务保护
+        # @type GraceDownProtectFlag: Boolean
         # @param Tags: 绑定标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
@@ -8021,9 +8079,9 @@ module TencentCloud
         # @param Soft: soft例如yarn
         # @type Soft: String
 
-        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :SoftDeployDesc, :ServiceNodeDesc, :ServiceNodeInfo, :SoftDeployInfo, :LoadMetricsConditions, :GroupId, :Soft
+        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :SoftDeployDesc, :ServiceNodeDesc, :ServiceNodeInfo, :SoftDeployInfo, :LoadMetricsConditions, :GroupId, :Soft
 
-        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, softdeploydesc=nil, servicenodedesc=nil, servicenodeinfo=nil, softdeployinfo=nil, loadmetricsconditions=nil, groupid=nil, soft=nil)
+        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, softdeploydesc=nil, servicenodedesc=nil, servicenodeinfo=nil, softdeployinfo=nil, loadmetricsconditions=nil, groupid=nil, soft=nil)
           @StrategyId = strategyid
           @StrategyName = strategyname
           @CalmDownTime = calmdowntime
@@ -8036,6 +8094,7 @@ module TencentCloud
           @PeriodValid = periodvalid
           @GraceDownFlag = gracedownflag
           @GraceDownTime = gracedowntime
+          @GraceDownProtectFlag = gracedownprotectflag
           @Tags = tags
           @ConfigGroupAssigned = configgroupassigned
           @MeasureMethod = measuremethod
@@ -8061,6 +8120,7 @@ module TencentCloud
           @PeriodValid = params['PeriodValid']
           @GraceDownFlag = params['GraceDownFlag']
           @GraceDownTime = params['GraceDownTime']
+          @GraceDownProtectFlag = params['GraceDownProtectFlag']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -12885,12 +12945,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 8
-        deprecate :DetetcFunctionKey=, :none, 2025, 8
-        deprecate :DetetcFunctionValue, :none, 2025, 8
-        deprecate :DetetcFunctionValue=, :none, 2025, 8
-        deprecate :DetetcTime, :none, 2025, 8
-        deprecate :DetetcTime=, :none, 2025, 8
+        deprecate :DetetcFunctionKey, :none, 2025, 9
+        deprecate :DetetcFunctionKey=, :none, 2025, 9
+        deprecate :DetetcFunctionValue, :none, 2025, 9
+        deprecate :DetetcFunctionValue=, :none, 2025, 9
+        deprecate :DetetcTime, :none, 2025, 9
+        deprecate :DetetcTime=, :none, 2025, 9
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert
@@ -13605,6 +13665,26 @@ module TencentCloud
         end
       end
 
+      # 标签信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # Kubernetes Taint
       class Taint < TencentCloud::Common::AbstractModel
         # @param Key: Taint Key
@@ -13852,6 +13932,8 @@ module TencentCloud
         # @type GraceDownFlag: Boolean
         # @param GraceDownTime: 优雅缩容等待时间
         # @type GraceDownTime: Integer
+        # @param GraceDownProtectFlag: 是否开启任务保护
+        # @type GraceDownProtectFlag: Boolean
         # @param Tags: 绑定标签列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
@@ -13880,9 +13962,9 @@ module TencentCloud
         # @param GraceDownLabel: 优雅缩容业务pod标签，当node不存在上述pod或超过优雅缩容时间时，缩容节点
         # @type GraceDownLabel: Array
 
-        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId, :GraceDownLabel
+        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId, :GraceDownLabel
 
-        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil, gracedownlabel=nil)
+        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil, gracedownlabel=nil)
           @StrategyName = strategyname
           @IntervalTime = intervaltime
           @ScaleAction = scaleaction
@@ -13894,6 +13976,7 @@ module TencentCloud
           @StrategyId = strategyid
           @GraceDownFlag = gracedownflag
           @GraceDownTime = gracedowntime
+          @GraceDownProtectFlag = gracedownprotectflag
           @Tags = tags
           @ConfigGroupAssigned = configgroupassigned
           @MeasureMethod = measuremethod
@@ -13921,6 +14004,7 @@ module TencentCloud
           @StrategyId = params['StrategyId']
           @GraceDownFlag = params['GraceDownFlag']
           @GraceDownTime = params['GraceDownTime']
+          @GraceDownProtectFlag = params['GraceDownProtectFlag']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|

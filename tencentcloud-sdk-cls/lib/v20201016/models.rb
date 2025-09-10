@@ -149,7 +149,7 @@ module TencentCloud
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期。单位是min。取值范围是0~1440。
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知模板列表。
+        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
         # @type AlarmNoticeIds: Array
         # @param Status: 开启状态。
         # @type Status: Boolean
@@ -181,10 +181,12 @@ module TencentCloud
         # @param MultiConditions: 多触发条件。与
         # Condition互斥。
         # @type MultiConditions: Array
+        # @param MonitorNotice: 云监控通知渠道相关信息，和AlarmNoticeIds互斥
+        # @type MonitorNotice: :class:`Tencentcloud::Cls.v20201016.models.MonitorNotice`
 
-        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions
+        attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions, :MonitorNotice
 
-        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil)
+        def initialize(name=nil, alarmtargets=nil, monitortime=nil, condition=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, status=nil, alarmid=nil, createtime=nil, updatetime=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, alarmlevel=nil, classifications=nil, multiconditions=nil, monitornotice=nil)
           @Name = name
           @AlarmTargets = alarmtargets
           @MonitorTime = monitortime
@@ -206,6 +208,7 @@ module TencentCloud
           @AlarmLevel = alarmlevel
           @Classifications = classifications
           @MultiConditions = multiconditions
+          @MonitorNotice = monitornotice
         end
 
         def deserialize(params)
@@ -270,6 +273,10 @@ module TencentCloud
               multicondition_tmp.deserialize(i)
               @MultiConditions << multicondition_tmp
             end
+          end
+          unless params['MonitorNotice'].nil?
+            @MonitorNotice = MonitorNotice.new
+            @MonitorNotice.deserialize(params['MonitorNotice'])
           end
         end
       end
@@ -607,10 +614,12 @@ module TencentCloud
         # @param MonitorObjectType: 监控对象类型。
         # 0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
         # @type MonitorObjectType: Integer
+        # @param SendType: 通知渠道类型，0默认代表cls内部通知渠道，1代表云监控通知渠道
+        # @type SendType: Integer
 
-        attr_accessor :RecordId, :AlarmId, :AlarmName, :TopicId, :TopicName, :Region, :Trigger, :TriggerCount, :AlarmPeriod, :Notices, :Duration, :Status, :CreateTime, :GroupTriggerCondition, :AlarmLevel, :MonitorObjectType
+        attr_accessor :RecordId, :AlarmId, :AlarmName, :TopicId, :TopicName, :Region, :Trigger, :TriggerCount, :AlarmPeriod, :Notices, :Duration, :Status, :CreateTime, :GroupTriggerCondition, :AlarmLevel, :MonitorObjectType, :SendType
 
-        def initialize(recordid=nil, alarmid=nil, alarmname=nil, topicid=nil, topicname=nil, region=nil, trigger=nil, triggercount=nil, alarmperiod=nil, notices=nil, duration=nil, status=nil, createtime=nil, grouptriggercondition=nil, alarmlevel=nil, monitorobjecttype=nil)
+        def initialize(recordid=nil, alarmid=nil, alarmname=nil, topicid=nil, topicname=nil, region=nil, trigger=nil, triggercount=nil, alarmperiod=nil, notices=nil, duration=nil, status=nil, createtime=nil, grouptriggercondition=nil, alarmlevel=nil, monitorobjecttype=nil, sendtype=nil)
           @RecordId = recordid
           @AlarmId = alarmid
           @AlarmName = alarmname
@@ -627,6 +636,7 @@ module TencentCloud
           @GroupTriggerCondition = grouptriggercondition
           @AlarmLevel = alarmlevel
           @MonitorObjectType = monitorobjecttype
+          @SendType = sendtype
         end
 
         def deserialize(params)
@@ -660,6 +670,7 @@ module TencentCloud
           end
           @AlarmLevel = params['AlarmLevel']
           @MonitorObjectType = params['MonitorObjectType']
+          @SendType = params['SendType']
         end
       end
 
@@ -2046,7 +2057,7 @@ module TencentCloud
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期，单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表
+        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
         # @type AlarmNoticeIds: Array
         # @param Condition: 告警发送通知的触发条件
         #  注意:
@@ -9079,7 +9090,7 @@ module TencentCloud
         # @type TriggerCount: Integer
         # @param AlarmPeriod: 告警重复的周期。单位是分钟。取值范围是0~1440。
         # @type AlarmPeriod: Integer
-        # @param AlarmNoticeIds: 关联的告警通知渠道列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取告警通知渠道列表
+        # @param AlarmNoticeIds: 关联的告警通知渠道组列表。-通过[获取通知渠道组列表](https://cloud.tencent.com/document/product/614/56462)获取关联的告警通知渠道组列表，和MonitorNotice互斥
         # @type AlarmNoticeIds: Array
         # @param AlarmTargets: 监控对象列表。
         # @type AlarmTargets: Array
@@ -10618,6 +10629,54 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 提供多个Notice信息
+      class MonitorNotice < TencentCloud::Common::AbstractModel
+        # @param Notices: 以数组的形式提供MonitorNoticeRule
+        # @type Notices: Array
+
+        attr_accessor :Notices
+
+        def initialize(notices=nil)
+          @Notices = notices
+        end
+
+        def deserialize(params)
+          unless params['Notices'].nil?
+            @Notices = []
+            params['Notices'].each do |i|
+              monitornoticerule_tmp = MonitorNoticeRule.new
+              monitornoticerule_tmp.deserialize(i)
+              @Notices << monitornoticerule_tmp
+            end
+          end
+        end
+      end
+
+      # 云监控通知渠道组信息
+      class MonitorNoticeRule < TencentCloud::Common::AbstractModel
+        # @param NoticeId: 云监控通知模版ID
+        # @type NoticeId: String
+        # @param ContentTmplId: 云监控内容模版ID，不传默认内容模版
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentTmplId: String
+        # @param AlarmLevels: 告警级别,0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)
+        # @type AlarmLevels: Array
+
+        attr_accessor :NoticeId, :ContentTmplId, :AlarmLevels
+
+        def initialize(noticeid=nil, contenttmplid=nil, alarmlevels=nil)
+          @NoticeId = noticeid
+          @ContentTmplId = contenttmplid
+          @AlarmLevels = alarmlevels
+        end
+
+        def deserialize(params)
+          @NoticeId = params['NoticeId']
+          @ContentTmplId = params['ContentTmplId']
+          @AlarmLevels = params['AlarmLevels']
         end
       end
 

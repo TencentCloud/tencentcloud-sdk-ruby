@@ -11942,8 +11942,7 @@ module TencentCloud
         # @type CasterId: Integer
         # @param CasterName: 导播台名称
         # @type CasterName: String
-        # @param Description: 导播台的描述
-        # 最大允许长度256
+        # @param Description: 导播台的描述，最大允许长度256
         # @type Description: String
         # @param RecordTemplateId: 录制模板id。
         # 默认为0。

@@ -2590,9 +2590,15 @@ module TencentCloud
         # @type ForbidPersonalMultipleSign: Boolean
         # @param FlowNameAppendScannerInfo: 合同流程名称是否应包含扫码签署人的信息，且遵循特定格式（flowname-姓名-手机号后四位）。 例如，通过参数FlowName设定的扫码发起合同名称为“员工入职合同”，当扫码人张三（手机号18800009527）扫码签署时，合同名称将自动生成为“员工入职合同-张三-9527”。
         # @type FlowNameAppendScannerInfo: Boolean
+        # @param QrCodeName: 签署二维码的名称（可自定义此名称），长度不能超过200，只能由中文、字母、数字和下划线组成,会在生成的二维码图片上展示，若为空，则使用FlowName
+        # @type QrCodeName: String
+        # @param QrCodeExpiredOn: 签署二维码截止时间，格式为Unix标准时间戳（秒），如果未设置签署截止时间，则默认为签署二维码创建后的7天时截止，最长可设置为签署二维码创建后的365天时截止。
+        # @type QrCodeExpiredOn: Integer
 
-        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :ApproverComponentLimitTypes, :CallbackUrl, :ApproverRestrictions, :Operator, :ForbidPersonalMultipleSign, :FlowNameAppendScannerInfo
+        attr_accessor :Agent, :TemplateId, :FlowName, :MaxFlowNum, :FlowEffectiveDay, :QrEffectiveDay, :Restrictions, :ApproverComponentLimitTypes, :CallbackUrl, :ApproverRestrictions, :Operator, :ForbidPersonalMultipleSign, :FlowNameAppendScannerInfo, :QrCodeName, :QrCodeExpiredOn
         extend Gem::Deprecate
+        deprecate :QrEffectiveDay, :none, 2025, 9
+        deprecate :QrEffectiveDay=, :none, 2025, 9
         deprecate :CallbackUrl, :none, 2025, 9
         deprecate :CallbackUrl=, :none, 2025, 9
         deprecate :ApproverRestrictions, :none, 2025, 9
@@ -2600,7 +2606,7 @@ module TencentCloud
         deprecate :Operator, :none, 2025, 9
         deprecate :Operator=, :none, 2025, 9
 
-        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, approvercomponentlimittypes=nil, callbackurl=nil, approverrestrictions=nil, operator=nil, forbidpersonalmultiplesign=nil, flownameappendscannerinfo=nil)
+        def initialize(agent=nil, templateid=nil, flowname=nil, maxflownum=nil, floweffectiveday=nil, qreffectiveday=nil, restrictions=nil, approvercomponentlimittypes=nil, callbackurl=nil, approverrestrictions=nil, operator=nil, forbidpersonalmultiplesign=nil, flownameappendscannerinfo=nil, qrcodename=nil, qrcodeexpiredon=nil)
           @Agent = agent
           @TemplateId = templateid
           @FlowName = flowname
@@ -2614,6 +2620,8 @@ module TencentCloud
           @Operator = operator
           @ForbidPersonalMultipleSign = forbidpersonalmultiplesign
           @FlowNameAppendScannerInfo = flownameappendscannerinfo
+          @QrCodeName = qrcodename
+          @QrCodeExpiredOn = qrcodeexpiredon
         end
 
         def deserialize(params)
@@ -2653,6 +2661,8 @@ module TencentCloud
           end
           @ForbidPersonalMultipleSign = params['ForbidPersonalMultipleSign']
           @FlowNameAppendScannerInfo = params['FlowNameAppendScannerInfo']
+          @QrCodeName = params['QrCodeName']
+          @QrCodeExpiredOn = params['QrCodeExpiredOn']
         end
       end
 

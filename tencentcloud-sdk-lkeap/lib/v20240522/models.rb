@@ -520,10 +520,10 @@ module TencentCloud
 
         attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage
         extend Gem::Deprecate
-        deprecate :TableResultType, :none, 2025, 8
-        deprecate :TableResultType=, :none, 2025, 8
-        deprecate :ResultType, :none, 2025, 8
-        deprecate :ResultType=, :none, 2025, 8
+        deprecate :TableResultType, :none, 2025, 9
+        deprecate :TableResultType=, :none, 2025, 9
+        deprecate :ResultType, :none, 2025, 9
+        deprecate :ResultType=, :none, 2025, 9
 
         def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil)
           @TableResultType = tableresulttype
@@ -569,8 +569,8 @@ module TencentCloud
 
         attr_accessor :FileType, :FileUrl, :FileName, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
         extend Gem::Deprecate
-        deprecate :FileBase64, :none, 2025, 8
-        deprecate :FileBase64=, :none, 2025, 8
+        deprecate :FileBase64, :none, 2025, 9
+        deprecate :FileBase64=, :none, 2025, 9
 
         def initialize(filetype=nil, fileurl=nil, filename=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
           @FileType = filetype
@@ -926,8 +926,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens, :SuccessPageNum, :FailPageNum, :FileSize
         extend Gem::Deprecate
-        deprecate :TotalToken, :none, 2025, 8
-        deprecate :TotalToken=, :none, 2025, 8
+        deprecate :TotalToken, :none, 2025, 9
+        deprecate :TotalToken=, :none, 2025, 9
 
         def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil, successpagenum=nil, failpagenum=nil, filesize=nil)
           @PageNumber = pagenumber
@@ -1031,17 +1031,25 @@ module TencentCloud
         # @param Inputs: 说明：需要 embedding 的文本
         # 备注：单条query最多2000个字符，总条数最多7条
         # @type Inputs: Array
+        # @param TextType: 说明：文本向量化的类型，为使得检索任务有更好的检索效果，建议区分查询文本（query）和文档文本（document）类型, 聚类、分类等对称任务可以不用特殊指定，采用系统默认值document即可。
+        # @type TextType: String
+        # @param Instruction: 说明：自定义任务指令词，当且仅当TextType=query时，生效
+        # @type Instruction: String
 
-        attr_accessor :Model, :Inputs
+        attr_accessor :Model, :Inputs, :TextType, :Instruction
 
-        def initialize(model=nil, inputs=nil)
+        def initialize(model=nil, inputs=nil, texttype=nil, instruction=nil)
           @Model = model
           @Inputs = inputs
+          @TextType = texttype
+          @Instruction = instruction
         end
 
         def deserialize(params)
           @Model = params['Model']
           @Inputs = params['Inputs']
+          @TextType = params['TextType']
+          @Instruction = params['Instruction']
         end
       end
 
@@ -1199,8 +1207,8 @@ module TencentCloud
 
         attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
         extend Gem::Deprecate
-        deprecate :FailedPages, :none, 2025, 8
-        deprecate :FailedPages=, :none, 2025, 8
+        deprecate :FailedPages, :none, 2025, 9
+        deprecate :FailedPages=, :none, 2025, 9
 
         def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
           @Status = status
@@ -2195,8 +2203,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :AttributeLabel, :AttributeLabels, :Config
         extend Gem::Deprecate
-        deprecate :AttributeLabel, :none, 2025, 8
-        deprecate :AttributeLabel=, :none, 2025, 8
+        deprecate :AttributeLabel, :none, 2025, 9
+        deprecate :AttributeLabel=, :none, 2025, 9
 
         def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, attributelabel=nil, attributelabels=nil, config=nil)
           @KnowledgeBaseId = knowledgebaseid

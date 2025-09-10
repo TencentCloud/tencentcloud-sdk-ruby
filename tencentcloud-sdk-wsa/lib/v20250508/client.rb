@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 联网搜索API，以json形式向客户提供搜索结果数据，包含标题、摘要、内容来源url等信息
+        # 联网搜索API，以JSON形式向客户提供搜索结果数据，包含标题、摘要、内容来源url等信息
 
         # @param request: Request instance for SearchPro.
         # @type request: :class:`Tencentcloud::wsa::V20250508::SearchProRequest`

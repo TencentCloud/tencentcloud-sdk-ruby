@@ -34,7 +34,7 @@ module TencentCloud
         # @type ToTime: Integer
         # @param Cnt: cnt=10/20/30/40/50，最多可支持返回50条搜索结果，**仅限尊享版使用**
         # @type Cnt: Integer
-        # @param Industry: Industry=gov/news/acad，对应党政机关、新闻、学术，**仅限尊享版使用**
+        # @param Industry: Industry=gov/news/acad，对应党政机关、权威媒体、学术（英文），**仅限尊享版使用**
         # @type Industry: String
 
         attr_accessor :Query, :Mode, :Site, :FromTime, :ToTime, :Cnt, :Industry

@@ -1491,10 +1491,14 @@ module TencentCloud
         # @type CloudAttachId: String
         # @param ShareOrNot: 是否共享通道
         # @type ShareOrNot: Integer
+        # @param AccessPointName: 接入点名称
+        # @type AccessPointName: String
+        # @param AccessPointId: 接入点ID
+        # @type AccessPointId: String
 
-        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId, :ShareOrNot
+        attr_accessor :DirectConnectTunnelId, :DirectConnectId, :State, :DirectConnectOwnerAccount, :OwnerAccount, :NetworkType, :NetworkRegion, :VpcId, :DirectConnectGatewayId, :RouteType, :BgpPeer, :RouteFilterPrefixes, :Vlan, :TencentAddress, :CustomerAddress, :DirectConnectTunnelName, :CreatedTime, :Bandwidth, :TagSet, :NetDetectId, :EnableBGPCommunity, :NatType, :VpcRegion, :BfdEnable, :AccessPointType, :DirectConnectGatewayName, :VpcName, :TencentBackupAddress, :SignLaw, :CloudAttachId, :ShareOrNot, :AccessPointName, :AccessPointId
 
-        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, tagset=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, tencentbackupaddress=nil, signlaw=nil, cloudattachid=nil, shareornot=nil)
+        def initialize(directconnecttunnelid=nil, directconnectid=nil, state=nil, directconnectowneraccount=nil, owneraccount=nil, networktype=nil, networkregion=nil, vpcid=nil, directconnectgatewayid=nil, routetype=nil, bgppeer=nil, routefilterprefixes=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, directconnecttunnelname=nil, createdtime=nil, bandwidth=nil, tagset=nil, netdetectid=nil, enablebgpcommunity=nil, nattype=nil, vpcregion=nil, bfdenable=nil, accesspointtype=nil, directconnectgatewayname=nil, vpcname=nil, tencentbackupaddress=nil, signlaw=nil, cloudattachid=nil, shareornot=nil, accesspointname=nil, accesspointid=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @DirectConnectId = directconnectid
           @State = state
@@ -1526,6 +1530,8 @@ module TencentCloud
           @SignLaw = signlaw
           @CloudAttachId = cloudattachid
           @ShareOrNot = shareornot
+          @AccessPointName = accesspointname
+          @AccessPointId = accesspointid
         end
 
         def deserialize(params)
@@ -1577,6 +1583,8 @@ module TencentCloud
           @SignLaw = params['SignLaw']
           @CloudAttachId = params['CloudAttachId']
           @ShareOrNot = params['ShareOrNot']
+          @AccessPointName = params['AccessPointName']
+          @AccessPointId = params['AccessPointId']
         end
       end
 

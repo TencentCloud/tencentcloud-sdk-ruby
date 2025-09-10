@@ -2175,12 +2175,16 @@ module TencentCloud
         # @type TrustedCaLimit: Integer
         # @param ServerCertLimit: 服务端证书最大数量
         # @type ServerCertLimit: Integer
+        # @param TopicPrefixSlashLimit: topic前缀最大层级
+        # @type TopicPrefixSlashLimit: Integer
+        # @param MessageRate: 单客户端发送消息限速，单位 条/秒
+        # @type MessageRate: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2212,6 +2216,8 @@ module TencentCloud
           @UseDefaultServerCert = usedefaultservercert
           @TrustedCaLimit = trustedcalimit
           @ServerCertLimit = servercertlimit
+          @TopicPrefixSlashLimit = topicprefixslashlimit
+          @MessageRate = messagerate
           @RequestId = requestid
         end
 
@@ -2247,6 +2253,8 @@ module TencentCloud
           @UseDefaultServerCert = params['UseDefaultServerCert']
           @TrustedCaLimit = params['TrustedCaLimit']
           @ServerCertLimit = params['ServerCertLimit']
+          @TopicPrefixSlashLimit = params['TopicPrefixSlashLimit']
+          @MessageRate = params['MessageRate']
           @RequestId = params['RequestId']
         end
       end
@@ -2346,12 +2354,49 @@ module TencentCloud
         # @type Qos: String
         # @param OriginTopic: 源topic
         # @type OriginTopic: String
+        # @param ContentType: 内容类型（MQTT5）
+        # 含义：指示消息载荷的内容类型，使用标准的 MIME 类型格式。这帮助接收方正确解析和处理消息内容。
+        # 示例：
+        # application/json：表示载荷是 JSON 格式的数据。
+        # text/plain：表示载荷是纯文本。
+        # application/octet-stream：表示载荷是二进制数据。
+        # @type ContentType: String
+        # @param PayloadFormatIndicator: 载荷格式指示符（MQTT5）
+        # 含义：指示载荷的格式，是一个布尔值。0表示未指定格式（二进制），1表示 UTF-8 编码的字符串。
+        # 示例：
+        # 值为0：当载荷是二进制数据，如图片、音频等。
+        # 值为1：当载荷是 UTF-8 编码的文本，如 JSON 字符串、XML 等。
+        # @type PayloadFormatIndicator: Integer
+        # @param MessageExpiryInterval: 消息过期间隔（MQTT5）
+        # 含义：指定消息在被丢弃前的有效时间（秒）。如果消息在过期前未能送达，则会被 MQTT 服务器丢弃。
+        # 示例：
+        # 值为60：表示消息在发布后的 60 秒内有效，过期后未送达则被丢弃。
+        # 值为0：表示消息不过期，永久有效（直到被接收或会话结束）。
+        # @type MessageExpiryInterval: Integer
+        # @param ResponseTopic: 响应主题（MQTT5）
+        # 含义：指定一个主题，用于请求 - 响应模式中的响应消息。发送方可以指定接收方应该将响应发送到哪个主题。
+        # 示例：
+        # 发送方发布请求到主题devices/device1/commands，并设置ResponseTopic为devices/device1/responses。
+        # 接收方处理请求后，将响应发布到devices/device1/responses主题。
+        # @type ResponseTopic: String
+        # @param CorrelationData: 关联数据（MQTT5）
+        # 含义：用于关联请求和响应的标识符，通常是一个字节数组。在请求 - 响应模式中，发送方设置此值，接收方在响应中包含相同的值，以便发送方识别响应对应的请求。
+        # 示例：
+        # 发送方生成一个唯一 ID（如 UUID 的字节数组）作为CorrelationData，附加到请求消息中。
+        # 接收方在响应消息中包含相同的CorrelationData，发送方通过比较此值来匹配响应和请求。
+        # @type CorrelationData: String
+        # @param SubscriptionIdentifier: 订阅标识符（MQTT5）
+        # 含义：为订阅分配的唯一标识符，用于标识客户端的特定订阅。当服务器向客户端发送消息时，可以包含此标识符，帮助客户端识别消息对应的订阅。
+        # 示例：
+        # 客户端订阅主题devices/+/temperature，并设置SubscriptionIdentifier为123。
+        # 当服务器向客户端发送此主题的消息时，会在消息中包含SubscriptionIdentifier: 123，客户端可以根据此值知道消息是通过哪个订阅接收的。
+        # @type SubscriptionIdentifier: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Body, :UserProperties, :StoreTimestamp, :MessageId, :ClientId, :Qos, :OriginTopic, :RequestId
+        attr_accessor :Body, :UserProperties, :StoreTimestamp, :MessageId, :ClientId, :Qos, :OriginTopic, :ContentType, :PayloadFormatIndicator, :MessageExpiryInterval, :ResponseTopic, :CorrelationData, :SubscriptionIdentifier, :RequestId
 
-        def initialize(body=nil, userproperties=nil, storetimestamp=nil, messageid=nil, clientid=nil, qos=nil, origintopic=nil, requestid=nil)
+        def initialize(body=nil, userproperties=nil, storetimestamp=nil, messageid=nil, clientid=nil, qos=nil, origintopic=nil, contenttype=nil, payloadformatindicator=nil, messageexpiryinterval=nil, responsetopic=nil, correlationdata=nil, subscriptionidentifier=nil, requestid=nil)
           @Body = body
           @UserProperties = userproperties
           @StoreTimestamp = storetimestamp
@@ -2359,6 +2404,12 @@ module TencentCloud
           @ClientId = clientid
           @Qos = qos
           @OriginTopic = origintopic
+          @ContentType = contenttype
+          @PayloadFormatIndicator = payloadformatindicator
+          @MessageExpiryInterval = messageexpiryinterval
+          @ResponseTopic = responsetopic
+          @CorrelationData = correlationdata
+          @SubscriptionIdentifier = subscriptionidentifier
           @RequestId = requestid
         end
 
@@ -2377,6 +2428,12 @@ module TencentCloud
           @ClientId = params['ClientId']
           @Qos = params['Qos']
           @OriginTopic = params['OriginTopic']
+          @ContentType = params['ContentType']
+          @PayloadFormatIndicator = params['PayloadFormatIndicator']
+          @MessageExpiryInterval = params['MessageExpiryInterval']
+          @ResponseTopic = params['ResponseTopic']
+          @CorrelationData = params['CorrelationData']
+          @SubscriptionIdentifier = params['SubscriptionIdentifier']
           @RequestId = params['RequestId']
         end
       end
@@ -3299,12 +3356,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 8
-        deprecate :DeadLetterResendTimes=, :none, 2025, 8
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 8
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 8
-        deprecate :SubTopic, :none, 2025, 8
-        deprecate :SubTopic=, :none, 2025, 8
+        deprecate :DeadLetterResendTimes, :none, 2025, 9
+        deprecate :DeadLetterResendTimes=, :none, 2025, 9
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 9
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 9
+        deprecate :SubTopic, :none, 2025, 9
+        deprecate :SubTopic=, :none, 2025, 9
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3754,15 +3811,17 @@ module TencentCloud
         # mTLS；双向认证
         # BYOC：一机一证
         # @type X509Mode: String
+        # @param MessageRate: 单客户端消息收发限速单位 条/秒
+        # @type MessageRate: Integer
 
-        attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode
+        attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 8
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 8
-        deprecate :AutomaticActivation, :none, 2025, 8
-        deprecate :AutomaticActivation=, :none, 2025, 8
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 9
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 9
+        deprecate :AutomaticActivation, :none, 2025, 9
+        deprecate :AutomaticActivation=, :none, 2025, 9
 
-        def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
@@ -3772,6 +3831,7 @@ module TencentCloud
           @AuthorizationPolicy = authorizationpolicy
           @UseDefaultServerCert = usedefaultservercert
           @X509Mode = x509mode
+          @MessageRate = messagerate
         end
 
         def deserialize(params)
@@ -3784,6 +3844,7 @@ module TencentCloud
           @AuthorizationPolicy = params['AuthorizationPolicy']
           @UseDefaultServerCert = params['UseDefaultServerCert']
           @X509Mode = params['X509Mode']
+          @MessageRate = params['MessageRate']
         end
       end
 
@@ -3884,8 +3945,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 8
-        deprecate :Text=, :none, 2025, 8
+        deprecate :Text, :none, 2025, 9
+        deprecate :Text=, :none, 2025, 9
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

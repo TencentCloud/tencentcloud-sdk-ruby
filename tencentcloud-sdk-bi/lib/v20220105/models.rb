@@ -19,7 +19,7 @@ module TencentCloud
     module V20220105
       # ApplyEmbedInterval请求参数结构体
       class ApplyEmbedIntervalRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 分享项目id，必选
+        # @param ProjectId: 分享项目id
         # @type ProjectId: Integer
         # @param PageId: 分享页面id，嵌出看板时此为空值0，ChatBI嵌出时不传
         # @type PageId: Integer
@@ -1776,7 +1776,7 @@ module TencentCloud
         # @param Extra: 112
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Extra: String
-        # @param Data: 1
+        # @param Data: 无
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Bi.v20220105.models.RankInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
