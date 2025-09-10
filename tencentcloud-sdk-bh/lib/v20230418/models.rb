@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 7
-        deprecate :LoginAccount=, :none, 2025, 7
-        deprecate :LoginPassword, :none, 2025, 7
-        deprecate :LoginPassword=, :none, 2025, 7
+        deprecate :LoginAccount, :none, 2025, 9
+        deprecate :LoginAccount=, :none, 2025, 9
+        deprecate :LoginPassword, :none, 2025, 9
+        deprecate :LoginPassword=, :none, 2025, 9
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -889,10 +889,12 @@ module TencentCloud
         # @type IpBackup: String
         # @param DomainId: 网络域id
         # @type DomainId: String
+        # @param AttributeUserName: 用户名称映射属性
+        # @type AttributeUserName: String
 
-        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :IpBackup, :DomainId
+        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :IpBackup, :DomainId, :AttributeUserName
 
-        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, ipbackup=nil, domainid=nil)
+        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, ipbackup=nil, domainid=nil, attributeusername=nil)
           @Enable = enable
           @Ip = ip
           @Port = port
@@ -902,6 +904,7 @@ module TencentCloud
           @AdminPassword = adminpassword
           @IpBackup = ipbackup
           @DomainId = domainid
+          @AttributeUserName = attributeusername
         end
 
         def deserialize(params)
@@ -914,6 +917,7 @@ module TencentCloud
           @AdminPassword = params['AdminPassword']
           @IpBackup = params['IpBackup']
           @DomainId = params['DomainId']
+          @AttributeUserName = params['AttributeUserName']
         end
       end
 
@@ -4794,8 +4798,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 7
-        deprecate :Status=, :none, 2025, 7
+        deprecate :Status, :none, 2025, 9
+        deprecate :Status=, :none, 2025, 9
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid

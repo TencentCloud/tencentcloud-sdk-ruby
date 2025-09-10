@@ -1191,6 +1191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取通话详情
+
+        # @param request: Request instance for DescribeSessionDetail.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeSessionDetailRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeSessionDetailResponse`
+        def DescribeSessionDetail(request)
+          body = send_request('DescribeSessionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSessionDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取技能组信息列表
 
         # @param request: Request instance for DescribeSkillGroupInfoList.
@@ -1225,6 +1249,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeStaffInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询座席状态历史
+
+        # @param request: Request instance for DescribeStaffStatusHistory.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeStaffStatusHistoryRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeStaffStatusHistoryResponse`
+        def DescribeStaffStatusHistory(request)
+          body = send_request('DescribeStaffStatusHistory', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeStaffStatusHistoryResponse.new
             model.deserialize(response['Response'])
             model
           else

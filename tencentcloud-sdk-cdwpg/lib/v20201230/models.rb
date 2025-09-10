@@ -269,8 +269,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 7
-        deprecate :Tags=, :none, 2025, 7
+        deprecate :Tags, :none, 2025, 9
+        deprecate :Tags=, :none, 2025, 9
 
         def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil, tagitems=nil)
           @InstanceName = instancename
@@ -999,10 +999,14 @@ module TencentCloud
         # @type OrderByType: String
         # @param Duration: 过滤时间
         # @type Duration: Float
+        # @param UserName: 执行用户
+        # @type UserName: String
+        # @param QueryString: query 语句
+        # @type QueryString: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Database, :OrderBy, :OrderByType, :Duration
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Database, :OrderBy, :OrderByType, :Duration, :UserName, :QueryString
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, database=nil, orderby=nil, orderbytype=nil, duration=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, database=nil, orderby=nil, orderbytype=nil, duration=nil, username=nil, querystring=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
@@ -1012,6 +1016,8 @@ module TencentCloud
           @OrderBy = orderby
           @OrderByType = orderbytype
           @Duration = duration
+          @UserName = username
+          @QueryString = querystring
         end
 
         def deserialize(params)
@@ -1024,6 +1030,8 @@ module TencentCloud
           @OrderBy = params['OrderBy']
           @OrderByType = params['OrderByType']
           @Duration = params['Duration']
+          @UserName = params['UserName']
+          @QueryString = params['QueryString']
         end
       end
 

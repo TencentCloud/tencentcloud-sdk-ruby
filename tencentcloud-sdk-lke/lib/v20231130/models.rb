@@ -575,6 +575,7 @@ module TencentCloud
         # @param KnowledgeQa: 知识库问答插件配置
         # @type KnowledgeQa: :class:`Tencentcloud::Lke.v20231130.models.AgentKnowledgeQAPlugin`
         # @param EnableRoleAuth: 是否使用一键授权
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRoleAuth: Boolean
         # @param Query: 应用配置的插件query信息
         # @type Query: Array
@@ -2537,8 +2538,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 8
-        deprecate :EmbeddingModel=, :none, 2025, 8
+        deprecate :EmbeddingModel, :none, 2025, 9
+        deprecate :EmbeddingModel=, :none, 2025, 9
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -3860,16 +3861,20 @@ module TencentCloud
 
       # DescribeNodeRun请求参数结构体
       class DescribeNodeRunRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
         # @param NodeRunId: 节点运行实例ID
         # @type NodeRunId: String
 
-        attr_accessor :NodeRunId
+        attr_accessor :AppBizId, :NodeRunId
 
-        def initialize(noderunid=nil)
+        def initialize(appbizid=nil, noderunid=nil)
+          @AppBizId = appbizid
           @NodeRunId = noderunid
         end
 
         def deserialize(params)
+          @AppBizId = params['AppBizId']
           @NodeRunId = params['NodeRunId']
         end
       end
@@ -4783,16 +4788,20 @@ module TencentCloud
 
       # DescribeWorkflowRun请求参数结构体
       class DescribeWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
         # @param WorkflowRunId: 工作流运行实例ID
         # @type WorkflowRunId: String
 
-        attr_accessor :WorkflowRunId
+        attr_accessor :AppBizId, :WorkflowRunId
 
-        def initialize(workflowrunid=nil)
+        def initialize(appbizid=nil, workflowrunid=nil)
+          @AppBizId = appbizid
           @WorkflowRunId = workflowrunid
         end
 
         def deserialize(params)
+          @AppBizId = params['AppBizId']
           @WorkflowRunId = params['WorkflowRunId']
         end
       end
@@ -6247,10 +6256,12 @@ module TencentCloud
         # @param ProcessingFlags: 知识库处理中状态标记，1：向量embedding变更中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProcessingFlags: Array
+        # @param OwnerStaffName: 知识库拥有者的名字
+        # @type OwnerStaffName: String
 
-        attr_accessor :KnowledgeBizId, :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :UpdateTime, :KnowledgeType, :OwnerStaffId, :DocTotal, :ProcessingFlags
+        attr_accessor :KnowledgeBizId, :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :UpdateTime, :KnowledgeType, :OwnerStaffId, :DocTotal, :ProcessingFlags, :OwnerStaffName
 
-        def initialize(knowledgebizid=nil, knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, updatetime=nil, knowledgetype=nil, ownerstaffid=nil, doctotal=nil, processingflags=nil)
+        def initialize(knowledgebizid=nil, knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, updatetime=nil, knowledgetype=nil, ownerstaffid=nil, doctotal=nil, processingflags=nil, ownerstaffname=nil)
           @KnowledgeBizId = knowledgebizid
           @KnowledgeName = knowledgename
           @KnowledgeDescription = knowledgedescription
@@ -6261,6 +6272,7 @@ module TencentCloud
           @OwnerStaffId = ownerstaffid
           @DocTotal = doctotal
           @ProcessingFlags = processingflags
+          @OwnerStaffName = ownerstaffname
         end
 
         def deserialize(params)
@@ -6274,6 +6286,7 @@ module TencentCloud
           @OwnerStaffId = params['OwnerStaffId']
           @DocTotal = params['DocTotal']
           @ProcessingFlags = params['ProcessingFlags']
+          @OwnerStaffName = params['OwnerStaffName']
         end
       end
 
@@ -6915,10 +6928,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 8
-        deprecate :EmbeddingModel=, :none, 2025, 8
-        deprecate :QaExtractModel, :none, 2025, 8
-        deprecate :QaExtractModel=, :none, 2025, 8
+        deprecate :EmbeddingModel, :none, 2025, 9
+        deprecate :EmbeddingModel=, :none, 2025, 9
+        deprecate :QaExtractModel, :none, 2025, 9
+        deprecate :QaExtractModel=, :none, 2025, 9
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -8190,7 +8203,7 @@ module TencentCloud
         # @type Desc: String
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
-        # @param Status: 发布状态
+        # @param Status: 发布状态，1：待发布，2：发布中，3：发布成功，5：发布失败
         # @type Status: Integer
         # @param StatusDesc: 发布状态描述
         # @type StatusDesc: String
@@ -8309,7 +8322,7 @@ module TencentCloud
 
       # ListRelease请求参数结构体
       class ListReleaseRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 机器人ID
+        # @param BotBizId: 应用ID
         # @type BotBizId: String
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -11566,16 +11579,20 @@ module TencentCloud
 
       # StopWorkflowRun请求参数结构体
       class StopWorkflowRunRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
         # @param WorkflowRunId: 工作流运行实例ID
         # @type WorkflowRunId: String
 
-        attr_accessor :WorkflowRunId
+        attr_accessor :AppBizId, :WorkflowRunId
 
-        def initialize(workflowrunid=nil)
+        def initialize(appbizid=nil, workflowrunid=nil)
+          @AppBizId = appbizid
           @WorkflowRunId = workflowrunid
         end
 
         def deserialize(params)
+          @AppBizId = params['AppBizId']
           @WorkflowRunId = params['WorkflowRunId']
         end
       end

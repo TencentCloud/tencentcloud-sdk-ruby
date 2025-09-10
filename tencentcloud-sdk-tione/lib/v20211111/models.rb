@@ -6486,8 +6486,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 8
-        deprecate :Containers=, :none, 2025, 8
+        deprecate :Containers, :none, 2025, 9
+        deprecate :Containers=, :none, 2025, 9
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -6593,6 +6593,30 @@ module TencentCloud
             @ResourceConfigInfo.deserialize(params['ResourceConfigInfo'])
           end
           @SubUin = params['SubUin']
+        end
+      end
+
+      # SSH pod访问信息
+      class PodSSHInfo < TencentCloud::Common::AbstractModel
+        # @param Host: pod访问ip
+        # @type Host: String
+        # @param Port: pod ssh访问端口
+        # @type Port: Integer
+        # @param LoginCommand: ssh访问命令
+        # @type LoginCommand: String
+
+        attr_accessor :Host, :Port, :LoginCommand
+
+        def initialize(host=nil, port=nil, logincommand=nil)
+          @Host = host
+          @Port = port
+          @LoginCommand = logincommand
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @LoginCommand = params['LoginCommand']
         end
       end
 
@@ -7143,15 +7167,19 @@ module TencentCloud
         # @param IsAddressChanged: 登录地址是否改变
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAddressChanged: Boolean
+        # @param PodSSHInfo: POD访问信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodSSHInfo: :class:`Tencentcloud::Tione.v20211111.models.PodSSHInfo`
 
-        attr_accessor :Enable, :PublicKey, :Port, :LoginCommand, :IsAddressChanged
+        attr_accessor :Enable, :PublicKey, :Port, :LoginCommand, :IsAddressChanged, :PodSSHInfo
 
-        def initialize(enable=nil, publickey=nil, port=nil, logincommand=nil, isaddresschanged=nil)
+        def initialize(enable=nil, publickey=nil, port=nil, logincommand=nil, isaddresschanged=nil, podsshinfo=nil)
           @Enable = enable
           @PublicKey = publickey
           @Port = port
           @LoginCommand = logincommand
           @IsAddressChanged = isaddresschanged
+          @PodSSHInfo = podsshinfo
         end
 
         def deserialize(params)
@@ -7160,6 +7188,10 @@ module TencentCloud
           @Port = params['Port']
           @LoginCommand = params['LoginCommand']
           @IsAddressChanged = params['IsAddressChanged']
+          unless params['PodSSHInfo'].nil?
+            @PodSSHInfo = PodSSHInfo.new
+            @PodSSHInfo.deserialize(params['PodSSHInfo'])
+          end
         end
       end
 
@@ -7339,10 +7371,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 8
-        deprecate :ServiceLimit=, :none, 2025, 8
-        deprecate :ScheduledAction, :none, 2025, 8
-        deprecate :ScheduledAction=, :none, 2025, 8
+        deprecate :ServiceLimit, :none, 2025, 9
+        deprecate :ServiceLimit=, :none, 2025, 9
+        deprecate :ScheduledAction, :none, 2025, 9
+        deprecate :ScheduledAction=, :none, 2025, 9
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
           @ServiceGroupId = servicegroupid
@@ -7888,10 +7920,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 8
-        deprecate :PodList=, :none, 2025, 8
-        deprecate :Pods, :none, 2025, 8
-        deprecate :Pods=, :none, 2025, 8
+        deprecate :PodList, :none, 2025, 9
+        deprecate :PodList=, :none, 2025, 9
+        deprecate :Pods, :none, 2025, 9
+        deprecate :Pods=, :none, 2025, 9
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil)
           @Replicas = replicas
@@ -9161,8 +9193,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 8
-        deprecate :StatefulSetCondition=, :none, 2025, 8
+        deprecate :StatefulSetCondition, :none, 2025, 9
+        deprecate :StatefulSetCondition=, :none, 2025, 9
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

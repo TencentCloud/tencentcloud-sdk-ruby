@@ -21,8 +21,7 @@ module TencentCloud
       class AKInfo < TencentCloud::Common::AbstractModel
         # @param ID: ak对应id
         # @type ID: Integer
-        # @param Name: ak具体值\n
-        # 临时密钥时返回临时密钥
+        # @param Name: ak具体值 临时密钥时返回临时密钥
         # @type Name: String
         # @param User: 所属账号
         # @type User: String
@@ -91,10 +90,16 @@ module TencentCloud
         # @type AppID: Integer
         # @param LeakEvidence: 泄漏证据
         # @type LeakEvidence: Array
+        # @param IsSupportEditWhiteAccount: 是否支持编辑信任账号
+        # @type IsSupportEditWhiteAccount: Boolean
+        # @param Evidence: 告警证据
+        # @type Evidence: String
+        # @param RuleKey: 告警规则标识
+        # @type RuleKey: String
 
-        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence
+        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence, :IsSupportEditWhiteAccount, :Evidence, :RuleKey
 
-        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil)
+        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil, issupporteditwhiteaccount=nil, evidence=nil, rulekey=nil)
           @Name = name
           @Level = level
           @ID = id
@@ -114,6 +119,9 @@ module TencentCloud
           @Type = type
           @AppID = appid
           @LeakEvidence = leakevidence
+          @IsSupportEditWhiteAccount = issupporteditwhiteaccount
+          @Evidence = evidence
+          @RuleKey = rulekey
         end
 
         def deserialize(params)
@@ -136,6 +144,9 @@ module TencentCloud
           @Type = params['Type']
           @AppID = params['AppID']
           @LeakEvidence = params['LeakEvidence']
+          @IsSupportEditWhiteAccount = params['IsSupportEditWhiteAccount']
+          @Evidence = params['Evidence']
+          @RuleKey = params['RuleKey']
         end
       end
 
@@ -231,6 +242,7 @@ module TencentCloud
         # @param Status: AK状态
         # 0:禁用
         # 1:已启用
+        # 2:已删除(已在cam侧删除，安全中心仍然存留之前的记录)
         # @type Status: Integer
         # @param CheckStatus: 0 表示已检测
         # 1 表示检测中
@@ -342,10 +354,12 @@ module TencentCloud
         # @type CheckStatus: Integer
         # @param AppID: 所属appid
         # @type AppID: Integer
+        # @param QueryParam: 对应风险的查询参数
+        # @type QueryParam: String
 
-        attr_accessor :Name, :Level, :ID, :RiskRuleID, :RiskType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :RiskTime, :Status, :Tag, :Evidence, :Description, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :CheckStatus, :AppID
+        attr_accessor :Name, :Level, :ID, :RiskRuleID, :RiskType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :RiskTime, :Status, :Tag, :Evidence, :Description, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :CheckStatus, :AppID, :QueryParam
 
-        def initialize(name=nil, level=nil, id=nil, riskruleid=nil, risktype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, risktime=nil, status=nil, tag=nil, evidence=nil, description=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, checkstatus=nil, appid=nil)
+        def initialize(name=nil, level=nil, id=nil, riskruleid=nil, risktype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, risktime=nil, status=nil, tag=nil, evidence=nil, description=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, checkstatus=nil, appid=nil, queryparam=nil)
           @Name = name
           @Level = level
           @ID = id
@@ -366,6 +380,7 @@ module TencentCloud
           @Type = type
           @CheckStatus = checkstatus
           @AppID = appid
+          @QueryParam = queryparam
         end
 
         def deserialize(params)
@@ -389,6 +404,7 @@ module TencentCloud
           @Type = params['Type']
           @CheckStatus = params['CheckStatus']
           @AppID = params['AppID']
+          @QueryParam = params['QueryParam']
         end
       end
 
@@ -2838,10 +2854,12 @@ module TencentCloud
         # @type ISP: String
         # @param VpcInfo: 账号外vpc信息列表
         # @type VpcInfo: Array
+        # @param ReqClient: 调用请求客户端列表
+        # @type ReqClient: Array
 
-        attr_accessor :CallID, :AccessKey, :AccessKeyRemark, :AccessKeyID, :SourceIP, :SourceIPRemark, :Region, :IPType, :EventName, :ProductName, :EventType, :UserType, :UserName, :PolicySet, :CallCount, :Code, :FirstCallTime, :LastCallTime, :InstanceID, :InstanceName, :Date, :AppID, :ShowStatus, :ISP, :VpcInfo
+        attr_accessor :CallID, :AccessKey, :AccessKeyRemark, :AccessKeyID, :SourceIP, :SourceIPRemark, :Region, :IPType, :EventName, :ProductName, :EventType, :UserType, :UserName, :PolicySet, :CallCount, :Code, :FirstCallTime, :LastCallTime, :InstanceID, :InstanceName, :Date, :AppID, :ShowStatus, :ISP, :VpcInfo, :ReqClient
 
-        def initialize(callid=nil, accesskey=nil, accesskeyremark=nil, accesskeyid=nil, sourceip=nil, sourceipremark=nil, region=nil, iptype=nil, eventname=nil, productname=nil, eventtype=nil, usertype=nil, username=nil, policyset=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, instanceid=nil, instancename=nil, date=nil, appid=nil, showstatus=nil, isp=nil, vpcinfo=nil)
+        def initialize(callid=nil, accesskey=nil, accesskeyremark=nil, accesskeyid=nil, sourceip=nil, sourceipremark=nil, region=nil, iptype=nil, eventname=nil, productname=nil, eventtype=nil, usertype=nil, username=nil, policyset=nil, callcount=nil, code=nil, firstcalltime=nil, lastcalltime=nil, instanceid=nil, instancename=nil, date=nil, appid=nil, showstatus=nil, isp=nil, vpcinfo=nil, reqclient=nil)
           @CallID = callid
           @AccessKey = accesskey
           @AccessKeyRemark = accesskeyremark
@@ -2867,6 +2885,7 @@ module TencentCloud
           @ShowStatus = showstatus
           @ISP = isp
           @VpcInfo = vpcinfo
+          @ReqClient = reqclient
         end
 
         def deserialize(params)
@@ -2902,6 +2921,7 @@ module TencentCloud
               @VpcInfo << sourceipvpcinfo_tmp
             end
           end
+          @ReqClient = params['ReqClient']
         end
       end
 

@@ -136,32 +136,32 @@ module TencentCloud
 
         attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :ProductType, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
         extend Gem::Deprecate
-        deprecate :Project, :none, 2025, 8
-        deprecate :Project=, :none, 2025, 8
-        deprecate :NetworkType, :none, 2025, 8
-        deprecate :NetworkType=, :none, 2025, 8
-        deprecate :TemplateId, :none, 2025, 8
-        deprecate :TemplateId=, :none, 2025, 8
-        deprecate :Components, :none, 2025, 8
-        deprecate :Components=, :none, 2025, 8
-        deprecate :Zone, :none, 2025, 8
-        deprecate :Zone=, :none, 2025, 8
-        deprecate :SlaveZones, :none, 2025, 8
-        deprecate :SlaveZones=, :none, 2025, 8
-        deprecate :IsNoExpired, :none, 2025, 8
-        deprecate :IsNoExpired=, :none, 2025, 8
-        deprecate :EngineName, :none, 2025, 8
-        deprecate :EngineName=, :none, 2025, 8
-        deprecate :EngineVersion, :none, 2025, 8
-        deprecate :EngineVersion=, :none, 2025, 8
-        deprecate :Brief, :none, 2025, 8
-        deprecate :Brief=, :none, 2025, 8
-        deprecate :Chief, :none, 2025, 8
-        deprecate :Chief=, :none, 2025, 8
-        deprecate :DBA, :none, 2025, 8
-        deprecate :DBA=, :none, 2025, 8
-        deprecate :NodeType, :none, 2025, 8
-        deprecate :NodeType=, :none, 2025, 8
+        deprecate :Project, :none, 2025, 9
+        deprecate :Project=, :none, 2025, 9
+        deprecate :NetworkType, :none, 2025, 9
+        deprecate :NetworkType=, :none, 2025, 9
+        deprecate :TemplateId, :none, 2025, 9
+        deprecate :TemplateId=, :none, 2025, 9
+        deprecate :Components, :none, 2025, 9
+        deprecate :Components=, :none, 2025, 9
+        deprecate :Zone, :none, 2025, 9
+        deprecate :Zone=, :none, 2025, 9
+        deprecate :SlaveZones, :none, 2025, 9
+        deprecate :SlaveZones=, :none, 2025, 9
+        deprecate :IsNoExpired, :none, 2025, 9
+        deprecate :IsNoExpired=, :none, 2025, 9
+        deprecate :EngineName, :none, 2025, 9
+        deprecate :EngineName=, :none, 2025, 9
+        deprecate :EngineVersion, :none, 2025, 9
+        deprecate :EngineVersion=, :none, 2025, 9
+        deprecate :Brief, :none, 2025, 9
+        deprecate :Brief=, :none, 2025, 9
+        deprecate :Chief, :none, 2025, 9
+        deprecate :Chief=, :none, 2025, 9
+        deprecate :DBA, :none, 2025, 9
+        deprecate :DBA=, :none, 2025, 9
+        deprecate :NodeType, :none, 2025, 9
+        deprecate :NodeType=, :none, 2025, 9
 
         def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, producttype=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
           @VpcId = vpcid
@@ -496,10 +496,10 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus, :Networks
         extend Gem::Deprecate
-        deprecate :EngineNames, :none, 2025, 8
-        deprecate :EngineNames=, :none, 2025, 8
-        deprecate :Zones, :none, 2025, 8
-        deprecate :Zones=, :none, 2025, 8
+        deprecate :EngineNames, :none, 2025, 9
+        deprecate :EngineNames=, :none, 2025, 9
+        deprecate :Zones, :none, 2025, 9
+        deprecate :Zones=, :none, 2025, 9
 
         def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil, networks=nil)
           @InstanceIds = instanceids
@@ -764,12 +764,12 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :ProductType, :InstanceType, :NodeType, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus, :SecurityGroupIds
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2025, 8
-        deprecate :HealthScore=, :none, 2025, 8
-        deprecate :Warning, :none, 2025, 8
-        deprecate :Warning=, :none, 2025, 8
-        deprecate :Project, :none, 2025, 8
-        deprecate :Project=, :none, 2025, 8
+        deprecate :HealthScore, :none, 2025, 9
+        deprecate :HealthScore=, :none, 2025, 9
+        deprecate :Warning, :none, 2025, 9
+        deprecate :Warning=, :none, 2025, 9
+        deprecate :Project, :none, 2025, 9
+        deprecate :Project=, :none, 2025, 9
 
         def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, producttype=nil, instancetype=nil, nodetype=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil, securitygroupids=nil)
           @InstanceId = instanceid
@@ -893,6 +893,7 @@ module TencentCloud
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组 ID 组成的数组。
+        # 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIds: Array
         # @param InstanceIds: 实例ID，格式如：vdb-c9s3****。
         # @type InstanceIds: Array

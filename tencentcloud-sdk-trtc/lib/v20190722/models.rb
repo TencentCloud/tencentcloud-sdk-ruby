@@ -4758,21 +4758,24 @@ module TencentCloud
         # @type HotWordList: String
         # @param VadSilenceTime: 语音识别vad的时间，范围为240-2000，默认为1000，单位为ms。更小的值会让语音识别分句更快。
         # @type VadSilenceTime: Integer
+        # @param VadLevel: vad的远场人声抑制能力（不会对asr识别效果造成影响），范围为[0, 3]，默认为0。推荐设置为2，有较好的远场人声抑制能力。
+        # @type VadLevel: Integer
 
-        attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime
+        attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
         deprecate :Model, :none, 2025, 9
         deprecate :Model=, :none, 2025, 9
         deprecate :TranslationLanguage, :none, 2025, 9
         deprecate :TranslationLanguage=, :none, 2025, 9
 
-        def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil)
+        def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
           @AlternativeLanguage = alternativelanguage
           @Model = model
           @TranslationLanguage = translationlanguage
           @HotWordList = hotwordlist
           @VadSilenceTime = vadsilencetime
+          @VadLevel = vadlevel
         end
 
         def deserialize(params)
@@ -4782,6 +4785,7 @@ module TencentCloud
           @TranslationLanguage = params['TranslationLanguage']
           @HotWordList = params['HotWordList']
           @VadSilenceTime = params['VadSilenceTime']
+          @VadLevel = params['VadLevel']
         end
       end
 
@@ -5549,16 +5553,19 @@ module TencentCloud
         # @type RoomIdType: Integer
         # @param RecognizeConfig: 语音识别配置。
         # @type RecognizeConfig: :class:`Tencentcloud::Trtc.v20190722.models.RecognizeConfig`
+        # @param TranslationConfig: 翻译相关配置
+        # @type TranslationConfig: :class:`Tencentcloud::Trtc.v20190722.models.TranslationConfig`
 
-        attr_accessor :SdkAppId, :RoomId, :TranscriptionParams, :SessionId, :RoomIdType, :RecognizeConfig
+        attr_accessor :SdkAppId, :RoomId, :TranscriptionParams, :SessionId, :RoomIdType, :RecognizeConfig, :TranslationConfig
 
-        def initialize(sdkappid=nil, roomid=nil, transcriptionparams=nil, sessionid=nil, roomidtype=nil, recognizeconfig=nil)
+        def initialize(sdkappid=nil, roomid=nil, transcriptionparams=nil, sessionid=nil, roomidtype=nil, recognizeconfig=nil, translationconfig=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @TranscriptionParams = transcriptionparams
           @SessionId = sessionid
           @RoomIdType = roomidtype
           @RecognizeConfig = recognizeconfig
+          @TranslationConfig = translationconfig
         end
 
         def deserialize(params)
@@ -5573,6 +5580,10 @@ module TencentCloud
           unless params['RecognizeConfig'].nil?
             @RecognizeConfig = RecognizeConfig.new
             @RecognizeConfig.deserialize(params['RecognizeConfig'])
+          end
+          unless params['TranslationConfig'].nil?
+            @TranslationConfig = TranslationConfig.new
+            @TranslationConfig.deserialize(params['TranslationConfig'])
           end
         end
       end
@@ -6470,6 +6481,22 @@ module TencentCloud
         end
       end
 
+      # TTS相关配置
+      class TTSConfig < TencentCloud::Common::AbstractModel
+        # @param VoiceId: 音色ID
+        # @type VoiceId: String
+
+        attr_accessor :VoiceId
+
+        def initialize(voiceid=nil)
+          @VoiceId = voiceid
+        end
+
+        def deserialize(params)
+          @VoiceId = params['VoiceId']
+        end
+      end
+
       # 腾讯云点播相关参数。
       class TencentVod < TencentCloud::Common::AbstractModel
         # @param Procedure: 媒体后续任务处理操作，即完成媒体上传后，可自动发起任务流操作。参数值为任务流模板名，云点播支持 创建任务流模板 并为模板命名。
@@ -6674,15 +6701,17 @@ module TencentCloud
         # @type TargetUserIdList: Array
         # @param VoicePrint: 声纹配置
         # @type VoicePrint: :class:`Tencentcloud::Trtc.v20190722.models.VoicePrint`
+        # @param TurnDetection: 语义断句检测
+        # @type TurnDetection: :class:`Tencentcloud::Trtc.v20190722.models.TurnDetection`
 
-        attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint
+        attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
         deprecate :IMAdminUserId, :none, 2025, 9
         deprecate :IMAdminUserId=, :none, 2025, 9
         deprecate :IMAdminUserSig, :none, 2025, 9
         deprecate :IMAdminUserSig=, :none, 2025, 9
 
-        def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil)
+        def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
           @UserSig = usersig
           @IMAdminUserId = imadminuserid
@@ -6692,6 +6721,7 @@ module TencentCloud
           @TargetUserId = targetuserid
           @TargetUserIdList = targetuseridlist
           @VoicePrint = voiceprint
+          @TurnDetection = turndetection
         end
 
         def deserialize(params)
@@ -6706,6 +6736,37 @@ module TencentCloud
           unless params['VoicePrint'].nil?
             @VoicePrint = VoicePrint.new
             @VoicePrint.deserialize(params['VoicePrint'])
+          end
+          unless params['TurnDetection'].nil?
+            @TurnDetection = TurnDetection.new
+            @TurnDetection.deserialize(params['TurnDetection'])
+          end
+        end
+      end
+
+      # 翻译相关配置
+      class TranslationConfig < TencentCloud::Common::AbstractModel
+        # @param TargetLanguages: 翻译的目标语言，目标语种列表（ISO 639-1）
+        # @type TargetLanguages: Array
+        # @param Mode:  1： 仅文字翻译，  2： 语音同传
+        # @type Mode: Integer
+        # @param TTSConfig: 语音同传配置，开启同传时，需要传递
+        # @type TTSConfig: :class:`Tencentcloud::Trtc.v20190722.models.TTSConfig`
+
+        attr_accessor :TargetLanguages, :Mode, :TTSConfig
+
+        def initialize(targetlanguages=nil, mode=nil, ttsconfig=nil)
+          @TargetLanguages = targetlanguages
+          @Mode = mode
+          @TTSConfig = ttsconfig
+        end
+
+        def deserialize(params)
+          @TargetLanguages = params['TargetLanguages']
+          @Mode = params['Mode']
+          unless params['TTSConfig'].nil?
+            @TTSConfig = TTSConfig.new
+            @TTSConfig.deserialize(params['TTSConfig'])
           end
         end
       end

@@ -373,10 +373,14 @@ module TencentCloud
         # @type IsReadOnlyUlogBackupExpireDay: Integer
         # @param RestProxyStatus: restproxy状态
         # @type RestProxyStatus: Integer
+        # @param ShardTotalNum: 该集群shard总数
+        # @type ShardTotalNum: Integer
+        # @param ShardUsedNum: 已使用的shard总数
+        # @type ShardUsedNum: Integer
 
-        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay, :RestProxyStatus
+        attr_accessor :ClusterName, :ClusterId, :Region, :IdlType, :NetworkType, :VpcId, :SubnetId, :CreatedTime, :Password, :PasswordStatus, :ApiAccessId, :ApiAccessIp, :ApiAccessPort, :OldPasswordExpireTime, :ApiAccessIpv6, :ClusterType, :ClusterStatus, :ReadCapacityUnit, :WriteCapacityUnit, :DiskVolume, :ServerList, :ProxyList, :Censorship, :DbaUins, :DataFlowStatus, :KafkaInfo, :TxhBackupExpireDay, :UlogBackupExpireDay, :IsReadOnlyUlogBackupExpireDay, :RestProxyStatus, :ShardTotalNum, :ShardUsedNum
 
-        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil, restproxystatus=nil)
+        def initialize(clustername=nil, clusterid=nil, region=nil, idltype=nil, networktype=nil, vpcid=nil, subnetid=nil, createdtime=nil, password=nil, passwordstatus=nil, apiaccessid=nil, apiaccessip=nil, apiaccessport=nil, oldpasswordexpiretime=nil, apiaccessipv6=nil, clustertype=nil, clusterstatus=nil, readcapacityunit=nil, writecapacityunit=nil, diskvolume=nil, serverlist=nil, proxylist=nil, censorship=nil, dbauins=nil, dataflowstatus=nil, kafkainfo=nil, txhbackupexpireday=nil, ulogbackupexpireday=nil, isreadonlyulogbackupexpireday=nil, restproxystatus=nil, shardtotalnum=nil, shardusednum=nil)
           @ClusterName = clustername
           @ClusterId = clusterid
           @Region = region
@@ -407,6 +411,8 @@ module TencentCloud
           @UlogBackupExpireDay = ulogbackupexpireday
           @IsReadOnlyUlogBackupExpireDay = isreadonlyulogbackupexpireday
           @RestProxyStatus = restproxystatus
+          @ShardTotalNum = shardtotalnum
+          @ShardUsedNum = shardusednum
         end
 
         def deserialize(params)
@@ -457,6 +463,8 @@ module TencentCloud
           @UlogBackupExpireDay = params['UlogBackupExpireDay']
           @IsReadOnlyUlogBackupExpireDay = params['IsReadOnlyUlogBackupExpireDay']
           @RestProxyStatus = params['RestProxyStatus']
+          @ShardTotalNum = params['ShardTotalNum']
+          @ShardUsedNum = params['ShardUsedNum']
         end
       end
 

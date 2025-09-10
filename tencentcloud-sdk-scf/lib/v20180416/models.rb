@@ -1550,10 +1550,10 @@ module TencentCloud
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
         extend Gem::Deprecate
-        deprecate :Level, :none, 2025, 8
-        deprecate :Level=, :none, 2025, 8
-        deprecate :Source, :none, 2025, 8
-        deprecate :Source=, :none, 2025, 8
+        deprecate :Level, :none, 2025, 9
+        deprecate :Level=, :none, 2025, 9
+        deprecate :Source, :none, 2025, 9
+        deprecate :Source=, :none, 2025, 9
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -4560,12 +4560,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 8
-        deprecate :ResourceId=, :none, 2025, 8
-        deprecate :BindStatus, :none, 2025, 8
-        deprecate :BindStatus=, :none, 2025, 8
-        deprecate :TriggerAttribute, :none, 2025, 8
-        deprecate :TriggerAttribute=, :none, 2025, 8
+        deprecate :ResourceId, :none, 2025, 9
+        deprecate :ResourceId=, :none, 2025, 9
+        deprecate :BindStatus, :none, 2025, 9
+        deprecate :BindStatus=, :none, 2025, 9
+        deprecate :TriggerAttribute, :none, 2025, 9
+        deprecate :TriggerAttribute=, :none, 2025, 9
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4724,12 +4724,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description, :BoundResources
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 8
-        deprecate :ResourceId=, :none, 2025, 8
-        deprecate :BindStatus, :none, 2025, 8
-        deprecate :BindStatus=, :none, 2025, 8
-        deprecate :TriggerAttribute, :none, 2025, 8
-        deprecate :TriggerAttribute=, :none, 2025, 8
+        deprecate :ResourceId, :none, 2025, 9
+        deprecate :ResourceId=, :none, 2025, 9
+        deprecate :BindStatus, :none, 2025, 9
+        deprecate :BindStatus=, :none, 2025, 9
+        deprecate :TriggerAttribute, :none, 2025, 9
+        deprecate :TriggerAttribute=, :none, 2025, 9
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil, boundresources=nil)
           @Enable = enable

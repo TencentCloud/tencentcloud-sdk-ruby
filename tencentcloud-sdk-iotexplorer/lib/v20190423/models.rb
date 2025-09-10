@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 8
-        deprecate :MiniProgramAppId=, :none, 2025, 8
+        deprecate :MiniProgramAppId, :none, 2025, 9
+        deprecate :MiniProgramAppId=, :none, 2025, 9
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 8
-        deprecate :DeviceList=, :none, 2025, 8
+        deprecate :DeviceList, :none, 2025, 9
+        deprecate :DeviceList=, :none, 2025, 9
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -4891,17 +4891,21 @@ module TencentCloud
         # @type ProductID: String
         # @param FirmwareVersion: 固件版本号
         # @type FirmwareVersion: String
+        # @param FwType: 固件模块
+        # @type FwType: String
 
-        attr_accessor :ProductID, :FirmwareVersion
+        attr_accessor :ProductID, :FirmwareVersion, :FwType
 
-        def initialize(productid=nil, firmwareversion=nil)
+        def initialize(productid=nil, firmwareversion=nil, fwtype=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
+          @FwType = fwtype
         end
 
         def deserialize(params)
           @ProductID = params['ProductID']
           @FirmwareVersion = params['FirmwareVersion']
+          @FwType = params['FwType']
         end
       end
 
@@ -5003,12 +5007,28 @@ module TencentCloud
         # @type CreateUserId: Integer
         # @param CreatorNickName: 创建账号ID昵称
         # @type CreatorNickName: String
+        # @param DelayTime: 延迟时间
+        # @type DelayTime: Integer
+        # @param TimeoutInterval: 超时时间
+        # @type TimeoutInterval: Integer
+        # @param UpgradeMethod: 静默升级or用户确认升级
+        # @type UpgradeMethod: Integer
+        # @param MaxRetryNum: 最大重试次数
+        # @type MaxRetryNum: Integer
+        # @param FwType: 固件类型
+        # @type FwType: String
+        # @param RetryInterval: 重试间隔时间单位min
+        # @type RetryInterval: Integer
+        # @param OverrideMode: 是否覆盖任务
+        # @type OverrideMode: Integer
+        # @param TaskUserDefine: 用户自定义消息
+        # @type TaskUserDefine: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :RequestId
+        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :DelayTime, :TimeoutInterval, :UpgradeMethod, :MaxRetryNum, :FwType, :RetryInterval, :OverrideMode, :TaskUserDefine, :RequestId
 
-        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, delaytime=nil, timeoutinterval=nil, upgrademethod=nil, maxretrynum=nil, fwtype=nil, retryinterval=nil, overridemode=nil, taskuserdefine=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @CreateTime = createtime
@@ -5019,6 +5039,14 @@ module TencentCloud
           @OriginalVersion = originalversion
           @CreateUserId = createuserid
           @CreatorNickName = creatornickname
+          @DelayTime = delaytime
+          @TimeoutInterval = timeoutinterval
+          @UpgradeMethod = upgrademethod
+          @MaxRetryNum = maxretrynum
+          @FwType = fwtype
+          @RetryInterval = retryinterval
+          @OverrideMode = overridemode
+          @TaskUserDefine = taskuserdefine
           @RequestId = requestid
         end
 
@@ -5033,6 +5061,14 @@ module TencentCloud
           @OriginalVersion = params['OriginalVersion']
           @CreateUserId = params['CreateUserId']
           @CreatorNickName = params['CreatorNickName']
+          @DelayTime = params['DelayTime']
+          @TimeoutInterval = params['TimeoutInterval']
+          @UpgradeMethod = params['UpgradeMethod']
+          @MaxRetryNum = params['MaxRetryNum']
+          @FwType = params['FwType']
+          @RetryInterval = params['RetryInterval']
+          @OverrideMode = params['OverrideMode']
+          @TaskUserDefine = params['TaskUserDefine']
           @RequestId = params['RequestId']
         end
       end
@@ -6207,8 +6243,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 8
-        deprecate :ModelId=, :none, 2025, 8
+        deprecate :ModelId, :none, 2025, 9
+        deprecate :ModelId=, :none, 2025, 9
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -7214,19 +7250,23 @@ module TencentCloud
         # @type FirmwareVersion: String
         # @param FileSize: 文件大小
         # @type FileSize: Integer
+        # @param FwType: 模块类型or固件类型
+        # @type FwType: String
 
-        attr_accessor :ProductID, :FirmwareVersion, :FileSize
+        attr_accessor :ProductID, :FirmwareVersion, :FileSize, :FwType
 
-        def initialize(productid=nil, firmwareversion=nil, filesize=nil)
+        def initialize(productid=nil, firmwareversion=nil, filesize=nil, fwtype=nil)
           @ProductID = productid
           @FirmwareVersion = firmwareversion
           @FileSize = filesize
+          @FwType = fwtype
         end
 
         def deserialize(params)
           @ProductID = params['ProductID']
           @FirmwareVersion = params['FirmwareVersion']
           @FileSize = params['FileSize']
+          @FwType = params['FwType']
         end
       end
 
@@ -7260,6 +7300,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param FirmwareVersion: 设备固件版本号，若不带此参数会返回所有固件版本的设备。传"None-FirmwareVersion"查询无版本号的设备
         # @type FirmwareVersion: String
+        # @param FwType: 固件类型
+        # @type FwType: String
         # @param DeviceName: 需要过滤的设备名称
         # @type DeviceName: String
         # @param ProjectId: 项目ID。产品 ID 为 -1 时，该参数必填
@@ -7267,13 +7309,14 @@ module TencentCloud
         # @param Filters: 每次请求的Filters的上限为10，Filter.Values的上限为1。
         # @type Filters: Array
 
-        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :DeviceName, :ProjectId, :Filters
+        attr_accessor :ProductId, :Offset, :Limit, :FirmwareVersion, :FwType, :DeviceName, :ProjectId, :Filters
 
-        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, devicename=nil, projectid=nil, filters=nil)
+        def initialize(productid=nil, offset=nil, limit=nil, firmwareversion=nil, fwtype=nil, devicename=nil, projectid=nil, filters=nil)
           @ProductId = productid
           @Offset = offset
           @Limit = limit
           @FirmwareVersion = firmwareversion
+          @FwType = fwtype
           @DeviceName = devicename
           @ProjectId = projectid
           @Filters = filters
@@ -7284,6 +7327,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @FirmwareVersion = params['FirmwareVersion']
+          @FwType = params['FwType']
           @DeviceName = params['DeviceName']
           @ProjectId = params['ProjectId']
           unless params['Filters'].nil?
@@ -7806,8 +7850,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 8
-        deprecate :MiniProgramAppId=, :none, 2025, 8
+        deprecate :MiniProgramAppId, :none, 2025, 9
+        deprecate :MiniProgramAppId=, :none, 2025, 9
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -8201,10 +8245,18 @@ module TencentCloud
         # 注：
         # 符合iana标准 https://www.iana.org/time-zones，例如Asia/Shanghai、Asia/Bangkok
         # @type TimeZone: String
+        # @param SearchMode: 取值为1表示高级搜索，取值为2表示简单搜索，默认为1
+        # @type SearchMode: Integer
+        # @param Limit: 最终输出的条数；仅当SearchMode为2时支持自定义设置，默认为50
+        # @type Limit: Integer
+        # @param VectorSearchRadius: 向量搜索的相似度搜索半径，取值范围[-1, 1]；仅当SearchMode为2时支持自定义设置，默认为0.5
+        # @type VectorSearchRadius: Float
+        # @param VectorSearchTopK: 指定向量搜索最相似的 Top K；仅当SearchMode为2时支持自定义设置，默认为100
+        # @type VectorSearchTopK: Integer
 
-        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone
+        attr_accessor :ProductId, :DeviceName, :Query, :SummaryLang, :ChannelId, :EnableSummary, :StartTimeMs, :EndTimeMs, :TimeZone, :SearchMode, :Limit, :VectorSearchRadius, :VectorSearchTopK
 
-        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil)
+        def initialize(productid=nil, devicename=nil, query=nil, summarylang=nil, channelid=nil, enablesummary=nil, starttimems=nil, endtimems=nil, timezone=nil, searchmode=nil, limit=nil, vectorsearchradius=nil, vectorsearchtopk=nil)
           @ProductId = productid
           @DeviceName = devicename
           @Query = query
@@ -8214,6 +8266,10 @@ module TencentCloud
           @StartTimeMs = starttimems
           @EndTimeMs = endtimems
           @TimeZone = timezone
+          @SearchMode = searchmode
+          @Limit = limit
+          @VectorSearchRadius = vectorsearchradius
+          @VectorSearchTopK = vectorsearchtopk
         end
 
         def deserialize(params)
@@ -8226,6 +8282,10 @@ module TencentCloud
           @StartTimeMs = params['StartTimeMs']
           @EndTimeMs = params['EndTimeMs']
           @TimeZone = params['TimeZone']
+          @SearchMode = params['SearchMode']
+          @Limit = params['Limit']
+          @VectorSearchRadius = params['VectorSearchRadius']
+          @VectorSearchTopK = params['VectorSearchTopK']
         end
       end
 
@@ -10569,17 +10629,21 @@ module TencentCloud
         # @type ProductID: String
         # @param DeviceName: 设备名称。
         # @type DeviceName: String
+        # @param FwType: 固件类型
+        # @type FwType: String
 
-        attr_accessor :ProductID, :DeviceName
+        attr_accessor :ProductID, :DeviceName, :FwType
 
-        def initialize(productid=nil, devicename=nil)
+        def initialize(productid=nil, devicename=nil, fwtype=nil)
           @ProductID = productid
           @DeviceName = devicename
+          @FwType = fwtype
         end
 
         def deserialize(params)
           @ProductID = params['ProductID']
           @DeviceName = params['DeviceName']
+          @FwType = params['FwType']
         end
       end
 
@@ -11291,8 +11355,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 8
-        deprecate :ModelId=, :none, 2025, 8
+        deprecate :ModelId, :none, 2025, 9
+        deprecate :ModelId=, :none, 2025, 9
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -11322,10 +11386,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 8
-        deprecate :ModelId=, :none, 2025, 8
-        deprecate :ActiveNum, :none, 2025, 8
-        deprecate :ActiveNum=, :none, 2025, 8
+        deprecate :ModelId, :none, 2025, 9
+        deprecate :ModelId=, :none, 2025, 9
+        deprecate :ActiveNum, :none, 2025, 9
+        deprecate :ActiveNum=, :none, 2025, 9
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

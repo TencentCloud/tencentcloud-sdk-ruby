@@ -3625,8 +3625,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 8
-        deprecate :OplogSize=, :none, 2025, 8
+        deprecate :OplogSize, :none, 2025, 9
+        deprecate :OplogSize=, :none, 2025, 9
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -4408,6 +4408,42 @@ module TencentCloud
 
       # SetBackupRules返回参数结构体
       class SetBackupRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetDBInstanceDeletionProtection请求参数结构体
+      class SetDBInstanceDeletionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceIds: Array
+        # @param EnableDeletionProtection: 实例销毁保护选项，取值范围：0-关闭销毁保护，1-开启销毁保护
+        # @type EnableDeletionProtection: Integer
+
+        attr_accessor :InstanceIds, :EnableDeletionProtection
+
+        def initialize(instanceids=nil, enabledeletionprotection=nil)
+          @InstanceIds = instanceids
+          @EnableDeletionProtection = enabledeletionprotection
+        end
+
+        def deserialize(params)
+          @InstanceIds = params['InstanceIds']
+          @EnableDeletionProtection = params['EnableDeletionProtection']
+        end
+      end
+
+      # SetDBInstanceDeletionProtection返回参数结构体
+      class SetDBInstanceDeletionProtectionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

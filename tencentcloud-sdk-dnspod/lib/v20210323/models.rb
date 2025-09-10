@@ -7321,10 +7321,12 @@ module TencentCloud
         # @type Uin: Integer
         # @param FreeNs: 所属 DNS 服务器
         # @type FreeNs: Array
+        # @param AllowTransferIn: 用户是否允许任何人转移域名到本账号
+        # @type AllowTransferIn: Boolean
 
-        attr_accessor :Nick, :Id, :Email, :Status, :Telephone, :EmailVerified, :TelephoneVerified, :UserGrade, :RealName, :WechatBinded, :Uin, :FreeNs
+        attr_accessor :Nick, :Id, :Email, :Status, :Telephone, :EmailVerified, :TelephoneVerified, :UserGrade, :RealName, :WechatBinded, :Uin, :FreeNs, :AllowTransferIn
 
-        def initialize(nick=nil, id=nil, email=nil, status=nil, telephone=nil, emailverified=nil, telephoneverified=nil, usergrade=nil, realname=nil, wechatbinded=nil, uin=nil, freens=nil)
+        def initialize(nick=nil, id=nil, email=nil, status=nil, telephone=nil, emailverified=nil, telephoneverified=nil, usergrade=nil, realname=nil, wechatbinded=nil, uin=nil, freens=nil, allowtransferin=nil)
           @Nick = nick
           @Id = id
           @Email = email
@@ -7337,6 +7339,7 @@ module TencentCloud
           @WechatBinded = wechatbinded
           @Uin = uin
           @FreeNs = freens
+          @AllowTransferIn = allowtransferin
         end
 
         def deserialize(params)
@@ -7352,6 +7355,7 @@ module TencentCloud
           @WechatBinded = params['WechatBinded']
           @Uin = params['Uin']
           @FreeNs = params['FreeNs']
+          @AllowTransferIn = params['AllowTransferIn']
         end
       end
 

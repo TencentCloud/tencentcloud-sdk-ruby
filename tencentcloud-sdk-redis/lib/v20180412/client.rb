@@ -1999,7 +1999,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ModifyInstanceAccount）用于修改实例子账号。
+        # 本接口（ModifyInstanceAccount）用于修改实例账号。
 
         # @param request: Request instance for ModifyInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceAccountRequest`

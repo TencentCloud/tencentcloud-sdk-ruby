@@ -1389,6 +1389,30 @@ module TencentCloud
         end
       end
 
+      # 通知类型
+      class NotificationType < TencentCloud::Common::AbstractModel
+        # @param StationMessage: 腾讯健康组学平台站点信息。
+        # @type StationMessage: Boolean
+        # @param Email: 邮箱列表。
+        # @type Email: Array
+        # @param CurrentUserEmail: 当前用户邮箱。
+        # @type CurrentUserEmail: Boolean
+
+        attr_accessor :StationMessage, :Email, :CurrentUserEmail
+
+        def initialize(stationmessage=nil, email=nil, currentuseremail=nil)
+          @StationMessage = stationmessage
+          @Email = email
+          @CurrentUserEmail = currentuseremail
+        end
+
+        def deserialize(params)
+          @StationMessage = params['StationMessage']
+          @Email = params['Email']
+          @CurrentUserEmail = params['CurrentUserEmail']
+        end
+      end
+
       # 云资源ID。
       class ResourceIds < TencentCloud::Common::AbstractModel
         # @param VPCId: 私有网络ID。
@@ -1651,10 +1675,18 @@ module TencentCloud
         # @type AccessMode: String
         # @param VolumeIds: 缓存卷ID，不填使用默认缓存卷，暂时仅支持Nextflow。
         # @type VolumeIds: Array
+        # @param ResultNotification: 是否开启结果通知。
+        # @type ResultNotification: Boolean
+        # @param TimeoutNotification: 是否开启超时通知。
+        # @type TimeoutNotification: Boolean
+        # @param TimeoutNotificationMinutes: 任务超时通知时间（单位：分钟），支持5到2880分钟。
+        # @type TimeoutNotificationMinutes: Integer
+        # @param EmailForNotification: 接受通知邮件地址列表。
+        # @type EmailForNotification: Array
 
-        attr_accessor :ApplicationId, :Name, :EnvironmentId, :ProjectId, :Description, :InputCosUri, :InputBase64, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir, :AccessMode, :VolumeIds
+        attr_accessor :ApplicationId, :Name, :EnvironmentId, :ProjectId, :Description, :InputCosUri, :InputBase64, :TableId, :TableRowUuids, :CacheClearDelay, :ApplicationVersionId, :Option, :NFOption, :WorkDir, :AccessMode, :VolumeIds, :ResultNotification, :TimeoutNotification, :TimeoutNotificationMinutes, :EmailForNotification
 
-        def initialize(applicationid=nil, name=nil, environmentid=nil, projectid=nil, description=nil, inputcosuri=nil, inputbase64=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil, accessmode=nil, volumeids=nil)
+        def initialize(applicationid=nil, name=nil, environmentid=nil, projectid=nil, description=nil, inputcosuri=nil, inputbase64=nil, tableid=nil, tablerowuuids=nil, cachecleardelay=nil, applicationversionid=nil, option=nil, nfoption=nil, workdir=nil, accessmode=nil, volumeids=nil, resultnotification=nil, timeoutnotification=nil, timeoutnotificationminutes=nil, emailfornotification=nil)
           @ApplicationId = applicationid
           @Name = name
           @EnvironmentId = environmentid
@@ -1671,6 +1703,10 @@ module TencentCloud
           @WorkDir = workdir
           @AccessMode = accessmode
           @VolumeIds = volumeids
+          @ResultNotification = resultnotification
+          @TimeoutNotification = timeoutnotification
+          @TimeoutNotificationMinutes = timeoutnotificationminutes
+          @EmailForNotification = emailfornotification
         end
 
         def deserialize(params)
@@ -1696,6 +1732,10 @@ module TencentCloud
           @WorkDir = params['WorkDir']
           @AccessMode = params['AccessMode']
           @VolumeIds = params['VolumeIds']
+          @ResultNotification = params['ResultNotification']
+          @TimeoutNotification = params['TimeoutNotification']
+          @TimeoutNotificationMinutes = params['TimeoutNotificationMinutes']
+          @EmailForNotification = params['EmailForNotification']
         end
       end
 
@@ -1782,8 +1822,8 @@ module TencentCloud
         # @type ExecutionTime: :class:`Tencentcloud::Omics.v20221128.models.ExecutionTime`
         # @param ErrorMessage: 错误信息。
         # @type ErrorMessage: String
-        # @param ResultNotify: 运行结果通知方式。
-        # @type ResultNotify: String
+        # @param Notification: 任务批次通知。
+        # @type Notification: :class:`Tencentcloud::Omics.v20221128.models.RunGroupNotification`
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
@@ -1792,10 +1832,12 @@ module TencentCloud
         # @type Creator: String
         # @param CreatorId: 创建者ID。
         # @type CreatorId: String
+        # @param ResultNotify: 运行结果通知方式。
+        # @type ResultNotify: String
 
-        attr_accessor :RunGroupId, :ProjectId, :ProjectName, :ApplicationId, :ApplicationName, :ApplicationType, :ApplicationVersion, :AccessMode, :EnvironmentId, :EnvironmentName, :TableId, :Name, :Description, :Status, :Type, :WorkDir, :Input, :InputType, :InputCosUri, :InputTemplateId, :Option, :NFOption, :Volumes, :TotalRun, :RunStatusCounts, :ExecutionTime, :ErrorMessage, :ResultNotify, :CreateTime, :UpdateTime, :Creator, :CreatorId
+        attr_accessor :RunGroupId, :ProjectId, :ProjectName, :ApplicationId, :ApplicationName, :ApplicationType, :ApplicationVersion, :AccessMode, :EnvironmentId, :EnvironmentName, :TableId, :Name, :Description, :Status, :Type, :WorkDir, :Input, :InputType, :InputCosUri, :InputTemplateId, :Option, :NFOption, :Volumes, :TotalRun, :RunStatusCounts, :ExecutionTime, :ErrorMessage, :Notification, :CreateTime, :UpdateTime, :Creator, :CreatorId, :ResultNotify
 
-        def initialize(rungroupid=nil, projectid=nil, projectname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, applicationversion=nil, accessmode=nil, environmentid=nil, environmentname=nil, tableid=nil, name=nil, description=nil, status=nil, type=nil, workdir=nil, input=nil, inputtype=nil, inputcosuri=nil, inputtemplateid=nil, option=nil, nfoption=nil, volumes=nil, totalrun=nil, runstatuscounts=nil, executiontime=nil, errormessage=nil, resultnotify=nil, createtime=nil, updatetime=nil, creator=nil, creatorid=nil)
+        def initialize(rungroupid=nil, projectid=nil, projectname=nil, applicationid=nil, applicationname=nil, applicationtype=nil, applicationversion=nil, accessmode=nil, environmentid=nil, environmentname=nil, tableid=nil, name=nil, description=nil, status=nil, type=nil, workdir=nil, input=nil, inputtype=nil, inputcosuri=nil, inputtemplateid=nil, option=nil, nfoption=nil, volumes=nil, totalrun=nil, runstatuscounts=nil, executiontime=nil, errormessage=nil, notification=nil, createtime=nil, updatetime=nil, creator=nil, creatorid=nil, resultnotify=nil)
           @RunGroupId = rungroupid
           @ProjectId = projectid
           @ProjectName = projectname
@@ -1823,11 +1865,12 @@ module TencentCloud
           @RunStatusCounts = runstatuscounts
           @ExecutionTime = executiontime
           @ErrorMessage = errormessage
-          @ResultNotify = resultnotify
+          @Notification = notification
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Creator = creator
           @CreatorId = creatorid
+          @ResultNotify = resultnotify
         end
 
         def deserialize(params)
@@ -1884,11 +1927,83 @@ module TencentCloud
             @ExecutionTime.deserialize(params['ExecutionTime'])
           end
           @ErrorMessage = params['ErrorMessage']
-          @ResultNotify = params['ResultNotify']
+          unless params['Notification'].nil?
+            @Notification = RunGroupNotification.new
+            @Notification.deserialize(params['Notification'])
+          end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Creator = params['Creator']
           @CreatorId = params['CreatorId']
+          @ResultNotify = params['ResultNotify']
+        end
+      end
+
+      # 任务批次通知。
+      class RunGroupNotification < TencentCloud::Common::AbstractModel
+        # @param ResultNotification: 结果通知。
+        # @type ResultNotification: :class:`Tencentcloud::Omics.v20221128.models.RunGroupResultNotification`
+        # @param TimeoutNotification: 超时通知。
+        # @type TimeoutNotification: :class:`Tencentcloud::Omics.v20221128.models.RunGroupTimeoutNotification`
+
+        attr_accessor :ResultNotification, :TimeoutNotification
+
+        def initialize(resultnotification=nil, timeoutnotification=nil)
+          @ResultNotification = resultnotification
+          @TimeoutNotification = timeoutnotification
+        end
+
+        def deserialize(params)
+          unless params['ResultNotification'].nil?
+            @ResultNotification = RunGroupResultNotification.new
+            @ResultNotification.deserialize(params['ResultNotification'])
+          end
+          unless params['TimeoutNotification'].nil?
+            @TimeoutNotification = RunGroupTimeoutNotification.new
+            @TimeoutNotification.deserialize(params['TimeoutNotification'])
+          end
+        end
+      end
+
+      # 任务批次结果通知
+      class RunGroupResultNotification < TencentCloud::Common::AbstractModel
+        # @param NotificationType: 通知类型。
+        # @type NotificationType: :class:`Tencentcloud::Omics.v20221128.models.NotificationType`
+
+        attr_accessor :NotificationType
+
+        def initialize(notificationtype=nil)
+          @NotificationType = notificationtype
+        end
+
+        def deserialize(params)
+          unless params['NotificationType'].nil?
+            @NotificationType = NotificationType.new
+            @NotificationType.deserialize(params['NotificationType'])
+          end
+        end
+      end
+
+      # 任务批次超时通知。
+      class RunGroupTimeoutNotification < TencentCloud::Common::AbstractModel
+        # @param TimeoutMinutes: 任务批次超时时间，单位分钟。
+        # @type TimeoutMinutes: Integer
+        # @param NotificationType: 通知类型。
+        # @type NotificationType: :class:`Tencentcloud::Omics.v20221128.models.NotificationType`
+
+        attr_accessor :TimeoutMinutes, :NotificationType
+
+        def initialize(timeoutminutes=nil, notificationtype=nil)
+          @TimeoutMinutes = timeoutminutes
+          @NotificationType = notificationtype
+        end
+
+        def deserialize(params)
+          @TimeoutMinutes = params['TimeoutMinutes']
+          unless params['NotificationType'].nil?
+            @NotificationType = NotificationType.new
+            @NotificationType.deserialize(params['NotificationType'])
+          end
         end
       end
 

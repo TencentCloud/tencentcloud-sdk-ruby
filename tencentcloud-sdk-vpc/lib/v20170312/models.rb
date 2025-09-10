@@ -793,8 +793,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 8
-        deprecate :ApplicableForCLB=, :none, 2025, 8
+        deprecate :ApplicableForCLB, :none, 2025, 9
+        deprecate :ApplicableForCLB=, :none, 2025, 9
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -4819,8 +4819,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 8
-        deprecate :SubnetId=, :none, 2025, 8
+        deprecate :SubnetId, :none, 2025, 9
+        deprecate :SubnetId=, :none, 2025, 9
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
           @NatGatewayName = natgatewayname
@@ -18737,8 +18737,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 8
-        deprecate :IntegrityAlgorith=, :none, 2025, 8
+        deprecate :IntegrityAlgorith, :none, 2025, 9
+        deprecate :IntegrityAlgorith=, :none, 2025, 9
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20125,10 +20125,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 8
-        deprecate :StartTime=, :none, 2025, 8
-        deprecate :EndTime, :none, 2025, 8
-        deprecate :EndTime=, :none, 2025, 8
+        deprecate :StartTime, :none, 2025, 9
+        deprecate :StartTime=, :none, 2025, 9
+        deprecate :EndTime, :none, 2025, 9
+        deprecate :EndTime=, :none, 2025, 9
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -21309,15 +21309,18 @@ module TencentCloud
         # @type ModifySecurityGroup: Boolean
         # @param SecurityGroupIds: NAT网关绑定的安全组列表，最终状态，空列表表示删除所有安全组，形如: `['sg-1n232323', 'sg-o4242424']`
         # @type SecurityGroupIds: Array
+        # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut, :ModifySecurityGroup, :SecurityGroupIds
+        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut, :ModifySecurityGroup, :SecurityGroupIds, :DeletionProtectionEnabled
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil, modifysecuritygroup=nil, securitygroupids=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil, modifysecuritygroup=nil, securitygroupids=nil, deletionprotectionenabled=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @ModifySecurityGroup = modifysecuritygroup
           @SecurityGroupIds = securitygroupids
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
@@ -21326,6 +21329,7 @@ module TencentCloud
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @ModifySecurityGroup = params['ModifySecurityGroup']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 
@@ -23115,10 +23119,12 @@ module TencentCloud
         # @type SmartScheduleMode: Boolean
         # @param DedicatedClusterId: NAT实例归属的专属集群id
         # @type DedicatedClusterId: String
+        # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil, deletionprotectionenabled=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -23141,6 +23147,7 @@ module TencentCloud
           @NatProductVersion = natproductversion
           @SmartScheduleMode = smartschedulemode
           @DedicatedClusterId = dedicatedclusterid
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
@@ -23194,6 +23201,7 @@ module TencentCloud
           @NatProductVersion = params['NatProductVersion']
           @SmartScheduleMode = params['SmartScheduleMode']
           @DedicatedClusterId = params['DedicatedClusterId']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 
@@ -24219,10 +24227,12 @@ module TencentCloud
         # @type VpcType: Boolean
         # @param CcnId: 跨域私网NAT关联的云联网ID
         # @type CcnId: String
+        # @param DeletionProtectionEnabled: 私网NAT是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet, :DirectConnectGatewayIds, :NatType, :CrossDomainInfo, :VpcType, :CcnId
+        attr_accessor :NatGatewayId, :NatGatewayName, :VpcId, :Status, :CrossDomain, :CreatedTime, :TagSet, :DirectConnectGatewayIds, :NatType, :CrossDomainInfo, :VpcType, :CcnId, :DeletionProtectionEnabled
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, vpcid=nil, status=nil, crossdomain=nil, createdtime=nil, tagset=nil, directconnectgatewayids=nil, nattype=nil, crossdomaininfo=nil, vpctype=nil, ccnid=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, vpcid=nil, status=nil, crossdomain=nil, createdtime=nil, tagset=nil, directconnectgatewayids=nil, nattype=nil, crossdomaininfo=nil, vpctype=nil, ccnid=nil, deletionprotectionenabled=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
@@ -24235,6 +24245,7 @@ module TencentCloud
           @CrossDomainInfo = crossdomaininfo
           @VpcType = vpctype
           @CcnId = ccnid
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
@@ -24260,6 +24271,7 @@ module TencentCloud
           end
           @VpcType = params['VpcType']
           @CcnId = params['CcnId']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 

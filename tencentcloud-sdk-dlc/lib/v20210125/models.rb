@@ -8726,27 +8726,74 @@ module TencentCloud
 
       # DescribeTablePartitions请求参数结构体
       class DescribeTablePartitionsRequest < TencentCloud::Common::AbstractModel
+        # @param Catalog: 数据目录名称
+        # @type Catalog: String
+        # @param Database: 数据库名称
+        # @type Database: String
+        # @param Table: 数据表名称
+        # @type Table: String
+        # @param Offset: 查询偏移位置
+        # @type Offset: Integer
+        # @param Limit: 当次查询的数量限制
+        # @type Limit: Integer
+        # @param FuzzyPartition: 模糊查询的分区名称
+        # @type FuzzyPartition: String
+        # @param Sorts: 排序信息
+        # @type Sorts: Array
+        # @param Cursor: 分页查询的游标信息
+        # @type Cursor: String
 
+        attr_accessor :Catalog, :Database, :Table, :Offset, :Limit, :FuzzyPartition, :Sorts, :Cursor
 
-        def initialize()
+        def initialize(catalog=nil, database=nil, table=nil, offset=nil, limit=nil, fuzzypartition=nil, sorts=nil, cursor=nil)
+          @Catalog = catalog
+          @Database = database
+          @Table = table
+          @Offset = offset
+          @Limit = limit
+          @FuzzyPartition = fuzzypartition
+          @Sorts = sorts
+          @Cursor = cursor
         end
 
         def deserialize(params)
+          @Catalog = params['Catalog']
+          @Database = params['Database']
+          @Table = params['Table']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FuzzyPartition = params['FuzzyPartition']
+          unless params['Sorts'].nil?
+            @Sorts = []
+            params['Sorts'].each do |i|
+              sort_tmp = Sort.new
+              sort_tmp.deserialize(i)
+              @Sorts << sort_tmp
+            end
+          end
+          @Cursor = params['Cursor']
         end
       end
 
       # DescribeTablePartitions返回参数结构体
       class DescribeTablePartitionsResponse < TencentCloud::Common::AbstractModel
+        # @param MixedPartitions: 分区信息值
+        # @type MixedPartitions: :class:`Tencentcloud::Dlc.v20210125.models.MixedTablePartitions`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :MixedPartitions, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(mixedpartitions=nil, requestid=nil)
+          @MixedPartitions = mixedpartitions
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['MixedPartitions'].nil?
+            @MixedPartitions = MixedTablePartitions.new
+            @MixedPartitions.deserialize(params['MixedPartitions'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11170,6 +11217,42 @@ module TencentCloud
         end
       end
 
+      # Hive表分区信息
+      class HiveTablePartition < TencentCloud::Common::AbstractModel
+        # @param Partition: 分区信息名称
+        # @type Partition: String
+        # @param Records: 分区记录数
+        # @type Records: Integer
+        # @param DataFileStorage: 分区数据文件存储量
+        # @type DataFileStorage: Integer
+        # @param CreateTime: 分区创建时间
+        # @type CreateTime: String
+        # @param ModifiedTime: 分区schema更新时间
+        # @type ModifiedTime: String
+        # @param LastAccessTime: 最后一次分区更新的访问时间
+        # @type LastAccessTime: String
+
+        attr_accessor :Partition, :Records, :DataFileStorage, :CreateTime, :ModifiedTime, :LastAccessTime
+
+        def initialize(partition=nil, records=nil, datafilestorage=nil, createtime=nil, modifiedtime=nil, lastaccesstime=nil)
+          @Partition = partition
+          @Records = records
+          @DataFileStorage = datafilestorage
+          @CreateTime = createtime
+          @ModifiedTime = modifiedtime
+          @LastAccessTime = lastaccesstime
+        end
+
+        def deserialize(params)
+          @Partition = params['Partition']
+          @Records = params['Records']
+          @DataFileStorage = params['DataFileStorage']
+          @CreateTime = params['CreateTime']
+          @ModifiedTime = params['ModifiedTime']
+          @LastAccessTime = params['LastAccessTime']
+        end
+      end
+
       # 集群事件日志
       class HouseEventsInfo < TencentCloud::Common::AbstractModel
         # @param Time: 事件时间
@@ -11194,6 +11277,53 @@ module TencentCloud
           @Time = params['Time']
           @EventsAction = params['EventsAction']
           @ClusterInfo = params['ClusterInfo']
+        end
+      end
+
+      # Iceberg表分区信息
+      class IcebergTablePartition < TencentCloud::Common::AbstractModel
+        # @param Partition: 分区信息名称
+        # @type Partition: String
+        # @param Records: 分区记录数
+        # @type Records: Integer
+        # @param DataFileSize: 分区数据文件数量
+        # @type DataFileSize: Integer
+        # @param DataFileStorage: 分区数据文件存储量
+        # @type DataFileStorage: Integer
+        # @param CreateTime: 分区创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 分区更新时间
+        # @type UpdateTime: String
+        # @param LastUpdateSnapshotId: 最后一次分区更新的快照ID
+        # @type LastUpdateSnapshotId: String
+        # @param Location: 分区的location
+        # @type Location: :class:`Tencentcloud::Dlc.v20210125.models.LocationInfo`
+
+        attr_accessor :Partition, :Records, :DataFileSize, :DataFileStorage, :CreateTime, :UpdateTime, :LastUpdateSnapshotId, :Location
+
+        def initialize(partition=nil, records=nil, datafilesize=nil, datafilestorage=nil, createtime=nil, updatetime=nil, lastupdatesnapshotid=nil, location=nil)
+          @Partition = partition
+          @Records = records
+          @DataFileSize = datafilesize
+          @DataFileStorage = datafilestorage
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LastUpdateSnapshotId = lastupdatesnapshotid
+          @Location = location
+        end
+
+        def deserialize(params)
+          @Partition = params['Partition']
+          @Records = params['Records']
+          @DataFileSize = params['DataFileSize']
+          @DataFileStorage = params['DataFileStorage']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LastUpdateSnapshotId = params['LastUpdateSnapshotId']
+          unless params['Location'].nil?
+            @Location = LocationInfo.new
+            @Location.deserialize(params['Location'])
+          end
         end
       end
 
@@ -11581,6 +11711,26 @@ module TencentCloud
         end
       end
 
+      # Location信息结构
+      class LocationInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: 桶名称
+        # @type Bucket: String
+        # @param DataLocation: location路径
+        # @type DataLocation: String
+
+        attr_accessor :Bucket, :DataLocation
+
+        def initialize(bucket=nil, datalocation=nil)
+          @Bucket = bucket
+          @DataLocation = datalocation
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @DataLocation = params['DataLocation']
+        end
+      end
+
       # 元数据加锁内容
       class LockComponentInfo < TencentCloud::Common::AbstractModel
         # @param DbName: 数据库名称
@@ -11685,6 +11835,52 @@ module TencentCloud
           @LockId = params['LockId']
           @LockState = params['LockState']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DLC分区信息查询返回数据结构
+      class MixedTablePartitions < TencentCloud::Common::AbstractModel
+        # @param TableFormat: 数据表格式
+        # @type TableFormat: String
+        # @param TotalSize: 分区总数
+        # @type TotalSize: Integer
+        # @param NextCursor: 分页查询的游标信息，在获取下一页信息时需要回传到服务端
+        # @type NextCursor: String
+        # @param IcebergPartitions: iceberg表分区信息
+        # @type IcebergPartitions: Array
+        # @param HivePartitions: hive表分区信息
+        # @type HivePartitions: Array
+
+        attr_accessor :TableFormat, :TotalSize, :NextCursor, :IcebergPartitions, :HivePartitions
+
+        def initialize(tableformat=nil, totalsize=nil, nextcursor=nil, icebergpartitions=nil, hivepartitions=nil)
+          @TableFormat = tableformat
+          @TotalSize = totalsize
+          @NextCursor = nextcursor
+          @IcebergPartitions = icebergpartitions
+          @HivePartitions = hivepartitions
+        end
+
+        def deserialize(params)
+          @TableFormat = params['TableFormat']
+          @TotalSize = params['TotalSize']
+          @NextCursor = params['NextCursor']
+          unless params['IcebergPartitions'].nil?
+            @IcebergPartitions = []
+            params['IcebergPartitions'].each do |i|
+              icebergtablepartition_tmp = IcebergTablePartition.new
+              icebergtablepartition_tmp.deserialize(i)
+              @IcebergPartitions << icebergtablepartition_tmp
+            end
+          end
+          unless params['HivePartitions'].nil?
+            @HivePartitions = []
+            params['HivePartitions'].each do |i|
+              hivetablepartition_tmp = HiveTablePartition.new
+              hivetablepartition_tmp.deserialize(i)
+              @HivePartitions << hivetablepartition_tmp
+            end
+          end
         end
       end
 
@@ -13854,6 +14050,26 @@ module TencentCloud
           @Database = params['Database']
           @Table = params['Table']
           @AppId = params['AppId']
+        end
+      end
+
+      # 排序结构
+      class Sort < TencentCloud::Common::AbstractModel
+        # @param Field: 排序字段
+        # @type Field: String
+        # @param Asc: 是否按照ASC排序，否则DESC排序
+        # @type Asc: Boolean
+
+        attr_accessor :Field, :Asc
+
+        def initialize(field=nil, asc=nil)
+          @Field = field
+          @Asc = asc
+        end
+
+        def deserialize(params)
+          @Field = params['Field']
+          @Asc = params['Asc']
         end
       end
 
