@@ -1644,6 +1644,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Kafka协议消费组详情
+
+        # @param request: Request instance for DescribeKafkaConsumerGroupDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeKafkaConsumerGroupDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeKafkaConsumerGroupDetailResponse`
+        def DescribeKafkaConsumerGroupDetail(request)
+          body = send_request('DescribeKafkaConsumerGroupDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKafkaConsumerGroupDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取Kafka协议消费组信息列表
+
+        # @param request: Request instance for DescribeKafkaConsumerGroupList.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeKafkaConsumerGroupListRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeKafkaConsumerGroupListResponse`
+        def DescribeKafkaConsumerGroupList(request)
+          body = send_request('DescribeKafkaConsumerGroupList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeKafkaConsumerGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取Kafka数据订阅任务
 
         # @param request: Request instance for DescribeKafkaRecharges.
@@ -2327,6 +2375,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyKafkaConsumerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改Kafka协议消费组点位
+
+        # @param request: Request instance for ModifyKafkaConsumerGroupOffset.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyKafkaConsumerGroupOffsetRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyKafkaConsumerGroupOffsetResponse`
+        def ModifyKafkaConsumerGroupOffset(request)
+          body = send_request('ModifyKafkaConsumerGroupOffset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyKafkaConsumerGroupOffsetResponse.new
             model.deserialize(response['Response'])
             model
           else

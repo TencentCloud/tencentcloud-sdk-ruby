@@ -2861,7 +2861,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(ModifyDatabaseShrinkDMF)用于收缩数据库mdf(Shrink mdf)。
+        # 本接口（ModifyDatabaseShrinkMDF）用于收缩数据库 mdf（Shrink mdf）。
 
         # @param request: Request instance for ModifyDatabaseShrinkMDF.
         # @type request: :class:`Tencentcloud::sqlserver::V20180328::ModifyDatabaseShrinkMDFRequest`

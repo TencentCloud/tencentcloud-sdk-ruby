@@ -17,6 +17,46 @@
 module TencentCloud
   module Lowcode
     module V20210108
+      # 安装应用，任务详情
+      class AppJobInfo < TencentCloud::Common::AbstractModel
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Step: 当前步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Step: Integer
+        # @param Id: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param TotalStep: 任务总共步骤数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalStep: Integer
+        # @param StepDesc: 当前步骤详情
+        # @type StepDesc: String
+        # @param ErrMsg: 错误信息
+        # @type ErrMsg: String
+
+        attr_accessor :Status, :Step, :Id, :TotalStep, :StepDesc, :ErrMsg
+
+        def initialize(status=nil, step=nil, id=nil, totalstep=nil, stepdesc=nil, errmsg=nil)
+          @Status = status
+          @Step = step
+          @Id = id
+          @TotalStep = totalstep
+          @StepDesc = stepdesc
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Step = params['Step']
+          @Id = params['Id']
+          @TotalStep = params['TotalStep']
+          @StepDesc = params['StepDesc']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
       # CheckDeployApp请求参数结构体
       class CheckDeployAppRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -593,6 +633,83 @@ module TencentCloud
         end
       end
 
+      # DescribeApps请求参数结构体
+      class DescribeAppsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页每页个数
+        # @type Limit: Integer
+        # @param Offset: 分页Offset
+        # @type Offset: Integer
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param Keyword: 搜索关键词
+        # @type Keyword: String
+        # @param AppIds: 应用id
+        # @type AppIds: Array
+        # @param Channel: 来源类型
+        # @type Channel: String
+        # @param Type: 1-自定义应用；2-模型应用
+        # @type Type: Integer
+        # @param Favorite: 应用是否收藏
+        # @type Favorite: Boolean
+
+        attr_accessor :Limit, :Offset, :EnvId, :Keyword, :AppIds, :Channel, :Type, :Favorite
+
+        def initialize(limit=nil, offset=nil, envid=nil, keyword=nil, appids=nil, channel=nil, type=nil, favorite=nil)
+          @Limit = limit
+          @Offset = offset
+          @EnvId = envid
+          @Keyword = keyword
+          @AppIds = appids
+          @Channel = channel
+          @Type = type
+          @Favorite = favorite
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @EnvId = params['EnvId']
+          @Keyword = params['Keyword']
+          @AppIds = params['AppIds']
+          @Channel = params['Channel']
+          @Type = params['Type']
+          @Favorite = params['Favorite']
+        end
+      end
+
+      # DescribeApps返回参数结构体
+      class DescribeAppsResponse < TencentCloud::Common::AbstractModel
+        # @param Weapps: 应用列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weapps: Array
+        # @param Count: 应用个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Weapps, :Count, :RequestId
+
+        def initialize(weapps=nil, count=nil, requestid=nil)
+          @Weapps = weapps
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Weapps'].nil?
+            @Weapps = []
+            params['Weapps'].each do |i|
+              weapp_tmp = Weapp.new
+              weapp_tmp.deserialize(i)
+              @Weapps << weapp_tmp
+            end
+          end
+          @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataSourceList请求参数结构体
       class DescribeDataSourceListRequest < TencentCloud::Common::AbstractModel
         # @param PageSize: 每页条数
@@ -913,6 +1030,132 @@ module TencentCloud
         end
       end
 
+      # DescribeRelatedUsers请求参数结构体
+      class DescribeRelatedUsersRequest < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: Integer
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 页面含量
+        # @type PageSize: Integer
+        # @param EnvType: 环境类型
+        # @type EnvType: String
+
+        attr_accessor :RoleId, :EnvId, :PageNo, :PageSize, :EnvType
+
+        def initialize(roleid=nil, envid=nil, pageno=nil, pagesize=nil, envtype=nil)
+          @RoleId = roleid
+          @EnvId = envid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @EnvType = envtype
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @EnvId = params['EnvId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @EnvType = params['EnvType']
+        end
+      end
+
+      # DescribeRelatedUsers返回参数结构体
+      class DescribeRelatedUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 关联的用户列表
+        # @type Data: Array
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :RequestId
+
+        def initialize(data=nil, total=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              wedauser_tmp = WedaUser.new
+              wedauser_tmp.deserialize(i)
+              @Data << wedauser_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeResourceRoleList请求参数结构体
+      class DescribeResourceRoleListRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param ResourceType: 资源类型
+        # @type ResourceType: String
+        # @param EnvType: 预览：pre；非预览：prod
+        # @type EnvType: String
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param SubType: 子资源类型
+        # @type SubType: String
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+
+        attr_accessor :ResourceId, :ResourceType, :EnvType, :EnvId, :SubType, :PageNo, :PageSize
+
+        def initialize(resourceid=nil, resourcetype=nil, envtype=nil, envid=nil, subtype=nil, pageno=nil, pagesize=nil)
+          @ResourceId = resourceid
+          @ResourceType = resourcetype
+          @EnvType = envtype
+          @EnvId = envid
+          @SubType = subtype
+          @PageNo = pageno
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceType = params['ResourceType']
+          @EnvType = params['EnvType']
+          @EnvId = params['EnvId']
+          @SubType = params['SubType']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeResourceRoleList返回参数结构体
+      class DescribeResourceRoleListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 角色列表
+        # @type Data: :class:`Tencentcloud::Lowcode.v20210108.models.RoleListPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = RoleListPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 删除文档时查询入参
       class DocumentQuery < TencentCloud::Common::AbstractModel
         # @param DocumentSetId: 文件ids
@@ -1148,6 +1391,38 @@ module TencentCloud
         end
       end
 
+      # 组织架构返回参数
+      class OrgResp < TencentCloud::Common::AbstractModel
+        # @param OrgId: 部门id
+        # @type OrgId: String
+        # @param OrgName: 部门名称
+        # @type OrgName: String
+        # @param OrgIdentity: 部门标识
+        # @type OrgIdentity: String
+        # @param Level: 部门层级
+        # @type Level: String
+        # @param PrimaryColumn: 主键字段
+        # @type PrimaryColumn: String
+
+        attr_accessor :OrgId, :OrgName, :OrgIdentity, :Level, :PrimaryColumn
+
+        def initialize(orgid=nil, orgname=nil, orgidentity=nil, level=nil, primarycolumn=nil)
+          @OrgId = orgid
+          @OrgName = orgname
+          @OrgIdentity = orgidentity
+          @Level = level
+          @PrimaryColumn = primarycolumn
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+          @OrgName = params['OrgName']
+          @OrgIdentity = params['OrgIdentity']
+          @Level = params['Level']
+          @PrimaryColumn = params['PrimaryColumn']
+        end
+      end
+
       # 查询条件
       class PageQuery < TencentCloud::Common::AbstractModel
         # @param DocumentSetId: 文件id数组，表示要查询的文件的所有 ID，支持批量查询，数组元素范围[1,20]。
@@ -1358,6 +1633,85 @@ module TencentCloud
           @Field = params['Field']
           @Format = params['Format']
           @RelateDataSourceName = params['RelateDataSourceName']
+        end
+      end
+
+      # 权限组
+      class RoleGroup < TencentCloud::Common::AbstractModel
+        # @param Id: 权限组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Name: 权限组名称
+        # @type Name: String
+        # @param GroupIdentity: 权限组标识
+        # @type GroupIdentity: String
+        # @param GroupDesc: 权限组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupDesc: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param RoleList: 角色数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleList: Array
+
+        attr_accessor :Id, :Name, :GroupIdentity, :GroupDesc, :CreateTime, :UpdateTime, :RoleList
+
+        def initialize(id=nil, name=nil, groupidentity=nil, groupdesc=nil, createtime=nil, updatetime=nil, rolelist=nil)
+          @Id = id
+          @Name = name
+          @GroupIdentity = groupidentity
+          @GroupDesc = groupdesc
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RoleList = rolelist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @GroupIdentity = params['GroupIdentity']
+          @GroupDesc = params['GroupDesc']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['RoleList'].nil?
+            @RoleList = []
+            params['RoleList'].each do |i|
+              wedarole_tmp = WedaRole.new
+              wedarole_tmp.deserialize(i)
+              @RoleList << wedarole_tmp
+            end
+          end
+        end
+      end
+
+      # 角色分页
+      class RoleListPage < TencentCloud::Common::AbstractModel
+        # @param RoleList: 角色列表
+        # @type RoleList: Array
+        # @param Total: 总数
+        # @type Total: Integer
+
+        attr_accessor :RoleList, :Total
+
+        def initialize(rolelist=nil, total=nil)
+          @RoleList = rolelist
+          @Total = total
+        end
+
+        def deserialize(params)
+          unless params['RoleList'].nil?
+            @RoleList = []
+            params['RoleList'].each do |i|
+              wedarole_tmp = WedaRole.new
+              wedarole_tmp.deserialize(i)
+              @RoleList << wedarole_tmp
+            end
+          end
+          @Total = params['Total']
         end
       end
 
@@ -1674,6 +2028,410 @@ module TencentCloud
           @FileTitle = params['FileTitle']
           @FileMetaData = params['FileMetaData']
           @FileId = params['FileId']
+        end
+      end
+
+      # 低码应用详情
+      class Weapp < TencentCloud::Common::AbstractModel
+        # @param Id: 应用id
+        # @type Id: String
+        # @param Owner: 应用所属者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param Name: 标识
+        # @type Name: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Title: 应用名称
+        # @type Title: String
+        # @param Env: 环境信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Env: String
+        # @param Status: 状态.
+        # 0:已经安装
+        # 3:安装中
+        # 4:安装失败
+        # @type Status: Integer
+        # @param EnvId: 环境信息
+        # @type EnvId: String
+        # @param EnvRegion: 环境地域
+        # @type EnvRegion: String
+        # @param PkgId: 资源包
+        # @type PkgId: String
+        # @param CmsProject: 应用信息是否安装到cms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmsProject: Integer
+        # @param Channel: 渠道
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Channel: String
+        # @param TemplateId: 模板id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateId: String
+        # @param ExpireTime: 过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param Source: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Source: String
+        # @param IsFree: 是否计费应用
+        # @type IsFree: Boolean
+        # @param ContentType: 应用内容类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContentType: String
+        # @param AppType: 应用类型，是否为B端应用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppType: Integer
+        # @param AttachAppId: 关联B端一样id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachAppId: String
+        # @param EType: 应用类型，是否为企业应用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EType: Integer
+        # @param EData: 企业应用数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EData: String
+        # @param LastMpCiId: 最新一次小程序构建id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastMpCiId: String
+        # @param LastMpCiStatus: 最新一次小程序状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastMpCiStatus: String
+        # @param LastWebCiId: 最新一次web构建id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastWebCiId: String
+        # @param LastWebCiStatus: 最新一次web状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastWebCiStatus: String
+        # @param LastDeployTime: 最新部署时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastDeployTime: String
+        # @param FlowId: 安装任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param JobInfo: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type JobInfo: :class:`Tencentcloud::Lowcode.v20210108.models.AppJobInfo`
+        # @param Platform: 应用端
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param LastWebCiMode: 最新一次web构建模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastWebCiMode: Integer
+        # @param LastMpCiMode: 最新一次小程序构建模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastMpCiMode: Integer
+        # @param SceneType: 应用场景化入口类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SceneType: String
+        # @param ClientId: client_Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClientId: String
+        # @param IconUrl: 图标地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IconUrl: String
+        # @param FaviconUrl: 页面图标地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaviconUrl: String
+        # @param BackgroundColor: 图标背景色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackgroundColor: String
+        # @param Favorite: 应用是否收藏
+        # @type Favorite: Boolean
+        # @param PublishPlatform: 发布平台：web、mp、pc、adminPortal、xPagePC、cloudAdmin
+        # @type PublishPlatform: String
+
+        attr_accessor :Id, :Owner, :Name, :Description, :Title, :Env, :Status, :EnvId, :EnvRegion, :PkgId, :CmsProject, :Channel, :TemplateId, :ExpireTime, :CreateTime, :UpdateTime, :Source, :IsFree, :ContentType, :AppType, :AttachAppId, :EType, :EData, :LastMpCiId, :LastMpCiStatus, :LastWebCiId, :LastWebCiStatus, :LastDeployTime, :FlowId, :JobInfo, :Platform, :LastWebCiMode, :LastMpCiMode, :SceneType, :ClientId, :IconUrl, :FaviconUrl, :BackgroundColor, :Favorite, :PublishPlatform
+
+        def initialize(id=nil, owner=nil, name=nil, description=nil, title=nil, env=nil, status=nil, envid=nil, envregion=nil, pkgid=nil, cmsproject=nil, channel=nil, templateid=nil, expiretime=nil, createtime=nil, updatetime=nil, source=nil, isfree=nil, contenttype=nil, apptype=nil, attachappid=nil, etype=nil, edata=nil, lastmpciid=nil, lastmpcistatus=nil, lastwebciid=nil, lastwebcistatus=nil, lastdeploytime=nil, flowid=nil, jobinfo=nil, platform=nil, lastwebcimode=nil, lastmpcimode=nil, scenetype=nil, clientid=nil, iconurl=nil, faviconurl=nil, backgroundcolor=nil, favorite=nil, publishplatform=nil)
+          @Id = id
+          @Owner = owner
+          @Name = name
+          @Description = description
+          @Title = title
+          @Env = env
+          @Status = status
+          @EnvId = envid
+          @EnvRegion = envregion
+          @PkgId = pkgid
+          @CmsProject = cmsproject
+          @Channel = channel
+          @TemplateId = templateid
+          @ExpireTime = expiretime
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Source = source
+          @IsFree = isfree
+          @ContentType = contenttype
+          @AppType = apptype
+          @AttachAppId = attachappid
+          @EType = etype
+          @EData = edata
+          @LastMpCiId = lastmpciid
+          @LastMpCiStatus = lastmpcistatus
+          @LastWebCiId = lastwebciid
+          @LastWebCiStatus = lastwebcistatus
+          @LastDeployTime = lastdeploytime
+          @FlowId = flowid
+          @JobInfo = jobinfo
+          @Platform = platform
+          @LastWebCiMode = lastwebcimode
+          @LastMpCiMode = lastmpcimode
+          @SceneType = scenetype
+          @ClientId = clientid
+          @IconUrl = iconurl
+          @FaviconUrl = faviconurl
+          @BackgroundColor = backgroundcolor
+          @Favorite = favorite
+          @PublishPlatform = publishplatform
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Owner = params['Owner']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Title = params['Title']
+          @Env = params['Env']
+          @Status = params['Status']
+          @EnvId = params['EnvId']
+          @EnvRegion = params['EnvRegion']
+          @PkgId = params['PkgId']
+          @CmsProject = params['CmsProject']
+          @Channel = params['Channel']
+          @TemplateId = params['TemplateId']
+          @ExpireTime = params['ExpireTime']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Source = params['Source']
+          @IsFree = params['IsFree']
+          @ContentType = params['ContentType']
+          @AppType = params['AppType']
+          @AttachAppId = params['AttachAppId']
+          @EType = params['EType']
+          @EData = params['EData']
+          @LastMpCiId = params['LastMpCiId']
+          @LastMpCiStatus = params['LastMpCiStatus']
+          @LastWebCiId = params['LastWebCiId']
+          @LastWebCiStatus = params['LastWebCiStatus']
+          @LastDeployTime = params['LastDeployTime']
+          @FlowId = params['FlowId']
+          unless params['JobInfo'].nil?
+            @JobInfo = AppJobInfo.new
+            @JobInfo.deserialize(params['JobInfo'])
+          end
+          @Platform = params['Platform']
+          @LastWebCiMode = params['LastWebCiMode']
+          @LastMpCiMode = params['LastMpCiMode']
+          @SceneType = params['SceneType']
+          @ClientId = params['ClientId']
+          @IconUrl = params['IconUrl']
+          @FaviconUrl = params['FaviconUrl']
+          @BackgroundColor = params['BackgroundColor']
+          @Favorite = params['Favorite']
+          @PublishPlatform = params['PublishPlatform']
+        end
+      end
+
+      # weda角色
+      class WedaRole < TencentCloud::Common::AbstractModel
+        # @param Name: 角色名称
+        # @type Name: String
+        # @param RoleIdentity: 角色标识
+        # @type RoleIdentity: String
+        # @param Id: 角色id
+        # @type Id: Integer
+        # @param ParentRoleId: 父角色id
+        # @type ParentRoleId: Integer
+        # @param ChildRoleId: 子角色id
+        # @type ChildRoleId: Integer
+        # @param EnvIdentity: 环境标识
+        # @type EnvIdentity: String
+        # @param IsReleased: 是否已发布
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsReleased: Boolean
+
+        attr_accessor :Name, :RoleIdentity, :Id, :ParentRoleId, :ChildRoleId, :EnvIdentity, :IsReleased
+
+        def initialize(name=nil, roleidentity=nil, id=nil, parentroleid=nil, childroleid=nil, envidentity=nil, isreleased=nil)
+          @Name = name
+          @RoleIdentity = roleidentity
+          @Id = id
+          @ParentRoleId = parentroleid
+          @ChildRoleId = childroleid
+          @EnvIdentity = envidentity
+          @IsReleased = isreleased
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @RoleIdentity = params['RoleIdentity']
+          @Id = params['Id']
+          @ParentRoleId = params['ParentRoleId']
+          @ChildRoleId = params['ChildRoleId']
+          @EnvIdentity = params['EnvIdentity']
+          @IsReleased = params['IsReleased']
+        end
+      end
+
+      # weda用户
+      class WedaUser < TencentCloud::Common::AbstractModel
+        # @param Uin: 腾讯云主账号uin
+        # @type Uin: Integer
+        # @param Name: 名字
+        # @type Name: String
+        # @param Env: 环境
+        # @type Env: Integer
+        # @param Type: 类型
+        # @type Type: Integer
+        # @param NickName: 昵称
+        # @type NickName: String
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: Integer
+        # @param Uuid: 用户uuid
+        # @type Uuid: String
+        # @param Source: 渠道，1:自建；2:企业微信导入
+        # @type Source: Integer
+        # @param OpenId: 微信openid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OpenId: String
+        # @param RelatedRoles: 关联角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedRoles: Array
+        # @param WechatUserId: 企业微信userid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WechatUserId: String
+        # @param InternalUserType: 内部用户类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InternalUserType: Integer
+        # @param UserId: 微搭用户id
+        # @type UserId: Integer
+        # @param OrgName: 所属部门名称
+        # @type OrgName: String
+        # @param UserSchema: 用户schema
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserSchema: String
+        # @param UserExtend: 用户扩展信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserExtend: String
+        # @param IsLicensed: 用户是否授权License
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLicensed: Boolean
+        # @param RelatedRoleGroups: 权限组数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelatedRoleGroups: Array
+        # @param Orgs: 兼岗部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Orgs: Array
+        # @param MainOrg: 主岗部门
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MainOrg: Array
+        # @param ParentUserId: 直属上级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentUserId: Integer
+        # @param PrimaryColumn: 主列字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrimaryColumn: String
+        # @param AvatarUrl: 用户头像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvatarUrl: String
+        # @param LastLoginTime: 最后登录时间
+        # @type LastLoginTime: String
+
+        attr_accessor :Uin, :Name, :Env, :Type, :NickName, :Email, :Phone, :ProjectId, :Uuid, :Source, :OpenId, :RelatedRoles, :WechatUserId, :InternalUserType, :UserId, :OrgName, :UserSchema, :UserExtend, :IsLicensed, :RelatedRoleGroups, :Orgs, :MainOrg, :ParentUserId, :PrimaryColumn, :AvatarUrl, :LastLoginTime
+
+        def initialize(uin=nil, name=nil, env=nil, type=nil, nickname=nil, email=nil, phone=nil, projectid=nil, uuid=nil, source=nil, openid=nil, relatedroles=nil, wechatuserid=nil, internalusertype=nil, userid=nil, orgname=nil, userschema=nil, userextend=nil, islicensed=nil, relatedrolegroups=nil, orgs=nil, mainorg=nil, parentuserid=nil, primarycolumn=nil, avatarurl=nil, lastlogintime=nil)
+          @Uin = uin
+          @Name = name
+          @Env = env
+          @Type = type
+          @NickName = nickname
+          @Email = email
+          @Phone = phone
+          @ProjectId = projectid
+          @Uuid = uuid
+          @Source = source
+          @OpenId = openid
+          @RelatedRoles = relatedroles
+          @WechatUserId = wechatuserid
+          @InternalUserType = internalusertype
+          @UserId = userid
+          @OrgName = orgname
+          @UserSchema = userschema
+          @UserExtend = userextend
+          @IsLicensed = islicensed
+          @RelatedRoleGroups = relatedrolegroups
+          @Orgs = orgs
+          @MainOrg = mainorg
+          @ParentUserId = parentuserid
+          @PrimaryColumn = primarycolumn
+          @AvatarUrl = avatarurl
+          @LastLoginTime = lastlogintime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @Name = params['Name']
+          @Env = params['Env']
+          @Type = params['Type']
+          @NickName = params['NickName']
+          @Email = params['Email']
+          @Phone = params['Phone']
+          @ProjectId = params['ProjectId']
+          @Uuid = params['Uuid']
+          @Source = params['Source']
+          @OpenId = params['OpenId']
+          unless params['RelatedRoles'].nil?
+            @RelatedRoles = []
+            params['RelatedRoles'].each do |i|
+              wedarole_tmp = WedaRole.new
+              wedarole_tmp.deserialize(i)
+              @RelatedRoles << wedarole_tmp
+            end
+          end
+          @WechatUserId = params['WechatUserId']
+          @InternalUserType = params['InternalUserType']
+          @UserId = params['UserId']
+          @OrgName = params['OrgName']
+          @UserSchema = params['UserSchema']
+          @UserExtend = params['UserExtend']
+          @IsLicensed = params['IsLicensed']
+          unless params['RelatedRoleGroups'].nil?
+            @RelatedRoleGroups = []
+            params['RelatedRoleGroups'].each do |i|
+              rolegroup_tmp = RoleGroup.new
+              rolegroup_tmp.deserialize(i)
+              @RelatedRoleGroups << rolegroup_tmp
+            end
+          end
+          unless params['Orgs'].nil?
+            @Orgs = []
+            params['Orgs'].each do |i|
+              orgresp_tmp = OrgResp.new
+              orgresp_tmp.deserialize(i)
+              @Orgs << orgresp_tmp
+            end
+          end
+          unless params['MainOrg'].nil?
+            @MainOrg = []
+            params['MainOrg'].each do |i|
+              orgresp_tmp = OrgResp.new
+              orgresp_tmp.deserialize(i)
+              @MainOrg << orgresp_tmp
+            end
+          end
+          @ParentUserId = params['ParentUserId']
+          @PrimaryColumn = params['PrimaryColumn']
+          @AvatarUrl = params['AvatarUrl']
+          @LastLoginTime = params['LastLoginTime']
         end
       end
 

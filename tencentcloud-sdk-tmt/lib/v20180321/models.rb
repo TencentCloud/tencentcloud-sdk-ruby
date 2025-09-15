@@ -258,8 +258,8 @@ module TencentCloud
         # @param Target: 目标语言，支持语言列表：
 
         # - 中文：zh
-        # - 繁体（台湾）：zh-TW
-        # - 繁体（香港）：zh-HK
+        # - 繁体（中国台湾）：zh-TW
+        # - 繁体（中国香港）：zh-HK
         # - 英文：en
         # - 日语：ja
         # - 韩语：ko
@@ -533,10 +533,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2025, 8
-        deprecate :Mode=, :none, 2025, 8
-        deprecate :TransType, :none, 2025, 8
-        deprecate :TransType=, :none, 2025, 8
+        deprecate :Mode, :none, 2025, 9
+        deprecate :Mode=, :none, 2025, 9
+        deprecate :TransType, :none, 2025, 9
+        deprecate :TransType=, :none, 2025, 9
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid

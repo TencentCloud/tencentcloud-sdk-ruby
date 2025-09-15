@@ -2257,8 +2257,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2025, 8
-        deprecate :Idps=, :none, 2025, 8
+        deprecate :Idps, :none, 2025, 9
+        deprecate :Idps=, :none, 2025, 9
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -4360,10 +4360,12 @@ module TencentCloud
         # @type WechatFlag: Integer
         # @param Uin: 账号uin
         # @type Uin: Integer
+        # @param CountryCode: 国家代码
+        # @type CountryCode: String
 
-        attr_accessor :Uid, :Name, :Remark, :PhoneNumber, :PhoneFlag, :Email, :EmailFlag, :IsReceiverOwner, :WechatFlag, :Uin
+        attr_accessor :Uid, :Name, :Remark, :PhoneNumber, :PhoneFlag, :Email, :EmailFlag, :IsReceiverOwner, :WechatFlag, :Uin, :CountryCode
 
-        def initialize(uid=nil, name=nil, remark=nil, phonenumber=nil, phoneflag=nil, email=nil, emailflag=nil, isreceiverowner=nil, wechatflag=nil, uin=nil)
+        def initialize(uid=nil, name=nil, remark=nil, phonenumber=nil, phoneflag=nil, email=nil, emailflag=nil, isreceiverowner=nil, wechatflag=nil, uin=nil, countrycode=nil)
           @Uid = uid
           @Name = name
           @Remark = remark
@@ -4374,6 +4376,7 @@ module TencentCloud
           @IsReceiverOwner = isreceiverowner
           @WechatFlag = wechatflag
           @Uin = uin
+          @CountryCode = countrycode
         end
 
         def deserialize(params)
@@ -4387,6 +4390,7 @@ module TencentCloud
           @IsReceiverOwner = params['IsReceiverOwner']
           @WechatFlag = params['WechatFlag']
           @Uin = params['Uin']
+          @CountryCode = params['CountryCode']
         end
       end
 

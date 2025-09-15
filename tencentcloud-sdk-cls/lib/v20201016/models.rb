@@ -1647,6 +1647,41 @@ module TencentCloud
         end
       end
 
+      # kafka协议消费组信息
+      class ConsumerGroup < TencentCloud::Common::AbstractModel
+        # @param Group: 消费组名称
+        # @type Group: String
+        # @param State: 状态。
+
+        # - Empty：组内没有成员，但存在已提交的偏移量。所有消费者都离开但保留了偏移量
+        # - Dead：组内没有成员，且没有已提交的偏移量。组被删除或长时间无活动
+        # - Stable：组内成员正常消费，分区分配平衡。正常运行状态
+        # - PreparingRebalance：组正在准备重新平衡。有新成员加入或现有成员离开
+        # - CompletingRebalance：组正在准备重新平衡。有新成员加入或现有成员离开
+        # @type State: String
+        # @param ProtocolName: 分区分配策略均衡算法名称。
+
+        # - 常见均衡算法如下：
+        #     - range:按分区范围分配
+        #     - roundrobin:轮询式分配
+        #     - sticky:粘性分配（避免不必要的重平衡）
+        # @type ProtocolName: String
+
+        attr_accessor :Group, :State, :ProtocolName
+
+        def initialize(group=nil, state=nil, protocolname=nil)
+          @Group = group
+          @State = state
+          @ProtocolName = protocolname
+        end
+
+        def deserialize(params)
+          @Group = params['Group']
+          @State = params['State']
+          @ProtocolName = params['ProtocolName']
+        end
+      end
+
       # 自建k8s-容器文件路径信息
       class ContainerFileInfo < TencentCloud::Common::AbstractModel
         # @param Namespace: namespace可以多个，用分隔号分割,例如A,B
@@ -3254,7 +3289,11 @@ module TencentCloud
         # @type LogsetName: String
         # @param Tags: 标签描述列表。最大支持10个标签键值对，并且不能有重复的键值对
         # @type Tags: Array
-        # @param LogsetId: 日志集ID，格式为：用户自定义部分-用户appid，用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符，尾部需要使用-拼接用户appid
+        # @param LogsetId: 日志集ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。
+
+        # - 用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符。
+        # - 尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。
+        # - 如果指定该字段，需保证全地域唯一
         # @type LogsetId: String
 
         attr_accessor :LogsetName, :Tags, :LogsetId
@@ -3686,9 +3725,10 @@ module TencentCloud
         # 非0：开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
         # 仅在StorageType为 hot 时生效。
         # @type HotPeriod: Integer
-        # @param TopicId: 主题自定义ID，格式为：用户自定义部分-APPID。未填写该参数时将自动生成ID。
+        # @param TopicId: 主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。
         # - 用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符
-        # - APPID可在https://console.cloud.tencent.com/developer页面查询
+        # - 尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。
+        # - 如果指定该字段，需保证全地域唯一
         # @type TopicId: String
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。默认为false。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
@@ -6293,6 +6333,151 @@ module TencentCloud
         end
       end
 
+      # DescribeKafkaConsumerGroupDetail请求参数结构体
+      class DescribeKafkaConsumerGroupDetailRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Group: 消费组名称
+        # @type Group: String
+
+        attr_accessor :TopicId, :Group
+
+        def initialize(topicid=nil, group=nil)
+          @TopicId = topicid
+          @Group = group
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Group = params['Group']
+        end
+      end
+
+      # DescribeKafkaConsumerGroupDetail返回参数结构体
+      class DescribeKafkaConsumerGroupDetailResponse < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param Group: 消费组名称
+        # @type Group: String
+        # @param PartitionInfos: 消费组信息列表
+        # @type PartitionInfos: Array
+        # @param State: Empty：组内没有成员，但存在已提交的偏移量。所有消费者都离开但保留了偏移量
+        # Dead：组内没有成员，且没有已提交的偏移量。组被删除或长时间无活动
+        # Stable：组内成员正常消费，分区分配平衡。正常运行状态
+        # PreparingRebalance：组正在准备重新平衡。有新成员加入或现有成员离开
+        # CompletingRebalance：组正在准备重新平衡。有新成员加入或现有成员离开
+        # @type State: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogsetId, :Group, :PartitionInfos, :State, :RequestId
+
+        def initialize(logsetid=nil, group=nil, partitioninfos=nil, state=nil, requestid=nil)
+          @LogsetId = logsetid
+          @Group = group
+          @PartitionInfos = partitioninfos
+          @State = state
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @Group = params['Group']
+          unless params['PartitionInfos'].nil?
+            @PartitionInfos = []
+            params['PartitionInfos'].each do |i|
+              grouppartitioninfo_tmp = GroupPartitionInfo.new
+              grouppartitioninfo_tmp.deserialize(i)
+              @PartitionInfos << grouppartitioninfo_tmp
+            end
+          end
+          @State = params['State']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKafkaConsumerGroupList请求参数结构体
+      class DescribeKafkaConsumerGroupListRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Filters: - group
+        # 按照【消费组名称】进行过滤。
+        # 类型：String
+        # 必选：否
+        # 示例：消费组1
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeKafkaConsumerGroupList返回参数结构体
+      class DescribeKafkaConsumerGroupListResponse < TencentCloud::Common::AbstractModel
+        # @param TopicName: 日志主题名称
+        # @type TopicName: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param Total: 总个数
+        # @type Total: Integer
+        # @param Groups: 消费组信息列表
+        # @type Groups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopicName, :LogsetId, :Total, :Groups, :RequestId
+
+        def initialize(topicname=nil, logsetid=nil, total=nil, groups=nil, requestid=nil)
+          @TopicName = topicname
+          @LogsetId = logsetid
+          @Total = total
+          @Groups = groups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
+          @LogsetId = params['LogsetId']
+          @Total = params['Total']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              consumergroup_tmp = ConsumerGroup.new
+              consumergroup_tmp.deserialize(i)
+              @Groups << consumergroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKafkaConsumer请求参数结构体
       class DescribeKafkaConsumerRequest < TencentCloud::Common::AbstractModel
         # @param FromTopicId: 日志主题Id。
@@ -7980,6 +8165,30 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # kafka协议消费组区分信息
+      class GroupPartitionInfo < TencentCloud::Common::AbstractModel
+        # @param PartitionId: 分区id
+        # @type PartitionId: Integer
+        # @param CommitTimestamp: 分区最新数据时间戳，单位：s
+        # @type CommitTimestamp: Integer
+        # @param Consumer: 消费者
+        # @type Consumer: String
+
+        attr_accessor :PartitionId, :CommitTimestamp, :Consumer
+
+        def initialize(partitionid=nil, committimestamp=nil, consumer=nil)
+          @PartitionId = partitionid
+          @CommitTimestamp = committimestamp
+          @Consumer = consumer
+        end
+
+        def deserialize(params)
+          @PartitionId = params['PartitionId']
+          @CommitTimestamp = params['CommitTimestamp']
+          @Consumer = params['Consumer']
         end
       end
 
@@ -9954,6 +10163,37 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyKafkaConsumerGroupOffset请求参数结构体
+      class ModifyKafkaConsumerGroupOffsetRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyKafkaConsumerGroupOffset返回参数结构体
+      class ModifyKafkaConsumerGroupOffsetResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 状态码。0：成功，-1：失败
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :RequestId
+
+        def initialize(code=nil, requestid=nil)
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
           @RequestId = params['RequestId']
         end
       end

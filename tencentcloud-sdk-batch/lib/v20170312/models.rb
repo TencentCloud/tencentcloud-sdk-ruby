@@ -3611,7 +3611,7 @@ module TencentCloud
         # 默认取值：当前有库存的硬盘类型。
         # @type DiskType: String
         # @param DiskId: 系统盘ID。
-        # 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
+        # 该参数目前仅用于 [DescribeInstances](https://cloud.tencent.com/document/product/213/15728) 等查询类接口的返回参数，不可用于 [RunInstances](https://cloud.tencent.com/document/product/213/15730) 等写接口的入参。
         # @type DiskId: String
         # @param DiskSize: 系统盘大小，单位：GiB。默认值为 50
         # @type DiskSize: Integer

@@ -3506,6 +3506,72 @@ module TencentCloud
         end
       end
 
+      # DescribeMcpServerTemplates请求参数结构体
+      class DescribeMcpServerTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤器列表。
+        # <li>name-description</li>按照MCP Server模板名称或描述进行过滤（支持模糊匹配）。
+        # 类型：String
+        # 必选：否
+        # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。
+        # @type Filters: Array
+        # @param Limit: 返回数量，默认为 20，最大值为 100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
+        # @type Offset: Integer
+
+        attr_accessor :Filters, :Limit, :Offset
+
+        def initialize(filters=nil, limit=nil, offset=nil)
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeMcpServerTemplates返回参数结构体
+      class DescribeMcpServerTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param McpServerTemplateSet: MCP Server模板列表。
+        # @type McpServerTemplateSet: Array
+        # @param TotalCount: 符合条件的MCP Server模板数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :McpServerTemplateSet, :TotalCount, :RequestId
+
+        def initialize(mcpservertemplateset=nil, totalcount=nil, requestid=nil)
+          @McpServerTemplateSet = mcpservertemplateset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['McpServerTemplateSet'].nil?
+            @McpServerTemplateSet = []
+            params['McpServerTemplateSet'].each do |i|
+              mcpservertemplate_tmp = McpServerTemplate.new
+              mcpservertemplate_tmp.deserialize(i)
+              @McpServerTemplateSet << mcpservertemplate_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMcpServers请求参数结构体
       class DescribeMcpServersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
@@ -4097,15 +4163,17 @@ module TencentCloud
       class DetailPrice < TencentCloud::Common::AbstractModel
         # @param PriceName: 描述计费项目名称，目前取值
         # <li>"DiskSpace"代表云硬盘空间收费项。</li>
-        # <li>"DiskBackupQuota"代表云硬盘备份点配额收费项。</li>
+        # <li>"DiskBackupQuota"代表数据盘备份点配额收费项。</li>
+        # <li>"Instance"代表实例收费项。</li>
+        # <li>"SystemDiskBackupQuota"代表系统盘备份点配额收费项。</li>
         # @type PriceName: String
-        # @param OriginUnitPrice: 云硬盘计费项维度单价。
+        # @param OriginUnitPrice: 计费项维度单价。
         # @type OriginUnitPrice: Float
-        # @param OriginalPrice: 云硬盘计费项维度总价。
+        # @param OriginalPrice: 计费项维度总价。
         # @type OriginalPrice: Float
-        # @param Discount: 云硬盘在计费项维度折扣。
+        # @param Discount: 计费项维度折扣。
         # @type Discount: Float
-        # @param DiscountPrice: 云硬盘在计费项维度折后总价。
+        # @param DiscountPrice: 计费项维度折后总价。
         # @type DiscountPrice: Float
 
         attr_accessor :PriceName, :OriginUnitPrice, :OriginalPrice, :Discount, :DiscountPrice
@@ -4205,36 +4273,36 @@ module TencentCloud
         end
       end
 
-      # 磁盘信息
+      # 云硬盘信息。
       class Disk < TencentCloud::Common::AbstractModel
-        # @param DiskId: 磁盘ID
+        # @param DiskId: 云硬盘ID。
         # @type DiskId: String
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param Zone: 可用区
+        # @param Zone: 可用区。
         # @type Zone: String
-        # @param DiskName: 磁盘名称
+        # @param DiskName: 云硬盘名称。
         # @type DiskName: String
-        # @param DiskUsage: 磁盘类型
+        # @param DiskUsage: 云硬盘类型。
         # 枚举值：
         # <li> SYSTEM_DISK: 系统盘 </li>
         # <li> DATA_DISK: 数据盘 </li>
         # @type DiskUsage: String
-        # @param DiskType: 磁盘介质类型
+        # @param DiskType: 云硬盘介质类型。
         # 枚举值:
         # <li> CLOUD_BASIC: 普通云硬盘 </li>
         # <li> CLOUD_PREMIUM: 高性能云硬盘 </li>
         # <li> CLOUD_SSD: SSD云硬盘 </li>
         # @type DiskType: String
-        # @param DiskChargeType: 磁盘付费类型
+        # @param DiskChargeType: 云硬盘付费类型。
         # <li> PREPAID: 预付费 </li>
         # <li> POSTPAID_BY_HOUR: 按小时后付费 </li>
         # @type DiskChargeType: String
-        # @param DiskSize: 磁盘大小, 单位GB
+        # @param DiskSize: 云硬盘大小, 单位GB。
         # @type DiskSize: Integer
-        # @param RenewFlag: 续费标识
+        # @param RenewFlag: 续费标识。
         # @type RenewFlag: String
-        # @param DiskState: 磁盘状态，取值范围：
+        # @param DiskState: 云硬盘状态，取值范围：
         # <li>PENDING：创建中。 </li>
         # <li>UNATTACHED：待挂载。</li>
         # <li>ATTACHING：挂载中。</li>
@@ -4246,15 +4314,15 @@ module TencentCloud
         # <li> DELETING：删除中。</li>
         # <li> FREEZING：冻结中。</li>
         # @type DiskState: String
-        # @param Attached: 磁盘挂载状态
+        # @param Attached: 云硬盘挂载状态。
         # @type Attached: Boolean
-        # @param DeleteWithInstance: 是否随实例释放
+        # @param DeleteWithInstance: 是否随实例释放。
         # @type DeleteWithInstance: Boolean
-        # @param LatestOperation: 上一次操作
+        # @param LatestOperation: 上一次操作。
         # @type LatestOperation: String
-        # @param LatestOperationState: 上一次操作状态
+        # @param LatestOperationState: 上一次操作状态。
         # @type LatestOperationState: String
-        # @param LatestOperationRequestId: 上一次请求ID
+        # @param LatestOperationRequestId: 上一次请求ID。
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
@@ -5761,7 +5829,7 @@ module TencentCloud
         end
       end
 
-      # 关于Lighthouse Instance实例的价格信息
+      # 关于Lighthouse Instance实例的价格信息。
       class InstancePrice < TencentCloud::Common::AbstractModel
         # @param OriginalBundlePrice: 套餐单价原价。
         # @type OriginalBundlePrice: Float
@@ -5773,15 +5841,18 @@ module TencentCloud
         # @type DiscountPrice: Float
         # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
         # @type Currency: String
+        # @param DetailPrices: 计费项目明细。
+        # @type DetailPrices: Array
 
-        attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice, :Currency
+        attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice, :Currency, :DetailPrices
 
-        def initialize(originalbundleprice=nil, originalprice=nil, discount=nil, discountprice=nil, currency=nil)
+        def initialize(originalbundleprice=nil, originalprice=nil, discount=nil, discountprice=nil, currency=nil, detailprices=nil)
           @OriginalBundlePrice = originalbundleprice
           @OriginalPrice = originalprice
           @Discount = discount
           @DiscountPrice = discountprice
           @Currency = currency
+          @DetailPrices = detailprices
         end
 
         def deserialize(params)
@@ -5790,6 +5861,14 @@ module TencentCloud
           @Discount = params['Discount']
           @DiscountPrice = params['DiscountPrice']
           @Currency = params['Currency']
+          unless params['DetailPrices'].nil?
+            @DetailPrices = []
+            params['DetailPrices'].each do |i|
+              detailprice_tmp = DetailPrice.new
+              detailprice_tmp.deserialize(i)
+              @DetailPrices << detailprice_tmp
+            end
+          end
         end
       end
 
@@ -6208,6 +6287,73 @@ module TencentCloud
         end
       end
 
+      # MCP Server模板
+      class McpServerTemplate < TencentCloud::Common::AbstractModel
+        # @param Name: MCP Server名称
+        # @type Name: String
+        # @param Command: Base64编码之后的MCP Server启动命令。
+        # @type Command: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param IconUrl: MCP Server图标地址
+        # @type IconUrl: String
+        # @param CommunityUrl: MCP Server社区地址
+        # @type CommunityUrl: String
+        # @param PlatformUrl: MCP Server关联的开发平台地址或开放平台地址
+        # @type PlatformUrl: String
+        # @param EnvSet: MCP Server环境变量
+        # @type EnvSet: Array
+
+        attr_accessor :Name, :Command, :Description, :IconUrl, :CommunityUrl, :PlatformUrl, :EnvSet
+
+        def initialize(name=nil, command=nil, description=nil, iconurl=nil, communityurl=nil, platformurl=nil, envset=nil)
+          @Name = name
+          @Command = command
+          @Description = description
+          @IconUrl = iconurl
+          @CommunityUrl = communityurl
+          @PlatformUrl = platformurl
+          @EnvSet = envset
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Command = params['Command']
+          @Description = params['Description']
+          @IconUrl = params['IconUrl']
+          @CommunityUrl = params['CommunityUrl']
+          @PlatformUrl = params['PlatformUrl']
+          unless params['EnvSet'].nil?
+            @EnvSet = []
+            params['EnvSet'].each do |i|
+              mcpservertemplateenv_tmp = McpServerTemplateEnv.new
+              mcpservertemplateenv_tmp.deserialize(i)
+              @EnvSet << mcpservertemplateenv_tmp
+            end
+          end
+        end
+      end
+
+      # MCP Server模板环境变量
+      class McpServerTemplateEnv < TencentCloud::Common::AbstractModel
+        # @param Key: MCP Server模板的环境变量键
+        # @type Key: String
+        # @param Value: MCP Server模板的环境变量值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ModifyBlueprintAttribute请求参数结构体
       class ModifyBlueprintAttributeRequest < TencentCloud::Common::AbstractModel
         # @param BlueprintId: 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
@@ -6361,7 +6507,7 @@ module TencentCloud
       class ModifyDisksBackupQuotaRequest < TencentCloud::Common::AbstractModel
         # @param DiskIds: 云硬盘ID列表，可通过[DescribeDisks](https://cloud.tencent.com/document/api/1207/66093)接口查询。列表最大长度为15。
         # @type DiskIds: Array
-        # @param DiskBackupQuota: 云硬盘备份点配额。取值范围: [0, 500]。调整后的配额必须不小于已存在的备份点数量。
+        # @param DiskBackupQuota: 云硬盘备份点配额。取值范围: [0, 500]。调整后的配额必须大于等于已存在的备份点数量。
         # @type DiskBackupQuota: Integer
 
         attr_accessor :DiskIds, :DiskBackupQuota

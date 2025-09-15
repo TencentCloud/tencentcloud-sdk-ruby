@@ -3060,6 +3060,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用以查询七层域名业务的回源时序数据。
+
+        # @param request: Request instance for DescribeTimingL7OriginPullData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7OriginPullDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTimingL7OriginPullDataResponse`
+        def DescribeTimingL7OriginPullData(request)
+          body = send_request('DescribeTimingL7OriginPullData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimingL7OriginPullDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于查询七层域名业务按照指定维度的 topN 数据。
         # 注意：
         # 1. 本接口查询数据有 10 分钟左右延迟，建议拉取当前时间 10 分钟以前的数据。

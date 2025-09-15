@@ -1976,9 +1976,9 @@ module TencentCloud
         # @type PoolName: String
         # @param TrafficStrategy: 流量策略: WEIGHT负载均衡，ALL解析全部
         # @type TrafficStrategy: String
-        # @param MonitorId: 监控器id
+        # @param MonitorId: 监控器id，当监控器已关联策略时，此字段必传
         # @type MonitorId: Integer
-        # @param AddressSet: 地址列表
+        # @param AddressSet: 地址列表，全量更新逻辑，对于存量不需要修改的地址信息也需要带上(其中参数里的AddressId需传入正确的值)，否则会被删除。
         # @type AddressSet: Array
 
         attr_accessor :PoolId, :PoolName, :TrafficStrategy, :MonitorId, :AddressSet

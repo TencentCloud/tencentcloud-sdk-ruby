@@ -10436,6 +10436,90 @@ module TencentCloud
         end
       end
 
+      # DescribeTimingL7OriginPullData请求参数结构体
+      class DescribeTimingL7OriginPullDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
+        # @type EndTime: String
+        # @param MetricNames: 指标列表，取值有:
+        # <li>l7Flow_outFlux_hy: EdgeOne 节点至源站方向的请求流量，单位：Byte；</li>
+        # <li>l7Flow_outBandwidth_hy: EdgeOne 节点至源站方向的请求带宽，单位：bps；</li>
+        # <li>l7Flow_request_hy: EdgeOne 节点至源站方向的请求数，单位：次。</li>
+        # <li>l7Flow_inFlux_hy: 源站至 EdgeOne 节点方向的响应流量，单位：Byte；</li>
+        # <li>l7Flow_inBandwidth_hy: 源站至 EdgeOne 节点方向的响应带宽，单位：bps；</li>
+        # @type MetricNames: Array
+        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @type ZoneIds: Array
+        # @param Interval: 查询时间粒度，取值有：
+        # <li>min: 1分钟；</li>
+        # <li>5min: 5分钟；</li>
+        # <li>hour: 1小时；</li>
+        # <li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：2 小时范围内以 min 粒度查询，2 天范围内以 5min 粒度查询，7 天范围内以 hour 粒度查询，超过 7 天以 day 粒度查询。
+        # @type Interval: String
+        # @param Filters: 过滤条件，详细的过滤条件如下：
+        # <li>domain：客户端请求的域名。若按泛域名接入 EdgeOne，则数据中记录为泛域名，而不是具体域名。</li>
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :Interval, :Filters
+
+        def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, interval=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @ZoneIds = zoneids
+          @Interval = interval
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @ZoneIds = params['ZoneIds']
+          @Interval = params['Interval']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @Filters << querycondition_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTimingL7OriginPullData返回参数结构体
+      class DescribeTimingL7OriginPullDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 查询结果的总条数。
+        # @type TotalCount: Integer
+        # @param TimingDataRecords: 回源时序数据列表。
+        # @type TimingDataRecords: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TimingDataRecords, :RequestId
+
+        def initialize(totalcount=nil, timingdatarecords=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TimingDataRecords = timingdatarecords
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TimingDataRecords'].nil?
+            @TimingDataRecords = []
+            params['TimingDataRecords'].each do |i|
+              timingdatarecord_tmp = TimingDataRecord.new
+              timingdatarecord_tmp.deserialize(i)
+              @TimingDataRecords << timingdatarecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopL7AnalysisData请求参数结构体
       class DescribeTopL7AnalysisDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -15121,19 +15205,22 @@ module TencentCloud
         # @type ApplyType: String
         # @param ClientCertInfo: 在边缘双向认证场景下，该字段为客户端的 CA 证书，部署在 EO 节点内，用于客户端对 EO 节点进行认证。默认关闭，不填写表示保持原有配置。
         # @type ClientCertInfo: :class:`Tencentcloud::Teo.v20220901.models.MutualTLS`
+        # @param UpstreamCertInfo: 用于配置 EO 节点回源时携带的证书，用于回源双向认证握手，默认关闭，不填写表示保持原有配置。该配置当前为白名单内测中，如需使用，请[联系我们](https://cloud.tencent.com/online-service)。
+        # @type UpstreamCertInfo: :class:`Tencentcloud::Teo.v20220901.models.UpstreamCertInfo`
 
-        attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo
+        attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
         deprecate :ApplyType, :none, 2025, 9
         deprecate :ApplyType=, :none, 2025, 9
 
-        def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil)
+        def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
           @Hosts = hosts
           @Mode = mode
           @ServerCertInfo = servercertinfo
           @ApplyType = applytype
           @ClientCertInfo = clientcertinfo
+          @UpstreamCertInfo = upstreamcertinfo
         end
 
         def deserialize(params)
@@ -15152,6 +15239,10 @@ module TencentCloud
           unless params['ClientCertInfo'].nil?
             @ClientCertInfo = MutualTLS.new
             @ClientCertInfo.deserialize(params['ClientCertInfo'])
+          end
+          unless params['UpstreamCertInfo'].nil?
+            @UpstreamCertInfo = UpstreamCertInfo.new
+            @UpstreamCertInfo.deserialize(params['UpstreamCertInfo'])
           end
         end
       end

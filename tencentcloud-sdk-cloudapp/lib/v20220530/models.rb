@@ -17,6 +17,72 @@
 module TencentCloud
   module Cloudapp
     module V20220530
+      # DescribeLicense请求参数结构体
+      class DescribeLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 可选过滤器
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLicense返回参数结构体
+      class DescribeLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param Token: 针对上面raw的签名
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RequestId
+
+        def initialize(token=nil, requestid=nil)
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 描述键值对过滤器，用于条件过滤查询。例如过滤 ID、名称、状态等
+
+      # - 若存在多个 Filter 时，Filter间的关系为逻辑与（AND）关系。
+      # - 若同一个 Filter 存在多个 Values，同一 Filter 下 Values 间的关系为逻辑或（OR）关系。
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 需要过滤的字段
+        # @type Name: String
+        # @param Values: 字段的过滤值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # 表示应用实例的软件授权，包含颁发信息、激活信息等内容。
       class License < TencentCloud::Common::AbstractModel
         # @param LicenseId: License ID

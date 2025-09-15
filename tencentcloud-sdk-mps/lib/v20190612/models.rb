@@ -205,6 +205,7 @@ module TencentCloud
         # <li>action-AIQualityControl：媒体质检</li>
         # <li>action-SmartSubtitles：智能字幕</li>
         # <li>action-exec-rules：判断规则</li>
+        # <li>action-SmartErase：智能擦除</li>
 
 
         # @type ActivityType: String
@@ -270,10 +271,13 @@ module TencentCloud
         # @param SmartSubtitlesTask: 智能字幕任务
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
+        # @param SmartEraseTask: 智能擦除任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :ExecRulesTask, :SmartSubtitlesTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :QualityControlTask, :ExecRulesTask, :SmartSubtitlesTask, :SmartEraseTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, execrulestask=nil, smartsubtitlestask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, qualitycontroltask=nil, execrulestask=nil, smartsubtitlestask=nil, smarterasetask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -286,6 +290,7 @@ module TencentCloud
           @QualityControlTask = qualitycontroltask
           @ExecRulesTask = execrulestask
           @SmartSubtitlesTask = smartsubtitlestask
+          @SmartEraseTask = smarterasetask
         end
 
         def deserialize(params)
@@ -337,6 +342,10 @@ module TencentCloud
             @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
             @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
           end
+          unless params['SmartEraseTask'].nil?
+            @SmartEraseTask = SmartEraseTaskInput.new
+            @SmartEraseTask.deserialize(params['SmartEraseTask'])
+          end
         end
       end
 
@@ -378,10 +387,13 @@ module TencentCloud
         # @param SmartSubtitlesTask: 智能字幕任务输出
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.ScheduleSmartSubtitleTaskResult`
+        # @param SmartEraseTask: 智能擦除任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskResult`
 
-        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :ExecRuleTask, :SmartSubtitlesTask
+        attr_accessor :TranscodeTask, :AnimatedGraphicTask, :SnapshotByTimeOffsetTask, :SampleSnapshotTask, :ImageSpriteTask, :AdaptiveDynamicStreamingTask, :RecognitionTask, :ReviewTask, :AnalysisTask, :QualityControlTask, :ExecRuleTask, :SmartSubtitlesTask, :SmartEraseTask
 
-        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, execruletask=nil, smartsubtitlestask=nil)
+        def initialize(transcodetask=nil, animatedgraphictask=nil, snapshotbytimeoffsettask=nil, samplesnapshottask=nil, imagespritetask=nil, adaptivedynamicstreamingtask=nil, recognitiontask=nil, reviewtask=nil, analysistask=nil, qualitycontroltask=nil, execruletask=nil, smartsubtitlestask=nil, smarterasetask=nil)
           @TranscodeTask = transcodetask
           @AnimatedGraphicTask = animatedgraphictask
           @SnapshotByTimeOffsetTask = snapshotbytimeoffsettask
@@ -394,6 +406,7 @@ module TencentCloud
           @QualityControlTask = qualitycontroltask
           @ExecRuleTask = execruletask
           @SmartSubtitlesTask = smartsubtitlestask
+          @SmartEraseTask = smarterasetask
         end
 
         def deserialize(params)
@@ -445,6 +458,10 @@ module TencentCloud
             @SmartSubtitlesTask = ScheduleSmartSubtitleTaskResult.new
             @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
           end
+          unless params['SmartEraseTask'].nil?
+            @SmartEraseTask = SmartEraseTaskResult.new
+            @SmartEraseTask.deserialize(params['SmartEraseTask'])
+          end
         end
       end
 
@@ -462,6 +479,7 @@ module TencentCloud
         # <li>AIAnalysis：智能分析。</li>
         # <li>AiQualityControl：媒体质检。</li>
         # <li>SmartSubtitles：智能字幕。</li>
+        # <li>SmartErase：智能擦除。</li>
         # @type ActivityType: String
         # @param ActivityResItem: 原子任务输出。
         # @type ActivityResItem: :class:`Tencentcloud::Mps.v20190612.models.ActivityResItem`
@@ -535,16 +553,17 @@ module TencentCloud
         # @type SubStreamObjectName: String
         # @param SegmentObjectName: 转自适应码流（仅 HLS）后，分片文件的输出路径，只能为相对路径。如果不填，则默认为相对路径：`{inputName}_adaptiveDynamicStreaming_{definition}_{subStreamNumber}_{segmentNumber}.{format}`。
         # @type SegmentObjectName: String
-        # @param AddOnSubtitles: 要插入的字幕文件。
+        # @param AddOnSubtitles: 外挂字幕功能，指定要插入的字幕文件。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddOnSubtitles: Array
         # @param DrmInfo: Drm信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DrmInfo: :class:`Tencentcloud::Mps.v20190612.models.DrmInfo`
         # @param DefinitionType: 自适应转码模板类型：
         # Common：音视频类型
         # PureAudio：纯音频类型
         # @type DefinitionType: String
-        # @param SubtitleTemplate: 字幕参数
+        # @param SubtitleTemplate: 硬字幕（压制字幕）功能，指定字幕来源、字体大小、位置等字幕参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleTemplate: :class:`Tencentcloud::Mps.v20190612.models.SubtitleTemplate`
         # @param StdExtInfo: 转码参数扩展字段
@@ -2129,8 +2148,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 8
-        deprecate :OutputStorage=, :none, 2025, 8
+        deprecate :OutputStorage, :none, 2025, 9
+        deprecate :OutputStorage=, :none, 2025, 9
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -5231,6 +5250,112 @@ module TencentCloud
         end
       end
 
+      # 美颜配置
+      class BeautyConfig < TencentCloud::Common::AbstractModel
+        # @param BeautyEffectItems: 美颜效果
+        # @type BeautyEffectItems: Array
+        # @param BeautyFilterItems: 美颜滤镜
+        # @type BeautyFilterItems: Array
+
+        attr_accessor :BeautyEffectItems, :BeautyFilterItems
+
+        def initialize(beautyeffectitems=nil, beautyfilteritems=nil)
+          @BeautyEffectItems = beautyeffectitems
+          @BeautyFilterItems = beautyfilteritems
+        end
+
+        def deserialize(params)
+          unless params['BeautyEffectItems'].nil?
+            @BeautyEffectItems = []
+            params['BeautyEffectItems'].each do |i|
+              beautyeffectitemconfig_tmp = BeautyEffectItemConfig.new
+              beautyeffectitemconfig_tmp.deserialize(i)
+              @BeautyEffectItems << beautyeffectitemconfig_tmp
+            end
+          end
+          unless params['BeautyFilterItems'].nil?
+            @BeautyFilterItems = []
+            params['BeautyFilterItems'].each do |i|
+              beautyfilteritemconfig_tmp = BeautyFilterItemConfig.new
+              beautyfilteritemconfig_tmp.deserialize(i)
+              @BeautyFilterItems << beautyfilteritemconfig_tmp
+            end
+          end
+        end
+      end
+
+      # 美颜效果配置项
+      class BeautyEffectItemConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 类型名称。取值如下：
+
+        # <li>Whiten：美白</li>
+        # <li>Smooth：磨皮</li>
+        # <li>BeautyThinFace：瘦脸</li>
+        # <li>NatureFace：自然脸型</li>
+        # <li>VFace：V脸</li>
+        # <li>EnlargeEye：大眼</li>
+        # <li>EyeLighten：亮眼</li>
+        # <li>RemoveEyeBags：祛眼袋</li>
+        # <li>ThinNose：瘦鼻</li>
+        # <li>RemoveLawLine：祛法令纹</li>
+        # <li>ToothWhiten：牙齿美白</li>
+
+        # @type Type: String
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Value: 效果强度，值范围：[0, 100]。
+        # @type Value: Integer
+
+        attr_accessor :Type, :Switch, :Value
+
+        def initialize(type=nil, switch=nil, value=nil)
+          @Type = type
+          @Switch = switch
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Switch = params['Switch']
+          @Value = params['Value']
+        end
+      end
+
+      # 美颜滤镜配置项
+      class BeautyFilterItemConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 类型名称。取值如下：
+
+        # <li>Dongjing：东京</li>
+        # <li>QingJiaopian：轻胶片</li>
+        # <li>Meiwei：美味</li>
+
+        # @type Type: String
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Value: 效果强度，值范围：[0, 100]。
+        # @type Value: Integer
+
+        attr_accessor :Type, :Switch, :Value
+
+        def initialize(type=nil, switch=nil, value=nil)
+          @Type = type
+          @Switch = switch
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Switch = params['Switch']
+          @Value = params['Value']
+        end
+      end
+
       # 盲水印配置
       class BlindWatermarkConfig < TencentCloud::Common::AbstractModel
         # @param AddBlindWatermark: 增加盲水印
@@ -8039,6 +8164,8 @@ module TencentCloud
         # fr：法语
         # de：德语
         # zh_dialect：中文方言
+        # zh_en: 中英
+        # prime_zh: 中英方言
         # @type VideoSrcLanguage: String
         # @param SubtitleType: 智能字幕字幕语言类型
         # 0: 源语言
@@ -8052,6 +8179,7 @@ module TencentCloud
         # @type Comment: String
         # @param SubtitleFormat: 智能字幕文件格式
         #  vtt: WebVTT 格式
+        #  srt: SRT 格式
         # 不填或填空：不生成字幕文件
         # @type SubtitleFormat: String
         # @param AsrHotWordsConfigure: ASR热词库参数
@@ -13801,9 +13929,88 @@ module TencentCloud
         end
       end
 
+      # 智能擦除，擦除区域坐标配置。
+      # 区域由左上角与右下角点的坐标确定。
+      # 坐标原点为画面左上角，坐标点可使用像素值或百分比单位指定。
+      # 对自动擦除区域：
+      # 当单位为%时，坐标范围为[0,1]；
+      # 当单位为px时，X值范围为 [0，视频画面宽度]，Y值范围为 [0，视频画面高度]
+      # 对指定擦除区域：
+      # 当单位为%时，坐标范围为[0,1)；
+      # 当单位为px时，X值范围为 [0，视频画面宽度]，Y值范围为 [0，视频画面高度]
+      class EraseArea < TencentCloud::Common::AbstractModel
+        # @param LeftTopX: 区域左上角X坐标。
+        # 如当Unit取1即使用百分比单位时，0.05表示区域左上角离整个画面左上角的横向距离为画面宽度的5%。
+        # @type LeftTopX: Float
+        # @param LeftTopY: 区域左上角Y坐标。
+        # 如当Unit取1即使用百分比单位时，0.1表示区域左上角离整个画面左上角的纵向距离为画面高度的10%。
+        # @type LeftTopY: Float
+        # @param RightBottomX: 区域右下角X坐标。
+        # 如当Unit取1即使用百分比单位时，0.75表示区域右下角离整个画面左上角的横向距离为画面宽度的75%。
+        # @type RightBottomX: Float
+        # @param RightBottomY: 区域右下角Y坐标。
+        # 如当Unit取1即使用百分比单位时，0.9表示区域右下角离整个画面左上角的纵向距离为画面高度的90%。
+        # @type RightBottomY: Float
+        # @param Unit: 坐标单位
+        # - 1 百分比
+        # - 2 像素值
+        # @type Unit: Integer
+
+        attr_accessor :LeftTopX, :LeftTopY, :RightBottomX, :RightBottomY, :Unit
+
+        def initialize(lefttopx=nil, lefttopy=nil, rightbottomx=nil, rightbottomy=nil, unit=nil)
+          @LeftTopX = lefttopx
+          @LeftTopY = lefttopy
+          @RightBottomX = rightbottomx
+          @RightBottomY = rightbottomy
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @LeftTopX = params['LeftTopX']
+          @LeftTopY = params['LeftTopY']
+          @RightBottomX = params['RightBottomX']
+          @RightBottomY = params['RightBottomY']
+          @Unit = params['Unit']
+        end
+      end
+
+      # 智能擦除，指定擦除区域配置。
+      # 对指定时间段内的指定区域直接进行擦除。
+      # 当BeginMs和EndMs均取0时对整个视频内的指定区域直接进行擦除。
+      class EraseTimeArea < TencentCloud::Common::AbstractModel
+        # @param BeginMs: 开始时间，单位:毫秒
+        # @type BeginMs: Integer
+        # @param EndMs: 结束时间，单位:毫秒
+        # @type EndMs: Integer
+        # @param Areas: 时间段内擦除区域列表
+        # @type Areas: Array
+
+        attr_accessor :BeginMs, :EndMs, :Areas
+
+        def initialize(beginms=nil, endms=nil, areas=nil)
+          @BeginMs = beginms
+          @EndMs = endms
+          @Areas = areas
+        end
+
+        def deserialize(params)
+          @BeginMs = params['BeginMs']
+          @EndMs = params['EndMs']
+          unless params['Areas'].nil?
+            @Areas = []
+            params['Areas'].each do |i|
+              erasearea_tmp = EraseArea.new
+              erasearea_tmp.deserialize(i)
+              @Areas << erasearea_tmp
+            end
+          end
+        end
+      end
+
       # 视频评测任务的视频来源信息
       class EvaluationMediaInputInfo < TencentCloud::Common::AbstractModel
-        # @param SourceId: 对比视频的来源 ID，当评测任务的类型为 BD_RATE 且对比视频来自用户输入时有效；当对比视频来自转码模版时为空
+        # @param SourceId: 对比视频的来源 ID，当评测任务的类型为 BD_RATE 且对比视频来自用户输入时有效；当对比视频来自转码模板时为空
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceId: String
         # @param InputInfo: 对比视频的输入信息
@@ -13858,8 +14065,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2025, 8
-        deprecate :ContrastInfoSet=, :none, 2025, 8
+        deprecate :ContrastInfoSet, :none, 2025, 9
+        deprecate :ContrastInfoSet=, :none, 2025, 9
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -13915,9 +14122,9 @@ module TencentCloud
         end
       end
 
-      # 在评测中使用的转码模版的信息
+      # 在评测中使用的转码模板的信息
       class EvaluationTemplateInputInfo < TencentCloud::Common::AbstractModel
-        # @param Definition: 转码模版的 ID。
+        # @param Definition: 转码模板的 ID。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Definition: Integer
 
@@ -15400,14 +15607,17 @@ module TencentCloud
         # @param BlindWatermarkConfig: 盲水印配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkConfig`
+        # @param BeautyConfig: 美颜配置。
+        # @type BeautyConfig: :class:`Tencentcloud::Mps.v20190612.models.BeautyConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
           @BlindWatermarkConfig = blindwatermarkconfig
+          @BeautyConfig = beautyconfig
         end
 
         def deserialize(params)
@@ -15426,6 +15636,10 @@ module TencentCloud
           unless params['BlindWatermarkConfig'].nil?
             @BlindWatermarkConfig = BlindWatermarkConfig.new
             @BlindWatermarkConfig.deserialize(params['BlindWatermarkConfig'])
+          end
+          unless params['BeautyConfig'].nil?
+            @BeautyConfig = BeautyConfig.new
+            @BeautyConfig.deserialize(params['BeautyConfig'])
           end
         end
       end
@@ -15953,10 +16167,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 8
-        deprecate :QualityControlResults=, :none, 2025, 8
-        deprecate :DiagnoseResults, :none, 2025, 8
-        deprecate :DiagnoseResults=, :none, 2025, 8
+        deprecate :QualityControlResults, :none, 2025, 9
+        deprecate :QualityControlResults=, :none, 2025, 9
+        deprecate :DiagnoseResults, :none, 2025, 9
+        deprecate :DiagnoseResults=, :none, 2025, 9
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -17495,6 +17709,7 @@ module TencentCloud
         # <li> COS：COS源</li>
         # <li> URL：URL源</li>
         # <li> AWS-S3：AWS 源，目前只支持转码任务 </li>
+        # <li> VOD：点播专业版 </li>
         # @type Type: String
         # @param CosInputInfo: 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
         # @type CosInputInfo: :class:`Tencentcloud::Mps.v20190612.models.CosInputInfo`
@@ -17504,14 +17719,18 @@ module TencentCloud
         # @param S3InputInfo: 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 对象信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3InputInfo: :class:`Tencentcloud::Mps.v20190612.models.S3InputInfo`
+        # @param VODInputInfo: 当 Type 为 VOD 时有效，则该项为必填，表示媒体处理 点播专业版 对象信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VODInputInfo: :class:`Tencentcloud::Mps.v20190612.models.VODInputInfo`
 
-        attr_accessor :Type, :CosInputInfo, :UrlInputInfo, :S3InputInfo
+        attr_accessor :Type, :CosInputInfo, :UrlInputInfo, :S3InputInfo, :VODInputInfo
 
-        def initialize(type=nil, cosinputinfo=nil, urlinputinfo=nil, s3inputinfo=nil)
+        def initialize(type=nil, cosinputinfo=nil, urlinputinfo=nil, s3inputinfo=nil, vodinputinfo=nil)
           @Type = type
           @CosInputInfo = cosinputinfo
           @UrlInputInfo = urlinputinfo
           @S3InputInfo = s3inputinfo
+          @VODInputInfo = vodinputinfo
         end
 
         def deserialize(params)
@@ -17527,6 +17746,10 @@ module TencentCloud
           unless params['S3InputInfo'].nil?
             @S3InputInfo = S3InputInfo.new
             @S3InputInfo.deserialize(params['S3InputInfo'])
+          end
+          unless params['VODInputInfo'].nil?
+            @VODInputInfo = VODInputInfo.new
+            @VODInputInfo.deserialize(params['VODInputInfo'])
           end
         end
       end
@@ -19456,9 +19679,12 @@ module TencentCloud
         # fr：法语
         # de：德语
         # zh_dialect：中文方言
+        # zh_en: 中英
+        # prime_zh: 中英方言
         # @type VideoSrcLanguage: String
         # @param SubtitleFormat: 智能字幕文件格式
         #  vtt: WebVTT 格式
+        # srt: SRT格式
         # 不填或填空：不生成字幕文件
         # @type SubtitleFormat: String
         # @param SubtitleType: 智能字幕字幕语言类型
@@ -21245,6 +21471,8 @@ module TencentCloud
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
         # @param SmartSubtitlesTask: 智能字幕
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitlesTaskInput`
+        # @param SmartEraseTask: 智能擦除类型任务参数
+        # @type SmartEraseTask: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
         # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
@@ -21265,9 +21493,9 @@ module TencentCloud
         # 默认值：0
         # @type SkipMateData: Integer
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SkipMateData
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ScheduleId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :AiQualityControlTask, :SmartSubtitlesTask, :SmartEraseTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :TaskType, :ResourceId, :SkipMateData
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, skipmatedata=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, scheduleid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, smarterasetask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, tasktype=nil, resourceid=nil, skipmatedata=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -21278,6 +21506,7 @@ module TencentCloud
           @AiRecognitionTask = airecognitiontask
           @AiQualityControlTask = aiqualitycontroltask
           @SmartSubtitlesTask = smartsubtitlestask
+          @SmartEraseTask = smarterasetask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
@@ -21321,6 +21550,10 @@ module TencentCloud
           unless params['SmartSubtitlesTask'].nil?
             @SmartSubtitlesTask = SmartSubtitlesTaskInput.new
             @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
+          end
+          unless params['SmartEraseTask'].nil?
+            @SmartEraseTask = SmartEraseTaskInput.new
+            @SmartEraseTask.deserialize(params['SmartEraseTask'])
           end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
@@ -21596,10 +21829,16 @@ module TencentCloud
       # 质检项配置
       class QualityControlItemConfig < TencentCloud::Common::AbstractModel
         # @param Type: 质检项名称。质检项取值如下：
-        # <li>LowEvaluation：无参考打分</li>
+        # <li>LowEvaluation：视频无参考评分（MOS）</li>
+        # <li>AudioEvaluation：音频无参考评分（MOS）</li>
         # <li>Mosaic：马赛克检测</li>
         # <li>CrashScreen：花屏检测</li>
         # <li>Blur：模糊检测</li>
+        # <li>Jitter：抖动检测</li>
+        # <li>Noise：噪点检测</li>
+        # <li>QRCode：二维码检测</li>
+        # <li>BarCode：条形码检测</li>
+        # <li>AppletCode：小程序码检测</li>
         # <li>BlackWhiteEdge：黑白边检测</li>
         # <li>SolidColorScreen：纯色屏检测</li>
         # <li>LowLighting：低光照</li>
@@ -21607,11 +21846,7 @@ module TencentCloud
         # <li>NoVoice：静音检测</li>
         # <li>LowVoice：低音检测</li>
         # <li>HighVoice：爆音检测</li>
-        # <li>Jitter：抖动检测</li>
-        # <li>Noise：噪点检测</li>
-        # <li>QRCode：二维码检测</li>
-        # <li>BarCode：条形码检测</li>
-        # <li>AppletCode：小程序码检测</li>
+        # <li>AudioNoise：音频噪声检测</li>
         # <li>VideoResolutionChanged：视频分辨率变化</li>
         # <li>AudioSampleRateChanged：音频采样率变化</li>
         # <li>AudioChannelsChanged：音频通道数变化</li>
@@ -21945,6 +22180,52 @@ module TencentCloud
         end
       end
 
+      # 智能擦除自定义参数
+      class RawSmartEraseParameter < TencentCloud::Common::AbstractModel
+        # @param EraseType: 擦除类型
+        # - subtitle 去字幕
+        # - watermark 去水印
+        # - privacy 隐私保护
+        # @type EraseType: String
+        # @param EraseSubtitleConfig: 字幕擦除配置；
+        # 当EraseType值为：subtitle，此字段为必填参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: 水印擦除配置；
+        # 当EraseType值为：watermark，此字段为必填参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: 隐私保护配置；
+        # 当EraseType值为：privacy，此字段为必填参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartErasePrivacyConfig`
+
+        attr_accessor :EraseType, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig
+
+        def initialize(erasetype=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil)
+          @EraseType = erasetype
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+        end
+
+        def deserialize(params)
+          @EraseType = params['EraseType']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = SmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = SmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = SmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+        end
+      end
+
       # 自定义智能字幕参数
       class RawSmartSubtitleParameter < TencentCloud::Common::AbstractModel
         # @param SubtitleType: 智能字幕字幕语言类型
@@ -21976,9 +22257,12 @@ module TencentCloud
         # fr：法语
         # de：德语
         # zh_dialect：中文方言
+        # zh_en: 中英
+        # prime_zh: 中英方言
         # @type VideoSrcLanguage: String
         # @param SubtitleFormat: 智能字幕文件格式
         #  vtt: WebVTT 格式
+        # srt: SRT格式
         # 不填或填空：不生成字幕文件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFormat: String
@@ -23456,6 +23740,288 @@ module TencentCloud
         end
       end
 
+      # 智能擦除模板隐私保护配置
+      class SmartErasePrivacyConfig < TencentCloud::Common::AbstractModel
+        # @param PrivacyModel: 隐私保护擦除方式。
+        # - blur 模糊
+        # - mosaic 马赛克
+        # @type PrivacyModel: String
+        # @param PrivacyTargets: 隐私保护目标，（在API Explorer上使用时无需传入数组，添加相应项并填入对应值即可）。
+        # - face 人脸
+        # - plate 车牌
+        # @type PrivacyTargets: Array
+
+        attr_accessor :PrivacyModel, :PrivacyTargets
+
+        def initialize(privacymodel=nil, privacytargets=nil)
+          @PrivacyModel = privacymodel
+          @PrivacyTargets = privacytargets
+        end
+
+        def deserialize(params)
+          @PrivacyModel = params['PrivacyModel']
+          @PrivacyTargets = params['PrivacyTargets']
+        end
+      end
+
+      # 智能擦除模板去字幕配置
+      class SmartEraseSubtitleConfig < TencentCloud::Common::AbstractModel
+        # @param SubtitleEraseMethod: 字幕擦除方式。
+        # **自动擦除：**通过AI模型自动识别视频中的字幕文本内容，进行无痕化擦除，生成新的视频。但画面干扰、特殊字幕样式可能会带来一定漏擦误擦问题，可以通过指定区域擦除处理。
+        # 当使用自动擦除时，若您不指定AutoAreas，将对默认区域（画面中下部）进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。
+        # **指定区域擦除：**若您的字幕位置较固定，建议您直接指定擦除区域，最大程度减少漏擦的情况。
+        # 当您选择指定区域擦除时，请在CustomAreas中至少传入一个指定区域。
+        # - auto 自动擦除
+        # - custom 指定区域擦除
+        # @type SubtitleEraseMethod: String
+        # @param SubtitleModel: 字幕擦除模型。
+        # **标准版（推荐）：**若您的字幕样式标准，通常建议选择该版本，细节无痕化效果更好。
+        # **区域版：**若您的字幕存在花体、阴影、动效等特殊样式，建议选择区域版，擦除面积更大，但细节效果不如标准版。
+        # - standard 标准模型
+        # - area 区域模型
+        # @type SubtitleModel: String
+        # @param OcrSwitch: 是否开启OCR字幕提取，默认取OFF。
+        # 当且仅当SubtitleEraseMethod取auto时支持开启OCR字幕提取，开启后将识别自动擦除区域内出现时间最长且最稳定的文字区域为字幕区域，对字幕区域中的文字进行提取和擦除。
+        # - ON 开启
+        # - OFF 关闭
+        # @type OcrSwitch: String
+        # @param SubtitleLang: 字幕语言，用于指导OCR识别，默认取zh_en；仅当OcrSwitch取"ON"时生效。
+        # - zh_en 中英文
+        # - multi 其他
+        # 其他具体支持识别如下语言：
+        # 中文、英文、日文、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语、印地语、阿拉伯语、印度-孟加拉语、印度-古吉拉特语、印度-卡纳达语 、印度-马拉亚拉姆语 、印度-泰米尔语、印度-泰卢固语、斯洛文尼亚语、波兰语、加泰罗尼亚语、波斯尼亚语、捷克语、爱沙尼亚语、克罗地亚语、旁遮普语、马拉地语、阿塞拜疆语、印尼语、卢森堡语 、立陶宛语、拉脱维亚语、马耳他语、斯洛伐克语、土耳其语、哈萨克语、希腊语、爱尔兰语、白俄罗斯语、高棉语、他加禄语、普什图语、波斯语、塔吉克斯坦语
+
+        # @type SubtitleLang: String
+        # @param SubtitleFormat: 字幕文件格式，默认取vtt；仅当OcrSwitch取"ON"时生效。
+        # - srt srt格式
+        # - vtt WebVTT格式
+        # @type SubtitleFormat: String
+        # @param TransSwitch: 是否开启字幕翻译，默认取OFF；仅当OcrSwitch取"ON"时生效。
+        # - ON 开启
+        # - OFF 关闭
+        # @type TransSwitch: String
+        # @param TransDstLang: 字幕翻译目标语言，默认取en；仅当TransSwitch取"ON"时生效。
+        # 当前支持以下语言：
+        # zh：简体中文
+        # en：英语
+        # ja：日语
+        # ko：韩语
+        # fr：法语
+        # es：西班牙语
+        # it：意大利语
+        # de：德语
+        # tr：土耳其语
+        # ru：俄语
+        # pt：葡萄牙语
+        # vi：越南语
+        # id：印度尼西亚语
+        # ms：马来语
+        # th：泰语
+        # ar：阿拉伯语
+        # hi：印地语
+        # @type TransDstLang: String
+        # @param AutoAreas: 自动擦除自定义区域。
+        # 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。
+        # 注意：当擦除方式选择custom时，此参数将不会生效；修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。
+        # @type AutoAreas: Array
+        # @param CustomAreas: 指定擦除自定义区域。
+        # 对选定区域，在选定时间段内不进行检测识别直接进行擦除。
+        # 注意：修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。
+        # @type CustomAreas: Array
+
+        attr_accessor :SubtitleEraseMethod, :SubtitleModel, :OcrSwitch, :SubtitleLang, :SubtitleFormat, :TransSwitch, :TransDstLang, :AutoAreas, :CustomAreas
+
+        def initialize(subtitleerasemethod=nil, subtitlemodel=nil, ocrswitch=nil, subtitlelang=nil, subtitleformat=nil, transswitch=nil, transdstlang=nil, autoareas=nil, customareas=nil)
+          @SubtitleEraseMethod = subtitleerasemethod
+          @SubtitleModel = subtitlemodel
+          @OcrSwitch = ocrswitch
+          @SubtitleLang = subtitlelang
+          @SubtitleFormat = subtitleformat
+          @TransSwitch = transswitch
+          @TransDstLang = transdstlang
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+        end
+
+        def deserialize(params)
+          @SubtitleEraseMethod = params['SubtitleEraseMethod']
+          @SubtitleModel = params['SubtitleModel']
+          @OcrSwitch = params['OcrSwitch']
+          @SubtitleLang = params['SubtitleLang']
+          @SubtitleFormat = params['SubtitleFormat']
+          @TransSwitch = params['TransSwitch']
+          @TransDstLang = params['TransDstLang']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              erasearea_tmp = EraseArea.new
+              erasearea_tmp.deserialize(i)
+              @AutoAreas << erasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              erasetimearea_tmp = EraseTimeArea.new
+              erasetimearea_tmp.deserialize(i)
+              @CustomAreas << erasetimearea_tmp
+            end
+          end
+        end
+      end
+
+      # 智能擦除任务
+      class SmartEraseTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能擦除模板id。
+        # @type Definition: Integer
+        # @param RawParameter: 智能擦除自定义参数，当 Definition 填 0 时有效。 该参数用于高度定制场景，建议您优先使用 Definition 指定智能擦除参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RawParameter: :class:`Tencentcloud::Mps.v20190612.models.RawSmartEraseParameter`
+        # @param OutputStorage: 文件的目标存储，不填则继承上层的 OutputStorage 值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputObjectPath: 文件的输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+
+        # **注意**：目前不支持`BatchProcessMedia`接口。
+        # @type OutputObjectPath: String
+
+        attr_accessor :Definition, :RawParameter, :OutputStorage, :OutputObjectPath
+
+        def initialize(definition=nil, rawparameter=nil, outputstorage=nil, outputobjectpath=nil)
+          @Definition = definition
+          @RawParameter = rawparameter
+          @OutputStorage = outputstorage
+          @OutputObjectPath = outputobjectpath
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['RawParameter'].nil?
+            @RawParameter = RawSmartEraseParameter.new
+            @RawParameter.deserialize(params['RawParameter'])
+          end
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @OutputObjectPath = params['OutputObjectPath']
+        end
+      end
+
+      # 智能擦除任务结果
+      class SmartEraseTaskResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能擦除输入。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskInput`
+        # @param Output: 智能擦除任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDelLogoOutput`
+        # @param Progress: 任务进度。
+        # @type Progress: Integer
+        # @param BeginProcessTime: 任务开始执行的时间，采用 ISO 日期格式。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 ISO 日期格式。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = SmartEraseTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskDelLogoOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 智能擦除模板去水印配置
+      class SmartEraseWatermarkConfig < TencentCloud::Common::AbstractModel
+        # @param WatermarkEraseMethod: 水印擦除方式。
+        # **自动擦除：**通过A模型自动识别视频中的水印，擦除后生成新的视频。适用于动态水印。
+        # 当使用自动擦除时，若您不指定AutoAreas，将对视频全屏进行自动擦除；若指定AutoAreas，将改为对您指定的区域进行自动擦除。
+        # **指定区域擦除：**针对位置较固定的静态水印，建议您直接指定擦除区域。
+        # 当您选择指定区域擦除时，请至少传入一个指定区域。
+
+        # - auto 自动擦除
+        # - custom 指定区域擦除
+        # @type WatermarkEraseMethod: String
+        # @param WatermarkModel: 水印擦除模型。
+        # 基础版：效果一般，性价比高，适合动画或背景较干净的视频。
+        # 高级版：效果更好，适合短剧等现实风格视频。
+        # - basic 基础版
+        # - advanced 高级版
+        # @type WatermarkModel: String
+        # @param AutoAreas: 自动擦除自定义区域。
+        # 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。
+        # 注意，当擦除方式为custom时，此参数将不会生效。
+        # @type AutoAreas: Array
+        # @param CustomAreas: 指定擦除自定义区域。
+        # 对选定区域，在选定时间段内不进行检测识别直接进行擦除。
+        # @type CustomAreas: Array
+
+        attr_accessor :WatermarkEraseMethod, :WatermarkModel, :AutoAreas, :CustomAreas
+
+        def initialize(watermarkerasemethod=nil, watermarkmodel=nil, autoareas=nil, customareas=nil)
+          @WatermarkEraseMethod = watermarkerasemethod
+          @WatermarkModel = watermarkmodel
+          @AutoAreas = autoareas
+          @CustomAreas = customareas
+        end
+
+        def deserialize(params)
+          @WatermarkEraseMethod = params['WatermarkEraseMethod']
+          @WatermarkModel = params['WatermarkModel']
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              erasearea_tmp = EraseArea.new
+              erasearea_tmp.deserialize(i)
+              @AutoAreas << erasearea_tmp
+            end
+          end
+          unless params['CustomAreas'].nil?
+            @CustomAreas = []
+            params['CustomAreas'].each do |i|
+              erasetimearea_tmp = EraseTimeArea.new
+              erasetimearea_tmp.deserialize(i)
+              @CustomAreas << erasetimearea_tmp
+            end
+          end
+        end
+      end
+
       # 语音全文识别结果。
       class SmartSubtitleTaskAsrFullTextResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
@@ -23512,12 +24078,15 @@ module TencentCloud
         # @type SegmentSet: Array
         # @param SubtitlePath: 字幕文件地址。
         # @type SubtitlePath: String
+        # @param OutputStorage: 字幕文件存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :SegmentSet, :SubtitlePath
+        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
 
-        def initialize(segmentset=nil, subtitlepath=nil)
+        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
           @SubtitlePath = subtitlepath
+          @OutputStorage = outputstorage
         end
 
         def deserialize(params)
@@ -23530,6 +24099,10 @@ module TencentCloud
             end
           end
           @SubtitlePath = params['SubtitlePath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
         end
       end
 
@@ -23698,12 +24271,15 @@ module TencentCloud
         # @type SegmentSet: Array
         # @param SubtitlePath: 字幕文件地址。
         # @type SubtitlePath: String
+        # @param OutputStorage: 字幕文件存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :SegmentSet, :SubtitlePath
+        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
 
-        def initialize(segmentset=nil, subtitlepath=nil)
+        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
           @SubtitlePath = subtitlepath
+          @OutputStorage = outputstorage
         end
 
         def deserialize(params)
@@ -23716,6 +24292,10 @@ module TencentCloud
             end
           end
           @SubtitlePath = params['SubtitlePath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
         end
       end
 
@@ -24713,6 +25293,7 @@ module TencentCloud
         # @param Type: 媒体处理输出对象存储位置的类型，支持：
         # <li>COS：COS存储</li>
         # <li>AWS-S3：AWS 存储，只适用于AWS任务，且要求同区域</li>
+        # <li> VOD：点播专业版 </li>
         # @type Type: String
         # @param CosOutputStorage: 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 输出位置。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -24720,13 +25301,17 @@ module TencentCloud
         # @param S3OutputStorage: 当 Type 为 AWS-S3 时有效，则该项为必填，表示媒体处理 AWS S3 输出位置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type S3OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.S3OutputStorage`
+        # @param VODOutputStorage: 当 Type 为 VOD 时有效，则该项为必填，表示媒体处理 点播专业版 输出位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VODOutputStorage: :class:`Tencentcloud::Mps.v20190612.models.VODOutputStorage`
 
-        attr_accessor :Type, :CosOutputStorage, :S3OutputStorage
+        attr_accessor :Type, :CosOutputStorage, :S3OutputStorage, :VODOutputStorage
 
-        def initialize(type=nil, cosoutputstorage=nil, s3outputstorage=nil)
+        def initialize(type=nil, cosoutputstorage=nil, s3outputstorage=nil, vodoutputstorage=nil)
           @Type = type
           @CosOutputStorage = cosoutputstorage
           @S3OutputStorage = s3outputstorage
+          @VODOutputStorage = vodoutputstorage
         end
 
         def deserialize(params)
@@ -24738,6 +25323,10 @@ module TencentCloud
           unless params['S3OutputStorage'].nil?
             @S3OutputStorage = S3OutputStorage.new
             @S3OutputStorage.deserialize(params['S3OutputStorage'])
+          end
+          unless params['VODOutputStorage'].nil?
+            @VODOutputStorage = VODOutputStorage.new
+            @VODOutputStorage.deserialize(params['VODOutputStorage'])
           end
         end
       end
@@ -25668,6 +26257,58 @@ module TencentCloud
           @LabelSet = params['LabelSet']
           @BlockConfidence = params['BlockConfidence']
           @ReviewConfidence = params['ReviewConfidence']
+        end
+      end
+
+      # 媒体处理 VOD （点播专业版）对象信息。
+      class VODInputInfo < TencentCloud::Common::AbstractModel
+        # @param Bucket: 媒体处理对象文件所在的 *Bucket ID*
+        # @type Bucket: String
+        # @param Region: 媒体处理对象文件所在的 Bucket 所属园区
+        # @type Region: String
+        # @param Object: 媒体处理对象文件的输入路径
+        # @type Object: String
+        # @param SubAppId: 点播专业版应用Id
+        # @type SubAppId: Integer
+
+        attr_accessor :Bucket, :Region, :Object, :SubAppId
+
+        def initialize(bucket=nil, region=nil, object=nil, subappid=nil)
+          @Bucket = bucket
+          @Region = region
+          @Object = object
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @Object = params['Object']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # 媒体处理 VOD（点播专业版） 输出对象信息。
+      class VODOutputStorage < TencentCloud::Common::AbstractModel
+        # @param Bucket: 媒体处理生成的文件输出的目标 *Bucket ID*
+        # @type Bucket: String
+        # @param Region: 媒体处理生成的文件输出的目标 Bucket 的园区
+        # @type Region: String
+        # @param SubAppId: 点播专业版应用Id
+        # @type SubAppId: Integer
+
+        attr_accessor :Bucket, :Region, :SubAppId
+
+        def initialize(bucket=nil, region=nil, subappid=nil)
+          @Bucket = bucket
+          @Region = region
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Bucket = params['Bucket']
+          @Region = params['Region']
+          @SubAppId = params['SubAppId']
         end
       end
 
@@ -26681,10 +27322,13 @@ module TencentCloud
         # @param SmartSubtitlesTaskResult: 智能字幕任务的执行结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SmartSubtitlesTaskResult: Array
+        # @param SmartEraseTaskResult: 智能擦除任务的执行结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SmartEraseTaskResult: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseTaskResult`
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult, :SmartSubtitlesTaskResult
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :AiQualityControlTaskResult, :SmartSubtitlesTaskResult, :SmartEraseTaskResult
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil, smartsubtitlestaskresult=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, aiqualitycontroltaskresult=nil, smartsubtitlestaskresult=nil, smarterasetaskresult=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
@@ -26697,6 +27341,7 @@ module TencentCloud
           @AiRecognitionResultSet = airecognitionresultset
           @AiQualityControlTaskResult = aiqualitycontroltaskresult
           @SmartSubtitlesTaskResult = smartsubtitlestaskresult
+          @SmartEraseTaskResult = smarterasetaskresult
         end
 
         def deserialize(params)
@@ -26755,6 +27400,10 @@ module TencentCloud
               smartsubtitlesresult_tmp.deserialize(i)
               @SmartSubtitlesTaskResult << smartsubtitlesresult_tmp
             end
+          end
+          unless params['SmartEraseTaskResult'].nil?
+            @SmartEraseTaskResult = SmartEraseTaskResult.new
+            @SmartEraseTaskResult.deserialize(params['SmartEraseTaskResult'])
           end
         end
       end

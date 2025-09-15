@@ -4796,7 +4796,7 @@ module TencentCloud
         # @type VpcId: String
         # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位：Mbps)，支持的参数值：20, 50, 100, 200, 500, 1000, 2000, 5000，默认: 100Mbps。  当以下NatProductVersion参数值为2即标准型时，此参数无需填写，默认为5000Mbps。
         # @type InternetMaxBandwidthOut: Integer
-        # @param MaxConcurrentConnection: NAT网关并发连接数上限，支持参数值：1000000、3000000、10000000，默认值为100000。  当以下NatProductVersion参数值为2即标准型时，此参数无需填写，默认为2000000。
+        # @param MaxConcurrentConnection: NAT网关并发连接数上限，支持参数值：1000000、3000000、10000000，默认值为1000000。 当NatProductVersion参数值为2即标准型时，此参数无需填写，默认为2000000。
         # @type MaxConcurrentConnection: Integer
         # @param AddressCount: 新建弹性公网IP个数，系统会按您的要求创建对应数量的弹性公网IP，其中AddressCount和PublicAddresses两个参数至少填写一个。
         # @type AddressCount: Integer
@@ -4816,13 +4816,15 @@ module TencentCloud
         # @type PublicIpFromSameZone: Boolean
         # @param NatProductVersion: NAT网关类型，1表示传统型NAT网关，2表示标准型NAT网关，默认值是1。
         # @type NatProductVersion: Integer
+        # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled
         extend Gem::Deprecate
         deprecate :SubnetId, :none, 2025, 9
         deprecate :SubnetId=, :none, 2025, 9
 
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -4836,6 +4838,7 @@ module TencentCloud
           @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
           @PublicIpFromSameZone = publicipfromsamezone
           @NatProductVersion = natproductversion
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
@@ -4859,6 +4862,7 @@ module TencentCloud
           @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
           @PublicIpFromSameZone = params['PublicIpFromSameZone']
           @NatProductVersion = params['NatProductVersion']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 
@@ -5315,16 +5319,19 @@ module TencentCloud
         # @type VpcType: Boolean
         # @param CcnId: 云联网类型私网NAT网关需要绑定的云联网实例ID。
         # @type CcnId: String
+        # @param DeletionProtectionEnabled: 私网NAT实例是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayName, :VpcId, :CrossDomain, :Tags, :VpcType, :CcnId
+        attr_accessor :NatGatewayName, :VpcId, :CrossDomain, :Tags, :VpcType, :CcnId, :DeletionProtectionEnabled
 
-        def initialize(natgatewayname=nil, vpcid=nil, crossdomain=nil, tags=nil, vpctype=nil, ccnid=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, crossdomain=nil, tags=nil, vpctype=nil, ccnid=nil, deletionprotectionenabled=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @CrossDomain = crossdomain
           @Tags = tags
           @VpcType = vpctype
           @CcnId = ccnid
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
@@ -5341,6 +5348,7 @@ module TencentCloud
           end
           @VpcType = params['VpcType']
           @CcnId = params['CcnId']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 
@@ -12487,11 +12495,7 @@ module TencentCloud
       class DescribeNatGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayIds: NAT网关统一 ID，形如：`nat-123xx454`。每次请求的实例上限为100。参数不支持同时指定NatGatewayIds和Filters。
         # @type NatGatewayIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。
-        # <li>nat-gateway-id - String - （过滤条件）协议端口模板实例ID，形如：`nat-123xx454`。</li>
-        # <li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li>
-        # <li>nat-gateway-name - String - （过滤条件）协议端口模板实例ID，形如：`test_nat`。</li>
-        # <li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li>
+        # @param Filters: 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。<li>nat-gateway-id - String - （过滤条件）NAT实例ID，形如：`nat-123xx454`。</li><li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li><li>nat-gateway-name - String - （过滤条件）协议端口模板实例名称，形如：`test_nat`。</li><li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li><li>nat-status - String - （过滤条件）NAT实例当前状态，形如：`AVAILABLE`。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -12528,14 +12532,17 @@ module TencentCloud
         # @type NatGatewaySet: Array
         # @param TotalCount: 符合条件的NAT网关对象个数。
         # @type TotalCount: Integer
+        # @param VerboseLevel: 输出信息详细程度，DETAIL代表输出实例所有信息；COMPACT代表不输出NAT规则和自定义路由，输出实例基本信息、特性开关和EIP信息；SIMPLE代表仅输出实例基本信息和特性开关
+        # @type VerboseLevel: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NatGatewaySet, :TotalCount, :RequestId
+        attr_accessor :NatGatewaySet, :TotalCount, :VerboseLevel, :RequestId
 
-        def initialize(natgatewayset=nil, totalcount=nil, requestid=nil)
+        def initialize(natgatewayset=nil, totalcount=nil, verboselevel=nil, requestid=nil)
           @NatGatewaySet = natgatewayset
           @TotalCount = totalcount
+          @VerboseLevel = verboselevel
           @RequestId = requestid
         end
 
@@ -12549,6 +12556,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @VerboseLevel = params['VerboseLevel']
           @RequestId = params['RequestId']
         end
       end
@@ -13335,11 +13343,7 @@ module TencentCloud
       class DescribePrivateNatGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayIds: 私网网关唯一`ID`，形如：`intranat-0g3blj80`。
         # @type NatGatewayIds: Array
-        # @param Filters: 过滤条件。
-        # <li>NatGatewayId - String - 私网网关唯一`ID`，形如：`intranat-0g3blj80`。</li>
-        # <li>NatGatewayName - String - 专线网关名称，默认模糊查询。</li>
-        # <li>VpcId - String - 私网网关所在`VpcId`。</li>
-        # <li>TagKey - Tag数组 - 私网网关标签键值对数组</li>
+        # @param Filters: 过滤条件。<li>NatGatewayId - String - 私网网关唯一`ID`，形如：`intranat-0g3blj80`。</li><li>NatGatewayName - String - 专线网关名称，默认模糊查询。</li><li>VpcId - String - 私网网关所在`VpcId`。</li><li>TagKey - Tag数组 - 私网网关标签键值对数组</li><li>intranat-status - String - （过滤条件）NAT实例当前状态，形如：`AVAILABLE`。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer

@@ -254,10 +254,12 @@ module TencentCloud
         # @param SignEndpoints: 进入签署流程的限制，目前支持以下选项：
         # <ul><li> <b>空值（默认）</b> :无限制，可在任何场景进入签署流程。</li><li> <b>link</b> :选择此选项后，将无法通过控制台或电子签小程序列表进入填写或签署操作，仅可预览合同。填写或签署流程只能通过短信或发起方提供的专用链接进行。</li></ul>
         # @type SignEndpoints: Array
+        # @param RegisterInfo: 快速注册相关信息
+        # @type RegisterInfo: :class:`Tencentcloud::Ess.v20201111.models.RegisterInfo`
 
-        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent, :Deadline, :Components, :SignEndpoints
+        attr_accessor :ApproverType, :ApproverName, :ApproverMobile, :OrganizationName, :SignComponents, :ApproverIdCardType, :ApproverIdCardNumber, :NotifyType, :ApproverRole, :ApproverRoleName, :VerifyChannel, :PreReadTime, :UserId, :ApproverSource, :CustomApproverTag, :ApproverOption, :ApproverVerifyTypes, :ApproverSignTypes, :ApproverNeedSignReview, :AddSignComponentsLimits, :SignInstructionContent, :Deadline, :Components, :SignEndpoints, :RegisterInfo
 
-        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil, deadline=nil, components=nil, signendpoints=nil)
+        def initialize(approvertype=nil, approvername=nil, approvermobile=nil, organizationname=nil, signcomponents=nil, approveridcardtype=nil, approveridcardnumber=nil, notifytype=nil, approverrole=nil, approverrolename=nil, verifychannel=nil, prereadtime=nil, userid=nil, approversource=nil, customapprovertag=nil, approveroption=nil, approververifytypes=nil, approversigntypes=nil, approverneedsignreview=nil, addsigncomponentslimits=nil, signinstructioncontent=nil, deadline=nil, components=nil, signendpoints=nil, registerinfo=nil)
           @ApproverType = approvertype
           @ApproverName = approvername
           @ApproverMobile = approvermobile
@@ -282,6 +284,7 @@ module TencentCloud
           @Deadline = deadline
           @Components = components
           @SignEndpoints = signendpoints
+          @RegisterInfo = registerinfo
         end
 
         def deserialize(params)
@@ -333,6 +336,10 @@ module TencentCloud
             end
           end
           @SignEndpoints = params['SignEndpoints']
+          unless params['RegisterInfo'].nil?
+            @RegisterInfo = RegisterInfo.new
+            @RegisterInfo.deserialize(params['RegisterInfo'])
+          end
         end
       end
 
@@ -2658,10 +2665,7 @@ module TencentCloud
         # 注：只有在控制台编辑模板时，<font color="red">归属给发起方</font>的填写控件（如下图）才能在创建文档的时候进行内容填充。
         # ![image](https://qcloudimg.tencent-cloud.cn/raw/a54a76a58c454593d06d8e9883ecc9b3.png)
         # @type FormFields: Array
-        # @param NeedPreview: 是否为预览模式，取值如下：
-        # <ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li>
-        # <li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。 <font color="red">注意： 以预览模式创建的合同仅供查看，因此参与方无法进行签署操作</font> </li></ul>
-        # 注: `当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容，动态表格合成完后会触发文档合成完成的回调通知`
+        # @param NeedPreview: 是否为预览模式，取值如下：<ul><li> **false**：非预览模式（默认），会产生合同流程并返回合同流程编号FlowId。</li> <li> **true**：预览模式，不产生合同流程，不返回合同流程编号FlowId，而是返回预览链接PreviewUrl，有效期为300秒，用于查看真实发起后合同的样子。 <font color="red">注意： 1.以预览模式创建的合同仅供查看，因此参与方无法进行签署操作;；2.以预览模式调用该接口返回的FlowId为临时Flowld，无法用于发起和拉取信息。</font> </li></ul>注: `当使用的模板中存在动态表格控件时，预览结果中没有动态表格的填写内容，动态表格合成完后会触发文档合成完成的回调通知`
         # @type NeedPreview: Boolean
         # @param PreviewType: 预览模式下产生的预览链接类型
         # <ul><li> **0** :(默认) 文件流 ,点开后下载预览的合同PDF文件 </li>
@@ -9277,7 +9281,7 @@ module TencentCloud
 
       # DescribeInformationExtractionTask返回参数结构体
       class DescribeInformationExtractionTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Fields: 信息提取任务结果
+        # @param Fields: 合同信息提取字段信息
         # @type Fields: Array
         # @param Status: 合同智能提取任务状态。
         # 状态如下：
@@ -9293,15 +9297,18 @@ module TencentCloud
 
         # 注意：`链接有效期为5分钟，过期后可重新获取`
         # @type Url: String
+        # @param Results: 合同信息提取结果信息
+        # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Fields, :Status, :Url, :RequestId
+        attr_accessor :Fields, :Status, :Url, :Results, :RequestId
 
-        def initialize(fields=nil, status=nil, url=nil, requestid=nil)
+        def initialize(fields=nil, status=nil, url=nil, results=nil, requestid=nil)
           @Fields = fields
           @Status = status
           @Url = url
+          @Results = results
           @RequestId = requestid
         end
 
@@ -9316,6 +9323,14 @@ module TencentCloud
           end
           @Status = params['Status']
           @Url = params['Url']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              extractiontaskresult_tmp = ExtractionTaskResult.new
+              extractiontaskresult_tmp.deserialize(i)
+              @Results << extractiontaskresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10596,6 +10611,82 @@ module TencentCloud
           @Type = params['Type']
           @Description = params['Description']
           @Values = params['Values']
+        end
+      end
+
+      # 合同信息提取字段值信息。
+      class ExtractionFieldResult < TencentCloud::Common::AbstractModel
+        # @param Id: 字段ID
+        # @type Id: String
+        # @param Name: 用于合同智能提取的字段名称。
+        # @type Name: String
+        # @param Type: 合同智能提取的字段类型，目前仅支持TEXT、DATE、NUMBER、OPTION类型。
+
+        # 类型支持如下： 1、TEXT（文本） 2、DATE（日期） 3、NUMBER（数字） 4、OPTION（选项值）
+        # @type Type: String
+        # @param Values: 提取出合同中的字段信息。
+        # @type Values: Array
+        # @param RequiresSemanticExtraction: 是否需要语义提取，默认为false
+        # @type RequiresSemanticExtraction: Boolean
+        # @param Positions: 提取出值在合同中的坐标位置信息
+        # @type Positions: Array
+
+        attr_accessor :Id, :Name, :Type, :Values, :RequiresSemanticExtraction, :Positions
+
+        def initialize(id=nil, name=nil, type=nil, values=nil, requiressemanticextraction=nil, positions=nil)
+          @Id = id
+          @Name = name
+          @Type = type
+          @Values = values
+          @RequiresSemanticExtraction = requiressemanticextraction
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Values = params['Values']
+          @RequiresSemanticExtraction = params['RequiresSemanticExtraction']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positioninfo_tmp = PositionInfo.new
+              positioninfo_tmp.deserialize(i)
+              @Positions << positioninfo_tmp
+            end
+          end
+        end
+      end
+
+      # 合同信息提取结果
+      class ExtractionTaskResult < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 用于合同信息提取的资源ID。
+        # @type ResourceId: String
+        # @param ResourceName: 用于合同信息提取的资源名称。
+        # @type ResourceName: String
+        # @param ExtractionFieldResults: 根据当前合同提取出的字段信息
+        # @type ExtractionFieldResults: Array
+
+        attr_accessor :ResourceId, :ResourceName, :ExtractionFieldResults
+
+        def initialize(resourceid=nil, resourcename=nil, extractionfieldresults=nil)
+          @ResourceId = resourceid
+          @ResourceName = resourcename
+          @ExtractionFieldResults = extractionfieldresults
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceName = params['ResourceName']
+          unless params['ExtractionFieldResults'].nil?
+            @ExtractionFieldResults = []
+            params['ExtractionFieldResults'].each do |i|
+              extractionfieldresult_tmp = ExtractionFieldResult.new
+              extractionfieldresult_tmp.deserialize(i)
+              @ExtractionFieldResults << extractionfieldresult_tmp
+            end
+          end
         end
       end
 
@@ -14228,6 +14319,8 @@ module TencentCloud
         # @type Uscc: String
         # @param UnifiedSocialCreditCode: <font color="red">字段不再使用</font>，社会统一信用代码
         # @type UnifiedSocialCreditCode: String
+        # @param OrganizationAddress: 组织机构企业注册地址。 请确认该企业注册地址与企业营业执照中注册的地址一致。
+        # @type OrganizationAddress: String
         # @param AuthorizationTypes: 指定企业认证的授权方式 支持多选:
 
         # <ul>
@@ -14243,17 +14336,18 @@ module TencentCloud
         # </ul>
         # @type AuthorizationType: Integer
 
-        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :AuthorizationTypes, :AuthorizationType
+        attr_accessor :LegalName, :Uscc, :UnifiedSocialCreditCode, :OrganizationAddress, :AuthorizationTypes, :AuthorizationType
         extend Gem::Deprecate
         deprecate :Uscc, :none, 2025, 9
         deprecate :Uscc=, :none, 2025, 9
         deprecate :AuthorizationTypes, :none, 2025, 9
         deprecate :AuthorizationTypes=, :none, 2025, 9
 
-        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, authorizationtypes=nil, authorizationtype=nil)
+        def initialize(legalname=nil, uscc=nil, unifiedsocialcreditcode=nil, organizationaddress=nil, authorizationtypes=nil, authorizationtype=nil)
           @LegalName = legalname
           @Uscc = uscc
           @UnifiedSocialCreditCode = unifiedsocialcreditcode
+          @OrganizationAddress = organizationaddress
           @AuthorizationTypes = authorizationtypes
           @AuthorizationType = authorizationtype
         end
@@ -14262,6 +14356,7 @@ module TencentCloud
           @LegalName = params['LegalName']
           @Uscc = params['Uscc']
           @UnifiedSocialCreditCode = params['UnifiedSocialCreditCode']
+          @OrganizationAddress = params['OrganizationAddress']
           @AuthorizationTypes = params['AuthorizationTypes']
           @AuthorizationType = params['AuthorizationType']
         end

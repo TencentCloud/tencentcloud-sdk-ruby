@@ -167,15 +167,18 @@ module TencentCloud
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
         # @param Items: 服务配置信息
         # @type Items: Array
+        # @param VpcInfo: vpc 信息
+        # @type VpcInfo: :class:`Tencentcloud::Tcbr.v20220217.models.CreateVpcInfo`
 
-        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Items
+        attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Items, :VpcInfo
 
-        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, items=nil)
+        def initialize(envid=nil, servername=nil, deployinfo=nil, serverconfig=nil, items=nil, vpcinfo=nil)
           @EnvId = envid
           @ServerName = servername
           @DeployInfo = deployinfo
           @ServerConfig = serverconfig
           @Items = items
+          @VpcInfo = vpcinfo
         end
 
         def deserialize(params)
@@ -197,6 +200,10 @@ module TencentCloud
               @Items << diffconfigitem_tmp
             end
           end
+          unless params['VpcInfo'].nil?
+            @VpcInfo = CreateVpcInfo.new
+            @VpcInfo.deserialize(params['VpcInfo'])
+          end
         end
       end
 
@@ -217,6 +224,30 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建 vpc 信息
+      class CreateVpcInfo < TencentCloud::Common::AbstractModel
+        # @param VpcId: vpc id
+        # @type VpcId: String
+        # @param CreateType: 1 新建 2 指定
+        # @type CreateType: Integer
+        # @param SubnetIds: 子网ID列表
+        # @type SubnetIds: Array
+
+        attr_accessor :VpcId, :CreateType, :SubnetIds
+
+        def initialize(vpcid=nil, createtype=nil, subnetids=nil)
+          @VpcId = vpcid
+          @CreateType = createtype
+          @SubnetIds = subnetids
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @CreateType = params['CreateType']
+          @SubnetIds = params['SubnetIds']
         end
       end
 
@@ -426,15 +457,18 @@ module TencentCloud
         # @type ServerName: String
         # @param ServerType: 服务类型：function | container
         # @type ServerType: String
+        # @param VpcId: vpcId
+        # @type VpcId: String
 
-        attr_accessor :EnvId, :PageSize, :PageNum, :ServerName, :ServerType
+        attr_accessor :EnvId, :PageSize, :PageNum, :ServerName, :ServerType, :VpcId
 
-        def initialize(envid=nil, pagesize=nil, pagenum=nil, servername=nil, servertype=nil)
+        def initialize(envid=nil, pagesize=nil, pagenum=nil, servername=nil, servertype=nil, vpcid=nil)
           @EnvId = envid
           @PageSize = pagesize
           @PageNum = pagenum
           @ServerName = servername
           @ServerType = servertype
+          @VpcId = vpcid
         end
 
         def deserialize(params)
@@ -443,6 +477,7 @@ module TencentCloud
           @PageNum = params['PageNum']
           @ServerName = params['ServerName']
           @ServerType = params['ServerType']
+          @VpcId = params['VpcId']
         end
       end
 

@@ -57,6 +57,31 @@ module TencentCloud
         # 混元生3D接口，基于混元大模型，根据输入的文本描述/图片智能生成3D。
         # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
 
+        # @param request: Request instance for QueryHunyuanTo3DProJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::QueryHunyuanTo3DProJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::QueryHunyuanTo3DProJobResponse`
+        def QueryHunyuanTo3DProJob(request)
+          body = send_request('QueryHunyuanTo3DProJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryHunyuanTo3DProJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 混元生3D接口，基于混元大模型，根据输入的文本描述/图片智能生成3D。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
         # @param request: Request instance for SubmitHunyuanTo3DJob.
         # @type request: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DJobRequest`
         # @rtype: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DJobResponse`
@@ -65,6 +90,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitHunyuanTo3DJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 混元生3D接口，基于混元大模型，根据输入的文本描述/图片智能生成3D。
+        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
+
+        # @param request: Request instance for SubmitHunyuanTo3DProJob.
+        # @type request: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DProJobRequest`
+        # @rtype: :class:`Tencentcloud::ai3d::V20250513::SubmitHunyuanTo3DProJobResponse`
+        def SubmitHunyuanTo3DProJob(request)
+          body = send_request('SubmitHunyuanTo3DProJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitHunyuanTo3DProJobResponse.new
             model.deserialize(response['Response'])
             model
           else

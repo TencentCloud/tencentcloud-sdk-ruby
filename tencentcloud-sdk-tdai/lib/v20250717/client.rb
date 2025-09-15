@@ -17,28 +17,28 @@
 require 'json'
 
 module TencentCloud
-  module Lowcode
-    module V20210108
+  module Tdai
+    module V20250717
       class Client < TencentCloud::Common::AbstractClient
 
         def initialize(credential, region, profile = nil)
-            api_version = '2021-01-08'
-            api_endpoint = 'lowcode.tencentcloudapi.com'
-            sdk_version = 'LOWCODE_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            api_version = '2025-07-17'
+            api_endpoint = 'tdai.tencentcloudapi.com'
+            sdk_version = 'TDAI_' + File.read(File.expand_path('../VERSION', __dir__)).strip
             super(credential, region, api_version, api_endpoint, sdk_version, profile)
         end
 
 
-        # 检查应用发布状态
+        # 本接口（ContinueAgentWork）用于重启智能体实例的值守任务，通常在用户需要重启时使用。
 
-        # @param request: Request instance for CheckDeployApp.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::CheckDeployAppRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::CheckDeployAppResponse`
-        def CheckDeployApp(request)
-          body = send_request('CheckDeployApp', request.serialize)
+        # @param request: Request instance for ContinueAgentWork.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::ContinueAgentWorkRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::ContinueAgentWorkResponse`
+        def ContinueAgentWork(request)
+          body = send_request('ContinueAgentWork', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CheckDeployAppResponse.new
+            model = ContinueAgentWorkResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -53,16 +53,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建知识库
+        # 本接口（CreateAgentInstance）用于创建一个智能体实例，通常在用户购买一个智能体实例时使用。
 
-        # @param request: Request instance for CreateKnowledgeSet.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::CreateKnowledgeSetRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::CreateKnowledgeSetResponse`
-        def CreateKnowledgeSet(request)
-          body = send_request('CreateKnowledgeSet', request.serialize)
+        # @param request: Request instance for CreateAgentInstance.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::CreateAgentInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::CreateAgentInstanceResponse`
+        def CreateAgentInstance(request)
+          body = send_request('CreateAgentInstance', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateKnowledgeSetResponse.new
+            model = CreateAgentInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -77,16 +77,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除应用绑定小程序
+        # 用于创建一次回话的SSE接口
 
-        # @param request: Request instance for DeleteAppBindWxApp.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeleteAppBindWxAppRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeleteAppBindWxAppResponse`
-        def DeleteAppBindWxApp(request)
-          body = send_request('DeleteAppBindWxApp', request.serialize)
+        # @param request: Request instance for CreateChatCompletion.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::CreateChatCompletionRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::CreateChatCompletionResponse`
+        def CreateChatCompletion(request)
+          body = send_request('CreateChatCompletion', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAppBindWxAppResponse.new
+            model = CreateChatCompletionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -101,16 +101,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除知识库下文档
+        # 查询智能体值守任务详情
 
-        # @param request: Request instance for DeleteKnowledgeDocumentSet.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeleteKnowledgeDocumentSetRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeleteKnowledgeDocumentSetResponse`
-        def DeleteKnowledgeDocumentSet(request)
-          body = send_request('DeleteKnowledgeDocumentSet', request.serialize)
+        # @param request: Request instance for DescribeAgentDutyTaskDetail.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeAgentDutyTaskDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeAgentDutyTaskDetailResponse`
+        def DescribeAgentDutyTaskDetail(request)
+          body = send_request('DescribeAgentDutyTaskDetail', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteKnowledgeDocumentSetResponse.new
+            model = DescribeAgentDutyTaskDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -125,16 +125,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除知识库
+        # 查询智能体值守任务列表
 
-        # @param request: Request instance for DeleteKnowledgeSet.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeleteKnowledgeSetRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeleteKnowledgeSetResponse`
-        def DeleteKnowledgeSet(request)
-          body = send_request('DeleteKnowledgeSet', request.serialize)
+        # @param request: Request instance for DescribeAgentDutyTasks.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeAgentDutyTasksRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeAgentDutyTasksResponse`
+        def DescribeAgentDutyTasks(request)
+          body = send_request('DescribeAgentDutyTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteKnowledgeSetResponse.new
+            model = DescribeAgentDutyTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -149,16 +149,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 发布应用
+        # 本接口（DescribeAgentInstance）用于查询智能体实例详情，通常在用户查询所购买的所有智能体实例详情时使用。
 
-        # @param request: Request instance for DeployApp.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DeployAppRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DeployAppResponse`
-        def DeployApp(request)
-          body = send_request('DeployApp', request.serialize)
+        # @param request: Request instance for DescribeAgentInstance.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeAgentInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeAgentInstanceResponse`
+        def DescribeAgentInstance(request)
+          body = send_request('DescribeAgentInstance', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeployAppResponse.new
+            model = DescribeAgentInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -173,16 +173,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 分页获取当前用户的应用列表
+        # 本接口（DescribeAgentInstances）用于查询智能体实例列表，通常在用户查询所购买的所有智能体列表。
 
-        # @param request: Request instance for DescribeApps.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeAppsRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeAppsResponse`
-        def DescribeApps(request)
-          body = send_request('DescribeApps', request.serialize)
+        # @param request: Request instance for DescribeAgentInstances.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeAgentInstancesRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeAgentInstancesResponse`
+        def DescribeAgentInstances(request)
+          body = send_request('DescribeAgentInstances', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAppsResponse.new
+            model = DescribeAgentInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -197,16 +197,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取数据源详情列表
+        # 本接口（DescribeAgents）用于查询智能体列表，通常在用户查询所购买的所有智能体列表。
 
-        # @param request: Request instance for DescribeDataSourceList.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeDataSourceListRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeDataSourceListResponse`
-        def DescribeDataSourceList(request)
-          body = send_request('DescribeDataSourceList', request.serialize)
+        # @param request: Request instance for DescribeAgents.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeAgentsRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeAgentsResponse`
+        def DescribeAgents(request)
+          body = send_request('DescribeAgents', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeDataSourceListResponse.new
+            model = DescribeAgentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -221,16 +221,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取知识库下文档详情
+        # 本接口（DescribeChatDetail）用于查询对话详情，通常在用户查询会话的历史记录时使用。
 
-        # @param request: Request instance for DescribeKnowledgeDocumentSetDetail.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeDocumentSetDetailRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeDocumentSetDetailResponse`
-        def DescribeKnowledgeDocumentSetDetail(request)
-          body = send_request('DescribeKnowledgeDocumentSetDetail', request.serialize)
+        # @param request: Request instance for DescribeChatDetail.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeChatDetailRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeChatDetailResponse`
+        def DescribeChatDetail(request)
+          body = send_request('DescribeChatDetail', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeKnowledgeDocumentSetDetailResponse.new
+            model = DescribeChatDetailResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -245,16 +245,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询知识库下文件集合
+        # 本接口（DescribeChats）用于查询对话列表，通常在用户查询会话列表时使用。
 
-        # @param request: Request instance for DescribeKnowledgeDocumentSetList.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeDocumentSetListRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeDocumentSetListResponse`
-        def DescribeKnowledgeDocumentSetList(request)
-          body = send_request('DescribeKnowledgeDocumentSetList', request.serialize)
+        # @param request: Request instance for DescribeChats.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeChatsRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeChatsResponse`
+        def DescribeChats(request)
+          body = send_request('DescribeChats', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeKnowledgeDocumentSetListResponse.new
+            model = DescribeChatsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -269,16 +269,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询知识库
+        # 智能体报告地址生成并下载
 
-        # @param request: Request instance for DescribeKnowledgeSetList.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeSetListRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeKnowledgeSetListResponse`
-        def DescribeKnowledgeSetList(request)
-          body = send_request('DescribeKnowledgeSetList', request.serialize)
+        # @param request: Request instance for DescribeReportUrl.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::DescribeReportUrlRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::DescribeReportUrlResponse`
+        def DescribeReportUrl(request)
+          body = send_request('DescribeReportUrl', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeKnowledgeSetListResponse.new
+            model = DescribeReportUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -293,16 +293,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取角色关联的用户列表
+        # 本接口（IsolateAgentInstance）用于隔离智能体实例，通常在用户需要隔离智能体实例时使用。
 
-        # @param request: Request instance for DescribeRelatedUsers.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeRelatedUsersRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeRelatedUsersResponse`
-        def DescribeRelatedUsers(request)
-          body = send_request('DescribeRelatedUsers', request.serialize)
+        # @param request: Request instance for IsolateAgentInstance.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::IsolateAgentInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::IsolateAgentInstanceResponse`
+        def IsolateAgentInstance(request)
+          body = send_request('IsolateAgentInstance', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeRelatedUsersResponse.new
+            model = IsolateAgentInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -317,16 +317,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询资源关联的角色列表
+        # 本接口（ModifyAgentInstanceParameters）用于修改智能体实例的参数列表，通常在用户需要配置智能体实例时使用。
 
-        # @param request: Request instance for DescribeResourceRoleList.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::DescribeResourceRoleListRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::DescribeResourceRoleListResponse`
-        def DescribeResourceRoleList(request)
-          body = send_request('DescribeResourceRoleList', request.serialize)
+        # @param request: Request instance for ModifyAgentInstanceParameters.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::ModifyAgentInstanceParametersRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::ModifyAgentInstanceParametersResponse`
+        def ModifyAgentInstanceParameters(request)
+          body = send_request('ModifyAgentInstanceParameters', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeResourceRoleListResponse.new
+            model = ModifyAgentInstanceParametersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -341,16 +341,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口提供应用绑定微信ID功能。
+        # 本接口（ModifyChatTitle）用于修改会话标题，通常在用户修改会话标题时使用。
 
-        # @param request: Request instance for PutWxAppIdToWeApp.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::PutWxAppIdToWeAppRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::PutWxAppIdToWeAppResponse`
-        def PutWxAppIdToWeApp(request)
-          body = send_request('PutWxAppIdToWeApp', request.serialize)
+        # @param request: Request instance for ModifyChatTitle.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::ModifyChatTitleRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::ModifyChatTitleResponse`
+        def ModifyChatTitle(request)
+          body = send_request('ModifyChatTitle', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = PutWxAppIdToWeAppResponse.new
+            model = ModifyChatTitleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,16 +365,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 知识库文档搜索接口
+        # 本接口（PauseAgentWork）用于暂停智能体实例的值守任务，通常在用户需要暂停时使用。
 
-        # @param request: Request instance for SearchDocList.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::SearchDocListRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::SearchDocListResponse`
-        def SearchDocList(request)
-          body = send_request('SearchDocList', request.serialize)
+        # @param request: Request instance for PauseAgentWork.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::PauseAgentWorkRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::PauseAgentWorkResponse`
+        def PauseAgentWork(request)
+          body = send_request('PauseAgentWork', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SearchDocListResponse.new
+            model = PauseAgentWorkResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -389,16 +389,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新知识库
+        # 本接口（RecoverAgentInstance）用于解隔离智能体实例，通常在用户需要解隔离智能体实例时使用。
 
-        # @param request: Request instance for UpdateKnowledgeSet.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::UpdateKnowledgeSetRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::UpdateKnowledgeSetResponse`
-        def UpdateKnowledgeSet(request)
-          body = send_request('UpdateKnowledgeSet', request.serialize)
+        # @param request: Request instance for RecoverAgentInstance.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::RecoverAgentInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::RecoverAgentInstanceResponse`
+        def RecoverAgentInstance(request)
+          body = send_request('RecoverAgentInstance', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = UpdateKnowledgeSetResponse.new
+            model = RecoverAgentInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -413,16 +413,40 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新知识库
+        # 本接口（RemoveChat）用于删除会话，通常在用户删除会话时使用。
 
-        # @param request: Request instance for UploadKnowledgeDocumentSet.
-        # @type request: :class:`Tencentcloud::lowcode::V20210108::UploadKnowledgeDocumentSetRequest`
-        # @rtype: :class:`Tencentcloud::lowcode::V20210108::UploadKnowledgeDocumentSetResponse`
-        def UploadKnowledgeDocumentSet(request)
-          body = send_request('UploadKnowledgeDocumentSet', request.serialize)
+        # @param request: Request instance for RemoveChat.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::RemoveChatRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::RemoveChatResponse`
+        def RemoveChat(request)
+          body = send_request('RemoveChat', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = UploadKnowledgeDocumentSetResponse.new
+            model = RemoveChatResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（TerminateAgentInstance）用于下线智能体实例，通常在用户需要下线智能体实例时使用。
+
+        # @param request: Request instance for TerminateAgentInstance.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::TerminateAgentInstanceRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::TerminateAgentInstanceResponse`
+        def TerminateAgentInstance(request)
+          body = send_request('TerminateAgentInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TerminateAgentInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else

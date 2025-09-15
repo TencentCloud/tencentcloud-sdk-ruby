@@ -792,8 +792,7 @@ module TencentCloud
         # @param UserId: 需要新增送检的用户号。示例：1234
         # (若UserId不填，则UserIdString必填；两者选其一；两者都填以UserIdString为准)
         # @type UserId: Integer
-        # @param UserIdString: 需要新增送检的用户号。示例："1234"
-        # (若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
+        # @param UserIdString: 需要新增送检的用户号，长度不超过1024字符。示例："1234"(若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
         # @type UserIdString: String
         # @param ExpirationTime: 当前用户送检过期时间，单位：秒。
         # 若参数不为0，则在过期时间之后，用户不会被送检。
@@ -995,8 +994,7 @@ module TencentCloud
         # @param UserId: 需要删除送检的用户号。示例：1234
         # (若UserId不填，则UserIdString必填；两者选其一；两者都填以UserIdString为准)
         # @type UserId: Integer
-        # @param UserIdString: 需要删除送检的用户号。示例："1234"
-        # (若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
+        # @param UserIdString: 需要删除送检的用户号，长度不超过1024字符。示例："1234"(若UserIdString不填，则UserId必填；两者选其一；两者都填以UserIdString为准)
         # @type UserIdString: String
 
         attr_accessor :BizId, :UserId, :UserIdString
@@ -3197,9 +3195,9 @@ module TencentCloud
       class UpdateScanRoomsRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID
         # @type BizId: Integer
-        # @param RoomIdString: 需要送检的所有房间号。多个房间号之间用","分隔。示例："0001,0002,0003"
+        # @param RoomIdString: 需要送检的所有房间号。多个房间号之间用","分隔，长度不超过1024字符。示例："0001,0002,0003"
         # @type RoomIdString: String
-        # @param RoomIdRegex: 符合此正则表达式规则的房间号将被送检。示例：^6.*（表示所有以6开头的房间号将被送检）
+        # @param RoomIdRegex: 符合此正则表达式规则的房间号将被送检，最大不能超过10个。示例：^6.*（表示所有以6开头的房间号将被送检）
         # @type RoomIdRegex: Array
 
         attr_accessor :BizId, :RoomIdString, :RoomIdRegex
@@ -3241,9 +3239,9 @@ module TencentCloud
       class UpdateScanUsersRequest < TencentCloud::Common::AbstractModel
         # @param BizId: 应用ID
         # @type BizId: Integer
-        # @param UserIdString: 需要送检的所有用户号。多个用户号之间用","分隔。示例："0001,0002,0003"
+        # @param UserIdString: 需要送检的所有用户号。多个用户号之间用","分隔，长度不超过1024字符。示例："0001,0002,0003"
         # @type UserIdString: String
-        # @param UserIdRegex: 符合此正则表达式规则的用户号将被送检。示例：["^6.*"] 表示所有以6开头的用户号将被送检
+        # @param UserIdRegex: 符合此正则表达式规则的用户号将被送检，最大不能超过10个。示例：["^6.*"] 表示所有以6开头的用户号将被送检
         # @type UserIdRegex: Array
 
         attr_accessor :BizId, :UserIdString, :UserIdRegex

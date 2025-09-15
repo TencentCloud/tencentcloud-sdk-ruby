@@ -11429,6 +11429,9 @@ module TencentCloud
         # @type FileEndPageNumber: Integer
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber
+        extend Gem::Deprecate
+        deprecate :PdfPageNumber, :none, 2025, 9
+        deprecate :PdfPageNumber=, :none, 2025, 9
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil)
           @ImageBase64 = imagebase64

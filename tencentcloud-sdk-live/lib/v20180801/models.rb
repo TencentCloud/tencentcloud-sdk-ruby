@@ -12430,6 +12430,7 @@ module TencentCloud
         # 使用UTC格式时间，
         # 例如：2019-01-08T10:00:00Z。
         # 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#I)。
+        # 4. 只修改EndTime进行续期， 不会影响正在进行中的任务。
         # @type EndTime: String
         # @param VodLoopTimes: 点播拉流转推循环次数。
         # -1：无限循环，直到任务结束。

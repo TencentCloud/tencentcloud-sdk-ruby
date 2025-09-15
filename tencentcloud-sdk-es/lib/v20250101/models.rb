@@ -33,10 +33,16 @@ module TencentCloud
         # @type OnlineSearch: Boolean
         # @param OnlineSearchOptions: 当 OnlineSearch 为 true 时，指定的搜索引擎，默认为 bing。
         # @type OnlineSearchOptions: :class:`Tencentcloud::Es.v20250101.models.OnlineSearchOptions`
+        # @param Tools: 可调用的工具列表，当前支持模型：hunyuan-turbo, deepseek-v3。
+        # @type Tools: Array
+        # @param ToolChoice: 工具使用选项，可选值包括 none、auto、custom。说明：1. 仅对 hunyuan-turbo、deepseek-v3 模型生效。2. none：不调用工具；auto：模型自行选择生成回复或调用工具；custom：强制模型调用指定的工具。3. 未设置时，默认值为auto
+        # @type ToolChoice: String
+        # @param CustomTool: 强制模型调用指定的工具，当参数ToolChoice为custom时，此参数为必填
+        # @type CustomTool: :class:`Tencentcloud::Es.v20250101.models.Tool`
 
-        attr_accessor :Messages, :ModelName, :Stream, :TopP, :Temperature, :OnlineSearch, :OnlineSearchOptions
+        attr_accessor :Messages, :ModelName, :Stream, :TopP, :Temperature, :OnlineSearch, :OnlineSearchOptions, :Tools, :ToolChoice, :CustomTool
 
-        def initialize(messages=nil, modelname=nil, stream=nil, topp=nil, temperature=nil, onlinesearch=nil, onlinesearchoptions=nil)
+        def initialize(messages=nil, modelname=nil, stream=nil, topp=nil, temperature=nil, onlinesearch=nil, onlinesearchoptions=nil, tools=nil, toolchoice=nil, customtool=nil)
           @Messages = messages
           @ModelName = modelname
           @Stream = stream
@@ -44,6 +50,9 @@ module TencentCloud
           @Temperature = temperature
           @OnlineSearch = onlinesearch
           @OnlineSearchOptions = onlinesearchoptions
+          @Tools = tools
+          @ToolChoice = toolchoice
+          @CustomTool = customtool
         end
 
         def deserialize(params)
@@ -63,6 +72,19 @@ module TencentCloud
           unless params['OnlineSearchOptions'].nil?
             @OnlineSearchOptions = OnlineSearchOptions.new
             @OnlineSearchOptions.deserialize(params['OnlineSearchOptions'])
+          end
+          unless params['Tools'].nil?
+            @Tools = []
+            params['Tools'].each do |i|
+              tool_tmp = Tool.new
+              tool_tmp.deserialize(i)
+              @Tools << tool_tmp
+            end
+          end
+          @ToolChoice = params['ToolChoice']
+          unless params['CustomTool'].nil?
+            @CustomTool = Tool.new
+            @CustomTool.deserialize(params['CustomTool'])
           end
         end
       end
@@ -968,6 +990,29 @@ module TencentCloud
         end
       end
 
+      # 用户指定模型使用的工具
+      class Tool < TencentCloud::Common::AbstractModel
+        # @param Type: 工具类型，当前只支持function
+        # @type Type: String
+        # @param Function: 具体要调用的function
+        # @type Function: :class:`Tencentcloud::Es.v20250101.models.ToolFunction`
+
+        attr_accessor :Type, :Function
+
+        def initialize(type=nil, function=nil)
+          @Type = type
+          @Function = function
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['Function'].nil?
+            @Function = ToolFunction.new
+            @Function.deserialize(params['Function'])
+          end
+        end
+      end
+
       # 模型生成的工具调用
       class ToolCall < TencentCloud::Common::AbstractModel
         # @param Id: 工具调用id
@@ -1016,6 +1061,30 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Arguments = params['Arguments']
+        end
+      end
+
+      # function定义
+      class ToolFunction < TencentCloud::Common::AbstractModel
+        # @param Name: function名称，只能包含a-z，A-Z，0-9，_或-
+        # @type Name: String
+        # @param Parameters: function参数，一般为json字符串
+        # @type Parameters: String
+        # @param Description: function的简单描述
+        # @type Description: String
+
+        attr_accessor :Name, :Parameters, :Description
+
+        def initialize(name=nil, parameters=nil, description=nil)
+          @Name = name
+          @Parameters = parameters
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Parameters = params['Parameters']
+          @Description = params['Description']
         end
       end
 

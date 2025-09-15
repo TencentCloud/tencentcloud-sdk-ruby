@@ -3466,7 +3466,7 @@ module TencentCloud
       class DeleteGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取。
         # @type InstanceId: String
-        # @param Group: 消费组名称，可通过DescribeConsumerGroup接口获取。
+        # @param Group: 消费组名称，可通过[DescribeConsumerGroup](https://cloud.tencent.com/document/product/597/40841)接口获取。
         # @type Group: String
 
         attr_accessor :InstanceId, :Group
@@ -3587,7 +3587,7 @@ module TencentCloud
       class DeleteRouteRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
         # @type InstanceId: String
-        # @param RouteId: 路由id,可通过DescribeRoute接口获取
+        # @param RouteId: 路由id,可通过[DescribeRoute](https://cloud.tencent.com/document/product/597/45484)接口获取
         # @type RouteId: Integer
         # @param CallerAppid: 调用方appId
         # @type CallerAppid: Integer
@@ -7687,7 +7687,7 @@ module TencentCloud
       class InquiryPublicNetworkParam < TencentCloud::Common::AbstractModel
         # @param PublicNetworkChargeType: 公网计费模式: BANDWIDTH_PREPAID(包年包月), BANDWIDTH_POSTPAID_BY_HOUR(带宽按小时计费)
         # @type PublicNetworkChargeType: String
-        # @param PublicNetworkMonthly: 公网带宽, 单位MB
+        # @param PublicNetworkMonthly: 公网带宽, 单位MB 取值需是0，或是3的倍数
         # @type PublicNetworkMonthly: Integer
 
         attr_accessor :PublicNetworkChargeType, :PublicNetworkMonthly
@@ -7785,7 +7785,11 @@ module TencentCloud
         # @type MaxGroupNum: Integer
         # @param Cvm: 售卖类型,0:标准版,1:专业版
         # @type Cvm: Integer
-        # @param InstanceType: 类型
+        # @param InstanceType: 实例类型  枚举列表:
+        # profession  :专业版
+        # standards2  :标准版
+        # premium   :高级版
+        # serverless  :serverless版
         # @type InstanceType: String
         # @param Features: 表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。
         # @type Features: Array
@@ -7795,7 +7799,7 @@ module TencentCloud
         # @type MaxConnection: Integer
         # @param PublicNetwork: 公网带宽
         # @type PublicNetwork: Integer
-        # @param DeleteRouteTimestamp: 时间
+        # @param DeleteRouteTimestamp: 该字段已废弃,无实际含义
         # @type DeleteRouteTimestamp: String
         # @param RemainingPartitions: 剩余创建分区数
         # @type RemainingPartitions: Integer
@@ -7803,15 +7807,21 @@ module TencentCloud
         # @type RemainingTopics: Integer
         # @param DynamicDiskConfig: 动态硬盘扩容策略
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
-        # @param InstanceChargeType: 实例计费类型
+        # @param InstanceChargeType: 实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月
         # @type InstanceChargeType: String
         # @param ClusterType: 集群类型
+        # CLOUD_IDC IDC集群
+        # CLOUD_CVM_SHARE CVM共享集群
+        # CLOUD_CVM_YUNTI 云梯CVM集群
+        # CLOUD_CVM    CVM集群
+        # CLOUD_CDC CDC集群
+        # CLOUD_EKS_TSE EKS集群
         # @type ClusterType: String
         # @param FreePartitionNumber: 免费分区数量
         # @type FreePartitionNumber: Integer
         # @param ElasticFloatBandwidth: 弹性带宽上浮值
         # @type ElasticFloatBandwidth: Integer
-        # @param CustomCertId: ssl自定义证书id
+        # @param CustomCertId: ssl自定义证书id  仅自定义证书实例集群返回
         # @type CustomCertId: String
         # @param UncleanLeaderElectionEnable: 集群topic默认 unclean.leader.election.enable配置: 1 开启 0 关闭
         # @type UncleanLeaderElectionEnable: Integer
@@ -9662,7 +9672,7 @@ module TencentCloud
       class MqttParam < TencentCloud::Common::AbstractModel
         # @param Topics: 需要同步的MQTT Topic列表, CSV格式
         # @type Topics: String
-        # @param CleanSession: MQTT clean-session
+        # @param CleanSession: 用于控制会话的持久性。cleanSession 为true时，连接时会创建一个全新的会话。 cleanSession = false时，连接时会恢复之前的会话。
         # @type CleanSession: Boolean
         # @param Resource: MQTT instance-id
         # @type Resource: String
@@ -9872,7 +9882,7 @@ module TencentCloud
         # @type SignalTable: String
         # @param DateTimeZone: datetime 类型字段转换为时间戳的时区
         # @type DateTimeZone: String
-        # @param SelfBuilt: 自建
+        # @param SelfBuilt: 是否为自建集群
         # @type SelfBuilt: Boolean
 
         attr_accessor :Database, :Table, :Resource, :SnapshotMode, :DdlTopic, :DataSourceMonitorMode, :DataSourceMonitorResource, :DataSourceIncrementMode, :DataSourceIncrementColumn, :DataSourceStartFrom, :DataTargetInsertMode, :DataTargetPrimaryKeyField, :DataTargetRecordMapping, :TopicRegex, :TopicReplacement, :KeyColumns, :DropInvalidMessage, :DropCls, :OutputFormat, :IsTablePrefix, :IncludeContentChanges, :IncludeQuery, :RecordWithSchema, :SignalDatabase, :IsTableRegular, :SignalTable, :DateTimeZone, :SelfBuilt
@@ -10535,10 +10545,13 @@ module TencentCloud
         # @param Note: 备注信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
+        # @param Status: 路由的状态。1: 创建中，2: 创建成功，3: 创建失败，4: 删除中，6: 删除失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort, :DeleteTimestamp, :Subnet, :BrokerVipList, :VpcId, :Note
+        attr_accessor :AccessType, :RouteId, :VipType, :VipList, :Domain, :DomainPort, :DeleteTimestamp, :Subnet, :BrokerVipList, :VpcId, :Note, :Status
 
-        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil, deletetimestamp=nil, subnet=nil, brokerviplist=nil, vpcid=nil, note=nil)
+        def initialize(accesstype=nil, routeid=nil, viptype=nil, viplist=nil, domain=nil, domainport=nil, deletetimestamp=nil, subnet=nil, brokerviplist=nil, vpcid=nil, note=nil, status=nil)
           @AccessType = accesstype
           @RouteId = routeid
           @VipType = viptype
@@ -10550,6 +10563,7 @@ module TencentCloud
           @BrokerVipList = brokerviplist
           @VpcId = vpcid
           @Note = note
+          @Status = status
         end
 
         def deserialize(params)
@@ -10578,6 +10592,7 @@ module TencentCloud
           end
           @VpcId = params['VpcId']
           @Note = params['Note']
+          @Status = params['Status']
         end
       end
 
@@ -10826,9 +10841,9 @@ module TencentCloud
         end
       end
 
-      # 标准版销售信息
+      # 各版本销售信息
       class SaleInfo < TencentCloud::Common::AbstractModel
-        # @param Flag: 手动设置的flag标志
+        # @param Flag: 手动设置的flag标志，true表示售罄，false表示可售。
         # @type Flag: Boolean
         # @param Version: ckafka版本号(1.1.1/2.4.2/0.10.2)
         # @type Version: String
@@ -12136,7 +12151,7 @@ module TencentCloud
         # @type IsInternalApp: Integer
         # @param AppId: 应用标识
         # @type AppId: Integer
-        # @param Flag: 标识
+        # @param Flag: 可用区是否售罄标识，true表示已售罄，false表示未售罄。
         # @type Flag: Boolean
         # @param ZoneName: 可用区名称
         # @type ZoneName: String

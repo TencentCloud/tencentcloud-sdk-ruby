@@ -61,8 +61,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2025, 8
-        deprecate :CreateTime=, :none, 2025, 8
+        deprecate :CreateTime, :none, 2025, 9
+        deprecate :CreateTime=, :none, 2025, 9
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -224,10 +224,14 @@ module TencentCloud
         # @type AutoLoadBalance: Boolean
         # @param AccessMode: 访问模式：nearby - 就近访问，balance - 均衡分配，默认就近访问。
         # @type AccessMode: String
+        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
+        # @type ApNodeAsRoNode: String
+        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @type ApQueryToOtherNode: String
 
-        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation, :AutoLoadBalance, :AccessMode
+        attr_accessor :ProxyGroupId, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :FailOver, :AutoAddRo, :ReadOnly, :ProxyAddressId, :TransSplit, :ConnectionPool, :ProxyAllocation, :AutoLoadBalance, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode
 
-        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, proxyaddressid=nil, transsplit=nil, connectionpool=nil, proxyallocation=nil, autoloadbalance=nil, accessmode=nil)
+        def initialize(proxygroupid=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, failover=nil, autoaddro=nil, readonly=nil, proxyaddressid=nil, transsplit=nil, connectionpool=nil, proxyallocation=nil, autoloadbalance=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil)
           @ProxyGroupId = proxygroupid
           @WeightMode = weightmode
           @IsKickOut = iskickout
@@ -242,6 +246,8 @@ module TencentCloud
           @ProxyAllocation = proxyallocation
           @AutoLoadBalance = autoloadbalance
           @AccessMode = accessmode
+          @ApNodeAsRoNode = apnodeasronode
+          @ApQueryToOtherNode = apquerytoothernode
         end
 
         def deserialize(params)
@@ -266,6 +272,8 @@ module TencentCloud
           end
           @AutoLoadBalance = params['AutoLoadBalance']
           @AccessMode = params['AccessMode']
+          @ApNodeAsRoNode = params['ApNodeAsRoNode']
+          @ApQueryToOtherNode = params['ApQueryToOtherNode']
         end
       end
 
@@ -440,8 +448,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2025, 8
-        deprecate :AuditLogFilter=, :none, 2025, 8
+        deprecate :AuditLogFilter, :none, 2025, 9
+        deprecate :AuditLogFilter=, :none, 2025, 9
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1100,10 +1108,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2025, 8
-        deprecate :ExpandPeriod=, :none, 2025, 8
-        deprecate :ShrinkPeriod, :none, 2025, 8
-        deprecate :ShrinkPeriod=, :none, 2025, 8
+        deprecate :ExpandPeriod, :none, 2025, 9
+        deprecate :ExpandPeriod=, :none, 2025, 9
+        deprecate :ShrinkPeriod, :none, 2025, 9
+        deprecate :ShrinkPeriod=, :none, 2025, 9
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1416,8 +1424,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 8
-        deprecate :InstanceId=, :none, 2025, 8
+        deprecate :InstanceId, :none, 2025, 9
+        deprecate :InstanceId=, :none, 2025, 9
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil)
           @Name = name
@@ -2361,8 +2369,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 8
-        deprecate :Filter=, :none, 2025, 8
+        deprecate :Filter, :none, 2025, 9
+        deprecate :Filter=, :none, 2025, 9
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -5084,10 +5092,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2025, 8
-        deprecate :StartTimeMin=, :none, 2025, 8
-        deprecate :StartTimeMax, :none, 2025, 8
-        deprecate :StartTimeMax=, :none, 2025, 8
+        deprecate :StartTimeMin, :none, 2025, 9
+        deprecate :StartTimeMin=, :none, 2025, 9
+        deprecate :StartTimeMax, :none, 2025, 9
+        deprecate :StartTimeMax=, :none, 2025, 9
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -7732,8 +7740,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2025, 8
-        deprecate :CustomConf=, :none, 2025, 8
+        deprecate :CustomConf, :none, 2025, 9
+        deprecate :CustomConf=, :none, 2025, 9
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9700,8 +9708,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 8
-        deprecate :AsyncRequestId=, :none, 2025, 8
+        deprecate :AsyncRequestId, :none, 2025, 9
+        deprecate :AsyncRequestId=, :none, 2025, 9
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10441,8 +10449,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 8
-        deprecate :AuditRuleFilters=, :none, 2025, 8
+        deprecate :AuditRuleFilters, :none, 2025, 9
+        deprecate :AuditRuleFilters=, :none, 2025, 9
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11148,8 +11156,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 8
-        deprecate :AsyncRequestId=, :none, 2025, 8
+        deprecate :AsyncRequestId, :none, 2025, 9
+        deprecate :AsyncRequestId=, :none, 2025, 9
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11574,8 +11582,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2025, 8
-        deprecate :ReplicationDelayTime=, :none, 2025, 8
+        deprecate :ReplicationDelayTime, :none, 2025, 9
+        deprecate :ReplicationDelayTime=, :none, 2025, 9
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11806,8 +11814,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 8
-        deprecate :AuditRuleFilters=, :none, 2025, 8
+        deprecate :AuditRuleFilters, :none, 2025, 9
+        deprecate :AuditRuleFilters=, :none, 2025, 9
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12086,8 +12094,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 8
-        deprecate :IsSucess=, :none, 2025, 8
+        deprecate :IsSucess, :none, 2025, 9
+        deprecate :IsSucess=, :none, 2025, 9
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -12291,10 +12299,14 @@ module TencentCloud
         # @type AccessMode: String
         # @param AutoLoadBalance: 是否开启自动负载均衡
         # @type AutoLoadBalance: Boolean
+        # @param ApNodeAsRoNode: 是否把libra当作ro节点
+        # @type ApNodeAsRoNode: Boolean
+        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @type ApQueryToOtherNode: Boolean
 
-        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance
+        attr_accessor :ProxyAddressId, :UniqVpcId, :UniqSubnetId, :Vip, :VPort, :WeightMode, :IsKickOut, :MinCount, :MaxDelay, :AutoAddRo, :ReadOnly, :TransSplit, :FailOver, :ConnectionPool, :Desc, :ProxyAllocation, :AccessMode, :AutoLoadBalance, :ApNodeAsRoNode, :ApQueryToOtherNode
 
-        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil, accessmode=nil, autoloadbalance=nil)
+        def initialize(proxyaddressid=nil, uniqvpcid=nil, uniqsubnetid=nil, vip=nil, vport=nil, weightmode=nil, iskickout=nil, mincount=nil, maxdelay=nil, autoaddro=nil, readonly=nil, transsplit=nil, failover=nil, connectionpool=nil, desc=nil, proxyallocation=nil, accessmode=nil, autoloadbalance=nil, apnodeasronode=nil, apquerytoothernode=nil)
           @ProxyAddressId = proxyaddressid
           @UniqVpcId = uniqvpcid
           @UniqSubnetId = uniqsubnetid
@@ -12313,6 +12325,8 @@ module TencentCloud
           @ProxyAllocation = proxyallocation
           @AccessMode = accessmode
           @AutoLoadBalance = autoloadbalance
+          @ApNodeAsRoNode = apnodeasronode
+          @ApQueryToOtherNode = apquerytoothernode
         end
 
         def deserialize(params)
@@ -12341,6 +12355,8 @@ module TencentCloud
           end
           @AccessMode = params['AccessMode']
           @AutoLoadBalance = params['AutoLoadBalance']
+          @ApNodeAsRoNode = params['ApNodeAsRoNode']
+          @ApQueryToOtherNode = params['ApQueryToOtherNode']
         end
       end
 

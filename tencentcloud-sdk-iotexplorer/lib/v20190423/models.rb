@@ -3379,22 +3379,29 @@ module TencentCloud
         # @param DeviceName: 设备名称
         # @type DeviceName: String
         # @param ServiceType: 云存 AI 服务类型。可选值：
-        # - `RealtimeObjectDetect`：目标检测
         # - `Highlight`：视频浓缩
         # @type ServiceType: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
+        # @param UserId: 用户 ID
+        # @type UserId: String
 
-        attr_accessor :ProductId, :DeviceName, :ServiceType
+        attr_accessor :ProductId, :DeviceName, :ServiceType, :ChannelId, :UserId
 
-        def initialize(productid=nil, devicename=nil, servicetype=nil)
+        def initialize(productid=nil, devicename=nil, servicetype=nil, channelid=nil, userid=nil)
           @ProductId = productid
           @DeviceName = devicename
           @ServiceType = servicetype
+          @ChannelId = channelid
+          @UserId = userid
         end
 
         def deserialize(params)
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @ServiceType = params['ServiceType']
+          @ChannelId = params['ChannelId']
+          @UserId = params['UserId']
         end
       end
 

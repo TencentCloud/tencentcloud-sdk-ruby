@@ -1457,6 +1457,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeMcpServerTemplates）用于查询MCP Server模板列表。
+
+        # @param request: Request instance for DescribeMcpServerTemplates.
+        # @type request: :class:`Tencentcloud::lighthouse::V20200324::DescribeMcpServerTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::lighthouse::V20200324::DescribeMcpServerTemplatesResponse`
+        def DescribeMcpServerTemplates(request)
+          body = send_request('DescribeMcpServerTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMcpServerTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeMcpServers）用于查询MCP Server列表。
 
         # @param request: Request instance for DescribeMcpServers.
@@ -2006,7 +2030,7 @@ module TencentCloud
         end
 
         # 本接口(ModifyDisksBackupQuota)用于调整云硬盘备份点配额。
-        # 该操作目前仅支持云硬盘类型为数据盘且状态是ATTACHED（已挂载）或 UNATTACHED（待挂载）的云硬盘。
+        # 该操作目前仅支持状态是ATTACHED（已挂载）或 UNATTACHED（待挂载）的云硬盘。
         # 支持批量操作。每次批量请求云硬盘数量上限为15个。
 
         # @param request: Request instance for ModifyDisksBackupQuota.
