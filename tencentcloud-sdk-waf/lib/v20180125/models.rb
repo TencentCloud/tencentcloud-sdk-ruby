@@ -1511,6 +1511,26 @@ module TencentCloud
         end
       end
 
+      # 批量防护失败的域名以及对应的原因。
+      class BatchDomainResult < TencentCloud::Common::AbstractModel
+        # @param Domain: 批量操作中失败的域名
+        # @type Domain: String
+        # @param Message: 操作失败的原因
+        # @type Message: String
+
+        attr_accessor :Domain, :Message
+
+        def initialize(domain=nil, message=nil)
+          @Domain = domain
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Message = params['Message']
+        end
+      end
+
       # 多域名黑白名单describe返回
       class BatchIpAccessControlData < TencentCloud::Common::AbstractModel
         # @param TotalCount: 总数
@@ -2909,6 +2929,80 @@ module TencentCloud
         end
       end
 
+      # CreateBatchIpAccessControl请求参数结构体
+      class CreateBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param IpList: IP参数列表
+        # @type IpList: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ActionType: 42为黑名单，40为白名单
+        # @type ActionType: Integer
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组，和Domains参数二选一
+        # @type GroupIds: Array
+        # @param Domains: 域名列表，如果绑定的是批量域名，和GroupIds参数二选一
+        # @type Domains: Array
+        # @param Note: 备注
+        # @type Note: String
+
+        attr_accessor :IpList, :JobType, :JobDateTime, :ActionType, :GroupIds, :Domains, :Note
+
+        def initialize(iplist=nil, jobtype=nil, jobdatetime=nil, actiontype=nil, groupids=nil, domains=nil, note=nil)
+          @IpList = iplist
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @ActionType = actiontype
+          @GroupIds = groupids
+          @Domains = domains
+          @Note = note
+        end
+
+        def deserialize(params)
+          @IpList = params['IpList']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ActionType = params['ActionType']
+          @GroupIds = params['GroupIds']
+          @Domains = params['Domains']
+          @Note = params['Note']
+        end
+      end
+
+      # CreateBatchIpAccessControl返回参数结构体
+      class CreateBatchIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param Failed: 添加失败的域名列表，如果非空则表示有域名添加失败，整个批量规则添加失败，否则则表示批量规则添加成功。
+        # @type Failed: Array
+        # @param RuleId: 添加成功的批量规则ID
+        # @type RuleId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Failed, :RuleId, :RequestId
+
+        def initialize(failed=nil, ruleid=nil, requestid=nil)
+          @Failed = failed
+          @RuleId = ruleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Failed'].nil?
+            @Failed = []
+            params['Failed'].each do |i|
+              batchdomainresult_tmp = BatchDomainResult.new
+              batchdomainresult_tmp.deserialize(i)
+              @Failed << batchdomainresult_tmp
+            end
+          end
+          @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 计费下单接口出入参Goods
       class CreateDealsGoods < TencentCloud::Common::AbstractModel
         # @param GoodsNum: 商品数量
@@ -3722,6 +3816,38 @@ module TencentCloud
 
         def deserialize(params)
           @FailIds = params['FailIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteBatchIpAccessControl请求参数结构体
+      class DeleteBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: 规则ID列表，支持批量删除
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteBatchIpAccessControl返回参数结构体
+      class DeleteBatchIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -12737,6 +12863,80 @@ module TencentCloud
 
         def deserialize(params)
           @RuleId = params['RuleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBatchIpAccessControl请求参数结构体
+      class ModifyBatchIpAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 编辑的批量规则ID
+        # @type RuleId: Integer
+        # @param IpList: IP参数列表
+        # @type IpList: Array
+        # @param JobType: 规则执行的方式，TimedJob为定时执行，CronJob为周期执行
+        # @type JobType: String
+        # @param JobDateTime: 定时任务配置
+        # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
+        # @param ActionType: 42为黑名单，40为白名单
+        # @type ActionType: Integer
+        # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组，和Domains参数二选一
+        # @type GroupIds: Array
+        # @param Domains: 域名列表，如果绑定的是批量域名，和GroupIds参数二选一
+        # @type Domains: Array
+        # @param Note: 备注
+        # @type Note: String
+
+        attr_accessor :RuleId, :IpList, :JobType, :JobDateTime, :ActionType, :GroupIds, :Domains, :Note
+
+        def initialize(ruleid=nil, iplist=nil, jobtype=nil, jobdatetime=nil, actiontype=nil, groupids=nil, domains=nil, note=nil)
+          @RuleId = ruleid
+          @IpList = iplist
+          @JobType = jobtype
+          @JobDateTime = jobdatetime
+          @ActionType = actiontype
+          @GroupIds = groupids
+          @Domains = domains
+          @Note = note
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @IpList = params['IpList']
+          @JobType = params['JobType']
+          unless params['JobDateTime'].nil?
+            @JobDateTime = JobDateTime.new
+            @JobDateTime.deserialize(params['JobDateTime'])
+          end
+          @ActionType = params['ActionType']
+          @GroupIds = params['GroupIds']
+          @Domains = params['Domains']
+          @Note = params['Note']
+        end
+      end
+
+      # ModifyBatchIpAccessControl返回参数结构体
+      class ModifyBatchIpAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param Failed: 编辑失败的域名列表，如果非空则表示有域名编辑失败，整个批量规则编辑失败，否则则表示批量规则编辑成功。
+        # @type Failed: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Failed, :RequestId
+
+        def initialize(failed=nil, requestid=nil)
+          @Failed = failed
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Failed'].nil?
+            @Failed = []
+            params['Failed'].each do |i|
+              batchdomainresult_tmp = BatchDomainResult.new
+              batchdomainresult_tmp.deserialize(i)
+              @Failed << batchdomainresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

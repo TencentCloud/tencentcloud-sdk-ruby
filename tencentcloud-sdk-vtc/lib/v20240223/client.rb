@@ -29,7 +29,7 @@ module TencentCloud
         end
 
 
-        # 确认视频翻译结果
+        # 确认视频转译结果
 
         # @param request: Request instance for ConfirmVideoTranslateJob.
         # @type request: :class:`Tencentcloud::vtc::V20240223::ConfirmVideoTranslateJobRequest`

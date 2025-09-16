@@ -342,6 +342,26 @@ module TencentCloud
         end
       end
 
+      # 安卓实例宿主机任务信息
+      class AndroidInstanceHostTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param HostSerialNumber: 宿主机序列号
+        # @type HostSerialNumber: String
+
+        attr_accessor :TaskId, :HostSerialNumber
+
+        def initialize(taskid=nil, hostserialnumber=nil)
+          @TaskId = taskid
+          @HostSerialNumber = hostserialnumber
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @HostSerialNumber = params['HostSerialNumber']
+        end
+      end
+
       # 安卓实例镜像信息
       class AndroidInstanceImage < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageId: 镜像 ID
@@ -2361,6 +2381,53 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DistributeAndroidInstanceImageToHosts请求参数结构体
+      class DistributeAndroidInstanceImageToHostsRequest < TencentCloud::Common::AbstractModel
+        # @param HostSerialNumbers: 宿主机序列号数组
+        # @type HostSerialNumbers: Array
+        # @param ImageId: 实例镜像 ID
+        # @type ImageId: String
+
+        attr_accessor :HostSerialNumbers, :ImageId
+
+        def initialize(hostserialnumbers=nil, imageid=nil)
+          @HostSerialNumbers = hostserialnumbers
+          @ImageId = imageid
+        end
+
+        def deserialize(params)
+          @HostSerialNumbers = params['HostSerialNumbers']
+          @ImageId = params['ImageId']
+        end
+      end
+
+      # DistributeAndroidInstanceImageToHosts返回参数结构体
+      class DistributeAndroidInstanceImageToHostsResponse < TencentCloud::Common::AbstractModel
+        # @param TaskSet: 任务集合
+        # @type TaskSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskSet, :RequestId
+
+        def initialize(taskset=nil, requestid=nil)
+          @TaskSet = taskset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskSet'].nil?
+            @TaskSet = []
+            params['TaskSet'].each do |i|
+              androidinstancehosttask_tmp = AndroidInstanceHostTask.new
+              androidinstancehosttask_tmp.deserialize(i)
+              @TaskSet << androidinstancehosttask_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

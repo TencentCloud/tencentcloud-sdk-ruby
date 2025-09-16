@@ -1401,8 +1401,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 8
-        deprecate :Period=, :none, 2025, 8
+        deprecate :Period, :none, 2025, 9
+        deprecate :Period=, :none, 2025, 9
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1904,10 +1904,12 @@ module TencentCloud
         # @type KeepaliveEnable: Boolean
         # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。仅V2新版且后端转发协议为HTTP/HTTPS/GRPC目标组支持该参数。
         # @type SessionExpireTime: Integer
+        # @param IpVersion: IP版本类型。
+        # @type IpVersion: String
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :HealthCheck, :ScheduleAlgorithm, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Type, :Protocol, :HealthCheck, :ScheduleAlgorithm, :Tags, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime, :IpVersion
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, tags=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, type=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, tags=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil, ipversion=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
@@ -1921,6 +1923,7 @@ module TencentCloud
           @FullListenSwitch = fulllistenswitch
           @KeepaliveEnable = keepaliveenable
           @SessionExpireTime = sessionexpiretime
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -1954,6 +1957,7 @@ module TencentCloud
           @FullListenSwitch = params['FullListenSwitch']
           @KeepaliveEnable = params['KeepaliveEnable']
           @SessionExpireTime = params['SessionExpireTime']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -5680,8 +5684,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 8
-        deprecate :Log=, :none, 2025, 8
+        deprecate :Log, :none, 2025, 9
+        deprecate :Log=, :none, 2025, 9
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil)
           @LoadBalancerId = loadbalancerid
@@ -7704,7 +7708,7 @@ module TencentCloud
         # @type Targets: Array
         # @param LocationId: 转发规则的ID，七层规则时需要此参数，4层规则不需要。
         # @type LocationId: String
-        # @param Tag: 后端服务修改后的标签。此参数的优先级低于前述[Target](https://cloud.tencent.com/document/api/214/30694#Target)中的Tag参数，即最终的标签以Target中的Tag参数值为准，仅当Target中的Weight参数为空时，才以RsTagRule中的Tag参数为准。
+        # @param Tag: 后端服务修改后的标签。此参数的优先级低于前述[Target](https://cloud.tencent.com/document/api/214/30694#Target)中的Tag参数，即最终的标签以Target中的Tag参数值为准，仅当Target中的Tag参数为空时，才以RsTagRule中的Tag参数为准。
         # @type Tag: String
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Tag
@@ -7748,10 +7752,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 8
-        deprecate :Domain=, :none, 2025, 8
-        deprecate :Url, :none, 2025, 8
-        deprecate :Url=, :none, 2025, 8
+        deprecate :Domain, :none, 2025, 9
+        deprecate :Domain=, :none, 2025, 9
+        deprecate :Url, :none, 2025, 9
+        deprecate :Url=, :none, 2025, 9
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8704,10 +8708,12 @@ module TencentCloud
         # @type KeepaliveEnable: Boolean
         # @param SessionExpireTime: 会话保持时间，仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
         # @type SessionExpireTime: Integer
+        # @param IpVersion: IP版本。
+        # @type IpVersion: String
 
-        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :ScheduleAlgorithm, :HealthCheck, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :ScheduleAlgorithm, :HealthCheck, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime, :IpVersion
 
-        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, schedulealgorithm=nil, healthcheck=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupid=nil, vpcid=nil, targetgroupname=nil, port=nil, createdtime=nil, updatedtime=nil, associatedrule=nil, protocol=nil, schedulealgorithm=nil, healthcheck=nil, targetgrouptype=nil, associatedrulecount=nil, registeredinstancescount=nil, tag=nil, weight=nil, fulllistenswitch=nil, keepaliveenable=nil, sessionexpiretime=nil, ipversion=nil)
           @TargetGroupId = targetgroupid
           @VpcId = vpcid
           @TargetGroupName = targetgroupname
@@ -8726,6 +8732,7 @@ module TencentCloud
           @FullListenSwitch = fulllistenswitch
           @KeepaliveEnable = keepaliveenable
           @SessionExpireTime = sessionexpiretime
+          @IpVersion = ipversion
         end
 
         def deserialize(params)
@@ -8764,6 +8771,7 @@ module TencentCloud
           @FullListenSwitch = params['FullListenSwitch']
           @KeepaliveEnable = params['KeepaliveEnable']
           @SessionExpireTime = params['SessionExpireTime']
+          @IpVersion = params['IpVersion']
         end
       end
 
@@ -8818,8 +8826,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 8
-        deprecate :HealthStatusDetial=, :none, 2025, 8
+        deprecate :HealthStatusDetial, :none, 2025, 9
+        deprecate :HealthStatusDetial=, :none, 2025, 9
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

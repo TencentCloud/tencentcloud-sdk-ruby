@@ -118,16 +118,19 @@ module TencentCloud
         # @type MaxTokens: Integer
         # @param EnableSearch: 是否启用联网搜索
         # @type EnableSearch: Boolean
+        # @param Thinking: 思维链开关，本参数仅在deepseek v3.1时生效
+        # @type Thinking: :class:`Tencentcloud::Lkeap.v20240522.models.Thinking`
 
-        attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens, :EnableSearch
+        attr_accessor :Model, :Messages, :Stream, :Temperature, :MaxTokens, :EnableSearch, :Thinking
 
-        def initialize(model=nil, messages=nil, stream=nil, temperature=nil, maxtokens=nil, enablesearch=nil)
+        def initialize(model=nil, messages=nil, stream=nil, temperature=nil, maxtokens=nil, enablesearch=nil, thinking=nil)
           @Model = model
           @Messages = messages
           @Stream = stream
           @Temperature = temperature
           @MaxTokens = maxtokens
           @EnableSearch = enablesearch
+          @Thinking = thinking
         end
 
         def deserialize(params)
@@ -144,6 +147,10 @@ module TencentCloud
           @Temperature = params['Temperature']
           @MaxTokens = params['MaxTokens']
           @EnableSearch = params['EnableSearch']
+          unless params['Thinking'].nil?
+            @Thinking = Thinking.new
+            @Thinking.deserialize(params['Thinking'])
+          end
         end
       end
 
@@ -2170,6 +2177,25 @@ module TencentCloud
 
         def deserialize(params)
           @PageNumber = params['PageNumber']
+        end
+      end
+
+      # 思维链开关类型
+      class Thinking < TencentCloud::Common::AbstractModel
+        # @param Type: 控制开启思维链，默认disabled
+
+        # enabled：开启思维链
+        # disabled：关闭思维链
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
         end
       end
 

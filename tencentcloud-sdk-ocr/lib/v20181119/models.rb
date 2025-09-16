@@ -3153,7 +3153,7 @@ module TencentCloud
         # @param ItemNames: 自定义结构化功能需返回的字段名称，例：若客户想新增返回姓名、性别两个字段的识别结果，则输入ItemNames=["姓名","性别"]
         # @type ItemNames: Array
         # @param ItemNamesShowMode: true：仅输出自定义字段
-        # flase：输出默认字段+自定义字段
+        # false：输出默认字段+自定义字段
         # 默认true
         # @type ItemNamesShowMode: Boolean
         # @param ReturnFullText: 是否开启全文字段识别

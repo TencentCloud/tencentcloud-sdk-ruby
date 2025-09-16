@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量IP黑白名单新增接口
+
+        # @param request: Request instance for CreateBatchIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateBatchIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateBatchIpAccessControlResponse`
+        def CreateBatchIpAccessControl(request)
+          body = send_request('CreateBatchIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBatchIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 计费资源购买、续费下单接口
 
         # @param request: Request instance for CreateDeals.
@@ -567,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAttackWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量黑白名单删除接口
+
+        # @param request: Request instance for DeleteBatchIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteBatchIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteBatchIpAccessControlResponse`
+        def DeleteBatchIpAccessControl(request)
+          body = send_request('DeleteBatchIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBatchIpAccessControlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3137,6 +3185,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAttackWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量IP黑白名单新增接口
+
+        # @param request: Request instance for ModifyBatchIpAccessControl.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBatchIpAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBatchIpAccessControlResponse`
+        def ModifyBatchIpAccessControl(request)
+          body = send_request('ModifyBatchIpAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBatchIpAccessControlResponse.new
             model.deserialize(response['Response'])
             model
           else
