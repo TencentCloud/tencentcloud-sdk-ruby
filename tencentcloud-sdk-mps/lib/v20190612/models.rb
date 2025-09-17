@@ -832,6 +832,7 @@ module TencentCloud
         # <li>Highlight：智能精彩集锦</li>
         # <li>DeLogo：智能擦除</li>
         # <li>Description：大模型摘要</li>
+        # <li>Dubbing：智能译制</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -863,10 +864,13 @@ module TencentCloud
         # @param HorizontalToVerticalTask: 视频内容分析横转竖任务的查询结果，当任务类型为 HorizontalToVertical 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalToVerticalTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskHorizontalToVerticalResult`
+        # @param DubbingTask: 视频内容分析译制任务的查询结果，当任务类型为 Dubbing 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDubbingResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -878,6 +882,7 @@ module TencentCloud
           @HeadTailTask = headtailtask
           @DescriptionTask = descriptiontask
           @HorizontalToVerticalTask = horizontaltoverticaltask
+          @DubbingTask = dubbingtask
         end
 
         def deserialize(params)
@@ -921,6 +926,10 @@ module TencentCloud
           unless params['HorizontalToVerticalTask'].nil?
             @HorizontalToVerticalTask = AiAnalysisTaskHorizontalToVerticalResult.new
             @HorizontalToVerticalTask.deserialize(params['HorizontalToVerticalTask'])
+          end
+          unless params['DubbingTask'].nil?
+            @DubbingTask = AiAnalysisTaskDubbingResult.new
+            @DubbingTask.deserialize(params['DubbingTask'])
           end
         end
       end
@@ -1125,15 +1134,23 @@ module TencentCloud
         # @param SubtitlePos: 擦除的字幕位置。**注意**：仅对字幕提取且开启返回字幕位置时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitlePos: :class:`Tencentcloud::Mps.v20190612.models.SubtitlePosition`
+        # @param VoiceClonedVideo: 音色克隆后的视频文件地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceClonedVideo: String
+        # @param VoiceClonedMarkFile: 音色克隆的标注文件地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VoiceClonedMarkFile: String
 
-        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos
+        attr_accessor :Path, :OutputStorage, :OriginSubtitlePath, :TranslateSubtitlePath, :SubtitlePos, :VoiceClonedVideo, :VoiceClonedMarkFile
 
-        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil)
+        def initialize(path=nil, outputstorage=nil, originsubtitlepath=nil, translatesubtitlepath=nil, subtitlepos=nil, voiceclonedvideo=nil, voiceclonedmarkfile=nil)
           @Path = path
           @OutputStorage = outputstorage
           @OriginSubtitlePath = originsubtitlepath
           @TranslateSubtitlePath = translatesubtitlepath
           @SubtitlePos = subtitlepos
+          @VoiceClonedVideo = voiceclonedvideo
+          @VoiceClonedMarkFile = voiceclonedmarkfile
         end
 
         def deserialize(params)
@@ -1148,6 +1165,8 @@ module TencentCloud
             @SubtitlePos = SubtitlePosition.new
             @SubtitlePos.deserialize(params['SubtitlePos'])
           end
+          @VoiceClonedVideo = params['VoiceClonedVideo']
+          @VoiceClonedMarkFile = params['VoiceClonedMarkFile']
         end
       end
 
@@ -1263,6 +1282,88 @@ module TencentCloud
           end
           unless params['Output'].nil?
             @Output = AiAnalysisTaskDescriptionOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
+      # 智能译制任务输入类型
+      class AiAnalysisTaskDubbingInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频译制模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能译制结果信息
+      class AiAnalysisTaskDubbingOutput < TencentCloud::Common::AbstractModel
+        # @param VideoPath: 译制视频路径。
+        # @type VideoPath: String
+        # @param SpeakerPath: 标记文件路径
+        # @type SpeakerPath: String
+        # @param OutputStorage: 译制视频存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :VideoPath, :SpeakerPath, :OutputStorage
+
+        def initialize(videopath=nil, speakerpath=nil, outputstorage=nil)
+          @VideoPath = videopath
+          @SpeakerPath = speakerpath
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @VideoPath = params['VideoPath']
+          @SpeakerPath = params['SpeakerPath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 智能译制结果类型
+      class AiAnalysisTaskDubbingResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能译制任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDubbingInput`
+        # @param Output: 智能译制任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDubbingOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskDubbingInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskDubbingOutput.new
             @Output.deserialize(params['Output'])
           end
         end
@@ -5329,16 +5430,15 @@ module TencentCloud
         # @param Type: 类型名称。取值如下：
 
         # <li>Dongjing：东京</li>
-        # <li>QingJiaopian：轻胶片</li>
+        # <li>Qingjiaopian：轻胶片</li>
         # <li>Meiwei：美味</li>
-
         # @type Type: String
         # @param Switch: 能力配置开关，可选值：
         # <li>ON：开启；</li>
         # <li>OFF：关闭。</li>
         # 默认值：ON。
         # @type Switch: String
-        # @param Value: 效果强度，值范围：[0, 100]。
+        # @param Value: 效果强度，值范围：[-100, 100]。
         # @type Value: Integer
 
         attr_accessor :Type, :Switch, :Value
@@ -12766,6 +12866,8 @@ module TencentCloud
         # @param LiveStreamProcessTask: 直播流处理任务信息，仅当 TaskType 为 LiveStreamProcessTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveStreamProcessTask: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamProcessTask`
+        # @param ExtractBlindWatermarkTask: 提取数字水印任务信息，仅当 TaskType 为 ExtractBlindWatermark，该字段有值。
+        # @type ExtractBlindWatermarkTask: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkTask`
         # @param TaskNotifyConfig: 任务的事件通知信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
@@ -12786,9 +12888,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :EditMediaTask, :WorkflowTask, :LiveStreamProcessTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :ScheduleTask, :LiveScheduleTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :EditMediaTask, :WorkflowTask, :LiveStreamProcessTask, :ExtractBlindWatermarkTask, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ExtInfo, :ScheduleTask, :LiveScheduleTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, editmediatask=nil, workflowtask=nil, livestreamprocesstask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, scheduletask=nil, livescheduletask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, editmediatask=nil, workflowtask=nil, livestreamprocesstask=nil, extractblindwatermarktask=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, extinfo=nil, scheduletask=nil, livescheduletask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -12797,6 +12899,7 @@ module TencentCloud
           @EditMediaTask = editmediatask
           @WorkflowTask = workflowtask
           @LiveStreamProcessTask = livestreamprocesstask
+          @ExtractBlindWatermarkTask = extractblindwatermarktask
           @TaskNotifyConfig = tasknotifyconfig
           @TasksPriority = taskspriority
           @SessionId = sessionid
@@ -12824,6 +12927,10 @@ module TencentCloud
           unless params['LiveStreamProcessTask'].nil?
             @LiveStreamProcessTask = LiveStreamProcessTask.new
             @LiveStreamProcessTask.deserialize(params['LiveStreamProcessTask'])
+          end
+          unless params['ExtractBlindWatermarkTask'].nil?
+            @ExtractBlindWatermarkTask = ExtractBlindWatermarkTask.new
+            @ExtractBlindWatermarkTask.deserialize(params['ExtractBlindWatermarkTask'])
           end
           unless params['TaskNotifyConfig'].nil?
             @TaskNotifyConfig = TaskNotifyConfig.new
@@ -14254,6 +14361,81 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 提取视频数字水印任务信息
+      class ExtractBlindWatermarkTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 媒体处理任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务流状态，取值：
+        # <li>WAITING：等待中；</li>
+        # <li>PROCESSING：处理中；</li>
+        # <li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param InputInfo: 媒体处理的目标文件信息。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li> <li>blind-ab：ab版权数字水印；</li>
+        # @type Type: String
+        # @param IsDetected: 标记是否检测到水印，如果该参数为true， Result字段将返回水印提取结果，如果该参数为false，Result字段不会返回。
+        # @type IsDetected: Boolean
+        # @param Result: 提取出的数字水印内容，当没有检测到水印时该字段不会返回。
+        # @type Result: String
+        # @param ExtractBlindWatermarkConfig: 提取数字水印配置。
+        # @type ExtractBlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkTaskConfig`
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :InputInfo, :Type, :IsDetected, :Result, :ExtractBlindWatermarkConfig
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, inputinfo=nil, type=nil, isdetected=nil, result=nil, extractblindwatermarkconfig=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @InputInfo = inputinfo
+          @Type = type
+          @IsDetected = isdetected
+          @Result = result
+          @ExtractBlindWatermarkConfig = extractblindwatermarkconfig
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @Type = params['Type']
+          @IsDetected = params['IsDetected']
+          @Result = params['Result']
+          unless params['ExtractBlindWatermarkConfig'].nil?
+            @ExtractBlindWatermarkConfig = ExtractBlindWatermarkTaskConfig.new
+            @ExtractBlindWatermarkConfig.deserialize(params['ExtractBlindWatermarkConfig'])
+          end
+        end
+      end
+
+      # 提取视频转码数字水印任务配置
+      class ExtractBlindWatermarkTaskConfig < TencentCloud::Common::AbstractModel
+        # @param SegmentDuration: 当提取数字水印类型为blind-abseq时有效，用于指定输入视频的切片时长，单位：毫秒。
+        # 如果不填默认切片时长为5秒。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SegmentDuration: Integer
+
+        attr_accessor :SegmentDuration
+
+        def initialize(segmentduration=nil)
+          @SegmentDuration = segmentduration
+        end
+
+        def deserialize(params)
+          @SegmentDuration = params['SegmentDuration']
         end
       end
 

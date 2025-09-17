@@ -153,7 +153,9 @@ module TencentCloud
       class ApplyParamsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceIds: Array
-        # @param TemplateId: 应用的参数模板ID，请通过接口[DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/239/58748)的返回参数 **TemplateId** 获取参数模板 ID。
+        # @param TemplateId: 应用的参数模板ID。
+        # - 请通过接口 [DescribeParamTemplateInfo](https://cloud.tencent.com/document/product/239/58748) 的返回参数 **TemplateId** 获取参数模板 ID。
+        # - 仅当参数模板版本与目标实例的架构版本一致时，操作才能成功执行。版本不匹配将触发执行错误。
         # @type TemplateId: String
 
         attr_accessor :InstanceIds, :TemplateId
@@ -2211,9 +2213,13 @@ module TencentCloud
         # @type ExecutionEndDate: String
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param PageSize: 输出每页显示事件的数量，默认：10，最大100。
+        # @param PageSize: 输出每页显示事件的数量。
+        # - 默认值：10。
+        # - 取值范围：[1,100]。
         # @type PageSize: Integer
-        # @param PageNo: 配置查询事件的输出页码，即支持根据PageNo（页码）与 PageSize （每页输出数量）查询某一页的事件。默认：1。
+        # @param PageNo: 配置查询事件的输出页码，即支持根据PageNo（页码）与 PageSize （每页输出数量）查询某一页的事件。
+        # - 默认值：1。
+        # - 取值范围：大于0 的正整数。
         # @type PageNo: Integer
         # @param Status: 事件当前状态。
         # - Waiting：未到达执行日期或不在维护时间窗内的事件。
@@ -3998,7 +4004,7 @@ module TencentCloud
 
       # DescribeSSLStatus请求参数结构体
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。
+        # @param InstanceId: 实例 ID。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4056,9 +4062,11 @@ module TencentCloud
 
       # DescribeSecondLevelBackupInfo请求参数结构体
       class DescribeSecondLevelBackupInfoRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录Redis控制台在实例列表复制实例 ID。
+        # @param InstanceId: 指定实例 ID。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupTimestamp: 秒级备份时间戳，7天内
+        # @param BackupTimestamp: 秒级备份时间戳。
+        # - 设置范围：支持7天内任意秒级时间点。
+        # -  时间戳格式：Unix 时间戳。
         # @type BackupTimestamp: Integer
 
         attr_accessor :InstanceId, :BackupTimestamp
@@ -4076,14 +4084,14 @@ module TencentCloud
 
       # DescribeSecondLevelBackupInfo返回参数结构体
       class DescribeSecondLevelBackupInfoResponse < TencentCloud::Common::AbstractModel
-        # @param BackupId: 备份记录ID
+        # @param BackupId: 备份记录ID。
         # @type BackupId: String
-        # @param BackupTimestamp: 备份时间戳
+        # @param BackupTimestamp: 备份时间戳。
         # @type BackupTimestamp: Integer
-        # @param MissingTimestamps: 备份不存在的时间戳范围
+        # @param MissingTimestamps: 备份不存在的时间戳范围。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MissingTimestamps: Array
-        # @param StartTimestamp: 实例开启秒级备份的时间戳
+        # @param StartTimestamp: 实例开启秒级备份的时间戳。
         # @type StartTimestamp: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

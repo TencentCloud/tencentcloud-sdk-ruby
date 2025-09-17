@@ -1493,7 +1493,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询实例秒级备份信息
+        # 本接口（DescribeSecondLevelBackupInfo）用于查询实例秒级备份信息。
 
         # @param request: Request instance for DescribeSecondLevelBackupInfo.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeSecondLevelBackupInfoRequest`

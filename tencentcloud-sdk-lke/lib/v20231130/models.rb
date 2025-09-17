@@ -8502,10 +8502,12 @@ module TencentCloud
         # @type Query: String
         # @param Reasons: 错误类型检索
         # @type Reasons: Array
+        # @param Status: 操作状态  0-全部 1-待处理  2-已处理【包括答案纠错，拒答，忽略】
+        # @type Status: Integer
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :LoginUin, :LoginSubAccountUin, :Query, :Reasons
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :LoginUin, :LoginSubAccountUin, :Query, :Reasons, :Status
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil, query=nil, reasons=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil, query=nil, reasons=nil, status=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -8513,6 +8515,7 @@ module TencentCloud
           @LoginSubAccountUin = loginsubaccountuin
           @Query = query
           @Reasons = reasons
+          @Status = status
         end
 
         def deserialize(params)
@@ -8523,6 +8526,7 @@ module TencentCloud
           @LoginSubAccountUin = params['LoginSubAccountUin']
           @Query = params['Query']
           @Reasons = params['Reasons']
+          @Status = params['Status']
         end
       end
 
@@ -10427,10 +10431,10 @@ module TencentCloud
         # @type BotAppKey: String
         # @param RecordId: 消息ID 【大模型回复答案的RecordID】
         # @type RecordId: String
-        # @param Score: 1: 点赞;  2: 点踩;
+        # @param Score: 1: 点赞;   2: 点踩;
         # 注：
-        # 1) 评测端不支持点赞、点踩
-        # 2) 消息回复类型为欢迎语、并发超限、实时文档，不支持点赞、点踩
+        # (1) 评测端不支持点赞、点踩
+        # (2) 消息回复类型为欢迎语、并发超限、实时文档，不支持点赞、点踩
         # @type Score: Integer
         # @param Reasons: 原因，只有Score参数为2即点踩的时候才需要输入
         # @type Reasons: Array
@@ -10611,13 +10615,13 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Question: String
-        # @param Status: 状态
+        # @param Status: 发布状态(1 待发布 2 发布中 3 已发布 4 发布失败)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StatusDesc: 状态描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatusDesc: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: 更新时间, 秒级时间戳
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
@@ -10629,10 +10633,13 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsAllowDelete: Boolean
+        # @param Operator: 操作人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operator: String
 
-        attr_accessor :RejectedBizId, :Question, :Status, :StatusDesc, :UpdateTime, :IsAllowEdit, :IsAllowDelete
+        attr_accessor :RejectedBizId, :Question, :Status, :StatusDesc, :UpdateTime, :IsAllowEdit, :IsAllowDelete, :Operator
 
-        def initialize(rejectedbizid=nil, question=nil, status=nil, statusdesc=nil, updatetime=nil, isallowedit=nil, isallowdelete=nil)
+        def initialize(rejectedbizid=nil, question=nil, status=nil, statusdesc=nil, updatetime=nil, isallowedit=nil, isallowdelete=nil, operator=nil)
           @RejectedBizId = rejectedbizid
           @Question = question
           @Status = status
@@ -10640,6 +10647,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @IsAllowEdit = isallowedit
           @IsAllowDelete = isallowdelete
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -10650,6 +10658,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @IsAllowEdit = params['IsAllowEdit']
           @IsAllowDelete = params['IsAllowDelete']
+          @Operator = params['Operator']
         end
       end
 
@@ -11931,21 +11940,34 @@ module TencentCloud
         # @param Question: 用户问题
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Question: String
-        # @param Answer: 应用回复
+        # @param Answer: 问题回复
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Answer: String
         # @param Reasons: 错误类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Reasons: Array
+        # @param Status: 处理状态，0：待处理，1：已拒答，2：已忽略，3：已纠错
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreateTime: 创建时间，秒级时间戳
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间,秒级时间戳
+        # @type UpdateTime: String
+        # @param Operator: 操作人
+        # @type Operator: String
 
-        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons
+        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator
 
-        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil)
+        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil, status=nil, createtime=nil, updatetime=nil, operator=nil)
           @ReplyBizId = replybizid
           @RecordBizId = recordbizid
           @Question = question
           @Answer = answer
           @Reasons = reasons
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Operator = operator
         end
 
         def deserialize(params)
@@ -11954,6 +11976,10 @@ module TencentCloud
           @Question = params['Question']
           @Answer = params['Answer']
           @Reasons = params['Reasons']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Operator = params['Operator']
         end
       end
 
