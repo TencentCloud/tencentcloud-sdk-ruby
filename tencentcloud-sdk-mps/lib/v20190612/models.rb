@@ -15558,12 +15558,15 @@ module TencentCloud
         # @param OutputStorage: 输出文件的存储位置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param SignedUrl: 输出文件的URL。
+        # @type SignedUrl: String
 
-        attr_accessor :Path, :OutputStorage
+        attr_accessor :Path, :OutputStorage, :SignedUrl
 
-        def initialize(path=nil, outputstorage=nil)
+        def initialize(path=nil, outputstorage=nil, signedurl=nil)
           @Path = path
           @OutputStorage = outputstorage
+          @SignedUrl = signedurl
         end
 
         def deserialize(params)
@@ -15572,6 +15575,7 @@ module TencentCloud
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
           end
+          @SignedUrl = params['SignedUrl']
         end
       end
 
@@ -21469,15 +21473,25 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OutputDir: 图片处理生成的文件输出的路径。如果不填表示与 InputInfo 中文件所在的目录一致。如果是目录，如`/image/201907/`，表示继承原文件名输出到该目录。
         # @type OutputDir: String
+        # @param OutputPath: 输出路径，可以为相对路径或者绝对路径。
+        # 若需定义输出路径，路径需以`.{format}`结尾。变量名请参考 [文件名变量说明](https://cloud.tencent.com/document/product/862/37039)。
+        # 相对路径示例：
+        # <li>文件名_{变量名}.{format}</li>
+        # <li>文件名.{format}</li>
+        # 绝对路径示例：
+        # <li>/自定义路径/文件名_{变量名}.{format}</li>
+        # 如果不填，则默认为相对路径：{inputName}.{format}。
+        # @type OutputPath: String
         # @param ImageTask: 图片处理参数。
         # @type ImageTask: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :ImageTask
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :ImageTask
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, imagetask=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, imagetask=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
+          @OutputPath = outputpath
           @ImageTask = imagetask
         end
 
@@ -21491,6 +21505,7 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @OutputDir = params['OutputDir']
+          @OutputPath = params['OutputPath']
           unless params['ImageTask'].nil?
             @ImageTask = ImageTaskInput.new
             @ImageTask.deserialize(params['ImageTask'])

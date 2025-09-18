@@ -41,6 +41,42 @@ module TencentCloud
         end
       end
 
+      # CheckConnectorName请求参数结构体
+      class CheckConnectorNameRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 资源名
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+        end
+      end
+
+      # CheckConnectorName返回参数结构体
+      class CheckConnectorNameResponse < TencentCloud::Common::AbstractModel
+        # @param Exists: 是否存在
+        # @type Exists: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Exists, :RequestId
+
+        def initialize(exists=nil, requestid=nil)
+          @Exists = exists
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Exists = params['Exists']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckSavepoint请求参数结构体
       class CheckSavepointRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 作业 id
@@ -712,6 +748,30 @@ module TencentCloud
         end
       end
 
+      # 解析Connector
+      class Connectors < TencentCloud::Common::AbstractModel
+        # @param ConnectionMethod: 连接方式
+        # @type ConnectionMethod: String
+        # @param Connector: 连接器名称
+        # @type Connector: String
+        # @param Existed: 是否已经被使用
+        # @type Existed: Boolean
+
+        attr_accessor :ConnectionMethod, :Connector, :Existed
+
+        def initialize(connectionmethod=nil, connector=nil, existed=nil)
+          @ConnectionMethod = connectionmethod
+          @Connector = connector
+          @Existed = existed
+        end
+
+        def deserialize(params)
+          @ConnectionMethod = params['ConnectionMethod']
+          @Connector = params['Connector']
+          @Existed = params['Existed']
+        end
+      end
+
       # 复制作业单条明细
       class CopyJobItem < TencentCloud::Common::AbstractModel
         # @param SourceId: 需要复制的作业serial id
@@ -870,6 +930,54 @@ module TencentCloud
               @CopyJobsResults << copyjobresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateConnector请求参数结构体
+      class CreateConnectorRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param WorkSpaceId: 空间
+        # @type WorkSpaceId: String
+        # @param VersionId: 资源版本
+        # @type VersionId: Integer
+        # @param Connector: 连接器名称
+        # @type Connector: String
+        # @param ConnectionMethod: 连接方式
+        # @type ConnectionMethod: String
+
+        attr_accessor :ResourceId, :WorkSpaceId, :VersionId, :Connector, :ConnectionMethod
+
+        def initialize(resourceid=nil, workspaceid=nil, versionid=nil, connector=nil, connectionmethod=nil)
+          @ResourceId = resourceid
+          @WorkSpaceId = workspaceid
+          @VersionId = versionid
+          @Connector = connector
+          @ConnectionMethod = connectionmethod
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @WorkSpaceId = params['WorkSpaceId']
+          @VersionId = params['VersionId']
+          @Connector = params['Connector']
+          @ConnectionMethod = params['ConnectionMethod']
+        end
+      end
+
+      # CreateConnector返回参数结构体
+      class CreateConnectorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3942,6 +4050,58 @@ module TencentCloud
         end
       end
 
+      # ModifyConnector请求参数结构体
+      class ModifyConnectorRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 空间
+        # @type WorkSpaceId: String
+        # @param ConnectorResourceId: connector ID
+        # @type ConnectorResourceId: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param VersionId: 资源版本
+        # @type VersionId: Integer
+        # @param Connector: 连接器名称
+        # @type Connector: String
+        # @param ConnectionMethod: 连接方式
+        # @type ConnectionMethod: String
+
+        attr_accessor :WorkSpaceId, :ConnectorResourceId, :ResourceId, :VersionId, :Connector, :ConnectionMethod
+
+        def initialize(workspaceid=nil, connectorresourceid=nil, resourceid=nil, versionid=nil, connector=nil, connectionmethod=nil)
+          @WorkSpaceId = workspaceid
+          @ConnectorResourceId = connectorresourceid
+          @ResourceId = resourceid
+          @VersionId = versionid
+          @Connector = connector
+          @ConnectionMethod = connectionmethod
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+          @ConnectorResourceId = params['ConnectorResourceId']
+          @ResourceId = params['ResourceId']
+          @VersionId = params['VersionId']
+          @Connector = params['Connector']
+          @ConnectionMethod = params['ConnectionMethod']
+        end
+      end
+
+      # ModifyConnector返回参数结构体
+      class ModifyConnectorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyFolder请求参数结构体
       class ModifyFolderRequest < TencentCloud::Common::AbstractModel
         # @param SourceFolderId: 文件夹ID（必填）
@@ -4168,6 +4328,57 @@ module TencentCloud
           @OperateUin = params['OperateUin']
           @ComputeCu = params['ComputeCu']
           @OrderTime = params['OrderTime']
+        end
+      end
+
+      # ParseConnector请求参数结构体
+      class ParseConnectorRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+        # @param VersionId: 资源版本
+        # @type VersionId: Integer
+        # @param WorkSpaceId: 空间
+        # @type WorkSpaceId: String
+
+        attr_accessor :ResourceId, :VersionId, :WorkSpaceId
+
+        def initialize(resourceid=nil, versionid=nil, workspaceid=nil)
+          @ResourceId = resourceid
+          @VersionId = versionid
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @VersionId = params['VersionId']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # ParseConnector返回参数结构体
+      class ParseConnectorResponse < TencentCloud::Common::AbstractModel
+        # @param Connectors: 连接器
+        # @type Connectors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Connectors, :RequestId
+
+        def initialize(connectors=nil, requestid=nil)
+          @Connectors = connectors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Connectors'].nil?
+            @Connectors = []
+            params['Connectors'].each do |i|
+              connectors_tmp = Connectors.new
+              connectors_tmp.deserialize(i)
+              @Connectors << connectors_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

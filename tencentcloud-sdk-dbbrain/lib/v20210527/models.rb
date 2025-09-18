@@ -2737,6 +2737,57 @@ module TencentCloud
         end
       end
 
+      # DescribeHealthScoreTimeSeries请求参数结构体
+      class DescribeHealthScoreTimeSeriesRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @type EndTime: String
+        # @param InstanceId: 实例ID列表。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，"mariadb"-数据库mariadb    默认为"mysql"。
+        # @type Product: String
+
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Product
+
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, product=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceId = instanceid
+          @Product = product
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+        end
+      end
+
+      # DescribeHealthScoreTimeSeries返回参数结构体
+      class DescribeHealthScoreTimeSeriesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 健康得分趋势数据
+        # @type Data: :class:`Tencentcloud::Dbbrain.v20210527.models.HealthScoreTimeSeriesData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = HealthScoreTimeSeriesData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeIndexRecommendAggregationSlowLogs请求参数结构体
       class DescribeIndexRecommendAggregationSlowLogsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 服务产品类型，支持值包括："mongodb" - 云数据库 。
@@ -3665,6 +3716,65 @@ module TencentCloud
             end
           end
           @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisTopCostCommands请求参数结构体
+      class DescribeRedisTopCostCommandsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，支持的最早查询时间为当前时间的前30天。
+        # @type EndTime: String
+        # @param InstanceId: 实例ID列表。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，"mariadb"-数据库mariadb    默认为"mysql"。
+        # @type Product: String
+        # @param Limit: 默认前20条
+        # @type Limit: Integer
+
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Product, :Limit
+
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, product=nil, limit=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceId = instanceid
+          @Product = product
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRedisTopCostCommands返回参数结构体
+      class DescribeRedisTopCostCommandsResponse < TencentCloud::Common::AbstractModel
+        # @param TopCostCmdList: 命令列表
+        # @type TopCostCmdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TopCostCmdList, :RequestId
+
+        def initialize(topcostcmdlist=nil, requestid=nil)
+          @TopCostCmdList = topcostcmdlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TopCostCmdList'].nil?
+            @TopCostCmdList = []
+            params['TopCostCmdList'].each do |i|
+              rediscostcmd_tmp = RedisCostCmd.new
+              rediscostcmd_tmp.deserialize(i)
+              @TopCostCmdList << rediscostcmd_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5037,6 +5147,45 @@ module TencentCloud
         end
       end
 
+      # 健康得分趋势
+      class HealthScoreTimeSeriesData < TencentCloud::Common::AbstractModel
+        # @param Avg: 平均得分
+        # @type Avg: Float
+        # @param HealthStatus: 健康状态
+        # 1-health
+        # 2-warning
+        # 3-critical
+        # @type HealthStatus: Integer
+        # @param Metric: 指标名称
+        # @type Metric: String
+        # @param Series: 得分序列
+        # @type Series: Array
+        # @param Timestamp: 时间序列，单位：毫秒数
+        # @type Timestamp: Array
+        # @param Unit: 单位
+        # @type Unit: String
+
+        attr_accessor :Avg, :HealthStatus, :Metric, :Series, :Timestamp, :Unit
+
+        def initialize(avg=nil, healthstatus=nil, metric=nil, series=nil, timestamp=nil, unit=nil)
+          @Avg = avg
+          @HealthStatus = healthstatus
+          @Metric = metric
+          @Series = series
+          @Timestamp = timestamp
+          @Unit = unit
+        end
+
+        def deserialize(params)
+          @Avg = params['Avg']
+          @HealthStatus = params['HealthStatus']
+          @Metric = params['Metric']
+          @Series = params['Series']
+          @Timestamp = params['Timestamp']
+          @Unit = params['Unit']
+        end
+      end
+
       # 实例健康详情。
       class HealthStatus < TencentCloud::Common::AbstractModel
         # @param HealthScore: 健康分数，满分100。
@@ -6334,6 +6483,26 @@ module TencentCloud
         def deserialize(params)
           @Cmd = params['Cmd']
           @Count = params['Count']
+        end
+      end
+
+      # redis命令cost详情
+      class RedisCostCmd < TencentCloud::Common::AbstractModel
+        # @param Cmd: 命令
+        # @type Cmd: String
+        # @param MaxCost: 最大cost
+        # @type MaxCost: Integer
+
+        attr_accessor :Cmd, :MaxCost
+
+        def initialize(cmd=nil, maxcost=nil)
+          @Cmd = cmd
+          @MaxCost = maxcost
+        end
+
+        def deserialize(params)
+          @Cmd = params['Cmd']
+          @MaxCost = params['MaxCost']
         end
       end
 

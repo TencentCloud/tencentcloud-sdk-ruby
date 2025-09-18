@@ -940,7 +940,7 @@ module TencentCloud
         # @type AutomaticStopTime: Integer
         # @param Tags: 标签配置
         # @type Tags: Array
-        # @param DataConfigs: 数据配置，只支持WEDATA_HDFS存储类型
+        # @param DataConfigs: 数据存储挂载配置
         # @type DataConfigs: Array
         # @param ImageInfo: 镜像信息
         # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`

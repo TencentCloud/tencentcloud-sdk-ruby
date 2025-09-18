@@ -96,14 +96,17 @@ module TencentCloud
         # @type DomainAreaConfigs: Array
         # @param Channel: 接入渠道，cdn或者ecdn，默认值为cdn
         # @type Channel: String
+        # @param InheritDomainTags: 是否继承域名标签, 默认保留上一次更改的值
+        # @type InheritDomainTags: Boolean
 
-        attr_accessor :LogsetId, :TopicId, :DomainAreaConfigs, :Channel
+        attr_accessor :LogsetId, :TopicId, :DomainAreaConfigs, :Channel, :InheritDomainTags
 
-        def initialize(logsetid=nil, topicid=nil, domainareaconfigs=nil, channel=nil)
+        def initialize(logsetid=nil, topicid=nil, domainareaconfigs=nil, channel=nil, inheritdomaintags=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @DomainAreaConfigs = domainareaconfigs
           @Channel = channel
+          @InheritDomainTags = inheritdomaintags
         end
 
         def deserialize(params)
@@ -118,6 +121,7 @@ module TencentCloud
             end
           end
           @Channel = params['Channel']
+          @InheritDomainTags = params['InheritDomainTags']
         end
       end
 
@@ -2166,14 +2170,17 @@ module TencentCloud
         # @type Channel: String
         # @param DomainAreaConfigs: 域名区域信息
         # @type DomainAreaConfigs: Array
+        # @param InheritDomainTags: 是否继承域名标签，默认为false
+        # @type InheritDomainTags: Boolean
 
-        attr_accessor :TopicName, :LogsetId, :Channel, :DomainAreaConfigs
+        attr_accessor :TopicName, :LogsetId, :Channel, :DomainAreaConfigs, :InheritDomainTags
 
-        def initialize(topicname=nil, logsetid=nil, channel=nil, domainareaconfigs=nil)
+        def initialize(topicname=nil, logsetid=nil, channel=nil, domainareaconfigs=nil, inheritdomaintags=nil)
           @TopicName = topicname
           @LogsetId = logsetid
           @Channel = channel
           @DomainAreaConfigs = domainareaconfigs
+          @InheritDomainTags = inheritdomaintags
         end
 
         def deserialize(params)
@@ -2188,6 +2195,7 @@ module TencentCloud
               @DomainAreaConfigs << domainareaconfig_tmp
             end
           end
+          @InheritDomainTags = params['InheritDomainTags']
         end
       end
 
@@ -3424,10 +3432,7 @@ module TencentCloud
         # last：表示回源层节点
         # 不填充情况下，默认返回边缘节点信息
         # @type Layer: String
-        # @param Area: 查询区域：
-        # mainland: 国内节点
-        # overseas: 海外节点
-        # global: 全球节点
+        # @param Area: 查询区域：mainland: 中国境内节点overseas: 海外节点global: 全球节点
         # @type Area: String
         # @param Segment: 是否以IP段的格式返回。
         # @type Segment: Boolean
@@ -6247,7 +6252,7 @@ module TencentCloud
         # 最多可填充 200 个白名单或 200 个黑名单；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Filters: Array
-        # @param FilterRules: IP 黑白名单分路径配置，白名单功能。黑白名单 IP 总数不能超过 1000 个。
+        # @param FilterRules: IP 黑白名单分路径配置。黑白名单 IP 总数不能超过 1000 个。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FilterRules: Array
         # @param ReturnCode: IP 黑白名单验证失败时返回的 code <br><font color=red>已下线，参数失效，不支持自定义状态码，固定返回514</font>
@@ -6589,12 +6594,14 @@ module TencentCloud
         # @type TopicName: String
         # @param UpdateTime: 日志主题最近更新时间
         # @type UpdateTime: String
+        # @param InheritDomainTags: 是否继承域名标签
+        # @type InheritDomainTags: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppId, :Channel, :LogsetId, :TopicId, :DomainAreaConfigs, :TopicName, :UpdateTime, :RequestId
+        attr_accessor :AppId, :Channel, :LogsetId, :TopicId, :DomainAreaConfigs, :TopicName, :UpdateTime, :InheritDomainTags, :RequestId
 
-        def initialize(appid=nil, channel=nil, logsetid=nil, topicid=nil, domainareaconfigs=nil, topicname=nil, updatetime=nil, requestid=nil)
+        def initialize(appid=nil, channel=nil, logsetid=nil, topicid=nil, domainareaconfigs=nil, topicname=nil, updatetime=nil, inheritdomaintags=nil, requestid=nil)
           @AppId = appid
           @Channel = channel
           @LogsetId = logsetid
@@ -6602,6 +6609,7 @@ module TencentCloud
           @DomainAreaConfigs = domainareaconfigs
           @TopicName = topicname
           @UpdateTime = updatetime
+          @InheritDomainTags = inheritdomaintags
           @RequestId = requestid
         end
 
@@ -6620,6 +6628,7 @@ module TencentCloud
           end
           @TopicName = params['TopicName']
           @UpdateTime = params['UpdateTime']
+          @InheritDomainTags = params['InheritDomainTags']
           @RequestId = params['RequestId']
         end
       end
@@ -7181,14 +7190,17 @@ module TencentCloud
         # @type Channel: String
         # @param DomainAreaConfigs: 域名区域配置，注意：如果此字段为空，则表示解绑对应主题下的所有域名
         # @type DomainAreaConfigs: Array
+        # @param InheritDomainTags: 是否继承域名标签
+        # @type InheritDomainTags: Boolean
 
-        attr_accessor :LogsetId, :TopicId, :Channel, :DomainAreaConfigs
+        attr_accessor :LogsetId, :TopicId, :Channel, :DomainAreaConfigs, :InheritDomainTags
 
-        def initialize(logsetid=nil, topicid=nil, channel=nil, domainareaconfigs=nil)
+        def initialize(logsetid=nil, topicid=nil, channel=nil, domainareaconfigs=nil, inheritdomaintags=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @Channel = channel
           @DomainAreaConfigs = domainareaconfigs
+          @InheritDomainTags = inheritdomaintags
         end
 
         def deserialize(params)
@@ -7203,6 +7215,7 @@ module TencentCloud
               @DomainAreaConfigs << domainareaconfig_tmp
             end
           end
+          @InheritDomainTags = params['InheritDomainTags']
         end
       end
 
@@ -7516,7 +7529,6 @@ module TencentCloud
         # 以下备源源站类型尚未全量支持，需要申请试用：
         # ipv6_domain: 源站列表为多个 IPv6 地址以及域名
         # ip_ipv6：源站列表为多个 IPv4 地址和IPv6 地址
-        # ipv6_domain: 源站列表为多个 IPv6 地址以及域名
         # ip_ipv6_domain：源站列表为多个 IPv4 地址IPv6 地址以及域名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupOriginType: String

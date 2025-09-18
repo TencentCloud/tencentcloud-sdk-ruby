@@ -934,15 +934,17 @@ module TencentCloud
         # @type WhiteBoardSnapshotMode: Integer
         # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
         # @type SubtitlesTranscription: Integer
+        # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
+        # @type RecordMerge: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription
+        attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 8
-        deprecate :RTCAudienceNumber=, :none, 2025, 8
-        deprecate :RecordLang, :none, 2025, 8
-        deprecate :RecordLang=, :none, 2025, 8
+        deprecate :RTCAudienceNumber, :none, 2025, 9
+        deprecate :RTCAudienceNumber=, :none, 2025, 9
+        deprecate :RecordLang, :none, 2025, 9
+        deprecate :RecordLang=, :none, 2025, 9
 
-        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, recordmerge=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -976,6 +978,7 @@ module TencentCloud
           @RecordStream = recordstream
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
+          @RecordMerge = recordmerge
         end
 
         def deserialize(params)
@@ -1012,6 +1015,7 @@ module TencentCloud
           @RecordStream = params['RecordStream']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
+          @RecordMerge = params['RecordMerge']
         end
       end
 
@@ -2525,12 +2529,14 @@ module TencentCloud
         # @type SubtitlesTranscription: Integer
         # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
         # @type Guests: Array
+        # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
+        # @type RecordMerge: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RequestId
+        attr_accessor :Name, :StartTime, :EndTime, :TeacherId, :SdkAppId, :AudienceType, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :RecordUrl, :Status, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :VideoDuration, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RTMPStreamingURL, :RecordScene, :RecordLang, :RecordStream, :RecordLayout, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge, :RequestId
 
-        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, requestid=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, teacherid=nil, sdkappid=nil, audiencetype=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, recordurl=nil, status=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, videoduration=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, rtmpstreamingurl=nil, recordscene=nil, recordlang=nil, recordstream=nil, recordlayout=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil, requestid=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -2566,6 +2572,7 @@ module TencentCloud
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
           @Guests = guests
+          @RecordMerge = recordmerge
           @RequestId = requestid
         end
 
@@ -2605,6 +2612,7 @@ module TencentCloud
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
           @Guests = params['Guests']
+          @RecordMerge = params['RecordMerge']
           @RequestId = params['RequestId']
         end
       end
@@ -4123,13 +4131,17 @@ module TencentCloud
         # @type WhiteBoardSnapshotMode: Integer
         # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
         # @type SubtitlesTranscription: Integer
+        # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
+        # @type Guests: Array
+        # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
+        # @type RecordMerge: Integer
 
-        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription
+        attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2025, 8
-        deprecate :RecordLang=, :none, 2025, 8
+        deprecate :RecordLang, :none, 2025, 9
+        deprecate :RecordLang=, :none, 2025, 9
 
-        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil)
+        def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil)
           @RoomId = roomid
           @SdkAppId = sdkappid
           @StartTime = starttime
@@ -4158,6 +4170,8 @@ module TencentCloud
           @RecordLang = recordlang
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
+          @Guests = guests
+          @RecordMerge = recordmerge
         end
 
         def deserialize(params)
@@ -4189,6 +4203,8 @@ module TencentCloud
           @RecordLang = params['RecordLang']
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
+          @Guests = params['Guests']
+          @RecordMerge = params['RecordMerge']
         end
       end
 
@@ -4476,15 +4492,17 @@ module TencentCloud
         # @type SubtitlesTranscription: Integer
         # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
         # @type Guests: Array
+        # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
+        # @type RecordMerge: Integer
 
-        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests
+        attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 8
-        deprecate :RTCAudienceNumber=, :none, 2025, 8
-        deprecate :RecordLang, :none, 2025, 8
-        deprecate :RecordLang=, :none, 2025, 8
+        deprecate :RTCAudienceNumber, :none, 2025, 9
+        deprecate :RTCAudienceNumber=, :none, 2025, 9
+        deprecate :RecordLang, :none, 2025, 9
+        deprecate :RecordLang=, :none, 2025, 9
 
-        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil)
+        def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil)
           @Name = name
           @StartTime = starttime
           @EndTime = endtime
@@ -4517,6 +4535,7 @@ module TencentCloud
           @WhiteBoardSnapshotMode = whiteboardsnapshotmode
           @SubtitlesTranscription = subtitlestranscription
           @Guests = guests
+          @RecordMerge = recordmerge
         end
 
         def deserialize(params)
@@ -4552,6 +4571,7 @@ module TencentCloud
           @WhiteBoardSnapshotMode = params['WhiteBoardSnapshotMode']
           @SubtitlesTranscription = params['SubtitlesTranscription']
           @Guests = params['Guests']
+          @RecordMerge = params['RecordMerge']
         end
       end
 

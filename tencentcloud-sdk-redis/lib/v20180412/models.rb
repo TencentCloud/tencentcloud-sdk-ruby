@@ -576,7 +576,7 @@ module TencentCloud
 
       # CleanUpInstance请求参数结构体
       class CleanUpInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: 实例 ID，请登录 [Redis 控制台回收站](https://console.cloud.tencent.com/redis/recycle)的实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -670,7 +670,7 @@ module TencentCloud
         # @type BillingMode: Integer
         # @param Period: 购买实例时长。<ul><li>单位：月。</li><li>付费方式选择包年包月计费时，取值范围为[1,2,3,4,5,6,7,8,9,10,11,12,24,36,48,60]。</li><li>付费方式选择按量计费时，设置为1。</li></ul>
         # @type Period: Integer
-        # @param SecurityGroupIdList: 安全组ID。请登录控制台，在<b>安全组</b>页面获取安全组 ID 信息。
+        # @param SecurityGroupIdList: 安全组ID。请通过 [DescribeInstanceSecurityGroup](https://cloud.tencent.com/document/product/239/34447) 接口获取实例的安全组 ID。
         # @type SecurityGroupIdList: Array
         # @param BackupId: 克隆实例使用的备份ID。请通过接口[DescribeInstanceBackups](https://cloud.tencent.com/document/product/239/20011)获取备份ID。
         # @type BackupId: String
@@ -1208,18 +1208,22 @@ module TencentCloud
       class CreateReplicationGroupResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 异步流程ID。
         # @type TaskId: Integer
+        # @param GroupId: 复制组string型id
+        # @type GroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :GroupId, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, groupid=nil, requestid=nil)
           @TaskId = taskid
+          @GroupId = groupid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @GroupId = params['GroupId']
           @RequestId = params['RequestId']
         end
       end
@@ -3072,12 +3076,12 @@ module TencentCloud
 
       # DescribeInstanceSupportFeature请求参数结构体
       class DescribeInstanceSupportFeatureRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
-        # 示例值：crs-asdasdas
+        # @param InstanceId: 指定实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param FeatureName: 功能特性名称
-        # - read-local-node-only 就近接入功能
-        # - multi-account 多账号功能
+        # @param FeatureName: 支持查询的功能特性如下所示。
+        # - read-local-node-only：就近接入。
+        # - multi-account：多账号管理。
+        # - auto-failback：故障恢复场景，主节点是否开启自动回切。
         # @type FeatureName: String
 
         attr_accessor :InstanceId, :FeatureName
@@ -3702,11 +3706,11 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: 慢查询的结束时间，查询时间最大跨度30天。
         # @type EndTime: String
-        # @param MinQueryTime: 慢查询阈值，单位：毫秒。
+        # @param MinQueryTime: 慢查询阈值。取值为大于0 的正整数。单位：毫秒。
         # @type MinQueryTime: Integer
-        # @param Limit: 每页输出的任务列表大小，默认为 20，最多输出100条。
+        # @param Limit: 每页输出的任务列表大小。默认值为20，最小值为1，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，取Limit整数倍，计算公式：offset=limit*(页码-1)。
+        # @param Offset: 分页偏移量。默认为0。取值为 Limit 整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
@@ -3945,7 +3949,7 @@ module TencentCloud
 
       # DescribeReplicationGroup请求参数结构体
       class DescribeReplicationGroupRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 每页输出实例列表的大小，参数默认值20。
+        # @param Limit: 每页输出实例列表的大小。取值为大于0 的正整数，默认为20。
         # @type Limit: Integer
         # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
@@ -4130,11 +4134,11 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: 预查询慢日志的结束时间，查询时间最大跨度30天
         # @type EndTime: String
-        # @param MinQueryTime: 慢查询平均执行时间阈值，单位：毫秒。
+        # @param MinQueryTime: 慢查询平均执行时间阈值。取值为大于0 的正整数。单位：毫秒。
         # @type MinQueryTime: Integer
-        # @param Limit: 每个页面展示的慢查询条数，默认值为20，最大100。
+        # @param Limit: 每个页面展示的慢查询条数，默认值为20，最小值为1，最大值为100。
         # @type Limit: Integer
-        # @param Offset: 慢查询条数的偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
+        # @param Offset: 慢查询条数的偏移量。默认为0。取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
         # @param Role: 节点所属角色。
         # - master：主节点。
@@ -4421,11 +4425,11 @@ module TencentCloud
         # @type BeginTime: String
         # @param EndTime: 结束时间：2019-09-09 12:12:41，查询时间最大跨度30天。
         # @type EndTime: String
-        # @param MinQueryTime: 慢查询阈值（毫秒）
+        # @param MinQueryTime: 慢查询阈值，取值为大于0的正整数，单位：毫秒。
         # @type MinQueryTime: Integer
-        # @param Limit: 页面大小：默认20，最大100。
+        # @param Limit: 页面大小。默认为20，最小为1，最大为100。
         # @type Limit: Integer
-        # @param Offset: 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
+        # @param Offset: 分页偏移量。默认为0，取值为 Limit 整数倍，计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :BeginTime, :EndTime, :MinQueryTime, :Limit, :Offset
@@ -4482,7 +4486,7 @@ module TencentCloud
 
       # DestroyPostpaidInstance请求参数结构体
       class DestroyPostpaidInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制按量计费的实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -4634,8 +4638,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param ReadonlyPolicy: 只读路由策略。
         # - master：表示只读路由至主节点。
-        # - replication：表示只读路由至从节点。
-        # - 默认策略：表示写主节点，读从节点。
+        # - replication：表示只读路由至从节点。默认值为：replication。
         # @type ReadonlyPolicy: Array
 
         attr_accessor :InstanceId, :ReadonlyPolicy
@@ -4928,9 +4931,11 @@ module TencentCloud
 
       # InquiryPriceRenewInstance请求参数结构体
       class InquiryPriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 包年包月实例的购买时长，单位：月。
+        # @param Period: 包年包月实例的购买时长。
+        # - 单位：月。
+        # - 取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
         # @type Period: Integer
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis)在实例列表复制包年包月实例 ID。
         # @type InstanceId: String
 
         attr_accessor :Period, :InstanceId
@@ -4987,7 +4992,9 @@ module TencentCloud
         # @type InstanceId: String
         # @param MemSize: 分片大小，单位：MB。
         # @type MemSize: Integer
-        # @param RedisShardNum: 分片数量，Redis 2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
+        # @param RedisShardNum: 分片数量。
+        # - 实例为标准架构，RedisShardNum 默认为1。
+        # - Redis 2.8主从版、CKV主从版和 Redis 2.8单机版不需要填写。
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 副本数量，Redis2.8主从版、CKV主从版和Redis2.8单机版不需要填写。
         # @type RedisReplicasNum: Integer
@@ -5413,15 +5420,21 @@ module TencentCloud
         # @type CommandLine: String
         # @param ExecuteTime: 执行时间。
         # @type ExecuteTime: String
+        # @param RecvClientEnd: 收客户端请求时长(ms)
+        # @type RecvClientEnd: Integer
+        # @param SendClientEnd: 发送客户端请求时长(ms)
+        # @type SendClientEnd: Integer
 
-        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime
+        attr_accessor :Duration, :Client, :Command, :CommandLine, :ExecuteTime, :RecvClientEnd, :SendClientEnd
 
-        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil)
+        def initialize(duration=nil, client=nil, command=nil, commandline=nil, executetime=nil, recvclientend=nil, sendclientend=nil)
           @Duration = duration
           @Client = client
           @Command = command
           @CommandLine = commandline
           @ExecuteTime = executetime
+          @RecvClientEnd = recvclientend
+          @SendClientEnd = sendclientend
         end
 
         def deserialize(params)
@@ -5430,6 +5443,8 @@ module TencentCloud
           @Command = params['Command']
           @CommandLine = params['CommandLine']
           @ExecuteTime = params['ExecuteTime']
+          @RecvClientEnd = params['RecvClientEnd']
+          @SendClientEnd = params['SendClientEnd']
         end
       end
 
@@ -6803,7 +6818,7 @@ module TencentCloud
         # @type Operation: String
         # @param InstanceIds: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。每次请求的实例数量的上限为10。
         # @type InstanceIds: Array
-        # @param InstanceNames: 实例的新名称。
+        # @param InstanceNames: 实例的新名称。名称只支持长度为60个字符的中文、英文、数字、下划线_、分隔符-。
         # @type InstanceNames: Array
         # @param ProjectId: 项目 ID，请登录[Redis控制台的项目管理](https://console.cloud.tencent.com/project)页面，在**项目名称**中复制项目 ID。
         # @type ProjectId: Integer
@@ -6878,6 +6893,7 @@ module TencentCloud
         # @param StartTime: 维护时间窗起始时间，如：17:00。
         # @type StartTime: String
         # @param EndTime: 维护时间窗结束时间，如：19:00。
+        # **说明：**维护时间窗时长，当前支持：30分钟、1小时、1.5小时、2小时、3小时。
         # @type EndTime: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime
@@ -7932,13 +7948,18 @@ module TencentCloud
       class ResetPasswordRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Password: 重置的密码。若切换为免密实例时，可不配置该参数。其他情况必须配置。
+        # @param Password: 重置的密码。若切换为免密实例时，可不配置该参数。
+        # - 长度8-32位, 推荐使用12位以上的密码。
+        # - 不能以"/"开头。
+        # - 至少包含小写字母a- z、大写字母A - Z、数字0 - 9、特殊字符 ()~!@#$%^&*-+=_|{}[]:;<>,.?/中的两项。
         # @type Password: String
         # @param NoAuth: 是否切换免密实例。
-        # - false：切换为非免密码实例。
-        # - true：切换为免密码实例。默认 false。
+        # - false：切换为非免密码实例。默认 false。
+        # - true：切换为免密码实例。
         # @type NoAuth: Boolean
-        # @param EncryptPassword: 是否加密密码
+        # @param EncryptPassword: 是否加密密码。
+        # - false：非加密密码。默认 false。
+        # - true：加密密码。
         # @type EncryptPassword: Boolean
 
         attr_accessor :InstanceId, :Password, :NoAuth, :EncryptPassword
@@ -8270,7 +8291,7 @@ module TencentCloud
 
       # StartupInstance请求参数结构体
       class StartupInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在回收站复制需解隔离的实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -8781,9 +8802,9 @@ module TencentCloud
       class UpgradeProxyVersionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param CurrentProxyVersion: 当前 Proxy 版本。
+        # @param CurrentProxyVersion: 当前 Proxy 版本。请通过 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 接口获取实例当前 Proxy 版本。
         # @type CurrentProxyVersion: String
-        # @param UpgradeProxyVersion: 可升级的 Redis 版本。
+        # @param UpgradeProxyVersion: 可升级的 Redis 版本。请通过 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 接口获取实例可升级的 Redis 版本。
         # @type UpgradeProxyVersion: String
         # @param InstanceTypeUpgradeNow: 指定是否立即升级。
         # - 1：立即升级。
@@ -8879,10 +8900,11 @@ module TencentCloud
 
       # UpgradeVersionToMultiAvailabilityZones请求参数结构体
       class UpgradeVersionToMultiAvailabilityZonesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: 实例ID，请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param UpgradeProxyAndRedisServer: 升级多可用区之后是否支持就近访问功能。
-        # <ul><li>true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。</li><li>false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。</li></ul>
+        # - true：支持就近访问功能。升级过程，需同时升级 Proxy 版本和 Redis 内核小版本，涉及数据搬迁，可能会长达数小时。
+        # - false：无需支持就近访问功能。升级多可用区仅涉及管理元数据迁移，对服务没有影响，升级过程通常在3分钟内完成。默认为 false。
         # @type UpgradeProxyAndRedisServer: Boolean
 
         attr_accessor :InstanceId, :UpgradeProxyAndRedisServer

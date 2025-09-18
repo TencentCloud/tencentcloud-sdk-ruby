@@ -1802,10 +1802,12 @@ module TencentCloud
         # - USER：来源于用户调用。
         # - INVOKER：来源于定时执行。
         # @type InvocationSource: String
+        # @param CommandName: 执行的命令的名称。
+        # @type CommandName: String
 
-        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo, :InvocationSource
+        attr_accessor :InvocationId, :InvocationTaskId, :CommandId, :TaskStatus, :InstanceId, :TaskResult, :StartTime, :EndTime, :CreatedTime, :UpdatedTime, :CommandDocument, :ErrorInfo, :InvocationSource, :CommandName
 
-        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil, invocationsource=nil)
+        def initialize(invocationid=nil, invocationtaskid=nil, commandid=nil, taskstatus=nil, instanceid=nil, taskresult=nil, starttime=nil, endtime=nil, createdtime=nil, updatedtime=nil, commanddocument=nil, errorinfo=nil, invocationsource=nil, commandname=nil)
           @InvocationId = invocationid
           @InvocationTaskId = invocationtaskid
           @CommandId = commandid
@@ -1819,6 +1821,7 @@ module TencentCloud
           @CommandDocument = commanddocument
           @ErrorInfo = errorinfo
           @InvocationSource = invocationsource
+          @CommandName = commandname
         end
 
         def deserialize(params)
@@ -1841,6 +1844,7 @@ module TencentCloud
           end
           @ErrorInfo = params['ErrorInfo']
           @InvocationSource = params['InvocationSource']
+          @CommandName = params['CommandName']
         end
       end
 

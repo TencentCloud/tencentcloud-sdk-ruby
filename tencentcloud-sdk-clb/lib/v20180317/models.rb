@@ -25,19 +25,30 @@ module TencentCloud
         # @type ConfigType: String
         # @param ConfigContent: 配置内容
         # @type ConfigContent: String
+        # @param Tags: 标签
+        # @type Tags: Array
 
-        attr_accessor :ConfigName, :ConfigType, :ConfigContent
+        attr_accessor :ConfigName, :ConfigType, :ConfigContent, :Tags
 
-        def initialize(configname=nil, configtype=nil, configcontent=nil)
+        def initialize(configname=nil, configtype=nil, configcontent=nil, tags=nil)
           @ConfigName = configname
           @ConfigType = configtype
           @ConfigContent = configcontent
+          @Tags = tags
         end
 
         def deserialize(params)
           @ConfigName = params['ConfigName']
           @ConfigType = params['ConfigType']
           @ConfigContent = params['ConfigContent']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 

@@ -68,7 +68,7 @@ module TencentCloud
         # @type WorkflowId: String
         # @param Name: Agent名称，同一个应用内，Agent名称不能重复
         # @type Name: String
-        # @param IconUrl: 插件图标url
+        # @param IconUrl: Agent图标url
         # @type IconUrl: String
         # @param Instructions: Agent指令；当该Agent被调用时，将作为“系统提示词”使用，描述Agent应执行的操作和响应方式
         # @type Instructions: String
@@ -88,10 +88,12 @@ module TencentCloud
         # @type AgentType: Integer
         # @param AgentMode: 0 自由转交，1 计划与执行
         # @type AgentMode: Integer
+        # @param AdvancedConfig: 高级设置
+        # @type AdvancedConfig: :class:`Tencentcloud::Lke.v20231130.models.AgentAdvancedConfig`
 
-        attr_accessor :AgentId, :WorkflowId, :Name, :IconUrl, :Instructions, :HandoffDescription, :Handoffs, :Model, :Tools, :Plugins, :IsStartingAgent, :AgentType, :AgentMode
+        attr_accessor :AgentId, :WorkflowId, :Name, :IconUrl, :Instructions, :HandoffDescription, :Handoffs, :Model, :Tools, :Plugins, :IsStartingAgent, :AgentType, :AgentMode, :AdvancedConfig
 
-        def initialize(agentid=nil, workflowid=nil, name=nil, iconurl=nil, instructions=nil, handoffdescription=nil, handoffs=nil, model=nil, tools=nil, plugins=nil, isstartingagent=nil, agenttype=nil, agentmode=nil)
+        def initialize(agentid=nil, workflowid=nil, name=nil, iconurl=nil, instructions=nil, handoffdescription=nil, handoffs=nil, model=nil, tools=nil, plugins=nil, isstartingagent=nil, agenttype=nil, agentmode=nil, advancedconfig=nil)
           @AgentId = agentid
           @WorkflowId = workflowid
           @Name = name
@@ -105,6 +107,7 @@ module TencentCloud
           @IsStartingAgent = isstartingagent
           @AgentType = agenttype
           @AgentMode = agentmode
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -138,6 +141,49 @@ module TencentCloud
           @IsStartingAgent = params['IsStartingAgent']
           @AgentType = params['AgentType']
           @AgentMode = params['AgentMode']
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = AgentAdvancedConfig.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+        end
+      end
+
+      # Agent高级设置
+      class AgentAdvancedConfig < TencentCloud::Common::AbstractModel
+        # @param EnableClarification: 是否开启澄清询问
+        # @type EnableClarification: Boolean
+        # @param ThinkingMode: 思考模式，0为效果优先，1为速度优先
+        # @type ThinkingMode: Integer
+        # @param MaxReasoningRound: 最大推理轮数
+        # @type MaxReasoningRound: Integer
+        # @param HistoryLimit: 上下文轮数
+        # @type HistoryLimit: Integer
+        # @param EnableStructuredOutput: 是否开启结构化输出
+        # @type EnableStructuredOutput: Boolean
+        # @param StructuredOutputConfig: 结构化输出配置
+        # @type StructuredOutputConfig: :class:`Tencentcloud::Lke.v20231130.models.StructuredOutputConfig`
+
+        attr_accessor :EnableClarification, :ThinkingMode, :MaxReasoningRound, :HistoryLimit, :EnableStructuredOutput, :StructuredOutputConfig
+
+        def initialize(enableclarification=nil, thinkingmode=nil, maxreasoninground=nil, historylimit=nil, enablestructuredoutput=nil, structuredoutputconfig=nil)
+          @EnableClarification = enableclarification
+          @ThinkingMode = thinkingmode
+          @MaxReasoningRound = maxreasoninground
+          @HistoryLimit = historylimit
+          @EnableStructuredOutput = enablestructuredoutput
+          @StructuredOutputConfig = structuredoutputconfig
+        end
+
+        def deserialize(params)
+          @EnableClarification = params['EnableClarification']
+          @ThinkingMode = params['ThinkingMode']
+          @MaxReasoningRound = params['MaxReasoningRound']
+          @HistoryLimit = params['HistoryLimit']
+          @EnableStructuredOutput = params['EnableStructuredOutput']
+          unless params['StructuredOutputConfig'].nil?
+            @StructuredOutputConfig = StructuredOutputConfig.new
+            @StructuredOutputConfig.deserialize(params['StructuredOutputConfig'])
+          end
         end
       end
 
@@ -1824,6 +1870,58 @@ module TencentCloud
         end
       end
 
+      # 渠道详情信息
+      class ChannelListInfo < TencentCloud::Common::AbstractModel
+        # @param ChannelType: 渠道类型 10000 微信订阅号 10001 微信服务号 10002 企微应用
+        # @type ChannelType: Integer
+        # @param ChannelStatus: 渠道状态 1未发布 2运行中 3已下线
+        # @type ChannelStatus: Integer
+        # @param ChannelName: 渠道名称
+        # @type ChannelName: String
+        # @param ChannelId: 渠道id 数据库主键
+        # @type ChannelId: String
+        # @param Comment: 备注
+        # @type Comment: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdatedUser: 最后更新人
+        # @type UpdatedUser: String
+        # @param YuanQiInfo: 智能体应用可见范围，public-所有人可见 private-仅自己可见 share-通过分享可见
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YuanQiInfo: :class:`Tencentcloud::Lke.v20231130.models.YuanQi`
+
+        attr_accessor :ChannelType, :ChannelStatus, :ChannelName, :ChannelId, :Comment, :UpdateTime, :CreateTime, :UpdatedUser, :YuanQiInfo
+
+        def initialize(channeltype=nil, channelstatus=nil, channelname=nil, channelid=nil, comment=nil, updatetime=nil, createtime=nil, updateduser=nil, yuanqiinfo=nil)
+          @ChannelType = channeltype
+          @ChannelStatus = channelstatus
+          @ChannelName = channelname
+          @ChannelId = channelid
+          @Comment = comment
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+          @UpdatedUser = updateduser
+          @YuanQiInfo = yuanqiinfo
+        end
+
+        def deserialize(params)
+          @ChannelType = params['ChannelType']
+          @ChannelStatus = params['ChannelStatus']
+          @ChannelName = params['ChannelName']
+          @ChannelId = params['ChannelId']
+          @Comment = params['Comment']
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+          @UpdatedUser = params['UpdatedUser']
+          unless params['YuanQiInfo'].nil?
+            @YuanQiInfo = YuanQi.new
+            @YuanQiInfo.deserialize(params['YuanQiInfo'])
+          end
+        end
+      end
+
       # CheckAttributeLabelExist请求参数结构体
       class CheckAttributeLabelExistRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -2487,7 +2585,7 @@ module TencentCloud
         # @type BotBizId: String
         # @param Desc: 发布描述
         # @type Desc: String
-        # @param ChannelBizIds: 渠道业务ID
+        # @param ChannelBizIds: 渠道业务ID，从ListChannel接口的响应字段ChannelId获取
         # @type ChannelBizIds: Array
 
         attr_accessor :BotBizId, :Desc, :ChannelBizIds
@@ -7195,6 +7293,76 @@ module TencentCloud
         end
       end
 
+      # ListChannel请求参数结构体
+      class ListChannelRequest < TencentCloud::Common::AbstractModel
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+        # @param BotBizId: 应用ID
+        # @type BotBizId: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页数量
+        # @type PageSize: Integer
+        # @param ChannelType: 渠道类型, 10000: 微信订阅号，10001: 微信服务号，10002：企微应用，10004：微信客服，10005：小程序，10009：企微智能机器人
+        # @type ChannelType: Array
+        # @param ChannelStatus: 渠道状态 1未发布 2运行中 3已下线
+        # @type ChannelStatus: Array
+
+        attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
+        extend Gem::Deprecate
+        deprecate :BotBizId, :none, 2025, 9
+        deprecate :BotBizId=, :none, 2025, 9
+
+        def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
+          @AppBizId = appbizid
+          @BotBizId = botbizid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ChannelType = channeltype
+          @ChannelStatus = channelstatus
+        end
+
+        def deserialize(params)
+          @AppBizId = params['AppBizId']
+          @BotBizId = params['BotBizId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ChannelType = params['ChannelType']
+          @ChannelStatus = params['ChannelStatus']
+        end
+      end
+
+      # ListChannel返回参数结构体
+      class ListChannelResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回总数
+        # @type Total: Integer
+        # @param ListChannel: 渠道信息列表
+        # @type ListChannel: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :ListChannel, :RequestId
+
+        def initialize(total=nil, listchannel=nil, requestid=nil)
+          @Total = total
+          @ListChannel = listchannel
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['ListChannel'].nil?
+            @ListChannel = []
+            params['ListChannel'].each do |i|
+              channellistinfo_tmp = ChannelListInfo.new
+              channellistinfo_tmp.deserialize(i)
+              @ListChannel << channellistinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListDocCate请求参数结构体
       class ListDocCateRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
@@ -10054,6 +10222,67 @@ module TencentCloud
         end
       end
 
+      # 参数配置列表
+      class ParameterConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 字段名称
+        # @type Name: String
+        # @param Description: 字段描述
+        # @type Description: String
+        # @param Type: 字段类型
+        # @type Type: Integer
+        # @param IsRequired: 是否必填
+        # @type IsRequired: Boolean
+        # @param SubParams: 子参数
+        # @type SubParams: Array
+        # @param OneOf: OneOf类型的参数
+        # @type OneOf: Array
+        # @param AnyOf: AnyOf类型的参数
+        # @type AnyOf: Array
+
+        attr_accessor :Name, :Description, :Type, :IsRequired, :SubParams, :OneOf, :AnyOf
+
+        def initialize(name=nil, description=nil, type=nil, isrequired=nil, subparams=nil, oneof=nil, anyof=nil)
+          @Name = name
+          @Description = description
+          @Type = type
+          @IsRequired = isrequired
+          @SubParams = subparams
+          @OneOf = oneof
+          @AnyOf = anyof
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Type = params['Type']
+          @IsRequired = params['IsRequired']
+          unless params['SubParams'].nil?
+            @SubParams = []
+            params['SubParams'].each do |i|
+              parameterconfig_tmp = ParameterConfig.new
+              parameterconfig_tmp.deserialize(i)
+              @SubParams << parameterconfig_tmp
+            end
+          end
+          unless params['OneOf'].nil?
+            @OneOf = []
+            params['OneOf'].each do |i|
+              parameterconfig_tmp = ParameterConfig.new
+              parameterconfig_tmp.deserialize(i)
+              @OneOf << parameterconfig_tmp
+            end
+          end
+          unless params['AnyOf'].nil?
+            @AnyOf = []
+            params['AnyOf'].each do |i|
+              parameterconfig_tmp = ParameterConfig.new
+              parameterconfig_tmp.deserialize(i)
+              @AnyOf << parameterconfig_tmp
+            end
+          end
+        end
+      end
+
       # 插件参数请求结构
       class PluginToolReqParam < TencentCloud::Common::AbstractModel
         # @param Name: 参数名称
@@ -11644,6 +11873,29 @@ module TencentCloud
         end
       end
 
+      # 结构化输出的配置项
+      class StructuredOutputConfig < TencentCloud::Common::AbstractModel
+        # @param StructuredOutputParams: 参数列表
+        # @type StructuredOutputParams: Array
+
+        attr_accessor :StructuredOutputParams
+
+        def initialize(structuredoutputparams=nil)
+          @StructuredOutputParams = structuredoutputparams
+        end
+
+        def deserialize(params)
+          unless params['StructuredOutputParams'].nil?
+            @StructuredOutputParams = []
+            params['StructuredOutputParams'].each do |i|
+              parameterconfig_tmp = ParameterConfig.new
+              parameterconfig_tmp.deserialize(i)
+              @StructuredOutputParams << parameterconfig_tmp
+            end
+          end
+        end
+      end
+
       # 知识摘要应用配置
       class SummaryConfig < TencentCloud::Common::AbstractModel
         # @param Model: 模型配置
@@ -12670,6 +12922,22 @@ module TencentCloud
               @StatisticInfos << statisticinfo_tmp
             end
           end
+        end
+      end
+
+      # //智能体应用可见范围，public-所有人可见 private-仅自己可见 share-通过分享可见
+      class YuanQi < TencentCloud::Common::AbstractModel
+        # @param VisibleRange: public-所有人可见
+        # @type VisibleRange: String
+
+        attr_accessor :VisibleRange
+
+        def initialize(visiblerange=nil)
+          @VisibleRange = visiblerange
+        end
+
+        def deserialize(params)
+          @VisibleRange = params['VisibleRange']
         end
       end
 

@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定时间段内的健康得分趋势
+
+        # @param request: Request instance for DescribeHealthScoreTimeSeries.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeHealthScoreTimeSeriesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeHealthScoreTimeSeriesResponse`
+        def DescribeHealthScoreTimeSeries(request)
+          body = send_request('DescribeHealthScoreTimeSeries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHealthScoreTimeSeriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询某张表的慢查模板概览，这个接口是对用户点击对应的推荐索引后，展示慢日志用的
 
         # @param request: Request instance for DescribeIndexRecommendAggregationSlowLogs.
@@ -1287,6 +1311,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRedisTopBigKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取指定时间段内Redis 访问命令 cost top N
+
+        # @param request: Request instance for DescribeRedisTopCostCommands.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisTopCostCommandsRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeRedisTopCostCommandsResponse`
+        def DescribeRedisTopCostCommands(request)
+          body = send_request('DescribeRedisTopCostCommands', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedisTopCostCommandsResponse.new
             model.deserialize(response['Response'])
             model
           else

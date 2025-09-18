@@ -3508,6 +3508,93 @@ module TencentCloud
         end
       end
 
+      # ExportIpTraceLog请求参数结构体
+      class ExportIpTraceLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 起始偏移量
+        # @type Offset: Integer
+        # @param Limit: 数据条数
+        # @type Limit: Integer
+        # @param RemoteIp: 访问IP
+        # @type RemoteIp: Array
+        # @param TraceType: Request/Response 请求/返回, 非必填
+        # @type TraceType: Array
+        # @param NetType: Public/Private 公网访问/内网访问, 非必填
+        # @type NetType: Array
+        # @param ReqTypeOrRspStatus: POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填
+        # @type ReqTypeOrRspStatus: Array
+        # @param SearchKey: 关键字模糊查询，支持Lucene Query String
+        # @type SearchKey: String
+        # @param Uri: uri搜索
+        # @type Uri: String
+        # @param NodeIp: 集群节点IP
+        # @type NodeIp: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :RemoteIp, :TraceType, :NetType, :ReqTypeOrRspStatus, :SearchKey, :Uri, :NodeIp
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, remoteip=nil, tracetype=nil, nettype=nil, reqtypeorrspstatus=nil, searchkey=nil, uri=nil, nodeip=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @RemoteIp = remoteip
+          @TraceType = tracetype
+          @NetType = nettype
+          @ReqTypeOrRspStatus = reqtypeorrspstatus
+          @SearchKey = searchkey
+          @Uri = uri
+          @NodeIp = nodeip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RemoteIp = params['RemoteIp']
+          @TraceType = params['TraceType']
+          @NetType = params['NetType']
+          @ReqTypeOrRspStatus = params['ReqTypeOrRspStatus']
+          @SearchKey = params['SearchKey']
+          @Uri = params['Uri']
+          @NodeIp = params['NodeIp']
+        end
+      end
+
+      # ExportIpTraceLog返回参数结构体
+      class ExportIpTraceLogResponse < TencentCloud::Common::AbstractModel
+        # @param IpTraceList: IP时间列表
+        # @type IpTraceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IpTraceList, :RequestId
+
+        def initialize(iptracelist=nil, requestid=nil)
+          @IpTraceList = iptracelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['IpTraceList'].nil?
+            @IpTraceList = []
+            params['IpTraceList'].each do |i|
+              iptimepair_tmp = IpTimePair.new
+              iptimepair_tmp.deserialize(i)
+              @IpTraceList << iptimepair_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 索引备份失败的数据结构
       class Failures < TencentCloud::Common::AbstractModel
         # @param Index: 备份失败的索引名称
@@ -4541,6 +4628,30 @@ module TencentCloud
           @Ip = params['Ip']
           @Message = params['Message']
           @NodeID = params['NodeID']
+        end
+      end
+
+      # 节点IP、访问IP、访问时间
+      class IpTimePair < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param Timestamp: 时间戳，毫秒
+        # @type Timestamp: Integer
+        # @param NodeIp: 集群节点IP
+        # @type NodeIp: String
+
+        attr_accessor :Ip, :Timestamp, :NodeIp
+
+        def initialize(ip=nil, timestamp=nil, nodeip=nil)
+          @Ip = ip
+          @Timestamp = timestamp
+          @NodeIp = nodeip
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @Timestamp = params['Timestamp']
+          @NodeIp = params['NodeIp']
         end
       end
 

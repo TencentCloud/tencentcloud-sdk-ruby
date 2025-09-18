@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 查询资源名是否重复
+
+        # @param request: Request instance for CheckConnectorName.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CheckConnectorNameRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CheckConnectorNameResponse`
+        def CheckConnectorName(request)
+          body = send_request('CheckConnectorName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CheckConnectorNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 检查快照是否可用
 
         # @param request: Request instance for CheckSavepoint.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CopyJobsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建Connector
+
+        # @param request: Request instance for CreateConnector.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateConnectorRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateConnectorResponse`
+        def CreateConnector(request)
+          body = send_request('CreateConnector', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateConnectorResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -797,6 +845,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Connector
+
+        # @param request: Request instance for ModifyConnector.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ModifyConnectorRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ModifyConnectorResponse`
+        def ModifyConnector(request)
+          body = send_request('ModifyConnector', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyConnectorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 自定义树状结构页面拖拽文件夹
 
         # @param request: Request instance for ModifyFolder.
@@ -863,6 +935,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyWorkSpaceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 解析用户上传connector
+
+        # @param request: Request instance for ParseConnector.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::ParseConnectorRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::ParseConnectorResponse`
+        def ParseConnector(request)
+          body = send_request('ParseConnector', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ParseConnectorResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -870,6 +870,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询IP溯源日志原始数据
+
+        # @param request: Request instance for ExportIpTraceLog.
+        # @type request: :class:`Tencentcloud::es::V20180416::ExportIpTraceLogRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::ExportIpTraceLogResponse`
+        def ExportIpTraceLog(request)
+          body = send_request('ExportIpTraceLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportIpTraceLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看智能运维配置
 
         # @param request: Request instance for GetDiagnoseSettings.

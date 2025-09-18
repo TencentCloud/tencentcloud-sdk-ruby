@@ -486,14 +486,23 @@ module TencentCloud
         # @type TargetDescription: :class:`Tencentcloud::Eb.v20210416.models.TargetDescription`
         # @param RuleId: 事件规则ID
         # @type RuleId: String
+        # @param BatchTimeout: 批量投递最长等待时间
+        # @type BatchTimeout: Integer
+        # @param BatchEventCount: 批量投递最大事件条数
+        # @type BatchEventCount: Integer
+        # @param EnableBatchDelivery: 开启批量投递使能
+        # @type EnableBatchDelivery: Boolean
 
-        attr_accessor :EventBusId, :Type, :TargetDescription, :RuleId
+        attr_accessor :EventBusId, :Type, :TargetDescription, :RuleId, :BatchTimeout, :BatchEventCount, :EnableBatchDelivery
 
-        def initialize(eventbusid=nil, type=nil, targetdescription=nil, ruleid=nil)
+        def initialize(eventbusid=nil, type=nil, targetdescription=nil, ruleid=nil, batchtimeout=nil, batcheventcount=nil, enablebatchdelivery=nil)
           @EventBusId = eventbusid
           @Type = type
           @TargetDescription = targetdescription
           @RuleId = ruleid
+          @BatchTimeout = batchtimeout
+          @BatchEventCount = batcheventcount
+          @EnableBatchDelivery = enablebatchdelivery
         end
 
         def deserialize(params)
@@ -504,6 +513,9 @@ module TencentCloud
             @TargetDescription.deserialize(params['TargetDescription'])
           end
           @RuleId = params['RuleId']
+          @BatchTimeout = params['BatchTimeout']
+          @BatchEventCount = params['BatchEventCount']
+          @EnableBatchDelivery = params['EnableBatchDelivery']
         end
       end
 
