@@ -577,6 +577,50 @@ module TencentCloud
         end
       end
 
+      # BackUpAndroidInstance请求参数结构体
+      class BackUpAndroidInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例ID
+        # @type AndroidInstanceId: String
+        # @param Includes: 包含的路径，支持仅含一个通配符*，通配符不能出现在路径开始
+        # @type Includes: Array
+        # @param Excludes: 需要排除路径，支持仅含一个通配符*，通配符不能出现在路径开始
+        # @type Excludes: Array
+
+        attr_accessor :AndroidInstanceId, :Includes, :Excludes
+
+        def initialize(androidinstanceid=nil, includes=nil, excludes=nil)
+          @AndroidInstanceId = androidinstanceid
+          @Includes = includes
+          @Excludes = excludes
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @Includes = params['Includes']
+          @Excludes = params['Excludes']
+        end
+      end
+
+      # BackUpAndroidInstance返回参数结构体
+      class BackUpAndroidInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param BackupId: 备份 ID
+        # @type BackupId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupId, :RequestId
+
+        def initialize(backupid=nil, requestid=nil)
+          @BackupId = backupid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BackUpAndroidInstanceToStorage请求参数结构体
       class BackUpAndroidInstanceToStorageRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceId: 安卓实例ID
@@ -1624,6 +1668,38 @@ module TencentCloud
         end
       end
 
+      # DeleteAndroidInstanceBackups请求参数结构体
+      class DeleteAndroidInstanceBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param BackupIds: 备份ID列表
+        # @type BackupIds: Array
+
+        attr_accessor :BackupIds
+
+        def initialize(backupids=nil)
+          @BackupIds = backupids
+        end
+
+        def deserialize(params)
+          @BackupIds = params['BackupIds']
+        end
+      end
+
+      # DeleteAndroidInstanceBackups返回参数结构体
+      class DeleteAndroidInstanceBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAndroidInstanceImages请求参数结构体
       class DeleteAndroidInstanceImagesRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageIds: 镜像 ID 列表
@@ -1797,6 +1873,46 @@ module TencentCloud
               @Apps << androidinstanceappinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAndroidInstanceBackups请求参数结构体
+      class DescribeAndroidInstanceBackupsRequest < TencentCloud::Common::AbstractModel
+        # @param BackupIds: 备份ID列表
+        # @type BackupIds: Array
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 每页数量
+        # @type Limit: Integer
+
+        attr_accessor :BackupIds, :Offset, :Limit
+
+        def initialize(backupids=nil, offset=nil, limit=nil)
+          @BackupIds = backupids
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BackupIds = params['BackupIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAndroidInstanceBackups返回参数结构体
+      class DescribeAndroidInstanceBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3710,6 +3826,46 @@ module TencentCloud
 
       # RestoreAndroidInstanceFromStorage返回参数结构体
       class RestoreAndroidInstanceFromStorageResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 实例任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestoreAndroidInstance请求参数结构体
+      class RestoreAndroidInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 安卓实例 ID
+        # @type AndroidInstanceId: String
+        # @param BackupId: 备份 ID
+        # @type BackupId: String
+
+        attr_accessor :AndroidInstanceId, :BackupId
+
+        def initialize(androidinstanceid=nil, backupid=nil)
+          @AndroidInstanceId = androidinstanceid
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @BackupId = params['BackupId']
+        end
+      end
+
+      # RestoreAndroidInstance返回参数结构体
+      class RestoreAndroidInstanceResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 实例任务 ID
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

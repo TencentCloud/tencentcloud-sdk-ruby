@@ -987,17 +987,21 @@ module TencentCloud
         # @param Command: 控制命令，目前支持命令如下：
 
         # - ServerPushText，服务端发送文本给AI机器人，AI机器人会播报该文本
+        # - InvokeLLM，服务端发送文本给大模型，触发对话
         # @type Command: String
         # @param ServerPushText: 服务端发送播报文本命令，当Command为ServerPushText时必填
         # @type ServerPushText: :class:`Tencentcloud::Ccc.v20200210.models.ServerPushText`
+        # @param InvokeLLM: 服务端发送命令主动请求大模型,当Command为InvokeLLM时会把content请求到大模型,头部增加X-Invoke-LLM="1"
+        # @type InvokeLLM: :class:`Tencentcloud::Ccc.v20200210.models.InvokeLLM`
 
-        attr_accessor :SessionId, :SdkAppId, :Command, :ServerPushText
+        attr_accessor :SessionId, :SdkAppId, :Command, :ServerPushText, :InvokeLLM
 
-        def initialize(sessionid=nil, sdkappid=nil, command=nil, serverpushtext=nil)
+        def initialize(sessionid=nil, sdkappid=nil, command=nil, serverpushtext=nil, invokellm=nil)
           @SessionId = sessionid
           @SdkAppId = sdkappid
           @Command = command
           @ServerPushText = serverpushtext
+          @InvokeLLM = invokellm
         end
 
         def deserialize(params)
@@ -1007,6 +1011,10 @@ module TencentCloud
           unless params['ServerPushText'].nil?
             @ServerPushText = ServerPushText.new
             @ServerPushText.deserialize(params['ServerPushText'])
+          end
+          unless params['InvokeLLM'].nil?
+            @InvokeLLM = InvokeLLM.new
+            @InvokeLLM.deserialize(params['InvokeLLM'])
           end
         end
       end
@@ -1607,9 +1615,9 @@ module TencentCloud
         # @type NotAfter: Integer
         # @param Tries: 最大尝试次数，1-3 次
         # @type Tries: Integer
-        # @param Variables: 自定义变量（仅高级版支持）
+        # @param Variables: 自定义变量（仅高级版支持），CalleeAttributes 字段中使用相同变量会覆盖此处
         # @type Variables: Array
-        # @param UUI: UUI
+        # @param UUI: 用户自定义数据，CalleeAttributes 字段中使用 UUI 会覆盖此处
         # @type UUI: String
         # @param CalleeAttributes: 被叫属性
         # @type CalleeAttributes: Array
@@ -2022,14 +2030,20 @@ module TencentCloud
         # @type DetailList: Array
         # @param Prefix: 送号前缀
         # @type Prefix: String
+        # @param MobileNddPrefix: 国内长途手机前缀码
+        # @type MobileNddPrefix: String
+        # @param LocalNumberTrimAC: 同市固话去掉区号
+        # @type LocalNumberTrimAC: Boolean
 
-        attr_accessor :SdkAppId, :SipTrunkId, :DetailList, :Prefix
+        attr_accessor :SdkAppId, :SipTrunkId, :DetailList, :Prefix, :MobileNddPrefix, :LocalNumberTrimAC
 
-        def initialize(sdkappid=nil, siptrunkid=nil, detaillist=nil, prefix=nil)
+        def initialize(sdkappid=nil, siptrunkid=nil, detaillist=nil, prefix=nil, mobilenddprefix=nil, localnumbertrimac=nil)
           @SdkAppId = sdkappid
           @SipTrunkId = siptrunkid
           @DetailList = detaillist
           @Prefix = prefix
+          @MobileNddPrefix = mobilenddprefix
+          @LocalNumberTrimAC = localnumbertrimac
         end
 
         def deserialize(params)
@@ -2044,6 +2058,8 @@ module TencentCloud
             end
           end
           @Prefix = params['Prefix']
+          @MobileNddPrefix = params['MobileNddPrefix']
+          @LocalNumberTrimAC = params['LocalNumberTrimAC']
         end
       end
 
@@ -5136,6 +5152,26 @@ module TencentCloud
         end
       end
 
+      # 调用服务端主动发起请求到LLM
+      class InvokeLLM < TencentCloud::Common::AbstractModel
+        # @param Content: 请求LLM的内容
+        # @type Content: String
+        # @param Interrupt: 是否允许该文本打断机器人说话
+        # @type Interrupt: Boolean
+
+        attr_accessor :Content, :Interrupt
+
+        def initialize(content=nil, interrupt=nil)
+          @Content = content
+          @Interrupt = interrupt
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Interrupt = params['Interrupt']
+        end
+      end
+
       # 单条消息
       class Message < TencentCloud::Common::AbstractModel
         # @param Type: 消息类型
@@ -5284,14 +5320,20 @@ module TencentCloud
         # @type ApplyId: Integer
         # @param Prefix: 送号前缀
         # @type Prefix: String
+        # @param MobileNddPrefix: 国内长途手机前缀码
+        # @type MobileNddPrefix: String
+        # @param LocalNumberTrimAC: 同市固话去掉区号
+        # @type LocalNumberTrimAC: Boolean
 
-        attr_accessor :SdkAppId, :DetailList, :ApplyId, :Prefix
+        attr_accessor :SdkAppId, :DetailList, :ApplyId, :Prefix, :MobileNddPrefix, :LocalNumberTrimAC
 
-        def initialize(sdkappid=nil, detaillist=nil, applyid=nil, prefix=nil)
+        def initialize(sdkappid=nil, detaillist=nil, applyid=nil, prefix=nil, mobilenddprefix=nil, localnumbertrimac=nil)
           @SdkAppId = sdkappid
           @DetailList = detaillist
           @ApplyId = applyid
           @Prefix = prefix
+          @MobileNddPrefix = mobilenddprefix
+          @LocalNumberTrimAC = localnumbertrimac
         end
 
         def deserialize(params)
@@ -5306,6 +5348,8 @@ module TencentCloud
           end
           @ApplyId = params['ApplyId']
           @Prefix = params['Prefix']
+          @MobileNddPrefix = params['MobileNddPrefix']
+          @LocalNumberTrimAC = params['LocalNumberTrimAC']
         end
       end
 
@@ -5476,15 +5520,18 @@ module TencentCloud
         # @type MaxCallPSec: Integer
         # @param OutboundCalleeFormat: 呼出被叫格式，使用 {+E.164} 或 {E.164},
         # @type OutboundCalleeFormat: String
+        # @param CarrierPhoneNumber: 运营商号码
+        # @type CarrierPhoneNumber: String
 
-        attr_accessor :CallType, :PhoneNumber, :MaxCallCount, :MaxCallPSec, :OutboundCalleeFormat
+        attr_accessor :CallType, :PhoneNumber, :MaxCallCount, :MaxCallPSec, :OutboundCalleeFormat, :CarrierPhoneNumber
 
-        def initialize(calltype=nil, phonenumber=nil, maxcallcount=nil, maxcallpsec=nil, outboundcalleeformat=nil)
+        def initialize(calltype=nil, phonenumber=nil, maxcallcount=nil, maxcallpsec=nil, outboundcalleeformat=nil, carrierphonenumber=nil)
           @CallType = calltype
           @PhoneNumber = phonenumber
           @MaxCallCount = maxcallcount
           @MaxCallPSec = maxcallpsec
           @OutboundCalleeFormat = outboundcalleeformat
+          @CarrierPhoneNumber = carrierphonenumber
         end
 
         def deserialize(params)
@@ -5493,6 +5540,7 @@ module TencentCloud
           @MaxCallCount = params['MaxCallCount']
           @MaxCallPSec = params['MaxCallPSec']
           @OutboundCalleeFormat = params['OutboundCalleeFormat']
+          @CarrierPhoneNumber = params['CarrierPhoneNumber']
         end
       end
 

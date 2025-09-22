@@ -4388,12 +4388,15 @@ module TencentCloud
         # @type IsSafetyLimited: Integer
         # @param IsSupportSA: 是否支持创建SA权限账号，0-不支持，1-支持
         # @type IsSupportSA: Integer
+        # @param SlowLogThreshold: 慢SQL阈值，单位毫秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SlowLogThreshold: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :IsDiskEncryptFlag, :IsSafetyLimited, :IsSupportSA, :RequestId
+        attr_accessor :InstanceId, :RegularBackupEnable, :RegularBackupSaveDays, :RegularBackupStrategy, :RegularBackupCounts, :RegularBackupStartTime, :BlockedThreshold, :EventSaveDays, :TDEConfig, :SSLConfig, :DrReadableInfo, :OldVipList, :XEventStatus, :MultiDrReadableInfo, :IsDiskEncryptFlag, :IsSafetyLimited, :IsSupportSA, :SlowLogThreshold, :RequestId
 
-        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, isdiskencryptflag=nil, issafetylimited=nil, issupportsa=nil, requestid=nil)
+        def initialize(instanceid=nil, regularbackupenable=nil, regularbackupsavedays=nil, regularbackupstrategy=nil, regularbackupcounts=nil, regularbackupstarttime=nil, blockedthreshold=nil, eventsavedays=nil, tdeconfig=nil, sslconfig=nil, drreadableinfo=nil, oldviplist=nil, xeventstatus=nil, multidrreadableinfo=nil, isdiskencryptflag=nil, issafetylimited=nil, issupportsa=nil, slowlogthreshold=nil, requestid=nil)
           @InstanceId = instanceid
           @RegularBackupEnable = regularbackupenable
           @RegularBackupSaveDays = regularbackupsavedays
@@ -4411,6 +4414,7 @@ module TencentCloud
           @IsDiskEncryptFlag = isdiskencryptflag
           @IsSafetyLimited = issafetylimited
           @IsSupportSA = issupportsa
+          @SlowLogThreshold = slowlogthreshold
           @RequestId = requestid
         end
 
@@ -4455,6 +4459,7 @@ module TencentCloud
           @IsDiskEncryptFlag = params['IsDiskEncryptFlag']
           @IsSafetyLimited = params['IsSafetyLimited']
           @IsSupportSA = params['IsSupportSA']
+          @SlowLogThreshold = params['SlowLogThreshold']
           @RequestId = params['RequestId']
         end
       end

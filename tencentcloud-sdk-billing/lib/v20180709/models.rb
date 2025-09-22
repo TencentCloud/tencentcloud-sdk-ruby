@@ -312,10 +312,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :BusinessCodeName, :PayMode, :PayModeName, :ProjectId, :ProjectName, :RegionId, :RegionName, :ZoneId, :ZoneName, :ResourceId, :ResourceName, :InstanceType, :InstanceTypeName, :SplitItemId, :SplitItemName, :ProductCode, :ProductCodeName, :ActionType, :ActionTypeName, :OrderId, :BillId, :PayTime, :FeeBeginTime, :FeeEndTime, :ComponentCode, :ComponentCodeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :SplitRatio, :TotalCost, :RITimeSpan, :RICost, :SPCost, :Discount, :BlendedDiscount, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :Tag, :RegionType, :RegionTypeName, :ItemCode, :ItemCodeName, :AssociatedOrder, :PriceInfo, :Formula, :FormulaUrl, :RealTotalMeasure, :DeductedMeasure, :ComponentConfig, :AllocationType, :DiscountObject, :DiscountType, :DiscountContent, :SPDeduction, :SPDeductionRate, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 7
-        deprecate :SplitItemId=, :none, 2025, 7
-        deprecate :SplitItemName, :none, 2025, 7
-        deprecate :SplitItemName=, :none, 2025, 7
+        deprecate :SplitItemId, :none, 2025, 9
+        deprecate :SplitItemId=, :none, 2025, 9
+        deprecate :SplitItemName, :none, 2025, 9
+        deprecate :SplitItemName=, :none, 2025, 9
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, businesscodename=nil, paymode=nil, paymodename=nil, projectid=nil, projectname=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, resourceid=nil, resourcename=nil, instancetype=nil, instancetypename=nil, splititemid=nil, splititemname=nil, productcode=nil, productcodename=nil, actiontype=nil, actiontypename=nil, orderid=nil, billid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, componentcode=nil, componentcodename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, splitratio=nil, totalcost=nil, ritimespan=nil, ricost=nil, spcost=nil, discount=nil, blendeddiscount=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, tag=nil, regiontype=nil, regiontypename=nil, itemcode=nil, itemcodename=nil, associatedorder=nil, priceinfo=nil, formula=nil, formulaurl=nil, realtotalmeasure=nil, deductedmeasure=nil, componentconfig=nil, allocationtype=nil, discountobject=nil, discounttype=nil, discountcontent=nil, spdeduction=nil, spdeductionrate=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1235,10 +1235,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ItemCodeName, :ComponentCode, :ComponentCodeName, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :SinglePrice, :ContractPrice, :SinglePriceUnit, :UsedAmount, :UsedAmountUnit, :TimeSpan, :TimeUnit, :ReserveDetail, :RealTotalMeasure, :DeductedMeasure, :Discount, :BlendedDiscount, :PriceInfo, :Formula, :FormulaUrl, :ComponentConfig, :SPDeduction, :SPDeductionRate, :AssociatedOrder, :DiscountObject, :DiscountType, :DiscountContent, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 7
-        deprecate :SplitItemId=, :none, 2025, 7
-        deprecate :SplitItemName, :none, 2025, 7
-        deprecate :SplitItemName=, :none, 2025, 7
+        deprecate :SplitItemId, :none, 2025, 9
+        deprecate :SplitItemId=, :none, 2025, 9
+        deprecate :SplitItemName, :none, 2025, 9
+        deprecate :SplitItemName=, :none, 2025, 9
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, itemcodename=nil, componentcode=nil, componentcodename=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, singleprice=nil, contractprice=nil, singlepriceunit=nil, usedamount=nil, usedamountunit=nil, timespan=nil, timeunit=nil, reservedetail=nil, realtotalmeasure=nil, deductedmeasure=nil, discount=nil, blendeddiscount=nil, priceinfo=nil, formula=nil, formulaurl=nil, componentconfig=nil, spdeduction=nil, spdeductionrate=nil, associatedorder=nil, discountobject=nil, discounttype=nil, discountcontent=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -1488,10 +1488,10 @@ module TencentCloud
 
         attr_accessor :TreeNodeUniqKey, :TreeNodeUniqKeyName, :BillDate, :PayerUin, :OwnerUin, :OperateUin, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :BusinessCode, :BusinessCodeName, :ProductCode, :ProductCodeName, :RegionId, :RegionName, :ZoneId, :ZoneName, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :Tag, :ProjectId, :ProjectName, :AllocationType, :TotalCost, :RiTimeSpan, :RiCost, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :SplitItemId, :SplitItemName, :FeeBeginTime, :FeeEndTime, :SPCost, :RegionType, :RegionTypeName, :ComponentConfig, :SPDeduction, :BillMonth
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 7
-        deprecate :SplitItemId=, :none, 2025, 7
-        deprecate :SplitItemName, :none, 2025, 7
-        deprecate :SplitItemName=, :none, 2025, 7
+        deprecate :SplitItemId, :none, 2025, 9
+        deprecate :SplitItemId=, :none, 2025, 9
+        deprecate :SplitItemName, :none, 2025, 9
+        deprecate :SplitItemName=, :none, 2025, 9
 
         def initialize(treenodeuniqkey=nil, treenodeuniqkeyname=nil, billdate=nil, payeruin=nil, owneruin=nil, operateuin=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, businesscode=nil, businesscodename=nil, productcode=nil, productcodename=nil, regionid=nil, regionname=nil, zoneid=nil, zonename=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, tag=nil, projectid=nil, projectname=nil, allocationtype=nil, totalcost=nil, ritimespan=nil, ricost=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, splititemid=nil, splititemname=nil, feebegintime=nil, feeendtime=nil, spcost=nil, regiontype=nil, regiontypename=nil, componentconfig=nil, spdeduction=nil, billmonth=nil)
           @TreeNodeUniqKey = treenodeuniqkey
@@ -2499,10 +2499,10 @@ module TencentCloud
 
         attr_accessor :ComponentCodeName, :ItemCodeName, :SinglePrice, :SpecifiedPrice, :PriceUnit, :UsedAmount, :UsedAmountUnit, :RealTotalMeasure, :DeductedMeasure, :TimeSpan, :TimeUnitName, :Cost, :Discount, :ReduceType, :RealCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ItemCode, :ComponentCode, :ContractPrice, :InstanceType, :RiTimeSpan, :OriginalCostWithRI, :SPDeductionRate, :SPDeduction, :OriginalCostWithSP, :BlendedDiscount, :ComponentConfig
         extend Gem::Deprecate
-        deprecate :SpecifiedPrice, :none, 2025, 7
-        deprecate :SpecifiedPrice=, :none, 2025, 7
-        deprecate :SPDeduction, :none, 2025, 7
-        deprecate :SPDeduction=, :none, 2025, 7
+        deprecate :SpecifiedPrice, :none, 2025, 9
+        deprecate :SpecifiedPrice=, :none, 2025, 9
+        deprecate :SPDeduction, :none, 2025, 9
+        deprecate :SPDeduction=, :none, 2025, 9
 
         def initialize(componentcodename=nil, itemcodename=nil, singleprice=nil, specifiedprice=nil, priceunit=nil, usedamount=nil, usedamountunit=nil, realtotalmeasure=nil, deductedmeasure=nil, timespan=nil, timeunitname=nil, cost=nil, discount=nil, reducetype=nil, realcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, itemcode=nil, componentcode=nil, contractprice=nil, instancetype=nil, ritimespan=nil, originalcostwithri=nil, spdeductionrate=nil, spdeduction=nil, originalcostwithsp=nil, blendeddiscount=nil, componentconfig=nil)
           @ComponentCodeName = componentcodename
@@ -2679,8 +2679,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 7
-        deprecate :SPDeduction=, :none, 2025, 7
+        deprecate :SPDeduction, :none, 2025, 9
+        deprecate :SPDeduction=, :none, 2025, 9
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -3038,8 +3038,8 @@ module TencentCloud
 
         attr_accessor :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :PayTime, :FeeBeginTime, :FeeEndTime, :ConfigDesc, :ExtendField1, :ExtendField2, :TotalCost, :Discount, :ReduceType, :RealTotalCost, :VoucherPayAmount, :CashPayAmount, :IncentivePayAmount, :TransferPayAmount, :ExtendField3, :ExtendField4, :ExtendField5, :Tags, :PayerUin, :OwnerUin, :OperateUin, :BusinessCode, :ProductCode, :RegionId, :InstanceType, :OriginalCostWithRI, :SPDeduction, :OriginalCostWithSP, :BillMonth
         extend Gem::Deprecate
-        deprecate :SPDeduction, :none, 2025, 7
-        deprecate :SPDeduction=, :none, 2025, 7
+        deprecate :SPDeduction, :none, 2025, 9
+        deprecate :SPDeduction=, :none, 2025, 9
 
         def initialize(businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, paytime=nil, feebegintime=nil, feeendtime=nil, configdesc=nil, extendfield1=nil, extendfield2=nil, totalcost=nil, discount=nil, reducetype=nil, realtotalcost=nil, voucherpayamount=nil, cashpayamount=nil, incentivepayamount=nil, transferpayamount=nil, extendfield3=nil, extendfield4=nil, extendfield5=nil, tags=nil, payeruin=nil, owneruin=nil, operateuin=nil, businesscode=nil, productcode=nil, regionid=nil, instancetype=nil, originalcostwithri=nil, spdeduction=nil, originalcostwithsp=nil, billmonth=nil)
           @BusinessCodeName = businesscodename
@@ -3246,6 +3246,617 @@ module TencentCloud
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
+        end
+      end
+
+      # 预算管理自定义费用范围参数
+      class BudgetConditionsForm < TencentCloud::Common::AbstractModel
+        # @param Business: 产品
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Business: Array
+        # @param PayMode: 计费模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Array
+        # @param ProductCodes: 子产品
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductCodes: Array
+        # @param ComponentCodes: 组件编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComponentCodes: Array
+        # @param ZoneIds: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneIds: Array
+        # @param RegionIds: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionIds: Array
+        # @param ProjectIds: 项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectIds: Array
+        # @param ActionTypes: 交易类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ActionTypes: Array
+        # @param ConsumptionTypes: 消耗类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConsumptionTypes: Array
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param PayerUins:  末级分账单元
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayerUins: Array
+        # @param OwnerUins: 主用户Uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUins: Array
+        # @param TreeNodeUniqKeys:  末级分账单元唯一键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TreeNodeUniqKeys: Array
+
+        attr_accessor :Business, :PayMode, :ProductCodes, :ComponentCodes, :ZoneIds, :RegionIds, :ProjectIds, :ActionTypes, :ConsumptionTypes, :Tags, :PayerUins, :OwnerUins, :TreeNodeUniqKeys
+
+        def initialize(business=nil, paymode=nil, productcodes=nil, componentcodes=nil, zoneids=nil, regionids=nil, projectids=nil, actiontypes=nil, consumptiontypes=nil, tags=nil, payeruins=nil, owneruins=nil, treenodeuniqkeys=nil)
+          @Business = business
+          @PayMode = paymode
+          @ProductCodes = productcodes
+          @ComponentCodes = componentcodes
+          @ZoneIds = zoneids
+          @RegionIds = regionids
+          @ProjectIds = projectids
+          @ActionTypes = actiontypes
+          @ConsumptionTypes = consumptiontypes
+          @Tags = tags
+          @PayerUins = payeruins
+          @OwnerUins = owneruins
+          @TreeNodeUniqKeys = treenodeuniqkeys
+        end
+
+        def deserialize(params)
+          @Business = params['Business']
+          @PayMode = params['PayMode']
+          @ProductCodes = params['ProductCodes']
+          @ComponentCodes = params['ComponentCodes']
+          @ZoneIds = params['ZoneIds']
+          @RegionIds = params['RegionIds']
+          @ProjectIds = params['ProjectIds']
+          @ActionTypes = params['ActionTypes']
+          @ConsumptionTypes = params['ConsumptionTypes']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tagsform_tmp = TagsForm.new
+              tagsform_tmp.deserialize(i)
+              @Tags << tagsform_tmp
+            end
+          end
+          @PayerUins = params['PayerUins']
+          @OwnerUins = params['OwnerUins']
+          @TreeNodeUniqKeys = params['TreeNodeUniqKeys']
+        end
+      end
+
+      # 查询返回预算完整信息
+      class BudgetExtend < TencentCloud::Common::AbstractModel
+        # @param BudgetName: 预算名称
+        # @type BudgetName: String
+        # @param BudgetQuota: 预算额度
+        # @type BudgetQuota: String
+        # @param CycleType: DAY 天，MONTH 月度，QUARTER 季度 ，YEAR 年度
+        # @type CycleType: String
+        # @param BillType: BILL  系统账单，CONSUMPTION  消耗账单
+        # @type BillType: String
+        # @param FeeType: COST 原价，REAL_COST 实际费用，CASH 现金，INCENTIVE 赠送金，VOUCHER 代金券，TRANSFER 分成金，TAX 税，AMOUNT_BEFORE_TAX 现金支付(税前)
+        # @type FeeType: String
+        # @param PeriodBegin: 有效期起始时间 2025-01-01
+        # @type PeriodBegin: String
+        # @param PeriodEnd: 有效期结束时间  2025-12-01
+        # @type PeriodEnd: String
+        # @param Dimensions: COST，USAGE，RI，SP
+        # @type Dimensions: String
+        # @param PlanType: FIX 固定值，CYCLE 不同值
+        # @type PlanType: String
+        # @param WarnJson: 阈值提醒
+        # @type WarnJson: Array
+        # @param PayerUin: 用户Uin
+        # @type PayerUin: Integer
+        # @param WaveThresholdJson: 波动提醒
+        # @type WaveThresholdJson: Array
+        # @param BudgetNote: 预算备注
+        # @type BudgetNote: String
+        # @param SendDetail: 自定义发送对象信息
+        # @type SendDetail: String
+        # @param DefaultMode: 0:默认uin发送
+        # @type DefaultMode: Integer
+        # @param TemplateType: CUS 自定义预算，ZERO_COST 零支出预算模板，BY_MONTH 按月费用预算模板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TemplateType: String
+        # @param MoneyStatus: (1, "未超支"),
+        # (2, "超支")
+        # @type MoneyStatus: Integer
+        # @param RemindTimes: 提醒次数
+        # @type RemindTimes: Integer
+        # @param CreateTime: 创建预算时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新预算时间
+        # @type UpdateTime: String
+        # @param BudgetId: 预算关联Id
+        # @type BudgetId: String
+        # @param HasForecast: NO_FORECAST(没有设置预测),
+        #  FORECAST_NO_DATA(设置了预测,但是没有数据),
+        # FORECAST_HAS_DATA(设置了预测,且有预测数据)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasForecast: String
+        # @param ForecastCost: 预测费用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForecastCost: String
+        # @param ForecastProgress: 预测进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForecastProgress: String
+        # @param RealCost: 实际费用
+        # @type RealCost: String
+        # @param BudgetSendInfoForm: 自定义发送
+        # @type BudgetSendInfoForm: Array
+        # @param CurDateDesc: 当前周期
+        # @type CurDateDesc: String
+        # @param BudgetStatus:  EXPIRED  已过期
+        # ACTIVE 生效中
+        # UNACTIVATED 已失效
+        # ACTIVATED 待生效
+        # @type BudgetStatus: String
+        # @param DimensionsRange: 预算维度范围条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimensionsRange: :class:`Tencentcloud::Billing.v20180709.models.BudgetConditionsForm`
+        # @param BudgetProgress: 预算进度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetProgress: String
+        # @param BudgetQuotaJson: 预算类型设置为计划预算时返回预算额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetQuotaJson: Array
+
+        attr_accessor :BudgetName, :BudgetQuota, :CycleType, :BillType, :FeeType, :PeriodBegin, :PeriodEnd, :Dimensions, :PlanType, :WarnJson, :PayerUin, :WaveThresholdJson, :BudgetNote, :SendDetail, :DefaultMode, :TemplateType, :MoneyStatus, :RemindTimes, :CreateTime, :UpdateTime, :BudgetId, :HasForecast, :ForecastCost, :ForecastProgress, :RealCost, :BudgetSendInfoForm, :CurDateDesc, :BudgetStatus, :DimensionsRange, :BudgetProgress, :BudgetQuotaJson
+
+        def initialize(budgetname=nil, budgetquota=nil, cycletype=nil, billtype=nil, feetype=nil, periodbegin=nil, periodend=nil, dimensions=nil, plantype=nil, warnjson=nil, payeruin=nil, wavethresholdjson=nil, budgetnote=nil, senddetail=nil, defaultmode=nil, templatetype=nil, moneystatus=nil, remindtimes=nil, createtime=nil, updatetime=nil, budgetid=nil, hasforecast=nil, forecastcost=nil, forecastprogress=nil, realcost=nil, budgetsendinfoform=nil, curdatedesc=nil, budgetstatus=nil, dimensionsrange=nil, budgetprogress=nil, budgetquotajson=nil)
+          @BudgetName = budgetname
+          @BudgetQuota = budgetquota
+          @CycleType = cycletype
+          @BillType = billtype
+          @FeeType = feetype
+          @PeriodBegin = periodbegin
+          @PeriodEnd = periodend
+          @Dimensions = dimensions
+          @PlanType = plantype
+          @WarnJson = warnjson
+          @PayerUin = payeruin
+          @WaveThresholdJson = wavethresholdjson
+          @BudgetNote = budgetnote
+          @SendDetail = senddetail
+          @DefaultMode = defaultmode
+          @TemplateType = templatetype
+          @MoneyStatus = moneystatus
+          @RemindTimes = remindtimes
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @BudgetId = budgetid
+          @HasForecast = hasforecast
+          @ForecastCost = forecastcost
+          @ForecastProgress = forecastprogress
+          @RealCost = realcost
+          @BudgetSendInfoForm = budgetsendinfoform
+          @CurDateDesc = curdatedesc
+          @BudgetStatus = budgetstatus
+          @DimensionsRange = dimensionsrange
+          @BudgetProgress = budgetprogress
+          @BudgetQuotaJson = budgetquotajson
+        end
+
+        def deserialize(params)
+          @BudgetName = params['BudgetName']
+          @BudgetQuota = params['BudgetQuota']
+          @CycleType = params['CycleType']
+          @BillType = params['BillType']
+          @FeeType = params['FeeType']
+          @PeriodBegin = params['PeriodBegin']
+          @PeriodEnd = params['PeriodEnd']
+          @Dimensions = params['Dimensions']
+          @PlanType = params['PlanType']
+          unless params['WarnJson'].nil?
+            @WarnJson = []
+            params['WarnJson'].each do |i|
+              budgetwarn_tmp = BudgetWarn.new
+              budgetwarn_tmp.deserialize(i)
+              @WarnJson << budgetwarn_tmp
+            end
+          end
+          @PayerUin = params['PayerUin']
+          unless params['WaveThresholdJson'].nil?
+            @WaveThresholdJson = []
+            params['WaveThresholdJson'].each do |i|
+              wavethresholdform_tmp = WaveThresholdForm.new
+              wavethresholdform_tmp.deserialize(i)
+              @WaveThresholdJson << wavethresholdform_tmp
+            end
+          end
+          @BudgetNote = params['BudgetNote']
+          @SendDetail = params['SendDetail']
+          @DefaultMode = params['DefaultMode']
+          @TemplateType = params['TemplateType']
+          @MoneyStatus = params['MoneyStatus']
+          @RemindTimes = params['RemindTimes']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @BudgetId = params['BudgetId']
+          @HasForecast = params['HasForecast']
+          @ForecastCost = params['ForecastCost']
+          @ForecastProgress = params['ForecastProgress']
+          @RealCost = params['RealCost']
+          unless params['BudgetSendInfoForm'].nil?
+            @BudgetSendInfoForm = []
+            params['BudgetSendInfoForm'].each do |i|
+              budgetsendinfodto_tmp = BudgetSendInfoDto.new
+              budgetsendinfodto_tmp.deserialize(i)
+              @BudgetSendInfoForm << budgetsendinfodto_tmp
+            end
+          end
+          @CurDateDesc = params['CurDateDesc']
+          @BudgetStatus = params['BudgetStatus']
+          unless params['DimensionsRange'].nil?
+            @DimensionsRange = BudgetConditionsForm.new
+            @DimensionsRange.deserialize(params['DimensionsRange'])
+          end
+          @BudgetProgress = params['BudgetProgress']
+          unless params['BudgetQuotaJson'].nil?
+            @BudgetQuotaJson = []
+            params['BudgetQuotaJson'].each do |i|
+              budgetplan_tmp = BudgetPlan.new
+              budgetplan_tmp.deserialize(i)
+              @BudgetQuotaJson << budgetplan_tmp
+            end
+          end
+        end
+      end
+
+      # 预算操作后返回信息
+      class BudgetInfoApiResponse < TencentCloud::Common::AbstractModel
+        # @param BudgetId: 预算项目id
+        # @type BudgetId: String
+        # @param UpdateTime: 更新预算时间
+        # @type UpdateTime: String
+
+        attr_accessor :BudgetId, :UpdateTime
+
+        def initialize(budgetid=nil, updatetime=nil)
+          @BudgetId = budgetid
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @BudgetId = params['BudgetId']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 记录预算项目相关字段的变更信息
+      class BudgetInfoDiffEntity < TencentCloud::Common::AbstractModel
+        # @param Property: 变更属性
+        # @type Property: String
+        # @param Before: 变更前内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Before: String
+        # @param After: 变更后内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type After: String
+
+        attr_accessor :Property, :Before, :After
+
+        def initialize(property=nil, before=nil, after=nil)
+          @Property = property
+          @Before = before
+          @After = after
+        end
+
+        def deserialize(params)
+          @Property = params['Property']
+          @Before = params['Before']
+          @After = params['After']
+        end
+      end
+
+      # 预算修改记录信息
+      class BudgetOperationLogEntity < TencentCloud::Common::AbstractModel
+        # @param PayerUin: Uin
+        # @type PayerUin: Integer
+        # @param OwnerUin: 主用户Uin
+        # @type OwnerUin: Integer
+        # @param OperateUin: 操作用户Uin
+        # @type OperateUin: Integer
+        # @param BillDay: 日期
+        # @type BillDay: Integer
+        # @param BillMonth: 月份
+        # @type BillMonth: String
+        # @param Action: 修改类型：ADD(新增)、UPDATE(更新)
+        # @type Action: String
+        # @param DiffValue: 变更信息
+        # @type DiffValue: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: String
+        # @param OperationChannel: 修改渠道：官网修改/API修改
+        # @type OperationChannel: String
+        # @param BudgetId: 预算项目id
+        # @type BudgetId: String
+
+        attr_accessor :PayerUin, :OwnerUin, :OperateUin, :BillDay, :BillMonth, :Action, :DiffValue, :CreateTime, :UpdateTime, :OperationChannel, :BudgetId
+
+        def initialize(payeruin=nil, owneruin=nil, operateuin=nil, billday=nil, billmonth=nil, action=nil, diffvalue=nil, createtime=nil, updatetime=nil, operationchannel=nil, budgetid=nil)
+          @PayerUin = payeruin
+          @OwnerUin = owneruin
+          @OperateUin = operateuin
+          @BillDay = billday
+          @BillMonth = billmonth
+          @Action = action
+          @DiffValue = diffvalue
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @OperationChannel = operationchannel
+          @BudgetId = budgetid
+        end
+
+        def deserialize(params)
+          @PayerUin = params['PayerUin']
+          @OwnerUin = params['OwnerUin']
+          @OperateUin = params['OperateUin']
+          @BillDay = params['BillDay']
+          @BillMonth = params['BillMonth']
+          @Action = params['Action']
+          unless params['DiffValue'].nil?
+            @DiffValue = []
+            params['DiffValue'].each do |i|
+              budgetinfodiffentity_tmp = BudgetInfoDiffEntity.new
+              budgetinfodiffentity_tmp.deserialize(i)
+              @DiffValue << budgetinfodiffentity_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @OperationChannel = params['OperationChannel']
+          @BudgetId = params['BudgetId']
+        end
+      end
+
+      # 预算计算复杂数据类型
+      class BudgetPlan < TencentCloud::Common::AbstractModel
+        # @param DateDesc: 前端页面日期显示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateDesc: String
+        # @param Quota: 预算额度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Quota: String
+
+        attr_accessor :DateDesc, :Quota
+
+        def initialize(datedesc=nil, quota=nil)
+          @DateDesc = datedesc
+          @Quota = quota
+        end
+
+        def deserialize(params)
+          @DateDesc = params['DateDesc']
+          @Quota = params['Quota']
+        end
+      end
+
+      # 预算管理的分页数据
+      class BudgetRemindRecordList < TencentCloud::Common::AbstractModel
+        # @param OptimizeCountSql: 自动优化 COUNT SQL 如果遇到 jSqlParser 无法解析情况，设置该参数为 false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OptimizeCountSql: Boolean
+        # @param Pages: 分页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pages: Integer
+        # @param Orders: 排序字段信息，允许前端传入的时候，注意 SQL 注入问题，可以使用 SqlInjectionUtils.check(...) 检查文本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Orders: Array
+        # @param CountId: xml 自定义 count 查询的 statementId 也可以不用指定在分页 statementId 后面加上 _mpCount 例如分页 selectPageById 指定 count 的查询 statementId 设置为 selectPageById_mpCount 即可默认找到该 SQL 执行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CountId: String
+        # @param Size: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Total: 总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param MaxLimit: 单页分页条数限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxLimit: String
+        # @param Records: 查询数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param Current: 当前页
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Current: Integer
+        # @param SearchCount: 是否进行 count 查询，如果只想查询到列表不要查询总记录数，设置该参数为 false
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SearchCount: Boolean
+
+        attr_accessor :OptimizeCountSql, :Pages, :Orders, :CountId, :Size, :Total, :MaxLimit, :Records, :Current, :SearchCount
+
+        def initialize(optimizecountsql=nil, pages=nil, orders=nil, countid=nil, size=nil, total=nil, maxlimit=nil, records=nil, current=nil, searchcount=nil)
+          @OptimizeCountSql = optimizecountsql
+          @Pages = pages
+          @Orders = orders
+          @CountId = countid
+          @Size = size
+          @Total = total
+          @MaxLimit = maxlimit
+          @Records = records
+          @Current = current
+          @SearchCount = searchcount
+        end
+
+        def deserialize(params)
+          @OptimizeCountSql = params['OptimizeCountSql']
+          @Pages = params['Pages']
+          unless params['Orders'].nil?
+            @Orders = []
+            params['Orders'].each do |i|
+              orderdto_tmp = OrderDto.new
+              orderdto_tmp.deserialize(i)
+              @Orders << orderdto_tmp
+            end
+          end
+          @CountId = params['CountId']
+          @Size = params['Size']
+          @Total = params['Total']
+          @MaxLimit = params['MaxLimit']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              budgetremindrecords_tmp = BudgetRemindRecords.new
+              budgetremindrecords_tmp.deserialize(i)
+              @Records << budgetremindrecords_tmp
+            end
+          end
+          @Current = params['Current']
+          @SearchCount = params['SearchCount']
+        end
+      end
+
+      # 预算历史详情
+      class BudgetRemindRecords < TencentCloud::Common::AbstractModel
+        # @param DateDesc: 预算周期
+        # @type DateDesc: String
+        # @param RealCost: 实际费用
+        # @type RealCost: String
+        # @param BudgetQuota: 预算值额度
+        # @type BudgetQuota: String
+        # @param AlarmType: 提醒类型。
+        # 枚举值:
+        # BUDGET 预算提醒,
+        # WAVE 波动提醒.
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmType: String
+        # @param MessageContent: 消息内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MessageContent: String
+        # @param SendTime: 发送时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SendTime: Integer
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+
+        attr_accessor :DateDesc, :RealCost, :BudgetQuota, :AlarmType, :MessageContent, :SendTime, :CreateTime
+
+        def initialize(datedesc=nil, realcost=nil, budgetquota=nil, alarmtype=nil, messagecontent=nil, sendtime=nil, createtime=nil)
+          @DateDesc = datedesc
+          @RealCost = realcost
+          @BudgetQuota = budgetquota
+          @AlarmType = alarmtype
+          @MessageContent = messagecontent
+          @SendTime = sendtime
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @DateDesc = params['DateDesc']
+          @RealCost = params['RealCost']
+          @BudgetQuota = params['BudgetQuota']
+          @AlarmType = params['AlarmType']
+          @MessageContent = params['MessageContent']
+          @SendTime = params['SendTime']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 预算提醒
+      class BudgetSendInfoDto < TencentCloud::Common::AbstractModel
+        # @param WeekDays: 通知周期,逗号隔开。
+        # 枚举值:
+        # 周一:1,
+        # 周二:2,
+        # 周天:7
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WeekDays: Array
+        # @param ReceiverType: 接收类型。
+        # 枚举值:
+        # UIN 默认模式,
+        # USER 用户,
+        # GROUP 用户组。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverType: String
+        # @param EndTime: 发送接收窗口HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param BudgetId: 预算配置id（预算名称）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BudgetId: Integer
+        # @param NoticeWays: 接收渠道,逗号隔开;
+        # 枚举值:
+        # TITLE 标题，
+        # SITE 站内信,
+        # EMAIL 邮件,
+        # SMS 短信,
+        # WECHAT 微信,
+        # VOICE 语音,
+        # QYWX 企业微信;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeWays: Array
+        # @param StartTime: 发送开始窗口HH:mm:ss
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param Id: id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param ReceiverIds: 用户id,用户组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReceiverIds: Array
+
+        attr_accessor :WeekDays, :ReceiverType, :EndTime, :BudgetId, :NoticeWays, :StartTime, :Id, :ReceiverIds
+
+        def initialize(weekdays=nil, receivertype=nil, endtime=nil, budgetid=nil, noticeways=nil, starttime=nil, id=nil, receiverids=nil)
+          @WeekDays = weekdays
+          @ReceiverType = receivertype
+          @EndTime = endtime
+          @BudgetId = budgetid
+          @NoticeWays = noticeways
+          @StartTime = starttime
+          @Id = id
+          @ReceiverIds = receiverids
+        end
+
+        def deserialize(params)
+          @WeekDays = params['WeekDays']
+          @ReceiverType = params['ReceiverType']
+          @EndTime = params['EndTime']
+          @BudgetId = params['BudgetId']
+          @NoticeWays = params['NoticeWays']
+          @StartTime = params['StartTime']
+          @Id = params['Id']
+          @ReceiverIds = params['ReceiverIds']
+        end
+      end
+
+      # 预算阈值提醒信息
+      class BudgetWarn < TencentCloud::Common::AbstractModel
+        # @param WarnType: ACTUAL 实际金额，
+        # FORECAST 预测金额
+        # @type WarnType: String
+        # @param CalType: PERCENTAGE 预算金额的百分比，ABS 固定值
+        # @type CalType: String
+        # @param ThresholdValue: 阈值（大于等于0）
+        # @type ThresholdValue: String
+
+        attr_accessor :WarnType, :CalType, :ThresholdValue
+
+        def initialize(warntype=nil, caltype=nil, thresholdvalue=nil)
+          @WarnType = warntype
+          @CalType = caltype
+          @ThresholdValue = thresholdvalue
+        end
+
+        def deserialize(params)
+          @WarnType = params['WarnType']
+          @CalType = params['CalType']
+          @ThresholdValue = params['ThresholdValue']
         end
       end
 
@@ -4286,6 +4897,116 @@ module TencentCloud
         end
       end
 
+      # CreateBudget请求参数结构体
+      class CreateBudgetRequest < TencentCloud::Common::AbstractModel
+        # @param BudgetName: 预算名称
+        # @type BudgetName: String
+        # @param CycleType: DAY 天，MONTH 月度，QUARTER 季度 ，YEAR 年度
+        # @type CycleType: String
+        # @param PeriodBegin: 有效期起始时间 2025-01-01(周期: 天) / 2025-01（周期: 月）
+        # @type PeriodBegin: String
+        # @param PeriodEnd: 有效期结束时间  2025-12-01(周期：天)  / 2025-12（周期：月）
+        # @type PeriodEnd: String
+        # @param PlanType: FIX 固定预算，CYCLE 计划预算
+        # @type PlanType: String
+        # @param BudgetQuota: 预算值额度
+        # 预算计划类型为FIX(固定预算)时传定值；
+        # 预算计划类型为CYCLE(计划预算)时传[{"dateDesc":"2025-07","quota":"1000"},{"dateDesc":"2025-08","quota":"2000"}]；
+        # @type BudgetQuota: String
+        # @param BillType: BILL  系统账单，CONSUMPTION  消耗账单
+        # @type BillType: String
+        # @param FeeType: COST 原价，REAL_COST 实际费用，CASH 现金，INCENTIVE 赠送金，VOUCHER 代金券，TRANSFER 分成金，TAX 税，AMOUNT_BEFORE_TAX 现金支付(税前)
+        # @type FeeType: String
+        # @param WarnJson: 阈值提醒
+        # @type WarnJson: Array
+        # @param BudgetNote: 预算备注
+        # @type BudgetNote: String
+        # @param DimensionsRange: 预算维度范围条件
+        # @type DimensionsRange: :class:`Tencentcloud::Billing.v20180709.models.BudgetConditionsForm`
+        # @param WaveThresholdJson: 波动提醒
+        # @type WaveThresholdJson: Array
+
+        attr_accessor :BudgetName, :CycleType, :PeriodBegin, :PeriodEnd, :PlanType, :BudgetQuota, :BillType, :FeeType, :WarnJson, :BudgetNote, :DimensionsRange, :WaveThresholdJson
+
+        def initialize(budgetname=nil, cycletype=nil, periodbegin=nil, periodend=nil, plantype=nil, budgetquota=nil, billtype=nil, feetype=nil, warnjson=nil, budgetnote=nil, dimensionsrange=nil, wavethresholdjson=nil)
+          @BudgetName = budgetname
+          @CycleType = cycletype
+          @PeriodBegin = periodbegin
+          @PeriodEnd = periodend
+          @PlanType = plantype
+          @BudgetQuota = budgetquota
+          @BillType = billtype
+          @FeeType = feetype
+          @WarnJson = warnjson
+          @BudgetNote = budgetnote
+          @DimensionsRange = dimensionsrange
+          @WaveThresholdJson = wavethresholdjson
+        end
+
+        def deserialize(params)
+          @BudgetName = params['BudgetName']
+          @CycleType = params['CycleType']
+          @PeriodBegin = params['PeriodBegin']
+          @PeriodEnd = params['PeriodEnd']
+          @PlanType = params['PlanType']
+          @BudgetQuota = params['BudgetQuota']
+          @BillType = params['BillType']
+          @FeeType = params['FeeType']
+          unless params['WarnJson'].nil?
+            @WarnJson = []
+            params['WarnJson'].each do |i|
+              budgetwarn_tmp = BudgetWarn.new
+              budgetwarn_tmp.deserialize(i)
+              @WarnJson << budgetwarn_tmp
+            end
+          end
+          @BudgetNote = params['BudgetNote']
+          unless params['DimensionsRange'].nil?
+            @DimensionsRange = BudgetConditionsForm.new
+            @DimensionsRange.deserialize(params['DimensionsRange'])
+          end
+          unless params['WaveThresholdJson'].nil?
+            @WaveThresholdJson = []
+            params['WaveThresholdJson'].each do |i|
+              wavethresholdform_tmp = WaveThresholdForm.new
+              wavethresholdform_tmp.deserialize(i)
+              @WaveThresholdJson << wavethresholdform_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBudget返回参数结构体
+      class CreateBudgetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建预算返回信息
+        # @type Data: :class:`Tencentcloud::Billing.v20180709.models.BudgetInfoApiResponse`
+        # @param Message: create success
+        # @type Message: String
+        # @param Code: 返回码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BudgetInfoApiResponse.new
+            @Data.deserialize(params['Data'])
+          end
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGatherRule请求参数结构体
       class CreateGatherRuleRequest < TencentCloud::Common::AbstractModel
         # @param Id: 规则所属分账单元ID
@@ -4330,6 +5051,86 @@ module TencentCloud
         def deserialize(params)
           @Id = params['Id']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取预算管理的基础信息分页数据
+      class DataForBudgetInfoPage < TencentCloud::Common::AbstractModel
+        # @param Pages: 分页
+        # @type Pages: Integer
+        # @param Size: 分页大小
+        # @type Size: Integer
+        # @param Total: 总量
+        # @type Total: Integer
+        # @param Records: 查询数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param Current: 当前页
+        # @type Current: Integer
+
+        attr_accessor :Pages, :Size, :Total, :Records, :Current
+
+        def initialize(pages=nil, size=nil, total=nil, records=nil, current=nil)
+          @Pages = pages
+          @Size = size
+          @Total = total
+          @Records = records
+          @Current = current
+        end
+
+        def deserialize(params)
+          @Pages = params['Pages']
+          @Size = params['Size']
+          @Total = params['Total']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              budgetextend_tmp = BudgetExtend.new
+              budgetextend_tmp.deserialize(i)
+              @Records << budgetextend_tmp
+            end
+          end
+          @Current = params['Current']
+        end
+      end
+
+      # 预算修改记录信息分页数据
+      class DataForBudgetOperationLogPage < TencentCloud::Common::AbstractModel
+        # @param Pages: 分页
+        # @type Pages: Integer
+        # @param Size: 分页大小
+        # @type Size: Integer
+        # @param Total: 总量
+        # @type Total: Integer
+        # @param Records: 查询数据列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Records: Array
+        # @param Current: 当前页
+        # @type Current: Integer
+
+        attr_accessor :Pages, :Size, :Total, :Records, :Current
+
+        def initialize(pages=nil, size=nil, total=nil, records=nil, current=nil)
+          @Pages = pages
+          @Size = size
+          @Total = total
+          @Records = records
+          @Current = current
+        end
+
+        def deserialize(params)
+          @Pages = params['Pages']
+          @Size = params['Size']
+          @Total = params['Total']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              budgetoperationlogentity_tmp = BudgetOperationLogEntity.new
+              budgetoperationlogentity_tmp.deserialize(i)
+              @Records << budgetoperationlogentity_tmp
+            end
+          end
+          @Current = params['Current']
         end
       end
 
@@ -4573,6 +5374,50 @@ module TencentCloud
         end
       end
 
+      # DeleteBudget请求参数结构体
+      class DeleteBudgetRequest < TencentCloud::Common::AbstractModel
+        # @param BudgetIds: 预算项目id
+        # @type BudgetIds: Array
+
+        attr_accessor :BudgetIds
+
+        def initialize(budgetids=nil)
+          @BudgetIds = budgetids
+        end
+
+        def deserialize(params)
+          @BudgetIds = params['BudgetIds']
+        end
+      end
+
+      # DeleteBudget返回参数结构体
+      class DeleteBudgetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回删除预算项目id
+        # @type Data: Array
+        # @param Message: 信息提示
+        # @type Message: String
+        # @param Code: 返回码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteGatherRule请求参数结构体
       class DeleteGatherRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleId: 所删除归集规则ID
@@ -4653,10 +5498,10 @@ module TencentCloud
 
         attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
         extend Gem::Deprecate
-        deprecate :IsAllowArrears, :none, 2025, 7
-        deprecate :IsAllowArrears=, :none, 2025, 7
-        deprecate :IsCreditLimited, :none, 2025, 7
-        deprecate :IsCreditLimited=, :none, 2025, 7
+        deprecate :IsAllowArrears, :none, 2025, 9
+        deprecate :IsAllowArrears=, :none, 2025, 9
+        deprecate :IsCreditLimited, :none, 2025, 9
+        deprecate :IsCreditLimited=, :none, 2025, 9
 
         def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
           @Balance = balance
@@ -5594,8 +6439,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Month, :PeriodType, :TreeNodeUniqKeys, :SortType, :Sort, :BillDates, :BusinessCodes, :SearchKey
         extend Gem::Deprecate
-        deprecate :SearchKey, :none, 2025, 7
-        deprecate :SearchKey=, :none, 2025, 7
+        deprecate :SearchKey, :none, 2025, 9
+        deprecate :SearchKey=, :none, 2025, 9
 
         def initialize(limit=nil, offset=nil, month=nil, periodtype=nil, treenodeuniqkeys=nil, sorttype=nil, sort=nil, billdates=nil, businesscodes=nil, searchkey=nil)
           @Limit = limit
@@ -6279,8 +7124,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 7
-        deprecate :PeriodType=, :none, 2025, 7
+        deprecate :PeriodType, :none, 2025, 9
+        deprecate :PeriodType=, :none, 2025, 9
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil)
           @Offset = offset
@@ -6416,10 +7261,10 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :PeriodType, :Month, :BeginTime, :EndTime, :NeedRecordNum, :ProductCode, :PayMode, :ResourceId, :ActionType, :ProjectId, :BusinessCode, :Context, :PayerUin
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 7
-        deprecate :PeriodType=, :none, 2025, 7
-        deprecate :ProductCode, :none, 2025, 7
-        deprecate :ProductCode=, :none, 2025, 7
+        deprecate :PeriodType, :none, 2025, 9
+        deprecate :PeriodType=, :none, 2025, 9
+        deprecate :ProductCode, :none, 2025, 9
+        deprecate :ProductCode=, :none, 2025, 9
 
         def initialize(offset=nil, limit=nil, periodtype=nil, month=nil, begintime=nil, endtime=nil, needrecordnum=nil, productcode=nil, paymode=nil, resourceid=nil, actiontype=nil, projectid=nil, businesscode=nil, context=nil, payeruin=nil)
           @Offset = offset
@@ -6741,8 +7586,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 7
-        deprecate :PeriodType=, :none, 2025, 7
+        deprecate :PeriodType, :none, 2025, 9
+        deprecate :PeriodType=, :none, 2025, 9
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -6865,8 +7710,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Month, :PeriodType, :NeedRecordNum, :ActionType, :ResourceId, :PayMode, :BusinessCode, :PayerUin, :TagKey, :TagValue
         extend Gem::Deprecate
-        deprecate :PeriodType, :none, 2025, 7
-        deprecate :PeriodType=, :none, 2025, 7
+        deprecate :PeriodType, :none, 2025, 9
+        deprecate :PeriodType=, :none, 2025, 9
 
         def initialize(offset=nil, limit=nil, month=nil, periodtype=nil, needrecordnum=nil, actiontype=nil, resourceid=nil, paymode=nil, businesscode=nil, payeruin=nil, tagkey=nil, tagvalue=nil)
           @Offset = offset
@@ -7350,6 +8195,185 @@ module TencentCloud
               @SummaryDetail << summarydetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBudgetOperationLog请求参数结构体
+      class DescribeBudgetOperationLogRequest < TencentCloud::Common::AbstractModel
+        # @param PageNo: 页码
+        # @type PageNo: Integer
+        # @param PageSize: 每页数目
+        # @type PageSize: Integer
+        # @param BudgetId: 预算项目id
+        # @type BudgetId: String
+
+        attr_accessor :PageNo, :PageSize, :BudgetId
+
+        def initialize(pageno=nil, pagesize=nil, budgetid=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @BudgetId = budgetid
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @BudgetId = params['BudgetId']
+        end
+      end
+
+      # DescribeBudgetOperationLog返回参数结构体
+      class DescribeBudgetOperationLogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 预算修改记录详情
+        # @type Data: :class:`Tencentcloud::Billing.v20180709.models.DataForBudgetOperationLogPage`
+        # @param Message: 信息提示
+        # @type Message: String
+        # @param Code: 返回码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataForBudgetOperationLogPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBudgetRemindRecordList请求参数结构体
+      class DescribeBudgetRemindRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNo: 页码，整型
+        # @type PageNo: Integer
+        # @param PageSize: 每页数目，整型
+        # @type PageSize: Integer
+        # @param BudgetId: 预算基础信息关联id
+        # @type BudgetId: String
+
+        attr_accessor :PageNo, :PageSize, :BudgetId
+
+        def initialize(pageno=nil, pagesize=nil, budgetid=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @BudgetId = budgetid
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @BudgetId = params['BudgetId']
+        end
+      end
+
+      # DescribeBudgetRemindRecordList返回参数结构体
+      class DescribeBudgetRemindRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 预算配置属性
+        # @type Data: :class:`Tencentcloud::Billing.v20180709.models.BudgetRemindRecordList`
+        # @param Message: 错误信息提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Code: 错误响应码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BudgetRemindRecordList.new
+            @Data.deserialize(params['Data'])
+          end
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBudget请求参数结构体
+      class DescribeBudgetRequest < TencentCloud::Common::AbstractModel
+        # @param PageNo: 页码，整型
+        # @type PageNo: Integer
+        # @param PageSize: 每页数目，整型
+        # @type PageSize: Integer
+        # @param BudgetId: 预算项目id
+        # @type BudgetId: String
+        # @param BudgetName: 预算名称
+        # @type BudgetName: String
+        # @param BudgetStatus: EXPIRED失效，ACTIVE生效中， ACTIVATED待生效
+        # @type BudgetStatus: String
+        # @param CycleTypes: DAY天 MONTH月度 QUARTER季度 YEAR年度
+        # @type CycleTypes: Array
+
+        attr_accessor :PageNo, :PageSize, :BudgetId, :BudgetName, :BudgetStatus, :CycleTypes
+
+        def initialize(pageno=nil, pagesize=nil, budgetid=nil, budgetname=nil, budgetstatus=nil, cycletypes=nil)
+          @PageNo = pageno
+          @PageSize = pagesize
+          @BudgetId = budgetid
+          @BudgetName = budgetname
+          @BudgetStatus = budgetstatus
+          @CycleTypes = cycletypes
+        end
+
+        def deserialize(params)
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @BudgetId = params['BudgetId']
+          @BudgetName = params['BudgetName']
+          @BudgetStatus = params['BudgetStatus']
+          @CycleTypes = params['CycleTypes']
+        end
+      end
+
+      # DescribeBudget返回参数结构体
+      class DescribeBudgetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 预算项目详情
+        # @type Data: :class:`Tencentcloud::Billing.v20180709.models.DataForBudgetInfoPage`
+        # @param Message: 信息提示
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Code: 返回码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataForBudgetInfoPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @Message = params['Message']
+          @Code = params['Code']
           @RequestId = params['RequestId']
         end
       end
@@ -9103,10 +10127,10 @@ module TencentCloud
 
         attr_accessor :PayerUin, :OwnerUin, :OperateUin, :InstanceType, :InstanceTypeName, :ResourceId, :ResourceName, :TreeNodeUniqKey, :TreeNodeUniqKeyName, :RuleId, :RuleName, :BusinessCode, :BusinessCodeName, :ItemCode, :ItemCodeName, :RegionId, :RegionName, :Tag, :RealTotalCost, :CashPayAmount, :VoucherPayAmount, :IncentivePayAmount, :TransferPayAmount, :AllocationType, :BelongTreeNodeUniqKey, :BelongRule, :OtherTreeNodeUniqKeys, :OtherRules, :ProjectId, :ProjectName, :ProductCode, :ProductCodeName, :PayMode, :PayModeName, :ActionType, :ActionTypeName, :SplitItemId, :SplitItemName
         extend Gem::Deprecate
-        deprecate :SplitItemId, :none, 2025, 7
-        deprecate :SplitItemId=, :none, 2025, 7
-        deprecate :SplitItemName, :none, 2025, 7
-        deprecate :SplitItemName=, :none, 2025, 7
+        deprecate :SplitItemId, :none, 2025, 9
+        deprecate :SplitItemId=, :none, 2025, 9
+        deprecate :SplitItemName, :none, 2025, 9
+        deprecate :SplitItemName=, :none, 2025, 9
 
         def initialize(payeruin=nil, owneruin=nil, operateuin=nil, instancetype=nil, instancetypename=nil, resourceid=nil, resourcename=nil, treenodeuniqkey=nil, treenodeuniqkeyname=nil, ruleid=nil, rulename=nil, businesscode=nil, businesscodename=nil, itemcode=nil, itemcodename=nil, regionid=nil, regionname=nil, tag=nil, realtotalcost=nil, cashpayamount=nil, voucherpayamount=nil, incentivepayamount=nil, transferpayamount=nil, allocationtype=nil, belongtreenodeuniqkey=nil, belongrule=nil, othertreenodeuniqkeys=nil, otherrules=nil, projectid=nil, projectname=nil, productcode=nil, productcodename=nil, paymode=nil, paymodename=nil, actiontype=nil, actiontypename=nil, splititemid=nil, splititemname=nil)
           @PayerUin = payeruin
@@ -9371,6 +10395,121 @@ module TencentCloud
         end
       end
 
+      # ModifyBudget请求参数结构体
+      class ModifyBudgetRequest < TencentCloud::Common::AbstractModel
+        # @param BudgetId: 预算项目id
+        # @type BudgetId: String
+        # @param BudgetName: 预算名称
+        # @type BudgetName: String
+        # @param CycleType: DAY 天，MONTH 月度，QUARTER 季度 ，YEAR 年度
+        # @type CycleType: String
+        # @param PeriodBegin: 有效期起始时间 2025-01-01
+        # @type PeriodBegin: String
+        # @param PeriodEnd: 有效期结束时间  2025-12-01
+        # @type PeriodEnd: String
+        # @param PlanType: FIX 固定值，CYCLE 不同值
+        # @type PlanType: String
+        # @param BudgetQuota: 预算值额度
+        # 预算计划类型固定预算时设为定值；
+        # 预算计划类型为CYCLE(计划预算)时传[{"dateDesc":"2025-07","quota":"1000"},{"dateDesc":"2025-08","quota":"2000"}]；
+        # @type BudgetQuota: String
+        # @param BillType: BILL  系统账单，CONSUMPTION  消耗账单
+        # @type BillType: String
+        # @param FeeType: COST 原价，REAL_COST 实际费用，CASH 现金，INCENTIVE 赠送金，VOUCHER 代金券，TRANSFER 分成金，TAX 税，AMOUNT_BEFORE_TAX 现金支付(税前)
+        # @type FeeType: String
+        # @param WarnJson: 阈值提醒
+        # @type WarnJson: Array
+        # @param BudgetNote: 预算备注
+        # @type BudgetNote: String
+        # @param DimensionsRange: 预算维度范围条件
+        # @type DimensionsRange: :class:`Tencentcloud::Billing.v20180709.models.BudgetConditionsForm`
+        # @param WaveThresholdJson: 波动提醒
+        # @type WaveThresholdJson: Array
+
+        attr_accessor :BudgetId, :BudgetName, :CycleType, :PeriodBegin, :PeriodEnd, :PlanType, :BudgetQuota, :BillType, :FeeType, :WarnJson, :BudgetNote, :DimensionsRange, :WaveThresholdJson
+
+        def initialize(budgetid=nil, budgetname=nil, cycletype=nil, periodbegin=nil, periodend=nil, plantype=nil, budgetquota=nil, billtype=nil, feetype=nil, warnjson=nil, budgetnote=nil, dimensionsrange=nil, wavethresholdjson=nil)
+          @BudgetId = budgetid
+          @BudgetName = budgetname
+          @CycleType = cycletype
+          @PeriodBegin = periodbegin
+          @PeriodEnd = periodend
+          @PlanType = plantype
+          @BudgetQuota = budgetquota
+          @BillType = billtype
+          @FeeType = feetype
+          @WarnJson = warnjson
+          @BudgetNote = budgetnote
+          @DimensionsRange = dimensionsrange
+          @WaveThresholdJson = wavethresholdjson
+        end
+
+        def deserialize(params)
+          @BudgetId = params['BudgetId']
+          @BudgetName = params['BudgetName']
+          @CycleType = params['CycleType']
+          @PeriodBegin = params['PeriodBegin']
+          @PeriodEnd = params['PeriodEnd']
+          @PlanType = params['PlanType']
+          @BudgetQuota = params['BudgetQuota']
+          @BillType = params['BillType']
+          @FeeType = params['FeeType']
+          unless params['WarnJson'].nil?
+            @WarnJson = []
+            params['WarnJson'].each do |i|
+              budgetwarn_tmp = BudgetWarn.new
+              budgetwarn_tmp.deserialize(i)
+              @WarnJson << budgetwarn_tmp
+            end
+          end
+          @BudgetNote = params['BudgetNote']
+          unless params['DimensionsRange'].nil?
+            @DimensionsRange = BudgetConditionsForm.new
+            @DimensionsRange.deserialize(params['DimensionsRange'])
+          end
+          unless params['WaveThresholdJson'].nil?
+            @WaveThresholdJson = []
+            params['WaveThresholdJson'].each do |i|
+              wavethresholdform_tmp = WaveThresholdForm.new
+              wavethresholdform_tmp.deserialize(i)
+              @WaveThresholdJson << wavethresholdform_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyBudget返回参数结构体
+      class ModifyBudgetResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 更新预算返回信息
+        # @type Data: :class:`Tencentcloud::Billing.v20180709.models.BudgetInfoApiResponse`
+        # @param Message: update success
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param Code: 返回码
+        # @type Code: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Message, :Code, :RequestId
+
+        def initialize(data=nil, message=nil, code=nil, requestid=nil)
+          @Data = data
+          @Message = message
+          @Code = code
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = BudgetInfoApiResponse.new
+            @Data.deserialize(params['Data'])
+          end
+          @Message = params['Message']
+          @Code = params['Code']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGatherRule请求参数结构体
       class ModifyGatherRuleRequest < TencentCloud::Common::AbstractModel
         # @param Id: 所编辑归集规则ID
@@ -9411,6 +10550,28 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 字段排序
+      class OrderDto < TencentCloud::Common::AbstractModel
+        # @param Column: 字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Column: String
+        # @param Asc: 是否升序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Asc: Boolean
+
+        attr_accessor :Column, :Asc
+
+        def initialize(column=nil, asc=nil)
+          @Column = column
+          @Asc = asc
+        end
+
+        def deserialize(params)
+          @Column = params['Column']
+          @Asc = params['Asc']
         end
       end
 
@@ -9804,6 +10965,28 @@ module TencentCloud
         end
       end
 
+      # 预算管理自定义费用范围，tag 参数
+      class TagsForm < TencentCloud::Common::AbstractModel
+        # @param TagKey: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagKey: String
+        # @param TagValue: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
       # 购买商品信息
       class UsageDetails < TencentCloud::Common::AbstractModel
         # @param ProductName: 商品名
@@ -9974,6 +11157,40 @@ module TencentCloud
           end
           @PolicyRemark = params['PolicyRemark']
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 阈值波动预警信息
+      class WaveThresholdForm < TencentCloud::Common::AbstractModel
+        # @param WarnType: ACTUAL 实际金额，FORECAST 预测金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WarnType: String
+        # @param Threshold: 波动阈值（大于等于0）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Threshold: String
+        # @param MetaType: 告警类型：chain 环比，yoy 同比，fix 固定值
+        # （支持类型：日环比 chain day，日同比周维度 chain weekday，日同比月维度 yoy  day，日固定值 fix day，月环比 chain month，月固定值 fix month）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetaType: String
+        # @param PeriodType: 告警维度：day 日，month 月，weekday 周
+        # （支持类型：日环比 chain day，日同比周维度 chain weekday，日同比月维度 yoy  day，日固定值 fix day，月环比 chain month，月固定值 fix month）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodType: String
+
+        attr_accessor :WarnType, :Threshold, :MetaType, :PeriodType
+
+        def initialize(warntype=nil, threshold=nil, metatype=nil, periodtype=nil)
+          @WarnType = warntype
+          @Threshold = threshold
+          @MetaType = metatype
+          @PeriodType = periodtype
+        end
+
+        def deserialize(params)
+          @WarnType = params['WarnType']
+          @Threshold = params['Threshold']
+          @MetaType = params['MetaType']
+          @PeriodType = params['PeriodType']
         end
       end
 

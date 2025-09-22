@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取 APM 应用指标列表
+
+        # @param request: Request instance for DescribeApmServiceMetric.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmServiceMetricRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmServiceMetricResponse`
+        def DescribeApmServiceMetric(request)
+          body = send_request('DescribeApmServiceMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmServiceMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询应用配置信息
 
         # @param request: Request instance for DescribeGeneralApmApplicationConfig.

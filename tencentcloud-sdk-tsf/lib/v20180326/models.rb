@@ -14913,7 +14913,6 @@ module TencentCloud
         # @param TotalCount: 总记录数
         # @type TotalCount: Integer
         # @param Server: 镜像服务器地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Server: String
         # @param Content: 列表信息
         # @type Content: Array

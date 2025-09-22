@@ -539,6 +539,50 @@ module TencentCloud
         end
       end
 
+      # apm应用指标信息
+      class ApmServiceMetric < TencentCloud::Common::AbstractModel
+        # @param Fields: filed数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Fields: Array
+        # @param Tags: tag数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param ServiceDetail: 应用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDetail: :class:`Tencentcloud::Apm.v20210622.models.ServiceDetail`
+
+        attr_accessor :Fields, :Tags, :ServiceDetail
+
+        def initialize(fields=nil, tags=nil, servicedetail=nil)
+          @Fields = fields
+          @Tags = tags
+          @ServiceDetail = servicedetail
+        end
+
+        def deserialize(params)
+          unless params['Fields'].nil?
+            @Fields = []
+            params['Fields'].each do |i|
+              apmfield_tmp = ApmField.new
+              apmfield_tmp.deserialize(i)
+              @Fields << apmfield_tmp
+            end
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          unless params['ServiceDetail'].nil?
+            @ServiceDetail = ServiceDetail.new
+            @ServiceDetail.deserialize(params['ServiceDetail'])
+          end
+        end
+      end
+
       # 维度（标签）对象
       class ApmTag < TencentCloud::Common::AbstractModel
         # @param Key: 维度Key(列名，标签Key)
@@ -811,6 +855,138 @@ module TencentCloud
               @Instances << apminstancedetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmServiceMetric请求参数结构体
+      class DescribeApmServiceMetricRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param ServiceID: 应用ID
+        # @type ServiceID: String
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param OrderBy: 排序
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param Demo: 是否demo模式
+        # @type Demo: Boolean
+        # @param ServiceStatus: 应用状态筛选，可枚举的值为：health、warning、error。如果选中多个状态用逗号隔开，比如："warning,error"
+        # @type ServiceStatus: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :InstanceId, :ServiceName, :ServiceID, :StartTime, :EndTime, :OrderBy, :Demo, :ServiceStatus, :Tags, :Page, :PageSize, :Filters
+
+        def initialize(instanceid=nil, servicename=nil, serviceid=nil, starttime=nil, endtime=nil, orderby=nil, demo=nil, servicestatus=nil, tags=nil, page=nil, pagesize=nil, filters=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @ServiceID = serviceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @OrderBy = orderby
+          @Demo = demo
+          @ServiceStatus = servicestatus
+          @Tags = tags
+          @Page = page
+          @PageSize = pagesize
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @ServiceID = params['ServiceID']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          @Demo = params['Demo']
+          @ServiceStatus = params['ServiceStatus']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApmServiceMetric返回参数结构体
+      class DescribeApmServiceMetricResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceMetricList: 应用指标列表
+        # @type ServiceMetricList: Array
+        # @param TotalCount: 符合筛选条件的应用数
+        # @type TotalCount: Integer
+        # @param WarningErrorCount: 警示异常应用数
+        # @type WarningErrorCount: Integer
+        # @param ApplicationCount: 应用总数
+        # @type ApplicationCount: Integer
+        # @param Page: 页码
+        # @type Page: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+        # @param ErrorCount: 异常应用数
+        # @type ErrorCount: Integer
+        # @param WarningCount: 警示应用数
+        # @type WarningCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceMetricList, :TotalCount, :WarningErrorCount, :ApplicationCount, :Page, :PageSize, :ErrorCount, :WarningCount, :RequestId
+
+        def initialize(servicemetriclist=nil, totalcount=nil, warningerrorcount=nil, applicationcount=nil, page=nil, pagesize=nil, errorcount=nil, warningcount=nil, requestid=nil)
+          @ServiceMetricList = servicemetriclist
+          @TotalCount = totalcount
+          @WarningErrorCount = warningerrorcount
+          @ApplicationCount = applicationcount
+          @Page = page
+          @PageSize = pagesize
+          @ErrorCount = errorcount
+          @WarningCount = warningcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceMetricList'].nil?
+            @ServiceMetricList = []
+            params['ServiceMetricList'].each do |i|
+              apmservicemetric_tmp = ApmServiceMetric.new
+              apmservicemetric_tmp.deserialize(i)
+              @ServiceMetricList << apmservicemetric_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @WarningErrorCount = params['WarningErrorCount']
+          @ApplicationCount = params['ApplicationCount']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @ErrorCount = params['ErrorCount']
+          @WarningCount = params['WarningCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1847,6 +2023,69 @@ module TencentCloud
           @MetricName = params['MetricName']
           @Compares = params['Compares']
           @Compare = params['Compare']
+        end
+      end
+
+      # 应用详细信息
+      class ServiceDetail < TencentCloud::Common::AbstractModel
+        # @param ServiceID: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceID: String
+        # @param InstanceKey: 业务系统ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceKey: String
+        # @param AppID: 用户appid
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: Integer
+        # @param CreateUIN: 主账号uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUIN: String
+        # @param ServiceName: 应用名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param ServiceDescription: 应用描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceDescription: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Tags: 标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param InstanceName: 业务系统名称
+        # @type InstanceName: String
+
+        attr_accessor :ServiceID, :InstanceKey, :AppID, :CreateUIN, :ServiceName, :ServiceDescription, :Region, :Tags, :InstanceName
+
+        def initialize(serviceid=nil, instancekey=nil, appid=nil, createuin=nil, servicename=nil, servicedescription=nil, region=nil, tags=nil, instancename=nil)
+          @ServiceID = serviceid
+          @InstanceKey = instancekey
+          @AppID = appid
+          @CreateUIN = createuin
+          @ServiceName = servicename
+          @ServiceDescription = servicedescription
+          @Region = region
+          @Tags = tags
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @ServiceID = params['ServiceID']
+          @InstanceKey = params['InstanceKey']
+          @AppID = params['AppID']
+          @CreateUIN = params['CreateUIN']
+          @ServiceName = params['ServiceName']
+          @ServiceDescription = params['ServiceDescription']
+          @Region = params['Region']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @InstanceName = params['InstanceName']
         end
       end
 

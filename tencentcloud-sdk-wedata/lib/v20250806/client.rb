@@ -17,28 +17,28 @@
 require 'json'
 
 module TencentCloud
-  module Gs
-    module V20191118
+  module Wedata
+    module V20250806
       class Client < TencentCloud::Common::AbstractClient
 
         def initialize(credential, region, profile = nil)
-            api_version = '2019-11-18'
-            api_endpoint = 'gs.tencentcloudapi.com'
-            sdk_version = 'GS_' + File.read(File.expand_path('../VERSION', __dir__)).strip
+            api_version = '2025-08-06'
+            api_endpoint = 'wedata.tencentcloudapi.com'
+            sdk_version = 'WEDATA_' + File.read(File.expand_path('../VERSION', __dir__)).strip
             super(credential, region, api_version, api_endpoint, sdk_version, profile)
         end
 
 
-        # 备份安卓实例。该接口需要联系我们开通内网存储才能使用。
+        # 新建代码文件
 
-        # @param request: Request instance for BackUpAndroidInstance.
-        # @type request: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceResponse`
-        def BackUpAndroidInstance(request)
-          body = send_request('BackUpAndroidInstance', request.serialize)
+        # @param request: Request instance for CreateCodeFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateCodeFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateCodeFileResponse`
+        def CreateCodeFile(request)
+          body = send_request('CreateCodeFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = BackUpAndroidInstanceResponse.new
+            model = CreateCodeFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -53,16 +53,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 备份云手机数据到指定存储，支持 COS 和兼容 AWS S3 协议的对象存储服务。如果是备份到 COS 时，会使用公网流量，授权 COS bucket 请在控制台中操作。
+        # 新建代码文件夹
 
-        # @param request: Request instance for BackUpAndroidInstanceToStorage.
-        # @type request: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceToStorageRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::BackUpAndroidInstanceToStorageResponse`
-        def BackUpAndroidInstanceToStorage(request)
-          body = send_request('BackUpAndroidInstanceToStorage', request.serialize)
+        # @param request: Request instance for CreateCodeFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateCodeFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateCodeFolderResponse`
+        def CreateCodeFolder(request)
+          body = send_request('CreateCodeFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = BackUpAndroidInstanceToStorageResponse.new
+            model = CreateCodeFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -77,16 +77,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量清理安卓实例应用数据
+        # 创建数据补录计划
 
-        # @param request: Request instance for CleanAndroidInstancesAppData.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CleanAndroidInstancesAppDataRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CleanAndroidInstancesAppDataResponse`
-        def CleanAndroidInstancesAppData(request)
-          body = send_request('CleanAndroidInstancesAppData', request.serialize)
+        # @param request: Request instance for CreateDataBackfillPlan.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateDataBackfillPlanRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateDataBackfillPlanResponse`
+        def CreateDataBackfillPlan(request)
+          body = send_request('CreateDataBackfillPlan', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CleanAndroidInstancesAppDataResponse.new
+            model = CreateDataBackfillPlanResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -101,16 +101,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 连接安卓实例
+        # 设置告警规则
 
-        # @param request: Request instance for ConnectAndroidInstance.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ConnectAndroidInstanceRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ConnectAndroidInstanceResponse`
-        def ConnectAndroidInstance(request)
-          body = send_request('ConnectAndroidInstance', request.serialize)
+        # @param request: Request instance for CreateOpsAlarmRule.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateOpsAlarmRuleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateOpsAlarmRuleResponse`
+        def CreateOpsAlarmRule(request)
+          body = send_request('CreateOpsAlarmRule', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ConnectAndroidInstanceResponse.new
+            model = CreateOpsAlarmRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -125,20 +125,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 复制安卓实例：
-        # 1. 排除和包含文件只能指定 /data 下的文件，不指定时复制整个 /data 目录
-        # 2. 源实例和目的实例必须在同一区域
-        # 3. 复制时，源实例和目的实例都会停机，复制完后实例会自动启动
-        # 4. 复制时会产生大量内网流量，请限制并发
+        # 创建资源文件
 
-        # @param request: Request instance for CopyAndroidInstance.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CopyAndroidInstanceRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CopyAndroidInstanceResponse`
-        def CopyAndroidInstance(request)
-          body = send_request('CopyAndroidInstance', request.serialize)
+        # @param request: Request instance for CreateResourceFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateResourceFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateResourceFileResponse`
+        def CreateResourceFile(request)
+          body = send_request('CreateResourceFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CopyAndroidInstanceResponse.new
+            model = CreateResourceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -153,16 +149,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓应用
+        # 创建资源文件文件夹
 
-        # @param request: Request instance for CreateAndroidApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppResponse`
-        def CreateAndroidApp(request)
-          body = send_request('CreateAndroidApp', request.serialize)
+        # @param request: Request instance for CreateResourceFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateResourceFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateResourceFolderResponse`
+        def CreateResourceFolder(request)
+          body = send_request('CreateResourceFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidAppResponse.new
+            model = CreateResourceFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -177,16 +173,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓应用版本
+        # 创建数据探索脚本文件夹
 
-        # @param request: Request instance for CreateAndroidAppVersion.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppVersionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidAppVersionResponse`
-        def CreateAndroidAppVersion(request)
-          body = send_request('CreateAndroidAppVersion', request.serialize)
+        # @param request: Request instance for CreateSQLFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateSQLFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateSQLFolderResponse`
+        def CreateSQLFolder(request)
+          body = send_request('CreateSQLFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidAppVersionResponse.new
+            model = CreateSQLFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -201,16 +197,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云手机实例 ADB 连接信息，请将返回结果的 PrivateKey 字段保存为 pem 文件，并将 pem 文件权限设置为 600，再参考返回结果的 ConnectCommand 使用 adb 连接实例。
+        # 新增SQL脚本
 
-        # @param request: Request instance for CreateAndroidInstanceADB.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceADBRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceADBResponse`
-        def CreateAndroidInstanceADB(request)
-          body = send_request('CreateAndroidInstanceADB', request.serialize)
+        # @param request: Request instance for CreateSQLScript.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateSQLScriptRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateSQLScriptResponse`
+        def CreateSQLScript(request)
+          body = send_request('CreateSQLScript', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstanceADBResponse.new
+            model = CreateSQLScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -225,16 +221,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用指定的安卓实例创建镜像，创建镜像时指定的实例会关机，镜像创建完成后实例会自动开机。当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像创建完成处于可用状态。
+        # 创建任务接口
 
-        # @param request: Request instance for CreateAndroidInstanceImage.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceImageRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceImageResponse`
-        def CreateAndroidInstanceImage(request)
-          body = send_request('CreateAndroidInstanceImage', request.serialize)
+        # @param request: Request instance for CreateTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateTaskResponse`
+        def CreateTask(request)
+          body = send_request('CreateTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstanceImageResponse.new
+            model = CreateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -249,16 +245,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例标签
+        # 创建工作流
 
-        # @param request: Request instance for CreateAndroidInstanceLabel.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceLabelRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceLabelResponse`
-        def CreateAndroidInstanceLabel(request)
-          body = send_request('CreateAndroidInstanceLabel', request.serialize)
+        # @param request: Request instance for CreateWorkflow.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateWorkflowResponse`
+        def CreateWorkflow(request)
+          body = send_request('CreateWorkflow', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstanceLabelResponse.new
+            model = CreateWorkflowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -273,16 +269,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例 SSH 连接信息，请将返回结果的 PrivateKey 字段保存为 pem 文件，并将 pem 文件权限设置为 600，再参考返回结果的 ConnectCommand 使用 ssh 连接实例。
+        # 创建文件夹
 
-        # @param request: Request instance for CreateAndroidInstanceSSH.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceSSHRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceSSHResponse`
-        def CreateAndroidInstanceSSH(request)
-          body = send_request('CreateAndroidInstanceSSH', request.serialize)
+        # @param request: Request instance for CreateWorkflowFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateWorkflowFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateWorkflowFolderResponse`
+        def CreateWorkflowFolder(request)
+          body = send_request('CreateWorkflowFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstanceSSHResponse.new
+            model = CreateWorkflowFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -297,16 +293,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例 WebShell 连接信息，返回的 ConnectUrl 可通过浏览器直接打开访问，链接有效期 1 小时，链接打开后可持续使用。
+        # 删除代码文件
 
-        # @param request: Request instance for CreateAndroidInstanceWebShell.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceWebShellRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceWebShellResponse`
-        def CreateAndroidInstanceWebShell(request)
-          body = send_request('CreateAndroidInstanceWebShell', request.serialize)
+        # @param request: Request instance for DeleteCodeFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteCodeFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteCodeFileResponse`
+        def DeleteCodeFile(request)
+          body = send_request('DeleteCodeFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstanceWebShellResponse.new
+            model = DeleteCodeFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -321,16 +317,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例
+        # 数据探索删除文件夹
 
-        # @param request: Request instance for CreateAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesResponse`
-        def CreateAndroidInstances(request)
-          body = send_request('CreateAndroidInstances', request.serialize)
+        # @param request: Request instance for DeleteCodeFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteCodeFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteCodeFolderResponse`
+        def DeleteCodeFolder(request)
+          body = send_request('DeleteCodeFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstancesResponse.new
+            model = DeleteCodeFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -345,16 +341,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建安卓实例访问Token
+        # 删除告警规则
 
-        # @param request: Request instance for CreateAndroidInstancesAccessToken.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesAccessTokenRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesAccessTokenResponse`
-        def CreateAndroidInstancesAccessToken(request)
-          body = send_request('CreateAndroidInstancesAccessToken', request.serialize)
+        # @param request: Request instance for DeleteOpsAlarmRule.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteOpsAlarmRuleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteOpsAlarmRuleResponse`
+        def DeleteOpsAlarmRule(request)
+          body = send_request('DeleteOpsAlarmRule', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstancesAccessTokenResponse.new
+            model = DeleteOpsAlarmRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -369,16 +365,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 安卓实例截图
+        # 资源管理-删除资源文件
 
-        # @param request: Request instance for CreateAndroidInstancesScreenshot.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesScreenshotRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstancesScreenshotResponse`
-        def CreateAndroidInstancesScreenshot(request)
-          body = send_request('CreateAndroidInstancesScreenshot', request.serialize)
+        # @param request: Request instance for DeleteResourceFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteResourceFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteResourceFileResponse`
+        def DeleteResourceFile(request)
+          body = send_request('DeleteResourceFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateAndroidInstancesScreenshotResponse.new
+            model = DeleteResourceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -393,16 +389,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于创建 Cos 临时密钥
+        # 删除资源文件文件夹
 
-        # @param request: Request instance for CreateCosCredential.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateCosCredentialRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateCosCredentialResponse`
-        def CreateCosCredential(request)
-          body = send_request('CreateCosCredential', request.serialize)
+        # @param request: Request instance for DeleteResourceFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteResourceFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteResourceFolderResponse`
+        def DeleteResourceFolder(request)
+          body = send_request('DeleteResourceFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateCosCredentialResponse.new
+            model = DeleteResourceFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -417,16 +413,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建会话
+        # 删除SQL文件夹
 
-        # @param request: Request instance for CreateSession.
-        # @type request: :class:`Tencentcloud::gs::V20191118::CreateSessionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateSessionResponse`
-        def CreateSession(request)
-          body = send_request('CreateSession', request.serialize)
+        # @param request: Request instance for DeleteSQLFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteSQLFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteSQLFolderResponse`
+        def DeleteSQLFolder(request)
+          body = send_request('DeleteSQLFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = CreateSessionResponse.new
+            model = DeleteSQLFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -441,16 +437,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安卓应用
+        # 删除探索脚本
 
-        # @param request: Request instance for DeleteAndroidApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppResponse`
-        def DeleteAndroidApp(request)
-          body = send_request('DeleteAndroidApp', request.serialize)
+        # @param request: Request instance for DeleteSQLScript.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteSQLScriptRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteSQLScriptResponse`
+        def DeleteSQLScript(request)
+          body = send_request('DeleteSQLScript', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidAppResponse.new
+            model = DeleteSQLScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -465,16 +461,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安卓应用版本
+        # 删除编排空间任务
 
-        # @param request: Request instance for DeleteAndroidAppVersion.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppVersionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidAppVersionResponse`
-        def DeleteAndroidAppVersion(request)
-          body = send_request('DeleteAndroidAppVersion', request.serialize)
+        # @param request: Request instance for DeleteTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteTaskResponse`
+        def DeleteTask(request)
+          body = send_request('DeleteTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidAppVersionResponse.new
+            model = DeleteTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -489,16 +485,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安卓实例备份文件
+        # 删除工作流
 
-        # @param request: Request instance for DeleteAndroidInstanceBackupFiles.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupFilesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupFilesResponse`
-        def DeleteAndroidInstanceBackupFiles(request)
-          body = send_request('DeleteAndroidInstanceBackupFiles', request.serialize)
+        # @param request: Request instance for DeleteWorkflow.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteWorkflowResponse`
+        def DeleteWorkflow(request)
+          body = send_request('DeleteWorkflow', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidInstanceBackupFilesResponse.new
+            model = DeleteWorkflowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -513,16 +509,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量删除安卓实例备份
+        # 删除数据开发文件夹
 
-        # @param request: Request instance for DeleteAndroidInstanceBackups.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceBackupsResponse`
-        def DeleteAndroidInstanceBackups(request)
-          body = send_request('DeleteAndroidInstanceBackups', request.serialize)
+        # @param request: Request instance for DeleteWorkflowFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteWorkflowFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteWorkflowFolderResponse`
+        def DeleteWorkflowFolder(request)
+          body = send_request('DeleteWorkflowFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidInstanceBackupsResponse.new
+            model = DeleteWorkflowFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -537,16 +533,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安卓实例镜像
+        # 查询告警信息详情
 
-        # @param request: Request instance for DeleteAndroidInstanceImages.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceImagesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceImagesResponse`
-        def DeleteAndroidInstanceImages(request)
-          body = send_request('DeleteAndroidInstanceImages', request.serialize)
+        # @param request: Request instance for GetAlarmMessage.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetAlarmMessageRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetAlarmMessageResponse`
+        def GetAlarmMessage(request)
+          body = send_request('GetAlarmMessage', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidInstanceImagesResponse.new
+            model = GetAlarmMessageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -561,16 +557,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安卓实例标签
+        # 查看代码文件详情
 
-        # @param request: Request instance for DeleteAndroidInstanceLabel.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceLabelRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceLabelResponse`
-        def DeleteAndroidInstanceLabel(request)
-          body = send_request('DeleteAndroidInstanceLabel', request.serialize)
+        # @param request: Request instance for GetCodeFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetCodeFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetCodeFileResponse`
+        def GetCodeFile(request)
+          body = send_request('GetCodeFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DeleteAndroidInstanceLabelResponse.new
+            model = GetCodeFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -585,16 +581,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓应用信息
+        # 根据告警规则id/名称查询单个告警规则信息
 
-        # @param request: Request instance for DescribeAndroidApps.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidAppsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidAppsResponse`
-        def DescribeAndroidApps(request)
-          body = send_request('DescribeAndroidApps', request.serialize)
+        # @param request: Request instance for GetOpsAlarmRule.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetOpsAlarmRuleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetOpsAlarmRuleResponse`
+        def GetOpsAlarmRule(request)
+          body = send_request('GetOpsAlarmRule', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidAppsResponse.new
+            model = GetOpsAlarmRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -609,16 +605,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例应用
+        # 查询运维中心异步操作详情
 
-        # @param request: Request instance for DescribeAndroidInstanceApps.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceAppsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceAppsResponse`
-        def DescribeAndroidInstanceApps(request)
-          body = send_request('DescribeAndroidInstanceApps', request.serialize)
+        # @param request: Request instance for GetOpsAsyncJob.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetOpsAsyncJobRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetOpsAsyncJobResponse`
+        def GetOpsAsyncJob(request)
+          body = send_request('GetOpsAsyncJob', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstanceAppsResponse.new
+            model = GetOpsAsyncJobResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -633,16 +629,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例备份列表
+        # 获取任务详情
 
-        # @param request: Request instance for DescribeAndroidInstanceBackups.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceBackupsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceBackupsResponse`
-        def DescribeAndroidInstanceBackups(request)
-          body = send_request('DescribeAndroidInstanceBackups', request.serialize)
+        # @param request: Request instance for GetOpsTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetOpsTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetOpsTaskResponse`
+        def GetOpsTask(request)
+          body = send_request('GetOpsTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstanceBackupsResponse.new
+            model = GetOpsTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -657,16 +653,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例镜像信息，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像处于可用状态。
+        # 获取任务代码
 
-        # @param request: Request instance for DescribeAndroidInstanceImages.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceImagesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceImagesResponse`
-        def DescribeAndroidInstanceImages(request)
-          body = send_request('DescribeAndroidInstanceImages', request.serialize)
+        # @param request: Request instance for GetOpsTaskCode.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetOpsTaskCodeRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetOpsTaskCodeResponse`
+        def GetOpsTaskCode(request)
+          body = send_request('GetOpsTaskCode', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstanceImagesResponse.new
+            model = GetOpsTaskCodeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -681,16 +677,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例标签
+        # 根据工作流id，获取工作流调度详情。
 
-        # @param request: Request instance for DescribeAndroidInstanceLabels.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceLabelsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceLabelsResponse`
-        def DescribeAndroidInstanceLabels(request)
-          body = send_request('DescribeAndroidInstanceLabels', request.serialize)
+        # @param request: Request instance for GetOpsWorkflow.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetOpsWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetOpsWorkflowResponse`
+        def GetOpsWorkflow(request)
+          body = send_request('GetOpsWorkflow', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstanceLabelsResponse.new
+            model = GetOpsWorkflowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -705,16 +701,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例任务状态
+        # 获取资源文件详情
 
-        # @param request: Request instance for DescribeAndroidInstanceTasksStatus.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceTasksStatusRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceTasksStatusResponse`
-        def DescribeAndroidInstanceTasksStatus(request)
-          body = send_request('DescribeAndroidInstanceTasksStatus', request.serialize)
+        # @param request: Request instance for GetResourceFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetResourceFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetResourceFileResponse`
+        def GetResourceFile(request)
+          body = send_request('GetResourceFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstanceTasksStatusResponse.new
+            model = GetResourceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -729,16 +725,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例
+        # 查询脚本详情
 
-        # @param request: Request instance for DescribeAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesResponse`
-        def DescribeAndroidInstances(request)
-          body = send_request('DescribeAndroidInstances', request.serialize)
+        # @param request: Request instance for GetSQLScript.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetSQLScriptRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetSQLScriptResponse`
+        def GetSQLScript(request)
+          body = send_request('GetSQLScript', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstancesResponse.new
+            model = GetSQLScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -753,16 +749,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询安卓实例黑名单
+        # 创建任务接口
 
-        # @param request: Request instance for DescribeAndroidInstancesAppBlacklist.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesAppBlacklistRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesAppBlacklistResponse`
-        def DescribeAndroidInstancesAppBlacklist(request)
-          body = send_request('DescribeAndroidInstancesAppBlacklist', request.serialize)
+        # @param request: Request instance for GetTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetTaskResponse`
+        def GetTask(request)
+          body = send_request('GetTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstancesAppBlacklistResponse.new
+            model = GetTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -777,16 +773,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量查询安装指定应用的安卓实例
+        # 获取任务代码
 
-        # @param request: Request instance for DescribeAndroidInstancesByApps.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesByAppsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstancesByAppsResponse`
-        def DescribeAndroidInstancesByApps(request)
-          body = send_request('DescribeAndroidInstancesByApps', request.serialize)
+        # @param request: Request instance for GetTaskCode.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskCodeRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetTaskCodeResponse`
+        def GetTaskCode(request)
+          body = send_request('GetTaskCode', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeAndroidInstancesByAppsResponse.new
+            model = GetTaskCodeResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -801,16 +797,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取并发总数和运行数
+        # 调度实例详情
 
-        # @param request: Request instance for DescribeInstancesCount.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeInstancesCountRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeInstancesCountResponse`
-        def DescribeInstancesCount(request)
-          body = send_request('DescribeInstancesCount', request.serialize)
+        # @param request: Request instance for GetTaskInstance.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskInstanceRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetTaskInstanceResponse`
+        def GetTaskInstance(request)
+          body = send_request('GetTaskInstance', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DescribeInstancesCountResponse.new
+            model = GetTaskInstanceResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -825,16 +821,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁安卓实例
+        # 获取实例列表
 
-        # @param request: Request instance for DestroyAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DestroyAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DestroyAndroidInstancesResponse`
-        def DestroyAndroidInstances(request)
-          body = send_request('DestroyAndroidInstances', request.serialize)
+        # @param request: Request instance for GetTaskInstanceLog.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskInstanceLogRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetTaskInstanceLogResponse`
+        def GetTaskInstanceLog(request)
+          body = send_request('GetTaskInstanceLog', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DestroyAndroidInstancesResponse.new
+            model = GetTaskInstanceLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -849,16 +845,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量禁用安卓实例应用
+        # 拉取任务版本列表
 
-        # @param request: Request instance for DisableAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DisableAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DisableAndroidInstancesAppResponse`
-        def DisableAndroidInstancesApp(request)
-          body = send_request('DisableAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for GetTaskVersion.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskVersionRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetTaskVersionResponse`
+        def GetTaskVersion(request)
+          body = send_request('GetTaskVersion', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DisableAndroidInstancesAppResponse.new
+            model = GetTaskVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -873,16 +869,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 断开安卓实例
+        # 获取工作流信息
 
-        # @param request: Request instance for DisconnectAndroidInstance.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DisconnectAndroidInstanceRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DisconnectAndroidInstanceResponse`
-        def DisconnectAndroidInstance(request)
-          body = send_request('DisconnectAndroidInstance', request.serialize)
+        # @param request: Request instance for GetWorkflow.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::GetWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::GetWorkflowResponse`
+        def GetWorkflow(request)
+          body = send_request('GetWorkflow', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DisconnectAndroidInstanceResponse.new
+            model = GetWorkflowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -897,16 +893,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 分发安卓实例镜像至宿主机
+        # 实例批量终止操作-异步操作
 
-        # @param request: Request instance for DistributeAndroidInstanceImageToHosts.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DistributeAndroidInstanceImageToHostsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DistributeAndroidInstanceImageToHostsResponse`
-        def DistributeAndroidInstanceImageToHosts(request)
-          body = send_request('DistributeAndroidInstanceImageToHosts', request.serialize)
+        # @param request: Request instance for KillTaskInstancesAsync.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::KillTaskInstancesAsyncRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::KillTaskInstancesAsyncResponse`
+        def KillTaskInstancesAsync(request)
+          body = send_request('KillTaskInstancesAsync', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DistributeAndroidInstanceImageToHostsResponse.new
+            model = KillTaskInstancesAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -921,16 +917,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将一个文件批量分发到多个实例，一次接口调用触发一次文件分发，一次文件分发只会从公网下载一次，然后文件会走内网分发到实例列表中的实例。
+        # 获取告警信息列表
 
-        # @param request: Request instance for DistributeFileToAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DistributeFileToAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DistributeFileToAndroidInstancesResponse`
-        def DistributeFileToAndroidInstances(request)
-          body = send_request('DistributeFileToAndroidInstances', request.serialize)
+        # @param request: Request instance for ListAlarmMessages.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListAlarmMessagesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListAlarmMessagesResponse`
+        def ListAlarmMessages(request)
+          body = send_request('ListAlarmMessages', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DistributeFileToAndroidInstancesResponse.new
+            model = ListAlarmMessagesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -945,16 +941,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将一张照片批量分发到多个实例的相册中，一次接口调用触发一次照片分发，一次照片分发只会从公网下载一次，然后照片会走内网分发到实例列表中的实例。
+        # 获取文件夹内容
 
-        # @param request: Request instance for DistributePhotoToAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::DistributePhotoToAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::DistributePhotoToAndroidInstancesResponse`
-        def DistributePhotoToAndroidInstances(request)
-          body = send_request('DistributePhotoToAndroidInstances', request.serialize)
+        # @param request: Request instance for ListCodeFolderContents.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListCodeFolderContentsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListCodeFolderContentsResponse`
+        def ListCodeFolderContents(request)
+          body = send_request('ListCodeFolderContents', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = DistributePhotoToAndroidInstancesResponse.new
+            model = ListCodeFolderContentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -969,16 +965,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量启用安卓实例应用
+        # 获取单次补录的所有实例详情
 
-        # @param request: Request instance for EnableAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::EnableAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::EnableAndroidInstancesAppResponse`
-        def EnableAndroidInstancesApp(request)
-          body = send_request('EnableAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for ListDataBackfillInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListDataBackfillInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListDataBackfillInstancesResponse`
+        def ListDataBackfillInstances(request)
+          body = send_request('ListDataBackfillInstances', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = EnableAndroidInstancesAppResponse.new
+            model = ListDataBackfillInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -993,16 +989,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在安卓实例上异步执行命令，命令输出结果如果内容过长会被截断
+        # 获取任务直接下游详情
 
-        # @param request: Request instance for ExecuteCommandOnAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ExecuteCommandOnAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ExecuteCommandOnAndroidInstancesResponse`
-        def ExecuteCommandOnAndroidInstances(request)
-          body = send_request('ExecuteCommandOnAndroidInstances', request.serialize)
+        # @param request: Request instance for ListDownstreamOpsTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListDownstreamOpsTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListDownstreamOpsTasksResponse`
+        def ListDownstreamOpsTasks(request)
+          body = send_request('ListDownstreamOpsTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ExecuteCommandOnAndroidInstancesResponse.new
+            model = ListDownstreamOpsTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1017,16 +1013,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量将实例的 logcat 日志文件上传到您已授权的 COS bucket 中，授权 COS bucket 请在控制台中操作。
+        # 获取实例直接上游
 
-        # @param request: Request instance for FetchAndroidInstancesLogs.
-        # @type request: :class:`Tencentcloud::gs::V20191118::FetchAndroidInstancesLogsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::FetchAndroidInstancesLogsResponse`
-        def FetchAndroidInstancesLogs(request)
-          body = send_request('FetchAndroidInstancesLogs', request.serialize)
+        # @param request: Request instance for ListDownstreamTaskInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListDownstreamTaskInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListDownstreamTaskInstancesResponse`
+        def ListDownstreamTaskInstances(request)
+          body = send_request('ListDownstreamTaskInstances', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = FetchAndroidInstancesLogsResponse.new
+            model = ListDownstreamTaskInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1041,16 +1037,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 导入安卓实例镜像，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像导入完成处于可用状态。
+        # 获取任务直接下游详情
 
-        # @param request: Request instance for ImportAndroidInstanceImage.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ImportAndroidInstanceImageRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ImportAndroidInstanceImageResponse`
-        def ImportAndroidInstanceImage(request)
-          body = send_request('ImportAndroidInstanceImage', request.serialize)
+        # @param request: Request instance for ListDownstreamTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListDownstreamTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListDownstreamTasksResponse`
+        def ListDownstreamTasks(request)
+          body = send_request('ListDownstreamTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ImportAndroidInstanceImageResponse.new
+            model = ListDownstreamTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1065,16 +1061,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 安装安卓实例应用
+        # 查询告警规则列表
 
-        # @param request: Request instance for InstallAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppResponse`
-        def InstallAndroidInstancesApp(request)
-          body = send_request('InstallAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for ListOpsAlarmRules.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListOpsAlarmRulesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListOpsAlarmRulesResponse`
+        def ListOpsAlarmRules(request)
+          body = send_request('ListOpsAlarmRules', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = InstallAndroidInstancesAppResponse.new
+            model = ListOpsAlarmRulesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1089,16 +1085,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 通过 URL 安装安卓实例应用
+        # 根据项目id获取任务列表
 
-        # @param request: Request instance for InstallAndroidInstancesAppWithURL.
-        # @type request: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppWithURLRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::InstallAndroidInstancesAppWithURLResponse`
-        def InstallAndroidInstancesAppWithURL(request)
-          body = send_request('InstallAndroidInstancesAppWithURL', request.serialize)
+        # @param request: Request instance for ListOpsTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListOpsTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListOpsTasksResponse`
+        def ListOpsTasks(request)
+          body = send_request('ListOpsTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = InstallAndroidInstancesAppWithURLResponse.new
+            model = ListOpsTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1113,16 +1109,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓应用信息
+        # 根据项目ID获取项目下工作流
 
-        # @param request: Request instance for ModifyAndroidApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppResponse`
-        def ModifyAndroidApp(request)
-          body = send_request('ModifyAndroidApp', request.serialize)
+        # @param request: Request instance for ListOpsWorkflows.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListOpsWorkflowsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListOpsWorkflowsResponse`
+        def ListOpsWorkflows(request)
+          body = send_request('ListOpsWorkflows', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidAppResponse.new
+            model = ListOpsWorkflowsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1137,16 +1133,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓应用版本
+        # 获取资源文件列表
 
-        # @param request: Request instance for ModifyAndroidAppVersion.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppVersionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidAppVersionResponse`
-        def ModifyAndroidAppVersion(request)
-          body = send_request('ModifyAndroidAppVersion', request.serialize)
+        # @param request: Request instance for ListResourceFiles.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListResourceFilesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListResourceFilesResponse`
+        def ListResourceFiles(request)
+          body = send_request('ListResourceFiles', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidAppVersionResponse.new
+            model = ListResourceFilesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1161,16 +1157,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓实例的信息
+        # 查询资源文件文件夹列表
 
-        # @param request: Request instance for ModifyAndroidInstanceInformation.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstanceInformationRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstanceInformationResponse`
-        def ModifyAndroidInstanceInformation(request)
-          body = send_request('ModifyAndroidInstanceInformation', request.serialize)
+        # @param request: Request instance for ListResourceFolders.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListResourceFoldersRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListResourceFoldersResponse`
+        def ListResourceFolders(request)
+          body = send_request('ListResourceFolders', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstanceInformationResponse.new
+            model = ListResourceFoldersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1185,16 +1181,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓实例分辨率。需要注意的是该接口可能导致正在运行的应用出现闪退，所以建议在实例维护时期才进行调用。
+        # 查询数据探索文件夹树，包括文件夹下的脚本
 
-        # @param request: Request instance for ModifyAndroidInstanceResolution.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstanceResolutionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstanceResolutionResponse`
-        def ModifyAndroidInstanceResolution(request)
-          body = send_request('ModifyAndroidInstanceResolution', request.serialize)
+        # @param request: Request instance for ListSQLFolderContents.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListSQLFolderContentsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListSQLFolderContentsResponse`
+        def ListSQLFolderContents(request)
+          body = send_request('ListSQLFolderContents', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstanceResolutionResponse.new
+            model = ListSQLFolderContentsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1209,16 +1205,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓实例应用黑名单
+        # 查询SQL运行记录
 
-        # @param request: Request instance for ModifyAndroidInstancesAppBlacklist.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesAppBlacklistRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesAppBlacklistResponse`
-        def ModifyAndroidInstancesAppBlacklist(request)
-          body = send_request('ModifyAndroidInstancesAppBlacklist', request.serialize)
+        # @param request: Request instance for ListSQLScriptRuns.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListSQLScriptRunsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListSQLScriptRunsResponse`
+        def ListSQLScriptRuns(request)
+          body = send_request('ListSQLScriptRuns', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesAppBlacklistResponse.new
+            model = ListSQLScriptRunsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1233,16 +1229,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改安卓实例信息
+        # 调度实例详情
 
-        # @param request: Request instance for ModifyAndroidInstancesInformation.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesInformationRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesInformationResponse`
-        def ModifyAndroidInstancesInformation(request)
-          body = send_request('ModifyAndroidInstancesInformation', request.serialize)
+        # @param request: Request instance for ListTaskInstanceExecutions.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListTaskInstanceExecutionsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListTaskInstanceExecutionsResponse`
+        def ListTaskInstanceExecutions(request)
+          body = send_request('ListTaskInstanceExecutions', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesInformationResponse.new
+            model = ListTaskInstanceExecutionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1257,16 +1253,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改安卓实例的标签
+        # 获取实例列表
 
-        # @param request: Request instance for ModifyAndroidInstancesLabels.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesLabelsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesLabelsResponse`
-        def ModifyAndroidInstancesLabels(request)
-          body = send_request('ModifyAndroidInstancesLabels', request.serialize)
+        # @param request: Request instance for ListTaskInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListTaskInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListTaskInstancesResponse`
+        def ListTaskInstances(request)
+          body = send_request('ListTaskInstances', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesLabelsResponse.new
+            model = ListTaskInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1281,16 +1277,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改安卓实例属性
+        # 任务保存版本列表
 
-        # @param request: Request instance for ModifyAndroidInstancesProperties.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesPropertiesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesPropertiesResponse`
-        def ModifyAndroidInstancesProperties(request)
-          body = send_request('ModifyAndroidInstancesProperties', request.serialize)
+        # @param request: Request instance for ListTaskVersions.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListTaskVersionsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListTaskVersionsResponse`
+        def ListTaskVersions(request)
+          body = send_request('ListTaskVersions', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesPropertiesResponse.new
+            model = ListTaskVersionsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1305,16 +1301,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改安卓实例分辨率。需要注意的是该接口需要重启才能生效。
+        # 查询任务分页信息
 
-        # @param request: Request instance for ModifyAndroidInstancesResolution.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResolutionRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResolutionResponse`
-        def ModifyAndroidInstancesResolution(request)
-          body = send_request('ModifyAndroidInstancesResolution', request.serialize)
+        # @param request: Request instance for ListTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListTasksResponse`
+        def ListTasks(request)
+          body = send_request('ListTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesResolutionResponse.new
+            model = ListTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1329,16 +1325,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改安卓实例资源限制
+        # 获取任务直接上游
 
-        # @param request: Request instance for ModifyAndroidInstancesResources.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResourcesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesResourcesResponse`
-        def ModifyAndroidInstancesResources(request)
-          body = send_request('ModifyAndroidInstancesResources', request.serialize)
+        # @param request: Request instance for ListUpstreamOpsTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListUpstreamOpsTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListUpstreamOpsTasksResponse`
+        def ListUpstreamOpsTasks(request)
+          body = send_request('ListUpstreamOpsTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesResourcesResponse.new
+            model = ListUpstreamOpsTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1353,16 +1349,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量修改安卓实例的用户ID
+        # 获取实例直接上游
 
-        # @param request: Request instance for ModifyAndroidInstancesUserId.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesUserIdRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ModifyAndroidInstancesUserIdResponse`
-        def ModifyAndroidInstancesUserId(request)
-          body = send_request('ModifyAndroidInstancesUserId', request.serialize)
+        # @param request: Request instance for ListUpstreamTaskInstances.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListUpstreamTaskInstancesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListUpstreamTaskInstancesResponse`
+        def ListUpstreamTaskInstances(request)
+          body = send_request('ListUpstreamTaskInstances', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyAndroidInstancesUserIdResponse.new
+            model = ListUpstreamTaskInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1377,115 +1373,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重启安卓实例宿主机。请注意：
+        # 获取任务直接上游
 
-        # - 当前每 15 分钟只能重启一次
-        # - 一个宿主机可能有多个云手机实例，重启宿主机会影响运行在上面的所有实例，请确保该宿主机上的所有云手机实例未投入业务使用
-
-        # @param request: Request instance for RebootAndroidInstanceHosts.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstanceHostsRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstanceHostsResponse`
-        def RebootAndroidInstanceHosts(request)
-          body = send_request('RebootAndroidInstanceHosts', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RebootAndroidInstanceHostsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 重启安卓实例
-
-        # @param request: Request instance for RebootAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RebootAndroidInstancesResponse`
-        def RebootAndroidInstances(request)
-          body = send_request('RebootAndroidInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RebootAndroidInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 续期安卓实例访问Token
-
-        # @param request: Request instance for RenewAndroidInstancesAccessToken.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstancesAccessTokenRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstancesAccessTokenResponse`
-        def RenewAndroidInstancesAccessToken(request)
-          body = send_request('RenewAndroidInstancesAccessToken', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RenewAndroidInstancesAccessTokenResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 重置安卓实例
-
-        # @param request: Request instance for ResetAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::ResetAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::ResetAndroidInstancesResponse`
-        def ResetAndroidInstances(request)
-          body = send_request('ResetAndroidInstances', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ResetAndroidInstancesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 重启安卓实例应用
-
-        # @param request: Request instance for RestartAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RestartAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RestartAndroidInstancesAppResponse`
-        def RestartAndroidInstancesApp(request)
-          body = send_request('RestartAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for ListUpstreamTasks.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListUpstreamTasksRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListUpstreamTasksResponse`
+        def ListUpstreamTasks(request)
+          body = send_request('ListUpstreamTasks', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = RestartAndroidInstancesAppResponse.new
+            model = ListUpstreamTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1500,16 +1397,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 还原安卓实例。该接口需要联系我们开通内网存储才能使用。
+        # 查询文件夹列表
 
-        # @param request: Request instance for RestoreAndroidInstance.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceResponse`
-        def RestoreAndroidInstance(request)
-          body = send_request('RestoreAndroidInstance', request.serialize)
+        # @param request: Request instance for ListWorkflowFolders.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListWorkflowFoldersRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListWorkflowFoldersResponse`
+        def ListWorkflowFolders(request)
+          body = send_request('ListWorkflowFolders', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = RestoreAndroidInstanceResponse.new
+            model = ListWorkflowFoldersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1524,16 +1421,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 使用指定存储数据还原云手机，支持 COS 和兼容 AWS S3 协议的对象存储服务。如果还原数据来自 COS 时，会使用公网流量，授权 COS bucket 请在控制台中操作。
+        # 查询工作流列表
 
-        # @param request: Request instance for RestoreAndroidInstanceFromStorage.
-        # @type request: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceFromStorageRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::RestoreAndroidInstanceFromStorageResponse`
-        def RestoreAndroidInstanceFromStorage(request)
-          body = send_request('RestoreAndroidInstanceFromStorage', request.serialize)
+        # @param request: Request instance for ListWorkflows.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListWorkflowsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListWorkflowsResponse`
+        def ListWorkflows(request)
+          body = send_request('ListWorkflows', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = RestoreAndroidInstanceFromStorageResponse.new
+            model = ListWorkflowsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1548,16 +1445,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 保存游戏存档
+        # 异步批量暂停任务
 
-        # @param request: Request instance for SaveGameArchive.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SaveGameArchiveRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SaveGameArchiveResponse`
-        def SaveGameArchive(request)
-          body = send_request('SaveGameArchive', request.serialize)
+        # @param request: Request instance for PauseOpsTasksAsync.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::PauseOpsTasksAsyncRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::PauseOpsTasksAsyncResponse`
+        def PauseOpsTasksAsync(request)
+          body = send_request('PauseOpsTasksAsync', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SaveGameArchiveResponse.new
+            model = PauseOpsTasksAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1572,16 +1469,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量设置安卓实例应用后台保活，开启应用保活，只是降低应用被杀死或回收的优先级，并不能保证应用不会被杀死或回收（如出现内存不足等资源限制时，应用也有概率被杀死或回收）
+        # 实例批量重跑-异步
 
-        # @param request: Request instance for SetAndroidInstancesBGAppKeepAlive.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesBGAppKeepAliveRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesBGAppKeepAliveResponse`
-        def SetAndroidInstancesBGAppKeepAlive(request)
-          body = send_request('SetAndroidInstancesBGAppKeepAlive', request.serialize)
+        # @param request: Request instance for RerunTaskInstancesAsync.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::RerunTaskInstancesAsyncRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::RerunTaskInstancesAsyncResponse`
+        def RerunTaskInstancesAsync(request)
+          body = send_request('RerunTaskInstancesAsync', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SetAndroidInstancesBGAppKeepAliveResponse.new
+            model = RerunTaskInstancesAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1596,16 +1493,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量设置安卓实例应用前台保活，开启应用保活，只是降低应用被杀死或回收的优先级，并不能保证应用不会被杀死或回收（如出现内存不足等资源限制时，应用也有概率被杀死或回收）
+        # 运行SQL脚本
 
-        # @param request: Request instance for SetAndroidInstancesFGAppKeepAlive.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesFGAppKeepAliveRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SetAndroidInstancesFGAppKeepAliveResponse`
-        def SetAndroidInstancesFGAppKeepAlive(request)
-          body = send_request('SetAndroidInstancesFGAppKeepAlive', request.serialize)
+        # @param request: Request instance for RunSQLScript.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::RunSQLScriptRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::RunSQLScriptResponse`
+        def RunSQLScript(request)
+          body = send_request('RunSQLScript', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SetAndroidInstancesFGAppKeepAliveResponse.new
+            model = RunSQLScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1620,16 +1517,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开机安卓实例
+        # 实例批量置成功-异步
 
-        # @param request: Request instance for StartAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StartAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StartAndroidInstancesResponse`
-        def StartAndroidInstances(request)
-          body = send_request('StartAndroidInstances', request.serialize)
+        # @param request: Request instance for SetSuccessTaskInstancesAsync.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::SetSuccessTaskInstancesAsyncRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::SetSuccessTaskInstancesAsyncResponse`
+        def SetSuccessTaskInstancesAsync(request)
+          body = send_request('SetSuccessTaskInstancesAsync', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StartAndroidInstancesResponse.new
+            model = SetSuccessTaskInstancesAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1644,16 +1541,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 启动安卓实例应用
+        # 异步批量下线任务
 
-        # @param request: Request instance for StartAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StartAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StartAndroidInstancesAppResponse`
-        def StartAndroidInstancesApp(request)
-          body = send_request('StartAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for StopOpsTasksAsync.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::StopOpsTasksAsyncRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::StopOpsTasksAsyncResponse`
+        def StopOpsTasksAsync(request)
+          body = send_request('StopOpsTasksAsync', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StartAndroidInstancesAppResponse.new
+            model = StopOpsTasksAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1668,16 +1565,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开始云端推流
+        # 停止运行SQL脚本
 
-        # @param request: Request instance for StartPublishStream.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StartPublishStreamRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StartPublishStreamResponse`
-        def StartPublishStream(request)
-          body = send_request('StartPublishStream', request.serialize)
+        # @param request: Request instance for StopSQLScriptRun.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::StopSQLScriptRunRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::StopSQLScriptRunResponse`
+        def StopSQLScriptRun(request)
+          body = send_request('StopSQLScriptRun', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StartPublishStreamResponse.new
+            model = StopSQLScriptRunResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1692,16 +1589,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开始云端推流
+        # 提交任务。
 
-        # @param request: Request instance for StartPublishStreamToCSS.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StartPublishStreamToCSSRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StartPublishStreamToCSSResponse`
-        def StartPublishStreamToCSS(request)
-          body = send_request('StartPublishStreamToCSS', request.serialize)
+        # @param request: Request instance for SubmitTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::SubmitTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::SubmitTaskResponse`
+        def SubmitTask(request)
+          body = send_request('SubmitTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StartPublishStreamToCSSResponse.new
+            model = SubmitTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1716,16 +1613,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 关机安卓实例
+        # 更新代码文件
 
-        # @param request: Request instance for StopAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StopAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StopAndroidInstancesResponse`
-        def StopAndroidInstances(request)
-          body = send_request('StopAndroidInstances', request.serialize)
+        # @param request: Request instance for UpdateCodeFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateCodeFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateCodeFileResponse`
+        def UpdateCodeFile(request)
+          body = send_request('UpdateCodeFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StopAndroidInstancesResponse.new
+            model = UpdateCodeFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1740,16 +1637,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止安卓实例应用
+        # 重命名代码文件夹
 
-        # @param request: Request instance for StopAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StopAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StopAndroidInstancesAppResponse`
-        def StopAndroidInstancesApp(request)
-          body = send_request('StopAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for UpdateCodeFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateCodeFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateCodeFolderResponse`
+        def UpdateCodeFolder(request)
+          body = send_request('UpdateCodeFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StopAndroidInstancesAppResponse.new
+            model = UpdateCodeFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1764,16 +1661,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 强制退出游戏
+        # 修改告警规则
 
-        # @param request: Request instance for StopGame.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StopGameRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StopGameResponse`
-        def StopGame(request)
-          body = send_request('StopGame', request.serialize)
+        # @param request: Request instance for UpdateOpsAlarmRule.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateOpsAlarmRuleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateOpsAlarmRuleResponse`
+        def UpdateOpsAlarmRule(request)
+          body = send_request('UpdateOpsAlarmRule', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StopGameResponse.new
+            model = UpdateOpsAlarmRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1788,16 +1685,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 停止云端推流
+        # 修改任务负责人
 
-        # @param request: Request instance for StopPublishStream.
-        # @type request: :class:`Tencentcloud::gs::V20191118::StopPublishStreamRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::StopPublishStreamResponse`
-        def StopPublishStream(request)
-          body = send_request('StopPublishStream', request.serialize)
+        # @param request: Request instance for UpdateOpsTasksOwner.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateOpsTasksOwnerRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateOpsTasksOwnerResponse`
+        def UpdateOpsTasksOwner(request)
+          body = send_request('UpdateOpsTasksOwner', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = StopPublishStreamResponse.new
+            model = UpdateOpsTasksOwnerResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1812,16 +1709,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 切换游戏存档
+        # 更新资源文件
 
-        # @param request: Request instance for SwitchGameArchive.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SwitchGameArchiveRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SwitchGameArchiveResponse`
-        def SwitchGameArchive(request)
-          body = send_request('SwitchGameArchive', request.serialize)
+        # @param request: Request instance for UpdateResourceFile.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateResourceFileRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateResourceFileResponse`
+        def UpdateResourceFile(request)
+          body = send_request('UpdateResourceFile', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SwitchGameArchiveResponse.new
+            model = UpdateResourceFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1836,16 +1733,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步安卓实例镜像到其他区域，当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像已经同步完成处于可用状态。
+        # 创建资源文件文件夹
 
-        # @param request: Request instance for SyncAndroidInstanceImage.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SyncAndroidInstanceImageRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SyncAndroidInstanceImageResponse`
-        def SyncAndroidInstanceImage(request)
-          body = send_request('SyncAndroidInstanceImage', request.serialize)
+        # @param request: Request instance for UpdateResourceFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateResourceFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateResourceFolderResponse`
+        def UpdateResourceFolder(request)
+          body = send_request('UpdateResourceFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SyncAndroidInstanceImageResponse.new
+            model = UpdateResourceFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1860,16 +1757,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 在安卓实例上同步执行命令，仅支持1秒内可以返回结果的命令，例如：ls、cd。同时执行的实例数量不能过多，否则可能云api返回超时。不支持超过1秒无法返回或无法自主结束的命令，例如：top、vim，执行结果最大1KB
+        # 重命名SQL文件夹
 
-        # @param request: Request instance for SyncExecuteCommandOnAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::SyncExecuteCommandOnAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::SyncExecuteCommandOnAndroidInstancesResponse`
-        def SyncExecuteCommandOnAndroidInstances(request)
-          body = send_request('SyncExecuteCommandOnAndroidInstances', request.serialize)
+        # @param request: Request instance for UpdateSQLFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateSQLFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateSQLFolderResponse`
+        def UpdateSQLFolder(request)
+          body = send_request('UpdateSQLFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SyncExecuteCommandOnAndroidInstancesResponse.new
+            model = UpdateSQLFolderResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1884,16 +1781,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 尝试锁定机器
+        # 保存探索脚本内容
 
-        # @param request: Request instance for TrylockWorker.
-        # @type request: :class:`Tencentcloud::gs::V20191118::TrylockWorkerRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::TrylockWorkerResponse`
-        def TrylockWorker(request)
-          body = send_request('TrylockWorker', request.serialize)
+        # @param request: Request instance for UpdateSQLScript.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateSQLScriptRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateSQLScriptResponse`
+        def UpdateSQLScript(request)
+          body = send_request('UpdateSQLScript', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = TrylockWorkerResponse.new
+            model = UpdateSQLScriptResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1908,16 +1805,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 卸载安卓实例应用
+        # 创建任务接口
 
-        # @param request: Request instance for UninstallAndroidInstancesApp.
-        # @type request: :class:`Tencentcloud::gs::V20191118::UninstallAndroidInstancesAppRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::UninstallAndroidInstancesAppResponse`
-        def UninstallAndroidInstancesApp(request)
-          body = send_request('UninstallAndroidInstancesApp', request.serialize)
+        # @param request: Request instance for UpdateTask.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateTaskRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateTaskResponse`
+        def UpdateTask(request)
+          body = send_request('UpdateTask', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = UninstallAndroidInstancesAppResponse.new
+            model = UpdateTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1932,16 +1829,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 将文件下载到指定实例列表的实例上，每个实例都会从公网下载文件。如果您需要将同一个文件分发到多个实例，建议使用 DistributeFileToAndroidInstances 接口减少公网下载的流量。如果您需要将不同的文件下载到不同的实例，可考虑使用 UploadFilesToAndroidInstances 接口批量将不同文件下载到不同的实例。
+        # 更新工作流（包括工作流基本信息与工作流参数）
 
-        # @param request: Request instance for UploadFileToAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::UploadFileToAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::UploadFileToAndroidInstancesResponse`
-        def UploadFileToAndroidInstances(request)
-          body = send_request('UploadFileToAndroidInstances', request.serialize)
+        # @param request: Request instance for UpdateWorkflow.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateWorkflowRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateWorkflowResponse`
+        def UpdateWorkflow(request)
+          body = send_request('UpdateWorkflow', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = UploadFileToAndroidInstancesResponse.new
+            model = UpdateWorkflowResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1956,16 +1853,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 批量将不同的文件下载到不同的实例，每个实例下载文件都是从公网下载，建议只用在文件下载使用一次的场景。如果您需要将同一个文件分发到不同实例，建议使用 DistributeFileToAndroidInstances 接口。
+        # 创建文件夹
 
-        # @param request: Request instance for UploadFilesToAndroidInstances.
-        # @type request: :class:`Tencentcloud::gs::V20191118::UploadFilesToAndroidInstancesRequest`
-        # @rtype: :class:`Tencentcloud::gs::V20191118::UploadFilesToAndroidInstancesResponse`
-        def UploadFilesToAndroidInstances(request)
-          body = send_request('UploadFilesToAndroidInstances', request.serialize)
+        # @param request: Request instance for UpdateWorkflowFolder.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateWorkflowFolderRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::UpdateWorkflowFolderResponse`
+        def UpdateWorkflowFolder(request)
+          body = send_request('UpdateWorkflowFolder', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = UploadFilesToAndroidInstancesResponse.new
+            model = UpdateWorkflowFolderResponse.new
             model.deserialize(response['Response'])
             model
           else

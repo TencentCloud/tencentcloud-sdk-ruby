@@ -1233,10 +1233,12 @@ module TencentCloud
         # @type AccessRegion: String
         # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
         # @type GatewayType: Integer
+        # @param MpApplicationId: 应用ID, 查询分组流量时无需使用。 查询应用流量时该字段为应用ID，GroupId 填写 "-1"
+        # @type MpApplicationId: String
 
-        attr_accessor :GroupId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType
+        attr_accessor :GroupId, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :MpApplicationId
 
-        def initialize(groupid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil)
+        def initialize(groupid=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil, mpapplicationid=nil)
           @GroupId = groupid
           @BeginTime = begintime
           @EndTime = endtime
@@ -1244,6 +1246,7 @@ module TencentCloud
           @TimeGranularity = timegranularity
           @AccessRegion = accessregion
           @GatewayType = gatewaytype
+          @MpApplicationId = mpapplicationid
         end
 
         def deserialize(params)
@@ -1254,6 +1257,7 @@ module TencentCloud
           @TimeGranularity = params['TimeGranularity']
           @AccessRegion = params['AccessRegion']
           @GatewayType = params['GatewayType']
+          @MpApplicationId = params['MpApplicationId']
         end
       end
 

@@ -7165,7 +7165,7 @@ module TencentCloud
         # @type LoginSubAccountUin: String
         # @param AgentType: 智能体类型 dialogue：对话智能体，wechat：公众号智能体
         # @type AgentType: String
-        # @param AppStatus: 应用状态 1:未上线 2：运行中
+        # @param AppStatus: 应用状态 1:未上线   2：运行中
         # @type AppStatus: String
 
         attr_accessor :AppType, :PageSize, :PageNumber, :Keyword, :LoginSubAccountUin, :AgentType, :AppStatus
@@ -8950,10 +8950,14 @@ module TencentCloud
         # @type ProviderAliasName: String
         # @param ProviderType: 提供商类型 Self:提供商，Custom：自定义模型提供商，Third：第三方模型提供商
         # @type ProviderType: String
+        # @param IsCloseModelParams: 是否关闭模型超参
+        # @type IsCloseModelParams: Boolean
+        # @param IsDeepThinking: 是否支持深度思考
+        # @type IsDeepThinking: Boolean
 
-        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive, :SupportAiCallStatus, :Concurrency, :ModelTags, :ModelParams, :ProviderName, :ProviderAliasName, :ProviderType
+        attr_accessor :ModelName, :ModelDesc, :AliasName, :ResourceStatus, :PromptWordsLimit, :TopP, :Temperature, :MaxTokens, :Source, :Icon, :IsFree, :InputLenLimit, :SupportWorkflowStatus, :ModelCategory, :IsDefault, :RoleLenLimit, :IsExclusive, :SupportAiCallStatus, :Concurrency, :ModelTags, :ModelParams, :ProviderName, :ProviderAliasName, :ProviderType, :IsCloseModelParams, :IsDeepThinking
 
-        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil, supportaicallstatus=nil, concurrency=nil, modeltags=nil, modelparams=nil, providername=nil, provideraliasname=nil, providertype=nil)
+        def initialize(modelname=nil, modeldesc=nil, aliasname=nil, resourcestatus=nil, promptwordslimit=nil, topp=nil, temperature=nil, maxtokens=nil, source=nil, icon=nil, isfree=nil, inputlenlimit=nil, supportworkflowstatus=nil, modelcategory=nil, isdefault=nil, rolelenlimit=nil, isexclusive=nil, supportaicallstatus=nil, concurrency=nil, modeltags=nil, modelparams=nil, providername=nil, provideraliasname=nil, providertype=nil, isclosemodelparams=nil, isdeepthinking=nil)
           @ModelName = modelname
           @ModelDesc = modeldesc
           @AliasName = aliasname
@@ -8978,6 +8982,8 @@ module TencentCloud
           @ProviderName = providername
           @ProviderAliasName = provideraliasname
           @ProviderType = providertype
+          @IsCloseModelParams = isclosemodelparams
+          @IsDeepThinking = isdeepthinking
         end
 
         def deserialize(params)
@@ -9021,6 +9027,8 @@ module TencentCloud
           @ProviderName = params['ProviderName']
           @ProviderAliasName = params['ProviderAliasName']
           @ProviderType = params['ProviderType']
+          @IsCloseModelParams = params['IsCloseModelParams']
+          @IsDeepThinking = params['IsDeepThinking']
         end
       end
 
@@ -12888,10 +12896,13 @@ module TencentCloud
         # @param StatisticInfos: 大模型输出信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StatisticInfos: Array
+        # @param FailCode: 错误代码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailCode: String
 
-        attr_accessor :NodeId, :NodeType, :NodeName, :Status, :Input, :Output, :TaskOutput, :FailMessage, :CostMilliSeconds, :StatisticInfos
+        attr_accessor :NodeId, :NodeType, :NodeName, :Status, :Input, :Output, :TaskOutput, :FailMessage, :CostMilliSeconds, :StatisticInfos, :FailCode
 
-        def initialize(nodeid=nil, nodetype=nil, nodename=nil, status=nil, input=nil, output=nil, taskoutput=nil, failmessage=nil, costmilliseconds=nil, statisticinfos=nil)
+        def initialize(nodeid=nil, nodetype=nil, nodename=nil, status=nil, input=nil, output=nil, taskoutput=nil, failmessage=nil, costmilliseconds=nil, statisticinfos=nil, failcode=nil)
           @NodeId = nodeid
           @NodeType = nodetype
           @NodeName = nodename
@@ -12902,6 +12913,7 @@ module TencentCloud
           @FailMessage = failmessage
           @CostMilliSeconds = costmilliseconds
           @StatisticInfos = statisticinfos
+          @FailCode = failcode
         end
 
         def deserialize(params)
@@ -12922,6 +12934,7 @@ module TencentCloud
               @StatisticInfos << statisticinfo_tmp
             end
           end
+          @FailCode = params['FailCode']
         end
       end
 

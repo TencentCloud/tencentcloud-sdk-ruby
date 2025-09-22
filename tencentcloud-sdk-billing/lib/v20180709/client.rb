@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建预算信息
+
+        # @param request: Request instance for CreateBudget.
+        # @type request: :class:`Tencentcloud::billing::V20180709::CreateBudgetRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::CreateBudgetResponse`
+        def CreateBudget(request)
+          body = send_request('CreateBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBudgetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建归集规则
 
         # @param request: Request instance for CreateGatherRule.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteAllocationUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 依据预算ID删除对应预算项目
+
+        # @param request: Request instance for DeleteBudget.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DeleteBudgetRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DeleteBudgetResponse`
+        def DeleteBudget(request)
+          body = send_request('DeleteBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBudgetResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -897,6 +945,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取预算详细信息
+
+        # @param request: Request instance for DescribeBudget.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBudgetRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBudgetResponse`
+        def DescribeBudget(request)
+          body = send_request('DescribeBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBudgetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询预算修改记录
+
+        # @param request: Request instance for DescribeBudgetOperationLog.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBudgetOperationLogRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBudgetOperationLogResponse`
+        def DescribeBudgetOperationLog(request)
+          body = send_request('DescribeBudgetOperationLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBudgetOperationLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 返回预算提醒记录，包括预算周期、检测时间、提醒时间、提醒类型、提醒内容
+
+        # @param request: Request instance for DescribeBudgetRemindRecordList.
+        # @type request: :class:`Tencentcloud::billing::V20180709::DescribeBudgetRemindRecordListRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::DescribeBudgetRemindRecordListResponse`
+        def DescribeBudgetRemindRecordList(request)
+          body = send_request('DescribeBudgetRemindRecordList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBudgetRemindRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询消耗明细
 
         # 注意事项：
@@ -1318,6 +1438,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAllocationUnitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新预算信息
+
+        # @param request: Request instance for ModifyBudget.
+        # @type request: :class:`Tencentcloud::billing::V20180709::ModifyBudgetRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::ModifyBudgetResponse`
+        def ModifyBudget(request)
+          body = send_request('ModifyBudget', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBudgetResponse.new
             model.deserialize(response['Response'])
             model
           else
