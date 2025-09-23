@@ -407,6 +407,7 @@ module TencentCloud
       # 自动伸缩组高级设置
       class AutoScaleGroupAdvanceAttrs < TencentCloud::Common::AbstractModel
         # @param ComputeResourceAdvanceParams: 计算资源高级设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
 
         attr_accessor :ComputeResourceAdvanceParams
@@ -523,6 +524,8 @@ module TencentCloud
         # @type GroupName: String
         # @param YarnNodeLabel: 标签
         # @type YarnNodeLabel: String
+        # @param WarehouseName: 对应的计算组
+        # @type WarehouseName: String
         # @param GroupStatus: 伸缩组状态
         # @type GroupStatus: Integer
         # @param Parallel: 并行伸缩 0关闭；1开启
@@ -530,11 +533,12 @@ module TencentCloud
         # @param EnableMNode: 是否支持MNode
         # @type EnableMNode: Integer
         # @param ExtraAdvanceAttrs: 伸缩组更多设置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraAdvanceAttrs: :class:`Tencentcloud::Emr.v20190103.models.AutoScaleGroupAdvanceAttrs`
 
-        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :GroupStatus, :Parallel, :EnableMNode, :ExtraAdvanceAttrs
+        attr_accessor :Id, :ClusterId, :ScaleLowerBound, :ScaleUpperBound, :StrategyType, :NextTimeCanScale, :GraceDownFlag, :HardwareType, :PayMode, :PostPayPercentMin, :ChangeToPod, :GroupName, :YarnNodeLabel, :WarehouseName, :GroupStatus, :Parallel, :EnableMNode, :ExtraAdvanceAttrs
 
-        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, groupstatus=nil, parallel=nil, enablemnode=nil, extraadvanceattrs=nil)
+        def initialize(id=nil, clusterid=nil, scalelowerbound=nil, scaleupperbound=nil, strategytype=nil, nexttimecanscale=nil, gracedownflag=nil, hardwaretype=nil, paymode=nil, postpaypercentmin=nil, changetopod=nil, groupname=nil, yarnnodelabel=nil, warehousename=nil, groupstatus=nil, parallel=nil, enablemnode=nil, extraadvanceattrs=nil)
           @Id = id
           @ClusterId = clusterid
           @ScaleLowerBound = scalelowerbound
@@ -548,6 +552,7 @@ module TencentCloud
           @ChangeToPod = changetopod
           @GroupName = groupname
           @YarnNodeLabel = yarnnodelabel
+          @WarehouseName = warehousename
           @GroupStatus = groupstatus
           @Parallel = parallel
           @EnableMNode = enablemnode
@@ -568,6 +573,7 @@ module TencentCloud
           @ChangeToPod = params['ChangeToPod']
           @GroupName = params['GroupName']
           @YarnNodeLabel = params['YarnNodeLabel']
+          @WarehouseName = params['WarehouseName']
           @GroupStatus = params['GroupStatus']
           @Parallel = params['Parallel']
           @EnableMNode = params['EnableMNode']
@@ -12243,10 +12249,12 @@ module TencentCloud
         # @type ScaleOutServiceConfGroupsInfo: Array
         # @param NodeMarks: 节点标记信息，当前只提供给tf平台使用
         # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
+        # @param WarehouseName: 扩容指定计算组名称
+        # @type WarehouseName: String
 
-        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo, :NodeMarks
+        attr_accessor :InstanceChargeType, :InstanceId, :ScaleOutNodeConfig, :ClientToken, :InstanceChargePrepaid, :ScriptBootstrapActionConfig, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareSourceType, :PodSpecInfo, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :EnableStartServiceFlag, :ResourceSpec, :Zone, :SubnetId, :ScaleOutServiceConfGroupsInfo, :NodeMarks, :WarehouseName
 
-        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil, nodemarks=nil)
+        def initialize(instancechargetype=nil, instanceid=nil, scaleoutnodeconfig=nil, clienttoken=nil, instancechargeprepaid=nil, scriptbootstrapactionconfig=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwaresourcetype=nil, podspecinfo=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, enablestartserviceflag=nil, resourcespec=nil, zone=nil, subnetid=nil, scaleoutserviceconfgroupsinfo=nil, nodemarks=nil, warehousename=nil)
           @InstanceChargeType = instancechargetype
           @InstanceId = instanceid
           @ScaleOutNodeConfig = scaleoutnodeconfig
@@ -12268,6 +12276,7 @@ module TencentCloud
           @SubnetId = subnetid
           @ScaleOutServiceConfGroupsInfo = scaleoutserviceconfgroupsinfo
           @NodeMarks = nodemarks
+          @WarehouseName = warehousename
         end
 
         def deserialize(params)
@@ -12328,6 +12337,7 @@ module TencentCloud
             @NodeMarks = NodeMark.new
             @NodeMarks.deserialize(params['NodeMarks'])
           end
+          @WarehouseName = params['WarehouseName']
         end
       end
 
@@ -12445,10 +12455,12 @@ module TencentCloud
         # @type ComputeResourceAdvanceParams: :class:`Tencentcloud::Emr.v20190103.models.ComputeResourceAdvanceParams`
         # @param NodeMarks: 节点标记信息，目前只提供tf平台使用
         # @type NodeMarks: :class:`Tencentcloud::Emr.v20190103.models.NodeMark`
+        # @param WarehouseName: 扩容指定计算组
+        # @type WarehouseName: String
 
-        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams, :NodeMarks
+        attr_accessor :TimeUnit, :TimeSpan, :InstanceId, :PayMode, :ClientToken, :PreExecutedFileSettings, :TaskCount, :CoreCount, :UnNecessaryNodeList, :RouterCount, :SoftDeployInfo, :ServiceNodeInfo, :DisasterRecoverGroupIds, :Tags, :HardwareResourceType, :PodSpec, :ClickHouseClusterName, :ClickHouseClusterType, :YarnNodeLabel, :PodParameter, :MasterCount, :StartServiceAfterScaleOut, :ZoneId, :SubnetId, :ScaleOutServiceConfAssign, :AutoRenew, :ResourceBaseType, :ComputeResourceId, :ComputeResourceAdvanceParams, :NodeMarks, :WarehouseName
 
-        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil, nodemarks=nil)
+        def initialize(timeunit=nil, timespan=nil, instanceid=nil, paymode=nil, clienttoken=nil, preexecutedfilesettings=nil, taskcount=nil, corecount=nil, unnecessarynodelist=nil, routercount=nil, softdeployinfo=nil, servicenodeinfo=nil, disasterrecovergroupids=nil, tags=nil, hardwareresourcetype=nil, podspec=nil, clickhouseclustername=nil, clickhouseclustertype=nil, yarnnodelabel=nil, podparameter=nil, mastercount=nil, startserviceafterscaleout=nil, zoneid=nil, subnetid=nil, scaleoutserviceconfassign=nil, autorenew=nil, resourcebasetype=nil, computeresourceid=nil, computeresourceadvanceparams=nil, nodemarks=nil, warehousename=nil)
           @TimeUnit = timeunit
           @TimeSpan = timespan
           @InstanceId = instanceid
@@ -12479,6 +12491,7 @@ module TencentCloud
           @ComputeResourceId = computeresourceid
           @ComputeResourceAdvanceParams = computeresourceadvanceparams
           @NodeMarks = nodemarks
+          @WarehouseName = warehousename
         end
 
         def deserialize(params)
@@ -12538,6 +12551,7 @@ module TencentCloud
             @NodeMarks = NodeMark.new
             @NodeMarks.deserialize(params['NodeMarks'])
           end
+          @WarehouseName = params['WarehouseName']
         end
       end
 

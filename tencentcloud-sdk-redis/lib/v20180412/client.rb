@@ -653,7 +653,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeInstanceAccount）用于查看实例子账号信息。
+        # 本接口（DescribeInstanceAccount）用于查看实例账号信息。
 
         # @param request: Request instance for DescribeInstanceAccount.
         # @type request: :class:`Tencentcloud::redis::V20180412::DescribeInstanceAccountRequest`
@@ -2047,7 +2047,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例的备份模式
+        # 本接口（ModifyInstanceBackupMode）用于修改实例的备份模式。
 
         # @param request: Request instance for ModifyInstanceBackupMode.
         # @type request: :class:`Tencentcloud::redis::V20180412::ModifyInstanceBackupModeRequest`

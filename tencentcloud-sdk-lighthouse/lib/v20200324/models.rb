@@ -346,10 +346,12 @@ module TencentCloud
         # @type DockerVersion: String
         # @param BlueprintShared: 镜像是否已共享。
         # @type BlueprintShared: Boolean
+        # @param Tags: 镜像绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet, :DockerVersion, :BlueprintShared
+        attr_accessor :BlueprintId, :DisplayTitle, :DisplayVersion, :Description, :OsName, :Platform, :PlatformType, :BlueprintType, :ImageUrl, :RequiredSystemDiskSize, :BlueprintState, :CreatedTime, :BlueprintName, :SupportAutomationTools, :RequiredMemorySize, :ImageId, :CommunityUrl, :GuideUrl, :SceneIdSet, :DockerVersion, :BlueprintShared, :Tags
 
-        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil, dockerversion=nil, blueprintshared=nil)
+        def initialize(blueprintid=nil, displaytitle=nil, displayversion=nil, description=nil, osname=nil, platform=nil, platformtype=nil, blueprinttype=nil, imageurl=nil, requiredsystemdisksize=nil, blueprintstate=nil, createdtime=nil, blueprintname=nil, supportautomationtools=nil, requiredmemorysize=nil, imageid=nil, communityurl=nil, guideurl=nil, sceneidset=nil, dockerversion=nil, blueprintshared=nil, tags=nil)
           @BlueprintId = blueprintid
           @DisplayTitle = displaytitle
           @DisplayVersion = displayversion
@@ -371,6 +373,7 @@ module TencentCloud
           @SceneIdSet = sceneidset
           @DockerVersion = dockerversion
           @BlueprintShared = blueprintshared
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -395,6 +398,14 @@ module TencentCloud
           @SceneIdSet = params['SceneIdSet']
           @DockerVersion = params['DockerVersion']
           @BlueprintShared = params['BlueprintShared']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -699,14 +710,17 @@ module TencentCloud
         # 默认取值：True
         # 开机状态制作镜像，可能导致部分数据未备份，影响数据安全。
         # @type ForcePowerOff: Boolean
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :BlueprintName, :Description, :InstanceId, :ForcePowerOff
+        attr_accessor :BlueprintName, :Description, :InstanceId, :ForcePowerOff, :Tags
 
-        def initialize(blueprintname=nil, description=nil, instanceid=nil, forcepoweroff=nil)
+        def initialize(blueprintname=nil, description=nil, instanceid=nil, forcepoweroff=nil, tags=nil)
           @BlueprintName = blueprintname
           @Description = description
           @InstanceId = instanceid
           @ForcePowerOff = forcepoweroff
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -714,6 +728,14 @@ module TencentCloud
           @Description = params['Description']
           @InstanceId = params['InstanceId']
           @ForcePowerOff = params['ForcePowerOff']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -743,17 +765,28 @@ module TencentCloud
         # @type DiskId: String
         # @param DiskBackupName: 云硬盘备份点名称，最大长度为 90 。
         # @type DiskBackupName: String
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :DiskId, :DiskBackupName
+        attr_accessor :DiskId, :DiskBackupName, :Tags
 
-        def initialize(diskid=nil, diskbackupname=nil)
+        def initialize(diskid=nil, diskbackupname=nil, tags=nil)
           @DiskId = diskid
           @DiskBackupName = diskbackupname
+          @Tags = tags
         end
 
         def deserialize(params)
           @DiskId = params['DiskId']
           @DiskBackupName = params['DiskBackupName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -797,10 +830,12 @@ module TencentCloud
         # @type AutoVoucher: Boolean
         # @param AutoMountConfiguration: 自动挂载并初始化数据盘。
         # @type AutoMountConfiguration: :class:`Tencentcloud::Lighthouse.v20200324.models.AutoMountConfiguration`
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :Zone, :DiskSize, :DiskType, :DiskChargePrepaid, :DiskName, :DiskCount, :DiskBackupQuota, :AutoVoucher, :AutoMountConfiguration
+        attr_accessor :Zone, :DiskSize, :DiskType, :DiskChargePrepaid, :DiskName, :DiskCount, :DiskBackupQuota, :AutoVoucher, :AutoMountConfiguration, :Tags
 
-        def initialize(zone=nil, disksize=nil, disktype=nil, diskchargeprepaid=nil, diskname=nil, diskcount=nil, diskbackupquota=nil, autovoucher=nil, automountconfiguration=nil)
+        def initialize(zone=nil, disksize=nil, disktype=nil, diskchargeprepaid=nil, diskname=nil, diskcount=nil, diskbackupquota=nil, autovoucher=nil, automountconfiguration=nil, tags=nil)
           @Zone = zone
           @DiskSize = disksize
           @DiskType = disktype
@@ -810,6 +845,7 @@ module TencentCloud
           @DiskBackupQuota = diskbackupquota
           @AutoVoucher = autovoucher
           @AutoMountConfiguration = automountconfiguration
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -827,6 +863,14 @@ module TencentCloud
           unless params['AutoMountConfiguration'].nil?
             @AutoMountConfiguration = AutoMountConfiguration.new
             @AutoMountConfiguration.deserialize(params['AutoMountConfiguration'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end
@@ -1000,17 +1044,28 @@ module TencentCloud
         # @type InstanceId: String
         # @param SnapshotName: 快照名称，最长为 60 个字符。
         # @type SnapshotName: String
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :SnapshotName
+        attr_accessor :InstanceId, :SnapshotName, :Tags
 
-        def initialize(instanceid=nil, snapshotname=nil)
+        def initialize(instanceid=nil, snapshotname=nil, tags=nil)
           @InstanceId = instanceid
           @SnapshotName = snapshotname
+          @Tags = tags
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SnapshotName = params['SnapshotName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1171,15 +1226,26 @@ module TencentCloud
       class CreateKeyPairRequest < TencentCloud::Common::AbstractModel
         # @param KeyName: 密钥对名称，可由数字，字母和下划线组成，长度不超过 25 个字符。
         # @type KeyName: String
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :KeyName
+        attr_accessor :KeyName, :Tags
 
-        def initialize(keyname=nil)
+        def initialize(keyname=nil, tags=nil)
           @KeyName = keyname
+          @Tags = tags
         end
 
         def deserialize(params)
           @KeyName = params['KeyName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1702,7 +1768,12 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # 场景Id，可通过[查看使用场景列表](https://cloud.tencent.com/document/product/1207/83512)接口获取。
-
+        # <li>tag-key</li>
+        # 按照【标签键】进行过滤。 类型：String 必选：否
+        # <li>tag-value</li>
+        # 按照【标签值】进行过滤。 类型：String 必选：否
+        # <li>tag:tag-key</li>
+        # 按照【标签键值对】进行过滤。 tag-key使用具体的标签键进行替换。
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 BlueprintIds (可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值字段BlueprintSet获取BlueprintId)和 Filters 。
         # @type Filters: Array
 
@@ -1997,7 +2068,12 @@ module TencentCloud
         # 取值：
         # - SYSTEM_DISK - 系统盘
         # - DATA_DISK - 数据盘
-
+        # <li>tag-key</li>
+        # 按照【标签键】进行过滤。 类型：String 必选：否
+        # <li>tag-value</li>
+        # 按照【标签值】进行过滤。 类型：String 必选：否
+        # <li>tag:tag-key</li>
+        # 按照【标签键值对】进行过滤。 tag-key使用具体的标签键进行替换。
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为5。参数不支持同时指定DiskBackupIds 和 Filters。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为 0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/product/1207/47578)中的相关小节。
@@ -2242,6 +2318,12 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # 取值：参考数据结构[Disk](https://cloud.tencent.com/document/api/1207/47576#Disk)中DiskState取值。
+        # tag-key
+        # 按照【标签键】进行过滤。 类型：String 必选：否
+        # tag-value
+        # 按照【标签值】进行过滤。 类型：String 必选：否
+        # tag:tag-key
+        # 按照【标签键值对】进行过滤。 tag-key使用具体的标签键进行替换。
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 100。参数不支持同时指定 DiskIds 和 Filters。
         # @type Filters: Array
         # @param Limit: 返回数量，默认为20，最大值为100。
@@ -3448,6 +3530,12 @@ module TencentCloud
         # <li>key-name</li>按照【密钥对名称】进行过滤（支持模糊匹配）。
         # 类型：String
         # 必选：否
+        # <li>tag-key</li>
+        # 按照【标签键】进行过滤。 类型：String 必选：否
+        # <li>tag-value</li>
+        # 按照【标签值】进行过滤。 类型：String 必选：否
+        # <li>tag:tag-key</li>
+        # 按照【标签键值对】进行过滤。 tag-key使用具体的标签键进行替换。
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 KeyIds 和 Filters。
         # @type Filters: Array
 
@@ -3961,12 +4049,10 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # 可通过 <a href="https://cloud.tencent.com/document/product/1207/54388">DescribeSnapshots</a> 接口返回值中的 SnapshotId 获取。
-
         # <li>disk-id</li>按照【磁盘 ID】进行过滤。
         # 类型：String
         # 必选：否
         # 可通过 <a href="https://cloud.tencent.com/document/product/1207/66093">DescribeDisks</a> 接口返回值中的 DiskId 获取。
-
         # <li>snapshot-name</li>按照【快照名称】进行过滤。
         # 类型：String
         # 必选：否
@@ -3975,7 +4061,12 @@ module TencentCloud
         # 类型：String
         # 必选：否
         # 可通过 <a href="https://cloud.tencent.com/document/product/1207/47573">DescribeInstances</a> 接口返回值中的 InstanceId 获取。
-
+        # <li>tag-key</li>
+        # 按照【标签键】进行过滤。 类型：String 必选：否
+        # <li>tag-value</li>
+        # 按照【标签值】进行过滤。 类型：String 必选：否
+        # <li>tag:tag-key</li>
+        # 按照【标签键值对】进行过滤。 tag-key使用具体的标签键进行替换。
         # 每次请求的 Filters 的上限为 10，Filter.Values 的上限为 5。参数不支持同时指定 SnapshotIds 和 Filters。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为 0。
@@ -4340,10 +4431,12 @@ module TencentCloud
         # @type DiskBackupCount: Integer
         # @param DiskBackupQuota: 云硬盘的备份点配额数量。
         # @type DiskBackupQuota: Integer
+        # @param Tags: 云硬盘绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :DiskId, :InstanceId, :Zone, :DiskName, :DiskUsage, :DiskType, :DiskChargeType, :DiskSize, :RenewFlag, :DiskState, :Attached, :DeleteWithInstance, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :ExpiredTime, :IsolatedTime, :DiskBackupCount, :DiskBackupQuota
+        attr_accessor :DiskId, :InstanceId, :Zone, :DiskName, :DiskUsage, :DiskType, :DiskChargeType, :DiskSize, :RenewFlag, :DiskState, :Attached, :DeleteWithInstance, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :ExpiredTime, :IsolatedTime, :DiskBackupCount, :DiskBackupQuota, :Tags
 
-        def initialize(diskid=nil, instanceid=nil, zone=nil, diskname=nil, diskusage=nil, disktype=nil, diskchargetype=nil, disksize=nil, renewflag=nil, diskstate=nil, attached=nil, deletewithinstance=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, expiredtime=nil, isolatedtime=nil, diskbackupcount=nil, diskbackupquota=nil)
+        def initialize(diskid=nil, instanceid=nil, zone=nil, diskname=nil, diskusage=nil, disktype=nil, diskchargetype=nil, disksize=nil, renewflag=nil, diskstate=nil, attached=nil, deletewithinstance=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, expiredtime=nil, isolatedtime=nil, diskbackupcount=nil, diskbackupquota=nil, tags=nil)
           @DiskId = diskid
           @InstanceId = instanceid
           @Zone = zone
@@ -4364,6 +4457,7 @@ module TencentCloud
           @IsolatedTime = isolatedtime
           @DiskBackupCount = diskbackupcount
           @DiskBackupQuota = diskbackupquota
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4387,6 +4481,14 @@ module TencentCloud
           @IsolatedTime = params['IsolatedTime']
           @DiskBackupCount = params['DiskBackupCount']
           @DiskBackupQuota = params['DiskBackupQuota']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4419,10 +4521,12 @@ module TencentCloud
         # @param CreatedTime: 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
         # 格式为： YYYY-MM-DDThh:mm:ssZ。
         # @type CreatedTime: String
+        # @param Tags: 云硬盘备份点绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :DiskBackupId, :DiskUsage, :DiskId, :DiskSize, :DiskBackupName, :DiskBackupState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime
+        attr_accessor :DiskBackupId, :DiskUsage, :DiskId, :DiskSize, :DiskBackupName, :DiskBackupState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :Tags
 
-        def initialize(diskbackupid=nil, diskusage=nil, diskid=nil, disksize=nil, diskbackupname=nil, diskbackupstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil)
+        def initialize(diskbackupid=nil, diskusage=nil, diskid=nil, disksize=nil, diskbackupname=nil, diskbackupstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, tags=nil)
           @DiskBackupId = diskbackupid
           @DiskUsage = diskusage
           @DiskId = diskid
@@ -4434,6 +4538,7 @@ module TencentCloud
           @LatestOperationState = latestoperationstate
           @LatestOperationRequestId = latestoperationrequestid
           @CreatedTime = createdtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4448,6 +4553,14 @@ module TencentCloud
           @LatestOperationState = params['LatestOperationState']
           @LatestOperationRequestId = params['LatestOperationRequestId']
           @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -5264,17 +5377,28 @@ module TencentCloud
         # @type KeyName: String
         # @param PublicKey: 密钥对的公钥内容， OpenSSH RSA 格式。
         # @type PublicKey: String
+        # @param Tags: 标签键和标签值。 如果指定多个标签，则会为指定资源同时创建并绑定该多个标签。 同一个资源上的同一个标签键只能对应一个标签值。如果您尝试添加已有标签键，则对应的标签值会更新为新值。 如果标签不存在会为您自动创建标签。 数组最多支持10个元素。
+        # @type Tags: Array
 
-        attr_accessor :KeyName, :PublicKey
+        attr_accessor :KeyName, :PublicKey, :Tags
 
-        def initialize(keyname=nil, publickey=nil)
+        def initialize(keyname=nil, publickey=nil, tags=nil)
           @KeyName = keyname
           @PublicKey = publickey
+          @Tags = tags
         end
 
         def deserialize(params)
           @KeyName = params['KeyName']
           @PublicKey = params['PublicKey']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -6112,16 +6236,19 @@ module TencentCloud
         # @param PrivateKey: 密钥对私钥。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PrivateKey: String
+        # @param Tags: 密钥对绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :KeyId, :KeyName, :PublicKey, :AssociatedInstanceIds, :CreatedTime, :PrivateKey
+        attr_accessor :KeyId, :KeyName, :PublicKey, :AssociatedInstanceIds, :CreatedTime, :PrivateKey, :Tags
 
-        def initialize(keyid=nil, keyname=nil, publickey=nil, associatedinstanceids=nil, createdtime=nil, privatekey=nil)
+        def initialize(keyid=nil, keyname=nil, publickey=nil, associatedinstanceids=nil, createdtime=nil, privatekey=nil, tags=nil)
           @KeyId = keyid
           @KeyName = keyname
           @PublicKey = publickey
           @AssociatedInstanceIds = associatedinstanceids
           @CreatedTime = createdtime
           @PrivateKey = privatekey
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -6131,6 +6258,14 @@ module TencentCloud
           @AssociatedInstanceIds = params['AssociatedInstanceIds']
           @CreatedTime = params['CreatedTime']
           @PrivateKey = params['PrivateKey']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -7997,10 +8132,12 @@ module TencentCloud
         # @type LatestOperationRequestId: String
         # @param CreatedTime: 快照的创建时间。
         # @type CreatedTime: String
+        # @param Tags: 快照绑定的标签列表。
+        # @type Tags: Array
 
-        attr_accessor :SnapshotId, :DiskUsage, :DiskId, :DiskSize, :SnapshotName, :SnapshotState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime
+        attr_accessor :SnapshotId, :DiskUsage, :DiskId, :DiskSize, :SnapshotName, :SnapshotState, :Percent, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :CreatedTime, :Tags
 
-        def initialize(snapshotid=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotname=nil, snapshotstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil)
+        def initialize(snapshotid=nil, diskusage=nil, diskid=nil, disksize=nil, snapshotname=nil, snapshotstate=nil, percent=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, createdtime=nil, tags=nil)
           @SnapshotId = snapshotid
           @DiskUsage = diskusage
           @DiskId = diskid
@@ -8012,6 +8149,7 @@ module TencentCloud
           @LatestOperationState = latestoperationstate
           @LatestOperationRequestId = latestoperationrequestid
           @CreatedTime = createdtime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -8026,6 +8164,14 @@ module TencentCloud
           @LatestOperationState = params['LatestOperationState']
           @LatestOperationRequestId = params['LatestOperationRequestId']
           @CreatedTime = params['CreatedTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 

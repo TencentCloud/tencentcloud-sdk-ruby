@@ -17,6 +17,28 @@
 module TencentCloud
   module Ccc
     module V20200210
+      # AI会话分析结果
+      class AIAnalysisResult < TencentCloud::Common::AbstractModel
+        # @param Type: summary: 会话小结
+        # mood: 情绪分析
+        # intention: 意向提取
+        # @type Type: String
+        # @param Result: AI会话分析结果
+        # @type Result: String
+
+        attr_accessor :Type, :Result
+
+        def initialize(type=nil, result=nil)
+          @Type = type
+          @Result = result
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Result = params['Result']
+        end
+      end
+
       # AI 通话提取配置项
       class AICallExtractConfigElement < TencentCloud::Common::AbstractModel
         # @param InfoType: 配置项类型，包括
@@ -2510,6 +2532,61 @@ module TencentCloud
 
         def deserialize(params)
           @OnlineStaffList = params['OnlineStaffList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAIAnalysisResult请求参数结构体
+      class DescribeAIAnalysisResultRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话 ID
+        # @type SessionId: String
+        # @param StartTime: 查找起始时间
+        # @type StartTime: Integer
+        # @param EndTime: 1737350008
+        # @type EndTime: Integer
+
+        attr_accessor :SdkAppId, :SessionId, :StartTime, :EndTime
+
+        def initialize(sdkappid=nil, sessionid=nil, starttime=nil, endtime=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeAIAnalysisResult返回参数结构体
+      class DescribeAIAnalysisResultResponse < TencentCloud::Common::AbstractModel
+        # @param ResultList: AI会话分析结果
+        # @type ResultList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultList, :RequestId
+
+        def initialize(resultlist=nil, requestid=nil)
+          @ResultList = resultlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResultList'].nil?
+            @ResultList = []
+            params['ResultList'].each do |i|
+              aianalysisresult_tmp = AIAnalysisResult.new
+              aianalysisresult_tmp.deserialize(i)
+              @ResultList << aianalysisresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

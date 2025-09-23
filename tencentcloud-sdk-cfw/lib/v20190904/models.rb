@@ -1183,7 +1183,7 @@ module TencentCloud
         # @type Rules: Array
         # @param RuleType: RuleType: 1黑名单 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
         # @type RuleType: Integer
-        # @param CoverDuplicate: 是否覆盖重复数据，1覆盖，非1不覆盖，跳过重复数据
+        # @param CoverDuplicate: 删除白名单冲突地址并继续添加/删除封禁列表冲突地址并继续添加；表示是否覆盖重复数据，1为覆盖，非1不覆盖，跳过重复数据
         # @type CoverDuplicate: Integer
 
         attr_accessor :Rules, :RuleType, :CoverDuplicate
@@ -2343,10 +2343,14 @@ module TencentCloud
         # @type CountryKey: String
         # @param CityKey: 省份、城市简称
         # @type CityKey: String
+        # @param CreateTime: 规则创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 规则最近更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime, :CountryKey, :CityKey
+        attr_accessor :SourceContent, :TargetContent, :Protocol, :Port, :RuleAction, :Description, :Count, :OrderIndex, :SourceType, :TargetType, :Uuid, :Invalid, :IsRegion, :CountryCode, :CityCode, :CountryName, :CityName, :CloudCode, :IsCloud, :Enable, :Direction, :InstanceName, :InternalUuid, :Status, :BetaList, :Scope, :ScopeDesc, :InternetBorderUuid, :ParamTemplateName, :ParamTemplateId, :SourceName, :TargetName, :LastHitTime, :CountryKey, :CityKey, :CreateTime, :UpdateTime
 
-        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil, countrykey=nil, citykey=nil)
+        def initialize(sourcecontent=nil, targetcontent=nil, protocol=nil, port=nil, ruleaction=nil, description=nil, count=nil, orderindex=nil, sourcetype=nil, targettype=nil, uuid=nil, invalid=nil, isregion=nil, countrycode=nil, citycode=nil, countryname=nil, cityname=nil, cloudcode=nil, iscloud=nil, enable=nil, direction=nil, instancename=nil, internaluuid=nil, status=nil, betalist=nil, scope=nil, scopedesc=nil, internetborderuuid=nil, paramtemplatename=nil, paramtemplateid=nil, sourcename=nil, targetname=nil, lasthittime=nil, countrykey=nil, citykey=nil, createtime=nil, updatetime=nil)
           @SourceContent = sourcecontent
           @TargetContent = targetcontent
           @Protocol = protocol
@@ -2382,6 +2386,8 @@ module TencentCloud
           @LastHitTime = lasthittime
           @CountryKey = countrykey
           @CityKey = citykey
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -2427,6 +2433,8 @@ module TencentCloud
           @LastHitTime = params['LastHitTime']
           @CountryKey = params['CountryKey']
           @CityKey = params['CityKey']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -3826,12 +3834,18 @@ module TencentCloud
         # @type TimeHistogramShow: :class:`Tencentcloud::Cfw.v20190904.models.StorageHistogramShow`
         # @param ArrearsStopWriting: 后付费模式存储状态，0正常，1欠费停止写入
         # @type ArrearsStopWriting: Integer
+        # @param NDRNetFlowSize: NDR流量日志存储量，单位B
+        # @type NDRNetFlowSize: Integer
+        # @param NDRRiskSize: NDR风险日志存储量，单位B
+        # @type NDRRiskSize: Integer
+        # @param NDRStorageDay: NDR日志存储天数
+        # @type NDRStorageDay: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ReturnCode, :ReturnMsg, :UsedSize, :TotalSize, :StorageDay, :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :LeftSize, :PayMode, :TimeHistogram, :TimeHistogramShow, :ArrearsStopWriting, :RequestId
+        attr_accessor :ReturnCode, :ReturnMsg, :UsedSize, :TotalSize, :StorageDay, :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :LeftSize, :PayMode, :TimeHistogram, :TimeHistogramShow, :ArrearsStopWriting, :NDRNetFlowSize, :NDRRiskSize, :NDRStorageDay, :RequestId
 
-        def initialize(returncode=nil, returnmsg=nil, usedsize=nil, totalsize=nil, storageday=nil, aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, leftsize=nil, paymode=nil, timehistogram=nil, timehistogramshow=nil, arrearsstopwriting=nil, requestid=nil)
+        def initialize(returncode=nil, returnmsg=nil, usedsize=nil, totalsize=nil, storageday=nil, aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, leftsize=nil, paymode=nil, timehistogram=nil, timehistogramshow=nil, arrearsstopwriting=nil, ndrnetflowsize=nil, ndrrisksize=nil, ndrstorageday=nil, requestid=nil)
           @ReturnCode = returncode
           @ReturnMsg = returnmsg
           @UsedSize = usedsize
@@ -3846,6 +3860,9 @@ module TencentCloud
           @TimeHistogram = timehistogram
           @TimeHistogramShow = timehistogramshow
           @ArrearsStopWriting = arrearsstopwriting
+          @NDRNetFlowSize = ndrnetflowsize
+          @NDRRiskSize = ndrrisksize
+          @NDRStorageDay = ndrstorageday
           @RequestId = requestid
         end
 
@@ -3874,6 +3891,9 @@ module TencentCloud
             @TimeHistogramShow.deserialize(params['TimeHistogramShow'])
           end
           @ArrearsStopWriting = params['ArrearsStopWriting']
+          @NDRNetFlowSize = params['NDRNetFlowSize']
+          @NDRRiskSize = params['NDRRiskSize']
+          @NDRStorageDay = params['NDRStorageDay']
           @RequestId = params['RequestId']
         end
       end
@@ -5438,10 +5458,14 @@ module TencentCloud
         # @type Id: Integer
         # @param DnsParseCount: 域名解析的IP统计
         # @type DnsParseCount: :class:`Tencentcloud::Cfw.v20190904.models.SgDnsParseCount`
+        # @param CreateTime: 规则创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 规则最近更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id, :DnsParseCount
+        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id, :DnsParseCount, :CreateTime, :UpdateTime
 
-        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil, dnsparsecount=nil)
+        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil, dnsparsecount=nil, createtime=nil, updatetime=nil)
           @OrderIndex = orderindex
           @RuleUuid = ruleuuid
           @Uuid = uuid
@@ -5473,6 +5497,8 @@ module TencentCloud
           @BetaList = betalist
           @Id = id
           @DnsParseCount = dnsparsecount
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -5517,6 +5543,8 @@ module TencentCloud
             @DnsParseCount = SgDnsParseCount.new
             @DnsParseCount.deserialize(params['DnsParseCount'])
           end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -9330,15 +9358,21 @@ module TencentCloud
         # @param Time: 统计时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Time: String
+        # @param NDRNetflowSize: NDR流量日志存储量，单位B
+        # @type NDRNetflowSize: Integer
+        # @param NDRRiskSize: NDR风险日志存储量，单位B
+        # @type NDRRiskSize: Integer
 
-        attr_accessor :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :Time
+        attr_accessor :AclSize, :IdsSize, :NetFlowSize, :OperateSize, :Time, :NDRNetflowSize, :NDRRiskSize
 
-        def initialize(aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, time=nil)
+        def initialize(aclsize=nil, idssize=nil, netflowsize=nil, operatesize=nil, time=nil, ndrnetflowsize=nil, ndrrisksize=nil)
           @AclSize = aclsize
           @IdsSize = idssize
           @NetFlowSize = netflowsize
           @OperateSize = operatesize
           @Time = time
+          @NDRNetflowSize = ndrnetflowsize
+          @NDRRiskSize = ndrrisksize
         end
 
         def deserialize(params)
@@ -9347,6 +9381,8 @@ module TencentCloud
           @NetFlowSize = params['NetFlowSize']
           @OperateSize = params['OperateSize']
           @Time = params['Time']
+          @NDRNetflowSize = params['NDRNetflowSize']
+          @NDRRiskSize = params['NDRRiskSize']
         end
       end
 
@@ -10138,10 +10174,14 @@ module TencentCloud
         # @type IpVersion: Integer
         # @param Invalid: 是否是无效规则，0 表示有效规则，1 表示无效规则，出参场景返回使用
         # @type Invalid: Integer
+        # @param CreateTime: 规则创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 规则最近更新时间
+        # @type UpdateTime: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion, :Invalid
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :Protocol, :RuleAction, :Port, :Description, :OrderIndex, :Enable, :EdgeId, :Uuid, :DetectedTimes, :EdgeName, :InternalUuid, :Deleted, :FwGroupId, :FwGroupName, :BetaList, :ParamTemplateId, :ParamTemplateName, :TargetName, :SourceName, :IpVersion, :Invalid, :CreateTime, :UpdateTime
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil, invalid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, protocol=nil, ruleaction=nil, port=nil, description=nil, orderindex=nil, enable=nil, edgeid=nil, uuid=nil, detectedtimes=nil, edgename=nil, internaluuid=nil, deleted=nil, fwgroupid=nil, fwgroupname=nil, betalist=nil, paramtemplateid=nil, paramtemplatename=nil, targetname=nil, sourcename=nil, ipversion=nil, invalid=nil, createtime=nil, updatetime=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -10167,6 +10207,8 @@ module TencentCloud
           @SourceName = sourcename
           @IpVersion = ipversion
           @Invalid = invalid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -10202,6 +10244,8 @@ module TencentCloud
           @SourceName = params['SourceName']
           @IpVersion = params['IpVersion']
           @Invalid = params['Invalid']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

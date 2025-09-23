@@ -1927,7 +1927,7 @@ module TencentCloud
       class DescribeInstanceAccountRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Limit: 分页大小。
+        # @param Limit: 分页大小。默认值为20，最小值为1，最大值为100。
         # @type Limit: Integer
         # @param Offset: 分页偏移量。取Limit整数倍。计算公式：offset=limit*(页码-1)。
         # @type Offset: Integer
@@ -6503,11 +6503,11 @@ module TencentCloud
 
       # ModifyInstanceBackupMode请求参数结构体
       class ModifyInstanceBackupModeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例的ID，长度在12-36之间。
+        # @param InstanceId: 实例的ID。请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param BackupMode: 备份模式：
-        # - SecondLevelBackup   秒级备份
-        # - NormalLevelBackup    普通备份
+        # - SecondLevelBackup   秒级备份。
+        # - NormalLevelBackup    普通备份。
         # @type BackupMode: String
 
         attr_accessor :InstanceId, :BackupMode
@@ -6525,7 +6525,7 @@ module TencentCloud
 
       # ModifyInstanceBackupMode返回参数结构体
       class ModifyInstanceBackupModeResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: 任务 ID。
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6547,7 +6547,7 @@ module TencentCloud
       class ModifyInstanceEventRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis#/)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param EventId: 事件 ID。请通过 DescribeInstanceEvents 获取需修改的事件 ID。
+        # @param EventId: 事件 ID。请通过 [DescribeInstanceEvents](https://cloud.tencent.com/document/product/239/104779) 获取需修改的事件 ID。
         # @type EventId: Integer
         # @param StartTime: 修改事件执行的计划开始时间。
         # @type StartTime: String

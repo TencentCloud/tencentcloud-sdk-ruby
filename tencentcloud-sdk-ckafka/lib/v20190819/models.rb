@@ -7809,6 +7809,19 @@ module TencentCloud
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
         # @param InstanceChargeType: 实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月
         # @type InstanceChargeType: String
+        # @param ElasticBandwidthSwitch: 是否开启弹性带宽白名单
+        # 1:已开启弹性带宽白名单;
+        # 0:未开启弹性带宽白名单;
+        # @type ElasticBandwidthSwitch: Integer
+        # @param ElasticBandwidthOpenStatus: 弹性带宽开通状态
+        # 1:未开启弹性带宽;
+        # 16: 开启弹性带宽中;
+        # 32:开启弹性带宽成功;
+        # 33:关闭弹性带宽中;
+        # 34:关闭弹性带宽成功;
+        # 64:开启弹性带宽失败;
+        # 65:关闭弹性带宽失败;
+        # @type ElasticBandwidthOpenStatus: Integer
         # @param ClusterType: 集群类型
         # CLOUD_IDC IDC集群
         # CLOUD_CVM_SHARE CVM共享集群
@@ -7828,9 +7841,9 @@ module TencentCloud
         # @param DeleteProtectionEnable: 实例删除保护开关: 1 开启 0 关闭
         # @type DeleteProtectionEnable: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, elasticbandwidthswitch=nil, elasticbandwidthopenstatus=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -7867,6 +7880,8 @@ module TencentCloud
           @RemainingTopics = remainingtopics
           @DynamicDiskConfig = dynamicdiskconfig
           @InstanceChargeType = instancechargetype
+          @ElasticBandwidthSwitch = elasticbandwidthswitch
+          @ElasticBandwidthOpenStatus = elasticbandwidthopenstatus
           @ClusterType = clustertype
           @FreePartitionNumber = freepartitionnumber
           @ElasticFloatBandwidth = elasticfloatbandwidth
@@ -7935,6 +7950,8 @@ module TencentCloud
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
           @InstanceChargeType = params['InstanceChargeType']
+          @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
+          @ElasticBandwidthOpenStatus = params['ElasticBandwidthOpenStatus']
           @ClusterType = params['ClusterType']
           @FreePartitionNumber = params['FreePartitionNumber']
           @ElasticFloatBandwidth = params['ElasticFloatBandwidth']

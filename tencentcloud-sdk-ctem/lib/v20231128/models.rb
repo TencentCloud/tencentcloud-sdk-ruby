@@ -3842,19 +3842,66 @@ module TencentCloud
       class DisplayLeakageCode < TencentCloud::Common::AbstractModel
         # @param Id: 主键ID
         # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Name: 事件名称
+        # @type Name: String
+        # @param Description: 事件描述
+        # @type Description: String
+        # @param Source: 数据源
+        # @type Source: String
+        # @param RiskLevel: 风险等级：1-低危 2-中危 3-高危 4-严重 5-误报
+        # @type RiskLevel: Integer
+        # @param HubName: 仓库名称
+        # @type HubName: String
         # @param Url: 链接
         # @type Url: String
+        # @param Screenshot: 截图
+        # @type Screenshot: String
+        # @param Suggestion: 建议
+        # @type Suggestion: String
+        # @param Keyword: 关键词
+        # @type Keyword: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :Id, :Url
+        attr_accessor :Id, :DisplayToolCommon, :Name, :Description, :Source, :RiskLevel, :HubName, :Url, :Screenshot, :Suggestion, :Keyword, :HandlingStatus, :Remark
 
-        def initialize(id=nil, url=nil)
+        def initialize(id=nil, displaytoolcommon=nil, name=nil, description=nil, source=nil, risklevel=nil, hubname=nil, url=nil, screenshot=nil, suggestion=nil, keyword=nil, handlingstatus=nil, remark=nil)
           @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @Name = name
+          @Description = description
+          @Source = source
+          @RiskLevel = risklevel
+          @HubName = hubname
           @Url = url
+          @Screenshot = screenshot
+          @Suggestion = suggestion
+          @Keyword = keyword
+          @HandlingStatus = handlingstatus
+          @Remark = remark
         end
 
         def deserialize(params)
           @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @Name = params['Name']
+          @Description = params['Description']
+          @Source = params['Source']
+          @RiskLevel = params['RiskLevel']
+          @HubName = params['HubName']
           @Url = params['Url']
+          @Screenshot = params['Screenshot']
+          @Suggestion = params['Suggestion']
+          @Keyword = params['Keyword']
+          @HandlingStatus = params['HandlingStatus']
+          @Remark = params['Remark']
         end
       end
 
@@ -3862,19 +3909,62 @@ module TencentCloud
       class DisplayLeakageData < TencentCloud::Common::AbstractModel
         # @param Id: 主键ID
         # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Name: 事件名称
+        # @type Name: String
+        # @param Description: 事件描述
+        # @type Description: String
+        # @param Source: 数据源
+        # @type Source: String
+        # @param RiskLevel: 风险等级：1-低危 2-中危 3-高危 4-严重 5-误报
+        # @type RiskLevel: Integer
         # @param Url: 链接
         # @type Url: String
+        # @param Screenshot: 截图
+        # @type Screenshot: String
+        # @param Suggestion: 建议
+        # @type Suggestion: String
+        # @param Keyword: 关键词
+        # @type Keyword: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :Id, :Url
+        attr_accessor :Id, :DisplayToolCommon, :Name, :Description, :Source, :RiskLevel, :Url, :Screenshot, :Suggestion, :Keyword, :HandlingStatus, :Remark
 
-        def initialize(id=nil, url=nil)
+        def initialize(id=nil, displaytoolcommon=nil, name=nil, description=nil, source=nil, risklevel=nil, url=nil, screenshot=nil, suggestion=nil, keyword=nil, handlingstatus=nil, remark=nil)
           @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @Name = name
+          @Description = description
+          @Source = source
+          @RiskLevel = risklevel
           @Url = url
+          @Screenshot = screenshot
+          @Suggestion = suggestion
+          @Keyword = keyword
+          @HandlingStatus = handlingstatus
+          @Remark = remark
         end
 
         def deserialize(params)
           @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @Name = params['Name']
+          @Description = params['Description']
+          @Source = params['Source']
+          @RiskLevel = params['RiskLevel']
           @Url = params['Url']
+          @Screenshot = params['Screenshot']
+          @Suggestion = params['Suggestion']
+          @Keyword = params['Keyword']
+          @HandlingStatus = params['HandlingStatus']
+          @Remark = params['Remark']
         end
       end
 
@@ -3882,19 +3972,54 @@ module TencentCloud
       class DisplayLeakageEmail < TencentCloud::Common::AbstractModel
         # @param Id: 主键ID
         # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
         # @param Email: 邮箱
         # @type Email: String
+        # @param Username: 用户名
+        # @type Username: String
+        # @param Source: 数据源
+        # @type Source: String
+        # @param RiskLevel: 风险等级：1-低危 2-中危 3-高危 4-严重 5-误报
+        # @type RiskLevel: Integer
+        # @param Suggestion: 建议
+        # @type Suggestion: String
+        # @param Keyword: 关键词
+        # @type Keyword: String
+        # @param HandlingStatus: 处置状态：0-待处理 1-处理中 2-已处理
+        # @type HandlingStatus: Integer
+        # @param Remark: 备注
+        # @type Remark: String
 
-        attr_accessor :Id, :Email
+        attr_accessor :Id, :DisplayToolCommon, :Email, :Username, :Source, :RiskLevel, :Suggestion, :Keyword, :HandlingStatus, :Remark
 
-        def initialize(id=nil, email=nil)
+        def initialize(id=nil, displaytoolcommon=nil, email=nil, username=nil, source=nil, risklevel=nil, suggestion=nil, keyword=nil, handlingstatus=nil, remark=nil)
           @Id = id
+          @DisplayToolCommon = displaytoolcommon
           @Email = email
+          @Username = username
+          @Source = source
+          @RiskLevel = risklevel
+          @Suggestion = suggestion
+          @Keyword = keyword
+          @HandlingStatus = handlingstatus
+          @Remark = remark
         end
 
         def deserialize(params)
           @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
           @Email = params['Email']
+          @Username = params['Username']
+          @Source = params['Source']
+          @RiskLevel = params['RiskLevel']
+          @Suggestion = params['Suggestion']
+          @Keyword = params['Keyword']
+          @HandlingStatus = params['HandlingStatus']
+          @Remark = params['Remark']
         end
       end
 

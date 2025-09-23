@@ -6180,6 +6180,53 @@ module TencentCloud
         end
       end
 
+      # DescribeSubscribedTopicPolicy请求参数结构体
+      class DescribeSubscribedTopicPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+
+        attr_accessor :ProductId, :DeviceName
+
+        def initialize(productid=nil, devicename=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+        end
+      end
+
+      # DescribeSubscribedTopicPolicy返回参数结构体
+      class DescribeSubscribedTopicPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param Topics: 已订阅Topic信息
+        # @type Topics: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Topics, :RequestId
+
+        def initialize(topics=nil, requestid=nil)
+          @Topics = topics
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Topics'].nil?
+            @Topics = []
+            params['Topics'].each do |i|
+              subscribedtopicitem_tmp = SubscribedTopicItem.new
+              subscribedtopicitem_tmp.deserialize(i)
+              @Topics << subscribedtopicitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTWeSeeConfig请求参数结构体
       class DescribeTWeSeeConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -11896,6 +11943,22 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 已订阅Topic信息
+      class SubscribedTopicItem < TencentCloud::Common::AbstractModel
+        # @param TopicName: Topic名称
+        # @type TopicName: String
+
+        attr_accessor :TopicName
+
+        def initialize(topicname=nil)
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @TopicName = params['TopicName']
         end
       end
 
