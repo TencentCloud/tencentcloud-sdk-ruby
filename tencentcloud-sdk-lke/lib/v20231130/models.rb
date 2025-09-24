@@ -2160,49 +2160,6 @@ module TencentCloud
         end
       end
 
-      # CreateAgent请求参数结构体
-      class CreateAgentRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
-        # @type AppBizId: String
-        # @param Agent: 要增加的Agent的信息
-        # @type Agent: :class:`Tencentcloud::Lke.v20231130.models.Agent`
-
-        attr_accessor :AppBizId, :Agent
-
-        def initialize(appbizid=nil, agent=nil)
-          @AppBizId = appbizid
-          @Agent = agent
-        end
-
-        def deserialize(params)
-          @AppBizId = params['AppBizId']
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-        end
-      end
-
-      # CreateAgent返回参数结构体
-      class CreateAgentResponse < TencentCloud::Common::AbstractModel
-        # @param AgentId: 新建的AgentID
-        # @type AgentId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AgentId, :RequestId
-
-        def initialize(agentid=nil, requestid=nil)
-          @AgentId = agentid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AgentId = params['AgentId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # CreateApp请求参数结构体
       class CreateAppRequest < TencentCloud::Common::AbstractModel
         # @param AppType: 应用类型；knowledge_qa-知识问答管理
@@ -9109,49 +9066,6 @@ module TencentCloud
           @MaxTokens = params['MaxTokens']
           @StopSequences = params['StopSequences']
           @ReplyFormat = params['ReplyFormat']
-        end
-      end
-
-      # ModifyAgent请求参数结构体
-      class ModifyAgentRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 需要修改的应用ID
-        # @type AppBizId: String
-        # @param Agent: 修改后的Agent的信息
-        # @type Agent: :class:`Tencentcloud::Lke.v20231130.models.Agent`
-
-        attr_accessor :AppBizId, :Agent
-
-        def initialize(appbizid=nil, agent=nil)
-          @AppBizId = appbizid
-          @Agent = agent
-        end
-
-        def deserialize(params)
-          @AppBizId = params['AppBizId']
-          unless params['Agent'].nil?
-            @Agent = Agent.new
-            @Agent.deserialize(params['Agent'])
-          end
-        end
-      end
-
-      # ModifyAgent返回参数结构体
-      class ModifyAgentResponse < TencentCloud::Common::AbstractModel
-        # @param AgentId: 修改的AgentId
-        # @type AgentId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :AgentId, :RequestId
-
-        def initialize(agentid=nil, requestid=nil)
-          @AgentId = agentid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @AgentId = params['AgentId']
-          @RequestId = params['RequestId']
         end
       end
 

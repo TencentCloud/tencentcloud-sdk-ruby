@@ -29868,10 +29868,14 @@ module TencentCloud
         # @type DefenceHostCount: Integer
         # @param DefendedCount: 已防御攻击次数
         # @type DefendedCount: Integer
+        # @param RaspOpenNodeCount: 漏洞对应机器的应用防护开启数量
+        # @type RaspOpenNodeCount: Integer
+        # @param RaspClosedNodeCount: 漏洞对应机器的应用防护关闭数量
+        # @type RaspClosedNodeCount: Integer
 
-        attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :FoundTime, :LatestFoundTime, :ID, :LocalImageCount, :ContainerCount, :RegistryImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount
+        attr_accessor :Name, :Tags, :CVSSV3Score, :Level, :CVEID, :Category, :FoundTime, :LatestFoundTime, :ID, :LocalImageCount, :ContainerCount, :RegistryImageCount, :PocID, :DefenceStatus, :DefenceScope, :DefenceHostCount, :DefendedCount, :RaspOpenNodeCount, :RaspClosedNodeCount
 
-        def initialize(name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, category=nil, foundtime=nil, latestfoundtime=nil, id=nil, localimagecount=nil, containercount=nil, registryimagecount=nil, pocid=nil, defencestatus=nil, defencescope=nil, defencehostcount=nil, defendedcount=nil)
+        def initialize(name=nil, tags=nil, cvssv3score=nil, level=nil, cveid=nil, category=nil, foundtime=nil, latestfoundtime=nil, id=nil, localimagecount=nil, containercount=nil, registryimagecount=nil, pocid=nil, defencestatus=nil, defencescope=nil, defencehostcount=nil, defendedcount=nil, raspopennodecount=nil, raspclosednodecount=nil)
           @Name = name
           @Tags = tags
           @CVSSV3Score = cvssv3score
@@ -29889,6 +29893,8 @@ module TencentCloud
           @DefenceScope = defencescope
           @DefenceHostCount = defencehostcount
           @DefendedCount = defendedcount
+          @RaspOpenNodeCount = raspopennodecount
+          @RaspClosedNodeCount = raspclosednodecount
         end
 
         def deserialize(params)
@@ -29909,6 +29915,8 @@ module TencentCloud
           @DefenceScope = params['DefenceScope']
           @DefenceHostCount = params['DefenceHostCount']
           @DefendedCount = params['DefendedCount']
+          @RaspOpenNodeCount = params['RaspOpenNodeCount']
+          @RaspClosedNodeCount = params['RaspClosedNodeCount']
         end
       end
 

@@ -16836,10 +16836,12 @@ module TencentCloud
         # @type RegionId: String
         # @param Lines: 线路信息，当查询网关信息详情 DescribeMultiPathGateway 的时候会返回，当查询网关列表 DescribeMultiPathGateways 的时候不会返回。
         # @type Lines: Array
+        # @param NeedConfirm: 网关回源 IP 列表发生了变化是否需要重新确认，取值有：<li>true：回源 IP 列表发生了变化，需要确认；</li><li>false：回源 IP 列表未发生变化，无需确认。</li>
+        # @type NeedConfirm: String
 
-        attr_accessor :GatewayId, :GatewayName, :GatewayType, :GatewayPort, :Status, :GatewayIP, :RegionId, :Lines
+        attr_accessor :GatewayId, :GatewayName, :GatewayType, :GatewayPort, :Status, :GatewayIP, :RegionId, :Lines, :NeedConfirm
 
-        def initialize(gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewayport=nil, status=nil, gatewayip=nil, regionid=nil, lines=nil)
+        def initialize(gatewayid=nil, gatewayname=nil, gatewaytype=nil, gatewayport=nil, status=nil, gatewayip=nil, regionid=nil, lines=nil, needconfirm=nil)
           @GatewayId = gatewayid
           @GatewayName = gatewayname
           @GatewayType = gatewaytype
@@ -16848,6 +16850,7 @@ module TencentCloud
           @GatewayIP = gatewayip
           @RegionId = regionid
           @Lines = lines
+          @NeedConfirm = needconfirm
         end
 
         def deserialize(params)
@@ -16866,6 +16869,7 @@ module TencentCloud
               @Lines << multipathgatewayline_tmp
             end
           end
+          @NeedConfirm = params['NeedConfirm']
         end
       end
 

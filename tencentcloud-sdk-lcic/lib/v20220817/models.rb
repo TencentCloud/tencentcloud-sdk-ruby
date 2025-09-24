@@ -850,6 +850,7 @@ module TencentCloud
       # CreateRoom请求参数结构体
       class CreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param Name: 课堂名称。
+        # 字符数不超过256
         # @type Name: String
         # @param StartTime: 预定的课堂开始时间，unix时间戳（秒）。
         # @type StartTime: Integer
@@ -932,7 +933,9 @@ module TencentCloud
         # @type RecordStream: Integer
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书（默认）；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
-        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @param SubtitlesTranscription: 字幕转写功能开关。可以有以下取值：
+        # 0 不开启字幕转写功能（默认值）
+        # 1 自动转写模式：上课自动开启，下课自动停止
         # @type SubtitlesTranscription: Integer
         # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
         # @type RecordMerge: Integer
@@ -4057,6 +4060,7 @@ module TencentCloud
       # ModifyRoom请求参数结构体
       class ModifyRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID。
+        # 字符数不超过256
         # @type RoomId: Integer
         # @param SdkAppId: 低代码互动课堂的SdkAppId
         # @type SdkAppId: Integer
@@ -4129,7 +4133,9 @@ module TencentCloud
         # @type RecordLang: String
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
-        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @param SubtitlesTranscription: 字幕转写功能开关。可以有以下取值：
+        # 0 不开启字幕转写功能（默认值）
+        # 1 自动转写模式：上课自动开启，下课自动停止
         # @type SubtitlesTranscription: Integer
         # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
         # @type Guests: Array
@@ -4426,6 +4432,7 @@ module TencentCloud
       # 批量创建房间的房间信息
       class RoomInfo < TencentCloud::Common::AbstractModel
         # @param Name: 房间名称。
+        # 字符数不超过256
         # @type Name: String
         # @param StartTime: 预定的房间开始时间，unix时间戳。
         # @type StartTime: Integer
@@ -4488,7 +4495,9 @@ module TencentCloud
         # @type RecordStream: Integer
         # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书（默认）；1 全量模式；2 单页去重模式
         # @type WhiteBoardSnapshotMode: Integer
-        # @param SubtitlesTranscription: 字幕转写功能开关：0关闭，1开启，默认关闭
+        # @param SubtitlesTranscription: 字幕转写功能开关。可以有以下取值：
+        # 0 不开启字幕转写功能（默认值）
+        # 1 自动转写模式：上课自动开启，下课自动停止
         # @type SubtitlesTranscription: Integer
         # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
         # @type Guests: Array

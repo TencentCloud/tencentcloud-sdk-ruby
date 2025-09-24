@@ -894,31 +894,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。
-
-        # @param request: Request instance for DisableCaches.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::DisableCachesRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::DisableCachesResponse`
-        def DisableCaches(request)
-          body = send_request('DisableCaches', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DisableCachesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # DisableClsLogTopic 用于停止日志主题投递。注意：停止后，所有绑定该日志主题域名的日志将不再继续投递至该主题，已经投递的日志将会继续保留。生效时间约为 5~15 分钟。
 
         # @param request: Request instance for DisableClsLogTopic.
@@ -967,31 +942,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # EnableCaches 用于解禁手工封禁的 URL，解禁成功后，全网生效时间约 5~10 分钟。
-
-        # @param request: Request instance for EnableCaches.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::EnableCachesRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::EnableCachesResponse`
-        def EnableCaches(request)
-          body = send_request('EnableCaches', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = EnableCachesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # EnableClsLogTopic 用于启动日志主题投递。注意：启动后，所有绑定该日志主题域名的日志将继续投递至该主题。生效时间约为 5~15 分钟。
 
         # @param request: Request instance for EnableClsLogTopic.
@@ -1002,33 +952,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableClsLogTopicResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 以上诊断报告, 域名版本管理相关接口功能均废弃,  已确认现网0调用, 申请预下线,(预下线不会影响调用, 只会在接口中添加提示信息, 正式下线仍需人工确认)
-
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。
-
-        # @param request: Request instance for GetDisableRecords.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::GetDisableRecordsRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::GetDisableRecordsResponse`
-        def GetDisableRecords(request)
-          body = send_request('GetDisableRecords', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = GetDisableRecordsResponse.new
             model.deserialize(response['Response'])
             model
           else

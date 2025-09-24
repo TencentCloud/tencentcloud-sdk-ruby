@@ -455,6 +455,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义智能擦除模板
+
+        # @param request: Request instance for CreateSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateSmartEraseTemplateResponse`
+        def CreateSmartEraseTemplate(request)
+          body = send_request('CreateSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSmartEraseTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义智能字幕模板
 
         # @param request: Request instance for CreateSmartSubtitleTemplate.
@@ -1055,6 +1079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义智能擦除模板。
+
+        # @param request: Request instance for DeleteSmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteSmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteSmartEraseTemplateResponse`
+        def DeleteSmartEraseTemplate(request)
+          body = send_request('DeleteSmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSmartEraseTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1703,6 +1751,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSchedulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据智能擦除模板唯一标识，获取智能擦除模板详情列表。返回结果包含符合条件的所有用户自定义智能擦除模板及系统预置智能擦除模板
+
+        # @param request: Request instance for DescribeSmartEraseTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeSmartEraseTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeSmartEraseTemplatesResponse`
+        def DescribeSmartEraseTemplates(request)
+          body = send_request('DescribeSmartEraseTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSmartEraseTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2751,6 +2823,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyScheduleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义智能擦除模板。
+
+        # @param request: Request instance for ModifySmartEraseTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifySmartEraseTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifySmartEraseTemplateResponse`
+        def ModifySmartEraseTemplate(request)
+          body = send_request('ModifySmartEraseTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySmartEraseTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

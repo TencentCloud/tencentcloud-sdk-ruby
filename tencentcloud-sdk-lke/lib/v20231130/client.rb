@@ -77,30 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建一个Agent
-
-        # @param request: Request instance for CreateAgent.
-        # @type request: :class:`Tencentcloud::lke::V20231130::CreateAgentRequest`
-        # @rtype: :class:`Tencentcloud::lke::V20231130::CreateAgentResponse`
-        def CreateAgent(request)
-          body = send_request('CreateAgent', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateAgentResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 创建知识引擎应用。
 
         # @param request: Request instance for CreateApp.
@@ -2033,30 +2009,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListWorkflowRunsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改Agent信息
-
-        # @param request: Request instance for ModifyAgent.
-        # @type request: :class:`Tencentcloud::lke::V20231130::ModifyAgentRequest`
-        # @rtype: :class:`Tencentcloud::lke::V20231130::ModifyAgentResponse`
-        def ModifyAgent(request)
-          body = send_request('ModifyAgent', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyAgentResponse.new
             model.deserialize(response['Response'])
             model
           else

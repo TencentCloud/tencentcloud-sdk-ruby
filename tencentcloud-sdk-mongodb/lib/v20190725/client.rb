@@ -1139,7 +1139,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改实例用户的密码
+        # 本接口（ResetDBInstancePassword）用于重置实例访问密码。
 
         # @param request: Request instance for ResetDBInstancePassword.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::ResetDBInstancePasswordRequest`

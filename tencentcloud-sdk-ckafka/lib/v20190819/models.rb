@@ -10539,7 +10539,7 @@ module TencentCloud
         # @type AccessType: Integer
         # @param RouteId: 路由Id
         # @type RouteId: Integer
-        # @param VipType: vip网络类型（1:外网TGW  2:基础网络 3:VPC网络 4:支撑网络(idc 环境) 5:SSL外网访问方式访问 6:黑石环境vpc 7:支撑网络(cvm 环境）
+        # @param VipType: 路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)
         # @type VipType: Integer
         # @param VipList: 虚拟IP列表
         # @type VipList: Array

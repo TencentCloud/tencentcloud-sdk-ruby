@@ -1669,28 +1669,6 @@ module TencentCloud
         end
       end
 
-      # 违规资源封禁/解封返回类型
-      class CacheOptResult < TencentCloud::Common::AbstractModel
-        # @param SuccessUrls: 成功的url列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SuccessUrls: Array
-        # @param FailUrls: 失败的url列表
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FailUrls: Array
-
-        attr_accessor :SuccessUrls, :FailUrls
-
-        def initialize(successurls=nil, failurls=nil)
-          @SuccessUrls = successurls
-          @FailUrls = failurls
-        end
-
-        def deserialize(params)
-          @SuccessUrls = params['SuccessUrls']
-          @FailUrls = params['FailUrls']
-        end
-      end
-
       # 组成CacheKey的一部分
       class CacheTagKey < TencentCloud::Common::AbstractModel
         # @param Switch: 使用CacheTag作为CacheKey的一部分配置开关，取值有
@@ -5079,50 +5057,6 @@ module TencentCloud
         end
       end
 
-      # DisableCaches请求参数结构体
-      class DisableCachesRequest < TencentCloud::Common::AbstractModel
-        # @param Urls: 禁用的 URL 列表（分协议生效，必须包含http://或https://）
-        # 每次最多可提交 100 条，每日最多可提交 3000 条
-        # @type Urls: Array
-
-        attr_accessor :Urls
-
-        def initialize(urls=nil)
-          @Urls = urls
-        end
-
-        def deserialize(params)
-          @Urls = params['Urls']
-        end
-      end
-
-      # DisableCaches返回参数结构体
-      class DisableCachesResponse < TencentCloud::Common::AbstractModel
-        # @param CacheOptResult: 提交结果
-        # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CacheOptResult, :TaskId, :RequestId
-
-        def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
-          @CacheOptResult = cacheoptresult
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['CacheOptResult'].nil?
-            @CacheOptResult = CacheOptResult.new
-            @CacheOptResult.deserialize(params['CacheOptResult'])
-          end
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DisableClsLogTopic请求参数结构体
       class DisableClsLogTopicRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
@@ -5451,53 +5385,6 @@ module TencentCloud
         end
       end
 
-      # EnableCaches请求参数结构体
-      class EnableCachesRequest < TencentCloud::Common::AbstractModel
-        # @param Urls: 解封 URL 列表
-        # @type Urls: Array
-        # @param Date: URL封禁日期
-        # @type Date: String
-
-        attr_accessor :Urls, :Date
-
-        def initialize(urls=nil, date=nil)
-          @Urls = urls
-          @Date = date
-        end
-
-        def deserialize(params)
-          @Urls = params['Urls']
-          @Date = params['Date']
-        end
-      end
-
-      # EnableCaches返回参数结构体
-      class EnableCachesResponse < TencentCloud::Common::AbstractModel
-        # @param CacheOptResult: 结果列表
-        # @type CacheOptResult: :class:`Tencentcloud::Cdn.v20180606.models.CacheOptResult`
-        # @param TaskId: 任务ID
-        # @type TaskId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CacheOptResult, :TaskId, :RequestId
-
-        def initialize(cacheoptresult=nil, taskid=nil, requestid=nil)
-          @CacheOptResult = cacheoptresult
-          @TaskId = taskid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['CacheOptResult'].nil?
-            @CacheOptResult = CacheOptResult.new
-            @CacheOptResult.deserialize(params['CacheOptResult'])
-          end
-          @TaskId = params['TaskId']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # EnableClsLogTopic请求参数结构体
       class EnableClsLogTopicRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
@@ -5688,79 +5575,6 @@ module TencentCloud
           @RedirectType = params['RedirectType']
           @RedirectStatusCode = params['RedirectStatusCode']
           @CarryHeaders = params['CarryHeaders']
-        end
-      end
-
-      # GetDisableRecords请求参数结构体
-      class GetDisableRecordsRequest < TencentCloud::Common::AbstractModel
-        # @param Url: 指定 URL 查询
-        # @type Url: String
-        # @param StartTime: 开始时间，如：2018-12-12 10:24:00。
-        # @type StartTime: String
-        # @param EndTime: 结束时间，如：2018-12-14 10:24:00。
-        # @type EndTime: String
-        # @param Status: URL 当前状态
-        # disable：当前仍为禁用状态，访问返回 403
-        # enable：当前为可用状态，已解禁，可正常访问
-        # @type Status: String
-        # @param Offset: 分页查询偏移量，默认为 0
-        # @type Offset: Integer
-        # @param Limit: 分页查询限制数目，默认为20。
-        # @type Limit: Integer
-        # @param TaskId: 任务ID，任务ID和起始时间需要至少填写一项。
-        # @type TaskId: String
-
-        attr_accessor :Url, :StartTime, :EndTime, :Status, :Offset, :Limit, :TaskId
-
-        def initialize(url=nil, starttime=nil, endtime=nil, status=nil, offset=nil, limit=nil, taskid=nil)
-          @Url = url
-          @StartTime = starttime
-          @EndTime = endtime
-          @Status = status
-          @Offset = offset
-          @Limit = limit
-          @TaskId = taskid
-        end
-
-        def deserialize(params)
-          @Url = params['Url']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Status = params['Status']
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          @TaskId = params['TaskId']
-        end
-      end
-
-      # GetDisableRecords返回参数结构体
-      class GetDisableRecordsResponse < TencentCloud::Common::AbstractModel
-        # @param UrlRecordList: 封禁历史记录
-        # @type UrlRecordList: Array
-        # @param TotalCount: 任务总数，用于分页
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :UrlRecordList, :TotalCount, :RequestId
-
-        def initialize(urlrecordlist=nil, totalcount=nil, requestid=nil)
-          @UrlRecordList = urlrecordlist
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['UrlRecordList'].nil?
-            @UrlRecordList = []
-            params['UrlRecordList'].each do |i|
-              urlrecord_tmp = UrlRecord.new
-              urlrecord_tmp.deserialize(i)
-              @UrlRecordList << urlrecord_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -10628,38 +10442,6 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 封禁url的详细信息
-      class UrlRecord < TencentCloud::Common::AbstractModel
-        # @param Status: 状态(disable表示封禁，enable表示解封)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Status: String
-        # @param RealUrl: 对应的url
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RealUrl: String
-        # @param CreateTime: 创建时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreateTime: String
-        # @param UpdateTime: 更新时间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpdateTime: String
-
-        attr_accessor :Status, :RealUrl, :CreateTime, :UpdateTime
-
-        def initialize(status=nil, realurl=nil, createtime=nil, updatetime=nil)
-          @Status = status
-          @RealUrl = realurl
-          @CreateTime = createtime
-          @UpdateTime = updatetime
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @RealUrl = params['RealUrl']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
         end
       end
 

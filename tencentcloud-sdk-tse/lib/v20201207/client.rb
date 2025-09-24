@@ -2621,7 +2621,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改云原生API网关实例网络基本信息，例如带宽以及描述，只支持修改客户端公网/内网的信息。
+        # 修改云原生API网关实例网络基本信息，例如带宽以及描述、规格升级，只支持修改客户端公网/内网的信息。
 
         # @param request: Request instance for ModifyNetworkBasicInfo.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyNetworkBasicInfoRequest`

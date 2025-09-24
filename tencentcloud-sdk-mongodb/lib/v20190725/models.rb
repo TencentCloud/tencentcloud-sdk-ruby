@@ -46,7 +46,7 @@ module TencentCloud
       class AssignProjectRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例 ID 列表，请登录[MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceIds: Array
-        # @param ProjectId: 项目ID，用户已创建项目的唯一ID。请在控制台账号中心的项目管理中复制项目 ID。
+        # @param ProjectId: 项目ID，用户已创建项目的唯一ID。请在控制台账号中心的[项目管理](https://console.cloud.tencent.com/project)中复制项目 ID。
         # @type ProjectId: Integer
 
         attr_accessor :InstanceIds, :ProjectId
@@ -84,11 +84,15 @@ module TencentCloud
 
       # 用户权限
       class Auth < TencentCloud::Common::AbstractModel
-        # @param Mask: 当前账号具有的权限信息。<ul><li>0：无权限。</li><li>1：只读。</li><li>2：只写。</li><li>3：读写。</li></ul>
+        # @param Mask: 当前账号具有的权限信息。
+        # - 0：无权限。
+        # - 1：只读。
+        # - 3：读写。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mask: Integer
         # @param NameSpace: 指具有当前账号权限的数据库名。
-        # <ul><li>* ：表示所有数据库。</li><li>db.name：表示特定name的数据库。</li></ul>
+        # - \* ：表示所有数据库。
+        # - db.name：表示特定 name 的数据库。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NameSpace: String
 
@@ -247,11 +251,11 @@ module TencentCloud
 
       # 客户端连接信息，包括客户端IP和连接数
       class ClientConnection < TencentCloud::Common::AbstractModel
-        # @param IP: 连接的客户端IP
+        # @param IP: 连接的客户端 IP。
         # @type IP: String
-        # @param Count: 对应客户端IP的连接数
+        # @param Count: 对应客户端 IP 的连接数。
         # @type Count: Integer
-        # @param InternalService: 是否为内部ip
+        # @param InternalService: 是否为内部 IP。
         # @type InternalService: Boolean
 
         attr_accessor :IP, :Count, :InternalService
@@ -273,9 +277,13 @@ module TencentCloud
       class CreateAccountUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param UserName: 新账号名称。其格式要求如下：<ul><li>字符范围[1,32]。</li><li>可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“_”与短划线“-”。</li></ul>
+        # @param UserName: 新账号名称。其格式要求如下：
+        # - 字符范围[1,64]。
+        # - 可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“\_”与短划线“-”。
         # @type UserName: String
-        # @param Password: 新账号密码。密码复杂度要求如下：<ul><li>字符长度范围[8,32]。</li><li>至少包含字母、数字和特殊字符（叹号“!”、at"@"、井号“#”、百分号“%”、插入符“^”、星号“*”、小括号“()”、下划线“_”）中的两种。</li></ul>
+        # @param Password: 新账号密码。密码复杂度要求如下：
+        # - 字符长度范围[8,32]。
+        # - 至少包含字母、数字和特殊字符（叹号“!”、at"@"、井号“#”、百分号“%”、插入符“^”、星号“\*”、小括号“()”、下划线“\_”）中的两种。
         # @type Password: String
         # @param MongoUserPassword: mongouser 账号对应的密码。mongouser 为系统默认账号，即为创建实例时，设置的密码。
         # @type MongoUserPassword: String
@@ -951,11 +959,11 @@ module TencentCloud
 
       # 数据库实例价格
       class DBInstancePrice < TencentCloud::Common::AbstractModel
-        # @param UnitPrice: 单价
+        # @param UnitPrice: 实例单价。单位：元。
         # @type UnitPrice: Float
-        # @param OriginalPrice: 原价
+        # @param OriginalPrice: 实例原价。单位：元。
         # @type OriginalPrice: Float
-        # @param DiscountPrice: 折扣价
+        # @param DiscountPrice: 实例折扣价。单位：元。
         # @type DiscountPrice: Float
 
         attr_accessor :UnitPrice, :OriginalPrice, :DiscountPrice
@@ -2637,7 +2645,7 @@ module TencentCloud
 
       # InquirePriceCreateDBInstances请求参数结构体
       class InquirePriceCreateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 实例所属区域及可用区信息。格式：ap-guangzhou-2。
+        # @param Zone: 实例所属区域及可用区信息。具体信息，请参见[地域和可用区](https://cloud.tencent.com/document/product/240/3637)。
         # @type Zone: String
         # @param NodeNum: - 创建副本集实例，指每个副本集内主从节点数量。每个副本集所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # - 创建分片集群实例，指每个分片的主从节点数量。每个分片所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
@@ -2651,12 +2659,12 @@ module TencentCloud
         # - 取值范围：请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MinStorage与MaxStorage分别对应其最小磁盘规格与最大磁盘规格。
         # @type Volume: Integer
         # @param MongoVersion: 实例版本信息。具体支持的版本，请通过接口[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询，其返回的数据结构SpecItems中的参数MongoVersionCode为实例所支持的版本信息。版本信息与版本号对应关系如下：
-        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
         # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
         # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param MachineCode: 产品规格类型。
         # - HIO10G：通用高HIO万兆型。
@@ -2759,15 +2767,19 @@ module TencentCloud
 
       # InquirePriceModifyDBInstanceSpec请求参数结构体
       class InquirePriceModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cmgo-p8vn****。与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Memory: 变更配置后实例内存大小，单位：GB。
+        # @param Memory: 变更配置后实例内存大小，单位：GB。具体售卖的内存规格，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type Memory: Integer
-        # @param Volume: 变更配置后实例磁盘大小，单位：GB。
+        # @param Volume: 变更配置后实例磁盘大小，单位：GB。每一个 CPU 规格对应的最大磁盘与最小磁盘范围，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type Volume: Integer
-        # @param NodeNum: 实例节点数。默认为不变更节点数，暂不支持变更。
+        # @param NodeNum: 实例节点数量。请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
+        # - 副本集实例，指变更配置后实例的主从节点数量。
+        # - 分片集群实例，指变更配置后实例每一个分片的主从节点数。
+        # **说明**：切勿同时发起调整节点数、调整分片数、调整节点规格的任务。
         # @type NodeNum: Integer
-        # @param ReplicateSetNum: 实例分片数。默认为不变更分片数，暂不支持变更。
+        # @param ReplicateSetNum: 分片集群实例，指变更配置后实例的分片数量。取值范围：[2,36] 。
+        # **说明**：变更后的分片数量不能小于当前现有的数量。切勿同时发起调整节点数、调整分片数与调整节点规格的任务。
         # @type ReplicateSetNum: Integer
 
         attr_accessor :InstanceId, :Memory, :Volume, :NodeNum, :ReplicateSetNum
@@ -4141,11 +4153,13 @@ module TencentCloud
 
       # ResetDBInstancePassword请求参数结构体
       class ResetDBInstancePasswordRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: 指定实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param UserName: 实例账号名
+        # @param UserName: 指定需修改密码的账号名称。可通过接口 [DescribeAccountUsers](https://cloud.tencent.com/document/product/240/80800) 获取账号列表，复制需修改密码的账号。
         # @type UserName: String
-        # @param Password: 新密码，新密码长度不能少于8位
+        # @param Password: 指定账户的新密码。密码复杂度要求：
+        # - 8-32个字符长度。
+        # - 至少包含字母、数字和字符（!@#%^\*()\_）中的两种。
         # @type Password: String
 
         attr_accessor :InstanceId, :UserName, :Password
@@ -4165,7 +4179,7 @@ module TencentCloud
 
       # ResetDBInstancePassword返回参数结构体
       class ResetDBInstancePasswordResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步请求Id，用户查询该流程的运行状态
+        # @param AsyncRequestId: 任务请求 ID。
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4325,7 +4339,7 @@ module TencentCloud
       class SetAccountUserPrivilegeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定待设置账号的实例ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param UserName: 设置账号名称。
+        # @param UserName: 设置访问实例的账号名称。设置要求为：字母开头的1-64个字符，只可输入[A,Z]、[a,z]、[1,9]范围的字符以及下划线“_”与短划线“-”。
         # @type UserName: String
         # @param AuthRole: 设置权限信息。
         # @type AuthRole: Array
@@ -4775,7 +4789,7 @@ module TencentCloud
 
       # TerminateDBInstances请求参数结构体
       class TerminateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定预隔离实例ID。格式如：cmgo-p8vnipr5。
+        # @param InstanceId: 指定预隔离实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制预隔离实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId

@@ -592,13 +592,15 @@ module TencentCloud
         # @type PageId: String
         # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
         # @type LogicalOp: String
+        # @param ActionRatio: 按照动作灰度的比例，默认是100
+        # @type ActionRatio: Integer
 
-        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp
+        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp, :ActionRatio
         extend Gem::Deprecate
         deprecate :Bypass, :none, 2025, 9
         deprecate :Bypass=, :none, 2025, 9
 
-        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil)
+        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
           @Name = name
           @SortId = sortid
           @Strategies = strategies
@@ -616,6 +618,7 @@ module TencentCloud
           @Status = status
           @PageId = pageid
           @LogicalOp = logicalop
+          @ActionRatio = actionratio
         end
 
         def deserialize(params)
@@ -646,6 +649,7 @@ module TencentCloud
           @Status = params['Status']
           @PageId = params['PageId']
           @LogicalOp = params['LogicalOp']
+          @ActionRatio = params['ActionRatio']
         end
       end
 
@@ -854,6 +858,24 @@ module TencentCloud
         # @type IsKeepAlive: String
         # @param InstanceID: 必填项，域名所属实例id
         # @type InstanceID: String
+        # @param HttpsRewrite: 必填项，是否开启HTTP强制跳转到HTTPS。
+        # 0：不强制跳转
+        # 1：开启强制跳转
+        # @type HttpsRewrite: Integer
+        # @param IsHttp2: 必填项，是否开启HTTP2，需要开启HTTPS协议支持。
+        # 0：关闭
+        # 1：开启
+        # @type IsHttp2: Integer
+        # @param ActiveCheck: 必填项，是否开启主动健康检测。
+        # 0：不开启
+        # 1：开启
+        # @type ActiveCheck: Integer
+        # @param CipherTemplate: 必填项，加密套件模板。
+        # 0：不支持选择，使用默认模板
+        # 1：通用型模板
+        # 2：安全型模板
+        # 3：自定义模板
+        # @type CipherTemplate: Integer
         # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Cert: String
         # @param PrivateKey: CertType为1时，需要填充此参数，表示自有证书的私钥
@@ -874,18 +896,10 @@ module TencentCloud
         # @type IsGray: Integer
         # @param GrayAreas: 灰度的地区
         # @type GrayAreas: Array
-        # @param HttpsRewrite: 必填项，是否开启HTTP强制跳转到HTTPS。
-        # 0：不强制跳转
-        # 1：开启强制跳转
-        # @type HttpsRewrite: Integer
         # @param UpstreamDomain: 域名回源时的回源域名。UpstreamType为1时，需要填充此字段
         # @type UpstreamDomain: String
         # @param SrcList: IP回源时的回源IP列表。UpstreamType为0时，需要填充此字段
         # @type SrcList: Array
-        # @param IsHttp2: 必填项，是否开启HTTP2，需要开启HTTPS协议支持。
-        # 0：关闭
-        # 1：开启
-        # @type IsHttp2: Integer
         # @param Edition: WAF实例类型。
         # sparta-waf：SAAS型WAF
         # clb-waf：负载均衡型WAF
@@ -895,20 +909,12 @@ module TencentCloud
         # @type Anycast: Integer
         # @param Weights: 回源IP列表各IP的权重，和SrcList一一对应。当且仅当UpstreamType为0，并且SrcList有多个IP，并且LoadBalance为2时需要填写，否则填 []
         # @type Weights: Array
-        # @param ActiveCheck: 必填项，是否开启主动健康检测。
-        # 0：不开启
-        # 1：开启
-        # @type ActiveCheck: Integer
         # @param TLSVersion: TLS版本信息
         # @type TLSVersion: Integer
-        # @param CipherTemplate: 必填项，加密套件模板。
-        # 0：不支持选择，使用默认模板
-        # 1：通用型模板
-        # 2：安全型模板
-        # 3：自定义模板
-        # @type CipherTemplate: Integer
         # @param Ciphers: 自定义的加密套件列表。CipherTemplate为3时需要填此字段，表示自定义的加密套件，值通过DescribeCiphersDetail接口获取。
         # @type Ciphers: Array
+        # @param ProxyConnectTimeout: WAF与源站的连接超时，默认10s。
+        # @type ProxyConnectTimeout: Integer
         # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # @type ProxyReadTimeout: Integer
         # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
@@ -951,8 +957,10 @@ module TencentCloud
         # @type UpstreamRules: Array
         # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
         # @type UseCase: Integer
+        # @param Gzip: gzip开关。0：关闭 1：默认值，打开。
+        # @type Gzip: Integer
 
-        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :HttpsRewrite, :UpstreamDomain, :SrcList, :IsHttp2, :Edition, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :CipherTemplate, :Ciphers, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
+        attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :HttpsRewrite, :IsHttp2, :ActiveCheck, :CipherTemplate, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :Edition, :Anycast, :Weights, :TLSVersion, :Ciphers, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
         deprecate :ResourceId, :none, 2025, 9
         deprecate :ResourceId=, :none, 2025, 9
@@ -965,7 +973,7 @@ module TencentCloud
         deprecate :Anycast, :none, 2025, 9
         deprecate :Anycast=, :none, 2025, 9
 
-        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, httpsrewrite=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, edition=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphertemplate=nil, ciphers=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
+        def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, httpsrewrite=nil, ishttp2=nil, activecheck=nil, ciphertemplate=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, edition=nil, anycast=nil, weights=nil, tlsversion=nil, ciphers=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
           @CertType = certtype
           @IsCdn = iscdn
@@ -975,6 +983,10 @@ module TencentCloud
           @Ports = ports
           @IsKeepAlive = iskeepalive
           @InstanceID = instanceid
+          @HttpsRewrite = httpsrewrite
+          @IsHttp2 = ishttp2
+          @ActiveCheck = activecheck
+          @CipherTemplate = ciphertemplate
           @Cert = cert
           @PrivateKey = privatekey
           @SSLId = sslid
@@ -984,17 +996,14 @@ module TencentCloud
           @HttpsUpstreamPort = httpsupstreamport
           @IsGray = isgray
           @GrayAreas = grayareas
-          @HttpsRewrite = httpsrewrite
           @UpstreamDomain = upstreamdomain
           @SrcList = srclist
-          @IsHttp2 = ishttp2
           @Edition = edition
           @Anycast = anycast
           @Weights = weights
-          @ActiveCheck = activecheck
           @TLSVersion = tlsversion
-          @CipherTemplate = ciphertemplate
           @Ciphers = ciphers
+          @ProxyConnectTimeout = proxyconnecttimeout
           @ProxyReadTimeout = proxyreadtimeout
           @ProxySendTimeout = proxysendtimeout
           @SniType = snitype
@@ -1014,6 +1023,7 @@ module TencentCloud
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
           @UseCase = usecase
+          @Gzip = gzip
         end
 
         def deserialize(params)
@@ -1033,6 +1043,10 @@ module TencentCloud
           end
           @IsKeepAlive = params['IsKeepAlive']
           @InstanceID = params['InstanceID']
+          @HttpsRewrite = params['HttpsRewrite']
+          @IsHttp2 = params['IsHttp2']
+          @ActiveCheck = params['ActiveCheck']
+          @CipherTemplate = params['CipherTemplate']
           @Cert = params['Cert']
           @PrivateKey = params['PrivateKey']
           @SSLId = params['SSLId']
@@ -1042,17 +1056,14 @@ module TencentCloud
           @HttpsUpstreamPort = params['HttpsUpstreamPort']
           @IsGray = params['IsGray']
           @GrayAreas = params['GrayAreas']
-          @HttpsRewrite = params['HttpsRewrite']
           @UpstreamDomain = params['UpstreamDomain']
           @SrcList = params['SrcList']
-          @IsHttp2 = params['IsHttp2']
           @Edition = params['Edition']
           @Anycast = params['Anycast']
           @Weights = params['Weights']
-          @ActiveCheck = params['ActiveCheck']
           @TLSVersion = params['TLSVersion']
-          @CipherTemplate = params['CipherTemplate']
           @Ciphers = params['Ciphers']
+          @ProxyConnectTimeout = params['ProxyConnectTimeout']
           @ProxyReadTimeout = params['ProxyReadTimeout']
           @ProxySendTimeout = params['ProxySendTimeout']
           @SniType = params['SniType']
@@ -1079,6 +1090,7 @@ module TencentCloud
             end
           end
           @UseCase = params['UseCase']
+          @Gzip = params['Gzip']
         end
       end
 
@@ -1209,19 +1221,23 @@ module TencentCloud
         # @type Operator: String
         # @param Value: 日期，手机号，邮箱等
         # @type Value: String
+        # @param ValueList: 风险等级
+        # @type ValueList: Array
 
-        attr_accessor :Entity, :Operator, :Value
+        attr_accessor :Entity, :Operator, :Value, :ValueList
 
-        def initialize(entity=nil, operator=nil, value=nil)
+        def initialize(entity=nil, operator=nil, value=nil, valuelist=nil)
           @Entity = entity
           @Operator = operator
           @Value = value
+          @ValueList = valuelist
         end
 
         def deserialize(params)
           @Entity = params['Entity']
           @Operator = params['Operator']
           @Value = params['Value']
+          @ValueList = params['ValueList']
         end
       end
 
@@ -2181,10 +2197,12 @@ module TencentCloud
         # @type Scene: Array
         # @param Priority: 优先级
         # @type Priority: Integer
+        # @param TokenValidation: token有效性配置信息
+        # @type TokenValidation: :class:`Tencentcloud::Waf.v20180125.models.TokenValidation`
 
-        attr_accessor :Name, :Description, :Id, :Status, :Location, :Key, :Operator, :Timestamp, :Scene, :Priority
+        attr_accessor :Name, :Description, :Id, :Status, :Location, :Key, :Operator, :Timestamp, :Scene, :Priority, :TokenValidation
 
-        def initialize(name=nil, description=nil, id=nil, status=nil, location=nil, key=nil, operator=nil, timestamp=nil, scene=nil, priority=nil)
+        def initialize(name=nil, description=nil, id=nil, status=nil, location=nil, key=nil, operator=nil, timestamp=nil, scene=nil, priority=nil, tokenvalidation=nil)
           @Name = name
           @Description = description
           @Id = id
@@ -2195,6 +2213,7 @@ module TencentCloud
           @Timestamp = timestamp
           @Scene = scene
           @Priority = priority
+          @TokenValidation = tokenvalidation
         end
 
         def deserialize(params)
@@ -2208,6 +2227,10 @@ module TencentCloud
           @Timestamp = params['Timestamp']
           @Scene = params['Scene']
           @Priority = params['Priority']
+          unless params['TokenValidation'].nil?
+            @TokenValidation = TokenValidation.new
+            @TokenValidation.deserialize(params['TokenValidation'])
+          end
         end
       end
 
@@ -2342,7 +2365,7 @@ module TencentCloud
         # @type ValidTime: Integer
         # @param TsVersion: 版本
         # @type TsVersion: Integer
-        # @param Options: 规则详情
+        # @param Options: key为匹配字段；args为base64编码后的参数，等于号前为匹配参数，等于号后为匹配内容；match为逻辑符号；encodeflag为参数内容是否编码
         # @type Options: String
         # @param RuleId: 规则ID
         # @type RuleId: Integer
@@ -2358,10 +2381,14 @@ module TencentCloud
         # @type CelRule: String
         # @param LogicalOp: 逻辑操作符
         # @type LogicalOp: String
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param ActionRatio: 动作灰度比例，默认值100
+        # @type ActionRatio: Integer
 
-        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime, :LimitMethod, :CelRule, :LogicalOp
+        attr_accessor :Name, :Status, :Advance, :Limit, :Interval, :Url, :MatchFunc, :ActionType, :Priority, :ValidTime, :TsVersion, :Options, :RuleId, :EventId, :SessionApplied, :CreateTime, :LimitMethod, :CelRule, :LogicalOp, :PageId, :ActionRatio
 
-        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil, limitmethod=nil, celrule=nil, logicalop=nil)
+        def initialize(name=nil, status=nil, advance=nil, limit=nil, interval=nil, url=nil, matchfunc=nil, actiontype=nil, priority=nil, validtime=nil, tsversion=nil, options=nil, ruleid=nil, eventid=nil, sessionapplied=nil, createtime=nil, limitmethod=nil, celrule=nil, logicalop=nil, pageid=nil, actionratio=nil)
           @Name = name
           @Status = status
           @Advance = advance
@@ -2381,6 +2408,8 @@ module TencentCloud
           @LimitMethod = limitmethod
           @CelRule = celrule
           @LogicalOp = logicalop
+          @PageId = pageid
+          @ActionRatio = actionratio
         end
 
         def deserialize(params)
@@ -2403,6 +2432,8 @@ module TencentCloud
           @LimitMethod = params['LimitMethod']
           @CelRule = params['CelRule']
           @LogicalOp = params['LogicalOp']
+          @PageId = params['PageId']
+          @ActionRatio = params['ActionRatio']
         end
       end
 
@@ -4399,23 +4430,23 @@ module TencentCloud
       class DeleteSpartaProtectionRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 域名列表
         # @type Domains: Array
-        # @param Edition: 实例类型
-        # @type Edition: String
         # @param InstanceID: 必填项。域名所属实例ID
         # @type InstanceID: String
+        # @param Edition: 实例类型
+        # @type Edition: String
 
-        attr_accessor :Domains, :Edition, :InstanceID
+        attr_accessor :Domains, :InstanceID, :Edition
 
-        def initialize(domains=nil, edition=nil, instanceid=nil)
+        def initialize(domains=nil, instanceid=nil, edition=nil)
           @Domains = domains
-          @Edition = edition
           @InstanceID = instanceid
+          @Edition = edition
         end
 
         def deserialize(params)
           @Domains = params['Domains']
-          @Edition = params['Edition']
           @InstanceID = params['InstanceID']
+          @Edition = params['Edition']
         end
       end
 
@@ -5719,17 +5750,20 @@ module TencentCloud
         # @type CurrentGlobalScene: :class:`Tencentcloud::Waf.v20180125.models.GlobalSceneInfo`
         # @param CustomRuleNums: 自定义规则总数，不包括BOT白名单
         # @type CustomRuleNums: Integer
+        # @param TldStatus: 图灵盾开关状态
+        # @type TldStatus: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :SceneCount, :ValidSceneCount, :CurrentGlobalScene, :CustomRuleNums, :RequestId
+        attr_accessor :Status, :SceneCount, :ValidSceneCount, :CurrentGlobalScene, :CustomRuleNums, :TldStatus, :RequestId
 
-        def initialize(status=nil, scenecount=nil, validscenecount=nil, currentglobalscene=nil, customrulenums=nil, requestid=nil)
+        def initialize(status=nil, scenecount=nil, validscenecount=nil, currentglobalscene=nil, customrulenums=nil, tldstatus=nil, requestid=nil)
           @Status = status
           @SceneCount = scenecount
           @ValidSceneCount = validscenecount
           @CurrentGlobalScene = currentglobalscene
           @CustomRuleNums = customrulenums
+          @TldStatus = tldstatus
           @RequestId = requestid
         end
 
@@ -5742,6 +5776,7 @@ module TencentCloud
             @CurrentGlobalScene.deserialize(params['CurrentGlobalScene'])
           end
           @CustomRuleNums = params['CustomRuleNums']
+          @TldStatus = params['TldStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -6267,10 +6302,12 @@ module TencentCloud
         # @type Domain: String
         # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
         # @type LogicalOp: String
+        # @param ActionRatio: 规则灰度的比例，默认是100，不灰度
+        # @type ActionRatio: Integer
 
-        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain, :LogicalOp
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain, :LogicalOp, :ActionRatio
 
-        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil, logicalop=nil)
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil, logicalop=nil, actionratio=nil)
           @ActionType = actiontype
           @Bypass = bypass
           @CreateTime = createtime
@@ -6292,6 +6329,7 @@ module TencentCloud
           @PageId = pageid
           @Domain = domain
           @LogicalOp = logicalop
+          @ActionRatio = actionratio
         end
 
         def deserialize(params)
@@ -6326,6 +6364,7 @@ module TencentCloud
           @PageId = params['PageId']
           @Domain = params['Domain']
           @LogicalOp = params['LogicalOp']
+          @ActionRatio = params['ActionRatio']
         end
       end
 
@@ -9776,6 +9815,8 @@ module TencentCloud
         # 2：安全型模板
         # 3：自定义模板
         # @type CipherTemplate: Integer
+        # @param ProxyConnectTimeout: WAF与源站的连接超时，默认10s。
+        # @type ProxyConnectTimeout: Integer
         # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # @type ProxyReadTimeout: Integer
         # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
@@ -9830,13 +9871,15 @@ module TencentCloud
         # @type UpstreamRules: Array
         # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
         # @type UseCase: Integer
+        # @param Gzip: gzip开关。0：关闭 1：默认值，打开。
+        # @type Gzip: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase
+        attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
         deprecate :IsGray, :none, 2025, 9
         deprecate :IsGray=, :none, 2025, 9
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceId = instanceid
@@ -9868,6 +9911,7 @@ module TencentCloud
           @TLSVersion = tlsversion
           @Ciphers = ciphers
           @CipherTemplate = ciphertemplate
+          @ProxyConnectTimeout = proxyconnecttimeout
           @ProxyReadTimeout = proxyreadtimeout
           @ProxySendTimeout = proxysendtimeout
           @SniType = snitype
@@ -9891,6 +9935,7 @@ module TencentCloud
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
           @UseCase = usecase
+          @Gzip = gzip
         end
 
         def deserialize(params)
@@ -9932,6 +9977,7 @@ module TencentCloud
           @TLSVersion = params['TLSVersion']
           @Ciphers = params['Ciphers']
           @CipherTemplate = params['CipherTemplate']
+          @ProxyConnectTimeout = params['ProxyConnectTimeout']
           @ProxyReadTimeout = params['ProxyReadTimeout']
           @ProxySendTimeout = params['ProxySendTimeout']
           @SniType = params['SniType']
@@ -9962,6 +10008,7 @@ module TencentCloud
             end
           end
           @UseCase = params['UseCase']
+          @Gzip = params['Gzip']
         end
       end
 
@@ -11498,10 +11545,19 @@ module TencentCloud
         # @type BasicFlag: Integer
         # @param NetworkConfig: 实例的网络配置
         # @type NetworkConfig: :class:`Tencentcloud::Waf.v20180125.models.NetworkConfig`
+        # @param RCEPkg: RCE设备安全信息包
+        # @type RCEPkg: :class:`Tencentcloud::Waf.v20180125.models.RCEPkg`
+        # @param ExceedPolicy: 超量策略。0：超量沙箱
+        # 1：超量限流
+        # @type ExceedPolicy: Integer
+        # @param LLMPkg: 大模型安全信息包
+        # @type LLMPkg: :class:`Tencentcloud::Waf.v20180125.models.LLMPkg`
+        # @param ElasticResourceId: 弹性资源Id
+        # @type ElasticResourceId: String
 
-        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag, :NetworkConfig
+        attr_accessor :InstanceId, :InstanceName, :ResourceIds, :Region, :PayMode, :RenewFlag, :Mode, :Level, :ValidTime, :BeginTime, :DomainCount, :SubDomainLimit, :MainDomainCount, :MainDomainLimit, :MaxQPS, :QPS, :DomainPkg, :AppId, :Edition, :FraudPkg, :BotPkg, :BotQPS, :ElasticBilling, :AttackLogPost, :MaxBandwidth, :APISecurity, :QpsStandard, :BandwidthStandard, :Status, :SandboxQps, :IsAPISecurityTrial, :MajorEventsPkg, :HybridPkg, :ApiPkg, :MiniPkg, :MiniQpsStandard, :MiniMaxQPS, :LastQpsExceedTime, :MiniExtendPkg, :BillingItem, :FreeDelayFlag, :Last3MaxQPS, :Last3MaxBandwidth, :MajorEventsProPkg, :BasicFlag, :NetworkConfig, :RCEPkg, :ExceedPolicy, :LLMPkg, :ElasticResourceId
 
-        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, resourceids=nil, region=nil, paymode=nil, renewflag=nil, mode=nil, level=nil, validtime=nil, begintime=nil, domaincount=nil, subdomainlimit=nil, maindomaincount=nil, maindomainlimit=nil, maxqps=nil, qps=nil, domainpkg=nil, appid=nil, edition=nil, fraudpkg=nil, botpkg=nil, botqps=nil, elasticbilling=nil, attacklogpost=nil, maxbandwidth=nil, apisecurity=nil, qpsstandard=nil, bandwidthstandard=nil, status=nil, sandboxqps=nil, isapisecuritytrial=nil, majoreventspkg=nil, hybridpkg=nil, apipkg=nil, minipkg=nil, miniqpsstandard=nil, minimaxqps=nil, lastqpsexceedtime=nil, miniextendpkg=nil, billingitem=nil, freedelayflag=nil, last3maxqps=nil, last3maxbandwidth=nil, majoreventspropkg=nil, basicflag=nil, networkconfig=nil, rcepkg=nil, exceedpolicy=nil, llmpkg=nil, elasticresourceid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @ResourceIds = resourceids
@@ -11548,6 +11604,10 @@ module TencentCloud
           @MajorEventsProPkg = majoreventspropkg
           @BasicFlag = basicflag
           @NetworkConfig = networkconfig
+          @RCEPkg = rcepkg
+          @ExceedPolicy = exceedpolicy
+          @LLMPkg = llmpkg
+          @ElasticResourceId = elasticresourceid
         end
 
         def deserialize(params)
@@ -11633,6 +11693,16 @@ module TencentCloud
             @NetworkConfig = NetworkConfig.new
             @NetworkConfig.deserialize(params['NetworkConfig'])
           end
+          unless params['RCEPkg'].nil?
+            @RCEPkg = RCEPkg.new
+            @RCEPkg.deserialize(params['RCEPkg'])
+          end
+          @ExceedPolicy = params['ExceedPolicy']
+          unless params['LLMPkg'].nil?
+            @LLMPkg = LLMPkg.new
+            @LLMPkg.deserialize(params['LLMPkg'])
+          end
+          @ElasticResourceId = params['ElasticResourceId']
         end
       end
 
@@ -11825,6 +11895,36 @@ module TencentCloud
         end
       end
 
+      # 当用户选择JWS/JWE会话管理方式的时候，上传的配置信息以及校验规则
+      class JWTConfig < TencentCloud::Common::AbstractModel
+        # @param SecretInfo: 密钥信息
+        # @type SecretInfo: :class:`Tencentcloud::Waf.v20180125.models.SecretInfo`
+        # @param PayloadRule: Payload校验规则集合
+        # @type PayloadRule: Array
+
+        attr_accessor :SecretInfo, :PayloadRule
+
+        def initialize(secretinfo=nil, payloadrule=nil)
+          @SecretInfo = secretinfo
+          @PayloadRule = payloadrule
+        end
+
+        def deserialize(params)
+          unless params['SecretInfo'].nil?
+            @SecretInfo = SecretInfo.new
+            @SecretInfo.deserialize(params['SecretInfo'])
+          end
+          unless params['PayloadRule'].nil?
+            @PayloadRule = []
+            params['PayloadRule'].each do |i|
+              tokenruleentry_tmp = TokenRuleEntry.new
+              tokenruleentry_tmp.deserialize(i)
+              @PayloadRule << tokenruleentry_tmp
+            end
+          end
+        end
+      end
+
       # 规则执行的时间结构体
       class JobDateTime < TencentCloud::Common::AbstractModel
         # @param Timed: 定时执行的时间参数
@@ -11880,6 +11980,42 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 有效大模型安全包信息
+      class LLMPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param Region: 地域
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param InquireKey: 计费项
+        # @type InquireKey: String
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireKey
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirekey=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireKey = inquirekey
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireKey = params['InquireKey']
         end
       end
 
@@ -11956,7 +12092,7 @@ module TencentCloud
         # @param Protocol: 协议
         # @type Protocol: String
         # @param Region: 地区
-        # "多伦多": "ca",
+        #     "多伦多": "ca",
         #     "广州": "gz",
         #     "成都": "cd",
         #     "福州": "fzec",
@@ -11983,7 +12119,8 @@ module TencentCloud
         #     "首尔": "kr",
         #     "上海": "sh",
         #     "新加坡": "sg",
-        #     "清远": "qy"
+        #     "清远": "qy",
+        #     "雅加达": "jkt"
         # @type Region: String
         # @param Vip: 接入IP
         # @type Vip: String
@@ -13152,13 +13289,15 @@ module TencentCloud
         # @type PageId: String
         # @param LogicalOp: 匹配条件的逻辑关系，支持and、or，分别表示多个逻辑匹配条件是与、或的关系
         # @type LogicalOp: String
+        # @param ActionRatio: 规则生效比例
+        # @type ActionRatio: Integer
 
-        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp
+        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp, :ActionRatio
         extend Gem::Deprecate
         deprecate :Bypass, :none, 2025, 9
         deprecate :Bypass=, :none, 2025, 9
 
-        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil)
+        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
           @Domain = domain
           @RuleId = ruleid
           @RuleName = rulename
@@ -13175,6 +13314,7 @@ module TencentCloud
           @Status = status
           @PageId = pageid
           @LogicalOp = logicalop
+          @ActionRatio = actionratio
         end
 
         def deserialize(params)
@@ -13204,6 +13344,7 @@ module TencentCloud
           @Status = params['Status']
           @PageId = params['PageId']
           @LogicalOp = params['LogicalOp']
+          @ActionRatio = params['ActionRatio']
         end
       end
 
@@ -14677,6 +14818,8 @@ module TencentCloud
         # @type Ciphers: Array
         # @param CipherTemplate: 加密套件模板。0：不支持选择，使用默认模板  1：通用型模板 2：安全型模板3：自定义模板
         # @type CipherTemplate: Integer
+        # @param ProxyConnectTimeout: WAF与源站的连接超时时间，默认10s。
+        # @type ProxyConnectTimeout: Integer
         # @param ProxyReadTimeout: WAF与源站的读超时时间，默认300s。
         # @type ProxyReadTimeout: Integer
         # @param ProxySendTimeout: WAF与源站的写超时时间，默认300s。
@@ -14721,15 +14864,17 @@ module TencentCloud
         # @type UpstreamRules: Array
         # @param UseCase: 业务场景。0：默认值，表示常规业务场景 1：大模型业务场景
         # @type UseCase: Integer
+        # @param Gzip: gzip开关。0：关闭 1：默认值，打开
+        # @type Gzip: Integer
 
-        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase
+        attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
         deprecate :IsGray, :none, 2025, 9
         deprecate :IsGray=, :none, 2025, 9
         deprecate :Anycast, :none, 2025, 9
         deprecate :Anycast=, :none, 2025, 9
 
-        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil)
+        def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
           @DomainId = domainid
           @InstanceID = instanceid
@@ -14757,6 +14902,7 @@ module TencentCloud
           @TLSVersion = tlsversion
           @Ciphers = ciphers
           @CipherTemplate = ciphertemplate
+          @ProxyConnectTimeout = proxyconnecttimeout
           @ProxyReadTimeout = proxyreadtimeout
           @ProxySendTimeout = proxysendtimeout
           @SniType = snitype
@@ -14777,6 +14923,7 @@ module TencentCloud
           @UpstreamPolicy = upstreampolicy
           @UpstreamRules = upstreamrules
           @UseCase = usecase
+          @Gzip = gzip
         end
 
         def deserialize(params)
@@ -14814,6 +14961,7 @@ module TencentCloud
           @TLSVersion = params['TLSVersion']
           @Ciphers = params['Ciphers']
           @CipherTemplate = params['CipherTemplate']
+          @ProxyConnectTimeout = params['ProxyConnectTimeout']
           @ProxyReadTimeout = params['ProxyReadTimeout']
           @ProxySendTimeout = params['ProxySendTimeout']
           @SniType = params['SniType']
@@ -14841,6 +14989,7 @@ module TencentCloud
             end
           end
           @UseCase = params['UseCase']
+          @Gzip = params['Gzip']
         end
       end
 
@@ -15863,6 +16012,54 @@ module TencentCloud
         end
       end
 
+      # 有效REC设备安全包信息
+      class RCEPkg < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: String
+        # @param Status: 状态
+        # @type Status: Integer
+        # @param Region: 地域
+        # @type Region: Integer
+        # @param BeginTime: 开始时间
+        # @type BeginTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param InquireNum: 申请数量
+        # @type InquireNum: Integer
+        # @param UsedNum: 使用数量
+        # @type UsedNum: Integer
+        # @param RenewFlag: 续费标志
+        # @type RenewFlag: Integer
+        # @param BillingItem: 计费项
+        # @type BillingItem: String
+
+        attr_accessor :ResourceIds, :Status, :Region, :BeginTime, :EndTime, :InquireNum, :UsedNum, :RenewFlag, :BillingItem
+
+        def initialize(resourceids=nil, status=nil, region=nil, begintime=nil, endtime=nil, inquirenum=nil, usednum=nil, renewflag=nil, billingitem=nil)
+          @ResourceIds = resourceids
+          @Status = status
+          @Region = region
+          @BeginTime = begintime
+          @EndTime = endtime
+          @InquireNum = inquirenum
+          @UsedNum = usednum
+          @RenewFlag = renewflag
+          @BillingItem = billingitem
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @Status = params['Status']
+          @Region = params['Region']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @InquireNum = params['InquireNum']
+          @UsedNum = params['UsedNum']
+          @RenewFlag = params['RenewFlag']
+          @BillingItem = params['BillingItem']
+        end
+      end
+
       # RefreshAccessCheckResult请求参数结构体
       class RefreshAccessCheckResultRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -16488,6 +16685,30 @@ module TencentCloud
         end
       end
 
+      # 用于JWT验签的密钥信息
+      class SecretInfo < TencentCloud::Common::AbstractModel
+        # @param SecretSource: 密钥上传方式，可选值：manual、upload
+        # @type SecretSource: String
+        # @param SecretKey: 密钥内容（用户手动输入/前端从密钥文件提取出的密钥内容）
+        # @type SecretKey: String
+        # @param FileName: 上传的密钥文件文件名
+        # @type FileName: String
+
+        attr_accessor :SecretSource, :SecretKey, :FileName
+
+        def initialize(secretsource=nil, secretkey=nil, filename=nil)
+          @SecretSource = secretsource
+          @SecretKey = secretkey
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @SecretSource = params['SecretSource']
+          @SecretKey = params['SecretKey']
+          @FileName = params['FileName']
+        end
+      end
+
       # 参数包装
       class SessionData < TencentCloud::Common::AbstractModel
         # @param Res: session定义
@@ -16535,10 +16756,12 @@ module TencentCloud
         # @type SessionInUsed: Boolean
         # @param RelatedRuleID: Session关联的CC规则ID
         # @type RelatedRuleID: Array
+        # @param Key: 精准匹配时，配置的key
+        # @type Key: String
 
-        attr_accessor :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Source, :TsVersion, :SessionId, :SessionName, :SessionInUsed, :RelatedRuleID
+        attr_accessor :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Source, :TsVersion, :SessionId, :SessionName, :SessionInUsed, :RelatedRuleID, :Key
 
-        def initialize(category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, source=nil, tsversion=nil, sessionid=nil, sessionname=nil, sessioninused=nil, relatedruleid=nil)
+        def initialize(category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, source=nil, tsversion=nil, sessionid=nil, sessionname=nil, sessioninused=nil, relatedruleid=nil, key=nil)
           @Category = category
           @KeyOrStartMat = keyorstartmat
           @EndMat = endmat
@@ -16550,6 +16773,7 @@ module TencentCloud
           @SessionName = sessionname
           @SessionInUsed = sessioninused
           @RelatedRuleID = relatedruleid
+          @Key = key
         end
 
         def deserialize(params)
@@ -16564,6 +16788,7 @@ module TencentCloud
           @SessionName = params['SessionName']
           @SessionInUsed = params['SessionInUsed']
           @RelatedRuleID = params['RelatedRuleID']
+          @Key = params['Key']
         end
       end
 
@@ -16900,6 +17125,143 @@ module TencentCloud
         def deserialize(params)
           @StartDateTime = params['StartDateTime']
           @EndDateTime = params['EndDateTime']
+        end
+      end
+
+      # JWT显示设置（只有当校验方式为JWS/JWE的时候才会有该配置信息）
+      class TokenDisplaySetting < TencentCloud::Common::AbstractModel
+        # @param DisplayWithPayloadEnable: 是否使用payload字段作为显示token
+        # @type DisplayWithPayloadEnable: Boolean
+        # @param FieldName: 用于显示的payload字段名
+        # @type FieldName: String
+
+        attr_accessor :DisplayWithPayloadEnable, :FieldName
+
+        def initialize(displaywithpayloadenable=nil, fieldname=nil)
+          @DisplayWithPayloadEnable = displaywithpayloadenable
+          @FieldName = fieldname
+        end
+
+        def deserialize(params)
+          @DisplayWithPayloadEnable = params['DisplayWithPayloadEnable']
+          @FieldName = params['FieldName']
+        end
+      end
+
+      # Token有效性校验规则
+      class TokenRuleEntry < TencentCloud::Common::AbstractModel
+        # @param Type: 校验方式，可选值：验签校验、字段校验
+        # @type Type: String
+        # @param Key: 键
+        # @type Key: String
+        # @param Op: 操作符
+        # @type Op: String
+        # @param Value: 值
+        # @type Value: :class:`Tencentcloud::Waf.v20180125.models.TokenRuleEntryValue`
+
+        attr_accessor :Type, :Key, :Op, :Value
+
+        def initialize(type=nil, key=nil, op=nil, value=nil)
+          @Type = type
+          @Key = key
+          @Op = op
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          @Op = params['Op']
+          unless params['Value'].nil?
+            @Value = TokenRuleEntryValue.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 通过复杂类型识别传入的不同类型参数值
+      class TokenRuleEntryValue < TencentCloud::Common::AbstractModel
+        # @param LogicValue: 布尔类型值
+        # @type LogicValue: Boolean
+        # @param MultiValue: 数组类型值
+        # 可以存储字符串/数值
+        # 如果只有一个元素，则为长度为1的数组
+        # @type MultiValue: Array
+        # @param ValidKey: 指示有效的字段
+        # @type ValidKey: String
+
+        attr_accessor :LogicValue, :MultiValue, :ValidKey
+
+        def initialize(logicvalue=nil, multivalue=nil, validkey=nil)
+          @LogicValue = logicvalue
+          @MultiValue = multivalue
+          @ValidKey = validkey
+        end
+
+        def deserialize(params)
+          @LogicValue = params['LogicValue']
+          @MultiValue = params['MultiValue']
+          @ValidKey = params['ValidKey']
+        end
+      end
+
+      # token有效性配置信息
+      class TokenValidation < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启token有效性校验
+        # @type Enable: Boolean
+        # @param VerifyType: token有效性的校验方式，可选值为：jws、jwe、contains、len、regex
+        # @type VerifyType: String
+        # @param VerifyRule: 有效性校验配置和规则
+        # @type VerifyRule: :class:`Tencentcloud::Waf.v20180125.models.TokenVerifyRule`
+        # @param DisplaySetting: Token显示设置（只有当校验方式为jws/jwe的时候才会有该配置信息）
+        # @type DisplaySetting: :class:`Tencentcloud::Waf.v20180125.models.TokenDisplaySetting`
+
+        attr_accessor :Enable, :VerifyType, :VerifyRule, :DisplaySetting
+
+        def initialize(enable=nil, verifytype=nil, verifyrule=nil, displaysetting=nil)
+          @Enable = enable
+          @VerifyType = verifytype
+          @VerifyRule = verifyrule
+          @DisplaySetting = displaysetting
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @VerifyType = params['VerifyType']
+          unless params['VerifyRule'].nil?
+            @VerifyRule = TokenVerifyRule.new
+            @VerifyRule.deserialize(params['VerifyRule'])
+          end
+          unless params['DisplaySetting'].nil?
+            @DisplaySetting = TokenDisplaySetting.new
+            @DisplaySetting.deserialize(params['DisplaySetting'])
+          end
+        end
+      end
+
+      # Token有效性校验规则
+      class TokenVerifyRule < TencentCloud::Common::AbstractModel
+        # @param JWTRule: JWS、JWE专用校验规则
+        # @type JWTRule: :class:`Tencentcloud::Waf.v20180125.models.JWTConfig`
+        # @param GeneralRule: 其他会话有效性校验方式(contains、length、regex)的校验规则
+        # @type GeneralRule: :class:`Tencentcloud::Waf.v20180125.models.TokenRuleEntry`
+
+        attr_accessor :JWTRule, :GeneralRule
+
+        def initialize(jwtrule=nil, generalrule=nil)
+          @JWTRule = jwtrule
+          @GeneralRule = generalrule
+        end
+
+        def deserialize(params)
+          unless params['JWTRule'].nil?
+            @JWTRule = JWTConfig.new
+            @JWTRule.deserialize(params['JWTRule'])
+          end
+          unless params['GeneralRule'].nil?
+            @GeneralRule = TokenRuleEntry.new
+            @GeneralRule.deserialize(params['GeneralRule'])
+          end
         end
       end
 
@@ -17248,10 +17610,14 @@ module TencentCloud
         # @type CelRule: String
         # @param LogicalOp: 配置方式的逻辑操作符，and或者or
         # @type LogicalOp: String
+        # @param PageId: 页面ID
+        # @type PageId: String
+        # @param ActionRatio: 动作灰度比例，默认值100
+        # @type ActionRatio: Integer
 
-        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :ActionType, :Priority, :ValidTime, :Url, :MatchFunc, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length, :LimitMethod, :CelRule, :LogicalOp
+        attr_accessor :Domain, :Name, :Status, :Advance, :Limit, :Interval, :ActionType, :Priority, :ValidTime, :Url, :MatchFunc, :OptionsArr, :Edition, :Type, :EventId, :SessionApplied, :RuleId, :CreateTime, :Length, :LimitMethod, :CelRule, :LogicalOp, :PageId, :ActionRatio
 
-        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, actiontype=nil, priority=nil, validtime=nil, url=nil, matchfunc=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil, limitmethod=nil, celrule=nil, logicalop=nil)
+        def initialize(domain=nil, name=nil, status=nil, advance=nil, limit=nil, interval=nil, actiontype=nil, priority=nil, validtime=nil, url=nil, matchfunc=nil, optionsarr=nil, edition=nil, type=nil, eventid=nil, sessionapplied=nil, ruleid=nil, createtime=nil, length=nil, limitmethod=nil, celrule=nil, logicalop=nil, pageid=nil, actionratio=nil)
           @Domain = domain
           @Name = name
           @Status = status
@@ -17274,6 +17640,8 @@ module TencentCloud
           @LimitMethod = limitmethod
           @CelRule = celrule
           @LogicalOp = logicalop
+          @PageId = pageid
+          @ActionRatio = actionratio
         end
 
         def deserialize(params)
@@ -17299,6 +17667,8 @@ module TencentCloud
           @LimitMethod = params['LimitMethod']
           @CelRule = params['CelRule']
           @LogicalOp = params['LogicalOp']
+          @PageId = params['PageId']
+          @ActionRatio = params['ActionRatio']
         end
       end
 
@@ -17409,10 +17779,12 @@ module TencentCloud
         # @type SessionName: String
         # @param SessionID: Session对应ID
         # @type SessionID: Integer
+        # @param Key: 精准匹配时配置的key
+        # @type Key: String
 
-        attr_accessor :Domain, :Source, :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Edition, :SessionName, :SessionID
+        attr_accessor :Domain, :Source, :Category, :KeyOrStartMat, :EndMat, :StartOffset, :EndOffset, :Edition, :SessionName, :SessionID, :Key
 
-        def initialize(domain=nil, source=nil, category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, edition=nil, sessionname=nil, sessionid=nil)
+        def initialize(domain=nil, source=nil, category=nil, keyorstartmat=nil, endmat=nil, startoffset=nil, endoffset=nil, edition=nil, sessionname=nil, sessionid=nil, key=nil)
           @Domain = domain
           @Source = source
           @Category = category
@@ -17423,6 +17795,7 @@ module TencentCloud
           @Edition = edition
           @SessionName = sessionname
           @SessionID = sessionid
+          @Key = key
         end
 
         def deserialize(params)
@@ -17436,6 +17809,7 @@ module TencentCloud
           @Edition = params['Edition']
           @SessionName = params['SessionName']
           @SessionID = params['SessionID']
+          @Key = params['Key']
         end
       end
 

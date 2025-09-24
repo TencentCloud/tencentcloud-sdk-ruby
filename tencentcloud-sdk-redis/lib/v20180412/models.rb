@@ -5560,6 +5560,8 @@ module TencentCloud
         # @param CloseTime: 实例隔离开始的时间。
         # @type CloseTime: String
         # @param SlaveReadWeight: 从节点读取权重。
+        # - 0：表示关闭副本只读。
+        # - 100：表示开启副本只读。
         # @type SlaveReadWeight: Integer
         # @param InstanceTags: 实例关联的标签信息。
         # @type InstanceTags: Array

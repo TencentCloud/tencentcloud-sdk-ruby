@@ -2457,16 +2457,19 @@ module TencentCloud
         # @type GreetingMessage: String
         # @param VoiceType: 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
         # @type VoiceType: Integer
+        # @param FastVoiceType: 复刻音色
+        # @type FastVoiceType: String
         # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
         # @type TargetLanguage: String
 
-        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :TargetLanguage
+        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :FastVoiceType, :TargetLanguage
 
-        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, targetlanguage=nil)
+        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, fastvoicetype=nil, targetlanguage=nil)
           @ProductId = productid
           @SystemPrompt = systemprompt
           @GreetingMessage = greetingmessage
           @VoiceType = voicetype
+          @FastVoiceType = fastvoicetype
           @TargetLanguage = targetlanguage
         end
 
@@ -2475,6 +2478,7 @@ module TencentCloud
           @SystemPrompt = params['SystemPrompt']
           @GreetingMessage = params['GreetingMessage']
           @VoiceType = params['VoiceType']
+          @FastVoiceType = params['FastVoiceType']
           @TargetLanguage = params['TargetLanguage']
         end
       end
@@ -10500,16 +10504,19 @@ module TencentCloud
         # @type GreetingMessage: String
         # @param VoiceType: 音色，支持的音色列表：100510000-阅读男声智逍遥；101001-情感女声智瑜；101002-通用女声智聆；101003-客服女声智美；101004-通用男声智云；101005-通用女声智莉；101006-助手女声智言；101008-客服女声智琪；101009-知性女声智芸；101010-通用男声智华；101011-新闻女声智燕；101012-新闻女声智丹；101013-新闻男声智辉；101014 -新闻男声智宁；101015-男童声智萌；101016-女童声智甜；101017-情感女声智蓉；101018-情感男声智靖；101019-粤语女声智彤。
         # @type VoiceType: Integer
+        # @param FastVoiceType: 复刻音色
+        # @type FastVoiceType: String
         # @param TargetLanguage: 支持的语言，zh-中文；en-英文；默认zh
         # @type TargetLanguage: String
 
-        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :TargetLanguage
+        attr_accessor :ProductId, :SystemPrompt, :GreetingMessage, :VoiceType, :FastVoiceType, :TargetLanguage
 
-        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, targetlanguage=nil)
+        def initialize(productid=nil, systemprompt=nil, greetingmessage=nil, voicetype=nil, fastvoicetype=nil, targetlanguage=nil)
           @ProductId = productid
           @SystemPrompt = systemprompt
           @GreetingMessage = greetingmessage
           @VoiceType = voicetype
+          @FastVoiceType = fastvoicetype
           @TargetLanguage = targetlanguage
         end
 
@@ -10518,6 +10525,7 @@ module TencentCloud
           @SystemPrompt = params['SystemPrompt']
           @GreetingMessage = params['GreetingMessage']
           @VoiceType = params['VoiceType']
+          @FastVoiceType = params['FastVoiceType']
           @TargetLanguage = params['TargetLanguage']
         end
       end

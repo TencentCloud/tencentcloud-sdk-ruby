@@ -566,10 +566,12 @@ module TencentCloud
         # @type NetworkId: String
         # @param IPV6FullChain: 是否为新 ipv6 CLB
         # @type IPV6FullChain: Boolean
+        # @param CustomizedConfigContent: 负载均衡个性化配置内容
+        # @type CustomizedConfigContent: String
 
-        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId, :IPV6FullChain
+        attr_accessor :ConsoleType, :HttpUrl, :HttpsUrl, :NetType, :AdminUser, :AdminPassword, :Status, :AccessControl, :SubnetId, :VpcId, :Description, :SlaType, :SlaName, :Vip, :InternetMaxBandwidthOut, :MultiZoneFlag, :MasterZoneId, :SlaveZoneId, :MasterZoneName, :SlaveZoneName, :NetworkId, :IPV6FullChain, :CustomizedConfigContent
 
-        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, slaname=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil, ipv6fullchain=nil)
+        def initialize(consoletype=nil, httpurl=nil, httpsurl=nil, nettype=nil, adminuser=nil, adminpassword=nil, status=nil, accesscontrol=nil, subnetid=nil, vpcid=nil, description=nil, slatype=nil, slaname=nil, vip=nil, internetmaxbandwidthout=nil, multizoneflag=nil, masterzoneid=nil, slavezoneid=nil, masterzonename=nil, slavezonename=nil, networkid=nil, ipv6fullchain=nil, customizedconfigcontent=nil)
           @ConsoleType = consoletype
           @HttpUrl = httpurl
           @HttpsUrl = httpsurl
@@ -592,6 +594,7 @@ module TencentCloud
           @SlaveZoneName = slavezonename
           @NetworkId = networkid
           @IPV6FullChain = ipv6fullchain
+          @CustomizedConfigContent = customizedconfigcontent
         end
 
         def deserialize(params)
@@ -620,6 +623,7 @@ module TencentCloud
           @SlaveZoneName = params['SlaveZoneName']
           @NetworkId = params['NetworkId']
           @IPV6FullChain = params['IPV6FullChain']
+          @CustomizedConfigContent = params['CustomizedConfigContent']
         end
       end
 
@@ -3024,18 +3028,22 @@ module TencentCloud
       class CreateNativeGatewayServiceSourceResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建是否成功
         # @type Result: Boolean
+        # @param SourceID: 服务来源ID
+        # @type SourceID: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Result, :RequestId
+        attr_accessor :Result, :SourceID, :RequestId
 
-        def initialize(result=nil, requestid=nil)
+        def initialize(result=nil, sourceid=nil, requestid=nil)
           @Result = result
+          @SourceID = sourceid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Result = params['Result']
+          @SourceID = params['SourceID']
           @RequestId = params['RequestId']
         end
       end
@@ -6527,6 +6535,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 分页偏移量
         # @type Offset: Integer
+        # @param SourceID: 服务来源ID
+        # @type SourceID: String
         # @param SourceName: 服务来源实例名称，模糊搜索
         # @type SourceName: String
         # @param SourceTypes: 微服务引擎类型：TSE-Nacos｜TSE-Consul｜TSE-PolarisMesh｜Customer-Nacos｜Customer-Consul｜Customer-PolarisMesh
@@ -6536,12 +6546,13 @@ module TencentCloud
         # @param OrderType: 排序类型，AES/DESC
         # @type OrderType: String
 
-        attr_accessor :GatewayID, :Limit, :Offset, :SourceName, :SourceTypes, :OrderField, :OrderType
+        attr_accessor :GatewayID, :Limit, :Offset, :SourceID, :SourceName, :SourceTypes, :OrderField, :OrderType
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, sourcename=nil, sourcetypes=nil, orderfield=nil, ordertype=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, sourceid=nil, sourcename=nil, sourcetypes=nil, orderfield=nil, ordertype=nil)
           @GatewayID = gatewayid
           @Limit = limit
           @Offset = offset
+          @SourceID = sourceid
           @SourceName = sourcename
           @SourceTypes = sourcetypes
           @OrderField = orderfield
@@ -6552,6 +6563,7 @@ module TencentCloud
           @GatewayID = params['GatewayID']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @SourceID = params['SourceID']
           @SourceName = params['SourceName']
           @SourceTypes = params['SourceTypes']
           @OrderField = params['OrderField']
@@ -10331,16 +10343,27 @@ module TencentCloud
         # @type InternetMaxBandwidthOut: Integer
         # @param Description: 负载均衡描述
         # @type Description: String
+        # @param SlaType: 负载均衡的规格类型，支持：
+        # - 不传为共享型。
+        # - clb.c2.medium：标准型规格
+        # - clb.c3.small：高阶型1规格
+        # - clb.c3.medium：高阶型2规格
+        # - clb.c4.small：超强型1规格
+        # - clb.c4.medium：超强型2规格
+        # - clb.c4.large：超强型3规格
+        # - clb.c4.xlarge：超强型4规格
+        # @type SlaType: String
 
-        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :InternetMaxBandwidthOut, :Description
+        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :InternetMaxBandwidthOut, :Description, :SlaType
 
-        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, internetmaxbandwidthout=nil, description=nil)
+        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, internetmaxbandwidthout=nil, description=nil, slatype=nil)
           @GatewayId = gatewayid
           @GroupId = groupid
           @NetworkType = networktype
           @Vip = vip
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @Description = description
+          @SlaType = slatype
         end
 
         def deserialize(params)
@@ -10350,6 +10373,7 @@ module TencentCloud
           @Vip = params['Vip']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           @Description = params['Description']
+          @SlaType = params['SlaType']
         end
       end
 

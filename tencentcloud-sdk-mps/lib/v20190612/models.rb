@@ -8237,6 +8237,74 @@ module TencentCloud
         end
       end
 
+      # CreateSmartEraseTemplate请求参数结构体
+      class CreateSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 智能擦除模板名称长度限制：64 个字符。
+        # @type Name: String
+        # @param EraseType: 擦除类型
+        # - subtitle 去字幕
+        # - watermark 去水印
+        # - privacy 隐私保护
+        # @type EraseType: String
+        # @param Comment: 智能擦除模板描述信息长度限制：256 个字符。
+        # @type Comment: String
+        # @param EraseSubtitleConfig: 字幕擦除配置，EraseType取subtitle时必填且仅此时生效。
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: 水印擦除配置，EraseType取watermark时必填且仅此时生效。
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: 隐私保护配置，EraseType取privacy时必填且仅此时生效。
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartErasePrivacyConfig`
+
+        attr_accessor :Name, :EraseType, :Comment, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig
+
+        def initialize(name=nil, erasetype=nil, comment=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil)
+          @Name = name
+          @EraseType = erasetype
+          @Comment = comment
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @EraseType = params['EraseType']
+          @Comment = params['Comment']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = SmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = SmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = SmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+        end
+      end
+
+      # CreateSmartEraseTemplate返回参数结构体
+      class CreateSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能擦除模板唯一标识
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSmartSubtitleTemplate请求参数结构体
       class CreateSmartSubtitleTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 智能字幕模板名称
@@ -9471,6 +9539,38 @@ module TencentCloud
 
       # DeleteSchedule返回参数结构体
       class DeleteScheduleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSmartEraseTemplate请求参数结构体
+      class DeleteSmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能擦除模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteSmartEraseTemplate返回参数结构体
+      class DeleteSmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11965,6 +12065,71 @@ module TencentCloud
               schedulesinfo_tmp = SchedulesInfo.new
               schedulesinfo_tmp.deserialize(i)
               @ScheduleInfoSet << schedulesinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSmartEraseTemplates请求参数结构体
+      class DescribeSmartEraseTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 智能擦除模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+        # @param Type: 模板类型过滤条件，不填则返回所有，可选值：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
+        # @param Name: 智能擦除模板名过滤条件，长度限制：64 个字符。
+        # @type Name: String
+
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
+
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @Type = type
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Type = params['Type']
+          @Name = params['Name']
+        end
+      end
+
+      # DescribeSmartEraseTemplates返回参数结构体
+      class DescribeSmartEraseTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param SmartEraseTemplateSet: 智能擦除模板详情列表。
+        # @type SmartEraseTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SmartEraseTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, smarterasetemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SmartEraseTemplateSet = smarterasetemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SmartEraseTemplateSet'].nil?
+            @SmartEraseTemplateSet = []
+            params['SmartEraseTemplateSet'].each do |i|
+              smarterasetemplateitem_tmp = SmartEraseTemplateItem.new
+              smarterasetemplateitem_tmp.deserialize(i)
+              @SmartEraseTemplateSet << smarterasetemplateitem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -19829,6 +19994,74 @@ module TencentCloud
         end
       end
 
+      # ModifySmartEraseTemplate请求参数结构体
+      class ModifySmartEraseTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能擦除模板唯一标识
+        # @type Definition: Integer
+        # @param Name: 智能擦除模板名称长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 智能擦除模板描述信息长度限制：256 个字符。
+        # @type Comment: String
+        # @param EraseType: 擦除类型
+        # - subtitle 去字幕
+        # - watermark 去水印
+        # - privacy 隐私保护
+        # @type EraseType: String
+        # @param EraseSubtitleConfig: 字幕擦除配置，EraseType取subtitle或者EraseType不填，对应模板原EraseType为subtitle时生效。
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: 水印擦除配置，EraseType取watermark或者EraseType不填，对应模板原EraseType为watermark时生效。
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: 隐私保护配置，EraseType取privacy或者EraseType不填，对应模板原EraseType为privacy时生效。
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartErasePrivacyConfig`
+
+        attr_accessor :Definition, :Name, :Comment, :EraseType, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig
+
+        def initialize(definition=nil, name=nil, comment=nil, erasetype=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @EraseType = erasetype
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @EraseType = params['EraseType']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = SmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = SmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = SmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+        end
+      end
+
+      # ModifySmartEraseTemplate返回参数结构体
+      class ModifySmartEraseTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifySmartSubtitleTemplate请求参数结构体
       class ModifySmartSubtitleTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 智能字幕模板唯一标识
@@ -23915,10 +24148,10 @@ module TencentCloud
         # @param Uri: 请求解密秘钥uri地址。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uri: String
-        # @param Key: 加密key(32字节字符串)。
+        # @param Key: 加密key(十六进制32字节字符串)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Key: String
-        # @param Vector: 加密初始化向量(32字节字符串)。
+        # @param Vector: 加密初始化向量(十六进制32字节字符串)。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Vector: String
 
@@ -24160,6 +24393,79 @@ module TencentCloud
           @Progress = params['Progress']
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
+        end
+      end
+
+      # 智能擦除模板详情
+      class SmartEraseTemplateItem < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能擦除模板唯一标识
+        # @type Definition: Integer
+        # @param Name: 智能擦除模板名称
+        # @type Name: String
+        # @param Comment: 智能擦除模板描述信息
+        # @type Comment: String
+        # @param Type: 模板类型，取值范围：
+        # * Preset：系统预置模板；
+        # * Custom：用户自定义模板。
+        # @type Type: String
+        # @param EraseType: 擦除类型
+        # - subtitle 去字幕
+        # - watermark 去水印
+        # - privacy 隐私保护
+        # @type EraseType: String
+        # @param EraseSubtitleConfig: 字幕擦除配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EraseSubtitleConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseSubtitleConfig`
+        # @param EraseWatermarkConfig: 水印擦除配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EraseWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartEraseWatermarkConfig`
+        # @param ErasePrivacyConfig: 隐私保护配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErasePrivacyConfig: :class:`Tencentcloud::Mps.v20190612.models.SmartErasePrivacyConfig`
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type UpdateTime: String
+        # @param AliasName: 智能擦除预设模板别名
+        # @type AliasName: String
+
+        attr_accessor :Definition, :Name, :Comment, :Type, :EraseType, :EraseSubtitleConfig, :EraseWatermarkConfig, :ErasePrivacyConfig, :CreateTime, :UpdateTime, :AliasName
+
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, erasetype=nil, erasesubtitleconfig=nil, erasewatermarkconfig=nil, eraseprivacyconfig=nil, createtime=nil, updatetime=nil, aliasname=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @EraseType = erasetype
+          @EraseSubtitleConfig = erasesubtitleconfig
+          @EraseWatermarkConfig = erasewatermarkconfig
+          @ErasePrivacyConfig = eraseprivacyconfig
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @AliasName = aliasname
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          @EraseType = params['EraseType']
+          unless params['EraseSubtitleConfig'].nil?
+            @EraseSubtitleConfig = SmartEraseSubtitleConfig.new
+            @EraseSubtitleConfig.deserialize(params['EraseSubtitleConfig'])
+          end
+          unless params['EraseWatermarkConfig'].nil?
+            @EraseWatermarkConfig = SmartEraseWatermarkConfig.new
+            @EraseWatermarkConfig.deserialize(params['EraseWatermarkConfig'])
+          end
+          unless params['ErasePrivacyConfig'].nil?
+            @ErasePrivacyConfig = SmartErasePrivacyConfig.new
+            @ErasePrivacyConfig.deserialize(params['ErasePrivacyConfig'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @AliasName = params['AliasName']
         end
       end
 
@@ -24908,7 +25214,7 @@ module TencentCloud
 
         # 注: 不同DRM厂商对子流的数量限制不一样，如 PallyCon 限制不能超过5条子流，DRMtoday厂商最多仅支持9条子流加密
         # @type KeyServerUrl: String
-        # @param Vector: 加密初始化向量(32字节字符串)，该字段内容为用户自定义。
+        # @param Vector: 加密初始化向量(十六进制32字节字符串)，该字段内容为用户自定义。
         # @type Vector: String
         # @param EncryptionMethod: 加密方式，FairPlay 默认cbcs，PlayReady，Widevine 默认cenc
 

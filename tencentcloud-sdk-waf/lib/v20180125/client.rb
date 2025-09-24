@@ -3439,7 +3439,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更改某一条规则
+        # 修改域名规则白名单
 
         # @param request: Request instance for ModifyDomainWhiteRule.
         # @type request: :class:`Tencentcloud::waf::V20180125::ModifyDomainWhiteRuleRequest`
