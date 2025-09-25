@@ -20,7 +20,7 @@ gem install tencentcloud-sdk-cvm
 ## 通过源码包安装
 
 ### 安装指定产品 SDK
-前往 [Github 仓库](https://github.com/tencentcloud/tencentcloud-sdk-ruby) 或者 [Gitee 仓库](https://gitee.com/tencentcloud/tencentcloud-sdk-ruby) 下载最新代码，以安装cvm sdk为例，解压后
+前往 [CNB](https://cnb.cool/tencent/cloud/api/sdk/tencentcloud-sdk-ruby)、[Github](https://github.com/tencentcloud/tencentcloud-sdk-ruby) 或者 [Gitee](https://gitee.com/tencentcloud/tencentcloud-sdk-ruby) 下载最新代码，以安装cvm sdk为例，解压后
 
     $ cd tencentcloud-sdk-ruby
     $ cd tencentcloud-sdk-common
