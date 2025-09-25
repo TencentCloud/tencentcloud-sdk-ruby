@@ -9706,7 +9706,7 @@ module TencentCloud
         # @type GroupResourceTypeList: Array
         # @param Status: 部署组状态过滤字段
         # @type Status: String
-        # @param GroupIdList: 无
+        # @param GroupIdList: 部署组ID列表
         # @type GroupIdList: Array
 
         attr_accessor :SearchWord, :ApplicationId, :OrderBy, :OrderType, :Offset, :Limit, :NamespaceId, :ClusterId, :GroupResourceTypeList, :Status, :GroupIdList

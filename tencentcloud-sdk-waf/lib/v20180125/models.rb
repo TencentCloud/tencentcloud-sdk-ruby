@@ -858,23 +858,13 @@ module TencentCloud
         # @type IsKeepAlive: String
         # @param InstanceID: 必填项，域名所属实例id
         # @type InstanceID: String
-        # @param HttpsRewrite: 必填项，是否开启HTTP强制跳转到HTTPS。
-        # 0：不强制跳转
-        # 1：开启强制跳转
+        # @param HttpsRewrite: 是否开启HTTP强制跳转到HTTPS。0：不强制跳转1：开启强制跳转
         # @type HttpsRewrite: Integer
-        # @param IsHttp2: 必填项，是否开启HTTP2，需要开启HTTPS协议支持。
-        # 0：关闭
-        # 1：开启
+        # @param IsHttp2: 是否开启HTTP2，需要开启HTTPS协议支持。0：关闭1：开启
         # @type IsHttp2: Integer
-        # @param ActiveCheck: 必填项，是否开启主动健康检测。
-        # 0：不开启
-        # 1：开启
+        # @param ActiveCheck: 是否开启主动健康检测。0：不开启1：开启
         # @type ActiveCheck: Integer
-        # @param CipherTemplate: 必填项，加密套件模板。
-        # 0：不支持选择，使用默认模板
-        # 1：通用型模板
-        # 2：安全型模板
-        # 3：自定义模板
+        # @param CipherTemplate: 加密套件模板。0：不支持选择，使用默认模板  1：通用型模板 2：安全型模板3：自定义模板
         # @type CipherTemplate: Integer
         # @param Cert: CertType为1时，需要填充此参数，表示自有证书的证书链
         # @type Cert: String

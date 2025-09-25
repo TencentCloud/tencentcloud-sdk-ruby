@@ -4060,7 +4060,6 @@ module TencentCloud
       # ModifyRoom请求参数结构体
       class ModifyRoomRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 房间ID。
-        # 字符数不超过256
         # @type RoomId: Integer
         # @param SdkAppId: 低代码互动课堂的SdkAppId
         # @type SdkAppId: Integer
@@ -4071,6 +4070,7 @@ module TencentCloud
         # @param TeacherId: 老师ID。直播开始后不允许修改。
         # @type TeacherId: String
         # @param Name: 房间名称。
+        # 字符数不超过256
         # @type Name: String
         # @param Resolution: 分辨率。可以有如下取值：
         # 1 标清

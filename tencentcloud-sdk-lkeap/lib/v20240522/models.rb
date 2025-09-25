@@ -114,7 +114,9 @@ module TencentCloud
         # @type Stream: Boolean
         # @param Temperature: 控制生成的随机性，较高的值会产生更多样化的输出。
         # @type Temperature: Float
-        # @param MaxTokens: 最大生成的token数量，默认为4096，最大可设置为16384
+        # @param MaxTokens: 模型最大输出长度（单位 token），不包含思维链内容。
+        # 默认为4096，取值范围：各个模型不同，参考各个模型最大输出长度（示例：4k，即4096）。
+        # 输出 token 的总长度受模型的上下文长度限制。
         # @type MaxTokens: Integer
         # @param EnableSearch: 是否启用联网搜索
         # @type EnableSearch: Boolean
@@ -410,7 +412,8 @@ module TencentCloud
         # 1：只返回每一页的OCR原始Json；
         # 2：只返回每一页的MD，
         # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD，
+        # 4：返回全文MD + 每一页的MD
+        # 5: 返回全文md，每一页ocr原始json，每一页md
         # 默认值为0
         # @type ResultType: String
         # @param IgnoreFailedPage: 是否忽略失败页，返回已成功的页数据。默认为true。
@@ -512,10 +515,10 @@ module TencentCloud
         # @param ResultType: 智能文档解析返回结果的格式
         # 0：只返回全文MD；
         # 1：只返回每一页的OCR原始Json；
-        # 2：只返回每一页的MD，
+        # 2：只返回每一页的MD；
         # 3：返回全文MD + 每一页的OCR原始Json；
-        # 4：返回全文MD + 每一页的MD，
-        # 默认值为3（返回全文MD + 每一页的OCR原始Json）
+        # 4：返回全文MD + 每一页的MD；
+        # 5：返回全文md，每一页ocr原始json，每一页md。
 
         # @type ResultType: String
         # @param EnableMllm: 是否开启mllm
@@ -524,20 +527,36 @@ module TencentCloud
         # @type MaxChunkSize: Integer
         # @param IgnoreFailedPage: 是否忽略返回失败页码
         # @type IgnoreFailedPage: Boolean
+        # @param SplitResultType: 智能文档解析返回结果的格式
+        # 0：只返回全文MD；
+        # 1：只返回每一页的OCR原始Json；
+        # 2：只返回每一页的MD；
+        # 3：返回全文MD + 每一页的OCR原始Json；
+        # 4：返回全文MD + 每一页的MD；
+        # 5：返回全文md，每一页ocr原始json，每一页md。
 
-        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage
+        # @type SplitResultType: String
+        # @param SplitTableResultType: Markdown文件中表格返回的形式
+        # 0，表格以MD形式返回
+        # 1，表格以HTML形式返回
+        # 默认为
+        # @type SplitTableResultType: String
+
+        attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage, :SplitResultType, :SplitTableResultType
         extend Gem::Deprecate
         deprecate :TableResultType, :none, 2025, 9
         deprecate :TableResultType=, :none, 2025, 9
         deprecate :ResultType, :none, 2025, 9
         deprecate :ResultType=, :none, 2025, 9
 
-        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil)
+        def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil, splitresulttype=nil, splittableresulttype=nil)
           @TableResultType = tableresulttype
           @ResultType = resulttype
           @EnableMllm = enablemllm
           @MaxChunkSize = maxchunksize
           @IgnoreFailedPage = ignorefailedpage
+          @SplitResultType = splitresulttype
+          @SplitTableResultType = splittableresulttype
         end
 
         def deserialize(params)
@@ -546,6 +565,8 @@ module TencentCloud
           @EnableMllm = params['EnableMllm']
           @MaxChunkSize = params['MaxChunkSize']
           @IgnoreFailedPage = params['IgnoreFailedPage']
+          @SplitResultType = params['SplitResultType']
+          @SplitTableResultType = params['SplitTableResultType']
         end
       end
 
@@ -1032,8 +1053,7 @@ module TencentCloud
 
       # GetEmbedding请求参数结构体
       class GetEmbeddingRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 说明：选择生成向量的模型
-        # 备注：仅一个模型可选
+        # @param Model: 说明：选择生成向量的模型备注：可选[lke-text-embedding-v1,lke-text-embedding-v2]
         # @type Model: String
         # @param Inputs: 说明：需要 embedding 的文本
         # 备注：单条query最多2000个字符，总条数最多7条
@@ -1517,25 +1537,35 @@ module TencentCloud
 
       # ModifyAttributeLabel请求参数结构体
       class ModifyAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param KnowledgeBaseId: 知识库ID
+        # @param KnowledgeBaseId: 说明：知识库ID
+        # 备注：通过创建知识库接口（DeleteKnowledgeBase）得到知识库ID（KnowledgeBaseId）
         # @type KnowledgeBaseId: String
-        # @param AttributeId: 属性ID
+        # @param AttributeId: 说明：属性ID
+        # 备注：通过CreateAttributeLabel接口创建属性时会生成AttributeId，通过ListAttributeLabels接口可查询得到AttributeId、AttributeKey、AttributeName以及LabelId、LabelName的对应关系
         # @type AttributeId: String
-        # @param AttributeKey: 属性标识，最大40个英文字符，如style
+        # @param AttributeKey: 说明：属性标识，
+        # 备注：仅支持英文字符，不支持数字，支持下划线。最大支持40个英文字符，如style
         # @type AttributeKey: String
-        # @param AttributeName: 属性名称，最大80个英文字符，如风格
+        # @param AttributeName: 说明：属性名称
+        # 备注：支持中英文字符。最大支持80个中英文字符，如风格
         # @type AttributeName: String
-        # @param Labels: 属性标签
+        # @param Labels: 说明：标签ID（LabelId）以及标签名（LabelName）
+        # 备注：
+        # - 不填写LabelId，默认在当前AttributeId下新增标签值（LabelName）；
+        # - 若填写该AttributeId下的LabelId以及LabelName，则为修改该LabelId对应的标签值
         # @type Labels: Array
+        # @param DeleteLabelIds: 说明：删除的标签id
+        # @type DeleteLabelIds: Array
 
-        attr_accessor :KnowledgeBaseId, :AttributeId, :AttributeKey, :AttributeName, :Labels
+        attr_accessor :KnowledgeBaseId, :AttributeId, :AttributeKey, :AttributeName, :Labels, :DeleteLabelIds
 
-        def initialize(knowledgebaseid=nil, attributeid=nil, attributekey=nil, attributename=nil, labels=nil)
+        def initialize(knowledgebaseid=nil, attributeid=nil, attributekey=nil, attributename=nil, labels=nil, deletelabelids=nil)
           @KnowledgeBaseId = knowledgebaseid
           @AttributeId = attributeid
           @AttributeKey = attributekey
           @AttributeName = attributename
           @Labels = labels
+          @DeleteLabelIds = deletelabelids
         end
 
         def deserialize(params)
@@ -1551,6 +1581,7 @@ module TencentCloud
               @Labels << attributelabelitem_tmp
             end
           end
+          @DeleteLabelIds = params['DeleteLabelIds']
         end
       end
 

@@ -6555,6 +6555,26 @@ module TencentCloud
         end
       end
 
+      # 翻译术语
+      class Terminology < TencentCloud::Common::AbstractModel
+        # @param Source: 源术语
+        # @type Source: String
+        # @param Target: 目标术语翻译结果
+        # @type Target: String
+
+        attr_accessor :Source, :Target
+
+        def initialize(source=nil, target=nil)
+          @Source = source
+          @Target = target
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Target = params['Target']
+        end
+      end
+
       # TextToSpeech请求参数结构体
       class TextToSpeechRequest < TencentCloud::Common::AbstractModel
         # @param Text: 需要转语音的文字内容，长度范围：[1, 255]
@@ -6760,13 +6780,16 @@ module TencentCloud
         # @type Mode: Integer
         # @param TTSConfig: 语音同传配置，开启同传时，需要传递
         # @type TTSConfig: :class:`Tencentcloud::Trtc.v20190722.models.TTSConfig`
+        # @param Terminology: 翻译术语集合
+        # @type Terminology: Array
 
-        attr_accessor :TargetLanguages, :Mode, :TTSConfig
+        attr_accessor :TargetLanguages, :Mode, :TTSConfig, :Terminology
 
-        def initialize(targetlanguages=nil, mode=nil, ttsconfig=nil)
+        def initialize(targetlanguages=nil, mode=nil, ttsconfig=nil, terminology=nil)
           @TargetLanguages = targetlanguages
           @Mode = mode
           @TTSConfig = ttsconfig
+          @Terminology = terminology
         end
 
         def deserialize(params)
@@ -6775,6 +6798,14 @@ module TencentCloud
           unless params['TTSConfig'].nil?
             @TTSConfig = TTSConfig.new
             @TTSConfig.deserialize(params['TTSConfig'])
+          end
+          unless params['Terminology'].nil?
+            @Terminology = []
+            params['Terminology'].each do |i|
+              terminology_tmp = Terminology.new
+              terminology_tmp.deserialize(i)
+              @Terminology << terminology_tmp
+            end
           end
         end
       end

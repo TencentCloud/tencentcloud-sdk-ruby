@@ -10474,7 +10474,7 @@ module TencentCloud
 
       # ModifyNoticeContent请求参数结构体
       class ModifyNoticeContentRequest < TencentCloud::Common::AbstractModel
-        # @param NoticeContentId: 通知内容模板ID。-通过[获取通知内容模板](https://cloud.tencent.com/document/api/614/111714)获取通知内容模版ID
+        # @param NoticeContentId: 通知内容模板ID。-通过[获取通知内容模板](https://cloud.tencent.com/document/api/614/111714)获取通知内容模板ID
         # @type NoticeContentId: String
         # @param Name: 通知内容模板名称。
         # @type Name: String
@@ -10897,9 +10897,9 @@ module TencentCloud
 
       # 云监控通知渠道组信息
       class MonitorNoticeRule < TencentCloud::Common::AbstractModel
-        # @param NoticeId: 云监控通知模版ID
+        # @param NoticeId: 腾讯云可观测平台通知模板 ID
         # @type NoticeId: String
-        # @param ContentTmplId: 云监控内容模版ID，不传默认内容模版
+        # @param ContentTmplId: 腾讯云可观测平台内容模板ID，不传默认内容模板
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentTmplId: String
         # @param AlarmLevels: 告警级别,0:警告(Warn); 1:提醒(Info); 2:紧急 (Critical)
@@ -12011,12 +12011,12 @@ module TencentCloud
         # - 0：成功
         # - 10000：参数错误，请确认参数
         # - 10001：授权失败，请确认授权
-        # - 10002：获取文件列表失败，请稍后再试。若无法解决，请联系智能客服或提交工单
+        # - 10002：获取文件列表失败，请稍后再试。若无法解决，请咨询 [在线支持](https://cloud.tencent.com/online-service) 或 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=83&level2_id=469&source=14&data_title=%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1&step=1) 处理。
         # - 10003：桶内无相应前缀文件，请使用正确的桶、文件前缀和压缩方式
-        # - 10004：文件下载失败，请稍后再试。若无法解决，请联系智能客服或提交工单
+        # - 10004：文件下载失败，请稍后再试。若无法解决，请咨询 [在线支持](https://cloud.tencent.com/online-service) 或 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=83&level2_id=469&source=14&data_title=%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1&step=1) 处理。
         # - 10005：文件解压缩失败，请选择正确的压缩方式然后再试
         # - 10006：读取文件内容失败，请确认文件可读
-        # - 10007：文件预览失败，请稍后再试。若无法解决，请联系智能客服或提交工单
+        # - 10007：文件预览失败，请稍后再试。若无法解决，请咨询 [在线支持](https://cloud.tencent.com/online-service) 或 [提交工单](https://console.cloud.tencent.com/workorder/category?level1_id=83&level2_id=469&source=14&data_title=%E6%97%A5%E5%BF%97%E6%9C%8D%E5%8A%A1&step=1) 处理。
         # @type Status: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
