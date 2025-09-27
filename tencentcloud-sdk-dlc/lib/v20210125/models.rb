@@ -1540,6 +1540,26 @@ module TencentCloud
         end
       end
 
+      # 任务 core 用量信息
+      class CoreInfo < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳(毫秒)数组
+        # @type Timestamp: Array
+        # @param CoreUsage: core 用量
+        # @type CoreUsage: Array
+
+        attr_accessor :Timestamp, :CoreUsage
+
+        def initialize(timestamp=nil, coreusage=nil)
+          @Timestamp = timestamp
+          @CoreUsage = coreusage
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @CoreUsage = params['CoreUsage']
+        end
+      end
+
       # cos权限描述
       class CosPermission < TencentCloud::Common::AbstractModel
         # @param CosPath: cos路径
@@ -2010,16 +2030,20 @@ module TencentCloud
 
       # CreateDataMaskStrategy返回参数结构体
       class CreateDataMaskStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param StrategyId: 策略id
+        # @type StrategyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :StrategyId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(strategyid=nil, requestid=nil)
+          @StrategyId = strategyid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @StrategyId = params['StrategyId']
           @RequestId = params['RequestId']
         end
       end
@@ -3054,10 +3078,20 @@ module TencentCloud
         # @type SparkSpecMode: String
         # @param SparkSize: 仅SQL资源组资源上限，仅用于快速模块
         # @type SparkSize: Integer
+        # @param DriverGPUSpec: GPUDriver规格
+        # @type DriverGPUSpec: Integer
+        # @param ExecutorGPUSpec: GPUExecutor规格
+        # @type ExecutorGPUSpec: Integer
+        # @param GPULimitSize: GPU上限
+        # @type GPULimitSize: Integer
+        # @param GPUSize: GPU规格
+        # @type GPUSize: Integer
+        # @param PythonGPUSpec: Pod GPU规格上限
+        # @type PythonGPUSpec: Integer
 
-        attr_accessor :EngineResourceGroupName, :DataEngineName, :AutoLaunch, :AutoPause, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsLaunchNow, :AutoPauseTime, :StaticConfigPairs, :DynamicConfigPairs, :MaxConcurrency, :NetworkConfigNames, :PublicDomain, :RegistryId, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :ResourceGroupScene, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize
+        attr_accessor :EngineResourceGroupName, :DataEngineName, :AutoLaunch, :AutoPause, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsLaunchNow, :AutoPauseTime, :StaticConfigPairs, :DynamicConfigPairs, :MaxConcurrency, :NetworkConfigNames, :PublicDomain, :RegistryId, :FrameType, :ImageType, :ImageName, :ImageVersion, :Size, :ResourceGroupScene, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize, :DriverGPUSpec, :ExecutorGPUSpec, :GPULimitSize, :GPUSize, :PythonGPUSpec
 
-        def initialize(engineresourcegroupname=nil, dataenginename=nil, autolaunch=nil, autopause=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, islaunchnow=nil, autopausetime=nil, staticconfigpairs=nil, dynamicconfigpairs=nil, maxconcurrency=nil, networkconfignames=nil, publicdomain=nil, registryid=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, resourcegroupscene=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil)
+        def initialize(engineresourcegroupname=nil, dataenginename=nil, autolaunch=nil, autopause=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, islaunchnow=nil, autopausetime=nil, staticconfigpairs=nil, dynamicconfigpairs=nil, maxconcurrency=nil, networkconfignames=nil, publicdomain=nil, registryid=nil, frametype=nil, imagetype=nil, imagename=nil, imageversion=nil, size=nil, resourcegroupscene=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil, drivergpuspec=nil, executorgpuspec=nil, gpulimitsize=nil, gpusize=nil, pythongpuspec=nil)
           @EngineResourceGroupName = engineresourcegroupname
           @DataEngineName = dataenginename
           @AutoLaunch = autolaunch
@@ -3084,6 +3118,11 @@ module TencentCloud
           @PythonCuSpec = pythoncuspec
           @SparkSpecMode = sparkspecmode
           @SparkSize = sparksize
+          @DriverGPUSpec = drivergpuspec
+          @ExecutorGPUSpec = executorgpuspec
+          @GPULimitSize = gpulimitsize
+          @GPUSize = gpusize
+          @PythonGPUSpec = pythongpuspec
         end
 
         def deserialize(params)
@@ -3127,6 +3166,11 @@ module TencentCloud
           @PythonCuSpec = params['PythonCuSpec']
           @SparkSpecMode = params['SparkSpecMode']
           @SparkSize = params['SparkSize']
+          @DriverGPUSpec = params['DriverGPUSpec']
+          @ExecutorGPUSpec = params['ExecutorGPUSpec']
+          @GPULimitSize = params['GPULimitSize']
+          @GPUSize = params['GPUSize']
+          @PythonGPUSpec = params['PythonGPUSpec']
         end
       end
 
@@ -9188,6 +9232,45 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTaskResourceUsage请求参数结构体
+      class DescribeTaskResourceUsageRequest < TencentCloud::Common::AbstractModel
+        # @param TaskInstanceId: 任务 id
+        # @type TaskInstanceId: String
+
+        attr_accessor :TaskInstanceId
+
+        def initialize(taskinstanceid=nil)
+          @TaskInstanceId = taskinstanceid
+        end
+
+        def deserialize(params)
+          @TaskInstanceId = params['TaskInstanceId']
+        end
+      end
+
+      # DescribeTaskResourceUsage返回参数结构体
+      class DescribeTaskResourceUsageResponse < TencentCloud::Common::AbstractModel
+        # @param CoreInfo: core 用量信息
+        # @type CoreInfo: :class:`Tencentcloud::Dlc.v20210125.models.CoreInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CoreInfo, :RequestId
+
+        def initialize(coreinfo=nil, requestid=nil)
+          @CoreInfo = coreinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CoreInfo'].nil?
+            @CoreInfo = CoreInfo.new
+            @CoreInfo.deserialize(params['CoreInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -15622,10 +15705,12 @@ module TencentCloud
         # @type TotalTime: Integer
         # @param QueryResultTime: 获取结果消耗的时间
         # @type QueryResultTime: Float
+        # @param ResultSetEncode: base64 编码结果集
+        # @type ResultSetEncode: String
 
-        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime, :QueryResultTime
+        attr_accessor :TaskId, :DatasourceConnectionName, :DatabaseName, :SQL, :SQLType, :State, :DataAmount, :UsedTime, :OutputPath, :CreateTime, :OutputMessage, :RowAffectInfo, :ResultSchema, :ResultSet, :NextToken, :Percentage, :ProgressDetail, :DisplayFormat, :TotalTime, :QueryResultTime, :ResultSetEncode
 
-        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil, totaltime=nil, queryresulttime=nil)
+        def initialize(taskid=nil, datasourceconnectionname=nil, databasename=nil, sql=nil, sqltype=nil, state=nil, dataamount=nil, usedtime=nil, outputpath=nil, createtime=nil, outputmessage=nil, rowaffectinfo=nil, resultschema=nil, resultset=nil, nexttoken=nil, percentage=nil, progressdetail=nil, displayformat=nil, totaltime=nil, queryresulttime=nil, resultsetencode=nil)
           @TaskId = taskid
           @DatasourceConnectionName = datasourceconnectionname
           @DatabaseName = databasename
@@ -15646,6 +15731,7 @@ module TencentCloud
           @DisplayFormat = displayformat
           @TotalTime = totaltime
           @QueryResultTime = queryresulttime
+          @ResultSetEncode = resultsetencode
         end
 
         def deserialize(params)
@@ -15676,6 +15762,7 @@ module TencentCloud
           @DisplayFormat = params['DisplayFormat']
           @TotalTime = params['TotalTime']
           @QueryResultTime = params['QueryResultTime']
+          @ResultSetEncode = params['ResultSetEncode']
         end
       end
 
@@ -16399,10 +16486,20 @@ module TencentCloud
         # @type SparkSpecMode: String
         # @param SparkSize: 仅SQL资源组资源上限，仅用于快速模式
         # @type SparkSize: Integer
+        # @param DriverGPUSpec: gpuDriver规格
+        # @type DriverGPUSpec: Integer
+        # @param ExecutorGPUSpec: gpuExcutor 规格
+        # @type ExecutorGPUSpec: Integer
+        # @param GPULimitSize: gpu 上限
+        # @type GPULimitSize: Integer
+        # @param GPUSize: gpu 规格
+        # @type GPUSize: Integer
+        # @param PythonGPUSpec: gpupod 规格
+        # @type PythonGPUSpec: Integer
 
-        attr_accessor :EngineResourceGroupName, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsEffectiveNow, :Size, :ImageType, :ImageName, :ImageVersion, :FrameType, :PublicDomain, :RegistryId, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize
+        attr_accessor :EngineResourceGroupName, :DriverCuSpec, :ExecutorCuSpec, :MinExecutorNums, :MaxExecutorNums, :IsEffectiveNow, :Size, :ImageType, :ImageName, :ImageVersion, :FrameType, :PublicDomain, :RegistryId, :RegionName, :PythonCuSpec, :SparkSpecMode, :SparkSize, :DriverGPUSpec, :ExecutorGPUSpec, :GPULimitSize, :GPUSize, :PythonGPUSpec
 
-        def initialize(engineresourcegroupname=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, iseffectivenow=nil, size=nil, imagetype=nil, imagename=nil, imageversion=nil, frametype=nil, publicdomain=nil, registryid=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil)
+        def initialize(engineresourcegroupname=nil, drivercuspec=nil, executorcuspec=nil, minexecutornums=nil, maxexecutornums=nil, iseffectivenow=nil, size=nil, imagetype=nil, imagename=nil, imageversion=nil, frametype=nil, publicdomain=nil, registryid=nil, regionname=nil, pythoncuspec=nil, sparkspecmode=nil, sparksize=nil, drivergpuspec=nil, executorgpuspec=nil, gpulimitsize=nil, gpusize=nil, pythongpuspec=nil)
           @EngineResourceGroupName = engineresourcegroupname
           @DriverCuSpec = drivercuspec
           @ExecutorCuSpec = executorcuspec
@@ -16420,6 +16517,11 @@ module TencentCloud
           @PythonCuSpec = pythoncuspec
           @SparkSpecMode = sparkspecmode
           @SparkSize = sparksize
+          @DriverGPUSpec = drivergpuspec
+          @ExecutorGPUSpec = executorgpuspec
+          @GPULimitSize = gpulimitsize
+          @GPUSize = gpusize
+          @PythonGPUSpec = pythongpuspec
         end
 
         def deserialize(params)
@@ -16440,6 +16542,11 @@ module TencentCloud
           @PythonCuSpec = params['PythonCuSpec']
           @SparkSpecMode = params['SparkSpecMode']
           @SparkSize = params['SparkSize']
+          @DriverGPUSpec = params['DriverGPUSpec']
+          @ExecutorGPUSpec = params['ExecutorGPUSpec']
+          @GPULimitSize = params['GPULimitSize']
+          @GPUSize = params['GPUSize']
+          @PythonGPUSpec = params['PythonGPUSpec']
         end
       end
 
