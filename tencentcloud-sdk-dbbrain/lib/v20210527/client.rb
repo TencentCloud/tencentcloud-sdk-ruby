@@ -1061,6 +1061,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定时间段内Redis 访问命令 cost top N
+
+        # @param request: Request instance for DescribeMetricTopProxies.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeMetricTopProxiesRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeMetricTopProxiesResponse`
+        def DescribeMetricTopProxies(request)
+          body = send_request('DescribeMetricTopProxies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMetricTopProxiesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询关系型数据库的实时线程列表。
 
         # @param request: Request instance for DescribeMySqlProcessList.

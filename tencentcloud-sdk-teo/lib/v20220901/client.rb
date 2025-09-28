@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于多通道安全加速网关回源 IP 网段发生变更时，确认已将最新回源 IP 网段更新至源站防火墙。
+
+        # @param request: Request instance for ConfirmMultiPathGatewayOriginACL.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ConfirmMultiPathGatewayOriginACLRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ConfirmMultiPathGatewayOriginACLResponse`
+        def ConfirmMultiPathGatewayOriginACL(request)
+          body = send_request('ConfirmMultiPathGatewayOriginACL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ConfirmMultiPathGatewayOriginACLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于回源 IP 网段发生变更时，确认已将最新回源 IP 网段更新至源站防火墙。确认已更新至最新的回源 IP 网段后，相关变更通知将会停止推送。
 
         # @param request: Request instance for ConfirmOriginACLUpdate.
@@ -2427,6 +2451,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询多通道安全加速网关实例与回源 IP 网段的绑定关系，以及回源 IP 网段详情。若 MultiPathGatewayNextOriginACL 字段有返回值，则需要将最新的回源 IP 网段同步到源站防火墙配置中。
+
+        # @param request: Request instance for DescribeMultiPathGatewayOriginACL.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeMultiPathGatewayOriginACLRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeMultiPathGatewayOriginACLResponse`
+        def DescribeMultiPathGatewayOriginACL(request)
+          body = send_request('DescribeMultiPathGatewayOriginACL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMultiPathGatewayOriginACLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过本接口查询用户创建的多通道安全加速网关（云上网关）的可用地域列表。
 
         # @param request: Request instance for DescribeMultiPathGatewayRegions.
@@ -4173,6 +4221,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMultiPathGatewaySecretKeyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新多通道安全网关状态。
+
+        # @param request: Request instance for ModifyMultiPathGatewayStatus.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyMultiPathGatewayStatusRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyMultiPathGatewayStatusResponse`
+        def ModifyMultiPathGatewayStatus(request)
+          body = send_request('ModifyMultiPathGatewayStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMultiPathGatewayStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

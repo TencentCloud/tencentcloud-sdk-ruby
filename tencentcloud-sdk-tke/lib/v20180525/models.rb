@@ -441,6 +441,8 @@ module TencentCloud
         # @param Path: 对象存储桶路径
         # @type Path: String
         # @param State: 存储仓库状态
+        # - Available: 可用
+        # - Unavailable: 不可用
         # @type State: String
         # @param Message: 详细状态信息
         # @type Message: String
@@ -899,7 +901,10 @@ module TencentCloud
         # 1. 集群版本必须为1.14及以上；
         # 2. 系统镜像必须是: Tencent Linux 2.4；
         # @type KubeProxyMode: String
-        # @param NetworkType: 集群网络类型。包括GR（全局路由）和VPC-CNI两种模式，默认为GR。
+        # @param NetworkType: 集群网络类型，默认为GR。
+        # - GR: 全局路由
+        # - VPC-CNI: VPC-CNI模式
+        # - CiliumOverlay: CiliumOverlay模式
         # @type NetworkType: String
         # @param NodeNameType: 集群中节点NodeName类型（包括 hostname,lan-ip两种形式，默认为lan-ip。如果开启了hostname模式，创建节点时需要设置HostName参数，并且InstanceName需要和HostName一致）
         # @type NodeNameType: String
@@ -7628,6 +7633,10 @@ module TencentCloud
       # DescribeEncryptionStatus返回参数结构体
       class DescribeEncryptionStatusResponse < TencentCloud::Common::AbstractModel
         # @param Status: 加密状态
+        # - Opening: 开启中
+        # - Opened: 已开启
+        # - Closing: 关闭中
+        # - Closed: 已关闭
         # @type Status: String
         # @param ErrorMsg: 加密错误信息
         # @type ErrorMsg: String
@@ -13017,7 +13026,7 @@ module TencentCloud
 
       # kms加密参数
       class KMSConfiguration < TencentCloud::Common::AbstractModel
-        # @param KeyId: kms id
+        # @param KeyId: kms id，可以在密钥管理控制台获取
         # @type KeyId: String
         # @param KmsRegion: kms 地域
         # @type KmsRegion: String
@@ -16962,7 +16971,7 @@ module TencentCloud
         # @type RegionName: String
         # @param RegionId: 地域ID
         # @type RegionId: Integer
-        # @param Status: 地域状态
+        # @param Status: 地域状态\n- alluser: 所有用户可见
         # @type Status: String
         # @param FeatureGates: 地域特性开关(按照JSON的形式返回所有属性)
         # @type FeatureGates: String
@@ -19387,7 +19396,7 @@ module TencentCloud
         # @type Name: String
         # @param Version: 版本信息
         # @type Version: String
-        # @param Remark: Remark
+        # @param Remark: 备注
         # @type Remark: String
 
         attr_accessor :Name, :Version, :Remark

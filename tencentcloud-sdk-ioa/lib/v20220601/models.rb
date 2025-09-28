@@ -560,10 +560,12 @@ module TencentCloud
         # @type LatestSyncResult: String
         # @param LatestSyncTime: 最新一次同步任务的结束时间
         # @type LatestSyncTime: String
+        # @param NamePathArr: 分组名称数组
+        # @type NamePathArr: Array
 
-        attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :ImportType, :MiniIamId, :UserTotal, :IsLeaf, :ReadOnly, :LatestSyncResult, :LatestSyncTime
+        attr_accessor :NamePath, :IdPathArr, :ExtraInfo, :Utime, :ParentId, :OrgId, :Name, :Id, :Description, :Source, :IdPath, :Itime, :ParentOrgId, :ImportType, :MiniIamId, :UserTotal, :IsLeaf, :ReadOnly, :LatestSyncResult, :LatestSyncTime, :NamePathArr
 
-        def initialize(namepath=nil, idpatharr=nil, extrainfo=nil, utime=nil, parentid=nil, orgid=nil, name=nil, id=nil, description=nil, source=nil, idpath=nil, itime=nil, parentorgid=nil, importtype=nil, miniiamid=nil, usertotal=nil, isleaf=nil, readonly=nil, latestsyncresult=nil, latestsynctime=nil)
+        def initialize(namepath=nil, idpatharr=nil, extrainfo=nil, utime=nil, parentid=nil, orgid=nil, name=nil, id=nil, description=nil, source=nil, idpath=nil, itime=nil, parentorgid=nil, importtype=nil, miniiamid=nil, usertotal=nil, isleaf=nil, readonly=nil, latestsyncresult=nil, latestsynctime=nil, namepatharr=nil)
           @NamePath = namepath
           @IdPathArr = idpatharr
           @ExtraInfo = extrainfo
@@ -584,6 +586,7 @@ module TencentCloud
           @ReadOnly = readonly
           @LatestSyncResult = latestsyncresult
           @LatestSyncTime = latestsynctime
+          @NamePathArr = namepatharr
         end
 
         def deserialize(params)
@@ -607,6 +610,7 @@ module TencentCloud
           @ReadOnly = params['ReadOnly']
           @LatestSyncResult = params['LatestSyncResult']
           @LatestSyncTime = params['LatestSyncTime']
+          @NamePathArr = params['NamePathArr']
         end
       end
 

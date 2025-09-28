@@ -377,14 +377,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param Accounts: 账号数组
         # @type Accounts: Array
+        # @param ErrorMsg: error:...
+        # @type ErrorMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :Accounts, :RequestId
+        attr_accessor :TotalCount, :Accounts, :ErrorMsg, :RequestId
 
-        def initialize(totalcount=nil, accounts=nil, requestid=nil)
+        def initialize(totalcount=nil, accounts=nil, errormsg=nil, requestid=nil)
           @TotalCount = totalcount
           @Accounts = accounts
+          @ErrorMsg = errormsg
           @RequestId = requestid
         end
 
@@ -398,6 +401,7 @@ module TencentCloud
               @Accounts << accountinfo_tmp
             end
           end
+          @ErrorMsg = params['ErrorMsg']
           @RequestId = params['RequestId']
         end
       end

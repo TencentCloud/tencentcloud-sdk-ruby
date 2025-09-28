@@ -3455,9 +3455,9 @@ module TencentCloud
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(废弃)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
@@ -3467,10 +3467,14 @@ module TencentCloud
         # @type AppType: String
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil)
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
@@ -3482,6 +3486,8 @@ module TencentCloud
           @SubScenes = subscenes
           @AppType = apptype
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -3496,6 +3502,8 @@ module TencentCloud
           @SubScenes = params['SubScenes']
           @AppType = params['AppType']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -3531,9 +3539,9 @@ module TencentCloud
       class DescribeConcurrencyUsageGraphRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(废弃)
         # @type EndTime: String
         # @param UinAccount: uin
         # @type UinAccount: Array
@@ -3547,10 +3555,14 @@ module TencentCloud
         # @type AppBizIds: Array
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :ModelName, :StartTime, :EndTime, :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :AppBizIds, :SpaceId
+        attr_accessor :ModelName, :StartTime, :EndTime, :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :AppBizIds, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(modelname=nil, starttime=nil, endtime=nil, uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, appbizids=nil, spaceid=nil)
+        def initialize(modelname=nil, starttime=nil, endtime=nil, uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, appbizids=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @ModelName = modelname
           @StartTime = starttime
           @EndTime = endtime
@@ -3560,6 +3572,8 @@ module TencentCloud
           @SubBizType = subbiztype
           @AppBizIds = appbizids
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -3572,6 +3586,8 @@ module TencentCloud
           @SubBizType = params['SubBizType']
           @AppBizIds = params['AppBizIds']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -3607,23 +3623,29 @@ module TencentCloud
       class DescribeConcurrencyUsageRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(废弃)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId
+        attr_accessor :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil)
+        def initialize(modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @ModelName = modelname
           @StartTime = starttime
           @EndTime = endtime
           @AppBizIds = appbizids
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -3632,6 +3654,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @AppBizIds = params['AppBizIds']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -4337,18 +4361,22 @@ module TencentCloud
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(废弃)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :LoginUin, :LoginSubAccountUin, :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId
+        attr_accessor :LoginUin, :LoginSubAccountUin, :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(loginuin=nil, loginsubaccountuin=nil, uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil)
+        def initialize(loginuin=nil, loginsubaccountuin=nil, uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
           @UinAccount = uinaccount
@@ -4358,6 +4386,8 @@ module TencentCloud
           @EndTime = endtime
           @AppBizIds = appbizids
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -4370,6 +4400,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @AppBizIds = params['AppBizIds']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -4584,9 +4616,9 @@ module TencentCloud
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒
+        # @param StartTime: 开始时间戳, 单位为秒(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒
+        # @param EndTime: 结束时间戳, 单位为秒(废弃)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
@@ -4594,10 +4626,14 @@ module TencentCloud
         # @type AppType: String
         # @param SubScenes: 筛选子场景
         # @type SubScenes: Array
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType, :SubScenes
+        attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType, :SubScenes, :StatStartTime, :StatEndTime
 
-        def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil, subscenes=nil)
+        def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil, subscenes=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
           @SubBizType = subbiztype
           @ModelName = modelname
@@ -4606,6 +4642,8 @@ module TencentCloud
           @AppBizIds = appbizids
           @AppType = apptype
           @SubScenes = subscenes
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -4617,6 +4655,8 @@ module TencentCloud
           @AppBizIds = params['AppBizIds']
           @AppType = params['AppType']
           @SubScenes = params['SubScenes']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -4681,9 +4721,9 @@ module TencentCloud
         # @type SubBizType: String
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间戳, 单位为秒(默认值0)
+        # @param StartTime: 开始时间戳, 单位为秒(默认值0)(废弃)
         # @type StartTime: String
-        # @param EndTime: 结束时间戳, 单位为秒(默认值0， 必须大于开始时间戳)
+        # @param EndTime: 结束时间戳, 单位为秒(默认值0， 必须大于开始时间戳)(废弃)
         # @type EndTime: String
         # @param AppBizIds: 应用id列表
         # @type AppBizIds: Array
@@ -4693,10 +4733,14 @@ module TencentCloud
         # @type AppType: String
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 结束时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId
+        attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil)
+        def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
@@ -4708,6 +4752,8 @@ module TencentCloud
           @SubScenes = subscenes
           @AppType = apptype
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
@@ -4722,6 +4768,8 @@ module TencentCloud
           @SubScenes = params['SubScenes']
           @AppType = params['AppType']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 
@@ -8691,14 +8739,14 @@ module TencentCloud
       class ListUsageCallDetailRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型标识
         # @type ModelName: String
-        # @param StartTime: 开始时间
-        # @type StartTime: String
-        # @param EndTime: 结束时间
-        # @type EndTime: String
         # @param PageNumber: 页码（从1开始）
         # @type PageNumber: Integer
         # @param PageSize: 分页数量(最大值1000)
         # @type PageSize: Integer
+        # @param StartTime: 开始时间(废弃)
+        # @type StartTime: String
+        # @param EndTime: 结束时间(废弃)
+        # @type EndTime: String
         # @param UinAccount: uin列表
         # @type UinAccount: Array
         # @param AppBizIds: 应用ID列表
@@ -8713,15 +8761,19 @@ module TencentCloud
         # @type BillingTag: String
         # @param SpaceId: 空间id
         # @type SpaceId: String
+        # @param StatStartTime: 开始时间戳, 单位为秒
+        # @type StatStartTime: Integer
+        # @param StatEndTime: 开始时间戳, 单位为秒
+        # @type StatEndTime: Integer
 
-        attr_accessor :ModelName, :StartTime, :EndTime, :PageNumber, :PageSize, :UinAccount, :AppBizIds, :CallType, :SubScenes, :AppType, :BillingTag, :SpaceId
+        attr_accessor :ModelName, :PageNumber, :PageSize, :StartTime, :EndTime, :UinAccount, :AppBizIds, :CallType, :SubScenes, :AppType, :BillingTag, :SpaceId, :StatStartTime, :StatEndTime
 
-        def initialize(modelname=nil, starttime=nil, endtime=nil, pagenumber=nil, pagesize=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil, apptype=nil, billingtag=nil, spaceid=nil)
+        def initialize(modelname=nil, pagenumber=nil, pagesize=nil, starttime=nil, endtime=nil, uinaccount=nil, appbizids=nil, calltype=nil, subscenes=nil, apptype=nil, billingtag=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @ModelName = modelname
-          @StartTime = starttime
-          @EndTime = endtime
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @StartTime = starttime
+          @EndTime = endtime
           @UinAccount = uinaccount
           @AppBizIds = appbizids
           @CallType = calltype
@@ -8729,14 +8781,16 @@ module TencentCloud
           @AppType = apptype
           @BillingTag = billingtag
           @SpaceId = spaceid
+          @StatStartTime = statstarttime
+          @StatEndTime = statendtime
         end
 
         def deserialize(params)
           @ModelName = params['ModelName']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @UinAccount = params['UinAccount']
           @AppBizIds = params['AppBizIds']
           @CallType = params['CallType']
@@ -8744,6 +8798,8 @@ module TencentCloud
           @AppType = params['AppType']
           @BillingTag = params['BillingTag']
           @SpaceId = params['SpaceId']
+          @StatStartTime = params['StatStartTime']
+          @StatEndTime = params['StatEndTime']
         end
       end
 

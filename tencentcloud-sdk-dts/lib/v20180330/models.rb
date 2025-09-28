@@ -78,7 +78,7 @@ module TencentCloud
 
       # CompleteMigrateJob请求参数结构体
       class CompleteMigrateJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID
+        # @param JobId: 数据迁移任务ID，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
         # @type JobId: String
         # @param CompleteMode: 完成任务的方式,仅支持旧版MySQL迁移任务。waitForSync-等待主从差距为0才停止,immediately-立即完成，不会等待主从差距一致。默认为waitForSync
         # @type CompleteMode: String
@@ -831,10 +831,10 @@ module TencentCloud
 
         attr_accessor :Region, :InstanceId, :Ip, :Port, :ReadOnly, :User, :Password
         extend Gem::Deprecate
-        deprecate :Ip, :none, 2025, 7
-        deprecate :Ip=, :none, 2025, 7
-        deprecate :Port, :none, 2025, 7
-        deprecate :Port=, :none, 2025, 7
+        deprecate :Ip, :none, 2025, 9
+        deprecate :Ip=, :none, 2025, 9
+        deprecate :Port, :none, 2025, 9
+        deprecate :Port=, :none, 2025, 9
 
         def initialize(region=nil, instanceid=nil, ip=nil, port=nil, readonly=nil, user=nil, password=nil)
           @Region = region
@@ -1604,7 +1604,7 @@ module TencentCloud
 
       # StartMigrateJob请求参数结构体
       class StartMigrateJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID
+        # @param JobId: 数据迁移任务ID，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
         # @type JobId: String
 
         attr_accessor :JobId

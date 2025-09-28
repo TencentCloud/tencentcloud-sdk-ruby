@@ -6700,10 +6700,12 @@ module TencentCloud
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+        # @param Options: 个性化配置字段，默认不传。
+        # @type Options: Array
 
-        attr_accessor :Operator, :Users, :SealId, :Expired, :UserIds, :Policy, :Agent
+        attr_accessor :Operator, :Users, :SealId, :Expired, :UserIds, :Policy, :Agent, :Options
 
-        def initialize(operator=nil, users=nil, sealid=nil, expired=nil, userids=nil, policy=nil, agent=nil)
+        def initialize(operator=nil, users=nil, sealid=nil, expired=nil, userids=nil, policy=nil, agent=nil, options=nil)
           @Operator = operator
           @Users = users
           @SealId = sealid
@@ -6711,6 +6713,7 @@ module TencentCloud
           @UserIds = userids
           @Policy = policy
           @Agent = agent
+          @Options = options
         end
 
         def deserialize(params)
@@ -6734,6 +6737,14 @@ module TencentCloud
             @Agent = Agent.new
             @Agent.deserialize(params['Agent'])
           end
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              option_tmp = Option.new
+              option_tmp.deserialize(i)
+              @Options << option_tmp
+            end
+          end
         end
       end
 
@@ -6742,18 +6753,26 @@ module TencentCloud
         # @param UserIds: 最终授权成功的用户ID，在腾讯电子签平台的唯一身份标识，为32位字符串。
         # 可登录腾讯电子签控制台，在 "更多能力"->"组织管理" 中查看某位员工的UserId(在页面中展示为用户ID)。
         # @type UserIds: Array
+        # @param SealOperatorVerifyPath: 人脸验证操作人链接，用法可以参考"[跳转电子签小程序配置](https://qian.tencent.com/developers/company/openwxminiprogram/)"，默认为空。
+        # @type SealOperatorVerifyPath: String
+        # @param SealOperatorVerifyQrcodeUrl: 人脸验证操作人二维码链接，扫码后会跳转到腾讯电子签小程序进行人脸验证，默认为空。
+        # @type SealOperatorVerifyQrcodeUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :UserIds, :RequestId
+        attr_accessor :UserIds, :SealOperatorVerifyPath, :SealOperatorVerifyQrcodeUrl, :RequestId
 
-        def initialize(userids=nil, requestid=nil)
+        def initialize(userids=nil, sealoperatorverifypath=nil, sealoperatorverifyqrcodeurl=nil, requestid=nil)
           @UserIds = userids
+          @SealOperatorVerifyPath = sealoperatorverifypath
+          @SealOperatorVerifyQrcodeUrl = sealoperatorverifyqrcodeurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @UserIds = params['UserIds']
+          @SealOperatorVerifyPath = params['SealOperatorVerifyPath']
+          @SealOperatorVerifyQrcodeUrl = params['SealOperatorVerifyQrcodeUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -6820,10 +6839,12 @@ module TencentCloud
         # @type TaxIdentifyCode: String
         # @param SealDescription: 印章描述内容
         # @type SealDescription: String
+        # @param Options: 个性化配置字段，默认不传。
+        # @type Options: Array
 
-        attr_accessor :Operator, :SealName, :Agent, :GenerateSource, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken, :SealStyle, :SealSize, :TaxIdentifyCode, :SealDescription
+        attr_accessor :Operator, :SealName, :Agent, :GenerateSource, :SealType, :FileName, :Image, :Width, :Height, :Color, :SealHorizontalText, :SealChordText, :SealCentralType, :FileToken, :SealStyle, :SealSize, :TaxIdentifyCode, :SealDescription, :Options
 
-        def initialize(operator=nil, sealname=nil, agent=nil, generatesource=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil, sealdescription=nil)
+        def initialize(operator=nil, sealname=nil, agent=nil, generatesource=nil, sealtype=nil, filename=nil, image=nil, width=nil, height=nil, color=nil, sealhorizontaltext=nil, sealchordtext=nil, sealcentraltype=nil, filetoken=nil, sealstyle=nil, sealsize=nil, taxidentifycode=nil, sealdescription=nil, options=nil)
           @Operator = operator
           @SealName = sealname
           @Agent = agent
@@ -6842,6 +6863,7 @@ module TencentCloud
           @SealSize = sealsize
           @TaxIdentifyCode = taxidentifycode
           @SealDescription = sealdescription
+          @Options = options
         end
 
         def deserialize(params)
@@ -6869,6 +6891,14 @@ module TencentCloud
           @SealSize = params['SealSize']
           @TaxIdentifyCode = params['TaxIdentifyCode']
           @SealDescription = params['SealDescription']
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              option_tmp = Option.new
+              option_tmp.deserialize(i)
+              @Options << option_tmp
+            end
+          end
         end
       end
 
@@ -6878,18 +6908,26 @@ module TencentCloud
         # 建议开发者保留此印章ID，后续指定签署区印章或者操作印章需此印章ID。
         # 可登录腾讯电子签控制台，在 "印章"->"印章中心"选择查看的印章，在"印章详情" 中查看某个印章的SealId(在页面中展示为印章ID)。
         # @type SealId: String
+        # @param SealOperatorVerifyPath: 人脸验证操作人链接，用法可以参考"[跳转电子签小程序配置](https://qian.tencent.com/developers/company/openwxminiprogram/)"，默认为空。
+        # @type SealOperatorVerifyPath: String
+        # @param SealOperatorVerifyQrcodeUrl: 人脸验证操作人二维码链接，扫码后会跳转到腾讯电子签小程序进行人脸验证，默认为空。
+        # @type SealOperatorVerifyQrcodeUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SealId, :RequestId
+        attr_accessor :SealId, :SealOperatorVerifyPath, :SealOperatorVerifyQrcodeUrl, :RequestId
 
-        def initialize(sealid=nil, requestid=nil)
+        def initialize(sealid=nil, sealoperatorverifypath=nil, sealoperatorverifyqrcodeurl=nil, requestid=nil)
           @SealId = sealid
+          @SealOperatorVerifyPath = sealoperatorverifypath
+          @SealOperatorVerifyQrcodeUrl = sealoperatorverifyqrcodeurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SealId = params['SealId']
+          @SealOperatorVerifyPath = params['SealOperatorVerifyPath']
+          @SealOperatorVerifyQrcodeUrl = params['SealOperatorVerifyQrcodeUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -12948,8 +12986,11 @@ module TencentCloud
         # @param ForbidEditFlow: 小程序集成发起，是否禁止发起时修改合同内容
         # <ul>
         # <li>false：默认值，不禁止发起时修改合同内容</li>
-        # <li>true：禁止发起时修改合同内容</li>
+        # <li>true：禁止发起时修改合同内容（将直接跳过添加/编辑签署人步骤，直接到核对合同信息页面</li>
         # </ul>
+        # 指定为true，效果如下：
+
+        # 效果如下:![ForbidEditFlow](https://qcloudimg.tencent-cloud.cn/raw/2440eca624f2f6730fecbf69daad0533.jpg)
         # @type ForbidEditFlow: Boolean
 
         attr_accessor :RemindedOn, :NeedCreateReview, :FlowDisplayType, :ForbidEditFlow
@@ -13560,14 +13601,17 @@ module TencentCloud
         # @type Act: Integer
         # @param SealIds: 需要操作的印章ID，数组形式，印章ID可从【web控制台->印章 】获取。
         # @type SealIds: Array
+        # @param Options: 个性化配置字段，默认不传。
+        # @type Options: Array
 
-        attr_accessor :Operator, :Agent, :Act, :SealIds
+        attr_accessor :Operator, :Agent, :Act, :SealIds, :Options
 
-        def initialize(operator=nil, agent=nil, act=nil, sealids=nil)
+        def initialize(operator=nil, agent=nil, act=nil, sealids=nil, options=nil)
           @Operator = operator
           @Agent = agent
           @Act = act
           @SealIds = sealids
+          @Options = options
         end
 
         def deserialize(params)
@@ -13581,21 +13625,37 @@ module TencentCloud
           end
           @Act = params['Act']
           @SealIds = params['SealIds']
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              option_tmp = Option.new
+              option_tmp.deserialize(i)
+              @Options << option_tmp
+            end
+          end
         end
       end
 
       # OperateSeals返回参数结构体
       class OperateSealsResponse < TencentCloud::Common::AbstractModel
+        # @param SealOperatorVerifyPath: 人脸验证操作人链接，用法可以参考"[跳转电子签小程序配置](https://qian.tencent.com/developers/company/openwxminiprogram/)"，默认为空。
+        # @type SealOperatorVerifyPath: String
+        # @param SealOperatorVerifyQrcodeUrl: 人脸验证操作人二维码链接，扫码后会跳转到腾讯电子签小程序进行人脸验证，默认为空。
+        # @type SealOperatorVerifyQrcodeUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SealOperatorVerifyPath, :SealOperatorVerifyQrcodeUrl, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(sealoperatorverifypath=nil, sealoperatorverifyqrcodeurl=nil, requestid=nil)
+          @SealOperatorVerifyPath = sealoperatorverifypath
+          @SealOperatorVerifyQrcodeUrl = sealoperatorverifyqrcodeurl
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SealOperatorVerifyPath = params['SealOperatorVerifyPath']
+          @SealOperatorVerifyQrcodeUrl = params['SealOperatorVerifyQrcodeUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -13668,6 +13728,28 @@ module TencentCloud
           @TemplateId = params['TemplateId']
           @TemplateName = params['TemplateName']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务逻辑个性化配置字段，默认不传
+
+      # 注: `配置前请联系对接的客户经理沟通确认。`
+      class Option < TencentCloud::Common::AbstractModel
+        # @param Key: 个性化配置参数Key字段，对应传入字段的字段名
+        # @type Key: String
+        # @param Value: 个性化配置参数Value字段，对应传入字段的字段值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

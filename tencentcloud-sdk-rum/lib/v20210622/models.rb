@@ -2761,8 +2761,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 7
-        deprecate :IsDemo=, :none, 2025, 7
+        deprecate :IsDemo, :none, 2025, 9
+        deprecate :IsDemo=, :none, 2025, 9
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -2878,7 +2878,7 @@ module TencentCloud
         # @type Timeout: Integer
         # @param FileType: bucket类型，不填默认1:web，2:app
         # @type FileType: Integer
-        # @param Site: 获取临时签名的bucket是国内站还是国际站（1表示国际站，其它表示国内站）
+        # @param Site: 获取临时签名的bucket是境内还是境外（1表示境外，其它表示境内）
         # @type Site: Integer
         # @param ID: ProjectID
         # @type ID: Integer
@@ -3276,8 +3276,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 7
-        deprecate :IsDemo=, :none, 2025, 7
+        deprecate :IsDemo, :none, 2025, 9
+        deprecate :IsDemo=, :none, 2025, 9
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
@@ -3407,12 +3407,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 7
-        deprecate :InstanceStatuses=, :none, 2025, 7
-        deprecate :InstanceIds, :none, 2025, 7
-        deprecate :InstanceIds=, :none, 2025, 7
-        deprecate :IsDemo, :none, 2025, 7
-        deprecate :IsDemo=, :none, 2025, 7
+        deprecate :InstanceStatuses, :none, 2025, 9
+        deprecate :InstanceStatuses=, :none, 2025, 9
+        deprecate :InstanceIds, :none, 2025, 9
+        deprecate :InstanceIds=, :none, 2025, 9
+        deprecate :IsDemo, :none, 2025, 9
+        deprecate :IsDemo=, :none, 2025, 9
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

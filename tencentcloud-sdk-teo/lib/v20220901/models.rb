@@ -2883,6 +2883,46 @@ module TencentCloud
         end
       end
 
+      # ConfirmMultiPathGatewayOriginACL请求参数结构体
+      class ConfirmMultiPathGatewayOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param OriginACLVersion: 回源 IP 版本号。
+        # @type OriginACLVersion: Integer
+
+        attr_accessor :ZoneId, :GatewayId, :OriginACLVersion
+
+        def initialize(zoneid=nil, gatewayid=nil, originaclversion=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+          @OriginACLVersion = originaclversion
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+          @OriginACLVersion = params['OriginACLVersion']
+        end
+      end
+
+      # ConfirmMultiPathGatewayOriginACL返回参数结构体
+      class ConfirmMultiPathGatewayOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ConfirmOriginACLUpdate请求参数结构体
       class ConfirmOriginACLUpdateRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -2912,6 +2952,25 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 内容压缩配置。
+      class ContentCompressionParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 内容压缩配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # 当 Switch 为 on 时，将同时支持 brotli 和 gzip 压缩算法。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -8752,6 +8811,49 @@ module TencentCloud
           unless params['Line'].nil?
             @Line = MultiPathGatewayLine.new
             @Line.deserialize(params['Line'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMultiPathGatewayOriginACL请求参数结构体
+      class DescribeMultiPathGatewayOriginACLRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+
+        attr_accessor :ZoneId, :GatewayId
+
+        def initialize(zoneid=nil, gatewayid=nil)
+          @ZoneId = zoneid
+          @GatewayId = gatewayid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GatewayId = params['GatewayId']
+        end
+      end
+
+      # DescribeMultiPathGatewayOriginACL返回参数结构体
+      class DescribeMultiPathGatewayOriginACLResponse < TencentCloud::Common::AbstractModel
+        # @param MultiPathGatewayOriginACLInfo: 多通道网关实例与回源 IP 网段的绑定关系详情。
+        # @type MultiPathGatewayOriginACLInfo: :class:`Tencentcloud::Teo.v20220901.models.MultiPathGatewayOriginACLInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MultiPathGatewayOriginACLInfo, :RequestId
+
+        def initialize(multipathgatewayoriginaclinfo=nil, requestid=nil)
+          @MultiPathGatewayOriginACLInfo = multipathgatewayoriginaclinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MultiPathGatewayOriginACLInfo'].nil?
+            @MultiPathGatewayOriginACLInfo = MultiPathGatewayOriginACLInfo.new
+            @MultiPathGatewayOriginACLInfo.deserialize(params['MultiPathGatewayOriginACLInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -15775,6 +15877,46 @@ module TencentCloud
         end
       end
 
+      # ModifyMultiPathGatewayStatus请求参数结构体
+      class ModifyMultiPathGatewayStatusRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关 ID。
+        # @type GatewayId: String
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param GatewayStatus: 修改网关的启用停用状态，取值有：<li> offline：停用；</li><li> online：启用。</li>
+        # @type GatewayStatus: String
+
+        attr_accessor :GatewayId, :ZoneId, :GatewayStatus
+
+        def initialize(gatewayid=nil, zoneid=nil, gatewaystatus=nil)
+          @GatewayId = gatewayid
+          @ZoneId = zoneid
+          @GatewayStatus = gatewaystatus
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ZoneId = params['ZoneId']
+          @GatewayStatus = params['GatewayStatus']
+        end
+      end
+
+      # ModifyMultiPathGatewayStatus返回参数结构体
+      class ModifyMultiPathGatewayStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOriginACL请求参数结构体
       class ModifyOriginACLRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -16873,6 +17015,36 @@ module TencentCloud
         end
       end
 
+      # 当前生效的回源 IP 网段。
+      class MultiPathGatewayCurrentOriginACL < TencentCloud::Common::AbstractModel
+        # @param EntireAddresses: 回源 IP 网段详情。
+        # @type EntireAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param Version: 版本号。
+        # @type Version: Integer
+        # @param IsPlaned: 本参数用于记录当前版本生效前是否完成「我已更新至最新回源 IP 网段」的确认。取值有：
+        # <li>true：已完成更新至最新回源 IP 的确认；</li>
+        # <li>false：未完成更新至最新回源 IP 的确认；</li>
+        # 注意：本参数返回 false 时，请及时确认您的源站防火墙配置是否已更新至最新的回源 IP 网段，以避免出现回源失败。
+        # @type IsPlaned: String
+
+        attr_accessor :EntireAddresses, :Version, :IsPlaned
+
+        def initialize(entireaddresses=nil, version=nil, isplaned=nil)
+          @EntireAddresses = entireaddresses
+          @Version = version
+          @IsPlaned = isplaned
+        end
+
+        def deserialize(params)
+          unless params['EntireAddresses'].nil?
+            @EntireAddresses = Addresses.new
+            @EntireAddresses.deserialize(params['EntireAddresses'])
+          end
+          @Version = params['Version']
+          @IsPlaned = params['IsPlaned']
+        end
+      end
+
       # 多通道安全网关线路信息
       class MultiPathGatewayLine < TencentCloud::Common::AbstractModel
         # @param LineId: 线路 ID ， 其中 line-0 和 line-1 为系统内置线路 ID，取值有:
@@ -16908,6 +17080,76 @@ module TencentCloud
           @LineAddress = params['LineAddress']
           @ProxyId = params['ProxyId']
           @RuleId = params['RuleId']
+        end
+      end
+
+      # 当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前生效的回源 IP 网段的对比。
+      class MultiPathGatewayNextOriginACL < TencentCloud::Common::AbstractModel
+        # @param Version: 版本号。
+        # @type Version: Integer
+        # @param EntireAddresses: 回源 IP 网段详情。
+        # @type EntireAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param AddedAddresses: 最新回源 IP 网段相较于 MultiPathGatewayCurrentOrginACL 中回源 IP 网段新增的部分。
+        # @type AddedAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param RemovedAddresses: 最新回源 IP 网段相较于 MultiPathGatewayCurrentOrginACL 中回源 IP 网段删减的部分。
+        # @type RemovedAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+        # @param NoChangeAddresses: 最新回源 IP 网段相较于 MultiPathGatewayCurrentOrginACL 中回源 IP 网段无变化的部分。
+        # @type NoChangeAddresses: :class:`Tencentcloud::Teo.v20220901.models.Addresses`
+
+        attr_accessor :Version, :EntireAddresses, :AddedAddresses, :RemovedAddresses, :NoChangeAddresses
+
+        def initialize(version=nil, entireaddresses=nil, addedaddresses=nil, removedaddresses=nil, nochangeaddresses=nil)
+          @Version = version
+          @EntireAddresses = entireaddresses
+          @AddedAddresses = addedaddresses
+          @RemovedAddresses = removedaddresses
+          @NoChangeAddresses = nochangeaddresses
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          unless params['EntireAddresses'].nil?
+            @EntireAddresses = Addresses.new
+            @EntireAddresses.deserialize(params['EntireAddresses'])
+          end
+          unless params['AddedAddresses'].nil?
+            @AddedAddresses = Addresses.new
+            @AddedAddresses.deserialize(params['AddedAddresses'])
+          end
+          unless params['RemovedAddresses'].nil?
+            @RemovedAddresses = Addresses.new
+            @RemovedAddresses.deserialize(params['RemovedAddresses'])
+          end
+          unless params['NoChangeAddresses'].nil?
+            @NoChangeAddresses = Addresses.new
+            @NoChangeAddresses.deserialize(params['NoChangeAddresses'])
+          end
+        end
+      end
+
+      # 多通道网关示例实例与回源 IP 网段的绑定关系，以及回源 IP 网段详情。
+      class MultiPathGatewayOriginACLInfo < TencentCloud::Common::AbstractModel
+        # @param MultiPathGatewayCurrentOriginACL: 当前生效的回源 IP 网段。
+        # @type MultiPathGatewayCurrentOriginACL: :class:`Tencentcloud::Teo.v20220901.models.MultiPathGatewayCurrentOriginACL`
+        # @param MultiPathGatewayNextOriginACL: 当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前回源 IP 网段的对比。无更新时该字段为空。
+        # @type MultiPathGatewayNextOriginACL: :class:`Tencentcloud::Teo.v20220901.models.MultiPathGatewayNextOriginACL`
+
+        attr_accessor :MultiPathGatewayCurrentOriginACL, :MultiPathGatewayNextOriginACL
+
+        def initialize(multipathgatewaycurrentoriginacl=nil, multipathgatewaynextoriginacl=nil)
+          @MultiPathGatewayCurrentOriginACL = multipathgatewaycurrentoriginacl
+          @MultiPathGatewayNextOriginACL = multipathgatewaynextoriginacl
+        end
+
+        def deserialize(params)
+          unless params['MultiPathGatewayCurrentOriginACL'].nil?
+            @MultiPathGatewayCurrentOriginACL = MultiPathGatewayCurrentOriginACL.new
+            @MultiPathGatewayCurrentOriginACL.deserialize(params['MultiPathGatewayCurrentOriginACL'])
+          end
+          unless params['MultiPathGatewayNextOriginACL'].nil?
+            @MultiPathGatewayNextOriginACL = MultiPathGatewayNextOriginACL.new
+            @MultiPathGatewayNextOriginACL.deserialize(params['MultiPathGatewayNextOriginACL'])
+          end
         end
       end
 
@@ -17697,6 +17939,25 @@ module TencentCloud
             @DiffIPWhitelist = DiffIPWhitelist.new
             @DiffIPWhitelist.deserialize(params['DiffIPWhitelist'])
           end
+        end
+      end
+
+      # 回源 HTTPS 配置参数。
+      class OriginPullProtocolParameters < TencentCloud::Common::AbstractModel
+        # @param Protocol: 回源协议配置，取值有：
+        # <li>http：使用 HTTP 协议回源；</li>
+        # <li>https：使用 HTTPS 协议回源；</li>
+        # <li>follow：协议跟随。</li>
+        # @type Protocol: String
+
+        attr_accessor :Protocol
+
+        def initialize(protocol=nil)
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
         end
       end
 
@@ -19353,6 +19614,9 @@ module TencentCloud
         # @param ForceRedirectHTTPSParameters: 访问协议强制 HTTPS 跳转配置，当 Name 取值为 ForceRedirectHTTPS 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForceRedirectHTTPSParameters: :class:`Tencentcloud::Teo.v20220901.models.ForceRedirectHTTPSParameters`
+        # @param OriginPullProtocolParameters: 回源 HTTPS 配置参数，当 Name 取值为 OriginPullProtocol 时，该参数必填。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginPullProtocolParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginPullProtocolParameters`
         # @param CompressionParameters: 智能压缩配置，当 Name 取值为 Compression 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompressionParameters: :class:`Tencentcloud::Teo.v20220901.models.CompressionParameters`
@@ -19410,10 +19674,12 @@ module TencentCloud
         # @type SetContentIdentifierParameters: :class:`Tencentcloud::Teo.v20220901.models.SetContentIdentifierParameters`
         # @param VaryParameters: Vary 特性配置参数，当 Name 取值为 Vary 时，该参数必填。
         # @type VaryParameters: :class:`Tencentcloud::Teo.v20220901.models.VaryParameters`
+        # @param ContentCompressionParameters: 内容压缩配置参数，当 Name 取值为 ContentCompression 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
+        # @type ContentCompressionParameters: :class:`Tencentcloud::Teo.v20220901.models.ContentCompressionParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -19431,6 +19697,7 @@ module TencentCloud
           @UpstreamHTTP2Parameters = upstreamhttp2parameters
           @HostHeaderParameters = hostheaderparameters
           @ForceRedirectHTTPSParameters = forceredirecthttpsparameters
+          @OriginPullProtocolParameters = originpullprotocolparameters
           @CompressionParameters = compressionparameters
           @HSTSParameters = hstsparameters
           @ClientIPHeaderParameters = clientipheaderparameters
@@ -19450,6 +19717,7 @@ module TencentCloud
           @ResponseSpeedLimitParameters = responsespeedlimitparameters
           @SetContentIdentifierParameters = setcontentidentifierparameters
           @VaryParameters = varyparameters
+          @ContentCompressionParameters = contentcompressionparameters
         end
 
         def deserialize(params)
@@ -19517,6 +19785,10 @@ module TencentCloud
           unless params['ForceRedirectHTTPSParameters'].nil?
             @ForceRedirectHTTPSParameters = ForceRedirectHTTPSParameters.new
             @ForceRedirectHTTPSParameters.deserialize(params['ForceRedirectHTTPSParameters'])
+          end
+          unless params['OriginPullProtocolParameters'].nil?
+            @OriginPullProtocolParameters = OriginPullProtocolParameters.new
+            @OriginPullProtocolParameters.deserialize(params['OriginPullProtocolParameters'])
           end
           unless params['CompressionParameters'].nil?
             @CompressionParameters = CompressionParameters.new
@@ -19593,6 +19865,10 @@ module TencentCloud
           unless params['VaryParameters'].nil?
             @VaryParameters = VaryParameters.new
             @VaryParameters.deserialize(params['VaryParameters'])
+          end
+          unless params['ContentCompressionParameters'].nil?
+            @ContentCompressionParameters = ContentCompressionParameters.new
+            @ContentCompressionParameters.deserialize(params['ContentCompressionParameters'])
           end
         end
       end

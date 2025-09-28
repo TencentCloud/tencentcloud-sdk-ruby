@@ -2173,7 +2173,7 @@ module TencentCloud
         end
       end
 
-      # 集群版的节点拓扑配置。
+      # 云盘版的节点拓扑配置。
       class ClusterTopology < TencentCloud::Common::AbstractModel
         # @param ReadWriteNode: RW 节点拓扑。
         # 说明：NodeId 可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 获取。
@@ -5283,7 +5283,7 @@ module TencentCloud
 
       # DescribeBackupOverview请求参数结构体
       class DescribeBackupOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 需要查询备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点云盘版实例，mysql-cluster 指云盘版（原集群版）实例。
+        # @param Product: 需要查询备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点（云盘）实例，mysql-cluster 指云盘版实例。
         # @type Product: String
 
         attr_accessor :Product
@@ -5343,7 +5343,7 @@ module TencentCloud
 
       # DescribeBackupSummaries请求参数结构体
       class DescribeBackupSummariesRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 需要查询备份实时统计的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点云盘版实例，mysql-cluster 指云盘版（原集群版）实例。
+        # @param Product: 需要查询备份实时统计的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点（云盘）实例，mysql-cluster 指云盘版实例。
         # @type Product: String
         # @param Offset: 分页查询数据的偏移量，默认为0。
         # @type Offset: Integer
@@ -5461,7 +5461,7 @@ module TencentCloud
 
       # DescribeBinlogBackupOverview请求参数结构体
       class DescribeBinlogBackupOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 需要查询日志备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点云盘版实例，mysql-cluster 指云盘版（原集群版）实例。
+        # @param Product: 需要查询日志备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点（云盘）实例，mysql-cluster 指云盘版实例。
         # @type Product: String
 
         attr_accessor :Product
@@ -6767,7 +6767,7 @@ module TencentCloud
 
       # DescribeDataBackupOverview请求参数结构体
       class DescribeDataBackupOverviewRequest < TencentCloud::Common::AbstractModel
-        # @param Product: 需要查询数据备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点云盘版实例，mysql-cluster 指云盘版（原集群版）实例。
+        # @param Product: 需要查询数据备份概览的云数据库产品类型。可取值为：mysql 指双节点/三节点的高可用实例，mysql-basic 指单节点（云盘）实例，mysql-cluster 指云盘版实例。
         # @type Product: String
 
         attr_accessor :Product
@@ -10948,6 +10948,50 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstanceModes请求参数结构体
+      class ModifyDBInstanceModesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+        # @param Mode: 云数据库的模式，目前仅支持传入 "protectMode" 表示修改主从同步方式。
+        # @type Mode: String
+        # @param ProtectMode: 数据同步方式，可选值：0-异步复制，1-半同步复制，2-强同步复制。
+        # @type ProtectMode: Integer
+
+        attr_accessor :InstanceId, :Mode, :ProtectMode
+
+        def initialize(instanceid=nil, mode=nil, protectmode=nil)
+          @InstanceId = instanceid
+          @Mode = mode
+          @ProtectMode = protectmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Mode = params['Mode']
+          @ProtectMode = params['ProtectMode']
+        end
+      end
+
+      # ModifyDBInstanceModes返回参数结构体
+      class ModifyDBInstanceModesResponse < TencentCloud::Common::AbstractModel
+        # @param AsyncRequestId: 异步任务的请求ID，可使用此ID查询异步任务的执行结果。
+        # @type AsyncRequestId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AsyncRequestId, :RequestId
+
+        def initialize(asyncrequestid=nil, requestid=nil)
+          @AsyncRequestId = asyncrequestid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceName请求参数结构体
       class ModifyDBInstanceNameRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同，可使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口获取，其值为输出参数中字段 InstanceId 的值。
@@ -11071,7 +11115,7 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param ForReadonlyInstance: 当传入只读实例 ID 时，默认操作的是对应只读组的安全组。如果需要操作只读实例 ID 的安全组， 需要将该入参置为 True。默认为 False。
         # @type ForReadonlyInstance: Boolean
-        # @param OpResourceId: 变更集群版实例只读组时，InstanceId 传实例 ID，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
+        # @param OpResourceId: 变更云盘版实例只读组时，InstanceId 传实例 ID，需要额外指定该参数表示操作只读组。 如果操作读写节点则不需指定该参数。
         # @type OpResourceId: String
 
         attr_accessor :InstanceId, :SecurityGroupIds, :ForReadonlyInstance, :OpResourceId
@@ -12577,11 +12621,11 @@ module TencentCloud
         end
       end
 
-      # 集群版 RW 节点的配置。
+      # 云盘版 RW 节点的配置。
       class ReadWriteNode < TencentCloud::Common::AbstractModel
         # @param Zone: RW 节点所在可用区。
         # @type Zone: String
-        # @param NodeId: 升级集群版实例时，如果要调整只读节点可用区，需要指定节点id。
+        # @param NodeId: 升级云盘版实例时，如果要调整只读节点可用区，需要指定节点 ID。
         # @type NodeId: String
 
         attr_accessor :Zone, :NodeId
@@ -12597,13 +12641,13 @@ module TencentCloud
         end
       end
 
-      # 集群版的 RO 节点配置。
+      # 云盘版的 RO 节点配置。
       class ReadonlyNode < TencentCloud::Common::AbstractModel
         # @param IsRandomZone: 是否分布在随机可用区。传入YES表示随机可用区。否则使用Zone指定的可用区。
         # @type IsRandomZone: String
         # @param Zone: 指定该节点分布在哪个可用区。
         # @type Zone: String
-        # @param NodeId: 升级集群版实例时，如果要调整只读节点可用区，需要指定节点id。
+        # @param NodeId: 升级云盘版实例时，如果要调整只读节点可用区，需要指定节点 ID。
         # @type NodeId: String
 
         attr_accessor :IsRandomZone, :Zone, :NodeId
@@ -14738,7 +14782,7 @@ module TencentCloud
         # @type ZoneId: String
         # @param RoTransType: 针对跨集群搬迁场景，选择同可用区RO的处理逻辑。together-同可用区RO跟随主实例迁移至目标可用区（默认选项），severally-同可用区RO保持原部署模式、不迁移至目标可用区。
         # @type RoTransType: String
-        # @param ClusterTopology: 集群版节点拓扑配置。
+        # @param ClusterTopology: 云盘版节点拓扑配置。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
         # @param CheckFastUpgradeReboot: 检查原地升级是否需要重启，1 检查， 0 不检查。如果值为1，检查为原地升级需要重启，则会停止升级并进行返回提示，如果为原地升级不重启，则正常执行升级流程。
         # @type CheckFastUpgradeReboot: Integer

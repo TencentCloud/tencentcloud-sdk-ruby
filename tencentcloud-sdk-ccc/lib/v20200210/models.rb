@@ -6456,14 +6456,23 @@ module TencentCloud
         # @type Status: String
         # @param SessionId: 状态关联的会话 Id
         # @type SessionId: String
+        # @param Reason: 小休原因
+        # @type Reason: String
+        # @param StaffEmail: 座席邮箱
+        # @type StaffEmail: String
+        # @param StaffNo: 座席工号
+        # @type StaffNo: String
 
-        attr_accessor :Cursor, :Timestamp, :Status, :SessionId
+        attr_accessor :Cursor, :Timestamp, :Status, :SessionId, :Reason, :StaffEmail, :StaffNo
 
-        def initialize(cursor=nil, timestamp=nil, status=nil, sessionid=nil)
+        def initialize(cursor=nil, timestamp=nil, status=nil, sessionid=nil, reason=nil, staffemail=nil, staffno=nil)
           @Cursor = cursor
           @Timestamp = timestamp
           @Status = status
           @SessionId = sessionid
+          @Reason = reason
+          @StaffEmail = staffemail
+          @StaffNo = staffno
         end
 
         def deserialize(params)
@@ -6471,6 +6480,9 @@ module TencentCloud
           @Timestamp = params['Timestamp']
           @Status = params['Status']
           @SessionId = params['SessionId']
+          @Reason = params['Reason']
+          @StaffEmail = params['StaffEmail']
+          @StaffNo = params['StaffNo']
         end
       end
 

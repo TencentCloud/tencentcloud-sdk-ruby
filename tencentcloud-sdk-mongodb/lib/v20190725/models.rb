@@ -17,14 +17,14 @@
 module TencentCloud
   module Mongodb
     module V20190725
-      # 修改实例节点详情
+      # 修改实例节点详情。
       class AddNodeList < TencentCloud::Common::AbstractModel
         # @param Role: 需要新增的节点角色。
         # - SECONDARY：Mongod 节点。
         # - READONLY：只读节点。
         # - MONGOS：Mongos 节点。
         # @type Role: String
-        # @param Zone: 节点所对应的可用区。
+        # @param Zone: 节点所对应的可用区。当前支持的可用区，请参见[地域和可用区](https://cloud.tencent.com/document/product/240/3637)。
         # - 单可用区，所有节点在同一可用区。
         # - 多可用区：当前标准规格是三可用区分布，主从节点不在同一可用区，需注意配置新增节点对应的可用区，且新增后必须满足任意2个可用区节点数大于第3个可用区原则。
         # @type Zone: String
@@ -111,25 +111,36 @@ module TencentCloud
 
       # 备份下载任务
       class BackupDownloadTask < TencentCloud::Common::AbstractModel
-        # @param CreateTime: 任务创建时间
+        # @param CreateTime: 任务创建时间。
         # @type CreateTime: String
-        # @param BackupName: 备份文件名
+        # @param BackupName: 备份文件名。
         # @type BackupName: String
-        # @param ReplicaSetId: 分片名称
+        # @param ReplicaSetId: 分片名称。
         # @type ReplicaSetId: String
-        # @param BackupSize: 备份数据大小，单位为字节
+        # @param BackupSize: 备份数据大小，单位：字节。
         # @type BackupSize: Integer
-        # @param Status: 任务状态。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @param Status: 任务状态。
+        # - 0：等待执行。
+        # - 1：正在下载。
+        # - 2：下载完成。
+        # - 3：下载失败。
+        # - 4：等待重试。
         # @type Status: Integer
-        # @param Percent: 任务进度百分比
+        # @param Percent: 任务进度百分比。
         # @type Percent: Integer
-        # @param TimeSpend: 耗时，单位为秒
+        # @param TimeSpend: 耗时，单位为秒。
         # @type TimeSpend: Integer
-        # @param Url: 备份数据下载链接
+        # @param Url: 备份数据下载链接。
         # @type Url: String
-        # @param BackupMethod: 备份文件备份类型，0-逻辑备份，1-物理备份
+        # @param BackupMethod: 备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明**:
+        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # 2. 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
-        # @param BackupDesc: 发起备份时指定的备注信息
+        # @param BackupDesc: 发起备份时指定的备注信息。
         # @type BackupDesc: String
         # @param Region: 地区信息。
         # @type Region: String
@@ -169,11 +180,16 @@ module TencentCloud
         end
       end
 
-      # 创建备份下载任务结果
+      # 创建备份下载任务结果。
       class BackupDownloadTaskStatus < TencentCloud::Common::AbstractModel
-        # @param ReplicaSetId: 分片名
+        # @param ReplicaSetId: 分片名。
         # @type ReplicaSetId: String
-        # @param Status: 任务当前状态。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试
+        # @param Status: 任务当前状态。
+        # - 0：等待执行。
+        # - 1：正在下载。
+        # - 2：下载完成。
+        # - 3：下载失败。
+        # - 4：等待重试。
         # @type Status: Integer
 
         attr_accessor :ReplicaSetId, :Status
@@ -189,36 +205,48 @@ module TencentCloud
         end
       end
 
-      # 备份信息
+      # 备份信息。
       class BackupInfo < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
         # @type InstanceId: String
-        # @param BackupType: 备份方式，0-自动备份，1-手动备份
+        # @param BackupType: 备份方式。
+        # - 0：自动备份。
+        # - 1：手动备份。
         # @type BackupType: Integer
-        # @param BackupName: 备份名称
+        # @param BackupName: 备份文件名称。
         # @type BackupName: String
-        # @param BackupDesc: 备份备注
+        # @param BackupDesc: 备份任务备注信息。
         # @type BackupDesc: String
-        # @param BackupSize: 备份文件大小，单位KB
+        # @param BackupSize: 备份文件大小，单位：KB。
         # @type BackupSize: Integer
-        # @param StartTime: 备份开始时间
+        # @param StartTime: 备份开始时间。
         # @type StartTime: String
-        # @param EndTime: 备份结束时间
+        # @param EndTime: 备份结束时间。
         # @type EndTime: String
-        # @param Status: 备份状态，1-备份中，2-备份成功
+        # @param Status: 备份状态。
+        # - 1：备份中。
+        # - 2：备份成功。
         # @type Status: Integer
-        # @param BackupMethod: 备份方法，0-逻辑备份，1-物理备份
+        # @param BackupMethod: 备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明:**
+        # - 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # - 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
-        # @param BackId: 备份记录id
+        # @param BackId: 备份记录 ID。
         # @type BackId: Integer
-        # @param DeleteTime: 备份删除时间
+        # @param DeleteTime: 备份删除时间。
         # @type DeleteTime: String
-        # @param BackupRegion: 异地备份地域
+        # @param BackupRegion: 异地备份地域。
         # @type BackupRegion: String
+        # @param RestoreTime: 备份支持的回档时间。
+        # @type RestoreTime: String
 
-        attr_accessor :InstanceId, :BackupType, :BackupName, :BackupDesc, :BackupSize, :StartTime, :EndTime, :Status, :BackupMethod, :BackId, :DeleteTime, :BackupRegion
+        attr_accessor :InstanceId, :BackupType, :BackupName, :BackupDesc, :BackupSize, :StartTime, :EndTime, :Status, :BackupMethod, :BackId, :DeleteTime, :BackupRegion, :RestoreTime
 
-        def initialize(instanceid=nil, backuptype=nil, backupname=nil, backupdesc=nil, backupsize=nil, starttime=nil, endtime=nil, status=nil, backupmethod=nil, backid=nil, deletetime=nil, backupregion=nil)
+        def initialize(instanceid=nil, backuptype=nil, backupname=nil, backupdesc=nil, backupsize=nil, starttime=nil, endtime=nil, status=nil, backupmethod=nil, backid=nil, deletetime=nil, backupregion=nil, restoretime=nil)
           @InstanceId = instanceid
           @BackupType = backuptype
           @BackupName = backupname
@@ -231,6 +259,7 @@ module TencentCloud
           @BackId = backid
           @DeleteTime = deletetime
           @BackupRegion = backupregion
+          @RestoreTime = restoretime
         end
 
         def deserialize(params)
@@ -246,6 +275,7 @@ module TencentCloud
           @BackId = params['BackId']
           @DeleteTime = params['DeleteTime']
           @BackupRegion = params['BackupRegion']
+          @RestoreTime = params['RestoreTime']
         end
       end
 
@@ -347,6 +377,10 @@ module TencentCloud
         # @param BackupMethod: 设置备份方式。
         # - 0：逻辑备份。
         # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明**:
+        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # 2. 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
         # @param BackupRemark: 备份备注信息。
         # @type BackupRemark: String
@@ -388,13 +422,13 @@ module TencentCloud
 
       # CreateBackupDownloadTask请求参数结构体
       class CreateBackupDownloadTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 实例ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupName: 要下载的备份文件名，可通过DescribeDBBackups接口获取。
+        # @param BackupName: 要下载的备份文件名。请通过 [DescribeDBBackups](https://cloud.tencent.com/document/product/240/38574) 接口获取。
         # @type BackupName: String
-        # @param BackupSets: 指定要下载的副本集的节点名称 或 分片集群的分片名称列表。
-        # 如副本集cmgo-p8vnipr5，示例(固定取值)：BackupSets.0=cmgo-p8vnipr5_0，可下载全量数据。
-        # 如分片集群cmgo-p8vnipr5，示例：BackupSets.0=cmgo-p8vnipr5_0&BackupSets.1=cmgo-p8vnipr5_1，即下载分片0和分片1的数据，分片集群如需全量下载，请按示例方式传入全部分片名称。
+        # @param BackupSets: 指定要下载的副本集节点 ID 或分片集群的分片节点 ID 列表。
+        # - 如副本集实例 ID 为 cmgo-p8vnipr5，示例：BackupSets.0=cmgo-p8vnipr5_0，可下载全量数据。
+        # - 如分片集群实例 ID 为 cmgo-p8vnipr5，示例：BackupSets.0=cmgo-p8vnipr5_0&BackupSets.1=cmgo-p8vnipr5_1，即下载分片0和分片1的数据。分片集群如需全量下载，请按示例方式传入全部分片名称。
         # @type BackupSets: Array
 
         attr_accessor :InstanceId, :BackupName, :BackupSets
@@ -421,7 +455,7 @@ module TencentCloud
 
       # CreateBackupDownloadTask返回参数结构体
       class CreateBackupDownloadTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Tasks: 下载任务状态
+        # @param Tasks: 下载任务状态。
         # @type Tasks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -459,18 +493,18 @@ module TencentCloud
         # - 创建分片集群实例，指每个分片的主从节点数量。每个分片所支持的最大节点数与最小节点数，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type NodeNum: Integer
         # @param MongoVersion: 指版本信息。具体支持的版本信息 ，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
-        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
         # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
         # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param MachineCode: 产品规格类型。
         # - HIO10G：通用高HIO万兆型。
         # - HCD：云盘版类型。
         # @type MachineCode: String
-        # @param GoodsNum: 实例数量，最小值1，最大值为10。
+        # @param GoodsNum: 实例数量，最小值1，最大值为30。
         # @type GoodsNum: Integer
         # @param Zone: 可用区信息，输入格式如：ap-guangzhou-2。
         # - 具体信息，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
@@ -480,9 +514,13 @@ module TencentCloud
         # - REPLSET：副本集。
         # - SHARD：分片集群。
         # @type ClusterType: String
-        # @param VpcId: 私有网络ID。请登录 [私有网络控制台](https://console.cloud.tencent.com/vpc) 查询确认正确的ID。 示例值：vpc-pxyzim13
+        # @param VpcId: 私有网络ID。
+        # - 仅支持配置私有网络，必须选择一个与实例同一地域的私有网络。请登录[私有网络控制台](https://console.cloud.tencent.com/vpc)获取可使用的私有网络 ID。
+        # - 实例创建成功之后，支持更换私有网络。具体操作，请参见[更换网络](https://cloud.tencent.com/document/product/239/30910)。
         # @type VpcId: String
-        # @param SubnetId: 私有网络VPC的子网。请登录 [私有网络控制台](https://console.cloud.tencent.com/vpc) 查询子网列表确认正确的 ID。 示例值：subnet-7jbabche
+        # @param SubnetId: 私有网络 VPC 的子网 ID。
+        # - 必须在已选的私有网络内指定一个子网。请登录[私有网络控制台](https://console.cloud.tencent.com/vpc)获取可使用的子网 ID。
+        # - 实例创建成功之后，支持更换私有网络及子网。具体操作，请参见[更换网络](https://cloud.tencent.com/document/product/239/30910)。
         # @type SubnetId: String
         # @param Password: 实例密码。设置要求如下：
         # - 字符个数为[8,32]。
@@ -496,17 +534,26 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param Tags: 实例标签信息。
         # @type Tags: Array
-        # @param Clone: 实例类型。- 1：正式实例。- 3：只读实例。- 4：灾备实例。-5：克隆实例，注意：克隆实例RestoreTime为必填项。
+        # @param Clone: 实例类型。
+        # - 1：正式实例。
+        # - 3：只读实例。
+        # - 4：灾备实例。
+        # - 5：克隆实例。注意：克隆实例 RestoreTime 为必填项。
         # @type Clone: Integer
-        # @param Father: 父实例 ID。当参数**Clone**为3或者4时，即实例为只读或灾备实例时，该参数必须配置。
+        # @param Father: 父实例 ID。
+        # - 当参数**Clone**为3或者4时，即实例为只读或灾备实例时，该参数必须配置。
+        # - 请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制父实例 ID。
         # @type Father: String
-        # @param SecurityGroup: 安全组 ID。
+        # @param SecurityGroup: 安全组 ID。 请登录[安全组控制台](https://console.cloud.tencent.com/vpc/security-group)页面获取与数据库实例同地域的安全组 ID。
         # @type SecurityGroup: Array
         # @param RestoreTime: 克隆实例回档时间。
         # - 若为克隆实例，则必须配置该参数。输入格式示例：2021-08-13 16:30:00。
         # - 回档时间范围：仅能回档7天内时间点的数据。
         # @type RestoreTime: String
-        # @param InstanceName: 实例名称。仅支持长度为60个字符的中文、英文、数字、下划线_、分隔符- 。
+        # @param InstanceName: 实例名称。仅支持长度为128个字符的中文、英文、数字、下划线\_、分隔符\-。批量购买数据库实例时，支持通过自定义命名模式串与数字后缀自动升序功能，高效设置实例名称。
+        # - 基础模式：前缀＋自动升序编号（默认从1开始），**lnstanceName**仅需自定义实例名称前缀，例如设置为：cmgo，设置购买数量为5，则购买后，实例名称依次分别为cmgo1、cmgo2、cmgo3、cmgo4、cmgo5。
+        # - 自定义起始序号模式：前缀+｛R:x｝（x为自定义起始序号）。**InstanceName**需填写“前缀｛R:x｝”，例如：cmgo｛R:3｝，设置购买数量为5，则实例名称为cmgo3、cmgo4、cmgo5、cmgo6、cmgo7。
+        # - 复合模式串：前缀1{R:x}+前缀2{R:y}+ ⋯+固定后缀，x与y分别为每一段前缀的起始序号。**instanceName**需填写复合模式串，例如：cmgo{R:10}\_node{R:12}\_db，设置批量购买数量为5，则实例名称为 cmgo10\_node12\_db, cmgo11\_node13\_db, cmgo12\_node14\_db, cmgo13\_node15\_db, cluster14\_node16\_db.
         # @type InstanceName: String
         # @param AvailabilityZoneList: 若多可用区部署云数据库实例，指定多可用区列表。
         # - 多可用区部署实例，参数 **Zone** 指定实例主可用区信息；**AvailabilityZoneList** 指定所有可用区信息，包含主可用区。输入格式如：[ap-guangzhou-2,ap-guangzhou-3,ap-guangzhou-4]。
@@ -518,7 +565,6 @@ module TencentCloud
         # @param MongosMemory: Mongos 内存大小。
         # -  购买分片集群时，必须填写。
         # - 单位：GB，支持1核2GB、2核4GB、4核8GB、8核16GB、16核32GB。
-
         # @type MongosMemory: Integer
         # @param MongosNodeNum: Mongos 数量。购买分片集群时，必须填写。
         # - 单可用区部署实例，其数量范围为[3,32]。
@@ -530,7 +576,9 @@ module TencentCloud
         # @type ReadonlyNodeAvailabilityZoneList: Array
         # @param HiddenZone: Hidden节点所属可用区。跨可用区部署实例，必须配置该参数。
         # @type HiddenZone: String
-        # @param ParamTemplateId: 参数模板 ID。参数模板是一组 MongoDB 的参数并为预设置了参数值的集合，将一组有相同诉求的参数及值 存为模板，在创建实例时，可直接引用参数值到新实例。合理使用参数模板，可以提高MongoDB数据库的效率。模板列表从 DescribeDBInstanceParamTpl 接口获取，注意模板支持的版本。
+        # @param ParamTemplateId: 参数模板 ID。
+        # - 参数模板是预置了特定参数值的集合，可用于快速配置新的 MongoDB 实例。合理使用参数模板，能有效提升数据库的部署效率与运行性能。
+        # - 参数模板 ID 可通过 [DescribeDBInstanceParamTpl ](https://cloud.tencent.com/document/product/240/109155)接口获取。请选择与实例版本与架构所对应的参数模板 ID。
         # @type ParamTemplateId: String
 
         attr_accessor :Memory, :Volume, :ReplicateSetNum, :NodeNum, :MongoVersion, :MachineCode, :GoodsNum, :Zone, :ClusterType, :VpcId, :SubnetId, :Password, :ProjectId, :Tags, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId
@@ -631,16 +679,26 @@ module TencentCloud
       class CreateDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
         # @param TplName: 参数模板名称。
         # @type TplName: String
-        # @param MongoVersion: 版本号，该参数模板支持的售卖版本请参照查询云数据库的售卖规格（DescribeSpecInfo）返回结果。参数与版本对应关系是：MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。当MirrorTplId为空时，该字段必填。
+        # @param MongoVersion: 参数模板版本号。当**MirrorTplId**为空时，该字段必填。参数模板支持的售卖版本，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/35767) 获取。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，
+        # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param ClusterType: 实例类型，REPLSET-副本集，SHARD-分片集群，STANDALONE-单节点
-        # 当MirrorTplId为空时，该字段必填。
+        # @param ClusterType: 实例类型。当 MirrorTplId 为空值时，该参数必填。
+        # - REPLSET：副本集实例。
+        # - SHARD：分片实例。
+        # - STANDALONE：单节点实例。
         # @type ClusterType: String
         # @param TplDesc: 模板描述信息。
         # @type TplDesc: String
-        # @param Params: 模板参数，若为空，则以系统默认模板作为新版本参数。
+        # @param Params: 模板参数，若不配置该参数，则以系统默认模板作为新版本参数。
         # @type Params: Array
-        # @param MirrorTplId: 镜像模板ID，若该字段不为空，则以该模板为镜像，克隆出一个新的模板。注意：MirrorTplId不为空时，MongoVersion及ClusterType将以MirrorTpl模板的版本及实例类型为准。
+        # @param MirrorTplId: 镜像模板 ID。若指定镜像模板，则以该模板为镜像，克隆出一个新的模板。
+        # **注意**：MirrorTplId 不为空值时，MongoVersion 及 ClusterType 将以 MirrorTpl 模板的版本及实例类型为准。
         # @type MirrorTplId: String
 
         attr_accessor :TplName, :MongoVersion, :ClusterType, :TplDesc, :Params, :MirrorTplId
@@ -701,14 +759,14 @@ module TencentCloud
         # @param Volume: 实例硬盘大小，单位：GB。每一个 CPU 规格对应的最大磁盘与最小磁盘范围，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
         # @type Volume: Integer
         # @param MongoVersion: 指版本信息。具体支持的版本信息 ，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
-        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
         # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
         # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param GoodsNum: 实例数量, 最小值1，最大值为10。
+        # @param GoodsNum: 实例数量, 最小值1，最大值为30。
         # @type GoodsNum: Integer
         # @param Zone: 可用区信息，输入格式如：ap-guangzhou-2。
         # - 具体信息，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
@@ -731,9 +789,13 @@ module TencentCloud
         # - 若不设置该参数，则为默认项目。
         # - 在 [MongoDB 控制台项目管理](https://console.cloud.tencent.com/project)页面，可获取项目ID。
         # @type ProjectId: Integer
-        # @param VpcId: 私有网络ID。请登录[私有网络控制台](https://console.cloud.tencent.com/vpc)查询确认正确的ID。 示例值：vpc-pxyzim13
+        # @param VpcId: 私有网络 ID。
+        # - 仅支持配置私有网络，必须选择一个与实例同一地域的私有网络。请登录[私有网络控制台](https://console.cloud.tencent.com/vpc)获取可使用的私有网络 ID。
+        # - 实例创建成功之后，支持更换私有网络。具体操作，请参见[更换网络](https://cloud.tencent.com/document/product/239/30910)。
         # @type VpcId: String
-        # @param SubnetId: 私有网络VPC的子网。请登录 [私有网络控制台](https://console.cloud.tencent.com/vpc) 查询子网列表确认正确的 ID。 示例值：subnet-7jbabche
+        # @param SubnetId: 私有网络 VPC 的子网 ID。
+        # - 必须在已选的私有网络内指定一个子网。请登录[私有网络控制台](https://console.cloud.tencent.com/vpc)获取可使用的子网 ID。
+        # - 实例创建成功之后，支持更换私有网络及子网。具体操作，请参见[更换网络](https://cloud.tencent.com/document/product/239/30910)。
         # @type SubnetId: String
         # @param Password: 实例密码。设置要求如下：
         # - 字符个数为[8,32]。
@@ -751,15 +813,24 @@ module TencentCloud
         # - 1：是。
         # - 0：否。默认为0。
         # @type AutoVoucher: Integer
-        # @param Clone: 实例类型。- 1：正式实例。- 3：只读实例。- 4：灾备实例。-5：整实例克隆，注意：克隆实例时，RestoreTime为必填项。
+        # @param Clone: 实例类型。
+        # - 1：正式实例。
+        # - 3：只读实例。
+        # - 4：灾备实例。
+        # - 5：克隆实例。注意：克隆实例 RestoreTime 为必填项。
         # @type Clone: Integer
-        # @param Father: 父实例 ID。当参数**Clone**为3或者4时，即实例为只读或灾备实例时，该参数必须配置。
+        # @param Father: 父实例 ID。
+        # - 当参数**Clone**为3或者4时，即实例为只读或灾备实例时，该参数必须配置。
+        # - 请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制父实例 ID。
         # @type Father: String
-        # @param SecurityGroup: 安全组 ID。
+        # @param SecurityGroup: 安全组 ID。 请登录[安全组控制台](https://console.cloud.tencent.com/vpc/security-group)页面获取与数据库实例同地域的安全组 ID。
         # @type SecurityGroup: Array
         # @param RestoreTime: 克隆实例回档时间，当Clone取值为5或6时为必填。- 若为克隆实例，则必须配置该参数。输入格式示例：2021-08-13 16:30:00。- 回档时间范围：仅能回档7天内时间点的数据。
         # @type RestoreTime: String
-        # @param InstanceName: 实例名称。仅支持长度为60个字符的中文、英文、数字、下划线_、分隔符- 。
+        # @param InstanceName: 实例名称。仅支持长度为128个字符的中文、英文、数字、下划线\_、分隔符\-。批量购买数据库实例时，支持通过自定义命名模式串与数字后缀自动升序功能，高效设置实例名称。
+        # - 基础模式：前缀＋自动升序编号（默认从1开始），**lnstanceName**仅需自定义实例名称前缀，例如设置为：cmgo，设置购买数量为5，则购买后，实例名称依次分别为cmgo1、cmgo2、cmgo3、cmgo4、cmgo5。
+        # - 自定义起始序号模式：前缀+｛R:x｝（x为自定义起始序号）。**InstanceName**需填写“前缀｛R:x｝”，例如：cmgo｛R:3｝，设置购买数量为5，则实例名称为cmgo3、cmgo4、cmgo5、cmgo6、cmgo7。
+        # - 复合模式串：前缀1{R:x}+前缀2{R:y}+ ⋯+固定后缀，x与y分别为每一段前缀的起始序号。**instanceName**需填写复合模式串，例如：cmgo{R:10}\_node{R:12}\_db，设置批量购买数量为5，则实例名称为 cmgo10\_node12\_db, cmgo11\_node13\_db, cmgo12\_node14\_db, cmgo13\_node15\_db, cluster14\_node16\_db.
         # @type InstanceName: String
         # @param AvailabilityZoneList: 若多可用区部署云数据库实例，指定多可用区列表。
         # - 多可用区部署实例，参数 **Zone** 指定实例主可用区信息；**AvailabilityZoneList** 指定所有可用区信息，包含主可用区。输入格式如：[ap-guangzhou-2,ap-guangzhou-3,ap-guangzhou-4]。
@@ -782,7 +853,9 @@ module TencentCloud
         # @type ReadonlyNodeAvailabilityZoneList: Array
         # @param HiddenZone: Hidden节点所属可用区。跨可用区部署实例，必须配置该参数。
         # @type HiddenZone: String
-        # @param ParamTemplateId: 参数模板 ID。参数模板是一组 MongoDB 的参数并为预设置了参数值的集合，将一组有相同诉求的参数及值 存为模板，在创建实例时，可直接引用参数值到新实例。合理使用参数模板，可以提高MongoDB数据库的效率。模板列表从 DescribeDBInstanceParamTpl 接口获取，注意模板支持的版本及实例类型。
+        # @param ParamTemplateId: 参数模板 ID。
+        # - 参数模板是预置了特定参数值的集合，可用于快速配置新的 MongoDB 实例。合理使用参数模板，能有效提升数据库的部署效率与运行性能。
+        # - 参数模板 ID 可通过 [DescribeDBInstanceParamTpl ](https://cloud.tencent.com/document/product/240/109155)接口获取。请选择与实例版本与架构所对应的参数模板 ID。
         # @type ParamTemplateId: String
 
         attr_accessor :NodeNum, :Memory, :Volume, :MongoVersion, :GoodsNum, :Zone, :Period, :MachineCode, :ClusterType, :ReplicateSetNum, :ProjectId, :VpcId, :SubnetId, :Password, :Tags, :AutoRenewFlag, :AutoVoucher, :Clone, :Father, :SecurityGroup, :RestoreTime, :InstanceName, :AvailabilityZoneList, :MongosCpu, :MongosMemory, :MongosNodeNum, :ReadonlyNodeNum, :ReadonlyNodeAvailabilityZoneList, :HiddenZone, :ParamTemplateId
@@ -893,7 +966,15 @@ module TencentCloud
         # @type Ns: String
         # @param Query: 操作执行语句。
         # @type Query: String
-        # @param Op: 操作类型，可能的取值：aggregate、count、delete、distinct、find、findAndModify、getMore、insert、mapReduce、update和command。
+        # @param Op: 操作类型。
+        # - none：特殊状态，空闲连接或内部任务等。
+        # - update：更新数据。
+        # - insert：插入操作。
+        # - query：查询操作。
+        # - command：命令操作。
+        # - getmore：获取更多数据。
+        # - remove：删除操作。
+        # - killcursors：释放查询游标的操作。
         # @type Op: String
         # @param ReplicaSetName: 操作所在的分片名称。
         # @type ReplicaSetName: String
@@ -901,7 +982,9 @@ module TencentCloud
         # @type NodeName: String
         # @param Operation: 操作详细信息。
         # @type Operation: String
-        # @param State: 筛选条件，节点状态，可能的取值为：Primary、Secondary。
+        # @param State: 节点角色。
+        # - primary：主节点。
+        # - secondary：从节点。
         # @type State: String
         # @param MicrosecsRunning: 操作已执行时间（ms）。
         # @type MicrosecsRunning: Integer
@@ -1136,23 +1219,32 @@ module TencentCloud
 
       # DescribeBackupDownloadTask请求参数结构体
       class DescribeBackupDownloadTaskRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupName: 备份文件名，用来过滤指定文件的下载任务
+        # @param BackupName: 指定备份文件名，用于过滤指定文件的下载任务。请通过接口 [DescribeDBBackups](https://cloud.tencent.com/document/product/240/38574) 获取备份文件名。
         # @type BackupName: String
-        # @param StartTime: 指定查询时间范围内的任务，StartTime指定开始时间，不填默认不限制开始时间
+        # @param StartTime: 指定查询时间范围内的任务，StartTime 指定开始时间。若不指定开始时间，则默认不限制开始时间。
         # @type StartTime: String
-        # @param EndTime: 指定查询时间范围内的任务，EndTime指定截止时间，不填默认不限制截止时间
+        # @param EndTime: 指定查询时间范围内的任务，EndTime 指定截止时间。若不指定截止时间，则默认不限制截止时间。
         # @type EndTime: String
-        # @param Limit: 此次查询返回的条数，取值范围为1-100，默认为20
+        # @param Limit: 此次查询返回的条数，取值范围为1-100，默认为20。
         # @type Limit: Integer
-        # @param Offset: 指定此次查询返回的页数，默认为0
+        # @param Offset: 指定此次查询返回的页数，默认为0。
         # @type Offset: Integer
-        # @param OrderBy: 排序字段，取值为createTime，finishTime两种，默认为createTime
+        # @param OrderBy: 排序字段。
+        # - createTime：按照备份下载任务的创建时间排序。默认为 createTime。
+        # - finishTime：按照备份下载任务的完成时间排序。
         # @type OrderBy: String
-        # @param OrderByType: 排序方式，取值为asc，desc两种，默认desc
+        # @param OrderByType: 排序方式。
+        # - asc：升序排列。
+        # - desc：降序排列。默认为 desc。
         # @type OrderByType: String
-        # @param Status: 根据任务状态过滤。0-等待执行，1-正在下载，2-下载完成，3-下载失败，4-等待重试。不填默认返回所有类型
+        # @param Status: 指定任务状态，用于过滤下载任务。若不配置该参数，则返回所有状态类型的任务。
+        # - 0：等待执行。
+        # - 1：正在下载。
+        # - 2：下载完成。
+        # - 3：下载失败。
+        # - 4：等待重试。
         # @type Status: Array
 
         attr_accessor :InstanceId, :BackupName, :StartTime, :EndTime, :Limit, :Offset, :OrderBy, :OrderByType, :Status
@@ -1184,9 +1276,9 @@ module TencentCloud
 
       # DescribeBackupDownloadTask返回参数结构体
       class DescribeBackupDownloadTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 满足查询条件的所有条数
+        # @param TotalCount: 满足查询条件的所有条数。
         # @type TotalCount: Integer
-        # @param Tasks: 下载任务列表
+        # @param Tasks: 下载任务列表。
         # @type Tasks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1316,7 +1408,7 @@ module TencentCloud
 
       # DescribeCurrentOp请求参数结构体
       class DescribeCurrentOpRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定要查询的实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: 指定要查询的实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param Ns: 操作所属的命名空间 namespace，格式为 db.collection。
         # @type Ns: String
@@ -1324,7 +1416,15 @@ module TencentCloud
         # - 默认值为0，取值范围为[0, 3600000]，单位：毫秒。
         # - 结果将返回超过设置时间的操作。
         # @type MillisecondRunning: Integer
-        # @param Op: 设置查询筛选条件为操作任务类型。取值包括：none、update、insert，query、command、getmore、remove 和 killcursors。
+        # @param Op: 设置查询筛选条件为操作任务类型。取值包括：
+        # - none：特殊状态，空闲连接或内部任务等。
+        # - update：更新数据。
+        # - insert：插入操作。
+        # - query：查询操作。
+        # - command：命令操作。
+        # - getmore：获取更多数据。
+        # - remove：删除操作。
+        # - killcursors：释放查询游标的操作。
         # @type Op: String
         # @param ReplicaSetName: 筛选条件，分片名称。
         # @type ReplicaSetName: String
@@ -1332,13 +1432,15 @@ module TencentCloud
         # - primary：主节点。
         # - secondary：从节点。
         # @type State: String
-        # @param Limit: 单次请求返回的数量，默认值为100，取值范围为[0,100]
+        # @param Limit: 单次请求返回的数量，默认值为100，取值范围为[0,100]。
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认值为0，取值范围为[0,10000]
+        # @param Offset: 偏移量，默认值为0，取值范围为[0,10000]。
         # @type Offset: Integer
-        # @param OrderBy: 返回结果集排序的字段，目前支持："MicrosecsRunning"/"microsecsrunning"，默认为升序排序
+        # @param OrderBy: 返回结果集排序的字段，目前支持按照 MicrosecsRunning（操作任务已执行的时间）排序。
         # @type OrderBy: String
-        # @param OrderByType: 返回结果集排序方式，可能的取值："ASC"/"asc"或"DESC"/"desc"
+        # @param OrderByType: 返回结果集排序方式。
+        # - ASC：升序。默认为 ASC，按照升序排序。
+        # - DESC：降序。
         # @type OrderByType: String
 
         attr_accessor :InstanceId, :Ns, :MillisecondRunning, :Op, :ReplicaSetName, :State, :Limit, :Offset, :OrderBy, :OrderByType
@@ -1403,9 +1505,15 @@ module TencentCloud
 
       # DescribeDBBackups请求参数结构体
       class DescribeDBBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupMethod: 备份方式，当前支持：0-逻辑备份，1-物理备份，2-所有备份。默认为逻辑备份。
+        # @param BackupMethod: 备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明**:
+        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # 2. 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
         # @param Limit: 分页大小，最大值为100，不设置默认查询所有。
         # @type Limit: Integer
@@ -1431,9 +1539,9 @@ module TencentCloud
 
       # DescribeDBBackups返回参数结构体
       class DescribeDBBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param BackupList: 备份列表
+        # @param BackupList: 备份列表。
         # @type BackupList: Array
-        # @param TotalCount: 备份总数
+        # @param TotalCount: 备份总数。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1462,7 +1570,9 @@ module TencentCloud
 
       # DescribeDBInstanceDeal请求参数结构体
       class DescribeDBInstanceDealRequest < TencentCloud::Common::AbstractModel
-        # @param DealId: 订单ID，通过CreateDBInstance等接口返回
+        # @param DealId: 订单 ID。
+        # - 按量计费实例，请通过 [CreateDBInstanceHour](https://cloud.tencent.com/document/product/240/38570) 接口输出的参数**DealId**获取。。
+        # - 包年包月计费实例，请通过 [CreateDBInstance](https://cloud.tencent.com/document/product/240/38571) 接口输出的参数**DealId**获取。
         # @type DealId: String
 
         attr_accessor :DealId
@@ -1478,15 +1588,28 @@ module TencentCloud
 
       # DescribeDBInstanceDeal返回参数结构体
       class DescribeDBInstanceDealResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 订单状态，1：未支付，2：已支付，3：发货中，4：发货成功，5：发货失败，6：退款，7：订单关闭，8：超时未支付关闭。
+        # @param Status: 订单状态。
+        # - 1：未支付。
+        # - 2：已支付。
+        # - 3：发货中。
+        # - 4：发货成功。
+        # - 5：发货失败。
+        # - 6：退款。
+        # - 7：订单关闭。
+        # - 8：超时未支付关闭。
         # @type Status: Integer
-        # @param OriginalPrice: 订单原价。
+        # @param OriginalPrice: 订单原价。单位：元。
         # @type OriginalPrice: Float
-        # @param DiscountPrice: 订单折扣价格。
+        # @param DiscountPrice: 订单折扣价格。单位：元。
         # @type DiscountPrice: Float
-        # @param Action: 订单行为，purchase：新购，renew：续费，upgrade：升配，downgrade：降配，refund：退货退款。
+        # @param Action: 订单操作行为。
+        # - purchase：新购。
+        # - renew：续费。
+        # - upgrade：升配.
+        # - downgrade：降配.
+        # - refund：退货退款。
         # @type Action: String
-        # @param InstanceId: 当前订单的资源Id。
+        # @param InstanceId: 当前订单的实例 ID。
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1558,19 +1681,23 @@ module TencentCloud
 
       # DescribeDBInstanceNodeProperty请求参数结构体
       class DescribeDBInstanceNodePropertyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param NodeIds: 节点ID。
+        # @param NodeIds: 节点 ID。请登录 [MongoDB 控制台的节点管理](https://console.cloud.tencent.com/mongodb)复制节点 ID。
         # @type NodeIds: Array
         # @param Roles: 节点角色。可选值包括：
-        # <ul><li>PRIMARY：主节点。</li><li>SECONDARY：从节点。</li><li>READONLY：只读节点。</li><li>ARBITER：仲裁节点。</li></ul>
+        # - PRIMARY：主节点。
+        # - SECONDARY：从节点。
+        # - READONLY：只读节点。
+        # - ARBITER：仲裁节点。
         # @type Roles: Array
-        # @param OnlyHidden: 该参数指定节点是否为Hidden节点，默认为false。
+        # @param OnlyHidden: 该参数指定节点是否为 Hidden 节点，默认为 false。
         # @type OnlyHidden: Boolean
         # @param Priority: 该参数指定选举新主节点的优先级。其取值范围为[0,100]，数值越高，优先级越高。
         # @type Priority: Integer
         # @param Votes: 该参数指定节点投票权。
-        # <ul><li>1：具有投票权。</li><li>0：无投票权。</li></ul>
+        # - 1：具有投票权。
+        # - 0：无投票权。
         # @type Votes: Integer
         # @param Tags: 节点标签。
         # @type Tags: Array
@@ -1645,7 +1772,7 @@ module TencentCloud
 
       # DescribeDBInstanceParamTplDetail请求参数结构体
       class DescribeDBInstanceParamTplDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TplId: 参数模板 ID。
+        # @param TplId: 参数模板 ID。请通过接口 [DescribeDBInstanceParamTpl](https://cloud.tencent.com/document/product/240/109155) 获取模板 ID。
         # @type TplId: String
         # @param ParamName: 参数名称，传入该值，则只会获取该字段的参数详情。为空时，返回全部参数。
         # @type ParamName: String
@@ -1675,9 +1802,19 @@ module TencentCloud
         # @type InstanceMultiParams: Array
         # @param TotalCount: 参数总个数。
         # @type TotalCount: Integer
-        # @param MongoVersion: 模板适配实例版本。
+        # @param MongoVersion: 模板适配的实例版本。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，
+        # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param ClusterType: 模板适配集群类型，副本集或分片。。
+        # @param ClusterType: 模板适配集群类型。
+        # - REPLSET：副本集实例。
+        # - SHARD：分片实例。
+        # - STANDALONE：单节点实例。
         # @type ClusterType: String
         # @param TplName: 参数模板名称。
         # @type TplName: String
@@ -1741,16 +1878,22 @@ module TencentCloud
 
       # DescribeDBInstanceParamTpl请求参数结构体
       class DescribeDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
-        # @param TplIds: 参数模板 ID 查询条件。
+        # @param TplIds: 参数模板 ID。请通过接口 [DescribeDBInstanceParamTpl](https://cloud.tencent.com/document/product/240/109155) 获取模板 ID。
         # @type TplIds: Array
-        # @param TplNames: 模板名称，查询条件。
+        # @param TplNames: 指定查询的模板名称。
         # @type TplNames: Array
-        # @param MongoVersion: 根据版本号查询参数模板，具体支持的售卖版本，请参见[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567)查询云数据库的售卖规格的返回结果。参数与版本对应关系如下所示：
-        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
-        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
+        # @param MongoVersion: 指定所需查询的参数模板的数据库版本号。具体支持的版本信息，请通过接口 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 获取。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: Array
-        # @param TplType: 根据模板类型查询参数模板，支持DEFAULT（默认模板）和CUSTOMIZE（自定义模板）两种。
+        # @param TplType: 指定查询的模板类型。
+        # - DEFAULT：系统默认模板。
+        # - CUSTOMIZE：自定义模板。
         # @type TplType: String
 
         attr_accessor :TplIds, :TplNames, :MongoVersion, :TplType
@@ -1846,13 +1989,26 @@ module TencentCloud
 
       # DescribeDBInstances请求参数结构体
       class DescribeDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 实例 ID 列表。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceIds: 实例 ID 列表。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceIds: Array
-        # @param InstanceType: 指定查询的实例类型。取值范围如下：<ul><li>0：所有实例。</li><li>1：正式实例。</li><li>3：只读实例。</li><li>4：灾备实例。</li></ul>
+        # @param InstanceType: 指定查询的实例类型。取值范围如下：
+        # - 0：所有实例。
+        # - 1：正式实例。
+        # - 2：临时实例
+        # - 3：只读实例。
+        # - -1：查询同时包括正式实例、只读实例与灾备实例。
         # @type InstanceType: Integer
-        # @param ClusterType: 指定所查询实例的集群类型，取值范围如下：<ul><li>0：副本集实例。</li><li>1：分片实例。</li><li>-1：副本集与分片实例。</li></ul>
+        # @param ClusterType: 指定所查询实例的集群类型，取值范围如下：
+        # - 0：副本集实例。
+        # - 1：分片实例。
+        # - -1：副本集与分片实例。
         # @type ClusterType: Integer
-        # @param Status: 指定所查询实例的当前状态，取值范围如下所示：<ul><li>0：待初始化。</li><li>1：流程处理中，例如：变更规格、参数修改等。</li><li>2：实例正常运行中。</li><li>-2：实例已过期。</li></ul>
+        # @param Status: 指定所查询实例的当前状态，取值范围如下所示：
+        # - 0：待初始化。
+        # - 1：流程处理中，例如：变更规格、参数修改等。
+        # - 2：实例正常运行中。
+        # - -2：已隔离（包年包月）。
+        # - -3：已隔离（按量计费）。
         # @type Status: Array
         # @param VpcId: 私有网络的 ID。
         # - 基础网络则无需配置该参数。
@@ -1862,9 +2018,12 @@ module TencentCloud
         # - 基础网络则无需配置该参数。
         # - 请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表中，单击私有网络名称，在**私有网络**页面获取其子网 ID。
         # @type SubnetId: String
-        # @param PayMode: 指定所查询实例的付费类型，取值范围如下：<ul><li>0：查询按量计费实例。</li><li>1：查询包年包月实例。</li><li>-1：查询按量计费与包年包月实例。</li></ul>
+        # @param PayMode: 指定所查询实例的付费类型。
+        # - 0：查询按量计费实例。
+        # - 1：查询包年包月实例。
+        # - -1：查询按量计费与包年包月实例。
         # @type PayMode: Integer
-        # @param Limit: 单次请求返回的数量。默认值为20，取值范围为[1,100]。
+        # @param Limit: 单次请求返回的数量。默认值为20，取值范围为(1,100]。
         # @type Limit: Integer
         # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
@@ -1958,29 +2117,35 @@ module TencentCloud
 
       # DescribeDetailedSlowLogs请求参数结构体
       class DescribeDetailedSlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例id
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 待查询慢日志的开始时间
+        # @param StartTime: 指定查询慢日志的开始时间。- 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。- 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type StartTime: String
-        # @param EndTime: 待慢日志的结束时间
+        # @param EndTime: 指定查询慢日志的结束时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。
+        # - 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type EndTime: String
-        # @param ExecTime: 过滤执行时间大于此值的慢日志，单位ms，默认值100
+        # @param ExecTime: 指定慢日志查询阈值，即查询执行时间大于此值的慢日志。单位：ms，默认值：100。
         # @type ExecTime: Integer
-        # @param Commands: 过滤慢日志的命令类型
+        # @param Commands: 指定查询慢日志的命令类型。
         # @type Commands: Array
-        # @param Texts: 全文搜索关键字，多个关键字间为或关系
+        # @param Texts: 全文搜索关键字，多个关键字间为或关系。
         # @type Texts: Array
-        # @param NodeNames: 根据节点名过滤
+        # @param NodeNames: 指定查询慢日志的节点名称。请通过接口 [DescribeDBInstanceNodeProperty](https://cloud.tencent.com/document/product/240/82022) 查询节点名称。
         # @type NodeNames: Array
-        # @param QueryHash: 根据queryHash过滤
+        # @param QueryHash: 指定查询 queryHash 值。
         # @type QueryHash: Array
-        # @param Offset: 分页偏移量
+        # @param Offset: 分页偏移量。默认值：0。取值范围：[0,100]。
         # @type Offset: Integer
-        # @param Limit: 返回条数
+        # @param Limit: 返回条数。默认值：20。取值范围：[0,10000]
         # @type Limit: Integer
-        # @param OrderBy: 排序条件，只支持StartTime(按慢日志生成时间)和ExecTime(慢日志执行时间)
+        # @param OrderBy: 指定慢日志排序条件。
+        # - StartTime：按照慢日志生成时间排序。
+        # - ExecTime：按照慢日志执行时间排序。
         # @type OrderBy: String
-        # @param OrderByType: 排序。desc倒排，asc正排
+        # @param OrderByType: 指定排序方式。
+        # - desc：倒序。
+        # - asc：顺序。
         # @type OrderByType: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :ExecTime, :Commands, :Texts, :NodeNames, :QueryHash, :Offset, :Limit, :OrderBy, :OrderByType
@@ -2018,9 +2183,9 @@ module TencentCloud
 
       # DescribeDetailedSlowLogs返回参数结构体
       class DescribeDetailedSlowLogsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 满足条件的慢日志数量
+        # @param TotalCount: 满足条件的慢日志数量。
         # @type TotalCount: Integer
-        # @param DetailedSlowLogs: 慢日志详情
+        # @param DetailedSlowLogs: 慢日志详情。
         # @type DetailedSlowLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2129,7 +2294,7 @@ module TencentCloud
 
       # DescribeSecurityGroup请求参数结构体
       class DescribeSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。例如：cmgo-p8vn****。
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2172,11 +2337,15 @@ module TencentCloud
 
       # DescribeSlowLogPatterns请求参数结构体
       class DescribeSlowLogPatternsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 慢日志起始时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
+        # @param StartTime: 慢日志起始时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。
+        # - 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type StartTime: String
-        # @param EndTime: 慢日志终止时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
+        # @param EndTime: 慢日志终止时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。
+        # - 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type EndTime: String
         # @param SlowMS: 慢日志执行时间阈值，返回执行时间超过该阈值的慢日志，单位为毫秒(ms)，最小为100毫秒。
         # @type SlowMS: Integer
@@ -2243,11 +2412,15 @@ module TencentCloud
 
       # DescribeSlowLogs请求参数结构体
       class DescribeSlowLogsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param StartTime: 慢日志起始时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
+        # @param StartTime: 慢日志起始时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。
+        # - 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type StartTime: String
-        # @param EndTime: 慢日志终止时间，格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
+        # @param EndTime: 慢日志终止时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-02 12:00:00。
+        # - 查询起止时间间隔不能超过24小时，只允许查询最近7天内慢日志。
         # @type EndTime: String
         # @param SlowMS: 慢日志执行时间阈值，返回执行时间超过该阈值的慢日志，单位为毫秒(ms)，最小为100毫秒。
         # @type SlowMS: Integer
@@ -2283,9 +2456,9 @@ module TencentCloud
 
       # DescribeSlowLogs返回参数结构体
       class DescribeSlowLogsResponse < TencentCloud::Common::AbstractModel
-        # @param Count: 慢日志总数
+        # @param Count: 慢日志总数。
         # @type Count: Integer
-        # @param SlowLogs: 慢日志详情
+        # @param SlowLogs: 慢日志详情。
         # @type SlowLogs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2307,7 +2480,7 @@ module TencentCloud
 
       # DescribeSpecInfo请求参数结构体
       class DescribeSpecInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 待查询可用区
+        # @param Zone: 待查询可用区。当前支持的可用区，请参见[地域与可用区](https://cloud.tencent.com/document/product/240/3637)。
         # @type Zone: String
 
         attr_accessor :Zone
@@ -2323,7 +2496,7 @@ module TencentCloud
 
       # DescribeSpecInfo返回参数结构体
       class DescribeSpecInfoResponse < TencentCloud::Common::AbstractModel
-        # @param SpecInfoList: 实例售卖规格信息列表
+        # @param SpecInfoList: 实例售卖规格信息列表。
         # @type SpecInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2350,7 +2523,7 @@ module TencentCloud
 
       # DescribeTransparentDataEncryptionStatus请求参数结构体
       class DescribeTransparentDataEncryptionStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: 指定实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2400,7 +2573,7 @@ module TencentCloud
 
       # DropDBInstanceParamTpl请求参数结构体
       class DropDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
-        # @param TplId: 参数模板 ID。
+        # @param TplId: 参数模板 ID。请通过接口 [DescribeDBInstanceParamTpl](https://cloud.tencent.com/document/product/240/109155) 获取模板 ID。
         # @type TplId: String
 
         attr_accessor :TplId
@@ -2474,11 +2647,11 @@ module TencentCloud
         end
       end
 
-      # 按key回档，用于筛选数据的键值对
+      # 按 Key 闪回键值对
       class FBKeyValue < TencentCloud::Common::AbstractModel
-        # @param Key: 用于按key回档过滤的key
+        # @param Key: 指定按 Key 闪回的目标 Key （键） 。
         # @type Key: String
-        # @param Value: 用于按key回档过滤的value
+        # @param Value: 指定按 Key 闪回的目标 Key 所对应的 Value（值）。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -2549,15 +2722,15 @@ module TencentCloud
         end
       end
 
-      # 按key回档，源数据所在的表
+      # 按 Key 闪回数据表
       class FlashbackCollection < TencentCloud::Common::AbstractModel
-        # @param CollectionName: 按key回档指定的集合名
+        # @param CollectionName: 指定按 Key 闪回源数据库集合名。
         # @type CollectionName: String
-        # @param TargetResultCollectionName: 按key回档到的目标集合名
+        # @param TargetResultCollectionName: 指定按 Key 闪回目标数据库集合名。
         # @type TargetResultCollectionName: String
-        # @param FilterKey: 上传到cos的文件的value所对应的key值
+        # @param FilterKey: 指定用于过滤按 Key 闪回的 Key（键）。
         # @type FilterKey: String
-        # @param KeyValues: 用于按key回档过滤的键值对
+        # @param KeyValues: 指定用于按 Key 闪回的键值对。数组元素最大限制为 50000。
         # @type KeyValues: Array
 
         attr_accessor :CollectionName, :TargetResultCollectionName, :FilterKey, :KeyValues
@@ -2584,11 +2757,11 @@ module TencentCloud
         end
       end
 
-      # 按key回档，源数据所在的库表
+      # 按 Key 闪回的数据库及集合信息
       class FlashbackDatabase < TencentCloud::Common::AbstractModel
-        # @param DBName: 按key回档源数据所在库
+        # @param DBName: 按 Key 闪回目标数据所在库。
         # @type DBName: String
-        # @param Collections: 按key回档的集群数组
+        # @param Collections: 按 Key 闪回的数据库集合。
         # @type Collections: Array
 
         attr_accessor :DBName, :Collections
@@ -2893,29 +3066,40 @@ module TencentCloud
         end
       end
 
-      # 实例详情
+      # 实例详情。
       class InstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。
         # @type InstanceId: String
         # @param InstanceName: 实例名称。
         # @type InstanceName: String
-        # @param PayMode: 付费类型，可能的返回值：1-包年包月；0-按量计费
+        # @param PayMode: 付费类型。
+        # - 1：包年包月。
+        # - 0：按量计费。
         # @type PayMode: Integer
-        # @param ProjectId: 项目ID。
+        # @param ProjectId: 项目 ID。
         # @type ProjectId: Integer
-        # @param ClusterType: 集群类型，可能的返回值：0-副本集实例，1-分片实例。
+        # @param ClusterType: 集群类型。
+        # - 0：副本集实例。
+        # - 1：分片实例。
         # @type ClusterType: Integer
         # @param Region: 地域信息。
         # @type Region: String
         # @param Zone: 可用区信息。
         # @type Zone: String
-        # @param NetType: 网络类型，可能的返回值：0-基础网络，1-私有网络
+        # @param NetType: 网络类型。
+        # - 0：基础网络。
+        # - 1：私有网络。
         # @type NetType: Integer
         # @param VpcId: 私有网络的ID。
         # @type VpcId: String
         # @param SubnetId: 私有网络的子网ID。
         # @type SubnetId: String
-        # @param Status: 实例状态，可能的返回值：0-创建中，1-流程处理中，2-运行中，-2-实例已过期。
+        # @param Status: 实例状态。
+        # - 0：待初始化。
+        # - 1：流程处理中，例如：变更规格、参数修改等。
+        # - 2：实例正常运行中。
+        # - -2：已隔离（包年包月）。
+        # - -3：已隔离（按量计费）。
         # @type Status: Integer
         # @param Vip: 实例IP。
         # @type Vip: String
@@ -2925,23 +3109,35 @@ module TencentCloud
         # @type CreateTime: String
         # @param DeadLine: 实例到期时间。
         # @type DeadLine: String
-        # @param MongoVersion: 实例版本信息。
+        # @param MongoVersion: 实例存储引擎版本信息。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
+        # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param Memory: 实例内存规格，单位为MB。
+        # @param Memory: 实例内存规格，单位：MB。
         # @type Memory: Integer
-        # @param Volume: 实例磁盘规格，单位为MB。
+        # @param Volume: 实例磁盘规格，单位：MB。
         # @type Volume: Integer
-        # @param CpuNum: 实例CPU核心数。
+        # @param CpuNum: 实例 CPU 核心数。
         # @type CpuNum: Integer
         # @param MachineType: 实例机器类型。
+        # - HIO10G：通用高 HIO 万兆型。
+        # - HCD：云盘版类型。
         # @type MachineType: String
         # @param SecondaryNum: 实例从节点数。
         # @type SecondaryNum: Integer
         # @param ReplicationSetNum: 实例分片数。
         # @type ReplicationSetNum: Integer
-        # @param AutoRenewFlag: 实例自动续费标志，可能的返回值：0-手动续费，1-自动续费，2-确认不续费。
+        # @param AutoRenewFlag: 实例自动续费标志。
+        # - 0：手动续费。
+        # - 1：自动续费。
+        # - 2：确认不续费。
         # @type AutoRenewFlag: Integer
-        # @param UsedVolume: 已用容量，单位MB。
+        # @param UsedVolume: 已用容量，单位：MB。
         # @type UsedVolume: Integer
         # @param MaintenanceStart: 维护窗口起始时间。
         # @type MaintenanceStart: String
@@ -2963,29 +3159,34 @@ module TencentCloud
         # @type InstanceVer: Integer
         # @param ClusterVer: 实例版本标记。
         # @type ClusterVer: Integer
-        # @param Protocol: 协议信息，可能的返回值：1-mongodb，2-dynamodb。
+        # @param Protocol: 协议信息：mongodb。
         # @type Protocol: Integer
-        # @param InstanceType: 实例类型，可能的返回值，1-正式实例，2-临时实例，3-只读实例，4-灾备实例
+        # @param InstanceType: 实例类型。
+        # - 0：所有实例。
+        # - 1：正式实例。
+        # - 2：临时实例
+        # - 3：只读实例。
+        # - -1：同时包括正式实例、只读实例与灾备实例。
         # @type InstanceType: Integer
-        # @param InstanceStatusDesc: 实例状态描述
+        # @param InstanceStatusDesc: 实例状态描述。
         # @type InstanceStatusDesc: String
-        # @param RealInstanceId: 实例对应的物理实例id，回档并替换过的实例有不同的InstanceId和RealInstanceId，从barad获取监控数据等场景下需要用物理id获取
+        # @param RealInstanceId: 实例对应的物理实例 ID。回档并替换过的实例有不同的 InstanceId 和 RealInstanceId，从 barad 获取监控数据等场景下需要用物理 ID 获取。
         # @type RealInstanceId: String
         # @param ZoneList: 实例当前可用区信息。
         # @type ZoneList: Array
-        # @param MongosNodeNum: mongos节点个数。
+        # @param MongosNodeNum: mongos 节点个数。
         # @type MongosNodeNum: Integer
-        # @param MongosMemory: mongos节点内存。
+        # @param MongosMemory: mongos 节点内存。单位：MB。
         # @type MongosMemory: Integer
-        # @param MongosCpuNum: mongos节点CPU核数。
+        # @param MongosCpuNum: mongos 节点 CPU 核数。
         # @type MongosCpuNum: Integer
         # @param ConfigServerNodeNum: Config Server节点个数。
         # @type ConfigServerNodeNum: Integer
-        # @param ConfigServerMemory: Config Server节点内存。
+        # @param ConfigServerMemory: Config Server节点内存。单位：MB。
         # @type ConfigServerMemory: Integer
-        # @param ConfigServerVolume: Config Server节点磁盘大小。
+        # @param ConfigServerVolume: Config Server节点磁盘大小。单位：MB。
         # @type ConfigServerVolume: Integer
-        # @param ConfigServerCpuNum: Config Server节点CPU核数。
+        # @param ConfigServerCpuNum: Config Server 节点 CPU 核数。
         # @type ConfigServerCpuNum: Integer
         # @param ReadonlyNodeNum: readonly节点个数。
         # @type ReadonlyNodeNum: Integer
@@ -3331,7 +3532,7 @@ module TencentCloud
 
       # IsolateDBInstance请求参数结构体
       class IsolateDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制需隔离的实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3374,6 +3575,8 @@ module TencentCloud
         # @param CreateTime: 实例与密钥绑定时间。
         # @type CreateTime: String
         # @param Status: 密钥状态。
+        # - Enabled：开启。
+        # - Disabled：不开启。
         # @type Status: String
         # @param KeyUsage: 密钥用途。
         # @type KeyUsage: String
@@ -3407,9 +3610,9 @@ module TencentCloud
 
       # KillOps请求参数结构体
       class KillOpsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Operations: 待终止的操作
+        # @param Operations: 待终止的操作。
         # @type Operations: Array
 
         attr_accessor :InstanceId, :Operations
@@ -3511,7 +3714,7 @@ module TencentCloud
 
       # ModifyDBInstanceParamTpl请求参数结构体
       class ModifyDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
-        # @param TplId: 待修改的参数模板 ID，示例：tpl-jglr91vew。
+        # @param TplId: 待修改的参数模板 ID。请通过接口 [DescribeDBInstanceParamTpl](https://cloud.tencent.com/document/product/240/109155) 获取模板 ID。
         # @type TplId: String
         # @param TplName: 待修改参数模板名称，为空时，保持原有名称。
         # @type TplName: String
@@ -3599,11 +3802,12 @@ module TencentCloud
 
       # ModifyDBInstanceSpec请求参数结构体
       class ModifyDBInstanceSpecRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param Memory: 实例配置变更后的内存大小。- 单位：GB。为空时，默认取实例当前的内存大小。<br>  注意：内存和磁盘必须同时升配或同时降配，即 Memory 与 Volume 需同时配置变更。
+        # @param Memory: 实例配置变更后的内存大小。单位：GB。该参数为空值时，默认取实例当前的内存大小。当前所支持的内存规格，请参见[产品规格](https://cloud.tencent.com/document/product/240/64125)。
+        # **注意**：内存和磁盘必须同时升配或同时降配，即 Memory 与 Volume 需同时配置变更。
         # @type Memory: Integer
-        # @param Volume: 实例配置变更后的硬盘大小，单位：GB。为空时，默认取当前实例的磁盘大小。
+        # @param Volume: 实例配置变更后的硬盘大小，单位：GB。该参数为空值时，默认取当前实例的磁盘大小。当前所支持的磁盘容量，请参见[产品规格](https://cloud.tencent.com/document/product/240/64125)。
         # - 内存和磁盘必须同时升配或同时降配，即 Memory 与 Volume 需同时配置变更。
         # - 降配时，变更后的磁盘容量必须大于已用磁盘容量的1.2倍。
         # @type Volume: Integer
@@ -3613,26 +3817,26 @@ module TencentCloud
         # - 单位：GB。
         # - 默认 Oplog 占用容量为磁盘空间的10%。系统允许设置的 Oplog 容量范围为磁盘空间的[10%,90%]。
         # @type OplogSize: Integer
-        # @param NodeNum: 实例变更后mongod的节点数（不包含readonly节点数）。
-        # - 变更mongod CPU与内存规格时，该参数可以不配置或者输入当前 mongod(不包含readonly) 节点数量。
-        # -  变更 mongos CPU与内存规格时，该参数可以不配置或者输入当前 mongod(不包含readonly) 节点数量。
-        # -  节点变更时(全部类型)，该参数可不配置或输入变更后的 mongod(不包含readonly) 节点数量。
-        # -  副本集节点数：请确认节点数量取值范围，通过云数据库的售卖规格 [DescribeSpecInfo ](https://cloud.tencent.com/document/product/240/38565)接口返回的参数 MinNodeNum 与 MaxNodeNum 获取。
-        # -  分片集群每个分片节点数：请确认节点数量取值范围，通过云数据库的售卖规格 [DescribeSpecInfo ](https://cloud.tencent.com/document/product/240/38565)接口返回的参数 MinReplicateSetNodeNum 与 MaxReplicateSetNodeNum 获取。
+        # @param NodeNum: 实例变更后 mongod 的节点数（不包含 readonly 只读节点数）。
+        # -  副本集节点数：请通过 [DescribeSpecInfo ](https://cloud.tencent.com/document/product/240/38567)接口返回的参数 MinNodeNum 与 MaxNodeNum 获取节点数量取值范围。
+        # -  分片集群每个分片节点数：请通过 [DescribeSpecInfo ](https://cloud.tencent.com/document/product/240/38567)接口返回的参数 MinReplicateSetNodeNum 与 MaxReplicateSetNodeNum 获取节点数量取值范围。
+        # **说明**：变更 mongod 或 mongos 的 CPU 与内存规格时，该参数可以不配置或者输入当前 mongod 或 mongos（不包含readonly）节点数量。
         # @type NodeNum: Integer
         # @param ReplicateSetNum: 实例变更后的分片数。
-        # - 取值范围请通过云数据库的售卖规格[DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 接口返回的参数**MinReplicateSetNum**与**MaxReplicateSetNum**获取。- 该参数只能增加不能减少。
+        # - 请通过 [DescribeSpecInfo](https://cloud.tencent.com/document/product/240/38567) 接口返回的参数**MinReplicateSetNum**与**MaxReplicateSetNum**获取实例分片数取值范围。
+        # - 实例分片数量只允许增加不允许减少。
         # @type ReplicateSetNum: Integer
         # @param InMaintenance: 实例配置变更的切换时间。
         # - 0：调整完成时，立即执行变配任务。默认为0。
         # - 1：在维护时间窗内，执行变配任务。
         # **说明**：调整节点数和分片数不支持在<b>维护时间窗内</b>变更。
         # @type InMaintenance: Integer
-        # @param MongosMemory: 分片实例配置变更后的mongos内存大小。单位：GB。
+        # @param MongosMemory: 分片实例配置变更后的 mongos 内存大小。单位：GB。实例支持的规格，请参见[产品规格](https://cloud.tencent.com/document/product/240/64125)。
         # @type MongosMemory: String
         # @param AddNodeList: 新增节点列表，节点类型及可用区信息。
         # @type AddNodeList: Array
-        # @param RemoveNodeList: 删除节点列表，注意：基于分片实例各片节点的一致性原则，删除分片实例节点时，只需指定0分片对应的节点即可，如：cmgo-9nl1czif_0-node-readonly0 将删除每个分片的第1个只读节点。
+        # @param RemoveNodeList: 删除节点列表。
+        # **注意**：基于分片实例各片节点的一致性原则，删除分片实例节点时，只需指定0分片对应的节点即可，如：cmgo-9nl1czif_0-node-readonly0 将删除每个分片的第1个只读节点。
         # @type RemoveNodeList: Array
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
@@ -3810,21 +4014,38 @@ module TencentCloud
         # @type Address: String
         # @param WanServiceAddress: 节点公网访问外网地址(IP或域名，示例为IP方式)。
         # @type WanServiceAddress: String
-        # @param Role: 角色。
+        # @param Role: 节点角色。
+        # - PRIMARY：主节点。
+        # - SECONDARY：从节点。
+        # - READONLY：只读节点。
+        # - ARBITER：仲裁节点。
         # @type Role: String
-        # @param Hidden: 是否为Hidden节点
+        # @param Hidden: 节点是否为 Hidden 节点。
+        # - true：Hidden 节点。
+        # - false：非 Hidden 节点。
         # @type Hidden: Boolean
-        # @param Status: 节点状态，包括：ORMAL/STARTUP/RECOVERING/STARTUP2/UNKNOWN/DOWN/ROLLBACK/REMOVED等。
+        # @param Status: 节点状态。
+        # - NORMAL：正常运行中。
+        # - STARTUP：正在启动。
+        # - STARTUP2：正在启动，处理中间数据。
+        # - RECOVERING：恢复中，暂不可用。
+        # - DOWN：已掉线。
+        # - UNKNOWN：未知状态。
+        # - ROLLBACK：回滚中。
+        # - REMOVED：已移除。
         # @type Status: String
-        # @param SlaveDelay: 主从延迟，单位秒。
+        # @param SlaveDelay: 主从同步延迟时间，单位：秒。
         # @type SlaveDelay: Integer
-        # @param Priority: 节点优先级。
+        # @param Priority: 节点优先级。其取值范围为[0,100]，数值越高，优先级越高。
         # @type Priority: Integer
         # @param Votes: 节点投票权。
+        # - 1：具有投票权。
+        # - 0：无投票权。
         # @type Votes: Integer
         # @param Tags: 节点标签。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param ReplicateSetId: 副本集Id。
+        # @param ReplicateSetId: 副本集 ID。
         # @type ReplicateSetId: String
 
         attr_accessor :Zone, :NodeName, :Address, :WanServiceAddress, :Role, :Hidden, :Status, :SlaveDelay, :Priority, :Votes, :Tags, :ReplicateSetId
@@ -3889,7 +4110,7 @@ module TencentCloud
 
       # OfflineIsolatedDBInstance请求参数结构体
       class OfflineIsolatedDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @param InstanceId: 实例ID。请登录 [MongoDB 控制台回收站](https://console.cloud.tencent.com/mongodb/recycle)在实例列表复制需下线的实例 ID。
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3923,13 +4144,13 @@ module TencentCloud
         end
       end
 
-      # 需要终止的操作
+      # 需要终止的操作。
       class Operation < TencentCloud::Common::AbstractModel
-        # @param ReplicaSetName: 操作所在的分片名
+        # @param ReplicaSetName: 操作所在的分片名称。请通过接口 [DescribeCurrentOp](https://cloud.tencent.com/document/product/240/48120) 查询分片名称。
         # @type ReplicaSetName: String
-        # @param NodeName: 操作所在的节点名
+        # @param NodeName: 操作所在的节点名。请通过接口 [DescribeCurrentOp](https://cloud.tencent.com/document/product/240/48120) 查询节点名称。
         # @type NodeName: String
-        # @param OpId: 操作序号
+        # @param OpId: 操作序号。请通过接口 [DescribeCurrentOp](https://cloud.tencent.com/document/product/240/48120) 查询操作序号。
         # @type OpId: Integer
 
         attr_accessor :ReplicaSetName, :NodeName, :OpId
@@ -3949,17 +4170,29 @@ module TencentCloud
 
       # 数据库参数模板
       class ParamTpl < TencentCloud::Common::AbstractModel
-        # @param TplName: 参数模板名称
+        # @param TplName: 参数模板名称。
         # @type TplName: String
-        # @param TplId: 参数模板ID
+        # @param TplId: 参数模板 ID。
         # @type TplId: String
-        # @param MongoVersion: 适用数据库版本
+        # @param MongoVersion: 参数模板适用的数据库版本。
+        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本，
+        # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本，
+        # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
+        # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
+        # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
+        # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
-        # @param ClusterType: 适用数据库类型
+        # @param ClusterType: 参数模板适用的数据库类型。
+        # - REPLSET：副本集实例。
+        # - SHARD：分片实例。
+        # - STANDALONE：单节点实例。
         # @type ClusterType: String
-        # @param TplDesc: 参数模板描述
+        # @param TplDesc: 参数模板描述。
         # @type TplDesc: String
-        # @param TplType: 模板类型，包括DEFAULT（默认模板）及CUSTOMIZE（定制模板）两种类型
+        # @param TplType: 模板类型。
+        # - DEFAULT：系统默认模板。
+        # - CUSTOMIZE：自定义模板。
         # @type TplType: String
 
         attr_accessor :TplName, :TplId, :MongoVersion, :ClusterType, :TplDesc, :TplType
@@ -4003,19 +4236,18 @@ module TencentCloud
         end
       end
 
-      # 修改实例节点详情
+      # 修改实例节点详情。
       class RemoveNodeList < TencentCloud::Common::AbstractModel
         # @param Role: 需要删除的节点角色。
         # - SECONDARY：Mongod 从节点。
         # - READONLY：只读节点。
         # - MONGOS：Mongos 节点。
         # @type Role: String
-        # @param NodeName: 要删除的节点 ID。分片集群须指定一组分片要删除的节点名称即可，其余分片对改组对齐。
-
-        # - 获取方式：登录 [MongoDB控制台](https://console.cloud.tencent.com/)，在**节点管理**页签，可获取**节点 ID**。
-        # - 特别说明：分片集群同一节点上的分片，仅需指定0分片节点 ID 即可。例如：cmgo-6hfk****_0-node-primary。
+        # @param NodeName: 要删除的节点 ID。分片集群须指定一组分片要删除的节点名称即可，其余分片对该组对齐。
+        # - 获取方式：登录 [MongoDB控制台](https://console.cloud.tencent.com/mongodb)，在**节点管理**页签，可获取**节点 ID**。
+        # - 特别说明：分片集群同一节点上的分片，仅需指定0分片节点 ID 即可。例如：cmgo-6hfk\*\*\*\*\_0-node-primary。
         # @type NodeName: String
-        # @param Zone: 节点所对应的可用区。
+        # @param Zone: 节点所对应的可用区。当前支持可用区信息，请参见[地域和可用区](https://cloud.tencent.com/document/product/240/3637)。
         # - 单可用区，所有节点在同一可用区。
         # - 多可用区：当前标准规格是三可用区分布，主从节点不在同一可用区，需注意配置所删除节点对应的可用区，且删除后必须满足任意2个可用区节点数大于第3个可用区原则。
         # @type Zone: String
@@ -4074,7 +4306,7 @@ module TencentCloud
       # RenewDBInstances请求参数结构体
       class RenewDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 指定续费的一个或多个待操作的实例ID。
-        # - 可通过[DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568)接口返回值中的**InstanceIds**获取。
+        # - 可通过[DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568)接口返回值中的**InstanceId**获取。
         # - 每次续费请求的实例数量上限为100。
         # @type InstanceIds: Array
         # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的续费时长、是否设置自动续费等属性。包年包月实例该参数为必传参数。
@@ -4112,9 +4344,9 @@ module TencentCloud
         end
       end
 
-      # 分片信息
+      # 分片信息。
       class ReplicaSetInfo < TencentCloud::Common::AbstractModel
-        # @param ReplicaSetId: 副本集ID
+        # @param ReplicaSetId: 副本集 ID。
         # @type ReplicaSetId: String
 
         attr_accessor :ReplicaSetId
@@ -4199,9 +4431,11 @@ module TencentCloud
 
       # RestartNodes请求参数结构体
       class RestartNodesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param NodeIds: 节点Id。
+        # @param NodeIds: 需要重启的节点 ID 列表。
+        # - 支持重启的节点类型包含：mongod节点、只读节点、mongos节点。
+        # - 节点 ID，请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在**节点管理**页面复制，或者通过 [DescribeDBInstanceNodeProperty ](https://cloud.tencent.com/document/product/240/82022)接口获取。
         # @type NodeIds: Array
 
         attr_accessor :InstanceId, :NodeIds
@@ -4219,7 +4453,7 @@ module TencentCloud
 
       # RestartNodes返回参数结构体
       class RestartNodesResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 流程Id。
+        # @param FlowId: 流程 ID。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4239,19 +4473,19 @@ module TencentCloud
 
       # 安全组信息
       class SecurityGroup < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 所属项目id
+        # @param ProjectId: 所属项目 ID。
         # @type ProjectId: Integer
-        # @param CreateTime: 创建时间
+        # @param CreateTime: 安全组创建时间。
         # @type CreateTime: String
-        # @param Inbound: 入站规则
+        # @param Inbound: 安全组入站规则。
         # @type Inbound: Array
-        # @param Outbound: 出站规则
+        # @param Outbound: 安全组出站规则。
         # @type Outbound: Array
-        # @param SecurityGroupId: 安全组id
+        # @param SecurityGroupId: 安全组 ID。
         # @type SecurityGroupId: String
-        # @param SecurityGroupName: 安全组名称
+        # @param SecurityGroupName: 安全组名称。
         # @type SecurityGroupName: String
-        # @param SecurityGroupRemark: 安全组备注
+        # @param SecurityGroupRemark: 安全组备注信息。
         # @type SecurityGroupRemark: String
 
         attr_accessor :ProjectId, :CreateTime, :Inbound, :Outbound, :SecurityGroupId, :SecurityGroupName, :SecurityGroupRemark
@@ -4293,21 +4527,23 @@ module TencentCloud
 
       # 安全组规则
       class SecurityGroupBound < TencentCloud::Common::AbstractModel
-        # @param Action: 执行规则。ACCEPT或DROP
+        # @param Action: 执行策略。
+        # - ACCEPT：允许，放行该端口相应的访问请求。
+        # - DROP：拒绝，直接丢弃数据包，不返回任何回应信息。
         # @type Action: String
-        # @param CidrIp: ip段。
+        # @param CidrIp: 访问数据库的入站 IP 或 IP 段。
         # @type CidrIp: String
-        # @param PortRange: 端口范围
+        # @param PortRange: 访问数据库的端口。
         # @type PortRange: String
-        # @param IpProtocol: 传输层协议。tcp，udp或ALL
+        # @param IpProtocol: 传输层协议：tcp。
         # @type IpProtocol: String
-        # @param Id: 安全组id代表的地址集合
+        # @param Id: 安全组 ID。
         # @type Id: String
-        # @param AddressModule: 地址组id代表的地址集合
+        # @param AddressModule: IP 地址或 IP 地址组参数模板 ID。请登录[参数模板控制台](https://console.cloud.tencent.com/vpc/template/ip)获取参数模板 IP 地址详情。
         # @type AddressModule: String
-        # @param ServiceModule: 服务组id代表的协议和端口集合
+        # @param ServiceModule: 协议端口或协议端口组参数模板 ID。请登录[参数模板控制台](https://console.cloud.tencent.com/vpc/template/protoport)获取参数模板协议端口详情。
         # @type ServiceModule: String
-        # @param Desc: 描述
+        # @param Desc: 安全组描述信息。
         # @type Desc: String
 
         attr_accessor :Action, :CidrIp, :PortRange, :IpProtocol, :Id, :AddressModule, :ServiceModule, :Desc
@@ -4390,7 +4626,13 @@ module TencentCloud
       class SetBackupRulesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param BackupMethod: 设置自动备份方式。- 0：逻辑备份。- 1：物理备份。-3：快照备份(仅云盘版支持)。
+        # @param BackupMethod: 备份方式。
+        # - 0：逻辑备份。
+        # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明**:
+        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # 2. 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
         # @param BackupTime: 设置自动备份开始时间。取值范围为：[0,23]，例如：该参数设置为2，表示02:00开始备份。
         # @type BackupTime: Integer
@@ -4560,11 +4802,11 @@ module TencentCloud
 
       # 慢日志详情
       class SlowLogItem < TencentCloud::Common::AbstractModel
-        # @param Log: 慢日志
+        # @param Log: 慢日志详情。
         # @type Log: String
-        # @param NodeName: 节点名称
+        # @param NodeName: 节点名称。
         # @type NodeName: String
-        # @param QueryHash: queryHash
+        # @param QueryHash: 查询哈希值。
         # @type QueryHash: String
 
         attr_accessor :Log, :NodeName, :QueryHash
@@ -4584,15 +4826,15 @@ module TencentCloud
 
       # 用于描述MongoDB数据库慢日志统计信息
       class SlowLogPattern < TencentCloud::Common::AbstractModel
-        # @param Pattern: 慢日志模式
+        # @param Pattern: 慢日志输出格式：库名.表名.命令。
         # @type Pattern: String
-        # @param QueryHash: queryHash
+        # @param QueryHash: 记录慢日志时所带的queryHash 值，标识一类查询。
         # @type QueryHash: String
-        # @param MaxTime: 最大执行时间
+        # @param MaxTime: 最大执行时间。单位：毫秒。
         # @type MaxTime: Integer
-        # @param AverageTime: 平均执行时间
+        # @param AverageTime: 平均执行时间。单位：毫秒。
         # @type AverageTime: Integer
-        # @param Total: 该模式慢日志条数
+        # @param Total: 慢日志条数。
         # @type Total: Integer
 
         attr_accessor :Pattern, :QueryHash, :MaxTime, :AverageTime, :Total
@@ -4614,19 +4856,12 @@ module TencentCloud
         end
       end
 
-      # mongodb售卖规格
+      # mongodb售卖规格。
       class SpecItem < TencentCloud::Common::AbstractModel
         # @param SpecCode: 规格信息标识。格式如：mongo.HIO10G.128g。由节点类型、规格类型、内存规格三部分组成。
-        # - 节点类型，如下所示。
-        #   - mongo：Mongod 节点。
-        #  - mongos：Mongos 节点。
-        #  - cfgstr：Configserver 节点。
-        # - 规格类型，如下所示。
-        #  - HIO10G：通用高HIO万兆型。
-        #  - HCD：云盘版类型。
-        # - 内存规格，如下所示：
-        #  - 支持4、8、16、32、64、128、240、512。
-        #  - 单位g：表示GB。128g则表示128GB。
+        # - 节点类型：**mongo**，指 Mongod 节点；**mongos**，指 Mongos 节点；**cfgstr**，指 Configserver 节点。
+        # - 规格类型：**HIO10G**，指通用高HIO万兆型；**HCD**：指云盘版类型。
+        # - 内存规格：支持4、8、16、32、64、128、240、512。单位g：表示GB。128g 则表示128GB。
         # @type SpecCode: String
         # @param Status: 售卖规格有效标志，取值范围如下：
         # - 0：停止售卖，
@@ -4647,16 +4882,16 @@ module TencentCloud
         # @param Conns: 规格所支持的最大连接数限制。
         # @type Conns: Integer
         # @param MongoVersionCode: 实例存储引擎版本信息。
-        # - MONGO_36_WT：MongoDB 3.6 WiredTiger存储引擎版本。
         # - MONGO_40_WT：MongoDB 4.0 WiredTiger存储引擎版本。
         # - MONGO_42_WT：MongoDB 4.2 WiredTiger存储引擎版本。
         # - MONGO_44_WT：MongoDB 4.4 WiredTiger存储引擎版本。
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
+        # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
         # @type MongoVersionCode: String
         # @param MongoVersionValue: 实例版本对应的数字版本。
         # @type MongoVersionValue: Integer
-        # @param Version: 实例版本信息。支持：3.6、4.2、4.4、5.0、6.0。
+        # @param Version: 实例版本信息。支持：4.2、4.4、5.0、6.0、7.0。
         # @type Version: String
         # @param EngineName: 存储引擎。
         # @type EngineName: String
@@ -4732,15 +4967,17 @@ module TencentCloud
         end
       end
 
-      # 实例规格信息
+      # 实例规格信息。
       class SpecificationInfo < TencentCloud::Common::AbstractModel
-        # @param Region: 地域信息
+        # @param Region: 地域信息。
         # @type Region: String
-        # @param Zone: 可用区信息
+        # @param Zone: 可用区信息。
         # @type Zone: String
-        # @param SpecItems: 售卖规格信息
+        # @param SpecItems: 售卖规格信息。
         # @type SpecItems: Array
-        # @param SupportMultiAZ: 是否支持跨可用区部署 1-支持，0-不支持
+        # @param SupportMultiAZ: 是否支持跨可用区部署。
+        # - 1：支持。
+        # - 0：不支持。
         # @type SupportMultiAZ: Integer
 
         attr_accessor :Region, :Zone, :SpecItems, :SupportMultiAZ
