@@ -875,7 +875,7 @@ module TencentCloud
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
         # @param Demo: 是否demo模式
         # @type Demo: Boolean
-        # @param ServiceStatus: 应用状态筛选，可枚举的值为：health、warning、error。如果选中多个状态用逗号隔开，比如："warning,error"
+        # @param ServiceStatus: 应用状态筛选，可枚举的值为：health、warning、error。如果选中多个状态用逗号隔开，例如："warning,error"
         # @type ServiceStatus: String
         # @param Tags: 标签列表
         # @type Tags: Array

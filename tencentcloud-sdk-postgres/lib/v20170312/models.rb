@@ -1168,8 +1168,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2025, 8
-        deprecate :DBVersion=, :none, 2025, 8
+        deprecate :DBVersion, :none, 2025, 9
+        deprecate :DBVersion=, :none, 2025, 9
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil)
           @Zone = zone
@@ -1553,10 +1553,12 @@ module TencentCloud
         # <li>1：是</li>
         # 默认值：0
         # @type SupportIpv6: Integer
+        # @param ExpandedCpu: 实例已经弹性扩容的cpu核数
+        # @type ExpandedCpu: Integer
 
-        attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6
+        attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6, :ExpandedCpu
 
-        def initialize(region=nil, zone=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, projectid=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil, networkaccesslist=nil, supportipv6=nil)
+        def initialize(region=nil, zone=nil, vpcid=nil, subnetid=nil, dbinstanceid=nil, dbinstancename=nil, dbinstancestatus=nil, dbinstancememory=nil, dbinstancestorage=nil, dbinstancecpu=nil, dbinstanceclass=nil, dbmajorversion=nil, dbversion=nil, dbkernelversion=nil, dbinstancetype=nil, dbinstanceversion=nil, dbcharset=nil, createtime=nil, updatetime=nil, expiretime=nil, isolatedtime=nil, paytype=nil, autorenew=nil, dbinstancenetinfo=nil, type=nil, appid=nil, uid=nil, projectid=nil, taglist=nil, masterdbinstanceid=nil, readonlyinstancenum=nil, statusinreadonlygroup=nil, offlinetime=nil, dbnodeset=nil, issupporttde=nil, dbengine=nil, dbengineconfig=nil, networkaccesslist=nil, supportipv6=nil, expandedcpu=nil)
           @Region = region
           @Zone = zone
           @VpcId = vpcid
@@ -1596,6 +1598,7 @@ module TencentCloud
           @DBEngineConfig = dbengineconfig
           @NetworkAccessList = networkaccesslist
           @SupportIpv6 = supportipv6
+          @ExpandedCpu = expandedcpu
         end
 
         def deserialize(params)
@@ -1666,6 +1669,7 @@ module TencentCloud
             end
           end
           @SupportIpv6 = params['SupportIpv6']
+          @ExpandedCpu = params['ExpandedCpu']
         end
       end
 
@@ -4093,14 +4097,15 @@ module TencentCloud
         # @param Filters: 按照一个或者多个过滤条件进行查询，目前支持的过滤条件有：
         # db-master-instance-id：按照主实例过滤，类型为string。
         # read-only-group-id：按照只读组ID过滤，类型为string。
+        # 注：该参数的过滤条件中，db-master-instance-id为必须指定项。
         # @type Filters: Array
-        # @param PageSize: 查询每一页的条数，默认为10
+        # @param PageSize: 查询每一页的条数，默认为10，最大值99。
         # @type PageSize: Integer
         # @param PageNumber: 查询的页码，默认为1
         # @type PageNumber: Integer
-        # @param OrderBy: 查询排序依据，目前支持:ROGroupId,CreateTime,Name
+        # @param OrderBy: 查询排序依据，目前支持:ROGroupId,CreateTime,Name。默认值CreateTime
         # @type OrderBy: String
-        # @param OrderByType: 查询排序依据类型，目前支持:desc,asc
+        # @param OrderByType: 查询排序依据类型，目前支持:desc,asc。默认值asc。
         # @type OrderByType: String
 
         attr_accessor :Filters, :PageSize, :PageNumber, :OrderBy, :OrderByType
@@ -4915,8 +4920,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2025, 8
-        deprecate :InstanceChargeType=, :none, 2025, 8
+        deprecate :InstanceChargeType, :none, 2025, 9
+        deprecate :InstanceChargeType=, :none, 2025, 9
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -6587,13 +6592,13 @@ module TencentCloud
         # @type MasterDBInstanceId: String
         # @param MinDelayEliminateReserve: 最小保留实例数
         # @type MinDelayEliminateReserve: Integer
-        # @param MaxReplayLatency: 延迟空间大小阈值
+        # @param MaxReplayLatency: 延迟空间大小阈值。单位MB。
         # @type MaxReplayLatency: Integer
-        # @param ReplayLatencyEliminate: 延迟大小开关
+        # @param ReplayLatencyEliminate: 延迟大小开关。0 - 关闭； 1 - 开启。
         # @type ReplayLatencyEliminate: Integer
-        # @param MaxReplayLag: 延迟时间大小阈值
+        # @param MaxReplayLag: 延迟时间大小阈值，单位：秒。
         # @type MaxReplayLag: Float
-        # @param ReplayLagEliminate: 延迟时间开关
+        # @param ReplayLagEliminate: 延迟时间开关。0 - 关闭； 1 - 开启。
         # @type ReplayLagEliminate: Integer
         # @param VpcId: 虚拟网络id
         # @type VpcId: String
@@ -6603,7 +6608,7 @@ module TencentCloud
         # @type Region: String
         # @param Zone: 地区id
         # @type Zone: String
-        # @param Status: 状态
+        # @param Status: 状态。枚举值：creating、ok、modifying、deleting、deleted
         # @type Status: String
         # @param ReadOnlyDBInstanceList: 实例详细信息
         # @type ReadOnlyDBInstanceList: Array

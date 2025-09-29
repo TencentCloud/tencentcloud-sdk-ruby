@@ -2693,27 +2693,27 @@ module TencentCloud
 
       # CreateWorkflowRun请求参数结构体
       class CreateWorkflowRunRequest < TencentCloud::Common::AbstractModel
-        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
-        # @type RunEnv: Integer
         # @param AppBizId: 应用ID
         # @type AppBizId: String
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
         # @param Query: 用户输入的内容
         # @type Query: String
         # @param CustomVariables: API参数配置
         # @type CustomVariables: Array
 
-        attr_accessor :RunEnv, :AppBizId, :Query, :CustomVariables
+        attr_accessor :AppBizId, :RunEnv, :Query, :CustomVariables
 
-        def initialize(runenv=nil, appbizid=nil, query=nil, customvariables=nil)
-          @RunEnv = runenv
+        def initialize(appbizid=nil, runenv=nil, query=nil, customvariables=nil)
           @AppBizId = appbizid
+          @RunEnv = runenv
           @Query = query
           @CustomVariables = customvariables
         end
 
         def deserialize(params)
-          @RunEnv = params['RunEnv']
           @AppBizId = params['AppBizId']
+          @RunEnv = params['RunEnv']
           @Query = params['Query']
           unless params['CustomVariables'].nil?
             @CustomVariables = []
@@ -6176,6 +6176,22 @@ module TencentCloud
         end
       end
 
+      # 输入框配置
+      class InputBoxConfig < TencentCloud::Common::AbstractModel
+        # @param InputBoxButtons: 输入框按钮，1：上传图片、2：上传文档，3：腾讯文档，4：联网搜索
+        # @type InputBoxButtons: Array
+
+        attr_accessor :InputBoxButtons
+
+        def initialize(inputboxbuttons=nil)
+          @InputBoxButtons = inputboxbuttons
+        end
+
+        def deserialize(params)
+          @InputBoxButtons = params['InputBoxButtons']
+        end
+      end
+
       # 意图达成方式
       class IntentAchievement < TencentCloud::Common::AbstractModel
         # @param Name: 意图达成方式，qa:问答回复、doc：文档回复、workflow：工作流回复，llm：大模型回复
@@ -6788,10 +6804,12 @@ module TencentCloud
         # @param RecommendedPromptMode: 推荐问模式，0.结合知识库&对话历史推荐问题Prompt(默认) 1.仅结合知识库输出推荐问的prompt
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RecommendedPromptMode: Integer
+        # @param InputBoxConfig: 输入框按钮配置
+        # @type InputBoxConfig: :class:`Tencentcloud::Lke.v20231130.models.InputBoxConfig`
 
-        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords, :UseRecommended, :RecommendedPromptMode
+        attr_accessor :Method, :UseGeneralKnowledge, :BareAnswer, :ShowQuestionClarify, :UseQuestionClarify, :QuestionClarifyKeywords, :UseRecommended, :RecommendedPromptMode, :InputBoxConfig
 
-        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil, userecommended=nil, recommendedpromptmode=nil)
+        def initialize(method=nil, usegeneralknowledge=nil, bareanswer=nil, showquestionclarify=nil, usequestionclarify=nil, questionclarifykeywords=nil, userecommended=nil, recommendedpromptmode=nil, inputboxconfig=nil)
           @Method = method
           @UseGeneralKnowledge = usegeneralknowledge
           @BareAnswer = bareanswer
@@ -6800,6 +6818,7 @@ module TencentCloud
           @QuestionClarifyKeywords = questionclarifykeywords
           @UseRecommended = userecommended
           @RecommendedPromptMode = recommendedpromptmode
+          @InputBoxConfig = inputboxconfig
         end
 
         def deserialize(params)
@@ -6811,6 +6830,10 @@ module TencentCloud
           @QuestionClarifyKeywords = params['QuestionClarifyKeywords']
           @UseRecommended = params['UseRecommended']
           @RecommendedPromptMode = params['RecommendedPromptMode']
+          unless params['InputBoxConfig'].nil?
+            @InputBoxConfig = InputBoxConfig.new
+            @InputBoxConfig.deserialize(params['InputBoxConfig'])
+          end
         end
       end
 
@@ -8836,35 +8859,35 @@ module TencentCloud
 
       # ListWorkflowRuns请求参数结构体
       class ListWorkflowRunsRequest < TencentCloud::Common::AbstractModel
-        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
-        # @type RunEnv: Integer
         # @param AppBizId: 应用ID
         # @type AppBizId: String
-        # @param Page: 页码
-        # @type Page: Integer
         # @param PageSize: 每页数量
         # @type PageSize: Integer
+        # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
+        # @type RunEnv: Integer
+        # @param Page: 页码
+        # @type Page: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
 
-        attr_accessor :RunEnv, :AppBizId, :Page, :PageSize, :LoginUin, :LoginSubAccountUin
+        attr_accessor :AppBizId, :PageSize, :RunEnv, :Page, :LoginUin, :LoginSubAccountUin
 
-        def initialize(runenv=nil, appbizid=nil, page=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil)
-          @RunEnv = runenv
+        def initialize(appbizid=nil, pagesize=nil, runenv=nil, page=nil, loginuin=nil, loginsubaccountuin=nil)
           @AppBizId = appbizid
-          @Page = page
           @PageSize = pagesize
+          @RunEnv = runenv
+          @Page = page
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
         end
 
         def deserialize(params)
-          @RunEnv = params['RunEnv']
           @AppBizId = params['AppBizId']
-          @Page = params['Page']
           @PageSize = params['PageSize']
+          @RunEnv = params['RunEnv']
+          @Page = params['Page']
           @LoginUin = params['LoginUin']
           @LoginSubAccountUin = params['LoginSubAccountUin']
         end
@@ -11141,19 +11164,23 @@ module TencentCloud
       class RetryDocParseRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
         # @type BotBizId: String
-        # @param DocBizId: 文档ID
+        # @param DocBizId: 废弃
         # @type DocBizId: String
+        # @param DocBizIds: 集合最大上限50个，DocBizIds有值使用DocBizIds，为空时则使用DocBizId(兼容废弃字段)
+        # @type DocBizIds: Array
 
-        attr_accessor :BotBizId, :DocBizId
+        attr_accessor :BotBizId, :DocBizId, :DocBizIds
 
-        def initialize(botbizid=nil, docbizid=nil)
+        def initialize(botbizid=nil, docbizid=nil, docbizids=nil)
           @BotBizId = botbizid
           @DocBizId = docbizid
+          @DocBizIds = docbizids
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
           @DocBizId = params['DocBizId']
+          @DocBizIds = params['DocBizIds']
         end
       end
 

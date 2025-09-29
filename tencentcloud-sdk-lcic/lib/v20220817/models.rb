@@ -292,7 +292,7 @@ module TencentCloud
       class BatchCreateRoomRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 低代码平台的SdkAppId。
         # @type SdkAppId: Integer
-        # @param RoomInfos: 创建课堂ID列表
+        # @param RoomInfos: 批量创建课堂的配置信息
         # @type RoomInfos: Array
 
         attr_accessor :SdkAppId, :RoomInfos

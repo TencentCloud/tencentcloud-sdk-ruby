@@ -8416,15 +8416,33 @@ module TencentCloud
         # @type BrokerAddress: String
         # @param Region: CKafka连接源的实例资源地域, 跨地域时必填
         # @type Region: String
+        # @param NetworkType: 网络类型：PUBLIC公网；VPC
+        # @type NetworkType: String
+        # @param UniqVpcId: vpcId，NetworkType=VPC时必传
+        # @type UniqVpcId: String
+        # @param ServiceVip: vip，NetworkType=VPC时必传
+        # @type ServiceVip: String
+        # @param Port: 端口，NetworkType=VPC时必传
+        # @type Port: Integer
+        # @param CrossNetResourceUniqueId: 跨云同步下需要客户传递唯一Id标志一组资源
+        # @type CrossNetResourceUniqueId: String
+        # @param CrossNetVpcSubNetId: 跨云子网ID
+        # @type CrossNetVpcSubNetId: String
 
-        attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region
+        attr_accessor :Resource, :SelfBuilt, :IsUpdate, :BrokerAddress, :Region, :NetworkType, :UniqVpcId, :ServiceVip, :Port, :CrossNetResourceUniqueId, :CrossNetVpcSubNetId
 
-        def initialize(resource=nil, selfbuilt=nil, isupdate=nil, brokeraddress=nil, region=nil)
+        def initialize(resource=nil, selfbuilt=nil, isupdate=nil, brokeraddress=nil, region=nil, networktype=nil, uniqvpcid=nil, servicevip=nil, port=nil, crossnetresourceuniqueid=nil, crossnetvpcsubnetid=nil)
           @Resource = resource
           @SelfBuilt = selfbuilt
           @IsUpdate = isupdate
           @BrokerAddress = brokeraddress
           @Region = region
+          @NetworkType = networktype
+          @UniqVpcId = uniqvpcid
+          @ServiceVip = servicevip
+          @Port = port
+          @CrossNetResourceUniqueId = crossnetresourceuniqueid
+          @CrossNetVpcSubNetId = crossnetvpcsubnetid
         end
 
         def deserialize(params)
@@ -8433,6 +8451,12 @@ module TencentCloud
           @IsUpdate = params['IsUpdate']
           @BrokerAddress = params['BrokerAddress']
           @Region = params['Region']
+          @NetworkType = params['NetworkType']
+          @UniqVpcId = params['UniqVpcId']
+          @ServiceVip = params['ServiceVip']
+          @Port = params['Port']
+          @CrossNetResourceUniqueId = params['CrossNetResourceUniqueId']
+          @CrossNetVpcSubNetId = params['CrossNetVpcSubNetId']
         end
       end
 

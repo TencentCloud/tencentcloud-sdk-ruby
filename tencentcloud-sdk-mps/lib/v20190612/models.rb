@@ -803,13 +803,21 @@ module TencentCloud
         # 注意：仅支持中文、英文、数字、空格、下划线(_)、短横线(-)、句点(.)和中英文括号，长度不能超过64个字符。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleName: String
+        # @param OutputFormat: 字幕输出格式。取值{"WebVTT","TTML"}。
+        # 默认值："WebVTT"
+        # @type OutputFormat: String
+        # @param DefaultTrack: 默认字幕轨道。为true时指定当前字幕为默认字幕轨道，最多可指定1条默认字幕轨道。
+        # 默认值：false
+        # @type DefaultTrack: Boolean
 
-        attr_accessor :Type, :Subtitle, :SubtitleName
+        attr_accessor :Type, :Subtitle, :SubtitleName, :OutputFormat, :DefaultTrack
 
-        def initialize(type=nil, subtitle=nil, subtitlename=nil)
+        def initialize(type=nil, subtitle=nil, subtitlename=nil, outputformat=nil, defaulttrack=nil)
           @Type = type
           @Subtitle = subtitle
           @SubtitleName = subtitlename
+          @OutputFormat = outputformat
+          @DefaultTrack = defaulttrack
         end
 
         def deserialize(params)
@@ -819,6 +827,8 @@ module TencentCloud
             @Subtitle.deserialize(params['Subtitle'])
           end
           @SubtitleName = params['SubtitleName']
+          @OutputFormat = params['OutputFormat']
+          @DefaultTrack = params['DefaultTrack']
         end
       end
 
@@ -13119,8 +13129,13 @@ module TencentCloud
 
       # DescribeTasks请求参数结构体
       class DescribeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Status: 过滤条件：任务状态，可选值：WAITING（等待中）、PROCESSING（处理中）、FINISH（已完成）。
+        # @param Status: 任务状态过滤条件，可选值：
+        # - WAITING（等待中）
+        # - PROCESSING（处理中）
+        # - FINISH（已完成）。
         # @type Status: String
+        # @param SubTaskHasFailed: 任务结束时子任务是否有失败。
+        # @type SubTaskHasFailed: Boolean
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
         # @param ScrollToken: 翻页标识，分批拉取时使用：当单次请求无法拉取所有数据，接口将会返回 ScrollToken，下一次请求携带该 Token，将会从下一条记录开始获取。
@@ -13130,10 +13145,11 @@ module TencentCloud
         # @param EndTime: 查询任务结束时间。
         # @type EndTime: String
 
-        attr_accessor :Status, :Limit, :ScrollToken, :StartTime, :EndTime
+        attr_accessor :Status, :SubTaskHasFailed, :Limit, :ScrollToken, :StartTime, :EndTime
 
-        def initialize(status=nil, limit=nil, scrolltoken=nil, starttime=nil, endtime=nil)
+        def initialize(status=nil, subtaskhasfailed=nil, limit=nil, scrolltoken=nil, starttime=nil, endtime=nil)
           @Status = status
+          @SubTaskHasFailed = subtaskhasfailed
           @Limit = limit
           @ScrollToken = scrolltoken
           @StartTime = starttime
@@ -13142,6 +13158,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @SubTaskHasFailed = params['SubTaskHasFailed']
           @Limit = params['Limit']
           @ScrollToken = params['ScrollToken']
           @StartTime = params['StartTime']
@@ -22383,7 +22400,9 @@ module TencentCloud
         # LowVoice：低音，
         # HighVoice：爆音，
         # NoVoice：静音，
-        # LowEvaluation：无参考打分低于阈值。
+        # LowEvaluation：视频无参考评分（MOS）低于阈值，
+        # AudioEvaluation：音频无参考评分（MOS）低于阈值，
+        # AudioNoise：音频噪声。
         # @type Type: String
         # @param QualityControlItems: 质检结果项。
         # @type QualityControlItems: Array
