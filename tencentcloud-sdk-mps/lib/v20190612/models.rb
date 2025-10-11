@@ -843,6 +843,7 @@ module TencentCloud
         # <li>DeLogo：智能擦除</li>
         # <li>Description：大模型摘要</li>
         # <li>Dubbing：智能译制</li>
+        # <li>VideoRemake: 视频去重</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -877,10 +878,13 @@ module TencentCloud
         # @param DubbingTask: 视频内容分析译制任务的查询结果，当任务类型为 Dubbing 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DubbingTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskDubbingResult`
+        # @param VideoRemakeTask: 视频内容分析去重任务的查询结果，当任务类型为 VideoRemake 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoRemakeTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoRemakeResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -893,6 +897,7 @@ module TencentCloud
           @DescriptionTask = descriptiontask
           @HorizontalToVerticalTask = horizontaltoverticaltask
           @DubbingTask = dubbingtask
+          @VideoRemakeTask = videoremaketask
         end
 
         def deserialize(params)
@@ -940,6 +945,10 @@ module TencentCloud
           unless params['DubbingTask'].nil?
             @DubbingTask = AiAnalysisTaskDubbingResult.new
             @DubbingTask.deserialize(params['DubbingTask'])
+          end
+          unless params['VideoRemakeTask'].nil?
+            @VideoRemakeTask = AiAnalysisTaskVideoRemakeResult.new
+            @VideoRemakeTask.deserialize(params['VideoRemakeTask'])
           end
         end
       end
@@ -1905,6 +1914,84 @@ module TencentCloud
         end
       end
 
+      # 视频去重任务输入类型
+      class AiAnalysisTaskVideoRemakeInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能去重模板 ID
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 视频去重结果信息
+      class AiAnalysisTaskVideoRemakeOutput < TencentCloud::Common::AbstractModel
+        # @param Path: 视频智能去重文件路径
+        # @type Path: String
+        # @param OutputStorage: 智能视频去重的存储位置
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :Path, :OutputStorage
+
+        def initialize(path=nil, outputstorage=nil)
+          @Path = path
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 视频去重结果数据结构
+      class AiAnalysisTaskVideoRemakeResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 `PROCESSING`，`SUCCESS` 和 `FAIL` 三种
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败
+        # @type ErrCode: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Input: 去重任务输入
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoRemakeInput`
+        # @param Output: 去重任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoRemakeOutput`
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskVideoRemakeInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskVideoRemakeOutput.new
+            @Output.deserialize(params['Output'])
+          end
+        end
+      end
+
       # 内容审核结果
       class AiContentReviewResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，可以取的值有：
@@ -2259,8 +2346,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 9
-        deprecate :OutputStorage=, :none, 2025, 9
+        deprecate :OutputStorage, :none, 2025, 10
+        deprecate :OutputStorage=, :none, 2025, 10
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -14354,8 +14441,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2025, 9
-        deprecate :ContrastInfoSet=, :none, 2025, 9
+        deprecate :ContrastInfoSet, :none, 2025, 10
+        deprecate :ContrastInfoSet=, :none, 2025, 10
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -16535,10 +16622,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 9
-        deprecate :QualityControlResults=, :none, 2025, 9
-        deprecate :DiagnoseResults, :none, 2025, 9
-        deprecate :DiagnoseResults=, :none, 2025, 9
+        deprecate :QualityControlResults, :none, 2025, 10
+        deprecate :QualityControlResults=, :none, 2025, 10
+        deprecate :DiagnoseResults, :none, 2025, 10
+        deprecate :DiagnoseResults=, :none, 2025, 10
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -21170,12 +21257,15 @@ module TencentCloud
         # @type Timestamp: Integer
         # @param Sign: 事件通知安全签名 Sign = MD5（Timestamp + NotifyKey）。说明：媒体处理把Timestamp 和 TaskNotifyConfig 里面的NotifyKey 进行字符串拼接后通过 MD5 计算得出 Sign 值，并将其放在通知消息里，您的后台服务器在收到通知消息后可以根据同样的算法确认 Sign 是否正确，进而确认消息是否确实来自媒体处理后台。
         # @type Sign: String
+        # @param BatchTaskEvent: 批量处理任务信息，仅当 EventType 为 BatchTask，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchTaskEvent: :class:`Tencentcloud::Mps.v20190612.models.BatchSubTaskResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :ScheduleTaskEvent, :Timestamp, :Sign, :RequestId
+        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :ScheduleTaskEvent, :Timestamp, :Sign, :BatchTaskEvent, :RequestId
 
-        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, scheduletaskevent=nil, timestamp=nil, sign=nil, requestid=nil)
+        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, scheduletaskevent=nil, timestamp=nil, sign=nil, batchtaskevent=nil, requestid=nil)
           @EventType = eventtype
           @WorkflowTaskEvent = workflowtaskevent
           @EditMediaTaskEvent = editmediataskevent
@@ -21184,6 +21274,7 @@ module TencentCloud
           @ScheduleTaskEvent = scheduletaskevent
           @Timestamp = timestamp
           @Sign = sign
+          @BatchTaskEvent = batchtaskevent
           @RequestId = requestid
         end
 
@@ -21205,6 +21296,10 @@ module TencentCloud
           end
           @Timestamp = params['Timestamp']
           @Sign = params['Sign']
+          unless params['BatchTaskEvent'].nil?
+            @BatchTaskEvent = BatchSubTaskResult.new
+            @BatchTaskEvent.deserialize(params['BatchTaskEvent'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -24507,10 +24602,11 @@ module TencentCloud
         # @type WatermarkModel: String
         # @param AutoAreas: 自动擦除自定义区域。
         # 对选定区域，利用AI模型自动检测其中存在的擦除目标并擦除。
-        # 注意，当擦除方式为custom时，此参数将不会生效。
+        # 注意，当擦除方式为custom时，此参数将不会生效。修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。
         # @type AutoAreas: Array
         # @param CustomAreas: 指定擦除自定义区域。
         # 对选定区域，在选定时间段内不进行检测识别直接进行擦除。
+        # 注意：修改模板时，清除区域请传入[]，不传时将保持模板区域信息不变。
         # @type CustomAreas: Array
 
         attr_accessor :WatermarkEraseMethod, :WatermarkModel, :AutoAreas, :CustomAreas

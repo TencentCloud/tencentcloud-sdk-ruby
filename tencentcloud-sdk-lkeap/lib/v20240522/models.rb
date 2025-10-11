@@ -544,10 +544,10 @@ module TencentCloud
 
         attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage, :SplitResultType, :SplitTableResultType
         extend Gem::Deprecate
-        deprecate :TableResultType, :none, 2025, 9
-        deprecate :TableResultType=, :none, 2025, 9
-        deprecate :ResultType, :none, 2025, 9
-        deprecate :ResultType=, :none, 2025, 9
+        deprecate :TableResultType, :none, 2025, 10
+        deprecate :TableResultType=, :none, 2025, 10
+        deprecate :ResultType, :none, 2025, 10
+        deprecate :ResultType=, :none, 2025, 10
 
         def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil, splitresulttype=nil, splittableresulttype=nil)
           @TableResultType = tableresulttype
@@ -597,8 +597,8 @@ module TencentCloud
 
         attr_accessor :FileType, :FileUrl, :FileName, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
         extend Gem::Deprecate
-        deprecate :FileBase64, :none, 2025, 9
-        deprecate :FileBase64=, :none, 2025, 9
+        deprecate :FileBase64, :none, 2025, 10
+        deprecate :FileBase64=, :none, 2025, 10
 
         def initialize(filetype=nil, fileurl=nil, filename=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
           @FileType = filetype
@@ -954,8 +954,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens, :SuccessPageNum, :FailPageNum, :FileSize
         extend Gem::Deprecate
-        deprecate :TotalToken, :none, 2025, 9
-        deprecate :TotalToken=, :none, 2025, 9
+        deprecate :TotalToken, :none, 2025, 10
+        deprecate :TotalToken=, :none, 2025, 10
 
         def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil, successpagenum=nil, failpagenum=nil, filesize=nil)
           @PageNumber = pagenumber
@@ -1234,8 +1234,8 @@ module TencentCloud
 
         attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
         extend Gem::Deprecate
-        deprecate :FailedPages, :none, 2025, 9
-        deprecate :FailedPages=, :none, 2025, 9
+        deprecate :FailedPages, :none, 2025, 10
+        deprecate :FailedPages=, :none, 2025, 10
 
         def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
           @Status = status
@@ -2260,8 +2260,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeBaseId, :FileName, :FileType, :FileUrl, :AttributeLabel, :AttributeLabels, :Config
         extend Gem::Deprecate
-        deprecate :AttributeLabel, :none, 2025, 9
-        deprecate :AttributeLabel=, :none, 2025, 9
+        deprecate :AttributeLabel, :none, 2025, 10
+        deprecate :AttributeLabel=, :none, 2025, 10
 
         def initialize(knowledgebaseid=nil, filename=nil, filetype=nil, fileurl=nil, attributelabel=nil, attributelabels=nil, config=nil)
           @KnowledgeBaseId = knowledgebaseid

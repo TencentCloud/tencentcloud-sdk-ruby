@@ -2113,6 +2113,37 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateSingleSignOnEmployees）用于创建单点登录企业员工。
+        # 创建好的员工，可以通过腾讯电子签提供的链接， 如下图位置，进行登录。
+        # 此操作的功能：
+        # 1. 可以绑定已经实名的员工，然后 sso 登录实名绑定。
+        # 2. 可以提前导入员工，在 sso 登录的时候进行实名。
+        # 3. 如果已经绑定过，可以直接通过 sso 链接登录腾讯电子签。
+
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/0cd98ca2cc49ea1472a2397cea9a3ef6.png)
+
+        # @param request: Request instance for CreateSingleSignOnEmployees.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateSingleSignOnEmployeesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateSingleSignOnEmployeesResponse`
+        def CreateSingleSignOnEmployees(request)
+          body = send_request('CreateSingleSignOnEmployees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSingleSignOnEmployeesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取个人用户自动签的开通链接。
 
         # 注意: `处方单等特殊场景专用，此接口为白名单功能，使用前请联系对接的客户经理沟通。`
@@ -2427,6 +2458,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteSealPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DeleteSingleSignOnEmployees）用于删除单点登录企业员工。
+        # 注意：
+        # 此接口只能删除未跟腾讯电子签绑定的单点登录企业员工，
+        # 如果企业员工的单点登录信息已经和腾讯电子签里面的企业员工绑定，需要企业的超级管理员或者组织管理员在腾讯电子签控制台对当前企业员工进行离职操作，如下图操作。
+        # ![image](https://qcloudimg.tencent-cloud.cn/raw/5e69f6e11859972d466900040f68c105.png)
+
+        # @param request: Request instance for DeleteSingleSignOnEmployees.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DeleteSingleSignOnEmployeesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DeleteSingleSignOnEmployeesResponse`
+        def DeleteSingleSignOnEmployees(request)
+          body = send_request('DeleteSingleSignOnEmployees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSingleSignOnEmployeesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3220,6 +3279,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DescribeSingleSignOnEmployees）用于查询单点登录企业员工。
+
+        # @param request: Request instance for DescribeSingleSignOnEmployees.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeSingleSignOnEmployeesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeSingleSignOnEmployeesResponse`
+        def DescribeSingleSignOnEmployees(request)
+          body = send_request('DescribeSingleSignOnEmployees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSingleSignOnEmployeesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过AuthCode查询个人用户是否实名
 
 
@@ -3572,6 +3655,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPartnerAutoSignAuthUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（ModifySingleSignOnEmployees）用于修改单点登录企业员工。
+        #  注意： 此接口只能修改未跟腾讯电子签绑定的单点登录企业员工， 如果企业员工的单点登录信息已经和腾讯电子签里面的企业员工绑定，需要在腾讯电子签小程序进行个人信息变更操作。
+
+        # @param request: Request instance for ModifySingleSignOnEmployees.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ModifySingleSignOnEmployeesRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ModifySingleSignOnEmployeesResponse`
+        def ModifySingleSignOnEmployees(request)
+          body = send_request('ModifySingleSignOnEmployees', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySingleSignOnEmployeesResponse.new
             model.deserialize(response['Response'])
             model
           else

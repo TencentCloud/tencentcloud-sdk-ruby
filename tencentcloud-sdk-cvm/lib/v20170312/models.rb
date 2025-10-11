@@ -1999,8 +1999,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2025, 9
-        deprecate :CvmInSwGroupQuota=, :none, 2025, 9
+        deprecate :CvmInSwGroupQuota, :none, 2025, 10
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 10
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3765,8 +3765,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 9
-        deprecate :ForceStop=, :none, 2025, 9
+        deprecate :ForceStop, :none, 2025, 10
+        deprecate :ForceStop=, :none, 2025, 10
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5297,12 +5297,14 @@ module TencentCloud
         # @param LatestOperationErrorMsg: 实例的最新操作错误信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestOperationErrorMsg: String
+        # @param Metadata: 自定义metadata，本参数对应创建 CVM时指定的Metadata 信息。**注：内测中**。
+        # @type Metadata: :class:`Tencentcloud::Cvm.v20170312.models.Metadata`
         # @param PublicIPv6Addresses: 实例绑定的公网IPv6地址。
         # @type PublicIPv6Addresses: Array
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :PublicIPv6Addresses
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :GPUInfo, :LicenseType, :DisableApiTermination, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :Metadata, :PublicIPv6Addresses
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, publicipv6addresses=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, metadata=nil, publicipv6addresses=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5344,6 +5346,7 @@ module TencentCloud
           @DefaultLoginUser = defaultloginuser
           @DefaultLoginPort = defaultloginport
           @LatestOperationErrorMsg = latestoperationerrormsg
+          @Metadata = metadata
           @PublicIPv6Addresses = publicipv6addresses
         end
 
@@ -5421,6 +5424,10 @@ module TencentCloud
           @DefaultLoginUser = params['DefaultLoginUser']
           @DefaultLoginPort = params['DefaultLoginPort']
           @LatestOperationErrorMsg = params['LatestOperationErrorMsg']
+          unless params['Metadata'].nil?
+            @Metadata = Metadata.new
+            @Metadata.deserialize(params['Metadata'])
+          end
           @PublicIPv6Addresses = params['PublicIPv6Addresses']
         end
       end
@@ -6349,9 +6356,9 @@ module TencentCloud
 
       # 自定义metadata key和value
       class MetadataItem < TencentCloud::Common::AbstractModel
-        # @param Key: 自定义metadata键，需符合正则 ^[a-zA-Z0-9_-]+$，长度 ≤128 字节（大小写敏感）；
+        # @param Key: 自定义metadata键，由大写字母（A-Z）、小写字母（a-z）、数字（0-9）、下划线（_）或连字符（-）组成，大小上限为128 字节。
         # @type Key: String
-        # @param Value: 自定义metadata值，支持任意数据（含二进制），大小 ≤256 KB（大小写敏感）；
+        # @param Value: 自定义metadata值，大小上限为256 KB。
         # @type Value: String
 
         attr_accessor :Key, :Value
@@ -7251,8 +7258,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2025, 9
-        deprecate :ForceReboot=, :none, 2025, 9
+        deprecate :ForceReboot, :none, 2025, 10
+        deprecate :ForceReboot=, :none, 2025, 10
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8360,8 +8367,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 9
-        deprecate :ForceStop=, :none, 2025, 9
+        deprecate :ForceStop, :none, 2025, 10
+        deprecate :ForceStop=, :none, 2025, 10
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

@@ -679,6 +679,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建集群接入
+
+        # @param request: Request instance for CreateClusterAccess.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::CreateClusterAccessRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::CreateClusterAccessResponse`
+        def CreateClusterAccess(request)
+          body = send_request('CreateClusterAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateClusterAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建集群检查任务，用户检查用户的集群相关风险项
 
         # @param request: Request instance for CreateClusterCheckTask.
@@ -7076,6 +7100,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyContainerNetStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改防护状态
+
+        # @param request: Request instance for ModifyDefendStatus.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::ModifyDefendStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::ModifyDefendStatusResponse`
+        def ModifyDefendStatus(request)
+          body = send_request('ModifyDefendStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDefendStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

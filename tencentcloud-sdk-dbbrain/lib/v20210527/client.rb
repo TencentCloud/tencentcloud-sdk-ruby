@@ -1061,7 +1061,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取指定时间段内Redis 访问命令 cost top N
+        # 获取指定时间段内Redis Proxy 指标
 
         # @param request: Request instance for DescribeMetricTopProxies.
         # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeMetricTopProxiesRequest`

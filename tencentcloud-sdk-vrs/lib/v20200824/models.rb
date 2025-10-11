@@ -97,13 +97,12 @@ module TencentCloud
         # @type SampleRate: Integer
         # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
         # @type Codec: String
-        # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。（注意：回调方式目前仅支持轻量版声音复刻）
+        # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。（注意：回调方式暂不支持一句话版声音复刻）
         # 回调采用POST请求方式，Content-Type为application/json，回调数据格式如下:{"TaskId":"xxxxxxxxxxxxxx","Status":2,"StatusStr":"success","VoiceType":xxxxx,"ErrorMsg":""}
         # @type CallbackUrl: String
         # @param ModelType: 模型类型 1:在线 2:离线  默认为1
         # @type ModelType: Integer
         # @param TaskType: 复刻类型。
-        # 0 - 轻量版声音复刻（默认）；
         # 5 - 一句话声音复刻。
         # @type TaskType: Integer
         # @param VPRAudioId: 校验音频ID。（仅基础版声音复刻使用）
@@ -286,9 +285,7 @@ module TencentCloud
         # 24000：24k（仅一句话声音复刻支持）；
         # 48000：48k（仅一句话声音复刻支持）。
         # @type SampleRate: Integer
-        # @param TaskType: 复刻类型。
-        # 0 - 轻量版声音复刻（默认）;
-        # 5 - 一句话声音复刻。
+        # @param TaskType: 复刻类型。5 - 一句话声音复刻。
         # @type TaskType: Integer
 
         attr_accessor :TextId, :AudioData, :TypeId, :Codec, :SampleRate, :TaskType
@@ -460,7 +457,6 @@ module TencentCloud
       # GetTrainingText请求参数结构体
       class GetTrainingTextRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 复刻类型。
-        # 0 - 轻量版声音复刻（默认）;
         # 5 - 一句话声音复刻。
         # @type TaskType: Integer
         # @param Domain: 音色场景。（仅支持一句话声音复刻，其余复刻类型不生效）
@@ -654,7 +650,7 @@ module TencentCloud
         # @type VoiceName: String
         # @param VoiceGender: 音色性别: 1-male 2-female
         # @type VoiceGender: Integer
-        # @param TaskType: 复刻类型: 0-轻量版复刻 1-基础版复刻
+        # @param TaskType: 复刻类型: 1-基础版复刻
         # @type TaskType: Integer
         # @param TaskID: 复刻任务 ID
         # @type TaskID: String

@@ -1183,7 +1183,7 @@ module TencentCloud
 
       # DescribeAsyncRequestInfo请求参数结构体
       class DescribeAsyncRequestInfoRequest < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步请求Id，涉及到异步流程的接口返回，如CreateBackupDBInstance
+        # @param AsyncRequestId: 指定需查询的异步请求 ID。当接口操作涉及异步流程时（如 [CreateBackupDBInstance](https://cloud.tencent.com/document/product/240/46599)），其返回值中的 AsyncRequestId 即为本参数所需填入的 ID。
         # @type AsyncRequestId: String
 
         attr_accessor :AsyncRequestId
@@ -1201,18 +1201,26 @@ module TencentCloud
       class DescribeAsyncRequestInfoResponse < TencentCloud::Common::AbstractModel
         # @param Status: 状态。返回参数有：initial-初始化、running-运行中、paused-任务执行失败，已暂停、undoed-任务执行失败，已回滚、failed-任务执行失败, 已终止、success-成功
         # @type Status: String
+        # @param StartTime: 任务执行开始时间。
+        # @type StartTime: String
+        # @param EndTime: 任务执行结束时间。
+        # @type EndTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :RequestId
+        attr_accessor :Status, :StartTime, :EndTime, :RequestId
 
-        def initialize(status=nil, requestid=nil)
+        def initialize(status=nil, starttime=nil, endtime=nil, requestid=nil)
           @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
           @RequestId = params['RequestId']
         end
       end
@@ -2669,13 +2677,13 @@ module TencentCloud
 
       # FlashBackDBInstance请求参数结构体
       class FlashBackDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 开启按 Key 回档的实例 ID。
+        # @param InstanceId: 开启按 Key 回档的实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制需开启按 Key 回档的实例 ID。
         # @type InstanceId: String
-        # @param TargetFlashbackTime: 源数据想恢复到的时间。
+        # @param TargetFlashbackTime: 指定数据回档的具体时间点，即将数据恢复到指定时间点的状态。
         # @type TargetFlashbackTime: String
-        # @param TargetDatabases: 源数据所在的库表信息。
+        # @param TargetDatabases: 指定回档数据的目标库表。
         # @type TargetDatabases: Array
-        # @param TargetInstanceId: 数据最终写入的实例 ID。
+        # @param TargetInstanceId: 数据回档的目标实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制目标实例 ID。
         # @type TargetInstanceId: String
 
         attr_accessor :InstanceId, :TargetFlashbackTime, :TargetDatabases, :TargetInstanceId
@@ -3659,9 +3667,9 @@ module TencentCloud
         # - 单位为分钟，0表示立即回收原 IP 地址。
         # - 原 IP 将在约定时间后释放，在释放前原 IP和新 IP均可访问。
         # @type OldIpExpiredTime: Integer
-        # @param NewUniqVpcId: 切换后的私有网络 ID，若实例当前为基础网络，该字段无需配置。
+        # @param NewUniqVpcId: 切换后的私有网络 ID，若实例当前为基础网络，该字段无需配置。请通过接口 [DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568) 获取私有网络 ID。
         # @type NewUniqVpcId: String
-        # @param NewUniqSubnetId: 切换私有网络的子网 ID。若实例当前为基础网络，该字段无需配置。
+        # @param NewUniqSubnetId: 切换后私有网络的子网 ID。若实例当前为基础网络，该字段无需配置。请通过接口 [DescribeDBInstances](https://cloud.tencent.com/document/product/240/38568) 获取私有网络的子网 ID。
         # @type NewUniqSubnetId: String
         # @param NetworkAddresses: IP 地址信息，包含新 IP 地址与 原 IP 地址。
         # @type NetworkAddresses: Array
@@ -3765,9 +3773,9 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroup请求参数结构体
       class ModifyDBInstanceSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。例如：cmgo-7pje****。
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param SecurityGroupIds: 目标安全组 ID。请通过接口[DescribeSecurityGroup](https://cloud.tencent.com/document/product/240/55675)查看具体的安全组 ID。
+        # @param SecurityGroupIds: 目标安全组 ID。请登录[安全组控制台页面](https://console.cloud.tencent.com/vpc/security-group)复制目标安全组 ID。
         # **注意**：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIds: Array
 
@@ -3841,8 +3849,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 9
-        deprecate :OplogSize=, :none, 2025, 9
+        deprecate :OplogSize, :none, 2025, 10
+        deprecate :OplogSize=, :none, 2025, 10
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
