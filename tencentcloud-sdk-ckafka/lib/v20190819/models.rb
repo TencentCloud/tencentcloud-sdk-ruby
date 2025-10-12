@@ -1781,8 +1781,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 9
-        deprecate :PrivateLinkParam=, :none, 2025, 9
+        deprecate :PrivateLinkParam, :none, 2025, 10
+        deprecate :PrivateLinkParam=, :none, 2025, 10
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2158,8 +2158,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 9
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 9
+        deprecate :DeleteRouteTimestamp, :none, 2025, 10
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 10
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -5254,8 +5254,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 9
-        deprecate :InstanceIds=, :none, 2025, 9
+        deprecate :InstanceIds, :none, 2025, 10
+        deprecate :InstanceIds=, :none, 2025, 10
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5340,8 +5340,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 9
-        deprecate :TagKey=, :none, 2025, 9
+        deprecate :TagKey, :none, 2025, 10
+        deprecate :TagKey=, :none, 2025, 10
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9159,8 +9159,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 9
-        deprecate :DynamicDiskConfig=, :none, 2025, 9
+        deprecate :DynamicDiskConfig, :none, 2025, 10
+        deprecate :DynamicDiskConfig=, :none, 2025, 10
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
@@ -9671,12 +9671,16 @@ module TencentCloud
 
       # MQTT连接源参数
       class MqttConnectParam < TencentCloud::Common::AbstractModel
+        # @param Port: MQTT的连接port
+        # @type Port: Integer
         # @param UserName: MQTT连接源的用户名
         # @type UserName: String
         # @param Password: MQTT连接源的密码
         # @type Password: String
         # @param Resource: MQTT连接源的实例资源
         # @type Resource: String
+        # @param ServiceVip: MQTT的连接ip
+        # @type ServiceVip: String
         # @param UniqVpcId: MQTT Instance vpc-id
         # @type UniqVpcId: String
         # @param SelfBuilt: 是否为自建集群
@@ -9685,27 +9689,35 @@ module TencentCloud
         # @type IsUpdate: Boolean
         # @param Region: MQTT连接源的实例资源地域, 跨地域时必填
         # @type Region: String
+        # @param Ip: IP
+        # @type Ip: String
 
-        attr_accessor :UserName, :Password, :Resource, :UniqVpcId, :SelfBuilt, :IsUpdate, :Region
+        attr_accessor :Port, :UserName, :Password, :Resource, :ServiceVip, :UniqVpcId, :SelfBuilt, :IsUpdate, :Region, :Ip
 
-        def initialize(username=nil, password=nil, resource=nil, uniqvpcid=nil, selfbuilt=nil, isupdate=nil, region=nil)
+        def initialize(port=nil, username=nil, password=nil, resource=nil, servicevip=nil, uniqvpcid=nil, selfbuilt=nil, isupdate=nil, region=nil, ip=nil)
+          @Port = port
           @UserName = username
           @Password = password
           @Resource = resource
+          @ServiceVip = servicevip
           @UniqVpcId = uniqvpcid
           @SelfBuilt = selfbuilt
           @IsUpdate = isupdate
           @Region = region
+          @Ip = ip
         end
 
         def deserialize(params)
+          @Port = params['Port']
           @UserName = params['UserName']
           @Password = params['Password']
           @Resource = params['Resource']
+          @ServiceVip = params['ServiceVip']
           @UniqVpcId = params['UniqVpcId']
           @SelfBuilt = params['SelfBuilt']
           @IsUpdate = params['IsUpdate']
           @Region = params['Region']
+          @Ip = params['Ip']
         end
       end
 
@@ -12209,8 +12221,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 9
-        deprecate :Exflag=, :none, 2025, 9
+        deprecate :Exflag, :none, 2025, 10
+        deprecate :Exflag=, :none, 2025, 10
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

@@ -3727,6 +3727,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeAddressTemplateGroupInstances）用于查询参数模板IP地址组口关联的实例列表。本接口不会返回查询的结果，需要根据返回的RequestId调用DescribeVpcTaskResult接口获取结果。
+
+        # @param request: Request instance for DescribeAddressTemplateGroupInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeAddressTemplateGroupInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeAddressTemplateGroupInstancesResponse`
+        def DescribeAddressTemplateGroupInstances(request)
+          body = send_request('DescribeAddressTemplateGroupInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddressTemplateGroupInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeAddressTemplateGroups）用于查询IP地址模板集合。
 
         # @param request: Request instance for DescribeAddressTemplateGroups.
@@ -3737,6 +3761,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAddressTemplateGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeAddressTemplateInstances）用于查询参数模板IP地址关联的实例列表。本接口不会返回查询的结果，需要根据返回的RequestId调用DescribeVpcTaskResult接口获取结果。
+
+        # @param request: Request instance for DescribeAddressTemplateInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeAddressTemplateInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeAddressTemplateInstancesResponse`
+        def DescribeAddressTemplateInstances(request)
+          body = send_request('DescribeAddressTemplateInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAddressTemplateInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5546,6 +5594,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeServiceTemplateGroupInstances）用于查询参数模板协议端口组关联的实例列表。本接口不会返回查询的结果，需要根据返回的RequestId调用DescribeVpcTaskResult接口获取结果。
+
+        # @param request: Request instance for DescribeServiceTemplateGroupInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeServiceTemplateGroupInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeServiceTemplateGroupInstancesResponse`
+        def DescribeServiceTemplateGroupInstances(request)
+          body = send_request('DescribeServiceTemplateGroupInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceTemplateGroupInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeServiceTemplateGroups）用于查询协议端口模板集合。
 
         # @param request: Request instance for DescribeServiceTemplateGroups.
@@ -5556,6 +5628,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeServiceTemplateGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeServiceTemplateInstances）用于查询参数模板协议端口关联的实例列表。本接口不会返回查询的结果，需要根据返回的RequestId调用DescribeVpcTaskResult接口获取结果。
+
+        # @param request: Request instance for DescribeServiceTemplateInstances.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeServiceTemplateInstancesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeServiceTemplateInstancesResponse`
+        def DescribeServiceTemplateInstances(request)
+          body = send_request('DescribeServiceTemplateInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeServiceTemplateInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

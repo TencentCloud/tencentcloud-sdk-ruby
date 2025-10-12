@@ -793,8 +793,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 9
-        deprecate :ApplicableForCLB=, :none, 2025, 9
+        deprecate :ApplicableForCLB, :none, 2025, 10
+        deprecate :ApplicableForCLB=, :none, 2025, 10
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -4821,8 +4821,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 9
-        deprecate :SubnetId=, :none, 2025, 9
+        deprecate :SubnetId, :none, 2025, 10
+        deprecate :SubnetId=, :none, 2025, 10
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil)
           @NatGatewayName = natgatewayname
@@ -9402,6 +9402,46 @@ module TencentCloud
         end
       end
 
+      # DescribeAddressTemplateGroupInstances请求参数结构体
+      class DescribeAddressTemplateGroupInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AddressTemplateGroupId: IP地址组实例ID。例如：ipmg-12345678。
+        # @type AddressTemplateGroupId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :AddressTemplateGroupId, :Offset, :Limit
+
+        def initialize(addresstemplategroupid=nil, offset=nil, limit=nil)
+          @AddressTemplateGroupId = addresstemplategroupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AddressTemplateGroupId = params['AddressTemplateGroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAddressTemplateGroupInstances返回参数结构体
+      class DescribeAddressTemplateGroupInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAddressTemplateGroups请求参数结构体
       class DescribeAddressTemplateGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -9482,6 +9522,46 @@ module TencentCloud
               @AddressTemplateGroupSet << addresstemplategroup_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAddressTemplateInstances请求参数结构体
+      class DescribeAddressTemplateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param AddressTemplateId: IP地址实例ID。例如：ipm-12345678。
+        # @type AddressTemplateId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :AddressTemplateId, :Offset, :Limit
+
+        def initialize(addresstemplateid=nil, offset=nil, limit=nil)
+          @AddressTemplateId = addresstemplateid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @AddressTemplateId = params['AddressTemplateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAddressTemplateInstances返回参数结构体
+      class DescribeAddressTemplateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -14211,6 +14291,46 @@ module TencentCloud
         end
       end
 
+      # DescribeServiceTemplateGroupInstances请求参数结构体
+      class DescribeServiceTemplateGroupInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceTemplateGroupId: 协议端口实例ID。例如：ppmg-12345678。
+        # @type ServiceTemplateGroupId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :ServiceTemplateGroupId, :Offset, :Limit
+
+        def initialize(servicetemplategroupid=nil, offset=nil, limit=nil)
+          @ServiceTemplateGroupId = servicetemplategroupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ServiceTemplateGroupId = params['ServiceTemplateGroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeServiceTemplateGroupInstances返回参数结构体
+      class DescribeServiceTemplateGroupInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeServiceTemplateGroups请求参数结构体
       class DescribeServiceTemplateGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件。
@@ -14291,6 +14411,46 @@ module TencentCloud
               @ServiceTemplateGroupSet << servicetemplategroup_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeServiceTemplateInstances请求参数结构体
+      class DescribeServiceTemplateInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceTemplateId: 协议端口实例ID。例如：ppm-12345678。
+        # @type ServiceTemplateId: String
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: Integer
+
+        attr_accessor :ServiceTemplateId, :Offset, :Limit
+
+        def initialize(servicetemplateid=nil, offset=nil, limit=nil)
+          @ServiceTemplateId = servicetemplateid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ServiceTemplateId = params['ServiceTemplateId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeServiceTemplateInstances返回参数结构体
+      class DescribeServiceTemplateInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -15759,7 +15919,7 @@ module TencentCloud
       class DescribeVpcPrivateIpAddressesRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`，形如：`vpc-f49l6u0z`。
         # @type VpcId: String
-        # @param PrivateIpAddresses: 内网`IP`地址列表，批量查询单次请求最多支持`10`个。
+        # @param PrivateIpAddresses: 内网`IP`地址列表，批量查询单次请求最多支持`100`个。
         # @type PrivateIpAddresses: Array
 
         attr_accessor :VpcId, :PrivateIpAddresses
@@ -18741,8 +18901,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 9
-        deprecate :IntegrityAlgorith=, :none, 2025, 9
+        deprecate :IntegrityAlgorith, :none, 2025, 10
+        deprecate :IntegrityAlgorith=, :none, 2025, 10
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20129,10 +20289,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 9
-        deprecate :StartTime=, :none, 2025, 9
-        deprecate :EndTime, :none, 2025, 9
-        deprecate :EndTime=, :none, 2025, 9
+        deprecate :StartTime, :none, 2025, 10
+        deprecate :StartTime=, :none, 2025, 10
+        deprecate :EndTime, :none, 2025, 10
+        deprecate :EndTime=, :none, 2025, 10
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -21766,17 +21926,21 @@ module TencentCloud
         # @type NatGatewayId: String
         # @param NatGatewayName: 私网网关名称，可任意命名，但不得超过60个字符。
         # @type NatGatewayName: String
+        # @param DeletionProtectionEnabled: 私网NAT实例是否开启删除保护
+        # @type DeletionProtectionEnabled: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName
+        attr_accessor :NatGatewayId, :NatGatewayName, :DeletionProtectionEnabled
 
-        def initialize(natgatewayid=nil, natgatewayname=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, deletionprotectionenabled=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
+          @DeletionProtectionEnabled = deletionprotectionenabled
         end
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
           @NatGatewayName = params['NatGatewayName']
+          @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
         end
       end
 

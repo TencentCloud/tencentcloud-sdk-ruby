@@ -8460,6 +8460,100 @@ module TencentCloud
         end
       end
 
+      # DescribeContractComparisonTask请求参数结构体
+      class DescribeContractComparisonTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同审查任务的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同对比任务ID，该参数通过调用接口CreateContractComparisonTask获取。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeContractComparisonTask返回参数结构体
+      class DescribeContractComparisonTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 合同对比任务ID。
+        # @type TaskId: String
+        # @param Status: 合同对比任务状态。
+        # 状态如下：
+        # <ul><li> **0**：待创建（未执行）</li>
+        # <li> **1**：对比中</li>
+        # <li> **2**：对比成功</li>
+        # <li> **3**：对比失败</li>
+        # </ul>
+        # @type Status: Integer
+        # @param Message: 对比失败的具体原因描述，仅当状态为失败时返回此字段。
+        # @type Message: String
+        # @param OriginalFileResourceId: 原版文件ID，对比基准的旧版本文件唯一标识。
+        # @type OriginalFileResourceId: String
+        # @param DiffFileResourceId: 新版文件ID，与旧版进行对比的新版本文件唯一标识。
+        # @type DiffFileResourceId: String
+        # @param Comment: 对比任务备注，长度不能超过50个字符。
+        # @type Comment: String
+        # @param TotalDiffCount: 合同对比差异点总数。
+        # @type TotalDiffCount: Integer
+        # @param AddDiffCount: 合同对比新增点数量。
+        # @type AddDiffCount: Integer
+        # @param ChangeDiffCount: 合同对比修改点数量。
+        # @type ChangeDiffCount: Integer
+        # @param DeleteDiffCount: 合同对比删除点数量。
+        # @type DeleteDiffCount: Integer
+        # @param Operator: 提交人，提交此任务或请求的用户唯一标识。
+        # @type Operator: String
+        # @param CreateTime: 合同对比任务创建时间，时间戳。
+        # @type CreateTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Status, :Message, :OriginalFileResourceId, :DiffFileResourceId, :Comment, :TotalDiffCount, :AddDiffCount, :ChangeDiffCount, :DeleteDiffCount, :Operator, :CreateTime, :RequestId
+
+        def initialize(taskid=nil, status=nil, message=nil, originalfileresourceid=nil, difffileresourceid=nil, comment=nil, totaldiffcount=nil, adddiffcount=nil, changediffcount=nil, deletediffcount=nil, operator=nil, createtime=nil, requestid=nil)
+          @TaskId = taskid
+          @Status = status
+          @Message = message
+          @OriginalFileResourceId = originalfileresourceid
+          @DiffFileResourceId = difffileresourceid
+          @Comment = comment
+          @TotalDiffCount = totaldiffcount
+          @AddDiffCount = adddiffcount
+          @ChangeDiffCount = changediffcount
+          @DeleteDiffCount = deletediffcount
+          @Operator = operator
+          @CreateTime = createtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @Message = params['Message']
+          @OriginalFileResourceId = params['OriginalFileResourceId']
+          @DiffFileResourceId = params['DiffFileResourceId']
+          @Comment = params['Comment']
+          @TotalDiffCount = params['TotalDiffCount']
+          @AddDiffCount = params['AddDiffCount']
+          @ChangeDiffCount = params['ChangeDiffCount']
+          @DeleteDiffCount = params['DeleteDiffCount']
+          @Operator = params['Operator']
+          @CreateTime = params['CreateTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContractDiffTaskWebUrl请求参数结构体
       class DescribeContractDiffTaskWebUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。

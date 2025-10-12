@@ -17,6 +17,49 @@
 module TencentCloud
   module Wedata
     module V20250806
+      # AddCalcEnginesToProject请求参数结构体
+      class AddCalcEnginesToProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 修改的项目ID
+        # @type ProjectId: String
+        # @param DLCInfo: DLC集群信息
+        # @type DLCInfo: Array
+
+        attr_accessor :ProjectId, :DLCInfo
+
+        def initialize(projectid=nil, dlcinfo=nil)
+          @ProjectId = projectid
+          @DLCInfo = dlcinfo
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          unless params['DLCInfo'].nil?
+            @DLCInfo = []
+            params['DLCInfo'].each do |i|
+              dlcclusterinfo_tmp = DLCClusterInfo.new
+              dlcclusterinfo_tmp.deserialize(i)
+              @DLCInfo << dlcclusterinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AddCalcEnginesToProject返回参数结构体
+      class AddCalcEnginesToProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 告警规则接收人配置
       class AlarmGroup < TencentCloud::Common::AbstractModel
         # @param AlarmEscalationRecipientIds: 告警升级人ID列表
@@ -329,6 +372,50 @@ module TencentCloud
         end
       end
 
+      # AssociateResourceGroupToProject请求参数结构体
+      class AssociateResourceGroupToProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :ResourceGroupId, :ProjectId
+
+        def initialize(resourcegroupid=nil, projectid=nil)
+          @ResourceGroupId = resourcegroupid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # AssociateResourceGroupToProject返回参数结构体
+      class AssociateResourceGroupToProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceStatus.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 单次补录实例详情
       class BackfillInstance < TencentCloud::Common::AbstractModel
         # @param TaskName: 任务名称
@@ -408,6 +495,98 @@ module TencentCloud
               @Items << backfillinstance_tmp
             end
           end
+        end
+      end
+
+      # 关联绑定的project
+      class BindProject < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param ProjectDisplayName: 项目展示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectDisplayName: String
+
+        attr_accessor :ProjectId, :ProjectName, :ProjectDisplayName
+
+        def initialize(projectid=nil, projectname=nil, projectdisplayname=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @ProjectDisplayName = projectdisplayname
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @ProjectDisplayName = params['ProjectDisplayName']
+        end
+      end
+
+      # 展示任务id和任务名称信息
+      class BriefTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param TaskName: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskName: String
+        # @param CreateTime: 任务创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param OwnerUinList: 任务责任人id，一个任务可能有多个责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerUinList: Array
+
+        attr_accessor :TaskId, :TaskName, :CreateTime, :OwnerUinList
+
+        def initialize(taskid=nil, taskname=nil, createtime=nil, owneruinlist=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @CreateTime = createtime
+          @OwnerUinList = owneruinlist
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @CreateTime = params['CreateTime']
+          @OwnerUinList = params['OwnerUinList']
+        end
+      end
+
+      # BusinessMetadata
+      class BusinessMetadata < TencentCloud::Common::AbstractModel
+        # @param TagNames: 标签名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagNames: Array
+
+        attr_accessor :TagNames
+
+        def initialize(tagnames=nil)
+          @TagNames = tagnames
+        end
+
+        def deserialize(params)
+          @TagNames = params['TagNames']
+        end
+      end
+
+      # 目录信息
+      class CatalogInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 目录名称
+        # @type Name: String
+
+        attr_accessor :Name
+
+        def initialize(name=nil)
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
         end
       end
 
@@ -678,6 +857,47 @@ module TencentCloud
         end
       end
 
+      # ColumnInfo
+      class ColumnInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 字段名称
+        # @type Name: String
+        # @param Length: 字段长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+        # @param Description: 字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Position: 字段的顺序
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param IsPartition: 是否为分区字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPartition: Boolean
+
+        attr_accessor :Type, :Name, :Length, :Description, :Position, :IsPartition
+
+        def initialize(type=nil, name=nil, length=nil, description=nil, position=nil, ispartition=nil)
+          @Type = type
+          @Name = name
+          @Length = length
+          @Description = description
+          @Position = position
+          @IsPartition = ispartition
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Length = params['Length']
+          @Description = params['Description']
+          @Position = params['Position']
+          @IsPartition = params['IsPartition']
+        end
+      end
+
       # 创建告警规则响应结果
       class CreateAlarmRuleData < TencentCloud::Common::AbstractModel
         # @param AlarmRuleId: 告警规则唯一id
@@ -929,6 +1149,254 @@ module TencentCloud
         end
       end
 
+      # CreateDataSource请求参数结构体
+      class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 数据源项目ID
+        # @type ProjectId: String
+        # @param Name: 数据源名称
+        # @type Name: String
+        # @param Type: 数据源类型:枚举值
+
+        # - MYSQL
+        # - TENCENT_MYSQL
+        # - POSTGRE
+        # - ORACLE
+        # - SQLSERVER
+        # - FTP
+        # - HIVE
+        # - HUDI
+        # - HDFS
+        # - ICEBERG
+        # - KAFKA
+        # - DTS_KAFKA
+        # - HBASE
+        # - SPARK
+        # - TBASE
+        # - DB2
+        # - DM
+        # - GAUSSDB
+        # - GBASE
+        # - IMPALA
+        # - ES
+        # - TENCENT_ES
+        # - GREENPLUM
+        # - SAP_HANA
+        # - SFTP
+        # - OCEANBASE
+        # - CLICKHOUSE
+        # - KUDU
+        # - VERTICA
+        # - REDIS
+        # - COS
+        # - DLC
+        # - DORIS
+        # - CKAFKA
+        # - S3_DATAINSIGHT
+        # - TDSQL
+        # - TDSQL_MYSQL
+        # - MONGODB
+        # - TENCENT_MONGODB
+        # - REST_API
+        # - TiDB
+        # - StarRocks
+        # - Trino
+        # - Kyuubi
+        # - TCHOUSE_X
+        # - TCHOUSE_P
+        # - TCHOUSE_C
+        # - TCHOUSE_D
+        # - INFLUXDB
+        # - BIG_QUERY
+        # - SSH
+        # - BLOB
+        # - TDSQL_POSTGRE
+        # - GDB
+        # - TDENGINE
+        # - TDSQLC
+        # @type Type: String
+        # @param ProdConProperties: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+
+        # > deployType:
+        # CONNSTR_PUBLICDB(公网实例)
+        # CONNSTR_CVMDB(自建实例)
+        # INSTANCE(云实例)
+
+        # ```
+        # mysql: 自建实例
+        # {
+        #     "deployType": "CONNSTR_CVMDB",
+        #     "url": "jdbc:mysql://1.1.1.1:1111/database",
+        #     "username": "root",
+        #     "password": "root",
+        #     "region": "ap-shanghai",
+        #     "vpcId": "vpc-kprq42yo",
+        #     "type": "MYSQL"
+        # }
+        # mysql: 云实例
+        # {
+        #     "instanceid": "cdb-12uxdo5e",
+        #     "db": "db",
+        #     "region": "ap-shanghai",
+        #     "username": "msyql",
+        #     "password": "mysql",
+        #     "deployType": "INSTANCE",
+        #     "type": "TENCENT_MYSQL"
+        # }
+        # sql_server:
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "url": "jdbc:sqlserver://1.1.1.1:223;DatabaseName=database",
+        #     "username": "user_1",
+        #     "password": "pass_2",
+        #     "type": "SQLSERVER"
+        # }
+        # redis:
+        #     redisType:
+        #     -NO_ACCOUT(免账号)
+        #     -SELF_ACCOUNT(自定义账号)
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "username":""
+        #     "password": "pass",
+        #     "ip": "1.1.1.1",
+        #     "port": "6379",
+        #     "redisType": "NO_ACCOUT",
+        #     "type": "REDIS"
+        # }
+        # oracle:
+        # {
+        #     "deployType": "CONNSTR_CVMDB",
+        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:prod",
+        #     "username": "oracle",
+        #     "password": "pass",
+        #     "region": "ap-shanghai",
+        #     "vpcId": "vpc-kprq42yo",
+        #     "type": "ORACLE"
+        # }
+        # mongodb:
+        #     advanceParams(自定义参数，会拼接至url后)
+        # {
+        #     "advanceParams": [
+        #         {
+        #             "key": "authSource",
+        #             "value": "auth"
+        #         }
+        #     ],
+        #     "db": "admin",
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "username": "user",
+        #     "password": "pass",
+        #     "type": "MONGODB",
+        #     "host": "1.1.1.1:9200"
+        # }
+        # postgresql:
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "url": "jdbc:postgresql://1.1.1.1:1921/database",
+        #     "username": "user",
+        #     "password": "pass",
+        #     "type": "POSTGRE"
+        # }
+        # kafka:
+        #     authType:
+        #         - sasl
+        #         - jaas
+        #         - sasl_plaintext
+        #         - sasl_ssl
+        #         - GSSAPI
+        #     ssl:
+        #         -PLAIN
+        #         -GSSAPI
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "host": "1.1.1.1:9092",
+        #     "ssl": "GSSAPI",
+        #     "authType": "sasl",
+        #     "type": "KAFKA",
+        #     "principal": "aaaa",
+        #     "serviceName": "kafka"
+        # }
+
+        # cos:
+        # {
+        #     "region": "ap-shanghai",
+        #     "deployType": "INSTANCE",
+        #     "secretId": "aaaaa",
+        #     "secretKey": "sssssss",
+        #     "bucket": "aaa",
+        #     "type": "COS"
+        # }
+
+        # ```
+        # @type ProdConProperties: String
+        # @param DevConProperties: 开发环境数据源配置信息，若项目为标准模式，则此字段必填
+        # @type DevConProperties: String
+        # @param ProdFileUpload: 生产环境数据源文件上传
+        # @type ProdFileUpload: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceFileUpload`
+        # @param DevFileUpload: 开发环境数据源文件上传
+        # @type DevFileUpload: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceFileUpload`
+        # @param DisplayName: 数据源展示名，为了可视化查看
+        # @type DisplayName: String
+        # @param Description: 数据源描述信息
+        # @type Description: String
+
+        attr_accessor :ProjectId, :Name, :Type, :ProdConProperties, :DevConProperties, :ProdFileUpload, :DevFileUpload, :DisplayName, :Description
+
+        def initialize(projectid=nil, name=nil, type=nil, prodconproperties=nil, devconproperties=nil, prodfileupload=nil, devfileupload=nil, displayname=nil, description=nil)
+          @ProjectId = projectid
+          @Name = name
+          @Type = type
+          @ProdConProperties = prodconproperties
+          @DevConProperties = devconproperties
+          @ProdFileUpload = prodfileupload
+          @DevFileUpload = devfileupload
+          @DisplayName = displayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @ProdConProperties = params['ProdConProperties']
+          @DevConProperties = params['DevConProperties']
+          unless params['ProdFileUpload'].nil?
+            @ProdFileUpload = DataSourceFileUpload.new
+            @ProdFileUpload.deserialize(params['ProdFileUpload'])
+          end
+          unless params['DevFileUpload'].nil?
+            @DevFileUpload = DataSourceFileUpload.new
+            @DevFileUpload.deserialize(params['DevFileUpload'])
+          end
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateDataSource返回参数结构体
+      class CreateDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 主键ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建文件夹结果
       class CreateFolderResult < TencentCloud::Common::AbstractModel
         # @param FolderId: 创建成功的文件夹ID。如果创建失败则报错。
@@ -1028,6 +1496,123 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProjectMember请求参数结构体
+      class CreateProjectMemberRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UseUins: 用户id
+        # @type UseUins: Array
+        # @param RoleIds: 角色id
+        # @type RoleIds: Array
+
+        attr_accessor :ProjectId, :UseUins, :RoleIds
+
+        def initialize(projectid=nil, useuins=nil, roleids=nil)
+          @ProjectId = projectid
+          @UseUins = useuins
+          @RoleIds = roleids
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UseUins = params['UseUins']
+          @RoleIds = params['RoleIds']
+        end
+      end
+
+      # CreateProjectMember返回参数结构体
+      class CreateProjectMemberResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProject请求参数结构体
+      class CreateProjectRequest < TencentCloud::Common::AbstractModel
+        # @param Project: 项目基本信息
+        # @type Project: :class:`Tencentcloud::Wedata.v20250806.models.ProjectRequest`
+        # @param DLCInfo: DLC绑定集群信息
+        # @type DLCInfo: :class:`Tencentcloud::Wedata.v20250806.models.DLCClusterInfo`
+        # @param ResourceIds: 绑定资源组的id列表
+        # @type ResourceIds: Array
+
+        attr_accessor :Project, :DLCInfo, :ResourceIds
+
+        def initialize(project=nil, dlcinfo=nil, resourceids=nil)
+          @Project = project
+          @DLCInfo = dlcinfo
+          @ResourceIds = resourceids
+        end
+
+        def deserialize(params)
+          unless params['Project'].nil?
+            @Project = ProjectRequest.new
+            @Project.deserialize(params['Project'])
+          end
+          unless params['DLCInfo'].nil?
+            @DLCInfo = DLCClusterInfo.new
+            @DLCInfo.deserialize(params['DLCInfo'])
+          end
+          @ResourceIds = params['ResourceIds']
+        end
+      end
+
+      # CreateProject返回参数结构体
+      class CreateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建项目结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.CreateProjectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateProjectResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建项目的结果信息
+      class CreateProjectResult < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -1156,6 +1741,80 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = CreateFolderResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateResourceGroup请求参数结构体
+      class CreateResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 资源组名称。创建通用资源组的名称，必须以字母开头，可包含字母、数字、下划线（_），最多 64 个字符。
+        # @type Name: String
+        # @param Type: 开通的资源组信息
+        # @type Type: :class:`Tencentcloud::Wedata.v20250806.models.ResourceType`
+        # @param AutoRenewEnabled: 是否自动续费
+        # @type AutoRenewEnabled: Boolean
+        # @param PurchasePeriod: 购买时长，单位月
+        # @type PurchasePeriod: Integer
+        # @param VpcId: vpcId
+        # @type VpcId: String
+        # @param SubNet: 子网
+        # @type SubNet: String
+        # @param ResourceRegion: 资源购买地域
+        # @type ResourceRegion: String
+        # @param AssociatedProjectId: 关联项目空间项目id
+        # @type AssociatedProjectId: String
+        # @param Description: 资源组描述
+        # @type Description: String
+
+        attr_accessor :Name, :Type, :AutoRenewEnabled, :PurchasePeriod, :VpcId, :SubNet, :ResourceRegion, :AssociatedProjectId, :Description
+
+        def initialize(name=nil, type=nil, autorenewenabled=nil, purchaseperiod=nil, vpcid=nil, subnet=nil, resourceregion=nil, associatedprojectid=nil, description=nil)
+          @Name = name
+          @Type = type
+          @AutoRenewEnabled = autorenewenabled
+          @PurchasePeriod = purchaseperiod
+          @VpcId = vpcid
+          @SubNet = subnet
+          @ResourceRegion = resourceregion
+          @AssociatedProjectId = associatedprojectid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Type'].nil?
+            @Type = ResourceType.new
+            @Type.deserialize(params['Type'])
+          end
+          @AutoRenewEnabled = params['AutoRenewEnabled']
+          @PurchasePeriod = params['PurchasePeriod']
+          @VpcId = params['VpcId']
+          @SubNet = params['SubNet']
+          @ResourceRegion = params['ResourceRegion']
+          @AssociatedProjectId = params['AssociatedProjectId']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateResourceGroup返回参数结构体
+      class CreateResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否开启成功
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceResult.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -1784,6 +2443,53 @@ module TencentCloud
         end
       end
 
+      # dlc集群信息
+      class DLCClusterInfo < TencentCloud::Common::AbstractModel
+        # @param ComputeResources: dlc资源名称（需要添加角色Uin到dlc中，否则可能获取不到资源）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeResources: Array
+        # @param Region: dlc地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param DefaultDatabase: 指定DLC集群的默认数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDatabase: String
+        # @param StandardModeEnvTag: 集群配置标记（ 仅对标准模式的项目生效并且标准模式必填），枚举值：
+        # - Prod  (生产环境)
+        # - Dev  (开发环境)
+        # @type StandardModeEnvTag: String
+        # @param AccessAccount: 访问账号（ 仅对标准模式的项目生效并且标准模式必填），用于提交dlc任务的账号
+        # 建议使用指定子账号，给子账号设置对应库表的权限；任务负责人模式在负责人离职后容易造成任务失败；主账号模式在多个项目权限不同的情况下不易做权限控制。
+
+        # 枚举值：
+        # - TASK_RUNNER （任务负责人）
+        # - OWNER （主账号模式）
+        # - SUB （子账号模式）
+        # @type AccessAccount: String
+        # @param SubAccountUin: 子账号id（ 仅对标准模式的项目生效），AccessAccount为子账号模式时，需要指定子账号的id信息，其他模式不需要指定
+        # @type SubAccountUin: String
+
+        attr_accessor :ComputeResources, :Region, :DefaultDatabase, :StandardModeEnvTag, :AccessAccount, :SubAccountUin
+
+        def initialize(computeresources=nil, region=nil, defaultdatabase=nil, standardmodeenvtag=nil, accessaccount=nil, subaccountuin=nil)
+          @ComputeResources = computeresources
+          @Region = region
+          @DefaultDatabase = defaultdatabase
+          @StandardModeEnvTag = standardmodeenvtag
+          @AccessAccount = accessaccount
+          @SubAccountUin = subaccountuin
+        end
+
+        def deserialize(params)
+          @ComputeResources = params['ComputeResources']
+          @Region = params['Region']
+          @DefaultDatabase = params['DefaultDatabase']
+          @StandardModeEnvTag = params['StandardModeEnvTag']
+          @AccessAccount = params['AccessAccount']
+          @SubAccountUin = params['SubAccountUin']
+        end
+      end
+
       # 补录计划日期范围
       class DataBackfillRange < TencentCloud::Common::AbstractModel
         # @param StartDate: 开始日期，格式yyyy-MM-dd 表示从指定日期的00:00:00开始
@@ -1813,6 +2519,302 @@ module TencentCloud
           @EndDate = params['EndDate']
           @ExecutionStartTime = params['ExecutionStartTime']
           @ExecutionEndTime = params['ExecutionEndTime']
+        end
+      end
+
+      # 数据源对象
+      class DataSource < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 归属项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param Id: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param Type: 数据源类型:枚举值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Name: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DisplayName: 数据源展示名，为了可视化查看
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Description: 数据源描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ProjectName: 归属项目Name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param CreateUser: 数据源创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUser: String
+        # @param CreateTime: 时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyUser: 更新人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyUser: String
+        # @param ModifyTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param ProdConProperties: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProdConProperties: String
+        # @param DevConProperties: 同params 内容为开发数据源的数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DevConProperties: String
+        # @param Category: 数据源类别：
+
+        # - DB ---自定义源
+        # - CLUSTER --- 系统源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: String
+
+        attr_accessor :ProjectId, :Id, :Type, :Name, :DisplayName, :Description, :ProjectName, :CreateUser, :CreateTime, :ModifyUser, :ModifyTime, :ProdConProperties, :DevConProperties, :Category
+
+        def initialize(projectid=nil, id=nil, type=nil, name=nil, displayname=nil, description=nil, projectname=nil, createuser=nil, createtime=nil, modifyuser=nil, modifytime=nil, prodconproperties=nil, devconproperties=nil, category=nil)
+          @ProjectId = projectid
+          @Id = id
+          @Type = type
+          @Name = name
+          @DisplayName = displayname
+          @Description = description
+          @ProjectName = projectname
+          @CreateUser = createuser
+          @CreateTime = createtime
+          @ModifyUser = modifyuser
+          @ModifyTime = modifytime
+          @ProdConProperties = prodconproperties
+          @DevConProperties = devconproperties
+          @Category = category
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Id = params['Id']
+          @Type = params['Type']
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @ProjectName = params['ProjectName']
+          @CreateUser = params['CreateUser']
+          @CreateTime = params['CreateTime']
+          @ModifyUser = params['ModifyUser']
+          @ModifyTime = params['ModifyTime']
+          @ProdConProperties = params['ProdConProperties']
+          @DevConProperties = params['DevConProperties']
+          @Category = params['Category']
+        end
+      end
+
+      # 数据源文件上传
+      class DataSourceFileUpload < TencentCloud::Common::AbstractModel
+        # @param TrustStore: Truststore认证文件，默认文件名truststore.jks
+        # @type TrustStore: String
+        # @param KeyStore: Keystore认证文件，默认文件名keystore.jks
+        # @type KeyStore: String
+        # @param CoreSite: core-site.xml文件
+        # @type CoreSite: String
+        # @param HdfsSite: hdfs-site.xml文件
+        # @type HdfsSite: String
+        # @param HiveSite: hive-site.xml文件
+        # @type HiveSite: String
+        # @param HBASESite: hbase-site文件
+        # @type HBASESite: String
+        # @param KeyTab: keytab文件，默认文件名[数据源名].keytab
+        # @type KeyTab: String
+        # @param KRB5Conf: krb5.conf文件
+        # @type KRB5Conf: String
+        # @param PrivateKey: 私钥,默认文件名private_key.pem
+        # @type PrivateKey: String
+        # @param PublicKey: 公钥,默认文件名public_key.pem
+        # @type PublicKey: String
+
+        attr_accessor :TrustStore, :KeyStore, :CoreSite, :HdfsSite, :HiveSite, :HBASESite, :KeyTab, :KRB5Conf, :PrivateKey, :PublicKey
+
+        def initialize(truststore=nil, keystore=nil, coresite=nil, hdfssite=nil, hivesite=nil, hbasesite=nil, keytab=nil, krb5conf=nil, privatekey=nil, publickey=nil)
+          @TrustStore = truststore
+          @KeyStore = keystore
+          @CoreSite = coresite
+          @HdfsSite = hdfssite
+          @HiveSite = hivesite
+          @HBASESite = hbasesite
+          @KeyTab = keytab
+          @KRB5Conf = krb5conf
+          @PrivateKey = privatekey
+          @PublicKey = publickey
+        end
+
+        def deserialize(params)
+          @TrustStore = params['TrustStore']
+          @KeyStore = params['KeyStore']
+          @CoreSite = params['CoreSite']
+          @HdfsSite = params['HdfsSite']
+          @HiveSite = params['HiveSite']
+          @HBASESite = params['HBASESite']
+          @KeyTab = params['KeyTab']
+          @KRB5Conf = params['KRB5Conf']
+          @PrivateKey = params['PrivateKey']
+          @PublicKey = params['PublicKey']
+        end
+      end
+
+      # 查询数据源分页列表
+      class DataSourceInfo < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param Items: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Items, :TotalCount, :TotalPageNumber
+
+        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalcount=nil, totalpagenumber=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Items = items
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              datasource_tmp = DataSource.new
+              datasource_tmp.deserialize(i)
+              @Items << datasource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # 数据源操作结果
+      class DataSourceResult < TencentCloud::Common::AbstractModel
+        # @param Status: 操作是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param DataSourceId: 数据源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceId: Integer
+
+        attr_accessor :Status, :DataSourceId
+
+        def initialize(status=nil, datasourceid=nil)
+          @Status = status
+          @DataSourceId = datasourceid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @DataSourceId = params['DataSourceId']
+        end
+      end
+
+      # 数据源操作结果
+      class DataSourceStatus < TencentCloud::Common::AbstractModel
+        # @param Status: 数据源操作状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # 数据库信息
+      class DatabaseInfo < TencentCloud::Common::AbstractModel
+        # @param Guid: 数据库GUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Guid: String
+        # @param Name: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param CatalogName: 数据库目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param Description: 数据库描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Location: 数据库位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param StorageSize: 数据库存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+
+        attr_accessor :Guid, :Name, :CatalogName, :Description, :Location, :StorageSize
+
+        def initialize(guid=nil, name=nil, catalogname=nil, description=nil, location=nil, storagesize=nil)
+          @Guid = guid
+          @Name = name
+          @CatalogName = catalogname
+          @Description = description
+          @Location = location
+          @StorageSize = storagesize
+        end
+
+        def deserialize(params)
+          @Guid = params['Guid']
+          @Name = params['Name']
+          @CatalogName = params['CatalogName']
+          @Description = params['Description']
+          @Location = params['Location']
+          @StorageSize = params['StorageSize']
+        end
+      end
+
+      # 数据源关联任务信息
+      class DatasourceRelationTaskInfo < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 项目名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param TaskInfo: 数据源关联任务信息，本期仅支持数据开发任务接口返回数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskInfo: Array
+
+        attr_accessor :ProjectId, :ProjectName, :TaskInfo
+
+        def initialize(projectid=nil, projectname=nil, taskinfo=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @TaskInfo = taskinfo
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          unless params['TaskInfo'].nil?
+            @TaskInfo = []
+            params['TaskInfo'].each do |i|
+              relatetask_tmp = RelateTask.new
+              relatetask_tmp.deserialize(i)
+              @TaskInfo << relatetask_tmp
+            end
+          end
         end
       end
 
@@ -1918,6 +2920,49 @@ module TencentCloud
         end
       end
 
+      # DeleteDataSource请求参数结构体
+      class DeleteDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param Id: 数据源id
+        # @type Id: Integer
+
+        attr_accessor :ProjectId, :Id
+
+        def initialize(projectid=nil, id=nil)
+          @ProjectId = projectid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteDataSource返回参数结构体
+      class DeleteDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否删除成功
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceStatus.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 删除资源文件夹结果
       class DeleteFolderResult < TencentCloud::Common::AbstractModel
         # @param Status: 删除状态,true表示成功，false表示失败
@@ -1931,6 +2976,52 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # DeleteLineage请求参数结构体
+      class DeleteLineageRequest < TencentCloud::Common::AbstractModel
+        # @param Relations: 需要删除的血缘关系列表
+        # @type Relations: Array
+
+        attr_accessor :Relations
+
+        def initialize(relations=nil)
+          @Relations = relations
+        end
+
+        def deserialize(params)
+          unless params['Relations'].nil?
+            @Relations = []
+            params['Relations'].each do |i|
+              lineagepair_tmp = LineagePair.new
+              lineagepair_tmp.deserialize(i)
+              @Relations << lineagepair_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteLineage返回参数结构体
+      class DeleteLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.OperateResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OperateResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1974,6 +3065,42 @@ module TencentCloud
             @Data = DeleteAlarmRuleResult.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProjectMember请求参数结构体
+      class DeleteProjectMemberRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param UserUins: 用户ID列表
+        # @type UserUins: Array
+
+        attr_accessor :ProjectId, :UserUins
+
+        def initialize(projectid=nil, useruins=nil)
+          @ProjectId = projectid
+          @UserUins = useruins
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserUins = params['UserUins']
+        end
+      end
+
+      # DeleteProjectMember返回参数结构体
+      class DeleteProjectMemberResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -2074,6 +3201,45 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DeleteFolderResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteResourceGroup请求参数结构体
+      class DeleteResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资源组id
+        # @type Id: String
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteResourceGroup返回参数结构体
+      class DeleteResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否销毁成功
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceStatus.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -2306,7 +3472,7 @@ module TencentCloud
 
       # DeleteWorkflow返回参数结构体
       class DeleteWorkflowResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回删除成功的工作流任务个数、失败个数、任务总数
+        # @param Data: 是否删除成功
         # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DeleteWorkflowResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2622,6 +3788,127 @@ module TencentCloud
         end
       end
 
+      # DisableProject请求参数结构体
+      class DisableProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DisableProject返回参数结构体
+      class DisableProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DissociateResourceGroupFromProject请求参数结构体
+      class DissociateResourceGroupFromProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 资源组id
+        # @type ResourceGroupId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :ResourceGroupId, :ProjectId
+
+        def initialize(resourcegroupid=nil, projectid=nil)
+          @ResourceGroupId = resourcegroupid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DissociateResourceGroupFromProject返回参数结构体
+      class DissociateResourceGroupFromProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否绑定成功，失败返回异常
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceStatus.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableProject请求参数结构体
+      class EnableProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # EnableProject返回参数结构体
+      class EnableProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 监听事件器
       class EventListener < TencentCloud::Common::AbstractModel
         # @param EventName: 事件名
@@ -2658,6 +3945,117 @@ module TencentCloud
               @PropertiesList << paraminfo_tmp
             end
           end
+        end
+      end
+
+      # ExecutorResourceGroup分页对象
+      class ExecutorResourceGroupData < TencentCloud::Common::AbstractModel
+        # @param Items: 结果list
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 总条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param PageNumber: 页数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalPageNumber: 总分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :TotalCount, :PageNumber, :PageSize, :TotalPageNumber
+
+        def initialize(items=nil, totalcount=nil, pagenumber=nil, pagesize=nil, totalpagenumber=nil)
+          @Items = items
+          @TotalCount = totalcount
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              executorresourcegroupinfo_tmp = ExecutorResourceGroupInfo.new
+              executorresourcegroupinfo_tmp.deserialize(i)
+              @Items << executorresourcegroupinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
+      # 资源组详情
+      class ExecutorResourceGroupInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 资源组唯一标识
+        # @type Id: String
+        # @param Name: 资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 资源组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param ResourceGroupType: 执行资源组类型，不能为空
+
+        # - Schedule --- 调度资源组
+        # - Integration --- 集成资源组
+        # - DataService -- 数据服务资源组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupType: String
+        # @param AssociateProjects: 项目集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociateProjects: Array
+        # @param Region: 区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param VpcId: vpcId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubNet: 子网id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubNet: String
+        # @param AutoRenewEnabled: 是否自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoRenewEnabled: Boolean
+
+        attr_accessor :Id, :Name, :Description, :ResourceGroupType, :AssociateProjects, :Region, :VpcId, :SubNet, :AutoRenewEnabled
+
+        def initialize(id=nil, name=nil, description=nil, resourcegrouptype=nil, associateprojects=nil, region=nil, vpcid=nil, subnet=nil, autorenewenabled=nil)
+          @Id = id
+          @Name = name
+          @Description = description
+          @ResourceGroupType = resourcegrouptype
+          @AssociateProjects = associateprojects
+          @Region = region
+          @VpcId = vpcid
+          @SubNet = subnet
+          @AutoRenewEnabled = autorenewenabled
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Description = params['Description']
+          @ResourceGroupType = params['ResourceGroupType']
+          unless params['AssociateProjects'].nil?
+            @AssociateProjects = []
+            params['AssociateProjects'].each do |i|
+              bindproject_tmp = BindProject.new
+              bindproject_tmp.deserialize(i)
+              @AssociateProjects << bindproject_tmp
+            end
+          end
+          @Region = params['Region']
+          @VpcId = params['VpcId']
+          @SubNet = params['SubNet']
+          @AutoRenewEnabled = params['AutoRenewEnabled']
         end
       end
 
@@ -2749,6 +4147,93 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = CodeFile.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDataSourceRelatedTasks请求参数结构体
+      class GetDataSourceRelatedTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源id
+        # @type Id: Integer
+
+        attr_accessor :Id
+
+        def initialize(id=nil)
+          @Id = id
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+        end
+      end
+
+      # GetDataSourceRelatedTasks返回参数结构体
+      class GetDataSourceRelatedTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 无
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              datasourcerelationtaskinfo_tmp = DatasourceRelationTaskInfo.new
+              datasourcerelationtaskinfo_tmp.deserialize(i)
+              @Data << datasourcerelationtaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDataSource请求参数结构体
+      class GetDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param Id: 数据源id
+        # @type Id: Integer
+
+        attr_accessor :ProjectId, :Id
+
+        def initialize(projectid=nil, id=nil)
+          @ProjectId = projectid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Id = params['Id']
+        end
+      end
+
+      # GetDataSource返回参数结构体
+      class GetDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataSource`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSource.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -2971,6 +4456,46 @@ module TencentCloud
         end
       end
 
+      # GetProject请求参数结构体
+      class GetProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id。一般使用项目Id来查询，与projectName必须存在一个。
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # GetProject返回参数结构体
+      class GetProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.Project`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = Project.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetResourceFile请求参数结构体
       class GetResourceFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -3008,6 +4533,66 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = ResourceFile.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetResourceGroupMetrics请求参数结构体
+      class GetResourceGroupMetricsRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 执行资源组id
+        # @type ResourceGroupId: String
+        # @param StartTime: 使用趋势开始时间(毫秒)，默认最近一小时
+        # @type StartTime: Integer
+        # @param EndTime: 使用趋势结束时间(毫秒)，默认当前
+        # @type EndTime: Integer
+        # @param MetricType: 指标维度
+
+        # - all --- 全部
+        # - task --- 任务指标
+        # - system --- 系统指标
+        # @type MetricType: String
+        # @param Granularity: 指标采集粒度，单位分钟，默认 1分钟
+        # @type Granularity: Integer
+
+        attr_accessor :ResourceGroupId, :StartTime, :EndTime, :MetricType, :Granularity
+
+        def initialize(resourcegroupid=nil, starttime=nil, endtime=nil, metrictype=nil, granularity=nil)
+          @ResourceGroupId = resourcegroupid
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricType = metrictype
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricType = params['MetricType']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # GetResourceGroupMetrics返回参数结构体
+      class GetResourceGroupMetricsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 执行组指标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceGroupMetrics`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceGroupMetrics.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -3052,6 +4637,90 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = SQLScript.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTableColumns请求参数结构体
+      class GetTableColumnsRequest < TencentCloud::Common::AbstractModel
+        # @param TableGuid: 数据表GUID
+        # @type TableGuid: String
+
+        attr_accessor :TableGuid
+
+        def initialize(tableguid=nil)
+          @TableGuid = tableguid
+        end
+
+        def deserialize(params)
+          @TableGuid = params['TableGuid']
+        end
+      end
+
+      # GetTableColumns返回参数结构体
+      class GetTableColumnsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 表字段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              columninfo_tmp = ColumnInfo.new
+              columninfo_tmp.deserialize(i)
+              @Data << columninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTable请求参数结构体
+      class GetTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableGuid: 表GUID
+        # @type TableGuid: String
+
+        attr_accessor :TableGuid
+
+        def initialize(tableguid=nil)
+          @TableGuid = tableguid
+        end
+
+        def deserialize(params)
+          @TableGuid = params['TableGuid']
+        end
+      end
+
+      # GetTable返回参数结构体
+      class GetTableResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据表详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.TableInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = TableInfo.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -3339,6 +5008,46 @@ module TencentCloud
         end
       end
 
+      # GrantMemberProjectRole请求参数结构体
+      class GrantMemberProjectRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserUin: 用户id
+        # @type UserUin: String
+        # @param RoleId: 角色id
+        # @type RoleId: String
+
+        attr_accessor :ProjectId, :UserUin, :RoleId
+
+        def initialize(projectid=nil, useruin=nil, roleid=nil)
+          @ProjectId = projectid
+          @UserUin = useruin
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserUin = params['UserUin']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # GrantMemberProjectRole返回参数结构体
+      class GrantMemberProjectRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 参数传递-引用参数
       class InTaskParameter < TencentCloud::Common::AbstractModel
         # @param ParamKey: 参数名
@@ -3519,6 +5228,37 @@ module TencentCloud
           @CodeContent = params['CodeContent']
           @LogInfo = params['LogInfo']
           @NextCursor = params['NextCursor']
+        end
+      end
+
+      # 集成资源组
+      class IntegrationResource < TencentCloud::Common::AbstractModel
+        # @param RealTimeDataSync: 实时集成资源组
+
+        # - i32c(实时数据同步-16C64G)
+        # @type RealTimeDataSync: :class:`Tencentcloud::Wedata.v20250806.models.ResourceGroupSpecification`
+        # @param OfflineDataSync: 离线集成资源组
+
+        # - integrated(离线数据同步-8C16G)
+        # - i16(离线数据同步-8C32G)
+        # @type OfflineDataSync: :class:`Tencentcloud::Wedata.v20250806.models.ResourceGroupSpecification`
+
+        attr_accessor :RealTimeDataSync, :OfflineDataSync
+
+        def initialize(realtimedatasync=nil, offlinedatasync=nil)
+          @RealTimeDataSync = realtimedatasync
+          @OfflineDataSync = offlinedatasync
+        end
+
+        def deserialize(params)
+          unless params['RealTimeDataSync'].nil?
+            @RealTimeDataSync = ResourceGroupSpecification.new
+            @RealTimeDataSync.deserialize(params['RealTimeDataSync'])
+          end
+          unless params['OfflineDataSync'].nil?
+            @OfflineDataSync = ResourceGroupSpecification.new
+            @OfflineDataSync.deserialize(params['OfflineDataSync'])
+          end
         end
       end
 
@@ -3805,6 +5545,331 @@ module TencentCloud
         end
       end
 
+      # LineageNodeInfo  血缘关系实体
+      class LineageNodeInfo < TencentCloud::Common::AbstractModel
+        # @param Resource: 当前资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Wedata.v20250806.models.LineageResource`
+        # @param Relation: 关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: :class:`Tencentcloud::Wedata.v20250806.models.LineageRelation`
+
+        attr_accessor :Resource, :Relation
+
+        def initialize(resource=nil, relation=nil)
+          @Resource = resource
+          @Relation = relation
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = LineageResource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          unless params['Relation'].nil?
+            @Relation = LineageRelation.new
+            @Relation.deserialize(params['Relation'])
+          end
+        end
+      end
+
+      # 血缘Pair对象
+      class LineagePair < TencentCloud::Common::AbstractModel
+        # @param Source: 来源
+        # @type Source: :class:`Tencentcloud::Wedata.v20250806.models.LineageResouce`
+        # @param Target: 目标
+        # @type Target: :class:`Tencentcloud::Wedata.v20250806.models.LineageResouce`
+        # @param Processes: 血缘加工过程
+        # @type Processes: Array
+
+        attr_accessor :Source, :Target, :Processes
+
+        def initialize(source=nil, target=nil, processes=nil)
+          @Source = source
+          @Target = target
+          @Processes = processes
+        end
+
+        def deserialize(params)
+          unless params['Source'].nil?
+            @Source = LineageResouce.new
+            @Source.deserialize(params['Source'])
+          end
+          unless params['Target'].nil?
+            @Target = LineageResouce.new
+            @Target.deserialize(params['Target'])
+          end
+          unless params['Processes'].nil?
+            @Processes = []
+            params['Processes'].each do |i|
+              lineageprocess_tmp = LineageProcess.new
+              lineageprocess_tmp.deserialize(i)
+              @Processes << lineageprocess_tmp
+            end
+          end
+        end
+      end
+
+      # LineageProcess 血缘产出过程
+      class LineageProcess < TencentCloud::Common::AbstractModel
+        # @param ProcessId: 原始唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: String
+        # @param ProcessType: 任务类型
+        #     //调度任务
+        #     SCHEDULE_TASK,
+        #     //集成任务
+        #     INTEGRATION_TASK,
+        #     //第三方上报
+        #     THIRD_REPORT,
+        #     //数据建模
+        #     TABLE_MODEL,
+        #     //模型创建指标
+        #     MODEL_METRIC,
+        #     //原子指标创建衍生指标
+        #     METRIC_METRIC,
+        #     //数据服务
+        #     DATA_SERVICE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessType: String
+        # @param Platform: WEDATA, THIRD;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param ProcessSubType: 任务子类型
+        #  SQL_TASK,
+        #     //集成实时任务血缘
+        #     INTEGRATED_STREAM,
+        #     //集成离线任务血缘
+        #     INTEGRATED_OFFLINE;
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessSubType: String
+        # @param ProcessProperties: 额外扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessProperties: Array
+        # @param LineageNodeId: 血缘任务唯一节点ID
+        # @type LineageNodeId: String
+
+        attr_accessor :ProcessId, :ProcessType, :Platform, :ProcessSubType, :ProcessProperties, :LineageNodeId
+
+        def initialize(processid=nil, processtype=nil, platform=nil, processsubtype=nil, processproperties=nil, lineagenodeid=nil)
+          @ProcessId = processid
+          @ProcessType = processtype
+          @Platform = platform
+          @ProcessSubType = processsubtype
+          @ProcessProperties = processproperties
+          @LineageNodeId = lineagenodeid
+        end
+
+        def deserialize(params)
+          @ProcessId = params['ProcessId']
+          @ProcessType = params['ProcessType']
+          @Platform = params['Platform']
+          @ProcessSubType = params['ProcessSubType']
+          unless params['ProcessProperties'].nil?
+            @ProcessProperties = []
+            params['ProcessProperties'].each do |i|
+              lineageproperty_tmp = LineageProperty.new
+              lineageproperty_tmp.deserialize(i)
+              @ProcessProperties << lineageproperty_tmp
+            end
+          end
+          @LineageNodeId = params['LineageNodeId']
+        end
+      end
+
+      # LineageProperty额外扩展参数
+      class LineageProperty < TencentCloud::Common::AbstractModel
+        # @param Name: 属性名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 属性值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # LineageRelation 血缘关系
+      class LineageRelation < TencentCloud::Common::AbstractModel
+        # @param RelationId: 关联ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationId: String
+        # @param SourceUniqueId: 源端唯一血缘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceUniqueId: String
+        # @param TargetUniqueId: 目标端唯一血缘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetUniqueId: String
+        # @param Processes: 血缘加工过程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Processes: Array
+
+        attr_accessor :RelationId, :SourceUniqueId, :TargetUniqueId, :Processes
+
+        def initialize(relationid=nil, sourceuniqueid=nil, targetuniqueid=nil, processes=nil)
+          @RelationId = relationid
+          @SourceUniqueId = sourceuniqueid
+          @TargetUniqueId = targetuniqueid
+          @Processes = processes
+        end
+
+        def deserialize(params)
+          @RelationId = params['RelationId']
+          @SourceUniqueId = params['SourceUniqueId']
+          @TargetUniqueId = params['TargetUniqueId']
+          unless params['Processes'].nil?
+            @Processes = []
+            params['Processes'].each do |i|
+              lineageprocess_tmp = LineageProcess.new
+              lineageprocess_tmp.deserialize(i)
+              @Processes << lineageprocess_tmp
+            end
+          end
+        end
+      end
+
+      # 血缘资源实体
+      class LineageResouce < TencentCloud::Common::AbstractModel
+        # @param ResourceUniqueId: 实体原始唯一ID\n
+        # 备注：当血缘为表的列时候 唯一ID传表ResourceUniqueId::字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUniqueId: String
+        # @param ResourceType: 实体类型
+        # TABLE|METRIC|MODEL|SERVICE|COLUMN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param Platform: 来源：WEDATA|THIRD
+        # 默认wedata
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param ResourceName: 业务名称：库名.表名｜指标名称｜模型名称|字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param Description: 描述：表类型｜指标描述｜模型描述|字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ResourceProperties: resource 额外扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceProperties: Array
+        # @param LineageNodeId: 血缘节点唯一标识符号
+        # @type LineageNodeId: String
+
+        attr_accessor :ResourceUniqueId, :ResourceType, :Platform, :ResourceName, :Description, :CreateTime, :UpdateTime, :ResourceProperties, :LineageNodeId
+
+        def initialize(resourceuniqueid=nil, resourcetype=nil, platform=nil, resourcename=nil, description=nil, createtime=nil, updatetime=nil, resourceproperties=nil, lineagenodeid=nil)
+          @ResourceUniqueId = resourceuniqueid
+          @ResourceType = resourcetype
+          @Platform = platform
+          @ResourceName = resourcename
+          @Description = description
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ResourceProperties = resourceproperties
+          @LineageNodeId = lineagenodeid
+        end
+
+        def deserialize(params)
+          @ResourceUniqueId = params['ResourceUniqueId']
+          @ResourceType = params['ResourceType']
+          @Platform = params['Platform']
+          @ResourceName = params['ResourceName']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['ResourceProperties'].nil?
+            @ResourceProperties = []
+            params['ResourceProperties'].each do |i|
+              lineageproperty_tmp = LineageProperty.new
+              lineageproperty_tmp.deserialize(i)
+              @ResourceProperties << lineageproperty_tmp
+            end
+          end
+          @LineageNodeId = params['LineageNodeId']
+        end
+      end
+
+      # 血缘资源实体
+      class LineageResource < TencentCloud::Common::AbstractModel
+        # @param ResourceUniqueId: 实体原始唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUniqueId: String
+        # @param ResourceName: 业务名称：库名.表名｜指标名称｜模型名称|字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceType: 实体类型
+        # TABLE|METRIC|MODEL|SERVICE|COLUMN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param LineageNodeId: 血缘节点唯一标识符号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LineageNodeId: String
+        # @param Description: 描述：表类型｜指标描述｜模型描述|字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Platform: 来源：WEDATA|THIRD
+        # 默认wedata
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ResourceProperties: resource 额外扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceProperties: Array
+
+        attr_accessor :ResourceUniqueId, :ResourceName, :ResourceType, :LineageNodeId, :Description, :Platform, :CreateTime, :UpdateTime, :ResourceProperties
+
+        def initialize(resourceuniqueid=nil, resourcename=nil, resourcetype=nil, lineagenodeid=nil, description=nil, platform=nil, createtime=nil, updatetime=nil, resourceproperties=nil)
+          @ResourceUniqueId = resourceuniqueid
+          @ResourceName = resourcename
+          @ResourceType = resourcetype
+          @LineageNodeId = lineagenodeid
+          @Description = description
+          @Platform = platform
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ResourceProperties = resourceproperties
+        end
+
+        def deserialize(params)
+          @ResourceUniqueId = params['ResourceUniqueId']
+          @ResourceName = params['ResourceName']
+          @ResourceType = params['ResourceType']
+          @LineageNodeId = params['LineageNodeId']
+          @Description = params['Description']
+          @Platform = params['Platform']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['ResourceProperties'].nil?
+            @ResourceProperties = []
+            params['ResourceProperties'].each do |i|
+              lineageproperty_tmp = LineageProperty.new
+              lineageproperty_tmp.deserialize(i)
+              @ResourceProperties << lineageproperty_tmp
+            end
+          end
+        end
+      end
+
       # 告警信息列表
       class ListAlarmMessages < TencentCloud::Common::AbstractModel
         # @param PageNumber: 页码
@@ -3950,6 +6015,92 @@ module TencentCloud
         end
       end
 
+      # ListCatalogPage
+      class ListCatalogPage < TencentCloud::Common::AbstractModel
+        # @param Items: 目录记录列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              cataloginfo_tmp = CatalogInfo.new
+              cataloginfo_tmp.deserialize(i)
+              @Items << cataloginfo_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListCatalog请求参数结构体
+      class ListCatalogRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，最大500
+        # @type PageSize: Integer
+        # @param ParentCatalogId: 父目录ID
+        # @type ParentCatalogId: String
+
+        attr_accessor :PageNumber, :PageSize, :ParentCatalogId
+
+        def initialize(pagenumber=nil, pagesize=nil, parentcatalogid=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ParentCatalogId = parentcatalogid
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ParentCatalogId = params['ParentCatalogId']
+        end
+      end
+
+      # ListCatalog返回参数结构体
+      class ListCatalogResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListCatalogPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListCatalogPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListCodeFolderContents请求参数结构体
       class ListCodeFolderContentsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -4010,6 +6161,65 @@ module TencentCloud
         end
       end
 
+      # ListColumnLineage请求参数结构体
+      class ListColumnLineageRequest < TencentCloud::Common::AbstractModel
+        # @param TableUniqueId: 表唯一ID
+        # @type TableUniqueId: String
+        # @param Direction: 血缘方向 INPUT｜OUTPUT
+        # @type Direction: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param ColumnName: 列名称
+        # @type ColumnName: String
+        # @param Platform: 来源：WEDATA|THIRD 默认WEDATA
+        # @type Platform: String
+
+        attr_accessor :TableUniqueId, :Direction, :PageNumber, :PageSize, :ColumnName, :Platform
+
+        def initialize(tableuniqueid=nil, direction=nil, pagenumber=nil, pagesize=nil, columnname=nil, platform=nil)
+          @TableUniqueId = tableuniqueid
+          @Direction = direction
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @ColumnName = columnname
+          @Platform = platform
+        end
+
+        def deserialize(params)
+          @TableUniqueId = params['TableUniqueId']
+          @Direction = params['Direction']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @ColumnName = params['ColumnName']
+          @Platform = params['Platform']
+        end
+      end
+
+      # ListColumnLineage返回参数结构体
+      class ListColumnLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListLineagePage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListLineagePage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListDataBackfillInstances请求参数结构体
       class ListDataBackfillInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 所属项目Id
@@ -4059,6 +6269,220 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = BackfillInstanceCollection.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDataSources请求参数结构体
+      class ListDataSourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param PageSize: 返回数量，默认10
+        # @type PageSize: Integer
+        # @param PageNumber: 页码，默认1
+        # @type PageNumber: Integer
+        # @param Name: 数据源名称
+        # @type Name: String
+        # @param DisplayName: 数据源展示名
+        # @type DisplayName: String
+        # @param Type: 数据源类型:枚举值
+
+        # - MYSQL
+        # - TENCENT_MYSQL
+        # - POSTGRE
+        # - ORACLE
+        # - SQLSERVER
+        # - FTP
+        # - HIVE
+        # - HUDI
+        # - HDFS
+        # - ICEBERG
+        # - KAFKA
+        # - HBASE
+        # - SPARK
+        # - VIRTUAL
+        # - TBASE
+        # - DB2
+        # - DM
+        # - GAUSSDB
+        # - GBASE
+        # - IMPALA
+        # - ES
+        # - TENCENT_ES
+        # - GREENPLUM
+        # - PHOENIX
+        # - SAP_HANA
+        # - SFTP
+        # - OCEANBASE
+        # - CLICKHOUSE
+        # - KUDU
+        # - VERTICA
+        # - REDIS
+        # - COS
+        # - DLC
+        # - DORIS
+        # - CKAFKA
+        # - S3
+        # - TDSQL
+        # - TDSQL_MYSQL
+        # - MONGODB
+        # - TENCENT_MONGODB
+        # - REST_API
+        # - SuperSQL
+        # - PRESTO
+        # - TiDB
+        # - StarRocks
+        # - Trino
+        # - Kyuubi
+        # - TCHOUSE_X
+        # - TCHOUSE_P
+        # - TCHOUSE_C
+        # - TCHOUSE_D
+        # - INFLUXDB
+        # - BIG_QUERY
+        # - SSH
+        # - BLOB
+        # @type Type: Array
+        # @param Creator: 创建人
+        # @type Creator: String
+
+        attr_accessor :ProjectId, :PageSize, :PageNumber, :Name, :DisplayName, :Type, :Creator
+
+        def initialize(projectid=nil, pagesize=nil, pagenumber=nil, name=nil, displayname=nil, type=nil, creator=nil)
+          @ProjectId = projectid
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @Name = name
+          @DisplayName = displayname
+          @Type = type
+          @Creator = creator
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+          @Type = params['Type']
+          @Creator = params['Creator']
+        end
+      end
+
+      # ListDataSources返回参数结构体
+      class ListDataSourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListDatabasePage
+      class ListDatabasePage < TencentCloud::Common::AbstractModel
+        # @param Items: 数据库记录列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              databaseinfo_tmp = DatabaseInfo.new
+              databaseinfo_tmp.deserialize(i)
+              @Items << databaseinfo_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListDatabase请求参数结构体
+      class ListDatabaseRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，最大500
+        # @type PageSize: Integer
+        # @param CatalogName: 目录名称
+        # @type CatalogName: String
+        # @param DatasourceId: 数据源ID
+        # @type DatasourceId: Integer
+        # @param Keyword: 数据库名称搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :CatalogName, :DatasourceId, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, catalogname=nil, datasourceid=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @CatalogName = catalogname
+          @DatasourceId = datasourceid
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @CatalogName = params['CatalogName']
+          @DatasourceId = params['DatasourceId']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListDatabase返回参数结构体
+      class ListDatabaseResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListDatabasePage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListDatabasePage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -4216,6 +6640,104 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DependencyConfigPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListLineagePage
+      class ListLineagePage < TencentCloud::Common::AbstractModel
+        # @param Items: 血缘记录列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              lineagenodeinfo_tmp = LineageNodeInfo.new
+              lineagenodeinfo_tmp.deserialize(i)
+              @Items << lineagenodeinfo_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListLineage请求参数结构体
+      class ListLineageRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceUniqueId: 实体唯一ID
+        # @type ResourceUniqueId: String
+        # @param ResourceType: 实体类型 TABLE|METRIC|MODEL|SERVICE|COLUMN
+        # @type ResourceType: String
+        # @param Direction: 血缘方向 INPUT｜OUTPUT
+        # @type Direction: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Platform: 来源：WEDATA|THIRD 默认WEDATA
+        # @type Platform: String
+
+        attr_accessor :ResourceUniqueId, :ResourceType, :Direction, :PageNumber, :PageSize, :Platform
+
+        def initialize(resourceuniqueid=nil, resourcetype=nil, direction=nil, pagenumber=nil, pagesize=nil, platform=nil)
+          @ResourceUniqueId = resourceuniqueid
+          @ResourceType = resourcetype
+          @Direction = direction
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Platform = platform
+        end
+
+        def deserialize(params)
+          @ResourceUniqueId = params['ResourceUniqueId']
+          @ResourceType = params['ResourceType']
+          @Direction = params['Direction']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Platform = params['Platform']
+        end
+      end
+
+      # ListLineage返回参数结构体
+      class ListLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListLineagePage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListLineagePage.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -4580,6 +7102,265 @@ module TencentCloud
         end
       end
 
+      # ListLineagePage
+      class ListProcessLineagePage < TencentCloud::Common::AbstractModel
+        # @param Items: 血缘pair列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              lineagepair_tmp = LineagePair.new
+              lineagepair_tmp.deserialize(i)
+              @Items << lineagepair_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListProcessLineage请求参数结构体
+      class ListProcessLineageRequest < TencentCloud::Common::AbstractModel
+        # @param ProcessId: 任务唯一ID
+        # @type ProcessId: String
+        # @param ProcessType: 任务类型    //调度任务     SCHEDULE_TASK,     //集成任务     INTEGRATION_TASK,     //第三方上报     THIRD_REPORT,     //数据建模     TABLE_MODEL,     //模型创建指标     MODEL_METRIC,     //原子指标创建衍生指标     METRIC_METRIC,     //数据服务     DATA_SERVICE
+        # @type ProcessType: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param Platform: 来源：WEDATA|THIRD 默认WEDATA
+        # @type Platform: String
+
+        attr_accessor :ProcessId, :ProcessType, :PageNumber, :PageSize, :Platform
+
+        def initialize(processid=nil, processtype=nil, pagenumber=nil, pagesize=nil, platform=nil)
+          @ProcessId = processid
+          @ProcessType = processtype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Platform = platform
+        end
+
+        def deserialize(params)
+          @ProcessId = params['ProcessId']
+          @ProcessType = params['ProcessType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Platform = params['Platform']
+        end
+      end
+
+      # ListProcessLineage返回参数结构体
+      class ListProcessLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListProcessLineagePage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListProcessLineagePage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListProjectMembers请求参数结构体
+      class ListProjectMembersRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserName: 使用成员名过滤，支持模糊查询
+        # @type UserName: String
+        # @param UserUin: 使用成员id过滤，支持模糊查询
+        # @type UserUin: String
+        # @param PageSize: 分页大小，默认第一页
+        # @type PageSize: Integer
+        # @param PageNumber: 分页条数，默认10条
+        # @type PageNumber: Integer
+
+        attr_accessor :ProjectId, :UserName, :UserUin, :PageSize, :PageNumber
+
+        def initialize(projectid=nil, username=nil, useruin=nil, pagesize=nil, pagenumber=nil)
+          @ProjectId = projectid
+          @UserName = username
+          @UserUin = useruin
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserName = params['UserName']
+          @UserUin = params['UserUin']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
+      # ListProjectMembers返回参数结构体
+      class ListProjectMembersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectUsersBrief`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectUsersBrief.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListProjectRoles请求参数结构体
+      class ListProjectRolesRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param RoleDisplayName: 角色中文展示名模糊查询，只能传一个值
+        # @type RoleDisplayName: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页信息
+        # @type PageSize: Integer
+
+        attr_accessor :ProjectId, :RoleDisplayName, :PageNumber, :PageSize
+
+        def initialize(projectid=nil, roledisplayname=nil, pagenumber=nil, pagesize=nil)
+          @ProjectId = projectid
+          @RoleDisplayName = roledisplayname
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @RoleDisplayName = params['RoleDisplayName']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListProjectRoles返回参数结构体
+      class ListProjectRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 角色列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.PageRoles`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = PageRoles.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListProjects请求参数结构体
+      class ListProjectsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectIds: 项目id列表
+        # @type ProjectIds: Array
+        # @param ProjectName: 项目名或项目唯一标识名，支持模糊搜索
+        # @type ProjectName: String
+        # @param Status: 项目状态，可选值：0（禁用）、1（正常）
+        # @type Status: Integer
+        # @param ProjectModel: 项目模式，可选值：SIMPLE、STANDARD
+        # @type ProjectModel: String
+        # @param PageNumber: 请求的数据页数，用于翻页
+        # @type PageNumber: Integer
+        # @param PageSize: 每页显示的条数，默认为 10 条
+        # @type PageSize: Integer
+
+        attr_accessor :ProjectIds, :ProjectName, :Status, :ProjectModel, :PageNumber, :PageSize
+
+        def initialize(projectids=nil, projectname=nil, status=nil, projectmodel=nil, pagenumber=nil, pagesize=nil)
+          @ProjectIds = projectids
+          @ProjectName = projectname
+          @Status = status
+          @ProjectModel = projectmodel
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ProjectIds = params['ProjectIds']
+          @ProjectName = params['ProjectName']
+          @Status = params['Status']
+          @ProjectModel = params['ProjectModel']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListProjects返回参数结构体
+      class ListProjectsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 项目列表
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectBrief`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectBrief.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListResourceFiles请求参数结构体
       class ListResourceFilesRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -4701,6 +7482,69 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = ResourceFolderPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListResourceGroups请求参数结构体
+      class ListResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 执行资源组类型，不能为空
+
+        # - Schedule --- 调度资源组
+        # - Integration --- 集成资源组
+        # - DataService -- 数据服务资源组
+        # @type Type: String
+        # @param Id: 资源组id
+        # @type Id: String
+        # @param Name: 搜索的执行资源组名称
+        # @type Name: String
+        # @param ProjectIds: 项目空间id查询列表
+        # @type ProjectIds: Array
+        # @param PageNumber: 页数
+        # @type PageNumber: Integer
+        # @param PageSize: 页大小
+        # @type PageSize: Integer
+
+        attr_accessor :Type, :Id, :Name, :ProjectIds, :PageNumber, :PageSize
+
+        def initialize(type=nil, id=nil, name=nil, projectids=nil, pagenumber=nil, pagesize=nil)
+          @Type = type
+          @Id = id
+          @Name = name
+          @ProjectIds = projectids
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Id = params['Id']
+          @Name = params['Name']
+          @ProjectIds = params['ProjectIds']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListResourceGroups返回参数结构体
+      class ListResourceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ExecutorResourceGroupData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ExecutorResourceGroupData.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -4832,6 +7676,206 @@ module TencentCloud
               jobdto_tmp.deserialize(i)
               @Data << jobdto_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListSchemaPage
+      class ListSchemaPage < TencentCloud::Common::AbstractModel
+        # @param Items: Schema记录列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              schemainfo_tmp = SchemaInfo.new
+              schemainfo_tmp.deserialize(i)
+              @Items << schemainfo_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListSchema请求参数结构体
+      class ListSchemaRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，最大500
+        # @type PageSize: Integer
+        # @param CatalogName: 目录名称
+        # @type CatalogName: String
+        # @param DatasourceId: 数据源ID
+        # @type DatasourceId: Integer
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param Keyword: 数据库模式搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :CatalogName, :DatasourceId, :DatabaseName, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, catalogname=nil, datasourceid=nil, databasename=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @CatalogName = catalogname
+          @DatasourceId = datasourceid
+          @DatabaseName = databasename
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @CatalogName = params['CatalogName']
+          @DatasourceId = params['DatasourceId']
+          @DatabaseName = params['DatabaseName']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListSchema返回参数结构体
+      class ListSchemaResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListSchemaPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListSchemaPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListTablePage
+      class ListTablePage < TencentCloud::Common::AbstractModel
+        # @param Items: Schema记录列表
+        # @type Items: Array
+        # @param PageCount: 分页总页数
+        # @type PageCount: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # @type PageNumber: Integer
+        # @param TotalCount: 记录总数
+        # @type TotalCount: Integer
+
+        attr_accessor :Items, :PageCount, :PageSize, :PageNumber, :TotalCount
+
+        def initialize(items=nil, pagecount=nil, pagesize=nil, pagenumber=nil, totalcount=nil)
+          @Items = items
+          @PageCount = pagecount
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              tableinfo_tmp = TableInfo.new
+              tableinfo_tmp.deserialize(i)
+              @Items << tableinfo_tmp
+            end
+          end
+          @PageCount = params['PageCount']
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
+      # ListTable请求参数结构体
+      class ListTableRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 页码，从1开始
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，最大500
+        # @type PageSize: Integer
+        # @param CatalogName: 目录名称
+        # @type CatalogName: String
+        # @param DatasourceId: 数据源ID
+        # @type DatasourceId: Integer
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param SchemaName: 数据库Schema名称
+        # @type SchemaName: String
+        # @param Keyword: 表搜索关键字
+        # @type Keyword: String
+
+        attr_accessor :PageNumber, :PageSize, :CatalogName, :DatasourceId, :DatabaseName, :SchemaName, :Keyword
+
+        def initialize(pagenumber=nil, pagesize=nil, catalogname=nil, datasourceid=nil, databasename=nil, schemaname=nil, keyword=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @CatalogName = catalogname
+          @DatasourceId = datasourceid
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @Keyword = keyword
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @CatalogName = params['CatalogName']
+          @DatasourceId = params['DatasourceId']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @Keyword = params['Keyword']
+        end
+      end
+
+      # ListTable返回参数结构体
+      class ListTableResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 分页数据
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ListTablePage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListTablePage.new
+            @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
         end
@@ -5266,6 +8310,49 @@ module TencentCloud
         end
       end
 
+      # ListTenantRoles请求参数结构体
+      class ListTenantRolesRequest < TencentCloud::Common::AbstractModel
+        # @param RoleDisplayName: 角色中文展示名模糊查询，只能传一个值
+        # @type RoleDisplayName: String
+
+        attr_accessor :RoleDisplayName
+
+        def initialize(roledisplayname=nil)
+          @RoleDisplayName = roledisplayname
+        end
+
+        def deserialize(params)
+          @RoleDisplayName = params['RoleDisplayName']
+        end
+      end
+
+      # ListTenantRoles返回参数结构体
+      class ListTenantRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 主账号角色列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              systemrole_tmp = SystemRole.new
+              systemrole_tmp.deserialize(i)
+              @Data << systemrole_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListUpstreamOpsTasks请求参数结构体
       class ListUpstreamOpsTasksRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -5597,6 +8684,52 @@ module TencentCloud
         end
       end
 
+      # 监控指标
+      class MetricData < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名称
+
+        # - ConcurrencyUsage --- 并发使用率
+        # - CpuCoreUsage --- cpu使用率
+        # - CpuLoad --- cpu负载
+        # - DevelopQueueTask --- 正在队列中的开发任务数量
+        # - DevelopRunningTask --- 正在运行的开发任务数量
+        # - DevelopSchedulingTask --- 正在调度的开发任务数量
+        # - DiskUsage --- 磁盘使用情况
+        # - DiskUsed --- 磁盘已用量
+        # - MaximumConcurrency --- 最大并发
+        # - MemoryLoad --- 内存负载
+        # - MemoryUsage --- 内存使用量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param SnapshotValue: 当前值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotValue: Integer
+        # @param TrendList: 指标趋势
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrendList: Array
+
+        attr_accessor :MetricName, :SnapshotValue, :TrendList
+
+        def initialize(metricname=nil, snapshotvalue=nil, trendlist=nil)
+          @MetricName = metricname
+          @SnapshotValue = snapshotvalue
+          @TrendList = trendlist
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @SnapshotValue = params['SnapshotValue']
+          unless params['TrendList'].nil?
+            @TrendList = []
+            params['TrendList'].each do |i|
+              trenddata_tmp = TrendData.new
+              trenddata_tmp.deserialize(i)
+              @TrendList << trenddata_tmp
+            end
+          end
+        end
+      end
+
       # 更新告警规则响应
       class ModifyAlarmRuleResult < TencentCloud::Common::AbstractModel
         # @param Status: 是否更新成功
@@ -5664,6 +8797,22 @@ module TencentCloud
               @QuietIntervals << alarmquietinterval_tmp
             end
           end
+        end
+      end
+
+      # OperateResult
+      class OperateResult < TencentCloud::Common::AbstractModel
+        # @param Status: 操作结果1 成功 其他失败
+        # @type Status: Integer
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 
@@ -6188,6 +9337,50 @@ module TencentCloud
         end
       end
 
+      # 角色列表分页信息
+      class PageRoles < TencentCloud::Common::AbstractModel
+        # @param Items: 角色信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageNumber: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param TotalCount: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              systemrole_tmp = SystemRole.new
+              systemrole_tmp.deserialize(i)
+              @Items << systemrole_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # 参数
       class ParamInfo < TencentCloud::Common::AbstractModel
         # @param ParamKey: 参数名
@@ -6299,6 +9492,106 @@ module TencentCloud
         end
       end
 
+      # 项目信息
+      class Project < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param ProjectName: 项目标识，英文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param DisplayName: 项目显示名称，可以为中文名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Description: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param CreatorUin: 项目创建人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param ProjectOwnerUin: 项目责任人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectOwnerUin: String
+        # @param Status: 项目状态：0：禁用，1：启用，-3:禁用中，2：启用中
+        # @type Status: Integer
+        # @param ProjectModel: 项目模式，SIMPLE：简单模式 STANDARD：标准模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectModel: String
+
+        attr_accessor :ProjectId, :ProjectName, :DisplayName, :Description, :CreateTime, :CreatorUin, :ProjectOwnerUin, :Status, :ProjectModel
+
+        def initialize(projectid=nil, projectname=nil, displayname=nil, description=nil, createtime=nil, creatoruin=nil, projectowneruin=nil, status=nil, projectmodel=nil)
+          @ProjectId = projectid
+          @ProjectName = projectname
+          @DisplayName = displayname
+          @Description = description
+          @CreateTime = createtime
+          @CreatorUin = creatoruin
+          @ProjectOwnerUin = projectowneruin
+          @Status = status
+          @ProjectModel = projectmodel
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @CreatorUin = params['CreatorUin']
+          @ProjectOwnerUin = params['ProjectOwnerUin']
+          @Status = params['Status']
+          @ProjectModel = params['ProjectModel']
+        end
+      end
+
+      # 查询数据源分页列表
+      class ProjectBrief < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param Items: 数据源列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :PageNumber, :PageSize, :Items, :TotalCount, :TotalPageNumber
+
+        def initialize(pagenumber=nil, pagesize=nil, items=nil, totalcount=nil, totalpagenumber=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Items = items
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              project_tmp = Project.new
+              project_tmp.deserialize(i)
+              @Items << project_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # 告警规则项目波动率告警配置信息
       class ProjectInstanceStatisticsAlarmInfo < TencentCloud::Common::AbstractModel
         # @param AlarmType: 告警类型
@@ -6344,6 +9637,164 @@ module TencentCloud
         end
       end
 
+      # 项目信息
+      class ProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectName: 项目标识，英文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符
+        # @type ProjectName: String
+        # @param DisplayName: 项目显示名称，可以为中文名，以字母开头，可包含字母、数字和下划线，不能超过32个字符
+        # @type DisplayName: String
+        # @param ProjectModel: 项目模式，SIMPLE（默认）：简单模式 STANDARD：标准模式
+        # @type ProjectModel: String
+
+        attr_accessor :ProjectName, :DisplayName, :ProjectModel
+
+        def initialize(projectname=nil, displayname=nil, projectmodel=nil)
+          @ProjectName = projectname
+          @DisplayName = displayname
+          @ProjectModel = projectmodel
+        end
+
+        def deserialize(params)
+          @ProjectName = params['ProjectName']
+          @DisplayName = params['DisplayName']
+          @ProjectModel = params['ProjectModel']
+        end
+      end
+
+      # 项目返回结果
+      class ProjectResult < TencentCloud::Common::AbstractModel
+        # @param Status: 返回的结果 true/false
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # 项目的用户对象
+      class ProjectUserRole < TencentCloud::Common::AbstractModel
+        # @param AppId: 租户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: String
+        # @param RootAccountId: 主账号id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RootAccountId: String
+        # @param UserUin: 用户id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserUin: String
+        # @param UserName: 用户名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserName: String
+        # @param DisplayName: 显示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Roles: 用户角色对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Roles: Array
+        # @param IsCreator: 是否创建者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsCreator: Boolean
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param IsProjectOwner: 是否项目负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsProjectOwner: Boolean
+        # @param PhoneNum: 手机号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PhoneNum: String
+        # @param Email: 邮箱
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Email: String
+
+        attr_accessor :AppId, :RootAccountId, :UserUin, :UserName, :DisplayName, :Roles, :IsCreator, :CreateTime, :IsProjectOwner, :PhoneNum, :Email
+
+        def initialize(appid=nil, rootaccountid=nil, useruin=nil, username=nil, displayname=nil, roles=nil, iscreator=nil, createtime=nil, isprojectowner=nil, phonenum=nil, email=nil)
+          @AppId = appid
+          @RootAccountId = rootaccountid
+          @UserUin = useruin
+          @UserName = username
+          @DisplayName = displayname
+          @Roles = roles
+          @IsCreator = iscreator
+          @CreateTime = createtime
+          @IsProjectOwner = isprojectowner
+          @PhoneNum = phonenum
+          @Email = email
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @RootAccountId = params['RootAccountId']
+          @UserUin = params['UserUin']
+          @UserName = params['UserName']
+          @DisplayName = params['DisplayName']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              systemrole_tmp = SystemRole.new
+              systemrole_tmp.deserialize(i)
+              @Roles << systemrole_tmp
+            end
+          end
+          @IsCreator = params['IsCreator']
+          @CreateTime = params['CreateTime']
+          @IsProjectOwner = params['IsProjectOwner']
+          @PhoneNum = params['PhoneNum']
+          @Email = params['Email']
+        end
+      end
+
+      # 项目下的用户集合
+      class ProjectUsersBrief < TencentCloud::Common::AbstractModel
+        # @param Items: 用户集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param PageSize: 分页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param PageNumber: 分页页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+        # @param TotalCount: 总数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: 总页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageSize, :PageNumber, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagesize=nil, pagenumber=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              projectuserrole_tmp = ProjectUserRole.new
+              projectuserrole_tmp.deserialize(i)
+              @Items << projectuserrole_tmp
+            end
+          end
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # 离线集成对账告警规则
       class ReconciliationStrategyInfo < TencentCloud::Common::AbstractModel
         # @param RuleType: 离线告警规则类型
@@ -6376,6 +9827,131 @@ module TencentCloud
           @MismatchCount = params['MismatchCount']
           @Hour = params['Hour']
           @Min = params['Min']
+        end
+      end
+
+      # RegisterLineage请求参数结构体
+      class RegisterLineageRequest < TencentCloud::Common::AbstractModel
+        # @param Relations: 需要注册的血缘关系列表
+        # @type Relations: Array
+
+        attr_accessor :Relations
+
+        def initialize(relations=nil)
+          @Relations = relations
+        end
+
+        def deserialize(params)
+          unless params['Relations'].nil?
+            @Relations = []
+            params['Relations'].each do |i|
+              lineagepair_tmp = LineagePair.new
+              lineagepair_tmp.deserialize(i)
+              @Relations << lineagepair_tmp
+            end
+          end
+        end
+      end
+
+      # RegisterLineage返回参数结构体
+      class RegisterLineageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 注册结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.OperateResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = OperateResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据源相关任务
+      class RelateTask < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型
+
+        # - OfflineIntegration --- 离线集成任务
+        # - RealtimeIntegration --- 实时集成任务
+        # - DataDevelopment --- 数据开发任务
+        # - DataQuality --- 数据质量任务
+        # - DataService --- 数据服务任务
+        # - MetadataCollection --- 元数据采集任务
+        # @type TaskType: String
+        # @param TaskNum: 任务数量
+        # @type TaskNum: Integer
+        # @param TaskList: 任务详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskList: Array
+
+        attr_accessor :TaskType, :TaskNum, :TaskList
+
+        def initialize(tasktype=nil, tasknum=nil, tasklist=nil)
+          @TaskType = tasktype
+          @TaskNum = tasknum
+          @TaskList = tasklist
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @TaskNum = params['TaskNum']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              brieftask_tmp = BriefTask.new
+              brieftask_tmp.deserialize(i)
+              @TaskList << brieftask_tmp
+            end
+          end
+        end
+      end
+
+      # RemoveMemberProjectRole请求参数结构体
+      class RemoveMemberProjectRoleRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param UserUin: 用户id
+        # @type UserUin: String
+        # @param RoleId: 角色id
+        # @type RoleId: String
+
+        attr_accessor :ProjectId, :UserUin, :RoleId
+
+        def initialize(projectid=nil, useruin=nil, roleid=nil)
+          @ProjectId = projectid
+          @UserUin = useruin
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @UserUin = params['UserUin']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # RemoveMemberProjectRole返回参数结构体
+      class RemoveMemberProjectRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6635,7 +10211,7 @@ module TencentCloud
         end
       end
 
-      # 资源文件分页
+      # 资源文件夹分页
       class ResourceFolderPage < TencentCloud::Common::AbstractModel
         # @param Items: 资源文件夹集合信息
         # @type Items: Array
@@ -6673,6 +10249,208 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+        end
+      end
+
+      # 资源组监控指标
+      class ResourceGroupMetrics < TencentCloud::Common::AbstractModel
+        # @param CpuNum: 资源组规格相关：cpu个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CpuNum: Integer
+        # @param DiskVolume: 资源组规格相关：磁盘规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiskVolume: Integer
+        # @param MemSize: 资源组规格相关：内存大小，单位:G
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemSize: Integer
+        # @param LifeCycle: 资源组生命周期, 单位：天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeCycle: Integer
+        # @param MaximumConcurrency: 资源组规格相关：最高并发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaximumConcurrency: Integer
+        # @param Status: 资源组状态
+
+        # - 0 --- 初始化中
+        # - 1 --- 运行中
+        # - 2 --- 运行异常
+        # - 3 --- 释放中
+        # - 4 --- 已释放
+        # - 5 --- 创建中
+        # - 6 --- 创建失败
+        # - 7 --- 更新中
+        # - 8 --- 更新失败
+        # - 9 --- 已到期
+        # - 10 --- 释放失败
+        # - 11 --- 使用中
+        # - 12 --- 未使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param MetricSnapshots: 指标详情
+        # @type MetricSnapshots: Array
+
+        attr_accessor :CpuNum, :DiskVolume, :MemSize, :LifeCycle, :MaximumConcurrency, :Status, :MetricSnapshots
+
+        def initialize(cpunum=nil, diskvolume=nil, memsize=nil, lifecycle=nil, maximumconcurrency=nil, status=nil, metricsnapshots=nil)
+          @CpuNum = cpunum
+          @DiskVolume = diskvolume
+          @MemSize = memsize
+          @LifeCycle = lifecycle
+          @MaximumConcurrency = maximumconcurrency
+          @Status = status
+          @MetricSnapshots = metricsnapshots
+        end
+
+        def deserialize(params)
+          @CpuNum = params['CpuNum']
+          @DiskVolume = params['DiskVolume']
+          @MemSize = params['MemSize']
+          @LifeCycle = params['LifeCycle']
+          @MaximumConcurrency = params['MaximumConcurrency']
+          @Status = params['Status']
+          unless params['MetricSnapshots'].nil?
+            @MetricSnapshots = []
+            params['MetricSnapshots'].each do |i|
+              metricdata_tmp = MetricData.new
+              metricdata_tmp.deserialize(i)
+              @MetricSnapshots << metricdata_tmp
+            end
+          end
+        end
+      end
+
+      # 资源组规格
+      class ResourceGroupSpecification < TencentCloud::Common::AbstractModel
+        # @param Specification: 资源组规格
+        # @type Specification: String
+        # @param Number: 数量
+        # @type Number: Integer
+
+        attr_accessor :Specification, :Number
+
+        def initialize(specification=nil, number=nil)
+          @Specification = specification
+          @Number = number
+        end
+
+        def deserialize(params)
+          @Specification = params['Specification']
+          @Number = params['Number']
+        end
+      end
+
+      # 操作资源包数量
+      class ResourceNumber < TencentCloud::Common::AbstractModel
+        # @param Type: 增加/减少枚举
+
+        # - ADD -- 增加
+        # - DELETE -- 减少
+        # @type Type: String
+        # @param Quantity: 增加/减少资源包的数量
+        # @type Quantity: Integer
+
+        attr_accessor :Type, :Quantity
+
+        def initialize(type=nil, quantity=nil)
+          @Type = type
+          @Quantity = quantity
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Quantity = params['Quantity']
+        end
+      end
+
+      # 资源组操作结果
+      class ResourceResult < TencentCloud::Common::AbstractModel
+        # @param Status: 是否成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+        # @param ResourceGroupId: 资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupId: String
+
+        attr_accessor :Status, :ResourceGroupId
+
+        def initialize(status=nil, resourcegroupid=nil)
+          @Status = status
+          @ResourceGroupId = resourcegroupid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ResourceGroupId = params['ResourceGroupId']
+        end
+      end
+
+      # 资源组操作状态
+      class ResourceStatus < TencentCloud::Common::AbstractModel
+        # @param Status: 资源组操作状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+        end
+      end
+
+      # 开通的资源组信息
+      class ResourceType < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupType: 资源组类型
+
+        # - Schedule --- 调度资源组
+        # - Integration --- 集成资源组
+        # - DataService -- 数据服务资源组
+        # @type ResourceGroupType: String
+        # @param Integration: 集成资源组，细分实时资源组和离线资源组(集成、调度、数据服务资源组不可以同时购买)
+        # @type Integration: :class:`Tencentcloud::Wedata.v20250806.models.IntegrationResource`
+        # @param Schedule: 调度资源组(集成、调度、数据服务资源组不可以同时购买)
+
+        # - s_test(测试规格)
+        # - s_small(基础规格)
+        # - s_medium(普及规格)
+        # - s_large(专业规格)
+
+
+        # @type Schedule: :class:`Tencentcloud::Wedata.v20250806.models.ResourceGroupSpecification`
+        # @param DataService: 数据服务资源组(集成、调度、数据服务资源组不可以同时购买)
+
+        # - ds_t(测试规格)
+        # - ds_s(基础规格)
+        # - ds_m(普及规格)
+        # - ds_l(专业规格)
+        # @type DataService: :class:`Tencentcloud::Wedata.v20250806.models.ResourceGroupSpecification`
+
+        attr_accessor :ResourceGroupType, :Integration, :Schedule, :DataService
+
+        def initialize(resourcegrouptype=nil, integration=nil, schedule=nil, dataservice=nil)
+          @ResourceGroupType = resourcegrouptype
+          @Integration = integration
+          @Schedule = schedule
+          @DataService = dataservice
+        end
+
+        def deserialize(params)
+          @ResourceGroupType = params['ResourceGroupType']
+          unless params['Integration'].nil?
+            @Integration = IntegrationResource.new
+            @Integration.deserialize(params['Integration'])
+          end
+          unless params['Schedule'].nil?
+            @Schedule = ResourceGroupSpecification.new
+            @Schedule.deserialize(params['Schedule'])
+          end
+          unless params['DataService'].nil?
+            @DataService = ResourceGroupSpecification.new
+            @DataService.deserialize(params['DataService'])
+          end
         end
       end
 
@@ -6962,6 +10740,33 @@ module TencentCloud
         end
       end
 
+      # Schema信息
+      class SchemaInfo < TencentCloud::Common::AbstractModel
+        # @param Guid: Schema GUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Guid: String
+        # @param Name: Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+
+        attr_accessor :Guid, :Name, :DatabaseName
+
+        def initialize(guid=nil, name=nil, databasename=nil)
+          @Guid = guid
+          @Name = name
+          @DatabaseName = databasename
+        end
+
+        def deserialize(params)
+          @Guid = params['Guid']
+          @Name = params['Name']
+          @DatabaseName = params['DatabaseName']
+        end
+      end
+
       # SetSuccessTaskInstancesAsync请求参数结构体
       class SetSuccessTaskInstancesAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -7178,6 +10983,105 @@ module TencentCloud
         def deserialize(params)
           @VersionId = params['VersionId']
           @Status = params['Status']
+        end
+      end
+
+      # 角色对象
+      class SystemRole < TencentCloud::Common::AbstractModel
+        # @param RoleId: 角色id
+        # @type RoleId: String
+        # @param RoleName: 角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+        # @param RoleDisplayName: 角色展示名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleDisplayName: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+
+        attr_accessor :RoleId, :RoleName, :RoleDisplayName, :Description
+
+        def initialize(roleid=nil, rolename=nil, roledisplayname=nil, description=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleDisplayName = roledisplayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleDisplayName = params['RoleDisplayName']
+          @Description = params['Description']
+        end
+      end
+
+      # 数据库信息
+      class TableInfo < TencentCloud::Common::AbstractModel
+        # @param Guid: 数据表GUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Guid: String
+        # @param Name: 数据表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 数据表描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SchemaName: 数据库Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param TableType: 表类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableType: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TechnicalMetadata: 表的技术元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TechnicalMetadata: :class:`Tencentcloud::Wedata.v20250806.models.TechnicalMetadata`
+        # @param BusinessMetadata: 表的业务元数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BusinessMetadata: :class:`Tencentcloud::Wedata.v20250806.models.BusinessMetadata`
+
+        attr_accessor :Guid, :Name, :Description, :DatabaseName, :SchemaName, :TableType, :CreateTime, :UpdateTime, :TechnicalMetadata, :BusinessMetadata
+
+        def initialize(guid=nil, name=nil, description=nil, databasename=nil, schemaname=nil, tabletype=nil, createtime=nil, updatetime=nil, technicalmetadata=nil, businessmetadata=nil)
+          @Guid = guid
+          @Name = name
+          @Description = description
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @TableType = tabletype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @TechnicalMetadata = technicalmetadata
+          @BusinessMetadata = businessmetadata
+        end
+
+        def deserialize(params)
+          @Guid = params['Guid']
+          @Name = params['Name']
+          @Description = params['Description']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @TableType = params['TableType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['TechnicalMetadata'].nil?
+            @TechnicalMetadata = TechnicalMetadata.new
+            @TechnicalMetadata.deserialize(params['TechnicalMetadata'])
+          end
+          unless params['BusinessMetadata'].nil?
+            @BusinessMetadata = BusinessMetadata.new
+            @BusinessMetadata.deserialize(params['BusinessMetadata'])
+          end
         end
       end
 
@@ -8621,6 +12525,33 @@ module TencentCloud
         end
       end
 
+      # TechnicalMetadata
+      class TechnicalMetadata < TencentCloud::Common::AbstractModel
+        # @param Owner: 责任人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param Location: 数据表位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Location: String
+        # @param StorageSize: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageSize: Integer
+
+        attr_accessor :Owner, :Location, :StorageSize
+
+        def initialize(owner=nil, location=nil, storagesize=nil)
+          @Owner = owner
+          @Location = location
+          @StorageSize = storagesize
+        end
+
+        def deserialize(params)
+          @Owner = params['Owner']
+          @Location = params['Location']
+          @StorageSize = params['StorageSize']
+        end
+      end
+
       # 告警超时配置规则信息
       class TimeOutStrategyInfo < TencentCloud::Common::AbstractModel
         # @param RuleType: 超时告警超时配置：
@@ -8660,6 +12591,26 @@ module TencentCloud
           @Hour = params['Hour']
           @Min = params['Min']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+        end
+      end
+
+      # 资源组指标趋势
+      class TrendData < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间戳
+        # @type Timestamp: Integer
+        # @param Value: 指标值
+        # @type Value: Integer
+
+        attr_accessor :Timestamp, :Value
+
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
         end
       end
 
@@ -8758,6 +12709,192 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = CodeStudioFolderActionResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateDataSource请求参数结构体
+      class UpdateDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 数据源id
+        # @type Id: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ProdConProperties: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
+
+        # > deployType:
+        # CONNSTR_PUBLICDB(公网实例)
+        # CONNSTR_CVMDB(自建实例)
+        # INSTANCE(云实例)
+
+        # ```
+        # mysql: 自建实例
+        # {
+        #     "deployType": "CONNSTR_CVMDB",
+        #     "url": "jdbc:mysql://1.1.1.1:1111/database",
+        #     "username": "root",
+        #     "password": "root",
+        #     "region": "ap-shanghai",
+        #     "vpcId": "vpc-kprq42yo",
+        #     "type": "MYSQL"
+        # }
+        # mysql: 云实例
+        # {
+        #     "instanceid": "cdb-12uxdo5e",
+        #     "db": "db",
+        #     "region": "ap-shanghai",
+        #     "username": "msyql",
+        #     "password": "mysql",
+        #     "deployType": "INSTANCE",
+        #     "type": "TENCENT_MYSQL"
+        # }
+        # sql_server:
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "url": "jdbc:sqlserver://1.1.1.1:223;DatabaseName=database",
+        #     "username": "user_1",
+        #     "password": "pass_2",
+        #     "type": "SQLSERVER"
+        # }
+        # redis:
+        #     redisType:
+        #     -NO_ACCOUT(免账号)
+        #     -SELF_ACCOUNT(自定义账号)
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "username":""
+        #     "password": "pass",
+        #     "ip": "1.1.1.1",
+        #     "port": "6379",
+        #     "redisType": "NO_ACCOUT",
+        #     "type": "REDIS"
+        # }
+        # oracle:
+        # {
+        #     "deployType": "CONNSTR_CVMDB",
+        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:prod",
+        #     "username": "oracle",
+        #     "password": "pass",
+        #     "region": "ap-shanghai",
+        #     "vpcId": "vpc-kprq42yo",
+        #     "type": "ORACLE"
+        # }
+        # mongodb:
+        #     advanceParams(自定义参数，会拼接至url后)
+        # {
+        #     "advanceParams": [
+        #         {
+        #             "key": "authSource",
+        #             "value": "auth"
+        #         }
+        #     ],
+        #     "db": "admin",
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "username": "user",
+        #     "password": "pass",
+        #     "type": "MONGODB",
+        #     "host": "1.1.1.1:9200"
+        # }
+        # postgresql:
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "url": "jdbc:postgresql://1.1.1.1:1921/database",
+        #     "username": "user",
+        #     "password": "pass",
+        #     "type": "POSTGRE"
+        # }
+        # kafka:
+        #     authType:
+        #         - sasl
+        #         - jaas
+        #         - sasl_plaintext
+        #         - sasl_ssl
+        #         - GSSAPI
+        #     ssl:
+        #         -PLAIN
+        #         -GSSAPI
+        # {
+        #     "deployType": "CONNSTR_PUBLICDB",
+        #     "host": "1.1.1.1:9092",
+        #     "ssl": "GSSAPI",
+        #     "authType": "sasl",
+        #     "type": "KAFKA",
+        #     "principal": "aaaa",
+        #     "serviceName": "kafka"
+        # }
+
+        # cos:
+        # {
+        #     "region": "ap-shanghai",
+        #     "deployType": "INSTANCE",
+        #     "secretId": "aaaaa",
+        #     "secretKey": "sssssss",
+        #     "bucket": "aaa",
+        #     "type": "COS"
+        # }
+
+        # ```
+        # @type ProdConProperties: String
+        # @param DevConProperties: 若项目为标准模式，则此字段必填
+        # @type DevConProperties: String
+        # @param ProdFileUpload: 生产环境数据源文件上传
+        # @type ProdFileUpload: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceFileUpload`
+        # @param DevFileUpload: 开发环境数据源文件上传
+        # @type DevFileUpload: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceFileUpload`
+        # @param DisplayName: 数据源展示名，为了可视化查看
+        # @type DisplayName: String
+        # @param Description: 数据源描述信息
+        # @type Description: String
+
+        attr_accessor :Id, :ProjectId, :ProdConProperties, :DevConProperties, :ProdFileUpload, :DevFileUpload, :DisplayName, :Description
+
+        def initialize(id=nil, projectid=nil, prodconproperties=nil, devconproperties=nil, prodfileupload=nil, devfileupload=nil, displayname=nil, description=nil)
+          @Id = id
+          @ProjectId = projectid
+          @ProdConProperties = prodconproperties
+          @DevConProperties = devconproperties
+          @ProdFileUpload = prodfileupload
+          @DevFileUpload = devfileupload
+          @DisplayName = displayname
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ProjectId = params['ProjectId']
+          @ProdConProperties = params['ProdConProperties']
+          @DevConProperties = params['DevConProperties']
+          unless params['ProdFileUpload'].nil?
+            @ProdFileUpload = DataSourceFileUpload.new
+            @ProdFileUpload.deserialize(params['ProdFileUpload'])
+          end
+          unless params['DevFileUpload'].nil?
+            @DevFileUpload = DataSourceFileUpload.new
+            @DevFileUpload.deserialize(params['DevFileUpload'])
+          end
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+        end
+      end
+
+      # UpdateDataSource返回参数结构体
+      class UpdateDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 操作是否成功
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataSourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataSourceStatus.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -8919,6 +13056,50 @@ module TencentCloud
         end
       end
 
+      # UpdateProject请求参数结构体
+      class UpdateProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 目标修改的项目ID
+        # @type ProjectId: String
+        # @param DisplayName: 项目显示名称，可以为中文名,需要租户范围内唯一
+        # @type DisplayName: String
+        # @param Description: 备注
+        # @type Description: String
+        # @param ProjectOwnerUin: 项目负责人id
+        # @type ProjectOwnerUin: String
+
+        attr_accessor :ProjectId, :DisplayName, :Description, :ProjectOwnerUin
+
+        def initialize(projectid=nil, displayname=nil, description=nil, projectowneruin=nil)
+          @ProjectId = projectid
+          @DisplayName = displayname
+          @Description = description
+          @ProjectOwnerUin = projectowneruin
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @ProjectOwnerUin = params['ProjectOwnerUin']
+        end
+      end
+
+      # UpdateProject返回参数结构体
+      class UpdateProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateResourceFile请求参数结构体
       class UpdateResourceFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -9037,6 +13218,83 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = UpdateFolderResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateResourceGroup请求参数结构体
+      class UpdateResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 资源组id
+        # @type Id: String
+        # @param Type: **变更配置(变配、续费、修改资源包数量 不能同时操作), 变配无法修改资源组类型**
+
+        # 实时集成资源组
+        # - i32c(实时数据同步-16C64G)
+
+        # 离线集成资源组
+        # - integrated(离线数据同步-8C16G)
+        # - i16(离线数据同步-8C32G)
+
+        # 调度资源组
+        # - s_test(测试规格)
+        # - s_small(基础规格)
+        # - s_medium(普及规格)
+        # - s_large(专业规格)
+
+        # 数据服务资源组
+        # - ds_t(测试规格)
+        # - ds_s(基础规格)
+        # - ds_m(普及规格)
+        # - ds_l(专业规格)
+        # @type Type: String
+        # @param PurchasePeriod: 续费时长，单位月(变配、续费、修改资源包数量 不能同时操作)
+        # @type PurchasePeriod: Integer
+        # @param Number: 增加/减少资源包的数量(变配、续费、修改资源包数量 不能同时操作)
+        # @type Number: :class:`Tencentcloud::Wedata.v20250806.models.ResourceNumber`
+        # @param AutoRenewEnabled: 是否自动续费，续费参数PurchasePeriod不为空时可以生效
+        # @type AutoRenewEnabled: Boolean
+
+        attr_accessor :Id, :Type, :PurchasePeriod, :Number, :AutoRenewEnabled
+
+        def initialize(id=nil, type=nil, purchaseperiod=nil, number=nil, autorenewenabled=nil)
+          @Id = id
+          @Type = type
+          @PurchasePeriod = purchaseperiod
+          @Number = number
+          @AutoRenewEnabled = autorenewenabled
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Type = params['Type']
+          @PurchasePeriod = params['PurchasePeriod']
+          unless params['Number'].nil?
+            @Number = ResourceNumber.new
+            @Number.deserialize(params['Number'])
+          end
+          @AutoRenewEnabled = params['AutoRenewEnabled']
+        end
+      end
+
+      # UpdateResourceGroup返回参数结构体
+      class UpdateResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 是否修改成功
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ResourceStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResourceStatus.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

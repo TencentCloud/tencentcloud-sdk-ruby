@@ -975,7 +975,7 @@ module TencentCloud
         # @type Info: String
         # @param Limit: 返回数量，默认20。
         # @type Limit: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL；"mariadb"-mariadb;"cynosdb"-TDSQL-C for MySQL ;"dcdb"-TDSQL MySQL 默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :Limit, :Product
@@ -2428,10 +2428,13 @@ module TencentCloud
         # @type Time: String
         # @param Info: 线程的操作语句。
         # @type Info: String
+        # @param SqlType: sql类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlType: String
 
-        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info
+        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :SqlType
 
-        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil)
+        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, sqltype=nil)
           @ID = id
           @User = user
           @Host = host
@@ -2440,6 +2443,7 @@ module TencentCloud
           @Command = command
           @Time = time
           @Info = info
+          @SqlType = sqltype
         end
 
         def deserialize(params)
@@ -2451,6 +2455,7 @@ module TencentCloud
           @Command = params['Command']
           @Time = params['Time']
           @Info = params['Info']
+          @SqlType = params['SqlType']
         end
       end
 

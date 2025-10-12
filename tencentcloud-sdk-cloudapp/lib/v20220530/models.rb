@@ -183,6 +183,10 @@ module TencentCloud
         # @param ParamKeyName: 售卖参数的展示名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamKeyName: String
+        # @param ParamId: 参数 Id
+        # @type ParamId: String
+        # @param ParamValueId: 参数值 Id
+        # @type ParamValueId: String
         # @param ParamValue: 售卖参数值，当ParamType=Quant时，该值有可能为Null
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamValue: String
@@ -192,23 +196,39 @@ module TencentCloud
         # @param ParamType: 售卖参数的类型，目前支持枚举类Enum/数量类Quant
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamType: String
+        # @param ModuleId: 模块ID
+        # @type ModuleId: String
+        # @param ModuleKey: 模块key
+        # @type ModuleKey: String
+        # @param ModuleName: 模块名称
+        # @type ModuleName: String
 
-        attr_accessor :ParamKey, :ParamKeyName, :ParamValue, :ParamValueName, :ParamType
+        attr_accessor :ParamKey, :ParamKeyName, :ParamId, :ParamValueId, :ParamValue, :ParamValueName, :ParamType, :ModuleId, :ModuleKey, :ModuleName
 
-        def initialize(paramkey=nil, paramkeyname=nil, paramvalue=nil, paramvaluename=nil, paramtype=nil)
+        def initialize(paramkey=nil, paramkeyname=nil, paramid=nil, paramvalueid=nil, paramvalue=nil, paramvaluename=nil, paramtype=nil, moduleid=nil, modulekey=nil, modulename=nil)
           @ParamKey = paramkey
           @ParamKeyName = paramkeyname
+          @ParamId = paramid
+          @ParamValueId = paramvalueid
           @ParamValue = paramvalue
           @ParamValueName = paramvaluename
           @ParamType = paramtype
+          @ModuleId = moduleid
+          @ModuleKey = modulekey
+          @ModuleName = modulename
         end
 
         def deserialize(params)
           @ParamKey = params['ParamKey']
           @ParamKeyName = params['ParamKeyName']
+          @ParamId = params['ParamId']
+          @ParamValueId = params['ParamValueId']
           @ParamValue = params['ParamValue']
           @ParamValueName = params['ParamValueName']
           @ParamType = params['ParamType']
+          @ModuleId = params['ModuleId']
+          @ModuleKey = params['ModuleKey']
+          @ModuleName = params['ModuleName']
         end
       end
 

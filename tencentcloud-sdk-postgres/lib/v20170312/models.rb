@@ -1168,8 +1168,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2025, 9
-        deprecate :DBVersion=, :none, 2025, 9
+        deprecate :DBVersion, :none, 2025, 10
+        deprecate :DBVersion=, :none, 2025, 10
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil)
           @Zone = zone
@@ -3013,7 +3013,7 @@ module TencentCloud
 
       # DescribeDBInstanceHAConfig请求参数结构体
       class DescribeDBInstanceHAConfigRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 实例ID
+        # @param DBInstanceId: 实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
         # @type DBInstanceId: String
 
         attr_accessor :DBInstanceId
@@ -3030,16 +3030,16 @@ module TencentCloud
       # DescribeDBInstanceHAConfig返回参数结构体
       class DescribeDBInstanceHAConfigResponse < TencentCloud::Common::AbstractModel
         # @param SyncMode: 主从同步方式：
-        # <li>Semi-sync：半同步
-        # <li>Async：异步
+        # <li>Semi-sync：半同步</li>
+        # <li>Async：异步</li>
         # @type SyncMode: String
         # @param MaxStandbyLatency: 高可用备机最大延迟数据量。备节点延迟数据量小于等于该值，且备节点延迟时间小于等于MaxStandbyLag时，可以切换为主节点。
-        # <li>单位：byte
-        # <li>参数范围：[1073741824, 322122547200]
+        # <li>单位：byte</li>
+        # <li>参数范围：[1073741824, 322122547200]</li>
         # @type MaxStandbyLatency: Integer
         # @param MaxStandbyLag: 高可用备机最大延迟时间。备节点延迟时间小于等于该值，且备节点延迟数据量小于等于MaxStandbyLatency时，可以切换为主节点。
-        # <li>单位：s
-        # <li>参数范围：[5, 10]
+        # <li>单位：s</li>
+        # <li>参数范围：[5, 10]</li>
         # @type MaxStandbyLag: Integer
         # @param MaxSyncStandbyLatency: 同步备机最大延迟数据量。备机延迟数据量小于等于该值，且该备机延迟时间小于等于MaxSyncStandbyLag时，则该备机采用同步复制；否则，采用异步复制。
         # 该参数值针对SyncMode设置为Semi-sync的实例有效。
@@ -4920,8 +4920,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2025, 9
-        deprecate :InstanceChargeType=, :none, 2025, 9
+        deprecate :InstanceChargeType, :none, 2025, 10
+        deprecate :InstanceChargeType=, :none, 2025, 10
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage

@@ -563,7 +563,7 @@ module TencentCloud
 
       # GetTextEmbedding请求参数结构体
       class GetTextEmbeddingRequest < TencentCloud::Common::AbstractModel
-        # @param ModelName: 模型名称，可选模型列表：bge-base-zh-v1.5,conan-embedding-v1,bge-m3,KaLM-embedding-multilingual-mini-v1。
+        # @param ModelName: 模型名称，可选模型列表：bge-base-zh-v1.5,Conan-embedding-v1,bge-m3,KaLM-embedding-multilingual-mini-v1,Qwen3-Embedding-0.6B。
         # @type ModelName: String
         # @param Texts: 需进行向量化的文本集。
         # @type Texts: Array

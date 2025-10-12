@@ -79,10 +79,14 @@ module TencentCloud
         # @type Address: String
         # @param IsMacSec: 是否MACsec
         # @type IsMacSec: Boolean
+        # @param Version: 版本号
+        # @type Version: String
+        # @param AccessPointServiceType: 接入点业务类型，枚举值：NORMAL-标准接入点，CDZ：EZ/CDZ接入点，COOPERATIVE-合作POP
+        # @type AccessPointServiceType: String
 
-        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo, :Address, :IsMacSec
+        attr_accessor :AccessPointName, :AccessPointId, :State, :Location, :LineOperator, :RegionId, :AvailablePortType, :Coordinate, :City, :Area, :AccessPointType, :AvailablePortInfo, :Address, :IsMacSec, :Version, :AccessPointServiceType
 
-        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil, address=nil, ismacsec=nil)
+        def initialize(accesspointname=nil, accesspointid=nil, state=nil, location=nil, lineoperator=nil, regionid=nil, availableporttype=nil, coordinate=nil, city=nil, area=nil, accesspointtype=nil, availableportinfo=nil, address=nil, ismacsec=nil, version=nil, accesspointservicetype=nil)
           @AccessPointName = accesspointname
           @AccessPointId = accesspointid
           @State = state
@@ -97,6 +101,8 @@ module TencentCloud
           @AvailablePortInfo = availableportinfo
           @Address = address
           @IsMacSec = ismacsec
+          @Version = version
+          @AccessPointServiceType = accesspointservicetype
         end
 
         def deserialize(params)
@@ -124,6 +130,8 @@ module TencentCloud
           end
           @Address = params['Address']
           @IsMacSec = params['IsMacSec']
+          @Version = params['Version']
+          @AccessPointServiceType = params['AccessPointServiceType']
         end
       end
 
@@ -177,19 +185,23 @@ module TencentCloud
 
       # BFD配置信息
       class BFDInfo < TencentCloud::Common::AbstractModel
+        # @param EnableBfdMultiHop: 使能BFD多跳，0:未开启，2-255:BFD跳数
+        # @type EnableBfdMultiHop: Integer
         # @param ProbeFailedTimes: 健康检查次数
         # @type ProbeFailedTimes: Integer
         # @param Interval: 健康检查间隔
         # @type Interval: Integer
 
-        attr_accessor :ProbeFailedTimes, :Interval
+        attr_accessor :EnableBfdMultiHop, :ProbeFailedTimes, :Interval
 
-        def initialize(probefailedtimes=nil, interval=nil)
+        def initialize(enablebfdmultihop=nil, probefailedtimes=nil, interval=nil)
+          @EnableBfdMultiHop = enablebfdmultihop
           @ProbeFailedTimes = probefailedtimes
           @Interval = interval
         end
 
         def deserialize(params)
+          @EnableBfdMultiHop = params['EnableBfdMultiHop']
           @ProbeFailedTimes = params['ProbeFailedTimes']
           @Interval = params['Interval']
         end
@@ -290,10 +302,16 @@ module TencentCloud
         # @type BUpdateBandwidth: Boolean
         # @param ArRegion: 接入地域
         # @type ArRegion: String
+        # @param IapCode: 运营商代码
+        # @type IapCode: String
+        # @param IdcPointType: IDC侧类型。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方
+        # @type IdcPointType: String
+        # @param BIapLinkProtected: 运营商链路是否有保护
+        # @type BIapLinkProtected: Boolean
 
-        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion
+        attr_accessor :InstanceId, :Name, :IapId, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Status, :ApplyTime, :ReadyTime, :ExpireTime, :Remarks, :RegionStatus, :AppId, :Uin, :CustomerAuthName, :DirectConnectId, :CloudAttachServiceGatewaysSupport, :BUpdateBandwidth, :ArRegion, :IapCode, :IdcPointType, :BIapLinkProtected
 
-        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil)
+        def initialize(instanceid=nil, name=nil, iapid=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, status=nil, applytime=nil, readytime=nil, expiretime=nil, remarks=nil, regionstatus=nil, appid=nil, uin=nil, customerauthname=nil, directconnectid=nil, cloudattachservicegatewayssupport=nil, bupdatebandwidth=nil, arregion=nil, iapcode=nil, idcpointtype=nil, biaplinkprotected=nil)
           @InstanceId = instanceid
           @Name = name
           @IapId = iapid
@@ -314,6 +332,9 @@ module TencentCloud
           @CloudAttachServiceGatewaysSupport = cloudattachservicegatewayssupport
           @BUpdateBandwidth = bupdatebandwidth
           @ArRegion = arregion
+          @IapCode = iapcode
+          @IdcPointType = idcpointtype
+          @BIapLinkProtected = biaplinkprotected
         end
 
         def deserialize(params)
@@ -337,6 +358,9 @@ module TencentCloud
           @CloudAttachServiceGatewaysSupport = params['CloudAttachServiceGatewaysSupport']
           @BUpdateBandwidth = params['BUpdateBandwidth']
           @ArRegion = params['ArRegion']
+          @IapCode = params['IapCode']
+          @IdcPointType = params['IdcPointType']
+          @BIapLinkProtected = params['BIapLinkProtected']
         end
       end
 
@@ -376,10 +400,14 @@ module TencentCloud
         # @type Remarks: String
         # @param ArRegion: 接入地域
         # @type ArRegion: String
+        # @param IdcPointType: IDC侧类型，默认为OTHER。枚举值：CLOUD-云，ISP-运营商，OTHER-第三方
+        # @type IdcPointType: String
+        # @param BIapLinkProtected: 运营商链路是否有保护
+        # @type BIapLinkProtected: Boolean
 
-        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion
+        attr_accessor :Name, :IdcAddress, :IdcType, :Bandwidth, :Telephone, :Remarks, :ArRegion, :IdcPointType, :BIapLinkProtected
 
-        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil)
+        def initialize(name=nil, idcaddress=nil, idctype=nil, bandwidth=nil, telephone=nil, remarks=nil, arregion=nil, idcpointtype=nil, biaplinkprotected=nil)
           @Name = name
           @IdcAddress = idcaddress
           @IdcType = idctype
@@ -387,6 +415,8 @@ module TencentCloud
           @Telephone = telephone
           @Remarks = remarks
           @ArRegion = arregion
+          @IdcPointType = idcpointtype
+          @BIapLinkProtected = biaplinkprotected
         end
 
         def deserialize(params)
@@ -397,6 +427,8 @@ module TencentCloud
           @Telephone = params['Telephone']
           @Remarks = params['Remarks']
           @ArRegion = params['ArRegion']
+          @IdcPointType = params['IdcPointType']
+          @BIapLinkProtected = params['BIapLinkProtected']
         end
       end
 
@@ -1296,6 +1328,8 @@ module TencentCloud
         # @type FaultReportContactPerson: String
         # @param FaultReportContactNumber: 报障联系电话。
         # @type FaultReportContactNumber: String
+        # @param FaultReportContactEmail: 报障联系邮箱。
+        # @type FaultReportContactEmail: String
         # @param TagSet: 标签键值对
         # @type TagSet: Array
         # @param AccessPointType: 物理专线的接入点类型。
@@ -1327,9 +1361,9 @@ module TencentCloud
         # @param PortSpecification: 端口规格(Mbps)
         # @type PortSpecification: Integer
 
-        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName, :IsThreeArch, :IsMacSec, :PortSpecification
+        attr_accessor :DirectConnectId, :DirectConnectName, :AccessPointId, :State, :CreatedTime, :EnabledTime, :LineOperator, :Location, :Bandwidth, :PortType, :CircuitCode, :RedundantDirectConnectId, :Vlan, :TencentAddress, :CustomerAddress, :CustomerName, :CustomerContactMail, :CustomerContactNumber, :ExpiredTime, :ChargeType, :FaultReportContactPerson, :FaultReportContactNumber, :FaultReportContactEmail, :TagSet, :AccessPointType, :IdcCity, :ChargeState, :StartTime, :SignLaw, :LocalZone, :VlanZeroDirectConnectTunnelCount, :OtherVlanDirectConnectTunnelCount, :MinBandwidth, :Construct, :AccessPointName, :IsThreeArch, :IsMacSec, :PortSpecification
 
-        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil, isthreearch=nil, ismacsec=nil, portspecification=nil)
+        def initialize(directconnectid=nil, directconnectname=nil, accesspointid=nil, state=nil, createdtime=nil, enabledtime=nil, lineoperator=nil, location=nil, bandwidth=nil, porttype=nil, circuitcode=nil, redundantdirectconnectid=nil, vlan=nil, tencentaddress=nil, customeraddress=nil, customername=nil, customercontactmail=nil, customercontactnumber=nil, expiredtime=nil, chargetype=nil, faultreportcontactperson=nil, faultreportcontactnumber=nil, faultreportcontactemail=nil, tagset=nil, accesspointtype=nil, idccity=nil, chargestate=nil, starttime=nil, signlaw=nil, localzone=nil, vlanzerodirectconnecttunnelcount=nil, othervlandirectconnecttunnelcount=nil, minbandwidth=nil, construct=nil, accesspointname=nil, isthreearch=nil, ismacsec=nil, portspecification=nil)
           @DirectConnectId = directconnectid
           @DirectConnectName = directconnectname
           @AccessPointId = accesspointid
@@ -1352,6 +1386,7 @@ module TencentCloud
           @ChargeType = chargetype
           @FaultReportContactPerson = faultreportcontactperson
           @FaultReportContactNumber = faultreportcontactnumber
+          @FaultReportContactEmail = faultreportcontactemail
           @TagSet = tagset
           @AccessPointType = accesspointtype
           @IdcCity = idccity
@@ -1392,6 +1427,7 @@ module TencentCloud
           @ChargeType = params['ChargeType']
           @FaultReportContactPerson = params['FaultReportContactPerson']
           @FaultReportContactNumber = params['FaultReportContactNumber']
+          @FaultReportContactEmail = params['FaultReportContactEmail']
           unless params['TagSet'].nil?
             @TagSet = []
             params['TagSet'].each do |i|
@@ -2206,10 +2242,12 @@ module TencentCloud
         # @type TencentBackupIPv6Address: String
         # @param CustomerIPv6Address: 用户侧互联IPv6。
         # @type CustomerIPv6Address: String
+        # @param ImportDirectRoute: 互联IP重分布状态
+        # @type ImportDirectRoute: Boolean
 
-        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable, :TencentIPv6Address, :TencentBackupIPv6Address, :CustomerIPv6Address
+        attr_accessor :DirectConnectTunnelId, :Vlan, :BgpPeer, :RouteFilterPrefixes, :TencentAddress, :TencentBackupAddress, :CustomerAddress, :Bandwidth, :EnableBGPCommunity, :BfdEnable, :NqaEnable, :BfdInfo, :NqaInfo, :IPv6Enable, :CustomerIDCRoutes, :JumboEnable, :TencentIPv6Address, :TencentBackupIPv6Address, :CustomerIPv6Address, :ImportDirectRoute
 
-        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, customeripv6address=nil)
+        def initialize(directconnecttunnelid=nil, vlan=nil, bgppeer=nil, routefilterprefixes=nil, tencentaddress=nil, tencentbackupaddress=nil, customeraddress=nil, bandwidth=nil, enablebgpcommunity=nil, bfdenable=nil, nqaenable=nil, bfdinfo=nil, nqainfo=nil, ipv6enable=nil, customeridcroutes=nil, jumboenable=nil, tencentipv6address=nil, tencentbackupipv6address=nil, customeripv6address=nil, importdirectroute=nil)
           @DirectConnectTunnelId = directconnecttunnelid
           @Vlan = vlan
           @BgpPeer = bgppeer
@@ -2229,6 +2267,7 @@ module TencentCloud
           @TencentIPv6Address = tencentipv6address
           @TencentBackupIPv6Address = tencentbackupipv6address
           @CustomerIPv6Address = customeripv6address
+          @ImportDirectRoute = importdirectroute
         end
 
         def deserialize(params)
@@ -2270,6 +2309,7 @@ module TencentCloud
           @TencentIPv6Address = params['TencentIPv6Address']
           @TencentBackupIPv6Address = params['TencentBackupIPv6Address']
           @CustomerIPv6Address = params['CustomerIPv6Address']
+          @ImportDirectRoute = params['ImportDirectRoute']
         end
       end
 
