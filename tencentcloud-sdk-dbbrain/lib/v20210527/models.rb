@@ -3067,9 +3067,9 @@ module TencentCloud
         # @type Host: String
         # @param DB: 线程的操作数据库，用于筛选线程列表。
         # @type DB: String
-        # @param State: 线程的操作状态，用于筛选线程列表。包含以下值：Sending data，Updating, Opening tables 等
+        # @param State: 线程的操作状态。包含以下枚举值：Sending data​-线程正在处理查询结果， ​Sorting result​-线程正在对查询结果进行排序​，Creating tmp table​-线程正在创建临时表，Altering table​-线程正在执行表结构变更，Updating-线程执行更新中。
         # @type State: String
-        # @param Command: 线程的操作状态，用于筛选线程列表。包含以下值：Sending data，Updating, Opening tables 等
+        # @param Command: 线程的执行类型。包含以下枚举值：Sleep-线程处于空闲状态，Query-线程正在执行一个查询，Connect-从服务器连接到主服务器，Execute-线程正在执行预处理语句。
         # @type Command: String
         # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
         # @type Time: Integer
@@ -3077,7 +3077,8 @@ module TencentCloud
         # @type Info: String
         # @param Limit: 返回数量，默认20。
         # @type Limit: Integer
-        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"mariadb"-mariadb;"cynosdb"-TDSQL-C for MySQL ;"dcdb"-TDSQL MySQL 默认为"mysql"。
+
         # @type Product: String
         # @param StatDimensions: 会话统计的维度信息,可以多个维度。
         # @type StatDimensions: Array
@@ -3126,7 +3127,7 @@ module TencentCloud
       class DescribeMySqlProcessListResponse < TencentCloud::Common::AbstractModel
         # @param ProcessList: 实时线程列表。
         # @type ProcessList: Array
-        # @param Statistics: sql会话统计信息。
+        # @param Statistics: sql会话统计信息。如果请求参数中包含StatDimensions，该参数则可能返回，否则不返回。
         # @type Statistics: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6288,18 +6289,21 @@ module TencentCloud
         # @type Host: String
         # @param DB: 线程的操作数据库。
         # @type DB: String
-        # @param State: 线程的操作状态。
+        # @param State: 线程的操作状态。包含以下枚举值：Sending data​-线程正在处理查询结果， ​Sorting result​-线程正在对查询结果进行排序​，Creating tmp table​-线程正在创建临时表，Altering table​-线程正在执行表结构变更，Updating-线程执行更新中。
         # @type State: String
-        # @param Command: 线程的执行类型。
+        # @param Command: 线程的执行类型。包含以下枚举值：Sleep-线程处于空闲状态，Query-线程正在执行一个查询，Connect-从服务器连接到主服务器，Execute-线程正在执行预处理语句。
         # @type Command: String
         # @param Time: 线程的操作时长，单位秒。
         # @type Time: String
         # @param Info: 线程的操作语句。
         # @type Info: String
+        # @param SqlType: sql类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlType: String
 
-        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info
+        attr_accessor :ID, :User, :Host, :DB, :State, :Command, :Time, :Info, :SqlType
 
-        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil)
+        def initialize(id=nil, user=nil, host=nil, db=nil, state=nil, command=nil, time=nil, info=nil, sqltype=nil)
           @ID = id
           @User = user
           @Host = host
@@ -6308,6 +6312,7 @@ module TencentCloud
           @Command = command
           @Time = time
           @Info = info
+          @SqlType = sqltype
         end
 
         def deserialize(params)
@@ -6319,6 +6324,7 @@ module TencentCloud
           @Command = params['Command']
           @Time = params['Time']
           @Info = params['Info']
+          @SqlType = params['SqlType']
         end
       end
 

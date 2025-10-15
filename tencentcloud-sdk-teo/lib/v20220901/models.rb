@@ -142,88 +142,90 @@ module TencentCloud
         # <li>process：部署中；</li>
         # <li>offline：已停用；</li>
         # <li>forbidden：已封禁；</li>
-        # <li>init：未生效，待激活站点；</li>
+        # <li>init：未生效，待激活站点。</li>
         # @type DomainStatus: String
-        # @param OriginDetail: 源站信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
-        # @param OriginProtocol: 回源协议，取值有：
-        # <li>FOLLOW: 协议跟随；</li>
-        # <li>HTTP: HTTP协议回源；</li>
-        # <li>HTTPS: HTTPS协议回源。</li>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OriginProtocol: String
-        # @param Certificate: 域名证书信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
-        # @param HttpOriginPort: HTTP回源端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HttpOriginPort: Integer
-        # @param HttpsOriginPort: HTTPS回源端口。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type HttpsOriginPort: Integer
-        # @param IPv6Status: IPv6状态，取值有：
+        # @param Cname: CNAME 地址。
+        # @type Cname: String
+        # @param IPv6Status: IPv6 状态，取值有：
         # <li>follow：遵循站点IPv6配置；</li>
         # <li>on：开启状态；</li>
         # <li>off：关闭状态。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IPv6Status: String
-        # @param Cname: CNAME 地址。
-        # @type Cname: String
-        # @param IdentificationStatus: 加速域名归属权验证状态，取值有： <li>pending：待验证；</li> <li>finished：已完成验证。</li>
+        # @param IdentificationStatus: 加速域名归属权验证状态，取值有：
+        # <li>pending：待验证；</li>
+        # <li>finished：已完成验证。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdentificationStatus: String
+        # @param OwnershipVerification: 加速域名需进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+        # @param OriginDetail: 源站信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginDetail: :class:`Tencentcloud::Teo.v20220901.models.OriginDetail`
+        # @param OriginProtocol: 回源协议，取值有：
+        # <li>FOLLOW：协议跟随；</li>
+        # <li>HTTP：HTTP协议回源；</li>
+        # <li>HTTPS：HTTPS协议回源。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginProtocol: String
+        # @param HttpOriginPort: HTTP 回源端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpOriginPort: Integer
+        # @param HttpsOriginPort: HTTPS 回源端口。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HttpsOriginPort: Integer
+        # @param Certificate: 加速域名证书信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Certificate: :class:`Tencentcloud::Teo.v20220901.models.AccelerationDomainCertificate`
         # @param CreatedOn: 创建时间。
         # @type CreatedOn: String
         # @param ModifiedOn: 修改时间。
         # @type ModifiedOn: String
-        # @param OwnershipVerification: 当域名需要进行归属权验证才能继续提供服务时，该对象会携带对应验证方式所需要的信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
 
-        attr_accessor :ZoneId, :DomainName, :DomainStatus, :OriginDetail, :OriginProtocol, :Certificate, :HttpOriginPort, :HttpsOriginPort, :IPv6Status, :Cname, :IdentificationStatus, :CreatedOn, :ModifiedOn, :OwnershipVerification
+        attr_accessor :ZoneId, :DomainName, :DomainStatus, :Cname, :IPv6Status, :IdentificationStatus, :OwnershipVerification, :OriginDetail, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :Certificate, :CreatedOn, :ModifiedOn
 
-        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, origindetail=nil, originprotocol=nil, certificate=nil, httporiginport=nil, httpsoriginport=nil, ipv6status=nil, cname=nil, identificationstatus=nil, createdon=nil, modifiedon=nil, ownershipverification=nil)
+        def initialize(zoneid=nil, domainname=nil, domainstatus=nil, cname=nil, ipv6status=nil, identificationstatus=nil, ownershipverification=nil, origindetail=nil, originprotocol=nil, httporiginport=nil, httpsoriginport=nil, certificate=nil, createdon=nil, modifiedon=nil)
           @ZoneId = zoneid
           @DomainName = domainname
           @DomainStatus = domainstatus
+          @Cname = cname
+          @IPv6Status = ipv6status
+          @IdentificationStatus = identificationstatus
+          @OwnershipVerification = ownershipverification
           @OriginDetail = origindetail
           @OriginProtocol = originprotocol
-          @Certificate = certificate
           @HttpOriginPort = httporiginport
           @HttpsOriginPort = httpsoriginport
-          @IPv6Status = ipv6status
-          @Cname = cname
-          @IdentificationStatus = identificationstatus
+          @Certificate = certificate
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
-          @OwnershipVerification = ownershipverification
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @DomainName = params['DomainName']
           @DomainStatus = params['DomainStatus']
+          @Cname = params['Cname']
+          @IPv6Status = params['IPv6Status']
+          @IdentificationStatus = params['IdentificationStatus']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
           unless params['OriginDetail'].nil?
             @OriginDetail = OriginDetail.new
             @OriginDetail.deserialize(params['OriginDetail'])
           end
           @OriginProtocol = params['OriginProtocol']
+          @HttpOriginPort = params['HttpOriginPort']
+          @HttpsOriginPort = params['HttpsOriginPort']
           unless params['Certificate'].nil?
             @Certificate = AccelerationDomainCertificate.new
             @Certificate.deserialize(params['Certificate'])
           end
-          @HttpOriginPort = params['HttpOriginPort']
-          @HttpsOriginPort = params['HttpsOriginPort']
-          @IPv6Status = params['IPv6Status']
-          @Cname = params['Cname']
-          @IdentificationStatus = params['IdentificationStatus']
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
-          unless params['OwnershipVerification'].nil?
-            @OwnershipVerification = OwnershipVerification.new
-            @OwnershipVerification.deserialize(params['OwnershipVerification'])
-          end
         end
       end
 
@@ -1884,8 +1886,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2025, 9
-        deprecate :IgnoreCacheControl=, :none, 2025, 9
+        deprecate :IgnoreCacheControl, :none, 2025, 10
+        deprecate :IgnoreCacheControl=, :none, 2025, 10
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4374,8 +4376,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 9
-        deprecate :EncodeUrl=, :none, 2025, 9
+        deprecate :EncodeUrl, :none, 2025, 10
+        deprecate :EncodeUrl=, :none, 2025, 10
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -4457,8 +4459,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 9
-        deprecate :EncodeUrl=, :none, 2025, 9
+        deprecate :EncodeUrl, :none, 2025, 10
+        deprecate :EncodeUrl=, :none, 2025, 10
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5067,10 +5069,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2025, 9
-        deprecate :AllowDuplicates=, :none, 2025, 9
-        deprecate :JumpStart, :none, 2025, 9
-        deprecate :JumpStart=, :none, 2025, 9
+        deprecate :AllowDuplicates, :none, 2025, 10
+        deprecate :AllowDuplicates=, :none, 2025, 10
+        deprecate :JumpStart, :none, 2025, 10
+        deprecate :JumpStart=, :none, 2025, 10
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -15312,8 +15314,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2025, 9
-        deprecate :ApplyType=, :none, 2025, 9
+        deprecate :ApplyType, :none, 2025, 10
+        deprecate :ApplyType=, :none, 2025, 10
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -17500,12 +17502,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 9
-        deprecate :VodeoSubAppId=, :none, 2025, 9
-        deprecate :VodeoDistributionRange, :none, 2025, 9
-        deprecate :VodeoDistributionRange=, :none, 2025, 9
-        deprecate :VodeoBucketId, :none, 2025, 9
-        deprecate :VodeoBucketId=, :none, 2025, 9
+        deprecate :VodeoSubAppId, :none, 2025, 10
+        deprecate :VodeoSubAppId=, :none, 2025, 10
+        deprecate :VodeoDistributionRange, :none, 2025, 10
+        deprecate :VodeoDistributionRange=, :none, 2025, 10
+        deprecate :VodeoBucketId, :none, 2025, 10
+        deprecate :VodeoBucketId=, :none, 2025, 10
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -17810,12 +17812,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 9
-        deprecate :VodeoSubAppId=, :none, 2025, 9
-        deprecate :VodeoDistributionRange, :none, 2025, 9
-        deprecate :VodeoDistributionRange=, :none, 2025, 9
-        deprecate :VodeoBucketId, :none, 2025, 9
-        deprecate :VodeoBucketId=, :none, 2025, 9
+        deprecate :VodeoSubAppId, :none, 2025, 10
+        deprecate :VodeoSubAppId=, :none, 2025, 10
+        deprecate :VodeoDistributionRange, :none, 2025, 10
+        deprecate :VodeoDistributionRange=, :none, 2025, 10
+        deprecate :VodeoBucketId, :none, 2025, 10
+        deprecate :VodeoBucketId=, :none, 2025, 10
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -19504,8 +19506,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2025, 9
-        deprecate :IgnoreNameCase=, :none, 2025, 9
+        deprecate :IgnoreNameCase, :none, 2025, 10
+        deprecate :IgnoreNameCase=, :none, 2025, 10
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

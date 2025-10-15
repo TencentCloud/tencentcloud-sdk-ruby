@@ -669,10 +669,13 @@ module TencentCloud
         # @param Path: 节点全路径，/aaa/bbb/ccc.ipynb，由各个节点的名称组成
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Path: String
+        # @param ParentFolderPath: 父文件夹路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentFolderPath: String
 
-        attr_accessor :CodeFileId, :CodeFileName, :OwnerUin, :CodeFileConfig, :CodeFileContent, :UpdateUserUin, :ProjectId, :UpdateTime, :CreateTime, :AccessScope, :Path
+        attr_accessor :CodeFileId, :CodeFileName, :OwnerUin, :CodeFileConfig, :CodeFileContent, :UpdateUserUin, :ProjectId, :UpdateTime, :CreateTime, :AccessScope, :Path, :ParentFolderPath
 
-        def initialize(codefileid=nil, codefilename=nil, owneruin=nil, codefileconfig=nil, codefilecontent=nil, updateuseruin=nil, projectid=nil, updatetime=nil, createtime=nil, accessscope=nil, path=nil)
+        def initialize(codefileid=nil, codefilename=nil, owneruin=nil, codefileconfig=nil, codefilecontent=nil, updateuseruin=nil, projectid=nil, updatetime=nil, createtime=nil, accessscope=nil, path=nil, parentfolderpath=nil)
           @CodeFileId = codefileid
           @CodeFileName = codefilename
           @OwnerUin = owneruin
@@ -684,6 +687,7 @@ module TencentCloud
           @CreateTime = createtime
           @AccessScope = accessscope
           @Path = path
+          @ParentFolderPath = parentfolderpath
         end
 
         def deserialize(params)
@@ -701,6 +705,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @AccessScope = params['AccessScope']
           @Path = params['Path']
+          @ParentFolderPath = params['ParentFolderPath']
         end
       end
 
@@ -757,10 +762,13 @@ module TencentCloud
         # @param Children: 子节点列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
+        # @param ParentFolderPath: 父文件夹路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentFolderPath: String
 
-        attr_accessor :Id, :Title, :Type, :IsLeaf, :Params, :AccessScope, :Path, :OwnerUin, :CreateUserUin, :NodePermission, :Children
+        attr_accessor :Id, :Title, :Type, :IsLeaf, :Params, :AccessScope, :Path, :OwnerUin, :CreateUserUin, :NodePermission, :Children, :ParentFolderPath
 
-        def initialize(id=nil, title=nil, type=nil, isleaf=nil, params=nil, accessscope=nil, path=nil, owneruin=nil, createuseruin=nil, nodepermission=nil, children=nil)
+        def initialize(id=nil, title=nil, type=nil, isleaf=nil, params=nil, accessscope=nil, path=nil, owneruin=nil, createuseruin=nil, nodepermission=nil, children=nil, parentfolderpath=nil)
           @Id = id
           @Title = title
           @Type = type
@@ -772,6 +780,7 @@ module TencentCloud
           @CreateUserUin = createuseruin
           @NodePermission = nodepermission
           @Children = children
+          @ParentFolderPath = parentfolderpath
         end
 
         def deserialize(params)
@@ -793,6 +802,7 @@ module TencentCloud
               @Children << codefoldernode_tmp
             end
           end
+          @ParentFolderPath = params['ParentFolderPath']
         end
       end
 
@@ -2490,6 +2500,119 @@ module TencentCloud
         end
       end
 
+      # 补录计划详情
+      class DataBackfill < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param DataBackfillPlanId: 数据补录计划id
+        # @type DataBackfillPlanId: String
+        # @param DataBackfillPlanName: 数据补录计划名称
+        # @type DataBackfillPlanName: String
+        # @param TaskIds: 补录任务集合
+        # @type TaskIds: Array
+        # @param DataBackfillRangeList: 补录任务的数据配置列表
+        # @type DataBackfillRangeList: Array
+        # @param CheckParentType: 检查父任务类型，取值范围：- NONE-全部不检查- ALL-检查全部上游父任务- MAKE_SCOPE-只在（当前补录计划）选中任务中检查
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckParentType: String
+        # @param SkipEventListening: 补录是否忽略事件依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SkipEventListening: Boolean
+        # @param RedefineParallelNum: 自定义实例运行并发度, 返回为null或者不返回，则表示任务原有自依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedefineParallelNum: Integer
+        # @param RedefineSelfWorkflowDependency: 自定义的工作流自依赖，yes或者no；如果不配置，则使用工作流原有自依赖
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedefineSelfWorkflowDependency: String
+        # @param SchedulerResourceGroupId: 调度资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchedulerResourceGroupId: String
+        # @param IntegrationResourceGroupId: 集成资源组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IntegrationResourceGroupId: String
+        # @param RedefineCycleType: 补录自定义的生成周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedefineCycleType: String
+        # @param RedefineParamList: 自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedefineParamList: Array
+        # @param StartTime: 补录任务的执行开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 补录任务的执行结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param CreateUserUin: 创建用户id
+        # @type CreateUserUin: String
+        # @param CompletePercent: 补录计划实例完成百分数
+        # @type CompletePercent: Integer
+        # @param SuccessPercent: 补录计划实例成功百分数
+        # @type SuccessPercent: Integer
+        # @param DataTimeOrder: 补录是实例数据时间顺序，生效必须满足2个条件:1. 必须同周期任务2. 优先按依赖关系执行，无依赖关系影响的情况下按配置执行顺序执行 可选值- NORMAL: 不设置- ORDER: 顺序- REVERSE: 逆序不设置默认为NORMAL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataTimeOrder: String
+
+        attr_accessor :ProjectId, :DataBackfillPlanId, :DataBackfillPlanName, :TaskIds, :DataBackfillRangeList, :CheckParentType, :SkipEventListening, :RedefineParallelNum, :RedefineSelfWorkflowDependency, :SchedulerResourceGroupId, :IntegrationResourceGroupId, :RedefineCycleType, :RedefineParamList, :StartTime, :EndTime, :CreateUserUin, :CompletePercent, :SuccessPercent, :DataTimeOrder
+
+        def initialize(projectid=nil, databackfillplanid=nil, databackfillplanname=nil, taskids=nil, databackfillrangelist=nil, checkparenttype=nil, skipeventlistening=nil, redefineparallelnum=nil, redefineselfworkflowdependency=nil, schedulerresourcegroupid=nil, integrationresourcegroupid=nil, redefinecycletype=nil, redefineparamlist=nil, starttime=nil, endtime=nil, createuseruin=nil, completepercent=nil, successpercent=nil, datatimeorder=nil)
+          @ProjectId = projectid
+          @DataBackfillPlanId = databackfillplanid
+          @DataBackfillPlanName = databackfillplanname
+          @TaskIds = taskids
+          @DataBackfillRangeList = databackfillrangelist
+          @CheckParentType = checkparenttype
+          @SkipEventListening = skipeventlistening
+          @RedefineParallelNum = redefineparallelnum
+          @RedefineSelfWorkflowDependency = redefineselfworkflowdependency
+          @SchedulerResourceGroupId = schedulerresourcegroupid
+          @IntegrationResourceGroupId = integrationresourcegroupid
+          @RedefineCycleType = redefinecycletype
+          @RedefineParamList = redefineparamlist
+          @StartTime = starttime
+          @EndTime = endtime
+          @CreateUserUin = createuseruin
+          @CompletePercent = completepercent
+          @SuccessPercent = successpercent
+          @DataTimeOrder = datatimeorder
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DataBackfillPlanId = params['DataBackfillPlanId']
+          @DataBackfillPlanName = params['DataBackfillPlanName']
+          @TaskIds = params['TaskIds']
+          unless params['DataBackfillRangeList'].nil?
+            @DataBackfillRangeList = []
+            params['DataBackfillRangeList'].each do |i|
+              databackfillrange_tmp = DataBackfillRange.new
+              databackfillrange_tmp.deserialize(i)
+              @DataBackfillRangeList << databackfillrange_tmp
+            end
+          end
+          @CheckParentType = params['CheckParentType']
+          @SkipEventListening = params['SkipEventListening']
+          @RedefineParallelNum = params['RedefineParallelNum']
+          @RedefineSelfWorkflowDependency = params['RedefineSelfWorkflowDependency']
+          @SchedulerResourceGroupId = params['SchedulerResourceGroupId']
+          @IntegrationResourceGroupId = params['IntegrationResourceGroupId']
+          @RedefineCycleType = params['RedefineCycleType']
+          unless params['RedefineParamList'].nil?
+            @RedefineParamList = []
+            params['RedefineParamList'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @RedefineParamList << kvpair_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @CreateUserUin = params['CreateUserUin']
+          @CompletePercent = params['CompletePercent']
+          @SuccessPercent = params['SuccessPercent']
+          @DataTimeOrder = params['DataTimeOrder']
+        end
+      end
+
       # 补录计划日期范围
       class DataBackfillRange < TencentCloud::Common::AbstractModel
         # @param StartDate: 开始日期，格式yyyy-MM-dd 表示从指定日期的00:00:00开始
@@ -4153,6 +4276,96 @@ module TencentCloud
         end
       end
 
+      # GetCodeFolder请求参数结构体
+      class GetCodeFolderRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param FolderId: 文件夹id
+        # @type FolderId: String
+
+        attr_accessor :ProjectId, :FolderId
+
+        def initialize(projectid=nil, folderid=nil)
+          @ProjectId = projectid
+          @FolderId = folderid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FolderId = params['FolderId']
+        end
+      end
+
+      # GetCodeFolder返回参数结构体
+      class GetCodeFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: codestudio文件夹
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.CodeFolderNode`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CodeFolderNode.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDataBackfillPlan请求参数结构体
+      class GetDataBackfillPlanRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DataBackfillPlanId: 补录计划id
+        # @type DataBackfillPlanId: String
+        # @param TimeZone: 展示时区，默认UTC+8
+        # @type TimeZone: String
+
+        attr_accessor :ProjectId, :DataBackfillPlanId, :TimeZone
+
+        def initialize(projectid=nil, databackfillplanid=nil, timezone=nil)
+          @ProjectId = projectid
+          @DataBackfillPlanId = databackfillplanid
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @DataBackfillPlanId = params['DataBackfillPlanId']
+          @TimeZone = params['TimeZone']
+        end
+      end
+
+      # GetDataBackfillPlan返回参数结构体
+      class GetDataBackfillPlanResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 补录详情
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.DataBackfill`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DataBackfill.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetDataSourceRelatedTasks请求参数结构体
       class GetDataSourceRelatedTasksRequest < TencentCloud::Common::AbstractModel
         # @param Id: 数据源id
@@ -4599,6 +4812,49 @@ module TencentCloud
         end
       end
 
+      # GetSQLFolder请求参数结构体
+      class GetSQLFolderRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param FolderId: 文件夹id
+        # @type FolderId: String
+
+        attr_accessor :ProjectId, :FolderId
+
+        def initialize(projectid=nil, folderid=nil)
+          @ProjectId = projectid
+          @FolderId = folderid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @FolderId = params['FolderId']
+        end
+      end
+
+      # GetSQLFolder返回参数结构体
+      class GetSQLFolderResponse < TencentCloud::Common::AbstractModel
+        # @param Data: sql文件夹
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.SQLFolderNode`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = SQLFolderNode.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetSQLScript请求参数结构体
       class GetSQLScriptRequest < TencentCloud::Common::AbstractModel
         # @param ScriptId: 探索脚本Id
@@ -5014,21 +5270,25 @@ module TencentCloud
         # @type ProjectId: String
         # @param UserUin: 用户id
         # @type UserUin: String
-        # @param RoleId: 角色id
-        # @type RoleId: String
+        # @param RoleIds: 角色id列表，目前支持的项目角色有
+        # - 308335260274237440 (项目管理员)
+        # - 308335260676890624 (数据工程师)
+        # - 308335260844662784 (运维工程师)
+        # - 308335260945326080 (普通成员)
+        # @type RoleIds: Array
 
-        attr_accessor :ProjectId, :UserUin, :RoleId
+        attr_accessor :ProjectId, :UserUin, :RoleIds
 
-        def initialize(projectid=nil, useruin=nil, roleid=nil)
+        def initialize(projectid=nil, useruin=nil, roleids=nil)
           @ProjectId = projectid
           @UserUin = useruin
-          @RoleId = roleid
+          @RoleIds = roleids
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @UserUin = params['UserUin']
-          @RoleId = params['RoleId']
+          @RoleIds = params['RoleIds']
         end
       end
 
@@ -9921,21 +10181,25 @@ module TencentCloud
         # @type ProjectId: String
         # @param UserUin: 用户id
         # @type UserUin: String
-        # @param RoleId: 角色id
-        # @type RoleId: String
+        # @param RoleIds: 角色id列表，目前支持的项目角色有
+        # - 308335260274237440 (项目管理员)
+        # - 308335260676890624 (数据工程师)
+        # - 308335260844662784 (运维工程师)
+        # - 308335260945326080 (普通成员)
+        # @type RoleIds: Array
 
-        attr_accessor :ProjectId, :UserUin, :RoleId
+        attr_accessor :ProjectId, :UserUin, :RoleIds
 
-        def initialize(projectid=nil, useruin=nil, roleid=nil)
+        def initialize(projectid=nil, useruin=nil, roleids=nil)
           @ProjectId = projectid
           @UserUin = useruin
-          @RoleId = roleid
+          @RoleIds = roleids
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
           @UserUin = params['UserUin']
-          @RoleId = params['RoleId']
+          @RoleIds = params['RoleIds']
         end
       end
 
@@ -10824,6 +11088,69 @@ module TencentCloud
 
         def deserialize(params)
           @FolderId = params['FolderId']
+        end
+      end
+
+      # StartOpsTasks请求参数结构体
+      class StartOpsTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 所属项目Id
+        # @type ProjectId: String
+        # @param TaskIds: 任务Id列表
+        # @type TaskIds: Array
+        # @param EnableDataBackfill: 启动时是否补录上次暂停到当前的中间实例，默认false即不补录
+        # @type EnableDataBackfill: Boolean
+
+        attr_accessor :ProjectId, :TaskIds, :EnableDataBackfill
+
+        def initialize(projectid=nil, taskids=nil, enabledatabackfill=nil)
+          @ProjectId = projectid
+          @TaskIds = taskids
+          @EnableDataBackfill = enabledatabackfill
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @TaskIds = params['TaskIds']
+          @EnableDataBackfill = params['EnableDataBackfill']
+        end
+      end
+
+      # StartOpsTasks返回参数结构体
+      class StartOpsTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 异步操作结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.StartTasks`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = StartTasks.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 批量启动任务返回参数
+      class StartTasks < TencentCloud::Common::AbstractModel
+        # @param Status: 任务启动是否成功
+        # @type Status: Boolean
+
+        attr_accessor :Status
+
+        def initialize(status=nil)
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
         end
       end
 

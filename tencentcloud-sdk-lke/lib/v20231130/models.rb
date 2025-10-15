@@ -2593,8 +2593,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 9
-        deprecate :EmbeddingModel=, :none, 2025, 9
+        deprecate :EmbeddingModel, :none, 2025, 10
+        deprecate :EmbeddingModel=, :none, 2025, 10
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -4911,7 +4911,7 @@ module TencentCloud
 
       # DescribeWorkflowRun返回参数结构体
       class DescribeWorkflowRunResponse < TencentCloud::Common::AbstractModel
-        # @param WorkflowRun: 总数
+        # @param WorkflowRun: 工作流的详情
         # @type WorkflowRun: :class:`Tencentcloud::Lke.v20231130.models.WorkflowRunDetail`
         # @param NodeRuns: 节点列表
         # @type NodeRuns: Array
@@ -7054,10 +7054,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 9
-        deprecate :EmbeddingModel=, :none, 2025, 9
-        deprecate :QaExtractModel, :none, 2025, 9
-        deprecate :QaExtractModel=, :none, 2025, 9
+        deprecate :EmbeddingModel, :none, 2025, 10
+        deprecate :EmbeddingModel=, :none, 2025, 10
+        deprecate :QaExtractModel, :none, 2025, 10
+        deprecate :QaExtractModel=, :none, 2025, 10
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -7338,8 +7338,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2025, 9
-        deprecate :BotBizId=, :none, 2025, 9
+        deprecate :BotBizId, :none, 2025, 10
+        deprecate :BotBizId=, :none, 2025, 10
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid

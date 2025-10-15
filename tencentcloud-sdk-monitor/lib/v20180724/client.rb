@@ -2540,6 +2540,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取实例采集速率信息
+
+        # @param request: Request instance for DescribePrometheusScrapeStatistics.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusScrapeStatisticsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribePrometheusScrapeStatisticsResponse`
+        def DescribePrometheusScrapeStatistics(request)
+          body = send_request('DescribePrometheusScrapeStatistics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrometheusScrapeStatisticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取targets信息，在过滤条件中指定job名称时返回targets详情，否则仅返回数量
 
         # @param request: Request instance for DescribePrometheusTargetsTMP.

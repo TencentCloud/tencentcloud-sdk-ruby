@@ -1449,6 +1449,58 @@ module TencentCloud
         end
       end
 
+      # CreateVariable请求参数结构体
+      class CreateVariableRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 变量名
+        # @type Name: String
+        # @param Value: 变量值
+        # @type Value: String
+        # @param Type: 变量类型  1：显式   2：隐藏
+        # @type Type: Integer
+        # @param Remark: 描述信息
+        # @type Remark: String
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :Name, :Value, :Type, :Remark, :WorkSpaceId
+
+        def initialize(name=nil, value=nil, type=nil, remark=nil, workspaceid=nil)
+          @Name = name
+          @Value = value
+          @Type = type
+          @Remark = remark
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Type = params['Type']
+          @Remark = params['Remark']
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # CreateVariable返回参数结构体
+      class CreateVariableResponse < TencentCloud::Common::AbstractModel
+        # @param VariableId: 变量Id
+        # @type VariableId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VariableId, :RequestId
+
+        def initialize(variableid=nil, requestid=nil)
+          @VariableId = variableid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VariableId = params['VariableId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateWorkSpace请求参数结构体
       class CreateWorkSpaceRequest < TencentCloud::Common::AbstractModel
         # @param WorkSpaceName: 工作空间名称
@@ -2974,6 +3026,38 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # DescribeVariables请求参数结构体
+      class DescribeVariablesRequest < TencentCloud::Common::AbstractModel
+        # @param WorkSpaceId: 工作空间 SerialId
+        # @type WorkSpaceId: String
+
+        attr_accessor :WorkSpaceId
+
+        def initialize(workspaceid=nil)
+          @WorkSpaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkSpaceId = params['WorkSpaceId']
+        end
+      end
+
+      # DescribeVariables返回参数结构体
+      class DescribeVariablesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

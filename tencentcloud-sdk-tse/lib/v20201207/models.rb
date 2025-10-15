@@ -827,8 +827,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2025, 9
-        deprecate :MaxReplicas=, :none, 2025, 9
+        deprecate :MaxReplicas, :none, 2025, 10
+        deprecate :MaxReplicas=, :none, 2025, 10
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -889,16 +889,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 9
-        deprecate :Enabled=, :none, 2025, 9
-        deprecate :CreateTime, :none, 2025, 9
-        deprecate :CreateTime=, :none, 2025, 9
-        deprecate :ModifyTime, :none, 2025, 9
-        deprecate :ModifyTime=, :none, 2025, 9
-        deprecate :StrategyId, :none, 2025, 9
-        deprecate :StrategyId=, :none, 2025, 9
-        deprecate :AutoScalerId, :none, 2025, 9
-        deprecate :AutoScalerId=, :none, 2025, 9
+        deprecate :Enabled, :none, 2025, 10
+        deprecate :Enabled=, :none, 2025, 10
+        deprecate :CreateTime, :none, 2025, 10
+        deprecate :CreateTime=, :none, 2025, 10
+        deprecate :ModifyTime, :none, 2025, 10
+        deprecate :ModifyTime=, :none, 2025, 10
+        deprecate :StrategyId, :none, 2025, 10
+        deprecate :StrategyId=, :none, 2025, 10
+        deprecate :AutoScalerId, :none, 2025, 10
+        deprecate :AutoScalerId=, :none, 2025, 10
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1019,14 +1019,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2025, 9
-        deprecate :Enabled=, :none, 2025, 9
-        deprecate :CreateTime, :none, 2025, 9
-        deprecate :CreateTime=, :none, 2025, 9
-        deprecate :ModifyTime, :none, 2025, 9
-        deprecate :ModifyTime=, :none, 2025, 9
-        deprecate :StrategyId, :none, 2025, 9
-        deprecate :StrategyId=, :none, 2025, 9
+        deprecate :Enabled, :none, 2025, 10
+        deprecate :Enabled=, :none, 2025, 10
+        deprecate :CreateTime, :none, 2025, 10
+        deprecate :CreateTime=, :none, 2025, 10
+        deprecate :ModifyTime, :none, 2025, 10
+        deprecate :ModifyTime=, :none, 2025, 10
+        deprecate :StrategyId, :none, 2025, 10
+        deprecate :StrategyId=, :none, 2025, 10
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1704,10 +1704,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 9
-        deprecate :CronScalerConfig=, :none, 2025, 9
-        deprecate :MaxReplicas, :none, 2025, 9
-        deprecate :MaxReplicas=, :none, 2025, 9
+        deprecate :CronScalerConfig, :none, 2025, 10
+        deprecate :CronScalerConfig=, :none, 2025, 10
+        deprecate :MaxReplicas, :none, 2025, 10
+        deprecate :MaxReplicas=, :none, 2025, 10
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1750,8 +1750,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2025, 9
-        deprecate :Result=, :none, 2025, 9
+        deprecate :Result, :none, 2025, 10
+        deprecate :Result=, :none, 2025, 10
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1837,10 +1837,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2025, 9
-        deprecate :Key=, :none, 2025, 9
-        deprecate :Crt, :none, 2025, 9
-        deprecate :Crt=, :none, 2025, 9
+        deprecate :Key, :none, 2025, 10
+        deprecate :Key=, :none, 2025, 10
+        deprecate :Crt, :none, 2025, 10
+        deprecate :Crt=, :none, 2025, 10
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2175,8 +2175,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 9
-        deprecate :ForceHttps=, :none, 2025, 9
+        deprecate :ForceHttps, :none, 2025, 10
+        deprecate :ForceHttps=, :none, 2025, 10
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -6153,10 +6153,12 @@ module TencentCloud
         # @type OnlyExistHealthyInstance: Boolean
         # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
         # @type SyncToGlobalRegistry: String
+        # @param StatusFilter: 过滤筛选条件
+        # @type StatusFilter: Array
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance, :SyncToGlobalRegistry
+        attr_accessor :Name, :Namespace, :Metadatas, :Offset, :Limit, :InstanceId, :Department, :Business, :Host, :OnlyExistHealthyInstance, :SyncToGlobalRegistry, :StatusFilter
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil, synctoglobalregistry=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, offset=nil, limit=nil, instanceid=nil, department=nil, business=nil, host=nil, onlyexisthealthyinstance=nil, synctoglobalregistry=nil, statusfilter=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -6168,6 +6170,7 @@ module TencentCloud
           @Host = host
           @OnlyExistHealthyInstance = onlyexisthealthyinstance
           @SyncToGlobalRegistry = synctoglobalregistry
+          @StatusFilter = statusfilter
         end
 
         def deserialize(params)
@@ -6189,6 +6192,14 @@ module TencentCloud
           @Host = params['Host']
           @OnlyExistHealthyInstance = params['OnlyExistHealthyInstance']
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
+          unless params['StatusFilter'].nil?
+            @StatusFilter = []
+            params['StatusFilter'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @StatusFilter << filter_tmp
+            end
+          end
         end
       end
 
@@ -7079,8 +7090,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2025, 9
-        deprecate :Type=, :none, 2025, 9
+        deprecate :Type, :none, 2025, 10
+        deprecate :Type=, :none, 2025, 10
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -8048,10 +8059,14 @@ module TencentCloud
         # @type Revision: String
         # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
         # @type SyncToGlobalRegistry: Boolean
+        # @param IsolateInstanceCount: 隔离实例数
+        # @type IsolateInstanceCount: Integer
+        # @param ServiceStatus: 服务健康状态
+        # @type ServiceStatus: Integer
 
-        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry
+        attr_accessor :Name, :Namespace, :Metadatas, :Comment, :CreateTime, :ModifyTime, :Department, :Business, :HealthyInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ExportTo, :Revision, :SyncToGlobalRegistry, :IsolateInstanceCount, :ServiceStatus
 
-        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil)
+        def initialize(name=nil, namespace=nil, metadatas=nil, comment=nil, createtime=nil, modifytime=nil, department=nil, business=nil, healthyinstancecount=nil, totalinstancecount=nil, id=nil, editable=nil, userids=nil, groupids=nil, removeuserids=nil, removegroupids=nil, exportto=nil, revision=nil, synctoglobalregistry=nil, isolateinstancecount=nil, servicestatus=nil)
           @Name = name
           @Namespace = namespace
           @Metadatas = metadatas
@@ -8071,6 +8086,8 @@ module TencentCloud
           @ExportTo = exportto
           @Revision = revision
           @SyncToGlobalRegistry = synctoglobalregistry
+          @IsolateInstanceCount = isolateinstancecount
+          @ServiceStatus = servicestatus
         end
 
         def deserialize(params)
@@ -8100,6 +8117,8 @@ module TencentCloud
           @ExportTo = params['ExportTo']
           @Revision = params['Revision']
           @SyncToGlobalRegistry = params['SyncToGlobalRegistry']
+          @IsolateInstanceCount = params['IsolateInstanceCount']
+          @ServiceStatus = params['ServiceStatus']
         end
       end
 
@@ -8481,8 +8500,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2025, 9
-        deprecate :Pages=, :none, 2025, 9
+        deprecate :Pages, :none, 2025, 10
+        deprecate :Pages=, :none, 2025, 10
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8623,8 +8642,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 9
-        deprecate :ForceHttps=, :none, 2025, 9
+        deprecate :ForceHttps, :none, 2025, 10
+        deprecate :ForceHttps=, :none, 2025, 10
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @ID = id
@@ -9327,10 +9346,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2025, 9
-        deprecate :CronScalerConfig=, :none, 2025, 9
-        deprecate :MaxReplicas, :none, 2025, 9
-        deprecate :MaxReplicas=, :none, 2025, 9
+        deprecate :CronScalerConfig, :none, 2025, 10
+        deprecate :CronScalerConfig=, :none, 2025, 10
+        deprecate :MaxReplicas, :none, 2025, 10
+        deprecate :MaxReplicas=, :none, 2025, 10
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -9465,10 +9484,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2025, 9
-        deprecate :Name=, :none, 2025, 9
-        deprecate :BindDomains, :none, 2025, 9
-        deprecate :BindDomains=, :none, 2025, 9
+        deprecate :Name, :none, 2025, 10
+        deprecate :Name=, :none, 2025, 10
+        deprecate :BindDomains, :none, 2025, 10
+        deprecate :BindDomains=, :none, 2025, 10
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9662,8 +9681,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2025, 9
-        deprecate :ForceHttps=, :none, 2025, 9
+        deprecate :ForceHttps, :none, 2025, 10
+        deprecate :ForceHttps=, :none, 2025, 10
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -11864,8 +11883,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2025, 9
-        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 9
+        deprecate :IgnoreZeroWeightNodes, :none, 2025, 10
+        deprecate :IgnoreZeroWeightNodes=, :none, 2025, 10
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

@@ -9042,6 +9042,55 @@ module TencentCloud
         end
       end
 
+      # DescribePrometheusScrapeStatistics请求参数结构体
+      class DescribePrometheusScrapeStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param JobType: job 类型
+        # @type JobType: String
+
+        attr_accessor :JobType
+
+        def initialize(jobtype=nil)
+          @JobType = jobtype
+        end
+
+        def deserialize(params)
+          @JobType = params['JobType']
+        end
+      end
+
+      # DescribePrometheusScrapeStatistics返回参数结构体
+      class DescribePrometheusScrapeStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param InstanceResults: 实例指标抓取速率详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :InstanceResults, :RequestId
+
+        def initialize(total=nil, instanceresults=nil, requestid=nil)
+          @Total = total
+          @InstanceResults = instanceresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['InstanceResults'].nil?
+            @InstanceResults = []
+            params['InstanceResults'].each do |i|
+              prometheusinstancescrapestatistics_tmp = PrometheusInstanceScrapeStatistics.new
+              prometheusinstancescrapestatistics_tmp.deserialize(i)
+              @InstanceResults << prometheusinstancescrapestatistics_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrometheusTargetsTMP请求参数结构体
       class DescribePrometheusTargetsTMPRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -11557,14 +11606,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2025, 9
-        deprecate :AlarmNotifyPeriod=, :none, 2025, 9
-        deprecate :AlarmNotifyType, :none, 2025, 9
-        deprecate :AlarmNotifyType=, :none, 2025, 9
-        deprecate :EventID, :none, 2025, 9
-        deprecate :EventID=, :none, 2025, 9
-        deprecate :RuleID, :none, 2025, 9
-        deprecate :RuleID=, :none, 2025, 9
+        deprecate :AlarmNotifyPeriod, :none, 2025, 10
+        deprecate :AlarmNotifyPeriod=, :none, 2025, 10
+        deprecate :AlarmNotifyType, :none, 2025, 10
+        deprecate :AlarmNotifyType=, :none, 2025, 10
+        deprecate :EventID, :none, 2025, 10
+        deprecate :EventID=, :none, 2025, 10
+        deprecate :RuleID, :none, 2025, 10
+        deprecate :RuleID=, :none, 2025, 10
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -13069,6 +13118,44 @@ module TencentCloud
         end
       end
 
+      # 集群指标抓取统计
+      class PrometheusClusterScrapeStatistics < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ScrapedRate: 被采集的点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrapedRate: Float
+        # @param Jobs: Job列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Jobs: Array
+        # @param SamplesRate: 过滤前的指标采集速率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplesRate: Float
+
+        attr_accessor :ClusterID, :ScrapedRate, :Jobs, :SamplesRate
+
+        def initialize(clusterid=nil, scrapedrate=nil, jobs=nil, samplesrate=nil)
+          @ClusterID = clusterid
+          @ScrapedRate = scrapedrate
+          @Jobs = jobs
+          @SamplesRate = samplesrate
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @ScrapedRate = params['ScrapedRate']
+          unless params['Jobs'].nil?
+            @Jobs = []
+            params['Jobs'].each do |i|
+              prometheusjobscrapestatistics_tmp = PrometheusJobScrapeStatistics.new
+              prometheusjobscrapestatistics_tmp.deserialize(i)
+              @Jobs << prometheusjobscrapestatistics_tmp
+            end
+          end
+          @SamplesRate = params['SamplesRate']
+        end
+      end
+
       # prometheus配置
       class PrometheusConfigItem < TencentCloud::Common::AbstractModel
         # @param Name: 名称
@@ -13135,6 +13222,53 @@ module TencentCloud
           @HasAgentManage = params['HasAgentManage']
           @HasTkeManage = params['HasTkeManage']
           @HasApiOperation = params['HasApiOperation']
+        end
+      end
+
+      # 实例抓取指标统计
+      class PrometheusInstanceScrapeStatistics < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ScrapedRate: 被采集的点数
+        # @type ScrapedRate: Float
+        # @param Clusters: 集群指标列表
+        # @type Clusters: Array
+        # @param Global: 非容器指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Global: Array
+        # @param SamplesRate: 过滤前的指标采集速率
+        # @type SamplesRate: Float
+
+        attr_accessor :InstanceId, :ScrapedRate, :Clusters, :Global, :SamplesRate
+
+        def initialize(instanceid=nil, scrapedrate=nil, clusters=nil, global=nil, samplesrate=nil)
+          @InstanceId = instanceid
+          @ScrapedRate = scrapedrate
+          @Clusters = clusters
+          @Global = global
+          @SamplesRate = samplesrate
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ScrapedRate = params['ScrapedRate']
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              prometheusclusterscrapestatistics_tmp = PrometheusClusterScrapeStatistics.new
+              prometheusclusterscrapestatistics_tmp.deserialize(i)
+              @Clusters << prometheusclusterscrapestatistics_tmp
+            end
+          end
+          unless params['Global'].nil?
+            @Global = []
+            params['Global'].each do |i|
+              prometheusclusterscrapestatistics_tmp = PrometheusClusterScrapeStatistics.new
+              prometheusclusterscrapestatistics_tmp.deserialize(i)
+              @Global << prometheusclusterscrapestatistics_tmp
+            end
+          end
+          @SamplesRate = params['SamplesRate']
         end
       end
 
@@ -13467,6 +13601,42 @@ module TencentCloud
         end
       end
 
+      # Job抓取统计
+      class PrometheusJobScrapeStatistics < TencentCloud::Common::AbstractModel
+        # @param JobName: Job 名
+        # @type JobName: String
+        # @param ScrapedRate: 被采集的点数
+        # @type ScrapedRate: Float
+        # @param Metrics: 指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metrics: Array
+        # @param JobType: Job 类型
+        # @type JobType: String
+
+        attr_accessor :JobName, :ScrapedRate, :Metrics, :JobType
+
+        def initialize(jobname=nil, scrapedrate=nil, metrics=nil, jobtype=nil)
+          @JobName = jobname
+          @ScrapedRate = scrapedrate
+          @Metrics = metrics
+          @JobType = jobtype
+        end
+
+        def deserialize(params)
+          @JobName = params['JobName']
+          @ScrapedRate = params['ScrapedRate']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              prometheusmetricscrapestatistics_tmp = PrometheusMetricScrapeStatistics.new
+              prometheusmetricscrapestatistics_tmp.deserialize(i)
+              @Metrics << prometheusmetricscrapestatistics_tmp
+            end
+          end
+          @JobType = params['JobType']
+        end
+      end
+
       # prometheus一个job的targets
       class PrometheusJobTargets < TencentCloud::Common::AbstractModel
         # @param Targets: 该Job的targets列表
@@ -13499,6 +13669,38 @@ module TencentCloud
           @JobName = params['JobName']
           @Total = params['Total']
           @Up = params['Up']
+        end
+      end
+
+      # 指标抓取统计
+      class PrometheusMetricScrapeStatistics < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param SamplesRate: 原始数据中的点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SamplesRate: Float
+        # @param ScrapedRate: 被采集的点数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrapedRate: Float
+        # @param IsRecommended: 是否推荐采集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRecommended: Boolean
+
+        attr_accessor :MetricName, :SamplesRate, :ScrapedRate, :IsRecommended
+
+        def initialize(metricname=nil, samplesrate=nil, scrapedrate=nil, isrecommended=nil)
+          @MetricName = metricname
+          @SamplesRate = samplesrate
+          @ScrapedRate = scrapedrate
+          @IsRecommended = isrecommended
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @SamplesRate = params['SamplesRate']
+          @ScrapedRate = params['ScrapedRate']
+          @IsRecommended = params['IsRecommended']
         end
       end
 
@@ -14307,10 +14509,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 9
-        deprecate :MaxBlockSize=, :none, 2025, 9
-        deprecate :Label, :none, 2025, 9
-        deprecate :Label=, :none, 2025, 9
+        deprecate :MaxBlockSize, :none, 2025, 10
+        deprecate :MaxBlockSize=, :none, 2025, 10
+        deprecate :Label, :none, 2025, 10
+        deprecate :Label=, :none, 2025, 10
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

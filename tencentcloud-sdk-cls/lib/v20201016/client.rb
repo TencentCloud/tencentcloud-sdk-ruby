@@ -636,7 +636,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于创建日志主题。
+        # 本接口用于创建日志或指标主题。
 
         # @param request: Request instance for CreateTopic.
         # @type request: :class:`Tencentcloud::cls::V20201016::CreateTopicRequest`
@@ -1188,7 +1188,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于删除日志主题。
+        # 本接口用于删除日志或指标主题。
 
         # @param request: Request instance for DeleteTopic.
         # @type request: :class:`Tencentcloud::cls::V20201016::DeleteTopicRequest`
@@ -1981,7 +1981,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于获取日志主题列表，支持分页
+        # 本接口用于获取日志或指标主题列表，支持分页
 
         # @param request: Request instance for DescribeTopics.
         # @type request: :class:`Tencentcloud::cls::V20201016::DescribeTopicsRequest`
@@ -2558,7 +2558,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口用于修改日志主题。
+        # 本接口用于修改日志或指标主题。
 
         # @param request: Request instance for ModifyTopic.
         # @type request: :class:`Tencentcloud::cls::V20201016::ModifyTopicRequest`

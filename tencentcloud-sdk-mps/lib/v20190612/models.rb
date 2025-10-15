@@ -13221,7 +13221,9 @@ module TencentCloud
         # - PROCESSING（处理中）
         # - FINISH（已完成）。
         # @type Status: String
-        # @param SubTaskHasFailed: 任务结束时子任务是否有失败。
+        # @param SubTaskHasFailed: 任务结束时子任务是否有失败。如果不传则忽略。
+        # <li>false: 过滤子任务没有失败的任务；</li>
+        # <li>true: 过滤子任务有失败的任务。</li>
         # @type SubTaskHasFailed: Boolean
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer

@@ -413,6 +413,57 @@ module TencentCloud
         end
       end
 
+      # DescribeGatewayLoadBalancersResources请求参数结构体
+      class DescribeGatewayLoadBalancersResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回可用区资源列表数目，默认20，最大值100。
+        # @type Limit: Integer
+        # @param Offset: 返回可用区资源列表起始偏移量，默认0。
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeGatewayLoadBalancersResources返回参数结构体
+      class DescribeGatewayLoadBalancersResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneResourceSet: 可用区支持的资源列表。
+        # @type ZoneResourceSet: Array
+        # @param TotalCount: 可用区资源列表数目。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneResourceSet, :TotalCount, :RequestId
+
+        def initialize(zoneresourceset=nil, totalcount=nil, requestid=nil)
+          @ZoneResourceSet = zoneresourceset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneResourceSet'].nil?
+            @ZoneResourceSet = []
+            params['ZoneResourceSet'].each do |i|
+              zoneresource_tmp = ZoneResource.new
+              zoneresource_tmp.deserialize(i)
+              @ZoneResourceSet << zoneresource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGatewayLoadBalancers返回参数结构体
       class DescribeGatewayLoadBalancersResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 满足过滤条件的负载均衡实例总数。此数值与入参中的Limit无关。
@@ -1490,6 +1541,22 @@ module TencentCloud
         def deserialize(params)
           @InstanceIp = params['InstanceIp']
           @Status = params['Status']
+        end
+      end
+
+      # 可用区资源列表
+      class ZoneResource < TencentCloud::Common::AbstractModel
+        # @param MasterZone: 主可用区
+        # @type MasterZone: String
+
+        attr_accessor :MasterZone
+
+        def initialize(masterzone=nil)
+          @MasterZone = masterzone
+        end
+
+        def deserialize(params)
+          @MasterZone = params['MasterZone']
         end
       end
 

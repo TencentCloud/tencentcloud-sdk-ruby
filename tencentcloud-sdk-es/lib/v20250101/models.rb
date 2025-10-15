@@ -561,6 +561,64 @@ module TencentCloud
         end
       end
 
+      # GetMultiModalEmbedding请求参数结构体
+      class GetMultiModalEmbeddingRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称，支持WeCLIPv2-Base和WeCLIPv2-Large
+        # @type ModelName: String
+        # @param Texts: 需进行向量化的文本集，一次输入限10条，单条文本长度限72
+        # @type Texts: Array
+        # @param ImageData: 输入图片，base64编码格式，一次输入限制8个，单张图片限制1M
+        # @type ImageData: Array
+        # @param ImageUrl: 输入图片url，一次输入限8个，推荐cos地址，速度更快
+        # @type ImageUrl: Array
+
+        attr_accessor :ModelName, :Texts, :ImageData, :ImageUrl
+
+        def initialize(modelname=nil, texts=nil, imagedata=nil, imageurl=nil)
+          @ModelName = modelname
+          @Texts = texts
+          @ImageData = imagedata
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @Texts = params['Texts']
+          @ImageData = params['ImageData']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # GetMultiModalEmbedding返回参数结构体
+      class GetMultiModalEmbeddingResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 多模态特征向量输出
+        # @type Data: :class:`Tencentcloud::Es.v20250101.models.MultiModalEmbeddingData`
+        # @param Usage: 消耗的tokens和输入图片数量
+        # @type Usage: :class:`Tencentcloud::Es.v20250101.models.MultiModalUsage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Usage, :RequestId
+
+        def initialize(data=nil, usage=nil, requestid=nil)
+          @Data = data
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = MultiModalEmbeddingData.new
+            @Data.deserialize(params['Data'])
+          end
+          unless params['Usage'].nil?
+            @Usage = MultiModalUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetTextEmbedding请求参数结构体
       class GetTextEmbeddingRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型名称，可选模型列表：bge-base-zh-v1.5,Conan-embedding-v1,bge-m3,KaLM-embedding-multilingual-mini-v1,Qwen3-Embedding-0.6B。
@@ -647,6 +705,62 @@ module TencentCloud
               @ToolCalls << toolcall_tmp
             end
           end
+        end
+      end
+
+      # 多模态特征向量
+      class MultiModalEmbeddingData < TencentCloud::Common::AbstractModel
+        # @param TextEmbeddings: 文本特征向量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TextEmbeddings: Array
+        # @param ImageEmbeddings: 图片特征向量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageEmbeddings: Array
+
+        attr_accessor :TextEmbeddings, :ImageEmbeddings
+
+        def initialize(textembeddings=nil, imageembeddings=nil)
+          @TextEmbeddings = textembeddings
+          @ImageEmbeddings = imageembeddings
+        end
+
+        def deserialize(params)
+          unless params['TextEmbeddings'].nil?
+            @TextEmbeddings = []
+            params['TextEmbeddings'].each do |i|
+              embeddingdata_tmp = EmbeddingData.new
+              embeddingdata_tmp.deserialize(i)
+              @TextEmbeddings << embeddingdata_tmp
+            end
+          end
+          unless params['ImageEmbeddings'].nil?
+            @ImageEmbeddings = []
+            params['ImageEmbeddings'].each do |i|
+              embeddingdata_tmp = EmbeddingData.new
+              embeddingdata_tmp.deserialize(i)
+              @ImageEmbeddings << embeddingdata_tmp
+            end
+          end
+        end
+      end
+
+      # 多模态向量化消耗tokens和images数量
+      class MultiModalUsage < TencentCloud::Common::AbstractModel
+        # @param TotalTokens: 消耗tokens
+        # @type TotalTokens: Integer
+        # @param TotalImages: 输入图片数量
+        # @type TotalImages: Integer
+
+        attr_accessor :TotalTokens, :TotalImages
+
+        def initialize(totaltokens=nil, totalimages=nil)
+          @TotalTokens = totaltokens
+          @TotalImages = totalimages
+        end
+
+        def deserialize(params)
+          @TotalTokens = params['TotalTokens']
+          @TotalImages = params['TotalImages']
         end
       end
 

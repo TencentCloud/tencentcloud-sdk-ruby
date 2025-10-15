@@ -4771,10 +4771,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 9
-        deprecate :Model=, :none, 2025, 9
-        deprecate :TranslationLanguage, :none, 2025, 9
-        deprecate :TranslationLanguage=, :none, 2025, 9
+        deprecate :Model, :none, 2025, 10
+        deprecate :Model=, :none, 2025, 10
+        deprecate :TranslationLanguage, :none, 2025, 10
+        deprecate :TranslationLanguage=, :none, 2025, 10
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5897,12 +5897,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 9
-        deprecate :VideoEncodeParams=, :none, 2025, 9
-        deprecate :AudioEncodeParams, :none, 2025, 9
-        deprecate :AudioEncodeParams=, :none, 2025, 9
-        deprecate :SourceUrl, :none, 2025, 9
-        deprecate :SourceUrl=, :none, 2025, 9
+        deprecate :VideoEncodeParams, :none, 2025, 10
+        deprecate :VideoEncodeParams=, :none, 2025, 10
+        deprecate :AudioEncodeParams, :none, 2025, 10
+        deprecate :AudioEncodeParams=, :none, 2025, 10
+        deprecate :SourceUrl, :none, 2025, 10
+        deprecate :SourceUrl=, :none, 2025, 10
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -6734,10 +6734,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 9
-        deprecate :IMAdminUserId=, :none, 2025, 9
-        deprecate :IMAdminUserSig, :none, 2025, 9
-        deprecate :IMAdminUserSig=, :none, 2025, 9
+        deprecate :IMAdminUserId, :none, 2025, 10
+        deprecate :IMAdminUserId=, :none, 2025, 10
+        deprecate :IMAdminUserSig, :none, 2025, 10
+        deprecate :IMAdminUserSig=, :none, 2025, 10
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7300,30 +7300,30 @@ module TencentCloud
       class VoiceCloneRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: TRTC的SdkAppId
         # @type SdkAppId: Integer
-        # @param APIKey: TTS的API密钥
-        # @type APIKey: String
         # @param VoiceName: 声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位
         # @type VoiceName: String
         # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在5秒～12秒之间
         # @type PromptAudio: String
+        # @param APIKey: TTS的API密钥
+        # @type APIKey: String
         # @param PromptText: 声音克隆的参考文本，为参考音频对应的文字。
         # @type PromptText: String
 
-        attr_accessor :SdkAppId, :APIKey, :VoiceName, :PromptAudio, :PromptText
+        attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText
 
-        def initialize(sdkappid=nil, apikey=nil, voicename=nil, promptaudio=nil, prompttext=nil)
+        def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil)
           @SdkAppId = sdkappid
-          @APIKey = apikey
           @VoiceName = voicename
           @PromptAudio = promptaudio
+          @APIKey = apikey
           @PromptText = prompttext
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
-          @APIKey = params['APIKey']
           @VoiceName = params['VoiceName']
           @PromptAudio = params['PromptAudio']
+          @APIKey = params['APIKey']
           @PromptText = params['PromptText']
         end
       end

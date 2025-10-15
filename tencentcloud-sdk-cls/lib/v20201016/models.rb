@@ -2142,8 +2142,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 9
-        deprecate :Enable=, :none, 2025, 9
+        deprecate :Enable, :none, 2025, 10
+        deprecate :Enable=, :none, 2025, 10
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2482,8 +2482,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 9
-        deprecate :LogFormat=, :none, 2025, 9
+        deprecate :LogFormat, :none, 2025, 10
+        deprecate :LogFormat=, :none, 2025, 10
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -3699,46 +3699,51 @@ module TencentCloud
         # @param LogsetId: 日志集ID
         # - 通过[获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
         # @type LogsetId: String
-        # @param TopicName: 日志主题名称
+        # @param TopicName: 主题名称
         # 名称限制
         # - 不能为空字符串
         # - 不能包含字符'|'
         # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
         # @type TopicName: String
-        # @param PartitionCount: 日志主题分区个数。默认创建1个，最大支持创建10个分区。
+        # @param PartitionCount: 主题分区个数。默认创建1个，最大支持创建10个分区。
         # @type PartitionCount: Integer
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
         # @type Tags: Array
         # @param AutoSplit: 是否开启自动分裂，默认值为true
         # @type AutoSplit: Boolean
         # @param MaxSplitPartitions: 开启自动分裂后，每个主题能够允许的最大分区数，默认值为50
         # @type MaxSplitPartitions: Integer
-        # @param StorageType: 日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。
+        # @param StorageType: 日志主题的存储类型，可选值 hot（标准存储），cold（低频存储）；默认为hot。指标主题不支持该配置。
         # @type StorageType: String
         # @param Period: 存储时间，单位天。
-        # - 日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
-        # - 日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
+        # - 日志主题：日志接入标准存储时，支持1至3600天，值为3640时代表永久保存。
+        # - 日志主题：日志接入低频存储时，支持7至3600天，值为3640时代表永久保存。
+        # - 指标主题：支持1至3600天，值为3640时代表永久保存。
         # @type Period: Integer
-        # @param Describes: 日志主题描述
+        # @param Describes: 主题描述
         # @type Describes: String
-        # @param HotPeriod: 0：关闭日志沉降。
-        # 非0：开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
-        # 仅在StorageType为 hot 时生效。
+        # @param HotPeriod: 0：日志主题关闭日志沉降。
+        # 非0：日志主题开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
+        # 仅在StorageType为 hot 时生效，指标主题不支持该配置。
         # @type HotPeriod: Integer
+        # @param BizType: 主题类型
+        # - 0:日志主题，默认值
+        # - 1:指标主题
+        # @type BizType: Integer
         # @param TopicId: 主题自定义ID，格式为：用户自定义部分-用户APPID。未填写该参数时将自动生成ID。
         # - 用户自定义部分仅支持小写字母、数字和-，且不能以-开头和结尾，长度为3至40字符
         # - 尾部需要使用-拼接用户APPID，APPID可在https://console.cloud.tencent.com/developer页面查询。
         # - 如果指定该字段，需保证全地域唯一
         # @type TopicId: String
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。默认为false。
-        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
+        # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。指标主题不支持该配置。
         # @type IsWebTracking: Boolean
-        # @param Extends: 日志主题扩展信息
+        # @param Extends: 主题扩展信息
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :TopicId, :IsWebTracking, :Extends
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :BizType, :TopicId, :IsWebTracking, :Extends
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, topicid=nil, iswebtracking=nil, extends=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -3749,6 +3754,7 @@ module TencentCloud
           @Period = period
           @Describes = describes
           @HotPeriod = hotperiod
+          @BizType = biztype
           @TopicId = topicid
           @IsWebTracking = iswebtracking
           @Extends = extends
@@ -3772,6 +3778,7 @@ module TencentCloud
           @Period = params['Period']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @BizType = params['BizType']
           @TopicId = params['TopicId']
           @IsWebTracking = params['IsWebTracking']
           unless params['Extends'].nil?
@@ -3783,7 +3790,7 @@ module TencentCloud
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: 主题ID
         # @type TopicId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5043,8 +5050,7 @@ module TencentCloud
 
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: 主题ID- 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type TopicId: String
 
         attr_accessor :TopicId
@@ -7420,13 +7426,13 @@ module TencentCloud
 
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <ul><li>topicName 按照【日志主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
+        # @param Filters: <ul><li>topicName 按照【主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
         # <li>logsetName 按照【日志集名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
-        # <li>topicId 按照【日志主题ID】进行过滤。类型：String。必选：否</li>
+        # <li>topicId 按照【主题ID】进行过滤。类型：String。必选：否</li>
         # <li>logsetId 按照【日志集ID】进行过滤，可通过调用 <a href="https://cloud.tencent.com/document/product/614/58624">DescribeLogsets</a> 查询已创建的日志集列表或登录控制台进行查看；也可以调用<a href="https://cloud.tencent.com/document/product/614/58626">CreateLogset</a> 创建新的日志集。类型：String。必选：否</li>
         # <li>tagKey 按照【标签键】进行过滤。类型：String。必选：否</li>
         # <li>tag:tagKey 按照【标签键值对】进行过滤。tagKey 使用具体的标签键进行替换，例如 tag:exampleKey。类型：String。必选：否</li>
-        # <li>storageType 按照【日志主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String。必选：否</li></ul>
+        # <li>storageType 按照【主题的存储类型】进行过滤。可选值 hot（标准存储），cold（低频存储）类型：String。必选：否</li></ul>
         # 注意：每次请求的 Filters 的上限为10，Filter.Values 的上限为100。
         # @type Filters: Array
         # @param Offset: 分页的偏移量，默认值为0。
@@ -7472,7 +7478,7 @@ module TencentCloud
 
       # DescribeTopics返回参数结构体
       class DescribeTopicsResponse < TencentCloud::Common::AbstractModel
-        # @param Topics: 日志主题列表
+        # @param Topics: 主题列表
         # @type Topics: Array
         # @param TotalCount: 总数目
         # @type TotalCount: Integer
@@ -9330,8 +9336,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 9
-        deprecate :Enable=, :none, 2025, 9
+        deprecate :Enable, :none, 2025, 10
+        deprecate :Enable=, :none, 2025, 10
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -9629,8 +9635,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 9
-        deprecate :LogFormat=, :none, 2025, 9
+        deprecate :LogFormat, :none, 2025, 10
+        deprecate :LogFormat=, :none, 2025, 10
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -10711,38 +10717,39 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: 主题ID
+        # - 通过[获取主题列表](https://cloud.tencent.com/document/product/614/56454)获取主题Id。
         # @type TopicId: String
-        # @param TopicName: 日志主题名称
+        # @param TopicName: 主题名称
         # 输入限制：
         # - 不能为空字符串
         # - 不能包含字符'|'
         # - 不能使用以下名称["cls_service_log","loglistener_status","loglistener_alarm","loglistener_business","cls_service_metric"]
         # @type TopicName: String
-        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，并且不能有重复的键值对。
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的主题。最大支持10个标签键值对，并且不能有重复的键值对。
         # @type Tags: Array
         # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
         # 控制台目前不支持修改此参数。
         # @type Status: Boolean
         # @param AutoSplit: 是否开启自动分裂
         # @type AutoSplit: Boolean
-        # @param MaxSplitPartitions: 若开启最大分裂，该主题能够能够允许的最大分区数；
+        # @param MaxSplitPartitions: 若开启最大分裂，该主题能够允许的最大分区数；
         # 默认为50；必须为正数
         # @type MaxSplitPartitions: Integer
         # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         # @type Period: Integer
-        # @param Describes: 日志主题描述
+        # @param Describes: 主题描述
         # @type Describes: String
-        # @param HotPeriod: 0：关闭日志沉降。
-        # 非0：开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。仅在StorageType为 hot 时生效
+        # @param HotPeriod: 0：日志主题关闭日志沉降。
+        # 非0：日志主题开启日志沉降后标准存储的天数。HotPeriod需要大于等于7，且小于Period。
+        # 仅在StorageType为 hot 时生效，指标主题不支持该配置。
         # @type HotPeriod: Integer
         # @param IsWebTracking: 免鉴权开关。 false：关闭； true：开启。
         # 开启后将支持指定操作匿名访问该日志主题。详情请参见[日志主题](https://cloud.tencent.com/document/product/614/41035)。
         # @type IsWebTracking: Boolean
-        # @param Extends: 日志主题扩展信息
+        # @param Extends: 主题扩展信息
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
-        # @param PartitionCount: 日志主题分区数量。
+        # @param PartitionCount: 主题分区数量。
         # 默认为1；
         # 取值范围及约束：
         # - 当输入值<=0，系统自动调整为1。
@@ -11525,8 +11532,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 9
-        deprecate :DstTopicName=, :none, 2025, 9
+        deprecate :DstTopicName, :none, 2025, 10
+        deprecate :DstTopicName=, :none, 2025, 10
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -12820,8 +12827,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 9
-        deprecate :HashKey=, :none, 2025, 9
+        deprecate :HashKey, :none, 2025, 10
+        deprecate :HashKey=, :none, 2025, 10
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -12929,10 +12936,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 9
-        deprecate :Headers=, :none, 2025, 9
-        deprecate :Body, :none, 2025, 9
-        deprecate :Body=, :none, 2025, 9
+        deprecate :Headers, :none, 2025, 10
+        deprecate :Headers=, :none, 2025, 10
+        deprecate :Body, :none, 2025, 10
+        deprecate :Body=, :none, 2025, 10
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

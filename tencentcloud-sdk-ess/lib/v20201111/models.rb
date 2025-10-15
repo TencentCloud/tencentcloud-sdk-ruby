@@ -2176,7 +2176,7 @@ module TencentCloud
         # @param CanBatchReject: 是否允许此链接中签署方批量拒签。
         #  <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>
 
-        # 注：`合同组暂不支持批量拒签功能。`
+        # 注：`当前合同组不支持批量拒签功能。请对合同组中的每个子合同逐一执行拒签操作，以达到拒签整个合同组的效果。`
         # @type CanBatchReject: Boolean
         # @param PresetApproverInfo: 	 预设的动态签署方的补充信息，仅匹配对应信息的签署方才能领取合同。暂时仅对个人参与方生效。
         # @type PresetApproverInfo: :class:`Tencentcloud::Ess.v20201111.models.PresetApproverInfo`
@@ -2337,7 +2337,7 @@ module TencentCloud
         # 参考 [公众号 H5 跳转电子签小程序](https://qian.tencent.com/developers/company/openwxminiprogram/#23-%E5%85%AC%E4%BC%97%E5%8F%B7-h5-%E4%B8%AD%E8%B7%B3%E8%BD%AC)。
         # @type UrlUseEnv: String
         # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>
-        # 注：`1. 合同组暂不支持批量拒签功能。2. 如果是链接直接跳转至详情页（JumpToDetail参数为true），也不支持批量拒签功能`
+        # 注：`1. 当前合同组不支持批量拒签功能。请对合同组中的每个子合同逐一执行拒签操作，以达到拒签整个合同组的效果。2. 如果是链接直接跳转至详情页（JumpToDetail参数为true），也不支持批量拒签功能`
         # @type CanBatchReject: Boolean
         # @param CanSkipReadFlow: 是否允许此链接中签署方批量确认已读文件。 <ul><li>false (默认): 不允许批量确认已读文件。</li> <li>true : 允许批量确认已读文件。</li></ul>
         # 注：`1. 此功能为白名单功能，使用前请联系对应客户经理进行开通。2. 使用此功能时，FlowIds参数必传。3. 对于企业签署方，如果对印章/签名控件有限制要求，需要保证所有印章/签名签署控件限制要求(印章id或印章/签名类型限制)一致，否则无法使用此功能。`
@@ -5658,10 +5658,12 @@ module TencentCloud
         # @type RecipientIds: Array
         # @param FlowGroupId: 合同组Id，传入此参数则可以不传FlowIds
         # @type FlowGroupId: String
+        # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>注：`当前合同组不支持批量拒签功能。请对合同组中的每个子合同逐一执行拒签操作，以达到拒签整个合同组的效果。`
+        # @type CanBatchReject: Boolean
 
-        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds, :FlowGroupId
+        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds, :FlowGroupId, :CanBatchReject
 
-        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil, flowgroupid=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil, flowgroupid=nil, canbatchreject=nil)
           @Operator = operator
           @FlowIds = flowids
           @Agent = agent
@@ -5670,6 +5672,7 @@ module TencentCloud
           @Mobile = mobile
           @RecipientIds = recipientids
           @FlowGroupId = flowgroupid
+          @CanBatchReject = canbatchreject
         end
 
         def deserialize(params)
@@ -5687,6 +5690,7 @@ module TencentCloud
           @Mobile = params['Mobile']
           @RecipientIds = params['RecipientIds']
           @FlowGroupId = params['FlowGroupId']
+          @CanBatchReject = params['CanBatchReject']
         end
       end
 

@@ -201,6 +201,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户在当前地域支持可用区列表
+
+        # @param request: Request instance for DescribeGatewayLoadBalancersResources.
+        # @type request: :class:`Tencentcloud::gwlb::V20240906::DescribeGatewayLoadBalancersResourcesRequest`
+        # @rtype: :class:`Tencentcloud::gwlb::V20240906::DescribeGatewayLoadBalancersResourcesResponse`
+        def DescribeGatewayLoadBalancersResources(request)
+          body = send_request('DescribeGatewayLoadBalancersResources', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGatewayLoadBalancersResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询目标组后端服务状态。目前仅支持网关负载均衡类型的目标组支持查询后端服务状态。
 
         # @param request: Request instance for DescribeTargetGroupInstanceStatus.

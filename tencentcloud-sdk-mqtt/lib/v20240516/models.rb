@@ -2179,12 +2179,14 @@ module TencentCloud
         # @type TopicPrefixSlashLimit: Integer
         # @param MessageRate: 单客户端发送消息限速，单位 条/秒
         # @type MessageRate: Integer
+        # @param TransportLayerSecurity: 服务端tls支持的协议，使用“,”分割。例如：TLSv1.3,TLSv1.2,TLSv1.1,TLSv1
+        # @type TransportLayerSecurity: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2218,6 +2220,7 @@ module TencentCloud
           @ServerCertLimit = servercertlimit
           @TopicPrefixSlashLimit = topicprefixslashlimit
           @MessageRate = messagerate
+          @TransportLayerSecurity = transportlayersecurity
           @RequestId = requestid
         end
 
@@ -2255,6 +2258,7 @@ module TencentCloud
           @ServerCertLimit = params['ServerCertLimit']
           @TopicPrefixSlashLimit = params['TopicPrefixSlashLimit']
           @MessageRate = params['MessageRate']
+          @TransportLayerSecurity = params['TransportLayerSecurity']
           @RequestId = params['RequestId']
         end
       end
@@ -3356,12 +3360,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 9
-        deprecate :DeadLetterResendTimes=, :none, 2025, 9
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 9
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 9
-        deprecate :SubTopic, :none, 2025, 9
-        deprecate :SubTopic=, :none, 2025, 9
+        deprecate :DeadLetterResendTimes, :none, 2025, 10
+        deprecate :DeadLetterResendTimes=, :none, 2025, 10
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 10
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 10
+        deprecate :SubTopic, :none, 2025, 10
+        deprecate :SubTopic=, :none, 2025, 10
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3816,10 +3820,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 9
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 9
-        deprecate :AutomaticActivation, :none, 2025, 9
-        deprecate :AutomaticActivation=, :none, 2025, 9
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 10
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 10
+        deprecate :AutomaticActivation, :none, 2025, 10
+        deprecate :AutomaticActivation=, :none, 2025, 10
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -3945,8 +3949,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 9
-        deprecate :Text=, :none, 2025, 9
+        deprecate :Text, :none, 2025, 10
+        deprecate :Text=, :none, 2025, 10
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

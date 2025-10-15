@@ -4150,16 +4150,19 @@ module TencentCloud
         # @type Asc: Integer
         # @param Filters: 自定义查询过滤器。示例：<li>根据ClusterId过滤实例：[{"Name":"ClusterId","Values":["emr-xxxxxxxx"]}]</li><li>根据clusterName过滤实例：[{"Name": "ClusterName","Values": ["cluster_name"]}]</li><li>根据ClusterStatus过滤实例：[{"Name": "ClusterStatus","Values": ["2"]}]</li>
         # @type Filters: Array
+        # @param ClusterType: 默认0为普通集群，2为tke集群
+        # @type ClusterType: Integer
 
-        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters
+        attr_accessor :DisplayStrategy, :Offset, :Limit, :OrderField, :Asc, :Filters, :ClusterType
 
-        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil)
+        def initialize(displaystrategy=nil, offset=nil, limit=nil, orderfield=nil, asc=nil, filters=nil, clustertype=nil)
           @DisplayStrategy = displaystrategy
           @Offset = offset
           @Limit = limit
           @OrderField = orderfield
           @Asc = asc
           @Filters = filters
+          @ClusterType = clustertype
         end
 
         def deserialize(params)
@@ -4176,6 +4179,7 @@ module TencentCloud
               @Filters << filters_tmp
             end
           end
+          @ClusterType = params['ClusterType']
         end
       end
 

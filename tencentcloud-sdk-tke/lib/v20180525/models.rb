@@ -292,7 +292,13 @@ module TencentCloud
         # @type AddonVersion: String
         # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串
         # @type RawValues: String
-        # @param Phase: addon的状态
+        # @param Phase: addon的状态：
+        # - Installing：安装中
+        # - Upgrading：升级中
+        # - Terminating：删除中
+        # - Succeeded：安装/升级成功
+        # - InstallFailed：安装失败
+        # - UpgradFailed：升级失败
         # @type Phase: String
         # @param Reason: addon失败的原因
         # @type Reason: String
@@ -3913,9 +3919,9 @@ module TencentCloud
 
       # DeleteAddon请求参数结构体
       class DeleteAddonRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterId: String
-        # @param AddonName: addon名称
+        # @param AddonName: addon名称，请从容器服务控制台进入集群详情页后，在组件管理页面中获取。
         # @type AddonName: String
 
         attr_accessor :ClusterId, :AddonName
@@ -5068,7 +5074,7 @@ module TencentCloud
 
       # DescribeAddon请求参数结构体
       class DescribeAddonRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterId: String
         # @param AddonName: addon名称（不传时会返回集群下全部的addon）
         # @type AddonName: String
@@ -5115,9 +5121,9 @@ module TencentCloud
 
       # DescribeAddonValues请求参数结构体
       class DescribeAddonValuesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterId: String
-        # @param AddonName: addon名称
+        # @param AddonName: addon名称，请从容器服务控制台进入集群详情页后，在组件管理页面中获取。
         # @type AddonName: String
 
         attr_accessor :ClusterId, :AddonName
@@ -12544,15 +12550,15 @@ module TencentCloud
 
       # InstallAddon请求参数结构体
       class InstallAddonRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID（仅支持标准tke集群）
+        # @param ClusterId: 集群ID（仅支持标准tke集群），请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterId: String
-        # @param AddonName: addon名称
+        # @param AddonName: addon名称，请从容器服务控制台进入集群详情页后，在组件管理页面中获取。
         # @type AddonName: String
         # @param AddonVersion: addon版本（不传默认安装最新版本）
         # @type AddonVersion: String
         # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取）
         # @type RawValues: String
-        # @param DryRun: 是否仅做安装检查，设置为true时仅做检查，不会安装组件
+        # @param DryRun: 是否仅做安装检查，设置为true时仅做检查，不会安装组件。默认值为 false。
         # @type DryRun: Boolean
 
         attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues, :DryRun
@@ -18648,17 +18654,17 @@ module TencentCloud
 
       # UpdateAddon请求参数结构体
       class UpdateAddonRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID，请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterId: String
-        # @param AddonName: addon名称
+        # @param AddonName: addon名称，请从容器服务控制台进入集群详情页后，在组件管理页面中获取。
         # @type AddonName: String
         # @param AddonVersion: addon版本（不传默认不更新，不传AddonVersion时RawValues必传）
         # @type AddonVersion: String
-        # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取，不传RawValues时AddonVersion必传））
+        # @param RawValues: addon的参数，是一个json格式的base64转码后的字符串（addon参数由DescribeAddonValues获取，不传RawValues时AddonVersion必传）。
         # @type RawValues: String
         # @param UpdateStrategy: addon参数的更新策略，支持replace和merge两种策略，默认值为merge，兼容旧版本API。replace：使用新RawValues全量替换addon原RawValues，merge：根据新RawValues新增或更新addon原RawValues中对应参数。
         # @type UpdateStrategy: String
-        # @param DryRun: 是否仅做更新检查，设置为true时仅做检查，不会更新组件
+        # @param DryRun: 是否仅做更新检查，设置为true时仅做检查，不会更新组件。默认值为 false。
         # @type DryRun: Boolean
 
         attr_accessor :ClusterId, :AddonName, :AddonVersion, :RawValues, :UpdateStrategy, :DryRun

@@ -245,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建变量
+
+        # @param request: Request instance for CreateVariable.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::CreateVariableRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::CreateVariableResponse`
+        def CreateVariable(request)
+          body = send_request('CreateVariable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateVariableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建工作空间
 
         # @param request: Request instance for CreateWorkSpace.
@@ -759,6 +783,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTreeResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 变量列表展示
+
+        # @param request: Request instance for DescribeVariables.
+        # @type request: :class:`Tencentcloud::oceanus::V20190422::DescribeVariablesRequest`
+        # @rtype: :class:`Tencentcloud::oceanus::V20190422::DescribeVariablesResponse`
+        def DescribeVariables(request)
+          body = send_request('DescribeVariables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVariablesResponse.new
             model.deserialize(response['Response'])
             model
           else

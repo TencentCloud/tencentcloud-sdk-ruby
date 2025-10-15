@@ -20852,14 +20852,17 @@ module TencentCloud
         # @type FlowLogName: String
         # @param FlowLogDescription: 流日志实例描述。长度为不超过512个字符。
         # @type FlowLogDescription: String
+        # @param Period: 流日志采集周期，只支持CCN类型流日志。 取值范围（单位s）：60， 300， 600。
+        # @type Period: Integer
 
-        attr_accessor :FlowLogId, :VpcId, :FlowLogName, :FlowLogDescription
+        attr_accessor :FlowLogId, :VpcId, :FlowLogName, :FlowLogDescription, :Period
 
-        def initialize(flowlogid=nil, vpcid=nil, flowlogname=nil, flowlogdescription=nil)
+        def initialize(flowlogid=nil, vpcid=nil, flowlogname=nil, flowlogdescription=nil, period=nil)
           @FlowLogId = flowlogid
           @VpcId = vpcid
           @FlowLogName = flowlogname
           @FlowLogDescription = flowlogdescription
+          @Period = period
         end
 
         def deserialize(params)
@@ -20867,6 +20870,7 @@ module TencentCloud
           @VpcId = params['VpcId']
           @FlowLogName = params['FlowLogName']
           @FlowLogDescription = params['FlowLogDescription']
+          @Period = params['Period']
         end
       end
 

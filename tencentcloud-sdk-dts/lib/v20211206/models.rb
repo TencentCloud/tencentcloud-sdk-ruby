@@ -3367,18 +3367,21 @@ module TencentCloud
         # @type SrcItem: String
         # @param DstItem: 目标端值
         # @type DstItem: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
         # @param UpdatedAt: 更新时间
         # @type UpdatedAt: String
 
-        attr_accessor :Db, :Table, :SrcChunk, :DstChunk, :SrcItem, :DstItem, :UpdatedAt
+        attr_accessor :Db, :Table, :SrcChunk, :DstChunk, :SrcItem, :DstItem, :CreatedAt, :UpdatedAt
 
-        def initialize(db=nil, table=nil, srcchunk=nil, dstchunk=nil, srcitem=nil, dstitem=nil, updatedat=nil)
+        def initialize(db=nil, table=nil, srcchunk=nil, dstchunk=nil, srcitem=nil, dstitem=nil, createdat=nil, updatedat=nil)
           @Db = db
           @Table = table
           @SrcChunk = srcchunk
           @DstChunk = dstchunk
           @SrcItem = srcitem
           @DstItem = dstitem
+          @CreatedAt = createdat
           @UpdatedAt = updatedat
         end
 
@@ -3389,6 +3392,7 @@ module TencentCloud
           @DstChunk = params['DstChunk']
           @SrcItem = params['SrcItem']
           @DstItem = params['DstItem']
+          @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
         end
       end
