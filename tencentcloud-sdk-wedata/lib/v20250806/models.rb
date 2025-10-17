@@ -1223,6 +1223,7 @@ module TencentCloud
         # - GDB
         # - TDENGINE
         # - TDSQLC
+        # - FileSystem
         # @type Type: String
         # @param ProdConProperties: 数据源的配置信息，以JSON KV存储，根据每个数据源类型不同，而KV存储信息不同
 
@@ -1513,22 +1514,22 @@ module TencentCloud
       class CreateProjectMemberRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
         # @type ProjectId: String
-        # @param UseUins: 用户id
-        # @type UseUins: Array
+        # @param UserUins: 用户id
+        # @type UserUins: Array
         # @param RoleIds: 角色id
         # @type RoleIds: Array
 
-        attr_accessor :ProjectId, :UseUins, :RoleIds
+        attr_accessor :ProjectId, :UserUins, :RoleIds
 
-        def initialize(projectid=nil, useuins=nil, roleids=nil)
+        def initialize(projectid=nil, useruins=nil, roleids=nil)
           @ProjectId = projectid
-          @UseUins = useuins
+          @UserUins = useruins
           @RoleIds = roleids
         end
 
         def deserialize(params)
           @ProjectId = params['ProjectId']
-          @UseUins = params['UseUins']
+          @UserUins = params['UserUins']
           @RoleIds = params['RoleIds']
         end
       end
@@ -7750,7 +7751,7 @@ module TencentCloud
 
       # ListResourceGroups请求参数结构体
       class ListResourceGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 执行资源组类型，不能为空
+        # @param Type: 执行资源组类型
 
         # - Schedule --- 调度资源组
         # - Integration --- 集成资源组

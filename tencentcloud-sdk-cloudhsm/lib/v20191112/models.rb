@@ -750,23 +750,23 @@ module TencentCloud
         # @type TimeSpan: String
         # @param TimeUnit: 商品的时间单位，m表示月，y表示年
         # @type TimeUnit: String
-        # @param Currency: 货币类型，默认为CNY
-        # @type Currency: String
         # @param Type: 默认为CREATE，可选RENEW
         # @type Type: String
         # @param HsmType: Hsm服务类型，可选值virtualization、physical、GHSM、EHSM、SHSM
         # @type HsmType: String
+        # @param Currency: 货币类型，默认为CNY
+        # @type Currency: String
 
-        attr_accessor :GoodsNum, :PayMode, :TimeSpan, :TimeUnit, :Currency, :Type, :HsmType
+        attr_accessor :GoodsNum, :PayMode, :TimeSpan, :TimeUnit, :Type, :HsmType, :Currency
 
-        def initialize(goodsnum=nil, paymode=nil, timespan=nil, timeunit=nil, currency=nil, type=nil, hsmtype=nil)
+        def initialize(goodsnum=nil, paymode=nil, timespan=nil, timeunit=nil, type=nil, hsmtype=nil, currency=nil)
           @GoodsNum = goodsnum
           @PayMode = paymode
           @TimeSpan = timespan
           @TimeUnit = timeunit
-          @Currency = currency
           @Type = type
           @HsmType = hsmtype
+          @Currency = currency
         end
 
         def deserialize(params)
@@ -774,9 +774,9 @@ module TencentCloud
           @PayMode = params['PayMode']
           @TimeSpan = params['TimeSpan']
           @TimeUnit = params['TimeUnit']
-          @Currency = params['Currency']
           @Type = params['Type']
           @HsmType = params['HsmType']
+          @Currency = params['Currency']
         end
       end
 

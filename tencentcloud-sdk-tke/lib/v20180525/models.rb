@@ -3665,15 +3665,19 @@ module TencentCloud
         # @type InstanceName: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
+        # @param DryRun: 是否只预检此次请求。
+        # true：只预检，不会创建实例。默认值为：false。
+        # @type DryRun: Boolean
 
-        attr_accessor :ReservedInstanceSpec, :InstanceCount, :InstanceChargePrepaid, :InstanceName, :ClientToken
+        attr_accessor :ReservedInstanceSpec, :InstanceCount, :InstanceChargePrepaid, :InstanceName, :ClientToken, :DryRun
 
-        def initialize(reservedinstancespec=nil, instancecount=nil, instancechargeprepaid=nil, instancename=nil, clienttoken=nil)
+        def initialize(reservedinstancespec=nil, instancecount=nil, instancechargeprepaid=nil, instancename=nil, clienttoken=nil, dryrun=nil)
           @ReservedInstanceSpec = reservedinstancespec
           @InstanceCount = instancecount
           @InstanceChargePrepaid = instancechargeprepaid
           @InstanceName = instancename
           @ClientToken = clienttoken
+          @DryRun = dryrun
         end
 
         def deserialize(params)
@@ -3688,6 +3692,7 @@ module TencentCloud
           end
           @InstanceName = params['InstanceName']
           @ClientToken = params['ClientToken']
+          @DryRun = params['DryRun']
         end
       end
 

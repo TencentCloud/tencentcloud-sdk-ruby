@@ -1584,7 +1584,13 @@ module TencentCloud
 
       # 售卖实例类型
       class CdbSellType < TencentCloud::Common::AbstractModel
-        # @param TypeName: 售卖实例名称。Z3是高可用类型对应规格中的DeviceType包含UNIVERSAL,EXCLUSIVE；CVM是基础版类型对应规格中的DeviceType是BASIC；TKE是基础型v2类型对应规格中的DeviceType是BASIC_V2。
+        # @param TypeName: 售卖实例名称。
+        # Z3：是高可用类型，对应规格中的 DeviceType，包含 UNIVERSAL，EXCLUSIVE。
+        # CVM：是基础版类型，对应规格中的 DeviceType 是 BASIC（已下线）。
+        # TKE：是基础版v2类型，对应规格中的 DeviceType 是 BASIC_V2。
+        # CLOUD_NATIVE_CLUSTER：表示云盘版标准型。
+        # CLOUD_NATIVE_CLUSTER_EXCLUSIVE：表示云盘版加强型。
+        # ECONOMICAL：表示经济型。
         # @type TypeName: String
         # @param EngineVersion: 引擎版本号
         # @type EngineVersion: Array
@@ -1686,9 +1692,9 @@ module TencentCloud
         # @type IsSupportIpv6: Boolean
         # @param EngineType: 可支持的售卖数据库引擎类型
         # @type EngineType: Array
-        # @param CloudNativeClusterStatus: 集群版实例在当前可用区的售卖状态。可能的返回值为：1-上线；3-停售；4-不展示
+        # @param CloudNativeClusterStatus: 云盘版实例在当前可用区的售卖状态。可能的返回值为：1-上线；3-停售；4-不展示
         # @type CloudNativeClusterStatus: Integer
-        # @param DiskTypeConf: 集群版或者单节点基础型支持的磁盘类型。
+        # @param DiskTypeConf: 云盘版或者单节点基础型支持的磁盘类型。
         # @type DiskTypeConf: Array
 
         attr_accessor :Status, :ZoneName, :IsCustom, :IsSupportDr, :IsSupportVpc, :HourInstanceSaleMaxNum, :IsDefaultZone, :IsBm, :PayType, :ProtectMode, :Zone, :ZoneConf, :DrZone, :IsSupportRemoteRo, :RemoteRoZone, :ExClusterStatus, :ExClusterRemoteRoZone, :ExClusterZoneConf, :SellType, :ZoneId, :IsSupportIpv6, :EngineType, :CloudNativeClusterStatus, :DiskTypeConf
@@ -1853,7 +1859,7 @@ module TencentCloud
         end
       end
 
-      # 迁移集群版校验结果
+      # 迁移云盘版校验结果
       class CheckMigrateResult < TencentCloud::Common::AbstractModel
         # @param Name: 校验名称
         # @type Name: String
@@ -2117,7 +2123,7 @@ module TencentCloud
         end
       end
 
-      # 集群版节点信息
+      # 云盘版节点信息
       class ClusterInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点id
         # @type NodeId: String
@@ -2141,7 +2147,7 @@ module TencentCloud
         end
       end
 
-      # 集群版实例节点信息
+      # 云盘版实例节点信息
       class ClusterNodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeId: 节点id。
         # @type NodeId: String
@@ -8899,7 +8905,7 @@ module TencentCloud
 
       # 磁盘售卖类型
       class DiskTypeConfigItem < TencentCloud::Common::AbstractModel
-        # @param DeviceType: 磁盘对应的实例类型。仅支持单节点基础型和集群版。
+        # @param DeviceType: 磁盘对应的实例类型。仅支持单节点（云盘）和云盘版。
         # @type DeviceType: String
         # @param DiskType: 可以选择的磁盘类型列表。
         # @type DiskType: Array
@@ -9488,20 +9494,26 @@ module TencentCloud
         # @type EngineType: String
         # @param MaxDelayTime: 最大延迟阈值
         # @type MaxDelayTime: Integer
-        # @param DiskType: 实例磁盘类型，仅云盘版实例才返回该值。可能的值为 CLOUD_SSD：SSD云硬盘， CLOUD_HSSD：增强型SSD云硬盘
+        # @param DiskType: 实例磁盘类型，仅云盘版和单节点（云盘）实例才会返回有效值。
+        # 说明：
+        # 1. 若返回："DiskType": "CLOUD_HSSD"，则表示该实例磁盘类型为增强型 SSD 云硬盘。
+        # 2. 若返回："DiskType": "CLOUD_SSD"，则表示该实例磁盘类型为 SSD 云硬盘。
+        # 3. 若返回："DiskType": ""，且参数 DeviceType 值为 UNIVERSAL 或 EXCLUSIVE，则表示该实例采用的是本地 SSD 盘。
         # @type DiskType: String
         # @param ExpandCpu: 当前扩容的CPU核心数。
         # @type ExpandCpu: Integer
-        # @param ClusterInfo: 实例集群版节点信息
+        # @param ClusterInfo: 云盘版实例节点信息
         # @type ClusterInfo: Array
         # @param AnalysisNodeInfos: 分析引擎节点列表
         # @type AnalysisNodeInfos: Array
         # @param DeviceBandwidth: 设备带宽，单位G。当DeviceClass不为空时此参数才有效。例：25-表示当前设备带宽为25G；10-表示当前设备带宽为10G。
         # @type DeviceBandwidth: Integer
+        # @param DestroyProtect: 实例销毁保护状态，on表示开启保护，否则为关闭保护
+        # @type DestroyProtect: String
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9552,6 +9564,7 @@ module TencentCloud
           @ClusterInfo = clusterinfo
           @AnalysisNodeInfos = analysisnodeinfos
           @DeviceBandwidth = devicebandwidth
+          @DestroyProtect = destroyprotect
         end
 
         def deserialize(params)
@@ -9649,6 +9662,7 @@ module TencentCloud
             end
           end
           @DeviceBandwidth = params['DeviceBandwidth']
+          @DestroyProtect = params['DestroyProtect']
         end
       end
 
@@ -9926,7 +9940,7 @@ module TencentCloud
         end
       end
 
-      # 一键迁移集群版只读实例信息
+      # 一键迁移云盘版只读实例信息
       class MigrateClusterRoInfo < TencentCloud::Common::AbstractModel
         # @param RoInstanceId: 只读实例名称
         # @type RoInstanceId: String
@@ -9940,7 +9954,7 @@ module TencentCloud
         # @type DiskType: String
         # @param Zone: 可用区
         # @type Zone: String
-        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 标准型集群版实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 加强型集群版实例。
+        # @param DeviceType: 迁移实例类型。支持值包括： "CLOUD_NATIVE_CLUSTER" - 云盘版标准型实例， "CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 云盘版加强型实例。
         # @type DeviceType: String
         # @param RoGroupId: 只读实例所在ro组，例：cdbrg-xxx
         # @type RoGroupId: String

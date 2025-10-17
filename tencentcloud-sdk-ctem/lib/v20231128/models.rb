@@ -4555,10 +4555,14 @@ module TencentCloud
         # @type QrCode: String
         # @param Description: 描述
         # @type Description: String
+        # @param RecordSubject: 认证主体
+        # @type RecordSubject: String
+        # @param AccountAppid: 账号Appid
+        # @type AccountAppid: String
 
-        attr_accessor :Id, :DisplayToolCommon, :Name, :Logo, :AccountId, :QrCode, :Description
+        attr_accessor :Id, :DisplayToolCommon, :Name, :Logo, :AccountId, :QrCode, :Description, :RecordSubject, :AccountAppid
 
-        def initialize(id=nil, displaytoolcommon=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil)
+        def initialize(id=nil, displaytoolcommon=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil, recordsubject=nil, accountappid=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Name = name
@@ -4566,6 +4570,8 @@ module TencentCloud
           @AccountId = accountid
           @QrCode = qrcode
           @Description = description
+          @RecordSubject = recordsubject
+          @AccountAppid = accountappid
         end
 
         def deserialize(params)
@@ -4579,6 +4585,8 @@ module TencentCloud
           @AccountId = params['AccountId']
           @QrCode = params['QrCode']
           @Description = params['Description']
+          @RecordSubject = params['RecordSubject']
+          @AccountAppid = params['AccountAppid']
         end
       end
 
@@ -4598,10 +4606,12 @@ module TencentCloud
         # @type QrCode: String
         # @param Description: 描述
         # @type Description: String
+        # @param RecordSubject: 认证主体
+        # @type RecordSubject: String
 
-        attr_accessor :Id, :DisplayToolCommon, :Name, :Logo, :AccountId, :QrCode, :Description
+        attr_accessor :Id, :DisplayToolCommon, :Name, :Logo, :AccountId, :QrCode, :Description, :RecordSubject
 
-        def initialize(id=nil, displaytoolcommon=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil)
+        def initialize(id=nil, displaytoolcommon=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil, recordsubject=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Name = name
@@ -4609,6 +4619,7 @@ module TencentCloud
           @AccountId = accountid
           @QrCode = qrcode
           @Description = description
+          @RecordSubject = recordsubject
         end
 
         def deserialize(params)
@@ -4622,6 +4633,7 @@ module TencentCloud
           @AccountId = params['AccountId']
           @QrCode = params['QrCode']
           @Description = params['Description']
+          @RecordSubject = params['RecordSubject']
         end
       end
 

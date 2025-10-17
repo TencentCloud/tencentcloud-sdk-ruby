@@ -53,6 +53,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建终端节点
+
+        # @param request: Request instance for CreateExtendEndpoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreateExtendEndpointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreateExtendEndpointResponse`
+        def CreateExtendEndpoint(request)
+          body = send_request('CreateExtendEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExtendEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建自定义转发规则
+
+        # @param request: Request instance for CreateForwardRule.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreateForwardRuleRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreateForwardRuleResponse`
+        def CreateForwardRule(request)
+          body = send_request('CreateForwardRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateForwardRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除入站终端节点
+
+        # @param request: Request instance for CreateInboundEndpoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreateInboundEndpointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreateInboundEndpointResponse`
+        def CreateInboundEndpoint(request)
+          body = send_request('CreateInboundEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInboundEndpointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 跨账号关联VPC时绑定其他账号
 
         # @param request: Request instance for CreatePrivateDNSAccount.
@@ -111,6 +183,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePrivateZoneRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除终端节点
+
+        # @param request: Request instance for DeleteEndPoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DeleteEndPointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DeleteEndPointResponse`
+        def DeleteEndPoint(request)
+          body = send_request('DeleteEndPoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEndPointResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除转发规则并停止转发
+
+        # @param request: Request instance for DeleteForwardRule.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DeleteForwardRuleRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DeleteForwardRuleResponse`
+        def DeleteForwardRule(request)
+          body = send_request('DeleteForwardRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteForwardRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除入站终端节点
+
+        # @param request: Request instance for DeleteInboundEndpoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DeleteInboundEndpointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DeleteInboundEndpointResponse`
+        def DeleteInboundEndpoint(request)
+          body = send_request('DeleteInboundEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInboundEndpointResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -279,6 +423,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDashboardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取终端节点列表
+
+        # @param request: Request instance for DescribeExtendEndpointList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeExtendEndpointListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeExtendEndpointListResponse`
+        def DescribeExtendEndpointList(request)
+          body = send_request('DescribeExtendEndpointList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExtendEndpointListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询转发规则列表
+
+        # @param request: Request instance for DescribeForwardRuleList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeForwardRuleListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeForwardRuleListResponse`
+        def DescribeForwardRuleList(request)
+          body = send_request('DescribeForwardRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeForwardRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取入站终端节点列表
+
+        # @param request: Request instance for DescribeInboundEndpointList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeInboundEndpointListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeInboundEndpointListResponse`
+        def DescribeInboundEndpointList(request)
+          body = send_request('DescribeInboundEndpointList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInboundEndpointListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -471,6 +687,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRequestDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改转发规则
+
+        # @param request: Request instance for ModifyForwardRule.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::ModifyForwardRuleRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::ModifyForwardRuleResponse`
+        def ModifyForwardRule(request)
+          body = send_request('ModifyForwardRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyForwardRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除入站终端节点
+
+        # @param request: Request instance for ModifyInboundEndpoint.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::ModifyInboundEndpointRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::ModifyInboundEndpointResponse`
+        def ModifyInboundEndpoint(request)
+          body = send_request('ModifyInboundEndpoint', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInboundEndpointResponse.new
             model.deserialize(response['Response'])
             model
           else

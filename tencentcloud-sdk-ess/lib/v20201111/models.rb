@@ -1216,6 +1216,42 @@ module TencentCloud
         end
       end
 
+      # 合同对比差异结果详情。
+      class ComparisonDetail < TencentCloud::Common::AbstractModel
+        # @param ComparisonType: 对比前后差异类型，具体如下：
+        # <ul><li> **add**：新增</li>
+        # <li> **change**：变更</li>
+        # <li> **delete**：删除</li>
+        # </ul>
+        # @type ComparisonType: String
+        # @param ContentType: 对比内容类型，具体如下：
+        # <ul><li> **text**：文本</li>
+        # <li> **table**：表格</li>
+        # <li> **picture**：图片</li>
+        # </ul>
+        # @type ContentType: String
+        # @param OriginText: 原文文本。
+        # @type OriginText: String
+        # @param DiffText: 对比文本。
+        # @type DiffText: String
+
+        attr_accessor :ComparisonType, :ContentType, :OriginText, :DiffText
+
+        def initialize(comparisontype=nil, contenttype=nil, origintext=nil, difftext=nil)
+          @ComparisonType = comparisontype
+          @ContentType = contenttype
+          @OriginText = origintext
+          @DiffText = difftext
+        end
+
+        def deserialize(params)
+          @ComparisonType = params['ComparisonType']
+          @ContentType = params['ContentType']
+          @OriginText = params['OriginText']
+          @DiffText = params['DiffText']
+        end
+      end
+
       # 此结构体 (Component) 用于描述控件属性。
 
       # 在通过文件发起合同时，对应的component有三种定位方式
@@ -2429,6 +2465,79 @@ module TencentCloud
         end
       end
 
+      # CreateContractComparisonTask请求参数结构体
+      class CreateContractComparisonTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同审查任务的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param OriginFileResourceId: 原版文件ID，对比基准的旧版本文件唯一标识，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+        # @type OriginFileResourceId: String
+        # @param DiffFileResourceId: 新版文件ID，与旧版进行对比的新版本文件唯一标识，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+        # @type DiffFileResourceId: String
+        # @param Comment: 对比任务备注，长度不能超过50个字符。
+        # @type Comment: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
+        # @param Tags: 标签列表，用户自定义的键值对（Key-Value），可绑定到资源上，用于资源的分类、管理和访问控制。
+        # @type Tags: Array
+
+        attr_accessor :Operator, :OriginFileResourceId, :DiffFileResourceId, :Comment, :UserData, :Tags
+
+        def initialize(operator=nil, originfileresourceid=nil, difffileresourceid=nil, comment=nil, userdata=nil, tags=nil)
+          @Operator = operator
+          @OriginFileResourceId = originfileresourceid
+          @DiffFileResourceId = difffileresourceid
+          @Comment = comment
+          @UserData = userdata
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @OriginFileResourceId = params['OriginFileResourceId']
+          @DiffFileResourceId = params['DiffFileResourceId']
+          @Comment = params['Comment']
+          @UserData = params['UserData']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateContractComparisonTask返回参数结构体
+      class CreateContractComparisonTaskResponse < TencentCloud::Common::AbstractModel
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+        # @type UserData: String
+        # @param TaskId: 合同对比任务ID，可以调用接口<a href="https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/DescribeContractComparisonTask" target="_blank">查询合同对比任务结果</a>查看对比任务的结果。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserData, :TaskId, :RequestId
+
+        def initialize(userdata=nil, taskid=nil, requestid=nil)
+          @UserData = userdata
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserData = params['UserData']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateContractDiffTaskWebUrl请求参数结构体
       class CreateContractDiffTaskWebUrlRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
@@ -2443,14 +2552,22 @@ module TencentCloud
         # @type OriginalFileResourceId: String
         # @param DiffFileResourceId: 需要对比的新合同文件资源ID，通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
         # @type DiffFileResourceId: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
 
-        attr_accessor :Operator, :SkipFileUpload, :OriginalFileResourceId, :DiffFileResourceId
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
+        # @param Tags: 标签列表，用户自定义的键值对（Key-Value），可绑定到资源上，用于资源的分类、管理和访问控制。
+        # @type Tags: Array
 
-        def initialize(operator=nil, skipfileupload=nil, originalfileresourceid=nil, difffileresourceid=nil)
+        attr_accessor :Operator, :SkipFileUpload, :OriginalFileResourceId, :DiffFileResourceId, :UserData, :Tags
+
+        def initialize(operator=nil, skipfileupload=nil, originalfileresourceid=nil, difffileresourceid=nil, userdata=nil, tags=nil)
           @Operator = operator
           @SkipFileUpload = skipfileupload
           @OriginalFileResourceId = originalfileresourceid
           @DiffFileResourceId = difffileresourceid
+          @UserData = userdata
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2461,6 +2578,15 @@ module TencentCloud
           @SkipFileUpload = params['SkipFileUpload']
           @OriginalFileResourceId = params['OriginalFileResourceId']
           @DiffFileResourceId = params['DiffFileResourceId']
+          @UserData = params['UserData']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2472,20 +2598,24 @@ module TencentCloud
         # @param WebUrl: 合同对比嵌入式web页面链接，有效期：5分钟
         # 链接仅能使用一次
         # @type WebUrl: String
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+        # @type UserData: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :WebUrl, :RequestId
+        attr_accessor :TaskId, :WebUrl, :UserData, :RequestId
 
-        def initialize(taskid=nil, weburl=nil, requestid=nil)
+        def initialize(taskid=nil, weburl=nil, userdata=nil, requestid=nil)
           @TaskId = taskid
           @WebUrl = weburl
+          @UserData = userdata
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
           @WebUrl = params['WebUrl']
+          @UserData = params['UserData']
           @RequestId = params['RequestId']
         end
       end
@@ -8471,12 +8601,16 @@ module TencentCloud
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
         # @param TaskId: 合同对比任务ID，该参数通过调用接口CreateContractComparisonTask获取。
         # @type TaskId: String
+        # @param ShowDetail: 是否返回详细的对比结果。为 true时，响应中将包含详细的对比信息，如相似度、文本差异具体内容等；为 false时，仅返回任务基本状态信息。
+        # 注：`详细结果数据量可能较大，请按需开启。`
+        # @type ShowDetail: Boolean
 
-        attr_accessor :Operator, :TaskId
+        attr_accessor :Operator, :TaskId, :ShowDetail
 
-        def initialize(operator=nil, taskid=nil)
+        def initialize(operator=nil, taskid=nil, showdetail=nil)
           @Operator = operator
           @TaskId = taskid
+          @ShowDetail = showdetail
         end
 
         def deserialize(params)
@@ -8485,6 +8619,7 @@ module TencentCloud
             @Operator.deserialize(params['Operator'])
           end
           @TaskId = params['TaskId']
+          @ShowDetail = params['ShowDetail']
         end
       end
 
@@ -8520,12 +8655,14 @@ module TencentCloud
         # @type Operator: String
         # @param CreateTime: 合同对比任务创建时间，时间戳。
         # @type CreateTime: Integer
+        # @param ComparisonDetail: 对比差异详情，请求参数ShowDetail为true时返回。
+        # @type ComparisonDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :Message, :OriginalFileResourceId, :DiffFileResourceId, :Comment, :TotalDiffCount, :AddDiffCount, :ChangeDiffCount, :DeleteDiffCount, :Operator, :CreateTime, :RequestId
+        attr_accessor :TaskId, :Status, :Message, :OriginalFileResourceId, :DiffFileResourceId, :Comment, :TotalDiffCount, :AddDiffCount, :ChangeDiffCount, :DeleteDiffCount, :Operator, :CreateTime, :ComparisonDetail, :RequestId
 
-        def initialize(taskid=nil, status=nil, message=nil, originalfileresourceid=nil, difffileresourceid=nil, comment=nil, totaldiffcount=nil, adddiffcount=nil, changediffcount=nil, deletediffcount=nil, operator=nil, createtime=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, message=nil, originalfileresourceid=nil, difffileresourceid=nil, comment=nil, totaldiffcount=nil, adddiffcount=nil, changediffcount=nil, deletediffcount=nil, operator=nil, createtime=nil, comparisondetail=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @Message = message
@@ -8538,6 +8675,7 @@ module TencentCloud
           @DeleteDiffCount = deletediffcount
           @Operator = operator
           @CreateTime = createtime
+          @ComparisonDetail = comparisondetail
           @RequestId = requestid
         end
 
@@ -8554,6 +8692,14 @@ module TencentCloud
           @DeleteDiffCount = params['DeleteDiffCount']
           @Operator = params['Operator']
           @CreateTime = params['CreateTime']
+          unless params['ComparisonDetail'].nil?
+            @ComparisonDetail = []
+            params['ComparisonDetail'].each do |i|
+              comparisondetail_tmp = ComparisonDetail.new
+              comparisondetail_tmp.deserialize(i)
+              @ComparisonDetail << comparisondetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10050,7 +10196,7 @@ module TencentCloud
         # @type InfoType: Integer
         # @param SealId: 印章id，是否查询特定的印章（没有输入返回所有）
         # @type SealId: String
-        # @param SealTypes: 印章种类列表（均为组织机构印章）。 若无特定需求，将展示所有类型的印章。 目前支持以下几种：<ul> <li><strong>OFFICIAL</strong>：企业公章；</li> <li><strong>CONTRACT</strong>：合同专用章；</li> <li><strong>ORGANIZATION_SEAL</strong>：企业印章（通过图片上传创建）；</li> <li><strong>LEGAL_PERSON_SEAL</strong>：法定代表人章。</li> <li><strong>EMPLOYEE_QUALIFICATION_SEAL</strong>：员工执业章。</li> </ul>
+        # @param SealTypes: 印章种类列表（均为组织机构印章）。 若无特定需求，将展示所有类型的印章。 目前支持以下几种：<ul> <li><strong>OFFICIAL</strong>：企业公章；</li> <li><strong>CONTRACT</strong>：合同专用章；</li> <li><strong>FINANCE</strong>：财务专用章；</li> <li><strong>PERSONNEL</strong>：人事专用章；</li><li><strong>INVOICE</strong>：发票专用章；</li><li><strong>LEGAL_PERSON_SEAL</strong>：法定代表人章。</li> <li><strong>EMPLOYEE_QUALIFICATION_SEAL</strong>：员工执业章。</li> </ul>
         # @type SealTypes: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -10818,6 +10964,71 @@ module TencentCloud
         end
       end
 
+      # ExportContractComparisonTask请求参数结构体
+      class ExportContractComparisonTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同审查任务的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同对比任务ID，该参数通过调用接口CreateContractComparisonTask获取。
+        # @type TaskId: String
+        # @param ExportType: 导出对比结果文件类型。
+        # 类型如下：
+        # <ul>
+        # <li> **0**：【PDF】以新合同文件为基础，导出带有可视化对比点标注的PDF文件。</li>
+        # <li> **1**：【EXCEL】导出结构化的对比点明细表格，以列表形式罗列每一个差异点，包含改动位置、类型、标签及修改前后的完整内容。</li>
+        # </ul>
+        # @type ExportType: Integer
+        # @param Ignore: 是否忽略，适用于PDF。
+        # <ul>
+        # <li> **true**：导出文件标注去掉忽略项。</li>
+        # <li> **false**：导出文件包含所有对比点。</li>
+        # </ul>
+        # @type Ignore: Boolean
+
+        attr_accessor :Operator, :TaskId, :ExportType, :Ignore
+
+        def initialize(operator=nil, taskid=nil, exporttype=nil, ignore=nil)
+          @Operator = operator
+          @TaskId = taskid
+          @ExportType = exporttype
+          @Ignore = ignore
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+          @ExportType = params['ExportType']
+          @Ignore = params['Ignore']
+        end
+      end
+
+      # ExportContractComparisonTask返回参数结构体
+      class ExportContractComparisonTaskResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceUrl: 对比任务详情下载链接。
+        # @type ResourceUrl: String
+        # @param ExpireTime: 下载链接有效截止时间。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceUrl, :ExpireTime, :RequestId
+
+        def initialize(resourceurl=nil, expiretime=nil, requestid=nil)
+          @ResourceUrl = resourceurl
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceUrl = params['ResourceUrl']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 扩展服务开通和授权的详细信息
       class ExtendAuthInfo < TencentCloud::Common::AbstractModel
         # @param Type: 扩展服务的类型，可能是以下值：
@@ -10917,19 +11128,21 @@ module TencentCloud
         # @param Description: 用于描述字段信息。
 
         # 注意：
-        # 1、`如果Type值为OPTION时，需要在字段描述中填写选项值，用,分隔`
-        # 2、描述字段不能超过100个字符
+        # 1、描述字段不能超过100个字符
         # @type Description: String
         # @param Values: 提取出合同中的字段信息。
         # @type Values: Array
+        # @param ChoiceList: 当字段类型`Type`为OPTION时为必输项，输入选项值
+        # @type ChoiceList: Array
 
-        attr_accessor :Name, :Type, :Description, :Values
+        attr_accessor :Name, :Type, :Description, :Values, :ChoiceList
 
-        def initialize(name=nil, type=nil, description=nil, values=nil)
+        def initialize(name=nil, type=nil, description=nil, values=nil, choicelist=nil)
           @Name = name
           @Type = type
           @Description = description
           @Values = values
+          @ChoiceList = choicelist
         end
 
         def deserialize(params)
@@ -10937,6 +11150,7 @@ module TencentCloud
           @Type = params['Type']
           @Description = params['Description']
           @Values = params['Values']
+          @ChoiceList = params['ChoiceList']
         end
       end
 
@@ -15597,6 +15811,26 @@ module TencentCloud
           @Mobile = params['Mobile']
           @UserId = params['UserId']
           @Url = params['Url']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键，最大长度不超过50字符。
+        # @type TagKey: String
+        # @param TagValue: 标签值，最大长度不超过50字符。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

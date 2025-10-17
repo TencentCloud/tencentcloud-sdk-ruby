@@ -263,6 +263,85 @@ module TencentCloud
         end
       end
 
+      # 文件鉴定任务分页数据
+      class CreateDLPFileDetectTaskData < TencentCloud::Common::AbstractModel
+        # @param TaskRequestId: 任务请求唯一Id
+        # @type TaskRequestId: Array
+
+        attr_accessor :TaskRequestId
+
+        def initialize(taskrequestid=nil)
+          @TaskRequestId = taskrequestid
+        end
+
+        def deserialize(params)
+          @TaskRequestId = params['TaskRequestId']
+        end
+      end
+
+      # CreateDLPFileDetectTask请求参数结构体
+      class CreateDLPFileDetectTaskRequest < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: 文件下载Url
+        # @type DownloadUrl: String
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileMd5: 文件Md5
+        # @type FileMd5: String
+        # @param BalanceType: 负载类型  1 从GroupId中选一节点 鉴定  2使用所有SelectNodeIds节点鉴定
+        # @type BalanceType: Integer
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param SelectNodeIds: 选中节点唯一Id列表,BalanceType=2时必填
+        # @type SelectNodeIds: Array
+        # @param GroupId: 节点组唯一Id,BalanceType=1时必填
+        # @type GroupId: String
+
+        attr_accessor :DownloadUrl, :FileName, :FileMd5, :BalanceType, :DomainInstanceId, :SelectNodeIds, :GroupId
+
+        def initialize(downloadurl=nil, filename=nil, filemd5=nil, balancetype=nil, domaininstanceid=nil, selectnodeids=nil, groupid=nil)
+          @DownloadUrl = downloadurl
+          @FileName = filename
+          @FileMd5 = filemd5
+          @BalanceType = balancetype
+          @DomainInstanceId = domaininstanceid
+          @SelectNodeIds = selectnodeids
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @FileName = params['FileName']
+          @FileMd5 = params['FileMd5']
+          @BalanceType = params['BalanceType']
+          @DomainInstanceId = params['DomainInstanceId']
+          @SelectNodeIds = params['SelectNodeIds']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # CreateDLPFileDetectTask返回参数结构体
+      class CreateDLPFileDetectTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 创建文件鉴定任务数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.CreateDLPFileDetectTaskData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateDLPFileDetectTaskData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 提交送检任务相应数据
       class CreateDLPFileDetectionTaskData < TencentCloud::Common::AbstractModel
         # @param DLPFileDetectionTaskID: 提交任务生成的id，也即requestID。用于后续查询
@@ -1012,6 +1091,246 @@ module TencentCloud
         end
       end
 
+      # DescribeDLPEdgeNodeGroups请求参数结构体
+      class DescribeDLPEdgeNodeGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: 过滤条件
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :DomainInstanceId, :Condition
+
+        def initialize(domaininstanceid=nil, condition=nil)
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeDLPEdgeNodeGroups返回参数结构体
+      class DescribeDLPEdgeNodeGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDLPEdgeNodeGroupsRspData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDLPEdgeNodeGroupsRspData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeDLPEdgeNodeGroupsRspData < TencentCloud::Common::AbstractModel
+        # @param Items: 分组信息
+        # @type Items: Array
+        # @param Page: 分页信息
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+
+        attr_accessor :Items, :Page
+
+        def initialize(items=nil, page=nil)
+          @Items = items
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describedlpedgenodegroupsrspitem_tmp = DescribeDLPEdgeNodeGroupsRspItem.new
+              describedlpedgenodegroupsrspitem_tmp.deserialize(i)
+              @Items << describedlpedgenodegroupsrspitem_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # 节点分组信息
+      class DescribeDLPEdgeNodeGroupsRspItem < TencentCloud::Common::AbstractModel
+        # @param Id: 自增id，数据库中唯一
+        # @type Id: Integer
+        # @param GroupName: 节点分组名称
+        # @type GroupName: String
+        # @param GroupId: 节点分组id
+        # @type GroupId: String
+        # @param EdgeCount: 包含边缘节点数量
+        # @type EdgeCount: Integer
+
+        attr_accessor :Id, :GroupName, :GroupId, :EdgeCount
+
+        def initialize(id=nil, groupname=nil, groupid=nil, edgecount=nil)
+          @Id = id
+          @GroupName = groupname
+          @GroupId = groupid
+          @EdgeCount = edgecount
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @GroupName = params['GroupName']
+          @GroupId = params['GroupId']
+          @EdgeCount = params['EdgeCount']
+        end
+      end
+
+      # 业务响应数据
+      class DescribeDLPEdgeNodesPageData < TencentCloud::Common::AbstractModel
+        # @param Page: 分页信息
+        # @type Page: :class:`Tencentcloud::Ioa.v20220601.models.Paging`
+        # @param Items: 节点列表
+        # @type Items: Array
+
+        attr_accessor :Page, :Items
+
+        def initialize(page=nil, items=nil)
+          @Page = page
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Page'].nil?
+            @Page = Paging.new
+            @Page.deserialize(params['Page'])
+          end
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describedlpedgenodesrspitem_tmp = DescribeDLPEdgeNodesRspItem.new
+              describedlpedgenodesrspitem_tmp.deserialize(i)
+              @Items << describedlpedgenodesrspitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeDLPEdgeNodes请求参数结构体
+      class DescribeDLPEdgeNodesRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param Condition: 过滤条件、分页参数<li>EdgeNodeName - string - 是否必填：否 - 操作符: ilike  - 排序支持：否- 按节点名称过滤。</li>
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :DomainInstanceId, :Condition
+
+        def initialize(domaininstanceid=nil, condition=nil)
+          @DomainInstanceId = domaininstanceid
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # DescribeDLPEdgeNodes返回参数结构体
+      class DescribeDLPEdgeNodesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDLPEdgeNodesPageData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDLPEdgeNodesPageData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 边缘节点信息
+      class DescribeDLPEdgeNodesRspItem < TencentCloud::Common::AbstractModel
+        # @param Id: 自增id，数据库中唯一
+        # @type Id: Integer
+        # @param GroupId: 节点分组唯一id
+        # @type GroupId: String
+        # @param EdgeNodeId: 节点id
+        # @type EdgeNodeId: String
+        # @param EdgeNodeName: 节点名称
+        # @type EdgeNodeName: String
+        # @param IsActive: 是否活跃/连通
+        # @type IsActive: Boolean
+        # @param GroupName: 节点分组名称
+        # @type GroupName: String
+        # @param Ip: 节点IP
+        # @type Ip: String
+        # @param Version: 节点版本
+        # @type Version: String
+        # @param IsUpgradeEnable: 是否支持升级连接器
+        # @type IsUpgradeEnable: Boolean
+        # @param UpgradeStatus: 升级状态: 0(升级中) , 1(升级失败) 或 2(升级成功)
+        # @type UpgradeStatus: Integer
+        # @param UpgradeDescription: 升级状态描述
+        # @type UpgradeDescription: String
+        # @param RuleVersion: 规则版本
+        # @type RuleVersion: String
+
+        attr_accessor :Id, :GroupId, :EdgeNodeId, :EdgeNodeName, :IsActive, :GroupName, :Ip, :Version, :IsUpgradeEnable, :UpgradeStatus, :UpgradeDescription, :RuleVersion
+
+        def initialize(id=nil, groupid=nil, edgenodeid=nil, edgenodename=nil, isactive=nil, groupname=nil, ip=nil, version=nil, isupgradeenable=nil, upgradestatus=nil, upgradedescription=nil, ruleversion=nil)
+          @Id = id
+          @GroupId = groupid
+          @EdgeNodeId = edgenodeid
+          @EdgeNodeName = edgenodename
+          @IsActive = isactive
+          @GroupName = groupname
+          @Ip = ip
+          @Version = version
+          @IsUpgradeEnable = isupgradeenable
+          @UpgradeStatus = upgradestatus
+          @UpgradeDescription = upgradedescription
+          @RuleVersion = ruleversion
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @GroupId = params['GroupId']
+          @EdgeNodeId = params['EdgeNodeId']
+          @EdgeNodeName = params['EdgeNodeName']
+          @IsActive = params['IsActive']
+          @GroupName = params['GroupName']
+          @Ip = params['Ip']
+          @Version = params['Version']
+          @IsUpgradeEnable = params['IsUpgradeEnable']
+          @UpgradeStatus = params['UpgradeStatus']
+          @UpgradeDescription = params['UpgradeDescription']
+          @RuleVersion = params['RuleVersion']
+        end
+      end
+
       # 查询文件检测结果响应数据
       class DescribeDLPFileDetectResultData < TencentCloud::Common::AbstractModel
         # @param FileMd5: 提交任务时的文件md5
@@ -1077,6 +1396,106 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = DescribeDLPFileDetectResultData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询文件检测结果响应数据
+      class DescribeDLPFileDetectTaskResult < TencentCloud::Common::AbstractModel
+        # @param FileMd5: 提交任务时的文件md5
+        # @type FileMd5: String
+        # @param FileName: 提交任务时的文件名
+        # @type FileName: String
+        # @param Status: 检测执行状态：0未执行 1等待执行 2执行中 3执行失败 4执行完成
+        # @type Status: Integer
+        # @param DetectResult:     FileAbstract:文件摘要
+        #     FileAttr:文件属性
+        #     FileCategory:命中分级分类 array
+        #     FileContent:命中信息json(array)
+        # 	            RuleId:规则Id
+        # 				RuleName:规则名称
+        # 				RuleLevel:规则等级
+        # 				Hits：命中词库内容
+        # 				    LibraryId：词库Id
+        # 					LibraryType:词库类型
+        # 					LibraryName:词库名称
+        # 					Attribute: 命中属性 doc.Content文件内容|doc.FileSize文件大小|doc.Name文件名|doc.Type文件类型
+        # 					String  待匹配内容
+        # 					Content 命中内容
+        #                 HitsTotal 规则命中次数
+        #     FileMd5 文件ND5
+        #     FileName 文件名
+        #     FileSize 文件大小
+        #     FileType 文件后缀
+        #     FileTypeName 文件类型名称
+        #     FinalDataLevel 命中最高等级
+        #     NodeId 节点唯一Id
+        #     NodeIp 节点IP
+        #     NodeName 节点名称
+        #     OperateTime 文件操作时间
+        #     Url 文件下载Url
+        # @type DetectResult: String
+        # @param Message: 检测执行状态描述
+        # @type Message: String
+
+        attr_accessor :FileMd5, :FileName, :Status, :DetectResult, :Message
+
+        def initialize(filemd5=nil, filename=nil, status=nil, detectresult=nil, message=nil)
+          @FileMd5 = filemd5
+          @FileName = filename
+          @Status = status
+          @DetectResult = detectresult
+          @Message = message
+        end
+
+        def deserialize(params)
+          @FileMd5 = params['FileMd5']
+          @FileName = params['FileName']
+          @Status = params['Status']
+          @DetectResult = params['DetectResult']
+          @Message = params['Message']
+        end
+      end
+
+      # DescribeDLPFileDetectTaskResult请求参数结构体
+      class DescribeDLPFileDetectTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param TaskRequestId: 任务请求Id
+        # @type TaskRequestId: String
+
+        attr_accessor :DomainInstanceId, :TaskRequestId
+
+        def initialize(domaininstanceid=nil, taskrequestid=nil)
+          @DomainInstanceId = domaininstanceid
+          @TaskRequestId = taskrequestid
+        end
+
+        def deserialize(params)
+          @DomainInstanceId = params['DomainInstanceId']
+          @TaskRequestId = params['TaskRequestId']
+        end
+      end
+
+      # DescribeDLPFileDetectTaskResult返回参数结构体
+      class DescribeDLPFileDetectTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 文件鉴定任务结果数据。详情查看具体数据结构
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DescribeDLPFileDetectTaskResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeDLPFileDetectTaskResult.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

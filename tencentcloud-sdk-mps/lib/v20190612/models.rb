@@ -844,6 +844,7 @@ module TencentCloud
         # <li>Description：大模型摘要</li>
         # <li>Dubbing：智能译制</li>
         # <li>VideoRemake: 视频去重</li>
+        # <li>VideoComprehension: 视频（音频）理解</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -881,10 +882,13 @@ module TencentCloud
         # @param VideoRemakeTask: 视频内容分析去重任务的查询结果，当任务类型为 VideoRemake 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoRemakeTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoRemakeResult`
+        # @param VideoComprehensionTask: 视频（音频）理解任务的查询结果，当任务类型为 VideoComprehension 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoComprehensionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask, :VideoComprehensionTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil, videocomprehensiontask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -898,6 +902,7 @@ module TencentCloud
           @HorizontalToVerticalTask = horizontaltoverticaltask
           @DubbingTask = dubbingtask
           @VideoRemakeTask = videoremaketask
+          @VideoComprehensionTask = videocomprehensiontask
         end
 
         def deserialize(params)
@@ -949,6 +954,10 @@ module TencentCloud
           unless params['VideoRemakeTask'].nil?
             @VideoRemakeTask = AiAnalysisTaskVideoRemakeResult.new
             @VideoRemakeTask.deserialize(params['VideoRemakeTask'])
+          end
+          unless params['VideoComprehensionTask'].nil?
+            @VideoComprehensionTask = AiAnalysisTaskVideoComprehensionResult.new
+            @VideoComprehensionTask.deserialize(params['VideoComprehensionTask'])
           end
         end
       end
@@ -1911,6 +1920,93 @@ module TencentCloud
             @Output = AiAnalysisTaskTagOutput.new
             @Output.deserialize(params['Output'])
           end
+        end
+      end
+
+      # 视频（音频）理解任务输入
+      class AiAnalysisTaskVideoComprehensionInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频（音频）理解模板ID
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 视频（音频）理解输出内容结果信息
+      class AiAnalysisTaskVideoComprehensionOutput < TencentCloud::Common::AbstractModel
+        # @param VideoComprehensionAnalysisResult: 视频（音频）理解内容详情
+        # @type VideoComprehensionAnalysisResult: String
+
+        attr_accessor :VideoComprehensionAnalysisResult
+
+        def initialize(videocomprehensionanalysisresult=nil)
+          @VideoComprehensionAnalysisResult = videocomprehensionanalysisresult
+        end
+
+        def deserialize(params)
+          @VideoComprehensionAnalysisResult = params['VideoComprehensionAnalysisResult']
+        end
+      end
+
+      # 视频（音频）理解结果
+      class AiAnalysisTaskVideoComprehensionResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 `PROCESSING`，`SUCCESS` 和 `FAIL` 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败
+        # @type ErrCode: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Input: 视频（音频）理解输入
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionInput`
+        # @param Output: 视频（音频）理解输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionOutput`
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 媒体处理类错误码 列表
+        # @type ErrCodeExt: String
+        # @param Progress: 任务进度
+        # @type Progress: Integer
+        # @param BeginProcessTime: 任务开始执行的时间，采用 ISO 日期格式。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕时间，采用 ISO 日期格式。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output, :ErrCodeExt, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil, errcodeext=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @ErrCodeExt = errcodeext
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskVideoComprehensionInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskVideoComprehensionOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @ErrCodeExt = params['ErrCodeExt']
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 

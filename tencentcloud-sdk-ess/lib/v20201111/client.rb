@@ -451,6 +451,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateContractComparisonTask）用于创建合同对比任务。
+        # 适用场景：对比两份合同中字段（如：金额、日期、甲方名称等）的内容差异。
+
+        # @param request: Request instance for CreateContractComparisonTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateContractComparisonTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateContractComparisonTaskResponse`
+        def CreateContractComparisonTask(request)
+          body = send_request('CreateContractComparisonTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateContractComparisonTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 接口（CreateContractDiffTaskWebUrl）用于创建合同对比的可嵌入web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
         # 注：本接口生成的web页面暂不支持<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreateWebThemeConfig" target="_blank">设置本企业嵌入式页面主题配置</a>
 
@@ -3460,6 +3485,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisableUserAutoSignResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ExportContractComparisonTask）用于导出指定的合同对比任务的结果文件。任务完成后，用户可根据不同的使用场景，选择导出可视化对比报告（PDF）或结构化差异明细（EXCEL）。
+
+        # @param request: Request instance for ExportContractComparisonTask.
+        # @type request: :class:`Tencentcloud::ess::V20201111::ExportContractComparisonTaskRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::ExportContractComparisonTaskResponse`
+        def ExportContractComparisonTask(request)
+          body = send_request('ExportContractComparisonTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportContractComparisonTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

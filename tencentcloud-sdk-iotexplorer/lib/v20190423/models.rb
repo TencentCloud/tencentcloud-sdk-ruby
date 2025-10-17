@@ -12409,7 +12409,7 @@ module TencentCloud
         end
       end
 
-      # TTS配置信息。
+      # 会话配置信息。
       class TalkConversationConfigInfo < TencentCloud::Common::AbstractModel
         # @param SessionTimeout: 会话超时（秒）
         # @type SessionTimeout: Integer
@@ -12421,15 +12421,21 @@ module TencentCloud
         # @type IdleDetection: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkIdleDetectionConfigInfo`
         # @param EmotionEnabled: 是否启用情绪识别
         # @type EmotionEnabled: Boolean
+        # @param SemanticVADEnabled: 是否启用语义vad
+        # @type SemanticVADEnabled: Boolean
+        # @param NoiseFilterEnabled: 是否启用噪声过滤
+        # @type NoiseFilterEnabled: Boolean
 
-        attr_accessor :SessionTimeout, :InterruptionEnabled, :MaxContextTokens, :IdleDetection, :EmotionEnabled
+        attr_accessor :SessionTimeout, :InterruptionEnabled, :MaxContextTokens, :IdleDetection, :EmotionEnabled, :SemanticVADEnabled, :NoiseFilterEnabled
 
-        def initialize(sessiontimeout=nil, interruptionenabled=nil, maxcontexttokens=nil, idledetection=nil, emotionenabled=nil)
+        def initialize(sessiontimeout=nil, interruptionenabled=nil, maxcontexttokens=nil, idledetection=nil, emotionenabled=nil, semanticvadenabled=nil, noisefilterenabled=nil)
           @SessionTimeout = sessiontimeout
           @InterruptionEnabled = interruptionenabled
           @MaxContextTokens = maxcontexttokens
           @IdleDetection = idledetection
           @EmotionEnabled = emotionenabled
+          @SemanticVADEnabled = semanticvadenabled
+          @NoiseFilterEnabled = noisefilterenabled
         end
 
         def deserialize(params)
@@ -12441,6 +12447,8 @@ module TencentCloud
             @IdleDetection.deserialize(params['IdleDetection'])
           end
           @EmotionEnabled = params['EmotionEnabled']
+          @SemanticVADEnabled = params['SemanticVADEnabled']
+          @NoiseFilterEnabled = params['NoiseFilterEnabled']
         end
       end
 

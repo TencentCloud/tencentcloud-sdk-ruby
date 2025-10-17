@@ -244,6 +244,164 @@ module TencentCloud
         end
       end
 
+      # CreateExtendEndpoint请求参数结构体
+      class CreateExtendEndpointRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateExtendEndpoint返回参数结构体
+      class CreateExtendEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 终端节点id
+        # @type EndpointId: String
+        # @param EndpointName: 终端节点名称
+        # @type EndpointName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndpointId, :EndpointName, :RequestId
+
+        def initialize(endpointid=nil, endpointname=nil, requestid=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateForwardRule请求参数结构体
+      class CreateForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleName: 转发规则名称
+        # @type RuleName: String
+        # @param RuleType: 转发规则类型：云上到云下DOWN，云下到云上UP
+        # @type RuleType: String
+        # @param ZoneId: 私有域ID，可在私有域列表页面查看
+        # @type ZoneId: String
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+
+        attr_accessor :RuleName, :RuleType, :ZoneId, :EndPointId
+
+        def initialize(rulename=nil, ruletype=nil, zoneid=nil, endpointid=nil)
+          @RuleName = rulename
+          @RuleType = ruletype
+          @ZoneId = zoneid
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @ZoneId = params['ZoneId']
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # CreateForwardRule返回参数结构体
+      class CreateForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则ID
+        # @type RuleId: String
+        # @param RuleName: 转发规则名称
+        # @type RuleName: String
+        # @param RuleType: 转发规则类型
+        # @type RuleType: String
+        # @param ZoneId: 私有域ID
+        # @type ZoneId: String
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RuleId, :RuleName, :RuleType, :ZoneId, :EndPointId, :RequestId
+
+        def initialize(ruleid=nil, rulename=nil, ruletype=nil, zoneid=nil, endpointid=nil, requestid=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @RuleType = ruletype
+          @ZoneId = zoneid
+          @EndPointId = endpointid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @RuleType = params['RuleType']
+          @ZoneId = params['ZoneId']
+          @EndPointId = params['EndPointId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateInboundEndpoint请求参数结构体
+      class CreateInboundEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param EndpointName: 名称
+        # @type EndpointName: String
+        # @param EndpointRegion: 地域
+        # @type EndpointRegion: String
+        # @param EndpointVpc: vpcid
+        # @type EndpointVpc: String
+        # @param SubnetIp: 子网信息
+        # @type SubnetIp: Array
+
+        attr_accessor :EndpointName, :EndpointRegion, :EndpointVpc, :SubnetIp
+
+        def initialize(endpointname=nil, endpointregion=nil, endpointvpc=nil, subnetip=nil)
+          @EndpointName = endpointname
+          @EndpointRegion = endpointregion
+          @EndpointVpc = endpointvpc
+          @SubnetIp = subnetip
+        end
+
+        def deserialize(params)
+          @EndpointName = params['EndpointName']
+          @EndpointRegion = params['EndpointRegion']
+          @EndpointVpc = params['EndpointVpc']
+          unless params['SubnetIp'].nil?
+            @SubnetIp = []
+            params['SubnetIp'].each do |i|
+              subnetipinfo_tmp = SubnetIpInfo.new
+              subnetipinfo_tmp.deserialize(i)
+              @SubnetIp << subnetipinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateInboundEndpoint返回参数结构体
+      class CreateInboundEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 终端节点ID
+        # @type EndpointId: String
+        # @param EndpointName: 名称
+        # @type EndpointName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EndpointId, :EndpointName, :RequestId
+
+        def initialize(endpointid=nil, endpointname=nil, requestid=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrivateDNSAccount请求参数结构体
       class CreatePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
         # @param Account: 私有域解析账号
@@ -364,8 +522,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 9
-        deprecate :Vpcs=, :none, 2025, 9
+        deprecate :Vpcs, :none, 2025, 10
+        deprecate :Vpcs=, :none, 2025, 10
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
@@ -459,6 +617,102 @@ module TencentCloud
         def deserialize(params)
           @Date = params['Date']
           @Value = params['Value']
+        end
+      end
+
+      # DeleteEndPoint请求参数结构体
+      class DeleteEndPointRequest < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+
+        attr_accessor :EndPointId
+
+        def initialize(endpointid=nil)
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # DeleteEndPoint返回参数结构体
+      class DeleteEndPointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteForwardRule请求参数结构体
+      class DeleteForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleIdSet: 转发规则ID数组
+        # @type RuleIdSet: Array
+
+        attr_accessor :RuleIdSet
+
+        def initialize(ruleidset=nil)
+          @RuleIdSet = ruleidset
+        end
+
+        def deserialize(params)
+          @RuleIdSet = params['RuleIdSet']
+        end
+      end
+
+      # DeleteForwardRule返回参数结构体
+      class DeleteForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInboundEndpoint请求参数结构体
+      class DeleteInboundEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 终端节点ID
+        # @type EndpointId: String
+
+        attr_accessor :EndpointId
+
+        def initialize(endpointid=nil)
+          @EndpointId = endpointid
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+        end
+      end
+
+      # DeleteInboundEndpoint返回参数结构体
+      class DeleteInboundEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -837,6 +1091,177 @@ module TencentCloud
               flowusage_tmp = FlowUsage.new
               flowusage_tmp.deserialize(i)
               @FlowUsage << flowusage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExtendEndpointList请求参数结构体
+      class DescribeExtendEndpointListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目， 最大100，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤参数，支持EndpointName,EndpointId
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeExtendEndpointList返回参数结构体
+      class DescribeExtendEndpointListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeForwardRuleList请求参数结构体
+      class DescribeForwardRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目， 最大100，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤参数
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeForwardRuleList返回参数结构体
+      class DescribeForwardRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 私有域数量
+        # @type TotalCount: Integer
+        # @param ForwardRuleSet: 私有域列表
+        # @type ForwardRuleSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ForwardRuleSet, :RequestId
+
+        def initialize(totalcount=nil, forwardruleset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ForwardRuleSet = forwardruleset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ForwardRuleSet'].nil?
+            @ForwardRuleSet = []
+            params['ForwardRuleSet'].each do |i|
+              forwardrule_tmp = ForwardRule.new
+              forwardrule_tmp.deserialize(i)
+              @ForwardRuleSet << forwardrule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInboundEndpointList请求参数结构体
+      class DescribeInboundEndpointListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量，从0开始
+        # @type Offset: Integer
+        # @param Limit: 分页限制数目， 最大100，默认20
+        # @type Limit: Integer
+        # @param Filters: 过滤参数，支持EndPointName，EndpointName，EndpointId
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeInboundEndpointList返回参数结构体
+      class DescribeInboundEndpointListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param InboundEndpointSet: 终端节点信息
+        # @type InboundEndpointSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :InboundEndpointSet, :RequestId
+
+        def initialize(totalcount=nil, inboundendpointset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @InboundEndpointSet = inboundendpointset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['InboundEndpointSet'].nil?
+            @InboundEndpointSet = []
+            params['InboundEndpointSet'].each do |i|
+              inboundendpointset_tmp = InboundEndpointSet.new
+              inboundendpointset_tmp.deserialize(i)
+              @InboundEndpointSet << inboundendpointset_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1250,6 +1675,42 @@ module TencentCloud
         end
       end
 
+      # 终端节点信息
+      class EndPointServiceInfo < TencentCloud::Common::AbstractModel
+        # @param EndPointVip: ip
+        # @type EndPointVip: String
+        # @param UniqSubnetId: 子网id
+        # @type UniqSubnetId: String
+        # @param EndPointState: 网络侧状态，0 可用，1 待接受，3 拒绝
+        # @type EndPointState: Integer
+        # @param EndPointStatus: 状态，1表示可用，0表示删除
+        # @type EndPointStatus: Integer
+        # @param EndPointRemark: 备注信息
+        # @type EndPointRemark: String
+        # @param EndPointIsolateFlag: 网络侧隔离状态，1：已隔离，0：未隔离
+        # @type EndPointIsolateFlag: Integer
+
+        attr_accessor :EndPointVip, :UniqSubnetId, :EndPointState, :EndPointStatus, :EndPointRemark, :EndPointIsolateFlag
+
+        def initialize(endpointvip=nil, uniqsubnetid=nil, endpointstate=nil, endpointstatus=nil, endpointremark=nil, endpointisolateflag=nil)
+          @EndPointVip = endpointvip
+          @UniqSubnetId = uniqsubnetid
+          @EndPointState = endpointstate
+          @EndPointStatus = endpointstatus
+          @EndPointRemark = endpointremark
+          @EndPointIsolateFlag = endpointisolateflag
+        end
+
+        def deserialize(params)
+          @EndPointVip = params['EndPointVip']
+          @UniqSubnetId = params['UniqSubnetId']
+          @EndPointState = params['EndPointState']
+          @EndPointStatus = params['EndPointStatus']
+          @EndPointRemark = params['EndPointRemark']
+          @EndPointIsolateFlag = params['EndPointIsolateFlag']
+        end
+      end
+
       # 筛选参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 参数名
@@ -1294,6 +1755,123 @@ module TencentCloud
         end
       end
 
+      # 转发规则详情
+      class ForwardRule < TencentCloud::Common::AbstractModel
+        # @param Domain: 私有域名
+        # @type Domain: String
+        # @param RuleName: 转发规则名称
+        # @type RuleName: String
+        # @param RuleId: 规则id
+        # @type RuleId: String
+        # @param RuleType: 转发规则类型：云上到云下DOWN、云下到云上DOWN
+        # @type RuleType: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新时间
+        # @type UpdatedAt: String
+        # @param EndPointName: 终端节点名称
+        # @type EndPointName: String
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+        # @param ForwardAddress: 转发地址
+        # @type ForwardAddress: Array
+        # @param VpcSet: 私有域绑定的vpc列表
+        # @type VpcSet: Array
+        # @param ZoneId: 绑定的私有域ID
+        # @type ZoneId: String
+        # @param Tags: 标签
+        # @type Tags: Array
+
+        attr_accessor :Domain, :RuleName, :RuleId, :RuleType, :CreatedAt, :UpdatedAt, :EndPointName, :EndPointId, :ForwardAddress, :VpcSet, :ZoneId, :Tags
+
+        def initialize(domain=nil, rulename=nil, ruleid=nil, ruletype=nil, createdat=nil, updatedat=nil, endpointname=nil, endpointid=nil, forwardaddress=nil, vpcset=nil, zoneid=nil, tags=nil)
+          @Domain = domain
+          @RuleName = rulename
+          @RuleId = ruleid
+          @RuleType = ruletype
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @EndPointName = endpointname
+          @EndPointId = endpointid
+          @ForwardAddress = forwardaddress
+          @VpcSet = vpcset
+          @ZoneId = zoneid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RuleName = params['RuleName']
+          @RuleId = params['RuleId']
+          @RuleType = params['RuleType']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @EndPointName = params['EndPointName']
+          @EndPointId = params['EndPointId']
+          @ForwardAddress = params['ForwardAddress']
+          unless params['VpcSet'].nil?
+            @VpcSet = []
+            params['VpcSet'].each do |i|
+              vpcinfo_tmp = VpcInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VpcSet << vpcinfo_tmp
+            end
+          end
+          @ZoneId = params['ZoneId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 终端节点信息列表
+      class InboundEndpointSet < TencentCloud::Common::AbstractModel
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+        # @param EndPointName: 名称
+        # @type EndPointName: String
+        # @param UniqVpcId: vpcid
+        # @type UniqVpcId: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param UpdatedAt: 更新时间
+        # @type UpdatedAt: String
+        # @param EndPointService: 终端节点信息
+        # @type EndPointService: Array
+
+        attr_accessor :EndPointId, :EndPointName, :UniqVpcId, :CreatedAt, :UpdatedAt, :EndPointService
+
+        def initialize(endpointid=nil, endpointname=nil, uniqvpcid=nil, createdat=nil, updatedat=nil, endpointservice=nil)
+          @EndPointId = endpointid
+          @EndPointName = endpointname
+          @UniqVpcId = uniqvpcid
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @EndPointService = endpointservice
+        end
+
+        def deserialize(params)
+          @EndPointId = params['EndPointId']
+          @EndPointName = params['EndPointName']
+          @UniqVpcId = params['UniqVpcId']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          unless params['EndPointService'].nil?
+            @EndPointService = []
+            params['EndPointService'].each do |i|
+              endpointserviceinfo_tmp = EndPointServiceInfo.new
+              endpointserviceinfo_tmp.deserialize(i)
+              @EndPointService << endpointserviceinfo_tmp
+            end
+          end
+        end
+      end
+
       # 统计数据表
       class MetricData < TencentCloud::Common::AbstractModel
         # @param Resource: 资源描述
@@ -1326,6 +1904,82 @@ module TencentCloud
             end
           end
           @MetricCount = params['MetricCount']
+        end
+      end
+
+      # ModifyForwardRule请求参数结构体
+      class ModifyForwardRuleRequest < TencentCloud::Common::AbstractModel
+        # @param RuleId: 转发规则ID
+        # @type RuleId: String
+        # @param RuleName: 转发规则名称
+        # @type RuleName: String
+        # @param EndPointId: 终端节点ID
+        # @type EndPointId: String
+
+        attr_accessor :RuleId, :RuleName, :EndPointId
+
+        def initialize(ruleid=nil, rulename=nil, endpointid=nil)
+          @RuleId = ruleid
+          @RuleName = rulename
+          @EndPointId = endpointid
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @RuleName = params['RuleName']
+          @EndPointId = params['EndPointId']
+        end
+      end
+
+      # ModifyForwardRule返回参数结构体
+      class ModifyForwardRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInboundEndpoint请求参数结构体
+      class ModifyInboundEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 终端节点ID
+        # @type EndpointId: String
+        # @param EndpointName: 终端节点名称
+        # @type EndpointName: String
+
+        attr_accessor :EndpointId, :EndpointName
+
+        def initialize(endpointid=nil, endpointname=nil)
+          @EndpointId = endpointid
+          @EndpointName = endpointname
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @EndpointName = params['EndpointName']
+        end
+      end
+
+      # ModifyInboundEndpoint返回参数结构体
+      class ModifyInboundEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1880,6 +2534,26 @@ module TencentCloud
           @UpdatedOn = params['UpdatedOn']
           @Enabled = params['Enabled']
           @Remark = params['Remark']
+        end
+      end
+
+      # 终端节点信息
+      class SubnetIpInfo < TencentCloud::Common::AbstractModel
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param SubnetVip: ip
+        # @type SubnetVip: String
+
+        attr_accessor :SubnetId, :SubnetVip
+
+        def initialize(subnetid=nil, subnetvip=nil)
+          @SubnetId = subnetid
+          @SubnetVip = subnetvip
+        end
+
+        def deserialize(params)
+          @SubnetId = params['SubnetId']
+          @SubnetVip = params['SubnetVip']
         end
       end
 

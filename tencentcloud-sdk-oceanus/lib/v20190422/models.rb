@@ -3902,9 +3902,11 @@ module TencentCloud
         # @param ClusterName: 集群名字
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
-        # @param LatestJobConfigVersion: 最新配置版本号
+        # @param LatestJobConfigVersion: 最新配置版本号，包括已经删除的版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestJobConfigVersion: Integer
+        # @param LatestValidJobConfigVersion: 最新的版本号，不包括已经删除的版本号
+        # @type LatestValidJobConfigVersion: Integer
         # @param PublishedJobConfigVersion: 已发布的配置版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublishedJobConfigVersion: Integer
@@ -3971,10 +3973,12 @@ module TencentCloud
         # @type ProgressDesc: String
         # @param ContinueAlarm: 停止持续告警
         # @type ContinueAlarm: Integer
+        # @param RestartCount: 作业重启次数
+        # @type RestartCount: Integer
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -3993,6 +3997,7 @@ module TencentCloud
           @LastOpResult = lastopresult
           @ClusterName = clustername
           @LatestJobConfigVersion = latestjobconfigversion
+          @LatestValidJobConfigVersion = latestvalidjobconfigversion
           @PublishedJobConfigVersion = publishedjobconfigversion
           @RunningCuNum = runningcunum
           @CuMem = cumem
@@ -4015,6 +4020,7 @@ module TencentCloud
           @OpenJobDefaultAlarm = openjobdefaultalarm
           @ProgressDesc = progressdesc
           @ContinueAlarm = continuealarm
+          @RestartCount = restartcount
         end
 
         def deserialize(params)
@@ -4036,6 +4042,7 @@ module TencentCloud
           @LastOpResult = params['LastOpResult']
           @ClusterName = params['ClusterName']
           @LatestJobConfigVersion = params['LatestJobConfigVersion']
+          @LatestValidJobConfigVersion = params['LatestValidJobConfigVersion']
           @PublishedJobConfigVersion = params['PublishedJobConfigVersion']
           @RunningCuNum = params['RunningCuNum']
           @CuMem = params['CuMem']
@@ -4068,6 +4075,7 @@ module TencentCloud
           @OpenJobDefaultAlarm = params['OpenJobDefaultAlarm']
           @ProgressDesc = params['ProgressDesc']
           @ContinueAlarm = params['ContinueAlarm']
+          @RestartCount = params['RestartCount']
         end
       end
 
@@ -5894,10 +5902,12 @@ module TencentCloud
         # @param DecodeSqlCode: sql
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DecodeSqlCode: String
+        # @param PublishedJobConfigId: 发布版本配置id
+        # @type PublishedJobConfigId: Integer
 
-        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem, :DecodeSqlCode
+        attr_accessor :JobId, :Name, :JobType, :RunningCu, :Status, :ScalingType, :RunningCpu, :RunningMem, :DecodeSqlCode, :PublishedJobConfigId
 
-        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, decodesqlcode=nil)
+        def initialize(jobid=nil, name=nil, jobtype=nil, runningcu=nil, status=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, decodesqlcode=nil, publishedjobconfigid=nil)
           @JobId = jobid
           @Name = name
           @JobType = jobtype
@@ -5907,6 +5917,7 @@ module TencentCloud
           @RunningCpu = runningcpu
           @RunningMem = runningmem
           @DecodeSqlCode = decodesqlcode
+          @PublishedJobConfigId = publishedjobconfigid
         end
 
         def deserialize(params)
@@ -5919,6 +5930,7 @@ module TencentCloud
           @RunningCpu = params['RunningCpu']
           @RunningMem = params['RunningMem']
           @DecodeSqlCode = params['DecodeSqlCode']
+          @PublishedJobConfigId = params['PublishedJobConfigId']
         end
       end
 
