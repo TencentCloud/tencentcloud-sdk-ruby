@@ -3657,17 +3657,30 @@ module TencentCloud
         # @type ZoneId: String
         # @param FunctionRuleConditions: 规则条件列表，相同触发规则的不同条件匹配项之间为或关系。
         # @type FunctionRuleConditions: Array
-        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数。
+        # @param TriggerType: 函数选择配置类型：
+        # <li> direct：直接指定执行函数；</li>
+        # <li> weight：基于权重比选择函数；</li>
+        # <li> region：基于客户端 IP 的国家/地区选择函数。</li>
+        # 不填时默认为 direct 。
+        # @type TriggerType: String
+        # @param FunctionId: 指定执行的函数 ID。当 TriggerType 为 direct 或 TriggerType 不填时生效。
         # @type FunctionId: String
+        # @param RegionMappingSelections: 基于客户端 IP 国家/地区的函数选择配置，当 TriggerType 为 region 时生效且 RegionMappingSelections 必填。RegionMappingSelections 中至少包含一项 Regions 为 Default 的配置。
+        # @type RegionMappingSelections: Array
+        # @param WeightedSelections: 基于权重的函数选择配置，当 TriggerType 为 weight 时生效且 WeightedSelections 必填。WeightedSelections 中的所有权重之和需要为100。
+        # @type WeightedSelections: Array
         # @param Remark: 规则描述，最大支持 60 个字符。
         # @type Remark: String
 
-        attr_accessor :ZoneId, :FunctionRuleConditions, :FunctionId, :Remark
+        attr_accessor :ZoneId, :FunctionRuleConditions, :TriggerType, :FunctionId, :RegionMappingSelections, :WeightedSelections, :Remark
 
-        def initialize(zoneid=nil, functionruleconditions=nil, functionid=nil, remark=nil)
+        def initialize(zoneid=nil, functionruleconditions=nil, triggertype=nil, functionid=nil, regionmappingselections=nil, weightedselections=nil, remark=nil)
           @ZoneId = zoneid
           @FunctionRuleConditions = functionruleconditions
+          @TriggerType = triggertype
           @FunctionId = functionid
+          @RegionMappingSelections = regionmappingselections
+          @WeightedSelections = weightedselections
           @Remark = remark
         end
 
@@ -3681,7 +3694,24 @@ module TencentCloud
               @FunctionRuleConditions << functionrulecondition_tmp
             end
           end
+          @TriggerType = params['TriggerType']
           @FunctionId = params['FunctionId']
+          unless params['RegionMappingSelections'].nil?
+            @RegionMappingSelections = []
+            params['RegionMappingSelections'].each do |i|
+              functionregionselection_tmp = FunctionRegionSelection.new
+              functionregionselection_tmp.deserialize(i)
+              @RegionMappingSelections << functionregionselection_tmp
+            end
+          end
+          unless params['WeightedSelections'].nil?
+            @WeightedSelections = []
+            params['WeightedSelections'].each do |i|
+              functionweightedselection_tmp = FunctionWeightedSelection.new
+              functionweightedselection_tmp.deserialize(i)
+              @WeightedSelections << functionweightedselection_tmp
+            end
+          end
           @Remark = params['Remark']
         end
       end
@@ -12604,34 +12634,66 @@ module TencentCloud
         end
       end
 
+      # 地区策略配置。
+      class FunctionRegionSelection < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID 。
+        # @type FunctionId: String
+        # @param Regions: 国家/地区列表。示例值：CN：中国，CN.GD：中国广东。取值请参考：[国家/地区及对应代码枚举](https://cloud.tencent.com/document/product/1552/112542)。
+        # @type Regions: Array
+
+        attr_accessor :FunctionId, :Regions
+
+        def initialize(functionid=nil, regions=nil)
+          @FunctionId = functionid
+          @Regions = regions
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @Regions = params['Regions']
+        end
+      end
+
       # 边缘函数触发规则。
       class FunctionRule < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则ID。
         # @type RuleId: String
         # @param FunctionRuleConditions: 规则条件列表，列表项之间为或关系。
         # @type FunctionRuleConditions: Array
-        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数。
+        # @param TriggerType: 函数选择配置类型：
+        # <li> direct：直接指定执行函数；</li>
+        # <li> weight：基于权重比选择函数；</li>
+        # <li> region：基于客户端 IP 的国家/地区选择函数。</li>
+        # @type TriggerType: String
+        # @param FunctionId: 指定执行的函数 ID。当 TriggerType 为 direct 时有效。
         # @type FunctionId: String
-        # @param Remark: 规则描述。
-        # @type Remark: String
-        # @param FunctionName: 函数名称。
+        # @param FunctionName: 指定执行的函数名称。
         # @type FunctionName: String
+        # @param RegionMappingSelections: 基于客户端 IP 国家/地区的函数选择配置。
+        # @type RegionMappingSelections: Array
+        # @param WeightedSelections: 基于权重的函数选择配置。
+        # @type WeightedSelections: Array
         # @param Priority: 函数触发规则优先级，数值越大，优先级越高。
         # @type Priority: Integer
+        # @param Remark: 规则描述。
+        # @type Remark: String
         # @param CreateTime: 创建时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
         # @type UpdateTime: String
 
-        attr_accessor :RuleId, :FunctionRuleConditions, :FunctionId, :Remark, :FunctionName, :Priority, :CreateTime, :UpdateTime
+        attr_accessor :RuleId, :FunctionRuleConditions, :TriggerType, :FunctionId, :FunctionName, :RegionMappingSelections, :WeightedSelections, :Priority, :Remark, :CreateTime, :UpdateTime
 
-        def initialize(ruleid=nil, functionruleconditions=nil, functionid=nil, remark=nil, functionname=nil, priority=nil, createtime=nil, updatetime=nil)
+        def initialize(ruleid=nil, functionruleconditions=nil, triggertype=nil, functionid=nil, functionname=nil, regionmappingselections=nil, weightedselections=nil, priority=nil, remark=nil, createtime=nil, updatetime=nil)
           @RuleId = ruleid
           @FunctionRuleConditions = functionruleconditions
+          @TriggerType = triggertype
           @FunctionId = functionid
-          @Remark = remark
           @FunctionName = functionname
+          @RegionMappingSelections = regionmappingselections
+          @WeightedSelections = weightedselections
           @Priority = priority
+          @Remark = remark
           @CreateTime = createtime
           @UpdateTime = updatetime
         end
@@ -12646,10 +12708,27 @@ module TencentCloud
               @FunctionRuleConditions << functionrulecondition_tmp
             end
           end
+          @TriggerType = params['TriggerType']
           @FunctionId = params['FunctionId']
-          @Remark = params['Remark']
           @FunctionName = params['FunctionName']
+          unless params['RegionMappingSelections'].nil?
+            @RegionMappingSelections = []
+            params['RegionMappingSelections'].each do |i|
+              functionregionselection_tmp = FunctionRegionSelection.new
+              functionregionselection_tmp.deserialize(i)
+              @RegionMappingSelections << functionregionselection_tmp
+            end
+          end
+          unless params['WeightedSelections'].nil?
+            @WeightedSelections = []
+            params['WeightedSelections'].each do |i|
+              functionweightedselection_tmp = FunctionWeightedSelection.new
+              functionweightedselection_tmp.deserialize(i)
+              @WeightedSelections << functionweightedselection_tmp
+            end
+          end
           @Priority = params['Priority']
+          @Remark = params['Remark']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
         end
@@ -12675,6 +12754,28 @@ module TencentCloud
               @RuleConditions << rulecondition_tmp
             end
           end
+        end
+      end
+
+      # 权重策略配置。
+      class FunctionWeightedSelection < TencentCloud::Common::AbstractModel
+        # @param FunctionId: 函数 ID 。
+        # @type FunctionId: String
+        # @param Weight: 选中权重。取值范围0-100，所有的权重之和需要为100。
+        # 选中概率计算方式为：
+        # weight/100。例如设置了两个函数 A 和 B ，其中 A 的权重为30，那么 B 的权重必须为70，最终选中 A 的概率为30%，选中 B 的概率为70%。
+        # @type Weight: Integer
+
+        attr_accessor :FunctionId, :Weight
+
+        def initialize(functionid=nil, weight=nil)
+          @FunctionId = functionid
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @FunctionId = params['FunctionId']
+          @Weight = params['Weight']
         end
       end
 
@@ -15237,22 +15338,35 @@ module TencentCloud
       class ModifyFunctionRuleRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param RuleId: 规则 ID。
+        # @param RuleId: 规则 ID。您可以先通过 DescribeFunctionRules 接口来获取需要修改的规则的 RuleId，然后传入修改后的规则内容，原规则内容会被覆盖式更新。
         # @type RuleId: String
         # @param FunctionRuleConditions: 规则条件列表，相同触发规则的不同条件匹配项之间为或关系，不填写保持原有配置。
         # @type FunctionRuleConditions: Array
-        # @param FunctionId: 函数 ID，命中触发规则条件后执行的函数，不填写保持原有配置。
+        # @param TriggerType: 函数选择配置类型：
+        # <li> direct：直接指定执行函数；</li>
+        # <li> weight：基于权重比选择函数；</li>
+        # <li> region：基于客户端 IP 的国家/地区选择函数。</li>
+        # 不填时默认为 direct 。
+        # @type TriggerType: String
+        # @param FunctionId: 指定执行的函数 ID。当 TriggerType 为 direct 或 TriggerType 不填时生效。
         # @type FunctionId: String
+        # @param RegionMappingSelections: 基于客户端 IP 国家/地区的函数选择配置，当 TriggerType 为 region 时生效且 RegionMappingSelections 必填。RegionMappingSelections 中至少包含一项 Regions 为 Default 的配置。
+        # @type RegionMappingSelections: Array
+        # @param WeightedSelections: 基于权重的函数选择配置，当 TriggerType 为 weight 时生效且 WeightedSelections 必填。WeightedSelections 中的所有权重之和需要为100。
+        # @type WeightedSelections: Array
         # @param Remark: 规则描述，最大支持 60 个字符，不填写保持原有配置。
         # @type Remark: String
 
-        attr_accessor :ZoneId, :RuleId, :FunctionRuleConditions, :FunctionId, :Remark
+        attr_accessor :ZoneId, :RuleId, :FunctionRuleConditions, :TriggerType, :FunctionId, :RegionMappingSelections, :WeightedSelections, :Remark
 
-        def initialize(zoneid=nil, ruleid=nil, functionruleconditions=nil, functionid=nil, remark=nil)
+        def initialize(zoneid=nil, ruleid=nil, functionruleconditions=nil, triggertype=nil, functionid=nil, regionmappingselections=nil, weightedselections=nil, remark=nil)
           @ZoneId = zoneid
           @RuleId = ruleid
           @FunctionRuleConditions = functionruleconditions
+          @TriggerType = triggertype
           @FunctionId = functionid
+          @RegionMappingSelections = regionmappingselections
+          @WeightedSelections = weightedselections
           @Remark = remark
         end
 
@@ -15267,7 +15381,24 @@ module TencentCloud
               @FunctionRuleConditions << functionrulecondition_tmp
             end
           end
+          @TriggerType = params['TriggerType']
           @FunctionId = params['FunctionId']
+          unless params['RegionMappingSelections'].nil?
+            @RegionMappingSelections = []
+            params['RegionMappingSelections'].each do |i|
+              functionregionselection_tmp = FunctionRegionSelection.new
+              functionregionselection_tmp.deserialize(i)
+              @RegionMappingSelections << functionregionselection_tmp
+            end
+          end
+          unless params['WeightedSelections'].nil?
+            @WeightedSelections = []
+            params['WeightedSelections'].each do |i|
+              functionweightedselection_tmp = FunctionWeightedSelection.new
+              functionweightedselection_tmp.deserialize(i)
+              @WeightedSelections << functionweightedselection_tmp
+            end
+          end
           @Remark = params['Remark']
         end
       end

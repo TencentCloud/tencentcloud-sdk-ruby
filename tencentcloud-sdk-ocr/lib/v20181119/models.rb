@@ -3002,15 +3002,18 @@ module TencentCloud
         # @type StructuralList: Array
         # @param WordList: 还原文本信息
         # @type WordList: Array
+        # @param SealInfos: 全部印章信息
+        # @type SealInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Angle, :StructuralList, :WordList, :RequestId
+        attr_accessor :Angle, :StructuralList, :WordList, :SealInfos, :RequestId
 
-        def initialize(angle=nil, structurallist=nil, wordlist=nil, requestid=nil)
+        def initialize(angle=nil, structurallist=nil, wordlist=nil, sealinfos=nil, requestid=nil)
           @Angle = angle
           @StructuralList = structurallist
           @WordList = wordlist
+          @SealInfos = sealinfos
           @RequestId = requestid
         end
 
@@ -3030,6 +3033,14 @@ module TencentCloud
               worditem_tmp = WordItem.new
               worditem_tmp.deserialize(i)
               @WordList << worditem_tmp
+            end
+          end
+          unless params['SealInfos'].nil?
+            @SealInfos = []
+            params['SealInfos'].each do |i|
+              sealinfo_tmp = SealInfo.new
+              sealinfo_tmp.deserialize(i)
+              @SealInfos << sealinfo_tmp
             end
           end
           @RequestId = params['RequestId']

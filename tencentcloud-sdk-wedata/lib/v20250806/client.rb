@@ -1277,7 +1277,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建任务接口
+        # 获取任务详情接口
 
         # @param request: Request instance for GetTask.
         # @type request: :class:`Tencentcloud::wedata::V20250806::GetTaskRequest`
@@ -2813,7 +2813,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建任务接口
+        # 更新任务接口
 
         # @param request: Request instance for UpdateTask.
         # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateTaskRequest`
@@ -2861,7 +2861,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建文件夹
+        # 更新工作流文件夹
 
         # @param request: Request instance for UpdateWorkflowFolder.
         # @type request: :class:`Tencentcloud::wedata::V20250806::UpdateWorkflowFolderRequest`

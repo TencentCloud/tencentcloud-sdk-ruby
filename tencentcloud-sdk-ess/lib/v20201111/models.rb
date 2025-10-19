@@ -4738,6 +4738,70 @@ module TencentCloud
         end
       end
 
+      # CreateInformationExtractionWebUrl请求参数结构体
+      class CreateInformationExtractionWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param ResourceIds: 需要提取的合同文件资源ID,可通过<a href="https://qian.tencent.com/developers/companyApis/templatesAndFiles/UploadFiles" target="_blank">UploadFiles</a>接口获取文件资源ID。
+
+        # 注:
+        # -  `word、pdf文件每个文件限制在10M以下`
+        # -  `png、jpg、jpeg文件每个限制在5M以下`
+        # @type ResourceIds: Array
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 1024长度。
+
+        # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
+        # @type UserData: String
+        # @param Option: 个性化参数，用于控制页面展示内容
+        # @type Option: :class:`Tencentcloud::Ess.v20201111.models.WebUrlOption`
+
+        attr_accessor :Operator, :ResourceIds, :UserData, :Option
+
+        def initialize(operator=nil, resourceids=nil, userdata=nil, option=nil)
+          @Operator = operator
+          @ResourceIds = resourceids
+          @UserData = userdata
+          @Option = option
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @ResourceIds = params['ResourceIds']
+          @UserData = params['UserData']
+          unless params['Option'].nil?
+            @Option = WebUrlOption.new
+            @Option.deserialize(params['Option'])
+          end
+        end
+      end
+
+      # CreateInformationExtractionWebUrl返回参数结构体
+      class CreateInformationExtractionWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 合同信息提取嵌入式web页面链接。
+
+        # 注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateIntegrationDepartment请求参数结构体
       class CreateIntegrationDepartmentRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -9731,6 +9795,54 @@ module TencentCloud
               @Results << extractiontaskresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInformationExtractionWebUrl请求参数结构体
+      class DescribeInformationExtractionWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同信息提取任务ID，该参数可通过回调事件[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)获取或者从控制台信息提取任务列表获取。
+
+        # 注意：`不填写任务ID时返回信息提取任务列表URL，填写任务ID时返回信息提取任务详情URL`
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeInformationExtractionWebUrl返回参数结构体
+      class DescribeInformationExtractionWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 合同信息提取嵌入式web页面链接。
+        # 注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end
@@ -16667,6 +16779,30 @@ module TencentCloud
         def deserialize(params)
           @DisplaySignBrandLogo = params['DisplaySignBrandLogo']
           @WebEmbedThemeColor = params['WebEmbedThemeColor']
+        end
+      end
+
+      # 提取web嵌入页面个性化设置
+      class WebUrlOption < TencentCloud::Common::AbstractModel
+        # @param DisableLinkPreview: 禁用链接预览
+        # @type DisableLinkPreview: Boolean
+        # @param DisableTaskEditing: 禁用任务编辑
+        # @type DisableTaskEditing: Boolean
+        # @param DisableTaskResultEditing: 禁用任务结果编辑
+        # @type DisableTaskResultEditing: Boolean
+
+        attr_accessor :DisableLinkPreview, :DisableTaskEditing, :DisableTaskResultEditing
+
+        def initialize(disablelinkpreview=nil, disabletaskediting=nil, disabletaskresultediting=nil)
+          @DisableLinkPreview = disablelinkpreview
+          @DisableTaskEditing = disabletaskediting
+          @DisableTaskResultEditing = disabletaskresultediting
+        end
+
+        def deserialize(params)
+          @DisableLinkPreview = params['DisableLinkPreview']
+          @DisableTaskEditing = params['DisableTaskEditing']
+          @DisableTaskResultEditing = params['DisableTaskResultEditing']
         end
       end
 

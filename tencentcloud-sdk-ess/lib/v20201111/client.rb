@@ -1361,6 +1361,34 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateInformationExtractionWebUrl）用来创建合同信息提取web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+
+        # 注:
+        # 1. pdf、word格式限制大小为10M以下
+        # 2. pdg、jpeg、jpg格式限制大小为5M以下
+
+        # @param request: Request instance for CreateInformationExtractionWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateInformationExtractionWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateInformationExtractionWebUrlResponse`
+        def CreateInformationExtractionWebUrl(request)
+          body = send_request('CreateInformationExtractionWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInformationExtractionWebUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（CreateIntegrationDepartment）用于创建企业的部门信息，支持绑定客户系统部门ID。
 
         # @param request: Request instance for CreateIntegrationDepartment.
@@ -3073,6 +3101,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInformationExtractionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeInformationExtractionWebUrl）用来获取合同信息提取web页面链接（此web页面可以通过iframe方式嵌入到贵方系统的网页中）。
+
+        # @param request: Request instance for DescribeInformationExtractionWebUrl.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeInformationExtractionWebUrlRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeInformationExtractionWebUrlResponse`
+        def DescribeInformationExtractionWebUrl(request)
+          body = send_request('DescribeInformationExtractionWebUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInformationExtractionWebUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
