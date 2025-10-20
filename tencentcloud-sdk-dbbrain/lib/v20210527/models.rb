@@ -7063,21 +7063,21 @@ module TencentCloud
 
       # redis top慢日志聚合详情。
       class SlowLogAgg < TencentCloud::Common::AbstractModel
-        # @param Cmd: 命令模版。
+        # @param Cmd: 命令模板。
         # @type Cmd: String
         # @param Detail: 命令详情。
         # @type Detail: String
         # @param ExecTimes: 执行次数。
         # @type ExecTimes: Integer
-        # @param QueryTime: 总耗时。
+        # @param QueryTime: 总耗时。单位：s
         # @type QueryTime: Float
-        # @param QueryTimeAvg: 平均执行时间。
+        # @param QueryTimeAvg: 平均执行时间。单位：s
         # @type QueryTimeAvg: Float
-        # @param QueryTimeMax: 最大执行时间。
+        # @param QueryTimeMax: 最大执行时间。单位：s
         # @type QueryTimeMax: Float
-        # @param QueryTimeMin: 最小执行时间。
+        # @param QueryTimeMin: 最小执行时间。单位：s
         # @type QueryTimeMin: Float
-        # @param QueryTimeRatio: 总耗时占比
+        # @param QueryTimeRatio: 总耗时占比。单位：%
         # @type QueryTimeRatio: Float
 
         attr_accessor :Cmd, :Detail, :ExecTimes, :QueryTime, :QueryTimeAvg, :QueryTimeMax, :QueryTimeMin, :QueryTimeRatio

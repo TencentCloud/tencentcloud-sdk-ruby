@@ -507,13 +507,16 @@ module TencentCloud
         # @type Number: String
         # @param CallInInterface: 待绑定的回调地址
         # @type CallInInterface: :class:`Tencentcloud::Ccc.v20200210.models.Interface`
+        # @param NumberType: 绑定号码类型: inner: 内线号码 | number: 正常线路号码
+        # @type NumberType: String
 
-        attr_accessor :SdkAppId, :Number, :CallInInterface
+        attr_accessor :SdkAppId, :Number, :CallInInterface, :NumberType
 
-        def initialize(sdkappid=nil, number=nil, callininterface=nil)
+        def initialize(sdkappid=nil, number=nil, callininterface=nil, numbertype=nil)
           @SdkAppId = sdkappid
           @Number = number
           @CallInInterface = callininterface
+          @NumberType = numbertype
         end
 
         def deserialize(params)
@@ -523,6 +526,7 @@ module TencentCloud
             @CallInInterface = Interface.new
             @CallInInterface.deserialize(params['CallInInterface'])
           end
+          @NumberType = params['NumberType']
         end
       end
 

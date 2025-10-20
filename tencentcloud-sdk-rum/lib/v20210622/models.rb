@@ -198,10 +198,14 @@ module TencentCloud
         # @type ResourcePackageNum: Integer
         # @param InstanceType: 实例类型 1:原web相关类型 2:app端类型
         # @type InstanceType: Integer
+        # @param AutoRenewalType: 自动续费类型
+        # @type AutoRenewalType: Integer
+        # @param AutoRenewalThreshold: 自动续费阈值
+        # @type AutoRenewalThreshold: Integer
 
-        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel, :ResourcePackageType, :ResourcePackageNum, :InstanceType
+        attr_accessor :AreaId, :ChargeType, :DataRetentionDays, :InstanceName, :Tags, :InstanceDesc, :CountNum, :PeriodRetain, :BuyingChannel, :ResourcePackageType, :ResourcePackageNum, :InstanceType, :AutoRenewalType, :AutoRenewalThreshold
 
-        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil, resourcepackagetype=nil, resourcepackagenum=nil, instancetype=nil)
+        def initialize(areaid=nil, chargetype=nil, dataretentiondays=nil, instancename=nil, tags=nil, instancedesc=nil, countnum=nil, periodretain=nil, buyingchannel=nil, resourcepackagetype=nil, resourcepackagenum=nil, instancetype=nil, autorenewaltype=nil, autorenewalthreshold=nil)
           @AreaId = areaid
           @ChargeType = chargetype
           @DataRetentionDays = dataretentiondays
@@ -214,6 +218,8 @@ module TencentCloud
           @ResourcePackageType = resourcepackagetype
           @ResourcePackageNum = resourcepackagenum
           @InstanceType = instancetype
+          @AutoRenewalType = autorenewaltype
+          @AutoRenewalThreshold = autorenewalthreshold
         end
 
         def deserialize(params)
@@ -236,6 +242,8 @@ module TencentCloud
           @ResourcePackageType = params['ResourcePackageType']
           @ResourcePackageNum = params['ResourcePackageNum']
           @InstanceType = params['InstanceType']
+          @AutoRenewalType = params['AutoRenewalType']
+          @AutoRenewalThreshold = params['AutoRenewalThreshold']
         end
       end
 
@@ -2761,8 +2769,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 9
-        deprecate :IsDemo=, :none, 2025, 9
+        deprecate :IsDemo, :none, 2025, 10
+        deprecate :IsDemo=, :none, 2025, 10
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -3276,8 +3284,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 9
-        deprecate :IsDemo=, :none, 2025, 9
+        deprecate :IsDemo, :none, 2025, 10
+        deprecate :IsDemo=, :none, 2025, 10
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
@@ -3407,12 +3415,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 9
-        deprecate :InstanceStatuses=, :none, 2025, 9
-        deprecate :InstanceIds, :none, 2025, 9
-        deprecate :InstanceIds=, :none, 2025, 9
-        deprecate :IsDemo, :none, 2025, 9
-        deprecate :IsDemo=, :none, 2025, 9
+        deprecate :InstanceStatuses, :none, 2025, 10
+        deprecate :InstanceStatuses=, :none, 2025, 10
+        deprecate :InstanceIds, :none, 2025, 10
+        deprecate :InstanceIds=, :none, 2025, 10
+        deprecate :IsDemo, :none, 2025, 10
+        deprecate :IsDemo=, :none, 2025, 10
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

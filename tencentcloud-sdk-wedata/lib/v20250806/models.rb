@@ -301,16 +301,19 @@ module TencentCloud
         # @param ReconciliationExtInfo: 离线集成对账告警配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReconciliationExtInfo: Array
+        # @param MonitorWhiteTasks: 监控对象的白名单配置
+        # @type MonitorWhiteTasks: Array
 
-        attr_accessor :Trigger, :DataBackfillOrRerunTrigger, :TimeOutExtInfo, :DataBackfillOrRerunTimeOutExtInfo, :ProjectInstanceStatisticsAlarmInfoList, :ReconciliationExtInfo
+        attr_accessor :Trigger, :DataBackfillOrRerunTrigger, :TimeOutExtInfo, :DataBackfillOrRerunTimeOutExtInfo, :ProjectInstanceStatisticsAlarmInfoList, :ReconciliationExtInfo, :MonitorWhiteTasks
 
-        def initialize(trigger=nil, databackfillorreruntrigger=nil, timeoutextinfo=nil, databackfillorreruntimeoutextinfo=nil, projectinstancestatisticsalarminfolist=nil, reconciliationextinfo=nil)
+        def initialize(trigger=nil, databackfillorreruntrigger=nil, timeoutextinfo=nil, databackfillorreruntimeoutextinfo=nil, projectinstancestatisticsalarminfolist=nil, reconciliationextinfo=nil, monitorwhitetasks=nil)
           @Trigger = trigger
           @DataBackfillOrRerunTrigger = databackfillorreruntrigger
           @TimeOutExtInfo = timeoutextinfo
           @DataBackfillOrRerunTimeOutExtInfo = databackfillorreruntimeoutextinfo
           @ProjectInstanceStatisticsAlarmInfoList = projectinstancestatisticsalarminfolist
           @ReconciliationExtInfo = reconciliationextinfo
+          @MonitorWhiteTasks = monitorwhitetasks
         end
 
         def deserialize(params)
@@ -346,6 +349,14 @@ module TencentCloud
               reconciliationstrategyinfo_tmp = ReconciliationStrategyInfo.new
               reconciliationstrategyinfo_tmp.deserialize(i)
               @ReconciliationExtInfo << reconciliationstrategyinfo_tmp
+            end
+          end
+          unless params['MonitorWhiteTasks'].nil?
+            @MonitorWhiteTasks = []
+            params['MonitorWhiteTasks'].each do |i|
+              monitorwhitetask_tmp = MonitorWhiteTask.new
+              monitorwhitetask_tmp.deserialize(i)
+              @MonitorWhiteTasks << monitorwhitetask_tmp
             end
           end
         end
@@ -9004,6 +9015,26 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # 告警规则监控白名单配置
+      class MonitorWhiteTask < TencentCloud::Common::AbstractModel
+        # @param MonitorObjectId: 配置白名单的对应的工作流/项目的id
+        # @type MonitorObjectId: String
+        # @param TaskIds: 白名单任务列表
+        # @type TaskIds: Array
+
+        attr_accessor :MonitorObjectId, :TaskIds
+
+        def initialize(monitorobjectid=nil, taskids=nil)
+          @MonitorObjectId = monitorobjectid
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @MonitorObjectId = params['MonitorObjectId']
+          @TaskIds = params['TaskIds']
         end
       end
 

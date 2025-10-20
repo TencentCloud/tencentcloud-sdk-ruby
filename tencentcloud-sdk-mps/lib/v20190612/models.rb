@@ -5052,7 +5052,8 @@ module TencentCloud
         # 4)、Codec为：eac3时，取值范围：[26, 6144]，备注：当SampleRate为44100HZ，最大值为：5644，当SampleRate为48000HZ，最大值为：6144，
 
         # @type Bitrate: Integer
-        # @param SampleRate: 音频流的采样率，不同编码标准支持的采样率选项不同。详细参考[音频采样率支持范围文档](https://cloud.tencent.com/document/product/862/77166#f3b039f1-d817-4a96-b4e4-90132d31cd53)
+        # @param SampleRate: 音频流的采样率，不同编码标准支持的采样率选项不同。填0代表使用源音频的采样率数值。
+        # 详细参考[音频采样率支持范围文档](https://cloud.tencent.com/document/product/862/77166#f3b039f1-d817-4a96-b4e4-90132d31cd53)
         # 单位：Hz
         # 注意：请确保源音频流的采样率在上述选项范围内，否则可能导致转码失败！
         # @type SampleRate: Integer
@@ -5114,7 +5115,8 @@ module TencentCloud
         # @param Bitrate: 音频流的码率，取值范围：0 和 [26, 256]，单位：kbps。 当取值为 0，表示音频码率和原始音频保持一致。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Bitrate: Integer
-        # @param SampleRate: 音频流的采样率，不同编码标准支持的采样率选项不同。详细参考[音频采样率支持范围文档](https://cloud.tencent.com/document/product/862/77166#f3b039f1-d817-4a96-b4e4-90132d31cd53)
+        # @param SampleRate: 音频流的采样率，不同编码标准支持的采样率选项不同。填0代表使用源音频的采样率数值。
+        # 详细参考[音频采样率支持范围文档](https://cloud.tencent.com/document/product/862/77166#f3b039f1-d817-4a96-b4e4-90132d31cd53)
         # 单位：Hz
         # 注意：请确保源音频流的采样率在上述选项范围内，否则可能导致转码失败！
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5581,8 +5583,12 @@ module TencentCloud
       # 美颜效果配置项
       class BeautyEffectItemConfig < TencentCloud::Common::AbstractModel
         # @param Type: 类型名称。取值如下：
-
         # <li>Whiten：美白</li>
+        # <li>BlackAlpha1：美黑</li>
+        # <li>BlackAlpha2：较强美黑</li>
+        # <li>FoundationAlpha2：美白-粉白</li>
+        # <li>Clear：清晰度</li>
+        # <li>Sharpen：锐化</li>
         # <li>Smooth：磨皮</li>
         # <li>BeautyThinFace：瘦脸</li>
         # <li>NatureFace：自然脸型</li>
@@ -5592,8 +5598,11 @@ module TencentCloud
         # <li>RemoveEyeBags：祛眼袋</li>
         # <li>ThinNose：瘦鼻</li>
         # <li>RemoveLawLine：祛法令纹</li>
+        # <li>CheekboneThin：瘦颧骨</li>
+        # <li>FaceFeatureLipsLut：口红</li>
         # <li>ToothWhiten：牙齿美白</li>
-
+        # <li>FaceFeatureSoftlight：柔光</li>
+        # <li>Makeup：美妆</li>
         # @type Type: String
         # @param Switch: 能力配置开关，可选值：
         # <li>ON：开启；</li>
@@ -5602,19 +5611,27 @@ module TencentCloud
         # @type Switch: String
         # @param Value: 效果强度，值范围：[0, 100]。
         # @type Value: Integer
+        # @param ResourcePath: 附加资源路径。
+        # @type ResourcePath: String
+        # @param ExtInfo: 自定义参数。
+        # @type ExtInfo: String
 
-        attr_accessor :Type, :Switch, :Value
+        attr_accessor :Type, :Switch, :Value, :ResourcePath, :ExtInfo
 
-        def initialize(type=nil, switch=nil, value=nil)
+        def initialize(type=nil, switch=nil, value=nil, resourcepath=nil, extinfo=nil)
           @Type = type
           @Switch = switch
           @Value = value
+          @ResourcePath = resourcepath
+          @ExtInfo = extinfo
         end
 
         def deserialize(params)
           @Type = params['Type']
           @Switch = params['Switch']
           @Value = params['Value']
+          @ResourcePath = params['ResourcePath']
+          @ExtInfo = params['ExtInfo']
         end
       end
 

@@ -2144,6 +2144,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口（DescribeInstancePasswordComplexity）用于查询实例的密码复杂度参数列表。
+
+        # @param request: Request instance for DescribeInstancePasswordComplexity.
+        # @type request: :class:`Tencentcloud::cdb::V20170320::DescribeInstancePasswordComplexityRequest`
+        # @rtype: :class:`Tencentcloud::cdb::V20170320::DescribeInstancePasswordComplexityResponse`
+        def DescribeInstancePasswordComplexity(request)
+          body = send_request('DescribeInstancePasswordComplexity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstancePasswordComplexityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口（DescribeInstanceUpgradeCheckJob）查询实例版本升级校验任务。
 
         # @param request: Request instance for DescribeInstanceUpgradeCheckJob.

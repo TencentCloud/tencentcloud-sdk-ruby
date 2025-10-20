@@ -605,6 +605,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建终端导出任务，私有化调用path为：capi/Assets/Device/ExportDeviceDownloadTask
+
+        # @param request: Request instance for ExportDeviceDownloadTask.
+        # @type request: :class:`Tencentcloud::ioa::V20220601::ExportDeviceDownloadTaskRequest`
+        # @rtype: :class:`Tencentcloud::ioa::V20220601::ExportDeviceDownloadTaskResponse`
+        def ExportDeviceDownloadTask(request)
+          body = send_request('ExportDeviceDownloadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportDeviceDownloadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 导出基于指定终端查看软件信息详情列表查询,私有化调用path为：capi/Software/ExportSoftwareInformationList
 
         # @param request: Request instance for ExportSoftwareInformationList.

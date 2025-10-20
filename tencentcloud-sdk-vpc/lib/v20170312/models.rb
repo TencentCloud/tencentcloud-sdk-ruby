@@ -5571,6 +5571,142 @@ module TencentCloud
         end
       end
 
+      # CreateRoutePolicyAssociations请求参数结构体
+      class CreateRoutePolicyAssociationsRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyAssociationSet: 路由接收策略绑定对象列表。
+        # @type RoutePolicyAssociationSet: Array
+
+        attr_accessor :RoutePolicyAssociationSet
+
+        def initialize(routepolicyassociationset=nil)
+          @RoutePolicyAssociationSet = routepolicyassociationset
+        end
+
+        def deserialize(params)
+          unless params['RoutePolicyAssociationSet'].nil?
+            @RoutePolicyAssociationSet = []
+            params['RoutePolicyAssociationSet'].each do |i|
+              routepolicyassociation_tmp = RoutePolicyAssociation.new
+              routepolicyassociation_tmp.deserialize(i)
+              @RoutePolicyAssociationSet << routepolicyassociation_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRoutePolicyAssociations返回参数结构体
+      class CreateRoutePolicyAssociationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRoutePolicyEntries请求参数结构体
+      class CreateRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由接收策略实例ID。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyEntrySet: 路由接收策略条目列表。
+        # @type RoutePolicyEntrySet: Array
+
+        attr_accessor :RoutePolicyId, :RoutePolicyEntrySet
+
+        def initialize(routepolicyid=nil, routepolicyentryset=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyEntrySet = routepolicyentryset
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRoutePolicyEntries返回参数结构体
+      class CreateRoutePolicyEntriesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRoutePolicy请求参数结构体
+      class CreateRoutePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyDescription: 路由策略描述。
+        # @type RoutePolicyDescription: String
+        # @param RoutePolicyName: 路由策略名。
+        # @type RoutePolicyName: String
+        # @param RoutePolicyEntrySet: 路由策略条目列表。
+        # @type RoutePolicyEntrySet: Array
+
+        attr_accessor :RoutePolicyDescription, :RoutePolicyName, :RoutePolicyEntrySet
+
+        def initialize(routepolicydescription=nil, routepolicyname=nil, routepolicyentryset=nil)
+          @RoutePolicyDescription = routepolicydescription
+          @RoutePolicyName = routepolicyname
+          @RoutePolicyEntrySet = routepolicyentryset
+        end
+
+        def deserialize(params)
+          @RoutePolicyDescription = params['RoutePolicyDescription']
+          @RoutePolicyName = params['RoutePolicyName']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRoutePolicy返回参数结构体
+      class CreateRoutePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RoutePolicy: 路由策略ID及规则。
+        # @type RoutePolicy: :class:`Tencentcloud::Vpc.v20170312.models.RoutePolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoutePolicy, :RequestId
+
+        def initialize(routepolicy=nil, requestid=nil)
+          @RoutePolicy = routepolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoutePolicy'].nil?
+            @RoutePolicy = RoutePolicy.new
+            @RoutePolicy.deserialize(params['RoutePolicy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRouteTable请求参数结构体
       class CreateRouteTableRequest < TencentCloud::Common::AbstractModel
         # @param VpcId: 待操作的VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
@@ -8524,6 +8660,120 @@ module TencentCloud
 
       # DeleteReserveIpAddresses返回参数结构体
       class DeleteReserveIpAddressesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoutePolicyAssociations请求参数结构体
+      class DeleteRoutePolicyAssociationsRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyAssociationSet: 路由策略绑定对象列表，删除路由策略绑定时，仅需使用RoutePolicyAssociation的RouteTableId字段和RoutePolicyId字段（不需要填写Priority字段）。
+        # @type RoutePolicyAssociationSet: Array
+
+        attr_accessor :RoutePolicyAssociationSet
+
+        def initialize(routepolicyassociationset=nil)
+          @RoutePolicyAssociationSet = routepolicyassociationset
+        end
+
+        def deserialize(params)
+          unless params['RoutePolicyAssociationSet'].nil?
+            @RoutePolicyAssociationSet = []
+            params['RoutePolicyAssociationSet'].each do |i|
+              routepolicyassociation_tmp = RoutePolicyAssociation.new
+              routepolicyassociation_tmp.deserialize(i)
+              @RoutePolicyAssociationSet << routepolicyassociation_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteRoutePolicyAssociations返回参数结构体
+      class DeleteRoutePolicyAssociationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoutePolicyEntries请求参数结构体
+      class DeleteRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由接收策略实例ID。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyEntrySet: 路由接收策略条目列表，删除路由策略规则时，仅需使用RoutePolicyEntry的RoutePolicyEntryIdId字段。
+        # @type RoutePolicyEntrySet: Array
+
+        attr_accessor :RoutePolicyId, :RoutePolicyEntrySet
+
+        def initialize(routepolicyid=nil, routepolicyentryset=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyEntrySet = routepolicyentryset
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteRoutePolicyEntries返回参数结构体
+      class DeleteRoutePolicyEntriesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRoutePolicy请求参数结构体
+      class DeleteRoutePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由接收策略唯一ID。
+        # @type RoutePolicyId: String
+
+        attr_accessor :RoutePolicyId
+
+        def initialize(routepolicyid=nil)
+          @RoutePolicyId = routepolicyid
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+        end
+      end
+
+      # DeleteRoutePolicy返回参数结构体
+      class DeleteRoutePolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13723,6 +13973,91 @@ module TencentCloud
               route_tmp = Route.new
               route_tmp.deserialize(i)
               @RouteSet << route_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoutePolicyEntries请求参数结构体
+      class DescribeRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，参数不支持同时指定RoutePolicyEntryIds和Filters。
+        # <li>route-policy-id - String - （过滤条件）路由接收策略实例ID，形如：rrp-f49l6u0z。</li>
+        # <li>cidr-block - String - （过滤条件）CIDR(只取掩码前的子网部分)，形如：10.0.0.0/8。</li>
+        # <li>priority - Integer - （过滤条件）优先级，形如：20。</li>
+        # <li>gateway-type - String - （过滤条件）下一跳类型，形如：CVM。</li>
+        # <li>gateway-id - String - （过滤条件）下一跳实例唯一ID，形如：ccn-f49l6u0z。</li>
+        # <li>route-type - String - （过滤条件）路由类型，取值：USER（用户路由），NETD（网络探测下发的路由），CCN（云联网路由）。</li>
+        # <li>action - String - （过滤条件）动作，取值：DROP（丢弃），DISABLE（接收且禁用），ACCEPT（接收且启用）。</li>
+        # <li>description - String - （过滤条件）描述，形如：TEST。</li>
+        # <li>route-policy-item-id - String - （过滤条件）路由接收策略条目唯一ID，形如：rrpi-dq782kw7。</li>
+        # @type Filters: Array
+        # @param Offset: 偏移量。
+        # @type Offset: Integer
+        # @param Limit: 请求对象个数。
+        # @type Limit: Integer
+        # @param OrderField: 排序字段。当前只支持优先级Prioriry字段。
+        # @type OrderField: String
+        # @param OrderDirection: 排序方向。
+        # ASC：升序。
+        # DESC：降序。
+        # @type OrderDirection: String
+        # @param RoutePolicyEntryIds: 路由策略条目ID。
+        # @type RoutePolicyEntryIds: Array
+
+        attr_accessor :Filters, :Offset, :Limit, :OrderField, :OrderDirection, :RoutePolicyEntryIds
+
+        def initialize(filters=nil, offset=nil, limit=nil, orderfield=nil, orderdirection=nil, routepolicyentryids=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @OrderDirection = orderdirection
+          @RoutePolicyEntryIds = routepolicyentryids
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @OrderDirection = params['OrderDirection']
+          @RoutePolicyEntryIds = params['RoutePolicyEntryIds']
+        end
+      end
+
+      # DescribeRoutePolicyEntries返回参数结构体
+      class DescribeRoutePolicyEntriesResponse < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyEntrySet: 路由接收策略条目列表。
+        # @type RoutePolicyEntrySet: Array
+        # @param TotalCount: 符合条件的实例数量。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoutePolicyEntrySet, :TotalCount, :RequestId
+
+        def initialize(routepolicyentryset=nil, totalcount=nil, requestid=nil)
+          @RoutePolicyEntrySet = routepolicyentryset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -22157,6 +22492,46 @@ module TencentCloud
         end
       end
 
+      # ModifyRoutePolicyAttribute请求参数结构体
+      class ModifyRoutePolicyAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由接收策略实例ID，例如：rrp-dz0219jq。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyName: 路由接收策略名称。
+        # @type RoutePolicyName: String
+        # @param RoutePolicyDescription: 路由接收策略描述。
+        # @type RoutePolicyDescription: String
+
+        attr_accessor :RoutePolicyId, :RoutePolicyName, :RoutePolicyDescription
+
+        def initialize(routepolicyid=nil, routepolicyname=nil, routepolicydescription=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyName = routepolicyname
+          @RoutePolicyDescription = routepolicydescription
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          @RoutePolicyName = params['RoutePolicyName']
+          @RoutePolicyDescription = params['RoutePolicyDescription']
+        end
+      end
+
+      # ModifyRoutePolicyAttribute返回参数结构体
+      class ModifyRoutePolicyAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRouteTableAttribute请求参数结构体
       class ModifyRouteTableAttributeRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -25198,6 +25573,88 @@ module TencentCloud
         end
       end
 
+      # ReplaceRoutePolicyAssociations请求参数结构体
+      class ReplaceRoutePolicyAssociationsRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyAssociationSet: 路由接收策略绑定对象列表。需要指定路由接收策略实例ID（RoutePolicyId）和路由表实例ID（RouteTableId）。
+        # @type RoutePolicyAssociationSet: Array
+
+        attr_accessor :RoutePolicyAssociationSet
+
+        def initialize(routepolicyassociationset=nil)
+          @RoutePolicyAssociationSet = routepolicyassociationset
+        end
+
+        def deserialize(params)
+          unless params['RoutePolicyAssociationSet'].nil?
+            @RoutePolicyAssociationSet = []
+            params['RoutePolicyAssociationSet'].each do |i|
+              routepolicyassociation_tmp = RoutePolicyAssociation.new
+              routepolicyassociation_tmp.deserialize(i)
+              @RoutePolicyAssociationSet << routepolicyassociation_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceRoutePolicyAssociations返回参数结构体
+      class ReplaceRoutePolicyAssociationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ReplaceRoutePolicyEntries请求参数结构体
+      class ReplaceRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由策略实例ID，例如：rrp-azd4dt1c。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyEntrySet: 路由策略规则列表。需要指定路由策略规则ID（RoutePolicyEntryId）。
+        # @type RoutePolicyEntrySet: Array
+
+        attr_accessor :RoutePolicyId, :RoutePolicyEntrySet
+
+        def initialize(routepolicyid=nil, routepolicyentryset=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyEntrySet = routepolicyentryset
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceRoutePolicyEntries返回参数结构体
+      class ReplaceRoutePolicyEntriesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceRouteTableAssociation请求参数结构体
       class ReplaceRouteTableAssociationRequest < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。
@@ -25570,6 +26027,100 @@ module TencentCloud
 
       # ResetNatGatewayConnection返回参数结构体
       class ResetNatGatewayConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetRoutePolicyAssociations请求参数结构体
+      class ResetRoutePolicyAssociationsRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
+        # @type RouteTableId: String
+        # @param RoutePolicyAssociationSet: 路由策略绑定对象（RoutePolicyAssociation）列表。注意：路由策略绑定中的路由表实例ID（RouteTableId）需要和该接口的RouteTableId参数保持一致（也就是该接口只支持修改同一个路由表实例下的路有策略绑定关系及优先级）。
+        # @type RoutePolicyAssociationSet: Array
+
+        attr_accessor :RouteTableId, :RoutePolicyAssociationSet
+
+        def initialize(routetableid=nil, routepolicyassociationset=nil)
+          @RouteTableId = routetableid
+          @RoutePolicyAssociationSet = routepolicyassociationset
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          unless params['RoutePolicyAssociationSet'].nil?
+            @RoutePolicyAssociationSet = []
+            params['RoutePolicyAssociationSet'].each do |i|
+              routepolicyassociation_tmp = RoutePolicyAssociation.new
+              routepolicyassociation_tmp.deserialize(i)
+              @RoutePolicyAssociationSet << routepolicyassociation_tmp
+            end
+          end
+        end
+      end
+
+      # ResetRoutePolicyAssociations返回参数结构体
+      class ResetRoutePolicyAssociationsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetRoutePolicyEntries请求参数结构体
+      class ResetRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由接收策略实例ID，例如：rrp-azd4dt1c。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyEntrySet: 路由接收策略条目列表。需要指定路由策略条目ID（RoutePolicyEntryId）。
+        # @type RoutePolicyEntrySet: Array
+        # @param RoutePolicyDescription: 路由接收策略描述。
+        # @type RoutePolicyDescription: String
+        # @param RoutePolicyName: 路由接收策略名字。
+        # @type RoutePolicyName: String
+
+        attr_accessor :RoutePolicyId, :RoutePolicyEntrySet, :RoutePolicyDescription, :RoutePolicyName
+
+        def initialize(routepolicyid=nil, routepolicyentryset=nil, routepolicydescription=nil, routepolicyname=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyEntrySet = routepolicyentryset
+          @RoutePolicyDescription = routepolicydescription
+          @RoutePolicyName = routepolicyname
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+          @RoutePolicyDescription = params['RoutePolicyDescription']
+          @RoutePolicyName = params['RoutePolicyName']
+        end
+      end
+
+      # ResetRoutePolicyEntries返回参数结构体
+      class ResetRoutePolicyEntriesResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -26295,6 +26846,174 @@ module TencentCloud
         def deserialize(params)
           @DestinationCidrBlock = params['DestinationCidrBlock']
           @SubnetRouteAlgorithm = params['SubnetRouteAlgorithm']
+        end
+      end
+
+      # 路由接收策略。当云联网或其他业务添加路由到VPC自定义路由表时，可以丢弃或启用，禁用相应的路由条目。
+      class RoutePolicy < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyId: 路由策略唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyId: String
+        # @param RoutePolicyName: 路由策略名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyName: String
+        # @param RoutePolicyDescription: 路由策略描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyDescription: String
+        # @param RoutePolicyEntrySet: 路由策略规则列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyEntrySet: Array
+        # @param RoutePolicyAssociationSet: 路由策略绑定。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyAssociationSet: Array
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param TagSet: 标签键值对。
+        # @type TagSet: Array
+
+        attr_accessor :RoutePolicyId, :RoutePolicyName, :RoutePolicyDescription, :RoutePolicyEntrySet, :RoutePolicyAssociationSet, :CreatedTime, :TagSet
+
+        def initialize(routepolicyid=nil, routepolicyname=nil, routepolicydescription=nil, routepolicyentryset=nil, routepolicyassociationset=nil, createdtime=nil, tagset=nil)
+          @RoutePolicyId = routepolicyid
+          @RoutePolicyName = routepolicyname
+          @RoutePolicyDescription = routepolicydescription
+          @RoutePolicyEntrySet = routepolicyentryset
+          @RoutePolicyAssociationSet = routepolicyassociationset
+          @CreatedTime = createdtime
+          @TagSet = tagset
+        end
+
+        def deserialize(params)
+          @RoutePolicyId = params['RoutePolicyId']
+          @RoutePolicyName = params['RoutePolicyName']
+          @RoutePolicyDescription = params['RoutePolicyDescription']
+          unless params['RoutePolicyEntrySet'].nil?
+            @RoutePolicyEntrySet = []
+            params['RoutePolicyEntrySet'].each do |i|
+              routepolicyentry_tmp = RoutePolicyEntry.new
+              routepolicyentry_tmp.deserialize(i)
+              @RoutePolicyEntrySet << routepolicyentry_tmp
+            end
+          end
+          unless params['RoutePolicyAssociationSet'].nil?
+            @RoutePolicyAssociationSet = []
+            params['RoutePolicyAssociationSet'].each do |i|
+              routepolicyassociation_tmp = RoutePolicyAssociation.new
+              routepolicyassociation_tmp.deserialize(i)
+              @RoutePolicyAssociationSet << routepolicyassociation_tmp
+            end
+          end
+          @CreatedTime = params['CreatedTime']
+          unless params['TagSet'].nil?
+            @TagSet = []
+            params['TagSet'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagSet << tag_tmp
+            end
+          end
+        end
+      end
+
+      # 路由接收策略绑定。用来绑定路由表和路由接收策略以及绑定的优先级。
+      class RoutePolicyAssociation < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 路由表唯一ID。
+        # @type RouteTableId: String
+        # @param RoutePolicyId: 路由接收策略唯一ID。
+        # @type RoutePolicyId: String
+        # @param Priority: 优先级。
+        # @type Priority: Integer
+
+        attr_accessor :RouteTableId, :RoutePolicyId, :Priority
+
+        def initialize(routetableid=nil, routepolicyid=nil, priority=nil)
+          @RouteTableId = routetableid
+          @RoutePolicyId = routepolicyid
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          @RoutePolicyId = params['RoutePolicyId']
+          @Priority = params['Priority']
+        end
+      end
+
+      # 路由接收策略条目。
+      class RoutePolicyEntry < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyEntryId: 路由策略条目IPv4唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutePolicyEntryId: String
+        # @param CidrBlock: 目标网段。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrBlock: String
+        # @param Description: 路由策略规则描述。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param RouteType: 路由类型。
+        # USER：用户自定义类型。
+        # NETD：网络探测下发的路由。
+        # CCN：云联网路由。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteType: String
+        # @param GatewayType: 下一跳类型。目前我们支持的类型有：
+        # CVM：公网网关类型的云服务器；
+        # VPN：VPN网关；
+        # DIRECTCONNECT：专线网关；
+        # PEERCONNECTION：对等连接；
+        # HAVIP：高可用虚拟IP；
+        # NAT：NAT网关;
+        # EIP：云服务器的公网IP；
+        # LOCAL_GATEWAY：本地网关;
+        # PVGW：PVGW网关。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayType: String
+        # @param GatewayId: 网关唯一ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param Priority: 优先级。数值越小，优先级越高。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Action: 动作。
+        # DROP：丢弃。
+        # DISABLE：接收且禁用。
+        # ACCEPT：接收且启用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param CreatedTime: 创建时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param Region: 地域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :RoutePolicyEntryId, :CidrBlock, :Description, :RouteType, :GatewayType, :GatewayId, :Priority, :Action, :CreatedTime, :Region
+
+        def initialize(routepolicyentryid=nil, cidrblock=nil, description=nil, routetype=nil, gatewaytype=nil, gatewayid=nil, priority=nil, action=nil, createdtime=nil, region=nil)
+          @RoutePolicyEntryId = routepolicyentryid
+          @CidrBlock = cidrblock
+          @Description = description
+          @RouteType = routetype
+          @GatewayType = gatewaytype
+          @GatewayId = gatewayid
+          @Priority = priority
+          @Action = action
+          @CreatedTime = createdtime
+          @Region = region
+        end
+
+        def deserialize(params)
+          @RoutePolicyEntryId = params['RoutePolicyEntryId']
+          @CidrBlock = params['CidrBlock']
+          @Description = params['Description']
+          @RouteType = params['RouteType']
+          @GatewayType = params['GatewayType']
+          @GatewayId = params['GatewayId']
+          @Priority = params['Priority']
+          @Action = params['Action']
+          @CreatedTime = params['CreatedTime']
+          @Region = params['Region']
         end
       end
 

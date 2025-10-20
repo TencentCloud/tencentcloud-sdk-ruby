@@ -1770,6 +1770,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建VPC路由接收策略，包括名字，描述和策略条目。
+
+        # @param request: Request instance for CreateRoutePolicy.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyResponse`
+        def CreateRoutePolicy(request)
+          body = send_request('CreateRoutePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoutePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateRoutePolicyAssociations）用于创建路由接收策略绑定(路由策略实例和路由表实例的绑定关系以及绑定优先级)。
+
+        # @param request: Request instance for CreateRoutePolicyAssociations.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyAssociationsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyAssociationsResponse`
+        def CreateRoutePolicyAssociations(request)
+          body = send_request('CreateRoutePolicyAssociations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoutePolicyAssociationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（CreateRoutePolicyEntries）用于创建路由接收策略条目。
+
+        # @param request: Request instance for CreateRoutePolicyEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::CreateRoutePolicyEntriesResponse`
+        def CreateRoutePolicyEntries(request)
+          body = send_request('CreateRoutePolicyEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRoutePolicyEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(CreateRouteTable)用于创建路由表。
         # * 创建了VPC后，系统会创建一个默认路由表，所有新建的子网都会关联到默认路由表。默认情况下您可以直接使用默认路由表来管理您的路由策略。当您的路由策略较多时，您可以调用创建路由表接口创建更多路由表管理您的路由策略。
         # * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
@@ -3124,6 +3196,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteReserveIpAddressesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteRoutePolicy）用于删除路由接收策略和条目。
+
+        # @param request: Request instance for DeleteRoutePolicy.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyResponse`
+        def DeleteRoutePolicy(request)
+          body = send_request('DeleteRoutePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRoutePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DeleteRoutePolicyAssociations)用于删除路由接收策略绑定（路由接收策略对象和路由表的绑定关系）。
+
+        # @param request: Request instance for DeleteRoutePolicyAssociations.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyAssociationsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyAssociationsResponse`
+        def DeleteRoutePolicyAssociations(request)
+          body = send_request('DeleteRoutePolicyAssociations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRoutePolicyAssociationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DeleteRoutePolicyEntries)用于删除路由接收策略条目。
+
+        # @param request: Request instance for DeleteRoutePolicyEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DeleteRoutePolicyEntriesResponse`
+        def DeleteRoutePolicyEntries(request)
+          body = send_request('DeleteRoutePolicyEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRoutePolicyEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -5364,6 +5508,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRouteListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeRoutePolicyEntries）用于查询路由接收策略条目列表。
+
+        # @param request: Request instance for DescribeRoutePolicyEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeRoutePolicyEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeRoutePolicyEntriesResponse`
+        def DescribeRoutePolicyEntries(request)
+          body = send_request('DescribeRoutePolicyEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRoutePolicyEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -8725,6 +8893,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyRoutePolicyAttribute）用于修改路由接收策略属性属性。
+
+        # @param request: Request instance for ModifyRoutePolicyAttribute.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ModifyRoutePolicyAttributeRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ModifyRoutePolicyAttributeResponse`
+        def ModifyRoutePolicyAttribute(request)
+          body = send_request('ModifyRoutePolicyAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyRoutePolicyAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyRouteTableAttribute）用于修改路由表（RouteTable）属性。
 
         # @param request: Request instance for ModifyRouteTableAttribute.
@@ -9677,6 +9869,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ReplaceRoutePolicyAssociations）根据路由接收策略实例ID（RoutePolicyId）和路由表实例ID（RouteTableId）修改绑定优先级（Priority），支持批量修改。
+
+        # @param request: Request instance for ReplaceRoutePolicyAssociations.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutePolicyAssociationsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutePolicyAssociationsResponse`
+        def ReplaceRoutePolicyAssociations(request)
+          body = send_request('ReplaceRoutePolicyAssociations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceRoutePolicyAssociationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ReplaceRoutePolicyEntries）根据路由接收策略规则ID（RoutePolicyEntryId）修改指定的路由策略条目（RoutePolicyEntry），支持批量修改。
+
+        # @param request: Request instance for ReplaceRoutePolicyEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutePolicyEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutePolicyEntriesResponse`
+        def ReplaceRoutePolicyEntries(request)
+          body = send_request('ReplaceRoutePolicyEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceRoutePolicyEntriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ReplaceRouteTableAssociation）用于修改子网（Subnet）关联的路由表（RouteTable）。
         # * 一个子网只能关联一个路由表。
 
@@ -9834,6 +10074,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ResetNatGatewayConnectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ResetRoutePolicyAssociations）用于对某个路由表实例已经绑定的路由策略实例解除绑定关系，并重新设置新的绑定路由策略及优先级。<br />
+
+        # @param request: Request instance for ResetRoutePolicyAssociations.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetRoutePolicyAssociationsRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetRoutePolicyAssociationsResponse`
+        def ResetRoutePolicyAssociations(request)
+          body = send_request('ResetRoutePolicyAssociations', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetRoutePolicyAssociationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ResetRoutePolicyEntries）根据路由接收策略规则ID（RoutePolicyId）重置指定的路由接收策略条目（RoutePolicyEntry），支持批量修改。
+
+        # @param request: Request instance for ResetRoutePolicyEntries.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ResetRoutePolicyEntriesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ResetRoutePolicyEntriesResponse`
+        def ResetRoutePolicyEntries(request)
+          body = send_request('ResetRoutePolicyEntries', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResetRoutePolicyEntriesResponse.new
             model.deserialize(response['Response'])
             model
           else

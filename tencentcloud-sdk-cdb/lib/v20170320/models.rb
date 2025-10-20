@@ -7349,6 +7349,53 @@ module TencentCloud
         end
       end
 
+      # DescribeInstancePasswordComplexity请求参数结构体
+      class DescribeInstancePasswordComplexityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstancePasswordComplexity返回参数结构体
+      class DescribeInstancePasswordComplexityResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例的参数总数
+        # @type TotalCount: Integer
+        # @param Items: 参数详情
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              parameterdetail_tmp = ParameterDetail.new
+              parameterdetail_tmp.deserialize(i)
+              @Items << parameterdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceUpgradeCheckJob请求参数结构体
       class DescribeInstanceUpgradeCheckJobRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。

@@ -3077,6 +3077,26 @@ module TencentCloud
         end
       end
 
+      # 业务响应数据
+      class DeviceDownloadTask < TencentCloud::Common::AbstractModel
+        # @param DownloadURL: 同步数据下载的url
+        # @type DownloadURL: String
+        # @param TaskId: 异步任务id，需要根据id去任务中心下载
+        # @type TaskId: Integer
+
+        attr_accessor :DownloadURL, :TaskId
+
+        def initialize(downloadurl=nil, taskid=nil)
+          @DownloadURL = downloadurl
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @DownloadURL = params['DownloadURL']
+          @TaskId = params['TaskId']
+        end
+      end
+
       # 返回的数组列表
       class DeviceGroupDetail < TencentCloud::Common::AbstractModel
         # @param Id: 设备组id
@@ -3335,6 +3355,72 @@ module TencentCloud
           @OsType = params['OsType']
           @Itime = params['Itime']
           @Utime = params['Utime']
+        end
+      end
+
+      # ExportDeviceDownloadTask请求参数结构体
+      class ExportDeviceDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param OsType: 系统类型（0: win，1：linux，2: mac，4：android，5：ios；默认值0）
+        # @type OsType: Integer
+        # @param DomainInstanceId: 管理域实例ID，用于CAM管理域权限分配。若企业未进行管理域的划分，可直接传入根域"1"，此时表示针对当前企业的全部设备和账号进行接口CRUD，具体CRUD的影响范围限制于相应接口的入参。
+        # @type DomainInstanceId: String
+        # @param GroupId: 分组id
+        # @type GroupId: Integer
+        # @param OnlineStatus:  在线状态 2 在线 0，1 离线
+        # @type OnlineStatus: Integer
+        # @param ExportOrder: 导出顺序，接口返回的数据字段
+        # @type ExportOrder: String
+        # @param ExportType:  导出类型， 0：终端树；7:硬件信息列表导出；
+        # @type ExportType: Integer
+        # @param Condition: 过滤条件。同DescribeDevices接口
+        # @type Condition: :class:`Tencentcloud::Ioa.v20220601.models.Condition`
+
+        attr_accessor :OsType, :DomainInstanceId, :GroupId, :OnlineStatus, :ExportOrder, :ExportType, :Condition
+
+        def initialize(ostype=nil, domaininstanceid=nil, groupid=nil, onlinestatus=nil, exportorder=nil, exporttype=nil, condition=nil)
+          @OsType = ostype
+          @DomainInstanceId = domaininstanceid
+          @GroupId = groupid
+          @OnlineStatus = onlinestatus
+          @ExportOrder = exportorder
+          @ExportType = exporttype
+          @Condition = condition
+        end
+
+        def deserialize(params)
+          @OsType = params['OsType']
+          @DomainInstanceId = params['DomainInstanceId']
+          @GroupId = params['GroupId']
+          @OnlineStatus = params['OnlineStatus']
+          @ExportOrder = params['ExportOrder']
+          @ExportType = params['ExportType']
+          unless params['Condition'].nil?
+            @Condition = Condition.new
+            @Condition.deserialize(params['Condition'])
+          end
+        end
+      end
+
+      # ExportDeviceDownloadTask返回参数结构体
+      class ExportDeviceDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 业务响应数据
+        # @type Data: :class:`Tencentcloud::Ioa.v20220601.models.DeviceDownloadTask`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeviceDownloadTask.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

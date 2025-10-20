@@ -45,6 +45,26 @@ module TencentCloud
         end
       end
 
+      # 坐标详细信息
+      class Coord < TencentCloud::Common::AbstractModel
+        # @param X: X坐标
+        # @type X: Integer
+        # @param Y: Y坐标
+        # @type Y: Integer
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+        end
+      end
+
       # FileTranslate请求参数结构体
       class FileTranslateRequest < TencentCloud::Common::AbstractModel
         # @param Source: 源语言，支持
@@ -508,6 +528,37 @@ module TencentCloud
         end
       end
 
+      # 段落文本旋转信息
+      class RotateParagraphRect < TencentCloud::Common::AbstractModel
+        # @param Coord: 段落文本坐标
+        # @type Coord: Array
+        # @param TiltAngle: 旋转角度
+        # @type TiltAngle: Float
+        # @param Valid: 段落文本信息是否有效
+        # @type Valid: Boolean
+
+        attr_accessor :Coord, :TiltAngle, :Valid
+
+        def initialize(coord=nil, tiltangle=nil, valid=nil)
+          @Coord = coord
+          @TiltAngle = tiltangle
+          @Valid = valid
+        end
+
+        def deserialize(params)
+          unless params['Coord'].nil?
+            @Coord = []
+            params['Coord'].each do |i|
+              coord_tmp = Coord.new
+              coord_tmp.deserialize(i)
+              @Coord << coord_tmp
+            end
+          end
+          @TiltAngle = params['TiltAngle']
+          @Valid = params['Valid']
+        end
+      end
+
       # SpeechTranslate请求参数结构体
       class SpeechTranslateRequest < TencentCloud::Common::AbstractModel
         # @param SessionUuid: 一段完整的语音对应一个SessionUuid
@@ -533,10 +584,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2025, 9
-        deprecate :Mode=, :none, 2025, 9
-        deprecate :TransType, :none, 2025, 9
-        deprecate :TransType=, :none, 2025, 9
+        deprecate :Mode, :none, 2025, 10
+        deprecate :Mode=, :none, 2025, 10
+        deprecate :TransType, :none, 2025, 10
+        deprecate :TransType=, :none, 2025, 10
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid
@@ -859,16 +910,19 @@ module TencentCloud
         # @type LineHeight: Integer
         # @param SpamCode: 正常段落spam_code字段为0；如果存在spam_code字段且值大于0（1: 命中垃圾检查；2: 命中安全策略；3: 其他。），则命中安全检查被过滤。
         # @type SpamCode: Integer
+        # @param RotateParagraphRect: 段落文本旋转信息，只在valid为true时表示坐标有效
+        # @type RotateParagraphRect: :class:`Tencentcloud::Tmt.v20180321.models.RotateParagraphRect`
 
-        attr_accessor :SourceLineText, :TargetLineText, :BoundingBox, :LinesCount, :LineHeight, :SpamCode
+        attr_accessor :SourceLineText, :TargetLineText, :BoundingBox, :LinesCount, :LineHeight, :SpamCode, :RotateParagraphRect
 
-        def initialize(sourcelinetext=nil, targetlinetext=nil, boundingbox=nil, linescount=nil, lineheight=nil, spamcode=nil)
+        def initialize(sourcelinetext=nil, targetlinetext=nil, boundingbox=nil, linescount=nil, lineheight=nil, spamcode=nil, rotateparagraphrect=nil)
           @SourceLineText = sourcelinetext
           @TargetLineText = targetlinetext
           @BoundingBox = boundingbox
           @LinesCount = linescount
           @LineHeight = lineheight
           @SpamCode = spamcode
+          @RotateParagraphRect = rotateparagraphrect
         end
 
         def deserialize(params)
@@ -881,6 +935,10 @@ module TencentCloud
           @LinesCount = params['LinesCount']
           @LineHeight = params['LineHeight']
           @SpamCode = params['SpamCode']
+          unless params['RotateParagraphRect'].nil?
+            @RotateParagraphRect = RotateParagraphRect.new
+            @RotateParagraphRect.deserialize(params['RotateParagraphRect'])
+          end
         end
       end
 

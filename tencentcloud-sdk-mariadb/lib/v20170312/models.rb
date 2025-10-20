@@ -685,16 +685,16 @@ module TencentCloud
 
         attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2025, 8
-        deprecate :Zone=, :none, 2025, 8
-        deprecate :Pid, :none, 2025, 8
-        deprecate :Pid=, :none, 2025, 8
-        deprecate :Machine, :none, 2025, 8
-        deprecate :Machine=, :none, 2025, 8
-        deprecate :Manual, :none, 2025, 8
-        deprecate :Manual=, :none, 2025, 8
-        deprecate :DeviceNo, :none, 2025, 8
-        deprecate :DeviceNo=, :none, 2025, 8
+        deprecate :Zone, :none, 2025, 10
+        deprecate :Zone=, :none, 2025, 10
+        deprecate :Pid, :none, 2025, 10
+        deprecate :Pid=, :none, 2025, 10
+        deprecate :Machine, :none, 2025, 10
+        deprecate :Machine=, :none, 2025, 10
+        deprecate :Manual, :none, 2025, 10
+        deprecate :Manual=, :none, 2025, 10
+        deprecate :DeviceNo, :none, 2025, 10
+        deprecate :DeviceNo=, :none, 2025, 10
 
         def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum

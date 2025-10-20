@@ -4193,6 +4193,26 @@ module TencentCloud
         end
       end
 
+      # 目标地域镜像信息。
+      class DestinationRegionBlueprint < TencentCloud::Common::AbstractModel
+        # @param Region: 目标地域。
+        # @type Region: String
+        # @param BlueprintId: 目标地域镜像ID。
+        # @type BlueprintId: String
+
+        attr_accessor :Region, :BlueprintId
+
+        def initialize(region=nil, blueprintid=nil)
+          @Region = region
+          @BlueprintId = blueprintid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @BlueprintId = params['BlueprintId']
+        end
+      end
+
       # DetachCcn请求参数结构体
       class DetachCcnRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网实例ID。可通过[DescribeCcnAttachedInstances](https://cloud.tencent.com/document/product/1207/58797)接口返回值中的CcnId获取。
@@ -8565,16 +8585,27 @@ module TencentCloud
 
       # SyncBlueprint返回参数结构体
       class SyncBlueprintResponse < TencentCloud::Common::AbstractModel
+        # @param DestinationRegionBlueprintSet: 目标地域镜像信息。
+        # @type DestinationRegionBlueprintSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DestinationRegionBlueprintSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(destinationregionblueprintset=nil, requestid=nil)
+          @DestinationRegionBlueprintSet = destinationregionblueprintset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DestinationRegionBlueprintSet'].nil?
+            @DestinationRegionBlueprintSet = []
+            params['DestinationRegionBlueprintSet'].each do |i|
+              destinationregionblueprint_tmp = DestinationRegionBlueprint.new
+              destinationregionblueprint_tmp.deserialize(i)
+              @DestinationRegionBlueprintSet << destinationregionblueprint_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

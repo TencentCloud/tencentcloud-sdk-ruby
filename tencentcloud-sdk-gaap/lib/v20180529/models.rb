@@ -7263,7 +7263,7 @@ module TencentCloud
         # @param RealServerSet: 已绑定的源站相关信息
         # @type RealServerSet: Array
         # @param BindStatus: 源站的服务状态，0表示异常，1表示正常。
-        # 未开启健康检查时，该状态始终未正常。
+        # 未开启健康检查时，该状态始终为正常。
         # 只要有一个源站健康状态为异常时，该状态为异常，具体源站的状态请查看RealServerSet。
         # @type BindStatus: Integer
         # @param ForwardHost: 通道转发到源站的请求所携带的host，其中default表示直接转发接收到的host。
@@ -7277,10 +7277,12 @@ module TencentCloud
         # @param ForcedRedirect: 强转HTTPS指示，当传递值为https:时表示强转为https
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ForcedRedirect: String
+        # @param ForwardProtocol: 七层转发规则的回源协议类型
+        # @type ForwardProtocol: String
 
-        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect
+        attr_accessor :RuleId, :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :RuleStatus, :CheckParams, :RealServerSet, :BindStatus, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect, :ForwardProtocol
 
-        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil, forcedredirect=nil)
+        def initialize(ruleid=nil, listenerid=nil, domain=nil, path=nil, realservertype=nil, scheduler=nil, healthcheck=nil, rulestatus=nil, checkparams=nil, realserverset=nil, bindstatus=nil, forwardhost=nil, servernameindicationswitch=nil, servernameindication=nil, forcedredirect=nil, forwardprotocol=nil)
           @RuleId = ruleid
           @ListenerId = listenerid
           @Domain = domain
@@ -7296,6 +7298,7 @@ module TencentCloud
           @ServerNameIndicationSwitch = servernameindicationswitch
           @ServerNameIndication = servernameindication
           @ForcedRedirect = forcedredirect
+          @ForwardProtocol = forwardprotocol
         end
 
         def deserialize(params)
@@ -7324,6 +7327,7 @@ module TencentCloud
           @ServerNameIndicationSwitch = params['ServerNameIndicationSwitch']
           @ServerNameIndication = params['ServerNameIndication']
           @ForcedRedirect = params['ForcedRedirect']
+          @ForwardProtocol = params['ForwardProtocol']
         end
       end
 
