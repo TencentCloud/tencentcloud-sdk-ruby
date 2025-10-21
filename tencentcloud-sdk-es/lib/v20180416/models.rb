@@ -1656,10 +1656,20 @@ module TencentCloud
         # <li>0, 降序</li>
         # <li>1, 升序</li>
         # @type OrderByType: Integer
+        # @param LogLevels: 日志级别
+        # @type LogLevels: Array
+        # @param NodeIds: 节点ID
+        # @type NodeIds: Array
+        # @param IndexName: 慢日志索引名
+        # @type IndexName: String
+        # @param ShardId: 慢日志索引分片
+        # @type ShardId: String
+        # @param QueryCost: 慢日志查询耗时
+        # @type QueryCost: Integer
 
-        attr_accessor :InstanceId, :LogType, :SearchKey, :StartTime, :EndTime, :Offset, :Limit, :OrderByType
+        attr_accessor :InstanceId, :LogType, :SearchKey, :StartTime, :EndTime, :Offset, :Limit, :OrderByType, :LogLevels, :NodeIds, :IndexName, :ShardId, :QueryCost
 
-        def initialize(instanceid=nil, logtype=nil, searchkey=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, orderbytype=nil)
+        def initialize(instanceid=nil, logtype=nil, searchkey=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, orderbytype=nil, loglevels=nil, nodeids=nil, indexname=nil, shardid=nil, querycost=nil)
           @InstanceId = instanceid
           @LogType = logtype
           @SearchKey = searchkey
@@ -1668,6 +1678,11 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @OrderByType = orderbytype
+          @LogLevels = loglevels
+          @NodeIds = nodeids
+          @IndexName = indexname
+          @ShardId = shardid
+          @QueryCost = querycost
         end
 
         def deserialize(params)
@@ -1679,6 +1694,11 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @OrderByType = params['OrderByType']
+          @LogLevels = params['LogLevels']
+          @NodeIds = params['NodeIds']
+          @IndexName = params['IndexName']
+          @ShardId = params['ShardId']
+          @QueryCost = params['QueryCost']
         end
       end
 
@@ -4611,15 +4631,24 @@ module TencentCloud
         # @type Message: String
         # @param NodeID: 集群节点ID
         # @type NodeID: String
+        # @param IndexName: 慢日志索引名
+        # @type IndexName: String
+        # @param Shard: 慢日志索引分片
+        # @type Shard: String
+        # @param QueryCost: 慢日志索引查询耗时
+        # @type QueryCost: String
 
-        attr_accessor :Time, :Level, :Ip, :Message, :NodeID
+        attr_accessor :Time, :Level, :Ip, :Message, :NodeID, :IndexName, :Shard, :QueryCost
 
-        def initialize(time=nil, level=nil, ip=nil, message=nil, nodeid=nil)
+        def initialize(time=nil, level=nil, ip=nil, message=nil, nodeid=nil, indexname=nil, shard=nil, querycost=nil)
           @Time = time
           @Level = level
           @Ip = ip
           @Message = message
           @NodeID = nodeid
+          @IndexName = indexname
+          @Shard = shard
+          @QueryCost = querycost
         end
 
         def deserialize(params)
@@ -4628,6 +4657,9 @@ module TencentCloud
           @Ip = params['Ip']
           @Message = params['Message']
           @NodeID = params['NodeID']
+          @IndexName = params['IndexName']
+          @Shard = params['Shard']
+          @QueryCost = params['QueryCost']
         end
       end
 
@@ -6458,10 +6490,14 @@ module TencentCloud
         # @param TagList: 空间标签信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
+        # @param EnableMcpAccess: 是否开启mcp服务
+        # @type EnableMcpAccess: Integer
+        # @param McpAccess: mcp的访问地址
+        # @type McpAccess: String
 
-        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType, :TagList
+        attr_accessor :SpaceId, :SpaceName, :Status, :CreateTime, :IndexCount, :KibanaUrl, :KibanaPrivateUrl, :IndexAccessUrl, :KibanaPublicAcl, :KibanaEmbedUrl, :DiDataList, :VpcInfo, :Region, :Zone, :EnableKibanaPublicAccess, :EnableKibanaPrivateAccess, :AppId, :KibanaLanguage, :ClusterType, :TagList, :EnableMcpAccess, :McpAccess
 
-        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil, clustertype=nil, taglist=nil)
+        def initialize(spaceid=nil, spacename=nil, status=nil, createtime=nil, indexcount=nil, kibanaurl=nil, kibanaprivateurl=nil, indexaccessurl=nil, kibanapublicacl=nil, kibanaembedurl=nil, didatalist=nil, vpcinfo=nil, region=nil, zone=nil, enablekibanapublicaccess=nil, enablekibanaprivateaccess=nil, appid=nil, kibanalanguage=nil, clustertype=nil, taglist=nil, enablemcpaccess=nil, mcpaccess=nil)
           @SpaceId = spaceid
           @SpaceName = spacename
           @Status = status
@@ -6482,6 +6518,8 @@ module TencentCloud
           @KibanaLanguage = kibanalanguage
           @ClusterType = clustertype
           @TagList = taglist
+          @EnableMcpAccess = enablemcpaccess
+          @McpAccess = mcpaccess
         end
 
         def deserialize(params)
@@ -6525,6 +6563,8 @@ module TencentCloud
               @TagList << taginfo_tmp
             end
           end
+          @EnableMcpAccess = params['EnableMcpAccess']
+          @McpAccess = params['McpAccess']
         end
       end
 

@@ -9044,16 +9044,20 @@ module TencentCloud
 
       # DescribePrometheusScrapeStatistics请求参数结构体
       class DescribePrometheusScrapeStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceIds: 实例ID列表
+        # @type InstanceIds: Array
         # @param JobType: job 类型
         # @type JobType: String
 
-        attr_accessor :JobType
+        attr_accessor :InstanceIds, :JobType
 
-        def initialize(jobtype=nil)
+        def initialize(instanceids=nil, jobtype=nil)
+          @InstanceIds = instanceids
           @JobType = jobtype
         end
 
         def deserialize(params)
+          @InstanceIds = params['InstanceIds']
           @JobType = params['JobType']
         end
       end
@@ -9436,6 +9440,61 @@ module TencentCloud
               remotewrite_tmp = RemoteWrite.new
               remotewrite_tmp.deserialize(i)
               @RemoteWrites << remotewrite_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRemoteWrites请求参数结构体
+      class DescribeRemoteWritesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Offset: 列表 offset
+        # @type Offset: Integer
+        # @param Limit: 返回 limit
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Offset, :Limit
+
+        def initialize(instanceid=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRemoteWrites返回参数结构体
+      class DescribeRemoteWritesResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 存储数据
+        # @type Count: Integer
+        # @param RemoteWrites: 多写信息
+        # @type RemoteWrites: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RemoteWrites, :RequestId
+
+        def initialize(count=nil, remotewrites=nil, requestid=nil)
+          @Count = count
+          @RemoteWrites = remotewrites
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          unless params['RemoteWrites'].nil?
+            @RemoteWrites = []
+            params['RemoteWrites'].each do |i|
+              writedestination_tmp = WriteDestination.new
+              writedestination_tmp.deserialize(i)
+              @RemoteWrites << writedestination_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -9996,7 +10055,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，如2018-09-22T20:51:23+08:00，默认为当前时间。 EndTime不能小于StartTime
         # @type EndTime: String
-        # @param SpecifyStatistics: 返回多种统计方式数据。avg, max, min (1,2,4)可以自由组合。注意: 仅支持对API配置文档中展示的统计方式返回对应的统计数据。如所需的统计方式不满足您的查询需求，请提工单反馈。
+        # @param SpecifyStatistics: 返回多种统计方式数据。avg, max, min (1,2,4)可以自由组合。特别说明：建议查询时严格参考API配置文档中提供的统计方式。如选择其他未提供的统计方式，可能有数据统计误差。
         # @type SpecifyStatistics: Integer
 
         attr_accessor :Namespace, :MetricName, :Instances, :Period, :StartTime, :EndTime, :SpecifyStatistics
@@ -16299,6 +16358,22 @@ module TencentCloud
           @Weekday = params['Weekday']
           @OnCallFormIDs = params['OnCallFormIDs']
           @VoiceConfirmKey = params['VoiceConfirmKey']
+        end
+      end
+
+      # 数据写向目标
+      class WriteDestination < TencentCloud::Common::AbstractModel
+        # @param Destination: 存储标识
+        # @type Destination: String
+
+        attr_accessor :Destination
+
+        def initialize(destination=nil)
+          @Destination = destination
+        end
+
+        def deserialize(params)
+          @Destination = params['Destination']
         end
       end
 

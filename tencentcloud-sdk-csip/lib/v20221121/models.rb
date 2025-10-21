@@ -96,10 +96,12 @@ module TencentCloud
         # @type Evidence: String
         # @param RuleKey: 告警规则标识
         # @type RuleKey: String
+        # @param CloudType: 云厂商类型 0:腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云
+        # @type CloudType: Integer
 
-        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence, :IsSupportEditWhiteAccount, :Evidence, :RuleKey
+        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence, :IsSupportEditWhiteAccount, :Evidence, :RuleKey, :CloudType
 
-        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil, issupporteditwhiteaccount=nil, evidence=nil, rulekey=nil)
+        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil, issupporteditwhiteaccount=nil, evidence=nil, rulekey=nil, cloudtype=nil)
           @Name = name
           @Level = level
           @ID = id
@@ -122,6 +124,7 @@ module TencentCloud
           @IsSupportEditWhiteAccount = issupporteditwhiteaccount
           @Evidence = evidence
           @RuleKey = rulekey
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -147,6 +150,7 @@ module TencentCloud
           @IsSupportEditWhiteAccount = params['IsSupportEditWhiteAccount']
           @Evidence = params['Evidence']
           @RuleKey = params['RuleKey']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -247,10 +251,12 @@ module TencentCloud
         # @param CheckStatus: 0 表示已检测
         # 1 表示检测中
         # @type CheckStatus: Integer
+        # @param CloudType: 云厂商类型 0:腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云
+        # @type CloudType: Integer
 
-        attr_accessor :ID, :Name, :Remark, :AppID, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :IPCount, :CreateTime, :LastAccessTime, :Status, :CheckStatus
+        attr_accessor :ID, :Name, :Remark, :AppID, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :IPCount, :CreateTime, :LastAccessTime, :Status, :CheckStatus, :CloudType
 
-        def initialize(id=nil, name=nil, remark=nil, appid=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, ipcount=nil, createtime=nil, lastaccesstime=nil, status=nil, checkstatus=nil)
+        def initialize(id=nil, name=nil, remark=nil, appid=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, ipcount=nil, createtime=nil, lastaccesstime=nil, status=nil, checkstatus=nil, cloudtype=nil)
           @ID = id
           @Name = name
           @Remark = remark
@@ -268,6 +274,7 @@ module TencentCloud
           @LastAccessTime = lastaccesstime
           @Status = status
           @CheckStatus = checkstatus
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -302,6 +309,7 @@ module TencentCloud
           @LastAccessTime = params['LastAccessTime']
           @Status = params['Status']
           @CheckStatus = params['CheckStatus']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -454,10 +462,12 @@ module TencentCloud
         # @type LoginFlag: Integer
         # @param CheckStatus: 0 表示已检测 1 表示检测中
         # @type CheckStatus: Integer
+        # @param CloudType: 云厂商类型 0:腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云
+        # @type CloudType: Integer
 
-        attr_accessor :ID, :Name, :Type, :AccessType, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :AppID, :Nickname, :SubNickname, :Uin, :SubUin, :LoginIP, :LoginLocation, :LoginTime, :ISP, :ActionFlag, :LoginFlag, :CheckStatus
+        attr_accessor :ID, :Name, :Type, :AccessType, :Advice, :AccessKeyAlarmList, :AccessKeyRiskList, :AppID, :Nickname, :SubNickname, :Uin, :SubUin, :LoginIP, :LoginLocation, :LoginTime, :ISP, :ActionFlag, :LoginFlag, :CheckStatus, :CloudType
 
-        def initialize(id=nil, name=nil, type=nil, accesstype=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, appid=nil, nickname=nil, subnickname=nil, uin=nil, subuin=nil, loginip=nil, loginlocation=nil, logintime=nil, isp=nil, actionflag=nil, loginflag=nil, checkstatus=nil)
+        def initialize(id=nil, name=nil, type=nil, accesstype=nil, advice=nil, accesskeyalarmlist=nil, accesskeyrisklist=nil, appid=nil, nickname=nil, subnickname=nil, uin=nil, subuin=nil, loginip=nil, loginlocation=nil, logintime=nil, isp=nil, actionflag=nil, loginflag=nil, checkstatus=nil, cloudtype=nil)
           @ID = id
           @Name = name
           @Type = type
@@ -477,6 +487,7 @@ module TencentCloud
           @ActionFlag = actionflag
           @LoginFlag = loginflag
           @CheckStatus = checkstatus
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -513,6 +524,7 @@ module TencentCloud
           @ActionFlag = params['ActionFlag']
           @LoginFlag = params['LoginFlag']
           @CheckStatus = params['CheckStatus']
+          @CloudType = params['CloudType']
         end
       end
 
@@ -11836,6 +11848,7 @@ module TencentCloud
         # @param Region: IP地域
         # @type Region: String
         # @param EventType: 调用方式
+        # -1:未统计
         # 0:控制台调用
         # 1:API
         # @type EventType: Integer
@@ -11865,10 +11878,15 @@ module TencentCloud
         # @type ShowStatus: Boolean
         # @param ISP: 运营商字段
         # @type ISP: String
+        # @param VpcInfo: 账号外vpc信息
+        # @type VpcInfo: Array
+        # @param CloudType: 云类型
+        # 0为腾讯云
+        # @type CloudType: Integer
 
-        attr_accessor :ID, :SourceIP, :Remark, :AppID, :Region, :EventType, :IPType, :AccessKeyAlarmList, :AKInfo, :ActionCount, :LastAccessTime, :InstanceID, :InstanceName, :Uin, :Nickname, :ShowStatus, :ISP
+        attr_accessor :ID, :SourceIP, :Remark, :AppID, :Region, :EventType, :IPType, :AccessKeyAlarmList, :AKInfo, :ActionCount, :LastAccessTime, :InstanceID, :InstanceName, :Uin, :Nickname, :ShowStatus, :ISP, :VpcInfo, :CloudType
 
-        def initialize(id=nil, sourceip=nil, remark=nil, appid=nil, region=nil, eventtype=nil, iptype=nil, accesskeyalarmlist=nil, akinfo=nil, actioncount=nil, lastaccesstime=nil, instanceid=nil, instancename=nil, uin=nil, nickname=nil, showstatus=nil, isp=nil)
+        def initialize(id=nil, sourceip=nil, remark=nil, appid=nil, region=nil, eventtype=nil, iptype=nil, accesskeyalarmlist=nil, akinfo=nil, actioncount=nil, lastaccesstime=nil, instanceid=nil, instancename=nil, uin=nil, nickname=nil, showstatus=nil, isp=nil, vpcinfo=nil, cloudtype=nil)
           @ID = id
           @SourceIP = sourceip
           @Remark = remark
@@ -11886,6 +11904,8 @@ module TencentCloud
           @Nickname = nickname
           @ShowStatus = showstatus
           @ISP = isp
+          @VpcInfo = vpcinfo
+          @CloudType = cloudtype
         end
 
         def deserialize(params)
@@ -11920,6 +11940,15 @@ module TencentCloud
           @Nickname = params['Nickname']
           @ShowStatus = params['ShowStatus']
           @ISP = params['ISP']
+          unless params['VpcInfo'].nil?
+            @VpcInfo = []
+            params['VpcInfo'].each do |i|
+              sourceipvpcinfo_tmp = SourceIPVpcInfo.new
+              sourceipvpcinfo_tmp.deserialize(i)
+              @VpcInfo << sourceipvpcinfo_tmp
+            end
+          end
+          @CloudType = params['CloudType']
         end
       end
 

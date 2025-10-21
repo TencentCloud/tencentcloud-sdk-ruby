@@ -2708,6 +2708,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安装的 Agent 列表
+
+        # @param request: Request instance for DescribeRemoteWrites.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeRemoteWritesRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeRemoteWritesResponse`
+        def DescribeRemoteWrites(request)
+          body = send_request('DescribeRemoteWrites', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRemoteWritesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 列出当前grafana实例的所有授权账号
 
         # @param request: Request instance for DescribeSSOAccount.

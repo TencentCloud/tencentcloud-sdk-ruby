@@ -2081,8 +2081,8 @@ module TencentCloud
 
         attr_accessor :TaskGroupInstanceId, :TaskGroupInstanceObjectId, :TaskGroupInstanceStatus, :TaskGroupInstanceCreateTime, :TaskGroupInstanceUpdateTime, :TaskGroupInstanceStatusType, :TaskGroupInstanceStartTime, :TaskGroupInstanceEndTime, :TaskGroupInstanceExecuteLog, :TaskGroupInstanceIsRedo, :TaskGroupInstanceExecuteTime
         extend Gem::Deprecate
-        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 9
-        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 9
+        deprecate :TaskGroupInstanceExecuteLog, :none, 2025, 10
+        deprecate :TaskGroupInstanceExecuteLog=, :none, 2025, 10
 
         def initialize(taskgroupinstanceid=nil, taskgroupinstanceobjectid=nil, taskgroupinstancestatus=nil, taskgroupinstancecreatetime=nil, taskgroupinstanceupdatetime=nil, taskgroupinstancestatustype=nil, taskgroupinstancestarttime=nil, taskgroupinstanceendtime=nil, taskgroupinstanceexecutelog=nil, taskgroupinstanceisredo=nil, taskgroupinstanceexecutetime=nil)
           @TaskGroupInstanceId = taskgroupinstanceid
@@ -2171,10 +2171,12 @@ module TencentCloud
         # @type ArchId: String
         # @param ArchName: 架构名称
         # @type ArchName: String
+        # @param TaskSource: 来源
+        # @type TaskSource: Integer
 
-        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType, :ArchId, :ArchName
+        attr_accessor :TaskId, :TaskTitle, :TaskDescription, :TaskTag, :TaskStatus, :TaskCreateTime, :TaskUpdateTime, :TaskPreCheckStatus, :TaskPreCheckSuccess, :TaskExpect, :ApplicationId, :ApplicationName, :VerifyId, :TaskStatusType, :ArchId, :ArchName, :TaskSource
 
-        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil, archid=nil, archname=nil)
+        def initialize(taskid=nil, tasktitle=nil, taskdescription=nil, tasktag=nil, taskstatus=nil, taskcreatetime=nil, taskupdatetime=nil, taskprecheckstatus=nil, taskprechecksuccess=nil, taskexpect=nil, applicationid=nil, applicationname=nil, verifyid=nil, taskstatustype=nil, archid=nil, archname=nil, tasksource=nil)
           @TaskId = taskid
           @TaskTitle = tasktitle
           @TaskDescription = taskdescription
@@ -2191,6 +2193,7 @@ module TencentCloud
           @TaskStatusType = taskstatustype
           @ArchId = archid
           @ArchName = archname
+          @TaskSource = tasksource
         end
 
         def deserialize(params)
@@ -2210,6 +2213,7 @@ module TencentCloud
           @TaskStatusType = params['TaskStatusType']
           @ArchId = params['ArchId']
           @ArchName = params['ArchName']
+          @TaskSource = params['TaskSource']
         end
       end
 
