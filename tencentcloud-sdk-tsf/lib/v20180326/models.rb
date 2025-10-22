@@ -6774,10 +6774,12 @@ module TencentCloud
         # @type PodManagementPolicyType: String
         # @param Partition: 滚动更新分区序号
         # @type Partition: Integer
+        # @param IncrementalDeployment: 是否是增量部署，增量部署只运行增量覆盖一级参数，不支持对一级参数中的子参数进行增量更新，例如更新VolumeMountInfoList时必须传入VolumeMountInfoList更新后的全量参数
+        # @type IncrementalDeployment: Boolean
 
-        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition
+        attr_accessor :ApplicationId, :ObservabilityConfig, :ClusterId, :GroupId, :Envs, :VolumeMountInfoList, :LifeCycleHookList, :AdditionalContainerList, :VolumeInfoList, :ServiceSettingList, :Alias, :GroupName, :Tags, :ContainerKind, :Server, :RepoName, :RepoType, :TcrRepoInfo, :SecretName, :TagName, :HealthCheckSettings, :CpuRequest, :CpuLimit, :MemRequest, :MemLimit, :JvmOpts, :InitContainerEnable, :PrivilegeContainerEnable, :RunCommand, :RunArg, :InstanceNum, :SchedulingStrategy, :RestartPolicy, :ServiceSpecEncode, :IstioMemRequest, :IstioCpuRequest, :IstioMemLimit, :IstioCpuLimit, :ServiceGovernanceConfig, :AgentMemRequest, :AgentCpuRequest, :AgentMemLimit, :AgentCpuLimit, :UpdateType, :UpdateIvl, :MaxSurge, :MaxUnavailable, :WarmupSetting, :ConfigTemplateId, :ConfigTemplateVersion, :VolumeClean, :NamespaceId, :DeployAgent, :AgentProfileList, :ServiceClean, :EnvClean, :DeployDesc, :K8sNamespaceName, :StaticIpEnabled, :PodManagementPolicyType, :Partition, :IncrementalDeployment
 
-        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil)
+        def initialize(applicationid=nil, observabilityconfig=nil, clusterid=nil, groupid=nil, envs=nil, volumemountinfolist=nil, lifecyclehooklist=nil, additionalcontainerlist=nil, volumeinfolist=nil, servicesettinglist=nil, _alias=nil, groupname=nil, tags=nil, containerkind=nil, server=nil, reponame=nil, repotype=nil, tcrrepoinfo=nil, secretname=nil, tagname=nil, healthchecksettings=nil, cpurequest=nil, cpulimit=nil, memrequest=nil, memlimit=nil, jvmopts=nil, initcontainerenable=nil, privilegecontainerenable=nil, runcommand=nil, runarg=nil, instancenum=nil, schedulingstrategy=nil, restartpolicy=nil, servicespecencode=nil, istiomemrequest=nil, istiocpurequest=nil, istiomemlimit=nil, istiocpulimit=nil, servicegovernanceconfig=nil, agentmemrequest=nil, agentcpurequest=nil, agentmemlimit=nil, agentcpulimit=nil, updatetype=nil, updateivl=nil, maxsurge=nil, maxunavailable=nil, warmupsetting=nil, configtemplateid=nil, configtemplateversion=nil, volumeclean=nil, namespaceid=nil, deployagent=nil, agentprofilelist=nil, serviceclean=nil, envclean=nil, deploydesc=nil, k8snamespacename=nil, staticipenabled=nil, podmanagementpolicytype=nil, partition=nil, incrementaldeployment=nil)
           @ApplicationId = applicationid
           @ObservabilityConfig = observabilityconfig
           @ClusterId = clusterid
@@ -6839,6 +6841,7 @@ module TencentCloud
           @StaticIpEnabled = staticipenabled
           @PodManagementPolicyType = podmanagementpolicytype
           @Partition = partition
+          @IncrementalDeployment = incrementaldeployment
         end
 
         def deserialize(params)
@@ -6977,6 +6980,7 @@ module TencentCloud
           @StaticIpEnabled = params['StaticIpEnabled']
           @PodManagementPolicyType = params['PodManagementPolicyType']
           @Partition = params['Partition']
+          @IncrementalDeployment = params['IncrementalDeployment']
         end
       end
 
@@ -12113,10 +12117,12 @@ module TencentCloud
         # @type SearchWord: String
         # @param AppMicroServiceType: 部署组类型，精确过滤字段，M：service mesh, P：原生应用， G：网关应用
         # @type AppMicroServiceType: String
+        # @param GroupName: 按照【部署组名称】进行过滤，不填写时查询全量。可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/product/649/36068)查询已创建的部署组列表或登录[控制台](https://console.cloud.tencent.com/tsf/app-detail?rid=1&id=application-zvw6zp9a&tab=publish&subTab=group)进行查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
+        # @type GroupName: String
 
-        attr_accessor :GroupIdList, :ApplicationId, :ClusterId, :NamespaceId, :Limit, :Offset, :GroupId, :SearchWord, :AppMicroServiceType
+        attr_accessor :GroupIdList, :ApplicationId, :ClusterId, :NamespaceId, :Limit, :Offset, :GroupId, :SearchWord, :AppMicroServiceType, :GroupName
 
-        def initialize(groupidlist=nil, applicationid=nil, clusterid=nil, namespaceid=nil, limit=nil, offset=nil, groupid=nil, searchword=nil, appmicroservicetype=nil)
+        def initialize(groupidlist=nil, applicationid=nil, clusterid=nil, namespaceid=nil, limit=nil, offset=nil, groupid=nil, searchword=nil, appmicroservicetype=nil, groupname=nil)
           @GroupIdList = groupidlist
           @ApplicationId = applicationid
           @ClusterId = clusterid
@@ -12126,6 +12132,7 @@ module TencentCloud
           @GroupId = groupid
           @SearchWord = searchword
           @AppMicroServiceType = appmicroservicetype
+          @GroupName = groupname
         end
 
         def deserialize(params)
@@ -12138,6 +12145,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @SearchWord = params['SearchWord']
           @AppMicroServiceType = params['AppMicroServiceType']
+          @GroupName = params['GroupName']
         end
       end
 
@@ -12279,10 +12287,12 @@ module TencentCloud
         # @param ConfigCenterInstanceId: 独占配置中心的ID。
         # 可通过调用[DescribeClusterInstances](https://cloud.tencent.com/document/product/649/36048)查询已导入的实例列表或登录[控制台](https://console.cloud.tencent.com/tsf/resource?rid=1&tab=instance)进行查询。实例ID例如：ins-6decplwk。
         # @type ConfigCenterInstanceId: String
+        # @param ServiceFilter: 服务过滤
+        # @type ServiceFilter: String
 
-        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList, :ConfigCenterInstanceId
+        attr_accessor :Type, :TimeStep, :Offset, :Limit, :NamespaceId, :OrderBy, :OrderType, :EndTime, :StartTime, :ServiceName, :SearchWord, :MetricDimensionValues, :BucketKey, :DbName, :NamespaceIdList, :ConfigCenterInstanceId, :ServiceFilter
 
-        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil, namespaceidlist=nil, configcenterinstanceid=nil)
+        def initialize(type=nil, timestep=nil, offset=nil, limit=nil, namespaceid=nil, orderby=nil, ordertype=nil, endtime=nil, starttime=nil, servicename=nil, searchword=nil, metricdimensionvalues=nil, bucketkey=nil, dbname=nil, namespaceidlist=nil, configcenterinstanceid=nil, servicefilter=nil)
           @Type = type
           @TimeStep = timestep
           @Offset = offset
@@ -12299,6 +12309,7 @@ module TencentCloud
           @DbName = dbname
           @NamespaceIdList = namespaceidlist
           @ConfigCenterInstanceId = configcenterinstanceid
+          @ServiceFilter = servicefilter
         end
 
         def deserialize(params)
@@ -12325,6 +12336,7 @@ module TencentCloud
           @DbName = params['DbName']
           @NamespaceIdList = params['NamespaceIdList']
           @ConfigCenterInstanceId = params['ConfigCenterInstanceId']
+          @ServiceFilter = params['ServiceFilter']
         end
       end
 
@@ -13439,16 +13451,28 @@ module TencentCloud
         # @type RegionId: String
         # @param InstanceNamespaceId: 实例命名空间ID，通过[北极星控制台](https://console.cloud.tencent.com/tse/governance)获取
         # @type InstanceNamespaceId: String
+        # @param GroupId: 部署组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
 
-        attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId
+        attr_accessor :CenterType, :InstanceId, :InstanceType, :InstanceName, :RegionId, :InstanceNamespaceId, :GroupId, :CreateTime, :UpdateTime
 
-        def initialize(centertype=nil, instanceid=nil, instancetype=nil, instancename=nil, regionid=nil, instancenamespaceid=nil)
+        def initialize(centertype=nil, instanceid=nil, instancetype=nil, instancename=nil, regionid=nil, instancenamespaceid=nil, groupid=nil, createtime=nil, updatetime=nil)
           @CenterType = centertype
           @InstanceId = instanceid
           @InstanceType = instancetype
           @InstanceName = instancename
           @RegionId = regionid
           @InstanceNamespaceId = instancenamespaceid
+          @GroupId = groupid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
         end
 
         def deserialize(params)
@@ -13458,6 +13482,9 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @RegionId = params['RegionId']
           @InstanceNamespaceId = params['InstanceNamespaceId']
+          @GroupId = params['GroupId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

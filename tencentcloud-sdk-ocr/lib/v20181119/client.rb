@@ -1589,6 +1589,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 试卷切题（仅检测）可将整页练习册、试卷或教辅中的题目进行自动切题，返回试题边框和题目元素的坐标位置。
+
+        # 默认接口请求频率限制：2次/秒。
+
+        # @param request: Request instance for QuestionSplitLayoutOCR.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::QuestionSplitLayoutOCRRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::QuestionSplitLayoutOCRResponse`
+        def QuestionSplitLayoutOCR(request)
+          body = send_request('QuestionSplitLayoutOCR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QuestionSplitLayoutOCRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 试卷切题识别可将整页练习册、试卷或教辅中的题目进行自动切题，并识别出其中的文字内容和坐标位置。
 
         # 默认接口请求频率限制：2次/秒。

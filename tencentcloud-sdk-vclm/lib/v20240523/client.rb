@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询图生视频通用能力任务接口
+
+        # @param request: Request instance for DescribeImageToVideoGeneralJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoGeneralJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeImageToVideoGeneralJobResponse`
+        def DescribeImageToVideoGeneralJob(request)
+          body = send_request('DescribeImageToVideoGeneralJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeImageToVideoGeneralJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询图片唱演任务。
         # 支持提交音频和图片生成唱演视频，满足社交娱乐、互动营销等场景的需求。
 
@@ -160,6 +184,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitImageAnimateJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 图生视频通用能力接口
+
+        # @param request: Request instance for SubmitImageToVideoGeneralJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoGeneralJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitImageToVideoGeneralJobResponse`
+        def SubmitImageToVideoGeneralJob(request)
+          body = send_request('SubmitImageToVideoGeneralJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitImageToVideoGeneralJobResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1764,16 +1764,19 @@ module TencentCloud
         # @type ErrorMsg: String
         # @param HasCN: 是否包含CN节点
         # @type HasCN: Boolean
+        # @param ExistingJarConfList: 实例已经存在的jar包列表
+        # @type ExistingJarConfList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :HasCN, :RequestId
+        attr_accessor :ClusterConfList, :BuildVersion, :ErrorMsg, :HasCN, :ExistingJarConfList, :RequestId
 
-        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, hascn=nil, requestid=nil)
+        def initialize(clusterconflist=nil, buildversion=nil, errormsg=nil, hascn=nil, existingjarconflist=nil, requestid=nil)
           @ClusterConfList = clusterconflist
           @BuildVersion = buildversion
           @ErrorMsg = errormsg
           @HasCN = hascn
+          @ExistingJarConfList = existingjarconflist
           @RequestId = requestid
         end
 
@@ -1789,6 +1792,14 @@ module TencentCloud
           @BuildVersion = params['BuildVersion']
           @ErrorMsg = params['ErrorMsg']
           @HasCN = params['HasCN']
+          unless params['ExistingJarConfList'].nil?
+            @ExistingJarConfList = []
+            params['ExistingJarConfList'].each do |i|
+              clusterconfigsinfofromemr_tmp = ClusterConfigsInfoFromEMR.new
+              clusterconfigsinfofromemr_tmp.deserialize(i)
+              @ExistingJarConfList << clusterconfigsinfofromemr_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -14182,6 +14182,7 @@ module TencentCloud
         # @param StorageTime: 录制存储时长。
         # 单位秒，取值范围： 0 - 1500天。
         # 0：表示永久存储。
+        # 注：此参数只对录制到VOD有效。
         # @type StorageTime: Integer
         # @param Enable: 是否开启当前格式录制，默认值为0，0：否， 1：是。
         # @type Enable: Integer

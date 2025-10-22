@@ -8270,6 +8270,69 @@ module TencentCloud
         end
       end
 
+      # QuestionSplitLayoutOCR请求参数结构体
+      class QuestionSplitLayoutOCRRequest < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param IsPdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
+        # @type IsPdf: Boolean
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param EnableImageCrop: 是否开启切边增强和弯曲矫正,默认为false不开启
+        # @type EnableImageCrop: Boolean
+        # @param UseNewModel: false: 使用当前默认模型  true: 使用新的多模态推理模型，速度更快推理效果更强，仅 `EnableOnlyDetectBorder` 为 `true` 时生效，公测中
+        # @type UseNewModel: Boolean
+
+        attr_accessor :ImageUrl, :ImageBase64, :IsPdf, :PdfPageNumber, :EnableImageCrop, :UseNewModel
+
+        def initialize(imageurl=nil, imagebase64=nil, ispdf=nil, pdfpagenumber=nil, enableimagecrop=nil, usenewmodel=nil)
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @IsPdf = ispdf
+          @PdfPageNumber = pdfpagenumber
+          @EnableImageCrop = enableimagecrop
+          @UseNewModel = usenewmodel
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @IsPdf = params['IsPdf']
+          @PdfPageNumber = params['PdfPageNumber']
+          @EnableImageCrop = params['EnableImageCrop']
+          @UseNewModel = params['UseNewModel']
+        end
+      end
+
+      # QuestionSplitLayoutOCR返回参数结构体
+      class QuestionSplitLayoutOCRResponse < TencentCloud::Common::AbstractModel
+        # @param QuestionInfo: 检测到的文本信息
+        # @type QuestionInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuestionInfo, :RequestId
+
+        def initialize(questioninfo=nil, requestid=nil)
+          @QuestionInfo = questioninfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QuestionSplitOCR请求参数结构体
       class QuestionSplitOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。

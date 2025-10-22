@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 创建金融大模型审校任务
+
+        # @param request: Request instance for CreateFinancialLLMTask.
+        # @type request: :class:`Tencentcloud::tms::V20201229::CreateFinancialLLMTaskRequest`
+        # @rtype: :class:`Tencentcloud::tms::V20201229::CreateFinancialLLMTaskResponse`
+        def CreateFinancialLLMTask(request)
+          body = send_request('CreateFinancialLLMTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateFinancialLLMTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取金融大模型审校任务结果
+
+        # @param request: Request instance for GetFinancialLLMTaskResult.
+        # @type request: :class:`Tencentcloud::tms::V20201229::GetFinancialLLMTaskResultRequest`
+        # @rtype: :class:`Tencentcloud::tms::V20201229::GetFinancialLLMTaskResultResponse`
+        def GetFinancialLLMTaskResult(request)
+          body = send_request('GetFinancialLLMTaskResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFinancialLLMTaskResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（Text Moderation）用于提交文本内容进行智能审核任务。使用前请您使用腾讯云主账号登录控制台 [开通文本内容安全服务](https://console.cloud.tencent.com/cms) 并调整好对应的业务配置。
 
         # ### 接口使用说明

@@ -17,6 +17,62 @@
 module TencentCloud
   module Tms
     module V20201229
+      # CreateFinancialLLMTask请求参数结构体
+      class CreateFinancialLLMTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BizType: 审核策略BizType
+        # @type BizType: String
+        # @param FileType: 待审文件类型，目前支持：PDF, DOC, DOCX
+        # @type FileType: String
+        # @param ContentType: 送审内容类型：1-文档，2-文本
+        # @type ContentType: Integer
+        # @param Content: 送审内容，根据ContentType字段的取值，传入送审文档的Url链接，或送审文本的Base64编码
+
+        # 文档限制：
+
+        # - 文件下载时间不超过15秒（文件存储于腾讯云的Url可保障更高的下载速度和稳定性，建议文件存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。）
+        # - 所下载文件经 Base64 编码后不超过支持的文件大小：PDF/DOC/DOCX - 200M
+        # - 文档解析后的纯文本长度不超过 10000字
+
+        # 文本限制：Base64解码后的文本长度不超过10000字
+        # @type Content: String
+
+        attr_accessor :BizType, :FileType, :ContentType, :Content
+
+        def initialize(biztype=nil, filetype=nil, contenttype=nil, content=nil)
+          @BizType = biztype
+          @FileType = filetype
+          @ContentType = contenttype
+          @Content = content
+        end
+
+        def deserialize(params)
+          @BizType = params['BizType']
+          @FileType = params['FileType']
+          @ContentType = params['ContentType']
+          @Content = params['Content']
+        end
+      end
+
+      # CreateFinancialLLMTask返回参数结构体
+      class CreateFinancialLLMTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 金融大模型审校任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 文本审核返回的详细结果
       class DetailResults < TencentCloud::Common::AbstractModel
         # @param Label: 该字段用于返回检测结果所对应的全部恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告；以及其他令人反感、不安全或不适宜的内容类型。
@@ -123,6 +179,124 @@ module TencentCloud
           @IMEI = params['IMEI']
           @IDFA = params['IDFA']
           @IDFV = params['IDFV']
+        end
+      end
+
+      # 金融大模型审校 违规明细
+      class FinancialLLMViolationDetail < TencentCloud::Common::AbstractModel
+        # @param Label: 违规点
+        # @type Label: String
+        # @param Suggestion: 处置建议
+        # @type Suggestion: String
+        # @param Reasons: 违规原因列表
+        # @type Reasons: Array
+
+        attr_accessor :Label, :Suggestion, :Reasons
+
+        def initialize(label=nil, suggestion=nil, reasons=nil)
+          @Label = label
+          @Suggestion = suggestion
+          @Reasons = reasons
+        end
+
+        def deserialize(params)
+          @Label = params['Label']
+          @Suggestion = params['Suggestion']
+          unless params['Reasons'].nil?
+            @Reasons = []
+            params['Reasons'].each do |i|
+              financialllmviolationreason_tmp = FinancialLLMViolationReason.new
+              financialllmviolationreason_tmp.deserialize(i)
+              @Reasons << financialllmviolationreason_tmp
+            end
+          end
+        end
+      end
+
+      # 金融大模型审校-违规原因
+      class FinancialLLMViolationReason < TencentCloud::Common::AbstractModel
+        # @param TargetText: 违规原文片段
+        # @type TargetText: String
+        # @param Reason: 违规原因
+        # @type Reason: String
+
+        attr_accessor :TargetText, :Reason
+
+        def initialize(targettext=nil, reason=nil)
+          @TargetText = targettext
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @TargetText = params['TargetText']
+          @Reason = params['Reason']
+        end
+      end
+
+      # GetFinancialLLMTaskResult请求参数结构体
+      class GetFinancialLLMTaskResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 金融大模型审校任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # GetFinancialLLMTaskResult返回参数结构体
+      class GetFinancialLLMTaskResultResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 审校任务状态：
+
+        # - Success: 成功
+        # - Processing: 处理中，请等待
+        # - Failed: 失败
+        # @type Status: String
+        # @param ModerationResult: 大模型审校结果
+        # @type ModerationResult: String
+        # @param FailureReason: 审校任务失败原因，仅当任务失败时有值
+        # @type FailureReason: String
+        # @param StartTime: 审校任务开始时间
+        # @type StartTime: String
+        # @param ReviewedLabels: 本次检测的违规点列表
+        # @type ReviewedLabels: Array
+        # @param Details: 违规明细
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ModerationResult, :FailureReason, :StartTime, :ReviewedLabels, :Details, :RequestId
+
+        def initialize(status=nil, moderationresult=nil, failurereason=nil, starttime=nil, reviewedlabels=nil, details=nil, requestid=nil)
+          @Status = status
+          @ModerationResult = moderationresult
+          @FailureReason = failurereason
+          @StartTime = starttime
+          @ReviewedLabels = reviewedlabels
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ModerationResult = params['ModerationResult']
+          @FailureReason = params['FailureReason']
+          @StartTime = params['StartTime']
+          @ReviewedLabels = params['ReviewedLabels']
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              financialllmviolationdetail_tmp = FinancialLLMViolationDetail.new
+              financialllmviolationdetail_tmp.deserialize(i)
+              @Details << financialllmviolationdetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

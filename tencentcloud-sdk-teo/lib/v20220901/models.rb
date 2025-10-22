@@ -1264,6 +1264,53 @@ module TencentCloud
         end
       end
 
+      # Bot 管理的基础配置，对策略关联的所有域名生效。可以通过 CustomRules 进行精细化定制。
+      class BasicBotSettings < TencentCloud::Common::AbstractModel
+        # @param SourceIDC: 客户端 IP 的来源 IDC 配置，用于处置来自 IDC（数据中心） 的客户端 IP 的访问请求。此类来源请求不是由移动端或浏览器端直接访问。
+        # @type SourceIDC: :class:`Tencentcloud::Teo.v20220901.models.SourceIDC`
+        # @param SearchEngineBots: 搜索引擎爬虫配置，用于处置来自搜索引擎爬虫的请求。此类请求的 IP、User-Agent 或 rDNS 结果匹配已知搜索引擎爬虫。
+        # @type SearchEngineBots: :class:`Tencentcloud::Teo.v20220901.models.SearchEngineBots`
+        # @param KnownBotCategories: 商业或开源工具 UA 特征配置（原 UA 特征规则），用于处置来自已知商业工具或开源工具的访问请求。此类请求的 User-Agent 头部符合已知商业或开源工具特征。
+        # @type KnownBotCategories: :class:`Tencentcloud::Teo.v20220901.models.KnownBotCategories`
+        # @param IPReputation: IP 威胁情报库（原客户端画像分析）配置，用于处置近期访问行为具有特定风险特征的客户端 IP。
+        # @type IPReputation: :class:`Tencentcloud::Teo.v20220901.models.IPReputation`
+        # @param BotIntelligence: Bot 智能分析的具体配置。
+        # @type BotIntelligence: :class:`Tencentcloud::Teo.v20220901.models.BotIntelligence`
+
+        attr_accessor :SourceIDC, :SearchEngineBots, :KnownBotCategories, :IPReputation, :BotIntelligence
+
+        def initialize(sourceidc=nil, searchenginebots=nil, knownbotcategories=nil, ipreputation=nil, botintelligence=nil)
+          @SourceIDC = sourceidc
+          @SearchEngineBots = searchenginebots
+          @KnownBotCategories = knownbotcategories
+          @IPReputation = ipreputation
+          @BotIntelligence = botintelligence
+        end
+
+        def deserialize(params)
+          unless params['SourceIDC'].nil?
+            @SourceIDC = SourceIDC.new
+            @SourceIDC.deserialize(params['SourceIDC'])
+          end
+          unless params['SearchEngineBots'].nil?
+            @SearchEngineBots = SearchEngineBots.new
+            @SearchEngineBots.deserialize(params['SearchEngineBots'])
+          end
+          unless params['KnownBotCategories'].nil?
+            @KnownBotCategories = KnownBotCategories.new
+            @KnownBotCategories.deserialize(params['KnownBotCategories'])
+          end
+          unless params['IPReputation'].nil?
+            @IPReputation = IPReputation.new
+            @IPReputation.deserialize(params['IPReputation'])
+          end
+          unless params['BotIntelligence'].nil?
+            @BotIntelligence = BotIntelligence.new
+            @BotIntelligence.deserialize(params['BotIntelligence'])
+          end
+        end
+      end
+
       # 计费数据项。
       class BillingData < TencentCloud::Common::AbstractModel
         # @param Time: 数据时间戳。
@@ -1622,6 +1669,32 @@ module TencentCloud
         end
       end
 
+      # Bot 智能分析的具体配置。
+      class BotIntelligence < TencentCloud::Common::AbstractModel
+        # @param BotRatings: 基于客户端和请求特征，将请求来源分为人类来源请求、合法 Bot 请求、疑似 Bot 请求和高风险 Bot 请求，并提供请求处置选项。
+        # @type BotRatings: :class:`Tencentcloud::Teo.v20220901.models.BotRatings`
+        # @param Enabled: Bot 智能分析的具体配置开关。取值有：
+
+        # on：开启；
+        # off：关闭。
+        # @type Enabled: String
+
+        attr_accessor :BotRatings, :Enabled
+
+        def initialize(botratings=nil, enabled=nil)
+          @BotRatings = botratings
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          unless params['BotRatings'].nil?
+            @BotRatings = BotRatings.new
+            @BotRatings.deserialize(params['BotRatings'])
+          end
+          @Enabled = params['Enabled']
+        end
+      end
+
       # Bot 规则，下列规则ID可参考接口 DescribeBotManagedRules返回的ID信息
       class BotManagedRule < TencentCloud::Common::AbstractModel
         # @param Action: 触发规则后的处置方式，取值有：
@@ -1668,19 +1741,133 @@ module TencentCloud
 
       # Web 安全的 BOT 规则结构。
       class BotManagement < TencentCloud::Common::AbstractModel
-        # @param ClientAttestationRules: 客户端认证规则的定义列表。该功能内测中，如需使用，请提工单或联系智能客服。
+        # @param Enabled: Bot 管理是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+        # @param CustomRules: Bot 管理的自定义规则，组合各类爬虫和请求行为特征，精准定义 Bot 并配置定制化处置方式。
+        # @type CustomRules: :class:`Tencentcloud::Teo.v20220901.models.BotManagementCustomRules`
+        # @param BasicBotSettings: Bot 管理的基础配置，对策略关联的所有域名生效。可以通过 CustomRules 进行精细化定制。
+        # @type BasicBotSettings: :class:`Tencentcloud::Teo.v20220901.models.BasicBotSettings`
+        # @param ClientAttestationRules: 客户端认证规则的定义列表。该功能内测中，如需使用，请提工单。
         # @type ClientAttestationRules: :class:`Tencentcloud::Teo.v20220901.models.ClientAttestationRules`
+        # @param BrowserImpersonationDetection: 配置浏览器伪造识别规则（原主动特征识别规则）。设置注入 JavaScript 的响应页面范围，浏览器校验选项，以及对非浏览器客户端的处置方式。
+        # @type BrowserImpersonationDetection: :class:`Tencentcloud::Teo.v20220901.models.BrowserImpersonationDetection`
 
-        attr_accessor :ClientAttestationRules
+        attr_accessor :Enabled, :CustomRules, :BasicBotSettings, :ClientAttestationRules, :BrowserImpersonationDetection
 
-        def initialize(clientattestationrules=nil)
+        def initialize(enabled=nil, customrules=nil, basicbotsettings=nil, clientattestationrules=nil, browserimpersonationdetection=nil)
+          @Enabled = enabled
+          @CustomRules = customrules
+          @BasicBotSettings = basicbotsettings
           @ClientAttestationRules = clientattestationrules
+          @BrowserImpersonationDetection = browserimpersonationdetection
         end
 
         def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['CustomRules'].nil?
+            @CustomRules = BotManagementCustomRules.new
+            @CustomRules.deserialize(params['CustomRules'])
+          end
+          unless params['BasicBotSettings'].nil?
+            @BasicBotSettings = BasicBotSettings.new
+            @BasicBotSettings.deserialize(params['BasicBotSettings'])
+          end
           unless params['ClientAttestationRules'].nil?
             @ClientAttestationRules = ClientAttestationRules.new
             @ClientAttestationRules.deserialize(params['ClientAttestationRules'])
+          end
+          unless params['BrowserImpersonationDetection'].nil?
+            @BrowserImpersonationDetection = BrowserImpersonationDetection.new
+            @BrowserImpersonationDetection.deserialize(params['BrowserImpersonationDetection'])
+          end
+        end
+      end
+
+      # Bot 规则项的具体配置，用于覆盖上层的默认配置。
+      class BotManagementActionOverrides < TencentCloud::Common::AbstractModel
+        # @param Ids: Bot 规则组下的具体项，用于改写此单条规则项配置的内容，Ids 所对应的具体信息请参考 DescribeBotManagedRules 接口返回的信息。
+        # @type Ids: Array
+        # @param Action: Ids 中指定 Bot 规则项的处置动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Disabled：未启用，不启用指定规则；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge；</li><li>Allow：放行（仅限Bot基础特征管理）。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :Ids, :Action
+
+        def initialize(ids=nil, action=nil)
+          @Ids = ids
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+        end
+      end
+
+      # Web 安全的 Bot 自定义规则。
+      class BotManagementCustomRule < TencentCloud::Common::AbstractModel
+        # @param Id: Bot 自定义规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li><b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li><b>删除</b>已有规则：BotManagementCustomRules 参数中，Rules 列表中未包含的已有规则将被删除。</li>
+        # @type Id: String
+        # @param Name: Bot 自定义规则的名称。
+        # @type Name: String
+        # @param Enabled: Bot 自定义规则是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+        # @param Priority: Bot 自定义规则的优先级，范围是 1 ~ 100，默认为 50。
+        # @type Priority: Integer
+        # @param Condition: Bot 自定义规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @type Condition: String
+        # @param Action: Bot 自定义规则的处置方式。取值有：<li>Monitor：观察；</li><li>Deny：拦截，其中 DenyActionParameters.Name 支持 Deny 和 ReturnCustomPage；</li><li>Challenge：挑战，其中 ChallengeActionParameters.Name 支持 JSChallenge 和 ManagedChallenge；</li><li>Redirect：重定向至 URL。</li>
+        # @type Action: Array
+
+        attr_accessor :Id, :Name, :Enabled, :Priority, :Condition, :Action
+
+        def initialize(id=nil, name=nil, enabled=nil, priority=nil, condition=nil, action=nil)
+          @Id = id
+          @Name = name
+          @Enabled = enabled
+          @Priority = priority
+          @Condition = condition
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          @Priority = params['Priority']
+          @Condition = params['Condition']
+          unless params['Action'].nil?
+            @Action = []
+            params['Action'].each do |i|
+              securityweightedaction_tmp = SecurityWeightedAction.new
+              securityweightedaction_tmp.deserialize(i)
+              @Action << securityweightedaction_tmp
+            end
+          end
+        end
+      end
+
+      # Bot 自定义规则的配置。
+      class BotManagementCustomRules < TencentCloud::Common::AbstractModel
+        # @param Rules: Bot 自定义规则的列表。使用 ModifySecurityPolicy 修改 Web 防护配置时： <br> <li>  若未指定 SecurityPolicy.BotManagement.CustomRules 中的 Rules 参数，或 Rules 参数长度为零：清空所有 Bot 自定义规则配置。</li> <li> 若 SecurityPolicy.BotManagement 参数中，未指定 CustomRules 参数值：保持已有 Bot 自定义规则配置，不做修改。</li>
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              botmanagementcustomrule_tmp = BotManagementCustomRule.new
+              botmanagementcustomrule_tmp.deserialize(i)
+              @Rules << botmanagementcustomrule_tmp
+            end
           end
         end
       end
@@ -1720,6 +1907,90 @@ module TencentCloud
           @CapManagedIds = params['CapManagedIds']
           @MonManagedIds = params['MonManagedIds']
           @DropManagedIds = params['DropManagedIds']
+        end
+      end
+
+      # 基于客户端和请求特征，将请求来源分为人类来源请求、合法 Bot 请求、疑似 Bot 请求和高风险 Bot 请求，并提供请求处置选项。
+      class BotRatings < TencentCloud::Common::AbstractModel
+        # @param HighRiskBotRequestsAction: 恶意 Bot 请求的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Allow：放行；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge。</li>
+        # @type HighRiskBotRequestsAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param LikelyBotRequestsAction: 疑似 Bot 请求的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Allow：放行；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge。</li>
+        # @type LikelyBotRequestsAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param VerifiedBotRequestsAction: 友好 Bot 请求的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Allow：放行；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge。</li>
+        # @type VerifiedBotRequestsAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param HumanRequestsAction: 正常 Bot 请求的执行动作。 SecurityAction 的 Name 取值支持：<li>Allow：放行。</li>
+        # @type HumanRequestsAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :HighRiskBotRequestsAction, :LikelyBotRequestsAction, :VerifiedBotRequestsAction, :HumanRequestsAction
+
+        def initialize(highriskbotrequestsaction=nil, likelybotrequestsaction=nil, verifiedbotrequestsaction=nil, humanrequestsaction=nil)
+          @HighRiskBotRequestsAction = highriskbotrequestsaction
+          @LikelyBotRequestsAction = likelybotrequestsaction
+          @VerifiedBotRequestsAction = verifiedbotrequestsaction
+          @HumanRequestsAction = humanrequestsaction
+        end
+
+        def deserialize(params)
+          unless params['HighRiskBotRequestsAction'].nil?
+            @HighRiskBotRequestsAction = SecurityAction.new
+            @HighRiskBotRequestsAction.deserialize(params['HighRiskBotRequestsAction'])
+          end
+          unless params['LikelyBotRequestsAction'].nil?
+            @LikelyBotRequestsAction = SecurityAction.new
+            @LikelyBotRequestsAction.deserialize(params['LikelyBotRequestsAction'])
+          end
+          unless params['VerifiedBotRequestsAction'].nil?
+            @VerifiedBotRequestsAction = SecurityAction.new
+            @VerifiedBotRequestsAction.deserialize(params['VerifiedBotRequestsAction'])
+          end
+          unless params['HumanRequestsAction'].nil?
+            @HumanRequestsAction = SecurityAction.new
+            @HumanRequestsAction.deserialize(params['HumanRequestsAction'])
+          end
+        end
+      end
+
+      # Cookie 校验和会话跟踪行为具体配置。
+      class BotSessionValidation < TencentCloud::Common::AbstractModel
+        # @param IssueNewBotSessionCookie: 是否更新 Cookie 并校验。取值有：<li>on：更新 Cookie 并校验；</li><li>off：仅校验。</li>
+        # @type IssueNewBotSessionCookie: String
+        # @param MaxNewSessionTriggerConfig: 更新 Cookie 并校验时的触发阈值，仅当 IssueNewBotSessionCookie 为 on 时有效。
+        # @type MaxNewSessionTriggerConfig: :class:`Tencentcloud::Teo.v20220901.models.MaxNewSessionTriggerConfig`
+        # @param SessionExpiredAction: 未携带 Cookie 或 Cookie 已过期的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type SessionExpiredAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param SessionInvalidAction: 不合法 Cookie 的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type SessionInvalidAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param SessionRateControl: 会话速率和周期特征校验的具体配置。
+        # @type SessionRateControl: :class:`Tencentcloud::Teo.v20220901.models.SessionRateControl`
+
+        attr_accessor :IssueNewBotSessionCookie, :MaxNewSessionTriggerConfig, :SessionExpiredAction, :SessionInvalidAction, :SessionRateControl
+
+        def initialize(issuenewbotsessioncookie=nil, maxnewsessiontriggerconfig=nil, sessionexpiredaction=nil, sessioninvalidaction=nil, sessionratecontrol=nil)
+          @IssueNewBotSessionCookie = issuenewbotsessioncookie
+          @MaxNewSessionTriggerConfig = maxnewsessiontriggerconfig
+          @SessionExpiredAction = sessionexpiredaction
+          @SessionInvalidAction = sessioninvalidaction
+          @SessionRateControl = sessionratecontrol
+        end
+
+        def deserialize(params)
+          @IssueNewBotSessionCookie = params['IssueNewBotSessionCookie']
+          unless params['MaxNewSessionTriggerConfig'].nil?
+            @MaxNewSessionTriggerConfig = MaxNewSessionTriggerConfig.new
+            @MaxNewSessionTriggerConfig.deserialize(params['MaxNewSessionTriggerConfig'])
+          end
+          unless params['SessionExpiredAction'].nil?
+            @SessionExpiredAction = SecurityAction.new
+            @SessionExpiredAction.deserialize(params['SessionExpiredAction'])
+          end
+          unless params['SessionInvalidAction'].nil?
+            @SessionInvalidAction = SecurityAction.new
+            @SessionInvalidAction.deserialize(params['SessionInvalidAction'])
+          end
+          unless params['SessionRateControl'].nil?
+            @SessionRateControl = SessionRateControl.new
+            @SessionRateControl.deserialize(params['SessionRateControl'])
+          end
         end
       end
 
@@ -1823,6 +2094,90 @@ module TencentCloud
         end
       end
 
+      # 浏览器伪造识别规则（原主动特征识别规则）的配置。
+      class BrowserImpersonationDetection < TencentCloud::Common::AbstractModel
+        # @param Rules: 浏览器伪造识别规则的列表。使用 ModifySecurityPolicy 修改 Web 防护配置时： <br> <li>  若未指定 SecurityPolicy.BotManagement.BrowserImpersonationDetection 中的 Rules 参数，或 Rules 参数长度为零： 清空所有浏览器伪造识别规则配置。</li> <li> 若 SecurityPolicy.BotManagement 参数中，未指定 BrowserImpersonationDetection 参数值： 保持已有浏览器伪造识别规则配置，不做修改。</li>
+        # @type Rules: Array
+
+        attr_accessor :Rules
+
+        def initialize(rules=nil)
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              browserimpersonationdetectionrule_tmp = BrowserImpersonationDetectionRule.new
+              browserimpersonationdetectionrule_tmp.deserialize(i)
+              @Rules << browserimpersonationdetectionrule_tmp
+            end
+          end
+        end
+      end
+
+      # Bot 浏览器校验规则（原主动特征识别规则）的 Action。
+      class BrowserImpersonationDetectionAction < TencentCloud::Common::AbstractModel
+        # @param BotSessionValidation: Cookie 校验和会话跟踪配置。
+        # @type BotSessionValidation: :class:`Tencentcloud::Teo.v20220901.models.BotSessionValidation`
+        # @param ClientBehaviorDetection: 客户端行为校验配置。
+        # @type ClientBehaviorDetection: :class:`Tencentcloud::Teo.v20220901.models.ClientBehaviorDetection`
+
+        attr_accessor :BotSessionValidation, :ClientBehaviorDetection
+
+        def initialize(botsessionvalidation=nil, clientbehaviordetection=nil)
+          @BotSessionValidation = botsessionvalidation
+          @ClientBehaviorDetection = clientbehaviordetection
+        end
+
+        def deserialize(params)
+          unless params['BotSessionValidation'].nil?
+            @BotSessionValidation = BotSessionValidation.new
+            @BotSessionValidation.deserialize(params['BotSessionValidation'])
+          end
+          unless params['ClientBehaviorDetection'].nil?
+            @ClientBehaviorDetection = ClientBehaviorDetection.new
+            @ClientBehaviorDetection.deserialize(params['ClientBehaviorDetection'])
+          end
+        end
+      end
+
+      # 浏览器伪造识别规则（原主动特征识别规则）。
+      class BrowserImpersonationDetectionRule < TencentCloud::Common::AbstractModel
+        # @param Id: 浏览器伪造识别规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li><b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li><b>删除</b>已有规则：BrowserImpersonationDetection 参数中，Rules 列表中未包含的已有规则将被删除。</li>
+        # @type Id: String
+        # @param Name: 浏览器伪造识别规则的名称。
+        # @type Name: String
+        # @param Enabled: 浏览器伪造识别规则是否开启。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+        # @param Condition: 浏览器伪造识别规则的具体内容，其中仅支持请求方式（Method）、请求路径（Path）和请求 URL 的配置，需符合表达式语法，详细规范参见产品文档。
+        # @type Condition: String
+        # @param Action: 浏览器伪造识别规则的处置方式，包括 Cookie 校验和会话跟踪配置以及客户端行为校验配置。
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.BrowserImpersonationDetectionAction`
+
+        attr_accessor :Id, :Name, :Enabled, :Condition, :Action
+
+        def initialize(id=nil, name=nil, enabled=nil, condition=nil, action=nil)
+          @Id = id
+          @Name = name
+          @Enabled = enabled
+          @Condition = condition
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          @Condition = params['Condition']
+          unless params['Action'].nil?
+            @Action = BrowserImpersonationDetectionAction.new
+            @Action.deserialize(params['Action'])
+          end
+        end
+      end
+
       # cc配置项。
       class CC < TencentCloud::Common::AbstractModel
         # @param Switch: Waf开关，取值为：
@@ -1866,6 +2221,31 @@ module TencentCloud
           @LogSetId = params['LogSetId']
           @TopicId = params['TopicId']
           @LogSetRegion = params['LogSetRegion']
+        end
+      end
+
+      # CNAME 接入类型站点参数详情。
+      class CNAMEDetail < TencentCloud::Common::AbstractModel
+        # @param IsFake: 是否伪站点，取值有：
+        # <li> 0：非伪站点；</li>
+        # <li> 1：伪站点。</li>
+        # @type IsFake: Integer
+        # @param OwnershipVerification: 归属权验证信息。详情请参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789) 。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+
+        attr_accessor :IsFake, :OwnershipVerification
+
+        def initialize(isfake=nil, ownershipverification=nil)
+          @IsFake = isfake
+          @OwnershipVerification = ownershipverification
+        end
+
+        def deserialize(params)
+          @IsFake = params['IsFake']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
         end
       end
 
@@ -2622,6 +3002,55 @@ module TencentCloud
           unless params['TCCaptchaOption'].nil?
             @TCCaptchaOption = TCCaptchaOption.new
             @TCCaptchaOption.deserialize(params['TCCaptchaOption'])
+          end
+        end
+      end
+
+      # 客户端行为校验
+      class ClientBehaviorDetection < TencentCloud::Common::AbstractModel
+        # @param CryptoChallengeIntensity: 工作量证明校验强度。取值有：<li>low：低；</li><li>medium：中；</li><li>high：高。</li>
+        # @type CryptoChallengeIntensity: String
+        # @param CryptoChallengeDelayBefore: 客户端行为校验的执行方式。取值有：<li>0ms：立即执行；</li><li>100ms：延迟 100ms 执行；</li><li>200ms：延迟 200ms 执行；</li><li>300ms：延迟 300ms 执行；</li><li>400ms：延迟 400ms 执行；</li><li>500ms：延迟 500ms 执行；</li><li>600ms：延迟 600ms 执行；</li><li>700ms：延迟 700ms 执行；</li><li>800ms：延迟 800ms 执行；</li><li>900ms：延迟 900ms 执行；</li><li>1000ms：延迟 1000ms 执行。</li>
+        # @type CryptoChallengeDelayBefore: String
+        # @param MaxChallengeCountInterval: 触发阈值统计的时间窗口，取值有：<li>5s：5 秒内；</li><li>10s：10 秒内；</li><li>15s：15 秒内；</li><li>30s：30 秒内；</li><li>60s：60 秒内；</li><li>5m：5 分钟内；</li><li>10m：10 分钟内；</li><li>30m：30 分钟内；</li><li>60m：60 分钟内。</li>
+        # @type MaxChallengeCountInterval: String
+        # @param MaxChallengeCountThreshold: 触发阈值统计的累计次数，取值范围 1 ~ 100000000。
+        # @type MaxChallengeCountThreshold: Integer
+        # @param ChallengeNotFinishedAction: 客户端未启用 JS（未完成检测）时的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type ChallengeNotFinishedAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param ChallengeTimeoutAction: 客户端检测超时的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type ChallengeTimeoutAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param BotClientAction: Bot 客户端的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type BotClientAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :CryptoChallengeIntensity, :CryptoChallengeDelayBefore, :MaxChallengeCountInterval, :MaxChallengeCountThreshold, :ChallengeNotFinishedAction, :ChallengeTimeoutAction, :BotClientAction
+
+        def initialize(cryptochallengeintensity=nil, cryptochallengedelaybefore=nil, maxchallengecountinterval=nil, maxchallengecountthreshold=nil, challengenotfinishedaction=nil, challengetimeoutaction=nil, botclientaction=nil)
+          @CryptoChallengeIntensity = cryptochallengeintensity
+          @CryptoChallengeDelayBefore = cryptochallengedelaybefore
+          @MaxChallengeCountInterval = maxchallengecountinterval
+          @MaxChallengeCountThreshold = maxchallengecountthreshold
+          @ChallengeNotFinishedAction = challengenotfinishedaction
+          @ChallengeTimeoutAction = challengetimeoutaction
+          @BotClientAction = botclientaction
+        end
+
+        def deserialize(params)
+          @CryptoChallengeIntensity = params['CryptoChallengeIntensity']
+          @CryptoChallengeDelayBefore = params['CryptoChallengeDelayBefore']
+          @MaxChallengeCountInterval = params['MaxChallengeCountInterval']
+          @MaxChallengeCountThreshold = params['MaxChallengeCountThreshold']
+          unless params['ChallengeNotFinishedAction'].nil?
+            @ChallengeNotFinishedAction = SecurityAction.new
+            @ChallengeNotFinishedAction.deserialize(params['ChallengeNotFinishedAction'])
+          end
+          unless params['ChallengeTimeoutAction'].nil?
+            @ChallengeTimeoutAction = SecurityAction.new
+            @ChallengeTimeoutAction.deserialize(params['ChallengeTimeoutAction'])
+          end
+          unless params['BotClientAction'].nil?
+            @BotClientAction = SecurityAction.new
+            @BotClientAction.deserialize(params['BotClientAction'])
           end
         end
       end
@@ -5625,6 +6054,24 @@ module TencentCloud
           @LevelMainland = params['LevelMainland']
           @MaxBandwidthMainland = params['MaxBandwidthMainland']
           @LevelOverseas = params['LevelOverseas']
+        end
+      end
+
+      # DNSPod 托管类型站点参数详情。
+      class DNSPodDetail < TencentCloud::Common::AbstractModel
+        # @param IsFake: 是否伪站点，取值有：
+        # <li> 0：非伪站点；</li>
+        # <li> 1：伪站点。</li>
+        # @type IsFake: Integer
+
+        attr_accessor :IsFake
+
+        def initialize(isfake=nil)
+          @IsFake = isfake
+        end
+
+        def deserialize(params)
+          @IsFake = params['IsFake']
         end
       end
 
@@ -11056,7 +11503,7 @@ module TencentCloud
         # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
         # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：
-        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-id：按照站点 ID进行过滤。站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤；</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤。</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
+        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-type：按照站点类型进行过滤。可选项：<br>   full：NS 接入类型；<br>   partial：CNAME 接入类型；<br>   partialComposite：无域名接入类型；<br>   dnsPodAccess：DNSPod 托管接入类型；<br>   pages：Pages 类型。</li><li>zone-id：按照站点 ID 进行过滤，站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤。可选项：<br>   active：NS 已切换；<br>   pending：NS 待切换；<br>   deleted：已删除。</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤；</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
         # @type Filters: Array
         # @param Order: 可根据该字段对返回结果进行排序，取值有：
         # <li> type：接入类型；</li>
@@ -11101,7 +11548,7 @@ module TencentCloud
       class DescribeZonesResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 符合条件的站点个数。
         # @type TotalCount: Integer
-        # @param Zones: 站点详细信息。
+        # @param Zones: 站点列表详情。
         # @type Zones: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13377,6 +13824,59 @@ module TencentCloud
         end
       end
 
+      # IP 情报库（原客户端画像分析）配置。
+      class IPReputation < TencentCloud::Common::AbstractModel
+        # @param Enabled: IP 情报库（原客户端画像分析）。取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+        # @param IPReputationGroup: IP 情报库（原客户端画像分析）的具体配置内容。
+        # @type IPReputationGroup: :class:`Tencentcloud::Teo.v20220901.models.IPReputationGroup`
+
+        attr_accessor :Enabled, :IPReputationGroup
+
+        def initialize(enabled=nil, ipreputationgroup=nil)
+          @Enabled = enabled
+          @IPReputationGroup = ipreputationgroup
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['IPReputationGroup'].nil?
+            @IPReputationGroup = IPReputationGroup.new
+            @IPReputationGroup.deserialize(params['IPReputationGroup'])
+          end
+        end
+      end
+
+      # IP 情报库（原客户端画像分析）的具体配置。
+      class IPReputationGroup < TencentCloud::Common::AbstractModel
+        # @param BaseAction: IP 情报库（原客户端画像分析）的执行动作。SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Disabled：未启用，不启用指定规则；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge。</li>
+        # @type BaseAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param BotManagementActionOverrides: IP 情报库（原客户端画像分析）的具体配置，用于覆盖 BaseAction 中的默认配置。其中 BotManagementActionOverrides 的 Ids 中可以填写：<li>IPREP_WEB_AND_DDOS_ATTACKERS_LOW：网络攻击 - 一般置信度；</li><li>IPREP_WEB_AND_DDOS_ATTACKERS_MID：网络攻击 - 中等置信度；</li><li>IPREP_WEB_AND_DDOS_ATTACKERS_HIGH：网络攻击 - 高置信度；</li><li>IPREP_PROXIES_AND_ANONYMIZERS_LOW：网络代理 - 一般置信度；</li><li>IPREP_PROXIES_AND_ANONYMIZERS_MID：网络代理 - 中等置信度；</li><li>IPREP_PROXIES_AND_ANONYMIZERS_HIGH：网络代理 - 高置信度；</li><li>IPREP_SCANNING_TOOLS_LOW：扫描器 - 一般置信度；</li><li>IPREP_SCANNING_TOOLS_MID：扫描器 - 中等置信度；</li><li>IPREP_SCANNING_TOOLS_HIGH：扫描器 - 高置信度；</li><li>IPREP_ATO_ATTACKERS_LOW：账号接管攻击 - 一般置信度；</li><li>IPREP_ATO_ATTACKERS_MID：账号接管攻击 - 中等置信度；</li><li>IPREP_ATO_ATTACKERS_HIGH：账号接管攻击 - 高置信度；</li><li>IPREP_WEB_SCRAPERS_AND_TRAFFIC_BOTS_LOW：恶意 BOT - 一般置信度；</li><li>IPREP_WEB_SCRAPERS_AND_TRAFFIC_BOTS_MID：恶意 BOT - 中等置信度；</li><li>IPREP_WEB_SCRAPERS_AND_TRAFFIC_BOTS_HIGH：恶意 BOT - 高置信度。</li>
+        # @type BotManagementActionOverrides: Array
+
+        attr_accessor :BaseAction, :BotManagementActionOverrides
+
+        def initialize(baseaction=nil, botmanagementactionoverrides=nil)
+          @BaseAction = baseaction
+          @BotManagementActionOverrides = botmanagementactionoverrides
+        end
+
+        def deserialize(params)
+          unless params['BaseAction'].nil?
+            @BaseAction = SecurityAction.new
+            @BaseAction.deserialize(params['BaseAction'])
+          end
+          unless params['BotManagementActionOverrides'].nil?
+            @BotManagementActionOverrides = []
+            params['BotManagementActionOverrides'].each do |i|
+              botmanagementactionoverrides_tmp = BotManagementActionOverrides.new
+              botmanagementactionoverrides_tmp.deserialize(i)
+              @BotManagementActionOverrides << botmanagementactionoverrides_tmp
+            end
+          end
+        end
+      end
+
       # 源站防护IP白名单
       class IPWhitelist < TencentCloud::Common::AbstractModel
         # @param IPv4: IPv4列表。
@@ -13894,6 +14394,36 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 商业或开源工具 UA 特征配置（原 UA 特征规则）。
+      class KnownBotCategories < TencentCloud::Common::AbstractModel
+        # @param BaseAction: 来自已知商业工具或开源工具的访问请求的处置方式。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Disabled：未启用，不启用指定规则；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge；</li><li>Allow：放行（待废弃）。</li>
+        # @type BaseAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param BotManagementActionOverrides: 指定已知商业工具或开源工具的访问请求的处置方式。
+        # @type BotManagementActionOverrides: Array
+
+        attr_accessor :BaseAction, :BotManagementActionOverrides
+
+        def initialize(baseaction=nil, botmanagementactionoverrides=nil)
+          @BaseAction = baseaction
+          @BotManagementActionOverrides = botmanagementactionoverrides
+        end
+
+        def deserialize(params)
+          unless params['BaseAction'].nil?
+            @BaseAction = SecurityAction.new
+            @BaseAction.deserialize(params['BaseAction'])
+          end
+          unless params['BotManagementActionOverrides'].nil?
+            @BotManagementActionOverrides = []
+            params['BotManagementActionOverrides'].each do |i|
+              botmanagementactionoverrides_tmp = BotManagementActionOverrides.new
+              botmanagementactionoverrides_tmp.deserialize(i)
+              @BotManagementActionOverrides << botmanagementactionoverrides_tmp
+            end
+          end
         end
       end
 
@@ -14562,6 +15092,26 @@ module TencentCloud
         def deserialize(params)
           @FollowOrigin = params['FollowOrigin']
           @CacheTime = params['CacheTime']
+        end
+      end
+
+      # Bot 管理中校验的触发阈值。
+      class MaxNewSessionTriggerConfig < TencentCloud::Common::AbstractModel
+        # @param MaxNewSessionCountInterval: 触发阈值统计的时间窗口，取值有：<li>5s：5 秒内；</li><li>10s：10 秒内；</li><li>15s：15 秒内；</li><li>30s：30 秒内；</li><li>60s：60 秒内；</li><li>5m：5 分钟内；</li><li>10m：10 分钟内；</li><li>30m：30 分钟内；</li><li>60m：60 分钟内。</li>
+        # @type MaxNewSessionCountInterval: String
+        # @param MaxNewSessionCountThreshold: 触发阈值统计的累计次数，取值范围 1 ~ 100000000。
+        # @type MaxNewSessionCountThreshold: Integer
+
+        attr_accessor :MaxNewSessionCountInterval, :MaxNewSessionCountThreshold
+
+        def initialize(maxnewsessioncountinterval=nil, maxnewsessioncountthreshold=nil)
+          @MaxNewSessionCountInterval = maxnewsessioncountinterval
+          @MaxNewSessionCountThreshold = maxnewsessioncountthreshold
+        end
+
+        def deserialize(params)
+          @MaxNewSessionCountInterval = params['MaxNewSessionCountInterval']
+          @MaxNewSessionCountThreshold = params['MaxNewSessionCountThreshold']
         end
       end
 
@@ -16692,9 +17242,9 @@ module TencentCloud
       class ModifySecurityPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param SecurityConfig: 安全策略配置。<li>当 SecurityPolicy 参数中的 ExceptionRules 被设置时，SecurityConfig 参数中的 ExceptConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 CustomRules 被设置时，SecurityConfig 参数中的 AclConfig、 IpTableConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 HttpDDoSProtection 和 RateLimitingRules 被设置时，SecurityConfig 参数中的 RateLimitConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 ManagedRule 被设置时，SecurityConfig 参数中的 WafConfig 将被忽略；</li><li>对于例外规则、自定义规则、速率限制以及托管规则策略配置建议使用 SecurityPolicy 参数进行设置。</li>
+        # @param SecurityConfig: 安全策略配置。<li>当 SecurityPolicy 参数中的 ExceptionRules 被设置时，SecurityConfig 参数中的 ExceptConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 CustomRules 被设置时，SecurityConfig 参数中的 AclConfig、 IpTableConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 HttpDDoSProtection 和 RateLimitingRules 被设置时，SecurityConfig 参数中的 RateLimitConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 ManagedRule 被设置时，SecurityConfig 参数中的 WafConfig 将被忽略；</li><li>当 SecurityPolicy 参数中的 BotManagement 被设置时，SecurityConfig 参数中的 BotConfig 将被忽略；</li><li>对于例外规则、自定义规则、速率限制、托管规则以及 Bot 管理策略配置建议使用 SecurityPolicy 参数进行设置。</li>
         # @type SecurityConfig: :class:`Tencentcloud::Teo.v20220901.models.SecurityConfig`
-        # @param SecurityPolicy: 安全策略配置。对 Web 例外规则、防护自定义策略、速率规则和托管规则配置建议使用，支持表达式语法对安全策略进行配置。
+        # @param SecurityPolicy: 安全策略配置。对 Web 例外规则、防护自定义策略、速率规则、托管规则和 Bot 管理配置建议使用，支持表达式语法对安全策略进行配置。
         # @type SecurityPolicy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
         # @param Entity: 安全策略类型，可使用以下参数值： <li>ZoneDefaultPolicy：用于指定站点级策略；</li><li>Template：用于指定策略模板，需要同时指定 TemplateId 参数；</li><li>Host：用于指定域名级策略（注意：当使用域名来指定域名服务策略时，仅支持已经应用了域名级策略的域名服务或者策略模板）。</li>
         # @type Entity: String
@@ -17315,6 +17865,63 @@ module TencentCloud
               certificateinfo_tmp = CertificateInfo.new
               certificateinfo_tmp.deserialize(i)
               @CertInfos << certificateinfo_tmp
+            end
+          end
+        end
+      end
+
+      # NS 接入类型站点参数详情。
+      class NSDetail < TencentCloud::Common::AbstractModel
+        # @param CnameSpeedUp: 是否开启 CNAME 加速，取值有：
+        # <li> enabled：开启；</li>
+        # <li> disabled：关闭。</li>
+        # @type CnameSpeedUp: String
+        # @param IsFake: 是否存在同名站点，取值有：
+        # <li> 0：不存在同名站点；</li>
+        # <li> 1：已存在同名站点。</li>
+        # @type IsFake: Integer
+        # @param OwnershipVerification: 归属权验证信息。针对 NS 接入类型的站点，将当前的 NS 服务器切换至腾讯云 EdgeOne 指定的 NS 服务器，即视为通过归属权验证。详情请参考 [站点/域名归属权验证](https://cloud.tencent.com/document/product/1552/70789) 。
+        # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+        # @param OriginalNameServers: 由 EdgeOne 检测到的站点当前正在使用的 NS 服务器列表。
+        # @type OriginalNameServers: Array
+        # @param NameServers: 腾讯云 EdgeOne 分配的 NS 服务器列表。需要将当前站点 NS 服务器指向该地址，站点才能生效。
+        # @type NameServers: Array
+        # @param VanityNameServers: 用户自定义 NS 服务器域名信息。如果启用了自定义 NS 服务，需要在域名注册厂商内将 NS 指向该地址。
+        # @type VanityNameServers: :class:`Tencentcloud::Teo.v20220901.models.VanityNameServers`
+        # @param VanityNameServersIps: 用户自定义 NS 服务器对应的 IP 地址信息。
+        # @type VanityNameServersIps: Array
+
+        attr_accessor :CnameSpeedUp, :IsFake, :OwnershipVerification, :OriginalNameServers, :NameServers, :VanityNameServers, :VanityNameServersIps
+
+        def initialize(cnamespeedup=nil, isfake=nil, ownershipverification=nil, originalnameservers=nil, nameservers=nil, vanitynameservers=nil, vanitynameserversips=nil)
+          @CnameSpeedUp = cnamespeedup
+          @IsFake = isfake
+          @OwnershipVerification = ownershipverification
+          @OriginalNameServers = originalnameservers
+          @NameServers = nameservers
+          @VanityNameServers = vanitynameservers
+          @VanityNameServersIps = vanitynameserversips
+        end
+
+        def deserialize(params)
+          @CnameSpeedUp = params['CnameSpeedUp']
+          @IsFake = params['IsFake']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+          @OriginalNameServers = params['OriginalNameServers']
+          @NameServers = params['NameServers']
+          unless params['VanityNameServers'].nil?
+            @VanityNameServers = VanityNameServers.new
+            @VanityNameServers.deserialize(params['VanityNameServers'])
+          end
+          unless params['VanityNameServersIps'].nil?
+            @VanityNameServersIps = []
+            params['VanityNameServersIps'].each do |i|
+              vanitynameserversips_tmp = VanityNameServersIps.new
+              vanitynameserversips_tmp.deserialize(i)
+              @VanityNameServersIps << vanitynameserversips_tmp
             end
           end
         end
@@ -20360,6 +20967,36 @@ module TencentCloud
         end
       end
 
+      # 搜索引擎规则配置。
+      class SearchEngineBots < TencentCloud::Common::AbstractModel
+        # @param BaseAction: 来自搜索引擎爬虫的请求的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Disabled：未启用，不启用指定规则；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge；</li><li>Allow：放行（待废弃）。</li>
+        # @type BaseAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param BotManagementActionOverrides: 指定搜索引擎爬虫请求的处置方式。
+        # @type BotManagementActionOverrides: Array
+
+        attr_accessor :BaseAction, :BotManagementActionOverrides
+
+        def initialize(baseaction=nil, botmanagementactionoverrides=nil)
+          @BaseAction = baseaction
+          @BotManagementActionOverrides = botmanagementactionoverrides
+        end
+
+        def deserialize(params)
+          unless params['BaseAction'].nil?
+            @BaseAction = SecurityAction.new
+            @BaseAction.deserialize(params['BaseAction'])
+          end
+          unless params['BotManagementActionOverrides'].nil?
+            @BotManagementActionOverrides = []
+            params['BotManagementActionOverrides'].each do |i|
+              botmanagementactionoverrides_tmp = BotManagementActionOverrides.new
+              botmanagementactionoverrides_tmp.deserialize(i)
+              @BotManagementActionOverrides << botmanagementactionoverrides_tmp
+            end
+          end
+        end
+      end
+
       # 安全数据Entry返回值
       class SecEntry < TencentCloud::Common::AbstractModel
         # @param Key: 查询维度值。
@@ -20435,6 +21072,7 @@ module TencentCloud
         # <li>Disabled：未启用，不启用指定规则；</li>
         # <li>Allow：允许访问，但延迟处理请求；</li>
         # <li>Challenge：挑战，响应挑战内容；</li>
+        # <li>Trans：放行，允许请求直接访问站点资源；</li>
         # <li>BlockIP：待废弃，IP 封禁；</li>
         # <li>ReturnCustomPage：待废弃，使用指定页面拦截；</li>
         # <li>JSChallenge：待废弃，JavaScript 挑战；</li>
@@ -20717,6 +21355,29 @@ module TencentCloud
         end
       end
 
+      # 按权重分配的 SecurityAction。
+      class SecurityWeightedAction < TencentCloud::Common::AbstractModel
+        # @param SecurityAction: Bot 自定义规则的处置方式。取值有：<li>Allow：放行，其中 AllowActionParameters 支持 MinDelayTime 和 MaxDelayTime 配置；</li><li>Deny：拦截，其中 DenyActionParameters 中支持 BlockIp、ReturnCustomPage 和 Stall 配置；</li><li>Monitor：观察；</li><li>Challenge：挑战，其中 ChallengeActionParameters.ChallengeOption 支持 JSChallenge 和 ManagedChallenge；</li><li>Redirect：重定向至URL。</li>
+        # @type SecurityAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param Weight: 当前 SecurityAction 的权重，仅支持 10 ~ 100 且必须为 10 的倍数，其中 Weight 参数全部相加须等于 100。
+        # @type Weight: Integer
+
+        attr_accessor :SecurityAction, :Weight
+
+        def initialize(securityaction=nil, weight=nil)
+          @SecurityAction = securityaction
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          unless params['SecurityAction'].nil?
+            @SecurityAction = SecurityAction.new
+            @SecurityAction.deserialize(params['SecurityAction'])
+          end
+          @Weight = params['Weight']
+        end
+      end
+
       # https 服务端证书配置
       class ServerCertInfo < TencentCloud::Common::AbstractModel
         # @param CertId: 服务器证书 ID。来源于 SSL 侧，您可以前往 [SSL 证书列表](https://console.cloud.tencent.com/ssl) 查看 CertId。
@@ -20757,6 +21418,43 @@ module TencentCloud
           @DeployTime = params['DeployTime']
           @SignAlgo = params['SignAlgo']
           @CommonName = params['CommonName']
+        end
+      end
+
+      # 会话速率和周期特征校验配置。
+      class SessionRateControl < TencentCloud::Common::AbstractModel
+        # @param Enabled: 会话速率和周期特征校验配置是否开启。取值有：<li>on：启用</li><li>off：关闭</li>
+        # @type Enabled: String
+        # @param HighRateSessionAction: 会话速率和周期特征校验高风险的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type HighRateSessionAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param MidRateSessionAction: 会话速率和周期特征校验中风险的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type MidRateSessionAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param LowRateSessionAction: 会话速率和周期特征校验低风险的执行动作。 SecurityAction 的 Name 取值支持：<li>Deny：拦截，其中 DenyActionParameters 中支持 Stall 配置；</li><li>Monitor：观察；</li><li>Allow：等待后响应，其中 AllowActionParameters 需要 MinDelayTime 和 MaxDelayTime 配置。</li>
+        # @type LowRateSessionAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :Enabled, :HighRateSessionAction, :MidRateSessionAction, :LowRateSessionAction
+
+        def initialize(enabled=nil, highratesessionaction=nil, midratesessionaction=nil, lowratesessionaction=nil)
+          @Enabled = enabled
+          @HighRateSessionAction = highratesessionaction
+          @MidRateSessionAction = midratesessionaction
+          @LowRateSessionAction = lowratesessionaction
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['HighRateSessionAction'].nil?
+            @HighRateSessionAction = SecurityAction.new
+            @HighRateSessionAction.deserialize(params['HighRateSessionAction'])
+          end
+          unless params['MidRateSessionAction'].nil?
+            @MidRateSessionAction = SecurityAction.new
+            @MidRateSessionAction.deserialize(params['MidRateSessionAction'])
+          end
+          unless params['LowRateSessionAction'].nil?
+            @LowRateSessionAction = SecurityAction.new
+            @LowRateSessionAction.deserialize(params['LowRateSessionAction'])
+          end
         end
       end
 
@@ -20967,6 +21665,36 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # IDC 规则配置的具体内容。
+      class SourceIDC < TencentCloud::Common::AbstractModel
+        # @param BaseAction: 来自指定 IDC 请求的处置方式。 SecurityAction 的 Name 取值支持：<li>Deny：拦截；</li><li>Monitor：观察；</li><li>Disabled：未启用，不启用指定规则；</li><li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 支持 JSChallenge 和 ManagedChallenge；</li><li>Allow：放行（待废弃）。</li>
+        # @type BaseAction: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+        # @param BotManagementActionOverrides: 指定 IDC 请求的处置方式。
+        # @type BotManagementActionOverrides: Array
+
+        attr_accessor :BaseAction, :BotManagementActionOverrides
+
+        def initialize(baseaction=nil, botmanagementactionoverrides=nil)
+          @BaseAction = baseaction
+          @BotManagementActionOverrides = botmanagementactionoverrides
+        end
+
+        def deserialize(params)
+          unless params['BaseAction'].nil?
+            @BaseAction = SecurityAction.new
+            @BaseAction.deserialize(params['BaseAction'])
+          end
+          unless params['BotManagementActionOverrides'].nil?
+            @BotManagementActionOverrides = []
+            params['BotManagementActionOverrides'].each do |i|
+              botmanagementactionoverrides_tmp = BotManagementActionOverrides.new
+              botmanagementactionoverrides_tmp.deserialize(i)
+              @BotManagementActionOverrides << botmanagementactionoverrides_tmp
+            end
+          end
         end
       end
 
@@ -22112,16 +22840,40 @@ module TencentCloud
         end
       end
 
-      # 站点信息
+      # 站点详情。
       class Zone < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
         # @param ZoneName: 站点名称。
         # @type ZoneName: String
-        # @param OriginalNameServers: 站点当前使用的 NS 列表。
-        # @type OriginalNameServers: Array
-        # @param NameServers: 腾讯云分配的 NS 列表。
-        # @type NameServers: Array
+        # @param AliasZoneName: 同名站点标识。允许输入数字、英文、"." 、"-" 和 "_" 组合，长度 200 个字符以内。
+        # @type AliasZoneName: String
+        # @param Area: 站点加速区域，取值有：
+        # <li> global：全球可用区；</li>
+        # <li> mainland：中国大陆可用区；</li>
+        # <li> overseas：全球可用区（不含中国大陆）。</li>
+        # @type Area: String
+        # @param Type: 站点接入类型，取值有：
+        # <li> full：NS 接入类型；</li>
+        # <li> partial：CNAME 接入类型；</li>
+        # <li> noDomainAccess：无域名接入类型；</li>
+        # <li>dnsPodAccess：DNSPod 托管类型，该类型要求您的域名已托管在腾讯云 DNSPod；</li>
+        # <li> pages：Pages 类型。</li>
+        # @type Type: String
+        # @param Tags: 站点关联的标签。
+        # @type Tags: Array
+        # @param Resources: 计费资源列表。
+        # @type Resources: Array
+        # @param NSDetail: NS 类型站点详情。仅当 Type = full 时返回值。
+        # @type NSDetail: :class:`Tencentcloud::Teo.v20220901.models.NSDetail`
+        # @param CNAMEDetail: CNAME 类型站点详情。仅当 Type = partial 时返回值。
+        # @type CNAMEDetail: :class:`Tencentcloud::Teo.v20220901.models.CNAMEDetail`
+        # @param DNSPodDetail: DNSPod 托管类型站点详情。仅当 Type = dnsPodAccess 时返回值。
+        # @type DNSPodDetail: :class:`Tencentcloud::Teo.v20220901.models.DNSPodDetail`
+        # @param CreatedOn: 站点创建时间。
+        # @type CreatedOn: String
+        # @param ModifiedOn: 站点修改时间。
+        # @type ModifiedOn: String
         # @param Status: 站点状态，取值有：
         # <li> active：NS 已切换； </li>
         # <li> pending：NS 未切换；</li>
@@ -22129,93 +22881,76 @@ module TencentCloud
         # <li> deactivated：被封禁。 </li>
         # <li> initializing：待绑定套餐。 </li>
         # @type Status: String
-        # @param Type: 站点接入方式，取值有：
-        # <li> full：NS 接入；</li>
-        # <li> partial：CNAME 接入；</li>
-        # <li> noDomainAccess：无域名接入；</li>
-        # @type Type: String
-        # @param Paused: 站点是否关闭。
-        # @type Paused: Boolean
-        # @param CnameSpeedUp: 是否开启 CNAME 加速，取值有：
-        # <li> enabled：开启；</li>
-        # <li> disabled：关闭。</li>
-        # @type CnameSpeedUp: String
         # @param CnameStatus: CNAME 接入状态，取值有：
         # <li> finished：站点已验证；</li>
         # <li> pending：站点验证中。</li>
         # @type CnameStatus: String
-        # @param Tags: 资源标签列表。
-        # @type Tags: Array
-        # @param Resources: 计费资源列表。
-        # @type Resources: Array
-        # @param CreatedOn: 站点创建时间。
-        # @type CreatedOn: String
-        # @param ModifiedOn: 站点修改时间。
-        # @type ModifiedOn: String
-        # @param Area: 站点接入地域，取值有：
-        # <li> global：全球；</li>
-        # <li> mainland：中国大陆；</li>
-        # <li> overseas：境外区域。</li>
-        # @type Area: String
-        # @param VanityNameServers: 用户自定义 NS 信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VanityNameServers: :class:`Tencentcloud::Teo.v20220901.models.VanityNameServers`
-        # @param VanityNameServersIps: 用户自定义 NS IP 信息。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type VanityNameServersIps: Array
         # @param ActiveStatus: 展示状态，取值有：
         # <li> active：已启用；</li>
         # <li> inactive：未生效；</li>
         # <li> paused：已停用。</li>
         # @type ActiveStatus: String
-        # @param AliasZoneName: 站点别名。数字、英文、-和_组合，限制20个字符。
-        # @type AliasZoneName: String
-        # @param IsFake: 是否伪站点，取值有：
+        # @param LockStatus: 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作；</li><li> plan_migrate：套餐迁移中，不允许进行修改操作。</li>
+        # @type LockStatus: String
+        # @param Paused: 站点是否关闭。
+        # @type Paused: Boolean
+        # @param IsFake: 是否伪站点（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段），取值有：
         # <li> 0：非伪站点；</li>
         # <li> 1：伪站点。</li>
         # @type IsFake: Integer
-        # @param LockStatus: 锁定状态，取值有：<li> enable：正常，允许进行修改操作；</li><li> disable：锁定中，不允许进行修改操作；</li><li> plan_migrate：套餐迁移中，不允许进行修改操作。</li>
-        # @type LockStatus: String
-        # @param OwnershipVerification: 归属权验证信息。
+        # @param CnameSpeedUp: 是否开启 CNAME 加速（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段），取值有：
+        # <li> enabled：开启；</li>
+        # <li> disabled：关闭。</li>
+        # @type CnameSpeedUp: String
+        # @param OwnershipVerification: 归属权验证信息。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnershipVerification: :class:`Tencentcloud::Teo.v20220901.models.OwnershipVerification`
+        # @param OriginalNameServers: 站点当前使用的 NS 列表。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
+        # @type OriginalNameServers: Array
+        # @param NameServers: 腾讯云分配的 NS 列表。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
+        # @type NameServers: Array
+        # @param VanityNameServers: 用户自定义 NS 信息。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VanityNameServers: :class:`Tencentcloud::Teo.v20220901.models.VanityNameServers`
+        # @param VanityNameServersIps: 用户自定义 NS IP 信息。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VanityNameServersIps: Array
 
-        attr_accessor :ZoneId, :ZoneName, :OriginalNameServers, :NameServers, :Status, :Type, :Paused, :CnameSpeedUp, :CnameStatus, :Tags, :Resources, :CreatedOn, :ModifiedOn, :Area, :VanityNameServers, :VanityNameServersIps, :ActiveStatus, :AliasZoneName, :IsFake, :LockStatus, :OwnershipVerification
+        attr_accessor :ZoneId, :ZoneName, :AliasZoneName, :Area, :Type, :Tags, :Resources, :NSDetail, :CNAMEDetail, :DNSPodDetail, :CreatedOn, :ModifiedOn, :Status, :CnameStatus, :ActiveStatus, :LockStatus, :Paused, :IsFake, :CnameSpeedUp, :OwnershipVerification, :OriginalNameServers, :NameServers, :VanityNameServers, :VanityNameServersIps
 
-        def initialize(zoneid=nil, zonename=nil, originalnameservers=nil, nameservers=nil, status=nil, type=nil, paused=nil, cnamespeedup=nil, cnamestatus=nil, tags=nil, resources=nil, createdon=nil, modifiedon=nil, area=nil, vanitynameservers=nil, vanitynameserversips=nil, activestatus=nil, aliaszonename=nil, isfake=nil, lockstatus=nil, ownershipverification=nil)
+        def initialize(zoneid=nil, zonename=nil, aliaszonename=nil, area=nil, type=nil, tags=nil, resources=nil, nsdetail=nil, cnamedetail=nil, dnspoddetail=nil, createdon=nil, modifiedon=nil, status=nil, cnamestatus=nil, activestatus=nil, lockstatus=nil, paused=nil, isfake=nil, cnamespeedup=nil, ownershipverification=nil, originalnameservers=nil, nameservers=nil, vanitynameservers=nil, vanitynameserversips=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
-          @OriginalNameServers = originalnameservers
-          @NameServers = nameservers
-          @Status = status
+          @AliasZoneName = aliaszonename
+          @Area = area
           @Type = type
-          @Paused = paused
-          @CnameSpeedUp = cnamespeedup
-          @CnameStatus = cnamestatus
           @Tags = tags
           @Resources = resources
+          @NSDetail = nsdetail
+          @CNAMEDetail = cnamedetail
+          @DNSPodDetail = dnspoddetail
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
-          @Area = area
+          @Status = status
+          @CnameStatus = cnamestatus
+          @ActiveStatus = activestatus
+          @LockStatus = lockstatus
+          @Paused = paused
+          @IsFake = isfake
+          @CnameSpeedUp = cnamespeedup
+          @OwnershipVerification = ownershipverification
+          @OriginalNameServers = originalnameservers
+          @NameServers = nameservers
           @VanityNameServers = vanitynameservers
           @VanityNameServersIps = vanitynameserversips
-          @ActiveStatus = activestatus
-          @AliasZoneName = aliaszonename
-          @IsFake = isfake
-          @LockStatus = lockstatus
-          @OwnershipVerification = ownershipverification
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @ZoneName = params['ZoneName']
-          @OriginalNameServers = params['OriginalNameServers']
-          @NameServers = params['NameServers']
-          @Status = params['Status']
+          @AliasZoneName = params['AliasZoneName']
+          @Area = params['Area']
           @Type = params['Type']
-          @Paused = params['Paused']
-          @CnameSpeedUp = params['CnameSpeedUp']
-          @CnameStatus = params['CnameStatus']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -22232,9 +22967,33 @@ module TencentCloud
               @Resources << resource_tmp
             end
           end
+          unless params['NSDetail'].nil?
+            @NSDetail = NSDetail.new
+            @NSDetail.deserialize(params['NSDetail'])
+          end
+          unless params['CNAMEDetail'].nil?
+            @CNAMEDetail = CNAMEDetail.new
+            @CNAMEDetail.deserialize(params['CNAMEDetail'])
+          end
+          unless params['DNSPodDetail'].nil?
+            @DNSPodDetail = DNSPodDetail.new
+            @DNSPodDetail.deserialize(params['DNSPodDetail'])
+          end
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
-          @Area = params['Area']
+          @Status = params['Status']
+          @CnameStatus = params['CnameStatus']
+          @ActiveStatus = params['ActiveStatus']
+          @LockStatus = params['LockStatus']
+          @Paused = params['Paused']
+          @IsFake = params['IsFake']
+          @CnameSpeedUp = params['CnameSpeedUp']
+          unless params['OwnershipVerification'].nil?
+            @OwnershipVerification = OwnershipVerification.new
+            @OwnershipVerification.deserialize(params['OwnershipVerification'])
+          end
+          @OriginalNameServers = params['OriginalNameServers']
+          @NameServers = params['NameServers']
           unless params['VanityNameServers'].nil?
             @VanityNameServers = VanityNameServers.new
             @VanityNameServers.deserialize(params['VanityNameServers'])
@@ -22246,14 +23005,6 @@ module TencentCloud
               vanitynameserversips_tmp.deserialize(i)
               @VanityNameServersIps << vanitynameserversips_tmp
             end
-          end
-          @ActiveStatus = params['ActiveStatus']
-          @AliasZoneName = params['AliasZoneName']
-          @IsFake = params['IsFake']
-          @LockStatus = params['LockStatus']
-          unless params['OwnershipVerification'].nil?
-            @OwnershipVerification = OwnershipVerification.new
-            @OwnershipVerification.deserialize(params['OwnershipVerification'])
           end
         end
       end
