@@ -3561,9 +3561,9 @@ module TencentCloud
 
       # 预算修改记录信息
       class BudgetOperationLogEntity < TencentCloud::Common::AbstractModel
-        # @param PayerUin: Uin
+        # @param PayerUin: 支付者Uin
         # @type PayerUin: Integer
-        # @param OwnerUin: 主用户Uin
+        # @param OwnerUin: 使用者Uin
         # @type OwnerUin: Integer
         # @param OperateUin: 操作用户Uin
         # @type OperateUin: Integer
@@ -3571,7 +3571,7 @@ module TencentCloud
         # @type BillDay: Integer
         # @param BillMonth: 月份
         # @type BillMonth: String
-        # @param Action: 修改类型：ADD(新增)、UPDATE(更新)
+        # @param Action: 修改类型：ADD(新增)、UPDATE(更新)、DELETE(删除)
         # @type Action: String
         # @param DiffValue: 变更信息
         # @type DiffValue: Array
@@ -3579,7 +3579,7 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 修改时间
         # @type UpdateTime: String
-        # @param OperationChannel: 修改渠道：官网修改/API修改
+        # @param OperationChannel: 修改渠道：CONSOLE/API
         # @type OperationChannel: String
         # @param BudgetId: 预算项目id
         # @type BudgetId: String

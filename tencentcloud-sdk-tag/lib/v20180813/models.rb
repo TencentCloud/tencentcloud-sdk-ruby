@@ -722,7 +722,7 @@ module TencentCloud
 
       # DescribeResourcesByTags请求参数结构体
       class DescribeResourcesByTagsRequest < TencentCloud::Common::AbstractModel
-        # @param TagFilters: 标签过滤数组
+        # @param TagFilters: 标签过滤数组，数量最多6个
         # @type TagFilters: Array
         # @param CreateUin: 创建标签者uin
         # @type CreateUin: Integer
@@ -812,7 +812,7 @@ module TencentCloud
 
       # DescribeResourcesByTagsUnion请求参数结构体
       class DescribeResourcesByTagsUnionRequest < TencentCloud::Common::AbstractModel
-        # @param TagFilters: 标签过滤数组
+        # @param TagFilters: 标签过滤数组，数量最多六个
         # @type TagFilters: Array
         # @param CreateUin: 创建标签者uin
         # @type CreateUin: Integer
@@ -1839,7 +1839,7 @@ module TencentCloud
         end
       end
 
-      # tag过滤数组多个是与的关系
+      # 标签键值过滤条件
       class TagFilter < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
         # @type TagKey: String

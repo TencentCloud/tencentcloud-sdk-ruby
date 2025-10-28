@@ -4981,14 +4981,17 @@ module TencentCloud
         # @type ExportAll: Boolean
         # @param IdList: 要导出的资产ID列表或检测项ID列表，由ExportByAsset的取值决定。
         # @type IdList: Array
+        # @param Filters: 筛选
+        # @type Filters: Array
 
-        attr_accessor :AssetType, :ExportByAsset, :ExportAll, :IdList
+        attr_accessor :AssetType, :ExportByAsset, :ExportAll, :IdList, :Filters
 
-        def initialize(assettype=nil, exportbyasset=nil, exportall=nil, idlist=nil)
+        def initialize(assettype=nil, exportbyasset=nil, exportall=nil, idlist=nil, filters=nil)
           @AssetType = assettype
           @ExportByAsset = exportbyasset
           @ExportAll = exportall
           @IdList = idlist
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -4996,6 +4999,14 @@ module TencentCloud
           @ExportByAsset = params['ExportByAsset']
           @ExportAll = params['ExportAll']
           @IdList = params['IdList']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              runtimefilters_tmp = RunTimeFilters.new
+              runtimefilters_tmp.deserialize(i)
+              @Filters << runtimefilters_tmp
+            end
+          end
         end
       end
 
@@ -8959,12 +8970,16 @@ module TencentCloud
         # @type RemainScanTime: Integer
         # @param IsAuthorized: 授权为：1，未授权为：0
         # @type IsAuthorized: Integer
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param Reason: 原因
+        # @type Reason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :SuperNodeCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :RequestId
+        attr_accessor :ImageID, :ImageName, :ImageDigest, :CreateTime, :Size, :HostCnt, :ContainerCnt, :SuperNodeCnt, :ScanTime, :VulCnt, :RiskCnt, :SensitiveInfoCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :Architecture, :Author, :BuildHistory, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanVirusError, :ScanVulError, :ScanRiskError, :ScanStatus, :VirusCnt, :Status, :RemainScanTime, :IsAuthorized, :Solution, :Reason, :RequestId
 
-        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, supernodecnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, requestid=nil)
+        def initialize(imageid=nil, imagename=nil, imagedigest=nil, createtime=nil, size=nil, hostcnt=nil, containercnt=nil, supernodecnt=nil, scantime=nil, vulcnt=nil, riskcnt=nil, sensitiveinfocnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, architecture=nil, author=nil, buildhistory=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, scanstatus=nil, viruscnt=nil, status=nil, remainscantime=nil, isauthorized=nil, solution=nil, reason=nil, requestid=nil)
           @ImageID = imageid
           @ImageName = imagename
           @ImageDigest = imagedigest
@@ -8995,6 +9010,8 @@ module TencentCloud
           @Status = status
           @RemainScanTime = remainscantime
           @IsAuthorized = isauthorized
+          @Solution = solution
+          @Reason = reason
           @RequestId = requestid
         end
 
@@ -9029,6 +9046,8 @@ module TencentCloud
           @Status = params['Status']
           @RemainScanTime = params['RemainScanTime']
           @IsAuthorized = params['IsAuthorized']
+          @Solution = params['Solution']
+          @Reason = params['Reason']
           @RequestId = params['RequestId']
         end
       end
@@ -9290,15 +9309,19 @@ module TencentCloud
         # @type SensitiveInfoCnt: Integer
         # @param Id: Id
         # @type Id: Integer
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param Reason: 原因
+        # @type Reason: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :RequestId
+        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :Solution, :Reason, :RequestId
         extend Gem::Deprecate
         deprecate :SentiveInfoCnt, :none, 2025, 10
         deprecate :SentiveInfoCnt=, :none, 2025, 10
 
-        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, requestid=nil)
+        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, solution=nil, reason=nil, requestid=nil)
           @ImageDigest = imagedigest
           @ImageRepoAddress = imagerepoaddress
           @RegistryType = registrytype
@@ -9333,6 +9356,8 @@ module TencentCloud
           @ImageCreateTime = imagecreatetime
           @SensitiveInfoCnt = sensitiveinfocnt
           @Id = id
+          @Solution = solution
+          @Reason = reason
           @RequestId = requestid
         end
 
@@ -9371,6 +9396,8 @@ module TencentCloud
           @ImageCreateTime = params['ImageCreateTime']
           @SensitiveInfoCnt = params['SensitiveInfoCnt']
           @Id = params['Id']
+          @Solution = params['Solution']
+          @Reason = params['Reason']
           @RequestId = params['RequestId']
         end
       end
@@ -9834,18 +9861,22 @@ module TencentCloud
       class DescribeAssetImageRegistryRiskListExportResponse < TencentCloud::Common::AbstractModel
         # @param DownloadUrl: excel文件下载地址
         # @type DownloadUrl: String
+        # @param JobId: 导出任务id
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DownloadUrl, :RequestId
+        attr_accessor :DownloadUrl, :JobId, :RequestId
 
-        def initialize(downloadurl=nil, requestid=nil)
+        def initialize(downloadurl=nil, jobid=nil, requestid=nil)
           @DownloadUrl = downloadurl
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -22058,13 +22089,17 @@ module TencentCloud
         # @type SensitiveInfoCnt: Integer
         # @param RecommendedFix: 是否推荐处置
         # @type RecommendedFix: Boolean
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param Reason: 原因
+        # @type Reason: String
 
-        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix
+        attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix, :Solution, :Reason
         extend Gem::Deprecate
         deprecate :SentiveInfoCnt, :none, 2025, 10
         deprecate :SentiveInfoCnt=, :none, 2025, 10
 
-        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil)
+        def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageDigest = imagedigest
           @ImageRepoAddress = imagerepoaddress
           @RegistryType = registrytype
@@ -22109,6 +22144,8 @@ module TencentCloud
           @HasNeedFixVul = hasneedfixvul
           @SensitiveInfoCnt = sensitiveinfocnt
           @RecommendedFix = recommendedfix
+          @Solution = solution
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -22156,6 +22193,8 @@ module TencentCloud
           @HasNeedFixVul = params['HasNeedFixVul']
           @SensitiveInfoCnt = params['SensitiveInfoCnt']
           @RecommendedFix = params['RecommendedFix']
+          @Solution = params['Solution']
+          @Reason = params['Reason']
         end
       end
 
@@ -22792,10 +22831,14 @@ module TencentCloud
         # @type IsLatestImage: Boolean
         # @param RecommendedFix: 是否推荐处置
         # @type RecommendedFix: Boolean
+        # @param Solution: 解决方案
+        # @type Solution: String
+        # @param Reason: 原因
+        # @type Reason: String
 
-        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :SuperNodeCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized, :ComponentCnt, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :IsLatestImage, :RecommendedFix
+        attr_accessor :ImageID, :ImageName, :CreateTime, :Size, :HostCnt, :SuperNodeCnt, :ContainerCnt, :ScanTime, :VulCnt, :VirusCnt, :RiskCnt, :IsTrustImage, :OsName, :AgentError, :ScanError, :ScanStatus, :ScanVirusError, :ScanVulError, :ScanRiskError, :IsSuggest, :IsAuthorized, :ComponentCnt, :CriticalLevelVulCnt, :HighLevelVulCnt, :MediumLevelVulCnt, :LowLevelVulCnt, :IsLatestImage, :RecommendedFix, :Solution, :Reason
 
-        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, supernodecnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil, componentcnt=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, islatestimage=nil, recommendedfix=nil)
+        def initialize(imageid=nil, imagename=nil, createtime=nil, size=nil, hostcnt=nil, supernodecnt=nil, containercnt=nil, scantime=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, istrustimage=nil, osname=nil, agenterror=nil, scanerror=nil, scanstatus=nil, scanviruserror=nil, scanvulerror=nil, scanriskerror=nil, issuggest=nil, isauthorized=nil, componentcnt=nil, criticallevelvulcnt=nil, highlevelvulcnt=nil, mediumlevelvulcnt=nil, lowlevelvulcnt=nil, islatestimage=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageID = imageid
           @ImageName = imagename
           @CreateTime = createtime
@@ -22824,6 +22867,8 @@ module TencentCloud
           @LowLevelVulCnt = lowlevelvulcnt
           @IsLatestImage = islatestimage
           @RecommendedFix = recommendedfix
+          @Solution = solution
+          @Reason = reason
         end
 
         def deserialize(params)
@@ -22855,6 +22900,8 @@ module TencentCloud
           @LowLevelVulCnt = params['LowLevelVulCnt']
           @IsLatestImage = params['IsLatestImage']
           @RecommendedFix = params['RecommendedFix']
+          @Solution = params['Solution']
+          @Reason = params['Reason']
         end
       end
 

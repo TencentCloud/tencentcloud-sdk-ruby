@@ -751,6 +751,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通 TWeSee 后付费服务
+
+        # @param request: Request instance for CreateTWeSeeService.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeServiceRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeServiceResponse`
+        def CreateTWeSeeService(request)
+          body = send_request('CreateTWeSeeService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeSeeServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于配置TWeTalk服务连接产品配置信息。
 
         # @param request: Request instance for CreateTWeTalkProductConfig.
@@ -4487,6 +4511,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateOtaModuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateOtaTask）当固件升级大任务处于没有在全部成功的状态时，可修改为取消状态，取消部分或全部设备的升级;或其它允许的可修改的状态。
+
+        # @param request: Request instance for UpdateOtaTaskStatus.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UpdateOtaTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UpdateOtaTaskStatusResponse`
+        def UpdateOtaTaskStatus(request)
+          body = send_request('UpdateOtaTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateOtaTaskStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

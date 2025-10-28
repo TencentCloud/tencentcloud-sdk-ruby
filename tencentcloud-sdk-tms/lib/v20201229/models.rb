@@ -471,10 +471,12 @@ module TencentCloud
         # @type SourceLanguage: String
         # @param Type: 审核的业务类型，枚举值包括"TEXT"和"TEXT_AIGC"。其中"TEXT"表示传统文本审核，"TEXT_AIGC"表示AI生成检测（生成检测能力具体能力了解可[参见文档](https://cloud.tencent.com/document/product/1124/118694)）。
         # @type Type: String
+        # @param SessionId: 流式审核策略维度下的唯一会话ID
+        # @type SessionId: String
 
-        attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type
+        attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type, :SessionId
 
-        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil, sourcelanguage=nil, type=nil)
+        def initialize(content=nil, biztype=nil, dataid=nil, user=nil, device=nil, sourcelanguage=nil, type=nil, sessionid=nil)
           @Content = content
           @BizType = biztype
           @DataId = dataid
@@ -482,6 +484,7 @@ module TencentCloud
           @Device = device
           @SourceLanguage = sourcelanguage
           @Type = type
+          @SessionId = sessionid
         end
 
         def deserialize(params)
@@ -498,6 +501,7 @@ module TencentCloud
           end
           @SourceLanguage = params['SourceLanguage']
           @Type = params['Type']
+          @SessionId = params['SessionId']
         end
       end
 
@@ -533,12 +537,14 @@ module TencentCloud
         # @type SentimentAnalysis: :class:`Tencentcloud::Tms.v20201229.models.SentimentAnalysis`
         # @param HitType: 该字段用于标识本次审核决策归因，比如text_nlp_tianji标识是由nlp tianji模型给出的审核决策，text_keyword_public标识命中了业务的关键词库
         # @type HitType: String
+        # @param SessionId: 流式审核策略维度下的唯一会话ID
+        # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :SentimentAnalysis, :HitType, :RequestId
+        attr_accessor :BizType, :Label, :Suggestion, :Keywords, :Score, :DetailResults, :RiskDetails, :Extra, :DataId, :SubLabel, :ContextText, :SentimentAnalysis, :HitType, :SessionId, :RequestId
 
-        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, sentimentanalysis=nil, hittype=nil, requestid=nil)
+        def initialize(biztype=nil, label=nil, suggestion=nil, keywords=nil, score=nil, detailresults=nil, riskdetails=nil, extra=nil, dataid=nil, sublabel=nil, contexttext=nil, sentimentanalysis=nil, hittype=nil, sessionid=nil, requestid=nil)
           @BizType = biztype
           @Label = label
           @Suggestion = suggestion
@@ -552,6 +558,7 @@ module TencentCloud
           @ContextText = contexttext
           @SentimentAnalysis = sentimentanalysis
           @HitType = hittype
+          @SessionId = sessionid
           @RequestId = requestid
         end
 
@@ -586,6 +593,7 @@ module TencentCloud
             @SentimentAnalysis.deserialize(params['SentimentAnalysis'])
           end
           @HitType = params['HitType']
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
       end

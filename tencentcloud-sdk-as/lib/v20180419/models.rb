@@ -3032,19 +3032,27 @@ module TencentCloud
         # 假设后缀名称为 suffix，原主机名为 test.0，最终主机名为 test.0.suffix。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNameSuffix: String
+        # @param HostNameDelimiter: 云服务器的主机名分隔符。
+        # 默认的分隔符是点号（.），可选短横线（-）。仅有点号（.）和短横线（-）能作为主机名的分隔符。如果不设置，则默认采用点号（.）分隔符。
+        # 通过分割符连接多段。
 
-        attr_accessor :HostName, :HostNameStyle, :HostNameSuffix
+        # 假设原主机名为“product-as-host”，分隔符HostNameDelimiter为“-”，设置主机名后缀"suffix"，那么最终主机名为“product-as-host-suffix”。
+        # @type HostNameDelimiter: String
 
-        def initialize(hostname=nil, hostnamestyle=nil, hostnamesuffix=nil)
+        attr_accessor :HostName, :HostNameStyle, :HostNameSuffix, :HostNameDelimiter
+
+        def initialize(hostname=nil, hostnamestyle=nil, hostnamesuffix=nil, hostnamedelimiter=nil)
           @HostName = hostname
           @HostNameStyle = hostnamestyle
           @HostNameSuffix = hostnamesuffix
+          @HostNameDelimiter = hostnamedelimiter
         end
 
         def deserialize(params)
           @HostName = params['HostName']
           @HostNameStyle = params['HostNameStyle']
           @HostNameSuffix = params['HostNameSuffix']
+          @HostNameDelimiter = params['HostNameDelimiter']
         end
       end
 
@@ -3263,19 +3271,25 @@ module TencentCloud
         # 假设后缀名称为 suffix，原实例名为 test.0，最终实例名为 test.0.suffix。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNameSuffix: String
+        # @param InstanceNameDelimiter: 云服务器实例名分隔符。 默认的分隔符是点号（.），可选短横线（-）。仅有点号（.）和短横线（-）能作为实例名的分隔符。如果不设置，则默认采用点号（.）分隔符。 通过分割符连接多段。
 
-        attr_accessor :InstanceName, :InstanceNameStyle, :InstanceNameSuffix
+        # 假设原实例名为“product-as-instance”，分隔符InstanceNameDelimiter为“-”，设置实例名后缀"suffix"，那么最终实例名为“product-as-instance-suffix”。
+        # @type InstanceNameDelimiter: String
 
-        def initialize(instancename=nil, instancenamestyle=nil, instancenamesuffix=nil)
+        attr_accessor :InstanceName, :InstanceNameStyle, :InstanceNameSuffix, :InstanceNameDelimiter
+
+        def initialize(instancename=nil, instancenamestyle=nil, instancenamesuffix=nil, instancenamedelimiter=nil)
           @InstanceName = instancename
           @InstanceNameStyle = instancenamestyle
           @InstanceNameSuffix = instancenamesuffix
+          @InstanceNameDelimiter = instancenamedelimiter
         end
 
         def deserialize(params)
           @InstanceName = params['InstanceName']
           @InstanceNameStyle = params['InstanceNameStyle']
           @InstanceNameSuffix = params['InstanceNameSuffix']
+          @InstanceNameDelimiter = params['InstanceNameDelimiter']
         end
       end
 

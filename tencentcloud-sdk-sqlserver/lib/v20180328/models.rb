@@ -2672,13 +2672,17 @@ module TencentCloud
         # @type CreateTime: String
         # @param IsFullTextEnabled: 是否全文启用 0：否 1：是
         # @type IsFullTextEnabled: String
+        # @param IsAvailabilityGroups: 是否是可用性组 0：否 1：是
+        # @type IsAvailabilityGroups: String
+        # @param AGSyncState: AG组数据库同步状态
+        # @type AGSyncState: String
 
-        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled
+        attr_accessor :IsSubscribed, :CollationName, :IsAutoCleanupOn, :IsBrokerEnabled, :IsCdcEnabled, :IsDbChainingOn, :IsEncrypted, :IsFulltextEnabled, :IsMirroring, :IsPublished, :IsReadCommittedSnapshotOn, :IsTrustworthyOn, :MirroringState, :Name, :RecoveryModelDesc, :RetentionPeriod, :StateDesc, :UserAccessDesc, :CreateTime, :IsFullTextEnabled, :IsAvailabilityGroups, :AGSyncState
         extend Gem::Deprecate
-        deprecate :IsFulltextEnabled, :none, 2025, 9
-        deprecate :IsFulltextEnabled=, :none, 2025, 9
+        deprecate :IsFulltextEnabled, :none, 2025, 10
+        deprecate :IsFulltextEnabled=, :none, 2025, 10
 
-        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil)
+        def initialize(issubscribed=nil, collationname=nil, isautocleanupon=nil, isbrokerenabled=nil, iscdcenabled=nil, isdbchainingon=nil, isencrypted=nil, ismirroring=nil, ispublished=nil, isreadcommittedsnapshoton=nil, istrustworthyon=nil, mirroringstate=nil, name=nil, recoverymodeldesc=nil, retentionperiod=nil, statedesc=nil, useraccessdesc=nil, createtime=nil, isfulltextenabled=nil, isavailabilitygroups=nil, agsyncstate=nil)
           @IsSubscribed = issubscribed
           @CollationName = collationname
           @IsAutoCleanupOn = isautocleanupon
@@ -2698,6 +2702,8 @@ module TencentCloud
           @UserAccessDesc = useraccessdesc
           @CreateTime = createtime
           @IsFullTextEnabled = isfulltextenabled
+          @IsAvailabilityGroups = isavailabilitygroups
+          @AGSyncState = agsyncstate
         end
 
         def deserialize(params)
@@ -2720,6 +2726,8 @@ module TencentCloud
           @UserAccessDesc = params['UserAccessDesc']
           @CreateTime = params['CreateTime']
           @IsFullTextEnabled = params['IsFullTextEnabled']
+          @IsAvailabilityGroups = params['IsAvailabilityGroups']
+          @AGSyncState = params['AGSyncState']
         end
       end
 
@@ -6811,8 +6819,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :Slowlogs, :SlowLogs, :RequestId
         extend Gem::Deprecate
-        deprecate :Slowlogs, :none, 2025, 9
-        deprecate :Slowlogs=, :none, 2025, 9
+        deprecate :Slowlogs, :none, 2025, 10
+        deprecate :Slowlogs=, :none, 2025, 10
 
         def initialize(totalcount=nil, slowlogs=nil, requestid=nil)
           @TotalCount = totalcount
@@ -7032,8 +7040,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 9
-        deprecate :XCosSecurityToken=, :none, 2025, 9
+        deprecate :XCosSecurityToken, :none, 2025, 10
+        deprecate :XCosSecurityToken=, :none, 2025, 10
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7111,8 +7119,8 @@ module TencentCloud
 
         attr_accessor :BucketName, :Region, :Path, :TmpSecretId, :TmpSecretKey, :XCosSecurityToken, :StartTime, :ExpiredTime, :CosSecurityToken, :RequestId
         extend Gem::Deprecate
-        deprecate :XCosSecurityToken, :none, 2025, 9
-        deprecate :XCosSecurityToken=, :none, 2025, 9
+        deprecate :XCosSecurityToken, :none, 2025, 10
+        deprecate :XCosSecurityToken=, :none, 2025, 10
 
         def initialize(bucketname=nil, region=nil, path=nil, tmpsecretid=nil, tmpsecretkey=nil, xcossecuritytoken=nil, starttime=nil, expiredtime=nil, cossecuritytoken=nil, requestid=nil)
           @BucketName = bucketname
@@ -7397,11 +7405,11 @@ module TencentCloud
         # @type Size: Integer
         # @param EventType: 事件类型，slow-慢SQL事件，blocked-阻塞事件，deadlock-死锁事件
         # @type EventType: String
-        # @param Status: 事件记录状态，1-成功，2-失败
+        # @param Status: 事件记录状态，1-成功，2-失败，3-文件待删除，4-写入中
         # @type Status: Integer
         # @param StartTime: 扩展文件生成开始时间
         # @type StartTime: String
-        # @param EndTime: 扩展文件生成开始时间
+        # @param EndTime: 扩展文件最后更新时间
         # @type EndTime: String
         # @param InternalAddr: 内网下载地址
         # @type InternalAddr: String
@@ -8440,8 +8448,8 @@ module TencentCloud
 
         attr_accessor :Errno, :Msg, :Code, :RequestId
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2025, 9
-        deprecate :Errno=, :none, 2025, 9
+        deprecate :Errno, :none, 2025, 10
+        deprecate :Errno=, :none, 2025, 10
 
         def initialize(errno=nil, msg=nil, code=nil, requestid=nil)
           @Errno = errno
@@ -11786,10 +11794,12 @@ module TencentCloud
         # @type WaitSwitch: Integer
         # @param DrZones: 多节点架构实例的备节点可用区，默认为空。如果需要在变配的同时修改指定备节点的可用区时必传，当MultiZones = MultiZones时主节点和备节点可用区不能全部相同。备机可用区集合最小为2个，最大不超过5个。
         # @type DrZones: Array
+        # @param UpgradeCompatLevel: 是否自动升级数据库的兼容性级别，默认0。0-否，1-是
+        # @type UpgradeCompatLevel: Integer
 
-        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch, :DrZones
+        attr_accessor :InstanceId, :Memory, :Storage, :AutoVoucher, :VoucherIds, :Cpu, :DBVersion, :HAType, :MultiZones, :WaitSwitch, :DrZones, :UpgradeCompatLevel
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil, drzones=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, autovoucher=nil, voucherids=nil, cpu=nil, dbversion=nil, hatype=nil, multizones=nil, waitswitch=nil, drzones=nil, upgradecompatlevel=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
@@ -11801,6 +11811,7 @@ module TencentCloud
           @MultiZones = multizones
           @WaitSwitch = waitswitch
           @DrZones = drzones
+          @UpgradeCompatLevel = upgradecompatlevel
         end
 
         def deserialize(params)
@@ -11822,6 +11833,7 @@ module TencentCloud
               @DrZones << drzoneinfo_tmp
             end
           end
+          @UpgradeCompatLevel = params['UpgradeCompatLevel']
         end
       end
 

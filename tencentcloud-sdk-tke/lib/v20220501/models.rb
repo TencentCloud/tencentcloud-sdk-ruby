@@ -1335,11 +1335,11 @@ module TencentCloud
       # 包年包月配置
       class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 后付费计费周期，单位（月）：
-        # 1，2，3，4，5，，6，7， 8，9，10，11，12，24，36，48，60
+        # 1，2，3，4，5，6，7， 8，9，10，11，12，24，36，48，60
         # @type Period: Integer
         # @param RenewFlag: 预付费续费方式：
-        # - NOTIFY_AND_AUTO_RENEW：通知用户过期，且自动续费 (默认）
-        # - NOTIFY_AND_MANUAL_RENEW：通知用户过期，但不自动续费
+        # - NOTIFY_AND_AUTO_RENEW：通知用户过期，且自动续费
+        # - NOTIFY_AND_MANUAL_RENEW：通知用户过期，但不自动续费(默认)
         # - DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知用户过期，也不自动续费
         # @type RenewFlag: String
 
@@ -2681,6 +2681,8 @@ module TencentCloud
         # @type InstanceTypes: Array
         # @param Replicas: 期望节点数
         # @type Replicas: Integer
+        # @param UpdateExistedNode: 是否更新存量节点
+        # @type UpdateExistedNode: Boolean
         # @param DataDisks: 数据盘列表
         # @type DataDisks: Array
         # @param KeyIds: ssh公钥id数组
@@ -2688,9 +2690,9 @@ module TencentCloud
         # @param GPUConfigs: 节点池 GPU 配置
         # @type GPUConfigs: Array
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :DataDisks, :KeyIds, :GPUConfigs
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :GPUConfigs
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, datadisks=nil, keyids=nil, gpuconfigs=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, gpuconfigs=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -2708,6 +2710,7 @@ module TencentCloud
           @EnableAutoscaling = enableautoscaling
           @InstanceTypes = instancetypes
           @Replicas = replicas
+          @UpdateExistedNode = updateexistednode
           @DataDisks = datadisks
           @KeyIds = keyids
           @GPUConfigs = gpuconfigs
@@ -2749,6 +2752,7 @@ module TencentCloud
           @EnableAutoscaling = params['EnableAutoscaling']
           @InstanceTypes = params['InstanceTypes']
           @Replicas = params['Replicas']
+          @UpdateExistedNode = params['UpdateExistedNode']
           unless params['DataDisks'].nil?
             @DataDisks = []
             params['DataDisks'].each do |i|

@@ -6646,13 +6646,13 @@ module TencentCloud
         end
       end
 
-      # redis key空间信息。
+      # redis key的内存占用等信息。
       class RedisKeySpaceData < TencentCloud::Common::AbstractModel
         # @param Key: key名。
         # @type Key: String
         # @param Type: key类型。
         # @type Type: String
-        # @param Encoding: key编码方式。
+        # @param Encoding: key编码方式。包括 int、string、linkedlist、hashtable、skiplist、zipmap、ziplist、intset、quicklist、listpack。
         # @type Encoding: String
         # @param ExpireTime: key过期时间戳（毫秒），0代表未设置过期时间。
         # @type ExpireTime: Integer
@@ -6666,10 +6666,12 @@ module TencentCloud
         # @type AveElementSize: Integer
         # @param ShardId: 所属分片序号。
         # @type ShardId: String
+        # @param Db: key所属数据库编号。
+        # @type Db: Integer
 
-        attr_accessor :Key, :Type, :Encoding, :ExpireTime, :Length, :ItemCount, :MaxElementSize, :AveElementSize, :ShardId
+        attr_accessor :Key, :Type, :Encoding, :ExpireTime, :Length, :ItemCount, :MaxElementSize, :AveElementSize, :ShardId, :Db
 
-        def initialize(key=nil, type=nil, encoding=nil, expiretime=nil, length=nil, itemcount=nil, maxelementsize=nil, aveelementsize=nil, shardid=nil)
+        def initialize(key=nil, type=nil, encoding=nil, expiretime=nil, length=nil, itemcount=nil, maxelementsize=nil, aveelementsize=nil, shardid=nil, db=nil)
           @Key = key
           @Type = type
           @Encoding = encoding
@@ -6679,6 +6681,7 @@ module TencentCloud
           @MaxElementSize = maxelementsize
           @AveElementSize = aveelementsize
           @ShardId = shardid
+          @Db = db
         end
 
         def deserialize(params)
@@ -6691,6 +6694,7 @@ module TencentCloud
           @MaxElementSize = params['MaxElementSize']
           @AveElementSize = params['AveElementSize']
           @ShardId = params['ShardId']
+          @Db = params['Db']
         end
       end
 

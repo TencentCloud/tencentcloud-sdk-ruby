@@ -2447,6 +2447,40 @@ module TencentCloud
         end
       end
 
+      # CreateTWeSeeService请求参数结构体
+      class CreateTWeSeeServiceRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 服务类型
+        # 1.VideoSummary
+        # 2.ImageSummary
+        # @type Service: String
+
+        attr_accessor :Service
+
+        def initialize(service=nil)
+          @Service = service
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+        end
+      end
+
+      # CreateTWeSeeService返回参数结构体
+      class CreateTWeSeeServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTWeTalkProductConfig请求参数结构体
       class CreateTWeTalkProductConfigRequest < TencentCloud::Common::AbstractModel
         # @param ProductId: 产品ID
@@ -13436,6 +13470,46 @@ module TencentCloud
 
       # UpdateOtaModule返回参数结构体
       class UpdateOtaModuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateOtaTaskStatus请求参数结构体
+      class UpdateOtaTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param TaskId: 固件升级任务ID
+        # @type TaskId: Integer
+        # @param Status: 固件任务取消状态
+        # @type Status: Integer
+
+        attr_accessor :ProductId, :TaskId, :Status
+
+        def initialize(productid=nil, taskid=nil, status=nil)
+          @ProductId = productid
+          @TaskId = taskid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+        end
+      end
+
+      # UpdateOtaTaskStatus返回参数结构体
+      class UpdateOtaTaskStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

@@ -5652,7 +5652,8 @@ module TencentCloud
         # @type UniformSocialCreditCode: String
         # @param LegalName: 企业法人的姓名
         # @type LegalName: String
-        # @param AutoJumpUrl: 认证完成跳回的链接，最长500个字符
+        # @param AutoJumpUrl: <font color="red">即将废弃</font>，入参请使用JumpEvents。
+        # 认证完成跳回的链接，最长500个字符。
         # @type AutoJumpUrl: String
         # @param OrganizationAddress: 营业执照企业地址
         # @type OrganizationAddress: String
@@ -5730,10 +5731,17 @@ module TencentCloud
 
         # p.s. 仅在对公打款不为空时有效
         # @type BankAccountNumberSame: Boolean
+        # @param JumpEvents: 跳转事件，其中包括认证期间收录，授权书审核，企业认证的回跳事件。
+        # p.s.
+        # Endpoint如果是APP 类型，请传递JumpUrl为<font color="red">"true" </font>
+        # 如果 Endpoint 是 H5 类型，请参考文档跳转电子签H5
 
-        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame
+        # p.s. 如果Endpoint是 APP，传递的跳转地址无效，不会进行跳转，仅会进行回跳。
+        # @type JumpEvents: Array
 
-        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil)
+        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame, :JumpEvents
+
+        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil, jumpevents=nil)
           @Operator = operator
           @AuthorizationTypes = authorizationtypes
           @OrganizationName = organizationname
@@ -5758,6 +5766,7 @@ module TencentCloud
           @UserData = userdata
           @BankAccountNumber = bankaccountnumber
           @BankAccountNumberSame = bankaccountnumbersame
+          @JumpEvents = jumpevents
         end
 
         def deserialize(params)
@@ -5788,6 +5797,14 @@ module TencentCloud
           @UserData = params['UserData']
           @BankAccountNumber = params['BankAccountNumber']
           @BankAccountNumberSame = params['BankAccountNumberSame']
+          unless params['JumpEvents'].nil?
+            @JumpEvents = []
+            params['JumpEvents'].each do |i|
+              jumpevent_tmp = JumpEvent.new
+              jumpevent_tmp.deserialize(i)
+              @JumpEvents << jumpevent_tmp
+            end
+          end
         end
       end
 
@@ -13529,6 +13546,33 @@ module TencentCloud
           @Video = params['Video']
           @ResultCode = params['ResultCode']
           @AsrResult = params['AsrResult']
+        end
+      end
+
+      # 跳转事件的结构体，其中包括认证期间收录，授权书审核，企业认证的回跳事件。
+      class JumpEvent < TencentCloud::Common::AbstractModel
+        # @param JumpEventType: 跳转事件枚举，
+        # * 1 - 企业收录。
+        # * 2 - 超管授权书审核。
+        # * 3 - 认证完成。
+        # @type JumpEventType: Integer
+        # @param JumpUrl: 为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
+        # Endpoint如果是APP 类型，请传递<font color="red">"true"</font>
+        # 如果 Endpoint 是 H5 类型，请参考文档[跳转电子签H5](https://qian.tencent.com/developers/company/openqianh5/)
+
+        # p.s. 如果Endpoint是 APP，传递的跳转地址无效，不会进行跳转，仅会进行回跳。
+        # @type JumpUrl: String
+
+        attr_accessor :JumpEventType, :JumpUrl
+
+        def initialize(jumpeventtype=nil, jumpurl=nil)
+          @JumpEventType = jumpeventtype
+          @JumpUrl = jumpurl
+        end
+
+        def deserialize(params)
+          @JumpEventType = params['JumpEventType']
+          @JumpUrl = params['JumpUrl']
         end
       end
 

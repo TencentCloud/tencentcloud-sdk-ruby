@@ -570,20 +570,23 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间 yyyy-mm-dd HH:mm:ss格式
         # @type EndTime: String
-        # @param Status: 状态
+        # @param Status: 1 生效 2 失效 3 作废
         # @type Status: Integer
         # @param SavingAmount: 累计节省金额（单位：元）
         # @type SavingAmount: String
         # @param Region: 地域
         # @type Region: Array
-        # @param PayType: 支付类型
+        # @param PayType: 1 全预付 2 部分预付 3 全不预付
         # @type PayType: Integer
         # @param BuyTime: 购买时间 yyyy-mm-dd HH:mm:ss格式
         # @type BuyTime: String
+        # @param PromiseAmount: 承诺金额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromiseAmount: String
 
-        attr_accessor :SpType, :PayAmount, :StartTime, :EndTime, :Status, :SavingAmount, :Region, :PayType, :BuyTime
+        attr_accessor :SpType, :PayAmount, :StartTime, :EndTime, :Status, :SavingAmount, :Region, :PayType, :BuyTime, :PromiseAmount
 
-        def initialize(sptype=nil, payamount=nil, starttime=nil, endtime=nil, status=nil, savingamount=nil, region=nil, paytype=nil, buytime=nil)
+        def initialize(sptype=nil, payamount=nil, starttime=nil, endtime=nil, status=nil, savingamount=nil, region=nil, paytype=nil, buytime=nil, promiseamount=nil)
           @SpType = sptype
           @PayAmount = payamount
           @StartTime = starttime
@@ -593,6 +596,7 @@ module TencentCloud
           @Region = region
           @PayType = paytype
           @BuyTime = buytime
+          @PromiseAmount = promiseamount
         end
 
         def deserialize(params)
@@ -605,6 +609,7 @@ module TencentCloud
           @Region = params['Region']
           @PayType = params['PayType']
           @BuyTime = params['BuyTime']
+          @PromiseAmount = params['PromiseAmount']
         end
       end
 

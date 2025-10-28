@@ -1297,16 +1297,20 @@ module TencentCloud
         # @type StorageAccountId: String
         # @param StorageAppId: 被指定存储用户appid
         # @type StorageAppId: String
+        # @param Compress: 是否压缩。
+        # 1:压缩  2:不压缩
+        # @type Compress: Integer
 
-        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId
+        attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId, :Compress
 
-        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil, storageaccountid=nil, storageappid=nil)
+        def initialize(storagetype=nil, storageregion=nil, storagename=nil, storageprefix=nil, storageaccountid=nil, storageappid=nil, compress=nil)
           @StorageType = storagetype
           @StorageRegion = storageregion
           @StorageName = storagename
           @StoragePrefix = storageprefix
           @StorageAccountId = storageaccountid
           @StorageAppId = storageappid
+          @Compress = compress
         end
 
         def deserialize(params)
@@ -1316,6 +1320,7 @@ module TencentCloud
           @StoragePrefix = params['StoragePrefix']
           @StorageAccountId = params['StorageAccountId']
           @StorageAppId = params['StorageAppId']
+          @Compress = params['Compress']
         end
       end
 

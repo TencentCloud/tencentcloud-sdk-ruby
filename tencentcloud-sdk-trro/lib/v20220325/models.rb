@@ -1111,6 +1111,78 @@ module TencentCloud
         end
       end
 
+      # 会话时长明细
+      class DurationDetails < TencentCloud::Common::AbstractModel
+        # @param SessionTime: 会话时间
+        # @type SessionTime: String
+        # @param Voice: 语音:min
+        # @type Voice: Integer
+        # @param SD: 标清:min
+        # @type SD: Integer
+        # @param HD: 高清:min
+        # @type HD: Integer
+        # @param FHD: 超高清:min
+        # @type FHD: Integer
+        # @param TwoK: 2k:min
+        # @type TwoK: Integer
+        # @param FourK: 4k:min
+        # @type FourK: Integer
+        # @param Online: 在线时长:min
+        # @type Online: Integer
+        # @param MultiSD: 多网标清:min
+        # @type MultiSD: Integer
+        # @param MultiHD: 多网高清:min
+        # @type MultiHD: Integer
+        # @param MultiFHD: 多网超高清:min
+        # @type MultiFHD: Integer
+        # @param MultiTwoK: 多网2k:min
+        # @type MultiTwoK: Integer
+        # @param MultiFourK: 多网4k:min
+        # @type MultiFourK: Integer
+        # @param MultiOnline: 多网在线时长:min
+        # @type MultiOnline: Integer
+        # @param DeductDuration: 抵扣时长:min
+        # @type DeductDuration: Integer
+
+        attr_accessor :SessionTime, :Voice, :SD, :HD, :FHD, :TwoK, :FourK, :Online, :MultiSD, :MultiHD, :MultiFHD, :MultiTwoK, :MultiFourK, :MultiOnline, :DeductDuration
+
+        def initialize(sessiontime=nil, voice=nil, sd=nil, hd=nil, fhd=nil, twok=nil, fourk=nil, online=nil, multisd=nil, multihd=nil, multifhd=nil, multitwok=nil, multifourk=nil, multionline=nil, deductduration=nil)
+          @SessionTime = sessiontime
+          @Voice = voice
+          @SD = sd
+          @HD = hd
+          @FHD = fhd
+          @TwoK = twok
+          @FourK = fourk
+          @Online = online
+          @MultiSD = multisd
+          @MultiHD = multihd
+          @MultiFHD = multifhd
+          @MultiTwoK = multitwok
+          @MultiFourK = multifourk
+          @MultiOnline = multionline
+          @DeductDuration = deductduration
+        end
+
+        def deserialize(params)
+          @SessionTime = params['SessionTime']
+          @Voice = params['Voice']
+          @SD = params['SD']
+          @HD = params['HD']
+          @FHD = params['FHD']
+          @TwoK = params['TwoK']
+          @FourK = params['FourK']
+          @Online = params['Online']
+          @MultiSD = params['MultiSD']
+          @MultiHD = params['MultiHD']
+          @MultiFHD = params['MultiFHD']
+          @MultiTwoK = params['MultiTwoK']
+          @MultiFourK = params['MultiFourK']
+          @MultiOnline = params['MultiOnline']
+          @DeductDuration = params['DeductDuration']
+        end
+      end
+
       # GetDeviceLicense请求参数结构体
       class GetDeviceLicenseRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 目标设备所属项目ID
@@ -1206,6 +1278,73 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetDurationDetails请求参数结构体
+      class GetDurationDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param PageNum: 页码
+        # @type PageNum: Integer
+        # @param PageSize: 页面数量
+        # @type PageSize: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DeviceId: 设备ID，不传查全部设备
+        # @type DeviceId: String
+
+        attr_accessor :StartTime, :EndTime, :PageNum, :PageSize, :ProjectId, :DeviceId
+
+        def initialize(starttime=nil, endtime=nil, pagenum=nil, pagesize=nil, projectid=nil, deviceid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @PageNum = pagenum
+          @PageSize = pagesize
+          @ProjectId = projectid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @PageNum = params['PageNum']
+          @PageSize = params['PageSize']
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetDurationDetails返回参数结构体
+      class GetDurationDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 列表总数
+        # @type TotalCount: Integer
+        # @param DurationDetails: 时长明细列表
+        # @type DurationDetails: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DurationDetails, :RequestId
+
+        def initialize(totalcount=nil, durationdetails=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DurationDetails = durationdetails
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DurationDetails'].nil?
+            @DurationDetails = []
+            params['DurationDetails'].each do |i|
+              durationdetails_tmp = DurationDetails.new
+              durationdetails_tmp.deserialize(i)
+              @DurationDetails << durationdetails_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1316,6 +1455,106 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetTotalDuration请求参数结构体
+      class GetTotalDurationRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param DeviceId: 设备id，不传查全部
+        # @type DeviceId: String
+
+        attr_accessor :StartTime, :EndTime, :ProjectId, :DeviceId
+
+        def initialize(starttime=nil, endtime=nil, projectid=nil, deviceid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ProjectId = projectid
+          @DeviceId = deviceid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ProjectId = params['ProjectId']
+          @DeviceId = params['DeviceId']
+        end
+      end
+
+      # GetTotalDuration返回参数结构体
+      class GetTotalDurationResponse < TencentCloud::Common::AbstractModel
+        # @param Voice: 语音:min
+        # @type Voice: Integer
+        # @param SD: 标清:min
+        # @type SD: Integer
+        # @param HD: 高清:min
+        # @type HD: Integer
+        # @param FHD: 超高清:min
+        # @type FHD: Integer
+        # @param TwoK: 2k:min
+        # @type TwoK: Integer
+        # @param FourK: 4k:min
+        # @type FourK: Integer
+        # @param Online: 在线时长:min
+        # @type Online: Integer
+        # @param MultiSD: 多网标清:min
+        # @type MultiSD: Integer
+        # @param MultiHD: 多网高清:min
+        # @type MultiHD: Integer
+        # @param MultiFHD: 多网超高清:min
+        # @type MultiFHD: Integer
+        # @param MultiTwoK: 多网2k:min
+        # @type MultiTwoK: Integer
+        # @param MultiFourK: 多网4k:min
+        # @type MultiFourK: Integer
+        # @param MultiOnline: 多网在线时长:min
+        # @type MultiOnline: Integer
+        # @param DeductDuration: 总抵扣时长:min
+        # @type DeductDuration: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Voice, :SD, :HD, :FHD, :TwoK, :FourK, :Online, :MultiSD, :MultiHD, :MultiFHD, :MultiTwoK, :MultiFourK, :MultiOnline, :DeductDuration, :RequestId
+
+        def initialize(voice=nil, sd=nil, hd=nil, fhd=nil, twok=nil, fourk=nil, online=nil, multisd=nil, multihd=nil, multifhd=nil, multitwok=nil, multifourk=nil, multionline=nil, deductduration=nil, requestid=nil)
+          @Voice = voice
+          @SD = sd
+          @HD = hd
+          @FHD = fhd
+          @TwoK = twok
+          @FourK = fourk
+          @Online = online
+          @MultiSD = multisd
+          @MultiHD = multihd
+          @MultiFHD = multifhd
+          @MultiTwoK = multitwok
+          @MultiFourK = multifourk
+          @MultiOnline = multionline
+          @DeductDuration = deductduration
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Voice = params['Voice']
+          @SD = params['SD']
+          @HD = params['HD']
+          @FHD = params['FHD']
+          @TwoK = params['TwoK']
+          @FourK = params['FourK']
+          @Online = params['Online']
+          @MultiSD = params['MultiSD']
+          @MultiHD = params['MultiHD']
+          @MultiFHD = params['MultiFHD']
+          @MultiTwoK = params['MultiTwoK']
+          @MultiFourK = params['MultiFourK']
+          @MultiOnline = params['MultiOnline']
+          @DeductDuration = params['DeductDuration']
           @RequestId = params['RequestId']
         end
       end
@@ -1830,8 +2069,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2025, 9
-        deprecate :RenderConst=, :none, 2025, 9
+        deprecate :RenderConst, :none, 2025, 10
+        deprecate :RenderConst=, :none, 2025, 10
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

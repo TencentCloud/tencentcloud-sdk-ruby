@@ -7956,7 +7956,7 @@ module TencentCloud
         # <li>ddos_attackBandwidth：攻击带宽曲线；</li>
         # <li>ddos_attackPackageRate：攻击包速率曲线。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID列表，不填默认选择全部策略ID。
         # @type PolicyIds: Array
@@ -8035,7 +8035,7 @@ module TencentCloud
         # @type EndTime: String
         # @param PolicyIds: ddos策略组集合，不填默认选择全部策略。
         # @type PolicyIds: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Limit: 分页查询的限制数目，默认值为20，最大查询条目为1000。
         # @type Limit: Integer
@@ -8132,7 +8132,7 @@ module TencentCloud
         # <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
         # <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param PolicyIds: DDoS策略组ID集合，不填默认选择全部策略ID。
         # @type PolicyIds: Array
@@ -9936,7 +9936,7 @@ module TencentCloud
 
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点ID。该参数必填。
+        # @param ZoneId: 站点ID。此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
         # @type ZoneId: String
         # @param StartTime: 查询起始时间，时间与 job-id 必填一个。
         # @type StartTime: String
@@ -9946,7 +9946,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目，默认值：20，上限：1000。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：<li>job-id：按照任务 ID 进行过滤。job-id 形如：1379afjk91u32h，暂不支持多值，不支持模糊查询；</li><li>target：按照目标资源信息进行过滤。target 形如：http://www.qq.com/1.txt，暂不支持多值，不支持模糊查询；</li><li>domains：按照域名行过滤。domains 形如：www.qq.com，不支持模糊查询；</li><li>statuses：按照任务状态进行过滤，不支持模糊查询。可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时<br>   invalid：无效。即源站响应非 2xx 状态码，请检查源站服务。</li>
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：<li>job-id：按照任务 ID 进行过滤。job-id 形如：1379afjk91u32h，暂不支持多值，不支持模糊查询；</li><li>target：按照目标资源信息进行过滤。target 形如：http://www.qq.com/1.txt，暂不支持多值，不支持模糊查询；</li><li>domains：按照域名行过滤。domains 形如：www.qq.com，不支持模糊查询；</li><li>statuses：按照任务状态进行过滤，不支持模糊查询。可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时<br>   canceled：已取消<br>   invalid：无效。即源站响应非 2xx 状态码，请检查源站服务。</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :StartTime, :EndTime, :Offset, :Limit, :Filters
@@ -10010,7 +10010,7 @@ module TencentCloud
 
       # DescribePurgeTasks请求参数结构体
       class DescribePurgeTasksRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。该参数必填。
+        # @param ZoneId: 站点 ID。此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
         # @type ZoneId: String
         # @param StartTime: 查询起始时间，时间与 job-id 必填一个。
         # @type StartTime: String
@@ -10024,7 +10024,7 @@ module TencentCloud
         # <li>job-id：按照任务 ID 进行过滤。job-id 形如：1379afjk91u32h，暂不支持多值，不支持模糊查询；</li>
         # <li>target：按照目标资源信息进行过滤，target 形如：http://www.qq.com/1.txt 或者 tag1，暂不支持多值，支持模糊查询；</li>
         # <li>domains：按照域名进行过滤，形如：www.qq.com，不支持模糊查询；</li>
-        # <li>statuses：按照任务状态进行过滤，不支持模糊查询。可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时</li>
+        # <li>statuses：按照任务状态进行过滤，不支持模糊查询。可选项：<br>   processing：处理中<br>   success：成功<br>   failed：失败<br>   timeout：超时<br>   canceled：已取消</li>
         # <li>type：按照清除缓存类型进行过滤，暂不支持多值，不支持模糊查询。可选项：<br>   purge_url：URL<br>   purge_prefix：前缀<br>   purge_all：全部缓存内容<br>   purge_host：Hostname<br>   purge_cache_tag：CacheTag</li>
         # @type Filters: Array
 
@@ -10747,7 +10747,8 @@ module TencentCloud
         # <li>l4Flow_inBandwidth: 访问入向带宽峰值；</li>
         # <li>l4Flow_outBandwidth: 访问出向带宽峰值。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点ID，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
+        # 最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例列表, 不填表示选择全部实例。
         # @type ProxyIds: Array
@@ -10845,7 +10846,7 @@ module TencentCloud
         # <li> l7Flow_avgResponseTime: L7 访问平均响应耗时，单位：ms；</li>
         # <li> l7Flow_avgFirstByteResponseTime: L7 访问平均首字节响应耗时，单位：ms。</li>
         # @type MetricNames: Array
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Interval: 查询时间粒度，取值有：
         # <li>min: 1分钟；</li>
@@ -11133,7 +11134,7 @@ module TencentCloud
         # <li> l7Flow_request_ua_os：按操作系统类型维度统计 L7 访问请求数指标；</li>
         # <li> l7Flow_request_ua：按 User-Agent 维度统计 L7 访问请求数指标。</li>
         # @type MetricName: String
-        # @param ZoneIds: 站点 ID 集合，此参数必填。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
         # @type ZoneIds: Array
         # @param Limit: 查询前多少个 top 数据，最大值为1000。不填默认为10，表示查询 top10 的数据。
         # @type Limit: Integer
@@ -12088,7 +12089,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点 ID 集合，此参数必填。
+        # @param ZoneIds: 站点 ID 集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
         # @type ZoneIds: Array
         # @param ProxyIds: 四层实例 ID 集合。
         # @type ProxyIds: Array
@@ -12155,7 +12156,7 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
-        # @param ZoneIds: 站点ID集合，此参数必填。
+        # @param ZoneIds: 站点ID集合，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
         # @type ZoneIds: Array
         # @param Domains: 子域名集合，不填默认选择全部子域名。
         # @type Domains: Array
@@ -13686,8 +13687,8 @@ module TencentCloud
         # @type OcspStapling: String
         # @param TlsVersion: Tls 版本设置，取值有：
         # <li>TLSv1：TLSv1版本；</li>
-        # <li>TLSV1.1：TLSv1.1版本；</li>
-        # <li>TLSV1.2：TLSv1.2版本；</li>
+        # <li>TLSv1.1：TLSv1.1版本；</li>
+        # <li>TLSv1.2：TLSv1.2版本；</li>
         # <li>TLSv1.3：TLSv1.3版本。</li>修改时必须开启连续的版本。
         # @type TlsVersion: Array
         # @param Hsts: HSTS 配置。
@@ -15056,7 +15057,7 @@ module TencentCloud
         # <li>on：遵循源站，忽略MaxAge 时间设置；</li>
         # <li>off：不遵循源站，使用MaxAge 时间设置。</li>
         # @type FollowOrigin: String
-        # @param MaxAgeTime: MaxAge 时间设置，单位秒，最大365天。
+        # @param MaxAgeTime: MaxAge 时间设置，单位为秒，取值：0～315360000。
         # 注意：时间为0，即不缓存。
         # @type MaxAgeTime: Integer
 

@@ -562,6 +562,33 @@ module TencentCloud
         end
       end
 
+      # CreateExport请求参数结构体
+      class CreateExportRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateExport返回参数结构体
+      class CreateExportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateModelServiceAuthToken请求参数结构体
       class CreateModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组 id
@@ -2106,6 +2133,38 @@ module TencentCloud
         end
       end
 
+      # DeleteExport请求参数结构体
+      class DeleteExportRequest < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志下载任务的ID
+        # @type ExportId: String
+
+        attr_accessor :ExportId
+
+        def initialize(exportid=nil)
+          @ExportId = exportid
+        end
+
+        def deserialize(params)
+          @ExportId = params['ExportId']
+        end
+      end
+
+      # DeleteExport返回参数结构体
+      class DeleteExportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteModelServiceAuthToken请求参数结构体
       class DeleteModelServiceAuthTokenRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组 id
@@ -2935,6 +2994,41 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeExport请求参数结构体
+      class DescribeExportRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeExport返回参数结构体
+      class DescribeExportResponse < TencentCloud::Common::AbstractModel
+        # @param FileSize: 日志文件大小
+        # @type FileSize: String
+        # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
+        # @type Status: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileSize, :Status, :RequestId
+
+        def initialize(filesize=nil, status=nil, requestid=nil)
+          @FileSize = filesize
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileSize = params['FileSize']
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end

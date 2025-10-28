@@ -776,24 +776,31 @@ module TencentCloud
 
       # CloneInstances返回参数结构体
       class CloneInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealId: 请求任务 ID。
+        # @param DealId: 交易的ID。
         # @type DealId: String
         # @param InstanceIds: 克隆实例的 ID。
         # @type InstanceIds: Array
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :InstanceIds, :RequestId
+        attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, instanceids=nil, requestid=nil)
+        def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
           @InstanceIds = instanceids
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -926,7 +933,19 @@ module TencentCloud
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TypeId: 实例类型。
-        # <ul><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li><li>15：Redis 6.2 内存版（标准架构）。</li><li>16：Redis 6.2 内存版（集群架构）。</li><li>17：Redis 7.0 内存版（标准架构）。</li><li>18：Redis 7.0 内存版（集群架构）。</li><li>200：Memcached 1.6 内存版（集群架构）。</li>说明：CKV 版本当前有存量用户使用，暂时保留。</ul>
+        # - 2：Redis 2.8 内存版（标准架构）。
+        # - 3：CKV 3.2 内存版（标准架构）。
+        # - 4：CKV 3.2 内存版（集群架构）。
+        # - 6：Redis 4.0 内存版（标准架构）。
+        # - 7：Redis 4.0 内存版（集群架构）。
+        # - 8：Redis 5.0 内存版（标准架构）。
+        # - 9：Redis 5.0 内存版（集群架构）。
+        # - 15：Redis 6.2 内存版（标准架构）。
+        # - 16：Redis 6.2 内存版（集群架构）。
+        # - 17：Redis 7.0 内存版（标准架构）。
+        # - 18：Redis 7.0 内存版（集群架构）。
+        # - 200：Memcached 1.6 内存版（集群架构）。
+        # **说明**：CKV 版本当前有存量用户使用，暂时保留。
         # @type TypeId: Integer
         # @param MemSize: 内存容量，单位为MB， 数值需为1024的整数倍。具体规格，请通过 [DescribeProductInfo](https://cloud.tencent.com/document/api/239/30600) 接口查询全地域的售卖规格。
         # - **TypeId**为标准架构时，**MemSize**是实例总内存容量；
@@ -971,7 +990,7 @@ module TencentCloud
         # - 集群版实例，分片数量范围为：[1、3、5、8、12、16、24、32、40、48、64、80、96、128]。
         # @type RedisShardNum: Integer
         # @param RedisReplicasNum: 实例副本数量。
-        # - Redis 内存版 4.0、5.0、6.2 标准架构和集群架构支持副本数量范围为[1,5]。
+        # - Redis 内存版 4.0、5.0、6.2、7.0 标准架构和集群架构支持副本数量范围为[1,5]。
         # - Redis 2.8标准版、CKV标准版只支持1副本。
         # @type RedisReplicasNum: Integer
         # @param ReplicasReadonly: 标识实例是否需支持副本只读。
@@ -1005,7 +1024,10 @@ module TencentCloud
         # - cdc：独享集群。
         # - cloud：云原生，当前已暂停售卖。
         # @type ProductVersion: String
-        # @param RedisClusterId: 独享集群 ID。当**ProductVersion**设置为**cdc**时，该参数必须设置。
+        # @param RedisClusterId: 独享集群 ID。
+
+        # - 当 **ProductVersion** 设置为 **cdc** 时，该参数必须设置。
+        # - 请通过接口[ DescribeRedisClusters](https://cloud.tencent.com/document/product/239/109628) 获取集群 ID。
         # @type RedisClusterId: String
         # @param AlarmPolicyList: 告警策略 ID 数组。
 
@@ -1098,20 +1120,27 @@ module TencentCloud
         # @type DealId: String
         # @param InstanceIds: 实例ID。
         # @type InstanceIds: Array
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :InstanceIds, :RequestId
+        attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, instanceids=nil, requestid=nil)
+        def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
           @InstanceIds = instanceids
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -2171,17 +2200,24 @@ module TencentCloud
 
       # DescribeInstanceDealDetail请求参数结构体
       class DescribeInstanceDealDetailRequest < TencentCloud::Common::AbstractModel
-        # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。数组最大长度限制为10
+        # @param DealIds: 订单号，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealId。数组最大长度限制为10
         # @type DealIds: Array
+        # @param DealName: 订单号，即 [CreateInstances](https://cloud.tencent.com/document/api/239/20026) 的输出参数DealName。数组最大长度限制为10
+        # @type DealName: String
 
-        attr_accessor :DealIds
+        attr_accessor :DealIds, :DealName
+        extend Gem::Deprecate
+        deprecate :DealIds, :none, 2025, 10
+        deprecate :DealIds=, :none, 2025, 10
 
-        def initialize(dealids=nil)
+        def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
+          @DealName = dealname
         end
 
         def deserialize(params)
           @DealIds = params['DealIds']
+          @DealName = params['DealName']
         end
       end
 
@@ -4543,18 +4579,25 @@ module TencentCloud
       class DestroyPrepaidInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单Id
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -6173,7 +6216,7 @@ module TencentCloud
         # @type TimePeriod: String
         # @param AutoBackupType: 自动备份类型。目前仅能配置为：1 ，指定时备份。
         # @type AutoBackupType: Integer
-        # @param BackupStorageDays: 全量备份文件保存天数。单位：天。
+        # @param BackupStorageDays: 全量备份文件保存天数。 仅支持设置为 7，单位：天。如需更长天数，请[提交工单](https://console.cloud.tencent.com/workorder/category)申请。
         # @type BackupStorageDays: Integer
 
         attr_accessor :InstanceId, :WeekDays, :TimePeriod, :AutoBackupType, :BackupStorageDays
@@ -7872,11 +7915,15 @@ module TencentCloud
 
       # RenewInstance请求参数结构体
       class RenewInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 购买时长，单位：月。
+        # @param Period: 购买时长。
+        # - 单位：月。
+        # - 取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。
         # @type Period: Integer
-        # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
+        # @param InstanceId: 实例 ID，请登录 [Redis 控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param ModifyPayMode: 标识是否修改计费模式。<ul><li>当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 <b>prepaid</b>。</li><li>当前实例计费模式为包年包月方式，可不设置该参数。</li></ul>
+        # @param ModifyPayMode: 标识是否修改计费模式。
+        # - 当前实例计费模式为按量计费方式，预转换为包年包月而续费，请指定该参数为 <b>prepaid</b>。
+        # - 当前实例计费模式为包年包月方式，可不设置该参数。
         # @type ModifyPayMode: String
 
         attr_accessor :Period, :InstanceId, :ModifyPayMode
@@ -7898,18 +7945,25 @@ module TencentCloud
       class RenewInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 交易ID。
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -8660,6 +8714,9 @@ module TencentCloud
         # @type InstanceIds: Array
 
         attr_accessor :DealId, :DealName, :ZoneId, :GoodsNum, :Creater, :CreatTime, :OverdueTime, :EndTime, :Status, :Description, :Price, :InstanceIds
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
         def initialize(dealid=nil, dealname=nil, zoneid=nil, goodsnum=nil, creater=nil, creattime=nil, overduetime=nil, endtime=nil, status=nil, description=nil, price=nil, instanceids=nil)
           @DealId = dealid
@@ -8696,11 +8753,18 @@ module TencentCloud
       class UpgradeInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待变更实例 ID。请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
         # @type InstanceId: String
-        # @param MemSize: 指实例每个分片内存变更后的大小。<ul><li>单位 MB。</li><li>每次只能修改参数MemSize、RedisShardNum和RedisReplicasNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。</li><li>缩容时，缩容后的规格务必要大于等于使用容量的1.3倍，否则将执行失败。</li></ul>
+        # @param MemSize: 指实例每个分片内存变更后的大小。
+        # - 单位 MB。
+        # - 每次只能修改参数MemSize、RedisShardNum和RedisReplicasNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。
+        # - 缩容时，缩容后的规格务必要大于等于使用容量的1.3倍，否则将执行失败。
         # @type MemSize: Integer
-        # @param RedisShardNum: 指实例变更后的分片数量。<ul><li>标准架构不需要配置该参数，集群架构为必填参数。</li><li>集群架构，每次只能修改参数RedisShardNum、MemSize和RedisReplicasNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。</li></ul>
+        # @param RedisShardNum: 指实例变更后的分片数量。
+        # - 标准架构不需要配置该参数，集群架构为必填参数。
+        # - 集群架构，每次只能修改参数RedisShardNum、MemSize和RedisReplicasNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。
         # @type RedisShardNum: Integer
-        # @param RedisReplicasNum: 指实例变更后的副本数量。<ul><li>每次只能修改参数RedisReplicasNum、MemSize和RedisShardNum其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。</li><li>多AZ实例修改副本时必须要传入NodeSet。</li></ul>
+        # @param RedisReplicasNum: 指实例变更后的副本数量。
+        # - 每次只能修改参数 RedisReplicasNum、MemSize 和 RedisShardNum 其中的一个，不能同时修改。且修改其中一个参数时，其他两个参数需输入实例原有的配置规格。
+        # - 多AZ实例修改副本时必须要传入 NodeSet。
         # @type RedisReplicasNum: Integer
         # @param NodeSet: 多AZ实例，增加副本时的节点信息，包括副本的 ID 编号及可用区信息。非多AZ实例不需要配置该参数。
         # @type NodeSet: Array
@@ -8741,18 +8805,25 @@ module TencentCloud
       class UpgradeInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单ID。
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -8791,18 +8862,25 @@ module TencentCloud
       class UpgradeInstanceVersionResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 订单ID
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end

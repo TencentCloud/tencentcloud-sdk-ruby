@@ -5969,16 +5969,16 @@ module TencentCloud
 
       # StartWebRecord请求参数结构体
       class StartWebRecordRequest < TencentCloud::Common::AbstractModel
-        # @param RecordUrl: 需要录制的网页URL
+        # @param RecordUrl: 【必填】需要录制的网页URL
         # @type RecordUrl: String
-        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[1800, 36000], 默认 36000s(10 小时)
-        # @type MaxDurationLimit: Integer
         # @param StorageParams: 【必填】云存储相关的参数，目前支持腾讯云对象存储以及腾讯云云点播VOD，不支持第三方云存储；输出文件的存储格式仅支持hls或mp4
         # @type StorageParams: :class:`Tencentcloud::Trtc.v20190722.models.StorageParams`
-        # @param WebRecordVideoParams: 页面录制视频参数
-        # @type WebRecordVideoParams: :class:`Tencentcloud::Trtc.v20190722.models.WebRecordVideoParams`
         # @param SdkAppId: 【必填】TRTC的SdkAppId
         # @type SdkAppId: Integer
+        # @param MaxDurationLimit: 录制最大时长限制， 单位 s, 合法取值范围[1800, 86400], 默认 86400s(24 小时)
+        # @type MaxDurationLimit: Integer
+        # @param WebRecordVideoParams: 页面录制视频参数
+        # @type WebRecordVideoParams: :class:`Tencentcloud::Trtc.v20190722.models.WebRecordVideoParams`
         # @param RecordId: 当对重复任务敏感时，请关注此值： 为了避免任务在短时间内重复发起，导致任务重复
         # 传入录制RecordId来标识此次任务， 小于32字节，若携带RecordId发起两次以上的开始录制请求，任务只会启动一个，第二个报错FailedOperation.TaskExist。注意StartWebRecord调用失败时而非FailedOperation.TaskExist错误，请更换RecordId重新发起。
         # @type RecordId: String
@@ -5989,14 +5989,14 @@ module TencentCloud
         # @param EmulateMobileParams: 渲染移动模式参数；不准备渲染移动模式页面时，请勿设置此参数。
         # @type EmulateMobileParams: :class:`Tencentcloud::Trtc.v20190722.models.EmulateMobileParams`
 
-        attr_accessor :RecordUrl, :MaxDurationLimit, :StorageParams, :WebRecordVideoParams, :SdkAppId, :RecordId, :PublishCdnParams, :ReadyTimeout, :EmulateMobileParams
+        attr_accessor :RecordUrl, :StorageParams, :SdkAppId, :MaxDurationLimit, :WebRecordVideoParams, :RecordId, :PublishCdnParams, :ReadyTimeout, :EmulateMobileParams
 
-        def initialize(recordurl=nil, maxdurationlimit=nil, storageparams=nil, webrecordvideoparams=nil, sdkappid=nil, recordid=nil, publishcdnparams=nil, readytimeout=nil, emulatemobileparams=nil)
+        def initialize(recordurl=nil, storageparams=nil, sdkappid=nil, maxdurationlimit=nil, webrecordvideoparams=nil, recordid=nil, publishcdnparams=nil, readytimeout=nil, emulatemobileparams=nil)
           @RecordUrl = recordurl
-          @MaxDurationLimit = maxdurationlimit
           @StorageParams = storageparams
-          @WebRecordVideoParams = webrecordvideoparams
           @SdkAppId = sdkappid
+          @MaxDurationLimit = maxdurationlimit
+          @WebRecordVideoParams = webrecordvideoparams
           @RecordId = recordid
           @PublishCdnParams = publishcdnparams
           @ReadyTimeout = readytimeout
@@ -6005,16 +6005,16 @@ module TencentCloud
 
         def deserialize(params)
           @RecordUrl = params['RecordUrl']
-          @MaxDurationLimit = params['MaxDurationLimit']
           unless params['StorageParams'].nil?
             @StorageParams = StorageParams.new
             @StorageParams.deserialize(params['StorageParams'])
           end
+          @SdkAppId = params['SdkAppId']
+          @MaxDurationLimit = params['MaxDurationLimit']
           unless params['WebRecordVideoParams'].nil?
             @WebRecordVideoParams = WebRecordVideoParams.new
             @WebRecordVideoParams.deserialize(params['WebRecordVideoParams'])
           end
-          @SdkAppId = params['SdkAppId']
           @RecordId = params['RecordId']
           unless params['PublishCdnParams'].nil?
             @PublishCdnParams = []

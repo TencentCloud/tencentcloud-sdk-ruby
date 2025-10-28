@@ -242,7 +242,7 @@ module TencentCloud
 
       # AddVpcCniSubnets请求参数结构体
       class AddVpcCniSubnetsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID，请[登录控制台](https://console.cloud.tencent.com/tke2/cluster)在集群列表复制ID
         # @type ClusterId: String
         # @param SubnetIds: 为集群容器网络增加的子网列表
         # @type SubnetIds: Array
@@ -1899,7 +1899,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param LogsetId: CLS日志集ID
         # @type LogsetId: String
-        # @param ClusterType: 当前集群类型支持tke、eks
+        # @param ClusterType: 当前集群类型支持tke（标准集群）、eks（serverless集群）
         # @type ClusterType: String
 
         attr_accessor :LogConfig, :ClusterId, :LogsetId, :ClusterType
@@ -6519,7 +6519,7 @@ module TencentCloud
 
       # DescribeClusterRoutes请求参数结构体
       class DescribeClusterRoutesRequest < TencentCloud::Common::AbstractModel
-        # @param RouteTableName: 路由表名称。
+        # @param RouteTableName: 路由表名称。与集群 ID 一致，可以到[集群控制台](https://console.cloud.tencent.com/tke2)进行复制。
         # @type RouteTableName: String
         # @param Filters: 过滤条件,当前只支持按照单个条件GatewayIP进行过滤（可选）
         # @type Filters: Array
@@ -7849,7 +7849,7 @@ module TencentCloud
 
       # DescribeIPAMD请求参数结构体
       class DescribeIPAMDRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群 ID，请[登录控制台](https://console.cloud.tencent.com/tke2/cluster)在集群列表复制ID
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -10060,7 +10060,7 @@ module TencentCloud
       class DescribeRouteTableConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableCidrBlock: 路由表CIDR
         # @type RouteTableCidrBlock: String
-        # @param VpcId: 路由表绑定的VPC
+        # @param VpcId: 路由表绑定的VPC，请到 [VPC 控制台](https://console.cloud.tencent.com/vpc/vpc)复制 VPC ID
         # @type VpcId: String
 
         attr_accessor :RouteTableCidrBlock, :VpcId
@@ -11451,9 +11451,9 @@ module TencentCloud
       class EnableClusterAuditRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param LogsetId: CLS日志集ID
+        # @param LogsetId: CLS日志集ID，可以通过cls接口或者控制台获取
         # @type LogsetId: String
-        # @param TopicId: CLS日志主题ID
+        # @param TopicId: CLS日志主题ID，可以通过cls接口或者控制台获取
         # @type TopicId: String
         # @param TopicRegion: topic所在region，默认为集群当前region
         # @type TopicRegion: String
@@ -11566,9 +11566,9 @@ module TencentCloud
       class EnableEventPersistenceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param LogsetId: cls服务的logsetID
+        # @param LogsetId: cls服务的logsetID，通过cls接口或者控制台获取
         # @type LogsetId: String
-        # @param TopicId: cls服务的topicID
+        # @param TopicId: cls服务的topicID，通过cls接口或者控制台获取
         # @type TopicId: String
         # @param TopicRegion: topic所在地域，默认为集群所在地域
         # @type TopicRegion: String
@@ -17776,6 +17776,7 @@ module TencentCloud
       # 路由表冲突对象
       class RouteTableConflict < TencentCloud::Common::AbstractModel
         # @param RouteTableType: 路由表类型。
+        # 枚举值：CcsCluster、Vpc、VpcRouteTable、CcsClusterRouteTable
         # @type RouteTableType: String
         # @param RouteTableCidrBlock: 路由表CIDR。
         # @type RouteTableCidrBlock: String

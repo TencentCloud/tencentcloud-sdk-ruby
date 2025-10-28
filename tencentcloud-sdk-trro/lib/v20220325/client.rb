@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询该时间段、对应项目、设备的不同分辨率的通话时长流水，流水以日期（天）为单位
+
+        # @param request: Request instance for GetDurationDetails.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetDurationDetailsRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetDurationDetailsResponse`
+        def GetDurationDetails(request)
+          body = send_request('GetDurationDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDurationDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 统计license类型数量
 
         # @param request: Request instance for GetLicenseStat.
@@ -543,6 +567,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetLicensesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询该时间段、对应项目、设备的不同分辨率的通话时长汇总
+
+        # @param request: Request instance for GetTotalDuration.
+        # @type request: :class:`Tencentcloud::trro::V20220325::GetTotalDurationRequest`
+        # @rtype: :class:`Tencentcloud::trro::V20220325::GetTotalDurationResponse`
+        def GetTotalDuration(request)
+          body = send_request('GetTotalDuration', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTotalDurationResponse.new
             model.deserialize(response['Response'])
             model
           else

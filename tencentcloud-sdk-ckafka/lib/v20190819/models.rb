@@ -9686,6 +9686,7 @@ module TencentCloud
         # @param SelfBuilt: 是否为自建集群
         # @type SelfBuilt: Boolean
         # @param IsUpdate: 是否更新到关联的Dip任务
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdate: Boolean
         # @param Region: MQTT连接源的实例资源地域, 跨地域时必填
         # @type Region: String

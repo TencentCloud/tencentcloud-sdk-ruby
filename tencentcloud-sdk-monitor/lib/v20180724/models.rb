@@ -9046,19 +9046,27 @@ module TencentCloud
       class DescribePrometheusScrapeStatisticsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceIds: 实例ID列表
         # @type InstanceIds: Array
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
         # @param JobType: job 类型
         # @type JobType: String
+        # @param Job: job 过滤，不写就是全部 job
+        # @type Job: String
 
-        attr_accessor :InstanceIds, :JobType
+        attr_accessor :InstanceIds, :ClusterId, :JobType, :Job
 
-        def initialize(instanceids=nil, jobtype=nil)
+        def initialize(instanceids=nil, clusterid=nil, jobtype=nil, job=nil)
           @InstanceIds = instanceids
+          @ClusterId = clusterid
           @JobType = jobtype
+          @Job = job
         end
 
         def deserialize(params)
           @InstanceIds = params['InstanceIds']
+          @ClusterId = params['ClusterId']
           @JobType = params['JobType']
+          @Job = params['Job']
         end
       end
 

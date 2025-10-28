@@ -7884,12 +7884,17 @@ module TencentCloud
         # @type Zones: Array
         # @param RISTSettings: 输出的RIST的配置。
         # @type RISTSettings: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputRistSettings`
-        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道。PidSelector 与 TrackSelector 只能存在一个
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
+        # @param StreamSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道。PidSelector 与 TrackSelector 只能存在一个
+        # @type StreamSelector: :class:`Tencentcloud::Mps.v20190612.models.StreamSelector`
 
-        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector
+        attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
+        extend Gem::Deprecate
+        deprecate :PidSelector, :none, 2025, 10
+        deprecate :PidSelector=, :none, 2025, 10
 
-        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil)
+        def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
           @Description = description
           @Protocol = protocol
@@ -7905,6 +7910,7 @@ module TencentCloud
           @Zones = zones
           @RISTSettings = ristsettings
           @PidSelector = pidselector
+          @StreamSelector = streamselector
         end
 
         def deserialize(params)
@@ -7937,6 +7943,10 @@ module TencentCloud
           unless params['PidSelector'].nil?
             @PidSelector = PidSelector.new
             @PidSelector.deserialize(params['PidSelector'])
+          end
+          unless params['StreamSelector'].nil?
+            @StreamSelector = StreamSelector.new
+            @StreamSelector.deserialize(params['StreamSelector'])
           end
         end
       end
@@ -11023,7 +11033,6 @@ module TencentCloud
       class DescribeImageTaskDetailResponse < TencentCloud::Common::AbstractModel
         # @param TaskType: 任务类型，目前取值有：
         # <li>WorkflowTask：工作流处理任务。</li>
-
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: String
         # @param Status: 任务状态，取值：
@@ -11032,6 +11041,12 @@ module TencentCloud
         # <li>FINISH：已完成。</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param ErrCode: 任务失败时的错误码。
+        # @type ErrCode: Integer
+        # @param ErrMsg: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrMsg: String
+        # @param Message: 任务异常Message。
+        # @type Message: String
         # @param ImageProcessTaskResultSet: 图片处理任务的执行状态与结果。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageProcessTaskResultSet: Array
@@ -11044,11 +11059,14 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :ImageProcessTaskResultSet, :CreateTime, :FinishTime, :RequestId
+        attr_accessor :TaskType, :Status, :ErrCode, :ErrMsg, :Message, :ImageProcessTaskResultSet, :CreateTime, :FinishTime, :RequestId
 
-        def initialize(tasktype=nil, status=nil, imageprocesstaskresultset=nil, createtime=nil, finishtime=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, errcode=nil, errmsg=nil, message=nil, imageprocesstaskresultset=nil, createtime=nil, finishtime=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+          @Message = message
           @ImageProcessTaskResultSet = imageprocesstaskresultset
           @CreateTime = createtime
           @FinishTime = finishtime
@@ -11058,6 +11076,9 @@ module TencentCloud
         def deserialize(params)
           @TaskType = params['TaskType']
           @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+          @Message = params['Message']
           unless params['ImageProcessTaskResultSet'].nil?
             @ImageProcessTaskResultSet = []
             params['ImageProcessTaskResultSet'].each do |i|
@@ -11570,10 +11591,15 @@ module TencentCloud
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
         # @param StreamUrls: 输出模块配置，相关的URL，包括提供的拉流地址，或者配置的输出到第三方的转推地址
         # @type StreamUrls: Array
+        # @param StreamSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @type StreamSelector: :class:`Tencentcloud::Mps.v20190612.models.StreamSelector`
 
-        attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls
+        attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
+        extend Gem::Deprecate
+        deprecate :PidSelector, :none, 2025, 10
+        deprecate :PidSelector=, :none, 2025, 10
 
-        def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil)
+        def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
           @OutputName = outputname
           @OutputType = outputtype
@@ -11595,6 +11621,7 @@ module TencentCloud
           @RISTSettings = ristsettings
           @PidSelector = pidselector
           @StreamUrls = streamurls
+          @StreamSelector = streamselector
         end
 
         def deserialize(params)
@@ -11656,6 +11683,10 @@ module TencentCloud
               streamurldetail_tmp.deserialize(i)
               @StreamUrls << streamurldetail_tmp
             end
+          end
+          unless params['StreamSelector'].nil?
+            @StreamSelector = StreamSelector.new
+            @StreamSelector.deserialize(params['StreamSelector'])
           end
         end
       end
@@ -19848,10 +19879,15 @@ module TencentCloud
         # @type OutputType: String
         # @param PidSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
         # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
+        # @param StreamSelector: 对于含有多个音/视频轨的流，可以指定需要使用的轨道
+        # @type StreamSelector: :class:`Tencentcloud::Mps.v20190612.models.StreamSelector`
 
-        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector
+        attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
+        extend Gem::Deprecate
+        deprecate :PidSelector, :none, 2025, 10
+        deprecate :PidSelector=, :none, 2025, 10
 
-        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil)
+        def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
           @OutputName = outputname
           @Description = description
@@ -19867,6 +19903,7 @@ module TencentCloud
           @RISTSettings = ristsettings
           @OutputType = outputtype
           @PidSelector = pidselector
+          @StreamSelector = streamselector
         end
 
         def deserialize(params)
@@ -19899,6 +19936,10 @@ module TencentCloud
           unless params['PidSelector'].nil?
             @PidSelector = PidSelector.new
             @PidSelector.deserialize(params['PidSelector'])
+          end
+          unless params['StreamSelector'].nil?
+            @StreamSelector = StreamSelector.new
+            @StreamSelector.deserialize(params['StreamSelector'])
           end
         end
       end
@@ -25612,6 +25653,36 @@ module TencentCloud
         end
       end
 
+      # 选择指定的音轨或者视频输出
+      class StreamSelector < TencentCloud::Common::AbstractModel
+        # @param SelectorType: 选择类型: PID | TRACK
+        # @type SelectorType: String
+        # @param PidSelector: 根据 PID 配置选择器
+        # @type PidSelector: :class:`Tencentcloud::Mps.v20190612.models.PidSelector`
+        # @param TrackSelector: 根据 Track 配置选择器
+        # @type TrackSelector: :class:`Tencentcloud::Mps.v20190612.models.TrackSelector`
+
+        attr_accessor :SelectorType, :PidSelector, :TrackSelector
+
+        def initialize(selectortype=nil, pidselector=nil, trackselector=nil)
+          @SelectorType = selectortype
+          @PidSelector = pidselector
+          @TrackSelector = trackselector
+        end
+
+        def deserialize(params)
+          @SelectorType = params['SelectorType']
+          unless params['PidSelector'].nil?
+            @PidSelector = PidSelector.new
+            @PidSelector.deserialize(params['PidSelector'])
+          end
+          unless params['TrackSelector'].nil?
+            @TrackSelector = TrackSelector.new
+            @TrackSelector.deserialize(params['TrackSelector'])
+          end
+        end
+      end
+
       # 描述 URL 的完整信息
       class StreamUrlDetail < TencentCloud::Common::AbstractModel
         # @param Label: 会描述运营商信息等
@@ -26475,6 +26546,26 @@ module TencentCloud
         def deserialize(params)
           @TrackNum = params['TrackNum']
           @ChannelVolume = params['ChannelVolume']
+        end
+      end
+
+      # 音视频轨道选择
+      class TrackSelector < TencentCloud::Common::AbstractModel
+        # @param VideoIndex: 视频轨道序号，从1开始.
+        # @type VideoIndex: Array
+        # @param AudioIndex: 音频轨道序号，从1开始.
+        # @type AudioIndex: Array
+
+        attr_accessor :VideoIndex, :AudioIndex
+
+        def initialize(videoindex=nil, audioindex=nil)
+          @VideoIndex = videoindex
+          @AudioIndex = audioindex
+        end
+
+        def deserialize(params)
+          @VideoIndex = params['VideoIndex']
+          @AudioIndex = params['AudioIndex']
         end
       end
 

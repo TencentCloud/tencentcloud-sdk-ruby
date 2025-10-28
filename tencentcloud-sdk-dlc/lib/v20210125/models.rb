@@ -1893,8 +1893,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 9
-        deprecate :DefaultDataEngine=, :none, 2025, 9
+        deprecate :DefaultDataEngine, :none, 2025, 10
+        deprecate :DefaultDataEngine=, :none, 2025, 10
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -7525,13 +7525,19 @@ module TencentCloud
       class DescribeNativeSparkSessionsResponse < TencentCloud::Common::AbstractModel
         # @param SparkSessionsList: spark session列表
         # @type SparkSessionsList: Array
+        # @param TotalSpec: 资源组总规格
+        # @type TotalSpec: Integer
+        # @param TotalAvailable: 资源组当前可用规格
+        # @type TotalAvailable: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SparkSessionsList, :RequestId
+        attr_accessor :SparkSessionsList, :TotalSpec, :TotalAvailable, :RequestId
 
-        def initialize(sparksessionslist=nil, requestid=nil)
+        def initialize(sparksessionslist=nil, totalspec=nil, totalavailable=nil, requestid=nil)
           @SparkSessionsList = sparksessionslist
+          @TotalSpec = totalspec
+          @TotalAvailable = totalavailable
           @RequestId = requestid
         end
 
@@ -7544,6 +7550,8 @@ module TencentCloud
               @SparkSessionsList << sparksessioninfo_tmp
             end
           end
+          @TotalSpec = params['TotalSpec']
+          @TotalAvailable = params['TotalAvailable']
           @RequestId = params['RequestId']
         end
       end
@@ -14474,10 +14482,12 @@ module TencentCloud
         # @type TotalSpecMin: Integer
         # @param TotalSpecMax: 总规格最大
         # @type TotalSpecMax: Integer
+        # @param State: 状态，STARTING、RUNNING、TERMINATED
+        # @type State: String
 
-        attr_accessor :SparkSessionId, :SparkSessionName, :ResourceGroupId, :EngineSessionId, :EngineSessionName, :IdleTimeoutMin, :DriverSpec, :ExecutorSpec, :ExecutorNumMin, :ExecutorNumMax, :TotalSpecMin, :TotalSpecMax
+        attr_accessor :SparkSessionId, :SparkSessionName, :ResourceGroupId, :EngineSessionId, :EngineSessionName, :IdleTimeoutMin, :DriverSpec, :ExecutorSpec, :ExecutorNumMin, :ExecutorNumMax, :TotalSpecMin, :TotalSpecMax, :State
 
-        def initialize(sparksessionid=nil, sparksessionname=nil, resourcegroupid=nil, enginesessionid=nil, enginesessionname=nil, idletimeoutmin=nil, driverspec=nil, executorspec=nil, executornummin=nil, executornummax=nil, totalspecmin=nil, totalspecmax=nil)
+        def initialize(sparksessionid=nil, sparksessionname=nil, resourcegroupid=nil, enginesessionid=nil, enginesessionname=nil, idletimeoutmin=nil, driverspec=nil, executorspec=nil, executornummin=nil, executornummax=nil, totalspecmin=nil, totalspecmax=nil, state=nil)
           @SparkSessionId = sparksessionid
           @SparkSessionName = sparksessionname
           @ResourceGroupId = resourcegroupid
@@ -14490,6 +14500,7 @@ module TencentCloud
           @ExecutorNumMax = executornummax
           @TotalSpecMin = totalspecmin
           @TotalSpecMax = totalspecmax
+          @State = state
         end
 
         def deserialize(params)
@@ -14505,6 +14516,7 @@ module TencentCloud
           @ExecutorNumMax = params['ExecutorNumMax']
           @TotalSpecMin = params['TotalSpecMin']
           @TotalSpecMax = params['TotalSpecMax']
+          @State = params['State']
         end
       end
 
@@ -15191,10 +15203,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 9
-        deprecate :GovernPolicy=, :none, 2025, 9
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 9
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 9
+        deprecate :GovernPolicy, :none, 2025, 10
+        deprecate :GovernPolicy=, :none, 2025, 10
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 10
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 10
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

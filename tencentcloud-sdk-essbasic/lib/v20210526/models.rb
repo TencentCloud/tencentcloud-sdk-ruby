@@ -6279,7 +6279,8 @@ module TencentCloud
         # <li>**H5**：<font color="red">H5长链接</font>跳转H5链接, 一般用于贵方H5跳转过来,  打开后进入腾讯电子签H5页面</li>
         # <li>**SHORT_H5**：<font color="red">H5短链</font>跳转H5的短链形式, 一般用于发送短信中带的链接, 打开后进入腾讯电子签H5页面</li></ul>
         # @type Endpoint: String
-        # @param AutoJumpBackEvent: 触发自动跳转事件，仅对EndPoint为App类型有效，可选值包括：
+        # @param AutoJumpBackEvent: <font color="red">已废弃</font> 请使用 JumpEvents 参数，进行替换。
+        # 触发自动跳转事件，仅对EndPoint为App类型有效，可选值包括：
         # <ul><li> **VERIFIED** :企业认证完成/员工认证完成后跳回原App/小程序</li></ul>
         # @type AutoJumpBackEvent: String
         # @param AuthorizationTypes: 可选的此企业允许的授权方式, 可以设置的方式有:
@@ -6291,7 +6292,8 @@ module TencentCloud
         # @param ProxyOperatorIdCardNumber: 子客经办人身份证
         # 注意：`如果已同步，这里非空会更新同步的经办人身份证号，暂时只支持中国大陆居民身份证类型`。
         # @type ProxyOperatorIdCardNumber: String
-        # @param AutoJumpUrl: 认证完成跳转链接。
+        # @param AutoJumpUrl: <font color="red">已废弃</font> 请使用 JumpEvents 参数，进行替换。
+        # 认证完成跳转链接。
         # 注意：`此功能仅在Endpoint参数设置成 H5 或 PC时才有效`。
         # @type AutoJumpUrl: String
         # @param TopNavigationStatus: 是否展示头顶导航栏  <ul><li> **ENABLE** : (默认)进入web控制台展示头顶导航栏</li> <li> **DISABLE** : 进入web控制台不展示头顶导航栏</li></ul> 注：该参数**仅在企业和员工激活完成，登录控制台场景才生效**。
@@ -6327,13 +6329,17 @@ module TencentCloud
         # @type BankAccountNumber: String
         # @param Operator: 无
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param JumpEvents: 跳转事件，其中包括认证期间收录，授权书审核，企业认证的回跳事件。
+        # p.s.Endpoint如果是APP 类型，请传递JumpUrl为<font color="red">"true" </font>
+        # 如果 Endpoint 是 H5 类型，请参考文档跳转电子签H5 p.s. 如果Endpoint是 APP，传递的跳转地址无效，不会进行跳转，仅会进行回跳。
+        # @type JumpEvents: Array
 
-        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :ProxyOperatorMobile, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :ProxyOperatorIdCardNumber, :AutoJumpUrl, :TopNavigationStatus, :AutoActive, :BusinessLicense, :ProxyAddress, :ProxyLegalName, :PowerOfAttorneys, :OrganizationAuthorizationOptions, :BankAccountNumber, :Operator
+        attr_accessor :Agent, :ProxyOrganizationName, :UniformSocialCreditCode, :ProxyOperatorName, :ProxyOperatorMobile, :Module, :ModuleId, :MenuStatus, :Endpoint, :AutoJumpBackEvent, :AuthorizationTypes, :ProxyOperatorIdCardNumber, :AutoJumpUrl, :TopNavigationStatus, :AutoActive, :BusinessLicense, :ProxyAddress, :ProxyLegalName, :PowerOfAttorneys, :OrganizationAuthorizationOptions, :BankAccountNumber, :Operator, :JumpEvents
         extend Gem::Deprecate
         deprecate :Operator, :none, 2025, 10
         deprecate :Operator=, :none, 2025, 10
 
-        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, proxyoperatormobile=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil, topnavigationstatus=nil, autoactive=nil, businesslicense=nil, proxyaddress=nil, proxylegalname=nil, powerofattorneys=nil, organizationauthorizationoptions=nil, bankaccountnumber=nil, operator=nil)
+        def initialize(agent=nil, proxyorganizationname=nil, uniformsocialcreditcode=nil, proxyoperatorname=nil, proxyoperatormobile=nil, _module=nil, moduleid=nil, menustatus=nil, endpoint=nil, autojumpbackevent=nil, authorizationtypes=nil, proxyoperatoridcardnumber=nil, autojumpurl=nil, topnavigationstatus=nil, autoactive=nil, businesslicense=nil, proxyaddress=nil, proxylegalname=nil, powerofattorneys=nil, organizationauthorizationoptions=nil, bankaccountnumber=nil, operator=nil, jumpevents=nil)
           @Agent = agent
           @ProxyOrganizationName = proxyorganizationname
           @UniformSocialCreditCode = uniformsocialcreditcode
@@ -6356,6 +6362,7 @@ module TencentCloud
           @OrganizationAuthorizationOptions = organizationauthorizationoptions
           @BankAccountNumber = bankaccountnumber
           @Operator = operator
+          @JumpEvents = jumpevents
         end
 
         def deserialize(params)
@@ -6389,6 +6396,14 @@ module TencentCloud
           unless params['Operator'].nil?
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
+          end
+          unless params['JumpEvents'].nil?
+            @JumpEvents = []
+            params['JumpEvents'].each do |i|
+              jumpevent_tmp = JumpEvent.new
+              jumpevent_tmp.deserialize(i)
+              @JumpEvents << jumpevent_tmp
+            end
           end
         end
       end
@@ -7155,7 +7170,7 @@ module TencentCloud
         # @param PlatformAppAuthorization: 是否给平台应用授权
 
         # <ul>
-        # <li><strong>true</strong>: 表示是，授权平台应用。在此情况下，无需设置<code>AuthorizedOrganizationId</code>和<code>AuthorizedOrganizationName</code>。</li>
+        # <li><strong>true</strong>: 表示是，授权平台应用。在此情况下，无需设置<code>AuthorizedOrganizationIds</code>和<code>AuthorizedOrganizationNames</code>。</li>
         # <li><strong>false</strong>: （默认）表示否，不是授权平台应用。</li>
         # </ul>
 
@@ -7172,20 +7187,31 @@ module TencentCloud
         # @type SealTypes: Array
         # @param AuthToMe: 在处理授权关系时，授权的方向
         # <ul>
-        # <li><strong>false</strong>（默认值）：表示我方授权他方。在这种情况下，<code>AuthorizedOrganizationName</code> 代表的是【被授权方】的企业名称，即接收授权的企业。</li>
-        # <li><strong>true</strong>：表示他方授权我方。在这种情况下，<code>AuthorizedOrganizationName</code> 代表的是【授权方】的企业名称，即提供授权的企业。</li>
+        # <li><strong>false</strong>（默认值）：表示我方授权他方。在这种情况下，<code>AuthorizedOrganizationNames</code> 代表的是【被授权方】的企业名称，即接收授权的企业。</li>
+        # <li><strong>true</strong>：表示他方授权我方。在这种情况下，<code>AuthorizedOrganizationNames</code> 代表的是【授权方】的企业名称，即提供授权的企业。此场景下不支持批量</li>
         # </ul>
         # @type AuthToMe: Boolean
+        # @param AuthorizedOrganizationIds: 被授企业id/授权方企业id（即OrganizationId），如果是企业之间授权和AuthorizedOrganizationNames二选一传入，最大支持50个，注：`被授权企业必须和当前企业在同一应用号下`
+        # @type AuthorizedOrganizationIds: Array
+        # @param AuthorizedOrganizationNames: 被授企业名称/授权方企业的名字，如果是企业之间授权和AuthorizedOrganizationIds二选一传入即可。请确认该名称与企业营业执照中注册的名称一致。注: 1. 如果名称中包含英文括号()，请使用中文括号（）代替。2. 被授权企业必须和当前企业在同一应用号下 3. 数组最大长度50
+        # @type AuthorizedOrganizationNames: Array
 
-        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization, :SealTypes, :AuthToMe
+        attr_accessor :Agent, :AuthorizedOrganizationId, :AuthorizedOrganizationName, :PlatformAppAuthorization, :SealTypes, :AuthToMe, :AuthorizedOrganizationIds, :AuthorizedOrganizationNames
+        extend Gem::Deprecate
+        deprecate :AuthorizedOrganizationId, :none, 2025, 10
+        deprecate :AuthorizedOrganizationId=, :none, 2025, 10
+        deprecate :AuthorizedOrganizationName, :none, 2025, 10
+        deprecate :AuthorizedOrganizationName=, :none, 2025, 10
 
-        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil, sealtypes=nil, authtome=nil)
+        def initialize(agent=nil, authorizedorganizationid=nil, authorizedorganizationname=nil, platformappauthorization=nil, sealtypes=nil, authtome=nil, authorizedorganizationids=nil, authorizedorganizationnames=nil)
           @Agent = agent
           @AuthorizedOrganizationId = authorizedorganizationid
           @AuthorizedOrganizationName = authorizedorganizationname
           @PlatformAppAuthorization = platformappauthorization
           @SealTypes = sealtypes
           @AuthToMe = authtome
+          @AuthorizedOrganizationIds = authorizedorganizationids
+          @AuthorizedOrganizationNames = authorizedorganizationnames
         end
 
         def deserialize(params)
@@ -7198,6 +7224,8 @@ module TencentCloud
           @PlatformAppAuthorization = params['PlatformAppAuthorization']
           @SealTypes = params['SealTypes']
           @AuthToMe = params['AuthToMe']
+          @AuthorizedOrganizationIds = params['AuthorizedOrganizationIds']
+          @AuthorizedOrganizationNames = params['AuthorizedOrganizationNames']
         end
       end
 
@@ -10913,6 +10941,32 @@ module TencentCloud
           @Video = params['Video']
           @ResultCode = params['ResultCode']
           @AsrResult = params['AsrResult']
+        end
+      end
+
+      # 跳转事件的结构体，其中包括认证期间收录，授权书审核，企业认证的回跳事件。
+      class JumpEvent < TencentCloud::Common::AbstractModel
+        # @param JumpEventType: 跳转事件枚举，
+        # * 1 - 企业收录。
+        # * 2 - 超管授权书审核。
+        # * 3 - 认证完成。
+        # @type JumpEventType: Integer
+        # @param JumpUrl: 为认证成功后页面进行回跳的URL，请确保回跳地址的可用性。
+        # Endpoint如果是APP 类型，请传递<font color="red">"true"</font>
+        # 如果 Endpoint 是 H5 类型，请参考文档[跳转电子签H5](https://qian.tencent.com/developers/partner/openqianh5)
+        # p.s. 如果Endpoint是 APP，传递的跳转地址无效，不会进行跳转，仅会进行回跳。
+        # @type JumpUrl: String
+
+        attr_accessor :JumpEventType, :JumpUrl
+
+        def initialize(jumpeventtype=nil, jumpurl=nil)
+          @JumpEventType = jumpeventtype
+          @JumpUrl = jumpurl
+        end
+
+        def deserialize(params)
+          @JumpEventType = params['JumpEventType']
+          @JumpUrl = params['JumpUrl']
         end
       end
 

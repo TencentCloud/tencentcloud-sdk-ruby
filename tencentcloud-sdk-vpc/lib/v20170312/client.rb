@@ -5666,6 +5666,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSecurityGroupExpandedPolicies）用于查看参数模板展开后的安全组规则。本接口会通过缓存降低请求后端服务的调用次数，因此拉取结果会存在延迟（缓存超时时间为1分钟）。
+
+        # @param request: Request instance for DescribeSecurityGroupExpandedPolicies.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeSecurityGroupExpandedPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeSecurityGroupExpandedPoliciesResponse`
+        def DescribeSecurityGroupExpandedPolicies(request)
+          body = send_request('DescribeSecurityGroupExpandedPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecurityGroupExpandedPoliciesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DescribeSecurityGroupLimits)用于查询用户安全组配额。
 
         # @param request: Request instance for DescribeSecurityGroupLimits.

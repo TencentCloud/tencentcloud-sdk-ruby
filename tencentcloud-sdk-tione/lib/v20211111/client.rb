@@ -80,6 +80,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建任务式建模训练任务，Notebook，在线服务和批量预测任务日志下载任务API
+
+        # @param request: Request instance for CreateExport.
+        # @type request: :class:`Tencentcloud::tione::V20211111::CreateExportRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::CreateExportResponse`
+        def CreateExport(request)
+          body = send_request('CreateExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateExportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于创建、发布一个新的模型服务
 
         # @param request: Request instance for CreateModelService.
@@ -234,6 +258,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDatasetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除任务式建模训练任务，Notebook，在线服务和批量预测任务日志导出任务API
+
+        # @param request: Request instance for DeleteExport.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DeleteExportRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DeleteExportResponse`
+        def DeleteExport(request)
+          body = send_request('DeleteExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteExportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -594,6 +642,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看任务式建模训练任务，Notebook，在线服务和批量预测任务日志下载任务状态API
+
+        # @param request: Request instance for DescribeExport.
+        # @type request: :class:`Tencentcloud::tione::V20211111::DescribeExportRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::DescribeExportResponse`
+        def DescribeExport(request)
+          body = send_request('DescribeExport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeExportResponse.new
             model.deserialize(response['Response'])
             model
           else
