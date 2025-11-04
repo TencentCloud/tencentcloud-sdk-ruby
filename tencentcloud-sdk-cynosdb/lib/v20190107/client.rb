@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateClusters）用于新购集群。
+
+        # @param request: Request instance for CreateIntegrateCluster.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::CreateIntegrateClusterRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::CreateIntegrateClusterResponse`
+        def CreateIntegrateCluster(request)
+          body = send_request('CreateIntegrateCluster', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateIntegrateClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateParamTemplate）用于创建参数模板。
 
         # @param request: Request instance for CreateParamTemplate.
@@ -1709,6 +1733,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeIntegrateTask）用于查询集群任务。
+
+        # @param request: Request instance for DescribeIntegrateTask.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeIntegrateTaskRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeIntegrateTaskResponse`
+        def DescribeIntegrateTask(request)
+          body = send_request('DescribeIntegrateTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIntegrateTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeIsolatedInstances）用于查询回收站实例列表。
 
         # @param request: Request instance for DescribeIsolatedInstances.
@@ -2343,6 +2391,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InquirePriceModifyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（InquirePriceMultiSpec）用于批量询价
+
+        # @param request: Request instance for InquirePriceMultiSpec.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceMultiSpecRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::InquirePriceMultiSpecResponse`
+        def InquirePriceMultiSpec(request)
+          body = send_request('InquirePriceMultiSpec', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceMultiSpecResponse.new
             model.deserialize(response['Response'])
             model
           else

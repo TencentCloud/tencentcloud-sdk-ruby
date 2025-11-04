@@ -958,6 +958,74 @@ module TencentCloud
         end
       end
 
+      # CreateLogDownloadTask请求参数结构体
+      class CreateLogDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param NodeNames: 节点名称
+        # @type NodeNames: Array
+        # @param LogComponents: 日志类别
+        # @type LogComponents: Array
+        # @param LogLevels: 日志等级
+        # @type LogLevels: Array
+        # @param LogIds: 日志ID
+        # @type LogIds: Array
+        # @param LogConnections: 日志连接信息
+        # @type LogConnections: Array
+        # @param LogDetailParams: 日志详情过滤字段
+        # @type LogDetailParams: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :NodeNames, :LogComponents, :LogLevels, :LogIds, :LogConnections, :LogDetailParams
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, nodenames=nil, logcomponents=nil, loglevels=nil, logids=nil, logconnections=nil, logdetailparams=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @NodeNames = nodenames
+          @LogComponents = logcomponents
+          @LogLevels = loglevels
+          @LogIds = logids
+          @LogConnections = logconnections
+          @LogDetailParams = logdetailparams
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NodeNames = params['NodeNames']
+          @LogComponents = params['LogComponents']
+          @LogLevels = params['LogLevels']
+          @LogIds = params['LogIds']
+          @LogConnections = params['LogConnections']
+          @LogDetailParams = params['LogDetailParams']
+        end
+      end
+
+      # CreateLogDownloadTask返回参数结构体
+      class CreateLogDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 云数据库实例当前操作
       class CurrentOp < TencentCloud::Common::AbstractModel
         # @param OpId: 操作序号。
@@ -1134,6 +1202,46 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLogDownloadTask请求参数结构体
+      class DeleteLogDownloadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :InstanceId, :TaskId
+
+        def initialize(instanceid=nil, taskid=nil)
+          @InstanceId = instanceid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteLogDownloadTask返回参数结构体
+      class DeleteLogDownloadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，0:成功
+        # @type Status: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
           @RequestId = params['RequestId']
         end
       end
@@ -2296,6 +2404,166 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLogDownloadTasks请求参数结构体
+      class DescribeLogDownloadTasksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID
+        # @type InstanceId: String
+        # @param Limit: 查询条数
+        # @type Limit: Integer
+        # @param Offset: 页码
+        # @type Offset: Integer
+        # @param StartTime: 下载任务的开始时间
+        # @type StartTime: String
+        # @param EndTime: 下载任务的结束时间
+        # @type EndTime: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, limit=nil, offset=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeLogDownloadTasks返回参数结构体
+      class DescribeLogDownloadTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # @type TotalCount: Integer
+        # @param Tasks: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Tasks, :RequestId
+
+        def initialize(totalcount=nil, tasks=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMongodbLogs请求参数结构体
+      class DescribeMongodbLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb#/)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param StartTime: 查询日志的开启时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。
+        # - 查询时间范围：仅支持查询最近 7 天内的日志数据。
+        # @type StartTime: String
+        # @param EndTime: 查询日志的结束时间。
+        # - 格式：yyyy-mm-dd hh:mm:ss，如：2019-06-01 10:00:00。
+        # - 查询时间范围：仅支持查询最近 7 天内的日志数据。
+        # @type EndTime: String
+        # @param NodeNames: 节点 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)的**节点管理**页面获取查询的节点 ID。
+        # @type NodeNames: Array
+        # @param LogComponents: 日志类别。
+        # - 日志类别包括但不限于 COMMAND、ACCESS、CONTROL、FTDC、INDEX、NETWORK、QUERY、REPL、SHARDING、STORAGE、RECOVERY、JOURNAL 和 WRITE 等。具体支持的类别可能会因 MongoDB 的版本而存在差异。具体信息，请参见[日志消息](https://www.mongodb.com/zh-cn/docs/v5.0/reference/log-messages/#log-message-examples)。
+        # - 登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)，在**日志管理**页面的**错误日志**页签，也可查看**日志类别**。
+        # @type LogComponents: Array
+        # @param LogLevels: 日志级别。
+        # - 日志级别按严重性从高到低依次为：FATAL、ERROR、WARNING。
+        # - 登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)，在**日志管理**页面的**错误日志**页签，可查看**日志级别**。
+        # @type LogLevels: Array
+        # @param LogIds: 日志 ID。登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)，在**日志管理**页面的**错误日志**页签，可查看**日志 ID**。
+        # @type LogIds: Array
+        # @param LogConnections: 日志连接信息。登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)，在**日志管理**页面的**错误日志**页签，可查看**日志连接信息**。
+        # @type LogConnections: Array
+        # @param LogDetailParams: 指定日志筛选的字段。
+        # @type LogDetailParams: Array
+        # @param Offset: 偏移量，最小值为0，最大值为10000，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页大小，最小值为1，最大值为100，默认值为20。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :NodeNames, :LogComponents, :LogLevels, :LogIds, :LogConnections, :LogDetailParams, :Offset, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, nodenames=nil, logcomponents=nil, loglevels=nil, logids=nil, logconnections=nil, logdetailparams=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @NodeNames = nodenames
+          @LogComponents = logcomponents
+          @LogLevels = loglevels
+          @LogIds = logids
+          @LogConnections = logconnections
+          @LogDetailParams = logdetailparams
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @NodeNames = params['NodeNames']
+          @LogComponents = params['LogComponents']
+          @LogLevels = params['LogLevels']
+          @LogIds = params['LogIds']
+          @LogConnections = params['LogConnections']
+          @LogDetailParams = params['LogDetailParams']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMongodbLogs返回参数结构体
+      class DescribeMongodbLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 日志总数。
+        # @type TotalCount: Integer
+        # @param LogList: 日志详情列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LogList, :RequestId
+
+        def initialize(totalcount=nil, loglist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LogList = loglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LogList'].nil?
+            @LogList = []
+            params['LogList'].each do |i|
+              loginfo_tmp = LogInfo.new
+              loginfo_tmp.deserialize(i)
+              @LogList << loginfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3659,6 +3927,48 @@ module TencentCloud
         end
       end
 
+      # 日志详情
+      class LogInfo < TencentCloud::Common::AbstractModel
+        # @param LogComponent: 日志类别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogComponent: String
+        # @param LogLevel: 日志级别
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogLevel: String
+        # @param LogTime: 日志产生时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogTime: String
+        # @param LogDetail: 日志详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogDetail: String
+        # @param LogConnection: 日志连接信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogConnection: String
+        # @param LogId: 日志id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogId: String
+
+        attr_accessor :LogComponent, :LogLevel, :LogTime, :LogDetail, :LogConnection, :LogId
+
+        def initialize(logcomponent=nil, loglevel=nil, logtime=nil, logdetail=nil, logconnection=nil, logid=nil)
+          @LogComponent = logcomponent
+          @LogLevel = loglevel
+          @LogTime = logtime
+          @LogDetail = logdetail
+          @LogConnection = logconnection
+          @LogId = logid
+        end
+
+        def deserialize(params)
+          @LogComponent = params['LogComponent']
+          @LogLevel = params['LogLevel']
+          @LogTime = params['LogTime']
+          @LogDetail = params['LogDetail']
+          @LogConnection = params['LogConnection']
+          @LogId = params['LogId']
+        end
+      end
+
       # ModifyDBInstanceNetworkAddress请求参数结构体
       class ModifyDBInstanceNetworkAddressRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定需修改网络的实例 ID。例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -3849,8 +4159,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 10
-        deprecate :OplogSize=, :none, 2025, 10
+        deprecate :OplogSize, :none, 2025, 11
+        deprecate :OplogSize=, :none, 2025, 11
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -5032,6 +5342,56 @@ module TencentCloud
         end
       end
 
+      # 日志下载任务描述
+      class Task < TencentCloud::Common::AbstractModel
+        # @param TaskType: 下载任务类型，0:慢日志，1:错误日志
+        # @type TaskType: Integer
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param FileSize: 文件大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param Status: 任务状态，0:初始化，1:运行中，2:成功，3:失败
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Percent: 百分比
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Integer
+        # @param Url: 下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :TaskType, :TaskId, :CreateTime, :UpdateTime, :FileSize, :Status, :Percent, :Url
+
+        def initialize(tasktype=nil, taskid=nil, createtime=nil, updatetime=nil, filesize=nil, status=nil, percent=nil, url=nil)
+          @TaskType = tasktype
+          @TaskId = taskid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @FileSize = filesize
+          @Status = status
+          @Percent = percent
+          @Url = url
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @TaskId = params['TaskId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @FileSize = params['FileSize']
+          @Status = params['Status']
+          @Percent = params['Percent']
+          @Url = params['Url']
+        end
+      end
+
       # TerminateDBInstances请求参数结构体
       class TerminateDBInstancesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 指定预隔离实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制预隔离实例 ID。
@@ -5060,6 +5420,90 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeDBInstanceKernelVersion请求参数结构体
+      class UpgradeDBInstanceKernelVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+        # @param InMaintenance: 是否维护时间内升级。0-否，1-是
+        # @type InMaintenance: Integer
+
+        attr_accessor :InstanceId, :InMaintenance
+
+        def initialize(instanceid=nil, inmaintenance=nil)
+          @InstanceId = instanceid
+          @InMaintenance = inmaintenance
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InMaintenance = params['InMaintenance']
+        end
+      end
+
+      # UpgradeDBInstanceKernelVersion返回参数结构体
+      class UpgradeDBInstanceKernelVersionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeDbInstanceVersion请求参数结构体
+      class UpgradeDbInstanceVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID列表，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同。
+        # @type InstanceId: String
+        # @param MongoVersion: 新升级的数据库版本，当前仅支持MONGO_40_WT（MongoDB 4.0 WiredTiger存储引擎版本）及MONGO_42_WT（MongoDB 4.0 WiredTiger存储引擎版本）。
+        # @type MongoVersion: String
+        # @param InMaintenance: 是否在维护时间内升级。0-立即升级 1-维护时间内升级
+        # @type InMaintenance: Integer
+
+        attr_accessor :InstanceId, :MongoVersion, :InMaintenance
+
+        def initialize(instanceid=nil, mongoversion=nil, inmaintenance=nil)
+          @InstanceId = instanceid
+          @MongoVersion = mongoversion
+          @InMaintenance = inmaintenance
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @MongoVersion = params['MongoVersion']
+          @InMaintenance = params['InMaintenance']
+        end
+      end
+
+      # UpgradeDbInstanceVersion返回参数结构体
+      class UpgradeDbInstanceVersionResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步流程任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end

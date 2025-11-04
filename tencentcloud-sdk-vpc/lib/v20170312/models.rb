@@ -625,12 +625,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2025, 10
-        deprecate :AddressTemplateName=, :none, 2025, 10
-        deprecate :From, :none, 2025, 10
-        deprecate :From=, :none, 2025, 10
-        deprecate :To, :none, 2025, 10
-        deprecate :To=, :none, 2025, 10
+        deprecate :AddressTemplateName, :none, 2025, 11
+        deprecate :AddressTemplateName=, :none, 2025, 11
+        deprecate :From, :none, 2025, 11
+        deprecate :From=, :none, 2025, 11
+        deprecate :To, :none, 2025, 11
+        deprecate :To=, :none, 2025, 11
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -800,8 +800,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 10
-        deprecate :ApplicableForCLB=, :none, 2025, 10
+        deprecate :ApplicableForCLB, :none, 2025, 11
+        deprecate :ApplicableForCLB=, :none, 2025, 11
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3405,8 +3405,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2025, 10
-        deprecate :ConfilctId=, :none, 2025, 10
+        deprecate :ConfilctId, :none, 2025, 11
+        deprecate :ConfilctId=, :none, 2025, 11
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -4835,8 +4835,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 10
-        deprecate :SubnetId=, :none, 2025, 10
+        deprecate :SubnetId, :none, 2025, 11
+        deprecate :SubnetId=, :none, 2025, 11
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil)
           @NatGatewayName = natgatewayname
@@ -6750,16 +6750,19 @@ module TencentCloud
         # @type DomainName: String
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # @type Tags: Array
+        # @param EnableRouteVpcPublish: vpc关联云联网时路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时,请通过工单加入白名单
+        # @type EnableRouteVpcPublish: Boolean
 
-        attr_accessor :VpcName, :CidrBlock, :EnableMulticast, :DnsServers, :DomainName, :Tags
+        attr_accessor :VpcName, :CidrBlock, :EnableMulticast, :DnsServers, :DomainName, :Tags, :EnableRouteVpcPublish
 
-        def initialize(vpcname=nil, cidrblock=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil)
+        def initialize(vpcname=nil, cidrblock=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil, enableroutevpcpublish=nil)
           @VpcName = vpcname
           @CidrBlock = cidrblock
           @EnableMulticast = enablemulticast
           @DnsServers = dnsservers
           @DomainName = domainname
           @Tags = tags
+          @EnableRouteVpcPublish = enableroutevpcpublish
         end
 
         def deserialize(params)
@@ -6776,6 +6779,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @EnableRouteVpcPublish = params['EnableRouteVpcPublish']
         end
       end
 
@@ -16992,23 +16996,23 @@ module TencentCloud
       class DestinationIpPortTranslationNatRuleDiff < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议
         # @type Protocol: String
-        # @param OriginalPort: 源端口
+        # @param OriginalPort: 映射前端口
         # @type OriginalPort: Integer
-        # @param OriginalIp: 源IP
+        # @param OriginalIp: 映射前IP
         # @type OriginalIp: String
-        # @param TranslationPort: 目的端口
+        # @param TranslationPort: 映射后端口
         # @type TranslationPort: Integer
-        # @param TranslationIp: 目的IP
+        # @param TranslationIp: 映射后IP
         # @type TranslationIp: String
         # @param OldProtocol: 旧协议。
         # @type OldProtocol: String
-        # @param OldOriginalPort: 旧源端口
+        # @param OldOriginalPort: 旧映射前端口
         # @type OldOriginalPort: Integer
-        # @param OldOriginalIp: 旧源IP
+        # @param OldOriginalIp: 旧映射前IP
         # @type OldOriginalIp: String
-        # @param OldTranslationPort: 旧目的端口
+        # @param OldTranslationPort: 旧映射后端口
         # @type OldTranslationPort: Integer
-        # @param OldTranslationIp: 旧目的IP
+        # @param OldTranslationIp: 旧映射后IP
         # @type OldTranslationIp: String
         # @param Description: 描述
         # @type Description: String
@@ -19313,8 +19317,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 10
-        deprecate :IntegrityAlgorith=, :none, 2025, 10
+        deprecate :IntegrityAlgorith, :none, 2025, 11
+        deprecate :IntegrityAlgorith=, :none, 2025, 11
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20211,15 +20215,15 @@ module TencentCloud
 
       # 本端目的IP端口转换复杂结构
       class LocalDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
-        # @param Protocol: 协议
+        # @param Protocol: 协议，包含TCP和UDP
         # @type Protocol: String
-        # @param OriginalPort: 源端口
+        # @param OriginalPort: 映射前端口
         # @type OriginalPort: Integer
-        # @param OriginalIp: 源IP
+        # @param OriginalIp: 映射前IP
         # @type OriginalIp: String
-        # @param TranslationPort: 目的端口
+        # @param TranslationPort: 映射后端口
         # @type TranslationPort: Integer
-        # @param TranslationIp: 目的IP
+        # @param TranslationIp: 映射后IP
         # @type TranslationIp: String
         # @param Description: 描述
         # @type Description: String
@@ -20701,10 +20705,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 10
-        deprecate :StartTime=, :none, 2025, 10
-        deprecate :EndTime, :none, 2025, 10
-        deprecate :EndTime=, :none, 2025, 10
+        deprecate :StartTime, :none, 2025, 11
+        deprecate :StartTime=, :none, 2025, 11
+        deprecate :EndTime, :none, 2025, 11
+        deprecate :EndTime=, :none, 2025, 11
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -23071,17 +23075,20 @@ module TencentCloud
         # @type DnsServers: Array
         # @param DomainName: 域名。
         # @type DomainName: String
+        # @param EnableRouteVpcPublish: vpc关联云联网时路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时,请通过工单加入白名单
+        # @type EnableRouteVpcPublish: Boolean
         # @param EnableCdcPublish: 发布cdc 子网到云联网的开关。true: 发布, false: 不发布。
         # @type EnableCdcPublish: Boolean
 
-        attr_accessor :VpcId, :VpcName, :EnableMulticast, :DnsServers, :DomainName, :EnableCdcPublish
+        attr_accessor :VpcId, :VpcName, :EnableMulticast, :DnsServers, :DomainName, :EnableRouteVpcPublish, :EnableCdcPublish
 
-        def initialize(vpcid=nil, vpcname=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, enablecdcpublish=nil)
+        def initialize(vpcid=nil, vpcname=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, enableroutevpcpublish=nil, enablecdcpublish=nil)
           @VpcId = vpcid
           @VpcName = vpcname
           @EnableMulticast = enablemulticast
           @DnsServers = dnsservers
           @DomainName = domainname
+          @EnableRouteVpcPublish = enableroutevpcpublish
           @EnableCdcPublish = enablecdcpublish
         end
 
@@ -23091,6 +23098,7 @@ module TencentCloud
           @EnableMulticast = params['EnableMulticast']
           @DnsServers = params['DnsServers']
           @DomainName = params['DomainName']
+          @EnableRouteVpcPublish = params['EnableRouteVpcPublish']
           @EnableCdcPublish = params['EnableCdcPublish']
         end
       end
@@ -24785,13 +24793,13 @@ module TencentCloud
       class PrivateNatDestinationIpPortTranslationNatRule < TencentCloud::Common::AbstractModel
         # @param Protocol: 协议
         # @type Protocol: String
-        # @param OriginalPort: 原端口
+        # @param OriginalPort: 映射前端口
         # @type OriginalPort: Integer
-        # @param OriginalIp: 原IP
+        # @param OriginalIp: 映射前IP
         # @type OriginalIp: String
-        # @param TranslationPort: 映射端口
+        # @param TranslationPort: 映射后端口
         # @type TranslationPort: Integer
-        # @param TranslationIp: 映射IP
+        # @param TranslationIp: 映射后IP
         # @type TranslationIp: String
         # @param Description: 描述
         # @type Description: String
@@ -24843,7 +24851,7 @@ module TencentCloud
         # @type TagSet: Array
         # @param DirectConnectGatewayIds: 专线网关唯一`ID`
         # @type DirectConnectGatewayIds: Array
-        # @param NatType: 私网网关类型
+        # @param NatType: 私网网关类型。可选类型："DCG","VPC","CCN"，分别对应专线网关、私有网络、云联网。
         # @type NatType: String
         # @param CrossDomainInfo: 私网NAT跨域信息
         # @type CrossDomainInfo: :class:`Tencentcloud::Vpc.v20170312.models.PrivateNatCrossDomainInfo`
@@ -27890,7 +27898,7 @@ module TencentCloud
       class SourceIpTranslationNatRule < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID，如果ResourceType为USERDEFINED，可以为空字符串
         # @type ResourceId: String
-        # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED
+        # @param ResourceType: 资源类型，目前包含SUBNET、NETWORKINTERFACE、USERDEFINED，分别表示子网、网卡、自定义网段
         # @type ResourceType: String
         # @param PrivateIpAddress: 源IP/网段
         # @type PrivateIpAddress: String
@@ -28749,13 +28757,13 @@ module TencentCloud
       class TranslationNatRule < TencentCloud::Common::AbstractModel
         # @param TranslationDirection: 转换规则目标，可选值"LOCAL","PEER"。
         # @type TranslationDirection: String
-        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。分别对应三层和四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @param TranslationIp: 映射后IP,当转换规则类型为四层时为`IP`池。
         # @type TranslationIp: String
         # @param Description: 转换规则描述。
         # @type Description: String
-        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @param OriginalIp: 映射前IP,当转换规则类型为三层时有效。
         # @type OriginalIp: String
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
@@ -28789,27 +28797,27 @@ module TencentCloud
       class TranslationNatRuleDiff < TencentCloud::Common::AbstractModel
         # @param TranslationDirection: 转发规则目标，可选值"LOCAL","PEER"。
         # @type TranslationDirection: String
-        # @param TranslationType: 转发规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。分别对应三层、四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转发规则映射`IP`,当转发规则类型为四层时为`IP`池
+        # @param TranslationIp: 转发规则映射后`IP`,当转发规则类型为四层时为`IP`池
         # @type TranslationIp: String
+        # @param OldTranslationIp: 旧转发规则映射后`IP`,当转发规则类型为四层时为`IP`池
+        # @type OldTranslationIp: String
         # @param Description: 转发规则描述。
         # @type Description: String
-        # @param OldTranslationIp: 旧转发规则映射`IP`,当转发规则类型为四层时为`IP`池
-        # @type OldTranslationIp: String
-        # @param OriginalIp: 新转发规则源`IP`,当转发规则类型为三层时有效
+        # @param OriginalIp: 新转发规则映射前`IP`,当转发规则类型为三层时有效
         # @type OriginalIp: String
-        # @param OldOriginalIp: 旧转发规则源`IP`,当转发规则类型为三层时有效
+        # @param OldOriginalIp: 旧转发规则映射前`IP`,当转发规则类型为三层时有效
         # @type OldOriginalIp: String
 
-        attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :Description, :OldTranslationIp, :OriginalIp, :OldOriginalIp
+        attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :OldTranslationIp, :Description, :OriginalIp, :OldOriginalIp
 
-        def initialize(translationdirection=nil, translationtype=nil, translationip=nil, description=nil, oldtranslationip=nil, originalip=nil, oldoriginalip=nil)
+        def initialize(translationdirection=nil, translationtype=nil, translationip=nil, oldtranslationip=nil, description=nil, originalip=nil, oldoriginalip=nil)
           @TranslationDirection = translationdirection
           @TranslationType = translationtype
           @TranslationIp = translationip
-          @Description = description
           @OldTranslationIp = oldtranslationip
+          @Description = description
           @OriginalIp = originalip
           @OldOriginalIp = oldoriginalip
         end
@@ -28818,8 +28826,8 @@ module TencentCloud
           @TranslationDirection = params['TranslationDirection']
           @TranslationType = params['TranslationType']
           @TranslationIp = params['TranslationIp']
-          @Description = params['Description']
           @OldTranslationIp = params['OldTranslationIp']
+          @Description = params['Description']
           @OriginalIp = params['OriginalIp']
           @OldOriginalIp = params['OldOriginalIp']
         end
@@ -28829,13 +28837,13 @@ module TencentCloud
       class TranslationNatRuleInput < TencentCloud::Common::AbstractModel
         # @param TranslationDirection: 转换规则目标，可选值"LOCAL","PEER"。
         # @type TranslationDirection: String
-        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。分别对应三层、四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @param TranslationIp: 映射后`IP`,当转换规则类型为四层时为`IP`池。
         # @type TranslationIp: String
         # @param Description: 转换规则描述。
         # @type Description: String
-        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @param OriginalIp: 映射前`IP`,当转换规则类型为三层时有效。
         # @type OriginalIp: String
 
         attr_accessor :TranslationDirection, :TranslationType, :TranslationIp, :Description, :OriginalIp
@@ -29272,12 +29280,14 @@ module TencentCloud
         # @type TagSet: Array
         # @param AssistantCidrSet: 辅助CIDR
         # @type AssistantCidrSet: Array
+        # @param EnableRouteVpcPublish: vpc关联云联网时路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时,请通过工单加入白名单
+        # @type EnableRouteVpcPublish: Boolean
         # @param Ipv6CidrBlockSet: 返回多运营商IPv6 Cidr Block
         # @type Ipv6CidrBlockSet: Array
 
-        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :Ipv6CidrBlockSet
+        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :EnableRouteVpcPublish, :Ipv6CidrBlockSet
 
-        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, ipv6cidrblockset=nil)
+        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, enableroutevpcpublish=nil, ipv6cidrblockset=nil)
           @VpcName = vpcname
           @VpcId = vpcid
           @CidrBlock = cidrblock
@@ -29291,6 +29301,7 @@ module TencentCloud
           @Ipv6CidrBlock = ipv6cidrblock
           @TagSet = tagset
           @AssistantCidrSet = assistantcidrset
+          @EnableRouteVpcPublish = enableroutevpcpublish
           @Ipv6CidrBlockSet = ipv6cidrblockset
         end
 
@@ -29322,6 +29333,7 @@ module TencentCloud
               @AssistantCidrSet << assistantcidr_tmp
             end
           end
+          @EnableRouteVpcPublish = params['EnableRouteVpcPublish']
           unless params['Ipv6CidrBlockSet'].nil?
             @Ipv6CidrBlockSet = []
             params['Ipv6CidrBlockSet'].each do |i|

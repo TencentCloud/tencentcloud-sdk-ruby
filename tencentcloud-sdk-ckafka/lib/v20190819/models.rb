@@ -8508,10 +8508,14 @@ module TencentCloud
         # @type KeepPartition: Boolean
         # @param TopicRegularExpression: 正则匹配Topic列表
         # @type TopicRegularExpression: String
+        # @param Prefix: Topic 前缀
+        # @type Prefix: String
+        # @param Separator: Topic前缀分隔符
+        # @type Separator: String
 
-        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple, :ConnectorSyncType, :KeepPartition, :TopicRegularExpression
+        attr_accessor :SelfBuilt, :Resource, :Topic, :OffsetType, :StartTime, :ResourceName, :ZoneId, :TopicId, :PartitionNum, :EnableToleration, :QpsLimit, :TableMappings, :UseTableMapping, :UseAutoCreateTopic, :CompressionType, :MsgMultiple, :ConnectorSyncType, :KeepPartition, :TopicRegularExpression, :Prefix, :Separator
 
-        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil, msgmultiple=nil, connectorsynctype=nil, keeppartition=nil, topicregularexpression=nil)
+        def initialize(selfbuilt=nil, resource=nil, topic=nil, offsettype=nil, starttime=nil, resourcename=nil, zoneid=nil, topicid=nil, partitionnum=nil, enabletoleration=nil, qpslimit=nil, tablemappings=nil, usetablemapping=nil, useautocreatetopic=nil, compressiontype=nil, msgmultiple=nil, connectorsynctype=nil, keeppartition=nil, topicregularexpression=nil, prefix=nil, separator=nil)
           @SelfBuilt = selfbuilt
           @Resource = resource
           @Topic = topic
@@ -8531,6 +8535,8 @@ module TencentCloud
           @ConnectorSyncType = connectorsynctype
           @KeepPartition = keeppartition
           @TopicRegularExpression = topicregularexpression
+          @Prefix = prefix
+          @Separator = separator
         end
 
         def deserialize(params)
@@ -8560,6 +8566,8 @@ module TencentCloud
           @ConnectorSyncType = params['ConnectorSyncType']
           @KeepPartition = params['KeepPartition']
           @TopicRegularExpression = params['TopicRegularExpression']
+          @Prefix = params['Prefix']
+          @Separator = params['Separator']
         end
       end
 
@@ -10093,6 +10101,46 @@ module TencentCloud
         end
       end
 
+      # PauseDatahubTask请求参数结构体
+      class PauseDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # PauseDatahubTask返回参数结构体
+      class PauseDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PostgreSQL连接源参数
       class PostgreSQLConnectParam < TencentCloud::Common::AbstractModel
         # @param Port: PostgreSQL的连接port
@@ -10563,6 +10611,86 @@ module TencentCloud
         def deserialize(params)
           @OldValue = params['OldValue']
           @NewValue = params['NewValue']
+        end
+      end
+
+      # RestartDatahubTask请求参数结构体
+      class RestartDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # RestartDatahubTask返回参数结构体
+      class RestartDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeDatahubTask请求参数结构体
+      class ResumeDatahubTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # ResumeDatahubTask返回参数结构体
+      class ResumeDatahubTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DatahubTaskIdRes`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DatahubTaskIdRes.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

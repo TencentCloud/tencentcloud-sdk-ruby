@@ -730,17 +730,37 @@ module TencentCloud
         # @type InstanceId: String
         # @param VirtualHost: vhost名
         # @type VirtualHost: String
+        # @param SortElement: 按哪个字段排序，支持：channel(channel数),incoming_bytes(入流量大小),outgoing_bytes(出流量大小)
+        # @type SortElement: String
+        # @param SortType: 排序方式：ASC,DESC
+        # @type SortType: String
+        # @param Offset: 分页参数，从第几条数据开始
+        # @type Offset: Integer
+        # @param Limit: 一页大小
+        # @type Limit: Integer
+        # @param Name: 连接名模糊搜索
+        # @type Name: String
 
-        attr_accessor :InstanceId, :VirtualHost
+        attr_accessor :InstanceId, :VirtualHost, :SortElement, :SortType, :Offset, :Limit, :Name
 
-        def initialize(instanceid=nil, virtualhost=nil)
+        def initialize(instanceid=nil, virtualhost=nil, sortelement=nil, sorttype=nil, offset=nil, limit=nil, name=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
+          @SortElement = sortelement
+          @SortType = sorttype
+          @Offset = offset
+          @Limit = limit
+          @Name = name
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @VirtualHost = params['VirtualHost']
+          @SortElement = params['SortElement']
+          @SortType = params['SortType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
         end
       end
 
@@ -789,16 +809,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param SearchWord: 搜索关键词
         # @type SearchWord: String
+        # @param Channel: channelId
+        # @type Channel: String
 
-        attr_accessor :InstanceId, :VirtualHost, :QueueName, :Limit, :Offset, :SearchWord
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :Limit, :Offset, :SearchWord, :Channel
 
-        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, limit=nil, offset=nil, searchword=nil)
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, limit=nil, offset=nil, searchword=nil, channel=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @QueueName = queuename
           @Limit = limit
           @Offset = offset
           @SearchWord = searchword
+          @Channel = channel
         end
 
         def deserialize(params)
@@ -808,6 +831,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @SearchWord = params['SearchWord']
+          @Channel = params['Channel']
         end
       end
 
@@ -1706,15 +1730,21 @@ module TencentCloud
         # @type TraceFlag: Boolean
         # @param SendReceiveRatio: 限流生产消费比例
         # @type SendReceiveRatio: Float
+        # @param DeleteAllTags: 是否删除所有标签，默认为false
+        # @type DeleteAllTags: Boolean
+        # @param InstanceTags: 修改的实例标签列表
+        # @type InstanceTags: Array
 
-        attr_accessor :InstanceId, :ClusterName, :Remark, :TraceFlag, :SendReceiveRatio
+        attr_accessor :InstanceId, :ClusterName, :Remark, :TraceFlag, :SendReceiveRatio, :DeleteAllTags, :InstanceTags
 
-        def initialize(instanceid=nil, clustername=nil, remark=nil, traceflag=nil, sendreceiveratio=nil)
+        def initialize(instanceid=nil, clustername=nil, remark=nil, traceflag=nil, sendreceiveratio=nil, deletealltags=nil, instancetags=nil)
           @InstanceId = instanceid
           @ClusterName = clustername
           @Remark = remark
           @TraceFlag = traceflag
           @SendReceiveRatio = sendreceiveratio
+          @DeleteAllTags = deletealltags
+          @InstanceTags = instancetags
         end
 
         def deserialize(params)
@@ -1723,6 +1753,15 @@ module TencentCloud
           @Remark = params['Remark']
           @TraceFlag = params['TraceFlag']
           @SendReceiveRatio = params['SendReceiveRatio']
+          @DeleteAllTags = params['DeleteAllTags']
+          unless params['InstanceTags'].nil?
+            @InstanceTags = []
+            params['InstanceTags'].each do |i|
+              rabbitmqserverlesstag_tmp = RabbitMQServerlessTag.new
+              rabbitmqserverlesstag_tmp.deserialize(i)
+              @InstanceTags << rabbitmqserverlesstag_tmp
+            end
+          end
         end
       end
 
@@ -1808,14 +1847,23 @@ module TencentCloud
         # @type QueueName: String
         # @param Remark: 新修改的备注
         # @type Remark: String
+        # @param MessageTTL: MessageTTL参数单位ms,classic类型专用
+        # @type MessageTTL: Integer
+        # @param DeadLetterExchange: DeadLetterExchange参数。可将过期或被拒绝的消息投往指定的死信 exchange。
+        # @type DeadLetterExchange: String
+        # @param DeadLetterRoutingKey: DeadLetterRoutingKey参数。只能包含字母、数字、"."、"-"，"@"，"_"
+        # @type DeadLetterRoutingKey: String
 
-        attr_accessor :InstanceId, :VirtualHost, :QueueName, :Remark
+        attr_accessor :InstanceId, :VirtualHost, :QueueName, :Remark, :MessageTTL, :DeadLetterExchange, :DeadLetterRoutingKey
 
-        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, remark=nil)
+        def initialize(instanceid=nil, virtualhost=nil, queuename=nil, remark=nil, messagettl=nil, deadletterexchange=nil, deadletterroutingkey=nil)
           @InstanceId = instanceid
           @VirtualHost = virtualhost
           @QueueName = queuename
           @Remark = remark
+          @MessageTTL = messagettl
+          @DeadLetterExchange = deadletterexchange
+          @DeadLetterRoutingKey = deadletterroutingkey
         end
 
         def deserialize(params)
@@ -1823,6 +1871,9 @@ module TencentCloud
           @VirtualHost = params['VirtualHost']
           @QueueName = params['QueueName']
           @Remark = params['Remark']
+          @MessageTTL = params['MessageTTL']
+          @DeadLetterExchange = params['DeadLetterExchange']
+          @DeadLetterRoutingKey = params['DeadLetterRoutingKey']
         end
       end
 
@@ -2070,10 +2121,12 @@ module TencentCloud
         # @type SendReceiveRatio: Float
         # @param TraceTime: 消息轨迹保留时间，单位小时
         # @type TraceTime: Integer
+        # @param Tags: 实例标签列表
+        # @type Tags: Array
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime, :SendReceiveRatio, :TraceTime
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :MessageRetainTime, :SendReceiveRatio, :TraceTime, :Tags
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil, sendreceiveratio=nil, tracetime=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, messageretaintime=nil, sendreceiveratio=nil, tracetime=nil, tags=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -2101,6 +2154,7 @@ module TencentCloud
           @MessageRetainTime = messageretaintime
           @SendReceiveRatio = sendreceiveratio
           @TraceTime = tracetime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2138,6 +2192,14 @@ module TencentCloud
           @MessageRetainTime = params['MessageRetainTime']
           @SendReceiveRatio = params['SendReceiveRatio']
           @TraceTime = params['TraceTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              rabbitmqserverlesstag_tmp = RabbitMQServerlessTag.new
+              rabbitmqserverlesstag_tmp.deserialize(i)
+              @Tags << rabbitmqserverlesstag_tmp
+            end
+          end
         end
       end
 
@@ -2209,10 +2271,20 @@ module TencentCloud
         # @type Protocol: String
         # @param Channels: 连接下的channel数
         # @type Channels: Integer
+        # @param IncomingBytes: 入流量大小，单位 bytes
+        # @type IncomingBytes: Float
+        # @param OutgoingBytes: 出流量大小，单位bytes
+        # @type OutgoingBytes: Float
+        # @param Heartbeat: 心跳间隔时间，默认60s
+        # @type Heartbeat: Integer
+        # @param MaxChannel: 一个链接最大的channel数，默认1024
+        # @type MaxChannel: Integer
+        # @param IdleSince: 空闲时间点
+        # @type IdleSince: String
 
-        attr_accessor :ConnectionName, :PeerHost, :State, :User, :SSL, :Protocol, :Channels
+        attr_accessor :ConnectionName, :PeerHost, :State, :User, :SSL, :Protocol, :Channels, :IncomingBytes, :OutgoingBytes, :Heartbeat, :MaxChannel, :IdleSince
 
-        def initialize(connectionname=nil, peerhost=nil, state=nil, user=nil, ssl=nil, protocol=nil, channels=nil)
+        def initialize(connectionname=nil, peerhost=nil, state=nil, user=nil, ssl=nil, protocol=nil, channels=nil, incomingbytes=nil, outgoingbytes=nil, heartbeat=nil, maxchannel=nil, idlesince=nil)
           @ConnectionName = connectionname
           @PeerHost = peerhost
           @State = state
@@ -2220,6 +2292,11 @@ module TencentCloud
           @SSL = ssl
           @Protocol = protocol
           @Channels = channels
+          @IncomingBytes = incomingbytes
+          @OutgoingBytes = outgoingbytes
+          @Heartbeat = heartbeat
+          @MaxChannel = maxchannel
+          @IdleSince = idlesince
         end
 
         def deserialize(params)
@@ -2230,6 +2307,11 @@ module TencentCloud
           @SSL = params['SSL']
           @Protocol = params['Protocol']
           @Channels = params['Channels']
+          @IncomingBytes = params['IncomingBytes']
+          @OutgoingBytes = params['OutgoingBytes']
+          @Heartbeat = params['Heartbeat']
+          @MaxChannel = params['MaxChannel']
+          @IdleSince = params['IdleSince']
         end
       end
 
@@ -2239,17 +2321,45 @@ module TencentCloud
         # @type ClientIp: String
         # @param ConsumerTag: 消费者Tag
         # @type ConsumerTag: String
+        # @param QueueName: 消费目标队列
+        # @type QueueName: String
+        # @param AckRequired: 是否需要消费者手动 ack
+        # @type AckRequired: Boolean
+        # @param PrefetchCount: 消费者 qos 值
+        # @type PrefetchCount: Integer
+        # @param Active: 消费者状态
+        # @type Active: String
+        # @param LastDeliveredTime: 最后一次投递消息时间
+        # @type LastDeliveredTime: String
+        # @param UnAckMsgCount: 消费者未确认消息数
+        # @type UnAckMsgCount: Integer
+        # @param ChannelName: consumer 所属的 channel
+        # @type ChannelName: String
 
-        attr_accessor :ClientIp, :ConsumerTag
+        attr_accessor :ClientIp, :ConsumerTag, :QueueName, :AckRequired, :PrefetchCount, :Active, :LastDeliveredTime, :UnAckMsgCount, :ChannelName
 
-        def initialize(clientip=nil, consumertag=nil)
+        def initialize(clientip=nil, consumertag=nil, queuename=nil, ackrequired=nil, prefetchcount=nil, active=nil, lastdeliveredtime=nil, unackmsgcount=nil, channelname=nil)
           @ClientIp = clientip
           @ConsumerTag = consumertag
+          @QueueName = queuename
+          @AckRequired = ackrequired
+          @PrefetchCount = prefetchcount
+          @Active = active
+          @LastDeliveredTime = lastdeliveredtime
+          @UnAckMsgCount = unackmsgcount
+          @ChannelName = channelname
         end
 
         def deserialize(params)
           @ClientIp = params['ClientIp']
           @ConsumerTag = params['ConsumerTag']
+          @QueueName = params['QueueName']
+          @AckRequired = params['AckRequired']
+          @PrefetchCount = params['PrefetchCount']
+          @Active = params['Active']
+          @LastDeliveredTime = params['LastDeliveredTime']
+          @UnAckMsgCount = params['UnAckMsgCount']
+          @ChannelName = params['ChannelName']
         end
       end
 
@@ -2580,10 +2690,12 @@ module TencentCloud
         # @type IsolatedTime: Integer
         # @param ServerlessExt: Serverless 扩展字段
         # @type ServerlessExt: String
+        # @param Tags: 实例标签列表
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :MaxTps, :MaxBandWidth, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :PublicAccessEndpoint, :Vpcs, :ClusterStatus, :InstanceType, :CreateTime, :NodeCount, :MaxStorage, :IsolatedTime, :ServerlessExt
+        attr_accessor :InstanceId, :InstanceName, :InstanceVersion, :Status, :MaxTps, :MaxBandWidth, :ExpireTime, :AutoRenewFlag, :PayMode, :Remark, :SpecName, :ExceptionInformation, :PublicAccessEndpoint, :Vpcs, :ClusterStatus, :InstanceType, :CreateTime, :NodeCount, :MaxStorage, :IsolatedTime, :ServerlessExt, :Tags
 
-        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, maxtps=nil, maxbandwidth=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, publicaccessendpoint=nil, vpcs=nil, clusterstatus=nil, instancetype=nil, createtime=nil, nodecount=nil, maxstorage=nil, isolatedtime=nil, serverlessext=nil)
+        def initialize(instanceid=nil, instancename=nil, instanceversion=nil, status=nil, maxtps=nil, maxbandwidth=nil, expiretime=nil, autorenewflag=nil, paymode=nil, remark=nil, specname=nil, exceptioninformation=nil, publicaccessendpoint=nil, vpcs=nil, clusterstatus=nil, instancetype=nil, createtime=nil, nodecount=nil, maxstorage=nil, isolatedtime=nil, serverlessext=nil, tags=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @InstanceVersion = instanceversion
@@ -2605,6 +2717,7 @@ module TencentCloud
           @MaxStorage = maxstorage
           @IsolatedTime = isolatedtime
           @ServerlessExt = serverlessext
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2636,6 +2749,34 @@ module TencentCloud
           @MaxStorage = params['MaxStorage']
           @IsolatedTime = params['IsolatedTime']
           @ServerlessExt = params['ServerlessExt']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              rabbitmqserverlesstag_tmp = RabbitMQServerlessTag.new
+              rabbitmqserverlesstag_tmp.deserialize(i)
+              @Tags << rabbitmqserverlesstag_tmp
+            end
+          end
+        end
+      end
+
+      # 标签
+      class RabbitMQServerlessTag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键
+        # @type TagKey: String
+        # @param TagValue: 标签值
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

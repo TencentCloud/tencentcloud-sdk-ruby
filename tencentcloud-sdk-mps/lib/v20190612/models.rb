@@ -832,6 +832,56 @@ module TencentCloud
         end
       end
 
+      # 超分配置
+      class AdvancedSuperResolutionConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>standard：通用超分</li>
+        # <li>super：高级超分。</li>
+        # 默认值：standard。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Mode: 输出图片模式，默认percent。
+        # <li> aspect: 超分至指定宽高的较大矩形。</li>
+        # <li> fixed: 超分至固定宽高，强制缩放。</li>
+        # <li> percent: 超分倍率，可以为小数。</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Percent: 超分倍率，可以为小数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Float
+        # @param Width: 目标图片宽度，不能超过4096。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 目标图片高度，不能超过4096。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+
+        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height
+
+        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil)
+          @Switch = switch
+          @Type = type
+          @Mode = mode
+          @Percent = percent
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Mode = params['Mode']
+          @Percent = params['Percent']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 智能分析结果
       class AiAnalysisResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，可以取的值有：
@@ -6800,7 +6850,25 @@ module TencentCloud
         # @type Region: String
         # @param Dir: 工作流绑定的输入路径目录，必须为绝对路径，即以 `/` 开头和结尾。如`/movie/201907/`，不填代表根目录`/`。
         # @type Dir: String
-        # @param Formats: 工作流允许触发的文件格式列表，如 ["mp4", "flv", "mov"]。不填代表所有格式的文件都可以触发工作流。
+        # @param Formats: 支持的所有格式如下：
+
+        # - 视频文件扩展名，支持以下选择，共15种：
+        # `.mp4`、`.avi`、`.mov`、`.wmv`、`.flv`、`.mkv`、`.mpg`、`.mpeg`、`.rm`、`.rmvb`、`.asf`、`.3gp`、`.webm`、`.ts`、`.m4v`
+
+        # - 音频文件扩展名，支持以下选择，共7种：
+        # `.mp3`、`.wav`、`.aac`、`.flac`、`.ogg`、`.m4a`、`.amr`
+
+        # - 字幕文件扩展名，支持以下选择，共2种：
+        # `.vtt`、`.srt`
+
+        # - `*`：支持任意文件格式
+
+        # - 不传或者传空列表：支持系统预设文件格式（视频：`.mp4`、`.ts`、`.flv`、`.wmv`、`.asf`、`.rm`、`.rmvb`、`.mpg`、`.mpeg`、`.3gp`、`.mov`、`.webm`、`.mkv`、`.avi`、`.m4v`，音频：`.mp3`、`.m4a`、`.flac`、`.ogg`、`.wav`、`.amr`、`.aac`，字幕：`.vtt`、`.srt`）
+
+        # **注意**：
+        # 1. 如果传入的格式列表中有`*`则表示为支持任意文件格式。
+        # 2. 扩展名传入时带不带`.`都可以，比如 `.mp4` 或 `mp4` 均支持。
+        # 3. 自定义文件扩展名需满足数字、字母字符，长度在[1,64]范围内。
         # @type Formats: Array
 
         attr_accessor :Bucket, :Region, :Dir, :Formats
@@ -8532,28 +8600,32 @@ module TencentCloud
         # @type Name: String
         # @param VideoSrcLanguage: 智能字幕视频源语言
         # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # zh-PY：中英粤
-        # zh-medical：中文医疗
-        # yue：中文粤语
-        # vi：越南语
-        # ms：马来语
-        # id：印度尼西亚语
-        # fil：菲律宾语
-        # th：泰语
-        # pt：葡萄牙语
-        # tr：土耳其语
-        # ar：阿拉伯语
-        # es：西班牙语
-        # hi：印地语
-        # fr：法语
-        # de：德语
-        # zh_dialect：中文方言
-        # zh_en: 中英
-        # prime_zh: 中英方言
+        # `zh`：简体中文
+        # `yue`：中文粵语
+        # `zh-PY`：中英粤
+        # `zh_medical`：中文医疗
+        # `zh_dialect`：中文方言
+        # `prime_zh`：中英方言
+        # `zh_en`：中英
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+        # `auto`：自动识别（仅在纯字幕翻译中支持）
         # @type VideoSrcLanguage: String
         # @param SubtitleType: 智能字幕字幕语言类型
         # 0: 源语言
@@ -8565,42 +8637,64 @@ module TencentCloud
         # @param Comment: 智能字幕模板描述信息
         # 长度限制：256 个字符。
         # @type Comment: String
-        # @param SubtitleFormat: 智能字幕文件格式
-        #  vtt: WebVTT 格式
-        #  srt: SRT 格式
-        # 不填或填空：不生成字幕文件
+        # @param SubtitleFormat: 智能字幕文件格式:
+        # - ASR识别翻译处理类型下：
+        #      - vtt: WebVTT 格式字幕
+        #      - srt: SRT 格式字幕
+        #      - 不填或填空：不生成字幕文件
+        # - 纯字幕翻译处理类型下：
+        #     - original：与源文件一致
+        #     - vtt: WebVTT 格式字幕
+        #     - srt: SRT 格式字幕
+
+        # **注意**：
+        # - ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；
+        # - 纯字幕翻译方式下，不允许传空或不传
         # @type SubtitleFormat: String
         # @param AsrHotWordsConfigure: ASR热词库参数
         # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
         # @param TranslateSwitch: 字幕翻译开关
-        # ON: 开启翻译
-        # OFF: 关闭翻译
+        # `ON`: 开启翻译
+        # `OFF`: 关闭翻译
+
+        # **注意**：纯字幕翻译方式下，不传默认是打开的，不允许传空或`OFF`；
         # @type TranslateSwitch: String
-        # @param TranslateDstLanguage: 字幕翻译目标语言
-        # 当TranslateSwitch为ON的时候生效
+        # @param TranslateDstLanguage: 字幕翻译目标语言，当TranslateSwitch为`ON`的时候生效
         # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # fr：法语
-        # es：西班牙语
-        # it：意大利语
-        # de：德语
-        # tr：土耳其语
-        # ru：俄语
-        # pt：葡萄牙语
-        # vi：越南语
-        # id：印度尼西亚语
-        # ms：马来语
-        # th：泰语
-        # ar：阿拉伯语
-        # hi：印地语
+
+        # `zh`：简体中文
+        # `zh-TW`：繁体中文
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+
+        # **注意**：多语言方式，则使用 `/` 分割，如：`en/ja`，表示英语和日语。
         # @type TranslateDstLanguage: String
+        # @param ProcessType: 字幕处理类型：
+        # - 0：ASR识别字幕
+        # - 1：纯字幕翻译
 
-        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage
+        # **注意**：不传的情况下默认类型为 ASR识别字幕
+        # @type ProcessType: Integer
 
-        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil)
+        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage, :ProcessType
+
+        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil)
           @Name = name
           @VideoSrcLanguage = videosrclanguage
           @SubtitleType = subtitletype
@@ -8609,6 +8703,7 @@ module TencentCloud
           @AsrHotWordsConfigure = asrhotwordsconfigure
           @TranslateSwitch = translateswitch
           @TranslateDstLanguage = translatedstlanguage
+          @ProcessType = processtype
         end
 
         def deserialize(params)
@@ -8623,6 +8718,7 @@ module TencentCloud
           end
           @TranslateSwitch = params['TranslateSwitch']
           @TranslateDstLanguage = params['TranslateDstLanguage']
+          @ProcessType = params['ProcessType']
         end
       end
 
@@ -12391,15 +12487,20 @@ module TencentCloud
         # @type Type: String
         # @param Name: 智能字幕模板标识过滤条件，长度限制：64 个字符。
         # @type Name: String
+        # @param ProcessType: 字幕处理类型：
+        # - 0：ASR识别字幕
+        # - 1：纯字幕翻译
+        # @type ProcessType: Integer
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name, :ProcessType
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil, processtype=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
           @Name = name
+          @ProcessType = processtype
         end
 
         def deserialize(params)
@@ -12408,6 +12509,7 @@ module TencentCloud
           @Limit = params['Limit']
           @Type = params['Type']
           @Name = params['Name']
+          @ProcessType = params['ProcessType']
         end
       end
 
@@ -13480,10 +13582,30 @@ module TencentCloud
         # low_compress：画质优先：优先保证画质，压缩出来的文件体积可能相对较大。该策略仅收取音视频极速高清转码费用。
         # no_config：未配置。
         # @type CompressType: String
+        # @param EnhanceSceneType: 增强场景配置，可选值：
+        # <li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li>
+        # <li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li>
+        # <li>short_play（短剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li>
+        # <li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li>
+        # <li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li>
+        # <li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li>
+        # <li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li>
+        # <li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li>
+        # @type EnhanceSceneType: String
+        # @param EnhanceTranscodeType: 增强转码类型，可选值：
+        # <li>Common（普通转码）</li>
+        # <li>TEHD-100（极速高清视频转码）</li>
+        # <li>TEHD-200（极速高清音频转码）</li>
+        # @type EnhanceTranscodeType: String
+        # @param EnhanceType: 增强类型，可选值：
+        # <li>VideoEnhance（仅视频增强）</li>
+        # <li>AudioEnhance（仅音频增强）</li>
+        # <li>VideoAudioEnhance（视频音频增强都含）</li>
+        # @type EnhanceType: String
 
-        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType, :Name, :SceneType, :CompressType
+        attr_accessor :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :TranscodeType, :Name, :SceneType, :CompressType, :EnhanceSceneType, :EnhanceTranscodeType, :EnhanceType
 
-        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil, name=nil, scenetype=nil, compresstype=nil)
+        def initialize(definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, transcodetype=nil, name=nil, scenetype=nil, compresstype=nil, enhancescenetype=nil, enhancetranscodetype=nil, enhancetype=nil)
           @Definitions = definitions
           @Type = type
           @ContainerType = containertype
@@ -13494,6 +13616,9 @@ module TencentCloud
           @Name = name
           @SceneType = scenetype
           @CompressType = compresstype
+          @EnhanceSceneType = enhancescenetype
+          @EnhanceTranscodeType = enhancetranscodetype
+          @EnhanceType = enhancetype
         end
 
         def deserialize(params)
@@ -13507,6 +13632,9 @@ module TencentCloud
           @Name = params['Name']
           @SceneType = params['SceneType']
           @CompressType = params['CompressType']
+          @EnhanceSceneType = params['EnhanceSceneType']
+          @EnhanceTranscodeType = params['EnhanceTranscodeType']
+          @EnhanceType = params['EnhanceType']
         end
       end
 
@@ -13952,6 +14080,36 @@ module TencentCloud
         end
       end
 
+      # 大模型增强
+      class DiffusionEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+
+        # ON：开启；
+        # OFF：关闭。
+        # 默认，OFF。
+        # @type Switch: String
+        # @param Type: 强度类型，可选值：
+
+        # weak
+        # normal
+        # strong
+        # 默认值：normal。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
       # DisableSchedule请求参数结构体
       class DisableScheduleRequest < TencentCloud::Common::AbstractModel
         # @param ScheduleId: 编排唯一表示。
@@ -14080,6 +14238,10 @@ module TencentCloud
         # 可以用于HLS和DASH，切片格式只能是mp4
         # 输出HLS：可以使用切片模式或singlefile模式
         # 输出DASH：只能singlefile模式
+
+        # - widevine+fairplay:
+        #  只能用于HLS，切片格式只能是mp4
+        #  可以使用切片模式或singfile模式
         # @type Type: String
         # @param SimpleAesDrm: SimpleAes 加密信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -15561,6 +15723,35 @@ module TencentCloud
         end
       end
 
+      # 新插帧配置，支持分数帧率
+      class FrameRateWithDenConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param FpsNum: 帧率分子，取值范围：非负数，除以分母后小于120，单位：Hz。 默认值 0。 注意：对于转码，该参数会覆盖 VideoTemplate 内部的 Fps。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsNum: Integer
+        # @param FpsDen: 帧率分母，取值范围：大于等于1。 默认值 1。 注意：对于转码，该参数会覆盖 VideoTemplate 内部的 FpsDenominator。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FpsDen: Integer
+
+        attr_accessor :Switch, :FpsNum, :FpsDen
+
+        def initialize(switch=nil, fpsnum=nil, fpsden=nil)
+          @Switch = switch
+          @FpsNum = fpsnum
+          @FpsDen = fpsden
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @FpsNum = params['FpsNum']
+          @FpsDen = params['FpsDen']
+        end
+      end
+
       # 智能按帧标签任务控制参数
       class FrameTagConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能按帧标签任务开关，可选值：
@@ -15656,7 +15847,7 @@ module TencentCloud
         # <li>HDR10</li>
         # <li>HLG</li>
         # 默认值：HDR10。
-        # 注意：video的编码方式需要为h265；
+        # 注意：video的编码方式需要为h264或h265；
         # 注意：视频编码位深为10。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
@@ -15842,6 +16033,8 @@ module TencentCloud
         # @param SuperResolution: 超分配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
+        # @param AdvancedSuperResolutionConfig: 高级超分配置。
+        # @type AdvancedSuperResolutionConfig: :class:`Tencentcloud::Mps.v20190612.models.AdvancedSuperResolutionConfig`
         # @param Denoise: 降噪配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.ImageDenoiseConfig`
@@ -15861,10 +16054,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowLightEnhance: :class:`Tencentcloud::Mps.v20190612.models.LowLightEnhanceConfig`
 
-        attr_accessor :SuperResolution, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance
+        attr_accessor :SuperResolution, :AdvancedSuperResolutionConfig, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance
 
-        def initialize(superresolution=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil)
+        def initialize(superresolution=nil, advancedsuperresolutionconfig=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil)
           @SuperResolution = superresolution
+          @AdvancedSuperResolutionConfig = advancedsuperresolutionconfig
           @Denoise = denoise
           @ImageQualityEnhance = imagequalityenhance
           @ColorEnhance = colorenhance
@@ -15877,6 +16071,10 @@ module TencentCloud
           unless params['SuperResolution'].nil?
             @SuperResolution = SuperResolutionConfig.new
             @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['AdvancedSuperResolutionConfig'].nil?
+            @AdvancedSuperResolutionConfig = AdvancedSuperResolutionConfig.new
+            @AdvancedSuperResolutionConfig.deserialize(params['AdvancedSuperResolutionConfig'])
           end
           unless params['Denoise'].nil?
             @Denoise = ImageDenoiseConfig.new
@@ -15999,6 +16197,8 @@ module TencentCloud
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
+        # @param ErrMsg: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrMsg: String
         # @param Message: 错误信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
@@ -16009,10 +16209,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Progress: Integer
 
-        attr_accessor :Status, :Message, :Output, :Progress
+        attr_accessor :Status, :ErrMsg, :Message, :Output, :Progress
 
-        def initialize(status=nil, message=nil, output=nil, progress=nil)
+        def initialize(status=nil, errmsg=nil, message=nil, output=nil, progress=nil)
           @Status = status
+          @ErrMsg = errmsg
           @Message = message
           @Output = output
           @Progress = progress
@@ -16020,6 +16221,7 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+          @ErrMsg = params['ErrMsg']
           @Message = params['Message']
           unless params['Output'].nil?
             @Output = ImageProcessTaskOutput.new
@@ -20327,8 +20529,10 @@ module TencentCloud
         # @param Definition: 智能字幕模板唯一标识
         # @type Definition: Integer
         # @param TranslateSwitch: 字幕翻译开关
-        # ON: 开启翻译
-        # OFF: 关闭翻译
+        # `ON`: 开启翻译
+        # `OFF`: 关闭翻译
+
+        # **注意**：纯字幕翻译方式下，不传默认是打开的，不允许传空或`OFF`；
         # @type TranslateSwitch: String
         # @param Name: 智能字幕模板名称
         # 长度限制：64 个字符。
@@ -20338,33 +20542,47 @@ module TencentCloud
         # @type Comment: String
         # @param VideoSrcLanguage: 智能字幕视频源语言
         # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # zh-PY：中英粤
-        # zh-medical：中文医疗
-        # yue：中文粤语
-        # vi：越南语
-        # ms：马来语
-        # id：印度尼西亚语
-        # fil：菲律宾语
-        # th：泰语
-        # pt：葡萄牙语
-        # tr：土耳其语
-        # ar：阿拉伯语
-        # es：西班牙语
-        # hi：印地语
-        # fr：法语
-        # de：德语
-        # zh_dialect：中文方言
-        # zh_en: 中英
-        # prime_zh: 中英方言
+
+        # `zh`：简体中文
+        # `yue`：中文粵语
+        # `zh-PY`：中英粤
+        # `zh_medical`：中文医疗
+        # `zh_dialect`：中文方言
+        # `prime_zh`：中英方言
+        # `zh_en`：中英
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+        # `auto`：自动识别（仅在纯字幕翻译中支持）
         # @type VideoSrcLanguage: String
-        # @param SubtitleFormat: 智能字幕文件格式
-        #  vtt: WebVTT 格式
-        # srt: SRT格式
-        # 不填或填空：不生成字幕文件
+        # @param SubtitleFormat: 智能字幕文件格式:
+        # - ASR识别翻译处理类型下：
+        #      - vtt: WebVTT 格式字幕
+        #      - srt: SRT 格式字幕
+        #      - 不填或填空：不生成字幕文件
+        # - 纯字幕翻译处理类型下：
+        #     - original：与源文件一致
+        #     - vtt: WebVTT 格式字幕
+        #     - srt: SRT 格式字幕
+
+        # **注意**：
+        # - ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；
+        # - 纯字幕翻译方式下，不允许传空或不传
         # @type SubtitleFormat: String
         # @param SubtitleType: 智能字幕字幕语言类型
         # 0: 源语言
@@ -20378,28 +20596,40 @@ module TencentCloud
         # @param TranslateDstLanguage: 字幕翻译目标语言
         # 当TranslateSwitch为ON的时候生效
         # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # fr：法语
-        # es：西班牙语
-        # it：意大利语
-        # de：德语
-        # tr：土耳其语
-        # ru：俄语
-        # pt：葡萄牙语
-        # vi：越南语
-        # id：印度尼西亚语
-        # ms：马来语
-        # th：泰语
-        # ar：阿拉伯语
-        # hi：印地语
+
+        # `zh`：简体中文
+        # `zh-TW`：繁体中文
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+
+        # **注意**：多语言方式，则使用 `/` 分割，如：`en/ja`，表示英语和日语。
         # @type TranslateDstLanguage: String
+        # @param ProcessType: 字幕处理类型：
+        # - 0：ASR识别字幕
+        # - 1：纯字幕翻译
 
-        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage
+        # **注意**：不传的情况下，默认是ASR方式
+        # @type ProcessType: Integer
 
-        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil)
+        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage, :ProcessType
+
+        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil, processtype=nil)
           @Definition = definition
           @TranslateSwitch = translateswitch
           @Name = name
@@ -20409,6 +20639,7 @@ module TencentCloud
           @SubtitleType = subtitletype
           @AsrHotWordsConfigure = asrhotwordsconfigure
           @TranslateDstLanguage = translatedstlanguage
+          @ProcessType = processtype
         end
 
         def deserialize(params)
@@ -20424,6 +20655,7 @@ module TencentCloud
             @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
           end
           @TranslateDstLanguage = params['TranslateDstLanguage']
+          @ProcessType = params['ProcessType']
         end
       end
 
@@ -22487,6 +22719,87 @@ module TencentCloud
         end
       end
 
+      # 纯字幕翻译结果
+      class PureSubtitleTransResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态（有以下三种）：
+        # - PROCESSING
+        # - SUCCESS
+        # - FAIL
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 媒体处理类错误码 列表。
+        # @type ErrCodeExt: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败（该字段已不推荐使用，建议使用新的错误码字段 ErrCodeExt）。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Input: 翻译任务输入信息。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskResultInput`
+        # @param Output: 纯字幕翻译输出结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.PureSubtitleTransResultOutput`
+        # @param Progress: 任务进度。
+        # @type Progress: Integer
+
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
+
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = SmartSubtitleTaskResultInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = PureSubtitleTransResultOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+        end
+      end
+
+      # 翻译详细输出结果
+      class PureSubtitleTransResultOutput < TencentCloud::Common::AbstractModel
+        # @param OutputStorage: 字幕文件存储位置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param SubtitleResults: 多语言翻译的结果集合
+        # @type SubtitleResults: Array
+
+        attr_accessor :OutputStorage, :SubtitleResults
+
+        def initialize(outputstorage=nil, subtitleresults=nil)
+          @OutputStorage = outputstorage
+          @SubtitleResults = subtitleresults
+        end
+
+        def deserialize(params)
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          unless params['SubtitleResults'].nil?
+            @SubtitleResults = []
+            params['SubtitleResults'].each do |i|
+              subtitletransresultitem_tmp = SubtitleTransResultItem.new
+              subtitletransresultitem_tmp.deserialize(i)
+              @SubtitleResults << subtitletransresultitem_tmp
+            end
+          end
+        end
+      end
+
       # 媒体质检结果输出。
       class QualityControlData < TencentCloud::Common::AbstractModel
         # @param NoAudio: 为true时表示视频无音频轨。
@@ -22980,60 +23293,79 @@ module TencentCloud
         # @type SubtitleType: Integer
         # @param VideoSrcLanguage: 智能字幕视频源语言
         # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # zh-PY：中英粤
-        # zh-medical：中文医疗
-        # yue：中文粤语
-        # vi：越南语
-        # ms：马来语
-        # id：印度尼西亚语
-        # fil：菲律宾语
-        # th：泰语
-        # pt：葡萄牙语
-        # tr：土耳其语
-        # ar：阿拉伯语
-        # es：西班牙语
-        # hi：印地语
-        # fr：法语
-        # de：德语
-        # zh_dialect：中文方言
-        # zh_en: 中英
-        # prime_zh: 中英方言
+        # `zh`：简体中文
+        # `yue`：中文粵语
+        # `zh-PY`：中英粤
+        # `zh_medical`：中文医疗
+        # `zh_dialect`：中文方言
+        # `prime_zh`：中英方言
+        # `zh_en`：中英
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+        # `auto`：自动识别（仅在纯字幕翻译中支持）
         # @type VideoSrcLanguage: String
-        # @param SubtitleFormat: 智能字幕文件格式
-        #  vtt: WebVTT 格式
-        # srt: SRT格式
-        # 不填或填空：不生成字幕文件
+        # @param SubtitleFormat: 智能字幕文件格式:
+        # - ASR识别翻译处理类型下：
+        #      - vtt: WebVTT 格式字幕
+        #      - srt: SRT 格式字幕
+        #      - 不填或填空：不生成字幕文件
+        # - 纯字幕翻译处理类型下：
+        #     - original：与源文件一致
+        #     - vtt: WebVTT 格式字幕
+        #     - srt: SRT 格式字幕
+
+        # **注意**：
+        # - ASR识别方式下，翻译大于等于2种语言时不允许传空或不传；
+        # - 纯字幕翻译方式下，不允许传空或不传
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFormat: String
         # @param TranslateSwitch: 字幕翻译开关
-        # ON: 开启翻译
-        # OFF: 关闭翻译
+        # `ON`: 开启翻译
+        # `OFF`: 关闭翻译
+
+        # **注意**：纯字幕翻译方式下，不传默认是打开的，不允许传空或`OFF`；
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateSwitch: String
         # @param TranslateDstLanguage: 字幕翻译目标语言
-        # 当TranslateSwitch为ON的时候生效
-        # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # fr：法语
-        # es：西班牙语
-        # it：意大利语
-        # de：德语
-        # tr：土耳其语
-        # ru：俄语
-        # pt：葡萄牙语
-        # vi：越南语
-        # id：印度尼西亚语
-        # ms：马来语
-        # th：泰语
-        # ar：阿拉伯语
-        # hi：印地语
+        # 当TranslateSwitch为ON的时候生效，翻译语言列表：
+        # `zh`：简体中文
+        # `zh-TW`：繁体中文
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+
+        # **注意**：多语言方式，则使用 `/` 分割，如：`en/ja`，表示英语和日语。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateDstLanguage: String
         # @param AsrHotWordsConfigure: ASR热词库参数
@@ -23041,10 +23373,16 @@ module TencentCloud
         # @type AsrHotWordsConfigure: :class:`Tencentcloud::Mps.v20190612.models.AsrHotWordsConfigure`
         # @param ExtInfo: 自定义参数
         # @type ExtInfo: String
+        # @param ProcessType: 字幕处理类型：
+        # - 0：ASR识别字幕
+        # - 1：纯字幕翻译
 
-        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo
+        # **注意**：不传的情况下默认类型为 ASR识别字幕
+        # @type ProcessType: Integer
 
-        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil)
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo, :ProcessType
+
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil, processtype=nil)
           @SubtitleType = subtitletype
           @VideoSrcLanguage = videosrclanguage
           @SubtitleFormat = subtitleformat
@@ -23052,6 +23390,7 @@ module TencentCloud
           @TranslateDstLanguage = translatedstlanguage
           @AsrHotWordsConfigure = asrhotwordsconfigure
           @ExtInfo = extinfo
+          @ProcessType = processtype
         end
 
         def deserialize(params)
@@ -23065,6 +23404,7 @@ module TencentCloud
             @AsrHotWordsConfigure.deserialize(params['AsrHotWordsConfigure'])
           end
           @ExtInfo = params['ExtInfo']
+          @ProcessType = params['ProcessType']
         end
       end
 
@@ -24900,15 +25240,18 @@ module TencentCloud
         # @param SegmentSet: 语音全文识别片段列表。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SegmentSet: Array
+        # @param Path: 字幕文件路径
+        # @type Path: String
         # @param SubtitlePath: 字幕文件地址。
         # @type SubtitlePath: String
         # @param OutputStorage: 字幕文件存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
+        attr_accessor :SegmentSet, :Path, :SubtitlePath, :OutputStorage
 
-        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
+        def initialize(segmentset=nil, path=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
+          @Path = path
           @SubtitlePath = subtitlepath
           @OutputStorage = outputstorage
         end
@@ -24922,6 +25265,7 @@ module TencentCloud
               @SegmentSet << smartsubtitletaskasrfulltextsegmentitem_tmp
             end
           end
+          @Path = params['Path']
           @SubtitlePath = params['SubtitlePath']
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
@@ -25097,13 +25441,19 @@ module TencentCloud
         # @type SubtitlePath: String
         # @param OutputStorage: 字幕文件存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param Path: 字幕文件地址
+        # @type Path: String
+        # @param SubtitleResults: 多语言翻译时返回翻译结果。
+        # @type SubtitleResults: Array
 
-        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
+        attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage, :Path, :SubtitleResults
 
-        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
+        def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil, path=nil, subtitleresults=nil)
           @SegmentSet = segmentset
           @SubtitlePath = subtitlepath
           @OutputStorage = outputstorage
+          @Path = path
+          @SubtitleResults = subtitleresults
         end
 
         def deserialize(params)
@@ -25119,6 +25469,15 @@ module TencentCloud
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
+          end
+          @Path = params['Path']
+          unless params['SubtitleResults'].nil?
+            @SubtitleResults = []
+            params['SubtitleResults'].each do |i|
+              subtitletransresultitem_tmp = SubtitleTransResultItem.new
+              subtitletransresultitem_tmp.deserialize(i)
+              @SubtitleResults << subtitletransresultitem_tmp
+            end
           end
         end
       end
@@ -25188,32 +25547,40 @@ module TencentCloud
         # @param AsrHotWordsLibraryName: 模板关联热词库名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AsrHotWordsLibraryName: String
-        # @param VideoSrcLanguage: 智能字幕视频源语言
-        # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # zh-PY：中英粤
-        # zh-medical：中文医疗
-        # yue：中文粤语
-        # vi：越南语
-        # ms：马来语
-        # id：印度尼西亚语
-        # fil：菲律宾语
-        # th：泰语
-        # pt：葡萄牙语
-        # tr：土耳其语
-        # ar：阿拉伯语
-        # es：西班牙语
-        # hi：印地语
-        # fr：法语
-        # de：德语
-        # zh_dialect：中文方言
+        # @param VideoSrcLanguage: 智能字幕视频源语言列表：
+
+        # `zh`：简体中文
+        # `yue`：中文粵语
+        # `zh-PY`：中英粤
+        # `zh_medical`：中文医疗
+        # `zh_dialect`：中文方言
+        # `prime_zh`：中英方言
+        # `zh_en`：中英
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+        # `auto`：自动识别（仅在纯字幕翻译中支持）
         # @type VideoSrcLanguage: String
         # @param SubtitleFormat: 智能字幕文件格式
-        #  vtt: WebVTT 格式
-        # 不填或填空：不生成字幕文件
+        # - vtt: WebVTT 格式
+        # - srt: SRT格式
+        # - original：与源字幕文件一致（用于纯字幕翻译模版）
+        # - 不填或填空：不生成字幕文件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFormat: String
         # @param SubtitleType: 智能字幕字幕语言类型
@@ -25230,24 +25597,30 @@ module TencentCloud
         # @type TranslateSwitch: String
         # @param TranslateDstLanguage: 字幕翻译目标语言
         # 当TranslateSwitch为ON的时候生效
-        # 当前支持以下语言：
-        # zh：简体中文
-        # en：英语
-        # ja：日语
-        # ko：韩语
-        # fr：法语
-        # es：西班牙语
-        # it：意大利语
-        # de：德语
-        # tr：土耳其语
-        # ru：俄语
-        # pt：葡萄牙语
-        # vi：越南语
-        # id：印度尼西亚语
-        # ms：马来语
-        # th：泰语
-        # ar：阿拉伯语
-        # hi：印地语
+        # `zh`：简体中文
+        # `zh-TW`：繁体中文
+        # `en`：英语
+        # `ja`：日语
+        # `ko`：韩语
+        # `fr`：法语
+        # `es`：西班牙语
+        # `it`：意大利语
+        # `de`：德语
+        # `tr`：土耳其语
+        # `ru`：俄语
+        # `pt`：葡萄牙语（巴西）
+        # `pt-PT`：葡萄牙语（葡萄牙）
+        # `vi`：越南语
+        # `id`：印度尼西亚语
+        # `ms`：马来语
+        # `th`：泰语
+        # `ar`：阿拉伯语
+        # `hi`：印地语
+        # `fil`：菲律宾语
+
+
+        # **注意**：多语言方式，则使用 `/` 分割，如：`en/ja`，表示英语和日语。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TranslateDstLanguage: String
         # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
@@ -25257,10 +25630,14 @@ module TencentCloud
         # @param AliasName: 智能字幕预设模板别名
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AliasName: String
+        # @param ProcessType: 字幕处理类型：
+        # - 0：ASR识别字幕
+        # - 1：纯字幕翻译
+        # @type ProcessType: Integer
 
-        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName
+        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName, :ProcessType
 
-        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil, processtype=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -25275,6 +25652,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @AliasName = aliasname
+          @ProcessType = processtype
         end
 
         def deserialize(params)
@@ -25295,14 +25673,16 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @AliasName = params['AliasName']
+          @ProcessType = params['ProcessType']
         end
       end
 
       # 智能字幕结果。
       class SmartSubtitlesResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，取值范围：
-        # <li>AsrFullTextRecognition：语音全文识别，</li>
-        # <li>TransTextRecognition：语音翻译。</li>
+        # - AsrFullTextRecognition：语音全文识别
+        # - TransTextRecognition：语音翻译
+        # - PureSubtitleTrans:   纯字幕翻译
         # @type Type: String
         # @param AsrFullTextTask: 语音全文识别结果，当 Type 为
         #  AsrFullTextRecognition 时有效。
@@ -25313,13 +25693,17 @@ module TencentCloud
         # TransTextRecognition 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TransTextTask: :class:`Tencentcloud::Mps.v20190612.models.SmartSubtitleTaskTransTextResult`
+        # @param PureSubtitleTransTask: 当翻译类型为：PureSubtitleTrans 是返回纯字幕文件翻译结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PureSubtitleTransTask: :class:`Tencentcloud::Mps.v20190612.models.PureSubtitleTransResult`
 
-        attr_accessor :Type, :AsrFullTextTask, :TransTextTask
+        attr_accessor :Type, :AsrFullTextTask, :TransTextTask, :PureSubtitleTransTask
 
-        def initialize(type=nil, asrfulltexttask=nil, transtexttask=nil)
+        def initialize(type=nil, asrfulltexttask=nil, transtexttask=nil, puresubtitletranstask=nil)
           @Type = type
           @AsrFullTextTask = asrfulltexttask
           @TransTextTask = transtexttask
+          @PureSubtitleTransTask = puresubtitletranstask
         end
 
         def deserialize(params)
@@ -25331,6 +25715,10 @@ module TencentCloud
           unless params['TransTextTask'].nil?
             @TransTextTask = SmartSubtitleTaskTransTextResult.new
             @TransTextTask.deserialize(params['TransTextTask'])
+          end
+          unless params['PureSubtitleTransTask'].nil?
+            @PureSubtitleTransTask = PureSubtitleTransResult.new
+            @PureSubtitleTransTask.deserialize(params['PureSubtitleTransTask'])
           end
         end
       end
@@ -25529,7 +25917,9 @@ module TencentCloud
       # FairPlay，WideVine，PlayReady 等Drm加密方式。
       class SpekeDrm < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源标记，该字段内容为用户自定义；
-        # 支持1-128个字符的数字、字母、下划线(_)、中划线(-)。
+        # 支持1-128个字符的数字、字母、下划线(`_`)、中划线(-)。
+        # 该字段对应Speke请求中的cid字段。
+        # 注：不同DRM厂商对该字段的限制有所区别（如：华曦达不支持该字段带`_`），具体规则请与DRM厂商进行确认。
         # @type ResourceId: String
         # @param KeyServerUrl: DRM厂商访问地址，该字段内容从DRM厂商获取。
 
@@ -25538,8 +25928,9 @@ module TencentCloud
         # @param Vector: 加密初始化向量(十六进制32字节字符串)，该字段内容为用户自定义。
         # @type Vector: String
         # @param EncryptionMethod: 加密方式，FairPlay 默认cbcs，PlayReady，Widevine 默认cenc
+        # 加密方式选择WideVine+FairPlay时，仅支持cbcs
 
-        # cbcs：PlayReady，Widevine，FairPlay 支持；
+        # cbcs：PlayReady，Widevine，FairPlay，WideVine+FairPlay 支持；
         # cenc：PlayReady，Widevine支持；
         # @type EncryptionMethod: String
         # @param EncryptionPreset: 子流加密规则，默认 preset0
@@ -25889,6 +26280,36 @@ module TencentCloud
           @ShadowAlpha = params['ShadowAlpha']
           @LineSpacing = params['LineSpacing']
           @Alignment = params['Alignment']
+        end
+      end
+
+      # 字幕翻译输出结果
+      class SubtitleTransResultItem < TencentCloud::Common::AbstractModel
+        # @param Status: 翻译标识：
+        # - Success
+        # - Error
+        # @type Status: String
+        # @param TransSrc: 源语言（如"en"）
+        # @type TransSrc: String
+        # @param TransDst: 目标语言（如"zh"）
+        # @type TransDst: String
+        # @param Path: 字幕文件地址
+        # @type Path: String
+
+        attr_accessor :Status, :TransSrc, :TransDst, :Path
+
+        def initialize(status=nil, transsrc=nil, transdst=nil, path=nil)
+          @Status = status
+          @TransSrc = transsrc
+          @TransDst = transdst
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @TransSrc = params['TransSrc']
+          @TransDst = params['TransDst']
+          @Path = params['Path']
         end
       end
 
@@ -27419,54 +27840,72 @@ module TencentCloud
 
       # 视频增强配置
       class VideoEnhanceConfig < TencentCloud::Common::AbstractModel
-        # @param FrameRate: 插帧帧率配置。
+        # @param FrameRate: 插帧帧率配置（旧）。新用户建议使用FrameRateWithDen配置插帧帧率，支持分数，且效果更好。注意，FrameRate 与FrameRateWithDen 只能二选一，同时配置可能导致任务失败。源帧率大于等于目标帧率时能力不会生效。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameRate: :class:`Tencentcloud::Mps.v20190612.models.FrameRateConfig`
-        # @param SuperResolution: 超分配置。
+        # @param SuperResolution: 超分配置。源分辨率高于目标分辨率时不对视频做处理。注意与大模型增强不可同时开启。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SuperResolution: :class:`Tencentcloud::Mps.v20190612.models.SuperResolutionConfig`
         # @param Hdr: HDR配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Hdr: :class:`Tencentcloud::Mps.v20190612.models.HdrConfig`
-        # @param Denoise: 视频降噪配置。
+        # @param Denoise: 视频降噪配置。注意与大模型增强不可同时开启。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Denoise: :class:`Tencentcloud::Mps.v20190612.models.VideoDenoiseConfig`
-        # @param ImageQualityEnhance: 综合增强配置。
+        # @param ImageQualityEnhance: 综合增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageQualityEnhance: :class:`Tencentcloud::Mps.v20190612.models.ImageQualityEnhanceConfig`
         # @param ColorEnhance: 色彩增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorEnhance: :class:`Tencentcloud::Mps.v20190612.models.ColorEnhanceConfig`
-        # @param SharpEnhance: 细节增强配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SharpEnhance: :class:`Tencentcloud::Mps.v20190612.models.SharpEnhanceConfig`
-        # @param FaceEnhance: 人脸增强配置。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type FaceEnhance: :class:`Tencentcloud::Mps.v20190612.models.FaceEnhanceConfig`
         # @param LowLightEnhance: 低光照增强配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LowLightEnhance: :class:`Tencentcloud::Mps.v20190612.models.LowLightEnhanceConfig`
         # @param ScratchRepair: 去划痕配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScratchRepair: :class:`Tencentcloud::Mps.v20190612.models.ScratchRepairConfig`
-        # @param ArtifactRepair: 去伪影（毛刺）配置。
+        # @param ArtifactRepair: 去伪影（毛刺）配置。注意大模型、综合增强、去毛刺三项里最多配置一项
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ArtifactRepair: :class:`Tencentcloud::Mps.v20190612.models.ArtifactRepairConfig`
+        # @param EnhanceSceneType: 增强场景配置，可选值：
+        # <li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li>
+        # <li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li>
+        # <li>short_play（短剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li>
+        # <li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li>
+        # <li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li>
+        # <li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li>
+        # <li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li>
+        # <li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li>
+        # <li>填空字符串代表不使用增强场景</li>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceSceneType: String
+        # @param DiffusionEnhance: 大模型增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。
 
-        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffusionEnhance: :class:`Tencentcloud::Mps.v20190612.models.DiffusionEnhanceConfig`
+        # @param FrameRateWithDen: 新插帧帧率配置，支持分数。注意与FrameRate二选一。源帧率大于等于目标帧率时能力不会生效。
 
-        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameRateWithDen: :class:`Tencentcloud::Mps.v20190612.models.FrameRateWithDenConfig`
+
+        attr_accessor :FrameRate, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :EnhanceSceneType, :DiffusionEnhance, :FrameRateWithDen
+
+        def initialize(framerate=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, enhancescenetype=nil, diffusionenhance=nil, frameratewithden=nil)
           @FrameRate = framerate
           @SuperResolution = superresolution
           @Hdr = hdr
           @Denoise = denoise
           @ImageQualityEnhance = imagequalityenhance
           @ColorEnhance = colorenhance
-          @SharpEnhance = sharpenhance
-          @FaceEnhance = faceenhance
           @LowLightEnhance = lowlightenhance
           @ScratchRepair = scratchrepair
           @ArtifactRepair = artifactrepair
+          @EnhanceSceneType = enhancescenetype
+          @DiffusionEnhance = diffusionenhance
+          @FrameRateWithDen = frameratewithden
         end
 
         def deserialize(params)
@@ -27494,14 +27933,6 @@ module TencentCloud
             @ColorEnhance = ColorEnhanceConfig.new
             @ColorEnhance.deserialize(params['ColorEnhance'])
           end
-          unless params['SharpEnhance'].nil?
-            @SharpEnhance = SharpEnhanceConfig.new
-            @SharpEnhance.deserialize(params['SharpEnhance'])
-          end
-          unless params['FaceEnhance'].nil?
-            @FaceEnhance = FaceEnhanceConfig.new
-            @FaceEnhance.deserialize(params['FaceEnhance'])
-          end
           unless params['LowLightEnhance'].nil?
             @LowLightEnhance = LowLightEnhanceConfig.new
             @LowLightEnhance.deserialize(params['LowLightEnhance'])
@@ -27513,6 +27944,15 @@ module TencentCloud
           unless params['ArtifactRepair'].nil?
             @ArtifactRepair = ArtifactRepairConfig.new
             @ArtifactRepair.deserialize(params['ArtifactRepair'])
+          end
+          @EnhanceSceneType = params['EnhanceSceneType']
+          unless params['DiffusionEnhance'].nil?
+            @DiffusionEnhance = DiffusionEnhanceConfig.new
+            @DiffusionEnhance.deserialize(params['DiffusionEnhance'])
+          end
+          unless params['FrameRateWithDen'].nil?
+            @FrameRateWithDen = FrameRateWithDenConfig.new
+            @FrameRateWithDen.deserialize(params['FrameRateWithDen'])
           end
         end
       end

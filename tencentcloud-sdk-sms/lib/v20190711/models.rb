@@ -434,7 +434,9 @@ module TencentCloud
         # 0：表示国内短信。
         # 1：表示国际/港澳台短信。
         # @type International: Integer
-        # @param StatusCode: 申请签名状态。其中0表示审核通过且已生效，1表示审核中，2表示审核通过待生效，-1表示审核未通过或审核失败。
+        # @param StatusCode: 签名状态，其中：
+        # 国内短信0表示签名可用，1表示审核中，2表示审核通过待生效，-1表示审核未通过、审核失败或未完成首次报备等原因导致签名不可用。具体可参考 [国内短信签名状态值说明](https://cloud.tencent.com/document/product/382/39022#ea7b2b63-ee71-404f-a525-c5a572d12ccd)。
+        # 国际短信0表示审核通过且已生效，1表示审核中，2表示审核通过待生效，-1表示审核未通过或审核失败。
         # @type StatusCode: Integer
         # @param ReviewReply: 审核回复，审核人员审核后给出的回复，通常是审核未通过的原因。
         # @type ReviewReply: String
@@ -974,7 +976,8 @@ module TencentCloud
         # @type PhoneNumber: String
         # @param SerialNo: 本次发送标识 ID。
         # @type SerialNo: String
-        # @param ReportStatus: 实际是否收到短信接收状态，SUCCESS（成功）、FAIL（失败）。
+        # @param ReportStatus: 实际是否收到的短信接收状态，SUCCESS（下发成功）、FAIL（下发失败）。
+        # 注：仅当运营商有返回短信接收状态时回包中才会有状态数据。
         # @type ReportStatus: String
         # @param Description: 用户接收短信状态描述。
         # @type Description: String
@@ -1133,7 +1136,8 @@ module TencentCloud
         # @type ExtendCode: String
         # @param SessionContext: 用户的 session 内容，可以携带用户侧 ID 等上下文信息，server 会原样返回。注意长度需小于512字节。
         # @type SessionContext: String
-        # @param SenderId: 国内短信无senderid，无需填写该项；若需开通国际/港澳台短信senderid，请联系smshelper。
+        # @param SenderId: 国际/港澳台短信 Sender ID。可参考 [Sender ID 说明](https://cloud.tencent.com/document/product/382/102831)。
+        # 注：国内短信无需填写该项；国际/港澳台短信已申请独立 SenderId 需要填写该字段，默认使用公共 SenderId，无需填写该字段。
         # @type SenderId: String
 
         attr_accessor :PhoneNumberSet, :TemplateID, :SmsSdkAppid, :Sign, :TemplateParamSet, :ExtendCode, :SessionContext, :SenderId
@@ -1164,6 +1168,7 @@ module TencentCloud
       # SendSms返回参数结构体
       class SendSmsResponse < TencentCloud::Common::AbstractModel
         # @param SendStatusSet: 短信发送状态。
+        # 注：可参考 <a href="#4.-.E7.A4.BA.E4.BE.8B">示例</a> ，包含短信发送成功和发送失败的输出示例。
         # @type SendStatusSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1198,7 +1203,7 @@ module TencentCloud
         # @type Fee: Integer
         # @param SessionContext: 用户Session内容。
         # @type SessionContext: String
-        # @param Code: 短信请求错误码，具体含义请参考错误码。
+        # @param Code: 短信请求错误码，具体含义请参考 [错误码](https://cloud.tencent.com/document/product/382/59177#.E7.9F.AD.E4.BF.A1-API-3.0-.E5.8F.91.E9.80.81.E9.94.99.E8.AF.AF.E7.A0.81)。
         # @type Code: String
         # @param Message: 短信请求错误码描述。
         # @type Message: String

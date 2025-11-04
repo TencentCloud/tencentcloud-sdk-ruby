@@ -17,104 +17,6 @@
 module TencentCloud
   module Clb
     module V20180317
-      # AddCustomizedConfig请求参数结构体
-      class AddCustomizedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置名字
-        # @type ConfigName: String
-        # @param ConfigType: 配置类型，取值范围["CLB", "SERVER", "LOCATION"]，分别表示CLB配置，server配置，location配置。
-        # @type ConfigType: String
-        # @param ConfigContent: 配置内容
-        # @type ConfigContent: String
-        # @param Tags: 标签
-        # @type Tags: Array
-
-        attr_accessor :ConfigName, :ConfigType, :ConfigContent, :Tags
-
-        def initialize(configname=nil, configtype=nil, configcontent=nil, tags=nil)
-          @ConfigName = configname
-          @ConfigType = configtype
-          @ConfigContent = configcontent
-          @Tags = tags
-        end
-
-        def deserialize(params)
-          @ConfigName = params['ConfigName']
-          @ConfigType = params['ConfigType']
-          @ConfigContent = params['ConfigContent']
-          unless params['Tags'].nil?
-            @Tags = []
-            params['Tags'].each do |i|
-              taginfo_tmp = TagInfo.new
-              taginfo_tmp.deserialize(i)
-              @Tags << taginfo_tmp
-            end
-          end
-        end
-      end
-
-      # AddCustomizedConfig返回参数结构体
-      class AddCustomizedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param ConfigId: 配置ID
-        # @type ConfigId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ConfigId, :RequestId
-
-        def initialize(configid=nil, requestid=nil)
-          @ConfigId = configid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @ConfigId = params['ConfigId']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # AssociateCustomizedConfig请求参数结构体
-      class AssociateCustomizedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param UconfigId: 配置ID
-        # @type UconfigId: String
-        # @param BindList: 关联的server或location
-        # @type BindList: Array
-
-        attr_accessor :UconfigId, :BindList
-
-        def initialize(uconfigid=nil, bindlist=nil)
-          @UconfigId = uconfigid
-          @BindList = bindlist
-        end
-
-        def deserialize(params)
-          @UconfigId = params['UconfigId']
-          unless params['BindList'].nil?
-            @BindList = []
-            params['BindList'].each do |i|
-              binditem_tmp = BindItem.new
-              binditem_tmp.deserialize(i)
-              @BindList << binditem_tmp
-            end
-          end
-        end
-      end
-
-      # AssociateCustomizedConfig返回参数结构体
-      class AssociateCustomizedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Associations: 绑定的关系数组，目标组类型需要一致。
@@ -616,34 +518,6 @@ module TencentCloud
           @Vport = params['Vport']
           @Url = params['Url']
           @UconfigId = params['UconfigId']
-        end
-      end
-
-      # 配置绑定关系
-      class BindItem < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 配置绑定的CLB ID
-        # @type LoadBalancerId: String
-        # @param ListenerId: 配置绑定的监听器ID
-        # @type ListenerId: String
-        # @param Domain: 配置绑定的域名
-        # @type Domain: String
-        # @param LocationId: 配置绑定的规则
-        # @type LocationId: String
-
-        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :LocationId
-
-        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, locationid=nil)
-          @LoadBalancerId = loadbalancerid
-          @ListenerId = listenerid
-          @Domain = domain
-          @LocationId = locationid
-        end
-
-        def deserialize(params)
-          @LoadBalancerId = params['LoadBalancerId']
-          @ListenerId = params['ListenerId']
-          @Domain = params['Domain']
-          @LocationId = params['LocationId']
         end
       end
 
@@ -1412,8 +1286,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 9
-        deprecate :Period=, :none, 2025, 9
+        deprecate :Period, :none, 2025, 10
+        deprecate :Period=, :none, 2025, 10
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1508,10 +1382,20 @@ module TencentCloud
         # @type SslCloseSwitch: Boolean
         # @param DataCompressMode: 数据压缩模式。可选值：transparent（透传模式）、compatibility（兼容模式）
         # @type DataCompressMode: String
+        # @param RescheduleTargetZeroWeight: 重新调度功能，权重调为0开关，打开此开关，后端服务器权重调为0时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleTargetZeroWeight: Boolean
+        # @param RescheduleUnhealthy: 重新调度功能，健康检查异常开关，打开此开关，后端服务器健康检查异常时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleUnhealthy: Boolean
+        # @param RescheduleExpandTarget: 重新调度功能，扩容后端服务开关，打开此开关，后端服务器增加或者减少时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleExpandTarget: Boolean
+        # @param RescheduleStartTime: 重新调度触发开始时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @type RescheduleStartTime: Integer
+        # @param RescheduleInterval: 重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @type RescheduleInterval: Integer
 
-        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode
+        attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode, :RescheduleTargetZeroWeight, :RescheduleUnhealthy, :RescheduleExpandTarget, :RescheduleStartTime, :RescheduleInterval
 
-        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil, datacompressmode=nil)
+        def initialize(loadbalancerid=nil, ports=nil, protocol=nil, listenernames=nil, healthcheck=nil, certificate=nil, sessionexpiretime=nil, scheduler=nil, sniswitch=nil, targettype=nil, sessiontype=nil, keepaliveenable=nil, endport=nil, deregistertargetrst=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, fullendports=nil, h2cswitch=nil, sslcloseswitch=nil, datacompressmode=nil, rescheduletargetzeroweight=nil, rescheduleunhealthy=nil, rescheduleexpandtarget=nil, reschedulestarttime=nil, rescheduleinterval=nil)
           @LoadBalancerId = loadbalancerid
           @Ports = ports
           @Protocol = protocol
@@ -1536,6 +1420,11 @@ module TencentCloud
           @H2cSwitch = h2cswitch
           @SslCloseSwitch = sslcloseswitch
           @DataCompressMode = datacompressmode
+          @RescheduleTargetZeroWeight = rescheduletargetzeroweight
+          @RescheduleUnhealthy = rescheduleunhealthy
+          @RescheduleExpandTarget = rescheduleexpandtarget
+          @RescheduleStartTime = reschedulestarttime
+          @RescheduleInterval = rescheduleinterval
         end
 
         def deserialize(params)
@@ -1572,6 +1461,11 @@ module TencentCloud
           @H2cSwitch = params['H2cSwitch']
           @SslCloseSwitch = params['SslCloseSwitch']
           @DataCompressMode = params['DataCompressMode']
+          @RescheduleTargetZeroWeight = params['RescheduleTargetZeroWeight']
+          @RescheduleUnhealthy = params['RescheduleUnhealthy']
+          @RescheduleExpandTarget = params['RescheduleExpandTarget']
+          @RescheduleStartTime = params['RescheduleStartTime']
+          @RescheduleInterval = params['RescheduleInterval']
         end
       end
 
@@ -1613,7 +1507,7 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param AddressIPVersion: 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPV6、IPv6FullChain，不区分大小写，默认值 IPV4。说明：取值为IPV6表示为IPV6 NAT64版本；取值为IPv6FullChain，表示为IPv6版本。
         # @type AddressIPVersion: String
-        # @param Number: 创建负载均衡的个数，默认值 1。创建个数不能超过帐号所能创建的最大值，默认创建最大值为20。
+        # @param Number: 创建负载均衡的个数，默认值 1。创建个数不能超过账号所能创建的最大值，默认创建最大值为20。
         # @type Number: Integer
         # @param MasterZoneId: 仅适用于公网且IP版本为IPv4的负载均衡。设置跨可用区容灾时的主可用区ID， 可用区 ID 和名称均支持，例如 100001 或 ap-guangzhou-1
         # 注：主可用区是需要承载流量的可用区，备可用区默认不承载流量，主可用区不可用时才使用备可用区。
@@ -2090,38 +1984,6 @@ module TencentCloud
         end
       end
 
-      # DeleteCustomizedConfig请求参数结构体
-      class DeleteCustomizedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param UconfigIdList: 删除的配置ID列表
-        # @type UconfigIdList: Array
-
-        attr_accessor :UconfigIdList
-
-        def initialize(uconfigidlist=nil)
-          @UconfigIdList = uconfigidlist
-        end
-
-        def deserialize(params)
-          @UconfigIdList = params['UconfigIdList']
-        end
-      end
-
-      # DeleteCustomizedConfig返回参数结构体
-      class DeleteCustomizedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteListener请求参数结构体
       class DeleteListenerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口查询。
@@ -2198,9 +2060,9 @@ module TencentCloud
       class DeleteLoadBalancerRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerIds: 要删除的负载均衡实例 ID 数组，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取，数组大小最大支持20。
         # @type LoadBalancerIds: Array
-        # @param ForceDelete: 是否强制删除clb。True表示强制删除，False表示不是强制删除，需要做拦截校验。
-        # 默认为 False。
-        # 以下几种情况会默认拦截删除操作，如果确认强制删除则需要传强制校验参数ForceDelete为True。
+        # @param ForceDelete: 是否强制删除clb。true表示强制删除，false表示不是强制删除，需要做拦截校验。
+        # 默认为false。
+        # 以下几种情况会默认拦截删除操作，如果触发情况1、2但确认强制删除则需要传强制校验参数ForceDelete为true。
         # 1、删除后端绑定大于等于 20 个 RS 的实例时。
         # 2、删除后端有 RS 且 5 分钟 内“出/入带宽”峰值取大 > 10Mbps 的实例时。
         # 3、单地域内 5 分钟 内删除大于等于 30 个实例时。
@@ -4446,49 +4308,6 @@ module TencentCloud
         end
       end
 
-      # DisassociateCustomizedConfig请求参数结构体
-      class DisassociateCustomizedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param UconfigId: 配置ID
-        # @type UconfigId: String
-        # @param BindList: 解绑的列表
-        # @type BindList: Array
-
-        attr_accessor :UconfigId, :BindList
-
-        def initialize(uconfigid=nil, bindlist=nil)
-          @UconfigId = uconfigid
-          @BindList = bindlist
-        end
-
-        def deserialize(params)
-          @UconfigId = params['UconfigId']
-          unless params['BindList'].nil?
-            @BindList = []
-            params['BindList'].each do |i|
-              binditem_tmp = BindItem.new
-              binditem_tmp.deserialize(i)
-              @BindList << binditem_tmp
-            end
-          end
-        end
-      end
-
-      # DisassociateCustomizedConfig返回参数结构体
-      class DisassociateCustomizedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DisassociateTargetGroups请求参数结构体
       class DisassociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Associations: 待解绑的规则关系数组，支持批量解绑多个监听器，单次批量解除最多20个。
@@ -5695,8 +5514,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 9
-        deprecate :Log=, :none, 2025, 9
+        deprecate :Log, :none, 2025, 10
+        deprecate :Log=, :none, 2025, 10
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil)
           @LoadBalancerId = loadbalancerid
@@ -6316,46 +6135,6 @@ module TencentCloud
         end
       end
 
-      # ModifyCustomizedConfig请求参数结构体
-      class ModifyCustomizedConfigRequest < TencentCloud::Common::AbstractModel
-        # @param ConfigName: 配置名字
-        # @type ConfigName: String
-        # @param UconfigId: 配置ID
-        # @type UconfigId: String
-        # @param ConfigContent: 配置内容
-        # @type ConfigContent: String
-
-        attr_accessor :ConfigName, :UconfigId, :ConfigContent
-
-        def initialize(configname=nil, uconfigid=nil, configcontent=nil)
-          @ConfigName = configname
-          @UconfigId = uconfigid
-          @ConfigContent = configcontent
-        end
-
-        def deserialize(params)
-          @ConfigName = params['ConfigName']
-          @UconfigId = params['UconfigId']
-          @ConfigContent = params['ConfigContent']
-        end
-      end
-
-      # ModifyCustomizedConfig返回参数结构体
-      class ModifyCustomizedConfigResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # ModifyDomainAttributes请求参数结构体
       class ModifyDomainAttributesRequest < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡实例ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口查询。
@@ -6591,10 +6370,20 @@ module TencentCloud
         # @type SnatEnable: Boolean
         # @param DataCompressMode: 数据压缩模式
         # @type DataCompressMode: String
+        # @param RescheduleTargetZeroWeight: 重新调度功能，权重调为0开关，打开此开关，后端服务器权重调为0时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleTargetZeroWeight: Boolean
+        # @param RescheduleUnhealthy: 重新调度功能，健康检查异常开关，打开此开关，后端服务器健康检查异常时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleUnhealthy: Boolean
+        # @param RescheduleExpandTarget: 重新调度功能，扩容后端服务开关，打开此开关，后端服务器增加或者减少时触发重新调度。仅TCP/UDP监听器支持。
+        # @type RescheduleExpandTarget: Boolean
+        # @param RescheduleStartTime: 重新调度触发开始时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @type RescheduleStartTime: Integer
+        # @param RescheduleInterval: 重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @type RescheduleInterval: Integer
 
-        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :DataCompressMode
+        attr_accessor :LoadBalancerId, :ListenerId, :ListenerName, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :SniSwitch, :TargetType, :KeepaliveEnable, :DeregisterTargetRst, :SessionType, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :DataCompressMode, :RescheduleTargetZeroWeight, :RescheduleUnhealthy, :RescheduleExpandTarget, :RescheduleStartTime, :RescheduleInterval
 
-        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, datacompressmode=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, listenername=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, sniswitch=nil, targettype=nil, keepaliveenable=nil, deregistertargetrst=nil, sessiontype=nil, multicertinfo=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, proxyprotocol=nil, snatenable=nil, datacompressmode=nil, rescheduletargetzeroweight=nil, rescheduleunhealthy=nil, rescheduleexpandtarget=nil, reschedulestarttime=nil, rescheduleinterval=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @ListenerName = listenername
@@ -6614,6 +6403,11 @@ module TencentCloud
           @ProxyProtocol = proxyprotocol
           @SnatEnable = snatenable
           @DataCompressMode = datacompressmode
+          @RescheduleTargetZeroWeight = rescheduletargetzeroweight
+          @RescheduleUnhealthy = rescheduleunhealthy
+          @RescheduleExpandTarget = rescheduleexpandtarget
+          @RescheduleStartTime = reschedulestarttime
+          @RescheduleInterval = rescheduleinterval
         end
 
         def deserialize(params)
@@ -6645,6 +6439,11 @@ module TencentCloud
           @ProxyProtocol = params['ProxyProtocol']
           @SnatEnable = params['SnatEnable']
           @DataCompressMode = params['DataCompressMode']
+          @RescheduleTargetZeroWeight = params['RescheduleTargetZeroWeight']
+          @RescheduleUnhealthy = params['RescheduleUnhealthy']
+          @RescheduleExpandTarget = params['RescheduleExpandTarget']
+          @RescheduleStartTime = params['RescheduleStartTime']
+          @RescheduleInterval = params['RescheduleInterval']
         end
       end
 
@@ -7763,10 +7562,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 9
-        deprecate :Domain=, :none, 2025, 9
-        deprecate :Url, :none, 2025, 9
-        deprecate :Url=, :none, 2025, 9
+        deprecate :Domain, :none, 2025, 10
+        deprecate :Domain=, :none, 2025, 10
+        deprecate :Url, :none, 2025, 10
+        deprecate :Url=, :none, 2025, 10
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8837,8 +8636,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 9
-        deprecate :HealthStatusDetial=, :none, 2025, 9
+        deprecate :HealthStatusDetial, :none, 2025, 10
+        deprecate :HealthStatusDetial=, :none, 2025, 10
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

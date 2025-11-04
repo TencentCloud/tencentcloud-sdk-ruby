@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2025, 9
-        deprecate :GitInfo=, :none, 2025, 9
+        deprecate :GitInfo, :none, 2025, 10
+        deprecate :GitInfo=, :none, 2025, 10
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -323,6 +323,26 @@ module TencentCloud
         def deserialize(params)
           @VolumeId = params['VolumeId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Cromwell工作流引擎设置
+      class CromwellConfig < TencentCloud::Common::AbstractModel
+        # @param MaxConcurrentWorkflows: 工作流并发数
+        # @type MaxConcurrentWorkflows: Integer
+        # @param ConcurrentJobLimit: 作业并发数
+        # @type ConcurrentJobLimit: Integer
+
+        attr_accessor :MaxConcurrentWorkflows, :ConcurrentJobLimit
+
+        def initialize(maxconcurrentworkflows=nil, concurrentjoblimit=nil)
+          @MaxConcurrentWorkflows = maxconcurrentworkflows
+          @ConcurrentJobLimit = concurrentjoblimit
+        end
+
+        def deserialize(params)
+          @MaxConcurrentWorkflows = params['MaxConcurrentWorkflows']
+          @ConcurrentJobLimit = params['ConcurrentJobLimit']
         end
       end
 
@@ -899,10 +919,12 @@ module TencentCloud
         # @type LastWorkflowUuid: String
         # @param CreationTime: 创建时间。
         # @type CreationTime: String
+        # @param RuntimeConfig: 运行时配置。
+        # @type RuntimeConfig: :class:`Tencentcloud::Omics.v20221128.models.EnvironmentRuntimeConfig`
 
-        attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :IsDefault, :IsManaged, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime
+        attr_accessor :EnvironmentId, :Name, :Description, :Region, :Type, :Status, :Available, :IsDefault, :IsManaged, :Message, :ResourceIds, :LastWorkflowUuid, :CreationTime, :RuntimeConfig
 
-        def initialize(environmentid=nil, name=nil, description=nil, region=nil, type=nil, status=nil, available=nil, isdefault=nil, ismanaged=nil, message=nil, resourceids=nil, lastworkflowuuid=nil, creationtime=nil)
+        def initialize(environmentid=nil, name=nil, description=nil, region=nil, type=nil, status=nil, available=nil, isdefault=nil, ismanaged=nil, message=nil, resourceids=nil, lastworkflowuuid=nil, creationtime=nil, runtimeconfig=nil)
           @EnvironmentId = environmentid
           @Name = name
           @Description = description
@@ -916,6 +938,7 @@ module TencentCloud
           @ResourceIds = resourceids
           @LastWorkflowUuid = lastworkflowuuid
           @CreationTime = creationtime
+          @RuntimeConfig = runtimeconfig
         end
 
         def deserialize(params)
@@ -935,6 +958,10 @@ module TencentCloud
           end
           @LastWorkflowUuid = params['LastWorkflowUuid']
           @CreationTime = params['CreationTime']
+          unless params['RuntimeConfig'].nil?
+            @RuntimeConfig = EnvironmentRuntimeConfig.new
+            @RuntimeConfig.deserialize(params['RuntimeConfig'])
+          end
         end
       end
 
@@ -988,6 +1015,32 @@ module TencentCloud
           unless params['SecurityGroupOption'].nil?
             @SecurityGroupOption = SecurityGroupOption.new
             @SecurityGroupOption.deserialize(params['SecurityGroupOption'])
+          end
+        end
+      end
+
+      # 环境运行时配置
+      class EnvironmentRuntimeConfig < TencentCloud::Common::AbstractModel
+        # @param CromwellConfig: Cromwell工作流引擎设置
+        # @type CromwellConfig: :class:`Tencentcloud::Omics.v20221128.models.CromwellConfig`
+        # @param NextflowConfig: Nextflow工作流引擎设置
+        # @type NextflowConfig: :class:`Tencentcloud::Omics.v20221128.models.NextflowConfig`
+
+        attr_accessor :CromwellConfig, :NextflowConfig
+
+        def initialize(cromwellconfig=nil, nextflowconfig=nil)
+          @CromwellConfig = cromwellconfig
+          @NextflowConfig = nextflowconfig
+        end
+
+        def deserialize(params)
+          unless params['CromwellConfig'].nil?
+            @CromwellConfig = CromwellConfig.new
+            @CromwellConfig.deserialize(params['CromwellConfig'])
+          end
+          unless params['NextflowConfig'].nil?
+            @NextflowConfig = NextflowConfig.new
+            @NextflowConfig.deserialize(params['NextflowConfig'])
           end
         end
       end
@@ -1389,6 +1442,22 @@ module TencentCloud
         end
       end
 
+      # Nextflow工作流引擎设置
+      class NextflowConfig < TencentCloud::Common::AbstractModel
+        # @param ExecutorQueueSize: 工作流任务并发数
+        # @type ExecutorQueueSize: Integer
+
+        attr_accessor :ExecutorQueueSize
+
+        def initialize(executorqueuesize=nil)
+          @ExecutorQueueSize = executorqueuesize
+        end
+
+        def deserialize(params)
+          @ExecutorQueueSize = params['ExecutorQueueSize']
+        end
+      end
+
       # 通知类型
       class NotificationType < TencentCloud::Common::AbstractModel
         # @param StationMessage: 腾讯健康组学平台站点信息。
@@ -1588,8 +1657,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2025, 9
-        deprecate :Option=, :none, 2025, 9
+        deprecate :Option, :none, 2025, 10
+        deprecate :Option=, :none, 2025, 10
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

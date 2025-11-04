@@ -2070,6 +2070,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停Dip任务
+
+        # @param request: Request instance for PauseDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::PauseDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::PauseDatahubTaskResponse`
+        def PauseDatahubTask(request)
+          body = send_request('PauseDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseDatahubTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 续费Ckafka实例, 目前只支持国内站包年包月实例续费
 
         # @param request: Request instance for RenewCkafkaInstance.
@@ -2080,6 +2104,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RenewCkafkaInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Datahub任务异常时，重启Datahub任务
+
+        # @param request: Request instance for RestartDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::RestartDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::RestartDatahubTaskResponse`
+        def RestartDatahubTask(request)
+          body = send_request('RestartDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartDatahubTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复Dip任务
+
+        # @param request: Request instance for ResumeDatahubTask.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::ResumeDatahubTaskRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::ResumeDatahubTaskResponse`
+        def ResumeDatahubTask(request)
+          body = send_request('ResumeDatahubTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeDatahubTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

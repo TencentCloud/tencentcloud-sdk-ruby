@@ -166,12 +166,15 @@ module TencentCloud
         # @type TopicName: String
         # @param RetryPolicy: 重试策略
         # @type RetryPolicy: :class:`Tencentcloud::Eb.v20210416.models.RetryPolicy`
+        # @param EventDeliveryFormat: 事件投递kafka时的协议格式；目前只支持两种格式：1.CloudEvent(完整的cloudevent消息协议)2.CloudEventDataKey(cloudevent协议中的data字段内容)
+        # @type EventDeliveryFormat: String
 
-        attr_accessor :TopicName, :RetryPolicy
+        attr_accessor :TopicName, :RetryPolicy, :EventDeliveryFormat
 
-        def initialize(topicname=nil, retrypolicy=nil)
+        def initialize(topicname=nil, retrypolicy=nil, eventdeliveryformat=nil)
           @TopicName = topicname
           @RetryPolicy = retrypolicy
+          @EventDeliveryFormat = eventdeliveryformat
         end
 
         def deserialize(params)
@@ -180,6 +183,7 @@ module TencentCloud
             @RetryPolicy = RetryPolicy.new
             @RetryPolicy.deserialize(params['RetryPolicy'])
           end
+          @EventDeliveryFormat = params['EventDeliveryFormat']
         end
       end
 

@@ -9091,19 +9091,23 @@ module TencentCloud
         # @type UserName: String
         # @param PassWord: 密码
         # @type PassWord: String
+        # @param SyncPwd: 是否同步密码
+        # @type SyncPwd: Boolean
 
-        attr_accessor :InstanceId, :UserName, :PassWord
+        attr_accessor :InstanceId, :UserName, :PassWord, :SyncPwd
 
-        def initialize(instanceid=nil, username=nil, password=nil)
+        def initialize(instanceid=nil, username=nil, password=nil, syncpwd=nil)
           @InstanceId = instanceid
           @UserName = username
           @PassWord = password
+          @SyncPwd = syncpwd
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @UserName = params['UserName']
           @PassWord = params['PassWord']
+          @SyncPwd = params['SyncPwd']
         end
       end
 

@@ -645,10 +645,12 @@ module TencentCloud
         # @type CaType: String
         # @param SignAlgo: 签名算法
         # @type SignAlgo: String
+        # @param UseCrossSignRoot: 是否使用交叉根证书
+        # @type UseCrossSignRoot: Boolean
 
-        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle, :Type, :CaType, :SignAlgo
+        attr_accessor :CertId, :GenCsrType, :CertCommonName, :CompanyType, :CompanyId, :OrgIdType, :OrgIdNumber, :AdminIdType, :AdminIdNumber, :TechIdType, :TechIdNumber, :Csr, :DnsNames, :KeyPass, :OrgOrganization, :OrgDivision, :OrgAddress, :OrgCountry, :OrgCity, :OrgRegion, :OrgPhoneArea, :OrgPhoneNumber, :VerifyType, :AdminFirstName, :AdminLastName, :AdminPhone, :AdminEmail, :AdminTitle, :TechFirstName, :TechLastName, :ContactEmail, :AutoRenewFlag, :CsrKeyParameter, :CsrEncryptAlgo, :ManagerId, :TechPhone, :TechEmail, :TechTitle, :Type, :CaType, :SignAlgo, :UseCrossSignRoot
 
-        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil, type=nil, catype=nil, signalgo=nil)
+        def initialize(certid=nil, gencsrtype=nil, certcommonname=nil, companytype=nil, companyid=nil, orgidtype=nil, orgidnumber=nil, adminidtype=nil, adminidnumber=nil, techidtype=nil, techidnumber=nil, csr=nil, dnsnames=nil, keypass=nil, orgorganization=nil, orgdivision=nil, orgaddress=nil, orgcountry=nil, orgcity=nil, orgregion=nil, orgphonearea=nil, orgphonenumber=nil, verifytype=nil, adminfirstname=nil, adminlastname=nil, adminphone=nil, adminemail=nil, admintitle=nil, techfirstname=nil, techlastname=nil, contactemail=nil, autorenewflag=nil, csrkeyparameter=nil, csrencryptalgo=nil, managerid=nil, techphone=nil, techemail=nil, techtitle=nil, type=nil, catype=nil, signalgo=nil, usecrosssignroot=nil)
           @CertId = certid
           @GenCsrType = gencsrtype
           @CertCommonName = certcommonname
@@ -690,6 +692,7 @@ module TencentCloud
           @Type = type
           @CaType = catype
           @SignAlgo = signalgo
+          @UseCrossSignRoot = usecrosssignroot
         end
 
         def deserialize(params)
@@ -734,6 +737,7 @@ module TencentCloud
           @Type = params['Type']
           @CaType = params['CaType']
           @SignAlgo = params['SignAlgo']
+          @UseCrossSignRoot = params['UseCrossSignRoot']
         end
       end
 
@@ -3287,12 +3291,14 @@ module TencentCloud
         # @type DomainType: Integer
         # @param CertType: 证书类型，DV（域名型）；OV（企业型）；EV（增强型）
         # @type CertType: String
+        # @param UseCrossSignRoot: 是否使用交叉根
+        # @type UseCrossSignRoot: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :CertChainInfo, :DomainType, :CertType, :RequestId
+        attr_accessor :OwnerUin, :ProjectId, :From, :CertificateType, :PackageType, :ProductZhName, :Domain, :Alias, :Status, :StatusMsg, :VerifyType, :VulnerabilityStatus, :CertBeginTime, :CertEndTime, :ValidityPeriod, :InsertTime, :OrderId, :CertificateExtra, :CertificatePrivateKey, :CertificatePublicKey, :DvAuthDetail, :VulnerabilityReport, :CertificateId, :TypeName, :StatusName, :SubjectAltName, :IsVip, :IsWildcard, :IsDv, :IsVulnerability, :SubmittedData, :RenewAble, :Deployable, :Tags, :RootCert, :EncryptCert, :EncryptPrivateKey, :CertFingerprint, :EncryptCertFingerprint, :EncryptAlgorithm, :DvRevokeAuthDetail, :CertChainInfo, :DomainType, :CertType, :UseCrossSignRoot, :RequestId
 
-        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, certchaininfo=nil, domaintype=nil, certtype=nil, requestid=nil)
+        def initialize(owneruin=nil, projectid=nil, from=nil, certificatetype=nil, packagetype=nil, productzhname=nil, domain=nil, _alias=nil, status=nil, statusmsg=nil, verifytype=nil, vulnerabilitystatus=nil, certbegintime=nil, certendtime=nil, validityperiod=nil, inserttime=nil, orderid=nil, certificateextra=nil, certificateprivatekey=nil, certificatepublickey=nil, dvauthdetail=nil, vulnerabilityreport=nil, certificateid=nil, typename=nil, statusname=nil, subjectaltname=nil, isvip=nil, iswildcard=nil, isdv=nil, isvulnerability=nil, submitteddata=nil, renewable=nil, deployable=nil, tags=nil, rootcert=nil, encryptcert=nil, encryptprivatekey=nil, certfingerprint=nil, encryptcertfingerprint=nil, encryptalgorithm=nil, dvrevokeauthdetail=nil, certchaininfo=nil, domaintype=nil, certtype=nil, usecrosssignroot=nil, requestid=nil)
           @OwnerUin = owneruin
           @ProjectId = projectid
           @From = from
@@ -3337,6 +3343,7 @@ module TencentCloud
           @CertChainInfo = certchaininfo
           @DomainType = domaintype
           @CertType = certtype
+          @UseCrossSignRoot = usecrosssignroot
           @RequestId = requestid
         end
 
@@ -3418,6 +3425,7 @@ module TencentCloud
           end
           @DomainType = params['DomainType']
           @CertType = params['CertType']
+          @UseCrossSignRoot = params['UseCrossSignRoot']
           @RequestId = params['RequestId']
         end
       end
@@ -4146,8 +4154,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
@@ -4229,8 +4237,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4710,8 +4718,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
@@ -4781,8 +4789,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4856,8 +4864,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -5261,8 +5269,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5334,8 +5342,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2025, 8
-        deprecate :ResourceType=, :none, 2025, 8
+        deprecate :ResourceType, :none, 2025, 10
+        deprecate :ResourceType=, :none, 2025, 10
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5399,10 +5407,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2025, 8
-        deprecate :Limit=, :none, 2025, 8
-        deprecate :Offset, :none, 2025, 8
-        deprecate :Offset=, :none, 2025, 8
+        deprecate :Limit, :none, 2025, 10
+        deprecate :Limit=, :none, 2025, 10
+        deprecate :Offset, :none, 2025, 10
+        deprecate :Offset=, :none, 2025, 10
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -5472,8 +5480,8 @@ module TencentCloud
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :ManagerIdType, :ManagerIdNumber, :ContactIdType, :ContactIdNumber, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 8
-        deprecate :Status=, :none, 2025, 8
+        deprecate :Status, :none, 2025, 10
+        deprecate :Status=, :none, 2025, 10
 
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, manageridtype=nil, manageridnumber=nil, contactidtype=nil, contactidnumber=nil, requestid=nil)
           @Status = status
@@ -6631,10 +6639,12 @@ module TencentCloud
         # @type CertCSRKeyParameter: String
         # @param SignAlgo: 签名算法
         # @type SignAlgo: String
+        # @param UseCrossSignRoot: 是否使用交叉根证书，默认为true
+        # @type UseCrossSignRoot: Boolean
 
-        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason, :CertCSREncryptAlgo, :CertCSRKeyParameter, :SignAlgo
+        attr_accessor :CertificateId, :ValidType, :CsrType, :CsrContent, :CsrkeyPassword, :Reason, :CertCSREncryptAlgo, :CertCSRKeyParameter, :SignAlgo, :UseCrossSignRoot
 
-        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil, certcsrencryptalgo=nil, certcsrkeyparameter=nil, signalgo=nil)
+        def initialize(certificateid=nil, validtype=nil, csrtype=nil, csrcontent=nil, csrkeypassword=nil, reason=nil, certcsrencryptalgo=nil, certcsrkeyparameter=nil, signalgo=nil, usecrosssignroot=nil)
           @CertificateId = certificateid
           @ValidType = validtype
           @CsrType = csrtype
@@ -6644,6 +6654,7 @@ module TencentCloud
           @CertCSREncryptAlgo = certcsrencryptalgo
           @CertCSRKeyParameter = certcsrkeyparameter
           @SignAlgo = signalgo
+          @UseCrossSignRoot = usecrosssignroot
         end
 
         def deserialize(params)
@@ -6656,6 +6667,7 @@ module TencentCloud
           @CertCSREncryptAlgo = params['CertCSREncryptAlgo']
           @CertCSRKeyParameter = params['CertCSRKeyParameter']
           @SignAlgo = params['SignAlgo']
+          @UseCrossSignRoot = params['UseCrossSignRoot']
         end
       end
 
@@ -7766,8 +7778,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2025, 8
-        deprecate :Regions=, :none, 2025, 8
+        deprecate :Regions, :none, 2025, 10
+        deprecate :Regions=, :none, 2025, 10
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid

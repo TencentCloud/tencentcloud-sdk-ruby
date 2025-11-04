@@ -247,8 +247,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 9
-        deprecate :InstanceGrpId=, :none, 2025, 9
+        deprecate :InstanceGrpId, :none, 2025, 10
+        deprecate :InstanceGrpId=, :none, 2025, 10
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1117,10 +1117,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 9
-        deprecate :InstanceGrpId=, :none, 2025, 9
-        deprecate :ModifyParamsData, :none, 2025, 9
-        deprecate :ModifyParamsData=, :none, 2025, 9
+        deprecate :InstanceGrpId, :none, 2025, 10
+        deprecate :InstanceGrpId=, :none, 2025, 10
+        deprecate :ModifyParamsData, :none, 2025, 10
+        deprecate :ModifyParamsData=, :none, 2025, 10
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
@@ -1578,8 +1578,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 9
-        deprecate :InstanceGrpId=, :none, 2025, 9
+        deprecate :InstanceGrpId, :none, 2025, 10
+        deprecate :InstanceGrpId=, :none, 2025, 10
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -1948,8 +1948,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 9
-        deprecate :Filter=, :none, 2025, 9
+        deprecate :Filter, :none, 2025, 10
+        deprecate :Filter=, :none, 2025, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2535,6 +2535,211 @@ module TencentCloud
         end
       end
 
+      # CreateIntegrateCluster请求参数结构体
+      class CreateIntegrateClusterRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param VpcId: 所属VPC网络ID
+        # @type VpcId: String
+        # @param SubnetId: 所属子网ID
+        # @type SubnetId: String
+        # @param DbVersion: 数据库版本，取值范围:
+        # <li> MYSQL可选值：5.7，8.0 </li>
+        # @type DbVersion: String
+        # @param ProjectId: 所属项目ID
+        # @type ProjectId: Integer
+        # @param ClusterName: 集群名称，长度小于64个字符，每个字符取值范围：大/小写字母，数字，特殊符号（'-','_','.'）
+        # @type ClusterName: String
+        # @param AdminPassword: 账号密码(8-64个字符，包含大小写英文字母、数字和符号~!@#$%^&*_-+=`|\(){}[]:;'<>,.?/中的任意三种)
+        # @type AdminPassword: String
+        # @param Port: 端口，默认3306，取值范围[0, 65535)
+        # @type Port: Integer
+        # @param PayMode: 计费模式，按量计费：0，包年包月：1。默认按量计费。
+        # @type PayMode: Integer
+        # @param Count: 购买集群数，可选值范围[1,3]，默认为1
+        # @type Count: Integer
+        # @param StorageLimit: 普通实例存储上限，单位GB
+        # 当DbType为MYSQL，且存储计费模式为预付费时，该参数需不大于cpu与memory对应存储规格上限
+        # @type StorageLimit: Integer
+        # @param TimeSpan: 包年包月购买时长
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 包年包月购买时长单位，['s','d','m','y']
+        # @type TimeUnit: String
+        # @param AutoRenewFlag: 包年包月购买是否自动续费，默认为0。
+        # 0标识默认续费方式，1表示自动续费，2表示不自动续费。
+        # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
+        # @type AutoVoucher: Integer
+        # @param ResourceTags: 集群创建需要绑定的tag数组信息
+        # @type ResourceTags: Array
+        # @param StoragePayMode: 集群存储计费模式，按量计费：0，包年包月：1。默认按量计费
+        # 当DbType为MYSQL时，在集群计算计费模式为后付费（包括DbMode为SERVERLESS）时，存储计费模式仅可为按量计费
+        # 回档与克隆均不支持包年包月存储
+        # @type StoragePayMode: Integer
+        # @param SecurityGroupIds: 安全组id数组
+        # @type SecurityGroupIds: Array
+        # @param AlarmPolicyIds: 告警策略Id数组
+        # @type AlarmPolicyIds: Array
+        # @param ClusterParams: 参数数组，暂时支持character_set_server （utf8｜latin1｜gbk｜utf8mb4） ，lower_case_table_names，1-大小写不敏感，0-大小写敏感
+        # @type ClusterParams: Array
+        # @param DealMode: 交易模式，0-下单且支付，1-下单
+        # @type DealMode: Integer
+        # @param ParamTemplateId: 参数模板ID，可以通过查询参数模板信息DescribeParamTemplates获得参数模板ID
+        # @type ParamTemplateId: Integer
+        # @param SlaveZone: 多可用区地址
+        # @type SlaveZone: String
+        # @param InstanceInitInfos: 实例初始化配置信息，主要用于购买集群时选不同规格实例
+        # @type InstanceInitInfos: Array
+        # @param GdnId: 全球数据库唯一标识
+        # @type GdnId: String
+        # @param ProxyConfig: 数据库代理配置
+        # @type ProxyConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.ProxyConfigInfo`
+        # @param AutoArchive: 是否自动归档
+        # @type AutoArchive: String
+        # @param AutoArchiveDelayHours: 暂停后的归档处理时间
+        # @type AutoArchiveDelayHours: Integer
+        # @param EncryptMethod: 加密方法（由加密算法和密钥对版本组成）
+        # @type EncryptMethod: String
+        # @param IntegrateCreateClusterConfig: 集成集群配置信息
+        # @type IntegrateCreateClusterConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.IntegrateCreateClusterConfig`
+        # @param StorageVersion: 存储架构类型。 枚举值：1.0/2.0 默认值：1.0
+        # @type StorageVersion: String
+
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbVersion, :ProjectId, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :ResourceTags, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :EncryptMethod, :IntegrateCreateClusterConfig, :StorageVersion
+
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbversion=nil, projectid=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, resourcetags=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, encryptmethod=nil, integratecreateclusterconfig=nil, storageversion=nil)
+          @Zone = zone
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @DbVersion = dbversion
+          @ProjectId = projectid
+          @ClusterName = clustername
+          @AdminPassword = adminpassword
+          @Port = port
+          @PayMode = paymode
+          @Count = count
+          @StorageLimit = storagelimit
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+          @ResourceTags = resourcetags
+          @StoragePayMode = storagepaymode
+          @SecurityGroupIds = securitygroupids
+          @AlarmPolicyIds = alarmpolicyids
+          @ClusterParams = clusterparams
+          @DealMode = dealmode
+          @ParamTemplateId = paramtemplateid
+          @SlaveZone = slavezone
+          @InstanceInitInfos = instanceinitinfos
+          @GdnId = gdnid
+          @ProxyConfig = proxyconfig
+          @AutoArchive = autoarchive
+          @AutoArchiveDelayHours = autoarchivedelayhours
+          @EncryptMethod = encryptmethod
+          @IntegrateCreateClusterConfig = integratecreateclusterconfig
+          @StorageVersion = storageversion
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @DbVersion = params['DbVersion']
+          @ProjectId = params['ProjectId']
+          @ClusterName = params['ClusterName']
+          @AdminPassword = params['AdminPassword']
+          @Port = params['Port']
+          @PayMode = params['PayMode']
+          @Count = params['Count']
+          @StorageLimit = params['StorageLimit']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @StoragePayMode = params['StoragePayMode']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @AlarmPolicyIds = params['AlarmPolicyIds']
+          unless params['ClusterParams'].nil?
+            @ClusterParams = []
+            params['ClusterParams'].each do |i|
+              paramitem_tmp = ParamItem.new
+              paramitem_tmp.deserialize(i)
+              @ClusterParams << paramitem_tmp
+            end
+          end
+          @DealMode = params['DealMode']
+          @ParamTemplateId = params['ParamTemplateId']
+          @SlaveZone = params['SlaveZone']
+          unless params['InstanceInitInfos'].nil?
+            @InstanceInitInfos = []
+            params['InstanceInitInfos'].each do |i|
+              integrateinstanceinfo_tmp = IntegrateInstanceInfo.new
+              integrateinstanceinfo_tmp.deserialize(i)
+              @InstanceInitInfos << integrateinstanceinfo_tmp
+            end
+          end
+          @GdnId = params['GdnId']
+          unless params['ProxyConfig'].nil?
+            @ProxyConfig = ProxyConfigInfo.new
+            @ProxyConfig.deserialize(params['ProxyConfig'])
+          end
+          @AutoArchive = params['AutoArchive']
+          @AutoArchiveDelayHours = params['AutoArchiveDelayHours']
+          @EncryptMethod = params['EncryptMethod']
+          unless params['IntegrateCreateClusterConfig'].nil?
+            @IntegrateCreateClusterConfig = IntegrateCreateClusterConfig.new
+            @IntegrateCreateClusterConfig.deserialize(params['IntegrateCreateClusterConfig'])
+          end
+          @StorageVersion = params['StorageVersion']
+        end
+      end
+
+      # CreateIntegrateCluster返回参数结构体
+      class CreateIntegrateClusterResponse < TencentCloud::Common::AbstractModel
+        # @param TranId: 冻结流水ID
+        # @type TranId: String
+        # @param DealNames: 订单号
+        # @type DealNames: Array
+        # @param ResourceIds: 资源ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取资源ID）
+        # @type ResourceIds: Array
+        # @param ClusterIds: 集群ID列表（该字段已不再维护，请使用dealNames字段查询接口DescribeResourcesByDealName获取集群ID）
+        # @type ClusterIds: Array
+        # @param BigDealIds: 大订单号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BigDealIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TranId, :DealNames, :ResourceIds, :ClusterIds, :BigDealIds, :RequestId
+
+        def initialize(tranid=nil, dealnames=nil, resourceids=nil, clusterids=nil, bigdealids=nil, requestid=nil)
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
+          @BigDealIds = bigdealids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
+          @BigDealIds = params['BigDealIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateParamTemplate请求参数结构体
       class CreateParamTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateName: 模板名称
@@ -2830,7 +3035,7 @@ module TencentCloud
         # @param PackageVersion: 资源包版本
         # base-基础版本，common-通用版本，enterprise-企业版本
         # @type PackageVersion: String
-        # @param PackageSpec: 资源包大小，计算资源单位：万个；存储资源：GB
+        # @param PackageSpec: 资源包大小，计算资源单位：个；存储资源：GB
         # @type PackageSpec: Float
         # @param ExpireDay: 资源包有效期，单位:天
         # @type ExpireDay: Integer
@@ -4906,8 +5111,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 9
-        deprecate :Filter=, :none, 2025, 9
+        deprecate :Filter, :none, 2025, 10
+        deprecate :Filter=, :none, 2025, 10
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -5944,8 +6149,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 9
-        deprecate :InstanceGrpInfoList=, :none, 2025, 9
+        deprecate :InstanceGrpInfoList, :none, 2025, 10
+        deprecate :InstanceGrpInfoList=, :none, 2025, 10
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6342,8 +6547,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 9
-        deprecate :InstanceId=, :none, 2025, 9
+        deprecate :InstanceId, :none, 2025, 10
+        deprecate :InstanceId=, :none, 2025, 10
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -6919,6 +7124,54 @@ module TencentCloud
         def deserialize(params)
           @TotalCount = params['TotalCount']
           @InstanceIds = params['InstanceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIntegrateTask请求参数结构体
+      class DescribeIntegrateTaskRequest < TencentCloud::Common::AbstractModel
+        # @param BigDealId: 大订单id，大订单id和子订单id必须二选一
+        # @type BigDealId: String
+        # @param DealNames: 订单列表
+        # @type DealNames: Array
+
+        attr_accessor :BigDealId, :DealNames
+
+        def initialize(bigdealid=nil, dealnames=nil)
+          @BigDealId = bigdealid
+          @DealNames = dealnames
+        end
+
+        def deserialize(params)
+          @BigDealId = params['BigDealId']
+          @DealNames = params['DealNames']
+        end
+      end
+
+      # DescribeIntegrateTask返回参数结构体
+      class DescribeIntegrateTaskResponse < TencentCloud::Common::AbstractModel
+        # @param CurrentStep: 当前步骤
+        # @type CurrentStep: String
+        # @param CurrentProgress: 当前进度
+        # @type CurrentProgress: String
+        # @param TaskStatus: 任务状态
+        # @type TaskStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CurrentStep, :CurrentProgress, :TaskStatus, :RequestId
+
+        def initialize(currentstep=nil, currentprogress=nil, taskstatus=nil, requestid=nil)
+          @CurrentStep = currentstep
+          @CurrentProgress = currentprogress
+          @TaskStatus = taskstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CurrentStep = params['CurrentStep']
+          @CurrentProgress = params['CurrentProgress']
+          @TaskStatus = params['TaskStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -8537,6 +8790,93 @@ module TencentCloud
         end
       end
 
+      # 商品价格
+      class GoodsPrice < TencentCloud::Common::AbstractModel
+        # @param InstancePrice: 实例价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstancePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
+        # @param StoragePrice: 存储价格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StoragePrice: :class:`Tencentcloud::Cynosdb.v20190107.models.TradePrice`
+        # @param GoodsSpec: 商品规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsSpec: :class:`Tencentcloud::Cynosdb.v20190107.models.GoodsSpec`
+
+        attr_accessor :InstancePrice, :StoragePrice, :GoodsSpec
+
+        def initialize(instanceprice=nil, storageprice=nil, goodsspec=nil)
+          @InstancePrice = instanceprice
+          @StoragePrice = storageprice
+          @GoodsSpec = goodsspec
+        end
+
+        def deserialize(params)
+          unless params['InstancePrice'].nil?
+            @InstancePrice = TradePrice.new
+            @InstancePrice.deserialize(params['InstancePrice'])
+          end
+          unless params['StoragePrice'].nil?
+            @StoragePrice = TradePrice.new
+            @StoragePrice.deserialize(params['StoragePrice'])
+          end
+          unless params['GoodsSpec'].nil?
+            @GoodsSpec = GoodsSpec.new
+            @GoodsSpec.deserialize(params['GoodsSpec'])
+          end
+        end
+      end
+
+      # 商品规格
+      class GoodsSpec < TencentCloud::Common::AbstractModel
+        # @param GoodsNum: 商品数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GoodsNum: Integer
+        # @param Cpu: CPU核数，PREPAID与POSTPAID实例类型必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位G，PREPAID与POSTPAID实例类型必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Ccu: Ccu大小，serverless类型必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ccu: Float
+        # @param StorageLimit: 存储大小，PREPAID存储类型必传
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageLimit: Integer
+        # @param TimeSpan: 购买时长
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时长单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeUnit: String
+        # @param DeviceType: 机器类型
+        # @type DeviceType: String
+
+        attr_accessor :GoodsNum, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit, :DeviceType
+
+        def initialize(goodsnum=nil, cpu=nil, memory=nil, ccu=nil, storagelimit=nil, timespan=nil, timeunit=nil, devicetype=nil)
+          @GoodsNum = goodsnum
+          @Cpu = cpu
+          @Memory = memory
+          @Ccu = ccu
+          @StorageLimit = storagelimit
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @DeviceType = devicetype
+        end
+
+        def deserialize(params)
+          @GoodsNum = params['GoodsNum']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Ccu = params['Ccu']
+          @StorageLimit = params['StorageLimit']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @DeviceType = params['DeviceType']
+        end
+      end
+
       # GrantAccountPrivileges请求参数结构体
       class GrantAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -8762,6 +9102,68 @@ module TencentCloud
           unless params['StoragePrice'].nil?
             @StoragePrice = TradePrice.new
             @StoragePrice.deserialize(params['StoragePrice'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # InquirePriceMultiSpec请求参数结构体
+      class InquirePriceMultiSpecRequest < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区,每个地域提供最佳实践
+        # @type Zone: String
+        # @param InstancePayMode: 实例购买类型，可选值为：PREPAID, POSTPAID, SERVERLESS
+        # @type InstancePayMode: String
+        # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
+        # @type StoragePayMode: String
+        # @param GoodsSpecs: 商品规格
+        # @type GoodsSpecs: Array
+
+        attr_accessor :Zone, :InstancePayMode, :StoragePayMode, :GoodsSpecs
+
+        def initialize(zone=nil, instancepaymode=nil, storagepaymode=nil, goodsspecs=nil)
+          @Zone = zone
+          @InstancePayMode = instancepaymode
+          @StoragePayMode = storagepaymode
+          @GoodsSpecs = goodsspecs
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @InstancePayMode = params['InstancePayMode']
+          @StoragePayMode = params['StoragePayMode']
+          unless params['GoodsSpecs'].nil?
+            @GoodsSpecs = []
+            params['GoodsSpecs'].each do |i|
+              goodsspec_tmp = GoodsSpec.new
+              goodsspec_tmp.deserialize(i)
+              @GoodsSpecs << goodsspec_tmp
+            end
+          end
+        end
+      end
+
+      # InquirePriceMultiSpec返回参数结构体
+      class InquirePriceMultiSpecResponse < TencentCloud::Common::AbstractModel
+        # @param GoodsPrice: 商品价格
+        # @type GoodsPrice: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GoodsPrice, :RequestId
+
+        def initialize(goodsprice=nil, requestid=nil)
+          @GoodsPrice = goodsprice
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GoodsPrice'].nil?
+            @GoodsPrice = []
+            params['GoodsPrice'].each do |i|
+              goodsprice_tmp = GoodsPrice.new
+              goodsprice_tmp.deserialize(i)
+              @GoodsPrice << goodsprice_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9117,6 +9519,26 @@ module TencentCloud
         end
       end
 
+      # 实例权重
+      class InstanceNameWeight < TencentCloud::Common::AbstractModel
+        # @param InstanceName: 实例名称，创建集群中InstanceInitInfo.InstanceName所指定名称
+        # @type InstanceName: String
+        # @param Weight: 权重
+        # @type Weight: Integer
+
+        attr_accessor :InstanceName, :Weight
+
+        def initialize(instancename=nil, weight=nil)
+          @InstanceName = instancename
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @InstanceName = params['InstanceName']
+          @Weight = params['Weight']
+        end
+      end
+
       # 实例网络信息
       class InstanceNetInfo < TencentCloud::Common::AbstractModel
         # @param InstanceGroupType: 网络类型
@@ -9264,6 +9686,73 @@ module TencentCloud
           @StockCount = params['StockCount']
           @MaxCpu = params['MaxCpu']
           @MinCpu = params['MinCpu']
+        end
+      end
+
+      # 集成集群配置
+      class IntegrateCreateClusterConfig < TencentCloud::Common::AbstractModel
+        # @param BinlogSaveDays: binlog保留天数[7,1830]
+        # @type BinlogSaveDays: Integer
+        # @param BackupSaveDays: 备份保留天数[7,1830]
+        # @type BackupSaveDays: Integer
+        # @param SemiSyncTimeout: 半同步超时时间[1000,4294967295]
+        # @type SemiSyncTimeout: Integer
+        # @param ProxyEndPointConfigs: proxy连接地址配置信息
+        # @type ProxyEndPointConfigs: Array
+
+        attr_accessor :BinlogSaveDays, :BackupSaveDays, :SemiSyncTimeout, :ProxyEndPointConfigs
+
+        def initialize(binlogsavedays=nil, backupsavedays=nil, semisynctimeout=nil, proxyendpointconfigs=nil)
+          @BinlogSaveDays = binlogsavedays
+          @BackupSaveDays = backupsavedays
+          @SemiSyncTimeout = semisynctimeout
+          @ProxyEndPointConfigs = proxyendpointconfigs
+        end
+
+        def deserialize(params)
+          @BinlogSaveDays = params['BinlogSaveDays']
+          @BackupSaveDays = params['BackupSaveDays']
+          @SemiSyncTimeout = params['SemiSyncTimeout']
+          unless params['ProxyEndPointConfigs'].nil?
+            @ProxyEndPointConfigs = []
+            params['ProxyEndPointConfigs'].each do |i|
+              proxyendpointconfiginfo_tmp = ProxyEndPointConfigInfo.new
+              proxyendpointconfiginfo_tmp.deserialize(i)
+              @ProxyEndPointConfigs << proxyendpointconfiginfo_tmp
+            end
+          end
+        end
+      end
+
+      # 实例初始化配置信息
+      class IntegrateInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: 实例cpu
+        # @type Cpu: Integer
+        # @param Memory: 实例内存
+        # @type Memory: Integer
+        # @param InstanceType: 实例类型 rw/ro
+        # @type InstanceType: String
+        # @param InstanceCount: 实例个数,范围[1,15]
+        # @type InstanceCount: Integer
+        # @param DeviceType: 实例机器类型 common-公通用型,exclusive-独享型
+        # @type DeviceType: String
+
+        attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :DeviceType
+
+        def initialize(cpu=nil, memory=nil, instancetype=nil, instancecount=nil, devicetype=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @InstanceType = instancetype
+          @InstanceCount = instancecount
+          @DeviceType = devicetype
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @InstanceType = params['InstanceType']
+          @InstanceCount = params['InstanceCount']
+          @DeviceType = params['DeviceType']
         end
       end
 
@@ -10967,10 +11456,14 @@ module TencentCloud
         # @param ConnectionPoolTimeOut: 连接池时间。
         # 可选范围:0~300（秒）
         # @type ConnectionPoolTimeOut: Integer
+        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
+        # @type ApNodeAsRoNode: Boolean
+        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @type ApQueryToOtherNode: Boolean
 
-        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut
+        attr_accessor :ClusterId, :ProxyGroupId, :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :InstanceWeights, :FailOver, :AutoAddRo, :OpenRw, :RwType, :TransSplit, :AccessMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut, :ApNodeAsRoNode, :ApQueryToOtherNode
 
-        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil)
+        def initialize(clusterid=nil, proxygroupid=nil, consistencytype=nil, consistencytimeout=nil, weightmode=nil, instanceweights=nil, failover=nil, autoaddro=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil, apnodeasronode=nil, apquerytoothernode=nil)
           @ClusterId = clusterid
           @ProxyGroupId = proxygroupid
           @ConsistencyType = consistencytype
@@ -10986,6 +11479,8 @@ module TencentCloud
           @OpenConnectionPool = openconnectionpool
           @ConnectionPoolType = connectionpooltype
           @ConnectionPoolTimeOut = connectionpooltimeout
+          @ApNodeAsRoNode = apnodeasronode
+          @ApQueryToOtherNode = apquerytoothernode
         end
 
         def deserialize(params)
@@ -11011,6 +11506,8 @@ module TencentCloud
           @OpenConnectionPool = params['OpenConnectionPool']
           @ConnectionPoolType = params['ConnectionPoolType']
           @ConnectionPoolTimeOut = params['ConnectionPoolTimeOut']
+          @ApNodeAsRoNode = params['ApNodeAsRoNode']
+          @ApQueryToOtherNode = params['ApQueryToOtherNode']
         end
       end
 
@@ -11263,8 +11760,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 9
-        deprecate :InstanceGrpId=, :none, 2025, 9
+        deprecate :InstanceGrpId, :none, 2025, 10
+        deprecate :InstanceGrpId=, :none, 2025, 10
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -11564,8 +12061,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 9
-        deprecate :AuditRuleFilters=, :none, 2025, 9
+        deprecate :AuditRuleFilters, :none, 2025, 10
+        deprecate :AuditRuleFilters=, :none, 2025, 10
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -11872,8 +12369,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 9
-        deprecate :InstanceGrpId=, :none, 2025, 9
+        deprecate :InstanceGrpId, :none, 2025, 10
+        deprecate :InstanceGrpId=, :none, 2025, 10
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -12515,6 +13012,45 @@ module TencentCloud
         end
       end
 
+      # 访问代理配置
+      class ProxyConfigInfo < TencentCloud::Common::AbstractModel
+        # @param ProxyCount: 数据库代理组节点个数。该参数不再建议使用,建议使用ProxyZones
+        # @type ProxyCount: Integer
+        # @param Cpu: cpu核数
+        # @type Cpu: Integer
+        # @param Mem: 内存
+        # @type Mem: Integer
+        # @param Description: 描述说明
+        # @type Description: String
+        # @param ProxyZones: 数据库节点信息（该参数与ProxyCount需要任选一个输入）
+        # @type ProxyZones: Array
+
+        attr_accessor :ProxyCount, :Cpu, :Mem, :Description, :ProxyZones
+
+        def initialize(proxycount=nil, cpu=nil, mem=nil, description=nil, proxyzones=nil)
+          @ProxyCount = proxycount
+          @Cpu = cpu
+          @Mem = mem
+          @Description = description
+          @ProxyZones = proxyzones
+        end
+
+        def deserialize(params)
+          @ProxyCount = params['ProxyCount']
+          @Cpu = params['Cpu']
+          @Mem = params['Mem']
+          @Description = params['Description']
+          unless params['ProxyZones'].nil?
+            @ProxyZones = []
+            params['ProxyZones'].each do |i|
+              proxyzone_tmp = ProxyZone.new
+              proxyzone_tmp.deserialize(i)
+              @ProxyZones << proxyzone_tmp
+            end
+          end
+        end
+      end
+
       # 数据库代理连接池信息
       class ProxyConnectionPoolInfo < TencentCloud::Common::AbstractModel
         # @param ConnectionPoolTimeOut: 连接池保持阈值：单位（秒）
@@ -12536,6 +13072,53 @@ module TencentCloud
           @ConnectionPoolTimeOut = params['ConnectionPoolTimeOut']
           @OpenConnectionPool = params['OpenConnectionPool']
           @ConnectionPoolType = params['ConnectionPoolType']
+        end
+      end
+
+      # 集成集群proxy地址配置
+      class ProxyEndPointConfigInfo < TencentCloud::Common::AbstractModel
+        # @param UniqueVpcId: 所属VPC网络ID
+        # @type UniqueVpcId: String
+        # @param UniqueSubnetId: 所属子网ID
+        # @type UniqueSubnetId: String
+        # @param SecurityGroupIds: 安全组id数组
+        # @type SecurityGroupIds: Array
+        # @param WeightMode: 权重模式： system-系统分配，custom-自定义
+        # @type WeightMode: String
+        # @param AutoAddRo: 是否自动添加只读实例，yes-是，no-不自动添加
+        # @type AutoAddRo: String
+        # @param RwType: 读写属性： READWRITE,READONLY
+        # @type RwType: String
+        # @param InstanceNameWeights: 权重信息
+        # @type InstanceNameWeights: Array
+
+        attr_accessor :UniqueVpcId, :UniqueSubnetId, :SecurityGroupIds, :WeightMode, :AutoAddRo, :RwType, :InstanceNameWeights
+
+        def initialize(uniquevpcid=nil, uniquesubnetid=nil, securitygroupids=nil, weightmode=nil, autoaddro=nil, rwtype=nil, instancenameweights=nil)
+          @UniqueVpcId = uniquevpcid
+          @UniqueSubnetId = uniquesubnetid
+          @SecurityGroupIds = securitygroupids
+          @WeightMode = weightmode
+          @AutoAddRo = autoaddro
+          @RwType = rwtype
+          @InstanceNameWeights = instancenameweights
+        end
+
+        def deserialize(params)
+          @UniqueVpcId = params['UniqueVpcId']
+          @UniqueSubnetId = params['UniqueSubnetId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @WeightMode = params['WeightMode']
+          @AutoAddRo = params['AutoAddRo']
+          @RwType = params['RwType']
+          unless params['InstanceNameWeights'].nil?
+            @InstanceNameWeights = []
+            params['InstanceNameWeights'].each do |i|
+              instancenameweight_tmp = InstanceNameWeight.new
+              instancenameweight_tmp.deserialize(i)
+              @InstanceNameWeights << instancenameweight_tmp
+            end
+          end
         end
       end
 
@@ -12677,10 +13260,14 @@ module TencentCloud
         # @type TransSplit: Boolean
         # @param AccessMode: 连接模式，可选值：balance，nearby
         # @type AccessMode: String
+        # @param ApNodeAsRoNode: 是否将libra节点当作普通RO节点
+        # @type ApNodeAsRoNode: Boolean
+        # @param ApQueryToOtherNode: libra节点故障，是否转发给其他节点
+        # @type ApQueryToOtherNode: Boolean
 
-        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode
+        attr_accessor :ConsistencyType, :ConsistencyTimeOut, :WeightMode, :FailOver, :AutoAddRo, :InstanceWeights, :OpenRw, :RwType, :TransSplit, :AccessMode, :ApNodeAsRoNode, :ApQueryToOtherNode
 
-        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil)
+        def initialize(consistencytype=nil, consistencytimeout=nil, weightmode=nil, failover=nil, autoaddro=nil, instanceweights=nil, openrw=nil, rwtype=nil, transsplit=nil, accessmode=nil, apnodeasronode=nil, apquerytoothernode=nil)
           @ConsistencyType = consistencytype
           @ConsistencyTimeOut = consistencytimeout
           @WeightMode = weightmode
@@ -12691,6 +13278,8 @@ module TencentCloud
           @RwType = rwtype
           @TransSplit = transsplit
           @AccessMode = accessmode
+          @ApNodeAsRoNode = apnodeasronode
+          @ApQueryToOtherNode = apquerytoothernode
         end
 
         def deserialize(params)
@@ -12711,6 +13300,8 @@ module TencentCloud
           @RwType = params['RwType']
           @TransSplit = params['TransSplit']
           @AccessMode = params['AccessMode']
+          @ApNodeAsRoNode = params['ApNodeAsRoNode']
+          @ApQueryToOtherNode = params['ApQueryToOtherNode']
         end
       end
 

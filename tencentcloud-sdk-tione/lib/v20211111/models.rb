@@ -564,27 +564,72 @@ module TencentCloud
 
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
+        # @param Service: 服务类型，TRAIN为任务式建模, NOTEBOOK为Notebook, INFER为在线服务, BATCH为批量预测枚举值：- TRAIN- NOTEBOOK- INFER- BATCH
+        # @type Service: String
+        # @param ServiceId: 服务ID，和Service参数对应，不同Service的服务ID获取方式不同，具体如下：- Service类型为TRAIN：  调用[DescribeTrainingTask接口](/document/product/851/75089)查询训练任务详情，ServiceId为接口返回值中Response.TrainingTaskDetail.LatestInstanceId- Service类型为NOTEBOOK：  调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，ServiceId为接口返回值中Response.NotebookDetail.PodName- Service类型为INFER：  调用[DescribeModelServiceGroup接口](/document/product/851/82285)查询服务组详情，ServiceId为接口返回值中Response.ServiceGroup.Services.ServiceId- Service类型为BATCH：  调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，ServiceId为接口返回值中Response.BatchTaskDetail.LatestInstanceId
+        # @type ServiceId: String
+        # @param StartTime: 日志查询开始时间（RFC3339格式的时间字符串），默认值为当前时间的前一个小时
+        # @type StartTime: String
+        # @param EndTime: 日志查询结束时间（RFC3339格式的时间字符串），开始时间和结束时间必须同时填或同时不填，默认值为当前时间
+        # @type EndTime: String
+        # @param Format: 日志导出数据格式。json，csv，默认为csv
+        # @type Format: String
+        # @param PodName: Pod的名称，即需要查询服务对应的Pod，和Service参数对应，不同Service的PodName获取方式不同，具体如下：- Service类型为TRAIN：  调用[DescribeTrainingTaskPods接口](/document/product/851/75088)查询训练任务pod列表，PodName为接口返回值中Response.PodNames- Service类型为NOTEBOOK：  调用[DescribeNotebook接口](/document/product/851/95662)查询Notebook详情，PodName为接口返回值中Response.NotebookDetail.PodName- Service类型为INFER：  调用[DescribeModelService接口](/document/product/851/82287)查询单个服务详情，PodName为接口返回值中Response.Service.ServiceInfo.PodInfos- Service类型为BATCH：  调用[DescribeBatchTask接口](/document/product/851/80180)查询跑批任务详情，PodName为接口返回值中Response.BatchTaskDetail. PodList注：支持结尾通配符*
+        # @type PodName: String
+        # @param JobCategory: 描述任务的类型
+        # @type JobCategory: String
+        # @param InstanceType: 实例的类型
+        # @type InstanceType: String
+        # @param InstanceId: 查实例Id
+        # @type InstanceId: String
+        # @param Type: 日志类型： PLATFORM_INIT, PLATFORM_SANITY_CHECK, USER
+        # @type Type: String
 
+        attr_accessor :Service, :ServiceId, :StartTime, :EndTime, :Format, :PodName, :JobCategory, :InstanceType, :InstanceId, :Type
 
-        def initialize()
+        def initialize(service=nil, serviceid=nil, starttime=nil, endtime=nil, format=nil, podname=nil, jobcategory=nil, instancetype=nil, instanceid=nil, type=nil)
+          @Service = service
+          @ServiceId = serviceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Format = format
+          @PodName = podname
+          @JobCategory = jobcategory
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @Type = type
         end
 
         def deserialize(params)
+          @Service = params['Service']
+          @ServiceId = params['ServiceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Format = params['Format']
+          @PodName = params['PodName']
+          @JobCategory = params['JobCategory']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
         end
       end
 
       # CreateExport返回参数结构体
       class CreateExportResponse < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志下载任务的ID
+        # @type ExportId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ExportId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(exportid=nil, requestid=nil)
+          @ExportId = exportid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ExportId = params['ExportId']
           @RequestId = params['RequestId']
         end
       end
@@ -3000,17 +3045,30 @@ module TencentCloud
 
       # DescribeExport请求参数结构体
       class DescribeExportRequest < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志下载任务的ID
+        # @type ExportId: String
 
+        attr_accessor :ExportId
 
-        def initialize()
+        def initialize(exportid=nil)
+          @ExportId = exportid
         end
 
         def deserialize(params)
+          @ExportId = params['ExportId']
         end
       end
 
       # DescribeExport返回参数结构体
       class DescribeExportResponse < TencentCloud::Common::AbstractModel
+        # @param ExportId: 日志下载任务的ID
+        # @type ExportId: String
+        # @param FileName: 日志下载文件名
+        # @type FileName: String
+        # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
+        # @type CosPath: String
+        # @param CreateTime: 下载任务创建时间
+        # @type CreateTime: String
         # @param FileSize: 日志文件大小
         # @type FileSize: String
         # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
@@ -3018,15 +3076,23 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileSize, :Status, :RequestId
+        attr_accessor :ExportId, :FileName, :CosPath, :CreateTime, :FileSize, :Status, :RequestId
 
-        def initialize(filesize=nil, status=nil, requestid=nil)
+        def initialize(exportid=nil, filename=nil, cospath=nil, createtime=nil, filesize=nil, status=nil, requestid=nil)
+          @ExportId = exportid
+          @FileName = filename
+          @CosPath = cospath
+          @CreateTime = createtime
           @FileSize = filesize
           @Status = status
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ExportId = params['ExportId']
+          @FileName = params['FileName']
+          @CosPath = params['CosPath']
+          @CreateTime = params['CreateTime']
           @FileSize = params['FileSize']
           @Status = params['Status']
           @RequestId = params['RequestId']
@@ -6580,8 +6646,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 10
-        deprecate :Containers=, :none, 2025, 10
+        deprecate :Containers, :none, 2025, 11
+        deprecate :Containers=, :none, 2025, 11
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -7465,10 +7531,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 10
-        deprecate :ServiceLimit=, :none, 2025, 10
-        deprecate :ScheduledAction, :none, 2025, 10
-        deprecate :ScheduledAction=, :none, 2025, 10
+        deprecate :ServiceLimit, :none, 2025, 11
+        deprecate :ServiceLimit=, :none, 2025, 11
+        deprecate :ScheduledAction, :none, 2025, 11
+        deprecate :ScheduledAction=, :none, 2025, 11
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
           @ServiceGroupId = servicegroupid
@@ -8014,10 +8080,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 10
-        deprecate :PodList=, :none, 2025, 10
-        deprecate :Pods, :none, 2025, 10
-        deprecate :Pods=, :none, 2025, 10
+        deprecate :PodList, :none, 2025, 11
+        deprecate :PodList=, :none, 2025, 11
+        deprecate :Pods, :none, 2025, 11
+        deprecate :Pods=, :none, 2025, 11
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil)
           @Replicas = replicas
@@ -9287,8 +9353,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 10
-        deprecate :StatefulSetCondition=, :none, 2025, 10
+        deprecate :StatefulSetCondition, :none, 2025, 11
+        deprecate :StatefulSetCondition=, :none, 2025, 11
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

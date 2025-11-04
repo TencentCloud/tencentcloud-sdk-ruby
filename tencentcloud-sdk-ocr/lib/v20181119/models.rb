@@ -3944,8 +3944,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 10
-        deprecate :Angel=, :none, 2025, 10
+        deprecate :Angel, :none, 2025, 11
+        deprecate :Angel=, :none, 2025, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4051,8 +4051,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 10
-        deprecate :Angel=, :none, 2025, 10
+        deprecate :Angel, :none, 2025, 11
+        deprecate :Angel=, :none, 2025, 11
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4148,8 +4148,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 10
-        deprecate :Angel=, :none, 2025, 10
+        deprecate :Angel, :none, 2025, 11
+        deprecate :Angel=, :none, 2025, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4295,8 +4295,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2025, 10
-        deprecate :Angel=, :none, 2025, 10
+        deprecate :Angel, :none, 2025, 11
+        deprecate :Angel=, :none, 2025, 11
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4361,39 +4361,6 @@ module TencentCloud
           @Total = params['Total']
           @TaxRate = params['TaxRate']
           @Tax = params['Tax']
-        end
-      end
-
-      # 通用告警详情
-      class GeneralWarnInfo < TencentCloud::Common::AbstractModel
-        # @param IsWarn: 是否存在该告警
-        # @type IsWarn: Boolean
-        # @param Polygon: 告警位置四点坐标
-        # @type Polygon: Array
-        # @param SpecificMatter: 特殊判定，支持包括
-
-        # Finger：由手指导致的不完整，仅在不完整告警中返回
-        # @type SpecificMatter: String
-
-        attr_accessor :IsWarn, :Polygon, :SpecificMatter
-
-        def initialize(iswarn=nil, polygon=nil, specificmatter=nil)
-          @IsWarn = iswarn
-          @Polygon = polygon
-          @SpecificMatter = specificmatter
-        end
-
-        def deserialize(params)
-          @IsWarn = params['IsWarn']
-          unless params['Polygon'].nil?
-            @Polygon = []
-            params['Polygon'].each do |i|
-              polygon_tmp = Polygon.new
-              polygon_tmp.deserialize(i)
-              @Polygon << polygon_tmp
-            end
-          end
-          @SpecificMatter = params['SpecificMatter']
         end
       end
 
@@ -4530,8 +4497,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2025, 10
-        deprecate :DetectFake=, :none, 2025, 10
+        deprecate :DetectFake, :none, 2025, 11
+        deprecate :DetectFake=, :none, 2025, 11
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4603,10 +4570,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2025, 10
-        deprecate :FakeDetectResult=, :none, 2025, 10
-        deprecate :WarningCode, :none, 2025, 10
-        deprecate :WarningCode=, :none, 2025, 10
+        deprecate :FakeDetectResult, :none, 2025, 11
+        deprecate :FakeDetectResult=, :none, 2025, 11
+        deprecate :WarningCode, :none, 2025, 11
+        deprecate :WarningCode=, :none, 2025, 11
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -4716,16 +4683,9 @@ module TencentCloud
 
       # HmtResidentPermitOCR请求参数结构体
       class HmtResidentPermitOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经Base64编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。
-        # 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。
-        # 支持的图片大小：所下载图片经 Base64 编码后不超过 7M。图片下载时间不超过 3 秒。
-        # 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。
-        # 非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
         # @type ImageUrl: String
         # @param CardSide: FRONT：有照片的一面（人像面），
         # BACK：无照片的一面（国徽面），
@@ -5073,8 +5033,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2025, 10
-        deprecate :EnableDateVerify=, :none, 2025, 10
+        deprecate :EnableDateVerify, :none, 2025, 11
+        deprecate :EnableDateVerify=, :none, 2025, 11
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5327,62 +5287,6 @@ module TencentCloud
         def deserialize(params)
           @Width = params['Width']
           @Height = params['Height']
-        end
-      end
-
-      # InstitutionOCR请求参数结构体
-      class InstitutionOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # InstitutionOCR返回参数结构体
-      class InstitutionOCRResponse < TencentCloud::Common::AbstractModel
-        # @param RegId: 注册号
-        # @type RegId: String
-        # @param ValidDate: 有效期
-        # @type ValidDate: String
-        # @param Location: 住所
-        # @type Location: String
-        # @param Name: 名称
-        # @type Name: String
-        # @param LegalPerson: 法定代表人
-        # @type LegalPerson: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RegId, :ValidDate, :Location, :Name, :LegalPerson, :RequestId
-
-        def initialize(regid=nil, validdate=nil, location=nil, name=nil, legalperson=nil, requestid=nil)
-          @RegId = regid
-          @ValidDate = validdate
-          @Location = location
-          @Name = name
-          @LegalPerson = legalperson
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RegId = params['RegId']
-          @ValidDate = params['ValidDate']
-          @Location = params['Location']
-          @Name = params['Name']
-          @LegalPerson = params['LegalPerson']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -6048,10 +5952,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 10
-        deprecate :Warn=, :none, 2025, 10
-        deprecate :AdvancedInfo, :none, 2025, 10
-        deprecate :AdvancedInfo=, :none, 2025, 10
+        deprecate :Warn, :none, 2025, 11
+        deprecate :Warn=, :none, 2025, 11
+        deprecate :AdvancedInfo, :none, 2025, 11
+        deprecate :AdvancedInfo=, :none, 2025, 11
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -6160,10 +6064,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2025, 10
-        deprecate :Warn=, :none, 2025, 10
-        deprecate :AdvancedInfo, :none, 2025, 10
-        deprecate :AdvancedInfo=, :none, 2025, 10
+        deprecate :Warn, :none, 2025, 11
+        deprecate :Warn=, :none, 2025, 11
+        deprecate :AdvancedInfo, :none, 2025, 11
+        deprecate :AdvancedInfo=, :none, 2025, 11
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -7191,7 +7095,7 @@ module TencentCloud
       class OnlineTaxiItinerary < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
         # @type Title: String
-        # @param Content: 识别出的字段名称(关键字)
+        # @param Content: 识别出的字段名称
         # @type Content: Array
 
         attr_accessor :Title, :Content
@@ -7206,9 +7110,9 @@ module TencentCloud
           unless params['Content'].nil?
             @Content = []
             params['Content'].each do |i|
-              otherinvoiceitem_tmp = OtherInvoiceItem.new
-              otherinvoiceitem_tmp.deserialize(i)
-              @Content << otherinvoiceitem_tmp
+              onlinetaxiitineraryinfo_tmp = OnlineTaxiItineraryInfo.new
+              onlinetaxiitineraryinfo_tmp.deserialize(i)
+              @Content << onlinetaxiitineraryinfo_tmp
             end
           end
         end
@@ -7236,58 +7140,6 @@ module TencentCloud
           @Name = params['Name']
           @Value = params['Value']
           @Row = params['Row']
-        end
-      end
-
-      # OrgCodeCertOCR请求参数结构体
-      class OrgCodeCertOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # OrgCodeCertOCR返回参数结构体
-      class OrgCodeCertOCRResponse < TencentCloud::Common::AbstractModel
-        # @param OrgCode: 代码
-        # @type OrgCode: String
-        # @param Name: 机构名称
-        # @type Name: String
-        # @param Address: 地址
-        # @type Address: String
-        # @param ValidDate: 有效期
-        # @type ValidDate: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :OrgCode, :Name, :Address, :ValidDate, :RequestId
-
-        def initialize(orgcode=nil, name=nil, address=nil, validdate=nil, requestid=nil)
-          @OrgCode = orgcode
-          @Name = name
-          @Address = address
-          @ValidDate = validdate
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @OrgCode = params['OrgCode']
-          @Name = params['Name']
-          @Address = params['Address']
-          @ValidDate = params['ValidDate']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -7878,66 +7730,6 @@ module TencentCloud
             @ImageCoordinates = ImageCoordinates.new
             @ImageCoordinates.deserialize(params['ImageCoordinates'])
           end
-        end
-      end
-
-      # PropOwnerCertOCR请求参数结构体
-      class PropOwnerCertOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-
-        attr_accessor :ImageBase64, :ImageUrl
-
-        def initialize(imagebase64=nil, imageurl=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-        end
-      end
-
-      # PropOwnerCertOCR返回参数结构体
-      class PropOwnerCertOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Owner: 房地产权利人
-        # @type Owner: String
-        # @param Possession: 共有情况
-        # @type Possession: String
-        # @param RegisterTime: 登记时间
-        # @type RegisterTime: String
-        # @param Purpose: 规划用途
-        # @type Purpose: String
-        # @param Nature: 房屋性质
-        # @type Nature: String
-        # @param Location: 房地坐落
-        # @type Location: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Owner, :Possession, :RegisterTime, :Purpose, :Nature, :Location, :RequestId
-
-        def initialize(owner=nil, possession=nil, registertime=nil, purpose=nil, nature=nil, location=nil, requestid=nil)
-          @Owner = owner
-          @Possession = possession
-          @RegisterTime = registertime
-          @Purpose = purpose
-          @Nature = nature
-          @Location = location
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Owner = params['Owner']
-          @Possession = params['Possession']
-          @RegisterTime = params['RegisterTime']
-          @Purpose = params['Purpose']
-          @Nature = params['Nature']
-          @Location = params['Location']
-          @RequestId = params['RequestId']
         end
       end
 
@@ -8884,98 +8676,6 @@ module TencentCloud
         end
       end
 
-      # RecognizeForeignPermanentResidentIdCard请求参数结构体
-      class RecognizeForeignPermanentResidentIdCardRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。示例值：https://ocr-demo-1254418846.cos.ap-guangzhou.myqcloud.com/docume
-        # @type ImageUrl: String
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param EnablePdf: 是否开启PDF识别，默认值为false，开启后可同时支持图片和PDF的识别。
-        # @type EnablePdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。
-        # 示例值：1
-        # @type PdfPageNumber: Integer
-        # @param CropPortrait: 是否返回头像和位置坐标
-        # @type CropPortrait: Boolean
-
-        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber, :CropPortrait
-
-        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil, cropportrait=nil)
-          @ImageUrl = imageurl
-          @ImageBase64 = imagebase64
-          @EnablePdf = enablepdf
-          @PdfPageNumber = pdfpagenumber
-          @CropPortrait = cropportrait
-        end
-
-        def deserialize(params)
-          @ImageUrl = params['ImageUrl']
-          @ImageBase64 = params['ImageBase64']
-          @EnablePdf = params['EnablePdf']
-          @PdfPageNumber = params['PdfPageNumber']
-          @CropPortrait = params['CropPortrait']
-        end
-      end
-
-      # RecognizeForeignPermanentResidentIdCard返回参数结构体
-      class RecognizeForeignPermanentResidentIdCardResponse < TencentCloud::Common::AbstractModel
-        # @param CnName: 中文姓名。
-        # @type CnName: String
-        # @param EnName: 英文名。
-        # @type EnName: String
-        # @param Sex: 性别。
-        # @type Sex: String
-        # @param DateOfBirth: 出生日期。规范格式为 XXXX年XX月XX日。
-        # @type DateOfBirth: String
-        # @param Nationality: 国籍。
-        # @type Nationality: String
-        # @param PeriodOfValidity: 有效期限。
-        # @type PeriodOfValidity: String
-        # @param No: 证件号码。
-        # @type No: String
-        # @param PreviousNumber: 曾持证件号码。
-        # @type PreviousNumber: String
-        # @param IssuedAuthority: 签发机关。
-        # @type IssuedAuthority: String
-        # @param PortraitImageInfo: 头像和坐标信息。
-        # @type PortraitImageInfo: :class:`Tencentcloud::Ocr.v20181119.models.PortraitImageInfo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :CnName, :EnName, :Sex, :DateOfBirth, :Nationality, :PeriodOfValidity, :No, :PreviousNumber, :IssuedAuthority, :PortraitImageInfo, :RequestId
-
-        def initialize(cnname=nil, enname=nil, sex=nil, dateofbirth=nil, nationality=nil, periodofvalidity=nil, no=nil, previousnumber=nil, issuedauthority=nil, portraitimageinfo=nil, requestid=nil)
-          @CnName = cnname
-          @EnName = enname
-          @Sex = sex
-          @DateOfBirth = dateofbirth
-          @Nationality = nationality
-          @PeriodOfValidity = periodofvalidity
-          @No = no
-          @PreviousNumber = previousnumber
-          @IssuedAuthority = issuedauthority
-          @PortraitImageInfo = portraitimageinfo
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @CnName = params['CnName']
-          @EnName = params['EnName']
-          @Sex = params['Sex']
-          @DateOfBirth = params['DateOfBirth']
-          @Nationality = params['Nationality']
-          @PeriodOfValidity = params['PeriodOfValidity']
-          @No = params['No']
-          @PreviousNumber = params['PreviousNumber']
-          @IssuedAuthority = params['IssuedAuthority']
-          unless params['PortraitImageInfo'].nil?
-            @PortraitImageInfo = PortraitImageInfo.new
-            @PortraitImageInfo.deserialize(params['PortraitImageInfo'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RecognizeFormulaOCR请求参数结构体
       class RecognizeFormulaOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
@@ -9286,91 +8986,6 @@ module TencentCloud
             end
           end
           @TotalPDFCount = params['TotalPDFCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # RecognizeGeneralTextImageWarn请求参数结构体
-      class RecognizeGeneralTextImageWarnRequest < TencentCloud::Common::AbstractModel
-        # @param ImageUrl: 图片的 Url 地址。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经 Base64 编码后不超过 10M。图片下载时间不超过 3 秒。支持的图片像素：需介于20-10000px之间。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param ImageBase64: 图片的 Base64 值。支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。支持的图片大小：所下载图片经Base64编码后不超过 10M。支持的图片像素：需介于20-10000px之间。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param EnablePdf: 是否开启PDF识别，默认值为true，开启后可同时支持图片和PDF的识别。 示例值：false
-        # @type EnablePdf: Boolean
-        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，传入时仅支持PDF单页识别，当上传文件为PDF且EnablePdf参数值为true时有效，默认值为1。 示例值：1
-        # @type PdfPageNumber: Integer
-        # @param Type: 支持的模板类型
-        # - General 通用告警（支持所有类型告警）
-        # - LicensePlate 车牌告警（支持翻拍告警）
-        # @type Type: String
-
-        attr_accessor :ImageUrl, :ImageBase64, :EnablePdf, :PdfPageNumber, :Type
-
-        def initialize(imageurl=nil, imagebase64=nil, enablepdf=nil, pdfpagenumber=nil, type=nil)
-          @ImageUrl = imageurl
-          @ImageBase64 = imagebase64
-          @EnablePdf = enablepdf
-          @PdfPageNumber = pdfpagenumber
-          @Type = type
-        end
-
-        def deserialize(params)
-          @ImageUrl = params['ImageUrl']
-          @ImageBase64 = params['ImageBase64']
-          @EnablePdf = params['EnablePdf']
-          @PdfPageNumber = params['PdfPageNumber']
-          @Type = params['Type']
-        end
-      end
-
-      # RecognizeGeneralTextImageWarn返回参数结构体
-      class RecognizeGeneralTextImageWarnResponse < TencentCloud::Common::AbstractModel
-        # @param Copy: 复印告警信息
-        # @type Copy: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
-        # @param Reprint: 翻拍告警信息
-        # @type Reprint: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
-        # @param Blur: 模糊告警信息
-        # @type Blur: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
-        # @param Reflection: 反光告警信息
-        # @type Reflection: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
-        # @param BorderIncomplete: 边框不完整告警信息
-        # @type BorderIncomplete: :class:`Tencentcloud::Ocr.v20181119.models.GeneralWarnInfo`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Copy, :Reprint, :Blur, :Reflection, :BorderIncomplete, :RequestId
-
-        def initialize(copy=nil, reprint=nil, blur=nil, reflection=nil, borderincomplete=nil, requestid=nil)
-          @Copy = copy
-          @Reprint = reprint
-          @Blur = blur
-          @Reflection = reflection
-          @BorderIncomplete = borderincomplete
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Copy'].nil?
-            @Copy = GeneralWarnInfo.new
-            @Copy.deserialize(params['Copy'])
-          end
-          unless params['Reprint'].nil?
-            @Reprint = GeneralWarnInfo.new
-            @Reprint.deserialize(params['Reprint'])
-          end
-          unless params['Blur'].nil?
-            @Blur = GeneralWarnInfo.new
-            @Blur.deserialize(params['Blur'])
-          end
-          unless params['Reflection'].nil?
-            @Reflection = GeneralWarnInfo.new
-            @Reflection.deserialize(params['Reflection'])
-          end
-          unless params['BorderIncomplete'].nil?
-            @BorderIncomplete = GeneralWarnInfo.new
-            @BorderIncomplete.deserialize(params['BorderIncomplete'])
-          end
           @RequestId = params['RequestId']
         end
       end
@@ -9912,8 +9527,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2025, 10
-        deprecate :AdvancedInfo=, :none, 2025, 10
+        deprecate :AdvancedInfo, :none, 2025, 11
+        deprecate :AdvancedInfo=, :none, 2025, 11
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -11504,8 +11119,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2025, 10
-        deprecate :PdfPageNumber=, :none, 2025, 10
+        deprecate :PdfPageNumber, :none, 2025, 11
+        deprecate :PdfPageNumber=, :none, 2025, 11
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil)
           @ImageBase64 = imagebase64

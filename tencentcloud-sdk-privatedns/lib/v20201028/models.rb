@@ -404,7 +404,7 @@ module TencentCloud
 
       # CreatePrivateDNSAccount请求参数结构体
       class CreatePrivateDNSAccountRequest < TencentCloud::Common::AbstractModel
-        # @param Account: 私有域解析账号
+        # @param Account: 私有域解析账号，该账号不能与主账号一致且需要子账号授权
         # @type Account: :class:`Tencentcloud::Privatedns.v20201028.models.PrivateDNSAccount`
 
         attr_accessor :Account

@@ -755,6 +755,67 @@ module TencentCloud
         end
       end
 
+      # QueryTextToImageJob请求参数结构体
+      class QueryTextToImageJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # QueryTextToImageJob返回参数结构体
+      class QueryTextToImageJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobStatusCode: 当前任务状态码：
+        # 1：等待中、2：运行中、4：处理失败、5：处理完成。
+        # @type JobStatusCode: String
+        # @param JobStatusMsg: 当前任务状态：排队中、处理中、处理失败或者处理完成。
+        # @type JobStatusMsg: String
+        # @param JobErrorCode: 任务处理失败错误码。
+        # @type JobErrorCode: String
+        # @param JobErrorMsg: 任务处理失败错误信息。
+        # @type JobErrorMsg: String
+        # @param ResultImage: 生成图 URL 列表，有效期1小时，请及时保存。
+        # @type ResultImage: Array
+        # @param ResultDetails: 结果 detail 数组，Success 代表成功。
+        # @type ResultDetails: Array
+        # @param RevisedPrompt: 对应 SubmitTextToImageProJob 接口中 Revise 参数。开启扩写时，返回扩写后的 prompt 文本。 如果关闭扩写，将直接返回原始输入的 prompt。
+        # @type RevisedPrompt: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobStatusCode, :JobStatusMsg, :JobErrorCode, :JobErrorMsg, :ResultImage, :ResultDetails, :RevisedPrompt, :RequestId
+
+        def initialize(jobstatuscode=nil, jobstatusmsg=nil, joberrorcode=nil, joberrormsg=nil, resultimage=nil, resultdetails=nil, revisedprompt=nil, requestid=nil)
+          @JobStatusCode = jobstatuscode
+          @JobStatusMsg = jobstatusmsg
+          @JobErrorCode = joberrorcode
+          @JobErrorMsg = joberrormsg
+          @ResultImage = resultimage
+          @ResultDetails = resultdetails
+          @RevisedPrompt = revisedprompt
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobStatusCode = params['JobStatusCode']
+          @JobStatusMsg = params['JobStatusMsg']
+          @JobErrorCode = params['JobErrorCode']
+          @JobErrorMsg = params['JobErrorMsg']
+          @ResultImage = params['ResultImage']
+          @ResultDetails = params['ResultDetails']
+          @RevisedPrompt = params['RevisedPrompt']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryTextToImageProJob请求参数结构体
       class QueryTextToImageProJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务 ID。
@@ -1361,6 +1422,78 @@ module TencentCloud
       # SubmitMemeJob返回参数结构体
       class SubmitMemeJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务id
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitTextToImageJob请求参数结构体
+      class SubmitTextToImageJobRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 文本描述。
+        # 算法将根据输入的文本智能生成与之相关的图像。
+        # 不能为空，推荐使用中文。最多可传1024个 utf-8 字符。
+        # @type Prompt: String
+        # @param Resolution: 生成图分辨率，仅支持以下分辨率：
+        # 640:1408,704:1344,768:1280,832:1216,896:1152,960:1088,1024:1024,1088:960,1152:896,1216:832,1280:768,1344:704,1408:640
+        # @type Resolution: String
+        # @param Seed: 随机种子，默认随机。
+        # 不传：随机种子生成。
+        # 正数：固定种子生成。
+        # 扩写开启时固定种子不生效，将保持随机。
+        # @type Seed: Integer
+        # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
+        # 1：添加。
+        # 0：不添加。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+        # @param Revise: 是否开启prompt改写，默认开启，改写预计会增加20s左右耗时。
+
+        # 如果关闭改写，需要调用方自己接改写，否则对生图效果有较大影响，改写方法可以参考：[改写](https://github.com/Tencent-Hunyuan/HunyuanImage-3.0/tree/main/PE)
+        # @type Revise: Integer
+
+        attr_accessor :Prompt, :Resolution, :Seed, :LogoAdd, :LogoParam, :Revise
+
+        def initialize(prompt=nil, resolution=nil, seed=nil, logoadd=nil, logoparam=nil, revise=nil)
+          @Prompt = prompt
+          @Resolution = resolution
+          @Seed = seed
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+          @Revise = revise
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @Resolution = params['Resolution']
+          @Seed = params['Seed']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+          @Revise = params['Revise']
+        end
+      end
+
+      # SubmitTextToImageJob返回参数结构体
+      class SubmitTextToImageJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

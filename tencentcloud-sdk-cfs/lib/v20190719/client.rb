@@ -533,31 +533,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DeleteMountTarget）用于删除挂载点
-        # 说明：2022年6月1日之后创建的CFS文件系统删除时无需单独调用删除挂载点操作，此API仅适用老版本的CFS实例。
-
-        # @param request: Request instance for DeleteMountTarget.
-        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteMountTargetRequest`
-        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteMountTargetResponse`
-        def DeleteMountTarget(request)
-          body = send_request('DeleteMountTarget', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteMountTargetResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 指定条件删除文件系统配额（仅部分Turbo实例能使用，若需要调用请提交工单与我们联系）
 
         # @param request: Request instance for DeleteUserQuota.

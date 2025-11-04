@@ -2266,8 +2266,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2025, 10
-        deprecate :IgnoreCacheControl=, :none, 2025, 10
+        deprecate :IgnoreCacheControl, :none, 2025, 11
+        deprecate :IgnoreCacheControl=, :none, 2025, 11
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -4835,8 +4835,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 10
-        deprecate :EncodeUrl=, :none, 2025, 10
+        deprecate :EncodeUrl, :none, 2025, 11
+        deprecate :EncodeUrl=, :none, 2025, 11
 
         def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -4918,8 +4918,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2025, 10
-        deprecate :EncodeUrl=, :none, 2025, 10
+        deprecate :EncodeUrl, :none, 2025, 11
+        deprecate :EncodeUrl=, :none, 2025, 11
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -4985,6 +4985,7 @@ module TencentCloud
         # <li>cls: 推送到腾讯云 CLS；</li>
         # <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li>
         # <li>s3：推送到 AWS S3 兼容存储桶地址；</li>
+        # <li>log_analysis：推送到 EdgeOne 日志分析，该任务类型仅支持“站点加速日志”这一数据投递类型。</li>
         # @type TaskType: String
         # @param EntityList: 实时日志投递任务对应的实体列表。取值示例如下：
         # <li>七层域名：domain.example.com</li>
@@ -5017,7 +5018,7 @@ module TencentCloud
         # @type Sample: Integer
         # @param LogFormat: 日志投递的输出格式。不填表示为默认格式，默认格式逻辑如下：
         # <li>当 TaskType 取值为 custom_endpoint 时，默认格式为多个 JSON 对象组成的数组，每个 JSON 对象为一条日志；</li>
-        # <li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines；</li>特别地，当 TaskType 取值为 cls 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。
+        # <li>当 TaskType 取值为 s3 时，默认格式为 JSON Lines；</li>特别地，当 TaskType 取值为 cls 或 log_analysis 时，LogFormat.FormatType 的值只能为 json，且 LogFormat 中其他参数将被忽略，建议不传 LogFormat。
         # @type LogFormat: :class:`Tencentcloud::Teo.v20220901.models.LogFormat`
         # @param CLS: CLS 的配置信息。当 TaskType 取值为 cls 时，该参数必填。
         # @type CLS: :class:`Tencentcloud::Teo.v20220901.models.CLSTopic`
@@ -5528,10 +5529,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2025, 10
-        deprecate :AllowDuplicates=, :none, 2025, 10
-        deprecate :JumpStart, :none, 2025, 10
-        deprecate :JumpStart=, :none, 2025, 10
+        deprecate :AllowDuplicates, :none, 2025, 11
+        deprecate :AllowDuplicates=, :none, 2025, 11
+        deprecate :JumpStart, :none, 2025, 11
+        deprecate :JumpStart=, :none, 2025, 11
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -10099,7 +10100,7 @@ module TencentCloud
         # <li>task-id：按照实时日志投递任务 ID进行过滤。不支持模糊查询。</li>
         # <li>task-name：按照实时日志投递任务名称进行过滤。支持模糊查询，使用模糊查询时，仅支持填写一个实时日志投递任务名称。</li>
         # <li>entity-list：按照实时日志投递任务对应的实体进行过滤。不支持模糊查询。示例值：domain.example.com 或者 sid-2s69eb5wcms7。</li>
-        # <li>task-type：按照实时日志投递任务类型进行过滤。不支持模糊查询。可选项如下：<br>   cls: 推送到腾讯云 CLS；<br>   custom_endpoint：推送到自定义 HTTP(S) 地址；<br>   s3：推送到 AWS S3 兼容存储桶地址。</li>
+        # <li>task-type：按照实时日志投递任务类型进行过滤。不支持模糊查询。可选项如下：<br>   cls: 推送到腾讯云 CLS；<br>   custom_endpoint：推送到自定义 HTTP(S) 地址；<br>   s3：推送到 AWS S3 兼容存储桶地址；<br>   log_analysis：推送到 EdgeOne 日志分析。</li>
         # @type Filters: Array
 
         attr_accessor :ZoneId, :Offset, :Limit, :Filters
@@ -16000,8 +16001,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2025, 10
-        deprecate :ApplyType=, :none, 2025, 10
+        deprecate :ApplyType, :none, 2025, 11
+        deprecate :ApplyType=, :none, 2025, 11
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -18245,12 +18246,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 10
-        deprecate :VodeoSubAppId=, :none, 2025, 10
-        deprecate :VodeoDistributionRange, :none, 2025, 10
-        deprecate :VodeoDistributionRange=, :none, 2025, 10
-        deprecate :VodeoBucketId, :none, 2025, 10
-        deprecate :VodeoBucketId=, :none, 2025, 10
+        deprecate :VodeoSubAppId, :none, 2025, 11
+        deprecate :VodeoSubAppId=, :none, 2025, 11
+        deprecate :VodeoDistributionRange, :none, 2025, 11
+        deprecate :VodeoDistributionRange=, :none, 2025, 11
+        deprecate :VodeoBucketId, :none, 2025, 11
+        deprecate :VodeoBucketId=, :none, 2025, 11
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -18555,12 +18556,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2025, 10
-        deprecate :VodeoSubAppId=, :none, 2025, 10
-        deprecate :VodeoDistributionRange, :none, 2025, 10
-        deprecate :VodeoDistributionRange=, :none, 2025, 10
-        deprecate :VodeoBucketId, :none, 2025, 10
-        deprecate :VodeoBucketId=, :none, 2025, 10
+        deprecate :VodeoSubAppId, :none, 2025, 11
+        deprecate :VodeoSubAppId=, :none, 2025, 11
+        deprecate :VodeoDistributionRange, :none, 2025, 11
+        deprecate :VodeoDistributionRange=, :none, 2025, 11
+        deprecate :VodeoBucketId, :none, 2025, 11
+        deprecate :VodeoBucketId=, :none, 2025, 11
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -19008,7 +19009,7 @@ module TencentCloud
         # <li>on：开启限制；</li>
         # <li>off：关闭限制。</li>
         # @type Switch: String
-        # @param MaxSize: 最大限制，取值在1MB和500MB之间。单位字节。
+        # @param MaxSize: 最大限制，该字段仅在 Switch 为 on 时生效，取值在 1MB 和 800MB 之间，单位字节。
         # @type MaxSize: Integer
 
         attr_accessor :Switch, :MaxSize
@@ -19028,7 +19029,7 @@ module TencentCloud
       class PostMaxSizeParameters < TencentCloud::Common::AbstractModel
         # @param Switch: 是否开启 POST 请求上传文件限制，单位为 Byte，平台默认为限制为 32 * 2<sup>20</sup> Byte，取值有：<li>on：开启限制；</li><li>off：关闭限制。</li>
         # @type Switch: String
-        # @param MaxSize: POST 请求上传文件流式传输最大限制，单位为 Byte，取值：1 * 2<sup>20</sup> Byte～500 * 2<sup>20</sup> Byte。
+        # @param MaxSize: POST 请求上传文件流式传输最大限制，该字段仅在 Switch 为 on 时生效，取值在 1MB 和 800MB 之间，单位字节。
         # @type MaxSize: Integer
 
         attr_accessor :Switch, :MaxSize
@@ -19584,7 +19585,7 @@ module TencentCloud
         # @type TaskName: String
         # @param DeliveryStatus: 实时日志投递任务的状态，取值有： <li>enabled: 已启用；</li> <li>disabled: 已停用；</li><li>deleted: 异常删除状态，请检查目的地腾讯云 CLS 日志集/日志主题是否已被删除。</li>
         # @type DeliveryStatus: String
-        # @param TaskType: 实时日志投递任务类型，取值有： <li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 AWS S3 兼容存储桶地址。</li>
+        # @param TaskType: 实时日志投递任务类型，取值有： <li>cls: 推送到腾讯云 CLS；</li> <li>custom_endpoint：推送到自定义 HTTP(S) 地址；</li> <li>s3：推送到 AWS S3 兼容存储桶地址；</li><li>log_analysis：推送到 EdgeOne 日志分析。</li>
         # @type TaskType: String
         # @param EntityList: 实时日志投递任务对应的实体（七层域名或者四层代理实例）列表。取值示例如下： <li>七层域名：domain.example.com；</li> <li>四层代理实例：sid-2s69eb5wcms7。</li>
         # @type EntityList: Array
@@ -20249,8 +20250,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2025, 10
-        deprecate :IgnoreNameCase=, :none, 2025, 10
+        deprecate :IgnoreNameCase, :none, 2025, 11
+        deprecate :IgnoreNameCase=, :none, 2025, 11
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator

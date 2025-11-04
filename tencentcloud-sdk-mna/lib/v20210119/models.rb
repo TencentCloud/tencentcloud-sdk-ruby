@@ -2369,7 +2369,7 @@ module TencentCloud
         # @type DeviceList: Array
         # @param AutoRenewFlag: 是否自动续费，该选项和流量截断冲突，只能开启一个
         # @type AutoRenewFlag: Boolean
-        # @param PackageRegion: 区域标识，0：国内，1：国外
+        # @param PackageRegion: 区域标识，0：中国境内，1：中国境外
         # @type PackageRegion: Integer
         # @param FlowTruncFlag: 是否开启流量截断功能，该选项和自动续费冲突
         # @type FlowTruncFlag: Boolean

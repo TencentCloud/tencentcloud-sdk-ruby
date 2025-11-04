@@ -91,9 +91,9 @@ module TencentCloud
 
       # AddExistedInstances请求参数结构体
       class AddExistedInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID（请登录 [TKE 控制台](https://console.cloud.tencent.com/tke2) 获取集群 ID ）
         # @type ClusterId: String
-        # @param InstanceIds: 实例列表，不支持竞价实例
+        # @param InstanceIds: 实例列表，不支持竞价实例（请登录 [CVM控制台](https://console.cloud.tencent.com/cvm) 获取待添加节点ID ）
         # @type InstanceIds: Array
         # @param InstanceAdvancedSettings: 实例额外需要设置参数信息(默认值)
         # @type InstanceAdvancedSettings: :class:`Tencentcloud::Tke.v20180525.models.InstanceAdvancedSettings`
@@ -206,7 +206,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池id
         # @type NodePoolId: String
-        # @param InstanceIds: 节点id
+        # @param InstanceIds: 节点id，获取参考 https://cloud.tencent.com/document/product/213/15728
         # @type InstanceIds: Array
 
         attr_accessor :ClusterId, :NodePoolId, :InstanceIds
@@ -781,15 +781,15 @@ module TencentCloud
         # @type ContainerRuntime: String
         # @param CreatedTime: 创建时间
         # @type CreatedTime: String
-        # @param DeletionProtection: 删除保护开关
+        # @param DeletionProtection: 集群删除保护开关，打开：true，关闭：false
         # @type DeletionProtection: Boolean
-        # @param EnableExternalNode: 集群是否开启第三方节点支持
+        # @param EnableExternalNode: 集群是否开启第三方节点支持，开启：true，关闭：false
         # @type EnableExternalNode: Boolean
         # @param ClusterLevel: 集群等级，针对托管集群生效
         # @type ClusterLevel: String
-        # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效
+        # @param AutoUpgradeClusterLevel: 自动变配集群等级，针对托管集群生效。开启：true，关闭：false
         # @type AutoUpgradeClusterLevel: Boolean
-        # @param QGPUShareEnable: 是否开启QGPU共享
+        # @param QGPUShareEnable: 是否开启QGPU共享，开启：true，关闭：false
         # @type QGPUShareEnable: Boolean
         # @param RuntimeVersion: 运行时版本
         # @type RuntimeVersion: String
@@ -1082,10 +1082,10 @@ module TencentCloud
         # @param MaxTotalUnreadyPercentage: 未就绪节点的最大百分比，此后CA会停止操作
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxTotalUnreadyPercentage: Integer
-        # @param ScaleDownUnreadyTime: 表示未准备就绪的节点在有资格进行缩减之前应该停留多长时间
+        # @param ScaleDownUnreadyTime: 表示未准备就绪的节点在有资格进行缩减之前应该停留多少分钟
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScaleDownUnreadyTime: Integer
-        # @param UnregisteredNodeRemovalTime: CA删除未在Kubernetes中注册的节点之前等待的时间
+        # @param UnregisteredNodeRemovalTime: CA删除未在Kubernetes中注册的节点之前等待的分钟数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UnregisteredNodeRemovalTime: Integer
 
@@ -1847,9 +1847,9 @@ module TencentCloud
       class CreateBackupStorageLocationRequest < TencentCloud::Common::AbstractModel
         # @param StorageRegion: 存储仓库所属地域，比如COS广州(ap-guangzhou)
         # @type StorageRegion: String
-        # @param Bucket: 对象存储桶名称，如果是COS必须是tke-backup前缀开头
+        # @param Bucket: 对象存储桶名称，如果是COS必须是tke-backup前缀开头，字符长度是19
         # @type Bucket: String
-        # @param Name: 备份仓库名称
+        # @param Name: 备份仓库名称，字符长度为63
         # @type Name: String
         # @param Provider: 存储服务提供方，默认腾讯云
         # @type Provider: String
@@ -1939,13 +1939,13 @@ module TencentCloud
       class CreateClusterEndpointRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param SubnetId: 集群端口所在的子网ID  (仅在开启非外网访问时需要填，必须为集群所在VPC内的子网)
+        # @param SubnetId: 集群端口所在的子网ID  (仅在开启非外网访问时需要填，必须为集群所在VPC内的子网)。获取方式：https://cloud.tencent.com/document/product/215/15784
         # @type SubnetId: String
         # @param IsExtranet: 是否为外网访问（TRUE 外网访问 FALSE 内网访问，默认值： FALSE）
         # @type IsExtranet: Boolean
         # @param Domain: 设置域名
         # @type Domain: String
-        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递（开启外网访问且不使用已有clb时必传）
+        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递（开启外网访问且不使用已有clb时必传）。获取方式：https://cloud.tencent.com/document/api/215/15808
         # @type SecurityGroup: String
         # @param ExtensiveParameters: 创建lb参数，只有外网访问需要设置，是一个json格式化后的字符串：{"InternetAccessible":{"InternetChargeType":"TRAFFIC_POSTPAID_BY_HOUR","InternetMaxBandwidthOut":200},"VipIsp":"","BandwidthPackageId":""}。
         # 各个参数意义：
@@ -5170,9 +5170,9 @@ module TencentCloud
 
       # DescribeAvailableClusterVersion请求参数结构体
       class DescribeAvailableClusterVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群 Id。若只查询某个集群可升级的版本，需填写此项。
+        # @param ClusterId: 集群 Id。若只查询某个集群可升级的版本，需填写此项，与ClusterIds 参数二选一。
         # @type ClusterId: String
-        # @param ClusterIds: 集群 Id 列表。若查询多个集群可升级的版本，需填写此项。
+        # @param ClusterIds: 集群 Id 列表。若查询多个集群可升级的版本，需填写此项，与ClusterId 参数二选一。
         # @type ClusterIds: Array
 
         attr_accessor :ClusterId, :ClusterIds
@@ -5637,7 +5637,7 @@ module TencentCloud
 
       # DescribeClusterEndpointStatus返回参数结构体
       class DescribeClusterEndpointStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启）
+        # @param Status: 查询集群访问端口状态（Created 开启成功，Creating 开启中，NotFound 未开启，CreateFailed 开启失败）
         # @type Status: String
         # @param ErrorMsg: 开启访问入口失败信息
         # @type ErrorMsg: String
@@ -6805,7 +6805,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: · "Name":"ClusterName","Values": ["test"] 按照【集群名】进行过滤。 类型：String 必选：否 · "Name":"ClusterType","Values": ["MANAGED_CLUSTER"] 按照【集群类型】进行过滤。 类型：String 必选：否 · "Name":"ClusterStatus","Values": ["Running"] 按照【集群状态】进行过滤。 类型：String 必选：否 · "Name":"vpc-id","Values": ["vpc-2wds9k9p"] 按照【VPC】进行过滤。 类型：String 必选：否 · "Name":"tag-key","Values": ["testKey"] 按照【标签键】进行过滤。 类型：String 必选：否 · "Name":"tag-value","Values": ["testValue"] 按照【标签值】进行过滤。 类型：String 必选：否 · "Name":"Tags","Values": ["product:tke"] 按照【标签键值对】进行过滤。 类型：String 必选：否
         # @type Filters: Array
-        # @param ClusterType: 集群类型，例如：MANAGED_CLUSTER
+        # @param ClusterType: 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
         # @type ClusterType: String
 
         attr_accessor :ClusterIds, :Offset, :Limit, :Filters, :ClusterType
@@ -10018,11 +10018,11 @@ module TencentCloud
       class DescribeResourceUsageResponse < TencentCloud::Common::AbstractModel
         # @param CRDUsage: CRD使用量
         # @type CRDUsage: :class:`Tencentcloud::Tke.v20180525.models.ResourceUsage`
-        # @param PodUsage: Pod使用量
+        # @param PodUsage: Pod使用量，单位：个数
         # @type PodUsage: Integer
-        # @param RSUsage: ReplicaSet使用量
+        # @param RSUsage: ReplicaSet使用量，单位：个数
         # @type RSUsage: Integer
-        # @param ConfigMapUsage: ConfigMap使用量
+        # @param ConfigMapUsage: ConfigMap使用量，单位：个数
         # @type ConfigMapUsage: Integer
         # @param OtherUsage: 其他资源使用量
         # @type OtherUsage: :class:`Tencentcloud::Tke.v20180525.models.ResourceUsage`
@@ -12106,7 +12106,7 @@ module TencentCloud
 
       # GetClusterLevelPrice请求参数结构体
       class GetClusterLevelPriceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterLevel: 集群规格，托管集群询价
+        # @param ClusterLevel: 集群规格，托管集群询价，集群等级：L20、L50、L100、L200、L500、L1000、L3000、L5000
         # @type ClusterLevel: String
 
         attr_accessor :ClusterLevel
@@ -13270,12 +13270,18 @@ module TencentCloud
         # @type Name: String
         # @param Statistics: 诊断结果统计
         # @type Statistics: Array
+        # @param StartTime: 诊断数据开始时间
+        # @type StartTime: String
+        # @param EndTime: 诊断数据结束时间
+        # @type EndTime: String
 
-        attr_accessor :Name, :Statistics
+        attr_accessor :Name, :Statistics, :StartTime, :EndTime
 
-        def initialize(name=nil, statistics=nil)
+        def initialize(name=nil, statistics=nil, starttime=nil, endtime=nil)
           @Name = name
           @Statistics = statistics
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -13288,6 +13294,8 @@ module TencentCloud
               @Statistics << kubejarvisstatestatistic_tmp
             end
           end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -13366,7 +13374,12 @@ module TencentCloud
 
       # 集群巡检统计结果
       class KubeJarvisStateStatistic < TencentCloud::Common::AbstractModel
-        # @param HealthyLevel: 诊断结果的健康水平
+        # @param HealthyLevel: 诊断结果的健康水平，健康水平取值：
+        # serious：高风险
+        # risk：中风险
+        # warn：低风险
+        # good：健康
+        # failed：诊断流程异常
         # @type HealthyLevel: String
         # @param Count: 诊断结果的统计
         # @type Count: Integer
@@ -13407,6 +13420,9 @@ module TencentCloud
       # ListClusterInspectionResultsItems请求参数结构体
       class ListClusterInspectionResultsItemsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 目标集群ID
+
+        # 取值可参考：
+        # [查询TKE集群列表](https://cloud.tencent.com/document/api/457/31862)
         # @type ClusterId: String
         # @param StartTime: 查询历史结果的开始时间，Unix时间戳
         # @type StartTime: String
@@ -13687,11 +13703,11 @@ module TencentCloud
         # @type ClusterId: String
         # @param ProjectId: 集群所属项目
         # @type ProjectId: Integer
-        # @param ClusterName: 集群名称
+        # @param ClusterName: 集群名称,字符长度50
         # @type ClusterName: String
         # @param ClusterDesc: 集群描述
         # @type ClusterDesc: String
-        # @param ClusterLevel: 集群等级
+        # @param ClusterLevel: 集群等级，等级类型：L20、L50、L100、L200、L500、L1000、L3000、L5000
         # @type ClusterLevel: String
         # @param AutoUpgradeClusterLevel: 自动变配集群等级
         # @type AutoUpgradeClusterLevel: :class:`Tencentcloud::Tke.v20180525.models.AutoUpgradeClusterLevel`
@@ -13909,7 +13925,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池ID
         # @type NodePoolId: String
-        # @param Name: 名称
+        # @param Name: 名称，最长63个字符，只能包含小写字母、数字及分隔符“_”，且必须以小写字母开头，数字或小写字母结尾
         # @type Name: String
         # @param MaxNodesNum: 最大节点数
         # @type MaxNodesNum: Integer
@@ -14049,11 +14065,11 @@ module TencentCloud
       class ModifyClusterRuntimeConfigRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID，必填
         # @type ClusterId: String
-        # @param DstK8SVersion: 当需要修改运行时版本是根据另外的K8S版本获取时，需填写。例如升级校验有冲突后修改场景
+        # @param DstK8SVersion: 运行时版本需依据指定的Kubernetes版本进行设置。典型情况为，在升级过程中因版本冲突而需要调整运行时版本时。
         # @type DstK8SVersion: String
-        # @param ClusterRuntimeConfig: 需要修改集群运行时时填写
+        # @param ClusterRuntimeConfig: 需要修改集群运行时填写
         # @type ClusterRuntimeConfig: :class:`Tencentcloud::Tke.v20180525.models.RuntimeConfig`
-        # @param NodePoolRuntimeConfig: 需要修改节点池运行时时，填需要修改的部分
+        # @param NodePoolRuntimeConfig: 需要修改节点池运行时，填需要修改的部分
         # @type NodePoolRuntimeConfig: Array
 
         attr_accessor :ClusterId, :DstK8SVersion, :ClusterRuntimeConfig, :NodePoolRuntimeConfig
@@ -14103,7 +14119,8 @@ module TencentCloud
       class ModifyClusterTagsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Tags: 集群标签
+        # @param Tags: 集群标签:
+        # [{"TagKey":"env","TagValue":"dev"}]}]
         # @type Tags: Array
         # @param SyncSubresource: 是否同步集群内子资源标签
         # @type SyncSubresource: Boolean
@@ -14318,7 +14335,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池id
         # @type NodePoolId: String
-        # @param InstanceTypes: 机型列表，主实例机型不支持修改
+        # @param InstanceTypes: 机型列表，参考 https://cloud.tencent.com/document/product/213/11518，主实例机型不支持修改
         # @type InstanceTypes: Array
 
         attr_accessor :ClusterId, :NodePoolId, :InstanceTypes
@@ -15062,11 +15079,11 @@ module TencentCloud
       class NodePoolRuntime < TencentCloud::Common::AbstractModel
         # @param NodePoolId: 节点池ID
         # @type NodePoolId: String
-        # @param RuntimeType: 运行时类型
+        # @param RuntimeType: 运行时类型，参考：https://cloud.tencent.com/document/api/457/105241
         # @type RuntimeType: String
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: 运行时版本，参考：https://cloud.tencent.com/document/api/457/105241
         # @type RuntimeVersion: String
-        # @param NodePoolName: 节点池名称
+        # @param NodePoolName: 节点池名称，限制 255 字符
         # @type NodePoolName: String
 
         attr_accessor :NodePoolId, :RuntimeType, :RuntimeVersion, :NodePoolName
@@ -17613,9 +17630,9 @@ module TencentCloud
 
       # 集群资源使用量
       class ResourceUsage < TencentCloud::Common::AbstractModel
-        # @param Name: 资源类型
+        # @param Name: 资源类型，参考k8s 官方资源
         # @type Name: String
-        # @param Usage: 资源使用量
+        # @param Usage: 资源使用量，单位：个数
         # @type Usage: Integer
         # @param Details: 资源使用详情
         # @type Details: Array
@@ -17943,9 +17960,9 @@ module TencentCloud
 
       # 运行时配置
       class RuntimeConfig < TencentCloud::Common::AbstractModel
-        # @param RuntimeType: 运行时类型
+        # @param RuntimeType: 运行时类型，支持的类型有 docker、containerd
         # @type RuntimeType: String
-        # @param RuntimeVersion: 运行时版本
+        # @param RuntimeVersion: 运行时版本，参考：https://cloud.tencent.com/document/api/457/105241
         # @type RuntimeVersion: String
 
         attr_accessor :RuntimeType, :RuntimeVersion
@@ -18870,9 +18887,9 @@ module TencentCloud
         # @type DstVersion: String
         # @param ExtraArgs: 集群自定义参数
         # @type ExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
-        # @param MaxNotReadyPercent: 可容忍的最大不可用pod数目
+        # @param MaxNotReadyPercent: 可容忍的最大不可用pod数目。默认0
         # @type MaxNotReadyPercent: Float
-        # @param SkipPreCheck: 是否跳过预检查阶段
+        # @param SkipPreCheck: 是否跳过预检查阶段，默认false
         # @type SkipPreCheck: Boolean
 
         attr_accessor :ClusterId, :DstVersion, :ExtraArgs, :MaxNotReadyPercent, :SkipPreCheck

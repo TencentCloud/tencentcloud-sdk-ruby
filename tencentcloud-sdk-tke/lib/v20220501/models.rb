@@ -92,6 +92,70 @@ module TencentCloud
         end
       end
 
+      # 集群信息结构体
+      class Cluster < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterDescription: 集群描述
+        # @type ClusterDescription: String
+        # @param ClusterVersion: 集群版本（默认值为1.10.5）
+        # @type ClusterVersion: String
+        # @param ClusterType: 集群类型，托管集群：MANAGED_CLUSTER，独立集群：INDEPENDENT_CLUSTER。
+        # @type ClusterType: String
+        # @param TagSpecification: 标签描述列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagSpecification: Array
+        # @param ClusterStatus: 集群状态 (Trading 集群开通中,Creating 创建中,Running 运行中,Deleting 删除中,Idling 闲置中,Recovering 唤醒中,Upgrading 升级中,NodeUpgrading 节点升级中,RuntimeUpgrading 节点运行时升级中,MasterScaling Master扩缩容中,ClusterLevelUpgrading 调整规格中,ResourceIsolate 欠费隔离中,ResourceIsolated 欠费已隔离,ResourceReverse 冲正恢复中,Abnormal 异常)
+        # @type ClusterStatus: String
+        # @param CreatedTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedTime: String
+        # @param ClusterLevel: 集群等级，针对托管集群生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterLevel: String
+        # @param VpcId: 集群所在vpc的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterType, :TagSpecification, :ClusterStatus, :CreatedTime, :ClusterLevel, :VpcId
+
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clustertype=nil, tagspecification=nil, clusterstatus=nil, createdtime=nil, clusterlevel=nil, vpcid=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @ClusterDescription = clusterdescription
+          @ClusterVersion = clusterversion
+          @ClusterType = clustertype
+          @TagSpecification = tagspecification
+          @ClusterStatus = clusterstatus
+          @CreatedTime = createdtime
+          @ClusterLevel = clusterlevel
+          @VpcId = vpcid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @ClusterDescription = params['ClusterDescription']
+          @ClusterVersion = params['ClusterVersion']
+          @ClusterType = params['ClusterType']
+          unless params['TagSpecification'].nil?
+            @TagSpecification = []
+            params['TagSpecification'].each do |i|
+              tagspecification_tmp = TagSpecification.new
+              tagspecification_tmp.deserialize(i)
+              @TagSpecification << tagspecification_tmp
+            end
+          end
+          @ClusterStatus = params['ClusterStatus']
+          @CreatedTime = params['CreatedTime']
+          @ClusterLevel = params['ClusterLevel']
+          @VpcId = params['VpcId']
+        end
+      end
+
       # CreateHealthCheckPolicy请求参数结构体
       class CreateHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -619,6 +683,119 @@ module TencentCloud
               instance_tmp = Instance.new
               instance_tmp.deserialize(i)
               @InstanceSet << instance_tmp
+            end
+          end
+          @Errors = params['Errors']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusters请求参数结构体
+      class DescribeClustersRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIds: 集群ID列表(为空时，
+        # 表示获取账号下所有集群)
+        # @type ClusterIds: Array
+        # @param Offset: 偏移量,默认0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条数，默认20，最大为100
+        # @type Limit: Integer
+        # @param Filters: ·  ClusterName
+        #     按照【集群名】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  ClusterType
+        #     按照【集群类型】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  ClusterStatus
+        #     按照【集群状态】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  Tags
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  vpc-id
+        #     按照【VPC】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag-key
+        #     按照【标签键】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag-value
+        #     按照【标签值】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag:tag-key
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filters: Array
+        # @param ClusterType: 集群类型，例如：MANAGED_CLUSTER
+        # @type ClusterType: String
+
+        attr_accessor :ClusterIds, :Offset, :Limit, :Filters, :ClusterType
+
+        def initialize(clusterids=nil, offset=nil, limit=nil, filters=nil, clustertype=nil)
+          @ClusterIds = clusterids
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterIds = params['ClusterIds']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeClusters返回参数结构体
+      class DescribeClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 集群总个数
+        # @type TotalCount: Integer
+        # @param Clusters: 集群信息列表
+        # @type Clusters: Array
+        # @param Errors: 错误信息集合
+        # @type Errors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Clusters, :Errors, :RequestId
+
+        def initialize(totalcount=nil, clusters=nil, errors=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Clusters = clusters
+          @Errors = errors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Clusters'].nil?
+            @Clusters = []
+            params['Clusters'].each do |i|
+              cluster_tmp = Cluster.new
+              cluster_tmp.deserialize(i)
+              @Clusters << cluster_tmp
             end
           end
           @Errors = params['Errors']

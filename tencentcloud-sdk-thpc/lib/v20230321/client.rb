@@ -588,6 +588,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改集群删除保护状态
+
+        # @param request: Request instance for ModifyClusterDeletionProtection.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyClusterDeletionProtectionRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyClusterDeletionProtectionResponse`
+        def ModifyClusterDeletionProtection(request)
+          body = send_request('ModifyClusterDeletionProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterDeletionProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyInitNodeScripts) 用于修改节点初始化脚本。
 
         # @param request: Request instance for ModifyInitNodeScripts.

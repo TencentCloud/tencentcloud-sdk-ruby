@@ -1405,10 +1405,12 @@ module TencentCloud
         # @type UserStatus: String
         # @param UserType: 用户类型  Manual：手动创建，Synchronized：外部导入
         # @type UserType: String
+        # @param NeedResetPassword: 是否需要重置密码： true: 需要重置  false: 不需要重置密码。 默认false
+        # @type NeedResetPassword: Boolean
 
-        attr_accessor :ZoneId, :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType
+        attr_accessor :ZoneId, :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :NeedResetPassword
 
-        def initialize(zoneid=nil, username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil)
+        def initialize(zoneid=nil, username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, needresetpassword=nil)
           @ZoneId = zoneid
           @UserName = username
           @FirstName = firstname
@@ -1418,6 +1420,7 @@ module TencentCloud
           @Email = email
           @UserStatus = userstatus
           @UserType = usertype
+          @NeedResetPassword = needresetpassword
         end
 
         def deserialize(params)
@@ -1430,6 +1433,7 @@ module TencentCloud
           @Email = params['Email']
           @UserStatus = params['UserStatus']
           @UserType = params['UserType']
+          @NeedResetPassword = params['NeedResetPassword']
         end
       end
 
@@ -6732,8 +6736,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2025, 10
-        deprecate :ResourceGrantLast=, :none, 2025, 10
+        deprecate :ResourceGrantLast, :none, 2025, 11
+        deprecate :ResourceGrantLast=, :none, 2025, 11
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7567,8 +7571,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 10
-        deprecate :ResourceId=, :none, 2025, 10
+        deprecate :ResourceId, :none, 2025, 11
+        deprecate :ResourceId=, :none, 2025, 11
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid
@@ -8405,10 +8409,12 @@ module TencentCloud
         # @type NewDescription: String
         # @param NewEmail: 用户的电子邮箱。
         # @type NewEmail: String
+        # @param NeedResetPassword: 是否需要重置密码
+        # @type NeedResetPassword: Boolean
 
-        attr_accessor :ZoneId, :UserId, :NewFirstName, :NewLastName, :NewDisplayName, :NewDescription, :NewEmail
+        attr_accessor :ZoneId, :UserId, :NewFirstName, :NewLastName, :NewDisplayName, :NewDescription, :NewEmail, :NeedResetPassword
 
-        def initialize(zoneid=nil, userid=nil, newfirstname=nil, newlastname=nil, newdisplayname=nil, newdescription=nil, newemail=nil)
+        def initialize(zoneid=nil, userid=nil, newfirstname=nil, newlastname=nil, newdisplayname=nil, newdescription=nil, newemail=nil, needresetpassword=nil)
           @ZoneId = zoneid
           @UserId = userid
           @NewFirstName = newfirstname
@@ -8416,6 +8422,7 @@ module TencentCloud
           @NewDisplayName = newdisplayname
           @NewDescription = newdescription
           @NewEmail = newemail
+          @NeedResetPassword = needresetpassword
         end
 
         def deserialize(params)
@@ -8426,6 +8433,7 @@ module TencentCloud
           @NewDisplayName = params['NewDisplayName']
           @NewDescription = params['NewDescription']
           @NewEmail = params['NewEmail']
+          @NeedResetPassword = params['NeedResetPassword']
         end
       end
 
@@ -8604,10 +8612,12 @@ module TencentCloud
         # @type IsSelected: Boolean
         # @param Password: 用户密码
         # @type Password: String
+        # @param NeedResetPassword: 下次登录是否需要重置密码， true: 需要重置密码， false：不需要重置密码
+        # @type NeedResetPassword: Boolean
 
-        attr_accessor :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :CreateTime, :UpdateTime, :IsSelected, :Password
+        attr_accessor :UserName, :FirstName, :LastName, :DisplayName, :Description, :Email, :UserStatus, :UserType, :UserId, :CreateTime, :UpdateTime, :IsSelected, :Password, :NeedResetPassword
 
-        def initialize(username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, createtime=nil, updatetime=nil, isselected=nil, password=nil)
+        def initialize(username=nil, firstname=nil, lastname=nil, displayname=nil, description=nil, email=nil, userstatus=nil, usertype=nil, userid=nil, createtime=nil, updatetime=nil, isselected=nil, password=nil, needresetpassword=nil)
           @UserName = username
           @FirstName = firstname
           @LastName = lastname
@@ -8621,6 +8631,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @IsSelected = isselected
           @Password = password
+          @NeedResetPassword = needresetpassword
         end
 
         def deserialize(params)
@@ -8637,6 +8648,7 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @IsSelected = params['IsSelected']
           @Password = params['Password']
+          @NeedResetPassword = params['NeedResetPassword']
         end
       end
 

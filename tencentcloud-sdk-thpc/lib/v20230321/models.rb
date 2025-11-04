@@ -254,16 +254,27 @@ module TencentCloud
 
         # 默认参数为：Custom
         # @type JobType: String
+        # @param TaskType: 表示所选训练框架，支持可选参数
 
-        attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType
+        # - PyTorch：表示提交PyTorch训练作业
+        # - Custom：表示用户自定义作业
 
-        def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil)
+        # 默认参数为：Custom
+        # @type TaskType: String
+
+        attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
+        extend Gem::Deprecate
+        deprecate :JobType, :none, 2025, 10
+        deprecate :JobType=, :none, 2025, 10
+
+        def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
           @StorageMounts = storagemounts
           @EnvVars = envvars
           @Docker = docker
           @OutputRedirect = outputredirect
           @JobType = jobtype
+          @TaskType = tasktype
         end
 
         def deserialize(params)
@@ -300,6 +311,7 @@ module TencentCloud
             @OutputRedirect.deserialize(params['OutputRedirect'])
           end
           @JobType = params['JobType']
+          @TaskType = params['TaskType']
         end
       end
 
@@ -527,10 +539,15 @@ module TencentCloud
         # @type VpcId: String
         # @param ClusterType: 集群类型
         # @type ClusterType: String
+        # @param DeletionProtection: 集群销毁保护开关状态，当前支持参数：
 
-        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :SchedulerVersion, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId, :ClusterType
+        # - ON: 集群销毁保护打开
+        # - OFF: 集群销毁保护关闭
+        # @type DeletionProtection: String
 
-        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, schedulerversion=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil, clustertype=nil)
+        attr_accessor :ClusterId, :ClusterStatus, :ClusterName, :Placement, :CreateTime, :SchedulerType, :SchedulerVersion, :ComputeNodeCount, :ComputeNodeSet, :ManagerNodeCount, :ManagerNodeSet, :LoginNodeSet, :LoginNodeCount, :AutoScalingType, :VpcId, :ClusterType, :DeletionProtection
+
+        def initialize(clusterid=nil, clusterstatus=nil, clustername=nil, placement=nil, createtime=nil, schedulertype=nil, schedulerversion=nil, computenodecount=nil, computenodeset=nil, managernodecount=nil, managernodeset=nil, loginnodeset=nil, loginnodecount=nil, autoscalingtype=nil, vpcid=nil, clustertype=nil, deletionprotection=nil)
           @ClusterId = clusterid
           @ClusterStatus = clusterstatus
           @ClusterName = clustername
@@ -547,6 +564,7 @@ module TencentCloud
           @AutoScalingType = autoscalingtype
           @VpcId = vpcid
           @ClusterType = clustertype
+          @DeletionProtection = deletionprotection
         end
 
         def deserialize(params)
@@ -590,6 +608,7 @@ module TencentCloud
           @AutoScalingType = params['AutoScalingType']
           @VpcId = params['VpcId']
           @ClusterType = params['ClusterType']
+          @DeletionProtection = params['DeletionProtection']
         end
       end
 
@@ -1515,27 +1534,44 @@ module TencentCloud
 
       # DescribeJobsOverview请求参数结构体
       class DescribeJobsOverviewRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
 
+        attr_accessor :ClusterId
 
-        def initialize()
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
         end
       end
 
       # DescribeJobsOverview返回参数结构体
       class DescribeJobsOverviewResponse < TencentCloud::Common::AbstractModel
+        # @param JobTotal: 作业任务数量
+        # @type JobTotal: Integer
+        # @param QueuingJobTotal: 排队中的作业任务数量
+        # @type QueuingJobTotal: Integer
+        # @param RunningJobTotal: 运行中的作业数量
+        # @type RunningJobTotal: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :JobTotal, :QueuingJobTotal, :RunningJobTotal, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(jobtotal=nil, queuingjobtotal=nil, runningjobtotal=nil, requestid=nil)
+          @JobTotal = jobtotal
+          @QueuingJobTotal = queuingjobtotal
+          @RunningJobTotal = runningjobtotal
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @JobTotal = params['JobTotal']
+          @QueuingJobTotal = params['QueuingJobTotal']
+          @RunningJobTotal = params['RunningJobTotal']
           @RequestId = params['RequestId']
         end
       end
@@ -2486,6 +2522,43 @@ module TencentCloud
 
         def deserialize(params)
           @NodeId = params['NodeId']
+        end
+      end
+
+      # ModifyClusterDeletionProtection请求参数结构体
+      class ModifyClusterDeletionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID。
+        # @type ClusterId: String
+        # @param DeletionProtection: 集群删除保护开关。
+        # 可选值：<li>OFF：关闭集群删除保护。</li><li>ON：打开集群删除保护。</li>
+        # @type DeletionProtection: String
+
+        attr_accessor :ClusterId, :DeletionProtection
+
+        def initialize(clusterid=nil, deletionprotection=nil)
+          @ClusterId = clusterid
+          @DeletionProtection = deletionprotection
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @DeletionProtection = params['DeletionProtection']
+        end
+      end
+
+      # ModifyClusterDeletionProtection返回参数结构体
+      class ModifyClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3502,27 +3575,49 @@ module TencentCloud
 
       # SubmitJob请求参数结构体
       class SubmitJobRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Job: 作业任务参数配置
+        # @type Job: :class:`Tencentcloud::Thpc.v20230321.models.Job`
+        # @param QueueName: 队列名称。不指定则为默认队列：
+        # SLURM默认队列为：compute。
+        # SGE默认队列为：all.q。
+        # @type QueueName: String
 
+        attr_accessor :ClusterId, :Job, :QueueName
 
-        def initialize()
+        def initialize(clusterid=nil, job=nil, queuename=nil)
+          @ClusterId = clusterid
+          @Job = job
+          @QueueName = queuename
         end
 
         def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Job'].nil?
+            @Job = Job.new
+            @Job.deserialize(params['Job'])
+          end
+          @QueueName = params['QueueName']
         end
       end
 
       # SubmitJob返回参数结构体
       class SubmitJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 作业任务ID
+        # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :JobId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end

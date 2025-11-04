@@ -29,54 +29,6 @@ module TencentCloud
         end
 
 
-        # 新增个性化配置，准备下线，请使用SetCustomizedConfigForLoadBalancer。
-
-        # @param request: Request instance for AddCustomizedConfig.
-        # @type request: :class:`Tencentcloud::clb::V20180317::AddCustomizedConfigRequest`
-        # @rtype: :class:`Tencentcloud::clb::V20180317::AddCustomizedConfigResponse`
-        def AddCustomizedConfig(request)
-          body = send_request('AddCustomizedConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AddCustomizedConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 关联配置到server或location，根据配置类型关联到server或location。准备下线，请使用SetCustomizedConfigForLoadBalancer。
-
-        # @param request: Request instance for AssociateCustomizedConfig.
-        # @type request: :class:`Tencentcloud::clb::V20180317::AssociateCustomizedConfigRequest`
-        # @rtype: :class:`Tencentcloud::clb::V20180317::AssociateCustomizedConfigResponse`
-        def AssociateCustomizedConfig(request)
-          body = send_request('AssociateCustomizedConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = AssociateCustomizedConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
         # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用  [DescribeTaskStatus](https://cloud.tencent.com/document/product/214/30683)  接口查询本次任务是否成功。
         # 限制说明：
@@ -430,30 +382,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateTopicResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除个性化配置，准备下线，请使用SetCustomizedConfigForLoadBalancer。
-
-        # @param request: Request instance for DeleteCustomizedConfig.
-        # @type request: :class:`Tencentcloud::clb::V20180317::DeleteCustomizedConfigRequest`
-        # @rtype: :class:`Tencentcloud::clb::V20180317::DeleteCustomizedConfigResponse`
-        def DeleteCustomizedConfig(request)
-          body = send_request('DeleteCustomizedConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteCustomizedConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1471,30 +1399,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 去关联个性化配置，准备下线，请使用SetCustomizedConfigForLoadBalancer。
-
-        # @param request: Request instance for DisassociateCustomizedConfig.
-        # @type request: :class:`Tencentcloud::clb::V20180317::DisassociateCustomizedConfigRequest`
-        # @rtype: :class:`Tencentcloud::clb::V20180317::DisassociateCustomizedConfigResponse`
-        def DisassociateCustomizedConfig(request)
-          body = send_request('DisassociateCustomizedConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DisassociateCustomizedConfigResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 解除规则的目标组关联关系。
         # 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
         # 当解绑七层转发规则时，LocationId 为必填项。
@@ -1678,30 +1582,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockIPListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改个性化配置。如果配置已经绑定clb、server或location，同时更新。准备下线，请使用SetCustomizedConfigForLoadBalancer。
-
-        # @param request: Request instance for ModifyCustomizedConfig.
-        # @type request: :class:`Tencentcloud::clb::V20180317::ModifyCustomizedConfigRequest`
-        # @rtype: :class:`Tencentcloud::clb::V20180317::ModifyCustomizedConfigResponse`
-        def ModifyCustomizedConfig(request)
-          body = send_request('ModifyCustomizedConfig', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyCustomizedConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

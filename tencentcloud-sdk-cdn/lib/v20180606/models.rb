@@ -10494,15 +10494,19 @@ module TencentCloud
         # @param FullMatch: 指定是全路径配置还是任意匹配
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FullMatch: Boolean
+        # @param Regex: pattern是否支持正则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regex: Boolean
 
-        attr_accessor :RedirectStatusCode, :Pattern, :RedirectUrl, :RedirectHost, :FullMatch
+        attr_accessor :RedirectStatusCode, :Pattern, :RedirectUrl, :RedirectHost, :FullMatch, :Regex
 
-        def initialize(redirectstatuscode=nil, pattern=nil, redirecturl=nil, redirecthost=nil, fullmatch=nil)
+        def initialize(redirectstatuscode=nil, pattern=nil, redirecturl=nil, redirecthost=nil, fullmatch=nil, regex=nil)
           @RedirectStatusCode = redirectstatuscode
           @Pattern = pattern
           @RedirectUrl = redirecturl
           @RedirectHost = redirecthost
           @FullMatch = fullmatch
+          @Regex = regex
         end
 
         def deserialize(params)
@@ -10511,6 +10515,7 @@ module TencentCloud
           @RedirectUrl = params['RedirectUrl']
           @RedirectHost = params['RedirectHost']
           @FullMatch = params['FullMatch']
+          @Regex = params['Regex']
         end
       end
 

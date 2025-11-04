@@ -1480,42 +1480,6 @@ module TencentCloud
         end
       end
 
-      # DeleteMountTarget请求参数结构体
-      class DeleteMountTargetRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统 ID
-        # @type FileSystemId: String
-        # @param MountTargetId: 挂载点 ID
-        # @type MountTargetId: String
-
-        attr_accessor :FileSystemId, :MountTargetId
-
-        def initialize(filesystemid=nil, mounttargetid=nil)
-          @FileSystemId = filesystemid
-          @MountTargetId = mounttargetid
-        end
-
-        def deserialize(params)
-          @FileSystemId = params['FileSystemId']
-          @MountTargetId = params['MountTargetId']
-        end
-      end
-
-      # DeleteMountTarget返回参数结构体
-      class DeleteMountTargetResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteUserQuota请求参数结构体
       class DeleteUserQuotaRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)

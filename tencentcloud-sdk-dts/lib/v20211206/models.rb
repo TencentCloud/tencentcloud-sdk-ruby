@@ -245,15 +245,21 @@ module TencentCloud
         # @type DifferenceData: :class:`Tencentcloud::Dts.v20211206.models.DifferenceDataDetail`
         # @param DifferenceRow: 数据行不一致的详情，mongodb业务用到
         # @type DifferenceRow: :class:`Tencentcloud::Dts.v20211206.models.DifferenceRowDetail`
+        # @param DifferenceSchema: 表结构不一致详情，pg用
+        # @type DifferenceSchema: :class:`Tencentcloud::Dts.v20211206.models.DifferenceSchemaDetail`
+        # @param DifferenceOwner: 对象owner不一致详情，pg用
+        # @type DifferenceOwner: :class:`Tencentcloud::Dts.v20211206.models.DifferenceOwnerDetail`
 
-        attr_accessor :Difference, :Skipped, :DifferenceAdvancedObjects, :DifferenceData, :DifferenceRow
+        attr_accessor :Difference, :Skipped, :DifferenceAdvancedObjects, :DifferenceData, :DifferenceRow, :DifferenceSchema, :DifferenceOwner
 
-        def initialize(difference=nil, skipped=nil, differenceadvancedobjects=nil, differencedata=nil, differencerow=nil)
+        def initialize(difference=nil, skipped=nil, differenceadvancedobjects=nil, differencedata=nil, differencerow=nil, differenceschema=nil, differenceowner=nil)
           @Difference = difference
           @Skipped = skipped
           @DifferenceAdvancedObjects = differenceadvancedobjects
           @DifferenceData = differencedata
           @DifferenceRow = differencerow
+          @DifferenceSchema = differenceschema
+          @DifferenceOwner = differenceowner
         end
 
         def deserialize(params)
@@ -276,6 +282,14 @@ module TencentCloud
           unless params['DifferenceRow'].nil?
             @DifferenceRow = DifferenceRowDetail.new
             @DifferenceRow.deserialize(params['DifferenceRow'])
+          end
+          unless params['DifferenceSchema'].nil?
+            @DifferenceSchema = DifferenceSchemaDetail.new
+            @DifferenceSchema.deserialize(params['DifferenceSchema'])
+          end
+          unless params['DifferenceOwner'].nil?
+            @DifferenceOwner = DifferenceOwnerDetail.new
+            @DifferenceOwner.deserialize(params['DifferenceOwner'])
           end
         end
       end
@@ -3546,6 +3560,34 @@ module TencentCloud
         end
       end
 
+      # pg owner不一致性详情
+      class DifferenceOwnerDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCount: owner不一致总数
+        # @type TotalCount: Integer
+        # @param Items: owner不一致详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              ownerdifference_tmp = OwnerDifference.new
+              ownerdifference_tmp.deserialize(i)
+              @Items << ownerdifference_tmp
+            end
+          end
+        end
+      end
+
       # mongodb行数校验不一致性详情结果
       class DifferenceRowDetail < TencentCloud::Common::AbstractModel
         # @param TotalCount: 不一致总数
@@ -3569,6 +3611,34 @@ module TencentCloud
               rowscountdifference_tmp = RowsCountDifference.new
               rowscountdifference_tmp.deserialize(i)
               @Items << rowscountdifference_tmp
+            end
+          end
+        end
+      end
+
+      # 表结构不一致信息
+      class DifferenceSchemaDetail < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 表结构不一致的数量
+        # @type TotalCount: Integer
+        # @param Items: 表结构不一致信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              schemadifference_tmp = SchemaDifference.new
+              schemadifference_tmp.deserialize(i)
+              @Items << schemadifference_tmp
             end
           end
         end
@@ -5321,6 +5391,42 @@ module TencentCloud
         end
       end
 
+      # pg对象owner不一致信息
+      class OwnerDifference < TencentCloud::Common::AbstractModel
+        # @param Db: owner不一致的pg对象所在库
+        # @type Db: String
+        # @param Schema: owner不一致的pg对象所在schema
+        # @type Schema: String
+        # @param ObjectName: owner不一致的pg对象名
+        # @type ObjectName: String
+        # @param ObjectType: owner不一致的pg对象类型
+        # @type ObjectType: String
+        # @param SrcOwner: 源库对象owner
+        # @type SrcOwner: String
+        # @param DstOwner: 目标库对象owner
+        # @type DstOwner: String
+
+        attr_accessor :Db, :Schema, :ObjectName, :ObjectType, :SrcOwner, :DstOwner
+
+        def initialize(db=nil, schema=nil, objectname=nil, objecttype=nil, srcowner=nil, dstowner=nil)
+          @Db = db
+          @Schema = schema
+          @ObjectName = objectname
+          @ObjectType = objecttype
+          @SrcOwner = srcowner
+          @DstOwner = dstowner
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Schema = params['Schema']
+          @ObjectName = params['ObjectName']
+          @ObjectType = params['ObjectType']
+          @SrcOwner = params['SrcOwner']
+          @DstOwner = params['DstOwner']
+        end
+      end
+
       # 数据订阅中kafka消费者组的分区分配情况。该数据是实时查询的，如果需要最新数据，需重新掉接口查询。
       class PartitionAssignment < TencentCloud::Common::AbstractModel
         # @param ClientId: 消费者的clientId
@@ -5910,6 +6016,38 @@ module TencentCloud
           @Table = params['Table']
           @SrcCount = params['SrcCount']
           @DstCount = params['DstCount']
+        end
+      end
+
+      # 结构不一致详情
+      class SchemaDifference < TencentCloud::Common::AbstractModel
+        # @param Db: 结构不一致的表所在库
+        # @type Db: String
+        # @param Schema: 结构不一致的表所在schema
+        # @type Schema: String
+        # @param Table: 结构不一致的表
+        # @type Table: String
+        # @param SrcSchema: 源库表结构
+        # @type SrcSchema: String
+        # @param DstSchema: 目标库表结构
+        # @type DstSchema: String
+
+        attr_accessor :Db, :Schema, :Table, :SrcSchema, :DstSchema
+
+        def initialize(db=nil, schema=nil, table=nil, srcschema=nil, dstschema=nil)
+          @Db = db
+          @Schema = schema
+          @Table = table
+          @SrcSchema = srcschema
+          @DstSchema = dstschema
+        end
+
+        def deserialize(params)
+          @Db = params['Db']
+          @Schema = params['Schema']
+          @Table = params['Table']
+          @SrcSchema = params['SrcSchema']
+          @DstSchema = params['DstSchema']
         end
       end
 

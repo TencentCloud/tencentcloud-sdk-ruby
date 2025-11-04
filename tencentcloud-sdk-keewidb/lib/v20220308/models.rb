@@ -411,20 +411,27 @@ module TencentCloud
         # @type DealId: String
         # @param InstanceIds: 实例 ID 。
         # @type InstanceIds: Array
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :InstanceIds, :RequestId
+        attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, instanceids=nil, requestid=nil)
+        def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
           @InstanceIds = instanceids
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -634,8 +641,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
         extend Gem::Deprecate
-        deprecate :BackupSet, :none, 2025, 8
-        deprecate :BackupSet=, :none, 2025, 8
+        deprecate :BackupSet, :none, 2025, 10
+        deprecate :BackupSet=, :none, 2025, 10
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount
@@ -733,15 +740,22 @@ module TencentCloud
       class DescribeInstanceDealDetailRequest < TencentCloud::Common::AbstractModel
         # @param DealIds: 订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/1520/86207) 的输出参数DealId。
         # @type DealIds: Array
+        # @param DealName: 订单号，订单交易ID数组，即 [CreateInstances](https://cloud.tencent.com/document/api/1520/86207) 的输出参数DealName。
+        # @type DealName: String
 
-        attr_accessor :DealIds
+        attr_accessor :DealIds, :DealName
+        extend Gem::Deprecate
+        deprecate :DealIds, :none, 2025, 10
+        deprecate :DealIds=, :none, 2025, 10
 
-        def initialize(dealids=nil)
+        def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
+          @DealName = dealname
         end
 
         def deserialize(params)
           @DealIds = params['DealIds']
+          @DealName = params['DealName']
         end
       end
 
@@ -1104,8 +1118,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceTags, :none, 2025, 8
-        deprecate :InstanceTags=, :none, 2025, 8
+        deprecate :InstanceTags, :none, 2025, 10
+        deprecate :InstanceTags=, :none, 2025, 10
 
         def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
@@ -1662,18 +1676,25 @@ module TencentCloud
       class DestroyPrepaidInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 交易ID。
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -2918,18 +2939,25 @@ module TencentCloud
       class RenewInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 交易 ID。
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
@@ -3313,18 +3341,25 @@ module TencentCloud
       class UpgradeInstanceResponse < TencentCloud::Common::AbstractModel
         # @param DealId: 交易ID。
         # @type DealId: String
+        # @param DealName: 订单号。
+        # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DealId, :RequestId
+        attr_accessor :DealId, :DealName, :RequestId
+        extend Gem::Deprecate
+        deprecate :DealId, :none, 2025, 10
+        deprecate :DealId=, :none, 2025, 10
 
-        def initialize(dealid=nil, requestid=nil)
+        def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
+          @DealName = dealname
           @RequestId = requestid
         end
 
         def deserialize(params)
           @DealId = params['DealId']
+          @DealName = params['DealName']
           @RequestId = params['RequestId']
         end
       end
