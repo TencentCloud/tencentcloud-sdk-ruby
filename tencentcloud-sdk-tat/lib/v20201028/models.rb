@@ -383,10 +383,12 @@ module TencentCloud
 
         # 当执行器类型为 `SCHEDULE` 时，必须指定此参数。
         # @type ScheduleSettings: :class:`Tencentcloud::Tat.v20201028.models.ScheduleSettings`
+        # @param Tags: 为命令关联的标签，列表长度不超过10
+        # @type Tags: Array
 
-        attr_accessor :Name, :Type, :CommandId, :InstanceIds, :Username, :Parameters, :ScheduleSettings
+        attr_accessor :Name, :Type, :CommandId, :InstanceIds, :Username, :Parameters, :ScheduleSettings, :Tags
 
-        def initialize(name=nil, type=nil, commandid=nil, instanceids=nil, username=nil, parameters=nil, schedulesettings=nil)
+        def initialize(name=nil, type=nil, commandid=nil, instanceids=nil, username=nil, parameters=nil, schedulesettings=nil, tags=nil)
           @Name = name
           @Type = type
           @CommandId = commandid
@@ -394,6 +396,7 @@ module TencentCloud
           @Username = username
           @Parameters = parameters
           @ScheduleSettings = schedulesettings
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -406,6 +409,14 @@ module TencentCloud
           unless params['ScheduleSettings'].nil?
             @ScheduleSettings = ScheduleSettings.new
             @ScheduleSettings.deserialize(params['ScheduleSettings'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
           end
         end
       end

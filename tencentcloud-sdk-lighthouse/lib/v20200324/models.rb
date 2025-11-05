@@ -1284,15 +1284,21 @@ module TencentCloud
         # @type Description: String
         # @param Envs: MCP Server环境变量。最大长度：10
         # @type Envs: Array
+        # @param TransportType: 传输类型。枚举值如下：
 
-        attr_accessor :InstanceId, :Name, :Command, :Description, :Envs
+        # <li>STREAMABLE_HTTP：HTTP协议的流式传输方式。未传传输类型字段时，默认创建此类型的MCP Server</li>
+        # <li>SSE：Server-Sent Events，服务器发送事件</li>
+        # @type TransportType: String
 
-        def initialize(instanceid=nil, name=nil, command=nil, description=nil, envs=nil)
+        attr_accessor :InstanceId, :Name, :Command, :Description, :Envs, :TransportType
+
+        def initialize(instanceid=nil, name=nil, command=nil, description=nil, envs=nil, transporttype=nil)
           @InstanceId = instanceid
           @Name = name
           @Command = command
           @Description = description
           @Envs = envs
+          @TransportType = transporttype
         end
 
         def deserialize(params)
@@ -1308,6 +1314,7 @@ module TencentCloud
               @Envs << mcpserverenv_tmp
             end
           end
+          @TransportType = params['TransportType']
         end
       end
 
@@ -6351,11 +6358,14 @@ module TencentCloud
 
       # MCP Server信息
       class McpServer < TencentCloud::Common::AbstractModel
-        # @param McpServerId: MCP Server ID。
+        # @param McpServerId: MCP Server ID
         # @type McpServerId: String
         # @param Name: MCP Server名称。最大长度：64
         # @type Name: String
-        # @param McpServerType: MCP Server类型。枚举值：PUBLIC_PACKAGE，公共包安装；AGENT_GENERATED，AI生成。
+        # @param McpServerType: MCP Server类型。枚举值如下：
+
+        # <li>PUBLIC_PACKAGE：公共包安装</li>
+        # <li>AGENT_GENERATED：AI生成</li>
         # @type McpServerType: String
         # @param IconUrl: MCP Server图标地址
         # @type IconUrl: String
@@ -6363,18 +6373,18 @@ module TencentCloud
         # @type Command: String
         # @param State: MCP Server状态。枚举值如下：
 
-        # PENDING：表示创建中
-        # LAUNCH_FAILED：表示创建失败
-        # RUNNING：表示运行中
-        # STOPPED：表示关闭
-        # STARTING：表示开启中
-        # STOPPING：表示关闭中
-        # RESTARTING：表示重启中
-        # REMOVING：表示删除中
-        # UNKNOWN：表示未知
-        # ENV_ERROR：表示环境错误
+        # <li>PENDING：表示创建中</li>
+        # <li>LAUNCH_FAILED：表示创建失败</li>
+        # <li>RUNNING：表示运行中</li>
+        # <li>STOPPED：表示关闭</li>
+        # <li>STARTING：表示开启中</li>
+        # <li>STOPPING：表示关闭中</li>
+        # <li>RESTARTING：表示重启中</li>
+        # <li>REMOVING：表示删除中</li>
+        # <li>UNKNOWN：表示未知</li>
+        # <li>ENV_ERROR：表示环境错误</li>
         # @type State: String
-        # @param ServerUrl: MCP Server访问地址。
+        # @param ServerUrl: MCP Server访问地址。传输类型 TransportType 为 STREAMABLE_HTTP 时以 /mcp结尾，为 SSE 时以 /sse结尾。
         # @type ServerUrl: String
         # @param Config: MCP Server配置
         # @type Config: String
@@ -6388,10 +6398,15 @@ module TencentCloud
         # @type UpdatedTime: String
         # @param EnvSet: MCP Server环境变量
         # @type EnvSet: Array
+        # @param TransportType: 传输类型。枚举值如下：
 
-        attr_accessor :McpServerId, :Name, :McpServerType, :IconUrl, :Command, :State, :ServerUrl, :Config, :Description, :CreatedTime, :UpdatedTime, :EnvSet
+        # <li>STREAMABLE_HTTP：HTTP协议的流式传输方式</li>
+        # <li>SSE：Server-Sent Events，服务器发送事件</li>
+        # @type TransportType: String
 
-        def initialize(mcpserverid=nil, name=nil, mcpservertype=nil, iconurl=nil, command=nil, state=nil, serverurl=nil, config=nil, description=nil, createdtime=nil, updatedtime=nil, envset=nil)
+        attr_accessor :McpServerId, :Name, :McpServerType, :IconUrl, :Command, :State, :ServerUrl, :Config, :Description, :CreatedTime, :UpdatedTime, :EnvSet, :TransportType
+
+        def initialize(mcpserverid=nil, name=nil, mcpservertype=nil, iconurl=nil, command=nil, state=nil, serverurl=nil, config=nil, description=nil, createdtime=nil, updatedtime=nil, envset=nil, transporttype=nil)
           @McpServerId = mcpserverid
           @Name = name
           @McpServerType = mcpservertype
@@ -6404,6 +6419,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @UpdatedTime = updatedtime
           @EnvSet = envset
+          @TransportType = transporttype
         end
 
         def deserialize(params)
@@ -6426,6 +6442,7 @@ module TencentCloud
               @EnvSet << mcpserverenv_tmp
             end
           end
+          @TransportType = params['TransportType']
         end
       end
 
@@ -7122,7 +7139,7 @@ module TencentCloud
       class ModifyMcpServerRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。可以通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         # @type InstanceId: String
-        # @param McpServerId: MCP Server ID。可以通过DescribeMcpServers接口返回值中的McpServerId获取。
+        # @param McpServerId: MCP Server ID。可以通[DescribeMcpServers](https://cloud.tencent.com/document/product/1207/122837)接口返回值中的McpServerId获取。
         # @type McpServerId: String
         # @param Name: MCP Server名称。最大长度：64
         # @type Name: String
@@ -7132,16 +7149,22 @@ module TencentCloud
         # @type Description: String
         # @param Envs: MCP Server环境变量。最大长度：10。用于完整替换MCP Server的环境变量。当该字段为空时，系统将清除当前所有环境变量。若无需修改环境变量，请勿传递该字段。
         # @type Envs: Array
+        # @param TransportType: 传输类型。枚举值如下：
 
-        attr_accessor :InstanceId, :McpServerId, :Name, :Command, :Description, :Envs
+        # <li>STREAMABLE_HTTP：HTTP协议的流式传输方式</li>
+        # <li>SSE：Server-Sent Events，服务器发送事件</li>
+        # @type TransportType: String
 
-        def initialize(instanceid=nil, mcpserverid=nil, name=nil, command=nil, description=nil, envs=nil)
+        attr_accessor :InstanceId, :McpServerId, :Name, :Command, :Description, :Envs, :TransportType
+
+        def initialize(instanceid=nil, mcpserverid=nil, name=nil, command=nil, description=nil, envs=nil, transporttype=nil)
           @InstanceId = instanceid
           @McpServerId = mcpserverid
           @Name = name
           @Command = command
           @Description = description
           @Envs = envs
+          @TransportType = transporttype
         end
 
         def deserialize(params)
@@ -7158,6 +7181,7 @@ module TencentCloud
               @Envs << mcpserverenv_tmp
             end
           end
+          @TransportType = params['TransportType']
         end
       end
 

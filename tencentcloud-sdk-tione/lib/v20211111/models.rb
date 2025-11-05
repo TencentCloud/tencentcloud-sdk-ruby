@@ -781,7 +781,7 @@ module TencentCloud
         # @type RollingUpdate: :class:`Tencentcloud::Tione.v20211111.models.RollingUpdate`
         # @param Sidecar: sidecar配置
         # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
-        # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-资源组缓存”。
+        # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。
         # @type VolumeMounts: Array
 
         attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts
@@ -5810,7 +5810,7 @@ module TencentCloud
         # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
         # @param ResourceGroupId: 资源组 id
         # @type ResourceGroupId: String
-        # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-资源组缓存”。
+        # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。
         # @type VolumeMounts: Array
 
         attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts

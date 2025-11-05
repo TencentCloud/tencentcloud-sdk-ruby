@@ -264,8 +264,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2025, 10
-        deprecate :JobType=, :none, 2025, 10
+        deprecate :JobType, :none, 2025, 11
+        deprecate :JobType=, :none, 2025, 11
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -897,7 +897,7 @@ module TencentCloud
         # @type SpaceCount: Integer
         # @param SpaceName: 工作空间显示名称
         # @type SpaceName: String
-        # @param LoginSettings: 工作空间登陆设置
+        # @param LoginSettings: 工作空间登录设置
         # @type LoginSettings: :class:`Tencentcloud::Thpc.v20230321.models.LoginSettings`
         # @param SecurityGroupIds: 工作空间所属安全组
         # @type SecurityGroupIds: Array

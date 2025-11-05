@@ -821,7 +821,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询生命周期任务的接口
+        # 查询生命周期任务的接口。仅支持查询最近三个月内的任务数据。
 
         # @param request: Request instance for DescribeLifecycleDataTask.
         # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeLifecycleDataTaskRequest`

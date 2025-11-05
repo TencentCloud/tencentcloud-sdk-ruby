@@ -855,10 +855,20 @@ module TencentCloud
         # @type SecretKey: String
         # @param DataFlowName: 数据流动名称；支持不超过64字符长度，支持中文、数字、_、-
         # @type DataFlowName: String
+        # @param AutoRefresh:  0：不开启自动更新  1：开启自动更新
+        # @type AutoRefresh: Integer
+        # @param UserKafkaTopic: KafkaConsumer 消费时使用的Topic参数
+        # @type UserKafkaTopic: String
+        # @param ServerAddr: 	服务地址 示例值：kafkaconsumer-ap-beijing.cls.tencentyun.com:9095
+        # @type ServerAddr: String
+        # @param UserName: Kafka消费用户名.示例值：name
+        # @type UserName: String
+        # @param Password: Kafka消费用户密码。默认${SecretId}#${SecretKey}。
+        # @type Password: String
 
-        attr_accessor :FileSystemId, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :SecretId, :SecretKey, :DataFlowName
+        attr_accessor :FileSystemId, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :SecretId, :SecretKey, :DataFlowName, :AutoRefresh, :UserKafkaTopic, :ServerAddr, :UserName, :Password
 
-        def initialize(filesystemid=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, secretid=nil, secretkey=nil, dataflowname=nil)
+        def initialize(filesystemid=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, secretid=nil, secretkey=nil, dataflowname=nil, autorefresh=nil, userkafkatopic=nil, serveraddr=nil, username=nil, password=nil)
           @FileSystemId = filesystemid
           @SourceStorageType = sourcestoragetype
           @SourceStorageAddress = sourcestorageaddress
@@ -867,6 +877,11 @@ module TencentCloud
           @SecretId = secretid
           @SecretKey = secretkey
           @DataFlowName = dataflowname
+          @AutoRefresh = autorefresh
+          @UserKafkaTopic = userkafkatopic
+          @ServerAddr = serveraddr
+          @UserName = username
+          @Password = password
         end
 
         def deserialize(params)
@@ -878,6 +893,11 @@ module TencentCloud
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
           @DataFlowName = params['DataFlowName']
+          @AutoRefresh = params['AutoRefresh']
+          @UserKafkaTopic = params['UserKafkaTopic']
+          @ServerAddr = params['ServerAddr']
+          @UserName = params['UserName']
+          @Password = params['Password']
         end
       end
 
@@ -2117,11 +2137,11 @@ module TencentCloud
 
       # DescribeLifecycleDataTask请求参数结构体
       class DescribeLifecycleDataTaskRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。须早于 EndTime ，仅支持查询最近3个月内的任务数据。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。须晚于 StartTime ，仅支持查询最近3个月内的任务数据。
         # @type EndTime: String
-        # @param TaskId: 	任务ID
+        # @param TaskId: 任务ID
         # @type TaskId: String
         # @param Offset: Offset 分页码
         # @type Offset: Integer
@@ -2129,16 +2149,19 @@ module TencentCloud
         # @type Limit: Integer
         # @param Filters: 过滤条件，TaskName，FileSystemId，Type
         # @type Filters: Array
+        # @param CfsVersion: 文件系统版本；v3.1: pcfs/hifs v4.0:Turbo
+        # @type CfsVersion: String
 
-        attr_accessor :StartTime, :EndTime, :TaskId, :Offset, :Limit, :Filters
+        attr_accessor :StartTime, :EndTime, :TaskId, :Offset, :Limit, :Filters, :CfsVersion
 
-        def initialize(starttime=nil, endtime=nil, taskid=nil, offset=nil, limit=nil, filters=nil)
+        def initialize(starttime=nil, endtime=nil, taskid=nil, offset=nil, limit=nil, filters=nil, cfsversion=nil)
           @StartTime = starttime
           @EndTime = endtime
           @TaskId = taskid
           @Offset = offset
           @Limit = limit
           @Filters = filters
+          @CfsVersion = cfsversion
         end
 
         def deserialize(params)
@@ -2155,6 +2178,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @CfsVersion = params['CfsVersion']
         end
       end
 
@@ -3126,15 +3150,30 @@ module TencentCloud
         # @type SecretId: String
         # @param SecretKey: 密钥 key
         # @type SecretKey: String
+        # @param UserKafkaTopic: KafkaConsumer 消费时使用的Topic参数
+        # @type UserKafkaTopic: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+        # @param UserName: name
+        # @type UserName: String
+        # @param Password: Kafka消费用户密码
+        # @type Password: String
+        # @param AutoRefresh: 元数据增量更新开关；1开启，0关闭
+        # @type AutoRefresh: Integer
 
-        attr_accessor :DataFlowId, :FileSystemId, :DataFlowName, :SecretId, :SecretKey
+        attr_accessor :DataFlowId, :FileSystemId, :DataFlowName, :SecretId, :SecretKey, :UserKafkaTopic, :ServerAddr, :UserName, :Password, :AutoRefresh
 
-        def initialize(dataflowid=nil, filesystemid=nil, dataflowname=nil, secretid=nil, secretkey=nil)
+        def initialize(dataflowid=nil, filesystemid=nil, dataflowname=nil, secretid=nil, secretkey=nil, userkafkatopic=nil, serveraddr=nil, username=nil, password=nil, autorefresh=nil)
           @DataFlowId = dataflowid
           @FileSystemId = filesystemid
           @DataFlowName = dataflowname
           @SecretId = secretid
           @SecretKey = secretkey
+          @UserKafkaTopic = userkafkatopic
+          @ServerAddr = serveraddr
+          @UserName = username
+          @Password = password
+          @AutoRefresh = autorefresh
         end
 
         def deserialize(params)
@@ -3143,6 +3182,11 @@ module TencentCloud
           @DataFlowName = params['DataFlowName']
           @SecretId = params['SecretId']
           @SecretKey = params['SecretKey']
+          @UserKafkaTopic = params['UserKafkaTopic']
+          @ServerAddr = params['ServerAddr']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @AutoRefresh = params['AutoRefresh']
         end
       end
 

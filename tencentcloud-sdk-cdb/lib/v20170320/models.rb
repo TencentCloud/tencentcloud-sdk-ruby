@@ -5897,11 +5897,11 @@ module TencentCloud
         # @type Status: String
         # @param StartTime: 查询的开始时间。只能查看30天内的扩容历史，格式为 Integer 的时间戳（秒级）。
         # @type StartTime: Integer
-        # @param EndTime: 查询的结束时间。只能查看30天内的扩容历史，格式为 Integer 的时间戳（秒级）。
+        # @param EndTime: 查询的结束时间，默认为当前时间。只能查看30天内的扩容历史，格式为 Integer 的时间戳（秒级）。
         # @type EndTime: Integer
         # @param Offset: 分页入参
         # @type Offset: Integer
-        # @param Limit: 分页入参
+        # @param Limit: 分页入参，默认20
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :ExpandStrategy, :Status, :StartTime, :EndTime, :Offset, :Limit

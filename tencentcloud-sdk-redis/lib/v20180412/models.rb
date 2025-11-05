@@ -5233,10 +5233,14 @@ module TencentCloud
         # - 0：down。
         # - 1：on。
         # @type Connected: Integer
+        # @param ZoneId: 可用区信息。
+        # @type ZoneId: String
+        # @param ReplicasNodeId: 节点组 ID。
+        # @type ReplicasNodeId: Integer
 
-        attr_accessor :ShardName, :ShardId, :Role, :Keys, :Slots, :Storage, :StorageSlope, :Runid, :RunId, :Connected
+        attr_accessor :ShardName, :ShardId, :Role, :Keys, :Slots, :Storage, :StorageSlope, :Runid, :RunId, :Connected, :ZoneId, :ReplicasNodeId
 
-        def initialize(shardname=nil, shardid=nil, role=nil, keys=nil, slots=nil, storage=nil, storageslope=nil, runid=nil, runid=nil, connected=nil)
+        def initialize(shardname=nil, shardid=nil, role=nil, keys=nil, slots=nil, storage=nil, storageslope=nil, runid=nil, runid=nil, connected=nil, zoneid=nil, replicasnodeid=nil)
           @ShardName = shardname
           @ShardId = shardid
           @Role = role
@@ -5247,6 +5251,8 @@ module TencentCloud
           @Runid = runid
           @RunId = runid
           @Connected = connected
+          @ZoneId = zoneid
+          @ReplicasNodeId = replicasnodeid
         end
 
         def deserialize(params)
@@ -5260,6 +5266,8 @@ module TencentCloud
           @Runid = params['Runid']
           @RunId = params['RunId']
           @Connected = params['Connected']
+          @ZoneId = params['ZoneId']
+          @ReplicasNodeId = params['ReplicasNodeId']
         end
       end
 

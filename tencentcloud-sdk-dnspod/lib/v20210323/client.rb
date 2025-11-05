@@ -103,8 +103,6 @@ module TencentCloud
 
         # 添加域名
 
-        # 备注：该接口不支持添加子域名。
-
         # @param request: Request instance for CreateDomain.
         # @type request: :class:`Tencentcloud::dnspod::V20210323::CreateDomainRequest`
         # @rtype: :class:`Tencentcloud::dnspod::V20210323::CreateDomainResponse`
@@ -1649,6 +1647,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改域名CNAME加速状态
+
+        # @param request: Request instance for ModifyDomainCNAMESpeedupStatusBatch.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainCNAMESpeedupStatusBatchRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainCNAMESpeedupStatusBatchResponse`
+        def ModifyDomainCNAMESpeedupStatusBatch(request)
+          body = send_request('ModifyDomainCNAMESpeedupStatusBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainCNAMESpeedupStatusBatchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改域名的自定义线路
 
         # @param request: Request instance for ModifyDomainCustomLine.
@@ -1707,6 +1729,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDomainOwnerResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量修改域名递归解析加速状态
+
+        # @param request: Request instance for ModifyDomainRecursiveStatusBatch.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainRecursiveStatusBatchRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyDomainRecursiveStatusBatchResponse`
+        def ModifyDomainRecursiveStatusBatch(request)
+          body = send_request('ModifyDomainRecursiveStatusBatch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDomainRecursiveStatusBatchResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -181,7 +181,7 @@ module TencentCloud
         # @param MultiConditions: 多触发条件。与
         # Condition互斥。
         # @type MultiConditions: Array
-        # @param MonitorNotice: 云监控通知渠道相关信息，和AlarmNoticeIds互斥
+        # @param MonitorNotice: 腾讯云可观测平台通知渠道相关信息，和AlarmNoticeIds互斥
         # @type MonitorNotice: :class:`Tencentcloud::Cls.v20201016.models.MonitorNotice`
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :Condition, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Status, :AlarmId, :CreateTime, :UpdateTime, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :AlarmLevel, :Classifications, :MultiConditions, :MonitorNotice
@@ -614,7 +614,7 @@ module TencentCloud
         # @param MonitorObjectType: 监控对象类型。
         # 0:执行语句共用监控对象; 1:每个执行语句单独选择监控对象。
         # @type MonitorObjectType: Integer
-        # @param SendType: 通知渠道类型，0默认代表cls内部通知渠道，1代表云监控通知渠道
+        # @param SendType: 通知渠道类型，0默认代表cls内部通知渠道，1代表腾讯云可观测平台通知渠道
         # @type SendType: Integer
 
         attr_accessor :RecordId, :AlarmId, :AlarmName, :TopicId, :TopicName, :Region, :Trigger, :TriggerCount, :AlarmPeriod, :Notices, :Duration, :Status, :CreateTime, :GroupTriggerCondition, :AlarmLevel, :MonitorObjectType, :SendType
@@ -2142,8 +2142,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 10
-        deprecate :Enable=, :none, 2025, 10
+        deprecate :Enable, :none, 2025, 11
+        deprecate :Enable=, :none, 2025, 11
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2482,8 +2482,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 10
-        deprecate :LogFormat=, :none, 2025, 10
+        deprecate :LogFormat, :none, 2025, 11
+        deprecate :LogFormat=, :none, 2025, 11
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -9336,8 +9336,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 10
-        deprecate :Enable=, :none, 2025, 10
+        deprecate :Enable, :none, 2025, 11
+        deprecate :Enable=, :none, 2025, 11
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -9635,8 +9635,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 10
-        deprecate :LogFormat=, :none, 2025, 10
+        deprecate :LogFormat, :none, 2025, 11
+        deprecate :LogFormat=, :none, 2025, 11
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -10902,7 +10902,7 @@ module TencentCloud
         end
       end
 
-      # 云监控通知渠道组信息
+      # 腾讯云可观测平台通知渠道组信息
       class MonitorNoticeRule < TencentCloud::Common::AbstractModel
         # @param NoticeId: 腾讯云可观测平台通知模板 ID
         # @type NoticeId: String
@@ -11532,8 +11532,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 10
-        deprecate :DstTopicName=, :none, 2025, 10
+        deprecate :DstTopicName, :none, 2025, 11
+        deprecate :DstTopicName=, :none, 2025, 11
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -12827,8 +12827,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 10
-        deprecate :HashKey=, :none, 2025, 10
+        deprecate :HashKey, :none, 2025, 11
+        deprecate :HashKey=, :none, 2025, 11
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -12936,10 +12936,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 10
-        deprecate :Headers=, :none, 2025, 10
-        deprecate :Body, :none, 2025, 10
-        deprecate :Body=, :none, 2025, 10
+        deprecate :Headers, :none, 2025, 11
+        deprecate :Headers=, :none, 2025, 11
+        deprecate :Body, :none, 2025, 11
+        deprecate :Body=, :none, 2025, 11
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

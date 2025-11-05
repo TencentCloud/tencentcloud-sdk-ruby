@@ -725,7 +725,7 @@ module TencentCloud
         # @type Domain: String
         # @param GroupId: 域名分组ID。可以通过接口DescribeDomainGroupList查看当前域名分组信息
         # @type GroupId: Integer
-        # @param IsMark: 是否星标域名，”yes”、”no” 分别代表是和否。
+        # @param IsMark: 是否星标域名，"yes"、"no" 分别代表是和否。
         # @type IsMark: String
         # @param TransferSubDomain: 添加子域名时，是否迁移相关父域名的解析记录。不传默认为 true
         # @type TransferSubDomain: Boolean
@@ -4552,7 +4552,7 @@ module TencentCloud
       class DomainInfo < TencentCloud::Common::AbstractModel
         # @param DomainId: 域名ID
         # @type DomainId: Integer
-        # @param Status: 域名状态
+        # @param Status: 域名状态，正常：ENABLE，暂停：PAUSE，封禁：SPAM
         # @type Status: String
         # @param Grade: 域名套餐等级
         # @type Grade: String
@@ -4560,7 +4560,7 @@ module TencentCloud
         # @type GroupId: Integer
         # @param IsMark: 是否星标域名
         # @type IsMark: String
-        # @param TTL: TTL(DNS记录缓存时间)
+        # @param TTL: TTL(DNS记录缓存时间)，单位：秒
         # @type TTL: Integer
         # @param CnameSpeedup: cname加速启用状态
         # @type CnameSpeedup: String
@@ -4568,7 +4568,7 @@ module TencentCloud
         # @type Remark: String
         # @param Punycode: 域名Punycode
         # @type Punycode: String
-        # @param DnsStatus: 域名DNS状态
+        # @param DnsStatus: 域名DNS状态，错误：dnserror，正常：空字符串
         # @type DnsStatus: String
         # @param DnspodNsList: 域名的NS列表
         # @type DnspodNsList: Array
@@ -5263,6 +5263,46 @@ module TencentCloud
         end
       end
 
+      # ModifyDomainCNAMESpeedupStatusBatch请求参数结构体
+      class ModifyDomainCNAMESpeedupStatusBatchRequest < TencentCloud::Common::AbstractModel
+        # @param DomainList: 域名列表
+        # @type DomainList: Array
+        # @param Status: 状态。ENABLE-开启；DISABLE-关闭。
+        # @type Status: String
+
+        attr_accessor :DomainList, :Status
+
+        def initialize(domainlist=nil, status=nil)
+          @DomainList = domainlist
+          @Status = status
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDomainCNAMESpeedupStatusBatch返回参数结构体
+      class ModifyDomainCNAMESpeedupStatusBatchResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDomainCustomLine请求参数结构体
       class ModifyDomainCustomLineRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -5394,6 +5434,46 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDomainRecursiveStatusBatch请求参数结构体
+      class ModifyDomainRecursiveStatusBatchRequest < TencentCloud::Common::AbstractModel
+        # @param DomainList: 域名列表
+        # @type DomainList: Array
+        # @param Status: ENABLE-开启；DISABLE-关闭。
+        # @type Status: String
+
+        attr_accessor :DomainList, :Status
+
+        def initialize(domainlist=nil, status=nil)
+          @DomainList = domainlist
+          @Status = status
+        end
+
+        def deserialize(params)
+          @DomainList = params['DomainList']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDomainRecursiveStatusBatch返回参数结构体
+      class ModifyDomainRecursiveStatusBatchResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID
+        # @type JobId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -6251,9 +6331,9 @@ module TencentCloud
         # @type DomainId: Integer
         # @param SubDomain: 主机记录，如 www，如果不传，默认为 @。
         # @type SubDomain: String
-        # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，英文字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
+        # @param RecordLineId: 线路的 ID，通过 API 记录线路获得，字符串，比如：10=1。参数RecordLineId优先级高于RecordLine，如果同时传递二者，优先使用RecordLineId参数。
         # @type RecordLineId: String
-        # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。
+        # @param TTL: TTL，范围1-604800，不同等级域名最小值不同。单位：秒
         # @type TTL: Integer
         # @param Status: 记录初始状态，取值范围为 ENABLE 和 DISABLE 。默认为 ENABLE ，如果传入 DISABLE，解析不会生效，也不会验证负载均衡的限制。
         # @type Status: String
@@ -6752,7 +6832,7 @@ module TencentCloud
         # @type Remark: String
         # @param TTL: 记录缓存时间
         # @type TTL: Integer
-        # @param MX: MX值，只有MX记录有
+        # @param MX: MX值
         # @type MX: Integer
         # @param DefaultNS: 是否是默认的ns记录
         # @type DefaultNS: Boolean
@@ -7303,19 +7383,19 @@ module TencentCloud
         # @type Id: Integer
         # @param Email: 用户账号, 邮箱格式
         # @type Email: String
-        # @param Status: 账号状态：”enabled”: 正常；”disabled”: 被封禁
+        # @param Status: 账号状态: "enabled": 正常; "disabled": 被封禁
         # @type Status: String
         # @param Telephone: 电话号码
         # @type Telephone: String
-        # @param EmailVerified: 邮箱是否通过验证：”yes”: 通过；”no”: 未通过
+        # @param EmailVerified: 邮箱是否通过验证："yes": 通过; "no": 未通过
         # @type EmailVerified: String
-        # @param TelephoneVerified: 手机是否通过验证：”yes”: 通过；”no”: 未通过
+        # @param TelephoneVerified: 手机是否通过验证："yes": 通过； "no": 未通过
         # @type TelephoneVerified: String
         # @param UserGrade: 账号等级, 按照用户账号下域名等级排序, 选取一个最高等级为账号等级, 具体对应情况参见域名等级。
         # @type UserGrade: String
         # @param RealName: 用户名称, 企业用户对应为公司名称
         # @type RealName: String
-        # @param WechatBinded: 是否绑定微信：”yes”: 通过；”no”: 未通过
+        # @param WechatBinded: 是否绑定微信： "yes": 通过； "no": 未通过
         # @type WechatBinded: String
         # @param Uin: 用户UIN
         # @type Uin: Integer

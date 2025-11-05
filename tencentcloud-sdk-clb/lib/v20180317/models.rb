@@ -1286,8 +1286,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 10
-        deprecate :Period=, :none, 2025, 10
+        deprecate :Period, :none, 2025, 11
+        deprecate :Period=, :none, 2025, 11
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5514,8 +5514,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 10
-        deprecate :Log=, :none, 2025, 10
+        deprecate :Log, :none, 2025, 11
+        deprecate :Log=, :none, 2025, 11
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil)
           @LoadBalancerId = loadbalancerid
@@ -6684,10 +6684,12 @@ module TencentCloud
         # @type TrpcFunc: String
         # @param OAuth: OAuth配置信息。
         # @type OAuth: :class:`Tencentcloud::Clb.v20180317.models.OAuth`
+        # @param CookieName: 自定义cookie名
+        # @type CookieName: String
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Url, :HealthCheck, :Scheduler, :SessionExpireTime, :ForwardType, :TrpcCallee, :TrpcFunc, :OAuth
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :Url, :HealthCheck, :Scheduler, :SessionExpireTime, :ForwardType, :TrpcCallee, :TrpcFunc, :OAuth, :CookieName
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, url=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, forwardtype=nil, trpccallee=nil, trpcfunc=nil, oauth=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, url=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, forwardtype=nil, trpccallee=nil, trpcfunc=nil, oauth=nil, cookiename=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @LocationId = locationid
@@ -6699,6 +6701,7 @@ module TencentCloud
           @TrpcCallee = trpccallee
           @TrpcFunc = trpcfunc
           @OAuth = oauth
+          @CookieName = cookiename
         end
 
         def deserialize(params)
@@ -6719,6 +6722,7 @@ module TencentCloud
             @OAuth = OAuth.new
             @OAuth.deserialize(params['OAuth'])
           end
+          @CookieName = params['CookieName']
         end
       end
 
@@ -7562,10 +7566,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 10
-        deprecate :Domain=, :none, 2025, 10
-        deprecate :Url, :none, 2025, 10
-        deprecate :Url=, :none, 2025, 10
+        deprecate :Domain, :none, 2025, 11
+        deprecate :Domain=, :none, 2025, 11
+        deprecate :Url, :none, 2025, 11
+        deprecate :Url=, :none, 2025, 11
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -7667,10 +7671,12 @@ module TencentCloud
         # @type Domains: Array
         # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数和Certificate不能同时传入。
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
+        # @param CookieName: 自定义cookie名
+        # @type CookieName: String
 
-        attr_accessor :Url, :Domain, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic, :Domains, :MultiCertInfo
+        attr_accessor :Url, :Domain, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ForwardType, :DefaultServer, :Http2, :TargetType, :TrpcCallee, :TrpcFunc, :Quic, :Domains, :MultiCertInfo, :CookieName
 
-        def initialize(url=nil, domain=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil, domains=nil, multicertinfo=nil)
+        def initialize(url=nil, domain=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, forwardtype=nil, defaultserver=nil, http2=nil, targettype=nil, trpccallee=nil, trpcfunc=nil, quic=nil, domains=nil, multicertinfo=nil, cookiename=nil)
           @Url = url
           @Domain = domain
           @SessionExpireTime = sessionexpiretime
@@ -7686,6 +7692,7 @@ module TencentCloud
           @Quic = quic
           @Domains = domains
           @MultiCertInfo = multicertinfo
+          @CookieName = cookiename
         end
 
         def deserialize(params)
@@ -7713,6 +7720,7 @@ module TencentCloud
             @MultiCertInfo = MultiCertInfo.new
             @MultiCertInfo.deserialize(params['MultiCertInfo'])
           end
+          @CookieName = params['CookieName']
         end
       end
 
@@ -7770,10 +7778,12 @@ module TencentCloud
         # @type TargetGroupList: Array
         # @param OAuth: OAuth配置状态信息。
         # @type OAuth: :class:`Tencentcloud::Clb.v20180317.models.OAuth`
+        # @param CookieName: 自定义cookie名。
+        # @type CookieName: String
 
-        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains, :TargetGroupList, :OAuth
+        attr_accessor :LocationId, :Domain, :Url, :SessionExpireTime, :HealthCheck, :Certificate, :Scheduler, :ListenerId, :RewriteTarget, :HttpGzip, :BeAutoCreated, :DefaultServer, :Http2, :ForwardType, :CreateTime, :TargetType, :TargetGroup, :WafDomainId, :TrpcCallee, :TrpcFunc, :QuicStatus, :Domains, :TargetGroupList, :OAuth, :CookieName
 
-        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil, targetgrouplist=nil, oauth=nil)
+        def initialize(locationid=nil, domain=nil, url=nil, sessionexpiretime=nil, healthcheck=nil, certificate=nil, scheduler=nil, listenerid=nil, rewritetarget=nil, httpgzip=nil, beautocreated=nil, defaultserver=nil, http2=nil, forwardtype=nil, createtime=nil, targettype=nil, targetgroup=nil, wafdomainid=nil, trpccallee=nil, trpcfunc=nil, quicstatus=nil, domains=nil, targetgrouplist=nil, oauth=nil, cookiename=nil)
           @LocationId = locationid
           @Domain = domain
           @Url = url
@@ -7798,6 +7808,7 @@ module TencentCloud
           @Domains = domains
           @TargetGroupList = targetgrouplist
           @OAuth = oauth
+          @CookieName = cookiename
         end
 
         def deserialize(params)
@@ -7847,6 +7858,7 @@ module TencentCloud
             @OAuth = OAuth.new
             @OAuth.deserialize(params['OAuth'])
           end
+          @CookieName = params['CookieName']
         end
       end
 
@@ -8636,8 +8648,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 10
-        deprecate :HealthStatusDetial=, :none, 2025, 10
+        deprecate :HealthStatusDetial, :none, 2025, 11
+        deprecate :HealthStatusDetial=, :none, 2025, 11
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

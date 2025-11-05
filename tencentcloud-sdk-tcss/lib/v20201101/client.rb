@@ -8050,6 +8050,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 卸载集群容器安全
+
+        # @param request: Request instance for UninstallClusterContainerSecurity.
+        # @type request: :class:`Tencentcloud::tcss::V20201101::UninstallClusterContainerSecurityRequest`
+        # @rtype: :class:`Tencentcloud::tcss::V20201101::UninstallClusterContainerSecurityResponse`
+        def UninstallClusterContainerSecurity(request)
+          body = send_request('UninstallClusterContainerSecurity', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UninstallClusterContainerSecurityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 容器网络创建网络策略更新并发布任务
 
         # @param request: Request instance for UpdateAndPublishNetworkFirewallPolicyDetail.

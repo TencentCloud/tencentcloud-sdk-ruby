@@ -486,6 +486,54 @@ module TencentCloud
         end
       end
 
+      # 审核结果明细（对外）
+      class AuditResultDetailExternal < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID
+        # @type TaskId: String
+        # @param RoomId: 房间 ID
+        # @type RoomId: String
+        # @param OpenId: UserID
+        # @type OpenId: String
+        # @param Label: 标签
+        # @type Label: String
+        # @param Rate: 恶意分数
+        # @type Rate: Float
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param Url: 音频 Url
+        # @type Url: String
+        # @param FileId: 文件Id
+        # @type FileId: String
+        # @param Info: ASR结果
+        # @type Info: String
+
+        attr_accessor :TaskId, :RoomId, :OpenId, :Label, :Rate, :CreateTime, :Url, :FileId, :Info
+
+        def initialize(taskid=nil, roomid=nil, openid=nil, label=nil, rate=nil, createtime=nil, url=nil, fileid=nil, info=nil)
+          @TaskId = taskid
+          @RoomId = roomid
+          @OpenId = openid
+          @Label = label
+          @Rate = rate
+          @CreateTime = createtime
+          @Url = url
+          @FileId = fileid
+          @Info = info
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RoomId = params['RoomId']
+          @OpenId = params['OpenId']
+          @Label = params['Label']
+          @Rate = params['Rate']
+          @CreateTime = params['CreateTime']
+          @Url = params['Url']
+          @FileId = params['FileId']
+          @Info = params['Info']
+        end
+      end
+
       # ControlAIConversation请求参数结构体
       class ControlAIConversationRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务唯一标识
@@ -1375,27 +1423,83 @@ module TencentCloud
 
       # DescribeAuditResultExternal请求参数结构体
       class DescribeAuditResultExternalRequest < TencentCloud::Common::AbstractModel
+        # @param BizId: 应用 ID
+        # @type BizId: Integer
+        # @param PageNo: 页数  取值范围：>=1
+        # @type PageNo: Integer
+        # @param PageSize: 每页大小
+        # @type PageSize: Integer
+        # @param BeginTime: 起始时间戳（秒）
+        # @type BeginTime: Integer
+        # @param EndTime: 截止时间戳（秒）
+        # @type EndTime: Integer
+        # @param MinRate: 最小恶意分数
+        # @type MinRate: Integer
+        # @param MaxRate: 最大恶意分数
+        # @type MaxRate: Integer
+        # @param OpenId: UserID
+        # @type OpenId: String
+        # @param Label: 恶意分类
+        # @type Label: String
+        # @param RoomId: 房间 ID
+        # @type RoomId: String
 
+        attr_accessor :BizId, :PageNo, :PageSize, :BeginTime, :EndTime, :MinRate, :MaxRate, :OpenId, :Label, :RoomId
 
-        def initialize()
+        def initialize(bizid=nil, pageno=nil, pagesize=nil, begintime=nil, endtime=nil, minrate=nil, maxrate=nil, openid=nil, label=nil, roomid=nil)
+          @BizId = bizid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @BeginTime = begintime
+          @EndTime = endtime
+          @MinRate = minrate
+          @MaxRate = maxrate
+          @OpenId = openid
+          @Label = label
+          @RoomId = roomid
         end
 
         def deserialize(params)
+          @BizId = params['BizId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @MinRate = params['MinRate']
+          @MaxRate = params['MaxRate']
+          @OpenId = params['OpenId']
+          @Label = params['Label']
+          @RoomId = params['RoomId']
         end
       end
 
       # DescribeAuditResultExternal返回参数结构体
       class DescribeAuditResultExternalResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Data: 明细列表
+        # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              auditresultdetailexternal_tmp = AuditResultDetailExternal.new
+              auditresultdetailexternal_tmp.deserialize(i)
+              @Data << auditresultdetailexternal_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

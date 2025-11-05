@@ -661,6 +661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取智能体列表
+
+        # @param request: Request instance for DescribeAIAgentInfoList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeAIAgentInfoListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeAIAgentInfoListResponse`
+        def DescribeAIAgentInfoList(request)
+          body = send_request('DescribeAIAgentInfoList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIAgentInfoListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取 AI 会话分析结果
 
         # @param request: Request instance for DescribeAIAnalysisResult.
