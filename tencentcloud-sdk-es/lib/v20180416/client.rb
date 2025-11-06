@@ -918,6 +918,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询IP溯源状态
+
+        # @param request: Request instance for GetIpTraceStatus.
+        # @type request: :class:`Tencentcloud::es::V20180416::GetIpTraceStatusRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::GetIpTraceStatusResponse`
+        def GetIpTraceStatus(request)
+          body = send_request('GetIpTraceStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetIpTraceStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取接收客户端请求的节点类型
 
         # @param request: Request instance for GetRequestTargetNodeTypes.
@@ -1000,6 +1024,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEsVipSecurityGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询IP溯源日志
+
+        # @param request: Request instance for QueryIpTraceLog.
+        # @type request: :class:`Tencentcloud::es::V20180416::QueryIpTraceLogRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::QueryIpTraceLogResponse`
+        def QueryIpTraceLog(request)
+          body = send_request('QueryIpTraceLog', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryIpTraceLogResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1295,6 +1343,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新ES集群IP溯源状态
+
+        # @param request: Request instance for UpdateIpTraceStatus.
+        # @type request: :class:`Tencentcloud::es::V20180416::UpdateIpTraceStatusRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::UpdateIpTraceStatusResponse`
+        def UpdateIpTraceStatus(request)
+          body = send_request('UpdateIpTraceStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateIpTraceStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

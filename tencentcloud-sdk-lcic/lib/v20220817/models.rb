@@ -680,6 +680,7 @@ module TencentCloud
         # 1 需要转码的文档，ppt，pptx，pdf，doc，docx，xls，xlsx
         # 2 需要转码的视频，mp4，3pg，mpeg，avi，flv，wmv，rm，h264等
         # 2 需要转码的音频，mp3，wav，wma，aac，flac，opus
+        # 3 备用转码，建议 WPS 制作的课件使用此方式转码，保证课件显示效果
         # 请注意，待录制的页面中任何视频的分辨率不能超过页面录制最大分辨率（1920*1080），否则将导致录制失败。
         #  - ppt课件内嵌视频或纯视频课件，在上传课件时，云api会进行转码，以确保视频分辨率不超过页面录制最大分辨率。
         #  - h5课件中内嵌音视频内容时，由于平台无法获取视频内容，因此在制作环节需确保视频分辨率不超过页面录制最大分辨率。
@@ -944,10 +945,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 10
-        deprecate :RTCAudienceNumber=, :none, 2025, 10
-        deprecate :RecordLang, :none, 2025, 10
-        deprecate :RecordLang=, :none, 2025, 10
+        deprecate :RTCAudienceNumber, :none, 2025, 11
+        deprecate :RTCAudienceNumber=, :none, 2025, 11
+        deprecate :RecordLang, :none, 2025, 11
+        deprecate :RecordLang=, :none, 2025, 11
 
         def initialize(name=nil, starttime=nil, endtime=nil, sdkappid=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, guests=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, recordmerge=nil)
           @Name = name
@@ -4152,8 +4153,8 @@ module TencentCloud
 
         attr_accessor :RoomId, :SdkAppId, :StartTime, :EndTime, :TeacherId, :Name, :Resolution, :MaxMicNumber, :AutoMic, :AudioQuality, :SubType, :DisableRecord, :Assistants, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :RecordLayout, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordScene, :RecordLang, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RecordLang, :none, 2025, 10
-        deprecate :RecordLang=, :none, 2025, 10
+        deprecate :RecordLang, :none, 2025, 11
+        deprecate :RecordLang=, :none, 2025, 11
 
         def initialize(roomid=nil, sdkappid=nil, starttime=nil, endtime=nil, teacherid=nil, name=nil, resolution=nil, maxmicnumber=nil, automic=nil, audioquality=nil, subtype=nil, disablerecord=nil, assistants=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, recordlayout=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordscene=nil, recordlang=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil)
           @RoomId = roomid
@@ -4516,10 +4517,10 @@ module TencentCloud
 
         attr_accessor :Name, :StartTime, :EndTime, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :Guests, :RecordMerge
         extend Gem::Deprecate
-        deprecate :RTCAudienceNumber, :none, 2025, 10
-        deprecate :RTCAudienceNumber=, :none, 2025, 10
-        deprecate :RecordLang, :none, 2025, 10
-        deprecate :RecordLang=, :none, 2025, 10
+        deprecate :RTCAudienceNumber, :none, 2025, 11
+        deprecate :RTCAudienceNumber=, :none, 2025, 11
+        deprecate :RecordLang, :none, 2025, 11
+        deprecate :RecordLang=, :none, 2025, 11
 
         def initialize(name=nil, starttime=nil, endtime=nil, resolution=nil, maxmicnumber=nil, subtype=nil, teacherid=nil, automic=nil, turnoffmic=nil, audioquality=nil, disablerecord=nil, assistants=nil, rtcaudiencenumber=nil, audiencetype=nil, recordlayout=nil, groupid=nil, enabledirectcontrol=nil, interactionmode=nil, videoorientation=nil, isgradingrequiredpostclass=nil, roomtype=nil, enddelaytime=nil, livetype=nil, recordliveurl=nil, enableautostart=nil, recordbackground=nil, recordscene=nil, recordlang=nil, recordstream=nil, whiteboardsnapshotmode=nil, subtitlestranscription=nil, guests=nil, recordmerge=nil)
           @Name = name

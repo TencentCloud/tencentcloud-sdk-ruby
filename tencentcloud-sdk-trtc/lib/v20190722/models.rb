@@ -278,17 +278,21 @@ module TencentCloud
 
       # TTS音频输出的格式
       class AudioFormat < TencentCloud::Common::AbstractModel
-        # @param Format: 生成的音频格式，默认pcm，目前支持的格式列表：[pcm]。
+        # @param Format: 生成的音频格式，默认pcm，目前支持的格式列表：流式：[pcm]，非流式 [pcm，wav]
         # @type Format: String
+        # @param SampleRate: 采样率，默认24000， 可选16000, 24000
+        # @type SampleRate: Integer
 
-        attr_accessor :Format
+        attr_accessor :Format, :SampleRate
 
-        def initialize(format=nil)
+        def initialize(format=nil, samplerate=nil)
           @Format = format
+          @SampleRate = samplerate
         end
 
         def deserialize(params)
           @Format = params['Format']
+          @SampleRate = params['SampleRate']
         end
       end
 
@@ -4771,10 +4775,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 10
-        deprecate :Model=, :none, 2025, 10
-        deprecate :TranslationLanguage, :none, 2025, 10
-        deprecate :TranslationLanguage=, :none, 2025, 10
+        deprecate :Model, :none, 2025, 11
+        deprecate :Model=, :none, 2025, 11
+        deprecate :TranslationLanguage, :none, 2025, 11
+        deprecate :TranslationLanguage=, :none, 2025, 11
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5897,12 +5901,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 10
-        deprecate :VideoEncodeParams=, :none, 2025, 10
-        deprecate :AudioEncodeParams, :none, 2025, 10
-        deprecate :AudioEncodeParams=, :none, 2025, 10
-        deprecate :SourceUrl, :none, 2025, 10
-        deprecate :SourceUrl=, :none, 2025, 10
+        deprecate :VideoEncodeParams, :none, 2025, 11
+        deprecate :VideoEncodeParams=, :none, 2025, 11
+        deprecate :AudioEncodeParams, :none, 2025, 11
+        deprecate :AudioEncodeParams=, :none, 2025, 11
+        deprecate :SourceUrl, :none, 2025, 11
+        deprecate :SourceUrl=, :none, 2025, 11
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -6493,15 +6497,19 @@ module TencentCloud
       class TTSConfig < TencentCloud::Common::AbstractModel
         # @param VoiceId: 音色ID
         # @type VoiceId: String
+        # @param Model: TTS 的模型，默认是：flow_01_turbo, 可选: [ flow_01_turbo, flow_01_ex]
+        # @type Model: String
 
-        attr_accessor :VoiceId
+        attr_accessor :VoiceId, :Model
 
-        def initialize(voiceid=nil)
+        def initialize(voiceid=nil, model=nil)
           @VoiceId = voiceid
+          @Model = model
         end
 
         def deserialize(params)
           @VoiceId = params['VoiceId']
+          @Model = params['Model']
         end
       end
 
@@ -6587,15 +6595,24 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: TTS的API密钥
         # @type APIKey: String
+        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @type Model: String
+        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @type Language: String
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
+        extend Gem::Deprecate
+        deprecate :APIKey, :none, 2025, 11
+        deprecate :APIKey=, :none, 2025, 11
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
           @AudioFormat = audioformat
           @APIKey = apikey
+          @Model = model
+          @Language = language
         end
 
         def deserialize(params)
@@ -6610,6 +6627,8 @@ module TencentCloud
             @AudioFormat.deserialize(params['AudioFormat'])
           end
           @APIKey = params['APIKey']
+          @Model = params['Model']
+          @Language = params['Language']
         end
       end
 
@@ -6645,15 +6664,21 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: TTS的API密钥
         # @type APIKey: String
+        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @type Model: String
+        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @type Language: String
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey
+        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
           @AudioFormat = audioformat
           @APIKey = apikey
+          @Model = model
+          @Language = language
         end
 
         def deserialize(params)
@@ -6668,6 +6693,8 @@ module TencentCloud
             @AudioFormat.deserialize(params['AudioFormat'])
           end
           @APIKey = params['APIKey']
+          @Model = params['Model']
+          @Language = params['Language']
         end
       end
 
@@ -6734,10 +6761,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 10
-        deprecate :IMAdminUserId=, :none, 2025, 10
-        deprecate :IMAdminUserSig, :none, 2025, 10
-        deprecate :IMAdminUserSig=, :none, 2025, 10
+        deprecate :IMAdminUserId, :none, 2025, 11
+        deprecate :IMAdminUserId=, :none, 2025, 11
+        deprecate :IMAdminUserSig, :none, 2025, 11
+        deprecate :IMAdminUserSig=, :none, 2025, 11
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7284,15 +7311,27 @@ module TencentCloud
       class Voice < TencentCloud::Common::AbstractModel
         # @param VoiceId: TTS的声音的ID
         # @type VoiceId: String
+        # @param Speed: 语速，范围 0.5-2.0，默认 1.0
+        # @type Speed: Float
+        # @param Volume: (0, 10]   默认值1.0
+        # @type Volume: Float
+        # @param Pitch: 取值[-12,12],默认0
+        # @type Pitch: Integer
 
-        attr_accessor :VoiceId
+        attr_accessor :VoiceId, :Speed, :Volume, :Pitch
 
-        def initialize(voiceid=nil)
+        def initialize(voiceid=nil, speed=nil, volume=nil, pitch=nil)
           @VoiceId = voiceid
+          @Speed = speed
+          @Volume = volume
+          @Pitch = pitch
         end
 
         def deserialize(params)
           @VoiceId = params['VoiceId']
+          @Speed = params['Speed']
+          @Volume = params['Volume']
+          @Pitch = params['Pitch']
         end
       end
 
@@ -7308,15 +7347,21 @@ module TencentCloud
         # @type APIKey: String
         # @param PromptText: 声音克隆的参考文本，为参考音频对应的文字。
         # @type PromptText: String
+        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @type Model: String
+        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @type Language: String
 
-        attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText
+        attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language
 
-        def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil)
+        def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil)
           @SdkAppId = sdkappid
           @VoiceName = voicename
           @PromptAudio = promptaudio
           @APIKey = apikey
           @PromptText = prompttext
+          @Model = model
+          @Language = language
         end
 
         def deserialize(params)
@@ -7325,6 +7370,8 @@ module TencentCloud
           @PromptAudio = params['PromptAudio']
           @APIKey = params['APIKey']
           @PromptText = params['PromptText']
+          @Model = params['Model']
+          @Language = params['Language']
         end
       end
 

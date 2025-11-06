@@ -3740,10 +3740,12 @@ module TencentCloud
         # @type IsWebTracking: Boolean
         # @param Extends: 主题扩展信息
         # @type Extends: :class:`Tencentcloud::Cls.v20201016.models.TopicExtendInfo`
+        # @param IsSourceFrom: 开启记录公网来源ip和服务端接收时间
+        # @type IsSourceFrom: Boolean
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :BizType, :TopicId, :IsWebTracking, :Extends
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -3758,6 +3760,7 @@ module TencentCloud
           @TopicId = topicid
           @IsWebTracking = iswebtracking
           @Extends = extends
+          @IsSourceFrom = issourcefrom
         end
 
         def deserialize(params)
@@ -3785,6 +3788,7 @@ module TencentCloud
             @Extends = TopicExtendInfo.new
             @Extends.deserialize(params['Extends'])
           end
+          @IsSourceFrom = params['IsSourceFrom']
         end
       end
 

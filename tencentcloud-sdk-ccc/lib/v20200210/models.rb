@@ -6317,6 +6317,124 @@ module TencentCloud
         end
       end
 
+      # 创建 staff 的信息 item
+      class SetStaffStatusItem < TencentCloud::Common::AbstractModel
+        # @param StaffUserId: 座席账号
+        # @type StaffUserId: String
+        # @param Status: 状态，free 示闲 notReady 示忙 rest 小休
+        # @type Status: String
+        # @param Reason: 如果设置小休状态，这里是原因
+        # @type Reason: String
+
+        attr_accessor :StaffUserId, :Status, :Reason
+
+        def initialize(staffuserid=nil, status=nil, reason=nil)
+          @StaffUserId = staffuserid
+          @Status = status
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @StaffUserId = params['StaffUserId']
+          @Status = params['Status']
+          @Reason = params['Reason']
+        end
+      end
+
+      # SetStaffStatus请求参数结构体
+      class SetStaffStatusRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param StaffStatusList: 设置座席状态列表，最大个数 10
+        # @type StaffStatusList: Array
+
+        attr_accessor :SdkAppId, :StaffStatusList
+
+        def initialize(sdkappid=nil, staffstatuslist=nil)
+          @SdkAppId = sdkappid
+          @StaffStatusList = staffstatuslist
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          unless params['StaffStatusList'].nil?
+            @StaffStatusList = []
+            params['StaffStatusList'].each do |i|
+              setstaffstatusitem_tmp = SetStaffStatusItem.new
+              setstaffstatusitem_tmp.deserialize(i)
+              @StaffStatusList << setstaffstatusitem_tmp
+            end
+          end
+        end
+      end
+
+      # SetStaffStatus返回参数结构体
+      class SetStaffStatusResponse < TencentCloud::Common::AbstractModel
+        # @param StaffStatusList: 设置座席状态应答列表
+        # @type StaffStatusList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StaffStatusList, :RequestId
+
+        def initialize(staffstatuslist=nil, requestid=nil)
+          @StaffStatusList = staffstatuslist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['StaffStatusList'].nil?
+            @StaffStatusList = []
+            params['StaffStatusList'].each do |i|
+              setstaffstatusrspitem_tmp = SetStaffStatusRspItem.new
+              setstaffstatusrspitem_tmp.deserialize(i)
+              @StaffStatusList << setstaffstatusrspitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 设置 staff 状态应答 item
+      class SetStaffStatusRspItem < TencentCloud::Common::AbstractModel
+        # @param StaffUserId: 座席账号
+        # @type StaffUserId: String
+        # @param ErrorCode: 错误码，参考协议整体错误码
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息
+        # @type ErrorMessage: String
+        # @param Status: 当前状态
+        # @type Status: String
+        # @param Reason: 当前状态如果是小休，这里是原因
+        # @type Reason: String
+        # @param PreviousStatus: 之前状态
+        # @type PreviousStatus: String
+        # @param PreviousReason: 之前状态如果是小休，这里是原因
+        # @type PreviousReason: String
+
+        attr_accessor :StaffUserId, :ErrorCode, :ErrorMessage, :Status, :Reason, :PreviousStatus, :PreviousReason
+
+        def initialize(staffuserid=nil, errorcode=nil, errormessage=nil, status=nil, reason=nil, previousstatus=nil, previousreason=nil)
+          @StaffUserId = staffuserid
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @Status = status
+          @Reason = reason
+          @PreviousStatus = previousstatus
+          @PreviousReason = previousreason
+        end
+
+        def deserialize(params)
+          @StaffUserId = params['StaffUserId']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @PreviousStatus = params['PreviousStatus']
+          @PreviousReason = params['PreviousReason']
+        end
+      end
+
       # 技能组信息
       class SkillGroupInfoItem < TencentCloud::Common::AbstractModel
         # @param SkillGroupId: 技能组ID

@@ -1146,6 +1146,63 @@ module TencentCloud
         end
       end
 
+      # ApplyFreeCertificate请求参数结构体
+      class ApplyFreeCertificateRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Domain: 申请免费证书的目标域名。
+        # @type Domain: String
+        # @param VerificationMethod: 申请免费证书时验证方式，详细验证方式说明参考[免费证书申请方式说明文档](https://cloud.tencent.com/document/product/1552/90437) ，相关取值有：
+        # <li>http_challenge：HTTP 访问文件验证方式，通过 HTTP 访问域名指定 URL 获取文件信息以完成免费证书申请验证；</li>
+        # <li>dns_challenge：DNS 委派验证方式，通过添加指定的主机记录解析指向 EdgeOne 以完成免费证书申请验证。</li>
+        # 注意：在触发本接口后，你需要根据返回的验证信息，完成验证内容配置。配置完成后，还需要通过<a href = 'https://tcloud4api.woa.com/document/product/1657/927938?!preview&!document=1'>检查免费证书申请结果</a>接口进行验证，验证通过后，即可申请成功。在免费证书申请成功后，你可以调用<a href = 'https://cloud.tencent.com/document/product/1552/80764'>配置域名证书</a>接口为当前域名部署免费证书。
+        # @type VerificationMethod: String
+
+        attr_accessor :ZoneId, :Domain, :VerificationMethod
+
+        def initialize(zoneid=nil, domain=nil, verificationmethod=nil)
+          @ZoneId = zoneid
+          @Domain = domain
+          @VerificationMethod = verificationmethod
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Domain = params['Domain']
+          @VerificationMethod = params['VerificationMethod']
+        end
+      end
+
+      # ApplyFreeCertificate返回参数结构体
+      class ApplyFreeCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param DnsVerification: 当 VerificationMethod 为 dns_challenge 时，域名申请免费证书的相关验证信息。
+        # @type DnsVerification: :class:`Tencentcloud::Teo.v20220901.models.DnsVerification`
+        # @param FileVerification: 当 VerificationMethod 为 http_challenge 时，域名申请免费证书的相关验证信息。
+        # @type FileVerification: :class:`Tencentcloud::Teo.v20220901.models.FileVerification`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DnsVerification, :FileVerification, :RequestId
+
+        def initialize(dnsverification=nil, fileverification=nil, requestid=nil)
+          @DnsVerification = dnsverification
+          @FileVerification = fileverification
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DnsVerification'].nil?
+            @DnsVerification = DnsVerification.new
+            @DnsVerification.deserialize(params['DnsVerification'])
+          end
+          unless params['FileVerification'].nil?
+            @FileVerification = FileVerification.new
+            @FileVerification.deserialize(params['FileVerification'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 站点归属信息
       class AscriptionInfo < TencentCloud::Common::AbstractModel
         # @param Subdomain: 主机记录。
@@ -2836,6 +2893,55 @@ module TencentCloud
               @CnameStatus << cnamestatus_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CheckFreeCertificateVerification请求参数结构体
+      class CheckFreeCertificateVerificationRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param Domain: 加速域名，该域名为[申请免费证书](https://tcloud4api.woa.com/document/product/1657/927654?!preview&!document=1)时使用的域名。
+        # @type Domain: String
+
+        attr_accessor :ZoneId, :Domain
+
+        def initialize(zoneid=nil, domain=nil)
+          @ZoneId = zoneid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Domain = params['Domain']
+        end
+      end
+
+      # CheckFreeCertificateVerification返回参数结构体
+      class CheckFreeCertificateVerificationResponse < TencentCloud::Common::AbstractModel
+        # @param CommonName: 免费证书申请成功时，该证书颁发给的域名。
+        # 注意：一个域名只允许申请一本免费证书， 如果已经有泛域名申请了免费证书的情况下，其子域名会匹配使用该泛域名证书。
+        # @type CommonName: String
+        # @param SignatureAlgorithm: 免费证书申请成功时，该证书使用的签名算法，当前仅支持 RSA 2048。
+        # @type SignatureAlgorithm: String
+        # @param ExpireTime: 免费证书申请成功时，该证书的过期时间。时间为世界标准时间（UTC）， 遵循 ISO 8601 标准的日期和时间格式。
+        # @type ExpireTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CommonName, :SignatureAlgorithm, :ExpireTime, :RequestId
+
+        def initialize(commonname=nil, signaturealgorithm=nil, expiretime=nil, requestid=nil)
+          @CommonName = commonname
+          @SignatureAlgorithm = signaturealgorithm
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CommonName = params['CommonName']
+          @SignatureAlgorithm = params['SignatureAlgorithm']
+          @ExpireTime = params['ExpireTime']
           @RequestId = params['RequestId']
         end
       end

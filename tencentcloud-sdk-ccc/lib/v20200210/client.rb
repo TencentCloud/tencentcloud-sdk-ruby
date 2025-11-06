@@ -1743,6 +1743,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置 staff 状态
+
+        # @param request: Request instance for SetStaffStatus.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::SetStaffStatusRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::SetStaffStatusResponse`
+        def SetStaffStatus(request)
+          body = send_request('SetStaffStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetStaffStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 停止自动外呼任务
 
         # @param request: Request instance for StopAutoCalloutTask.

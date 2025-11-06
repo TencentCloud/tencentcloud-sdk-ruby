@@ -35,10 +35,18 @@ module TencentCloud
         # @type NoSupportTransparentDataEncryptionReason: String
         # @param IsSupportManualLogic: 是否支持手动发起逻辑备份
         # @type IsSupportManualLogic: String
+        # @param IsSupportGlobalEncryption: 是否支持开启全局加密
+        # @type IsSupportGlobalEncryption: String
+        # @param NoSupportGlobalEncryptionReason: 不支持全局加密的原因
+        # @type NoSupportGlobalEncryptionReason: String
+        # @param NoSupportTransparentDataEncryptionReasonCode: 不支持透明加密原因状态码
+        # @type NoSupportTransparentDataEncryptionReasonCode: String
+        # @param NoSupportGlobalEncryptionReasonCode: 不支持全局加密原因状态码
+        # @type NoSupportGlobalEncryptionReasonCode: String
 
-        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason, :IsSupportManualLogic
+        attr_accessor :IsSupportSlaveZone, :NonsupportSlaveZoneReason, :IsSupportRo, :NonsupportRoReason, :IsSupportManualSnapshot, :IsSupportTransparentDataEncryption, :NoSupportTransparentDataEncryptionReason, :IsSupportManualLogic, :IsSupportGlobalEncryption, :NoSupportGlobalEncryptionReason, :NoSupportTransparentDataEncryptionReasonCode, :NoSupportGlobalEncryptionReasonCode
 
-        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil, issupporttransparentdataencryption=nil, nosupporttransparentdataencryptionreason=nil, issupportmanuallogic=nil)
+        def initialize(issupportslavezone=nil, nonsupportslavezonereason=nil, issupportro=nil, nonsupportroreason=nil, issupportmanualsnapshot=nil, issupporttransparentdataencryption=nil, nosupporttransparentdataencryptionreason=nil, issupportmanuallogic=nil, issupportglobalencryption=nil, nosupportglobalencryptionreason=nil, nosupporttransparentdataencryptionreasoncode=nil, nosupportglobalencryptionreasoncode=nil)
           @IsSupportSlaveZone = issupportslavezone
           @NonsupportSlaveZoneReason = nonsupportslavezonereason
           @IsSupportRo = issupportro
@@ -47,6 +55,10 @@ module TencentCloud
           @IsSupportTransparentDataEncryption = issupporttransparentdataencryption
           @NoSupportTransparentDataEncryptionReason = nosupporttransparentdataencryptionreason
           @IsSupportManualLogic = issupportmanuallogic
+          @IsSupportGlobalEncryption = issupportglobalencryption
+          @NoSupportGlobalEncryptionReason = nosupportglobalencryptionreason
+          @NoSupportTransparentDataEncryptionReasonCode = nosupporttransparentdataencryptionreasoncode
+          @NoSupportGlobalEncryptionReasonCode = nosupportglobalencryptionreasoncode
         end
 
         def deserialize(params)
@@ -58,6 +70,10 @@ module TencentCloud
           @IsSupportTransparentDataEncryption = params['IsSupportTransparentDataEncryption']
           @NoSupportTransparentDataEncryptionReason = params['NoSupportTransparentDataEncryptionReason']
           @IsSupportManualLogic = params['IsSupportManualLogic']
+          @IsSupportGlobalEncryption = params['IsSupportGlobalEncryption']
+          @NoSupportGlobalEncryptionReason = params['NoSupportGlobalEncryptionReason']
+          @NoSupportTransparentDataEncryptionReasonCode = params['NoSupportTransparentDataEncryptionReasonCode']
+          @NoSupportGlobalEncryptionReasonCode = params['NoSupportGlobalEncryptionReasonCode']
         end
       end
 
@@ -247,8 +263,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 10
-        deprecate :InstanceGrpId=, :none, 2025, 10
+        deprecate :InstanceGrpId, :none, 2025, 11
+        deprecate :InstanceGrpId=, :none, 2025, 11
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -1117,10 +1133,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 10
-        deprecate :InstanceGrpId=, :none, 2025, 10
-        deprecate :ModifyParamsData, :none, 2025, 10
-        deprecate :ModifyParamsData=, :none, 2025, 10
+        deprecate :InstanceGrpId, :none, 2025, 11
+        deprecate :InstanceGrpId=, :none, 2025, 11
+        deprecate :ModifyParamsData, :none, 2025, 11
+        deprecate :ModifyParamsData=, :none, 2025, 11
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
@@ -1578,8 +1594,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 10
-        deprecate :InstanceGrpId=, :none, 2025, 10
+        deprecate :InstanceGrpId, :none, 2025, 11
+        deprecate :InstanceGrpId=, :none, 2025, 11
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -1948,8 +1964,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 10
-        deprecate :Filter=, :none, 2025, 10
+        deprecate :Filter, :none, 2025, 11
+        deprecate :Filter=, :none, 2025, 11
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -5111,8 +5127,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 10
-        deprecate :Filter=, :none, 2025, 10
+        deprecate :Filter, :none, 2025, 11
+        deprecate :Filter=, :none, 2025, 11
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -6149,8 +6165,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2025, 10
-        deprecate :InstanceGrpInfoList=, :none, 2025, 10
+        deprecate :InstanceGrpInfoList, :none, 2025, 11
+        deprecate :InstanceGrpInfoList=, :none, 2025, 11
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6442,20 +6458,28 @@ module TencentCloud
         # @type KeyId: String
         # @param KeyRegion: 加密秘钥地域
         # @type KeyRegion: String
+        # @param KeyType: 秘钥类型
+        # @type KeyType: String
+        # @param IsOpenGlobalEncryption: 是否已经开启全局加密
+        # @type IsOpenGlobalEncryption: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :KeyRegion, :RequestId
+        attr_accessor :KeyId, :KeyRegion, :KeyType, :IsOpenGlobalEncryption, :RequestId
 
-        def initialize(keyid=nil, keyregion=nil, requestid=nil)
+        def initialize(keyid=nil, keyregion=nil, keytype=nil, isopenglobalencryption=nil, requestid=nil)
           @KeyId = keyid
           @KeyRegion = keyregion
+          @KeyType = keytype
+          @IsOpenGlobalEncryption = isopenglobalencryption
           @RequestId = requestid
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
           @KeyRegion = params['KeyRegion']
+          @KeyType = params['KeyType']
+          @IsOpenGlobalEncryption = params['IsOpenGlobalEncryption']
           @RequestId = params['RequestId']
         end
       end
@@ -6542,13 +6566,13 @@ module TencentCloud
       class DescribeDBSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID（InstanceId与InstanceGroupId必须任选一个传入）
         # @type InstanceId: String
-        # @param InstanceGroupId: 实例组ID（InstanceId与InstanceGroupId必须任选一个传入）
+        # @param InstanceGroupId: 实例组 ID，可通过 [DescribeClusterInstanceGroups](https://cloud.tencent.com/document/product/1003/103934) 接口查询。
         # @type InstanceGroupId: String
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 10
-        deprecate :InstanceId=, :none, 2025, 10
+        deprecate :InstanceId, :none, 2025, 11
+        deprecate :InstanceId=, :none, 2025, 11
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -11760,8 +11784,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 10
-        deprecate :InstanceGrpId=, :none, 2025, 10
+        deprecate :InstanceGrpId, :none, 2025, 11
+        deprecate :InstanceGrpId=, :none, 2025, 11
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -12061,8 +12085,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 10
-        deprecate :AuditRuleFilters=, :none, 2025, 10
+        deprecate :AuditRuleFilters, :none, 2025, 11
+        deprecate :AuditRuleFilters=, :none, 2025, 11
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12220,14 +12244,17 @@ module TencentCloud
         # @type KeyId: String
         # @param KeyRegion: 秘钥地域
         # @type KeyRegion: String
+        # @param IsOpenGlobalEncryption: 是否开启全局加密
+        # @type IsOpenGlobalEncryption: Boolean
 
-        attr_accessor :ClusterId, :KeyType, :KeyId, :KeyRegion
+        attr_accessor :ClusterId, :KeyType, :KeyId, :KeyRegion, :IsOpenGlobalEncryption
 
-        def initialize(clusterid=nil, keytype=nil, keyid=nil, keyregion=nil)
+        def initialize(clusterid=nil, keytype=nil, keyid=nil, keyregion=nil, isopenglobalencryption=nil)
           @ClusterId = clusterid
           @KeyType = keytype
           @KeyId = keyid
           @KeyRegion = keyregion
+          @IsOpenGlobalEncryption = isopenglobalencryption
         end
 
         def deserialize(params)
@@ -12235,6 +12262,7 @@ module TencentCloud
           @KeyType = params['KeyType']
           @KeyId = params['KeyId']
           @KeyRegion = params['KeyRegion']
+          @IsOpenGlobalEncryption = params['IsOpenGlobalEncryption']
         end
       end
 
@@ -12369,8 +12397,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2025, 10
-        deprecate :InstanceGrpId=, :none, 2025, 10
+        deprecate :InstanceGrpId, :none, 2025, 11
+        deprecate :InstanceGrpId=, :none, 2025, 11
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid

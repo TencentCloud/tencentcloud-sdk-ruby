@@ -3191,6 +3191,8 @@ module TencentCloud
         # RegistrationCertificate -- 备案证
         # ​GridPhoto -- 电网系统照片
         # ​SignaturePage -- 签署页
+        # ​SalesDeliveryNote -- 销售发货单
+
 
         # @type ConfigId: String
         # @param EnableCoord: 是否开启全文字段坐标值的识别

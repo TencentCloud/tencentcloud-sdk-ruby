@@ -55,7 +55,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterCIDRs: 增加的ClusterCIDR
         # @type ClusterCIDRs: Array
-        # @param IgnoreClusterCIDRConflict: 是否忽略ClusterCIDR与VPC路由表的冲突
+        # @param IgnoreClusterCIDRConflict: 是否忽略ClusterCIDR与VPC路由表的冲突，默认false，为true时忽略冲突
         # @type IgnoreClusterCIDRConflict: Boolean
 
         attr_accessor :ClusterId, :ClusterCIDRs, :IgnoreClusterCIDRConflict
@@ -514,7 +514,7 @@ module TencentCloud
         # @type ID: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，支持传入 tke(标准集群), eks(Serverless集群), external(注册集群）
         # @type ClusterType: String
 
         attr_accessor :ID, :ClusterId, :ClusterType
@@ -2219,11 +2219,11 @@ module TencentCloud
       class CreateClusterReleaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Name: 应用名称
+        # @param Name: 应用名称，最长63个字符，只能包含小写字母、数字及分隔符“-”，且必须以小写字母开头，数字或小写字母结尾
         # @type Name: String
-        # @param Namespace: 应用命名空间
+        # @param Namespace: 应用命名空间，从集群详情命名空间获取
         # @type Namespace: String
-        # @param Chart: 制品名称或从第三方repo 安装chart时，制品压缩包下载地址, 不支持重定向类型chart 地址，结尾为*.tgz
+        # @param Chart: 制品名称(从应用市场获取)或从第三方repo 安装chart时，制品压缩包下载地址, 不支持重定向类型chart 地址，结尾为*.tgz
         # @type Chart: String
         # @param Values: 自定义参数
         # @type Values: :class:`Tencentcloud::Tke.v20180525.models.ReleaseValues`
@@ -6248,7 +6248,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认0
         # @type Offset: Integer
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，支持传入tke（标准集群），eks（Serverless集群)，external（注册集群）
         # @type ClusterType: String
 
         attr_accessor :ClusterId, :Limit, :Offset, :ClusterType
@@ -6315,7 +6315,7 @@ module TencentCloud
         # @type Name: String
         # @param Namespace: 应用所在命名空间
         # @type Namespace: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，传入 tke(标准集群), eks(Serverless集群), external(注册集群）
         # @type ClusterType: String
 
         attr_accessor :ClusterId, :Name, :Namespace, :ClusterType
@@ -6366,7 +6366,7 @@ module TencentCloud
         # @type Name: String
         # @param Namespace: 应用所在命名空间
         # @type Namespace: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，传入 tke(标准集群), eks(Serverless集群), external(注册集群）
         # @type ClusterType: String
 
         attr_accessor :ClusterId, :Name, :Namespace, :ClusterType
@@ -6421,11 +6421,11 @@ module TencentCloud
       class DescribeClusterReleasesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param Limit: 每页数量限制
+        # @param Limit: 每页数量限制，默认值为20
         # @type Limit: Integer
-        # @param Offset: 页偏移量
+        # @param Offset: 页偏移量，默认值为0
         # @type Offset: Integer
-        # @param ClusterType: 集群类型, 目前支持传入 tke, eks, tkeedge, external
+        # @param ClusterType: 集群类型，传入 tke(标准集群)，eks(Serverless集群)，external(注册集群）
         # @type ClusterType: String
         # @param Namespace: helm Release 安装的namespace
         # @type Namespace: String
@@ -12266,7 +12266,7 @@ module TencentCloud
 
       # GetUpgradeInstanceProgress请求参数结构体
       class GetUpgradeInstanceProgressRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群ID（请登录 [TKE 控制台](https://console.cloud.tencent.com/tke2) 获取集群 ID ）
         # @type ClusterId: String
         # @param Limit: 最多获取多少个节点的进度
         # @type Limit: Integer
@@ -12295,6 +12295,8 @@ module TencentCloud
         # @param Done: 已升级节点总数
         # @type Done: Integer
         # @param LifeState: 升级任务生命周期
+
+        # pending 还未开始
         # process 运行中
         # paused 已停止
         # pauing 正在停止
@@ -15458,7 +15460,17 @@ module TencentCloud
         # @type Name: String
         # @param Namespace: 应用命名空间
         # @type Namespace: String
-        # @param Status: 应用状态(参考helm的发布状态： unknown, deployed, uninstalled, superseded, failed, uninstalling, pending-install, pending-upgrade 或 pending-rollback)
+        # @param Status: 应用状态，参考 Helm 发布状态。
+        # 可选值及其释义如下：
+        # • ​​unknown​​: 状态未知
+        # • ​​deployed​​: 已成功部署
+        # • ​​uninstalled​​: 已卸载
+        # • ​​superseded​​: 已被新版本替代
+        # • ​​failed​​: 部署失败
+        # • ​​uninstalling​​: 正在卸载中
+        # • ​​pending-install​​: 等待安装/安装进行中
+        # • ​​pending-upgrade​​: 等待升级/升级进行中
+        # • ​​pending-rollback​​: 等待回滚/回滚进行中
         # @type Status: String
         # @param UpdatedTime: 更新时间
         # @type UpdatedTime: String
@@ -17170,7 +17182,17 @@ module TencentCloud
         # @type Namespace: String
         # @param Revision: 应用当前版本
         # @type Revision: String
-        # @param Status: 应用状态
+        # @param Status: 应用状态，参考 Helm 发布状态。
+        # 可选值及其释义如下：
+        # • ​​unknown​​: 状态未知
+        # • ​​deployed​​: 已成功部署
+        # • ​​uninstalled​​: 已卸载
+        # • ​​superseded​​: 已被新版本替代
+        # • ​​failed​​: 部署失败
+        # • ​​uninstalling​​: 正在卸载中
+        # • ​​pending-install​​: 等待安装/安装进行中
+        # • ​​pending-upgrade​​: 等待升级/升级进行中
+        # • ​​pending-rollback​​: 等待回滚/回滚进行中
         # @type Status: String
         # @param ChartName: 制品名称
         # @type ChartName: String
@@ -17218,7 +17240,17 @@ module TencentCloud
         # @type Namespace: String
         # @param Version: 应用当前版本
         # @type Version: Integer
-        # @param Status: 应用状态
+        # @param Status: 应用状态，参考 Helm 发布状态。
+        # 可选值及其释义如下：
+        # • ​​unknown​​: 状态未知
+        # • ​​deployed​​: 已成功部署
+        # • ​​uninstalled​​: 已卸载
+        # • ​​superseded​​: 已被新版本替代
+        # • ​​failed​​: 部署失败
+        # • ​​uninstalling​​: 正在卸载中
+        # • ​​pending-install​​: 等待安装/安装进行中
+        # • ​​pending-upgrade​​: 等待升级/升级进行中
+        # • ​​pending-rollback​​: 等待回滚/回滚进行中
         # @type Status: String
         # @param Description: 应用描述
         # @type Description: String
@@ -17302,7 +17334,17 @@ module TencentCloud
         # @type Namespace: String
         # @param Revision: 应用版本
         # @type Revision: Integer
-        # @param Status: 应用状态
+        # @param Status: 应用状态，参考 Helm 发布状态。
+        # 可选值及其释义如下：
+        # • ​​unknown​​: 状态未知
+        # • ​​deployed​​: 已成功部署
+        # • ​​uninstalled​​: 已卸载
+        # • ​​superseded​​: 已被新版本替代
+        # • ​​failed​​: 部署失败
+        # • ​​uninstalling​​: 正在卸载中
+        # • ​​pending-install​​: 等待安装/安装进行中
+        # • ​​pending-upgrade​​: 等待升级/升级进行中
+        # • ​​pending-rollback​​: 等待回滚/回滚进行中
         # @type Status: String
         # @param Chart: 应用制品名称
         # @type Chart: String
@@ -17742,7 +17784,7 @@ module TencentCloud
         # @type Namespace: String
         # @param Revision: 回滚版本号
         # @type Revision: Integer
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，传入 tke(标准集群)，eks(Serverless集群)，external(注册集群）
         # @type ClusterType: String
 
         attr_accessor :ClusterId, :Name, :Namespace, :Revision, :ClusterType
@@ -18701,7 +18743,7 @@ module TencentCloud
         # @type Name: String
         # @param Namespace: 应用命名空间
         # @type Namespace: String
-        # @param ClusterType: 集群类型
+        # @param ClusterType: 集群类型，传入 tke(标准集群)， eks(Serverless集群)，external(注册集群）
         # @type ClusterType: String
 
         attr_accessor :ClusterId, :Name, :Namespace, :ClusterType

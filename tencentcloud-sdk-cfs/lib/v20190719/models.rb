@@ -1179,10 +1179,26 @@ module TencentCloud
         # @type CreationTime: String
         # @param FileSystemId: 文件系统 ID
         # @type FileSystemId: String
+        # @param AutoRefresh: 0：不开启自动更新
 
-        attr_accessor :DataFlowId, :DataFlowName, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :Status, :CreationTime, :FileSystemId
+        # 1：开启自动更新
+        # @type AutoRefresh: Integer
+        # @param UserKafkaTopic: KafkaConsumer 消费时使用的Topic参数
+        # @type UserKafkaTopic: String
+        # @param ServerAddr: 服务地址
+        # @type ServerAddr: String
+        # @param UserName: Kafka消费用户名
+        # @type UserName: String
+        # @param AutoRefreshStatus: 自动刷新的状态，available：已生效
+        # pending：配置中
+        # unavailable：失效
+        # @type AutoRefreshStatus: String
+        # @param AutoRefreshTime: 自动刷新开启时间
+        # @type AutoRefreshTime: String
 
-        def initialize(dataflowid=nil, dataflowname=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, status=nil, creationtime=nil, filesystemid=nil)
+        attr_accessor :DataFlowId, :DataFlowName, :SourceStorageType, :SourceStorageAddress, :SourcePath, :TargetPath, :Status, :CreationTime, :FileSystemId, :AutoRefresh, :UserKafkaTopic, :ServerAddr, :UserName, :AutoRefreshStatus, :AutoRefreshTime
+
+        def initialize(dataflowid=nil, dataflowname=nil, sourcestoragetype=nil, sourcestorageaddress=nil, sourcepath=nil, targetpath=nil, status=nil, creationtime=nil, filesystemid=nil, autorefresh=nil, userkafkatopic=nil, serveraddr=nil, username=nil, autorefreshstatus=nil, autorefreshtime=nil)
           @DataFlowId = dataflowid
           @DataFlowName = dataflowname
           @SourceStorageType = sourcestoragetype
@@ -1192,6 +1208,12 @@ module TencentCloud
           @Status = status
           @CreationTime = creationtime
           @FileSystemId = filesystemid
+          @AutoRefresh = autorefresh
+          @UserKafkaTopic = userkafkatopic
+          @ServerAddr = serveraddr
+          @UserName = username
+          @AutoRefreshStatus = autorefreshstatus
+          @AutoRefreshTime = autorefreshtime
         end
 
         def deserialize(params)
@@ -1204,6 +1226,12 @@ module TencentCloud
           @Status = params['Status']
           @CreationTime = params['CreationTime']
           @FileSystemId = params['FileSystemId']
+          @AutoRefresh = params['AutoRefresh']
+          @UserKafkaTopic = params['UserKafkaTopic']
+          @ServerAddr = params['ServerAddr']
+          @UserName = params['UserName']
+          @AutoRefreshStatus = params['AutoRefreshStatus']
+          @AutoRefreshTime = params['AutoRefreshTime']
         end
       end
 
@@ -2985,19 +3013,19 @@ module TencentCloud
 
       # 生命周期管理策略关联的管理规则
       class LifecycleRule < TencentCloud::Common::AbstractModel
-        # @param StorageType: 数据转储后的存储类型
+        # @param StorageType: 数据转储后的存储类型。其中：InfrequentAccess：低频介质存储；ColdStorage：冷存储。
         # @type StorageType: String
-        # @param FileType: 数据转储文件类型
+        # @param FileType: 数据转储文件类型。其中，BIG_FILE：超大文件；STD_FILE：普通文件；SMALL_FILE：小文件；ALL：所有文件。
         # @type FileType: String
-        # @param Action: 数据转储行为
+        # @param Action: 数据转储行为。其中，Archive：沉降；Noarchive：不沉降。
         # @type Action: String
-        # @param Interval: 数据转储触发时间
+        # @param Interval: 数据转储触发时间。由“DEFAULT_ATIME_”与“数字”组成，单位为天。当 Action 为 Noarchive，请保持为空。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Interval: String
-        # @param FileMaxSize: 数据转储文件最大规格
+        # @param FileMaxSize: 数据转储文件最大规格。其数值需使用“数字+单位”格式进行表示，单位支持K（KiB）、M（MiB）、G（GiB）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMaxSize: String
-        # @param FileMinSize: 数据转储文件最小规格
+        # @param FileMinSize: 数据转储文件最小规格。其数值需使用“数字+单位”格式进行表示，单位支持K（KiB）、M（MiB）、G（GiB）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMinSize: String
 

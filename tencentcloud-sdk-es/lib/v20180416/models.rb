@@ -3706,6 +3706,65 @@ module TencentCloud
         end
       end
 
+      # GetIpTraceStatus请求参数结构体
+      class GetIpTraceStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # GetIpTraceStatus返回参数结构体
+      class GetIpTraceStatusResponse < TencentCloud::Common::AbstractModel
+        # @param OpenIpTrace: 是否开启IP溯源
+        # @type OpenIpTrace: Boolean
+        # @param DurationTime: IP溯源开启持续时间，单位：秒
+        # @type DurationTime: Integer
+        # @param IpTraceConfig: IP溯源配置
+        # @type IpTraceConfig: :class:`Tencentcloud::Es.v20180416.models.IpTraceConfig`
+        # @param LastStartTime: 上次执行时间
+        # @type LastStartTime: String
+        # @param LastEndTime: 上次关闭时间
+        # @type LastEndTime: String
+        # @param FilterKibanaIp: 是否过滤Kibana节点IP
+        # @type FilterKibanaIp: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OpenIpTrace, :DurationTime, :IpTraceConfig, :LastStartTime, :LastEndTime, :FilterKibanaIp, :RequestId
+
+        def initialize(openiptrace=nil, durationtime=nil, iptraceconfig=nil, laststarttime=nil, lastendtime=nil, filterkibanaip=nil, requestid=nil)
+          @OpenIpTrace = openiptrace
+          @DurationTime = durationtime
+          @IpTraceConfig = iptraceconfig
+          @LastStartTime = laststarttime
+          @LastEndTime = lastendtime
+          @FilterKibanaIp = filterkibanaip
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OpenIpTrace = params['OpenIpTrace']
+          @DurationTime = params['DurationTime']
+          unless params['IpTraceConfig'].nil?
+            @IpTraceConfig = IpTraceConfig.new
+            @IpTraceConfig.deserialize(params['IpTraceConfig'])
+          end
+          @LastStartTime = params['LastStartTime']
+          @LastEndTime = params['LastEndTime']
+          @FilterKibanaIp = params['FilterKibanaIp']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRequestTargetNodeTypes请求参数结构体
       class GetRequestTargetNodeTypesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -4687,6 +4746,98 @@ module TencentCloud
         def deserialize(params)
           @Ip = params['Ip']
           @Timestamp = params['Timestamp']
+          @NodeIp = params['NodeIp']
+        end
+      end
+
+      # IP溯源配置
+      class IpTraceConfig < TencentCloud::Common::AbstractModel
+        # @param EnableRequest: 请求溯源开关
+        # @type EnableRequest: Boolean
+        # @param EnableResponse: 返回溯源开关
+        # @type EnableResponse: Boolean
+        # @param EnableRequestBody: 请求消息体溯源开关
+        # @type EnableRequestBody: Boolean
+        # @param EnableResponseBody: 返回消息体溯源开关
+        # @type EnableResponseBody: Boolean
+        # @param RemoteIpInclude: 排除IP
+        # @type RemoteIpInclude: Array
+        # @param RemoteIpExclude: 包含IP
+        # @type RemoteIpExclude: Array
+        # @param UriInclude: 排除uri
+        # @type UriInclude: Array
+        # @param UriExclude: 包含uri
+        # @type UriExclude: Array
+
+        attr_accessor :EnableRequest, :EnableResponse, :EnableRequestBody, :EnableResponseBody, :RemoteIpInclude, :RemoteIpExclude, :UriInclude, :UriExclude
+
+        def initialize(enablerequest=nil, enableresponse=nil, enablerequestbody=nil, enableresponsebody=nil, remoteipinclude=nil, remoteipexclude=nil, uriinclude=nil, uriexclude=nil)
+          @EnableRequest = enablerequest
+          @EnableResponse = enableresponse
+          @EnableRequestBody = enablerequestbody
+          @EnableResponseBody = enableresponsebody
+          @RemoteIpInclude = remoteipinclude
+          @RemoteIpExclude = remoteipexclude
+          @UriInclude = uriinclude
+          @UriExclude = uriexclude
+        end
+
+        def deserialize(params)
+          @EnableRequest = params['EnableRequest']
+          @EnableResponse = params['EnableResponse']
+          @EnableRequestBody = params['EnableRequestBody']
+          @EnableResponseBody = params['EnableResponseBody']
+          @RemoteIpInclude = params['RemoteIpInclude']
+          @RemoteIpExclude = params['RemoteIpExclude']
+          @UriInclude = params['UriInclude']
+          @UriExclude = params['UriExclude']
+        end
+      end
+
+      # IP溯源日志
+      class IpTraceLogEntry < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 时间
+        # @type Timestamp: String
+        # @param RemoteIp: 访问IP
+        # @type RemoteIp: String
+        # @param TraceType: 溯源类型rsp/req
+        # @type TraceType: String
+        # @param NetType: 访问网络类型，公网/私网
+        # @type NetType: String
+        # @param Message: 原始消息
+        # @type Message: String
+        # @param Uri: 访问uri
+        # @type Uri: String
+        # @param PublicIp: 公网IP
+        # @type PublicIp: String
+        # @param ReqTypeOrRspStatus: 请求类型或返回状态
+        # @type ReqTypeOrRspStatus: String
+        # @param NodeIp: 集群节点IP
+        # @type NodeIp: String
+
+        attr_accessor :Timestamp, :RemoteIp, :TraceType, :NetType, :Message, :Uri, :PublicIp, :ReqTypeOrRspStatus, :NodeIp
+
+        def initialize(timestamp=nil, remoteip=nil, tracetype=nil, nettype=nil, message=nil, uri=nil, publicip=nil, reqtypeorrspstatus=nil, nodeip=nil)
+          @Timestamp = timestamp
+          @RemoteIp = remoteip
+          @TraceType = tracetype
+          @NetType = nettype
+          @Message = message
+          @Uri = uri
+          @PublicIp = publicip
+          @ReqTypeOrRspStatus = reqtypeorrspstatus
+          @NodeIp = nodeip
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @RemoteIp = params['RemoteIp']
+          @TraceType = params['TraceType']
+          @NetType = params['NetType']
+          @Message = params['Message']
+          @Uri = params['Uri']
+          @PublicIp = params['PublicIp']
+          @ReqTypeOrRspStatus = params['ReqTypeOrRspStatus']
           @NodeIp = params['NodeIp']
         end
       end
@@ -5880,6 +6031,97 @@ module TencentCloud
           @Remain = params['Remain']
           @Total = params['Total']
           @TaskType = params['TaskType']
+        end
+      end
+
+      # QueryIpTraceLog请求参数结构体
+      class QueryIpTraceLogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ES集群ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 起始偏移量
+        # @type Offset: Integer
+        # @param Limit: 数据条数
+        # @type Limit: Integer
+        # @param RemoteIp: 访问IP
+        # @type RemoteIp: Array
+        # @param TraceType: Request/Response 请求/返回, 非必填
+        # @type TraceType: Array
+        # @param NetType: Public/Private 公网访问/内网访问, 非必填
+        # @type NetType: Array
+        # @param ReqTypeOrRspStatus: POST/GET/PUT/DELETE/HEAD/OPTIONS/PATCH/CONNECT/TRACE/CONNECT等, 非必填
+        # @type ReqTypeOrRspStatus: Array
+        # @param SearchKey: 关键字模糊查询，支持Lucene Query String
+        # @type SearchKey: String
+        # @param Uri: Uri搜索
+        # @type Uri: String
+        # @param NodeIp: 集群节点IP
+        # @type NodeIp: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Offset, :Limit, :RemoteIp, :TraceType, :NetType, :ReqTypeOrRspStatus, :SearchKey, :Uri, :NodeIp
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, remoteip=nil, tracetype=nil, nettype=nil, reqtypeorrspstatus=nil, searchkey=nil, uri=nil, nodeip=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @RemoteIp = remoteip
+          @TraceType = tracetype
+          @NetType = nettype
+          @ReqTypeOrRspStatus = reqtypeorrspstatus
+          @SearchKey = searchkey
+          @Uri = uri
+          @NodeIp = nodeip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RemoteIp = params['RemoteIp']
+          @TraceType = params['TraceType']
+          @NetType = params['NetType']
+          @ReqTypeOrRspStatus = params['ReqTypeOrRspStatus']
+          @SearchKey = params['SearchKey']
+          @Uri = params['Uri']
+          @NodeIp = params['NodeIp']
+        end
+      end
+
+      # QueryIpTraceLog返回参数结构体
+      class QueryIpTraceLogResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param IpTraceLogList: IP溯源日志列表
+        # @type IpTraceLogList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :IpTraceLogList, :RequestId
+
+        def initialize(total=nil, iptraceloglist=nil, requestid=nil)
+          @Total = total
+          @IpTraceLogList = iptraceloglist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['IpTraceLogList'].nil?
+            @IpTraceLogList = []
+            params['IpTraceLogList'].each do |i|
+              iptracelogentry_tmp = IpTraceLogEntry.new
+              iptracelogentry_tmp.deserialize(i)
+              @IpTraceLogList << iptracelogentry_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7358,6 +7600,57 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateIpTraceStatus请求参数结构体
+      class UpdateIpTraceStatusRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param OpenIpTrace: IP溯源配置开关
+        # @type OpenIpTrace: Boolean
+        # @param DurationTime: IP溯源开启持续时间，单位：秒
+        # @type DurationTime: Integer
+        # @param IpTraceConfig: IP溯源配置
+        # @type IpTraceConfig: :class:`Tencentcloud::Es.v20180416.models.IpTraceConfig`
+        # @param FilterKibanaIp: 是否过滤kibana节点IP
+        # @type FilterKibanaIp: Boolean
+
+        attr_accessor :InstanceId, :OpenIpTrace, :DurationTime, :IpTraceConfig, :FilterKibanaIp
+
+        def initialize(instanceid=nil, openiptrace=nil, durationtime=nil, iptraceconfig=nil, filterkibanaip=nil)
+          @InstanceId = instanceid
+          @OpenIpTrace = openiptrace
+          @DurationTime = durationtime
+          @IpTraceConfig = iptraceconfig
+          @FilterKibanaIp = filterkibanaip
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @OpenIpTrace = params['OpenIpTrace']
+          @DurationTime = params['DurationTime']
+          unless params['IpTraceConfig'].nil?
+            @IpTraceConfig = IpTraceConfig.new
+            @IpTraceConfig.deserialize(params['IpTraceConfig'])
+          end
+          @FilterKibanaIp = params['FilterKibanaIp']
+        end
+      end
+
+      # UpdateIpTraceStatus返回参数结构体
+      class UpdateIpTraceStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

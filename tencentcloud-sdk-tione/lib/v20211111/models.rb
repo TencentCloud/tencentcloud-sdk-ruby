@@ -7223,16 +7223,20 @@ module TencentCloud
         # @type RealGpu: Integer
         # @param RealGpuDetailSet: 创建或更新时无需填写，仅展示需要关注。详细的GPU使用信息。
         # @type RealGpuDetailSet: Array
+        # @param EnableRDMA: 是否开启rdma
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRDMA: Boolean
 
-        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet
+        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet, :EnableRDMA
 
-        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil)
+        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil, enablerdma=nil)
           @Cpu = cpu
           @Memory = memory
           @Gpu = gpu
           @GpuType = gputype
           @RealGpu = realgpu
           @RealGpuDetailSet = realgpudetailset
+          @EnableRDMA = enablerdma
         end
 
         def deserialize(params)
@@ -7249,6 +7253,7 @@ module TencentCloud
               @RealGpuDetailSet << gpudetail_tmp
             end
           end
+          @EnableRDMA = params['EnableRDMA']
         end
       end
 
