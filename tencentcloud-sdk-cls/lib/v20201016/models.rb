@@ -2948,10 +2948,14 @@ module TencentCloud
         # @type PreviewLogStatistics: Array
         # @param DataTransformType: 数据加工类型。0：标准加工任务； 1：前置加工任务。前置加工任务将采集的日志处理完成后，再写入日志主题。
         # @type DataTransformType: Integer
+        # @param KeepFailureLog: 保留失败日志状态，1:不保留(默认)，2:保留。
+        # @type KeepFailureLog: Integer
+        # @param FailureLogKey: 失败日志的字段名称
+        # @type FailureLogKey: String
 
-        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics, :DataTransformType
+        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics, :DataTransformType, :KeepFailureLog, :FailureLogKey
 
-        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil, datatransformtype=nil)
+        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil)
           @FuncType = functype
           @SrcTopicId = srctopicid
           @Name = name
@@ -2961,6 +2965,8 @@ module TencentCloud
           @EnableFlag = enableflag
           @PreviewLogStatistics = previewlogstatistics
           @DataTransformType = datatransformtype
+          @KeepFailureLog = keepfailurelog
+          @FailureLogKey = failurelogkey
         end
 
         def deserialize(params)
@@ -2987,6 +2993,8 @@ module TencentCloud
             end
           end
           @DataTransformType = params['DataTransformType']
+          @KeepFailureLog = params['KeepFailureLog']
+          @FailureLogKey = params['FailureLogKey']
         end
       end
 

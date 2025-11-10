@@ -2492,8 +2492,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 10
-        deprecate :OutputStorage=, :none, 2025, 10
+        deprecate :OutputStorage, :none, 2025, 11
+        deprecate :OutputStorage=, :none, 2025, 11
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -7152,8 +7152,8 @@ module TencentCloud
         # 注意：
         # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
-        # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
-        # 注：自适应码流的hls分片格式已此字段为准
+        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
+        # 注：自适应码流的分片格式以此字段为准
         # @type SegmentType: String
 
         attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio, :SegmentType
@@ -7959,8 +7959,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 10
-        deprecate :PidSelector=, :none, 2025, 10
+        deprecate :PidSelector, :none, 2025, 11
+        deprecate :PidSelector=, :none, 2025, 11
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -8873,14 +8873,17 @@ module TencentCloud
         # @type InputGroup: Array
         # @param EventId: 该Flow关联的媒体传输事件ID，每个flow只能关联一个Event。
         # @type EventId: String
+        # @param OutputGroup: 流的输出组。
+        # @type OutputGroup: :class:`Tencentcloud::Mps.v20190612.models.CreateOutputInfo`
 
-        attr_accessor :FlowName, :MaxBandwidth, :InputGroup, :EventId
+        attr_accessor :FlowName, :MaxBandwidth, :InputGroup, :EventId, :OutputGroup
 
-        def initialize(flowname=nil, maxbandwidth=nil, inputgroup=nil, eventid=nil)
+        def initialize(flowname=nil, maxbandwidth=nil, inputgroup=nil, eventid=nil, outputgroup=nil)
           @FlowName = flowname
           @MaxBandwidth = maxbandwidth
           @InputGroup = inputgroup
           @EventId = eventid
+          @OutputGroup = outputgroup
         end
 
         def deserialize(params)
@@ -8895,6 +8898,10 @@ module TencentCloud
             end
           end
           @EventId = params['EventId']
+          unless params['OutputGroup'].nil?
+            @OutputGroup = CreateOutputInfo.new
+            @OutputGroup.deserialize(params['OutputGroup'])
+          end
         end
       end
 
@@ -11692,8 +11699,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 10
-        deprecate :PidSelector=, :none, 2025, 10
+        deprecate :PidSelector, :none, 2025, 11
+        deprecate :PidSelector=, :none, 2025, 11
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -14749,8 +14756,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2025, 10
-        deprecate :ContrastInfoSet=, :none, 2025, 10
+        deprecate :ContrastInfoSet, :none, 2025, 11
+        deprecate :ContrastInfoSet=, :none, 2025, 11
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -16970,10 +16977,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 10
-        deprecate :QualityControlResults=, :none, 2025, 10
-        deprecate :DiagnoseResults, :none, 2025, 10
-        deprecate :DiagnoseResults=, :none, 2025, 10
+        deprecate :QualityControlResults, :none, 2025, 11
+        deprecate :QualityControlResults=, :none, 2025, 11
+        deprecate :DiagnoseResults, :none, 2025, 11
+        deprecate :DiagnoseResults=, :none, 2025, 11
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -20086,8 +20093,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 10
-        deprecate :PidSelector=, :none, 2025, 10
+        deprecate :PidSelector, :none, 2025, 11
+        deprecate :PidSelector=, :none, 2025, 11
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -28031,7 +28038,6 @@ module TencentCloud
         # @type Vcrf: Integer
         # @param HlsTime: 分片平均时长，范围：（0-10]，单位：秒
         # 不填表示自动，将根据视频的GOP等特征自动选择合适的分片时长。
-        # 注意：只能在封装格式hls的情况下使用
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HlsTime: Integer
         # @param SegmentType: hls 分片类型，可选值 ：

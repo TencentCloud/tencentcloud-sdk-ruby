@@ -1781,8 +1781,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 10
-        deprecate :PrivateLinkParam=, :none, 2025, 10
+        deprecate :PrivateLinkParam, :none, 2025, 11
+        deprecate :PrivateLinkParam=, :none, 2025, 11
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2158,8 +2158,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 10
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 10
+        deprecate :DeleteRouteTimestamp, :none, 2025, 11
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 11
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2420,33 +2420,32 @@ module TencentCloud
 
       # CreateRoute请求参数结构体
       class CreateRouteRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例id,可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param VipType: 路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)
+        # @param VipType: <p>路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)</p>
         # @type VipType: Integer
-        # @param VpcId: vpc网络Id,当vipType为3时必填
+        # @param VpcId: <p>vpc网络Id,当vipType为3时必填</p>
         # @type VpcId: String
-        # @param SubnetId: vpc子网id,当vipType为3时必填
+        # @param SubnetId: <p>vpc子网id,当vipType为3时必填</p>
         # @type SubnetId: String
-        # @param AccessType: 访问类型：0-plaintext；1-sasl_plaintext；3-sasl_ssl; 4-sasl_scram_sha_256; 5-sasl_scram_sha_512  默认为0
-        # vipType=3,支持 0,1,3,4,5
-        # vipType=7,支持0,1,3
-        # vipType=1,支持1,3
+        # @param AccessType: <p>访问类型：0-plaintext；1-sasl_plaintext；3-sasl_ssl; 4-sasl_scram_sha_256; 5-sasl_scram_sha_512  默认为0vipType=3,支持 0,1,3,4,5vipType=7,支持0,1,3vipType=1,支持1,3</p>
         # @type AccessType: Integer
-        # @param AuthFlag: 是否需要权限管理,该字段已废弃
+        # @param AuthFlag: <p>是否需要权限管理,该字段已废弃</p>
         # @type AuthFlag: Integer
-        # @param CallerAppid: 调用方appId
+        # @param CallerAppid: <p>调用方appId</p>
         # @type CallerAppid: Integer
-        # @param PublicNetwork: 公网带宽,公网路由必传,且是3的倍数,无默认值
+        # @param PublicNetwork: <p>公网带宽,公网路由必传,且是3的倍数,无默认值</p>
         # @type PublicNetwork: Integer
-        # @param Ip: vip地址
+        # @param Ip: <p>vip地址</p>
         # @type Ip: String
-        # @param Note: 备注信息
+        # @param Note: <p>备注信息</p>
         # @type Note: String
+        # @param SecurityGroupIds: <p>关联安全组有序列表</p>
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :InstanceId, :VipType, :VpcId, :SubnetId, :AccessType, :AuthFlag, :CallerAppid, :PublicNetwork, :Ip, :Note
+        attr_accessor :InstanceId, :VipType, :VpcId, :SubnetId, :AccessType, :AuthFlag, :CallerAppid, :PublicNetwork, :Ip, :Note, :SecurityGroupIds
 
-        def initialize(instanceid=nil, viptype=nil, vpcid=nil, subnetid=nil, accesstype=nil, authflag=nil, callerappid=nil, publicnetwork=nil, ip=nil, note=nil)
+        def initialize(instanceid=nil, viptype=nil, vpcid=nil, subnetid=nil, accesstype=nil, authflag=nil, callerappid=nil, publicnetwork=nil, ip=nil, note=nil, securitygroupids=nil)
           @InstanceId = instanceid
           @VipType = viptype
           @VpcId = vpcid
@@ -2457,6 +2456,7 @@ module TencentCloud
           @PublicNetwork = publicnetwork
           @Ip = ip
           @Note = note
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -2470,12 +2470,13 @@ module TencentCloud
           @PublicNetwork = params['PublicNetwork']
           @Ip = params['Ip']
           @Note = params['Note']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
       # CreateRoute返回参数结构体
       class CreateRouteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5254,8 +5255,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 10
-        deprecate :InstanceIds=, :none, 2025, 10
+        deprecate :InstanceIds, :none, 2025, 11
+        deprecate :InstanceIds=, :none, 2025, 11
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5340,8 +5341,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 10
-        deprecate :TagKey=, :none, 2025, 10
+        deprecate :TagKey, :none, 2025, 11
+        deprecate :TagKey=, :none, 2025, 11
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9167,8 +9168,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 10
-        deprecate :DynamicDiskConfig=, :none, 2025, 10
+        deprecate :DynamicDiskConfig, :none, 2025, 11
+        deprecate :DynamicDiskConfig=, :none, 2025, 11
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
@@ -12350,8 +12351,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 10
-        deprecate :Exflag=, :none, 2025, 10
+        deprecate :Exflag, :none, 2025, 11
+        deprecate :Exflag=, :none, 2025, 11
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

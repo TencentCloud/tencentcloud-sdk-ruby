@@ -1512,10 +1512,12 @@ module TencentCloud
         # @type IsShowChange: Boolean
         # @param HasExpirationRisk: 是否仅显示过期风险资产
         # @type HasExpirationRisk: Boolean
+        # @param OnlyOffline: 是否只查询离线网站
+        # @type OnlyOffline: Boolean
 
-        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowChange, :HasExpirationRisk
+        attr_accessor :CustomerIdList, :IsAggregation, :IsNew, :CustomerId, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :IsShowChange, :HasExpirationRisk, :OnlyOffline
 
-        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowchange=nil, hasexpirationrisk=nil)
+        def initialize(customeridlist=nil, isaggregation=nil, isnew=nil, customerid=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, isshowchange=nil, hasexpirationrisk=nil, onlyoffline=nil)
           @CustomerIdList = customeridlist
           @IsAggregation = isaggregation
           @IsNew = isnew
@@ -1532,6 +1534,7 @@ module TencentCloud
           @Ignored = ignored
           @IsShowChange = isshowchange
           @HasExpirationRisk = hasexpirationrisk
+          @OnlyOffline = onlyoffline
         end
 
         def deserialize(params)
@@ -1558,6 +1561,7 @@ module TencentCloud
           @Ignored = params['Ignored']
           @IsShowChange = params['IsShowChange']
           @HasExpirationRisk = params['HasExpirationRisk']
+          @OnlyOffline = params['OnlyOffline']
         end
       end
 
@@ -2480,10 +2484,12 @@ module TencentCloud
         # @type Filters: Array
         # @param Ignored: 是否显示被忽略的数据
         # @type Ignored: Boolean
+        # @param OnlyOffline: 是否只查询离线子域名
+        # @type OnlyOffline: Boolean
 
-        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :IsAggregation, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored
+        attr_accessor :CustomerIdList, :IsNew, :CustomerId, :IsAggregation, :Limit, :Offset, :EnterpriseUidList, :Format, :CreateAtStart, :CreateAtEnd, :UpdateAtStart, :UpdateAtEnd, :Filters, :Ignored, :OnlyOffline
 
-        def initialize(customeridlist=nil, isnew=nil, customerid=nil, isaggregation=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil)
+        def initialize(customeridlist=nil, isnew=nil, customerid=nil, isaggregation=nil, limit=nil, offset=nil, enterpriseuidlist=nil, format=nil, createatstart=nil, createatend=nil, updateatstart=nil, updateatend=nil, filters=nil, ignored=nil, onlyoffline=nil)
           @CustomerIdList = customeridlist
           @IsNew = isnew
           @CustomerId = customerid
@@ -2498,6 +2504,7 @@ module TencentCloud
           @UpdateAtEnd = updateatend
           @Filters = filters
           @Ignored = ignored
+          @OnlyOffline = onlyoffline
         end
 
         def deserialize(params)
@@ -2522,6 +2529,7 @@ module TencentCloud
             end
           end
           @Ignored = params['Ignored']
+          @OnlyOffline = params['OnlyOffline']
         end
       end
 
@@ -3155,10 +3163,14 @@ module TencentCloud
         # @type Domains: String
         # @param LastModify: 端口和服务最近更新时间
         # @type LastModify: String
+        # @param IsCloudAsset: 是否为云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产状态，-1为下线
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :Os, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :Ports, :Services, :Domains, :LastModify
+        attr_accessor :Id, :Os, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :Ports, :Services, :Domains, :LastModify, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, os=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, ports=nil, services=nil, domains=nil, lastmodify=nil)
+        def initialize(id=nil, os=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, ports=nil, services=nil, domains=nil, lastmodify=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @Os = os
           @Ip = ip
@@ -3171,6 +3183,8 @@ module TencentCloud
           @Services = services
           @Domains = domains
           @LastModify = lastmodify
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -3189,6 +3203,8 @@ module TencentCloud
           @Services = params['Services']
           @Domains = params['Domains']
           @LastModify = params['LastModify']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
@@ -3216,10 +3232,14 @@ module TencentCloud
         # @type RiskLevel: Integer
         # @param Suggestion: 建议
         # @type Suggestion: String
+        # @param IsCloudAsset: 是否为云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产状态，-1为下线
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion
+        attr_accessor :Id, :Url, :Title, :Code, :ContentLength, :DisplayToolCommon, :Ip, :AIRating, :AIAnalysis, :RiskLevel, :Suggestion, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil)
+        def initialize(id=nil, url=nil, title=nil, code=nil, contentlength=nil, displaytoolcommon=nil, ip=nil, airating=nil, aianalysis=nil, risklevel=nil, suggestion=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @Url = url
           @Title = title
@@ -3231,6 +3251,8 @@ module TencentCloud
           @AIAnalysis = aianalysis
           @RiskLevel = risklevel
           @Suggestion = suggestion
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -3248,6 +3270,8 @@ module TencentCloud
           @AIAnalysis = params['AIAnalysis']
           @RiskLevel = params['RiskLevel']
           @Suggestion = params['Suggestion']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
@@ -3306,10 +3330,14 @@ module TencentCloud
         # @type Company: String
         # @param DisplayToolCommon: 公共字段
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param IsCloudAsset: 是否为云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产状态，-1为下线
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :Domain, :ICP, :RegisteredTime, :ExpiredTime, :Company, :DisplayToolCommon
+        attr_accessor :Id, :Domain, :ICP, :RegisteredTime, :ExpiredTime, :Company, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, domain=nil, icp=nil, registeredtime=nil, expiredtime=nil, company=nil, displaytoolcommon=nil)
+        def initialize(id=nil, domain=nil, icp=nil, registeredtime=nil, expiredtime=nil, company=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @Domain = domain
           @ICP = icp
@@ -3317,6 +3345,8 @@ module TencentCloud
           @ExpiredTime = expiredtime
           @Company = company
           @DisplayToolCommon = displaytoolcommon
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -3330,6 +3360,8 @@ module TencentCloud
             @DisplayToolCommon = DisplayToolCommon.new
             @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
           end
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
@@ -3682,10 +3714,22 @@ module TencentCloud
         # @param IsChange: 资产是否发生变动
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsChange: Boolean
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
+        # @param AvailabilityRate: 可用率（百分比）
+        # @type AvailabilityRate: Integer
+        # @param AvailabilityState: 可用状态 1:异常 0:正常
+        # @type AvailabilityState: Integer
+        # @param ResponseTime: 平均响应时间：单位ms
+        # @type ResponseTime: Integer
+        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @type AnalysisState: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :ContentLength, :Content, :ScreenshotThumbUrl, :ScreenshotUrl, :Code, :Api, :Ip, :Ssl, :SslExpiredTime, :IsChange, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :ResponseTime, :AnalysisState
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, contentlength=nil, content=nil, screenshotthumburl=nil, screenshoturl=nil, code=nil, api=nil, ip=nil, ssl=nil, sslexpiredtime=nil, ischange=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, responsetime=nil, analysisstate=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -3700,6 +3744,12 @@ module TencentCloud
           @Ssl = ssl
           @SslExpiredTime = sslexpiredtime
           @IsChange = ischange
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
+          @AvailabilityRate = availabilityrate
+          @AvailabilityState = availabilitystate
+          @ResponseTime = responsetime
+          @AnalysisState = analysisstate
         end
 
         def deserialize(params)
@@ -3720,6 +3770,12 @@ module TencentCloud
           @Ssl = params['Ssl']
           @SslExpiredTime = params['SslExpiredTime']
           @IsChange = params['IsChange']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
+          @AvailabilityRate = params['AvailabilityRate']
+          @AvailabilityState = params['AvailabilityState']
+          @ResponseTime = params['ResponseTime']
+          @AnalysisState = params['AnalysisState']
         end
       end
 
@@ -4043,10 +4099,14 @@ module TencentCloud
         # @type Host: String
         # @param Status: 状态：not_converged:未收敛, converged:已收敛, ignore:已忽略
         # @type Status: String
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :Icon, :Screenshot, :Code, :Host, :Status
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Title, :Icon, :Screenshot, :Code, :Host, :Status, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, icon=nil, screenshot=nil, code=nil, host=nil, status=nil)
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, title=nil, icon=nil, screenshot=nil, code=nil, host=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Url = url
@@ -4056,6 +4116,8 @@ module TencentCloud
           @Code = code
           @Host = host
           @Status = status
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -4071,6 +4133,8 @@ module TencentCloud
           @Code = params['Code']
           @Host = params['Host']
           @Status = params['Status']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
@@ -4141,10 +4205,16 @@ module TencentCloud
         # @type LastCheckTime: String
         # @param Status: 状态，close:连接超时，端口可能已关闭，open:端口开放, checking:复测中, ignore:已忽略
         # @type Status: String
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
+        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @type AnalysisState: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Asset, :Ip, :Port, :IsHighRisk, :App, :Service, :Banner, :LastCheckTime, :Status
+        attr_accessor :Id, :DisplayToolCommon, :Asset, :Ip, :Port, :IsHighRisk, :App, :Service, :Banner, :LastCheckTime, :Status, :IsCloudAsset, :CloudAssetStatus, :AnalysisState
 
-        def initialize(id=nil, displaytoolcommon=nil, asset=nil, ip=nil, port=nil, ishighrisk=nil, app=nil, service=nil, banner=nil, lastchecktime=nil, status=nil)
+        def initialize(id=nil, displaytoolcommon=nil, asset=nil, ip=nil, port=nil, ishighrisk=nil, app=nil, service=nil, banner=nil, lastchecktime=nil, status=nil, iscloudasset=nil, cloudassetstatus=nil, analysisstate=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Asset = asset
@@ -4156,6 +4226,9 @@ module TencentCloud
           @Banner = banner
           @LastCheckTime = lastchecktime
           @Status = status
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
+          @AnalysisState = analysisstate
         end
 
         def deserialize(params)
@@ -4173,6 +4246,9 @@ module TencentCloud
           @Banner = params['Banner']
           @LastCheckTime = params['LastCheckTime']
           @Status = params['Status']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
+          @AnalysisState = params['AnalysisState']
         end
       end
 
@@ -4188,15 +4264,21 @@ module TencentCloud
         # @type Value: String
         # @param DisplayToolCommon: 公共字段
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon
+        attr_accessor :Id, :Type, :Source, :Value, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil)
+        def initialize(id=nil, type=nil, source=nil, value=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @Type = type
           @Source = source
           @Value = value
           @DisplayToolCommon = displaytoolcommon
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -4208,6 +4290,8 @@ module TencentCloud
             @DisplayToolCommon = DisplayToolCommon.new
             @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
           end
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
@@ -4229,10 +4313,24 @@ module TencentCloud
         # @type Isp: String
         # @param DisplayToolCommon: 公共字段
         # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
+        # @param AvailabilityRate: 可用率（百分比）
+        # @type AvailabilityRate: Integer
+        # @param AvailabilityState: 可用状态 1:异常 0:正常
+        # @type AvailabilityState: Integer
+        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @type AnalysisState: Integer
+        # @param AverageDelay: 平均时延：单位ms
+        # @type AverageDelay: Integer
+        # @param LossRate: 丢包率（百分比）
+        # @type LossRate: Integer
 
-        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon
+        attr_accessor :Id, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :DisplayToolCommon, :IsCloudAsset, :CloudAssetStatus, :AvailabilityRate, :AvailabilityState, :AnalysisState, :AverageDelay, :LossRate
 
-        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil)
+        def initialize(id=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, displaytoolcommon=nil, iscloudasset=nil, cloudassetstatus=nil, availabilityrate=nil, availabilitystate=nil, analysisstate=nil, averagedelay=nil, lossrate=nil)
           @Id = id
           @SubDomain = subdomain
           @Ip = ip
@@ -4241,6 +4339,13 @@ module TencentCloud
           @City = city
           @Isp = isp
           @DisplayToolCommon = displaytoolcommon
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
+          @AvailabilityRate = availabilityrate
+          @AvailabilityState = availabilitystate
+          @AnalysisState = analysisstate
+          @AverageDelay = averagedelay
+          @LossRate = lossrate
         end
 
         def deserialize(params)
@@ -4255,6 +4360,13 @@ module TencentCloud
             @DisplayToolCommon = DisplayToolCommon.new
             @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
           end
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
+          @AvailabilityRate = params['AvailabilityRate']
+          @AvailabilityState = params['AvailabilityState']
+          @AnalysisState = params['AnalysisState']
+          @AverageDelay = params['AverageDelay']
+          @LossRate = params['LossRate']
         end
       end
 
@@ -4437,10 +4549,16 @@ module TencentCloud
         # @type Status: String
         # @param LastCheckTime: 上次复测时间
         # @type LastCheckTime: String
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
+        # @param AnalysisState: 域名解析状态 1:异常 0:正常
+        # @type AnalysisState: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Level, :Name, :RepairStatus, :Suggestion, :DiscoverTime, :AiJudge, :Status, :LastCheckTime
+        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Level, :Name, :RepairStatus, :Suggestion, :DiscoverTime, :AiJudge, :Status, :LastCheckTime, :IsCloudAsset, :CloudAssetStatus, :AnalysisState
 
-        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, level=nil, name=nil, repairstatus=nil, suggestion=nil, discovertime=nil, aijudge=nil, status=nil, lastchecktime=nil)
+        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, level=nil, name=nil, repairstatus=nil, suggestion=nil, discovertime=nil, aijudge=nil, status=nil, lastchecktime=nil, iscloudasset=nil, cloudassetstatus=nil, analysisstate=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Ip = ip
@@ -4454,6 +4572,9 @@ module TencentCloud
           @AiJudge = aijudge
           @Status = status
           @LastCheckTime = lastchecktime
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
+          @AnalysisState = analysisstate
         end
 
         def deserialize(params)
@@ -4473,6 +4594,9 @@ module TencentCloud
           @AiJudge = params['AiJudge']
           @Status = params['Status']
           @LastCheckTime = params['LastCheckTime']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
+          @AnalysisState = params['AnalysisState']
         end
       end
 
@@ -4494,7 +4618,7 @@ module TencentCloud
         # @type Account: String
         # @param Password: 弱口令密码
         # @type Password: String
-        # @param IsHoneypot: 是否蜜罐
+        # @param IsHoneypot: 是否为蜜罐
         # @type IsHoneypot: Boolean
         # @param ScreenshotUrl: 截图
         # @type ScreenshotUrl: String
@@ -4502,10 +4626,14 @@ module TencentCloud
         # @type Status: String
         # @param LastCheckTime: 上次复测时间
         # @type LastCheckTime: String
+        # @param IsCloudAsset: 是否为云资产：0-非云资产 1-是云资产
+        # @type IsCloudAsset: Integer
+        # @param CloudAssetStatus: 云资产是否下线：-1-已下线 0-正常
+        # @type CloudAssetStatus: Integer
 
-        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Type, :Account, :Password, :IsHoneypot, :ScreenshotUrl, :Status, :LastCheckTime
+        attr_accessor :Id, :DisplayToolCommon, :Ip, :Port, :Url, :Type, :Account, :Password, :IsHoneypot, :ScreenshotUrl, :Status, :LastCheckTime, :IsCloudAsset, :CloudAssetStatus
 
-        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, type=nil, account=nil, password=nil, ishoneypot=nil, screenshoturl=nil, status=nil, lastchecktime=nil)
+        def initialize(id=nil, displaytoolcommon=nil, ip=nil, port=nil, url=nil, type=nil, account=nil, password=nil, ishoneypot=nil, screenshoturl=nil, status=nil, lastchecktime=nil, iscloudasset=nil, cloudassetstatus=nil)
           @Id = id
           @DisplayToolCommon = displaytoolcommon
           @Ip = ip
@@ -4518,6 +4646,8 @@ module TencentCloud
           @ScreenshotUrl = screenshoturl
           @Status = status
           @LastCheckTime = lastchecktime
+          @IsCloudAsset = iscloudasset
+          @CloudAssetStatus = cloudassetstatus
         end
 
         def deserialize(params)
@@ -4536,6 +4666,8 @@ module TencentCloud
           @ScreenshotUrl = params['ScreenshotUrl']
           @Status = params['Status']
           @LastCheckTime = params['LastCheckTime']
+          @IsCloudAsset = params['IsCloudAsset']
+          @CloudAssetStatus = params['CloudAssetStatus']
         end
       end
 
