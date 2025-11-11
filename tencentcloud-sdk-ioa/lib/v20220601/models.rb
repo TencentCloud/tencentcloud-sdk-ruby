@@ -2967,12 +2967,16 @@ module TencentCloud
         # @type AccountName: String
         # @param AccountGroupId: 账号组id
         # @type AccountGroupId: Integer
+        # @param ScreenRecordingPermission: 是否开启录屏权限，仅macOS， 0： 未开启 、1： 开启
+        # @type ScreenRecordingPermission: Integer
+        # @param DiskAccessPermission: 是否开启磁盘访问权限，仅macOS， 0： 未开启、 1： 开启
+        # @type DiskAccessPermission: Integer
         # @param RemarkName: 终端备注名
         # @type RemarkName: String
 
-        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :RemarkName
+        attr_accessor :Id, :Mid, :Name, :GroupId, :OsType, :Ip, :OnlineStatus, :Version, :StrVersion, :Itime, :ConnActiveTime, :Locked, :LocalIpList, :HostId, :GroupName, :GroupNamePath, :CriticalVulListCount, :Os, :OsBits, :OsVersion, :OsLanguage, :OsInstallDate, :ComputerName, :DomainName, :MacAddr, :VulCount, :RiskCount, :VirusVer, :VulVersion, :SysRepVersion, :VulCriticalList, :Tags, :UserName, :FirewallStatus, :SerialNum, :DeviceStrategyVer, :NGNStrategyVer, :IOAUserName, :DeviceNewStrategyVer, :NGNNewStrategyVer, :HostName, :BaseBoardSn, :AccountUsers, :IdentityStrategyVer, :IdentityNewStrategyVer, :AccountGroupName, :AccountName, :AccountGroupId, :ScreenRecordingPermission, :DiskAccessPermission, :RemarkName
 
-        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, remarkname=nil)
+        def initialize(id=nil, mid=nil, name=nil, groupid=nil, ostype=nil, ip=nil, onlinestatus=nil, version=nil, strversion=nil, itime=nil, connactivetime=nil, locked=nil, localiplist=nil, hostid=nil, groupname=nil, groupnamepath=nil, criticalvullistcount=nil, os=nil, osbits=nil, osversion=nil, oslanguage=nil, osinstalldate=nil, computername=nil, domainname=nil, macaddr=nil, vulcount=nil, riskcount=nil, virusver=nil, vulversion=nil, sysrepversion=nil, vulcriticallist=nil, tags=nil, username=nil, firewallstatus=nil, serialnum=nil, devicestrategyver=nil, ngnstrategyver=nil, ioausername=nil, devicenewstrategyver=nil, ngnnewstrategyver=nil, hostname=nil, baseboardsn=nil, accountusers=nil, identitystrategyver=nil, identitynewstrategyver=nil, accountgroupname=nil, accountname=nil, accountgroupid=nil, screenrecordingpermission=nil, diskaccesspermission=nil, remarkname=nil)
           @Id = id
           @Mid = mid
           @Name = name
@@ -3021,6 +3025,8 @@ module TencentCloud
           @AccountGroupName = accountgroupname
           @AccountName = accountname
           @AccountGroupId = accountgroupid
+          @ScreenRecordingPermission = screenrecordingpermission
+          @DiskAccessPermission = diskaccesspermission
           @RemarkName = remarkname
         end
 
@@ -3073,6 +3079,8 @@ module TencentCloud
           @AccountGroupName = params['AccountGroupName']
           @AccountName = params['AccountName']
           @AccountGroupId = params['AccountGroupId']
+          @ScreenRecordingPermission = params['ScreenRecordingPermission']
+          @DiskAccessPermission = params['DiskAccessPermission']
           @RemarkName = params['RemarkName']
         end
       end

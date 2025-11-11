@@ -797,13 +797,20 @@ module TencentCloud
         # @type AntiDDoSPackageId: String
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
+        # @param IPChargeType: 原生EIP IP资源的计费方式。
+        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值：<ul>
+        # <li>IP_POSTPAID_BY_HOUR：IP资源按小时后付费</li>
+        # <li>IP_PREPAID_BY_MONTH：IP资源包月预付费</li>
+        # </ul></li>
+        # </ul>
+        # @type IPChargeType: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken, :IPChargeType
         extend Gem::Deprecate
         deprecate :ApplicableForCLB, :none, 2025, 11
         deprecate :ApplicableForCLB=, :none, 2025, 11
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil, ipchargetype=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
@@ -821,6 +828,7 @@ module TencentCloud
           @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
           @ClientToken = clienttoken
+          @IPChargeType = ipchargetype
         end
 
         def deserialize(params)
@@ -851,6 +859,7 @@ module TencentCloud
           @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @ClientToken = params['ClientToken']
+          @IPChargeType = params['IPChargeType']
         end
       end
 
@@ -19422,14 +19431,22 @@ module TencentCloud
         # <ul style="margin:0"><li>精品IP，可选值：<ul><li>HighQualityEIP：精品IP</li></ul>注意：仅新加坡和中国香港支持精品IP。</li></ul>
         # <ul style="margin:0"><li>高防IP，可选值：<ul><li>AntiDDoSEIP：高防IP</li></ul>注意：仅部分地域支持高防IP，详情可见弹性公网IP[产品概述](https://cloud.tencent.com/document/product/1199/41646)。</li></ul>
         # @type AddressType: String
+        # @param IPChargeType: 原生EIP IP资源的计费方式。
+        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值：<ul>
+        # <li>IP_POSTPAID_BY_HOUR：IP资源按小时后付费</li>
+        # <li>IP_PREPAID_BY_MONTH：IP资源包月预付费</li>
+        # </ul></li>
+        # </ul>
+        # @type IPChargeType: String
 
-        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType
+        attr_accessor :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :IPChargeType
 
-        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil)
+        def initialize(internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, ipchargetype=nil)
           @InternetChargeType = internetchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @AddressChargePrepaid = addresschargeprepaid
           @AddressType = addresstype
+          @IPChargeType = ipchargetype
         end
 
         def deserialize(params)
@@ -19440,6 +19457,7 @@ module TencentCloud
             @AddressChargePrepaid.deserialize(params['AddressChargePrepaid'])
           end
           @AddressType = params['AddressType']
+          @IPChargeType = params['IPChargeType']
         end
       end
 
@@ -19821,13 +19839,22 @@ module TencentCloud
 
       # 公网询价出参
       class InternetPrice < TencentCloud::Common::AbstractModel
-        # @param AddressPrice: 公网IP询价详细参数。
+        # @param AddressPrice: 公网IP网络费询价详细参数。
         # @type AddressPrice: :class:`Tencentcloud::Vpc.v20170312.models.InternetPriceDetail`
+        # @param IPPrice: 公网IP资源费询价详细参数。仅原生IP价格查询返回。
+        # @type IPPrice: :class:`Tencentcloud::Vpc.v20170312.models.InternetPriceDetail`
+        # @param OriginalPrice: 总原价，单位：元，仅预付费价格查询返回。
+        # @type OriginalPrice: Float
+        # @param DiscountPrice: 折扣后的总价格，单位：元。仅预付费价格查询返回。
+        # @type DiscountPrice: Float
 
-        attr_accessor :AddressPrice
+        attr_accessor :AddressPrice, :IPPrice, :OriginalPrice, :DiscountPrice
 
-        def initialize(addressprice=nil)
+        def initialize(addressprice=nil, ipprice=nil, originalprice=nil, discountprice=nil)
           @AddressPrice = addressprice
+          @IPPrice = ipprice
+          @OriginalPrice = originalprice
+          @DiscountPrice = discountprice
         end
 
         def deserialize(params)
@@ -19835,6 +19862,12 @@ module TencentCloud
             @AddressPrice = InternetPriceDetail.new
             @AddressPrice.deserialize(params['AddressPrice'])
           end
+          unless params['IPPrice'].nil?
+            @IPPrice = InternetPriceDetail.new
+            @IPPrice.deserialize(params['IPPrice'])
+          end
+          @OriginalPrice = params['OriginalPrice']
+          @DiscountPrice = params['DiscountPrice']
         end
       end
 

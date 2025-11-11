@@ -1188,17 +1188,27 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param ExpirationDuration: 有效期，默认为 12 小时，最大为 24 小时。支持 s（秒）、m（分）、h（小时）等单位，比如 12h 表示 12 小时，1h2m3s 表示一小时两分三秒
         # @type ExpirationDuration: String
+        # @param Mode: 模式。
+        # STANDARD：默认值，标准模式
+        # ACCELERATED：加速模式，该模式需要开通加速服务才能生效
+        # @type Mode: String
+        # @param UserIP: 用户 IP。在加速模式下，该字段必填。
+        # @type UserIP: String
 
-        attr_accessor :AndroidInstanceIds, :ExpirationDuration
+        attr_accessor :AndroidInstanceIds, :ExpirationDuration, :Mode, :UserIP
 
-        def initialize(androidinstanceids=nil, expirationduration=nil)
+        def initialize(androidinstanceids=nil, expirationduration=nil, mode=nil, userip=nil)
           @AndroidInstanceIds = androidinstanceids
           @ExpirationDuration = expirationduration
+          @Mode = mode
+          @UserIP = userip
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @ExpirationDuration = params['ExpirationDuration']
+          @Mode = params['Mode']
+          @UserIP = params['UserIP']
         end
       end
 

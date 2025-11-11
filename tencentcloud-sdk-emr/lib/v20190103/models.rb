@@ -1114,10 +1114,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 10
-        deprecate :Ftitle=, :none, 2025, 10
-        deprecate :Config, :none, 2025, 10
-        deprecate :Config=, :none, 2025, 10
+        deprecate :Ftitle, :none, 2025, 11
+        deprecate :Ftitle=, :none, 2025, 11
+        deprecate :Config, :none, 2025, 11
+        deprecate :Config=, :none, 2025, 11
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -10068,14 +10068,17 @@ module TencentCloud
         # @type DiskType: String
         # @param DefaultDiskSize: 指定磁盘大小
         # @type DefaultDiskSize: Integer
+        # @param IsSpecialDisk: 是否为特殊的数据盘，如：单副本盘
+        # @type IsSpecialDisk: Boolean
 
-        attr_accessor :Count, :Name, :DiskType, :DefaultDiskSize
+        attr_accessor :Count, :Name, :DiskType, :DefaultDiskSize, :IsSpecialDisk
 
-        def initialize(count=nil, name=nil, disktype=nil, defaultdisksize=nil)
+        def initialize(count=nil, name=nil, disktype=nil, defaultdisksize=nil, isspecialdisk=nil)
           @Count = count
           @Name = name
           @DiskType = disktype
           @DefaultDiskSize = defaultdisksize
+          @IsSpecialDisk = isspecialdisk
         end
 
         def deserialize(params)
@@ -10083,6 +10086,7 @@ module TencentCloud
           @Name = params['Name']
           @DiskType = params['DiskType']
           @DefaultDiskSize = params['DefaultDiskSize']
+          @IsSpecialDisk = params['IsSpecialDisk']
         end
       end
 
@@ -12967,12 +12971,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 10
-        deprecate :DetetcFunctionKey=, :none, 2025, 10
-        deprecate :DetetcFunctionValue, :none, 2025, 10
-        deprecate :DetetcFunctionValue=, :none, 2025, 10
-        deprecate :DetetcTime, :none, 2025, 10
-        deprecate :DetetcTime=, :none, 2025, 10
+        deprecate :DetetcFunctionKey, :none, 2025, 11
+        deprecate :DetetcFunctionKey=, :none, 2025, 11
+        deprecate :DetetcFunctionValue, :none, 2025, 11
+        deprecate :DetetcFunctionValue=, :none, 2025, 11
+        deprecate :DetetcTime, :none, 2025, 11
+        deprecate :DetetcTime=, :none, 2025, 11
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

@@ -2946,16 +2946,38 @@ module TencentCloud
         # @param PreviewLogStatistics: 用于预览加工结果的测试数据
         # 目标日志主题ID通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
         # @type PreviewLogStatistics: Array
+        # @param BackupGiveUpData: 当FuncType为2时，动态创建的日志集、日志主题的个数超出产品规格限制是否丢弃数据， 默认为false。
+
+        # false：创建兜底日志集、日志主题并将日志写入兜底主题；
+        # true：丢弃日志数据。
+        # @type BackupGiveUpData: Boolean
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @type HasServicesLog: Integer
         # @param DataTransformType: 数据加工类型。0：标准加工任务； 1：前置加工任务。前置加工任务将采集的日志处理完成后，再写入日志主题。
         # @type DataTransformType: Integer
         # @param KeepFailureLog: 保留失败日志状态，1:不保留(默认)，2:保留。
         # @type KeepFailureLog: Integer
         # @param FailureLogKey: 失败日志的字段名称
         # @type FailureLogKey: String
+        # @param ProcessFromTimestamp: 指定加工数据的开始时间, 秒级时间戳。
+        #  - 日志主题生命周期内的任意时间范围，如果超出了生命周期,只处理生命周期内有数据的部分。
+        # @type ProcessFromTimestamp: Integer
+        # @param ProcessToTimestamp: 指定加工数据的结束时间，秒级时间戳。
 
-        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics, :DataTransformType, :KeepFailureLog, :FailureLogKey
+        # -  不可指定未来的时间
+        # -  不填则表示持续执行
+        # @type ProcessToTimestamp: Integer
+        # @param TaskId: 对已经创建的并且使用了关联外部数据库能力的任务预览（TaskType 为 1 或 2）时，该值必传
+        # 数据加工任务ID- 通过[获取数据加工任务列表基本信息](https://cloud.tencent.com/document/product/614/72182)获取数据加工任务Id。
+        # @type TaskId: String
+        # @param DataTransformSqlDataSources: 关联的数据源信息
+        # @type DataTransformSqlDataSources: Array
+        # @param EnvInfos: 设置的环境变量
+        # @type EnvInfos: Array
 
-        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil)
+        attr_accessor :FuncType, :SrcTopicId, :Name, :EtlContent, :TaskType, :DstResources, :EnableFlag, :PreviewLogStatistics, :BackupGiveUpData, :HasServicesLog, :DataTransformType, :KeepFailureLog, :FailureLogKey, :ProcessFromTimestamp, :ProcessToTimestamp, :TaskId, :DataTransformSqlDataSources, :EnvInfos
+
+        def initialize(functype=nil, srctopicid=nil, name=nil, etlcontent=nil, tasktype=nil, dstresources=nil, enableflag=nil, previewlogstatistics=nil, backupgiveupdata=nil, hasserviceslog=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil, processfromtimestamp=nil, processtotimestamp=nil, taskid=nil, datatransformsqldatasources=nil, envinfos=nil)
           @FuncType = functype
           @SrcTopicId = srctopicid
           @Name = name
@@ -2964,9 +2986,16 @@ module TencentCloud
           @DstResources = dstresources
           @EnableFlag = enableflag
           @PreviewLogStatistics = previewlogstatistics
+          @BackupGiveUpData = backupgiveupdata
+          @HasServicesLog = hasserviceslog
           @DataTransformType = datatransformtype
           @KeepFailureLog = keepfailurelog
           @FailureLogKey = failurelogkey
+          @ProcessFromTimestamp = processfromtimestamp
+          @ProcessToTimestamp = processtotimestamp
+          @TaskId = taskid
+          @DataTransformSqlDataSources = datatransformsqldatasources
+          @EnvInfos = envinfos
         end
 
         def deserialize(params)
@@ -2992,9 +3021,30 @@ module TencentCloud
               @PreviewLogStatistics << previewlogstatistic_tmp
             end
           end
+          @BackupGiveUpData = params['BackupGiveUpData']
+          @HasServicesLog = params['HasServicesLog']
           @DataTransformType = params['DataTransformType']
           @KeepFailureLog = params['KeepFailureLog']
           @FailureLogKey = params['FailureLogKey']
+          @ProcessFromTimestamp = params['ProcessFromTimestamp']
+          @ProcessToTimestamp = params['ProcessToTimestamp']
+          @TaskId = params['TaskId']
+          unless params['DataTransformSqlDataSources'].nil?
+            @DataTransformSqlDataSources = []
+            params['DataTransformSqlDataSources'].each do |i|
+              datatransformsqldatasource_tmp = DataTransformSqlDataSource.new
+              datatransformsqldatasource_tmp.deserialize(i)
+              @DataTransformSqlDataSources << datatransformsqldatasource_tmp
+            end
+          end
+          unless params['EnvInfos'].nil?
+            @EnvInfos = []
+            params['EnvInfos'].each do |i|
+              envinfo_tmp = EnvInfo.new
+              envinfo_tmp.deserialize(i)
+              @EnvInfos << envinfo_tmp
+            end
+          end
         end
       end
 
@@ -4227,6 +4277,43 @@ module TencentCloud
         end
       end
 
+      # 外部表SQL信息
+      class DataTransformSqlDataSource < TencentCloud::Common::AbstractModel
+        # @param DataSource: 数据源类型 1:MySql;2:自建mysql;3:pgsql
+        # @type DataSource: Integer
+        # @param Region: InstanceId所属地域。例如：ap-guangzhou
+        # @type Region: String
+        # @param InstanceId: 实例Id。
+        # - 当DataSource为1时，表示云数据库Mysql 实例id，如：cdb-zxcvbnm
+        # @type InstanceId: String
+        # @param User: mysql访问用户名
+        # @type User: String
+        # @param AliasName: 别名。数据加工语句中使用
+        # @type AliasName: String
+        # @param Password: mysql访问密码。
+        # @type Password: String
+
+        attr_accessor :DataSource, :Region, :InstanceId, :User, :AliasName, :Password
+
+        def initialize(datasource=nil, region=nil, instanceid=nil, user=nil, aliasname=nil, password=nil)
+          @DataSource = datasource
+          @Region = region
+          @InstanceId = instanceid
+          @User = user
+          @AliasName = aliasname
+          @Password = password
+        end
+
+        def deserialize(params)
+          @DataSource = params['DataSource']
+          @Region = params['Region']
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @AliasName = params['AliasName']
+          @Password = params['Password']
+        end
+      end
+
       # 数据加工任务基本详情
       class DataTransformTaskInfo < TencentCloud::Common::AbstractModel
         # @param Name: 数据加工任务名称
@@ -4241,7 +4328,7 @@ module TencentCloud
         # @type SrcTopicId: String
         # @param Status: 当前加工任务状态（1准备中/2运行中/3停止中/4已停止）
         # @type Status: Integer
-        # @param CreateTime: 加工任务创建时间
+        # @param CreateTime: 创建时间
         # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param UpdateTime: 最近修改时间
@@ -4258,16 +4345,35 @@ module TencentCloud
         # @type DstResources: Array
         # @param EtlContent: 加工逻辑函数。
         # @type EtlContent: String
+        # @param BackupTopicID: 兜底topic_id
+        # @type BackupTopicID: String
+        # @param BackupGiveUpData: 超限之后是否丢弃日志数据
+        # @type BackupGiveUpData: Boolean
+        # @param HasServicesLog: 是否开启投递服务日志。 1关闭,2开启
+        # @type HasServicesLog: Integer
+        # @param TaskDstCount: 任务目标日志主题数量
+        # @type TaskDstCount: Integer
         # @param DataTransformType: 数据加工类型。0：标准加工任务；1：前置加工任务。
         # @type DataTransformType: Integer
         # @param KeepFailureLog: 保留失败日志状态。 1:不保留，2:保留
         # @type KeepFailureLog: Integer
         # @param FailureLogKey: 失败日志的字段名称
         # @type FailureLogKey: String
+        # @param ProcessFromTimestamp: 指定加工数据的开始时间，秒级时间戳。
+        # - 日志主题生命周期内的任意时间范围，如果超出了生命周期,只处理生命周期内有数据的部分。
+        # @type ProcessFromTimestamp: Integer
+        # @param ProcessToTimestamp: 指定加工数据的结束时间，秒级时间戳。
+        # 1. 不可指定未来的时间
+        # 2. 不填则表示持续执行
+        # @type ProcessToTimestamp: Integer
+        # @param DataTransformSqlDataSources: sql数据源信息
+        # @type DataTransformSqlDataSources: Array
+        # @param EnvInfos: 环境变量
+        # @type EnvInfos: Array
 
-        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :DataTransformType, :KeepFailureLog, :FailureLogKey
+        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :BackupTopicID, :BackupGiveUpData, :HasServicesLog, :TaskDstCount, :DataTransformType, :KeepFailureLog, :FailureLogKey, :ProcessFromTimestamp, :ProcessToTimestamp, :DataTransformSqlDataSources, :EnvInfos
 
-        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil)
+        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, backuptopicid=nil, backupgiveupdata=nil, hasserviceslog=nil, taskdstcount=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil, processfromtimestamp=nil, processtotimestamp=nil, datatransformsqldatasources=nil, envinfos=nil)
           @Name = name
           @TaskId = taskid
           @EnableFlag = enableflag
@@ -4281,9 +4387,17 @@ module TencentCloud
           @LogsetId = logsetid
           @DstResources = dstresources
           @EtlContent = etlcontent
+          @BackupTopicID = backuptopicid
+          @BackupGiveUpData = backupgiveupdata
+          @HasServicesLog = hasserviceslog
+          @TaskDstCount = taskdstcount
           @DataTransformType = datatransformtype
           @KeepFailureLog = keepfailurelog
           @FailureLogKey = failurelogkey
+          @ProcessFromTimestamp = processfromtimestamp
+          @ProcessToTimestamp = processtotimestamp
+          @DataTransformSqlDataSources = datatransformsqldatasources
+          @EnvInfos = envinfos
         end
 
         def deserialize(params)
@@ -4307,9 +4421,31 @@ module TencentCloud
             end
           end
           @EtlContent = params['EtlContent']
+          @BackupTopicID = params['BackupTopicID']
+          @BackupGiveUpData = params['BackupGiveUpData']
+          @HasServicesLog = params['HasServicesLog']
+          @TaskDstCount = params['TaskDstCount']
           @DataTransformType = params['DataTransformType']
           @KeepFailureLog = params['KeepFailureLog']
           @FailureLogKey = params['FailureLogKey']
+          @ProcessFromTimestamp = params['ProcessFromTimestamp']
+          @ProcessToTimestamp = params['ProcessToTimestamp']
+          unless params['DataTransformSqlDataSources'].nil?
+            @DataTransformSqlDataSources = []
+            params['DataTransformSqlDataSources'].each do |i|
+              datatransformsqldatasource_tmp = DataTransformSqlDataSource.new
+              datatransformsqldatasource_tmp.deserialize(i)
+              @DataTransformSqlDataSources << datatransformsqldatasource_tmp
+            end
+          end
+          unless params['EnvInfos'].nil?
+            @EnvInfos = []
+            params['EnvInfos'].each do |i|
+              envinfo_tmp = EnvInfo.new
+              envinfo_tmp.deserialize(i)
+              @EnvInfos << envinfo_tmp
+            end
+          end
         end
       end
 
@@ -6139,7 +6275,7 @@ module TencentCloud
         # 必选：否
         # 示例：756cec3e-a0a5-44c3-85a8-090870582000
         # 日志主题ID
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
 
         # - status
         # 按照【 任务运行状态】进行过滤。 1：准备中，2：运行中，3：停止中，4：已停止
@@ -7609,6 +7745,26 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # 数据加工-高级设置-环境变量
+      class EnvInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 环境变量名
+        # @type Key: String
+        # @param Value: 环境变量值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -10080,18 +10236,33 @@ module TencentCloud
         # @type EnableFlag: Integer
         # @param DstResources: 加工任务目的topic_id以及别名
         # @type DstResources: Array
+        # @param BackupGiveUpData: 超限之后是否丢弃日志数据
+        # @type BackupGiveUpData: Boolean
         # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启
         # @type HasServicesLog: Integer
+        # @param KeepFailureLog: 保留失败日志状态。 1:不保留，2:保留
+        # @type KeepFailureLog: Integer
+        # @param FailureLogKey: 失败日志的字段名称
+        # @type FailureLogKey: String
+        # @param DataTransformSqlDataSources: 外部数据源信息
+        # @type DataTransformSqlDataSources: Array
+        # @param EnvInfos: 设置的环境变量
+        # @type EnvInfos: Array
 
-        attr_accessor :TaskId, :Name, :EtlContent, :EnableFlag, :DstResources, :HasServicesLog
+        attr_accessor :TaskId, :Name, :EtlContent, :EnableFlag, :DstResources, :BackupGiveUpData, :HasServicesLog, :KeepFailureLog, :FailureLogKey, :DataTransformSqlDataSources, :EnvInfos
 
-        def initialize(taskid=nil, name=nil, etlcontent=nil, enableflag=nil, dstresources=nil, hasserviceslog=nil)
+        def initialize(taskid=nil, name=nil, etlcontent=nil, enableflag=nil, dstresources=nil, backupgiveupdata=nil, hasserviceslog=nil, keepfailurelog=nil, failurelogkey=nil, datatransformsqldatasources=nil, envinfos=nil)
           @TaskId = taskid
           @Name = name
           @EtlContent = etlcontent
           @EnableFlag = enableflag
           @DstResources = dstresources
+          @BackupGiveUpData = backupgiveupdata
           @HasServicesLog = hasserviceslog
+          @KeepFailureLog = keepfailurelog
+          @FailureLogKey = failurelogkey
+          @DataTransformSqlDataSources = datatransformsqldatasources
+          @EnvInfos = envinfos
         end
 
         def deserialize(params)
@@ -10107,7 +10278,26 @@ module TencentCloud
               @DstResources << datatransformresouceinfo_tmp
             end
           end
+          @BackupGiveUpData = params['BackupGiveUpData']
           @HasServicesLog = params['HasServicesLog']
+          @KeepFailureLog = params['KeepFailureLog']
+          @FailureLogKey = params['FailureLogKey']
+          unless params['DataTransformSqlDataSources'].nil?
+            @DataTransformSqlDataSources = []
+            params['DataTransformSqlDataSources'].each do |i|
+              datatransformsqldatasource_tmp = DataTransformSqlDataSource.new
+              datatransformsqldatasource_tmp.deserialize(i)
+              @DataTransformSqlDataSources << datatransformsqldatasource_tmp
+            end
+          end
+          unless params['EnvInfos'].nil?
+            @EnvInfos = []
+            params['EnvInfos'].each do |i|
+              envinfo_tmp = EnvInfo.new
+              envinfo_tmp.deserialize(i)
+              @EnvInfos << envinfo_tmp
+            end
+          end
         end
       end
 
