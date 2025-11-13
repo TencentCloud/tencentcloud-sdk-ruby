@@ -5113,14 +5113,16 @@ module TencentCloud
         # @param IdleConnectTimeout: 空闲连接超时时间，仅支持TCP监听器。默认值:900；共享型实例和独占型实例取值范围：300～900，性能容量型实例取值范围:300～1980。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdleConnectTimeout: Integer
-        # @param RescheduleInterval: 调度时间。触发强制重新调度后，长连接将会在设置的调度时间内断开并完成重新分配
+        # @param RescheduleInterval: 重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。触发重新调度后，长连接将会在设置的调度时间内断开并完成重新分配。
         # @type RescheduleInterval: Integer
         # @param DataCompressMode: 数据压缩模式
         # @type DataCompressMode: String
+        # @param RescheduleStartTime: 重新调度启动时间，配置了重新调度启动时间后，会在启动时间到达时触发重新调度。
+        # @type RescheduleStartTime: Integer
 
-        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList, :MaxConn, :MaxCps, :IdleConnectTimeout, :RescheduleInterval, :DataCompressMode
+        attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList, :MaxConn, :MaxCps, :IdleConnectTimeout, :RescheduleInterval, :DataCompressMode, :RescheduleStartTime
 
-        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil, targetgrouplist=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, rescheduleinterval=nil, datacompressmode=nil)
+        def initialize(listenerid=nil, protocol=nil, port=nil, certificate=nil, healthcheck=nil, scheduler=nil, sessionexpiretime=nil, sniswitch=nil, rules=nil, listenername=nil, createtime=nil, endport=nil, targettype=nil, targetgroup=nil, sessiontype=nil, keepaliveenable=nil, toa=nil, deregistertargetrst=nil, attrflags=nil, targetgrouplist=nil, maxconn=nil, maxcps=nil, idleconnecttimeout=nil, rescheduleinterval=nil, datacompressmode=nil, reschedulestarttime=nil)
           @ListenerId = listenerid
           @Protocol = protocol
           @Port = port
@@ -5146,6 +5148,7 @@ module TencentCloud
           @IdleConnectTimeout = idleconnecttimeout
           @RescheduleInterval = rescheduleinterval
           @DataCompressMode = datacompressmode
+          @RescheduleStartTime = reschedulestarttime
         end
 
         def deserialize(params)
@@ -5197,6 +5200,7 @@ module TencentCloud
           @IdleConnectTimeout = params['IdleConnectTimeout']
           @RescheduleInterval = params['RescheduleInterval']
           @DataCompressMode = params['DataCompressMode']
+          @RescheduleStartTime = params['RescheduleStartTime']
         end
       end
 

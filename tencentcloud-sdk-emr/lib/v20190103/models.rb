@@ -9041,6 +9041,8 @@ module TencentCloud
 
       # ModifyUserGroup请求参数结构体
       class ModifyUserGroupRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群字符串ID
+        # @type InstanceId: String
         # @param Users: 用户信息列表
         # @type Users: Array
         # @param UserGroup: 用户主组，cvm集群为必填参数，tke集群选填
@@ -9050,9 +9052,10 @@ module TencentCloud
         # @param Remark: 备注
         # @type Remark: String
 
-        attr_accessor :Users, :UserGroup, :Groups, :Remark
+        attr_accessor :InstanceId, :Users, :UserGroup, :Groups, :Remark
 
-        def initialize(users=nil, usergroup=nil, groups=nil, remark=nil)
+        def initialize(instanceid=nil, users=nil, usergroup=nil, groups=nil, remark=nil)
+          @InstanceId = instanceid
           @Users = users
           @UserGroup = usergroup
           @Groups = groups
@@ -9060,6 +9063,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           @Users = params['Users']
           @UserGroup = params['UserGroup']
           @Groups = params['Groups']

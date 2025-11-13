@@ -434,6 +434,66 @@ module TencentCloud
         end
       end
 
+      # 集群可用的自定义参数
+      class AvailableExtraArgs < TencentCloud::Common::AbstractModel
+        # @param KubeAPIServer: kube-apiserver可用的自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeAPIServer: Array
+        # @param KubeControllerManager: kube-controller-manager可用的自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeControllerManager: Array
+        # @param KubeScheduler: kube-scheduler可用的自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KubeScheduler: Array
+        # @param Kubelet: kubelet可用的自定义参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kubelet: Array
+
+        attr_accessor :KubeAPIServer, :KubeControllerManager, :KubeScheduler, :Kubelet
+
+        def initialize(kubeapiserver=nil, kubecontrollermanager=nil, kubescheduler=nil, kubelet=nil)
+          @KubeAPIServer = kubeapiserver
+          @KubeControllerManager = kubecontrollermanager
+          @KubeScheduler = kubescheduler
+          @Kubelet = kubelet
+        end
+
+        def deserialize(params)
+          unless params['KubeAPIServer'].nil?
+            @KubeAPIServer = []
+            params['KubeAPIServer'].each do |i|
+              flag_tmp = Flag.new
+              flag_tmp.deserialize(i)
+              @KubeAPIServer << flag_tmp
+            end
+          end
+          unless params['KubeControllerManager'].nil?
+            @KubeControllerManager = []
+            params['KubeControllerManager'].each do |i|
+              flag_tmp = Flag.new
+              flag_tmp.deserialize(i)
+              @KubeControllerManager << flag_tmp
+            end
+          end
+          unless params['KubeScheduler'].nil?
+            @KubeScheduler = []
+            params['KubeScheduler'].each do |i|
+              flag_tmp = Flag.new
+              flag_tmp.deserialize(i)
+              @KubeScheduler << flag_tmp
+            end
+          end
+          unless params['Kubelet'].nil?
+            @Kubelet = []
+            params['Kubelet'].each do |i|
+              flag_tmp = Flag.new
+              flag_tmp.deserialize(i)
+              @Kubelet << flag_tmp
+            end
+          end
+        end
+      end
+
       # 仓储仓库信息
       class BackupStorageLocation < TencentCloud::Common::AbstractModel
         # @param Name: 备份仓库名称
@@ -5537,6 +5597,57 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterAvailableExtraArgs请求参数结构体
+      class DescribeClusterAvailableExtraArgsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterVersion: 集群版本
+        # @type ClusterVersion: String
+        # @param ClusterType: 集群类型(MANAGED_CLUSTER或INDEPENDENT_CLUSTER)
+        # @type ClusterType: String
+
+        attr_accessor :ClusterVersion, :ClusterType
+
+        def initialize(clusterversion=nil, clustertype=nil)
+          @ClusterVersion = clusterversion
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterVersion = params['ClusterVersion']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeClusterAvailableExtraArgs返回参数结构体
+      class DescribeClusterAvailableExtraArgsResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterVersion: 集群版本
+        # @type ClusterVersion: String
+        # @param AvailableExtraArgs: 可用的自定义参数
+        # @type AvailableExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.AvailableExtraArgs`
+        # @param ClusterType: 集群类型
+        # @type ClusterType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterVersion, :AvailableExtraArgs, :ClusterType, :RequestId
+
+        def initialize(clusterversion=nil, availableextraargs=nil, clustertype=nil, requestid=nil)
+          @ClusterVersion = clusterversion
+          @AvailableExtraArgs = availableextraargs
+          @ClusterType = clustertype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ClusterVersion = params['ClusterVersion']
+          unless params['AvailableExtraArgs'].nil?
+            @AvailableExtraArgs = AvailableExtraArgs.new
+            @AvailableExtraArgs.deserialize(params['AvailableExtraArgs'])
+          end
+          @ClusterType = params['ClusterType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterCommonNames请求参数结构体
       class DescribeClusterCommonNamesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -10471,6 +10582,60 @@ module TencentCloud
         end
       end
 
+      # DescribeTasks请求参数结构体
+      class DescribeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Filter: 根据filter做过滤，支持ClusterId（取值示例：cls-xxxx）、TaskType（任务类型，取值示例：add_cluster_cidr、node_upgrade、node_upgrade_ctl等）其中任务类型必传
+        # @type Filter: Array
+        # @param Latest: 表示最新的任务条目，此值为true的话，输出任务列表中只会有最新的一条
+        # @type Latest: Boolean
+
+        attr_accessor :Filter, :Latest
+
+        def initialize(filter=nil, latest=nil)
+          @Filter = filter
+          @Latest = latest
+        end
+
+        def deserialize(params)
+          unless params['Filter'].nil?
+            @Filter = []
+            params['Filter'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filter << filter_tmp
+            end
+          end
+          @Latest = params['Latest']
+        end
+      end
+
+      # DescribeTasks返回参数结构体
+      class DescribeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Tasks: 任务步骤信息
+        # @type Tasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tasks, :RequestId
+
+        def initialize(tasks=nil, requestid=nil)
+          @Tasks = tasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @Tasks << task_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVersions请求参数结构体
       class DescribeVersionsRequest < TencentCloud::Common::AbstractModel
 
@@ -12018,6 +12183,38 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 参数描述
+      class Flag < TencentCloud::Common::AbstractModel
+        # @param Name: 参数名
+        # @type Name: String
+        # @param Type: 参数类型
+        # @type Type: String
+        # @param Usage: 参数描述
+        # @type Usage: String
+        # @param Default: 参数默认值
+        # @type Default: String
+        # @param Constraint: 参数可选范围（目前包含range和in两种，"[]"代表range，如"[1, 5]"表示参数必须>=1且 <=5, "()"代表in， 如"('aa', 'bb')"表示参数只能为字符串'aa'或者'bb'，该参数为空表示不校验）
+        # @type Constraint: String
+
+        attr_accessor :Name, :Type, :Usage, :Default, :Constraint
+
+        def initialize(name=nil, type=nil, usage=nil, default=nil, constraint=nil)
+          @Name = name
+          @Type = type
+          @Usage = usage
+          @Default = default
+          @Constraint = constraint
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Usage = params['Usage']
+          @Default = params['Default']
+          @Constraint = params['Constraint']
         end
       end
 
@@ -13892,6 +14089,82 @@ module TencentCloud
 
       # ModifyClusterEndpointSP返回参数结构体
       class ModifyClusterEndpointSPResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterExtraArgs请求参数结构体
+      class ModifyClusterExtraArgsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 目标集群ID
+        # @type ClusterId: String
+        # @param ClusterExtraArgs: 集群自定义参数
+        # @type ClusterExtraArgs: :class:`Tencentcloud::Tke.v20180525.models.ClusterExtraArgs`
+
+        attr_accessor :ClusterId, :ClusterExtraArgs
+
+        def initialize(clusterid=nil, clusterextraargs=nil)
+          @ClusterId = clusterid
+          @ClusterExtraArgs = clusterextraargs
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ClusterExtraArgs'].nil?
+            @ClusterExtraArgs = ClusterExtraArgs.new
+            @ClusterExtraArgs.deserialize(params['ClusterExtraArgs'])
+          end
+        end
+      end
+
+      # ModifyClusterExtraArgs返回参数结构体
+      class ModifyClusterExtraArgsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterExtraArgsTaskState请求参数结构体
+      class ModifyClusterExtraArgsTaskStateRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群实例ID
+        # @type ClusterId: String
+        # @param Operation: 操作类型：
+        # abort 取消并回退任务
+        # @type Operation: String
+
+        attr_accessor :ClusterId, :Operation
+
+        def initialize(clusterid=nil, operation=nil)
+          @ClusterId = clusterid
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Operation = params['Operation']
+        end
+      end
+
+      # ModifyClusterExtraArgsTaskState返回参数结构体
+      class ModifyClusterExtraArgsTaskStateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -18636,6 +18909,63 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Effect = params['Effect']
+        end
+      end
+
+      # 任务信息
+      class Task < TencentCloud::Common::AbstractModel
+        # @param LifeState: 任务状态（process(运行中)、pause(暂停)、pausing(暂停中)、paused(已暂停)、done(已完成)、abort(中止)、aborted(已中止)、resume(重新执行)）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeState: String
+        # @param TargetObj: 任务目标ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObj: String
+        # @param Param: 任务参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Param: String
+        # @param TaskType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskType: String
+        # @param LastError: 任务失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastError: String
+        # @param ClusterID: 任务所属集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterID: String
+        # @param CreatedAt: 任务开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedAt: 任务更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param TaskID: 创建任务唯一请求ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskID: String
+
+        attr_accessor :LifeState, :TargetObj, :Param, :TaskType, :LastError, :ClusterID, :CreatedAt, :UpdatedAt, :TaskID
+
+        def initialize(lifestate=nil, targetobj=nil, param=nil, tasktype=nil, lasterror=nil, clusterid=nil, createdat=nil, updatedat=nil, taskid=nil)
+          @LifeState = lifestate
+          @TargetObj = targetobj
+          @Param = param
+          @TaskType = tasktype
+          @LastError = lasterror
+          @ClusterID = clusterid
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @TaskID = taskid
+        end
+
+        def deserialize(params)
+          @LifeState = params['LifeState']
+          @TargetObj = params['TargetObj']
+          @Param = params['Param']
+          @TaskType = params['TaskType']
+          @LastError = params['LastError']
+          @ClusterID = params['ClusterID']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          @TaskID = params['TaskID']
         end
       end
 

@@ -2974,6 +2974,42 @@ module TencentCloud
         end
       end
 
+      # KickOutClient请求参数结构体
+      class KickOutClientRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param ClientId: 客户端id
+        # @type ClientId: String
+
+        attr_accessor :InstanceId, :ClientId
+
+        def initialize(instanceid=nil, clientid=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+        end
+      end
+
+      # KickOutClient返回参数结构体
+      class KickOutClientResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # MQTT认证器信息
       class MQTTAuthenticatorItem < TencentCloud::Common::AbstractModel
         # @param Type: 认证器类型
@@ -3360,12 +3396,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 10
-        deprecate :DeadLetterResendTimes=, :none, 2025, 10
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 10
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 10
-        deprecate :SubTopic, :none, 2025, 10
-        deprecate :SubTopic=, :none, 2025, 10
+        deprecate :DeadLetterResendTimes, :none, 2025, 11
+        deprecate :DeadLetterResendTimes=, :none, 2025, 11
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 11
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 11
+        deprecate :SubTopic, :none, 2025, 11
+        deprecate :SubTopic=, :none, 2025, 11
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3820,10 +3856,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 10
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 10
-        deprecate :AutomaticActivation, :none, 2025, 10
-        deprecate :AutomaticActivation=, :none, 2025, 10
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 11
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 11
+        deprecate :AutomaticActivation, :none, 2025, 11
+        deprecate :AutomaticActivation=, :none, 2025, 11
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -3949,8 +3985,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 10
-        deprecate :Text=, :none, 2025, 10
+        deprecate :Text, :none, 2025, 11
+        deprecate :Text=, :none, 2025, 11
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

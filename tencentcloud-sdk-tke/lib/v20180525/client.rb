@@ -1877,6 +1877,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群可用的自定义参数
+
+        # @param request: Request instance for DescribeClusterAvailableExtraArgs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeClusterAvailableExtraArgsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeClusterAvailableExtraArgsResponse`
+        def DescribeClusterAvailableExtraArgs(request)
+          body = send_request('DescribeClusterAvailableExtraArgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterAvailableExtraArgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定子账户在RBAC授权模式中对应kube-apiserver客户端证书的CommonName字段，如果没有客户端证书，将会签发一个，此接口有最大传入子账户数量上限，当前为50
 
         # @param request: Request instance for DescribeClusterCommonNames.
@@ -3893,6 +3917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询任务相关信息，只会查询对应任务类型的最新的一条任务状态
+
+        # @param request: Request instance for DescribeTasks.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeTasksRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeTasksResponse`
+        def DescribeTasks(request)
+          body = send_request('DescribeTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群版本信息
 
         # @param request: Request instance for DescribeVersions.
@@ -4551,6 +4599,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyClusterEndpointSPResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新集群自定义参数，只支持托管集群
+
+        # @param request: Request instance for ModifyClusterExtraArgs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterExtraArgsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterExtraArgsResponse`
+        def ModifyClusterExtraArgs(request)
+          body = send_request('ModifyClusterExtraArgs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterExtraArgsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 暂停或者取消集群更新参数任务
+
+        # @param request: Request instance for ModifyClusterExtraArgsTaskState.
+        # @type request: :class:`Tencentcloud::tke::V20180525::ModifyClusterExtraArgsTaskStateRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::ModifyClusterExtraArgsTaskStateResponse`
+        def ModifyClusterExtraArgsTaskState(request)
+          body = send_request('ModifyClusterExtraArgsTaskState', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterExtraArgsTaskStateResponse.new
             model.deserialize(response['Response'])
             model
           else
