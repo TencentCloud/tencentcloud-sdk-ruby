@@ -4210,10 +4210,12 @@ module TencentCloud
         # @type ConvergenceHistoryIDs: Array
         # @param AlarmTypes: 告警类型
         # @type AlarmTypes: Array
+        # @param ShieldStatus: 是否已屏蔽
+        # @type ShieldStatus: Array
 
-        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels, :ConvergenceHistoryIDs, :AlarmTypes
+        attr_accessor :Module, :PageNumber, :PageSize, :Order, :StartTime, :EndTime, :MonitorTypes, :AlarmObject, :AlarmStatus, :ProjectIds, :InstanceGroupIds, :Namespaces, :MetricNames, :PolicyName, :Content, :ReceiverUids, :ReceiverGroups, :PolicyIds, :AlarmLevels, :ConvergenceHistoryIDs, :AlarmTypes, :ShieldStatus
 
-        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil, alarmlevels=nil, convergencehistoryids=nil, alarmtypes=nil)
+        def initialize(_module=nil, pagenumber=nil, pagesize=nil, order=nil, starttime=nil, endtime=nil, monitortypes=nil, alarmobject=nil, alarmstatus=nil, projectids=nil, instancegroupids=nil, namespaces=nil, metricnames=nil, policyname=nil, content=nil, receiveruids=nil, receivergroups=nil, policyids=nil, alarmlevels=nil, convergencehistoryids=nil, alarmtypes=nil, shieldstatus=nil)
           @Module = _module
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -4235,6 +4237,7 @@ module TencentCloud
           @AlarmLevels = alarmlevels
           @ConvergenceHistoryIDs = convergencehistoryids
           @AlarmTypes = alarmtypes
+          @ShieldStatus = shieldstatus
         end
 
         def deserialize(params)
@@ -4266,6 +4269,7 @@ module TencentCloud
           @AlarmLevels = params['AlarmLevels']
           @ConvergenceHistoryIDs = params['ConvergenceHistoryIDs']
           @AlarmTypes = params['AlarmTypes']
+          @ShieldStatus = params['ShieldStatus']
         end
       end
 

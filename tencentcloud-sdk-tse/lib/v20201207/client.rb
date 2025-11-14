@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建或编辑云原生网关访问控制
+
+        # @param request: Request instance for CreateOrModifyCloudNativeAPIGatewayIPRestriction.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateOrModifyCloudNativeAPIGatewayIPRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateOrModifyCloudNativeAPIGatewayIPRestrictionResponse`
+        def CreateOrModifyCloudNativeAPIGatewayIPRestriction(request)
+          body = send_request('CreateOrModifyCloudNativeAPIGatewayIPRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateOrModifyCloudNativeAPIGatewayIPRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建或更新配置文件并发布配置
 
         # @param request: Request instance for CreateOrUpdateConfigFileAndRelease.
@@ -639,6 +663,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudNativeAPIGatewayCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除云原生网关访问控制
+
+        # @param request: Request instance for DeleteCloudNativeAPIGatewayIPRestriction.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayIPRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteCloudNativeAPIGatewayIPRestrictionResponse`
+        def DeleteCloudNativeAPIGatewayIPRestriction(request)
+          body = send_request('DeleteCloudNativeAPIGatewayIPRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCloudNativeAPIGatewayIPRestrictionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1239,6 +1287,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCloudNativeAPIGatewayConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询云原生网关访问控制
+
+        # @param request: Request instance for DescribeCloudNativeAPIGatewayIPRestriction.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayIPRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeCloudNativeAPIGatewayIPRestrictionResponse`
+        def DescribeCloudNativeAPIGatewayIPRestriction(request)
+          body = send_request('DescribeCloudNativeAPIGatewayIPRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCloudNativeAPIGatewayIPRestrictionResponse.new
             model.deserialize(response['Response'])
             model
           else

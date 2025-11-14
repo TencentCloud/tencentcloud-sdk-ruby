@@ -372,15 +372,20 @@ module TencentCloud
         # @param PayEndTime: 支付结束时间
         # 格式:YYYY-MM-DD HH:mm:ss
         # @type PayEndTime: String
+        # @param ModifyOwnerEndTime: 交割时间
+        # 格式:YYYY-MM-DD HH:mm:ss
+        # @type ModifyOwnerEndTime: String
 
-        attr_accessor :PayEndTime
+        attr_accessor :PayEndTime, :ModifyOwnerEndTime
 
-        def initialize(payendtime=nil)
+        def initialize(payendtime=nil, modifyownerendtime=nil)
           @PayEndTime = payendtime
+          @ModifyOwnerEndTime = modifyownerendtime
         end
 
         def deserialize(params)
           @PayEndTime = params['PayEndTime']
+          @ModifyOwnerEndTime = params['ModifyOwnerEndTime']
         end
       end
 
@@ -1671,12 +1676,15 @@ module TencentCloud
         # @type BiddingBondPrice: Float
         # @param Status: 状态：5 等待支付 6 等待转移， 7 转移中，8 交易成功，11 尾款阶段持有者索回，12 已违约
         # @type Status: Integer
+        # @param ModifyOwnerEndTime: 交割时间
+        # 格式:YYYY-MM-DD HH:mm:ss
+        # @type ModifyOwnerEndTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Domain, :SuccessfulTime, :SuccessfulPrice, :RegTime, :ExpireTime, :DeleteTime, :PayEndTime, :BiddingBondRefund, :BiddingBondPrice, :Status, :RequestId
+        attr_accessor :Domain, :SuccessfulTime, :SuccessfulPrice, :RegTime, :ExpireTime, :DeleteTime, :PayEndTime, :BiddingBondRefund, :BiddingBondPrice, :Status, :ModifyOwnerEndTime, :RequestId
 
-        def initialize(domain=nil, successfultime=nil, successfulprice=nil, regtime=nil, expiretime=nil, deletetime=nil, payendtime=nil, biddingbondrefund=nil, biddingbondprice=nil, status=nil, requestid=nil)
+        def initialize(domain=nil, successfultime=nil, successfulprice=nil, regtime=nil, expiretime=nil, deletetime=nil, payendtime=nil, biddingbondrefund=nil, biddingbondprice=nil, status=nil, modifyownerendtime=nil, requestid=nil)
           @Domain = domain
           @SuccessfulTime = successfultime
           @SuccessfulPrice = successfulprice
@@ -1687,6 +1695,7 @@ module TencentCloud
           @BiddingBondRefund = biddingbondrefund
           @BiddingBondPrice = biddingbondprice
           @Status = status
+          @ModifyOwnerEndTime = modifyownerendtime
           @RequestId = requestid
         end
 
@@ -1701,6 +1710,7 @@ module TencentCloud
           @BiddingBondRefund = params['BiddingBondRefund']
           @BiddingBondPrice = params['BiddingBondPrice']
           @Status = params['Status']
+          @ModifyOwnerEndTime = params['ModifyOwnerEndTime']
           @RequestId = params['RequestId']
         end
       end

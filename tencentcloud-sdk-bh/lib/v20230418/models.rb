@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 9
-        deprecate :LoginAccount=, :none, 2025, 9
-        deprecate :LoginPassword, :none, 2025, 9
-        deprecate :LoginPassword=, :none, 2025, 9
+        deprecate :LoginAccount, :none, 2025, 11
+        deprecate :LoginAccount=, :none, 2025, 11
+        deprecate :LoginPassword, :none, 2025, 11
+        deprecate :LoginPassword=, :none, 2025, 11
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -265,10 +265,16 @@ module TencentCloud
         # @type AllowKeyboardLogger: Boolean
         # @param AppAssetSet: 关联的应用资产列表
         # @type AppAssetSet: Array
+        # @param AclType: 权限类型 0-默认普通权限 1-工单权限,2-权限工单权限
+        # @type AclType: Integer
+        # @param TicketId: 权限所属工单id
+        # @type TicketId: String
+        # @param TicketName: 权限所属工单名称
+        # @type TicketName: String
 
-        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger, :AppAssetSet
+        attr_accessor :Id, :Name, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowAnyAccount, :UserSet, :UserGroupSet, :DeviceSet, :DeviceGroupSet, :AccountSet, :CmdTemplateSet, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :ValidateFrom, :ValidateTo, :Status, :Department, :AllowAccessCredential, :ACTemplateSet, :WhiteCmds, :AllowKeyboardLogger, :AppAssetSet, :AclType, :TicketId, :TicketName
 
-        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil, appassetset=nil)
+        def initialize(id=nil, name=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowanyaccount=nil, userset=nil, usergroupset=nil, deviceset=nil, devicegroupset=nil, accountset=nil, cmdtemplateset=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, validatefrom=nil, validateto=nil, status=nil, department=nil, allowaccesscredential=nil, actemplateset=nil, whitecmds=nil, allowkeyboardlogger=nil, appassetset=nil, acltype=nil, ticketid=nil, ticketname=nil)
           @Id = id
           @Name = name
           @AllowDiskRedirect = allowdiskredirect
@@ -301,6 +307,9 @@ module TencentCloud
           @WhiteCmds = whitecmds
           @AllowKeyboardLogger = allowkeyboardlogger
           @AppAssetSet = appassetset
+          @AclType = acltype
+          @TicketId = ticketid
+          @TicketName = ticketname
         end
 
         def deserialize(params)
@@ -388,6 +397,9 @@ module TencentCloud
               @AppAssetSet << appasset_tmp
             end
           end
+          @AclType = params['AclType']
+          @TicketId = params['TicketId']
+          @TicketName = params['TicketName']
         end
       end
 
@@ -561,6 +573,26 @@ module TencentCloud
             @Department = Department.new
             @Department.deserialize(params['Department'])
           end
+        end
+      end
+
+      # 资产同步标志
+      class AssetSyncFlags < TencentCloud::Common::AbstractModel
+        # @param RoleGranted: 是否已完成角色授权
+        # @type RoleGranted: Boolean
+        # @param AutoSync: 是否已开启自动资产同步
+        # @type AutoSync: Boolean
+
+        attr_accessor :RoleGranted, :AutoSync
+
+        def initialize(rolegranted=nil, autosync=nil)
+          @RoleGranted = rolegranted
+          @AutoSync = autosync
+        end
+
+        def deserialize(params)
+          @RoleGranted = params['RoleGranted']
+          @AutoSync = params['AutoSync']
         end
       end
 
@@ -2408,6 +2440,8 @@ module TencentCloud
         # @type AuthorizedAppAssetIdSet: Array
         # @param Status: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
         # @type Status: Integer
+        # @param StatusSet: 访问权限状态，1 - 已生效，2 - 未生效，3 - 已过期
+        # @type StatusSet: Array
         # @param DepartmentId: 部门ID，用于过滤属于某个部门的访问权限
         # @type DepartmentId: String
         # @param ExactAccount: 是否根据AuthorizedDeviceIdSet,对资产账号进行精确匹配，默认false, 设置true时，确保AuthorizedDeviceIdSet只有一个元素
@@ -2415,9 +2449,9 @@ module TencentCloud
         # @param Filters: 过滤数组
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :Status, :DepartmentId, :ExactAccount, :Filters
+        attr_accessor :IdSet, :Name, :Offset, :Limit, :Exact, :AuthorizedUserIdSet, :AuthorizedDeviceIdSet, :AuthorizedAppAssetIdSet, :Status, :StatusSet, :DepartmentId, :ExactAccount, :Filters
 
-        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, status=nil, departmentid=nil, exactaccount=nil, filters=nil)
+        def initialize(idset=nil, name=nil, offset=nil, limit=nil, exact=nil, authorizeduseridset=nil, authorizeddeviceidset=nil, authorizedappassetidset=nil, status=nil, statusset=nil, departmentid=nil, exactaccount=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Offset = offset
@@ -2427,6 +2461,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = authorizeddeviceidset
           @AuthorizedAppAssetIdSet = authorizedappassetidset
           @Status = status
+          @StatusSet = statusset
           @DepartmentId = departmentid
           @ExactAccount = exactaccount
           @Filters = filters
@@ -2442,6 +2477,7 @@ module TencentCloud
           @AuthorizedDeviceIdSet = params['AuthorizedDeviceIdSet']
           @AuthorizedAppAssetIdSet = params['AuthorizedAppAssetIdSet']
           @Status = params['Status']
+          @StatusSet = params['StatusSet']
           @DepartmentId = params['DepartmentId']
           @ExactAccount = params['ExactAccount']
           unless params['Filters'].nil?
@@ -2481,6 +2517,40 @@ module TencentCloud
               acl_tmp.deserialize(i)
               @AclSet << acl_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAssetSyncFlag请求参数结构体
+      class DescribeAssetSyncFlagRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAssetSyncFlag返回参数结构体
+      class DescribeAssetSyncFlagResponse < TencentCloud::Common::AbstractModel
+        # @param AssetSyncFlags: 资产同步标志
+        # @type AssetSyncFlags: :class:`Tencentcloud::Bh.v20230418.models.AssetSyncFlags`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AssetSyncFlags, :RequestId
+
+        def initialize(assetsyncflags=nil, requestid=nil)
+          @AssetSyncFlags = assetsyncflags
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AssetSyncFlags'].nil?
+            @AssetSyncFlags = AssetSyncFlags.new
+            @AssetSyncFlags.deserialize(params['AssetSyncFlags'])
           end
           @RequestId = params['RequestId']
         end
@@ -2669,17 +2739,20 @@ module TencentCloud
         # @type Name: String
         # @param Type: 命令模板类型 1-内置模板 2-自定义模板
         # @type Type: Integer
+        # @param TypeSet: 命令模板类型 1-内置模板 2-自定义模板
+        # @type TypeSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数量，默认20
         # @type Limit: Integer
 
-        attr_accessor :IdSet, :Name, :Type, :Offset, :Limit
+        attr_accessor :IdSet, :Name, :Type, :TypeSet, :Offset, :Limit
 
-        def initialize(idset=nil, name=nil, type=nil, offset=nil, limit=nil)
+        def initialize(idset=nil, name=nil, type=nil, typeset=nil, offset=nil, limit=nil)
           @IdSet = idset
           @Name = name
           @Type = type
+          @TypeSet = typeset
           @Offset = offset
           @Limit = limit
         end
@@ -2688,6 +2761,7 @@ module TencentCloud
           @IdSet = params['IdSet']
           @Name = params['Name']
           @Type = params['Type']
+          @TypeSet = params['TypeSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -2966,15 +3040,21 @@ module TencentCloud
         # @type ManagedAccount: String
         # @param DepartmentId: 过滤条件，可按照部门ID进行过滤
         # @type DepartmentId: String
+        # @param AccountIdSet: 资产所属云账号id
+        # @type AccountIdSet: Array
+        # @param ProviderTypeSet: 云厂商类型，1-腾讯云，2-阿里云
+        # @type ProviderTypeSet: Array
+        # @param CloudDeviceStatusSet: 同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期
+        # @type CloudDeviceStatusSet: Array
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         # @type TagFilters: Array
         # @param Filters: 过滤数组。支持的Name：
         # BindingStatus 绑定状态
         # @type Filters: Array
 
-        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :ManagedAccount, :DepartmentId, :TagFilters, :Filters
+        attr_accessor :IdSet, :Name, :Ip, :ApCodeSet, :Kind, :Offset, :Limit, :AuthorizedUserIdSet, :ResourceIdSet, :KindSet, :ManagedAccount, :DepartmentId, :AccountIdSet, :ProviderTypeSet, :CloudDeviceStatusSet, :TagFilters, :Filters
 
-        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, managedaccount=nil, departmentid=nil, tagfilters=nil, filters=nil)
+        def initialize(idset=nil, name=nil, ip=nil, apcodeset=nil, kind=nil, offset=nil, limit=nil, authorizeduseridset=nil, resourceidset=nil, kindset=nil, managedaccount=nil, departmentid=nil, accountidset=nil, providertypeset=nil, clouddevicestatusset=nil, tagfilters=nil, filters=nil)
           @IdSet = idset
           @Name = name
           @Ip = ip
@@ -2987,6 +3067,9 @@ module TencentCloud
           @KindSet = kindset
           @ManagedAccount = managedaccount
           @DepartmentId = departmentid
+          @AccountIdSet = accountidset
+          @ProviderTypeSet = providertypeset
+          @CloudDeviceStatusSet = clouddevicestatusset
           @TagFilters = tagfilters
           @Filters = filters
         end
@@ -3004,6 +3087,9 @@ module TencentCloud
           @KindSet = params['KindSet']
           @ManagedAccount = params['ManagedAccount']
           @DepartmentId = params['DepartmentId']
+          @AccountIdSet = params['AccountIdSet']
+          @ProviderTypeSet = params['ProviderTypeSet']
+          @CloudDeviceStatusSet = params['CloudDeviceStatusSet']
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
@@ -3206,23 +3292,29 @@ module TencentCloud
         # @type SourceIp: String
         # @param Entry: 登录入口：1-字符界面,2-图形界面，3-web页面, 4-API
         # @type Entry: Integer
+        # @param EntrySet: 登录入口：1-字符界面,2-图形界面，3-web页面, 4-API
+        # @type EntrySet: Array
         # @param Result: 操作结果，1-成功，2-失败
         # @type Result: Integer
+        # @param ResultSet: 操作结果，1-成功，2-失败
+        # @type ResultSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 分页每页记录数，默认20
         # @type Limit: Integer
 
-        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Entry, :Result, :Offset, :Limit
+        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Entry, :EntrySet, :Result, :ResultSet, :Offset, :Limit
 
-        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, entry=nil, result=nil, offset=nil, limit=nil)
+        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, entry=nil, entryset=nil, result=nil, resultset=nil, offset=nil, limit=nil)
           @UserName = username
           @RealName = realname
           @StartTime = starttime
           @EndTime = endtime
           @SourceIp = sourceip
           @Entry = entry
+          @EntrySet = entryset
           @Result = result
+          @ResultSet = resultset
           @Offset = offset
           @Limit = limit
         end
@@ -3234,7 +3326,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @SourceIp = params['SourceIp']
           @Entry = params['Entry']
+          @EntrySet = params['EntrySet']
           @Result = params['Result']
+          @ResultSet = params['ResultSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -3285,23 +3379,29 @@ module TencentCloud
         # @type SourceIp: String
         # @param Kind: 操作类型，参考DescribeOperationType返回结果
         # @type Kind: Integer
+        # @param KindSet: 操作类型，参考DescribeOperationType返回结果
+        # @type KindSet: Array
         # @param Result: 操作结果，1-成功，2-失败
         # @type Result: Integer
+        # @param ResultSet: 操作结果，1-成功，2-失败
+        # @type ResultSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 分页每页记录数，默认20
         # @type Limit: Integer
 
-        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Kind, :Result, :Offset, :Limit
+        attr_accessor :UserName, :RealName, :StartTime, :EndTime, :SourceIp, :Kind, :KindSet, :Result, :ResultSet, :Offset, :Limit
 
-        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, kind=nil, result=nil, offset=nil, limit=nil)
+        def initialize(username=nil, realname=nil, starttime=nil, endtime=nil, sourceip=nil, kind=nil, kindset=nil, result=nil, resultset=nil, offset=nil, limit=nil)
           @UserName = username
           @RealName = realname
           @StartTime = starttime
           @EndTime = endtime
           @SourceIp = sourceip
           @Kind = kind
+          @KindSet = kindset
           @Result = result
+          @ResultSet = resultset
           @Offset = offset
           @Limit = limit
         end
@@ -3313,7 +3413,9 @@ module TencentCloud
           @EndTime = params['EndTime']
           @SourceIp = params['SourceIp']
           @Kind = params['Kind']
+          @KindSet = params['KindSet']
           @Result = params['Result']
+          @ResultSet = params['ResultSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -3468,6 +3570,33 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSecuritySetting请求参数结构体
+      class DescribeSecuritySettingRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSecuritySetting返回参数结构体
+      class DescribeSecuritySettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3723,6 +3852,8 @@ module TencentCloud
         # @type PrivateIp: String
         # @param ApCode: 地域编码
         # @type ApCode: String
+        # @param ApName: 地域名称
+        # @type ApName: String
         # @param OsName: 操作系统名称
         # @type OsName: String
         # @param Kind: 资产类型 1 - Linux, 2 - Windows, 3 - MySQL, 4 - SQLServer
@@ -3765,16 +3896,27 @@ module TencentCloud
         # @type SyncPodCount: Integer
         # @param TotalPodCount: K8S集群pod总数量
         # @type TotalPodCount: Integer
+        # @param CloudAccountId: 云账号id
+        # @type CloudAccountId: Integer
+        # @param CloudAccountName: 云账号名称
+        # @type CloudAccountName: String
+        # @param ProviderType: 云厂商类型1-腾讯云，2-阿里云
+        # @type ProviderType: Integer
+        # @param ProviderName: 云厂商名称
+        # @type ProviderName: String
+        # @param SyncCloudDeviceStatus: 同步的云资产状态，标记同步的资产的状态情况，0-已删除,1-正常,2-已隔离,3-已过期
+        # @type SyncCloudDeviceStatus: Integer
 
-        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount
+        attr_accessor :Id, :InstanceId, :Name, :PublicIp, :PrivateIp, :ApCode, :ApName, :OsName, :Kind, :Port, :GroupSet, :AccountCount, :VpcId, :SubnetId, :Resource, :Department, :IpPortSet, :DomainId, :DomainName, :EnableSSL, :SSLCertName, :IOAId, :ManageDimension, :ManageAccountId, :Namespace, :Workload, :SyncPodCount, :TotalPodCount, :CloudAccountId, :CloudAccountName, :ProviderType, :ProviderName, :SyncCloudDeviceStatus
 
-        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil, managedimension=nil, manageaccountid=nil, namespace=nil, workload=nil, syncpodcount=nil, totalpodcount=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, publicip=nil, privateip=nil, apcode=nil, apname=nil, osname=nil, kind=nil, port=nil, groupset=nil, accountcount=nil, vpcid=nil, subnetid=nil, resource=nil, department=nil, ipportset=nil, domainid=nil, domainname=nil, enablessl=nil, sslcertname=nil, ioaid=nil, managedimension=nil, manageaccountid=nil, namespace=nil, workload=nil, syncpodcount=nil, totalpodcount=nil, cloudaccountid=nil, cloudaccountname=nil, providertype=nil, providername=nil, syncclouddevicestatus=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
           @PublicIp = publicip
           @PrivateIp = privateip
           @ApCode = apcode
+          @ApName = apname
           @OsName = osname
           @Kind = kind
           @Port = port
@@ -3796,6 +3938,11 @@ module TencentCloud
           @Workload = workload
           @SyncPodCount = syncpodcount
           @TotalPodCount = totalpodcount
+          @CloudAccountId = cloudaccountid
+          @CloudAccountName = cloudaccountname
+          @ProviderType = providertype
+          @ProviderName = providername
+          @SyncCloudDeviceStatus = syncclouddevicestatus
         end
 
         def deserialize(params)
@@ -3805,6 +3952,7 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @PrivateIp = params['PrivateIp']
           @ApCode = params['ApCode']
+          @ApName = params['ApName']
           @OsName = params['OsName']
           @Kind = params['Kind']
           @Port = params['Port']
@@ -3839,6 +3987,11 @@ module TencentCloud
           @Workload = params['Workload']
           @SyncPodCount = params['SyncPodCount']
           @TotalPodCount = params['TotalPodCount']
+          @CloudAccountId = params['CloudAccountId']
+          @CloudAccountName = params['CloudAccountName']
+          @ProviderType = params['ProviderType']
+          @ProviderName = params['ProviderName']
+          @SyncCloudDeviceStatus = params['SyncCloudDeviceStatus']
         end
       end
 
@@ -3879,6 +4032,70 @@ module TencentCloud
           @BoundPrivateKey = params['BoundPrivateKey']
           @BoundKubeconfig = params['BoundKubeconfig']
           @IsK8SManageAccount = params['IsK8SManageAccount']
+        end
+      end
+
+      # DisableExternalAccess请求参数结构体
+      class DisableExternalAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DisableExternalAccess返回参数结构体
+      class DisableExternalAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisableIntranetAccess请求参数结构体
+      class DisableIntranetAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # DisableIntranetAccess返回参数结构体
+      class DisableIntranetAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3930,6 +4147,86 @@ module TencentCloud
         end
       end
 
+      # EnableExternalAccess请求参数结构体
+      class EnableExternalAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机id
+        # @type ResourceId: String
+
+        attr_accessor :ResourceId
+
+        def initialize(resourceid=nil)
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # EnableExternalAccess返回参数结构体
+      class EnableExternalAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableIntranetAccess请求参数结构体
+      class EnableIntranetAccessRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 堡垒机实例id
+        # @type ResourceId: String
+        # @param VpcId: 开通内网访问的vpc id
+        # @type VpcId: String
+        # @param VpcCidrBlock: vpc的网段
+        # @type VpcCidrBlock: String
+        # @param SubnetId: 开通内网访问的subnet id
+        # @type SubnetId: String
+        # @param DomainName: 内网ip的自定义域名，可为空
+        # @type DomainName: String
+
+        attr_accessor :ResourceId, :VpcId, :VpcCidrBlock, :SubnetId, :DomainName
+
+        def initialize(resourceid=nil, vpcid=nil, vpccidrblock=nil, subnetid=nil, domainname=nil)
+          @ResourceId = resourceid
+          @VpcId = vpcid
+          @VpcCidrBlock = vpccidrblock
+          @SubnetId = subnetid
+          @DomainName = domainname
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @VpcId = params['VpcId']
+          @VpcCidrBlock = params['VpcCidrBlock']
+          @SubnetId = params['SubnetId']
+          @DomainName = params['DomainName']
+        end
+      end
+
+      # EnableIntranetAccess返回参数结构体
+      class EnableIntranetAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 主机参数，导入外部主机时使用
       class ExternalDevice < TencentCloud::Common::AbstractModel
         # @param OsName: 操作系统名称，只能是Linux、Windows或MySQL
@@ -3950,10 +4247,22 @@ module TencentCloud
         # @type SSLCert: String
         # @param SSLCertName: SSL证书名称，EnableSSL时必填
         # @type SSLCertName: String
+        # @param InstanceId: 资产实例id
+        # @type InstanceId: String
+        # @param ApCode: 资产所属地域
+        # @type ApCode: String
+        # @param ApName: 地域名称
+        # @type ApName: String
+        # @param VpcId: 资产所属VPC
+        # @type VpcId: String
+        # @param SubnetId: 资产所属子网
+        # @type SubnetId: String
+        # @param PublicIp: 公网IP
+        # @type PublicIp: String
 
-        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId, :IpPortSet, :EnableSSL, :SSLCert, :SSLCertName
+        attr_accessor :OsName, :Ip, :Port, :Name, :DepartmentId, :IpPortSet, :EnableSSL, :SSLCert, :SSLCertName, :InstanceId, :ApCode, :ApName, :VpcId, :SubnetId, :PublicIp
 
-        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil, ipportset=nil, enablessl=nil, sslcert=nil, sslcertname=nil)
+        def initialize(osname=nil, ip=nil, port=nil, name=nil, departmentid=nil, ipportset=nil, enablessl=nil, sslcert=nil, sslcertname=nil, instanceid=nil, apcode=nil, apname=nil, vpcid=nil, subnetid=nil, publicip=nil)
           @OsName = osname
           @Ip = ip
           @Port = port
@@ -3963,6 +4272,12 @@ module TencentCloud
           @EnableSSL = enablessl
           @SSLCert = sslcert
           @SSLCertName = sslcertname
+          @InstanceId = instanceid
+          @ApCode = apcode
+          @ApName = apname
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @PublicIp = publicip
         end
 
         def deserialize(params)
@@ -3975,6 +4290,12 @@ module TencentCloud
           @EnableSSL = params['EnableSSL']
           @SSLCert = params['SSLCert']
           @SSLCertName = params['SSLCertName']
+          @InstanceId = params['InstanceId']
+          @ApCode = params['ApCode']
+          @ApName = params['ApName']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @PublicIp = params['PublicIp']
         end
       end
 
@@ -4067,11 +4388,14 @@ module TencentCloud
       class ImportExternalDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceSet: 资产参数列表
         # @type DeviceSet: Array
+        # @param AccountId:  资产所属云账号id
+        # @type AccountId: Integer
 
-        attr_accessor :DeviceSet
+        attr_accessor :DeviceSet, :AccountId
 
-        def initialize(deviceset=nil)
+        def initialize(deviceset=nil, accountid=nil)
           @DeviceSet = deviceset
+          @AccountId = accountid
         end
 
         def deserialize(params)
@@ -4083,6 +4407,7 @@ module TencentCloud
               @DeviceSet << externaldevice_tmp
             end
           end
+          @AccountId = params['AccountId']
         end
       end
 
@@ -4139,6 +4464,110 @@ module TencentCloud
           @SourceIp = params['SourceIp']
           @Entry = params['Entry']
           @Result = params['Result']
+        end
+      end
+
+      # ModifyAccessWhiteListAutoStatus请求参数结构体
+      class ModifyAccessWhiteListAutoStatusRequest < TencentCloud::Common::AbstractModel
+        # @param AllowAuto: true：放开自动添加IP；false：不放开自动添加IP
+        # @type AllowAuto: Boolean
+
+        attr_accessor :AllowAuto
+
+        def initialize(allowauto=nil)
+          @AllowAuto = allowauto
+        end
+
+        def deserialize(params)
+          @AllowAuto = params['AllowAuto']
+        end
+      end
+
+      # ModifyAccessWhiteListAutoStatus返回参数结构体
+      class ModifyAccessWhiteListAutoStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccessWhiteListRule请求参数结构体
+      class ModifyAccessWhiteListRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 白名单规则ID
+        # @type Id: Integer
+        # @param Source: ip或网段信息，如10.10.10.1或10.10.10.0/24，最大长度40字节
+        # @type Source: String
+        # @param Remark: 备注信息，最大长度64字符。
+        # @type Remark: String
+
+        attr_accessor :Id, :Source, :Remark
+
+        def initialize(id=nil, source=nil, remark=nil)
+          @Id = id
+          @Source = source
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Source = params['Source']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyAccessWhiteListRule返回参数结构体
+      class ModifyAccessWhiteListRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAccessWhiteListStatus请求参数结构体
+      class ModifyAccessWhiteListStatusRequest < TencentCloud::Common::AbstractModel
+        # @param AllowAny: true：放开全部来源IP；false：不放开全部来源IP
+        # @type AllowAny: Boolean
+
+        attr_accessor :AllowAny
+
+        def initialize(allowany=nil)
+          @AllowAny = allowany
+        end
+
+        def deserialize(params)
+          @AllowAny = params['AllowAny']
+        end
+      end
+
+      # ModifyAccessWhiteListStatus返回参数结构体
+      class ModifyAccessWhiteListStatusResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4278,6 +4707,74 @@ module TencentCloud
 
       # ModifyAcl返回参数结构体
       class ModifyAclResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAssetSyncFlag请求参数结构体
+      class ModifyAssetSyncFlagRequest < TencentCloud::Common::AbstractModel
+        # @param AutoSync: 是否开启资产自动同步，false-不开启，true-开启
+        # @type AutoSync: Boolean
+
+        attr_accessor :AutoSync
+
+        def initialize(autosync=nil)
+          @AutoSync = autosync
+        end
+
+        def deserialize(params)
+          @AutoSync = params['AutoSync']
+        end
+      end
+
+      # ModifyAssetSyncFlag返回参数结构体
+      class ModifyAssetSyncFlagResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAuthModeSetting请求参数结构体
+      class ModifyAuthModeSettingRequest < TencentCloud::Common::AbstractModel
+        # @param AuthMode: 双因子认证，0-不开启，1-OTP，2-短信，3-USB Key
+        # @type AuthMode: Integer
+        # @param ResourceType: 资源类型，0：普通 1：国密
+        # @type ResourceType: Integer
+
+        attr_accessor :AuthMode, :ResourceType
+
+        def initialize(authmode=nil, resourcetype=nil)
+          @AuthMode = authmode
+          @ResourceType = resourcetype
+        end
+
+        def deserialize(params)
+          @AuthMode = params['AuthMode']
+          @ResourceType = params['ResourceType']
+        end
+      end
+
+      # ModifyAuthModeSetting返回参数结构体
+      class ModifyAuthModeSettingResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4777,6 +5274,42 @@ module TencentCloud
         end
       end
 
+      # ModifyReconnectionSetting请求参数结构体
+      class ModifyReconnectionSettingRequest < TencentCloud::Common::AbstractModel
+        # @param ReconnectionMaxCount: 重试次数,取值范围：0-20
+        # @type ReconnectionMaxCount: Integer
+        # @param Enable: true：限制重连次数，false：不限制重连次数
+        # @type Enable: Boolean
+
+        attr_accessor :ReconnectionMaxCount, :Enable
+
+        def initialize(reconnectionmaxcount=nil, enable=nil)
+          @ReconnectionMaxCount = reconnectionmaxcount
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @ReconnectionMaxCount = params['ReconnectionMaxCount']
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyReconnectionSetting返回参数结构体
+      class ModifyReconnectionSettingResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyResource请求参数结构体
       class ModifyResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 需要开通服务的资源ID
@@ -4798,8 +5331,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 9
-        deprecate :Status=, :none, 2025, 9
+        deprecate :Status, :none, 2025, 11
+        deprecate :Status=, :none, 2025, 11
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -5287,6 +5820,8 @@ module TencentCloud
         # @type IntranetVpcId: String
         # @param IntranetVpcCidr: 开通内网访问vpc的网段
         # @type IntranetVpcCidr: String
+        # @param DomainName: 堡垒机内网ip自定义域名
+        # @type DomainName: String
         # @param ShareClb: 是否共享clb，true-共享clb，false-独享clb
         # @type ShareClb: Boolean
         # @param OpenClbId: 共享clb id
@@ -5312,9 +5847,9 @@ module TencentCloud
         # @param IOAResourceId: 堡垒机实例对应的零信任实例id
         # @type IOAResourceId: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -5355,6 +5890,7 @@ module TencentCloud
           @IntranetPrivateIpSet = intranetprivateipset
           @IntranetVpcId = intranetvpcid
           @IntranetVpcCidr = intranetvpccidr
+          @DomainName = domainname
           @ShareClb = shareclb
           @OpenClbId = openclbid
           @LbVipIsp = lbvipisp
@@ -5417,6 +5953,7 @@ module TencentCloud
           @IntranetPrivateIpSet = params['IntranetPrivateIpSet']
           @IntranetVpcId = params['IntranetVpcId']
           @IntranetVpcCidr = params['IntranetVpcCidr']
+          @DomainName = params['DomainName']
           @ShareClb = params['ShareClb']
           @OpenClbId = params['OpenClbId']
           @LbVipIsp = params['LbVipIsp']
@@ -5861,18 +6398,21 @@ module TencentCloud
         # @type Offset: Integer
         # @param AuditAction: 1-已执行，  2-被阻断
         # @type AuditAction: Integer
+        # @param AuditActionSet: 1-已执行，  2-被阻断
+        # @type AuditActionSet: Array
         # @param TypeFilters: 以Protocol和Method为条件查询
         # @type TypeFilters: Array
 
-        attr_accessor :Sid, :AuditLog, :Limit, :FileName, :Offset, :AuditAction, :TypeFilters
+        attr_accessor :Sid, :AuditLog, :Limit, :FileName, :Offset, :AuditAction, :AuditActionSet, :TypeFilters
 
-        def initialize(sid=nil, auditlog=nil, limit=nil, filename=nil, offset=nil, auditaction=nil, typefilters=nil)
+        def initialize(sid=nil, auditlog=nil, limit=nil, filename=nil, offset=nil, auditaction=nil, auditactionset=nil, typefilters=nil)
           @Sid = sid
           @AuditLog = auditlog
           @Limit = limit
           @FileName = filename
           @Offset = offset
           @AuditAction = auditaction
+          @AuditActionSet = auditactionset
           @TypeFilters = typefilters
         end
 
@@ -5883,6 +6423,7 @@ module TencentCloud
           @FileName = params['FileName']
           @Offset = params['Offset']
           @AuditAction = params['AuditAction']
+          @AuditActionSet = params['AuditActionSet']
           unless params['TypeFilters'].nil?
             @TypeFilters = []
             params['TypeFilters'].each do |i|
@@ -6309,6 +6850,8 @@ module TencentCloud
         # @type DeviceName: String
         # @param Status: 状态，1为活跃，2为结束，3为强制离线，4为其他错误
         # @type Status: Integer
+        # @param StatusSet: 状态，1为活跃，2为结束，3为强制离线
+        # @type StatusSet: Array
         # @param Id: 若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话
         # @type Id: String
         # @param AppAssetKindSet: 应用资产类型, 1-web
@@ -6317,10 +6860,12 @@ module TencentCloud
         # @type AppAssetUrl: String
         # @param DeviceKind: 资产类型
         # @type DeviceKind: String
+        # @param DeviceKindSet: 资产类型 Linux, EKS,TKE
+        # @type DeviceKindSet: Array
 
-        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :Id, :AppAssetKindSet, :AppAssetUrl, :DeviceKind
+        attr_accessor :PrivateIp, :PublicIp, :UserName, :Account, :FromIp, :StartTime, :EndTime, :Kind, :Offset, :Limit, :RealName, :DeviceName, :Status, :StatusSet, :Id, :AppAssetKindSet, :AppAssetUrl, :DeviceKind, :DeviceKindSet
 
-        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, id=nil, appassetkindset=nil, appasseturl=nil, devicekind=nil)
+        def initialize(privateip=nil, publicip=nil, username=nil, account=nil, fromip=nil, starttime=nil, endtime=nil, kind=nil, offset=nil, limit=nil, realname=nil, devicename=nil, status=nil, statusset=nil, id=nil, appassetkindset=nil, appasseturl=nil, devicekind=nil, devicekindset=nil)
           @PrivateIp = privateip
           @PublicIp = publicip
           @UserName = username
@@ -6334,10 +6879,12 @@ module TencentCloud
           @RealName = realname
           @DeviceName = devicename
           @Status = status
+          @StatusSet = statusset
           @Id = id
           @AppAssetKindSet = appassetkindset
           @AppAssetUrl = appasseturl
           @DeviceKind = devicekind
+          @DeviceKindSet = devicekindset
         end
 
         def deserialize(params)
@@ -6354,10 +6901,12 @@ module TencentCloud
           @RealName = params['RealName']
           @DeviceName = params['DeviceName']
           @Status = params['Status']
+          @StatusSet = params['StatusSet']
           @Id = params['Id']
           @AppAssetKindSet = params['AppAssetKindSet']
           @AppAssetUrl = params['AppAssetUrl']
           @DeviceKind = params['DeviceKind']
+          @DeviceKindSet = params['DeviceKindSet']
         end
       end
 

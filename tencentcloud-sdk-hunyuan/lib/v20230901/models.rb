@@ -551,7 +551,7 @@ module TencentCloud
         # @param Type: 内容类型
         # 注意：
         # 需包含至少一个 Type 为"text"的参数。
-        # 参数值可选范围：[text", "image_url"]
+        # 参数值可选范围：[text", "image_url","video_url"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
         # @param Text: 当 Type 为 text 时使用，表示具体的文本内容。当 Type 为 image_url 时，当前字段内容需保持为空，传递内容不生效。
@@ -561,13 +561,21 @@ module TencentCloud
         # 如"https://example.com/1.png" 或 图片的base64（注意 "data:image/jpeg;base64," 为必要部分）："data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAA......"。当 Type 为 text 时，当前字段内容需保持为空，传递内容不生效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageUrl: :class:`Tencentcloud::Hunyuan.v20230901.models.ImageUrl`
+        # @param VideoUrl: 当type为video_url时使用，标识具体的视频链接内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoUrl: :class:`Tencentcloud::Hunyuan.v20230901.models.VideoUrl`
+        # @param VideoFrames: 当type为video_frames时使用，标识具体的视频内图像帧内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoFrames: :class:`Tencentcloud::Hunyuan.v20230901.models.VideoFrames`
 
-        attr_accessor :Type, :Text, :ImageUrl
+        attr_accessor :Type, :Text, :ImageUrl, :VideoUrl, :VideoFrames
 
-        def initialize(type=nil, text=nil, imageurl=nil)
+        def initialize(type=nil, text=nil, imageurl=nil, videourl=nil, videoframes=nil)
           @Type = type
           @Text = text
           @ImageUrl = imageurl
+          @VideoUrl = videourl
+          @VideoFrames = videoframes
         end
 
         def deserialize(params)
@@ -576,6 +584,14 @@ module TencentCloud
           unless params['ImageUrl'].nil?
             @ImageUrl = ImageUrl.new
             @ImageUrl.deserialize(params['ImageUrl'])
+          end
+          unless params['VideoUrl'].nil?
+            @VideoUrl = VideoUrl.new
+            @VideoUrl.deserialize(params['VideoUrl'])
+          end
+          unless params['VideoFrames'].nil?
+            @VideoFrames = VideoFrames.new
+            @VideoFrames.deserialize(params['VideoFrames'])
           end
         end
       end
@@ -3084,6 +3100,42 @@ module TencentCloud
             @Approximate = Approximate.new
             @Approximate.deserialize(params['Approximate'])
           end
+        end
+      end
+
+      # 当type为video_frames时使用，标识具体的视频内图像帧内容
+      class VideoFrames < TencentCloud::Common::AbstractModel
+        # @param Frames: 视频图像帧列表，图像帧传url
+        # @type Frames: Array
+
+        attr_accessor :Frames
+
+        def initialize(frames=nil)
+          @Frames = frames
+        end
+
+        def deserialize(params)
+          @Frames = params['Frames']
+        end
+      end
+
+      # 当type为video_url时使用，标识具体的视频链接内容
+      class VideoUrl < TencentCloud::Common::AbstractModel
+        # @param Url: 视频的url，如"https://your-video-path.mp/4"
+        # @type Url: String
+        # @param Fps: 控制视频抽帧频率，取值范围为 0.1 ~5，表示每隔 1/fps 秒抽取一帧，默认为 1s抽取一帧
+        # @type Fps: Float
+
+        attr_accessor :Url, :Fps
+
+        def initialize(url=nil, fps=nil)
+          @Url = url
+          @Fps = fps
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Fps = params['Fps']
         end
       end
 

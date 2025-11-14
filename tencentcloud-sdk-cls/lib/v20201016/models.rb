@@ -927,15 +927,18 @@ module TencentCloud
         # @type IsEncryptionAddr: Boolean
         # @param Protocol: 加密访问协议。KafkaType参数为1并且IsEncryptionAddr参数为true时必填。
         # @type Protocol: :class:`Tencentcloud::Cls.v20201016.models.KafkaProtocolInfo`
+        # @param UserKafkaMeta: 用户kafka拓展信息
+        # @type UserKafkaMeta: :class:`Tencentcloud::Cls.v20201016.models.UserKafkaMeta`
 
-        attr_accessor :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol
+        attr_accessor :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaMeta
 
-        def initialize(kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil)
+        def initialize(kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkameta=nil)
           @KafkaType = kafkatype
           @KafkaInstance = kafkainstance
           @ServerAddr = serveraddr
           @IsEncryptionAddr = isencryptionaddr
           @Protocol = protocol
+          @UserKafkaMeta = userkafkameta
         end
 
         def deserialize(params)
@@ -946,6 +949,10 @@ module TencentCloud
           unless params['Protocol'].nil?
             @Protocol = KafkaProtocolInfo.new
             @Protocol.deserialize(params['Protocol'])
+          end
+          unless params['UserKafkaMeta'].nil?
+            @UserKafkaMeta = UserKafkaMeta.new
+            @UserKafkaMeta.deserialize(params['UserKafkaMeta'])
           end
         end
       end
@@ -1397,10 +1404,12 @@ module TencentCloud
 
         # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # @type AdvancedConfig: String
+        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @type InputType: String
 
-        attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule, :AdvancedConfig
+        attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule, :AdvancedConfig, :InputType
 
-        def initialize(configid=nil, name=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil, advancedconfig=nil)
+        def initialize(configid=nil, name=nil, logformat=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, updatetime=nil, createtime=nil, userdefinerule=nil, advancedconfig=nil, inputtype=nil)
           @ConfigId = configid
           @Name = name
           @LogFormat = logformat
@@ -1413,6 +1422,7 @@ module TencentCloud
           @CreateTime = createtime
           @UserDefineRule = userdefinerule
           @AdvancedConfig = advancedconfig
+          @InputType = inputtype
         end
 
         def deserialize(params)
@@ -1438,6 +1448,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UserDefineRule = params['UserDefineRule']
           @AdvancedConfig = params['AdvancedConfig']
+          @InputType = params['InputType']
         end
       end
 
@@ -2613,10 +2624,12 @@ module TencentCloud
 
         # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # @type AdvancedConfig: String
+        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @type InputType: String
 
-        attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule, :AdvancedConfig
+        attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule, :AdvancedConfig, :InputType
 
-        def initialize(name=nil, output=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, advancedconfig=nil)
+        def initialize(name=nil, output=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, advancedconfig=nil, inputtype=nil)
           @Name = name
           @Output = output
           @Path = path
@@ -2625,6 +2638,7 @@ module TencentCloud
           @ExcludePaths = excludepaths
           @UserDefineRule = userdefinerule
           @AdvancedConfig = advancedconfig
+          @InputType = inputtype
         end
 
         def deserialize(params)
@@ -2646,6 +2660,7 @@ module TencentCloud
           end
           @UserDefineRule = params['UserDefineRule']
           @AdvancedConfig = params['AdvancedConfig']
+          @InputType = params['InputType']
         end
       end
 
@@ -3281,10 +3296,12 @@ module TencentCloud
         # @param ConsumerGroupName: 用户Kafka消费组名称。
         # - 消费组是 Kafka 提供的可扩展且具有容错性的消费者机制，一个消费组中存在多个消费者，组内的所有消费者共同消费订阅 Topic 中的消息。一个消费者可同时消费多个 Partition，但一个 Partition 只能被消费组内的一个消费者消费。
         # @type ConsumerGroupName: String
+        # @param UserKafkaMeta: 用户kafka拓展信息
+        # @type UserKafkaMeta: :class:`Tencentcloud::Cls.v20201016.models.UserKafkaMeta`
 
-        attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :LogRechargeRule, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName
+        attr_accessor :TopicId, :Name, :KafkaType, :UserKafkaTopics, :Offset, :LogRechargeRule, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :UserKafkaMeta
 
-        def initialize(topicid=nil, name=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, logrechargerule=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil)
+        def initialize(topicid=nil, name=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, logrechargerule=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, userkafkameta=nil)
           @TopicId = topicid
           @Name = name
           @KafkaType = kafkatype
@@ -3296,6 +3313,7 @@ module TencentCloud
           @IsEncryptionAddr = isencryptionaddr
           @Protocol = protocol
           @ConsumerGroupName = consumergroupname
+          @UserKafkaMeta = userkafkameta
         end
 
         def deserialize(params)
@@ -3316,6 +3334,10 @@ module TencentCloud
             @Protocol.deserialize(params['Protocol'])
           end
           @ConsumerGroupName = params['ConsumerGroupName']
+          unless params['UserKafkaMeta'].nil?
+            @UserKafkaMeta = UserKafkaMeta.new
+            @UserKafkaMeta.deserialize(params['UserKafkaMeta'])
+          end
         end
       end
 
@@ -8610,10 +8632,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param LogRechargeRule: 日志导入规则
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+        # @param UserKafkaMeta: 用户kafka拓展信息
+        # @type UserKafkaMeta: :class:`Tencentcloud::Cls.v20201016.models.UserKafkaMeta`
 
-        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :Status, :Offset, :CreateTime, :UpdateTime, :LogRechargeRule
+        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :Status, :Offset, :CreateTime, :UpdateTime, :LogRechargeRule, :UserKafkaMeta
 
-        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, status=nil, offset=nil, createtime=nil, updatetime=nil, logrechargerule=nil)
+        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, status=nil, offset=nil, createtime=nil, updatetime=nil, logrechargerule=nil, userkafkameta=nil)
           @Id = id
           @TopicId = topicid
           @Name = name
@@ -8629,6 +8653,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @LogRechargeRule = logrechargerule
+          @UserKafkaMeta = userkafkameta
         end
 
         def deserialize(params)
@@ -8652,6 +8677,10 @@ module TencentCloud
           unless params['LogRechargeRule'].nil?
             @LogRechargeRule = LogRechargeRuleInfo.new
             @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+          unless params['UserKafkaMeta'].nil?
+            @UserKafkaMeta = UserKafkaMeta.new
+            @UserKafkaMeta.deserialize(params['UserKafkaMeta'])
           end
         end
       end
@@ -8989,14 +9018,17 @@ module TencentCloud
         # @type TimeZone: String
         # @param Metadata: 元数据信息，Kafka导入支持kafka_topic,kafka_partition,kafka_offset,kafka_timestamp
         # @type Metadata: Array
-        # @param Keys: 日志Key列表，RechargeType为full_regex_log时必填
+        # @param Keys: 日志Key列表，RechargeType为full_regex_log、delimiter_log时必填
         # @type Keys: Array
         # @param ParseArray: json解析模式，开启首层数据解析
         # @type ParseArray: Boolean
+        # @param Delimiter: 分隔符解析模式-分隔符
+        # 当解析格式为分隔符提取时，该字段必填
+        # @type Delimiter: String
 
-        attr_accessor :RechargeType, :EncodingFormat, :DefaultTimeSwitch, :LogRegex, :UnMatchLogSwitch, :UnMatchLogKey, :UnMatchLogTimeSrc, :DefaultTimeSrc, :TimeKey, :TimeRegex, :TimeFormat, :TimeZone, :Metadata, :Keys, :ParseArray
+        attr_accessor :RechargeType, :EncodingFormat, :DefaultTimeSwitch, :LogRegex, :UnMatchLogSwitch, :UnMatchLogKey, :UnMatchLogTimeSrc, :DefaultTimeSrc, :TimeKey, :TimeRegex, :TimeFormat, :TimeZone, :Metadata, :Keys, :ParseArray, :Delimiter
 
-        def initialize(rechargetype=nil, encodingformat=nil, defaulttimeswitch=nil, logregex=nil, unmatchlogswitch=nil, unmatchlogkey=nil, unmatchlogtimesrc=nil, defaulttimesrc=nil, timekey=nil, timeregex=nil, timeformat=nil, timezone=nil, metadata=nil, keys=nil, parsearray=nil)
+        def initialize(rechargetype=nil, encodingformat=nil, defaulttimeswitch=nil, logregex=nil, unmatchlogswitch=nil, unmatchlogkey=nil, unmatchlogtimesrc=nil, defaulttimesrc=nil, timekey=nil, timeregex=nil, timeformat=nil, timezone=nil, metadata=nil, keys=nil, parsearray=nil, delimiter=nil)
           @RechargeType = rechargetype
           @EncodingFormat = encodingformat
           @DefaultTimeSwitch = defaulttimeswitch
@@ -9012,6 +9044,7 @@ module TencentCloud
           @Metadata = metadata
           @Keys = keys
           @ParseArray = parsearray
+          @Delimiter = delimiter
         end
 
         def deserialize(params)
@@ -9030,6 +9063,7 @@ module TencentCloud
           @Metadata = params['Metadata']
           @Keys = params['Keys']
           @ParseArray = params['ParseArray']
+          @Delimiter = params['Delimiter']
         end
       end
 
@@ -9922,10 +9956,12 @@ module TencentCloud
         # 样例：
         # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
         # @type AdvancedConfig: String
+        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @type InputType: String
 
-        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule, :AdvancedConfig
+        attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule, :AdvancedConfig, :InputType
 
-        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, userdefinerule=nil, advancedconfig=nil)
+        def initialize(configid=nil, name=nil, path=nil, logtype=nil, extractrule=nil, excludepaths=nil, output=nil, userdefinerule=nil, advancedconfig=nil, inputtype=nil)
           @ConfigId = configid
           @Name = name
           @Path = path
@@ -9935,6 +9971,7 @@ module TencentCloud
           @Output = output
           @UserDefineRule = userdefinerule
           @AdvancedConfig = advancedconfig
+          @InputType = inputtype
         end
 
         def deserialize(params)
@@ -9957,6 +9994,7 @@ module TencentCloud
           @Output = params['Output']
           @UserDefineRule = params['UserDefineRule']
           @AdvancedConfig = params['AdvancedConfig']
+          @InputType = params['InputType']
         end
       end
 
@@ -10484,10 +10522,12 @@ module TencentCloud
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
         # @param StatusControl: 导入控制，1：暂停；2：启动。
         # @type StatusControl: Integer
+        # @param UserKafkaMeta: 用户kafka拓展信息
+        # @type UserKafkaMeta: :class:`Tencentcloud::Cls.v20201016.models.UserKafkaMeta`
 
-        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :LogRechargeRule, :StatusControl
+        attr_accessor :Id, :TopicId, :Name, :KafkaType, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :UserKafkaTopics, :ConsumerGroupName, :LogRechargeRule, :StatusControl, :UserKafkaMeta
 
-        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, logrechargerule=nil, statuscontrol=nil)
+        def initialize(id=nil, topicid=nil, name=nil, kafkatype=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, userkafkatopics=nil, consumergroupname=nil, logrechargerule=nil, statuscontrol=nil, userkafkameta=nil)
           @Id = id
           @TopicId = topicid
           @Name = name
@@ -10500,6 +10540,7 @@ module TencentCloud
           @ConsumerGroupName = consumergroupname
           @LogRechargeRule = logrechargerule
           @StatusControl = statuscontrol
+          @UserKafkaMeta = userkafkameta
         end
 
         def deserialize(params)
@@ -10521,6 +10562,10 @@ module TencentCloud
             @LogRechargeRule.deserialize(params['LogRechargeRule'])
           end
           @StatusControl = params['StatusControl']
+          unless params['UserKafkaMeta'].nil?
+            @UserKafkaMeta = UserKafkaMeta.new
+            @UserKafkaMeta.deserialize(params['UserKafkaMeta'])
+          end
         end
       end
 
@@ -11652,10 +11697,12 @@ module TencentCloud
         # @type ConsumerGroupName: String
         # @param LogRechargeRule: 日志导入规则
         # @type LogRechargeRule: :class:`Tencentcloud::Cls.v20201016.models.LogRechargeRuleInfo`
+        # @param UserKafkaMeta: 用户kafka拓展信息
+        # @type UserKafkaMeta: :class:`Tencentcloud::Cls.v20201016.models.UserKafkaMeta`
 
-        attr_accessor :PreviewType, :KafkaType, :UserKafkaTopics, :Offset, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :LogRechargeRule
+        attr_accessor :PreviewType, :KafkaType, :UserKafkaTopics, :Offset, :KafkaInstance, :ServerAddr, :IsEncryptionAddr, :Protocol, :ConsumerGroupName, :LogRechargeRule, :UserKafkaMeta
 
-        def initialize(previewtype=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, logrechargerule=nil)
+        def initialize(previewtype=nil, kafkatype=nil, userkafkatopics=nil, offset=nil, kafkainstance=nil, serveraddr=nil, isencryptionaddr=nil, protocol=nil, consumergroupname=nil, logrechargerule=nil, userkafkameta=nil)
           @PreviewType = previewtype
           @KafkaType = kafkatype
           @UserKafkaTopics = userkafkatopics
@@ -11666,6 +11713,7 @@ module TencentCloud
           @Protocol = protocol
           @ConsumerGroupName = consumergroupname
           @LogRechargeRule = logrechargerule
+          @UserKafkaMeta = userkafkameta
         end
 
         def deserialize(params)
@@ -11684,6 +11732,10 @@ module TencentCloud
           unless params['LogRechargeRule'].nil?
             @LogRechargeRule = LogRechargeRuleInfo.new
             @LogRechargeRule.deserialize(params['LogRechargeRule'])
+          end
+          unless params['UserKafkaMeta'].nil?
+            @UserKafkaMeta = UserKafkaMeta.new
+            @UserKafkaMeta.deserialize(params['UserKafkaMeta'])
           end
         end
       end
@@ -13058,6 +13110,33 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户kafka扩展信息
+      class UserKafkaMeta < TencentCloud::Common::AbstractModel
+        # @param KafkaVersion: 用户kafka version
+        # 支持如下版本：
+        #   - 0.10.2.0
+        #   - 1.0.0
+        #   - 2.0.0
+        #   - 2.2.0
+        #   - 2.4.0
+        #   - 2.6.0
+        #   - 2.7.0
+        #   - 2.8.0
+        #   - 3.0.0
+        #   - 3.2.0
+        # @type KafkaVersion: String
+
+        attr_accessor :KafkaVersion
+
+        def initialize(kafkaversion=nil)
+          @KafkaVersion = kafkaversion
+        end
+
+        def deserialize(params)
+          @KafkaVersion = params['KafkaVersion']
         end
       end
 

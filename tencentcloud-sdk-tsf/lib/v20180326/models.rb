@@ -16689,6 +16689,53 @@ module TencentCloud
         end
       end
 
+      # ModifyGroupLane请求参数结构体
+      class ModifyGroupLaneRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 部署组ID。该参数可以通过调用 [DescribeSimpleGroups](https://cloud.tencent.com/document/product/649/36064) 的返回值中的 GroupId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tsf/resource)-查看部署组页查看；也可以调用[CreateGroup](https://cloud.tencent.com/document/product/649/36074)创建新的部署组。
+        # @type GroupId: String
+        # @param LaneList: 泳道部署组列表。
+        # @type LaneList: Array
+
+        attr_accessor :GroupId, :LaneList
+
+        def initialize(groupid=nil, lanelist=nil)
+          @GroupId = groupid
+          @LaneList = lanelist
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['LaneList'].nil?
+            @LaneList = []
+            params['LaneList'].each do |i|
+              lanegroup_tmp = LaneGroup.new
+              lanegroup_tmp.deserialize(i)
+              @LaneList << lanegroup_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGroupLane返回参数结构体
+      class ModifyGroupLaneResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 操作结果。- true：成功- false：失败
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyGroup请求参数结构体
       class ModifyGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: 部署组ID，可通过调用[DescribeContainerGroups](https://cloud.tencent.com/document/api/649/36068)查询已创建的部署组列表或登录控制台进行查看；也可以调用[CreateContainGroup](https://cloud.tencent.com/document/api/649/36075)创建新的部署组。

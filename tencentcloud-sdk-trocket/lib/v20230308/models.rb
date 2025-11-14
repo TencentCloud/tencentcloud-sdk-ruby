@@ -129,13 +129,15 @@ module TencentCloud
         # @type FullNamespaceV4: String
         # @param SubscribeTopicNum: 订阅的主题个数
         # @type SubscribeTopicNum: Integer
-        # @param CreateTime: 1753153590
+        # @param CreateTime: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: Integer
+        # @param TagList: 绑定的标签列表
+        # @type TagList: Array
 
-        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4, :SubscribeTopicNum, :CreateTime
+        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark, :ClusterIdV4, :NamespaceV4, :ConsumerGroupV4, :FullNamespaceV4, :SubscribeTopicNum, :CreateTime, :TagList
 
-        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil, subscribetopicnum=nil, createtime=nil)
+        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil, clusteridv4=nil, namespacev4=nil, consumergroupv4=nil, fullnamespacev4=nil, subscribetopicnum=nil, createtime=nil, taglist=nil)
           @InstanceId = instanceid
           @ConsumerGroup = consumergroup
           @ConsumeEnable = consumeenable
@@ -148,6 +150,7 @@ module TencentCloud
           @FullNamespaceV4 = fullnamespacev4
           @SubscribeTopicNum = subscribetopicnum
           @CreateTime = createtime
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -163,6 +166,14 @@ module TencentCloud
           @FullNamespaceV4 = params['FullNamespaceV4']
           @SubscribeTopicNum = params['SubscribeTopicNum']
           @CreateTime = params['CreateTime']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -1287,6 +1298,8 @@ module TencentCloud
       class DescribeConsumerGroupListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
+        # @param TagFilters: 标签过滤器
+        # @type TagFilters: Array
         # @param Filters: 过滤查询条件列表，请在引用此参数的API说明中了解使用方法。
         # @type Filters: Array
         # @param Offset: 查询起始位置，默认为0。
@@ -1304,10 +1317,11 @@ module TencentCloud
         # - desc：降序
         # @type SortOrder: String
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromTopic, :SortedBy, :SortOrder
+        attr_accessor :InstanceId, :TagFilters, :Filters, :Offset, :Limit, :FromTopic, :SortedBy, :SortOrder
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromtopic=nil, sortedby=nil, sortorder=nil)
+        def initialize(instanceid=nil, tagfilters=nil, filters=nil, offset=nil, limit=nil, fromtopic=nil, sortedby=nil, sortorder=nil)
           @InstanceId = instanceid
+          @TagFilters = tagfilters
           @Filters = filters
           @Offset = offset
           @Limit = limit
@@ -1318,6 +1332,14 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -1747,12 +1769,18 @@ module TencentCloud
         # @type TopicNumUpperLimit: Integer
         # @param ZoneIds: 所属可用区列表，参考 [DescribeZones](https://cloud.tencent.com/document/product/1596/77929) 接口返回中的 [ZoneInfo](https://cloud.tencent.com/document/api/1596/77932#ZoneInfo) 数据结构。
         # @type ZoneIds: Array
+        # @param NodeCount: proxy节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NodeCount: Integer
+        # @param ZoneScheduledList: proxy调度详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneScheduledList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :ScaledTpsEnabled, :RenewFlag, :ExpiryTime, :RoleNumLimit, :AclEnabled, :TopicNumLowerLimit, :TopicNumUpperLimit, :ZoneIds, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :GroupNum, :GroupNumLimit, :MessageRetention, :RetentionUpperLimit, :RetentionLowerLimit, :TpsLimit, :ScaledTpsLimit, :MaxMessageDelay, :CreatedTime, :SendReceiveRatio, :TagList, :EndpointList, :TopicQueueNumUpperLimit, :TopicQueueNumLowerLimit, :Remark, :InstanceStatus, :SkuCode, :PayMode, :ScaledTpsEnabled, :RenewFlag, :ExpiryTime, :RoleNumLimit, :AclEnabled, :TopicNumLowerLimit, :TopicNumUpperLimit, :ZoneIds, :NodeCount, :ZoneScheduledList, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, scaledtpsenabled=nil, renewflag=nil, expirytime=nil, rolenumlimit=nil, aclenabled=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, zoneids=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, groupnum=nil, groupnumlimit=nil, messageretention=nil, retentionupperlimit=nil, retentionlowerlimit=nil, tpslimit=nil, scaledtpslimit=nil, maxmessagedelay=nil, createdtime=nil, sendreceiveratio=nil, taglist=nil, endpointlist=nil, topicqueuenumupperlimit=nil, topicqueuenumlowerlimit=nil, remark=nil, instancestatus=nil, skucode=nil, paymode=nil, scaledtpsenabled=nil, renewflag=nil, expirytime=nil, rolenumlimit=nil, aclenabled=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, zoneids=nil, nodecount=nil, zonescheduledlist=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -1784,6 +1812,8 @@ module TencentCloud
           @TopicNumLowerLimit = topicnumlowerlimit
           @TopicNumUpperLimit = topicnumupperlimit
           @ZoneIds = zoneids
+          @NodeCount = nodecount
+          @ZoneScheduledList = zonescheduledlist
           @RequestId = requestid
         end
 
@@ -1833,6 +1863,15 @@ module TencentCloud
           @TopicNumLowerLimit = params['TopicNumLowerLimit']
           @TopicNumUpperLimit = params['TopicNumUpperLimit']
           @ZoneIds = params['ZoneIds']
+          @NodeCount = params['NodeCount']
+          unless params['ZoneScheduledList'].nil?
+            @ZoneScheduledList = []
+            params['ZoneScheduledList'].each do |i|
+              zonescheduleditem_tmp = ZoneScheduledItem.new
+              zonescheduleditem_tmp.deserialize(i)
+              @ZoneScheduledList << zonescheduleditem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3521,6 +3560,8 @@ module TencentCloud
       class DescribeTopicListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
+        # @param TagFilters: 标签过滤器
+        # @type TagFilters: Array
         # @param Filters: 过滤查询条件列表，请在引用此参数的API说明中了解使用方法。
         # @type Filters: Array
         # @param Offset: 查询起始位置，默认为0。
@@ -3530,10 +3571,11 @@ module TencentCloud
         # @param FromGroup: 按照消费组查询订阅的主题
         # @type FromGroup: String
 
-        attr_accessor :InstanceId, :Filters, :Offset, :Limit, :FromGroup
+        attr_accessor :InstanceId, :TagFilters, :Filters, :Offset, :Limit, :FromGroup
 
-        def initialize(instanceid=nil, filters=nil, offset=nil, limit=nil, fromgroup=nil)
+        def initialize(instanceid=nil, tagfilters=nil, filters=nil, offset=nil, limit=nil, fromgroup=nil)
           @InstanceId = instanceid
+          @TagFilters = tagfilters
           @Filters = filters
           @Offset = offset
           @Limit = limit
@@ -3542,6 +3584,14 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -3963,10 +4013,16 @@ module TencentCloud
         # @type ZoneIds: Array
         # @param EnableDeletionProtection: 是否开启删除保护
         # @type EnableDeletionProtection: Boolean
+        # @param CreateTime: 实例创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param ScaledTpsEnabled: 弹性TPS开关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScaledTpsEnabled: Boolean
 
-        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay, :RenewFlag, :InstanceItemExtraInfo, :DestroyTime, :ZoneIds, :EnableDeletionProtection
+        attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :GroupNumLimit, :PayMode, :ExpiryTime, :Remark, :TopicNum, :GroupNum, :TagList, :SkuCode, :TpsLimit, :ScaledTpsLimit, :MessageRetention, :MaxMessageDelay, :RenewFlag, :InstanceItemExtraInfo, :DestroyTime, :ZoneIds, :EnableDeletionProtection, :CreateTime, :ScaledTpsEnabled
 
-        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil, renewflag=nil, instanceitemextrainfo=nil, destroytime=nil, zoneids=nil, enabledeletionprotection=nil)
+        def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, groupnumlimit=nil, paymode=nil, expirytime=nil, remark=nil, topicnum=nil, groupnum=nil, taglist=nil, skucode=nil, tpslimit=nil, scaledtpslimit=nil, messageretention=nil, maxmessagedelay=nil, renewflag=nil, instanceitemextrainfo=nil, destroytime=nil, zoneids=nil, enabledeletionprotection=nil, createtime=nil, scaledtpsenabled=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Version = version
@@ -3990,6 +4046,8 @@ module TencentCloud
           @DestroyTime = destroytime
           @ZoneIds = zoneids
           @EnableDeletionProtection = enabledeletionprotection
+          @CreateTime = createtime
+          @ScaledTpsEnabled = scaledtpsenabled
         end
 
         def deserialize(params)
@@ -4026,6 +4084,8 @@ module TencentCloud
           @DestroyTime = params['DestroyTime']
           @ZoneIds = params['ZoneIds']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @CreateTime = params['CreateTime']
+          @ScaledTpsEnabled = params['ScaledTpsEnabled']
         end
       end
 
@@ -6248,10 +6308,12 @@ module TencentCloud
         # @type FullNamespaceV4: String
         # @param MsgTTL: 消息保留时长
         # @type MsgTTL: Integer
+        # @param TagList: 绑定的标签列表
+        # @type TagList: Array
 
-        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :ClusterIdV4, :NamespaceV4, :TopicV4, :FullNamespaceV4, :MsgTTL
+        attr_accessor :InstanceId, :Topic, :TopicType, :QueueNum, :Remark, :ClusterIdV4, :NamespaceV4, :TopicV4, :FullNamespaceV4, :MsgTTL, :TagList
 
-        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, clusteridv4=nil, namespacev4=nil, topicv4=nil, fullnamespacev4=nil, msgttl=nil)
+        def initialize(instanceid=nil, topic=nil, topictype=nil, queuenum=nil, remark=nil, clusteridv4=nil, namespacev4=nil, topicv4=nil, fullnamespacev4=nil, msgttl=nil, taglist=nil)
           @InstanceId = instanceid
           @Topic = topic
           @TopicType = topictype
@@ -6262,6 +6324,7 @@ module TencentCloud
           @TopicV4 = topicv4
           @FullNamespaceV4 = fullnamespacev4
           @MsgTTL = msgttl
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -6275,6 +6338,14 @@ module TencentCloud
           @TopicV4 = params['TopicV4']
           @FullNamespaceV4 = params['FullNamespaceV4']
           @MsgTTL = params['MsgTTL']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -6319,6 +6390,26 @@ module TencentCloud
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+        end
+      end
+
+      # proxy调度时各个可用区有无调度任务
+      class ZoneScheduledItem < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 可用区ID
+        # @type ZoneId: String
+        # @param NodePermWipeFlag: 有剔除的调度任务且没有切回的可用区时，该值为true，反之为false
+        # @type NodePermWipeFlag: Boolean
+
+        attr_accessor :ZoneId, :NodePermWipeFlag
+
+        def initialize(zoneid=nil, nodepermwipeflag=nil)
+          @ZoneId = zoneid
+          @NodePermWipeFlag = nodepermwipeflag
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @NodePermWipeFlag = params['NodePermWipeFlag']
         end
       end
 

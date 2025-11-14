@@ -821,6 +821,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询资产自动同步开关
+
+        # @param request: Request instance for DescribeAssetSyncFlag.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeAssetSyncFlagRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeAssetSyncFlagResponse`
+        def DescribeAssetSyncFlag(request)
+          body = send_request('DescribeAssetSyncFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetSyncFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资产同步状态
 
         # @param request: Request instance for DescribeAssetSyncStatus.
@@ -1157,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询安全配置信息
+
+        # @param request: Request instance for DescribeSecuritySetting.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeSecuritySettingRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeSecuritySettingResponse`
+        def DescribeSecuritySetting(request)
+          body = send_request('DescribeSecuritySetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSecuritySettingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户组成员列表
 
         # @param request: Request instance for DescribeUserGroupMembers.
@@ -1229,6 +1277,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 关闭公网访问堡垒机
+
+        # @param request: Request instance for DisableExternalAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DisableExternalAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DisableExternalAccessResponse`
+        def DisableExternalAccess(request)
+          body = send_request('DisableExternalAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableExternalAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 关闭内网访问
+
+        # @param request: Request instance for DisableIntranetAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DisableIntranetAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DisableIntranetAccessResponse`
+        def DisableIntranetAccess(request)
+          body = send_request('DisableIntranetAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableIntranetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开启公网访问堡垒机
+
+        # @param request: Request instance for EnableExternalAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::EnableExternalAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::EnableExternalAccessResponse`
+        def EnableExternalAccess(request)
+          body = send_request('EnableExternalAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableExternalAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 开通内网访问
+
+        # @param request: Request instance for EnableIntranetAccess.
+        # @type request: :class:`Tencentcloud::bh::V20230418::EnableIntranetAccessRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::EnableIntranetAccessResponse`
+        def EnableIntranetAccess(request)
+          body = send_request('EnableIntranetAccess', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableIntranetAccessResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 导入外部资产信息
 
         # @param request: Request instance for ImportExternalDevice.
@@ -1253,6 +1397,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改访问白名单自动添加IP状态：开启或关闭自动添加IP
+
+        # @param request: Request instance for ModifyAccessWhiteListAutoStatus.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListAutoStatusRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListAutoStatusResponse`
+        def ModifyAccessWhiteListAutoStatus(request)
+          body = send_request('ModifyAccessWhiteListAutoStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccessWhiteListAutoStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改访问白名单规则
+
+        # @param request: Request instance for ModifyAccessWhiteListRule.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListRuleRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListRuleResponse`
+        def ModifyAccessWhiteListRule(request)
+          body = send_request('ModifyAccessWhiteListRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccessWhiteListRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改访问白名单状态：开启或关闭放开全部来源IP。
+
+        # @param request: Request instance for ModifyAccessWhiteListStatus.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListStatusRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyAccessWhiteListStatusResponse`
+        def ModifyAccessWhiteListStatus(request)
+          body = send_request('ModifyAccessWhiteListStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAccessWhiteListStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改访问权限
 
         # @param request: Request instance for ModifyAcl.
@@ -1263,6 +1479,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAclResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改资产自动同步开关
+
+        # @param request: Request instance for ModifyAssetSyncFlag.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyAssetSyncFlagRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyAssetSyncFlagResponse`
+        def ModifyAssetSyncFlag(request)
+          body = send_request('ModifyAssetSyncFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAssetSyncFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改认证方式配置信息
+
+        # @param request: Request instance for ModifyAuthModeSetting.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyAuthModeSettingRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyAuthModeSettingResponse`
+        def ModifyAuthModeSetting(request)
+          body = send_request('ModifyAuthModeSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuthModeSettingResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1431,6 +1695,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyOperationTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改运维资产连接重连次数
+
+        # @param request: Request instance for ModifyReconnectionSetting.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ModifyReconnectionSettingRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ModifyReconnectionSettingResponse`
+        def ModifyReconnectionSetting(request)
+          body = send_request('ModifyReconnectionSetting', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyReconnectionSettingResponse.new
             model.deserialize(response['Response'])
             model
           else
