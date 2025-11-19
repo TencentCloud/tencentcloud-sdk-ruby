@@ -620,10 +620,20 @@ module TencentCloud
         # @type LogisticsReceipt: :class:`Tencentcloud::Chc.v20230418.models.LogisticsReceipt`
         # @param CustomerReceipt: 客户上门自提必传
         # @type CustomerReceipt: :class:`Tencentcloud::Chc.v20230418.models.CustomerReceipt`
+        # @param Building: 楼宇名
+        # @type Building: String
+        # @param IdcUnitId: 机房管理单元id
+        # @type IdcUnitId: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param EmailSet: 放行邮件目的邮箱
+        # @type EmailSet: Array
+        # @param FactorSet: 到访原因
+        # @type FactorSet: Array
 
-        attr_accessor :IdcId, :DeviceType, :StuffOption, :IsPowerOffConfirm, :DeviceSnList, :HandoverMethod, :SelfOperationInfo, :PowerOffConfirmInfo, :Remark, :LogisticsReceipt, :CustomerReceipt
+        attr_accessor :IdcId, :DeviceType, :StuffOption, :IsPowerOffConfirm, :DeviceSnList, :HandoverMethod, :SelfOperationInfo, :PowerOffConfirmInfo, :Remark, :LogisticsReceipt, :CustomerReceipt, :Building, :IdcUnitId, :Isp, :EmailSet, :FactorSet
 
-        def initialize(idcid=nil, devicetype=nil, stuffoption=nil, ispoweroffconfirm=nil, devicesnlist=nil, handovermethod=nil, selfoperationinfo=nil, poweroffconfirminfo=nil, remark=nil, logisticsreceipt=nil, customerreceipt=nil)
+        def initialize(idcid=nil, devicetype=nil, stuffoption=nil, ispoweroffconfirm=nil, devicesnlist=nil, handovermethod=nil, selfoperationinfo=nil, poweroffconfirminfo=nil, remark=nil, logisticsreceipt=nil, customerreceipt=nil, building=nil, idcunitid=nil, isp=nil, emailset=nil, factorset=nil)
           @IdcId = idcid
           @DeviceType = devicetype
           @StuffOption = stuffoption
@@ -635,6 +645,11 @@ module TencentCloud
           @Remark = remark
           @LogisticsReceipt = logisticsreceipt
           @CustomerReceipt = customerreceipt
+          @Building = building
+          @IdcUnitId = idcunitid
+          @Isp = isp
+          @EmailSet = emailset
+          @FactorSet = factorset
         end
 
         def deserialize(params)
@@ -661,6 +676,11 @@ module TencentCloud
             @CustomerReceipt = CustomerReceipt.new
             @CustomerReceipt.deserialize(params['CustomerReceipt'])
           end
+          @Building = params['Building']
+          @IdcUnitId = params['IdcUnitId']
+          @Isp = params['Isp']
+          @EmailSet = params['EmailSet']
+          @FactorSet = params['FactorSet']
         end
       end
 
@@ -1138,7 +1158,7 @@ module TencentCloud
         # @type PickUpStuff: String
         # @param PickUpStuffContact: 自提人电话
         # @type PickUpStuffContact: String
-        # @param PickUpStuffIDCard: 自提人证件号码
+        # @param PickUpStuffIDCard: 到访人证件号码
         # @type PickUpStuffIDCard: String
         # @param PickUpTime: 自提时间
         # @type PickUpTime: String
@@ -2694,10 +2714,16 @@ module TencentCloud
         # @type CustomerReceipt: :class:`Tencentcloud::Chc.v20230418.models.CustomerReceipt`
         # @param LogisticsReceipt: 物流上门收货信息
         # @type LogisticsReceipt: :class:`Tencentcloud::Chc.v20230418.models.LogisticsReceipt`
+        # @param Building: 涉及物资放行时的楼宇
+        # @type Building: String
+        # @param EmailSet: 物资放行抄送邮箱
+        # @type EmailSet: Array
+        # @param FactorSet: 物资放行到访原因
+        # @type FactorSet: Array
 
-        attr_accessor :IdcId, :IdcName, :DeviceType, :Remark, :ReceivingOperation, :EntryTime, :IsExpressDelivery, :ExpressInfo, :StuffOption, :SelfOperationInfo, :WithPowerOn, :IsPowerOffConfirm, :PowerOffConfirmInfo, :HandoverMethod, :CustomerReceipt, :LogisticsReceipt
+        attr_accessor :IdcId, :IdcName, :DeviceType, :Remark, :ReceivingOperation, :EntryTime, :IsExpressDelivery, :ExpressInfo, :StuffOption, :SelfOperationInfo, :WithPowerOn, :IsPowerOffConfirm, :PowerOffConfirmInfo, :HandoverMethod, :CustomerReceipt, :LogisticsReceipt, :Building, :EmailSet, :FactorSet
 
-        def initialize(idcid=nil, idcname=nil, devicetype=nil, remark=nil, receivingoperation=nil, entrytime=nil, isexpressdelivery=nil, expressinfo=nil, stuffoption=nil, selfoperationinfo=nil, withpoweron=nil, ispoweroffconfirm=nil, poweroffconfirminfo=nil, handovermethod=nil, customerreceipt=nil, logisticsreceipt=nil)
+        def initialize(idcid=nil, idcname=nil, devicetype=nil, remark=nil, receivingoperation=nil, entrytime=nil, isexpressdelivery=nil, expressinfo=nil, stuffoption=nil, selfoperationinfo=nil, withpoweron=nil, ispoweroffconfirm=nil, poweroffconfirminfo=nil, handovermethod=nil, customerreceipt=nil, logisticsreceipt=nil, building=nil, emailset=nil, factorset=nil)
           @IdcId = idcid
           @IdcName = idcname
           @DeviceType = devicetype
@@ -2714,6 +2740,9 @@ module TencentCloud
           @HandoverMethod = handovermethod
           @CustomerReceipt = customerreceipt
           @LogisticsReceipt = logisticsreceipt
+          @Building = building
+          @EmailSet = emailset
+          @FactorSet = factorset
         end
 
         def deserialize(params)
@@ -2748,6 +2777,9 @@ module TencentCloud
             @LogisticsReceipt = LogisticsReceipt.new
             @LogisticsReceipt.deserialize(params['LogisticsReceipt'])
           end
+          @Building = params['Building']
+          @EmailSet = params['EmailSet']
+          @FactorSet = params['FactorSet']
         end
       end
 

@@ -6499,17 +6499,25 @@ module TencentCloud
         # @type VoiceId: String
         # @param Model: TTS 的模型，默认是：flow_01_turbo, 可选: [ flow_01_turbo, flow_01_ex]
         # @type Model: String
+        # @param Speed: 语速，范围 0.5-2.0，默认 1.0
+        # @type Speed: Float
+        # @param Volume: (0, 10] 默认值1.0
+        # @type Volume: Float
 
-        attr_accessor :VoiceId, :Model
+        attr_accessor :VoiceId, :Model, :Speed, :Volume
 
-        def initialize(voiceid=nil, model=nil)
+        def initialize(voiceid=nil, model=nil, speed=nil, volume=nil)
           @VoiceId = voiceid
           @Model = model
+          @Speed = speed
+          @Volume = volume
         end
 
         def deserialize(params)
           @VoiceId = params['VoiceId']
           @Model = params['Model']
+          @Speed = params['Speed']
+          @Volume = params['Volume']
         end
       end
 

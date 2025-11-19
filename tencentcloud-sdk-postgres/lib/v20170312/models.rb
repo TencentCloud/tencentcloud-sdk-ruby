@@ -558,6 +558,50 @@ module TencentCloud
         end
       end
 
+      # CloseAccountCAM请求参数结构体
+      class CloseAccountCAMRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param UserName: 需要关闭CAM服务的账号名称
+        # @type UserName: String
+        # @param Password: 关闭CAM后，登录该账号所需要的新密码
+        # @type Password: String
+        # @param PasswordEncrypt: 密码是否加密
+        # @type PasswordEncrypt: Boolean
+
+        attr_accessor :DBInstanceId, :UserName, :Password, :PasswordEncrypt
+
+        def initialize(dbinstanceid=nil, username=nil, password=nil, passwordencrypt=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+          @Password = password
+          @PasswordEncrypt = passwordencrypt
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @PasswordEncrypt = params['PasswordEncrypt']
+        end
+      end
+
+      # CloseAccountCAM返回参数结构体
+      class CloseAccountCAMResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CloseDBExtranetAccess请求参数结构体
       class CloseDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。形如postgres-6r233v55
@@ -1214,8 +1258,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2025, 10
-        deprecate :DBVersion=, :none, 2025, 10
+        deprecate :DBVersion, :none, 2025, 11
+        deprecate :DBVersion=, :none, 2025, 11
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil)
           @Zone = zone
@@ -4996,8 +5040,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2025, 10
-        deprecate :InstanceChargeType=, :none, 2025, 10
+        deprecate :InstanceChargeType, :none, 2025, 11
+        deprecate :InstanceChargeType=, :none, 2025, 11
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -5460,6 +5504,42 @@ module TencentCloud
 
         def deserialize(params)
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDBInstanceDeletionProtection请求参数结构体
+      class ModifyDBInstanceDeletionProtectionRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例 ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @type DBInstanceId: String
+        # @param DeletionProtection: 开启或关闭实例删除保护。true - 开启 ；false - 关闭。
+        # @type DeletionProtection: Boolean
+
+        attr_accessor :DBInstanceId, :DeletionProtection
+
+        def initialize(dbinstanceid=nil, deletionprotection=nil)
+          @DBInstanceId = dbinstanceid
+          @DeletionProtection = deletionprotection
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @DeletionProtection = params['DeletionProtection']
+        end
+      end
+
+      # ModifyDBInstanceDeletionProtection返回参数结构体
+      class ModifyDBInstanceDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -6277,6 +6357,42 @@ module TencentCloud
         end
       end
 
+      # OpenAccountCAM请求参数结构体
+      class OpenAccountCAMRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 数据库实例ID
+        # @type DBInstanceId: String
+        # @param UserName: 需要开启CAM服务的账号名称
+        # @type UserName: String
+
+        attr_accessor :DBInstanceId, :UserName
+
+        def initialize(dbinstanceid=nil, username=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # OpenAccountCAM返回参数结构体
+      class OpenAccountCAMResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # OpenDBExtranetAccess请求参数结构体
       class OpenDBExtranetAccessRequest < TencentCloud::Common::AbstractModel
         # @param DBInstanceId: 实例ID，形如postgres-hez4fh0v。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取。
@@ -6796,6 +6912,42 @@ module TencentCloud
 
       # RebalanceReadOnlyGroup返回参数结构体
       class RebalanceReadOnlyGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RefreshAccountPassword请求参数结构体
+      class RefreshAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param DBInstanceId: 实例ID
+        # @type DBInstanceId: String
+        # @param UserName: 账号名称
+        # @type UserName: String
+
+        attr_accessor :DBInstanceId, :UserName
+
+        def initialize(dbinstanceid=nil, username=nil)
+          @DBInstanceId = dbinstanceid
+          @UserName = username
+        end
+
+        def deserialize(params)
+          @DBInstanceId = params['DBInstanceId']
+          @UserName = params['UserName']
+        end
+      end
+
+      # RefreshAccountPassword返回参数结构体
+      class RefreshAccountPasswordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

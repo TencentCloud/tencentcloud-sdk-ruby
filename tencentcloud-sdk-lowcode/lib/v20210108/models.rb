@@ -252,8 +252,8 @@ module TencentCloud
 
         attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
         extend Gem::Deprecate
-        deprecate :PublishVersion, :none, 2025, 10
-        deprecate :PublishVersion=, :none, 2025, 10
+        deprecate :PublishVersion, :none, 2025, 11
+        deprecate :PublishVersion=, :none, 2025, 11
 
         def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
           @Id = id
@@ -2011,8 +2011,8 @@ module TencentCloud
 
         attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData, :FileId
         extend Gem::Deprecate
-        deprecate :DocumentSetId, :none, 2025, 10
-        deprecate :DocumentSetId=, :none, 2025, 10
+        deprecate :DocumentSetId, :none, 2025, 11
+        deprecate :DocumentSetId=, :none, 2025, 11
 
         def initialize(documentsetid=nil, documentsetname=nil, filetitle=nil, filemetadata=nil, fileid=nil)
           @DocumentSetId = documentsetid

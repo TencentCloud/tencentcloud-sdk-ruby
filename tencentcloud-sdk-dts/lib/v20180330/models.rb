@@ -831,10 +831,10 @@ module TencentCloud
 
         attr_accessor :Region, :InstanceId, :Ip, :Port, :ReadOnly, :User, :Password
         extend Gem::Deprecate
-        deprecate :Ip, :none, 2025, 9
-        deprecate :Ip=, :none, 2025, 9
-        deprecate :Port, :none, 2025, 9
-        deprecate :Port=, :none, 2025, 9
+        deprecate :Ip, :none, 2025, 11
+        deprecate :Ip=, :none, 2025, 11
+        deprecate :Port, :none, 2025, 11
+        deprecate :Port=, :none, 2025, 11
 
         def initialize(region=nil, instanceid=nil, ip=nil, port=nil, readonly=nil, user=nil, password=nil)
           @Region = region

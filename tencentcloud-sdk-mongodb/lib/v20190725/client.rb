@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateAuditLogFile)用于创建云数据库实例的审计日志文件。
+
+        # @param request: Request instance for CreateAuditLogFile.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::CreateAuditLogFileRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::CreateAuditLogFileResponse`
+        def CreateAuditLogFile(request)
+          body = send_request('CreateAuditLogFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CreateBackupDBInstance）用于备份实例。
 
         # @param request: Request instance for CreateBackupDBInstance.
@@ -246,6 +270,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
+
+        # @param request: Request instance for DeleteAuditLogFile.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DeleteAuditLogFileRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DeleteAuditLogFileResponse`
+        def DeleteAuditLogFile(request)
+          body = send_request('DeleteAuditLogFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuditLogFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除日志下载任务
 
         # @param request: Request instance for DeleteLogDownloadTask.
@@ -304,6 +352,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAsyncRequestInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeAuditInstanceList）用于查询开通或未开通数据库审计的实例列表。
+
+        # @param request: Request instance for DescribeAuditInstanceList.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeAuditInstanceListRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeAuditInstanceListResponse`
+        def DescribeAuditInstanceList(request)
+          body = send_request('DescribeAuditInstanceList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAuditInstanceListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1042,6 +1114,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ModifyAuditService)用于修改云数据库审计策略的服务配置，包括审计日志保存时长等。
+
+        # @param request: Request instance for ModifyAuditService.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifyAuditServiceRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifyAuditServiceResponse`
+        def ModifyAuditService(request)
+          body = send_request('ModifyAuditService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAuditServiceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceNetworkAddress）用于修改云数据库实例的网络信息，支持基础网络切换为私有网络、私有网络切换私有网络。
 
         # @param request: Request instance for ModifyDBInstanceNetworkAddress.
@@ -1173,6 +1269,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = OfflineIsolatedDBInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(OpenAuditService)用于开通云数据库实例的审计。
+
+        # @param request: Request instance for OpenAuditService.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::OpenAuditServiceRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::OpenAuditServiceResponse`
+        def OpenAuditService(request)
+          body = send_request('OpenAuditService', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenAuditServiceResponse.new
             model.deserialize(response['Response'])
             model
           else

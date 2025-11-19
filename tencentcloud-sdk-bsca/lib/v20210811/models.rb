@@ -1100,8 +1100,8 @@ module TencentCloud
 
         attr_accessor :VulID, :CVEID, :CNVDID, :CNNVDID, :Name, :IsSuggest, :Severity, :Architecture, :ArchitectureList, :PatchUrlList
         extend Gem::Deprecate
-        deprecate :Architecture, :none, 2024, 11
-        deprecate :Architecture=, :none, 2024, 11
+        deprecate :Architecture, :none, 2025, 11
+        deprecate :Architecture=, :none, 2025, 11
 
         def initialize(vulid=nil, cveid=nil, cnvdid=nil, cnnvdid=nil, name=nil, issuggest=nil, severity=nil, architecture=nil, architecturelist=nil, patchurllist=nil)
           @VulID = vulid

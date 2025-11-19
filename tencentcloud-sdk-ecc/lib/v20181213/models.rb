@@ -214,8 +214,8 @@ module TencentCloud
 
         attr_accessor :Data, :ResultData, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2025, 8
-        deprecate :Data=, :none, 2025, 8
+        deprecate :Data, :none, 2025, 11
+        deprecate :Data=, :none, 2025, 11
 
         def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data
@@ -433,8 +433,8 @@ module TencentCloud
 
         attr_accessor :Data, :ResultData, :RequestId
         extend Gem::Deprecate
-        deprecate :Data, :none, 2025, 8
-        deprecate :Data=, :none, 2025, 8
+        deprecate :Data, :none, 2025, 11
+        deprecate :Data=, :none, 2025, 11
 
         def initialize(data=nil, resultdata=nil, requestid=nil)
           @Data = data

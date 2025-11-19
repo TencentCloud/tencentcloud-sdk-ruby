@@ -29,7 +29,7 @@ module TencentCloud
         # @type InsertPos: Integer
         # @param Content: chunk内容
         # @type Content: String
-        # @param AfterChunkId: 	 新 Chunk 插入到目标 Chunk ​之后的位置。插入位置的上一个 chunkId
+        # @param AfterChunkId: 新 Chunk 插入到目标 Chunk ​之后的位置。插入位置的上一个 chunkId
         # @type AfterChunkId: String
 
         attr_accessor :InstanceId, :FileId, :BeforeChunkId, :InsertPos, :Content, :AfterChunkId
@@ -55,7 +55,7 @@ module TencentCloud
 
       # AddChunk返回参数结构体
       class AddChunkResponse < TencentCloud::Common::AbstractModel
-        # @param ChunkId: 新增的chunkid
+        # @param ChunkId: 新增的ChunkId
         # @type ChunkId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -141,29 +141,62 @@ module TencentCloud
         end
       end
 
-      # CreateDataAgentSession请求参数结构体
-      class CreateDataAgentSessionRequest < TencentCloud::Common::AbstractModel
+      # 文件分片
+      class Chunk < TencentCloud::Common::AbstractModel
+        # @param Id: 切片ID
+        # @type Id: String
+        # @param Content: 切片内容
+        # @type Content: String
+        # @param Size: 切片的字数
+        # @type Size: Integer
 
+        attr_accessor :Id, :Content, :Size
 
-        def initialize()
+        def initialize(id=nil, content=nil, size=nil)
+          @Id = id
+          @Content = content
+          @Size = size
         end
 
         def deserialize(params)
+          @Id = params['Id']
+          @Content = params['Content']
+          @Size = params['Size']
+        end
+      end
+
+      # CreateDataAgentSession请求参数结构体
+      class CreateDataAgentSessionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
         end
       end
 
       # CreateDataAgentSession返回参数结构体
       class CreateDataAgentSessionResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话
+        # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SessionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(sessionid=nil, requestid=nil)
+          @SessionId = sessionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
       end
@@ -210,27 +243,40 @@ module TencentCloud
 
       # DeleteDataAgentSession请求参数结构体
       class DeleteDataAgentSessionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SessionId: 会话ID
+        # @type SessionId: String
 
+        attr_accessor :InstanceId, :SessionId
 
-        def initialize()
+        def initialize(instanceid=nil, sessionid=nil)
+          @InstanceId = instanceid
+          @SessionId = sessionid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionId = params['SessionId']
         end
       end
 
       # DeleteDataAgentSession返回参数结构体
       class DeleteDataAgentSessionResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 删除的会话ID
+        # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SessionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(sessionid=nil, requestid=nil)
+          @SessionId = sessionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
         end
       end
@@ -280,17 +326,28 @@ module TencentCloud
 
       # GetSessionDetails请求参数结构体
       class GetSessionDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SessionId: 会话ID
+        # @type SessionId: String
 
+        attr_accessor :InstanceId, :SessionId
 
-        def initialize()
+        def initialize(instanceid=nil, sessionid=nil)
+          @InstanceId = instanceid
+          @SessionId = sessionid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SessionId = params['SessionId']
         end
       end
 
       # GetSessionDetails返回参数结构体
       class GetSessionDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param RecordList: 会话记录详情
+        # @type RecordList: Array
         # @param RecordCount: 记录总数
         # @type RecordCount: Integer
         # @param RunRecord: 当前在运行的record信息
@@ -298,15 +355,24 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RecordCount, :RunRecord, :RequestId
+        attr_accessor :RecordList, :RecordCount, :RunRecord, :RequestId
 
-        def initialize(recordcount=nil, runrecord=nil, requestid=nil)
+        def initialize(recordlist=nil, recordcount=nil, runrecord=nil, requestid=nil)
+          @RecordList = recordlist
           @RecordCount = recordcount
           @RunRecord = runrecord
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['RecordList'].nil?
+            @RecordList = []
+            params['RecordList'].each do |i|
+              record_tmp = Record.new
+              record_tmp.deserialize(i)
+              @RecordList << record_tmp
+            end
+          end
           @RecordCount = params['RecordCount']
           @RunRecord = params['RunRecord']
           @RequestId = params['RequestId']
@@ -451,9 +517,9 @@ module TencentCloud
 
       # QueryChunkList请求参数结构体
       class QueryChunkListRequest < TencentCloud::Common::AbstractModel
-        # @param Page: 默认 1 表示第一页
+        # @param Page: 表示第一页
         # @type Page: Integer
-        # @param PageSize: 	 默认 10 一页展示 10 条
+        # @param PageSize: 默认一页展示 10 条
         # @type PageSize: Integer
 
         attr_accessor :Page, :PageSize
@@ -471,44 +537,253 @@ module TencentCloud
 
       # QueryChunkList返回参数结构体
       class QueryChunkListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param Chunks: 分片信息
+        # @type Chunks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Total, :Chunks, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(total=nil, chunks=nil, requestid=nil)
+          @Total = total
+          @Chunks = chunks
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Total = params['Total']
+          unless params['Chunks'].nil?
+            @Chunks = []
+            params['Chunks'].each do |i|
+              chunk_tmp = Chunk.new
+              chunk_tmp.deserialize(i)
+              @Chunks << chunk_tmp
+            end
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 问答结构
+      class Record < TencentCloud::Common::AbstractModel
+        # @param Question: 问题内容
+        # @type Question: String
+        # @param Answer: 回答内容
+        # @type Answer: String
+        # @param Think: 思考内容
+        # @type Think: String
+        # @param TaskList: 任务列表
+        # @type TaskList: Array
+        # @param CreateTime: 记录创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 记录更新时间
+        # @type UpdateTime: String
+        # @param RecordId: 记录id
+        # @type RecordId: String
+        # @param FinalSummary: 总结内容
+        # @type FinalSummary: String
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param Feedback: 1=赞，2=踩，0=无反馈
+        # @type Feedback: Integer
+        # @param DbInfo: 数据库信息
+        # @type DbInfo: String
+        # @param ErrorContext: 错误信息
+        # @type ErrorContext: String
+        # @param TaskListStr: TaskList的string字符串
+        # @type TaskListStr: String
+        # @param KnowledgeBaseIds: 知识库id列表
+        # @type KnowledgeBaseIds: Array
+        # @param Context: 上下文
+        # @type Context: String
+
+        attr_accessor :Question, :Answer, :Think, :TaskList, :CreateTime, :UpdateTime, :RecordId, :FinalSummary, :SessionId, :Feedback, :DbInfo, :ErrorContext, :TaskListStr, :KnowledgeBaseIds, :Context
+
+        def initialize(question=nil, answer=nil, think=nil, tasklist=nil, createtime=nil, updatetime=nil, recordid=nil, finalsummary=nil, sessionid=nil, feedback=nil, dbinfo=nil, errorcontext=nil, taskliststr=nil, knowledgebaseids=nil, context=nil)
+          @Question = question
+          @Answer = answer
+          @Think = think
+          @TaskList = tasklist
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @RecordId = recordid
+          @FinalSummary = finalsummary
+          @SessionId = sessionid
+          @Feedback = feedback
+          @DbInfo = dbinfo
+          @ErrorContext = errorcontext
+          @TaskListStr = taskliststr
+          @KnowledgeBaseIds = knowledgebaseids
+          @Context = context
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @Answer = params['Answer']
+          @Think = params['Think']
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              task_tmp = Task.new
+              task_tmp.deserialize(i)
+              @TaskList << task_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @RecordId = params['RecordId']
+          @FinalSummary = params['FinalSummary']
+          @SessionId = params['SessionId']
+          @Feedback = params['Feedback']
+          @DbInfo = params['DbInfo']
+          @ErrorContext = params['ErrorContext']
+          @TaskListStr = params['TaskListStr']
+          @KnowledgeBaseIds = params['KnowledgeBaseIds']
+          @Context = params['Context']
+        end
+      end
+
+      # 步骤扩展结构
+      class StepExpand < TencentCloud::Common::AbstractModel
+        # @param Title: 标题
+        # @type Title: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param CellIds: cellid数组
+        # @type CellIds: Array
+
+        attr_accessor :Title, :Status, :CellIds
+
+        def initialize(title=nil, status=nil, cellids=nil)
+          @Title = title
+          @Status = status
+          @CellIds = cellids
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Status = params['Status']
+          @CellIds = params['CellIds']
+        end
+      end
+
+      # 任务步骤
+      class StepInfo < TencentCloud::Common::AbstractModel
+        # @param Id: 步骤id
+        # @type Id: Integer
+        # @param Name: 步骤名称
+        # @type Name: String
+        # @param Status: 步骤状态
+        # @type Status: String
+        # @param Type: 类型(text/expand)
+        # @type Type: String
+        # @param Summary: 总结
+        # @type Summary: String
+        # @param Expand: 步骤扩展结构
+        # @type Expand: :class:`Tencentcloud::Dataagent.v20250513.models.StepExpand`
+        # @param Desc: 描述
+        # @type Desc: String
+
+        attr_accessor :Id, :Name, :Status, :Type, :Summary, :Expand, :Desc
+
+        def initialize(id=nil, name=nil, status=nil, type=nil, summary=nil, expand=nil, desc=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+          @Type = type
+          @Summary = summary
+          @Expand = expand
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Type = params['Type']
+          @Summary = params['Summary']
+          unless params['Expand'].nil?
+            @Expand = StepExpand.new
+            @Expand.deserialize(params['Expand'])
+          end
+          @Desc = params['Desc']
         end
       end
 
       # StopChatAI请求参数结构体
       class StopChatAIRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
 
+        attr_accessor :SessionId, :InstanceId
 
-        def initialize()
+        def initialize(sessionid=nil, instanceid=nil)
+          @SessionId = sessionid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
+          @InstanceId = params['InstanceId']
         end
       end
 
       # StopChatAI返回参数结构体
       class StopChatAIResponse < TencentCloud::Common::AbstractModel
+        # @param SessionId: 会话
+        # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SessionId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(sessionid=nil, requestid=nil)
+          @SessionId = sessionid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 任务信息
+      class Task < TencentCloud::Common::AbstractModel
+        # @param Id: 任务ID
+        # @type Id: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param StepInfoList: 任务步骤列表
+        # @type StepInfoList: Array
+
+        attr_accessor :Id, :Name, :Status, :StepInfoList
+
+        def initialize(id=nil, name=nil, status=nil, stepinfolist=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+          @StepInfoList = stepinfolist
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
+          unless params['StepInfoList'].nil?
+            @StepInfoList = []
+            params['StepInfoList'].each do |i|
+              stepinfo_tmp = StepInfo.new
+              stepinfo_tmp.deserialize(i)
+              @StepInfoList << stepinfo_tmp
+            end
+          end
         end
       end
 

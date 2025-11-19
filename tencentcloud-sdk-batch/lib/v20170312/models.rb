@@ -2383,19 +2383,23 @@ module TencentCloud
         # @type DestinationPath: String
         # @param MountOptionParameter: 挂载配置项参数
         # @type MountOptionParameter: String
+        # @param MountType: 挂载COS存储时支持的挂载工具；当前可选值：COSFS、GooseFS-Lite。
+        # @type MountType: String
 
-        attr_accessor :SourcePath, :DestinationPath, :MountOptionParameter
+        attr_accessor :SourcePath, :DestinationPath, :MountOptionParameter, :MountType
 
-        def initialize(sourcepath=nil, destinationpath=nil, mountoptionparameter=nil)
+        def initialize(sourcepath=nil, destinationpath=nil, mountoptionparameter=nil, mounttype=nil)
           @SourcePath = sourcepath
           @DestinationPath = destinationpath
           @MountOptionParameter = mountoptionparameter
+          @MountType = mounttype
         end
 
         def deserialize(params)
           @SourcePath = params['SourcePath']
           @DestinationPath = params['DestinationPath']
           @MountOptionParameter = params['MountOptionParameter']
+          @MountType = params['MountType']
         end
       end
 

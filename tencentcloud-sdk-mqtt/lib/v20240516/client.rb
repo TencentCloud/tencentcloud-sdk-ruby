@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为MQTT客户端增加一条订阅
+
+        # @param request: Request instance for AddClientSubscription.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::AddClientSubscriptionRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::AddClientSubscriptionResponse`
+        def AddClientSubscription(request)
+          body = send_request('AddClientSubscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddClientSubscriptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 申请ca注册码
 
         # @param request: Request instance for ApplyRegistrationCode.
@@ -423,6 +447,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCaCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除MQTT客户端下的一条订阅
+
+        # @param request: Request instance for DeleteClientSubscription.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteClientSubscriptionRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteClientSubscriptionResponse`
+        def DeleteClientSubscription(request)
+          body = send_request('DeleteClientSubscription', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClientSubscriptionResponse.new
             model.deserialize(response['Response'])
             model
           else

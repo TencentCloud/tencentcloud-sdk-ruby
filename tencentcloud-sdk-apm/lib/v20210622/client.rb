@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于创建apm业务系统与Prometheus实例的指标匹配规则
+
+        # @param request: Request instance for CreateApmPrometheusRule.
+        # @type request: :class:`Tencentcloud::apm::V20210622::CreateApmPrometheusRuleRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::CreateApmPrometheusRuleResponse`
+        def CreateApmPrometheusRule(request)
+          body = send_request('CreateApmPrometheusRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApmPrometheusRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建采样配置接口
+
+        # @param request: Request instance for CreateApmSampleConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::CreateApmSampleConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::CreateApmSampleConfigResponse`
+        def CreateApmSampleConfig(request)
+          body = send_request('CreateApmSampleConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateApmSampleConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建事件任务
 
         # @param request: Request instance for CreateProfileTask.
@@ -63,6 +111,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateProfileTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除采样配置接口
+
+        # @param request: Request instance for DeleteApmSampleConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DeleteApmSampleConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DeleteApmSampleConfigResponse`
+        def DeleteApmSampleConfig(request)
+          body = send_request('DeleteApmSampleConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApmSampleConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -101,6 +173,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询应用配置接口
+
+        # @param request: Request instance for DescribeApmApplicationConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmApplicationConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmApplicationConfigResponse`
+        def DescribeApmApplicationConfig(request)
+          body = send_request('DescribeApmApplicationConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmApplicationConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询apm业务系统与其他产品的关联关系
+
+        # @param request: Request instance for DescribeApmAssociation.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmAssociationRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmAssociationResponse`
+        def DescribeApmAssociation(request)
+          body = send_request('DescribeApmAssociation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmAssociationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取 APM 业务系统列表
 
         # @param request: Request instance for DescribeApmInstances.
@@ -111,6 +231,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeApmInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询apm业务系统与Prometheus实例的指标匹配规则
+
+        # @param request: Request instance for DescribeApmPrometheusRule.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmPrometheusRuleRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmPrometheusRuleResponse`
+        def DescribeApmPrometheusRule(request)
+          body = send_request('DescribeApmPrometheusRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmPrometheusRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询采样配置接口
+
+        # @param request: Request instance for DescribeApmSampleConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmSampleConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmSampleConfigResponse`
+        def DescribeApmSampleConfig(request)
+          body = send_request('DescribeApmSampleConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmSampleConfigResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -318,6 +486,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改应用配置接口
+
+        # @param request: Request instance for ModifyApmApplicationConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmApplicationConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmApplicationConfigResponse`
+        def ModifyApmApplicationConfig(request)
+          body = send_request('ModifyApmApplicationConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmApplicationConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于修改apm业务系统与其他产品的关联关系（包括创建和删除）
+
+        # @param request: Request instance for ModifyApmAssociation.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmAssociationRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmAssociationResponse`
+        def ModifyApmAssociation(request)
+          body = send_request('ModifyApmAssociation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmAssociationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改APM业务系统接口
 
         # @param request: Request instance for ModifyApmInstance.
@@ -328,6 +544,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyApmInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于修改apm业务系统与Prometheus实例的指标匹配规则
+
+        # @param request: Request instance for ModifyApmPrometheusRule.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmPrometheusRuleRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmPrometheusRuleResponse`
+        def ModifyApmPrometheusRule(request)
+          body = send_request('ModifyApmPrometheusRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmPrometheusRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改采样配置接口
+
+        # @param request: Request instance for ModifyApmSampleConfig.
+        # @type request: :class:`Tencentcloud::apm::V20210622::ModifyApmSampleConfigRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::ModifyApmSampleConfigResponse`
+        def ModifyApmSampleConfig(request)
+          body = send_request('ModifyApmSampleConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApmSampleConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1601,6 +1601,7 @@ module TencentCloud
         # @param PublicIpAddresses: 绑定NAT网关的弹性IP数组，其中AddressCount和PublicAddresses至少传递一个。
         # @type PublicIpAddresses: Array
         # @param Zone: 弹性IP可用区，自动分配弹性IP时传递。
+        # 其中产品可用区查询接口为[查询产品可用区列表](https://cloud.tencent.com/document/product/1596/77929)
         # @type Zone: String
         # @param StockPublicIpAddressesBandwidthOut: 绑定NAT网关的弹性IP带宽大小（单位Mbps），默认为当前用户类型所能使用的最大值。
         # @type StockPublicIpAddressesBandwidthOut: Integer
@@ -1608,10 +1609,12 @@ module TencentCloud
         # @type PublicIpAddressesBandwidthOut: Integer
         # @param PublicIpFromSameZone: 公网IP是否强制与NAT网关来自同可用区，true表示需要与NAT网关同可用区；false表示可与NAT网关不是同一个可用区。此参数只有当参数Zone存在时才能生效。
         # @type PublicIpFromSameZone: Boolean
+        # @param IpAddressEnableMode: 启用或者禁用NAT网关绑定的EIP
+        # @type IpAddressEnableMode: Boolean
 
-        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone
+        attr_accessor :NatGatewayId, :AddressCount, :PublicIpAddresses, :Zone, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :IpAddressEnableMode
 
-        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil)
+        def initialize(natgatewayid=nil, addresscount=nil, publicipaddresses=nil, zone=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, ipaddressenablemode=nil)
           @NatGatewayId = natgatewayid
           @AddressCount = addresscount
           @PublicIpAddresses = publicipaddresses
@@ -1619,6 +1622,7 @@ module TencentCloud
           @StockPublicIpAddressesBandwidthOut = stockpublicipaddressesbandwidthout
           @PublicIpAddressesBandwidthOut = publicipaddressesbandwidthout
           @PublicIpFromSameZone = publicipfromsamezone
+          @IpAddressEnableMode = ipaddressenablemode
         end
 
         def deserialize(params)
@@ -1629,6 +1633,7 @@ module TencentCloud
           @StockPublicIpAddressesBandwidthOut = params['StockPublicIpAddressesBandwidthOut']
           @PublicIpAddressesBandwidthOut = params['PublicIpAddressesBandwidthOut']
           @PublicIpFromSameZone = params['PublicIpFromSameZone']
+          @IpAddressEnableMode = params['IpAddressEnableMode']
         end
       end
 
@@ -4813,7 +4818,7 @@ module TencentCloud
 
       # CreateNatGateway请求参数结构体
       class CreateNatGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param NatGatewayName: NAT网关名称
+        # @param NatGatewayName: NAT网关名称，限制60字符
         # @type NatGatewayName: String
         # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
         # @type VpcId: String
@@ -5330,7 +5335,7 @@ module TencentCloud
 
       # CreatePrivateNatGateway请求参数结构体
       class CreatePrivateNatGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param NatGatewayName: 私网网关名称
+        # @param NatGatewayName: 私网网关名称，限制60个字符
         # @type NatGatewayName: String
         # @param VpcId: 私有网络实例ID。当创建VPC类型私网NAT网关或者专线网关类型私网NAT网关时，此参数必填。
         # @type VpcId: String
@@ -5410,15 +5415,15 @@ module TencentCloud
       class CreatePrivateNatGatewayTranslationAclRuleRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
         # @type NatGatewayId: String
-        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @param TranslationDirection: 转换规则目标，可选值LOCAL。
         # @type TranslationDirection: String
-        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值NETWORK_LAYER、TRANSPORT_LAYER。分别对应三层、四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @param TranslationIp: 映射后`IP`,当转换规则类型为四层时为`IP`池。
         # @type TranslationIp: String
         # @param TranslationAclRules: 访问控制列表。
         # @type TranslationAclRules: Array
-        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @param OriginalIp: 映射前`IP`,当转换规则类型为三层时有效。
         # @type OriginalIp: String
 
         attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :TranslationAclRules, :OriginalIp
@@ -8249,15 +8254,19 @@ module TencentCloud
       class DeleteNatGatewayRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
         # @type NatGatewayId: String
+        # @param IgnoreOperationRisk: 忽略操作风险
+        # @type IgnoreOperationRisk: Boolean
 
-        attr_accessor :NatGatewayId
+        attr_accessor :NatGatewayId, :IgnoreOperationRisk
 
-        def initialize(natgatewayid=nil)
+        def initialize(natgatewayid=nil, ignoreoperationrisk=nil)
           @NatGatewayId = natgatewayid
+          @IgnoreOperationRisk = ignoreoperationrisk
         end
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
+          @IgnoreOperationRisk = params['IgnoreOperationRisk']
         end
       end
 
@@ -8566,15 +8575,15 @@ module TencentCloud
       class DeletePrivateNatGatewayTranslationAclRuleRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
         # @type NatGatewayId: String
-        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @param TranslationDirection: 转换规则目标，可选值LOCAL。
         # @type TranslationDirection: String
-        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值NETWORK_LAYER、TRANSPORT_LAYER。分别对应三层、四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池
+        # @param TranslationIp: 映射后`IP`,当转换规则类型为四层时为`IP`池
         # @type TranslationIp: String
         # @param AclRuleIds: 访问控制规则对应`ID`
         # @type AclRuleIds: Array
-        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效
+        # @param OriginalIp: 映射前`IP`,当转换规则类型为三层时有效
         # @type OriginalIp: String
 
         attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :AclRuleIds, :OriginalIp
@@ -12848,11 +12857,49 @@ module TencentCloud
         end
       end
 
+      # DescribeNatGatewayZones请求参数结构体
+      class DescribeNatGatewayZonesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeNatGatewayZones返回参数结构体
+      class DescribeNatGatewayZonesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneSet: 可售卖可用区信息列表
+        # @type ZoneSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneSet, :RequestId
+
+        def initialize(zoneset=nil, requestid=nil)
+          @ZoneSet = zoneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZoneSet'].nil?
+            @ZoneSet = []
+            params['ZoneSet'].each do |i|
+              natzoneinfo_tmp = NatZoneInfo.new
+              natzoneinfo_tmp.deserialize(i)
+              @ZoneSet << natzoneinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNatGateways请求参数结构体
       class DescribeNatGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayIds: NAT网关统一 ID，形如：`nat-123xx454`。每次请求的实例上限为100。参数不支持同时指定NatGatewayIds和Filters。
         # @type NatGatewayIds: Array
-        # @param Filters: 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。<li>nat-gateway-id - String - （过滤条件）NAT实例ID，形如：`nat-123xx454`。</li><li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li><li>nat-gateway-name - String - （过滤条件）协议端口模板实例名称，形如：`test_nat`。</li><li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li><li>nat-status - String - （过滤条件）NAT实例当前状态，形如：`AVAILABLE`。</li>
+        # @param Filters: 过滤条件，参数不支持同时指定NatGatewayIds和Filters。每次请求的Filters的上限为10，Filter.Values的上限为5。<li>nat-gateway-id - String - （过滤条件）NAT实例ID，形如：`nat-123xx454`。</li><li>vpc-id - String - （过滤条件）私有网络 唯一ID，形如：`vpc-123xx454`。</li><li>nat-gateway-name - String - （过滤条件）协议端口模板实例名称，形如：`test_nat`。</li><li>tag-key - String - （过滤条件）标签键，形如：`test-key`。</li><li>nat-state - String - （过滤条件）NAT实例当前状态，形如：`AVAILABLE`。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -13384,7 +13431,7 @@ module TencentCloud
       class DescribePrivateNatGatewayDestinationIpPortTranslationNatRulesRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: 私网网关唯一`ID`，形如"intranat-xxxxxxxx)
         # @type NatGatewayId: String
-        # @param Filters: 过滤条件，Name可选值"OriginalIp",  "TranslationIp", "OriginalPort","TranslationPort",  "Protocol", "Description"
+        # @param Filters: 过滤条件，Name可选值：OriginalIp、TranslationIp、OriginalPort、TranslationPort、Protocol、Description，分别表示映射前IP、映射后IP、映射前端口、映射后端口、协议类型、描述
         # @type Filters: Array
         # @param Offset: 偏移量，默认值为0。
         # @type Offset: Integer
@@ -13555,13 +13602,13 @@ module TencentCloud
       class DescribePrivateNatGatewayTranslationAclRulesRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: 私网网关唯一`ID`，形如：`intranat-xxxxxxxx`。
         # @type NatGatewayId: String
-        # @param TranslationDirection: 转换规则目标，可选值"LOCAL"。
+        # @param TranslationDirection: 转换规则目标，可选值LOCAL。
         # @type TranslationDirection: String
-        # @param TranslationType: 转换规则类型，可选值"NETWORK_LAYER","TRANSPORT_LAYER"。
+        # @param TranslationType: 转换规则类型，可选值NETWORK_LAYER、TRANSPORT_LAYER。分别对应三层、四层。
         # @type TranslationType: String
-        # @param TranslationIp: 转换`IP`,当转换规则类型为四层时为`IP`池。
+        # @param TranslationIp: 映射后`IP`,当转换规则类型为四层时为`IP`池。
         # @type TranslationIp: String
-        # @param OriginalIp: 源`IP`,当转换规则类型为三层时有效。
+        # @param OriginalIp: 映射前`IP`,当转换规则类型为三层时有效。
         # @type OriginalIp: String
         # @param Offset: 偏移量。默认值为0。
         # @type Offset: Integer
@@ -13699,6 +13746,7 @@ module TencentCloud
       # DescribePrivateNatGateways请求参数结构体
       class DescribePrivateNatGatewaysRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayIds: 私网网关唯一`ID`，形如：`intranat-0g3blj80`。
+        # 注意：NatGatewayIds和Filters参数互斥，不能同时传入。
         # @type NatGatewayIds: Array
         # @param Filters: 过滤条件。<li>NatGatewayId - String - 私网网关唯一`ID`，形如：`intranat-0g3blj80`。</li><li>NatGatewayName - String - 专线网关名称，默认模糊查询。</li><li>VpcId - String - 私网网关所在`VpcId`。</li><li>TagKey - Tag数组 - 私网网关标签键值对数组</li><li>intranat-status - String - （过滤条件）NAT实例当前状态，形如：`AVAILABLE`。</li>
         # @type Filters: Array
@@ -13706,9 +13754,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认为20。
         # @type Limit: Integer
-        # @param OrderField: 排序字段。可选值："NatGatewayId"、"NatGatewayName"、"CreatedTime"
+        # @param OrderField: 排序字段。可选值：NatGatewayId、NatGatewayName、CreatedTime。
         # @type OrderField: String
-        # @param OrderDirection: 排序方式。可选值："ASC"、"DESC"。
+        # @param OrderDirection: 排序方式。可选值：ASC、DESC。分别表示升序、降序。
         # @type OrderDirection: String
 
         attr_accessor :NatGatewayIds, :Filters, :Offset, :Limit, :OrderField, :OrderDirection
@@ -15870,17 +15918,23 @@ module TencentCloud
         # @param EndPointId: 终端节点ID列表。可通过[DescribeVpcEndPoint](https://cloud.tencent.com/document/product/215/54679)
         # 获取。
         # @type EndPointId: Array
-        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6， DualStack，默认 Ipv4。使用DualStack查询双栈的时候，必须要使用MaxResult配合NextToken查询。第1次查询的时候只需要携带MaxResult，如果返回NextToken非空，表示有更多可用数据。第2次查询的时候就需要携带NextToken进行分页查询。
         # @type IpAddressType: String
+        # @param MaxResults: 每次调用返回的最大结果数。如果查询返回的时候有NextToken返回，您可以使用NextToken值获取更多页结果， 当NextToke返回空或者返回的结果数量小于MaxResults时，表示没有更多数据了。允许的最大页面大小为 100。
+        # @type MaxResults: Integer
+        # @param NextToken: 如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
 
-        attr_accessor :Filters, :Offset, :Limit, :EndPointId, :IpAddressType
+        attr_accessor :Filters, :Offset, :Limit, :EndPointId, :IpAddressType, :MaxResults, :NextToken
 
-        def initialize(filters=nil, offset=nil, limit=nil, endpointid=nil, ipaddresstype=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, endpointid=nil, ipaddresstype=nil, maxresults=nil, nexttoken=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @EndPointId = endpointid
           @IpAddressType = ipaddresstype
+          @MaxResults = maxresults
+          @NextToken = nexttoken
         end
 
         def deserialize(params)
@@ -15896,6 +15950,8 @@ module TencentCloud
           @Limit = params['Limit']
           @EndPointId = params['EndPointId']
           @IpAddressType = params['IpAddressType']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
         end
       end
 
@@ -15905,14 +15961,17 @@ module TencentCloud
         # @type EndPointSet: Array
         # @param TotalCount: 符合查询条件的终端节点个数。
         # @type TotalCount: Integer
+        # @param NextToken: 如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EndPointSet, :TotalCount, :RequestId
+        attr_accessor :EndPointSet, :TotalCount, :NextToken, :RequestId
 
-        def initialize(endpointset=nil, totalcount=nil, requestid=nil)
+        def initialize(endpointset=nil, totalcount=nil, nexttoken=nil, requestid=nil)
           @EndPointSet = endpointset
           @TotalCount = totalcount
+          @NextToken = nexttoken
           @RequestId = requestid
         end
 
@@ -15926,6 +15985,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end
@@ -15951,18 +16011,24 @@ module TencentCloud
         # @type EndPointServiceIds: Array
         # @param IsListAuthorizedEndPointService: <li>不支持同时传入参数 Filters 。</li> <li>列出授权给当前账号的终端节点服务信息。可以配合EndPointServiceIds参数进行过滤，哪些终端节点服务授权了该账户。</li>
         # @type IsListAuthorizedEndPointService: Boolean
-        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6，默认 Ipv4。
+        # @param IpAddressType: 协议类型，支持 Ipv4，Ipv6， DualStack，默认 Ipv4。使用DualStack查询双栈的时候，必须要使用MaxResult配合NextToken查询。第1次查询的时候只需要携带MaxResult，如果返回NextToken非空，表示有更多可用数据。第2次查询的时候就需要携带NextToken进行分页查询。
         # @type IpAddressType: String
+        # @param MaxResults: 每次调用返回的最大结果数。如果查询返回的时候有NextToken返回，您可以使用NextToken值获取更多页结果， 当NextToke返回空或者返回的结果数量小于MaxResults时，表示没有更多数据了。允许的最大页面大小为 100。
+        # @type MaxResults: Integer
+        # @param NextToken: 如果NextToken返回 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
 
-        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService, :IpAddressType
+        attr_accessor :Filters, :Offset, :Limit, :EndPointServiceIds, :IsListAuthorizedEndPointService, :IpAddressType, :MaxResults, :NextToken
 
-        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil, islistauthorizedendpointservice=nil, ipaddresstype=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, endpointserviceids=nil, islistauthorizedendpointservice=nil, ipaddresstype=nil, maxresults=nil, nexttoken=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @EndPointServiceIds = endpointserviceids
           @IsListAuthorizedEndPointService = islistauthorizedendpointservice
           @IpAddressType = ipaddresstype
+          @MaxResults = maxresults
+          @NextToken = nexttoken
         end
 
         def deserialize(params)
@@ -15979,6 +16045,8 @@ module TencentCloud
           @EndPointServiceIds = params['EndPointServiceIds']
           @IsListAuthorizedEndPointService = params['IsListAuthorizedEndPointService']
           @IpAddressType = params['IpAddressType']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
         end
       end
 
@@ -15988,14 +16056,17 @@ module TencentCloud
         # @type EndPointServiceSet: Array
         # @param TotalCount: 符合查询条件的个数。
         # @type TotalCount: Integer
+        # @param NextToken: 如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EndPointServiceSet, :TotalCount, :RequestId
+        attr_accessor :EndPointServiceSet, :TotalCount, :NextToken, :RequestId
 
-        def initialize(endpointserviceset=nil, totalcount=nil, requestid=nil)
+        def initialize(endpointserviceset=nil, totalcount=nil, nexttoken=nil, requestid=nil)
           @EndPointServiceSet = endpointserviceset
           @TotalCount = totalcount
+          @NextToken = nexttoken
           @RequestId = requestid
         end
 
@@ -16009,6 +16080,7 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end
@@ -22016,7 +22088,7 @@ module TencentCloud
       class ModifyNatGatewaySourceIpTranslationNatRuleRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df453454`。
         # @type NatGatewayId: String
-        # @param SourceIpTranslationNatRule: NAT网关的SNAT转换规则。
+        # @param SourceIpTranslationNatRule: NAT网关的SNAT转换规则。仅支持根据指定的NatGatewaySnatId修改PublicIpAddresses或Description。
         # @type SourceIpTranslationNatRule: :class:`Tencentcloud::Vpc.v20170312.models.SourceIpTranslationNatRule`
 
         attr_accessor :NatGatewayId, :SourceIpTranslationNatRule
@@ -23997,6 +24069,26 @@ module TencentCloud
         end
       end
 
+      # NAT网关可用区集合
+      class NatZoneInfo < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区名称
+        # @type Zone: String
+        # @param ZoneId: 可用区id
+        # @type ZoneId: Integer
+
+        attr_accessor :Zone, :ZoneId
+
+        def initialize(zone=nil, zoneid=nil)
+          @Zone = zone
+          @ZoneId = zoneid
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+        end
+      end
+
       # 网络探测对象。
       class NetDetect < TencentCloud::Common::AbstractModel
         # @param VpcId: `VPC`实例`ID`。形如：`vpc-12345678`
@@ -25065,7 +25157,7 @@ module TencentCloud
         # @type VpcId: String
         # @param NatGatewayId: NAT网关ID
         # @type NatGatewayId: String
-        # @param DryRun: 是否是预刷新；True:是， False:否
+        # @param DryRun: 是否是预刷新；true:是， false:否
         # @type DryRun: Boolean
 
         attr_accessor :VpcId, :NatGatewayId, :DryRun

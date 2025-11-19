@@ -5090,6 +5090,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(DescribeNatGatewayZones)用于查询NAT网关可售卖的可用区信息
+
+        # @param request: Request instance for DescribeNatGatewayZones.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewayZonesRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::DescribeNatGatewayZonesResponse`
+        def DescribeNatGatewayZones(request)
+          body = send_request('DescribeNatGatewayZones', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNatGatewayZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeNatGateways）用于查询 NAT 网关。
 
         # @param request: Request instance for DescribeNatGateways.

@@ -245,7 +245,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 分配查询
+        # 文档切片查询
 
         # @param request: Request instance for QueryChunkList.
         # @type request: :class:`Tencentcloud::dataagent::V20250513::QueryChunkListRequest`

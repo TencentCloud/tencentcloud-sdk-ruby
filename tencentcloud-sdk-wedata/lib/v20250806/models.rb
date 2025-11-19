@@ -11675,22 +11675,22 @@ module TencentCloud
         # @param YarnQueue: 资源池队列名称，需要通过 DescribeProjectClusterQueues 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YarnQueue: String
-        # @param SourceServiceId: 来源数据源ID, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param SourceServiceId: 来源数据源ID,  需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceId: String
-        # @param SourceServiceType: 来源数据源类型, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param SourceServiceType: 来源数据源类型,  需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceType: String
-        # @param SourceServiceName: 来源数据源名称, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param SourceServiceName: 来源数据源名称, 需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SourceServiceName: String
-        # @param TargetServiceId: 目标数据源ID, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param TargetServiceId: 目标数据源ID, 需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceId: String
-        # @param TargetServiceType: 目标数据源类型, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param TargetServiceType: 目标数据源类型,  需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceType: String
-        # @param TargetServiceName: 目标数据源名称, 使用 ; 分隔, 需要通过 DescribeDataSourceWithoutInfo 获取
+        # @param TargetServiceName: 目标数据源名称, 需要通过 DescribeDataSourceWithoutInfo 获取
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetServiceName: String
         # @param ResourceGroup: 资源组ID： 需要通过 DescribeNormalSchedulerExecutorGroups 获取 ExecutorGroupId

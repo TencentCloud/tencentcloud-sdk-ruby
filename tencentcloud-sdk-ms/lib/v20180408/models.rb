@@ -777,8 +777,8 @@ module TencentCloud
 
         attr_accessor :CosAppid, :CosBucket, :CosRegion, :ExpireTime, :CosId, :CosKey, :CosTocken, :CosPrefix, :CosToken, :RequestId
         extend Gem::Deprecate
-        deprecate :CosTocken, :none, 2024, 11
-        deprecate :CosTocken=, :none, 2024, 11
+        deprecate :CosTocken, :none, 2025, 11
+        deprecate :CosTocken=, :none, 2025, 11
 
         def initialize(cosappid=nil, cosbucket=nil, cosregion=nil, expiretime=nil, cosid=nil, coskey=nil, costocken=nil, cosprefix=nil, costoken=nil, requestid=nil)
           @CosAppid = cosappid
@@ -2313,12 +2313,12 @@ module TencentCloud
 
         attr_accessor :SetFile, :ApkSizeOpt, :Dex, :So, :Bugly, :AntiRepack, :Db, :SoInfo, :AntiVMP, :SoType, :AntiLogLeak, :AntiAssets, :AntiScreenshot, :AntiSSL, :FileSign, :AntiRoot, :SeperateDex, :DexSig, :AntiQemuRoot
         extend Gem::Deprecate
-        deprecate :SeperateDex, :none, 2024, 11
-        deprecate :SeperateDex=, :none, 2024, 11
-        deprecate :DexSig, :none, 2024, 11
-        deprecate :DexSig=, :none, 2024, 11
-        deprecate :AntiQemuRoot, :none, 2024, 11
-        deprecate :AntiQemuRoot=, :none, 2024, 11
+        deprecate :SeperateDex, :none, 2025, 11
+        deprecate :SeperateDex=, :none, 2025, 11
+        deprecate :DexSig, :none, 2025, 11
+        deprecate :DexSig=, :none, 2025, 11
+        deprecate :AntiQemuRoot, :none, 2025, 11
+        deprecate :AntiQemuRoot=, :none, 2025, 11
 
         def initialize(setfile=nil, apksizeopt=nil, dex=nil, so=nil, bugly=nil, antirepack=nil, db=nil, soinfo=nil, antivmp=nil, sotype=nil, antilogleak=nil, antiassets=nil, antiscreenshot=nil, antissl=nil, filesign=nil, antiroot=nil, seperatedex=nil, dexsig=nil, antiqemuroot=nil)
           @SetFile = setfile
@@ -2611,8 +2611,8 @@ module TencentCloud
 
         attr_accessor :Banner, :BoutiqueRecommand, :FloatWindows, :IntegralWall, :Md5, :NotifyBar, :Official, :PluginList, :OptPluginList, :SafeType, :Sid, :SoftName, :Spot, :VirusName, :VirusDesc, :RepackageStatus, :Errno, :ErrMsg, :ErrNo
         extend Gem::Deprecate
-        deprecate :Errno, :none, 2024, 11
-        deprecate :Errno=, :none, 2024, 11
+        deprecate :Errno, :none, 2025, 11
+        deprecate :Errno=, :none, 2025, 11
 
         def initialize(banner=nil, boutiquerecommand=nil, floatwindows=nil, integralwall=nil, md5=nil, notifybar=nil, official=nil, pluginlist=nil, optpluginlist=nil, safetype=nil, sid=nil, softname=nil, spot=nil, virusname=nil, virusdesc=nil, repackagestatus=nil, errmsg=nil, errno=nil)
           @Banner = banner

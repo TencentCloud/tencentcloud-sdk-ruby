@@ -38,6 +38,60 @@ module TencentCloud
         end
       end
 
+      # 企业变更超管信息。
+      class AdminChangeInvitationInfo < TencentCloud::Common::AbstractModel
+        # @param ChangeAdminOrganizationId: 要变更的企业Id。
+        # 使用接口进行变更，所支持的企业有两种。
+        # 1. 集团主企业替子企业进行超管变更。
+        #     子企业的企业 Id 可在更多-组织管理-集团组织管理处获取。如图位置![image](https://qcloudimg.tencent-cloud.cn/raw/3d4469c13ca9e66a847560fc4309c58b.png)
+        # 2. 使用接口[创建企业认证链接](https://qian.tencent.com/developers/companyApis/organizations/CreateOrganizationAuthUrl) 创建的企业，企业 Id 可以从回调[企业引导企业实名认证后回调](https://qian.tencent.com/developers/company/callback_types_staffs#%E5%8D%81%E4%B8%80-%E4%BC%81%E4%B8%9A%E5%BC%95%E5%AF%BC%E4%BC%81%E4%B8%9A%E5%AE%9E%E5%90%8D%E8%AE%A4%E8%AF%81%E5%90%8E%E5%9B%9E%E8%B0%83)得到。
+        # @type ChangeAdminOrganizationId: String
+        # @param NewAdminName: 组织机构要变更的超管姓名。
+        # 跟超管变更的操作人保持一致。
+        # @type NewAdminName: String
+        # @param AuthFiles: 授权书(PNG或JPG或PDF) base64格式, 大小不超过8M 。
+        # p.s. 如果上传授权书 ，需遵循以下条件
+        # 1. 超管的信息（超管姓名，超管手机号）必须为必填参数。
+        # @type AuthFiles: Array
+        # @param NewAdminMobile: 组织机构要变更的超管手机号。
+        # 跟超管变更的操作人保持一致。
+        # 超管变更的手机号和超管变更的证件号，必须要传递一个。
+        # @type NewAdminMobile: String
+        # @param NewAdminIdCardType: 组织机构要变更的超管证件类型支持以下类型
+        # - ID_CARD : 中国大陆居民身份证 (默认值)
+        # - HONGKONG_AND_MACAO : 中国港澳居民来往内地通行证
+        # - HONGKONG_MACAO_AND_TAIWAN : 中国港澳台居民居住证(格式同中国大陆居民身份证)
+
+        # 跟超管变更的操作人保持一致。
+        # @type NewAdminIdCardType: String
+        # @param NewAdminIdCardNumber: 组织机构新超管证件号。
+
+        # 跟超管变更的操作人保持一致。
+
+        # 超管变更的手机号和超管变更的证件号，必须要传递一个。
+        # @type NewAdminIdCardNumber: String
+
+        attr_accessor :ChangeAdminOrganizationId, :NewAdminName, :AuthFiles, :NewAdminMobile, :NewAdminIdCardType, :NewAdminIdCardNumber
+
+        def initialize(changeadminorganizationid=nil, newadminname=nil, authfiles=nil, newadminmobile=nil, newadminidcardtype=nil, newadminidcardnumber=nil)
+          @ChangeAdminOrganizationId = changeadminorganizationid
+          @NewAdminName = newadminname
+          @AuthFiles = authfiles
+          @NewAdminMobile = newadminmobile
+          @NewAdminIdCardType = newadminidcardtype
+          @NewAdminIdCardNumber = newadminidcardnumber
+        end
+
+        def deserialize(params)
+          @ChangeAdminOrganizationId = params['ChangeAdminOrganizationId']
+          @NewAdminName = params['NewAdminName']
+          @AuthFiles = params['AuthFiles']
+          @NewAdminMobile = params['NewAdminMobile']
+          @NewAdminIdCardType = params['NewAdminIdCardType']
+          @NewAdminIdCardNumber = params['NewAdminIdCardNumber']
+        end
+      end
+
       # 代理相关应用信息，如集团主企业代子企业操作
       class Agent < TencentCloud::Common::AbstractModel
         # @param AppId: 代理机构的应用编号,32位字符串，一般不用传
@@ -1647,6 +1701,162 @@ module TencentCloud
         def deserialize(params)
           @ComponentType = params['ComponentType']
           @ComponentValue = params['ComponentValue']
+        end
+      end
+
+      # CreateBatchAdminChangeInvitations请求参数结构体
+      class CreateBatchAdminChangeInvitationsRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param AdminChangeInvitationInfos: 组织机构超管变更信息。
+        # 一次最多支持10条超管变更信息。
+        # @type AdminChangeInvitationInfos: Array
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :AdminChangeInvitationInfos, :Agent
+
+        def initialize(operator=nil, adminchangeinvitationinfos=nil, agent=nil)
+          @Operator = operator
+          @AdminChangeInvitationInfos = adminchangeinvitationinfos
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['AdminChangeInvitationInfos'].nil?
+            @AdminChangeInvitationInfos = []
+            params['AdminChangeInvitationInfos'].each do |i|
+              adminchangeinvitationinfo_tmp = AdminChangeInvitationInfo.new
+              adminchangeinvitationinfo_tmp.deserialize(i)
+              @AdminChangeInvitationInfos << adminchangeinvitationinfo_tmp
+            end
+          end
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # CreateBatchAdminChangeInvitations返回参数结构体
+      class CreateBatchAdminChangeInvitationsResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorMessages: 批量生成企业认证链接的详细错误信息，
+        # 顺序与输入参数保持一致。
+        # 若企业认证均成功生成，则不返回错误信息；
+        # 若存在任何错误，则返回具体的错误描述。
+        # @type ErrorMessages: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorMessages, :RequestId
+
+        def initialize(errormessages=nil, requestid=nil)
+          @ErrorMessages = errormessages
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorMessages = params['ErrorMessages']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBatchAdminChangeInvitationsUrl请求参数结构体
+      class CreateBatchAdminChangeInvitationsUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param NewAdminName: 组织机构要变更的超管姓名。 在超管变更流程中，必须是超管本人进行操作，需要更当前操作人的姓名保持一致。
+        # @type NewAdminName: String
+        # @param NewAdminMobile: 组织机构要变更的超管手机号。
+        # 在超管变更流程中，必须是超管本人进行操作，需要更当前操作人的手机号保持一致。
+
+        # 超管手机号 和超管证件号 二选一 必填。
+
+        # 注意：
+        # 1. 如果新超管的个人身份在电子签进行了手机号的变更，之前提交的超管变更任务将无法获取。
+        # @type NewAdminMobile: String
+        # @param NewAdminIdCardType: 组织机构要变更的超管证件类型支持以下类型
+        # - ID_CARD : 中国大陆居民身份证 (默认值)
+        # -  HONGKONG_AND_MACAO : 中国港澳居民来往内地通行证
+        # - HONGKONG_MACAO_AND_TAIWAN : 中国港澳台居民居住证(格式同中国大陆居民身份证)
+        # 需要更当前操作人的证件类型保持一致。
+        # @type NewAdminIdCardType: String
+        # @param NewAdminIdCardNumber: 组织机构要变更的超管证件号。
+        # 在超管变更流程中，必须是超管本人进行操作，需要更当前操作人的证件号保持一致。
+
+        # 超管手机号和超管证件号 二选一必填。
+        # @type NewAdminIdCardNumber: String
+        # @param NotifyType: 通知方式。
+        #  NONE（默认）
+        #  SMS  - 如果使用这个方式，则会给即将变更的超管发信息。
+        # 注意：
+        # 发送信息的手机号，是用户传递的手机号。
+        # 如果用户同时传递了证件号，手机号会用用户在电子签注册的手机号进行覆盖。
+        # @type NotifyType: String
+        # @param Endpoint: 要跳转的链接类型<ul><li> **HTTP**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链 (默认类型)</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li><li>**QR_CODE**： 跳转电子签小程序的http_url的二维码形式,  可以在页面展示适合此类型</li></ul>
+        # @type Endpoint: String
+
+        attr_accessor :Operator, :NewAdminName, :NewAdminMobile, :NewAdminIdCardType, :NewAdminIdCardNumber, :NotifyType, :Endpoint
+
+        def initialize(operator=nil, newadminname=nil, newadminmobile=nil, newadminidcardtype=nil, newadminidcardnumber=nil, notifytype=nil, endpoint=nil)
+          @Operator = operator
+          @NewAdminName = newadminname
+          @NewAdminMobile = newadminmobile
+          @NewAdminIdCardType = newadminidcardtype
+          @NewAdminIdCardNumber = newadminidcardnumber
+          @NotifyType = notifytype
+          @Endpoint = endpoint
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @NewAdminName = params['NewAdminName']
+          @NewAdminMobile = params['NewAdminMobile']
+          @NewAdminIdCardType = params['NewAdminIdCardType']
+          @NewAdminIdCardNumber = params['NewAdminIdCardNumber']
+          @NotifyType = params['NotifyType']
+          @Endpoint = params['Endpoint']
+        end
+      end
+
+      # CreateBatchAdminChangeInvitationsUrl返回参数结构体
+      class CreateBatchAdminChangeInvitationsUrlResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 批量企业注册链接-单链接包含多条认证流，根据Endpoint的不同设置，返回不同的链接地址。失效时间：7天
+        # 跳转链接, 链接的有效期根据企业,员工状态和终端等有区别, 可以参考下表
+        # <table> <thead> <tr> <th>Endpoint</th> <th>示例</th> <th>链接有效期限</th> </tr> </thead>  <tbody>
+        #  <tr> <td>HTTP</td> <td>https://res.ess.tencent.cn/cdn/h5-activity-dev/jump-mp.html?to=AUTHORIZATION_ENTERPRISE_FOR_BATCH_SUBMIT&shortKey=yDCHHURDfBxSB2rj2Bfa</td> <td>7天</td> </tr>
+        # <tr> <td>HTTP_SHORT_URL</td> <td>https://test.essurl.cn/8gDKUBAWK8</td> <td>7天</td> </tr>
+        # <tr> <td>APP</td> <td>pages/guide/index?to=AUTHORIZATION_ENTERPRISE_FOR_BATCH_SUBMIT&shortKey=yDCHpURDfR6iEkdpsDde</td> <td>7天</td> </tr><tr> <td>QR_CODE</td> <td>https://dyn.test.ess.tencent.cn/imgs/qrcode_urls/authorization_enterprise_for_batch_submit/yDCHHUUckpbdauq9UEjnoFDCCumAMmv1.png</td> <td>7天</td> </tr> </tbody> </table>
+        # 注：
+        # `1.创建的链接应避免被转义，如：&被转义为\u0026；如使用Postman请求后，请选择响应类型为 JSON，否则链接将被转义`
+        # @type Url: String
+        # @param ExpireTime: 链接过期时间，为 7 天后，创建时间，格式为Unix标准时间戳（秒）。
+        # @type ExpireTime: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :ExpireTime, :RequestId
+
+        def initialize(url=nil, expiretime=nil, requestid=nil)
+          @Url = url
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4287,13 +4497,15 @@ module TencentCloud
         # @type PreviewAfterStart: Boolean
         # @param SignAfterStart: 发起成功之后是否签署合同，仅当前经办人作为签署人时生效 <ul><li>（默认） false -否</li> <li> true - 展示签署按钮</li></ul>
         # @type SignAfterStart: Boolean
+        # @param NeedFlowDraft: 发起过程中是否保存草稿
+        # @type NeedFlowDraft: Boolean
 
-        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark, :HideOperationInstructions, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :PreviewAfterStart, :SignAfterStart
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark, :HideOperationInstructions, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :PreviewAfterStart, :SignAfterStart, :NeedFlowDraft
         extend Gem::Deprecate
         deprecate :HideOperationInstructions, :none, 2025, 11
         deprecate :HideOperationInstructions=, :none, 2025, 11
 
-        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil, hideoperationinstructions=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, previewafterstart=nil, signafterstart=nil)
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil, hideoperationinstructions=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, previewafterstart=nil, signafterstart=nil, needflowdraft=nil)
           @CanEditFlow = caneditflow
           @CanEditFormField = caneditformfield
           @HideShowFlowName = hideshowflowname
@@ -4317,6 +4529,7 @@ module TencentCloud
           @HideSignCodeAfterStart = hidesigncodeafterstart
           @PreviewAfterStart = previewafterstart
           @SignAfterStart = signafterstart
+          @NeedFlowDraft = needflowdraft
         end
 
         def deserialize(params)
@@ -4353,6 +4566,7 @@ module TencentCloud
           @HideSignCodeAfterStart = params['HideSignCodeAfterStart']
           @PreviewAfterStart = params['PreviewAfterStart']
           @SignAfterStart = params['SignAfterStart']
+          @NeedFlowDraft = params['NeedFlowDraft']
         end
       end
 
@@ -5803,10 +6017,12 @@ module TencentCloud
 
         # p.s. 如果Endpoint是 APP，传递的跳转地址无效，不会进行跳转，仅会进行回跳。
         # @type JumpEvents: Array
+        # @param OrganizationIdCardType: 企业证照类型：<ul><li> **USCC** :(默认)工商组织营业执照</li><li> **PRACTICELICENSEOFMEDICALINSTITUTION** :医疗机构执业许可证</li></ul>
+        # @type OrganizationIdCardType: String
 
-        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame, :JumpEvents
+        attr_accessor :Operator, :AuthorizationTypes, :OrganizationName, :UniformSocialCreditCode, :LegalName, :AutoJumpUrl, :OrganizationAddress, :AdminName, :AdminMobile, :AdminIdCardNumber, :AdminIdCardType, :UniformSocialCreditCodeSame, :LegalNameSame, :AdminNameSame, :AdminIdCardNumberSame, :AdminMobileSame, :OrganizationNameSame, :BusinessLicense, :Endpoint, :Initialization, :PowerOfAttorneys, :UserData, :BankAccountNumber, :BankAccountNumberSame, :JumpEvents, :OrganizationIdCardType
 
-        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil, jumpevents=nil)
+        def initialize(operator=nil, authorizationtypes=nil, organizationname=nil, uniformsocialcreditcode=nil, legalname=nil, autojumpurl=nil, organizationaddress=nil, adminname=nil, adminmobile=nil, adminidcardnumber=nil, adminidcardtype=nil, uniformsocialcreditcodesame=nil, legalnamesame=nil, adminnamesame=nil, adminidcardnumbersame=nil, adminmobilesame=nil, organizationnamesame=nil, businesslicense=nil, endpoint=nil, initialization=nil, powerofattorneys=nil, userdata=nil, bankaccountnumber=nil, bankaccountnumbersame=nil, jumpevents=nil, organizationidcardtype=nil)
           @Operator = operator
           @AuthorizationTypes = authorizationtypes
           @OrganizationName = organizationname
@@ -5832,6 +6048,7 @@ module TencentCloud
           @BankAccountNumber = bankaccountnumber
           @BankAccountNumberSame = bankaccountnumbersame
           @JumpEvents = jumpevents
+          @OrganizationIdCardType = organizationidcardtype
         end
 
         def deserialize(params)
@@ -5870,6 +6087,7 @@ module TencentCloud
               @JumpEvents << jumpevent_tmp
             end
           end
+          @OrganizationIdCardType = params['OrganizationIdCardType']
         end
       end
 
@@ -6375,6 +6593,7 @@ module TencentCloud
         # <ul>
         # <li>文件Id（通过UploadFiles获取文件资源Id）</li>
         # <li>模板Id（通过控制台创建模板后获取模板Id）</li>
+        # <li>草稿Id（通过嵌入页面保存草稿后获取草稿Id）</li>
         # </ul>
         # 注意：需要同时设置 ResourceType 参数指定资源类型
         # @type ResourceId: String
@@ -6384,7 +6603,9 @@ module TencentCloud
         # @type FlowName: String
         # @param ResourceType: 资源类型，取值有：
         # <ul><li> **1**：模板</li>
-        # <li> **2**：文件（默认值）</li></ul>
+        # <li> **2**：文件（默认值）</li>
+        # <li> **3**：草稿</li>
+        # </ul>
         # @type ResourceType: Integer
         # @param Unordered: 合同流程的签署顺序类型：
         # <ul><li> **false**：(默认)有序签署, 本合同多个参与人需要依次签署 </li>
@@ -6545,20 +6766,24 @@ module TencentCloud
         # @type Url: String
         # @param FlowId: 创建的合同id（还未实际发起），每次调用会生成新的id，用户可以记录此字段对应后续页面发起的合同，若在页面上未成功发起，则此字段无效。
         # @type FlowId: String
+        # @param DraftId: 临时的草稿id（还未实际保存草稿），用户可以记录此字段对应后续页面保存的草稿，若在页面上未保存草稿，则此字段无效。
+        # @type DraftId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Url, :FlowId, :RequestId
+        attr_accessor :Url, :FlowId, :DraftId, :RequestId
 
-        def initialize(url=nil, flowid=nil, requestid=nil)
+        def initialize(url=nil, flowid=nil, draftid=nil, requestid=nil)
           @Url = url
           @FlowId = flowid
+          @DraftId = draftid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Url = params['Url']
           @FlowId = params['FlowId']
+          @DraftId = params['DraftId']
           @RequestId = params['RequestId']
         end
       end
@@ -8979,12 +9204,15 @@ module TencentCloud
         # @type HighRiskCount: Integer
         # @param TotalRiskCount: 合同审查出的风险总数
         # @type TotalRiskCount: Integer
+        # @param ApprovedLists: 通过项信息(详细引文信息)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApprovedLists: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :RequestId
+        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :ApprovedLists, :RequestId
 
-        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, requestid=nil)
+        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, approvedlists=nil, requestid=nil)
           @ChecklistId = checklistid
           @CreatedOn = createdon
           @FinishedOn = finishedon
@@ -8998,6 +9226,7 @@ module TencentCloud
           @UserData = userdata
           @HighRiskCount = highriskcount
           @TotalRiskCount = totalriskcount
+          @ApprovedLists = approvedlists
           @RequestId = requestid
         end
 
@@ -9025,6 +9254,14 @@ module TencentCloud
           @UserData = params['UserData']
           @HighRiskCount = params['HighRiskCount']
           @TotalRiskCount = params['TotalRiskCount']
+          unless params['ApprovedLists'].nil?
+            @ApprovedLists = []
+            params['ApprovedLists'].each do |i|
+              outputreference_tmp = OutputReference.new
+              outputreference_tmp.deserialize(i)
+              @ApprovedLists << outputreference_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -14745,6 +14982,50 @@ module TencentCloud
         end
       end
 
+      # 审查通过项对应的引文信息
+      class OutputReference < TencentCloud::Common::AbstractModel
+        # @param RiskId: 合同审查风险结果ID
+        # @type RiskId: String
+        # @param RiskName: 风险名称
+        # @type RiskName: String
+        # @param RiskDescription: 风险描述
+        # @type RiskDescription: String
+        # @param CategoryName: 风险要点分类名称
+        # @type CategoryName: String
+        # @param RiskBasis: 审查依据
+        # @type RiskBasis: String
+        # @param Excerpts: 引文内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Excerpts: Array
+
+        attr_accessor :RiskId, :RiskName, :RiskDescription, :CategoryName, :RiskBasis, :Excerpts
+
+        def initialize(riskid=nil, riskname=nil, riskdescription=nil, categoryname=nil, riskbasis=nil, excerpts=nil)
+          @RiskId = riskid
+          @RiskName = riskname
+          @RiskDescription = riskdescription
+          @CategoryName = categoryname
+          @RiskBasis = riskbasis
+          @Excerpts = excerpts
+        end
+
+        def deserialize(params)
+          @RiskId = params['RiskId']
+          @RiskName = params['RiskName']
+          @RiskDescription = params['RiskDescription']
+          @CategoryName = params['CategoryName']
+          @RiskBasis = params['RiskBasis']
+          unless params['Excerpts'].nil?
+            @Excerpts = []
+            params['Excerpts'].each do |i|
+              referenceexcerpt_tmp = ReferenceExcerpt.new
+              referenceexcerpt_tmp.deserialize(i)
+              @Excerpts << referenceexcerpt_tmp
+            end
+          end
+        end
+      end
+
       # 合同审查任务识别出的风险结果信息
       class OutputRisk < TencentCloud::Common::AbstractModel
         # @param RiskId: 合同审查风险结果ID
@@ -14771,10 +15052,12 @@ module TencentCloud
         # @type Positions: Array
         # @param RiskBasis: 审查依据
         # @type RiskBasis: String
+        # @param RiskLevelId: 风险等级id
+        # @type RiskLevelId: Integer
 
-        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis
+        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis, :RiskLevelId
 
-        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil)
+        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil, risklevelid=nil)
           @RiskId = riskid
           @RiskName = riskname
           @RiskDescription = riskdescription
@@ -14784,6 +15067,7 @@ module TencentCloud
           @Content = content
           @Positions = positions
           @RiskBasis = riskbasis
+          @RiskLevelId = risklevelid
         end
 
         def deserialize(params)
@@ -14803,6 +15087,7 @@ module TencentCloud
             end
           end
           @RiskBasis = params['RiskBasis']
+          @RiskLevelId = params['RiskLevelId']
         end
       end
 
@@ -15180,6 +15465,30 @@ module TencentCloud
               filledcomponent_tmp.deserialize(i)
               @Components << filledcomponent_tmp
             end
+          end
+        end
+      end
+
+      # 引用的资料
+      class ReferenceExcerpt < TencentCloud::Common::AbstractModel
+        # @param Content: 原文内容
+        # @type Content: String
+        # @param Position: 坐标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: :class:`Tencentcloud::Ess.v20201111.models.PositionInfo`
+
+        attr_accessor :Content, :Position
+
+        def initialize(content=nil, position=nil)
+          @Content = content
+          @Position = position
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          unless params['Position'].nil?
+            @Position = PositionInfo.new
+            @Position.deserialize(params['Position'])
           end
         end
       end

@@ -552,14 +552,14 @@ module TencentCloud
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
         extend Gem::Deprecate
-        deprecate :DedicatedClusterTypeId, :none, 2025, 9
-        deprecate :DedicatedClusterTypeId=, :none, 2025, 9
-        deprecate :SupportedStorageType, :none, 2025, 9
-        deprecate :SupportedStorageType=, :none, 2025, 9
-        deprecate :SupportedUplinkSpeed, :none, 2025, 9
-        deprecate :SupportedUplinkSpeed=, :none, 2025, 9
-        deprecate :SupportedInstanceFamily, :none, 2025, 9
-        deprecate :SupportedInstanceFamily=, :none, 2025, 9
+        deprecate :DedicatedClusterTypeId, :none, 2025, 11
+        deprecate :DedicatedClusterTypeId=, :none, 2025, 11
+        deprecate :SupportedStorageType, :none, 2025, 11
+        deprecate :SupportedStorageType=, :none, 2025, 11
+        deprecate :SupportedUplinkSpeed, :none, 2025, 11
+        deprecate :SupportedUplinkSpeed=, :none, 2025, 11
+        deprecate :SupportedInstanceFamily, :none, 2025, 11
+        deprecate :SupportedInstanceFamily=, :none, 2025, 11
 
         def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil, checkstatus=nil, deliverexpecttime=nil, deliverfinishtime=nil, checkexpecttime=nil, checkfinishtime=nil, ordersla=nil, orderpayplan=nil)
           @DedicatedClusterId = dedicatedclusterid
@@ -1689,8 +1689,8 @@ module TencentCloud
 
         attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
         extend Gem::Deprecate
-        deprecate :HostIp, :none, 2025, 9
-        deprecate :HostIp=, :none, 2025, 9
+        deprecate :HostIp, :none, 2025, 11
+        deprecate :HostIp=, :none, 2025, 11
 
         def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil, hostid=nil)
           @HostIp = hostip

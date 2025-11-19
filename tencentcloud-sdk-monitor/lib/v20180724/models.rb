@@ -391,10 +391,12 @@ module TencentCloud
         # @param Tags: 通知模板绑定的标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @type IsLoginFree: Integer
 
-        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices, :Tags
+        attr_accessor :Id, :Name, :UpdatedAt, :UpdatedBy, :NoticeType, :UserNotices, :URLNotices, :IsPreset, :NoticeLanguage, :PolicyIds, :AMPConsumerId, :CLSNotices, :Tags, :IsLoginFree
 
-        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil, tags=nil)
+        def initialize(id=nil, name=nil, updatedat=nil, updatedby=nil, noticetype=nil, usernotices=nil, urlnotices=nil, ispreset=nil, noticelanguage=nil, policyids=nil, ampconsumerid=nil, clsnotices=nil, tags=nil, isloginfree=nil)
           @Id = id
           @Name = name
           @UpdatedAt = updatedat
@@ -408,6 +410,7 @@ module TencentCloud
           @AMPConsumerId = ampconsumerid
           @CLSNotices = clsnotices
           @Tags = tags
+          @IsLoginFree = isloginfree
         end
 
         def deserialize(params)
@@ -452,6 +455,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsLoginFree = params['IsLoginFree']
         end
       end
 
@@ -1480,10 +1484,12 @@ module TencentCloud
         # @type CLSNotices: Array
         # @param Tags: 模板绑定的标签
         # @type Tags: Array
+        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @type IsLoginFree: Integer
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :UserNotices, :URLNotices, :CLSNotices, :Tags, :IsLoginFree
 
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, tags=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, tags=nil, isloginfree=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -1492,6 +1498,7 @@ module TencentCloud
           @URLNotices = urlnotices
           @CLSNotices = clsnotices
           @Tags = tags
+          @IsLoginFree = isloginfree
         end
 
         def deserialize(params)
@@ -1531,6 +1538,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsLoginFree = params['IsLoginFree']
         end
       end
 
@@ -2123,7 +2131,8 @@ module TencentCloud
         # @type InstanceName: String
         # @param VpcId: VPC ID (私有网络 ID)
         # @type VpcId: String
-        # @param SubnetIds: 子网 ID 数组(VPC ID下的子网 ID，只取第一个)
+        # @param SubnetIds: 子网 ID 数组(VPC ID下的子网 ID，只取第一个)。
+        # 注意：并不是所有可用区都可用（可通过 monitor:DescribePrometheusZones 接口获取可用区状态，选择 ZoneState 和ZoneResourceState 都为1的可用区）
         # @type SubnetIds: Array
         # @param EnableInternet: 是否启用外网
         # @type EnableInternet: Boolean
@@ -11219,10 +11228,12 @@ module TencentCloud
         # @type CLSNotices: Array
         # @param PolicyIds: 告警通知模板绑定的告警策略ID列表
         # @type PolicyIds: Array
+        # @param IsLoginFree: 是否免登录，0-否，1-是
+        # @type IsLoginFree: Integer
 
-        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices, :CLSNotices, :PolicyIds
+        attr_accessor :Module, :Name, :NoticeType, :NoticeLanguage, :NoticeId, :UserNotices, :URLNotices, :CLSNotices, :PolicyIds, :IsLoginFree
 
-        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, policyids=nil)
+        def initialize(_module=nil, name=nil, noticetype=nil, noticelanguage=nil, noticeid=nil, usernotices=nil, urlnotices=nil, clsnotices=nil, policyids=nil, isloginfree=nil)
           @Module = _module
           @Name = name
           @NoticeType = noticetype
@@ -11232,6 +11243,7 @@ module TencentCloud
           @URLNotices = urlnotices
           @CLSNotices = clsnotices
           @PolicyIds = policyids
+          @IsLoginFree = isloginfree
         end
 
         def deserialize(params)
@@ -11265,6 +11277,7 @@ module TencentCloud
             end
           end
           @PolicyIds = params['PolicyIds']
+          @IsLoginFree = params['IsLoginFree']
         end
       end
 

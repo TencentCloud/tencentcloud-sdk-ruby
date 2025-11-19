@@ -89,6 +89,50 @@ module TencentCloud
         end
       end
 
+      # AddClientSubscription请求参数结构体
+      class AddClientSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ClientId: 客户端id
+        # @type ClientId: String
+        # @param TopicFilter: 订阅
+        # @type TopicFilter: String
+        # @param Qos: 服务质量:0,1,2
+        # @type Qos: String
+
+        attr_accessor :InstanceId, :ClientId, :TopicFilter, :Qos
+
+        def initialize(instanceid=nil, clientid=nil, topicfilter=nil, qos=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+          @TopicFilter = topicfilter
+          @Qos = qos
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+          @TopicFilter = params['TopicFilter']
+          @Qos = params['Qos']
+        end
+      end
+
+      # AddClientSubscription返回参数结构体
+      class AddClientSubscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ApplyRegistrationCode请求参数结构体
       class ApplyRegistrationCodeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -1097,6 +1141,46 @@ module TencentCloud
 
       # DeleteCaCertificate返回参数结构体
       class DeleteCaCertificateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteClientSubscription请求参数结构体
+      class DeleteClientSubscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ClientId: 客户端id
+        # @type ClientId: String
+        # @param TopicFilter: 订阅
+        # @type TopicFilter: String
+
+        attr_accessor :InstanceId, :ClientId, :TopicFilter
+
+        def initialize(instanceid=nil, clientid=nil, topicfilter=nil)
+          @InstanceId = instanceid
+          @ClientId = clientid
+          @TopicFilter = topicfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClientId = params['ClientId']
+          @TopicFilter = params['TopicFilter']
+        end
+      end
+
+      # DeleteClientSubscription返回参数结构体
+      class DeleteClientSubscriptionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2181,12 +2265,14 @@ module TencentCloud
         # @type MessageRate: Integer
         # @param TransportLayerSecurity: 服务端tls支持的协议，使用“,”分割。例如：TLSv1.3,TLSv1.2,TLSv1.1,TLSv1
         # @type TransportLayerSecurity: String
+        # @param MessageEnrichmentRuleLimit: 消息属性增强规则配额
+        # @type MessageEnrichmentRuleLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :RequestId
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :RequestId
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, requestid=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, requestid=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -2221,6 +2307,7 @@ module TencentCloud
           @TopicPrefixSlashLimit = topicprefixslashlimit
           @MessageRate = messagerate
           @TransportLayerSecurity = transportlayersecurity
+          @MessageEnrichmentRuleLimit = messageenrichmentrulelimit
           @RequestId = requestid
         end
 
@@ -2259,6 +2346,7 @@ module TencentCloud
           @TopicPrefixSlashLimit = params['TopicPrefixSlashLimit']
           @MessageRate = params['MessageRate']
           @TransportLayerSecurity = params['TransportLayerSecurity']
+          @MessageEnrichmentRuleLimit = params['MessageEnrichmentRuleLimit']
           @RequestId = params['RequestId']
         end
       end

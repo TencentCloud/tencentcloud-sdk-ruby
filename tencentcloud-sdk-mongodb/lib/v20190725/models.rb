@@ -82,6 +82,152 @@ module TencentCloud
         end
       end
 
+      # 审计实例信息
+      class AuditInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。
+        # @type InstanceId: String
+        # @param AuditStatus: 审计状态。
+        # @type AuditStatus: String
+        # @param AuditTask: 是否存在审计任务，0：无任务，1：创建中，2：关闭中
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditTask: Integer
+        # @param LogExpireDay: 审计日志过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogExpireDay: Integer
+        # @param HighLogExpireDay: 高频日志过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighLogExpireDay: Integer
+        # @param LowLogExpireDay: 低频日志过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLogExpireDay: Integer
+        # @param BillingAmount: 费用信息。
+        # @type BillingAmount: Float
+        # @param HighRealStorage: 高频存储容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HighRealStorage: Float
+        # @param LowRealStorage: 低频存储容量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowRealStorage: Float
+        # @param InstanceInfo: 实例详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceInfo: :class:`Tencentcloud::Mongodb.v20190725.models.InstanceInfo`
+        # @param PerformancesAnalyse: 性能分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PerformancesAnalyse: Integer
+        # @param AuditAll: true表示全审计，false表示规则审计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditAll: Boolean
+        # @param CreateAt: 实例审计最近一次的开通时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateAt: String
+        # @param RuleTemplateIds: 实例绑定的规则模版ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateIds: Array
+        # @param Deliver: 是否开启投递：ON，OFF
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Deliver: String
+        # @param DeliverSummary: 日志投递信息
+        # @type DeliverSummary: Array
+        # @param OldRule: 旧规则
+        # @type OldRule: Boolean
+        # @param RealStorage: 实际存储容量
+        # @type RealStorage: Float
+
+        attr_accessor :InstanceId, :AuditStatus, :AuditTask, :LogExpireDay, :HighLogExpireDay, :LowLogExpireDay, :BillingAmount, :HighRealStorage, :LowRealStorage, :InstanceInfo, :PerformancesAnalyse, :AuditAll, :CreateAt, :RuleTemplateIds, :Deliver, :DeliverSummary, :OldRule, :RealStorage
+
+        def initialize(instanceid=nil, auditstatus=nil, audittask=nil, logexpireday=nil, highlogexpireday=nil, lowlogexpireday=nil, billingamount=nil, highrealstorage=nil, lowrealstorage=nil, instanceinfo=nil, performancesanalyse=nil, auditall=nil, createat=nil, ruletemplateids=nil, deliver=nil, deliversummary=nil, oldrule=nil, realstorage=nil)
+          @InstanceId = instanceid
+          @AuditStatus = auditstatus
+          @AuditTask = audittask
+          @LogExpireDay = logexpireday
+          @HighLogExpireDay = highlogexpireday
+          @LowLogExpireDay = lowlogexpireday
+          @BillingAmount = billingamount
+          @HighRealStorage = highrealstorage
+          @LowRealStorage = lowrealstorage
+          @InstanceInfo = instanceinfo
+          @PerformancesAnalyse = performancesanalyse
+          @AuditAll = auditall
+          @CreateAt = createat
+          @RuleTemplateIds = ruletemplateids
+          @Deliver = deliver
+          @DeliverSummary = deliversummary
+          @OldRule = oldrule
+          @RealStorage = realstorage
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AuditStatus = params['AuditStatus']
+          @AuditTask = params['AuditTask']
+          @LogExpireDay = params['LogExpireDay']
+          @HighLogExpireDay = params['HighLogExpireDay']
+          @LowLogExpireDay = params['LowLogExpireDay']
+          @BillingAmount = params['BillingAmount']
+          @HighRealStorage = params['HighRealStorage']
+          @LowRealStorage = params['LowRealStorage']
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceInfo.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @PerformancesAnalyse = params['PerformancesAnalyse']
+          @AuditAll = params['AuditAll']
+          @CreateAt = params['CreateAt']
+          @RuleTemplateIds = params['RuleTemplateIds']
+          @Deliver = params['Deliver']
+          unless params['DeliverSummary'].nil?
+            @DeliverSummary = []
+            params['DeliverSummary'].each do |i|
+              deliversummary_tmp = DeliverSummary.new
+              deliversummary_tmp.deserialize(i)
+              @DeliverSummary << deliversummary_tmp
+            end
+          end
+          @OldRule = params['OldRule']
+          @RealStorage = params['RealStorage']
+        end
+      end
+
+      # 审计日志过滤条件
+      class AuditLogFilter < TencentCloud::Common::AbstractModel
+        # @param Host: 客户端地址。
+        # @type Host: Array
+        # @param User: 用户名。
+        # @type User: Array
+        # @param ExecTime: 执行时间。单位为：ms。表示筛选执行时间大于该值的审计日志。
+        # @type ExecTime: Integer
+        # @param AffectRows: 影响行数。表示筛选影响行数大于该值的审计日志。
+        # @type AffectRows: Integer
+        # @param Atype: 操作类型。
+        # @type Atype: Array
+        # @param Result: 执行结果。
+        # @type Result: Array
+        # @param Param: 根据此关键字过滤日志
+        # @type Param: Array
+
+        attr_accessor :Host, :User, :ExecTime, :AffectRows, :Atype, :Result, :Param
+
+        def initialize(host=nil, user=nil, exectime=nil, affectrows=nil, atype=nil, result=nil, param=nil)
+          @Host = host
+          @User = user
+          @ExecTime = exectime
+          @AffectRows = affectrows
+          @Atype = atype
+          @Result = result
+          @Param = param
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @User = params['User']
+          @ExecTime = params['ExecTime']
+          @AffectRows = params['AffectRows']
+          @Atype = params['Atype']
+          @Result = params['Result']
+          @Param = params['Param']
+        end
+      end
+
       # 用户权限
       class Auth < TencentCloud::Common::AbstractModel
         # @param Mask: 当前账号具有的权限信息。
@@ -366,6 +512,67 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAuditLogFile请求参数结构体
+      class CreateAuditLogFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cmgo-xfts****，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，格式为："2021-07-12 10:29:20"。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式为："2021-07-12 10:39:20"。
+        # @type EndTime: String
+        # @param Order: 审计日志文件的排序方式。
+        # <ul><li>ASC：升序。</li><li>DESC：降序。</li></ul>
+        # @type Order: String
+        # @param OrderBy: 审计日志文件的排序字段。当前支持的取值包括：
+        # <ul><li>timestamp：时间戳。</li><li>affectRows：影响行数。</li><li>execTime：执行时间。</li></ul>
+        # @type OrderBy: String
+        # @param Filter: 过滤条件。可按设置的过滤条件过滤审计日志。
+        # @type Filter: :class:`Tencentcloud::Mongodb.v20190725.models.AuditLogFilter`
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @OrderBy = orderby
+          @Filter = filter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+          unless params['Filter'].nil?
+            @Filter = AuditLogFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+        end
+      end
+
+      # CreateAuditLogFile返回参数结构体
+      class CreateAuditLogFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileName: 审计日志文件名称。
+        # @type FileName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileName, :RequestId
+
+        def initialize(filename=nil, requestid=nil)
+          @FileName = filename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
           @RequestId = params['RequestId']
         end
       end
@@ -1206,6 +1413,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAuditLogFile请求参数结构体
+      class DeleteAuditLogFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-test1234，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param FileName: 审计日志文件名称，须保证文件名的准确性。
+        # @type FileName: String
+
+        attr_accessor :InstanceId, :FileName
+
+        def initialize(instanceid=nil, filename=nil)
+          @InstanceId = instanceid
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @FileName = params['FileName']
+        end
+      end
+
+      # DeleteAuditLogFile返回参数结构体
+      class DeleteAuditLogFileResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLogDownloadTask请求参数结构体
       class DeleteLogDownloadTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -1243,6 +1486,26 @@ module TencentCloud
         def deserialize(params)
           @Status = params['Status']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 日志投递信息
+      class DeliverSummary < TencentCloud::Common::AbstractModel
+        # @param DeliverType: 投递类型，store（存储类），mq（消息通道）
+        # @type DeliverType: String
+        # @param DeliverSubType: 投递子类型：cls，ckafka。
+        # @type DeliverSubType: String
+
+        attr_accessor :DeliverType, :DeliverSubType
+
+        def initialize(delivertype=nil, deliversubtype=nil)
+          @DeliverType = delivertype
+          @DeliverSubType = deliversubtype
+        end
+
+        def deserialize(params)
+          @DeliverType = params['DeliverType']
+          @DeliverSubType = params['DeliverSubType']
         end
       end
 
@@ -1329,6 +1592,77 @@ module TencentCloud
           @Status = params['Status']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditInstanceList请求参数结构体
+      class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
+        # @param AuditSwitch: 指明待查询的实例为已开通审计或未开通审计。<ul><li>1：已开通审计功能。</li><li>0：未开通审计功能。</li></ul>
+        # @type AuditSwitch: Integer
+        # @param Filters: 筛选条件。
+        # @type Filters: Array
+        # @param AuditMode: 审计类型，不传 默认全部，0 全审计，1 规则审计
+        # @type AuditMode: Integer
+        # @param Limit: 每页显示数量。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+
+        attr_accessor :AuditSwitch, :Filters, :AuditMode, :Limit, :Offset
+
+        def initialize(auditswitch=nil, filters=nil, auditmode=nil, limit=nil, offset=nil)
+          @AuditSwitch = auditswitch
+          @Filters = filters
+          @AuditMode = auditmode
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @AuditSwitch = params['AuditSwitch']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+          @AuditMode = params['AuditMode']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeAuditInstanceList返回参数结构体
+      class DescribeAuditInstanceListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 实例总数。
+        # @type TotalCount: Integer
+        # @param Items: 审计实例详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditinstance_tmp = AuditInstance.new
+              auditinstance_tmp.deserialize(i)
+              @Items << auditinstance_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2943,6 +3277,29 @@ module TencentCloud
         end
       end
 
+      # 过滤条件
+      class Filters < TencentCloud::Common::AbstractModel
+        # @param Name: 搜索字段，目前支持：
+        # "InstanceId"：实例Id，例如：cmgo-****）
+        # "InstanceName"：实例名称
+        # "ClusterId"：实例组Id，例如：cmgo-****
+        # @type Name: String
+        # @param Values: 筛选值
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # FlashBackDBInstance请求参数结构体
       class FlashBackDBInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 开启按 Key 回档的实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制需开启按 Key 回档的实例 ID。
@@ -3656,6 +4013,90 @@ module TencentCloud
         end
       end
 
+      # 实例信息详情
+      class InstanceInfo < TencentCloud::Common::AbstractModel
+        # @param AuditLogExpireDay: 审计日志保存时长。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditLogExpireDay: Integer
+        # @param AuditStatus: 审计状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditStatus: String
+        # @param InstanceId: 实例 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param InstanceRole: 实例角色。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRole: String
+        # @param InstanceType: 实例类型。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param MongodbVersion: 数据库版本。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MongodbVersion: String
+        # @param ProjectId: 项目 ID。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param Region: 地域。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Status: 实例状态。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param SupportAudit: 是否支持审计。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportAudit: Boolean
+        # @param Zone: 可用区。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param TagList: 标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagList: Array
+
+        attr_accessor :AuditLogExpireDay, :AuditStatus, :InstanceId, :InstanceName, :InstanceRole, :InstanceType, :MongodbVersion, :ProjectId, :Region, :Status, :SupportAudit, :Zone, :TagList
+
+        def initialize(auditlogexpireday=nil, auditstatus=nil, instanceid=nil, instancename=nil, instancerole=nil, instancetype=nil, mongodbversion=nil, projectid=nil, region=nil, status=nil, supportaudit=nil, zone=nil, taglist=nil)
+          @AuditLogExpireDay = auditlogexpireday
+          @AuditStatus = auditstatus
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceRole = instancerole
+          @InstanceType = instancetype
+          @MongodbVersion = mongodbversion
+          @ProjectId = projectid
+          @Region = region
+          @Status = status
+          @SupportAudit = supportaudit
+          @Zone = zone
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @AuditLogExpireDay = params['AuditLogExpireDay']
+          @AuditStatus = params['AuditStatus']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceRole = params['InstanceRole']
+          @InstanceType = params['InstanceType']
+          @MongodbVersion = params['MongodbVersion']
+          @ProjectId = params['ProjectId']
+          @Region = params['Region']
+          @Status = params['Status']
+          @SupportAudit = params['SupportAudit']
+          @Zone = params['Zone']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+        end
+      end
+
       # 实例可修改参数 Integer 类型集合。
       class InstanceIntegerParam < TencentCloud::Common::AbstractModel
         # @param CurrentValue: 参数当前值。
@@ -3927,6 +4368,30 @@ module TencentCloud
         end
       end
 
+      # 过滤条件
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤条件名称
+        # @type Type: String
+        # @param Compare: 过滤条件匹配类型，注意：此参数取值只能等于EQ
+        # @type Compare: String
+        # @param Value: 过滤条件匹配值
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
+        end
+      end
+
       # 日志详情
       class LogInfo < TencentCloud::Common::AbstractModel
         # @param LogComponent: 日志类别
@@ -3966,6 +4431,57 @@ module TencentCloud
           @LogDetail = params['LogDetail']
           @LogConnection = params['LogConnection']
           @LogId = params['LogId']
+        end
+      end
+
+      # ModifyAuditService请求参数结构体
+      class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-xfts****，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param LogExpireDay: 审计日志保存时长。单位为：天。当前支持的取值包括： 7： 一周。 30： 一个月。 90： 三个月。 180 ： 六个月。 365 ： 一年。 1095 ： 三年。 1825 ： 五年。
+        # @type LogExpireDay: Integer
+        # @param AuditAll: true-全审计，false-规则审计，注意：AuditAll=true 时，RuleFilters 无需填参
+        # @type AuditAll: Boolean
+        # @param RuleFilters: 审计过滤规则，Type的范围【SrcIp、DB、Collection、User、SqlType】，注意：Type=SqlType时，Value必须在这个范围 ["query", "insert", "update", "delete", "command"]
+        # @type RuleFilters: Array
+
+        attr_accessor :InstanceId, :LogExpireDay, :AuditAll, :RuleFilters
+
+        def initialize(instanceid=nil, logexpireday=nil, auditall=nil, rulefilters=nil)
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @AuditAll = auditall
+          @RuleFilters = rulefilters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @AuditAll = params['AuditAll']
+          unless params['RuleFilters'].nil?
+            @RuleFilters = []
+            params['RuleFilters'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @RuleFilters << logfilter_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyAuditService返回参数结构体
+      class ModifyAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -4458,6 +4974,57 @@ module TencentCloud
 
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OpenAuditService请求参数结构体
+      class OpenAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cmgo-xfts****，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param LogExpireDay: 审计日志保存时长。单位为：天。当前支持的取值包括： 7： 一周。 30： 一个月。 90： 三个月。 180 ： 六个月。 365 ： 一年。 1095 ： 三年。 1825 ： 五年。
+        # @type LogExpireDay: Integer
+        # @param AuditAll: true-全审计，false-规则审计，注意：AuditAll=true 时，RuleFilters 无需填参
+        # @type AuditAll: Boolean
+        # @param RuleFilters: 审计过滤规则，Type的范围【SrcIp、DB、Collection、User、SqlType】，注意：Type=SqlType时，Value必须在这个范围 ["query", "insert", "update", "delete", "command"]
+        # @type RuleFilters: Array
+
+        attr_accessor :InstanceId, :LogExpireDay, :AuditAll, :RuleFilters
+
+        def initialize(instanceid=nil, logexpireday=nil, auditall=nil, rulefilters=nil)
+          @InstanceId = instanceid
+          @LogExpireDay = logexpireday
+          @AuditAll = auditall
+          @RuleFilters = rulefilters
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @LogExpireDay = params['LogExpireDay']
+          @AuditAll = params['AuditAll']
+          unless params['RuleFilters'].nil?
+            @RuleFilters = []
+            params['RuleFilters'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @RuleFilters << logfilter_tmp
+            end
+          end
+        end
+      end
+
+      # OpenAuditService返回参数结构体
+      class OpenAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

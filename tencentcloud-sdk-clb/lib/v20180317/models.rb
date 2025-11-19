@@ -1355,7 +1355,7 @@ module TencentCloud
         # @type KeepaliveEnable: Integer
         # @param EndPort: 创建端口段监听器时必须传入此参数，用以标识结束端口。同时，入参Ports只允许传入一个成员，用以标识开始端口。【如果您需要体验端口段功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】。
         # @type EndPort: Integer
-        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给两端（客户端和服务器），此参数仅适用于TCP监听器。
+        # @param DeregisterTargetRst: 重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。
         # @type DeregisterTargetRst: Boolean
         # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书，参数限制如下：
         # <li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li>
@@ -1369,8 +1369,7 @@ module TencentCloud
         # @type IdleConnectTimeout: Integer
         # @param ProxyProtocol: TCP_SSL和QUIC是否支持PP
         # @type ProxyProtocol: Boolean
-        # @param SnatEnable: 是否开启SNAT，True（开启）、False（关闭）。
-        # 默认为关闭。
+        # @param SnatEnable: 是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时`透传客户端源IP`选项关闭，反之亦然。
         # @type SnatEnable: Boolean
         # @param FullEndPorts: 全端口段监听器的结束端口，端口范围：2 - 65535
         # @type FullEndPorts: Array
@@ -5099,7 +5098,7 @@ module TencentCloud
         # @type KeepaliveEnable: Integer
         # @param Toa: 仅支持Nat64 CLB TCP监听器
         # @type Toa: Boolean
-        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，（此参数仅对于TCP监听器有意义）。
+        # @param DeregisterTargetRst: 重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。
         # @type DeregisterTargetRst: Boolean
         # @param AttrFlags: 监听器的属性
         # @type AttrFlags: Array
@@ -6349,9 +6348,7 @@ module TencentCloud
         # 默认值0表示不开启，1表示开启。
         # 若后端服务对连接数上限有限制，则建议谨慎开启。此功能目前处于内测中，如需使用，请提交 [内测申请](https://cloud.tencent.com/apply/p/tsodp6qm21)。
         # @type KeepaliveEnable: Integer
-        # @param DeregisterTargetRst: 解绑后端目标时，是否发RST给客户端，此参数仅适用于TCP监听器。
-        # True表示发送 RST 给客户端，False表示不发送 RST 给客户端。
-        # 不传则表示不修改。
+        # @param DeregisterTargetRst: 重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。
         # @type DeregisterTargetRst: Boolean
         # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。
         # 使用场景：适用于TCP/UDP/TCP_SSL/QUIC监听器。
@@ -6369,8 +6366,7 @@ module TencentCloud
         # @type IdleConnectTimeout: Integer
         # @param ProxyProtocol: TCP_SSL和QUIC是否支持PP
         # @type ProxyProtocol: Boolean
-        # @param SnatEnable: 是否开启SNAT， True 表示开启 SNAT，False 表示不开启 SNAT。
-        # 不传则表示不修改。
+        # @param SnatEnable: 是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时`透传客户端源IP`选项关闭，反之亦然。
         # @type SnatEnable: Boolean
         # @param DataCompressMode: 数据压缩模式
         # @type DataCompressMode: String

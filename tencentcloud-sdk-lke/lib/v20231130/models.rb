@@ -1041,10 +1041,12 @@ module TencentCloud
         # @type Query: Array
         # @param FinanceStatus: 工具计费状态 0-不计费 1-可用 2-不可用（欠费、无资源等）
         # @type FinanceStatus: Integer
+        # @param ToolSource: 工具来源: 0-来自插件，1-来自工作流
+        # @type ToolSource: Integer
 
-        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus
+        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource
 
-        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil)
+        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil)
           @PluginId = pluginid
           @PluginName = pluginname
           @IconUrl = iconurl
@@ -1062,6 +1064,7 @@ module TencentCloud
           @CallingMethod = callingmethod
           @Query = query
           @FinanceStatus = financestatus
+          @ToolSource = toolsource
         end
 
         def deserialize(params)
@@ -1113,6 +1116,7 @@ module TencentCloud
             end
           end
           @FinanceStatus = params['FinanceStatus']
+          @ToolSource = params['ToolSource']
         end
       end
 
@@ -1839,10 +1843,13 @@ module TencentCloud
         # @param Children: 子分类
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
+        # @param IsLeaf: 是否为叶子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLeaf: Boolean
 
-        attr_accessor :CateBizId, :Name, :Total, :CanAdd, :CanEdit, :CanDelete, :Children
+        attr_accessor :CateBizId, :Name, :Total, :CanAdd, :CanEdit, :CanDelete, :Children, :IsLeaf
 
-        def initialize(catebizid=nil, name=nil, total=nil, canadd=nil, canedit=nil, candelete=nil, children=nil)
+        def initialize(catebizid=nil, name=nil, total=nil, canadd=nil, canedit=nil, candelete=nil, children=nil, isleaf=nil)
           @CateBizId = catebizid
           @Name = name
           @Total = total
@@ -1850,6 +1857,7 @@ module TencentCloud
           @CanEdit = canedit
           @CanDelete = candelete
           @Children = children
+          @IsLeaf = isleaf
         end
 
         def deserialize(params)
@@ -1867,6 +1875,7 @@ module TencentCloud
               @Children << cateinfo_tmp
             end
           end
+          @IsLeaf = params['IsLeaf']
         end
       end
 
@@ -2593,8 +2602,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 10
-        deprecate :EmbeddingModel=, :none, 2025, 10
+        deprecate :EmbeddingModel, :none, 2025, 11
+        deprecate :EmbeddingModel=, :none, 2025, 11
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -7054,10 +7063,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 10
-        deprecate :EmbeddingModel=, :none, 2025, 10
-        deprecate :QaExtractModel, :none, 2025, 10
-        deprecate :QaExtractModel=, :none, 2025, 10
+        deprecate :EmbeddingModel, :none, 2025, 11
+        deprecate :EmbeddingModel=, :none, 2025, 11
+        deprecate :QaExtractModel, :none, 2025, 11
+        deprecate :QaExtractModel=, :none, 2025, 11
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -7338,8 +7347,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2025, 10
-        deprecate :BotBizId=, :none, 2025, 10
+        deprecate :BotBizId, :none, 2025, 11
+        deprecate :BotBizId=, :none, 2025, 11
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid
@@ -7395,15 +7404,35 @@ module TencentCloud
       class ListDocCateRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
         # @type BotBizId: String
+        # @param QueryType: 分类查询类型：0-全量查询整棵标签树，1-根据父节点BizId分页查询子节点，2-关键词检索所有匹配的分类链路
+        # @type QueryType: Integer
+        # @param ParentCateBizId: QueryType=1时，父节点分类ID
+        # @type ParentCateBizId: String
+        # @param PageNumber: QueryType=1时，页码（从1开始）
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量（默认10）
+        # @type PageSize: Integer
+        # @param Query: QueryType=2时，搜索内容
+        # @type Query: String
 
-        attr_accessor :BotBizId
+        attr_accessor :BotBizId, :QueryType, :ParentCateBizId, :PageNumber, :PageSize, :Query
 
-        def initialize(botbizid=nil)
+        def initialize(botbizid=nil, querytype=nil, parentcatebizid=nil, pagenumber=nil, pagesize=nil, query=nil)
           @BotBizId = botbizid
+          @QueryType = querytype
+          @ParentCateBizId = parentcatebizid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
+          @QueryType = params['QueryType']
+          @ParentCateBizId = params['ParentCateBizId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
         end
       end
 
@@ -7783,15 +7812,35 @@ module TencentCloud
       class ListQACateRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
         # @type BotBizId: String
+        # @param QueryType: 分类查询类型：0-全量查询整棵标签树，1-根据父节点BizId分页查询子节点，2-关键词检索所有匹配的分类链路
+        # @type QueryType: Integer
+        # @param ParentCateBizId: QueryType=1时，父节点分类ID
+        # @type ParentCateBizId: String
+        # @param PageNumber: QueryType=1时，页码（从1开始）
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量（默认10）
+        # @type PageSize: Integer
+        # @param Query: QueryType=2时，搜索内容
+        # @type Query: String
 
-        attr_accessor :BotBizId
+        attr_accessor :BotBizId, :QueryType, :ParentCateBizId, :PageNumber, :PageSize, :Query
 
-        def initialize(botbizid=nil)
+        def initialize(botbizid=nil, querytype=nil, parentcatebizid=nil, pagenumber=nil, pagesize=nil, query=nil)
           @BotBizId = botbizid
+          @QueryType = querytype
+          @ParentCateBizId = parentcatebizid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
         end
 
         def deserialize(params)
           @BotBizId = params['BotBizId']
+          @QueryType = params['QueryType']
+          @ParentCateBizId = params['ParentCateBizId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
         end
       end
 
@@ -10509,10 +10558,13 @@ module TencentCloud
         # @param Children: 子分类
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Children: Array
+        # @param IsLeaf: 是否是叶子节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLeaf: Boolean
 
-        attr_accessor :CateBizId, :Name, :Total, :CanAdd, :CanEdit, :CanDelete, :Children
+        attr_accessor :CateBizId, :Name, :Total, :CanAdd, :CanEdit, :CanDelete, :Children, :IsLeaf
 
-        def initialize(catebizid=nil, name=nil, total=nil, canadd=nil, canedit=nil, candelete=nil, children=nil)
+        def initialize(catebizid=nil, name=nil, total=nil, canadd=nil, canedit=nil, candelete=nil, children=nil, isleaf=nil)
           @CateBizId = catebizid
           @Name = name
           @Total = total
@@ -10520,6 +10572,7 @@ module TencentCloud
           @CanEdit = canedit
           @CanDelete = candelete
           @Children = children
+          @IsLeaf = isleaf
         end
 
         def deserialize(params)
@@ -10537,6 +10590,7 @@ module TencentCloud
               @Children << qacate_tmp
             end
           end
+          @IsLeaf = params['IsLeaf']
         end
       end
 
@@ -10669,14 +10723,17 @@ module TencentCloud
         # @type Score: Integer
         # @param Reasons: 原因，只有Score参数为2即点踩的时候才需要输入
         # @type Reasons: Array
+        # @param FeedbackContent: 用户自定义反馈内容
+        # @type FeedbackContent: String
 
-        attr_accessor :BotAppKey, :RecordId, :Score, :Reasons
+        attr_accessor :BotAppKey, :RecordId, :Score, :Reasons, :FeedbackContent
 
-        def initialize(botappkey=nil, recordid=nil, score=nil, reasons=nil)
+        def initialize(botappkey=nil, recordid=nil, score=nil, reasons=nil, feedbackcontent=nil)
           @BotAppKey = botappkey
           @RecordId = recordid
           @Score = score
           @Reasons = reasons
+          @FeedbackContent = feedbackcontent
         end
 
         def deserialize(params)
@@ -10684,6 +10741,7 @@ module TencentCloud
           @RecordId = params['RecordId']
           @Score = params['Score']
           @Reasons = params['Reasons']
+          @FeedbackContent = params['FeedbackContent']
         end
       end
 
@@ -12213,10 +12271,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param Operator: 操作人
         # @type Operator: String
+        # @param FeedbackContent: 自定义反馈
+        # @type FeedbackContent: String
 
-        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator
+        attr_accessor :ReplyBizId, :RecordBizId, :Question, :Answer, :Reasons, :Status, :CreateTime, :UpdateTime, :Operator, :FeedbackContent
 
-        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil, status=nil, createtime=nil, updatetime=nil, operator=nil)
+        def initialize(replybizid=nil, recordbizid=nil, question=nil, answer=nil, reasons=nil, status=nil, createtime=nil, updatetime=nil, operator=nil, feedbackcontent=nil)
           @ReplyBizId = replybizid
           @RecordBizId = recordbizid
           @Question = question
@@ -12226,6 +12286,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @Operator = operator
+          @FeedbackContent = feedbackcontent
         end
 
         def deserialize(params)
@@ -12238,6 +12299,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @Operator = params['Operator']
+          @FeedbackContent = params['FeedbackContent']
         end
       end
 

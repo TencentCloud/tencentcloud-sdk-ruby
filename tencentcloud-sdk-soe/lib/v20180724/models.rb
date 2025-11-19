@@ -657,8 +657,8 @@ module TencentCloud
 
         attr_accessor :SeqId, :IsEnd, :VoiceFileType, :VoiceEncodeType, :UserVoiceData, :SessionId, :RefText, :WorkMode, :EvalMode, :ScoreCoeff, :SoeAppId, :StorageMode, :SentenceInfoEnabled, :ServerType, :IsAsync, :IsQuery, :TextMode, :Keyword, :COSBucketURL
         extend Gem::Deprecate
-        deprecate :StorageMode, :none, 2025, 4
-        deprecate :StorageMode=, :none, 2025, 4
+        deprecate :StorageMode, :none, 2025, 11
+        deprecate :StorageMode=, :none, 2025, 11
 
         def initialize(seqid=nil, isend=nil, voicefiletype=nil, voiceencodetype=nil, uservoicedata=nil, sessionid=nil, reftext=nil, workmode=nil, evalmode=nil, scorecoeff=nil, soeappid=nil, storagemode=nil, sentenceinfoenabled=nil, servertype=nil, isasync=nil, isquery=nil, textmode=nil, keyword=nil, cosbucketurl=nil)
           @SeqId = seqid
@@ -739,8 +739,8 @@ module TencentCloud
 
         attr_accessor :PronAccuracy, :PronFluency, :PronCompletion, :Words, :SessionId, :AudioUrl, :SentenceInfoSet, :Status, :SuggestedScore, :RefTextId, :KeyWordHits, :UnKeyWordHits, :RequestId
         extend Gem::Deprecate
-        deprecate :AudioUrl, :none, 2025, 4
-        deprecate :AudioUrl=, :none, 2025, 4
+        deprecate :AudioUrl, :none, 2025, 11
+        deprecate :AudioUrl=, :none, 2025, 11
 
         def initialize(pronaccuracy=nil, pronfluency=nil, proncompletion=nil, words=nil, sessionid=nil, audiourl=nil, sentenceinfoset=nil, status=nil, suggestedscore=nil, reftextid=nil, keywordhits=nil, unkeywordhits=nil, requestid=nil)
           @PronAccuracy = pronaccuracy

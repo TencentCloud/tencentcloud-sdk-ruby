@@ -12390,37 +12390,37 @@ module TencentCloud
 
       # 查询kafka的zone信息返回的实体
       class ZoneResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneList: zone列表
+        # @param ZoneList: <p>zone列表</p>
         # @type ZoneList: Array
-        # @param MaxBuyInstanceNum: 最大购买实例个数
+        # @param MaxBuyInstanceNum: <p>最大购买实例个数</p>
         # @type MaxBuyInstanceNum: Integer
-        # @param MaxBandwidth: 最大购买带宽 单位Mb/s
+        # @param MaxBandwidth: <p>最大购买带宽 单位Mb/s</p>
         # @type MaxBandwidth: Integer
-        # @param UnitPrice: 后付费单位价格
+        # @param UnitPrice: <p>后付费单位价格</p>
         # @type UnitPrice: :class:`Tencentcloud::Ckafka.v20190819.models.Price`
-        # @param MessagePrice: 后付费消息单价
+        # @param MessagePrice: <p>后付费消息单价</p>
         # @type MessagePrice: :class:`Tencentcloud::Ckafka.v20190819.models.Price`
-        # @param ClusterInfo: 用户独占集群信息
+        # @param ClusterInfo: <p>用户独占集群信息</p>
         # @type ClusterInfo: Array
-        # @param Standard: 购买标准版配置
+        # @param Standard: <p>购买标准版配置</p>
         # @type Standard: String
-        # @param StandardS2: 购买标准版S2配置
+        # @param StandardS2: <p>购买标准版S2配置</p>
         # @type StandardS2: String
-        # @param Profession: 购买专业版配置
+        # @param Profession: <p>购买专业版配置</p>
         # @type Profession: String
-        # @param Physical: 购买物理独占版配置
+        # @param Physical: <p>购买物理独占版配置</p>
         # @type Physical: String
-        # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写   已废弃,无实际意义
+        # @param PublicNetwork: <p>公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写   已废弃,无实际意义</p>
         # @type PublicNetwork: String
-        # @param PublicNetworkLimit: 公网带宽配置
+        # @param PublicNetworkLimit: <p>公网带宽配置</p>
         # @type PublicNetworkLimit: String
-        # @param RequestId: 请求Id
+        # @param RequestId: <p>请求Id</p>
         # @type RequestId: String
-        # @param Offset: 分页offset
+        # @param Offset: <p>分页offset</p>
         # @type Offset: Integer
-        # @param Limit: 分页limit
+        # @param Limit: <p>分页limit</p>
         # @type Limit: Integer
-        # @param ForceCheckTag: 是否必须录入tag
+        # @param ForceCheckTag: <p>是否必须录入tag</p>
         # @type ForceCheckTag: Boolean
 
         attr_accessor :ZoneList, :MaxBuyInstanceNum, :MaxBandwidth, :UnitPrice, :MessagePrice, :ClusterInfo, :Standard, :StandardS2, :Profession, :Physical, :PublicNetwork, :PublicNetworkLimit, :RequestId, :Offset, :Limit, :ForceCheckTag

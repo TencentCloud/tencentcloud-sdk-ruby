@@ -1394,13 +1394,20 @@ module TencentCloud
         # 该参数传false表示关闭合规提示音。该参数传false则代表您知晓并同意以下协议：
         # 我方充分知悉和理解，根据[《网络安全法》](https://www.cac.gov.cn/2016-11/07/c_1119867116.htm)[《互联网信息服务深度合成管理规定》](https://www.gov.cn/zhengce/zhengceku/2022-12/12/content_5731431.htm)[《生成式人工智能服务管理暂行办法》](https://www.gov.cn/zhengce/zhengceku/202307/content_6891752.htm)[《人工智能生成合成内容标识办法》](https://www.gov.cn/zhengce/zhengceku/202503/content_7014286.htm)的法律法规的规定，对人工智能生成合成内容应当添加显式标识和隐式标识。我方基于业务需求，请腾讯云对生成合成内容不添加显式标识，我方承诺合法合规使用生成合成内容，避免造成混淆、误认；如果使用生成合成内容对公众提供服务的，或通过网络传播的，我方将自觉主动添加符合法律规定和国家标准要求的显式标识，承担人工智能生成合成内容标识的法律义务。我方未能恰当、合理地履行人工智能内容标识义务造成不良后果的，或遭受主管部门责罚的，相关责任由我方完全承担。
         # @type EnableComplianceAudio: Boolean
+        # @param EnableVoicemailDetection: 是否开启语音信箱识别
+        # @type EnableVoicemailDetection: Boolean
+        # @param VoicemailAction: 识别到对端为语音信箱时的行为，当EnableVoicemailDetection为True时生效
+        # 0: 挂断电话（默认）
+        # @type VoicemailAction: Integer
+        # @param LLMExtraBody: 大模型拓展参数， 格式为json字符串
+        # @type LLMExtraBody: String
 
-        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio
+        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody
         extend Gem::Deprecate
         deprecate :PromptVariables, :none, 2025, 11
         deprecate :PromptVariables=, :none, 2025, 11
 
-        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil)
+        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @LLMType = llmtype
@@ -1434,6 +1441,9 @@ module TencentCloud
           @VadLevel = vadlevel
           @ToneWord = toneword
           @EnableComplianceAudio = enablecomplianceaudio
+          @EnableVoicemailDetection = enablevoicemaildetection
+          @VoicemailAction = voicemailaction
+          @LLMExtraBody = llmextrabody
         end
 
         def deserialize(params)
@@ -1501,6 +1511,9 @@ module TencentCloud
             @ToneWord.deserialize(params['ToneWord'])
           end
           @EnableComplianceAudio = params['EnableComplianceAudio']
+          @EnableVoicemailDetection = params['EnableVoicemailDetection']
+          @VoicemailAction = params['VoicemailAction']
+          @LLMExtraBody = params['LLMExtraBody']
         end
       end
 
@@ -5871,6 +5884,42 @@ module TencentCloud
         end
       end
 
+      # PauseAutoCalloutTask请求参数结构体
+      class PauseAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+
+        attr_accessor :TaskId, :SdkAppId
+
+        def initialize(taskid=nil, sdkappid=nil)
+          @TaskId = taskid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # PauseAutoCalloutTask返回参数结构体
+      class PauseAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PausePredictiveDialingCampaign请求参数结构体
       class PausePredictiveDialingCampaignRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -6005,6 +6054,42 @@ module TencentCloud
 
       # RestoreMemberOnline返回参数结构体
       class RestoreMemberOnlineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResumeAutoCalloutTask请求参数结构体
+      class ResumeAutoCalloutTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务Id
+        # @type TaskId: Integer
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+
+        attr_accessor :TaskId, :SdkAppId
+
+        def initialize(taskid=nil, sdkappid=nil)
+          @TaskId = taskid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # ResumeAutoCalloutTask返回参数结构体
+      class ResumeAutoCalloutTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

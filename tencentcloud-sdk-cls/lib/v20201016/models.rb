@@ -1404,7 +1404,10 @@ module TencentCloud
 
         # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # @type AdvancedConfig: String
-        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @param InputType: 日志输入类型（<span style="color:red; font-weight:bold">注：windows场景必填且仅支持file和windows_event类型</span>）
+        # - file: 文件类型采集
+        # - windows_event：windows事件采集
+        # - syslog：系统日志采集
         # @type InputType: String
 
         attr_accessor :ConfigId, :Name, :LogFormat, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UpdateTime, :CreateTime, :UserDefineRule, :AdvancedConfig, :InputType
@@ -2624,7 +2627,10 @@ module TencentCloud
 
         # 控制台默认占位值：`{\"ClsAgentDefault\":0}`
         # @type AdvancedConfig: String
-        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @param InputType: 日志输入类型（<span style="color:red; font-weight:bold">注：windows场景必填且仅支持file和windows_event类型</span>）
+        # - file: 文件类型采集
+        # - windows_event：windows事件采集
+        # - syslog：系统日志采集
         # @type InputType: String
 
         attr_accessor :Name, :Output, :Path, :LogType, :ExtractRule, :ExcludePaths, :UserDefineRule, :AdvancedConfig, :InputType
@@ -9956,7 +9962,10 @@ module TencentCloud
         # 样例：
         # `{\"ClsAgentFileTimeout\":0,\"ClsAgentMaxDepth\":10,\"ClsAgentParseFailMerge\":true}`
         # @type AdvancedConfig: String
-        # @param InputType: 日志输入类型，支持file、window_event、syslog、k8s_stdout、k8s_file
+        # @param InputType: 日志输入类型（<span style="color:red; font-weight:bold">注：windows场景必填且仅支持file和windows_event类型</span>）
+        # - file: 文件类型采集
+        # - windows_event：windows事件采集
+        # - syslog：系统日志采集
         # @type InputType: String
 
         attr_accessor :ConfigId, :Name, :Path, :LogType, :ExtractRule, :ExcludePaths, :Output, :UserDefineRule, :AdvancedConfig, :InputType

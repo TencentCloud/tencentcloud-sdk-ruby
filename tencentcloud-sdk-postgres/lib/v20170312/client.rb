@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于关闭数据库账户的CAM验证服务。
+
+        # @param request: Request instance for CloseAccountCAM.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::CloseAccountCAMRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::CloseAccountCAMResponse`
+        def CloseAccountCAM(request)
+          body = send_request('CloseAccountCAM', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CloseAccountCAMResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CloseDBExtranetAccess）用于关闭实例公网地址。
 
         # @param request: Request instance for CloseDBExtranetAccess.
@@ -1786,6 +1810,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeletionProtection）用于开启或关闭实例销毁保护
+
+        # @param request: Request instance for ModifyDBInstanceDeletionProtection.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceDeletionProtectionRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::ModifyDBInstanceDeletionProtectionResponse`
+        def ModifyDBInstanceDeletionProtection(request)
+          body = send_request('ModifyDBInstanceDeletionProtection', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDBInstanceDeletionProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
 
         # @param request: Request instance for ModifyDBInstanceDeployment.
@@ -2148,6 +2196,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于开启数据库账户的CAM验证服务。
+
+        # @param request: Request instance for OpenAccountCAM.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::OpenAccountCAMRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::OpenAccountCAMResponse`
+        def OpenAccountCAM(request)
+          body = send_request('OpenAccountCAM', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = OpenAccountCAMResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（OpenDBExtranetAccess）用于开通实例公网地址。
 
         # @param request: Request instance for OpenDBExtranetAccess.
@@ -2182,6 +2254,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebalanceReadOnlyGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于对开启CAM验证的账户执行手动刷新密码。
+
+        # @param request: Request instance for RefreshAccountPassword.
+        # @type request: :class:`Tencentcloud::postgres::V20170312::RefreshAccountPasswordRequest`
+        # @rtype: :class:`Tencentcloud::postgres::V20170312::RefreshAccountPasswordResponse`
+        def RefreshAccountPassword(request)
+          body = send_request('RefreshAccountPassword', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RefreshAccountPasswordResponse.new
             model.deserialize(response['Response'])
             model
           else

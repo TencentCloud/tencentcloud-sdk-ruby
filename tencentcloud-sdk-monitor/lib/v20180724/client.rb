@@ -295,7 +295,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费、不可使用代金券。
+        # 本接口（CreateGrafanaInstance）用于创建 Grafana 包年包月实例，默认基础版、到期自动续费。
 
         # @param request: Request instance for CreateGrafanaInstance.
         # @type request: :class:`Tencentcloud::monitor::V20180724::CreateGrafanaInstanceRequest`

@@ -4556,14 +4556,7 @@ module TencentCloud
         # @type SmallHeadImage: String
         # @param WarningCode: 该字段已废弃， 将固定返回空数组，不建议使用。
         # @type WarningCode: Array
-        # @param WarnCardInfos: 告警码
-        # -9101 证件边框不完整告警
-        # -9102 证件复印件告警
-        # -9103 证件翻拍告警
-        # -9104 证件PS告警
-        # -9107 证件反光告警
-        # -9108 证件模糊告警
-        # -9109 告警能力未开通
+        # @param WarnCardInfos: 该字段仅对国际站请求起作用，国内站该字段将固定返回空数组。国际站告警码如下：    告警码-9101 证件边框不完整告警-9102 证件复印件告警-9103 证件翻拍告警-9104 证件PS告警-9107 证件反光告警-9108 证件模糊告警-9109 告警能力未开通
         # @type WarnCardInfos: Array
         # @param WindowEmbeddedText: 证件透明视窗内的文本信息
         # @type WindowEmbeddedText: String
@@ -5659,7 +5652,7 @@ module TencentCloud
         end
       end
 
-      # 智能结构化元素组
+      # 文档智能元素组
       class ItemInfo < TencentCloud::Common::AbstractModel
         # @param Key: key信息组
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -6050,14 +6043,7 @@ module TencentCloud
         # @type Type: String
         # @param PassportRecognizeInfos: 信息区证件内容
         # @type PassportRecognizeInfos: :class:`Tencentcloud::Ocr.v20181119.models.PassportRecognizeInfos`
-        # @param WarnCardInfos: 告警码
-        # -9101 证件边框不完整告警
-        # -9102 证件复印件告警
-        # -9103 证件翻拍告警
-        # -9104 证件PS告警
-        # -9107 证件反光告警
-        # -9108 证件模糊告警
-        # -9109 告警能力未开通
+        # @param WarnCardInfos: 该字段仅对国际站请求起作用，国内站该字段将固定返回空数组。国际站告警码如下：  告警码-9101 证件边框不完整告警-9102 证件复印件告警-9103 证件翻拍告警-9104 证件PS告警-9107 证件反光告警-9108 证件模糊告警-9109 告警能力未开通
         # @type WarnCardInfos: Array
         # @param CardCount: 输入图片中的卡证数量（仅请求曼谷地域[ap-bangkok]返回）
         # @type CardCount: Integer
@@ -11066,7 +11052,7 @@ module TencentCloud
         end
       end
 
-      # 智能结构化识别
+      # 文档智能识别
       class StructuralItem < TencentCloud::Common::AbstractModel
         # @param Name: 识别出的字段名称(关键字)。
         # @type Name: String
@@ -13444,16 +13430,30 @@ module TencentCloud
         # 03：机动车销售统一发票，
         # 04：增值税普通发票，
         # 08：增值税电子专用发票（含全电，全电仅新版接口支持），
+        # 09：全电发票，
+        # 0901：全电纸质发票(增值税专用发票)，
+        # 0903：全电纸质(机动车销售统一发票)，
+        # 0904：全电纸质发票(增值税普通发票)，
+        # 0910：电子发票(普通发票)，
+        # 0915：全电纸质(二手车销售统一发票)，
+        # 0920：电子发票(增值税专用发票)，
+        # 0930：电子发票(机动车销售统一发票)，
+        # 0940：电子发票(二手车销售统一发票)，
         # 10：增值税电子普通发票（含全电，全电仅新版接口支持），
         # 11：增值税普通发票（卷式），
         # 14：增值税电子（通行费）发票，
         # 15：二手车销售统一发票，
         # 32：深圳区块链发票，
-        # 102：通用机打电子发票
-        # 61：电子发票（航空运输电子客票行程单）
-        # 83：电子发票（铁路电子发票）
-        # 0915：全电纸质（二手车统一销售发票）
-        # 0903：全电纸质（机动车统一发票）
+        # 61：电子发票（航空运输电子客票行程单），
+        # 8208：电子发票(通行费发票)，
+        # 83：电子发票(铁路电子客票)，
+        # 100：区块链发票，
+        # 101：财政票据，
+        # 102：通用电子发票，
+        # 103：车辆通行费
+
+
+
         # @type Type: String
         # @param ElectronicType: 具体的全电发票类型：01: 全电专用发票；02：全电普通发票；03：全电火车票；04：全电机票行程单
         # @type ElectronicType: String

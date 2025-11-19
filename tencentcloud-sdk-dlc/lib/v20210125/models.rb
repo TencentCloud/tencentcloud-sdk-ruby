@@ -1893,8 +1893,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 10
-        deprecate :DefaultDataEngine=, :none, 2025, 10
+        deprecate :DefaultDataEngine, :none, 2025, 11
+        deprecate :DefaultDataEngine=, :none, 2025, 11
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -5230,10 +5230,12 @@ module TencentCloud
         # @type TCHouseD: :class:`Tencentcloud::Dlc.v20210125.models.TCHouseD`
         # @param TccHive: TccHive数据目录连接信息
         # @type TccHive: :class:`Tencentcloud::Dlc.v20210125.models.TccHive`
+        # @param MongoDB: MongoDB 数据源
+        # @type MongoDB: :class:`Tencentcloud::Dlc.v20210125.models.DataSourceInfo`
 
-        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql, :TCHouseD, :TccHive
+        attr_accessor :Mysql, :Hive, :Kafka, :OtherDatasourceConnection, :PostgreSql, :SqlServer, :ClickHouse, :Elasticsearch, :TDSQLPostgreSql, :TCHouseD, :TccHive, :MongoDB
 
-        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil, tchoused=nil, tcchive=nil)
+        def initialize(mysql=nil, hive=nil, kafka=nil, otherdatasourceconnection=nil, postgresql=nil, sqlserver=nil, clickhouse=nil, elasticsearch=nil, tdsqlpostgresql=nil, tchoused=nil, tcchive=nil, mongodb=nil)
           @Mysql = mysql
           @Hive = hive
           @Kafka = kafka
@@ -5245,6 +5247,7 @@ module TencentCloud
           @TDSQLPostgreSql = tdsqlpostgresql
           @TCHouseD = tchoused
           @TccHive = tcchive
+          @MongoDB = mongodb
         end
 
         def deserialize(params)
@@ -5291,6 +5294,10 @@ module TencentCloud
           unless params['TccHive'].nil?
             @TccHive = TccHive.new
             @TccHive.deserialize(params['TccHive'])
+          end
+          unless params['MongoDB'].nil?
+            @MongoDB = DataSourceInfo.new
+            @MongoDB.deserialize(params['MongoDB'])
           end
         end
       end
@@ -15203,10 +15210,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 10
-        deprecate :GovernPolicy=, :none, 2025, 10
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 10
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 10
+        deprecate :GovernPolicy, :none, 2025, 11
+        deprecate :GovernPolicy=, :none, 2025, 11
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 11
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 11
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

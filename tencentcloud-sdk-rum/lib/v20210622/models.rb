@@ -2769,8 +2769,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 10
-        deprecate :IsDemo=, :none, 2025, 10
+        deprecate :IsDemo, :none, 2025, 11
+        deprecate :IsDemo=, :none, 2025, 11
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -3284,8 +3284,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 10
-        deprecate :IsDemo=, :none, 2025, 10
+        deprecate :IsDemo, :none, 2025, 11
+        deprecate :IsDemo=, :none, 2025, 11
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
           @EndTime = endtime
@@ -3415,12 +3415,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 10
-        deprecate :InstanceStatuses=, :none, 2025, 10
-        deprecate :InstanceIds, :none, 2025, 10
-        deprecate :InstanceIds=, :none, 2025, 10
-        deprecate :IsDemo, :none, 2025, 10
-        deprecate :IsDemo=, :none, 2025, 10
+        deprecate :InstanceStatuses, :none, 2025, 11
+        deprecate :InstanceStatuses=, :none, 2025, 11
+        deprecate :InstanceIds, :none, 2025, 11
+        deprecate :InstanceIds=, :none, 2025, 11
+        deprecate :IsDemo, :none, 2025, 11
+        deprecate :IsDemo=, :none, 2025, 11
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

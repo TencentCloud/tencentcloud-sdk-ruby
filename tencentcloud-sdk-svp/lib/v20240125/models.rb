@@ -562,6 +562,8 @@ module TencentCloud
 
       # 节省计划总览明细数据
       class SavingPlanOverviewDetail < TencentCloud::Common::AbstractModel
+        # @param SpId: 节省计划资源id
+        # @type SpId: String
         # @param SpType: 节省计划类型
         # @type SpType: String
         # @param PayAmount: 支付金额（单位：元）
@@ -584,9 +586,10 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromiseAmount: String
 
-        attr_accessor :SpType, :PayAmount, :StartTime, :EndTime, :Status, :SavingAmount, :Region, :PayType, :BuyTime, :PromiseAmount
+        attr_accessor :SpId, :SpType, :PayAmount, :StartTime, :EndTime, :Status, :SavingAmount, :Region, :PayType, :BuyTime, :PromiseAmount
 
-        def initialize(sptype=nil, payamount=nil, starttime=nil, endtime=nil, status=nil, savingamount=nil, region=nil, paytype=nil, buytime=nil, promiseamount=nil)
+        def initialize(spid=nil, sptype=nil, payamount=nil, starttime=nil, endtime=nil, status=nil, savingamount=nil, region=nil, paytype=nil, buytime=nil, promiseamount=nil)
+          @SpId = spid
           @SpType = sptype
           @PayAmount = payamount
           @StartTime = starttime
@@ -600,6 +603,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @SpId = params['SpId']
           @SpType = params['SpType']
           @PayAmount = params['PayAmount']
           @StartTime = params['StartTime']

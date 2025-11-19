@@ -57,6 +57,33 @@ module TencentCloud
         end
       end
 
+      # 探针有关接口的相关配置
+      class AgentOperationConfigView < TencentCloud::Common::AbstractModel
+        # @param RetentionValid: 当前接口配置是否开启了接口白名单配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionValid: Boolean
+        # @param IgnoreOperation: RetentionValid为false时生效，接口配置中的黑名单配置，配置中的接口不采集
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IgnoreOperation: String
+        # @param RetentionOperation: RetentionValid为true时生效，接口配置中的白名单配置，仅采集配置中的接口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionOperation: String
+
+        attr_accessor :RetentionValid, :IgnoreOperation, :RetentionOperation
+
+        def initialize(retentionvalid=nil, ignoreoperation=nil, retentionoperation=nil)
+          @RetentionValid = retentionvalid
+          @IgnoreOperation = ignoreoperation
+          @RetentionOperation = retentionoperation
+        end
+
+        def deserialize(params)
+          @RetentionValid = params['RetentionValid']
+          @IgnoreOperation = params['IgnoreOperation']
+          @RetentionOperation = params['RetentionOperation']
+        end
+      end
+
       # APM Agent 信息
       class ApmAgentInfo < TencentCloud::Common::AbstractModel
         # @param AgentDownloadURL: Agent 下载地址
@@ -90,6 +117,259 @@ module TencentCloud
           @PublicCollectorURL = params['PublicCollectorURL']
           @InnerCollectorURL = params['InnerCollectorURL']
           @PrivateLinkCollectorURL = params['PrivateLinkCollectorURL']
+        end
+      end
+
+      # 查询应用配置返回参数
+      class ApmAppConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例ID
+        # @type InstanceKey: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param UrlConvergenceSwitch: URL收敛开关
+        # @type UrlConvergenceSwitch: Integer
+        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @type UrlConvergenceThreshold: Integer
+        # @param UrlConvergence: URL收敛正则
+        # @type UrlConvergence: String
+        # @param ExceptionFilter: 异常过滤正则
+        # @type ExceptionFilter: String
+        # @param ErrorCodeFilter: 错误码过滤
+        # @type ErrorCodeFilter: String
+        # @param Components: 服务组件类型
+        # @type Components: String
+        # @param UrlExclude: URL排除正则
+        # @type UrlExclude: String
+        # @param LogSource: 日志来源
+        # @type LogSource: String
+        # @param LogRegion: 日志所在地域
+        # @type LogRegion: String
+        # @param IsRelatedLog: 是否开启日志 0 关 1 开
+        # @type IsRelatedLog: Integer
+        # @param LogTopicID: 日志主题ID
+        # @type LogTopicID: String
+        # @param IgnoreOperationName: 需过滤的接口名
+        # @type IgnoreOperationName: String
+        # @param LogSet: CLS日志集 | ES集群ID
+        # @type LogSet: String
+        # @param TraceRateLimit: 探针每秒上报trace数
+        # @type TraceRateLimit: Integer
+        # @param EnableSnapshot: 是否开启线程剖析
+        # @type EnableSnapshot: Boolean
+        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @type SnapshotTimeout: Integer
+        # @param AgentEnable: 是否开启agent
+        # @type AgentEnable: Boolean
+        # @param InstrumentList: 组件列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstrumentList: Array
+        # @param TraceSquash: 是否开启链路压缩
+        # @type TraceSquash: Boolean
+        # @param EventEnable: 是否开启应用诊断开关
+        # @type EventEnable: Boolean
+        # @param AgentOperationConfigView: 探针接口相关配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AgentOperationConfigView: :class:`Tencentcloud::Apm.v20210622.models.AgentOperationConfigView`
+        # @param EnableLogConfig: 是否开启应用日志配置
+        # @type EnableLogConfig: Boolean
+        # @param ServiceID: 应用ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceID: String
+        # @param EnableDashboardConfig: 应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableDashboardConfig: Boolean
+        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRelatedDashboard: Integer
+        # @param DashboardTopicID: dashboard ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DashboardTopicID: String
+        # @param EnableSecurityConfig: 是否开启应用级别配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableSecurityConfig: Boolean
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInstrumentationVulnerabilityScan: Integer
+        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsSqlInjectionAnalysis: Integer
+        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令执行分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRemoteCommandExecutionAnalysis: Integer
+        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测分析
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMemoryHijackingAnalysis: Integer
+        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @type LogIndexType: Integer
+        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @type LogTraceIdKey: String
+        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDeleteAnyFileAnalysis: Integer
+        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsReadAnyFileAnalysis: Integer
+        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsUploadAnyFileAnalysis: Integer
+        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsIncludeAnyFileAnalysis: Integer
+        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDirectoryTraversalAnalysis: Integer
+        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsTemplateEngineInjectionAnalysis: Integer
+        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsScriptEngineInjectionAnalysis: Integer
+        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsExpressionInjectionAnalysis: Integer
+        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsJNDIInjectionAnalysis: Integer
+        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsJNIInjectionAnalysis: Integer
+        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsWebshellBackdoorAnalysis: Integer
+        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsDeserializationAnalysis: Integer
+        # @param UrlAutoConvergenceEnable: 接口名称自动收敛开关（0-关闭，1-开启）
+        # @type UrlAutoConvergenceEnable: Boolean
+        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @type UrlLongSegmentThreshold: Integer
+        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @type UrlNumberSegmentThreshold: Integer
+        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @type DisableMemoryUsed: Integer
+        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @type DisableCpuUsed: Integer
+
+        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed
+
+        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil)
+          @InstanceKey = instancekey
+          @ServiceName = servicename
+          @UrlConvergenceSwitch = urlconvergenceswitch
+          @UrlConvergenceThreshold = urlconvergencethreshold
+          @UrlConvergence = urlconvergence
+          @ExceptionFilter = exceptionfilter
+          @ErrorCodeFilter = errorcodefilter
+          @Components = components
+          @UrlExclude = urlexclude
+          @LogSource = logsource
+          @LogRegion = logregion
+          @IsRelatedLog = isrelatedlog
+          @LogTopicID = logtopicid
+          @IgnoreOperationName = ignoreoperationname
+          @LogSet = logset
+          @TraceRateLimit = traceratelimit
+          @EnableSnapshot = enablesnapshot
+          @SnapshotTimeout = snapshottimeout
+          @AgentEnable = agentenable
+          @InstrumentList = instrumentlist
+          @TraceSquash = tracesquash
+          @EventEnable = eventenable
+          @AgentOperationConfigView = agentoperationconfigview
+          @EnableLogConfig = enablelogconfig
+          @ServiceID = serviceid
+          @EnableDashboardConfig = enabledashboardconfig
+          @IsRelatedDashboard = isrelateddashboard
+          @DashboardTopicID = dashboardtopicid
+          @EnableSecurityConfig = enablesecurityconfig
+          @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
+          @IsSqlInjectionAnalysis = issqlinjectionanalysis
+          @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
+          @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
+          @LogIndexType = logindextype
+          @LogTraceIdKey = logtraceidkey
+          @IsDeleteAnyFileAnalysis = isdeleteanyfileanalysis
+          @IsReadAnyFileAnalysis = isreadanyfileanalysis
+          @IsUploadAnyFileAnalysis = isuploadanyfileanalysis
+          @IsIncludeAnyFileAnalysis = isincludeanyfileanalysis
+          @IsDirectoryTraversalAnalysis = isdirectorytraversalanalysis
+          @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
+          @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
+          @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
+          @IsJNDIInjectionAnalysis = isjndiinjectionanalysis
+          @IsJNIInjectionAnalysis = isjniinjectionanalysis
+          @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
+          @IsDeserializationAnalysis = isdeserializationanalysis
+          @UrlAutoConvergenceEnable = urlautoconvergenceenable
+          @UrlLongSegmentThreshold = urllongsegmentthreshold
+          @UrlNumberSegmentThreshold = urlnumbersegmentthreshold
+          @DisableMemoryUsed = disablememoryused
+          @DisableCpuUsed = disablecpuused
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ServiceName = params['ServiceName']
+          @UrlConvergenceSwitch = params['UrlConvergenceSwitch']
+          @UrlConvergenceThreshold = params['UrlConvergenceThreshold']
+          @UrlConvergence = params['UrlConvergence']
+          @ExceptionFilter = params['ExceptionFilter']
+          @ErrorCodeFilter = params['ErrorCodeFilter']
+          @Components = params['Components']
+          @UrlExclude = params['UrlExclude']
+          @LogSource = params['LogSource']
+          @LogRegion = params['LogRegion']
+          @IsRelatedLog = params['IsRelatedLog']
+          @LogTopicID = params['LogTopicID']
+          @IgnoreOperationName = params['IgnoreOperationName']
+          @LogSet = params['LogSet']
+          @TraceRateLimit = params['TraceRateLimit']
+          @EnableSnapshot = params['EnableSnapshot']
+          @SnapshotTimeout = params['SnapshotTimeout']
+          @AgentEnable = params['AgentEnable']
+          unless params['InstrumentList'].nil?
+            @InstrumentList = []
+            params['InstrumentList'].each do |i|
+              instrument_tmp = Instrument.new
+              instrument_tmp.deserialize(i)
+              @InstrumentList << instrument_tmp
+            end
+          end
+          @TraceSquash = params['TraceSquash']
+          @EventEnable = params['EventEnable']
+          unless params['AgentOperationConfigView'].nil?
+            @AgentOperationConfigView = AgentOperationConfigView.new
+            @AgentOperationConfigView.deserialize(params['AgentOperationConfigView'])
+          end
+          @EnableLogConfig = params['EnableLogConfig']
+          @ServiceID = params['ServiceID']
+          @EnableDashboardConfig = params['EnableDashboardConfig']
+          @IsRelatedDashboard = params['IsRelatedDashboard']
+          @DashboardTopicID = params['DashboardTopicID']
+          @EnableSecurityConfig = params['EnableSecurityConfig']
+          @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
+          @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
+          @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
+          @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
+          @LogIndexType = params['LogIndexType']
+          @LogTraceIdKey = params['LogTraceIdKey']
+          @IsDeleteAnyFileAnalysis = params['IsDeleteAnyFileAnalysis']
+          @IsReadAnyFileAnalysis = params['IsReadAnyFileAnalysis']
+          @IsUploadAnyFileAnalysis = params['IsUploadAnyFileAnalysis']
+          @IsIncludeAnyFileAnalysis = params['IsIncludeAnyFileAnalysis']
+          @IsDirectoryTraversalAnalysis = params['IsDirectoryTraversalAnalysis']
+          @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
+          @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
+          @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
+          @IsJNDIInjectionAnalysis = params['IsJNDIInjectionAnalysis']
+          @IsJNIInjectionAnalysis = params['IsJNIInjectionAnalysis']
+          @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
+          @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
+          @UrlAutoConvergenceEnable = params['UrlAutoConvergenceEnable']
+          @UrlLongSegmentThreshold = params['UrlLongSegmentThreshold']
+          @UrlNumberSegmentThreshold = params['UrlNumberSegmentThreshold']
+          @DisableMemoryUsed = params['DisableMemoryUsed']
+          @DisableCpuUsed = params['DisableCpuUsed']
         end
       end
 
@@ -193,6 +473,32 @@ module TencentCloud
           @TraceSquash = params['TraceSquash']
           @DisableMemoryUsed = params['DisableMemoryUsed']
           @DisableCpuUsed = params['DisableCpuUsed']
+        end
+      end
+
+      # 展示apm业务系统与其他云产品关联关系返回体
+      class ApmAssociation < TencentCloud::Common::AbstractModel
+        # @param PeerId: 关联产品的实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeerId: String
+        # @param Status: 关联关系状态：1（启用）、2（不启用）、3（已失效）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Topic: CKafka消息主题
+        # @type Topic: String
+
+        attr_accessor :PeerId, :Status, :Topic
+
+        def initialize(peerid=nil, status=nil, topic=nil)
+          @PeerId = peerid
+          @Status = status
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @PeerId = params['PeerId']
+          @Status = params['Status']
+          @Topic = params['Topic']
         end
       end
 
@@ -539,6 +845,109 @@ module TencentCloud
         end
       end
 
+      # 展示apm业务系统关联prometheus关系返回体
+      class ApmPrometheusRules < TencentCloud::Common::AbstractModel
+        # @param Id: 指标匹配规则ID
+        # @type Id: Integer
+        # @param Name: 指标匹配规则名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ServiceName: 规则生效的应用。生效于全部应用就传空字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceName: String
+        # @param Status: 指标匹配规则状态：1(启用)、2（不启用）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param MetricNameRule: 指标匹配规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricNameRule: String
+        # @param MetricMatchType: 匹配类型：0精准匹配，1前缀匹配，2后缀匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricMatchType: Integer
+
+        attr_accessor :Id, :Name, :ServiceName, :Status, :MetricNameRule, :MetricMatchType
+
+        def initialize(id=nil, name=nil, servicename=nil, status=nil, metricnamerule=nil, metricmatchtype=nil)
+          @Id = id
+          @Name = name
+          @ServiceName = servicename
+          @Status = status
+          @MetricNameRule = metricnamerule
+          @MetricMatchType = metricmatchtype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ServiceName = params['ServiceName']
+          @Status = params['Status']
+          @MetricNameRule = params['MetricNameRule']
+          @MetricMatchType = params['MetricMatchType']
+        end
+      end
+
+      # 采样配置信息
+      class ApmSampleConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceKey: 实例ID
+        # @type InstanceKey: String
+        # @param ServiceName: 服务名
+        # @type ServiceName: String
+        # @param SampleName: 采样名字
+        # @type SampleName: String
+        # @param OperationName: 接口名
+        # @type OperationName: String
+        # @param SpanNum: 采样的span数
+        # @type SpanNum: Integer
+        # @param Status: 采样配置开关 0 关 1 开
+        # @type Status: Integer
+        # @param Tags: tags数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param SampleRate: 采样率
+        # @type SampleRate: Integer
+        # @param OperationType: 0=精确匹配（默认）；1=前缀匹配；2=后缀匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperationType: Integer
+        # @param Id: 配置Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+
+        attr_accessor :InstanceKey, :ServiceName, :SampleName, :OperationName, :SpanNum, :Status, :Tags, :SampleRate, :OperationType, :Id
+
+        def initialize(instancekey=nil, servicename=nil, samplename=nil, operationname=nil, spannum=nil, status=nil, tags=nil, samplerate=nil, operationtype=nil, id=nil)
+          @InstanceKey = instancekey
+          @ServiceName = servicename
+          @SampleName = samplename
+          @OperationName = operationname
+          @SpanNum = spannum
+          @Status = status
+          @Tags = tags
+          @SampleRate = samplerate
+          @OperationType = operationtype
+          @Id = id
+        end
+
+        def deserialize(params)
+          @InstanceKey = params['InstanceKey']
+          @ServiceName = params['ServiceName']
+          @SampleName = params['SampleName']
+          @OperationName = params['OperationName']
+          @SpanNum = params['SpanNum']
+          @Status = params['Status']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmkvitem_tmp = APMKVItem.new
+              apmkvitem_tmp.deserialize(i)
+              @Tags << apmkvitem_tmp
+            end
+          end
+          @SampleRate = params['SampleRate']
+          @OperationType = params['OperationType']
+          @Id = params['Id']
+        end
+      end
+
       # apm应用指标信息
       class ApmServiceMetric < TencentCloud::Common::AbstractModel
         # @param Fields: filed数组
@@ -670,6 +1079,124 @@ module TencentCloud
         end
       end
 
+      # CreateApmPrometheusRule请求参数结构体
+      class CreateApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 指标匹配规则名
+        # @type Name: String
+        # @param ServiceName: 规则生效的应用。作用全部应用就传空字符串
+        # @type ServiceName: String
+        # @param MetricMatchType: 指标匹配类型：0精准匹配，1前缀匹配，2后缀匹配
+        # @type MetricMatchType: Integer
+        # @param MetricNameRule: 客户定义的命中指标名规则。
+        # @type MetricNameRule: String
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+
+        attr_accessor :Name, :ServiceName, :MetricMatchType, :MetricNameRule, :InstanceId
+
+        def initialize(name=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, instanceid=nil)
+          @Name = name
+          @ServiceName = servicename
+          @MetricMatchType = metricmatchtype
+          @MetricNameRule = metricnamerule
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ServiceName = params['ServiceName']
+          @MetricMatchType = params['MetricMatchType']
+          @MetricNameRule = params['MetricNameRule']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CreateApmPrometheusRule返回参数结构体
+      class CreateApmPrometheusRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateApmSampleConfig请求参数结构体
+      class CreateApmSampleConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param SampleRate: 采样率
+        # @type SampleRate: Integer
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param SampleName: 采样规则名
+        # @type SampleName: String
+        # @param Tags: 采样Tags
+        # @type Tags: Array
+        # @param OperationName: 接口名
+        # @type OperationName: String
+        # @param OperationType: 0=精确匹配（默认）；1=前缀匹配；2=后缀匹配
+        # @type OperationType: Integer
+
+        attr_accessor :InstanceId, :SampleRate, :ServiceName, :SampleName, :Tags, :OperationName, :OperationType
+
+        def initialize(instanceid=nil, samplerate=nil, servicename=nil, samplename=nil, tags=nil, operationname=nil, operationtype=nil)
+          @InstanceId = instanceid
+          @SampleRate = samplerate
+          @ServiceName = servicename
+          @SampleName = samplename
+          @Tags = tags
+          @OperationName = operationname
+          @OperationType = operationtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SampleRate = params['SampleRate']
+          @ServiceName = params['ServiceName']
+          @SampleName = params['SampleName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmkvitem_tmp = APMKVItem.new
+              apmkvitem_tmp.deserialize(i)
+              @Tags << apmkvitem_tmp
+            end
+          end
+          @OperationName = params['OperationName']
+          @OperationType = params['OperationType']
+        end
+      end
+
+      # CreateApmSampleConfig返回参数结构体
+      class CreateApmSampleConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ApmSampleConfig: 采样配置参数
+        # @type ApmSampleConfig: :class:`Tencentcloud::Apm.v20210622.models.ApmSampleConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmSampleConfig, :RequestId
+
+        def initialize(apmsampleconfig=nil, requestid=nil)
+          @ApmSampleConfig = apmsampleconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmSampleConfig'].nil?
+            @ApmSampleConfig = ApmSampleConfig.new
+            @ApmSampleConfig.deserialize(params['ApmSampleConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProfileTask请求参数结构体
       class CreateProfileTaskRequest < TencentCloud::Common::AbstractModel
         # @param ServiceName: 应用名称
@@ -734,6 +1261,42 @@ module TencentCloud
         end
       end
 
+      # DeleteApmSampleConfig请求参数结构体
+      class DeleteApmSampleConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param SampleName: 采样规则名
+        # @type SampleName: String
+
+        attr_accessor :InstanceId, :SampleName
+
+        def initialize(instanceid=nil, samplename=nil)
+          @InstanceId = instanceid
+          @SampleName = samplename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SampleName = params['SampleName']
+        end
+      end
+
+      # DeleteApmSampleConfig返回参数结构体
+      class DeleteApmSampleConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApmAgent请求参数结构体
       class DescribeApmAgentRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID
@@ -784,6 +1347,93 @@ module TencentCloud
           unless params['ApmAgent'].nil?
             @ApmAgent = ApmAgentInfo.new
             @ApmAgent.deserialize(params['ApmAgent'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmApplicationConfig请求参数结构体
+      class DescribeApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ServiceName: 服务名称
+        # @type ServiceName: String
+
+        attr_accessor :InstanceId, :ServiceName
+
+        def initialize(instanceid=nil, servicename=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+        end
+      end
+
+      # DescribeApmApplicationConfig返回参数结构体
+      class DescribeApmApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ApmAppConfig: Apm应用配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmAppConfig: :class:`Tencentcloud::Apm.v20210622.models.ApmAppConfig`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmAppConfig, :RequestId
+
+        def initialize(apmappconfig=nil, requestid=nil)
+          @ApmAppConfig = apmappconfig
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmAppConfig'].nil?
+            @ApmAppConfig = ApmAppConfig.new
+            @ApmAppConfig.deserialize(params['ApmAppConfig'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmAssociation请求参数结构体
+      class DescribeApmAssociationRequest < TencentCloud::Common::AbstractModel
+        # @param ProductName: 关联的产品名，当前只支持Prometheus
+        # @type ProductName: String
+        # @param InstanceId: 业务系统名
+        # @type InstanceId: String
+
+        attr_accessor :ProductName, :InstanceId
+
+        def initialize(productname=nil, instanceid=nil)
+          @ProductName = productname
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeApmAssociation返回参数结构体
+      class DescribeApmAssociationResponse < TencentCloud::Common::AbstractModel
+        # @param ApmAssociation: 关联的产品实例ID
+        # @type ApmAssociation: :class:`Tencentcloud::Apm.v20210622.models.ApmAssociation`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmAssociation, :RequestId
+
+        def initialize(apmassociation=nil, requestid=nil)
+          @ApmAssociation = apmassociation
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmAssociation'].nil?
+            @ApmAssociation = ApmAssociation.new
+            @ApmAssociation.deserialize(params['ApmAssociation'])
           end
           @RequestId = params['RequestId']
         end
@@ -853,6 +1503,97 @@ module TencentCloud
               apminstancedetail_tmp = ApmInstanceDetail.new
               apminstancedetail_tmp.deserialize(i)
               @Instances << apminstancedetail_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmPrometheusRule请求参数结构体
+      class DescribeApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeApmPrometheusRule返回参数结构体
+      class DescribeApmPrometheusRuleResponse < TencentCloud::Common::AbstractModel
+        # @param ApmPrometheusRules: 指标匹配规则
+        # @type ApmPrometheusRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmPrometheusRules, :RequestId
+
+        def initialize(apmprometheusrules=nil, requestid=nil)
+          @ApmPrometheusRules = apmprometheusrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmPrometheusRules'].nil?
+            @ApmPrometheusRules = []
+            params['ApmPrometheusRules'].each do |i|
+              apmprometheusrules_tmp = ApmPrometheusRules.new
+              apmprometheusrules_tmp.deserialize(i)
+              @ApmPrometheusRules << apmprometheusrules_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmSampleConfig请求参数结构体
+      class DescribeApmSampleConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param SampleName: 采样规则名
+        # @type SampleName: String
+
+        attr_accessor :InstanceId, :SampleName
+
+        def initialize(instanceid=nil, samplename=nil)
+          @InstanceId = instanceid
+          @SampleName = samplename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SampleName = params['SampleName']
+        end
+      end
+
+      # DescribeApmSampleConfig返回参数结构体
+      class DescribeApmSampleConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ApmSampleConfigs: 采样配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApmSampleConfigs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ApmSampleConfigs, :RequestId
+
+        def initialize(apmsampleconfigs=nil, requestid=nil)
+          @ApmSampleConfigs = apmsampleconfigs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ApmSampleConfigs'].nil?
+            @ApmSampleConfigs = []
+            params['ApmSampleConfigs'].each do |i|
+              apmsampleconfig_tmp = ApmSampleConfig.new
+              apmsampleconfig_tmp.deserialize(i)
+              @ApmSampleConfigs << apmsampleconfig_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1727,6 +2468,288 @@ module TencentCloud
         end
       end
 
+      # ModifyApmApplicationConfig请求参数结构体
+      class ModifyApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param UrlConvergenceSwitch: URL收敛开关,0 关 | 1 开
+        # @type UrlConvergenceSwitch: Integer
+        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @type UrlConvergenceThreshold: Integer
+        # @param ExceptionFilter: 异常过滤正则规则，逗号分隔
+        # @type ExceptionFilter: String
+        # @param UrlConvergence: URL收敛正则规则，逗号分隔
+        # @type UrlConvergence: String
+        # @param ErrorCodeFilter: 错误码过滤，逗号分隔
+        # @type ErrorCodeFilter: String
+        # @param UrlExclude: URL排除正则规则，逗号分隔
+        # @type UrlExclude: String
+        # @param IsRelatedLog: 日志开关 0 关 1 开
+        # @type IsRelatedLog: Integer
+        # @param LogRegion: 日志地域
+        # @type LogRegion: String
+        # @param LogTopicID: 日志主题ID
+        # @type LogTopicID: String
+        # @param LogSet: CLS 日志集 | ES 集群ID
+        # @type LogSet: String
+        # @param LogSource: 日志来源 CLS | ES
+        # @type LogSource: String
+        # @param IgnoreOperationName: 需过滤的接口
+        # @type IgnoreOperationName: String
+        # @param EnableSnapshot: 是否开启线程剖析
+        # @type EnableSnapshot: Boolean
+        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @type SnapshotTimeout: Integer
+        # @param AgentEnable: 是否开启agent
+        # @type AgentEnable: Boolean
+        # @param TraceSquash: 是否开启链路压缩
+        # @type TraceSquash: Boolean
+        # @param EventEnable: 是否开启应用诊断的开关
+        # @type EventEnable: Boolean
+        # @param InstrumentList: 组件列表
+        # @type InstrumentList: Array
+        # @param AgentOperationConfigView: 探针接口相关配置
+        # @type AgentOperationConfigView: :class:`Tencentcloud::Apm.v20210622.models.AgentOperationConfigView`
+        # @param EnableLogConfig: 是否开启应用日志配置
+        # @type EnableLogConfig: Boolean
+        # @param EnableDashboardConfig: 应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）
+        # @type EnableDashboardConfig: Boolean
+        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # @type IsRelatedDashboard: Integer
+        # @param DashboardTopicID: dashboard ID
+        # @type DashboardTopicID: String
+        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @type LogIndexType: Integer
+        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @type LogTraceIdKey: String
+        # @param EnableSecurityConfig: 是否开启应用安全配置
+        # @type EnableSecurityConfig: Boolean
+        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
+        # @type IsSqlInjectionAnalysis: Integer
+        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @type IsInstrumentationVulnerabilityScan: Integer
+        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令检测
+        # @type IsRemoteCommandExecutionAnalysis: Integer
+        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
+        # @type IsMemoryHijackingAnalysis: Integer
+        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @type IsDeleteAnyFileAnalysis: Integer
+        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @type IsReadAnyFileAnalysis: Integer
+        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @type IsUploadAnyFileAnalysis: Integer
+        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @type IsIncludeAnyFileAnalysis: Integer
+        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @type IsDirectoryTraversalAnalysis: Integer
+        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @type IsTemplateEngineInjectionAnalysis: Integer
+        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @type IsScriptEngineInjectionAnalysis: Integer
+        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @type IsExpressionInjectionAnalysis: Integer
+        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @type IsJNDIInjectionAnalysis: Integer
+        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @type IsJNIInjectionAnalysis: Integer
+        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @type IsWebshellBackdoorAnalysis: Integer
+        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @type IsDeserializationAnalysis: Integer
+        # @param UrlAutoConvergenceEnable: 接口自动收敛开关,0 关 | 1 开
+        # @type UrlAutoConvergenceEnable: Boolean
+        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @type UrlLongSegmentThreshold: Integer
+        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @type UrlNumberSegmentThreshold: Integer
+        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @type DisableMemoryUsed: Integer
+        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @type DisableCpuUsed: Integer
+
+        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed
+
+        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @UrlConvergenceSwitch = urlconvergenceswitch
+          @UrlConvergenceThreshold = urlconvergencethreshold
+          @ExceptionFilter = exceptionfilter
+          @UrlConvergence = urlconvergence
+          @ErrorCodeFilter = errorcodefilter
+          @UrlExclude = urlexclude
+          @IsRelatedLog = isrelatedlog
+          @LogRegion = logregion
+          @LogTopicID = logtopicid
+          @LogSet = logset
+          @LogSource = logsource
+          @IgnoreOperationName = ignoreoperationname
+          @EnableSnapshot = enablesnapshot
+          @SnapshotTimeout = snapshottimeout
+          @AgentEnable = agentenable
+          @TraceSquash = tracesquash
+          @EventEnable = eventenable
+          @InstrumentList = instrumentlist
+          @AgentOperationConfigView = agentoperationconfigview
+          @EnableLogConfig = enablelogconfig
+          @EnableDashboardConfig = enabledashboardconfig
+          @IsRelatedDashboard = isrelateddashboard
+          @DashboardTopicID = dashboardtopicid
+          @LogIndexType = logindextype
+          @LogTraceIdKey = logtraceidkey
+          @EnableSecurityConfig = enablesecurityconfig
+          @IsSqlInjectionAnalysis = issqlinjectionanalysis
+          @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
+          @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
+          @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
+          @IsDeleteAnyFileAnalysis = isdeleteanyfileanalysis
+          @IsReadAnyFileAnalysis = isreadanyfileanalysis
+          @IsUploadAnyFileAnalysis = isuploadanyfileanalysis
+          @IsIncludeAnyFileAnalysis = isincludeanyfileanalysis
+          @IsDirectoryTraversalAnalysis = isdirectorytraversalanalysis
+          @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
+          @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
+          @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
+          @IsJNDIInjectionAnalysis = isjndiinjectionanalysis
+          @IsJNIInjectionAnalysis = isjniinjectionanalysis
+          @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
+          @IsDeserializationAnalysis = isdeserializationanalysis
+          @UrlAutoConvergenceEnable = urlautoconvergenceenable
+          @UrlLongSegmentThreshold = urllongsegmentthreshold
+          @UrlNumberSegmentThreshold = urlnumbersegmentthreshold
+          @DisableMemoryUsed = disablememoryused
+          @DisableCpuUsed = disablecpuused
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @UrlConvergenceSwitch = params['UrlConvergenceSwitch']
+          @UrlConvergenceThreshold = params['UrlConvergenceThreshold']
+          @ExceptionFilter = params['ExceptionFilter']
+          @UrlConvergence = params['UrlConvergence']
+          @ErrorCodeFilter = params['ErrorCodeFilter']
+          @UrlExclude = params['UrlExclude']
+          @IsRelatedLog = params['IsRelatedLog']
+          @LogRegion = params['LogRegion']
+          @LogTopicID = params['LogTopicID']
+          @LogSet = params['LogSet']
+          @LogSource = params['LogSource']
+          @IgnoreOperationName = params['IgnoreOperationName']
+          @EnableSnapshot = params['EnableSnapshot']
+          @SnapshotTimeout = params['SnapshotTimeout']
+          @AgentEnable = params['AgentEnable']
+          @TraceSquash = params['TraceSquash']
+          @EventEnable = params['EventEnable']
+          unless params['InstrumentList'].nil?
+            @InstrumentList = []
+            params['InstrumentList'].each do |i|
+              instrument_tmp = Instrument.new
+              instrument_tmp.deserialize(i)
+              @InstrumentList << instrument_tmp
+            end
+          end
+          unless params['AgentOperationConfigView'].nil?
+            @AgentOperationConfigView = AgentOperationConfigView.new
+            @AgentOperationConfigView.deserialize(params['AgentOperationConfigView'])
+          end
+          @EnableLogConfig = params['EnableLogConfig']
+          @EnableDashboardConfig = params['EnableDashboardConfig']
+          @IsRelatedDashboard = params['IsRelatedDashboard']
+          @DashboardTopicID = params['DashboardTopicID']
+          @LogIndexType = params['LogIndexType']
+          @LogTraceIdKey = params['LogTraceIdKey']
+          @EnableSecurityConfig = params['EnableSecurityConfig']
+          @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
+          @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
+          @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
+          @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
+          @IsDeleteAnyFileAnalysis = params['IsDeleteAnyFileAnalysis']
+          @IsReadAnyFileAnalysis = params['IsReadAnyFileAnalysis']
+          @IsUploadAnyFileAnalysis = params['IsUploadAnyFileAnalysis']
+          @IsIncludeAnyFileAnalysis = params['IsIncludeAnyFileAnalysis']
+          @IsDirectoryTraversalAnalysis = params['IsDirectoryTraversalAnalysis']
+          @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
+          @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
+          @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
+          @IsJNDIInjectionAnalysis = params['IsJNDIInjectionAnalysis']
+          @IsJNIInjectionAnalysis = params['IsJNIInjectionAnalysis']
+          @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
+          @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
+          @UrlAutoConvergenceEnable = params['UrlAutoConvergenceEnable']
+          @UrlLongSegmentThreshold = params['UrlLongSegmentThreshold']
+          @UrlNumberSegmentThreshold = params['UrlNumberSegmentThreshold']
+          @DisableMemoryUsed = params['DisableMemoryUsed']
+          @DisableCpuUsed = params['DisableCpuUsed']
+        end
+      end
+
+      # ModifyApmApplicationConfig返回参数结构体
+      class ModifyApmApplicationConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApmAssociation请求参数结构体
+      class ModifyApmAssociationRequest < TencentCloud::Common::AbstractModel
+        # @param ProductName: 关联的产品名，当前只支持Prometheus
+        # @type ProductName: String
+        # @param Status: 关联关系的状态：// 关联关系状态：1（启用）、2（不启用）、4（已删除）
+        # @type Status: Integer
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param PeerId: 关联的产品实例ID
+        # @type PeerId: String
+        # @param Topic: CKafka消息主题
+        # @type Topic: String
+
+        attr_accessor :ProductName, :Status, :InstanceId, :PeerId, :Topic
+
+        def initialize(productname=nil, status=nil, instanceid=nil, peerid=nil, topic=nil)
+          @ProductName = productname
+          @Status = status
+          @InstanceId = instanceid
+          @PeerId = peerid
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @ProductName = params['ProductName']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+          @PeerId = params['PeerId']
+          @Topic = params['Topic']
+        end
+      end
+
+      # ModifyApmAssociation返回参数结构体
+      class ModifyApmAssociationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApmInstance请求参数结构体
       class ModifyApmInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统 ID
@@ -1916,6 +2939,133 @@ module TencentCloud
 
       # ModifyApmInstance返回参数结构体
       class ModifyApmInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApmPrometheusRule请求参数结构体
+      class ModifyApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 规则ID
+        # @type Id: Integer
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param Name: 所要修改的规则名
+        # @type Name: String
+        # @param Status: 规则状态：1(启用)、2（不启用）、3（删除）
+        # @type Status: Integer
+        # @param ServiceName: 规则生效的应用。生效于全部应用就传空（这个如果不修改也要传旧的规则）
+        # @type ServiceName: String
+        # @param MetricMatchType: 匹配类型：0精准匹配，1前缀匹配，2后缀匹配（这个如果不修改也要传旧的规则）
+        # @type MetricMatchType: Integer
+        # @param MetricNameRule: 客户定义的命中指标名规则。
+        # @type MetricNameRule: String
+
+        attr_accessor :Id, :InstanceId, :Name, :Status, :ServiceName, :MetricMatchType, :MetricNameRule
+
+        def initialize(id=nil, instanceid=nil, name=nil, status=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil)
+          @Id = id
+          @InstanceId = instanceid
+          @Name = name
+          @Status = status
+          @ServiceName = servicename
+          @MetricMatchType = metricmatchtype
+          @MetricNameRule = metricnamerule
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Status = params['Status']
+          @ServiceName = params['ServiceName']
+          @MetricMatchType = params['MetricMatchType']
+          @MetricNameRule = params['MetricNameRule']
+        end
+      end
+
+      # ModifyApmPrometheusRule返回参数结构体
+      class ModifyApmPrometheusRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyApmSampleConfig请求参数结构体
+      class ModifyApmSampleConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统ID
+        # @type InstanceId: String
+        # @param SampleName: 采样规则名
+        # @type SampleName: String
+        # @param SampleRate: 采样率
+        # @type SampleRate: Integer
+        # @param ServiceName: 应用名，生效于所有应用则填空
+        # @type ServiceName: String
+        # @param OperationName: 接口名
+        # @type OperationName: String
+        # @param Tags: 采样tag
+        # @type Tags: Array
+        # @param Status: 采样开关 0关 1开 2删除
+        # @type Status: Integer
+        # @param Id: 配置Id
+        # @type Id: Integer
+        # @param OperationType: 0=精确匹配（默认）；1=前缀匹配；2=后缀匹配
+        # @type OperationType: Integer
+
+        attr_accessor :InstanceId, :SampleName, :SampleRate, :ServiceName, :OperationName, :Tags, :Status, :Id, :OperationType
+
+        def initialize(instanceid=nil, samplename=nil, samplerate=nil, servicename=nil, operationname=nil, tags=nil, status=nil, id=nil, operationtype=nil)
+          @InstanceId = instanceid
+          @SampleName = samplename
+          @SampleRate = samplerate
+          @ServiceName = servicename
+          @OperationName = operationname
+          @Tags = tags
+          @Status = status
+          @Id = id
+          @OperationType = operationtype
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SampleName = params['SampleName']
+          @SampleRate = params['SampleRate']
+          @ServiceName = params['ServiceName']
+          @OperationName = params['OperationName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmkvitem_tmp = APMKVItem.new
+              apmkvitem_tmp.deserialize(i)
+              @Tags << apmkvitem_tmp
+            end
+          end
+          @Status = params['Status']
+          @Id = params['Id']
+          @OperationType = params['OperationType']
+        end
+      end
+
+      # ModifyApmSampleConfig返回参数结构体
+      class ModifyApmSampleConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

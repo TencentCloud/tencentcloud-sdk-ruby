@@ -27999,7 +27999,7 @@ module TencentCloud
         # 注意：H.266 编码容器目前只支持 mp4 ，hls，ts，mov。
         # 注意：VP8、VP9编码容器目前只支持webm，mkv。
         # 注意：MPEG2、dnxhd 编码容器目前只支持mxf。
-        # 注意：MV-HEVC编码容器目前只支持mp4，hls，mov。其中hls格式只支持mp4分片格式。
+        # 注意：MV-HEVC编码容器目前只支持mp4，hls，mov。其中hls格式只支持mp4分片格式。且要求输入源为全景视频（带多视角）。
         # @type Codec: String
         # @param Fps: 视频帧率，取值范围：
         # 当FpsDenominator的值为空时，范围：[0, 120]，单位：Hz；

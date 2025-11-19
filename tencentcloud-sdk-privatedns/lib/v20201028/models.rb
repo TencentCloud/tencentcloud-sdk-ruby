@@ -522,8 +522,8 @@ module TencentCloud
 
         attr_accessor :Domain, :TagSet, :VpcSet, :Remark, :DnsForwardStatus, :Vpcs, :AccountVpcSet, :CnameSpeedupStatus
         extend Gem::Deprecate
-        deprecate :Vpcs, :none, 2025, 10
-        deprecate :Vpcs=, :none, 2025, 10
+        deprecate :Vpcs, :none, 2025, 11
+        deprecate :Vpcs=, :none, 2025, 11
 
         def initialize(domain=nil, tagset=nil, vpcset=nil, remark=nil, dnsforwardstatus=nil, vpcs=nil, accountvpcset=nil, cnamespeedupstatus=nil)
           @Domain = domain
