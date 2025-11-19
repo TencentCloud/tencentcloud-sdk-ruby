@@ -917,30 +917,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户列表
-
-        # @param request: Request instance for DescribeAppInfo.
-        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeAppInfoRequest`
-        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeAppInfoResponse`
-        def DescribeAppInfo(request)
-          body = send_request('DescribeAppInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeAppInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于查看ckafka的可用区列表
 
         # @param request: Request instance for DescribeCkafkaZone.

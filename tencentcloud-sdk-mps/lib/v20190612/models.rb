@@ -12436,16 +12436,22 @@ module TencentCloud
         # * Preset：系统预置模板；
         # * Custom：用户自定义模板。
         # @type Type: String
+        # @param EraseType: 智能擦除模板擦除类型过滤条件。
+        # - subtitle 去字幕
+        # - watermark 去水印
+        # - privacy 隐私保护
+        # @type EraseType: String
         # @param Name: 智能擦除模板名过滤条件，长度限制：64 个字符。
         # @type Name: String
 
-        attr_accessor :Definitions, :Offset, :Limit, :Type, :Name
+        attr_accessor :Definitions, :Offset, :Limit, :Type, :EraseType, :Name
 
-        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, name=nil)
+        def initialize(definitions=nil, offset=nil, limit=nil, type=nil, erasetype=nil, name=nil)
           @Definitions = definitions
           @Offset = offset
           @Limit = limit
           @Type = type
+          @EraseType = erasetype
           @Name = name
         end
 
@@ -12454,6 +12460,7 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Type = params['Type']
+          @EraseType = params['EraseType']
           @Name = params['Name']
         end
       end
@@ -16650,6 +16657,70 @@ module TencentCloud
         end
       end
 
+      # 直播摘要结果信息。
+      class LiveAiAnalysisDescriptionItem < TencentCloud::Common::AbstractModel
+        # @param Paragraphs: 分段结果。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Paragraphs: Array
+
+        attr_accessor :Paragraphs
+
+        def initialize(paragraphs=nil)
+          @Paragraphs = paragraphs
+        end
+
+        def deserialize(params)
+          unless params['Paragraphs'].nil?
+            @Paragraphs = []
+            params['Paragraphs'].each do |i|
+              liveaiparagraphinfo_tmp = LiveAiParagraphInfo.new
+              liveaiparagraphinfo_tmp.deserialize(i)
+              @Paragraphs << liveaiparagraphinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 分段信息。
+      class LiveAiParagraphInfo < TencentCloud::Common::AbstractModel
+        # @param Summary: 分段摘要
+        # @type Summary: String
+        # @param Title: 分段标题
+        # @type Title: String
+        # @param Keywords: 分段关键词
+        # @type Keywords: Array
+        # @param StartTimeOffset: 分段起始时间点，秒
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 分段结束时间点，秒
+        # @type EndTimeOffset: Float
+        # @param BeginTime: 直播切片对应直播起始时间点，采用 ISO 日期格式。
+        # @type BeginTime: String
+        # @param EndTime: 直播切片对应直播结束时间点，采用 ISO 日期格式。
+        # @type EndTime: String
+
+        attr_accessor :Summary, :Title, :Keywords, :StartTimeOffset, :EndTimeOffset, :BeginTime, :EndTime
+
+        def initialize(summary=nil, title=nil, keywords=nil, starttimeoffset=nil, endtimeoffset=nil, begintime=nil, endtime=nil)
+          @Summary = summary
+          @Title = title
+          @Keywords = keywords
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+          @BeginTime = begintime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Summary = params['Summary']
+          @Title = params['Title']
+          @Keywords = params['Keywords']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
       # 直播录制输出文件信息
       class LiveRecordFile < TencentCloud::Common::AbstractModel
         # @param Url: 直播录制文件地址
@@ -16909,7 +16980,10 @@ module TencentCloud
 
       # 直播流分析结果
       class LiveStreamAiAnalysisResultInfo < TencentCloud::Common::AbstractModel
-        # @param ResultSet: 直播分析子任务结果，暂时只支持直播拆条。
+        # @param ResultSet: 直播分析子任务结果，支持：
+        # <li>直播拆条</li>
+        # <li>直播高光集锦</li>
+        # <li>直播摘要</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultSet: Array
 
@@ -16936,6 +17010,7 @@ module TencentCloud
         # @param Type: 结果的类型，取值范围：
         # <li>SegmentRecognition：拆条。</li>
         # <li>Highlight ：集锦。</li>
+        # <li> Description：摘要。</li>
         # @type Type: String
         # @param SegmentResultSet: 拆条结果，当 Type 为
         # SegmentRecognition 时有效。
@@ -16944,13 +17019,16 @@ module TencentCloud
         # @param HighlightResultSet: 集锦结果，当Type 为 Highlight 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HighlightResultSet: Array
+        # @param DescriptionResult: 摘要结果，当Type 为 Description 时有效。
+        # @type DescriptionResult: :class:`Tencentcloud::Mps.v20190612.models.LiveAiAnalysisDescriptionItem`
 
-        attr_accessor :Type, :SegmentResultSet, :HighlightResultSet
+        attr_accessor :Type, :SegmentResultSet, :HighlightResultSet, :DescriptionResult
 
-        def initialize(type=nil, segmentresultset=nil, highlightresultset=nil)
+        def initialize(type=nil, segmentresultset=nil, highlightresultset=nil, descriptionresult=nil)
           @Type = type
           @SegmentResultSet = segmentresultset
           @HighlightResultSet = highlightresultset
+          @DescriptionResult = descriptionresult
         end
 
         def deserialize(params)
@@ -16970,6 +17048,10 @@ module TencentCloud
               mediaaianalysishighlightitem_tmp.deserialize(i)
               @HighlightResultSet << mediaaianalysishighlightitem_tmp
             end
+          end
+          unless params['DescriptionResult'].nil?
+            @DescriptionResult = LiveAiAnalysisDescriptionItem.new
+            @DescriptionResult.deserialize(params['DescriptionResult'])
           end
         end
       end
@@ -21581,6 +21663,7 @@ module TencentCloud
         # <li>AiRecognitionResult：内容识别结果；</li>
         # <li>LiveRecordResult：直播录制结果；</li>
         # <li>AiQualityControlResult：媒体质检结果；</li>
+        # <li>AiAnalysisResult：内容分析结果；</li>
         # <li>ProcessEof：直播流处理结束。</li>
         # @type NotificationType: String
         # @param TaskId: 视频处理任务 ID。

@@ -227,26 +227,6 @@ module TencentCloud
         end
       end
 
-      # AppId的查询结果
-      class AppIdResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合要求的所有AppId数量
-        # @type TotalCount: Integer
-        # @param AppIdList: 符合要求的App Id列表
-        # @type AppIdList: Array
-
-        attr_accessor :TotalCount, :AppIdList
-
-        def initialize(totalcount=nil, appidlist=nil)
-          @TotalCount = totalcount
-          @AppIdList = appidlist
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          @AppIdList = params['AppIdList']
-        end
-      end
-
       # 存储着分配给该消费者的 partition 信息
       class Assignment < TencentCloud::Common::AbstractModel
         # @param Version: assingment版本信息
@@ -3908,49 +3888,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = AclRuleResp.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeAppInfo请求参数结构体
-      class DescribeAppInfoRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移位置
-        # @type Offset: Integer
-        # @param Limit: 本次查询用户数目最大数量限制，最大值为50，默认50
-        # @type Limit: Integer
-
-        attr_accessor :Offset, :Limit
-
-        def initialize(offset=nil, limit=nil)
-          @Offset = offset
-          @Limit = limit
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-        end
-      end
-
-      # DescribeAppInfo返回参数结构体
-      class DescribeAppInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的符合要求的App Id列表
-        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.AppIdResponse`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = AppIdResponse.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

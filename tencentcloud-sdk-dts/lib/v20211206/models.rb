@@ -4302,14 +4302,17 @@ module TencentCloud
         # @type DDLTopicName: String
         # @param TopicRules: 单topic和自定义topic的描述
         # @type TopicRules: Array
+        # @param DataOption: 其他附加信息，对于特定数据类型可设置额外参数，比如针对Canal兼容的功能支持："canalOfficialFormat":"on"表示打开Canal兼容功能，默认不带。
+        # @type DataOption: Array
 
-        attr_accessor :DataType, :TopicType, :DDLTopicName, :TopicRules
+        attr_accessor :DataType, :TopicType, :DDLTopicName, :TopicRules, :DataOption
 
-        def initialize(datatype=nil, topictype=nil, ddltopicname=nil, topicrules=nil)
+        def initialize(datatype=nil, topictype=nil, ddltopicname=nil, topicrules=nil, dataoption=nil)
           @DataType = datatype
           @TopicType = topictype
           @DDLTopicName = ddltopicname
           @TopicRules = topicrules
+          @DataOption = dataoption
         end
 
         def deserialize(params)
@@ -4322,6 +4325,14 @@ module TencentCloud
               topicrule_tmp = TopicRule.new
               topicrule_tmp.deserialize(i)
               @TopicRules << topicrule_tmp
+            end
+          end
+          unless params['DataOption'].nil?
+            @DataOption = []
+            params['DataOption'].each do |i|
+              keyvaluepairoption_tmp = KeyValuePairOption.new
+              keyvaluepairoption_tmp.deserialize(i)
+              @DataOption << keyvaluepairoption_tmp
             end
           end
         end

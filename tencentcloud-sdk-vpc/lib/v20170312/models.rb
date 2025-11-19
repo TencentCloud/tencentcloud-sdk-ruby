@@ -8543,15 +8543,19 @@ module TencentCloud
       class DeletePrivateNatGatewayRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: 私网网关唯一`ID`，形如"intranat-xxxxxxxx"。
         # @type NatGatewayId: String
+        # @param IgnoreOperationRisk: 忽略操作风险
+        # @type IgnoreOperationRisk: Boolean
 
-        attr_accessor :NatGatewayId
+        attr_accessor :NatGatewayId, :IgnoreOperationRisk
 
-        def initialize(natgatewayid=nil)
+        def initialize(natgatewayid=nil, ignoreoperationrisk=nil)
           @NatGatewayId = natgatewayid
+          @IgnoreOperationRisk = ignoreoperationrisk
         end
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
+          @IgnoreOperationRisk = params['IgnoreOperationRisk']
         end
       end
 

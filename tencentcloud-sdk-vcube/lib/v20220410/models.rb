@@ -353,16 +353,20 @@ module TencentCloud
 
       # CreateApplicationAndVideo返回参数结构体
       class CreateApplicationAndVideoResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseId: license唯一标识
+        # @type LicenseId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :LicenseId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(licenseid=nil, requestid=nil)
+          @LicenseId = licenseid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @LicenseId = params['LicenseId']
           @RequestId = params['RequestId']
         end
       end
@@ -389,16 +393,20 @@ module TencentCloud
 
       # CreateApplicationAndWebPlayerLicense返回参数结构体
       class CreateApplicationAndWebPlayerLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param LicenseId: license的唯一标识
+        # @type LicenseId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :LicenseId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(licenseid=nil, requestid=nil)
+          @LicenseId = licenseid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @LicenseId = params['LicenseId']
           @RequestId = params['RequestId']
         end
       end
@@ -1018,10 +1026,12 @@ module TencentCloud
         # @type MacBundleId: String
         # @param WinProcessName: Windows 进程名
         # @type WinProcessName: String
+        # @param LicenseId: license唯一标识
+        # @type LicenseId: Integer
 
-        attr_accessor :BizType, :AppType, :AppName, :BundleId, :PackageName, :Platform, :MacBundleId, :WinProcessName
+        attr_accessor :BizType, :AppType, :AppName, :BundleId, :PackageName, :Platform, :MacBundleId, :WinProcessName, :LicenseId
 
-        def initialize(biztype=nil, apptype=nil, appname=nil, bundleid=nil, packagename=nil, platform=nil, macbundleid=nil, winprocessname=nil)
+        def initialize(biztype=nil, apptype=nil, appname=nil, bundleid=nil, packagename=nil, platform=nil, macbundleid=nil, winprocessname=nil, licenseid=nil)
           @BizType = biztype
           @AppType = apptype
           @AppName = appname
@@ -1030,6 +1040,7 @@ module TencentCloud
           @Platform = platform
           @MacBundleId = macbundleid
           @WinProcessName = winprocessname
+          @LicenseId = licenseid
         end
 
         def deserialize(params)
@@ -1041,6 +1052,7 @@ module TencentCloud
           @Platform = params['Platform']
           @MacBundleId = params['MacBundleId']
           @WinProcessName = params['WinProcessName']
+          @LicenseId = params['LicenseId']
         end
       end
 

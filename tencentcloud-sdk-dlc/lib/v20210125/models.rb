@@ -769,12 +769,15 @@ module TencentCloud
         # @type UserId: String
         # @param PolicySet: 鉴权策略集合
         # @type PolicySet: Array
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :PolicySet
+        attr_accessor :UserId, :PolicySet, :AccountType
 
-        def initialize(userid=nil, policyset=nil)
+        def initialize(userid=nil, policyset=nil, accounttype=nil)
           @UserId = userid
           @PolicySet = policyset
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -787,6 +790,7 @@ module TencentCloud
               @PolicySet << policy_tmp
             end
           end
+          @AccountType = params['AccountType']
         end
       end
 
@@ -3553,16 +3557,19 @@ module TencentCloud
         # @type WorkGroupIds: Array
         # @param UserAlias: 用户别名，字符长度小50
         # @type UserAlias: String
+        # @param AccountType: 账号类型，UserAccount：用户账号 RoleAccount：角色账号，默认为用户账号
+        # @type AccountType: String
 
-        attr_accessor :UserId, :UserDescription, :PolicySet, :UserType, :WorkGroupIds, :UserAlias
+        attr_accessor :UserId, :UserDescription, :PolicySet, :UserType, :WorkGroupIds, :UserAlias, :AccountType
 
-        def initialize(userid=nil, userdescription=nil, policyset=nil, usertype=nil, workgroupids=nil, useralias=nil)
+        def initialize(userid=nil, userdescription=nil, policyset=nil, usertype=nil, workgroupids=nil, useralias=nil, accounttype=nil)
           @UserId = userid
           @UserDescription = userdescription
           @PolicySet = policyset
           @UserType = usertype
           @WorkGroupIds = workgroupids
           @UserAlias = useralias
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -3579,6 +3586,7 @@ module TencentCloud
           @UserType = params['UserType']
           @WorkGroupIds = params['WorkGroupIds']
           @UserAlias = params['UserAlias']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -5802,15 +5810,19 @@ module TencentCloud
       class DeleteUserRequest < TencentCloud::Common::AbstractModel
         # @param UserIds: 需要删除的用户的Id
         # @type UserIds: Array
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserIds
+        attr_accessor :UserIds, :AccountType
 
-        def initialize(userids=nil)
+        def initialize(userids=nil, accounttype=nil)
           @UserIds = userids
+          @AccountType = accounttype
         end
 
         def deserialize(params)
           @UserIds = params['UserIds']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -9912,10 +9924,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量，默认为0
         # @type Offset: Integer
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :Type, :Filters, :SortBy, :Sorting, :Limit, :Offset
+        attr_accessor :UserId, :Type, :Filters, :SortBy, :Sorting, :Limit, :Offset, :AccountType
 
-        def initialize(userid=nil, type=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, offset=nil)
+        def initialize(userid=nil, type=nil, filters=nil, sortby=nil, sorting=nil, limit=nil, offset=nil, accounttype=nil)
           @UserId = userid
           @Type = type
           @Filters = filters
@@ -9923,6 +9937,7 @@ module TencentCloud
           @Sorting = sorting
           @Limit = limit
           @Offset = offset
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -9940,6 +9955,7 @@ module TencentCloud
           @Sorting = params['Sorting']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -10073,15 +10089,19 @@ module TencentCloud
       class DescribeUserTypeRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 用户ID（UIN），如果不填默认为调用方的子UIN
         # @type UserId: String
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId
+        attr_accessor :UserId, :AccountType
 
-        def initialize(userid=nil)
+        def initialize(userid=nil, accounttype=nil)
           @UserId = userid
+          @AccountType = accounttype
         end
 
         def deserialize(params)
           @UserId = params['UserId']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -10171,16 +10191,19 @@ module TencentCloud
         # @type Sorting: String
         # @param Filters: 过滤条件，支持如下字段类型，user-type：根据用户类型过滤。user-keyword：根据用户名称过滤
         # @type Filters: Array
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting, :Filters
+        attr_accessor :UserId, :Offset, :Limit, :SortBy, :Sorting, :Filters, :AccountType
 
-        def initialize(userid=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, filters=nil)
+        def initialize(userid=nil, offset=nil, limit=nil, sortby=nil, sorting=nil, filters=nil, accounttype=nil)
           @UserId = userid
           @Offset = offset
           @Limit = limit
           @SortBy = sortby
           @Sorting = sorting
           @Filters = filters
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -10197,6 +10220,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @AccountType = params['AccountType']
         end
       end
 
@@ -10499,12 +10523,15 @@ module TencentCloud
         # @type UserId: String
         # @param PolicySet: 解绑的权限集合
         # @type PolicySet: Array
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :PolicySet
+        attr_accessor :UserId, :PolicySet, :AccountType
 
-        def initialize(userid=nil, policyset=nil)
+        def initialize(userid=nil, policyset=nil, accounttype=nil)
           @UserId = userid
           @PolicySet = policyset
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -10517,6 +10544,7 @@ module TencentCloud
               @PolicySet << policy_tmp
             end
           end
+          @AccountType = params['AccountType']
         end
       end
 
@@ -12302,17 +12330,21 @@ module TencentCloud
         # @type UserId: String
         # @param UserDescription: 用户描述
         # @type UserDescription: String
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :UserDescription
+        attr_accessor :UserId, :UserDescription, :AccountType
 
-        def initialize(userid=nil, userdescription=nil)
+        def initialize(userid=nil, userdescription=nil, accounttype=nil)
           @UserId = userid
           @UserDescription = userdescription
+          @AccountType = accounttype
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @UserDescription = params['UserDescription']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -12338,17 +12370,21 @@ module TencentCloud
         # @type UserId: String
         # @param UserType: 用户要修改到的类型，ADMIN：管理员，COMMON：一般用户。
         # @type UserType: String
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :UserType
+        attr_accessor :UserId, :UserType, :AccountType
 
-        def initialize(userid=nil, usertype=nil)
+        def initialize(userid=nil, usertype=nil, accounttype=nil)
           @UserId = userid
           @UserType = usertype
+          @AccountType = accounttype
         end
 
         def deserialize(params)
           @UserId = params['UserId']
           @UserType = params['UserType']
+          @AccountType = params['AccountType']
         end
       end
 
@@ -13211,10 +13247,12 @@ module TencentCloud
         # @type Id: Integer
         # @param EngineGeneration: 引擎类型
         # @type EngineGeneration: String
+        # @param Model: 需要授权的Model名，填 * 代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。
+        # @type Model: String
 
-        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id, :EngineGeneration
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id, :EngineGeneration, :Model
 
-        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil, enginegeneration=nil)
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil, enginegeneration=nil, model=nil)
           @Database = database
           @Catalog = catalog
           @Table = table
@@ -13233,6 +13271,7 @@ module TencentCloud
           @SourceName = sourcename
           @Id = id
           @EngineGeneration = enginegeneration
+          @Model = model
         end
 
         def deserialize(params)
@@ -13254,6 +13293,7 @@ module TencentCloud
           @SourceName = params['SourceName']
           @Id = params['Id']
           @EngineGeneration = params['EngineGeneration']
+          @Model = params['Model']
         end
       end
 
@@ -16758,10 +16798,12 @@ module TencentCloud
         # @param CatalogPolicyInfo: 数据源权限集合
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param ModelPolicyInfo: 模型权限集合
+        # @type ModelPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
 
-        attr_accessor :UserId, :Type, :UserType, :UserDescription, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupInfo, :UserAlias, :RowFilterInfo, :AccountType, :CatalogPolicyInfo
+        attr_accessor :UserId, :Type, :UserType, :UserDescription, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupInfo, :UserAlias, :RowFilterInfo, :AccountType, :CatalogPolicyInfo, :ModelPolicyInfo
 
-        def initialize(userid=nil, type=nil, usertype=nil, userdescription=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupinfo=nil, useralias=nil, rowfilterinfo=nil, accounttype=nil, catalogpolicyinfo=nil)
+        def initialize(userid=nil, type=nil, usertype=nil, userdescription=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupinfo=nil, useralias=nil, rowfilterinfo=nil, accounttype=nil, catalogpolicyinfo=nil, modelpolicyinfo=nil)
           @UserId = userid
           @Type = type
           @UserType = usertype
@@ -16773,6 +16815,7 @@ module TencentCloud
           @RowFilterInfo = rowfilterinfo
           @AccountType = accounttype
           @CatalogPolicyInfo = catalogpolicyinfo
+          @ModelPolicyInfo = modelpolicyinfo
         end
 
         def deserialize(params)
@@ -16801,6 +16844,10 @@ module TencentCloud
           unless params['CatalogPolicyInfo'].nil?
             @CatalogPolicyInfo = Policys.new
             @CatalogPolicyInfo.deserialize(params['CatalogPolicyInfo'])
+          end
+          unless params['ModelPolicyInfo'].nil?
+            @ModelPolicyInfo = Policys.new
+            @ModelPolicyInfo.deserialize(params['ModelPolicyInfo'])
           end
         end
       end
@@ -16906,15 +16953,18 @@ module TencentCloud
         # @type CreateTime: String
         # @param UserAlias: 用户别名
         # @type UserAlias: String
+        # @param AccountType: 用户来源类型TencentAccount（普通腾讯云用户） / EntraAccount（微软用户）
+        # @type AccountType: String
 
-        attr_accessor :UserId, :UserDescription, :Creator, :CreateTime, :UserAlias
+        attr_accessor :UserId, :UserDescription, :Creator, :CreateTime, :UserAlias, :AccountType
 
-        def initialize(userid=nil, userdescription=nil, creator=nil, createtime=nil, useralias=nil)
+        def initialize(userid=nil, userdescription=nil, creator=nil, createtime=nil, useralias=nil, accounttype=nil)
           @UserId = userid
           @UserDescription = userdescription
           @Creator = creator
           @CreateTime = createtime
           @UserAlias = useralias
+          @AccountType = accounttype
         end
 
         def deserialize(params)
@@ -16923,6 +16973,7 @@ module TencentCloud
           @Creator = params['Creator']
           @CreateTime = params['CreateTime']
           @UserAlias = params['UserAlias']
+          @AccountType = params['AccountType']
         end
       end
 

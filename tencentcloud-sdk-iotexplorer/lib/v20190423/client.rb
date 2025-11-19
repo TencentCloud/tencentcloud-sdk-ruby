@@ -53,6 +53,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量同步执行 TWeSee 语义理解任务
+
+        # @param request: Request instance for BatchCreateTWeSeeRecognitionTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchCreateTWeSeeRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchCreateTWeSeeRecognitionTaskResponse`
+        def BatchCreateTWeSeeRecognitionTask(request)
+          body = send_request('BatchCreateTWeSeeRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchCreateTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量同步执行 TWeSee 语义理解任务
+
+        # @param request: Request instance for BatchInvokeTWeSeeRecognitionTask.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BatchInvokeTWeSeeRecognitionTaskRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BatchInvokeTWeSeeRecognitionTaskResponse`
+        def BatchInvokeTWeSeeRecognitionTask(request)
+          body = send_request('BatchInvokeTWeSeeRecognitionTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchInvokeTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（BatchUpdateFirmware）用于批量更新设备固件
 
         # @param request: Request instance for BatchUpdateFirmware.
@@ -751,6 +799,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 同步执行 TWeSee 语义理解任务
+
+        # @param request: Request instance for CreateTWeSeeRecognitionTaskWithFile.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeRecognitionTaskWithFileRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeSeeRecognitionTaskWithFileResponse`
+        def CreateTWeSeeRecognitionTaskWithFile(request)
+          body = send_request('CreateTWeSeeRecognitionTaskWithFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeSeeRecognitionTaskWithFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通 TWeSee 后付费服务
 
         # @param request: Request instance for CreateTWeSeeService.
@@ -1121,6 +1193,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteStudioProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除配置TWeTalk服务连接产品配置信息。
+
+        # @param request: Request instance for DeleteTWeTalkProductConfigV2.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeTalkProductConfigV2Request`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeTalkProductConfigV2Response`
+        def DeleteTWeTalkProductConfigV2(request)
+          body = send_request('DeleteTWeTalkProductConfigV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTWeTalkProductConfigV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -1865,32 +1961,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDeviceFirmwaresResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取实时位置解析依赖于teg位置服务，近30天调用只有2个个人账号调用，产品推下线
-
-        # 获取实时位置解析
-
-        # @param request: Request instance for DescribeDeviceLocationSolve.
-        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceLocationSolveRequest`
-        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeDeviceLocationSolveResponse`
-        def DescribeDeviceLocationSolve(request)
-          body = send_request('DescribeDeviceLocationSolve', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDeviceLocationSolveResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3379,6 +3449,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InvokeTWeSeeRecognitionTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 同步执行 TWeSee 语义理解任务
+
+        # @param request: Request instance for InvokeTWeSeeRecognitionTaskWithFile.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InvokeTWeSeeRecognitionTaskWithFileRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::InvokeTWeSeeRecognitionTaskWithFileResponse`
+        def InvokeTWeSeeRecognitionTaskWithFile(request)
+          body = send_request('InvokeTWeSeeRecognitionTaskWithFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InvokeTWeSeeRecognitionTaskWithFileResponse.new
             model.deserialize(response['Response'])
             model
           else
