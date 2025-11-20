@@ -113,6 +113,78 @@ module TencentCloud
         end
       end
 
+      # CreateEnterprise请求参数结构体
+      class CreateEnterpriseRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Name: 名称
+        # @type Name: String
+        # @param ParentEnterpriseUid: 上一级企业
+        # @type ParentEnterpriseUid: String
+        # @param CreditCode: 统一社会信用代码
+        # @type CreditCode: String
+        # @param Status: 企业状态:存续、已注销
+        # @type Status: String
+        # @param RegisteredCapital: 注册资本（单位:元）
+        # @type RegisteredCapital: String
+        # @param ShareholdingRatio: 持股比例
+        # @type ShareholdingRatio: String
+        # @param LegalPerson: 法人代表
+        # @type LegalPerson: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param Industry: 行业类型
+        # @type Industry: String
+        # @param EnterpriseUid: 子公司ID
+        # @type EnterpriseUid: String
+
+        attr_accessor :CustomerId, :Name, :ParentEnterpriseUid, :CreditCode, :Status, :RegisteredCapital, :ShareholdingRatio, :LegalPerson, :Type, :Industry, :EnterpriseUid
+
+        def initialize(customerid=nil, name=nil, parententerpriseuid=nil, creditcode=nil, status=nil, registeredcapital=nil, shareholdingratio=nil, legalperson=nil, type=nil, industry=nil, enterpriseuid=nil)
+          @CustomerId = customerid
+          @Name = name
+          @ParentEnterpriseUid = parententerpriseuid
+          @CreditCode = creditcode
+          @Status = status
+          @RegisteredCapital = registeredcapital
+          @ShareholdingRatio = shareholdingratio
+          @LegalPerson = legalperson
+          @Type = type
+          @Industry = industry
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Name = params['Name']
+          @ParentEnterpriseUid = params['ParentEnterpriseUid']
+          @CreditCode = params['CreditCode']
+          @Status = params['Status']
+          @RegisteredCapital = params['RegisteredCapital']
+          @ShareholdingRatio = params['ShareholdingRatio']
+          @LegalPerson = params['LegalPerson']
+          @Type = params['Type']
+          @Industry = params['Industry']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateEnterprise返回参数结构体
+      class CreateEnterpriseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateJobRecord请求参数结构体
       class CreateJobRecordRequest < TencentCloud::Common::AbstractModel
         # @param CustomerId: 企业ID
@@ -267,6 +339,112 @@ module TencentCloud
           @SubCompanyLevel = params['SubCompanyLevel']
           @IsIncludeFullScan = params['IsIncludeFullScan']
           @EnableGroupMemberDiscovered = params['EnableGroupMemberDiscovered']
+        end
+      end
+
+      # DescribeApiSecs请求参数结构体
+      class DescribeApiSecsRequest < TencentCloud::Common::AbstractModel
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+        # @param UpdateAtEnd: 更新时间-结束
+        # @type UpdateAtEnd: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param UpdateAtStart: 更新时间-开始
+        # @type UpdateAtStart: String
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param Format: 数据输出格式：json、file，默认不填为json
+        # @type Format: String
+        # @param IsNew: 是否新增数据
+        # @type IsNew: Boolean
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param EnterpriseUidList: 子公司ID列表
+        # @type EnterpriseUidList: Array
+        # @param Filters: 查询数组
+        # @type Filters: Array
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+
+        attr_accessor :IsAggregation, :Offset, :Limit, :Ignored, :UpdateAtEnd, :CreateAtEnd, :UpdateAtStart, :CreateAtStart, :Format, :IsNew, :CustomerIdList, :EnterpriseUidList, :Filters, :CustomerId
+
+        def initialize(isaggregation=nil, offset=nil, limit=nil, ignored=nil, updateatend=nil, createatend=nil, updateatstart=nil, createatstart=nil, format=nil, isnew=nil, customeridlist=nil, enterpriseuidlist=nil, filters=nil, customerid=nil)
+          @IsAggregation = isaggregation
+          @Offset = offset
+          @Limit = limit
+          @Ignored = ignored
+          @UpdateAtEnd = updateatend
+          @CreateAtEnd = createatend
+          @UpdateAtStart = updateatstart
+          @CreateAtStart = createatstart
+          @Format = format
+          @IsNew = isnew
+          @CustomerIdList = customeridlist
+          @EnterpriseUidList = enterpriseuidlist
+          @Filters = filters
+          @CustomerId = customerid
+        end
+
+        def deserialize(params)
+          @IsAggregation = params['IsAggregation']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Ignored = params['Ignored']
+          @UpdateAtEnd = params['UpdateAtEnd']
+          @CreateAtEnd = params['CreateAtEnd']
+          @UpdateAtStart = params['UpdateAtStart']
+          @CreateAtStart = params['CreateAtStart']
+          @Format = params['Format']
+          @IsNew = params['IsNew']
+          @CustomerIdList = params['CustomerIdList']
+          @EnterpriseUidList = params['EnterpriseUidList']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @CustomerId = params['CustomerId']
+        end
+      end
+
+      # DescribeApiSecs返回参数结构体
+      class DescribeApiSecsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: API安全数组
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayapisec_tmp = DisplayApiSec.new
+              displayapisec_tmp.deserialize(i)
+              @List << displayapisec_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3075,6 +3253,65 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # API安全详情
+      class DisplayApiSec < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param DisplayToolCommon: 公共字段
+        # @type DisplayToolCommon: :class:`Tencentcloud::Ctem.v20231128.models.DisplayToolCommon`
+        # @param Url: Url
+        # @type Url: String
+        # @param Host: Host地址
+        # @type Host: String
+        # @param Path: Path路径
+        # @type Path: String
+        # @param Method: 方法：POST、GET、DELETE等
+        # @type Method: String
+        # @param Status: 修复状态：unrepaired:未修复，repaired:已修复, ignore:已忽略,checking:复测中
+        # @type Status: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Request: 请求体
+        # @type Request: String
+        # @param Response: 响应体
+        # @type Response: String
+        # @param IsRiskAPI: 是否风险API
+        # @type IsRiskAPI: Boolean
+
+        attr_accessor :Id, :DisplayToolCommon, :Url, :Host, :Path, :Method, :Status, :Code, :Request, :Response, :IsRiskAPI
+
+        def initialize(id=nil, displaytoolcommon=nil, url=nil, host=nil, path=nil, method=nil, status=nil, code=nil, request=nil, response=nil, isriskapi=nil)
+          @Id = id
+          @DisplayToolCommon = displaytoolcommon
+          @Url = url
+          @Host = host
+          @Path = path
+          @Method = method
+          @Status = status
+          @Code = code
+          @Request = request
+          @Response = response
+          @IsRiskAPI = isriskapi
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['DisplayToolCommon'].nil?
+            @DisplayToolCommon = DisplayToolCommon.new
+            @DisplayToolCommon.deserialize(params['DisplayToolCommon'])
+          end
+          @Url = params['Url']
+          @Host = params['Host']
+          @Path = params['Path']
+          @Method = params['Method']
+          @Status = params['Status']
+          @Code = params['Code']
+          @Request = params['Request']
+          @Response = params['Response']
+          @IsRiskAPI = params['IsRiskAPI']
         end
       end
 

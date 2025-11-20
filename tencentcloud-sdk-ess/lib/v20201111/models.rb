@@ -1704,6 +1704,34 @@ module TencentCloud
         end
       end
 
+      # 合同审查个性化参数，用于控制页面的展示内容
+      class ContractReviewWebUrlOption < TencentCloud::Common::AbstractModel
+        # @param DisableTemporaryStore: 禁用暂存。 默认 false，设置为 true 会隐藏界面上的临时保存按钮
+        # @type DisableTemporaryStore: Boolean
+        # @param DisableExport: 禁用导出。默认 false，设置为 true 会隐藏界面上的导出按钮
+        # @type DisableExport: Boolean
+        # @param DisableReviewAgain: 禁用重新审查。默认 false，设置为 true 会隐藏界面上的重新审查按钮
+        # @type DisableReviewAgain: Boolean
+        # @param DisableWxQrcode: 禁用二维码分享。默认 false，设置为 true 会隐藏界面上的分享二维码
+        # @type DisableWxQrcode: Boolean
+
+        attr_accessor :DisableTemporaryStore, :DisableExport, :DisableReviewAgain, :DisableWxQrcode
+
+        def initialize(disabletemporarystore=nil, disableexport=nil, disablereviewagain=nil, disablewxqrcode=nil)
+          @DisableTemporaryStore = disabletemporarystore
+          @DisableExport = disableexport
+          @DisableReviewAgain = disablereviewagain
+          @DisableWxQrcode = disablewxqrcode
+        end
+
+        def deserialize(params)
+          @DisableTemporaryStore = params['DisableTemporaryStore']
+          @DisableExport = params['DisableExport']
+          @DisableReviewAgain = params['DisableReviewAgain']
+          @DisableWxQrcode = params['DisableWxQrcode']
+        end
+      end
+
       # CreateBatchAdminChangeInvitations请求参数结构体
       class CreateBatchAdminChangeInvitationsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -1798,9 +1826,13 @@ module TencentCloud
         #  SMS  - 如果使用这个方式，则会给即将变更的超管发信息。
         # 注意：
         # 发送信息的手机号，是用户传递的手机号。
-        # 如果用户同时传递了证件号，手机号会用用户在电子签注册的手机号进行覆盖。
+        # 如果用户同时传递了证件号，手机号会被用户在电子签注册的手机号进行覆盖。
         # @type NotifyType: String
-        # @param Endpoint: 要跳转的链接类型<ul><li> **HTTP**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型  ，此时返回长链 (默认类型)</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url, 短信通知或者H5跳转适合此类型，此时返回短链</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path,  APP或者小程序跳转适合此类型</li><li>**QR_CODE**： 跳转电子签小程序的http_url的二维码形式,  可以在页面展示适合此类型</li></ul>
+        # @param Endpoint: 要跳转的链接类型
+        # <ul>
+        # <li> **HTTP**：跳转电子签小程序的http_url，短信通知或者H5跳转适合此类型 ，此时返回长链 （默认类型）。</li><li>**HTTP_SHORT_URL**：跳转电子签小程序的http_url，短信通知或者H5跳转适合此类型，此时返回短链。</li><li>**APP**： 第三方APP或小程序跳转电子签小程序的path，APP或者小程序跳转适合此类型。</li>
+        # <li>**QR_CODE**： 跳转电子签小程序的http_url的二维码形式，可以在页面展示适合此类型。</li>
+        # </ul>
         # @type Endpoint: String
 
         attr_accessor :Operator, :NewAdminName, :NewAdminMobile, :NewAdminIdCardType, :NewAdminIdCardNumber, :NotifyType, :Endpoint
@@ -2568,7 +2600,6 @@ module TencentCloud
         # <ul>
         # <li>请确认该名称与企业营业执照中注册的名称一致。</li>
         # <li>如果名称中包含英文括号()，请使用中文括号（）代替。</li>
-        # <li>请确保此企业已完成腾讯电子签企业认证。</li>
         # </ul>
         # @type OrganizationName: String
         # @param JumpToDetail: 是否直接跳转至合同内容页面进行签署
@@ -2853,13 +2884,16 @@ module TencentCloud
 
         # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
         # @type UserData: String
+        # @param Option: 个性化参数，用于控制页面展示内容
+        # @type Option: :class:`Tencentcloud::Ess.v20201111.models.ContractReviewWebUrlOption`
 
-        attr_accessor :Operator, :ResourceId, :UserData
+        attr_accessor :Operator, :ResourceId, :UserData, :Option
 
-        def initialize(operator=nil, resourceid=nil, userdata=nil)
+        def initialize(operator=nil, resourceid=nil, userdata=nil, option=nil)
           @Operator = operator
           @ResourceId = resourceid
           @UserData = userdata
+          @Option = option
         end
 
         def deserialize(params)
@@ -2869,6 +2903,10 @@ module TencentCloud
           end
           @ResourceId = params['ResourceId']
           @UserData = params['UserData']
+          unless params['Option'].nil?
+            @Option = ContractReviewWebUrlOption.new
+            @Option.deserialize(params['Option'])
+          end
         end
       end
 

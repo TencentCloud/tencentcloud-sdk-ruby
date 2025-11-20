@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过JobId提交请求，获取人像驱动任务的结果信息。
+
+        # @param request: Request instance for DescribeHumanActorJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeHumanActorJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeHumanActorJobResponse`
+        def DescribeHumanActorJob(request)
+          body = send_request('DescribeHumanActorJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHumanActorJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询图片跳舞任务。图片跳舞能力支持舞蹈动作结合图片生成跳舞视频，满足社交娱乐、互动营销等场景的需求。
 
         # @param request: Request instance for DescribeImageAnimateJob.
@@ -160,6 +184,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoStylizationJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于提交人像驱动任务
+        # 支持提交音频和图文来生成对应视频，满足动态交互、内容生产等场景需求。
+
+        # @param request: Request instance for SubmitHumanActorJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitHumanActorJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitHumanActorJobResponse`
+        def SubmitHumanActorJob(request)
+          body = send_request('SubmitHumanActorJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitHumanActorJobResponse.new
             model.deserialize(response['Response'])
             model
           else

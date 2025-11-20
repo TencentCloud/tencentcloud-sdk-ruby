@@ -2390,6 +2390,99 @@ module TencentCloud
         end
       end
 
+      # 其他发票
+      class ElectronicTollSummary < TencentCloud::Common::AbstractModel
+        # @param Title: 发票名称
+        # @type Title: String
+        # @param Total: 金额
+        # @type Total: String
+        # @param Items: 列表
+        # @type Items: Array
+        # @param TableItems: 表格
+        # @type TableItems: Array
+        # @param Date: 发票日期
+        # @type Date: String
+
+        attr_accessor :Title, :Total, :Items, :TableItems, :Date
+
+        def initialize(title=nil, total=nil, items=nil, tableitems=nil, date=nil)
+          @Title = title
+          @Total = total
+          @Items = items
+          @TableItems = tableitems
+          @Date = date
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              electronictollsummaryitem_tmp = ElectronicTollSummaryItem.new
+              electronictollsummaryitem_tmp.deserialize(i)
+              @Items << electronictollsummaryitem_tmp
+            end
+          end
+          unless params['TableItems'].nil?
+            @TableItems = []
+            params['TableItems'].each do |i|
+              electronictollsummarylist_tmp = ElectronicTollSummaryList.new
+              electronictollsummarylist_tmp.deserialize(i)
+              @TableItems << electronictollsummarylist_tmp
+            end
+          end
+          @Date = params['Date']
+        end
+      end
+
+      # ElectronicTollSummaryItem
+      class ElectronicTollSummaryItem < TencentCloud::Common::AbstractModel
+        # @param Name: 票面key值
+        # @type Name: String
+        # @param Value: 票面value值
+        # @type Value: String
+        # @param Row: 字段所在行，下标从0开始，非行字段或未能识别行号的返回-1
+        # @type Row: Integer
+
+        attr_accessor :Name, :Value, :Row
+
+        def initialize(name=nil, value=nil, row=nil)
+          @Name = name
+          @Value = value
+          @Row = row
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+          @Row = params['Row']
+        end
+      end
+
+      # 其他票Table
+      class ElectronicTollSummaryList < TencentCloud::Common::AbstractModel
+        # @param Items: 列表
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              electronictollsummaryitem_tmp = ElectronicTollSummaryItem.new
+              electronictollsummaryitem_tmp.deserialize(i)
+              @Items << electronictollsummaryitem_tmp
+            end
+          end
+        end
+      end
+
       # 全电发票（铁路电子客票）
       class ElectronicTrainTicket < TencentCloud::Common::AbstractModel
         # @param BuyerName: 购方名称
@@ -10753,10 +10846,13 @@ module TencentCloud
         # @param UsedCarPurchaseInvoiceElectronic: 二手车销售统一发票（电子）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UsedCarPurchaseInvoiceElectronic: :class:`Tencentcloud::Ocr.v20181119.models.UsedCarPurchaseInvoice`
+        # @param ElectronicTollSummary: 通行费电子票据汇总单
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElectronicTollSummary: :class:`Tencentcloud::Ocr.v20181119.models.ElectronicTollSummary`
 
-        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip, :OnlineTaxiItinerary, :CustomsDeclaration, :OverseasInvoice, :ShoppingReceipt, :SaleInventory, :MotorVehicleSaleInvoiceElectronic, :UsedCarPurchaseInvoiceElectronic
+        attr_accessor :VatSpecialInvoice, :VatCommonInvoice, :VatElectronicCommonInvoice, :VatElectronicSpecialInvoice, :VatElectronicInvoiceBlockchain, :VatElectronicInvoiceToll, :VatElectronicSpecialInvoiceFull, :VatElectronicInvoiceFull, :MachinePrintedInvoice, :BusInvoice, :ShippingInvoice, :TollInvoice, :OtherInvoice, :MotorVehicleSaleInvoice, :UsedCarPurchaseInvoice, :VatInvoiceRoll, :TaxiTicket, :QuotaInvoice, :AirTransport, :NonTaxIncomeGeneralBill, :NonTaxIncomeElectronicBill, :TrainTicket, :MedicalOutpatientInvoice, :MedicalHospitalizedInvoice, :VatSalesList, :ElectronicTrainTicketFull, :ElectronicFlightTicketFull, :TaxPayment, :CustomsPaymentReceipt, :BankSlip, :OnlineTaxiItinerary, :CustomsDeclaration, :OverseasInvoice, :ShoppingReceipt, :SaleInventory, :MotorVehicleSaleInvoiceElectronic, :UsedCarPurchaseInvoiceElectronic, :ElectronicTollSummary
 
-        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil, onlinetaxiitinerary=nil, customsdeclaration=nil, overseasinvoice=nil, shoppingreceipt=nil, saleinventory=nil, motorvehiclesaleinvoiceelectronic=nil, usedcarpurchaseinvoiceelectronic=nil)
+        def initialize(vatspecialinvoice=nil, vatcommoninvoice=nil, vatelectroniccommoninvoice=nil, vatelectronicspecialinvoice=nil, vatelectronicinvoiceblockchain=nil, vatelectronicinvoicetoll=nil, vatelectronicspecialinvoicefull=nil, vatelectronicinvoicefull=nil, machineprintedinvoice=nil, businvoice=nil, shippinginvoice=nil, tollinvoice=nil, otherinvoice=nil, motorvehiclesaleinvoice=nil, usedcarpurchaseinvoice=nil, vatinvoiceroll=nil, taxiticket=nil, quotainvoice=nil, airtransport=nil, nontaxincomegeneralbill=nil, nontaxincomeelectronicbill=nil, trainticket=nil, medicaloutpatientinvoice=nil, medicalhospitalizedinvoice=nil, vatsaleslist=nil, electronictrainticketfull=nil, electronicflightticketfull=nil, taxpayment=nil, customspaymentreceipt=nil, bankslip=nil, onlinetaxiitinerary=nil, customsdeclaration=nil, overseasinvoice=nil, shoppingreceipt=nil, saleinventory=nil, motorvehiclesaleinvoiceelectronic=nil, usedcarpurchaseinvoiceelectronic=nil, electronictollsummary=nil)
           @VatSpecialInvoice = vatspecialinvoice
           @VatCommonInvoice = vatcommoninvoice
           @VatElectronicCommonInvoice = vatelectroniccommoninvoice
@@ -10794,6 +10890,7 @@ module TencentCloud
           @SaleInventory = saleinventory
           @MotorVehicleSaleInvoiceElectronic = motorvehiclesaleinvoiceelectronic
           @UsedCarPurchaseInvoiceElectronic = usedcarpurchaseinvoiceelectronic
+          @ElectronicTollSummary = electronictollsummary
         end
 
         def deserialize(params)
@@ -10944,6 +11041,10 @@ module TencentCloud
           unless params['UsedCarPurchaseInvoiceElectronic'].nil?
             @UsedCarPurchaseInvoiceElectronic = UsedCarPurchaseInvoice.new
             @UsedCarPurchaseInvoiceElectronic.deserialize(params['UsedCarPurchaseInvoiceElectronic'])
+          end
+          unless params['ElectronicTollSummary'].nil?
+            @ElectronicTollSummary = ElectronicTollSummary.new
+            @ElectronicTollSummary.deserialize(params['ElectronicTollSummary'])
           end
         end
       end

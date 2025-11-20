@@ -2742,6 +2742,53 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceSSL请求参数结构体
+      class DescribeInstanceSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeInstanceSSL返回参数结构体
+      class DescribeInstanceSSLResponse < TencentCloud::Common::AbstractModel
+        # @param Status: SSL开启状态。0为关闭，1为开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ExpiredTime: 证书过期时间，格式为2023-05-01 12:00:00
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param CertUrl: 证书下载链接
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ExpiredTime, :CertUrl, :RequestId
+
+        def initialize(status=nil, expiredtime=nil, certurl=nil, requestid=nil)
+          @Status = status
+          @ExpiredTime = expiredtime
+          @CertUrl = certurl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ExpiredTime = params['ExpiredTime']
+          @CertUrl = params['CertUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogDownloadTasks请求参数结构体
       class DescribeLogDownloadTasksRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID
@@ -3962,6 +4009,65 @@ module TencentCloud
           @ConfigServerVolume = params['ConfigServerVolume']
           @ConfigServerCpuNum = params['ConfigServerCpuNum']
           @ReadonlyNodeNum = params['ReadonlyNodeNum']
+        end
+      end
+
+      # InstanceEnableSSL请求参数结构体
+      class InstanceEnableSSLRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Enable: 配置是否要开启SSL访问。
+        # - true：开启。
+        # - false：关闭。
+        # @type Enable: Boolean
+
+        attr_accessor :InstanceId, :Enable
+
+        def initialize(instanceid=nil, enable=nil)
+          @InstanceId = instanceid
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Enable = params['Enable']
+        end
+      end
+
+      # InstanceEnableSSL返回参数结构体
+      class InstanceEnableSSLResponse < TencentCloud::Common::AbstractModel
+        # @param Status: SSL开启状态。
+        # - 0：关闭。
+        # - 1：开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param ExpiredTime: 证书文件过期时间，格式为：2023-05-01 12:00:00。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+        # @param CertUrl: 证书文件的下载链接。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertUrl: String
+        # @param FlowId: 流程id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ExpiredTime, :CertUrl, :FlowId, :RequestId
+
+        def initialize(status=nil, expiredtime=nil, certurl=nil, flowid=nil, requestid=nil)
+          @Status = status
+          @ExpiredTime = expiredtime
+          @CertUrl = certurl
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ExpiredTime = params['ExpiredTime']
+          @CertUrl = params['CertUrl']
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

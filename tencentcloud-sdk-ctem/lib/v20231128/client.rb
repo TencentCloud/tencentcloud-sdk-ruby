@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加企业架构数据
+
+        # @param request: Request instance for CreateEnterprise.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateEnterpriseRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateEnterpriseResponse`
+        def CreateEnterprise(request)
+          body = send_request('CreateEnterprise', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateEnterpriseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启动测绘
 
         # @param request: Request instance for CreateJobRecord.
@@ -63,6 +87,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateJobRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查看API安全数据
+
+        # @param request: Request instance for DescribeApiSecs.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeApiSecsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeApiSecsResponse`
+        def DescribeApiSecs(request)
+          body = send_request('DescribeApiSecs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiSecsResponse.new
             model.deserialize(response['Response'])
             model
           else

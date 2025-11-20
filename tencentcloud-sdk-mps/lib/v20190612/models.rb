@@ -537,6 +537,9 @@ module TencentCloud
         # @type Definition: Integer
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
+        # @param BlindWatermark: 数字水印参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlindWatermark: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkInput`
         # @param OutputStorage: 转自适应码流后文件的目标存储，不填则继承上层的 OutputStorage 值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
@@ -572,11 +575,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyPTSList: Array
 
-        attr_accessor :Definition, :WatermarkSet, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate, :StdExtInfo, :KeyPTSList
+        attr_accessor :Definition, :WatermarkSet, :BlindWatermark, :OutputStorage, :OutputObjectPath, :SubStreamObjectName, :SegmentObjectName, :AddOnSubtitles, :DrmInfo, :DefinitionType, :SubtitleTemplate, :StdExtInfo, :KeyPTSList
 
-        def initialize(definition=nil, watermarkset=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil, stdextinfo=nil, keyptslist=nil)
+        def initialize(definition=nil, watermarkset=nil, blindwatermark=nil, outputstorage=nil, outputobjectpath=nil, substreamobjectname=nil, segmentobjectname=nil, addonsubtitles=nil, drminfo=nil, definitiontype=nil, subtitletemplate=nil, stdextinfo=nil, keyptslist=nil)
           @Definition = definition
           @WatermarkSet = watermarkset
+          @BlindWatermark = blindwatermark
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
           @SubStreamObjectName = substreamobjectname
@@ -598,6 +602,10 @@ module TencentCloud
               watermarkinput_tmp.deserialize(i)
               @WatermarkSet << watermarkinput_tmp
             end
+          end
+          unless params['BlindWatermark'].nil?
+            @BlindWatermark = BlindWatermarkInput.new
+            @BlindWatermark.deserialize(params['BlindWatermark'])
           end
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
@@ -5771,6 +5779,22 @@ module TencentCloud
 
         def deserialize(params)
           @EmbedText = params['EmbedText']
+        end
+      end
+
+      # 媒体处理任务中的数字水印参数类型
+      class BlindWatermarkInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板ID
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
         end
       end
 
@@ -15982,28 +16006,32 @@ module TencentCloud
         # 默认值：logo。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param AreaCoordSet: 图片框选区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        # @param AreaCoordSet: 图片框选区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。注意：该字段最大值为4096。
         # 示例值：[101, 85, 111, 95]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AreaCoordSet: Array
-        # @param BoundingBox: 图片框选区域坐标，[x1, y1, x2, y2]，即左上角坐标、右下角坐标， 当AreaCoordSet未指定时生效。
+        # @param BoundingBox: 图片框选区域坐标，[x1, y1, x2, y2]，即左上角坐标、右下角坐标， 当AreaCoordSet未指定时生效。当表示像素时，该字段最大值为4096。
         # - [0.1, 0.1, 0.3, 0.3] :  表示比例 （数值小于1）
         # - [50, 50, 350, 280] : 表示像素 （数值大于等于1）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoundingBox: Array
+        # @param BoundingBoxUnitType: BoundingBox字段单位。设置为0时，按照该字段规则自动选择单位；设置为1时，单位为比例；设置为2时，单位为像素。
+        # @type BoundingBoxUnitType: Integer
 
-        attr_accessor :Type, :AreaCoordSet, :BoundingBox
+        attr_accessor :Type, :AreaCoordSet, :BoundingBox, :BoundingBoxUnitType
 
-        def initialize(type=nil, areacoordset=nil, boundingbox=nil)
+        def initialize(type=nil, areacoordset=nil, boundingbox=nil, boundingboxunittype=nil)
           @Type = type
           @AreaCoordSet = areacoordset
           @BoundingBox = boundingbox
+          @BoundingBoxUnitType = boundingboxunittype
         end
 
         def deserialize(params)
           @Type = params['Type']
           @AreaCoordSet = params['AreaCoordSet']
           @BoundingBox = params['BoundingBox']
+          @BoundingBoxUnitType = params['BoundingBoxUnitType']
         end
       end
 
@@ -22362,16 +22390,22 @@ module TencentCloud
         # <li>/自定义路径/文件名_{变量名}.{format}</li>
         # 如果不填，则默认为相对路径：{inputName}.{format}。
         # @type OutputPath: String
+        # @param Definition: 图片处理模板唯一标识。
+        # @type Definition: Integer
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @type ResourceId: String
         # @param ImageTask: 图片处理参数。
         # @type ImageTask: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :ImageTask
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :Definition, :ResourceId, :ImageTask
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, imagetask=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, definition=nil, resourceid=nil, imagetask=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
           @OutputPath = outputpath
+          @Definition = definition
+          @ResourceId = resourceid
           @ImageTask = imagetask
         end
 
@@ -22386,6 +22420,8 @@ module TencentCloud
           end
           @OutputDir = params['OutputDir']
           @OutputPath = params['OutputPath']
+          @Definition = params['Definition']
+          @ResourceId = params['ResourceId']
           unless params['ImageTask'].nil?
             @ImageTask = ImageTaskInput.new
             @ImageTask.deserialize(params['ImageTask'])
@@ -27112,6 +27148,9 @@ module TencentCloud
         # @type OverrideParameter: :class:`Tencentcloud::Mps.v20190612.models.OverrideTranscodeParameter`
         # @param WatermarkSet: 水印列表，支持多张图片或文字水印，最大可支持 10 张。
         # @type WatermarkSet: Array
+        # @param BlindWatermark: 数字水印参数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BlindWatermark: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkInput`
         # @param MosaicSet: 马赛克列表，最大可支持 10 张。
         # @type MosaicSet: Array
         # @param StartTimeOffset: 转码后的视频的起始时间偏移，单位：秒。
@@ -27145,13 +27184,14 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HeadTailParameter: :class:`Tencentcloud::Mps.v20190612.models.HeadTailParameter`
 
-        attr_accessor :Definition, :RawParameter, :OverrideParameter, :WatermarkSet, :MosaicSet, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat, :HeadTailParameter
+        attr_accessor :Definition, :RawParameter, :OverrideParameter, :WatermarkSet, :BlindWatermark, :MosaicSet, :StartTimeOffset, :EndTimeOffset, :OutputStorage, :OutputObjectPath, :SegmentObjectName, :ObjectNumberFormat, :HeadTailParameter
 
-        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, watermarkset=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil, headtailparameter=nil)
+        def initialize(definition=nil, rawparameter=nil, overrideparameter=nil, watermarkset=nil, blindwatermark=nil, mosaicset=nil, starttimeoffset=nil, endtimeoffset=nil, outputstorage=nil, outputobjectpath=nil, segmentobjectname=nil, objectnumberformat=nil, headtailparameter=nil)
           @Definition = definition
           @RawParameter = rawparameter
           @OverrideParameter = overrideparameter
           @WatermarkSet = watermarkset
+          @BlindWatermark = blindwatermark
           @MosaicSet = mosaicset
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
@@ -27179,6 +27219,10 @@ module TencentCloud
               watermarkinput_tmp.deserialize(i)
               @WatermarkSet << watermarkinput_tmp
             end
+          end
+          unless params['BlindWatermark'].nil?
+            @BlindWatermark = BlindWatermarkInput.new
+            @BlindWatermark.deserialize(params['BlindWatermark'])
           end
           unless params['MosaicSet'].nil?
             @MosaicSet = []

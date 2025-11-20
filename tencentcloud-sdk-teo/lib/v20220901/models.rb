@@ -17571,6 +17571,8 @@ module TencentCloud
         # @param Grpc: Grpc 协议支持配置。
         # 不填写表示保持原有配置。
         # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.Grpc`
+        # @param NetworkErrorLogging: 网络错误日志记录配置。不填写表示保持原有配置。
+        # @type NetworkErrorLogging: :class:`Tencentcloud::Teo.v20220901.models.NetworkErrorLogging`
         # @param ImageOptimize: 图片优化配置。
         # 不填写表示关闭。
         # @type ImageOptimize: :class:`Tencentcloud::Teo.v20220901.models.ImageOptimize`
@@ -17579,9 +17581,9 @@ module TencentCloud
         # @param JITVideoProcess: 视频即时处理配置。不填写表示保持原有配置。
         # @type JITVideoProcess: :class:`Tencentcloud::Teo.v20220901.models.JITVideoProcess`
 
-        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry, :Grpc, :ImageOptimize, :StandardDebug, :JITVideoProcess
+        attr_accessor :ZoneId, :CacheConfig, :CacheKey, :MaxAge, :OfflineCache, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :Https, :Origin, :SmartRouting, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :ClientIpCountry, :Grpc, :NetworkErrorLogging, :ImageOptimize, :StandardDebug, :JITVideoProcess
 
-        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, standarddebug=nil, jitvideoprocess=nil)
+        def initialize(zoneid=nil, cacheconfig=nil, cachekey=nil, maxage=nil, offlinecache=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, https=nil, origin=nil, smartrouting=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, clientipcountry=nil, grpc=nil, networkerrorlogging=nil, imageoptimize=nil, standarddebug=nil, jitvideoprocess=nil)
           @ZoneId = zoneid
           @CacheConfig = cacheconfig
           @CacheKey = cachekey
@@ -17601,6 +17603,7 @@ module TencentCloud
           @Ipv6 = ipv6
           @ClientIpCountry = clientipcountry
           @Grpc = grpc
+          @NetworkErrorLogging = networkerrorlogging
           @ImageOptimize = imageoptimize
           @StandardDebug = standarddebug
           @JITVideoProcess = jitvideoprocess
@@ -17679,6 +17682,10 @@ module TencentCloud
           unless params['Grpc'].nil?
             @Grpc = Grpc.new
             @Grpc.deserialize(params['Grpc'])
+          end
+          unless params['NetworkErrorLogging'].nil?
+            @NetworkErrorLogging = NetworkErrorLogging.new
+            @NetworkErrorLogging.deserialize(params['NetworkErrorLogging'])
           end
           unless params['ImageOptimize'].nil?
             @ImageOptimize = ImageOptimize.new
@@ -18032,6 +18039,42 @@ module TencentCloud
               @VanityNameServersIps << vanitynameserversips_tmp
             end
           end
+        end
+      end
+
+      # 网络错误日志记录配置项
+      class NetworkErrorLogging < TencentCloud::Common::AbstractModel
+        # @param Switch: 是否开启网络错误日志记录配置，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 网络错误日志记录配置项。
+      class NetworkErrorLoggingParameters < TencentCloud::Common::AbstractModel
+        # @param Switch: 网络错误日志记录配置开关，取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
         end
       end
 
@@ -23214,6 +23257,9 @@ module TencentCloud
         # @param Grpc: gRPC 协议支持配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.GrpcParameters`
+        # @param NetworkErrorLogging: 网络错误日志记录配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkErrorLogging: :class:`Tencentcloud::Teo.v20220901.models.NetworkErrorLoggingParameters`
         # @param AccelerateMainland: 中国大陆加速优化配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccelerateMainland: :class:`Tencentcloud::Teo.v20220901.models.AccelerateMainlandParameters`
@@ -23221,9 +23267,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StandardDebug: :class:`Tencentcloud::Teo.v20220901.models.StandardDebugParameters`
 
-        attr_accessor :SmartRouting, :Cache, :MaxAge, :CacheKey, :CachePrefresh, :OfflineCache, :Compression, :ForceRedirectHTTPS, :HSTS, :TLSConfig, :OCSPStapling, :HTTP2, :QUIC, :UpstreamHTTP2, :IPv6, :WebSocket, :PostMaxSize, :ClientIPHeader, :ClientIPCountry, :Grpc, :AccelerateMainland, :StandardDebug
+        attr_accessor :SmartRouting, :Cache, :MaxAge, :CacheKey, :CachePrefresh, :OfflineCache, :Compression, :ForceRedirectHTTPS, :HSTS, :TLSConfig, :OCSPStapling, :HTTP2, :QUIC, :UpstreamHTTP2, :IPv6, :WebSocket, :PostMaxSize, :ClientIPHeader, :ClientIPCountry, :Grpc, :NetworkErrorLogging, :AccelerateMainland, :StandardDebug
 
-        def initialize(smartrouting=nil, cache=nil, maxage=nil, cachekey=nil, cacheprefresh=nil, offlinecache=nil, compression=nil, forceredirecthttps=nil, hsts=nil, tlsconfig=nil, ocspstapling=nil, http2=nil, quic=nil, upstreamhttp2=nil, ipv6=nil, websocket=nil, postmaxsize=nil, clientipheader=nil, clientipcountry=nil, grpc=nil, acceleratemainland=nil, standarddebug=nil)
+        def initialize(smartrouting=nil, cache=nil, maxage=nil, cachekey=nil, cacheprefresh=nil, offlinecache=nil, compression=nil, forceredirecthttps=nil, hsts=nil, tlsconfig=nil, ocspstapling=nil, http2=nil, quic=nil, upstreamhttp2=nil, ipv6=nil, websocket=nil, postmaxsize=nil, clientipheader=nil, clientipcountry=nil, grpc=nil, networkerrorlogging=nil, acceleratemainland=nil, standarddebug=nil)
           @SmartRouting = smartrouting
           @Cache = cache
           @MaxAge = maxage
@@ -23244,6 +23290,7 @@ module TencentCloud
           @ClientIPHeader = clientipheader
           @ClientIPCountry = clientipcountry
           @Grpc = grpc
+          @NetworkErrorLogging = networkerrorlogging
           @AccelerateMainland = acceleratemainland
           @StandardDebug = standarddebug
         end
@@ -23328,6 +23375,10 @@ module TencentCloud
           unless params['Grpc'].nil?
             @Grpc = GrpcParameters.new
             @Grpc.deserialize(params['Grpc'])
+          end
+          unless params['NetworkErrorLogging'].nil?
+            @NetworkErrorLogging = NetworkErrorLoggingParameters.new
+            @NetworkErrorLogging.deserialize(params['NetworkErrorLogging'])
           end
           unless params['AccelerateMainland'].nil?
             @AccelerateMainland = AccelerateMainlandParameters.new
@@ -23451,6 +23502,9 @@ module TencentCloud
         # @param Grpc: Grpc协议支持配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Grpc: :class:`Tencentcloud::Teo.v20220901.models.Grpc`
+        # @param NetworkErrorLogging: 网络错误日志记录配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetworkErrorLogging: :class:`Tencentcloud::Teo.v20220901.models.NetworkErrorLogging`
         # @param ImageOptimize: 图片优化相关配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ImageOptimize: :class:`Tencentcloud::Teo.v20220901.models.ImageOptimize`
@@ -23464,9 +23518,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JITVideoProcess: :class:`Tencentcloud::Teo.v20220901.models.JITVideoProcess`
 
-        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :ImageOptimize, :AccelerateMainland, :StandardDebug, :JITVideoProcess
+        attr_accessor :ZoneName, :Area, :CacheKey, :Quic, :PostMaxSize, :Compression, :UpstreamHttp2, :ForceRedirect, :CacheConfig, :Origin, :SmartRouting, :MaxAge, :OfflineCache, :WebSocket, :ClientIpHeader, :CachePrefresh, :Ipv6, :Https, :ClientIpCountry, :Grpc, :NetworkErrorLogging, :ImageOptimize, :AccelerateMainland, :StandardDebug, :JITVideoProcess
 
-        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, imageoptimize=nil, acceleratemainland=nil, standarddebug=nil, jitvideoprocess=nil)
+        def initialize(zonename=nil, area=nil, cachekey=nil, quic=nil, postmaxsize=nil, compression=nil, upstreamhttp2=nil, forceredirect=nil, cacheconfig=nil, origin=nil, smartrouting=nil, maxage=nil, offlinecache=nil, websocket=nil, clientipheader=nil, cacheprefresh=nil, ipv6=nil, https=nil, clientipcountry=nil, grpc=nil, networkerrorlogging=nil, imageoptimize=nil, acceleratemainland=nil, standarddebug=nil, jitvideoprocess=nil)
           @ZoneName = zonename
           @Area = area
           @CacheKey = cachekey
@@ -23487,6 +23541,7 @@ module TencentCloud
           @Https = https
           @ClientIpCountry = clientipcountry
           @Grpc = grpc
+          @NetworkErrorLogging = networkerrorlogging
           @ImageOptimize = imageoptimize
           @AccelerateMainland = acceleratemainland
           @StandardDebug = standarddebug
@@ -23567,6 +23622,10 @@ module TencentCloud
           unless params['Grpc'].nil?
             @Grpc = Grpc.new
             @Grpc.deserialize(params['Grpc'])
+          end
+          unless params['NetworkErrorLogging'].nil?
+            @NetworkErrorLogging = NetworkErrorLogging.new
+            @NetworkErrorLogging.deserialize(params['NetworkErrorLogging'])
           end
           unless params['ImageOptimize'].nil?
             @ImageOptimize = ImageOptimize.new

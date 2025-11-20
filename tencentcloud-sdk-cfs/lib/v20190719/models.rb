@@ -132,10 +132,12 @@ module TencentCloud
         # @type IntervalDays: Integer
         # @param CrossRegionsAliveDays: 跨地域复制的快照保留时间，单位天
         # @type CrossRegionsAliveDays: Integer
+        # @param Tags: 快照策略标签
+        # @type Tags: Array
 
-        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays, :CrossRegionsAliveDays
+        attr_accessor :AutoSnapshotPolicyId, :PolicyName, :CreationTime, :FileSystemNums, :DayOfWeek, :Hour, :IsActivated, :NextActiveTime, :Status, :AppId, :AliveDays, :RegionName, :FileSystems, :DayOfMonth, :IntervalDays, :CrossRegionsAliveDays, :Tags
 
-        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil, crossregionsalivedays=nil)
+        def initialize(autosnapshotpolicyid=nil, policyname=nil, creationtime=nil, filesystemnums=nil, dayofweek=nil, hour=nil, isactivated=nil, nextactivetime=nil, status=nil, appid=nil, alivedays=nil, regionname=nil, filesystems=nil, dayofmonth=nil, intervaldays=nil, crossregionsalivedays=nil, tags=nil)
           @AutoSnapshotPolicyId = autosnapshotpolicyid
           @PolicyName = policyname
           @CreationTime = creationtime
@@ -152,6 +154,7 @@ module TencentCloud
           @DayOfMonth = dayofmonth
           @IntervalDays = intervaldays
           @CrossRegionsAliveDays = crossregionsalivedays
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -178,6 +181,14 @@ module TencentCloud
           @DayOfMonth = params['DayOfMonth']
           @IntervalDays = params['IntervalDays']
           @CrossRegionsAliveDays = params['CrossRegionsAliveDays']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -460,16 +471,19 @@ module TencentCloud
         # @type DayOfMonth: String
         # @param IntervalDays: 间隔天数，与DayOfWeek，DayOfMonth 三者选一
         # @type IntervalDays: Integer
+        # @param ResourceTags: 快照策略标签
+        # @type ResourceTags: Array
 
-        attr_accessor :Hour, :PolicyName, :DayOfWeek, :AliveDays, :DayOfMonth, :IntervalDays
+        attr_accessor :Hour, :PolicyName, :DayOfWeek, :AliveDays, :DayOfMonth, :IntervalDays, :ResourceTags
 
-        def initialize(hour=nil, policyname=nil, dayofweek=nil, alivedays=nil, dayofmonth=nil, intervaldays=nil)
+        def initialize(hour=nil, policyname=nil, dayofweek=nil, alivedays=nil, dayofmonth=nil, intervaldays=nil, resourcetags=nil)
           @Hour = hour
           @PolicyName = policyname
           @DayOfWeek = dayofweek
           @AliveDays = alivedays
           @DayOfMonth = dayofmonth
           @IntervalDays = intervaldays
+          @ResourceTags = resourcetags
         end
 
         def deserialize(params)
@@ -479,6 +493,14 @@ module TencentCloud
           @AliveDays = params['AliveDays']
           @DayOfMonth = params['DayOfMonth']
           @IntervalDays = params['IntervalDays']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @ResourceTags << taginfo_tmp
+            end
+          end
         end
       end
 

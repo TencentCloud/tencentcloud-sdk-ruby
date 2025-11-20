@@ -994,6 +994,57 @@ module TencentCloud
         end
       end
 
+      # CreateAndroidInstanceAcceleratorToken请求参数结构体
+      class CreateAndroidInstanceAcceleratorTokenRequest < TencentCloud::Common::AbstractModel
+        # @param UserIP: 用户IP，用户客户端的公网IP，用于就近选择起始加速节点
+        # @type UserIP: String
+        # @param AndroidInstanceIds: 实例 ID 列表。每次请求的实例的上限为 500。
+        # @type AndroidInstanceIds: Array
+
+        attr_accessor :UserIP, :AndroidInstanceIds
+
+        def initialize(userip=nil, androidinstanceids=nil)
+          @UserIP = userip
+          @AndroidInstanceIds = androidinstanceids
+        end
+
+        def deserialize(params)
+          @UserIP = params['UserIP']
+          @AndroidInstanceIds = params['AndroidInstanceIds']
+        end
+      end
+
+      # CreateAndroidInstanceAcceleratorToken返回参数结构体
+      class CreateAndroidInstanceAcceleratorTokenResponse < TencentCloud::Common::AbstractModel
+        # @param AcceleratorInfo: 加速信息
+        # @type AcceleratorInfo: String
+        # @param AndroidInstanceErrors: 安卓实例错误列表。列表包含有问题的安卓实例 ID 以及发生的错误信息。
+        # @type AndroidInstanceErrors: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AcceleratorInfo, :AndroidInstanceErrors, :RequestId
+
+        def initialize(acceleratorinfo=nil, androidinstanceerrors=nil, requestid=nil)
+          @AcceleratorInfo = acceleratorinfo
+          @AndroidInstanceErrors = androidinstanceerrors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AcceleratorInfo = params['AcceleratorInfo']
+          unless params['AndroidInstanceErrors'].nil?
+            @AndroidInstanceErrors = []
+            params['AndroidInstanceErrors'].each do |i|
+              androidinstanceerror_tmp = AndroidInstanceError.new
+              androidinstanceerror_tmp.deserialize(i)
+              @AndroidInstanceErrors << androidinstanceerror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAndroidInstanceImage请求参数结构体
       class CreateAndroidInstanceImageRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceImageName: 安卓实例镜像名称
@@ -2475,6 +2526,42 @@ module TencentCloud
               @AndroidInstanceErrors << androidinstanceerror_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisconnectAndroidInstanceAccelerator请求参数结构体
+      class DisconnectAndroidInstanceAcceleratorRequest < TencentCloud::Common::AbstractModel
+        # @param AndroidInstanceId: 实例ID
+        # @type AndroidInstanceId: String
+        # @param UserId: 用户 ID。用户 ID 为空，将断开该实例的所有用户连接；用户 ID 不为空，只断开该用户的连接。
+        # @type UserId: String
+
+        attr_accessor :AndroidInstanceId, :UserId
+
+        def initialize(androidinstanceid=nil, userid=nil)
+          @AndroidInstanceId = androidinstanceid
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DisconnectAndroidInstanceAccelerator返回参数结构体
+      class DisconnectAndroidInstanceAcceleratorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

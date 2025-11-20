@@ -225,6 +225,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安卓实例加速Token
+
+        # @param request: Request instance for CreateAndroidInstanceAcceleratorToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceAcceleratorTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceAcceleratorTokenResponse`
+        def CreateAndroidInstanceAcceleratorToken(request)
+          body = send_request('CreateAndroidInstanceAcceleratorToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidInstanceAcceleratorTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用指定的安卓实例创建镜像，创建镜像时指定的实例会关机，镜像创建完成后实例会自动开机。当镜像的 AndroidInstanceImageState 为 NORMAL 时，镜像创建完成处于可用状态。
 
         # @param request: Request instance for CreateAndroidInstanceImage.
@@ -883,6 +907,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DisconnectAndroidInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 断开安卓实例加速节点
+
+        # @param request: Request instance for DisconnectAndroidInstanceAccelerator.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DisconnectAndroidInstanceAcceleratorRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DisconnectAndroidInstanceAcceleratorResponse`
+        def DisconnectAndroidInstanceAccelerator(request)
+          body = send_request('DisconnectAndroidInstanceAccelerator', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisconnectAndroidInstanceAcceleratorResponse.new
             model.deserialize(response['Response'])
             model
           else

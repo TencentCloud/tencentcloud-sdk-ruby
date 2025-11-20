@@ -2600,10 +2600,12 @@ module TencentCloud
         # @type RetentionBytes: Integer
         # @param Tags: 标签列表
         # @type Tags: Array
+        # @param LogMsgTimestampType: 消息保存的时间类型:CreateTime/LogAppendTime
+        # @type LogMsgTimestampType: String
 
-        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags
+        attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :LogMsgTimestampType
 
-        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil)
+        def initialize(instanceid=nil, topicname=nil, partitionnum=nil, replicanum=nil, enablewhitelist=nil, ipwhitelist=nil, cleanuppolicy=nil, note=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, segmentms=nil, maxmessagebytes=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, logmsgtimestamptype=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @PartitionNum = partitionnum
@@ -2621,6 +2623,7 @@ module TencentCloud
           @AclRuleName = aclrulename
           @RetentionBytes = retentionbytes
           @Tags = tags
+          @LogMsgTimestampType = logmsgtimestamptype
         end
 
         def deserialize(params)
@@ -2648,6 +2651,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @LogMsgTimestampType = params['LogMsgTimestampType']
         end
       end
 
@@ -3890,6 +3894,38 @@ module TencentCloud
             @Result = AclRuleResp.new
             @Result.deserialize(params['Result'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCkafkaVersion请求参数结构体
+      class DescribeCkafkaVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeCkafkaVersion返回参数结构体
+      class DescribeCkafkaVersionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -5429,17 +5465,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param RouteId: 路由Id
         # @type RouteId: Integer
+        # @param MainRouteFlag: 是否显示主路由，true时会在返回原路由列表的基础上,再额外展示实例创建时的主路由信息(且不被InternalFlag/UsedFor等参数过滤影响)
+        # @type MainRouteFlag: Boolean
 
-        attr_accessor :InstanceId, :RouteId
+        attr_accessor :InstanceId, :RouteId, :MainRouteFlag
 
-        def initialize(instanceid=nil, routeid=nil)
+        def initialize(instanceid=nil, routeid=nil, mainrouteflag=nil)
           @InstanceId = instanceid
           @RouteId = routeid
+          @MainRouteFlag = mainrouteflag
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @RouteId = params['RouteId']
+          @MainRouteFlag = params['MainRouteFlag']
         end
       end
 
@@ -7745,6 +7785,10 @@ module TencentCloud
         # @type RemainingTopics: Integer
         # @param DynamicDiskConfig: 动态硬盘扩容策略
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
+        # @param SystemMaintenanceTime: 系统维护时间
+        # @type SystemMaintenanceTime: String
+        # @param MaxMessageByte: 实例级别消息最大大小
+        # @type MaxMessageByte: Integer
         # @param InstanceChargeType: 实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月
         # @type InstanceChargeType: String
         # @param ElasticBandwidthSwitch: 是否开启弹性带宽白名单
@@ -7779,9 +7823,9 @@ module TencentCloud
         # @param DeleteProtectionEnable: 实例删除保护开关: 1 开启 0 关闭
         # @type DeleteProtectionEnable: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :SystemMaintenanceTime, :MaxMessageByte, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, instancechargetype=nil, elasticbandwidthswitch=nil, elasticbandwidthopenstatus=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, systemmaintenancetime=nil, maxmessagebyte=nil, instancechargetype=nil, elasticbandwidthswitch=nil, elasticbandwidthopenstatus=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -7817,6 +7861,8 @@ module TencentCloud
           @RemainingPartitions = remainingpartitions
           @RemainingTopics = remainingtopics
           @DynamicDiskConfig = dynamicdiskconfig
+          @SystemMaintenanceTime = systemmaintenancetime
+          @MaxMessageByte = maxmessagebyte
           @InstanceChargeType = instancechargetype
           @ElasticBandwidthSwitch = elasticbandwidthswitch
           @ElasticBandwidthOpenStatus = elasticbandwidthopenstatus
@@ -7887,6 +7933,8 @@ module TencentCloud
             @DynamicDiskConfig = DynamicDiskConfig.new
             @DynamicDiskConfig.deserialize(params['DynamicDiskConfig'])
           end
+          @SystemMaintenanceTime = params['SystemMaintenanceTime']
+          @MaxMessageByte = params['MaxMessageByte']
           @InstanceChargeType = params['InstanceChargeType']
           @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
           @ElasticBandwidthOpenStatus = params['ElasticBandwidthOpenStatus']
@@ -9391,10 +9439,12 @@ module TencentCloud
         # @type QuotaConsumerByteRate: Integer
         # @param ReplicaNum: topic副本数  最小值 1,最大值 3
         # @type ReplicaNum: Integer
+        # @param LogMsgTimestampType: 消息保存的时间类型：CreateTime/LogAppendTime
+        # @type LogMsgTimestampType: String
 
-        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :MaxMessageBytes, :SegmentMs, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum
+        attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :MaxMessageBytes, :SegmentMs, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum, :LogMsgTimestampType
 
-        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, maxmessagebytes=nil, segmentms=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil, replicanum=nil)
+        def initialize(instanceid=nil, topicname=nil, note=nil, enablewhitelist=nil, mininsyncreplicas=nil, uncleanleaderelectionenable=nil, retentionms=nil, maxmessagebytes=nil, segmentms=nil, cleanuppolicy=nil, ipwhitelist=nil, enableaclrule=nil, aclrulename=nil, retentionbytes=nil, tags=nil, quotaproducerbyterate=nil, quotaconsumerbyterate=nil, replicanum=nil, logmsgtimestamptype=nil)
           @InstanceId = instanceid
           @TopicName = topicname
           @Note = note
@@ -9413,6 +9463,7 @@ module TencentCloud
           @QuotaProducerByteRate = quotaproducerbyterate
           @QuotaConsumerByteRate = quotaconsumerbyterate
           @ReplicaNum = replicanum
+          @LogMsgTimestampType = logmsgtimestamptype
         end
 
         def deserialize(params)
@@ -9441,6 +9492,7 @@ module TencentCloud
           @QuotaProducerByteRate = params['QuotaProducerByteRate']
           @QuotaConsumerByteRate = params['QuotaConsumerByteRate']
           @ReplicaNum = params['ReplicaNum']
+          @LogMsgTimestampType = params['LogMsgTimestampType']
         end
       end
 
@@ -12076,6 +12128,61 @@ module TencentCloud
             @BatchAnalyse = BatchAnalyseParam.new
             @BatchAnalyse.deserialize(params['BatchAnalyse'])
           end
+        end
+      end
+
+      # UpgradeBrokerVersion请求参数结构体
+      class UpgradeBrokerVersionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+        # @param Type: 1.平滑升配.2.垂直升配
+        # @type Type: Integer
+        # @param SourceVersion: 版本号
+        # @type SourceVersion: String
+        # @param TargetVersion: 版本号
+        # @type TargetVersion: String
+        # @param DelayTimeStamp: 延迟时间
+        # @type DelayTimeStamp: String
+
+        attr_accessor :InstanceId, :Type, :SourceVersion, :TargetVersion, :DelayTimeStamp
+
+        def initialize(instanceid=nil, type=nil, sourceversion=nil, targetversion=nil, delaytimestamp=nil)
+          @InstanceId = instanceid
+          @Type = type
+          @SourceVersion = sourceversion
+          @TargetVersion = targetversion
+          @DelayTimeStamp = delaytimestamp
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Type = params['Type']
+          @SourceVersion = params['SourceVersion']
+          @TargetVersion = params['TargetVersion']
+          @DelayTimeStamp = params['DelayTimeStamp']
+        end
+      end
+
+      # UpgradeBrokerVersion返回参数结构体
+      class UpgradeBrokerVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 升配结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

@@ -82,6 +82,54 @@ module TencentCloud
         end
       end
 
+      # DescribeHumanActorJob请求参数结构体
+      class DescribeHumanActorJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeHumanActorJob返回参数结构体
+      class DescribeHumanActorJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。  WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type Status: String
+        # @param ResultVideoUrl: 结果视频URL。有效期 24 小时。
+        # @type ResultVideoUrl: String
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ResultVideoUrl, :ErrorCode, :ErrorMessage, :RequestId
+
+        def initialize(status=nil, resultvideourl=nil, errorcode=nil, errormessage=nil, requestid=nil)
+          @Status = status
+          @ResultVideoUrl = resultvideourl
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ResultVideoUrl = params['ResultVideoUrl']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeImageAnimateJob请求参数结构体
       class DescribeImageAnimateJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
@@ -348,6 +396,22 @@ module TencentCloud
         end
       end
 
+      # 扩展字段。
+      class ExtraParam < TencentCloud::Common::AbstractModel
+        # @param UserDesignatedUrl: 预签名的上传url，支持把视频直接传到客户指定的地址。
+        # @type UserDesignatedUrl: String
+
+        attr_accessor :UserDesignatedUrl
+
+        def initialize(userdesignatedurl=nil)
+          @UserDesignatedUrl = userdesignatedurl
+        end
+
+        def deserialize(params)
+          @UserDesignatedUrl = params['UserDesignatedUrl']
+        end
+      end
+
       # 图片
       class Image < TencentCloud::Common::AbstractModel
         # @param Base64: 图片Base64
@@ -420,6 +484,91 @@ module TencentCloud
           @Y = params['Y']
           @Width = params['Width']
           @Height = params['Height']
+        end
+      end
+
+      # SubmitHumanActorJob请求参数结构体
+      class SubmitHumanActorJobRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: 文本提示词，不能超过5000字符。
+        # 提示词支持全局和局部控制：
+
+        # - 全局控制：正常输入提示词即可
+        # - 局部控制：可用双井号进行特定时间的提示词约束，例如： "画面中的人物正在对着镜头讲话，偶尔做些手势匹配说话的内容。镜头保持固定。#3#画面中的人物正在对着镜头讲话，同时做出单手做向左方引导的手势。镜头保持固定。"（意思是第三秒的时候让人物做出左方引导手势）
+        #  -- 局部控制时间建议整数，最大可读小数点后两位。
+        # @type Prompt: String
+        # @param AudioUrl: 传入音频URL地址，音频要求：
+        # - 音频时长：2秒 - 60秒
+        # - 音频格式：mp3、wav
+        # - 音频大小：10M以内
+        # @type AudioUrl: String
+        # @param ImageUrl: 传入图片URL地址，图片要求：
+        # - 图片格式：jpg、jpeg、png、bmp、webp
+        # - 图片分辨率：192～4096
+        # - 图片大小：不超过10M
+        # - 图片宽高比：图片【宽：高】在1:4到4:1范围内
+        # - 图片内容：避免上传无人脸、无宠物脸或脸部过小、不完整、不清晰、偏转角度过大、嘴部被遮挡的图片。
+        # @type ImageUrl: String
+        # @param ImageBase64: 传入图片Base64编码，编码后请求体大小不超过10M。
+        # 图片Base64编码与URL地址必传其一，如果都传以ImageUrl为准。
+        # @type ImageBase64: String
+        # @param Resolution: 生成视频分辨率
+        # 枚举值：720p，1080p
+        # 默认1080p
+        # @type Resolution: String
+        # @param FrameRate: 生成视频帧数，单位fps。
+        # 枚举值：25，50
+        # 默认50帧
+        # @type FrameRate: Integer
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。 1：添加标识。 0：不添加标识。 其他数值：默认按1处理。 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+
+        attr_accessor :Prompt, :AudioUrl, :ImageUrl, :ImageBase64, :Resolution, :FrameRate, :LogoAdd, :LogoParam
+
+        def initialize(prompt=nil, audiourl=nil, imageurl=nil, imagebase64=nil, resolution=nil, framerate=nil, logoadd=nil, logoparam=nil)
+          @Prompt = prompt
+          @AudioUrl = audiourl
+          @ImageUrl = imageurl
+          @ImageBase64 = imagebase64
+          @Resolution = resolution
+          @FrameRate = framerate
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @AudioUrl = params['AudioUrl']
+          @ImageUrl = params['ImageUrl']
+          @ImageBase64 = params['ImageBase64']
+          @Resolution = params['Resolution']
+          @FrameRate = params['FrameRate']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitHumanActorJob返回参数结构体
+      class SubmitHumanActorJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -657,34 +806,37 @@ module TencentCloud
       class SubmitTemplateToVideoJobRequest < TencentCloud::Common::AbstractModel
         # @param Template: 特效模板名称。请在 [视频特效模板列表](https://cloud.tencent.com/document/product/1616/119194)  中选择想要生成的特效对应的 template 名称。
         # @type Template: String
-        # @param Images: 参考图像，最多输入2张图。
+        # @param Images: 参考图像，不同特效输入图片的数量详见： [视频特效模板-图片要求说明](https://cloud.tencent.com/document/product/1616/119194)
         # - 支持传入图片Base64编码或图片URL（确保可访问）
         # - 图片格式：支持png、jpg、jpeg、webp、bmp、tiff
-        # - 图片文件：大小不能超过10MB（base64后），图片分辨率不小于300\*300px，不大于4096\*4096，图片宽高比应在1:4 ~ 4:1之间
+        # - 图片文件：大小不能超过10MB（base64后），图片分辨率不小于300*300px，不大于4096*4096，图片宽高比应在1:4 ~ 4:1之间
         # @type Images: Array
-        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。
-        # 1：添加标识。
-        # 0：不添加标识。
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。传0 需前往  [控制台](https://console.cloud.tencent.com/vtc/setting) 申请开启显式标识自主完成后方可生效。
+        # 1：添加标识；
+        # 0：不添加标识；
         # 其他数值：默认按1处理。
         # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
         # @type LogoAdd: Integer
         # @param LogoParam: 标识内容设置。
-        # 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # 默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往  [控制台](https://console.cloud.tencent.com/vtc/setting) 申请开启显式标识自主完成。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
-        # @param Resolution: 视频输出分辨率，默认值：360p  - 枚举值：  720p  360p。
+        # @param Resolution: 视频输出分辨率，默认值：360p 。不同特效支持的清晰度及消耗积分数详见：[视频特效模板-单次调用消耗积分数列](https://cloud.tencent.com/document/product/1616/119194 )
         # @type Resolution: String
         # @param BGM: 是否为生成的视频添加背景音乐。默认：false，  传 true 时系统将从预设 BGM 库中自动挑选合适的音乐并添加；不传或为 false 则不添加 BGM。
         # @type BGM: Boolean
+        # @param ExtraParam: 扩展字段。
+        # @type ExtraParam: :class:`Tencentcloud::Vclm.v20240523.models.ExtraParam`
 
-        attr_accessor :Template, :Images, :LogoAdd, :LogoParam, :Resolution, :BGM
+        attr_accessor :Template, :Images, :LogoAdd, :LogoParam, :Resolution, :BGM, :ExtraParam
 
-        def initialize(template=nil, images=nil, logoadd=nil, logoparam=nil, resolution=nil, bgm=nil)
+        def initialize(template=nil, images=nil, logoadd=nil, logoparam=nil, resolution=nil, bgm=nil, extraparam=nil)
           @Template = template
           @Images = images
           @LogoAdd = logoadd
           @LogoParam = logoparam
           @Resolution = resolution
           @BGM = bgm
+          @ExtraParam = extraparam
         end
 
         def deserialize(params)
@@ -704,6 +856,10 @@ module TencentCloud
           end
           @Resolution = params['Resolution']
           @BGM = params['BGM']
+          unless params['ExtraParam'].nil?
+            @ExtraParam = ExtraParam.new
+            @ExtraParam.deserialize(params['ExtraParam'])
+          end
         end
       end
 

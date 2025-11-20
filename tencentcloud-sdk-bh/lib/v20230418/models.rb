@@ -197,6 +197,70 @@ module TencentCloud
         end
       end
 
+      # ioa账号组
+      class AccountGroup < TencentCloud::Common::AbstractModel
+        # @param Id: 账号组id
+        # @type Id: Integer
+        # @param Name: 账号组名称
+        # @type Name: String
+        # @param IdPath: 账号组id路径
+        # @type IdPath: String
+        # @param NamePath: 账号组名称路径
+        # @type NamePath: String
+        # @param ParentId: 父账号组id
+        # @type ParentId: Integer
+        # @param Source: 账号组来源
+        # @type Source: Integer
+        # @param UserTotal: 账号组下用户总数
+        # @type UserTotal: Integer
+        # @param IsLeaf: 是否叶子节点
+        # @type IsLeaf: Boolean
+        # @param ImportType: 账号组导入类型
+        # @type ImportType: String
+        # @param Description: 账号组描述
+        # @type Description: String
+        # @param ParentOrgId: 父源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
+        # @type ParentOrgId: String
+        # @param OrgId: 源账号组织ID。使用第三方导入用户源时，记录该分组在源组织架构下的分组ID
+        # @type OrgId: String
+        # @param Status: 账号组是否已经接入，0表示未接入，1表示接入
+        # @type Status: Integer
+
+        attr_accessor :Id, :Name, :IdPath, :NamePath, :ParentId, :Source, :UserTotal, :IsLeaf, :ImportType, :Description, :ParentOrgId, :OrgId, :Status
+
+        def initialize(id=nil, name=nil, idpath=nil, namepath=nil, parentid=nil, source=nil, usertotal=nil, isleaf=nil, importtype=nil, description=nil, parentorgid=nil, orgid=nil, status=nil)
+          @Id = id
+          @Name = name
+          @IdPath = idpath
+          @NamePath = namepath
+          @ParentId = parentid
+          @Source = source
+          @UserTotal = usertotal
+          @IsLeaf = isleaf
+          @ImportType = importtype
+          @Description = description
+          @ParentOrgId = parentorgid
+          @OrgId = orgid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @IdPath = params['IdPath']
+          @NamePath = params['NamePath']
+          @ParentId = params['ParentId']
+          @Source = params['Source']
+          @UserTotal = params['UserTotal']
+          @IsLeaf = params['IsLeaf']
+          @ImportType = params['ImportType']
+          @Description = params['Description']
+          @ParentOrgId = params['ParentOrgId']
+          @OrgId = params['OrgId']
+          @Status = params['Status']
+        end
+      end
+
       # 访问权限
       class Acl < TencentCloud::Common::AbstractModel
         # @param Id: 访问权限ID
@@ -1704,6 +1768,101 @@ module TencentCloud
         end
       end
 
+      # CreateSyncUserTask请求参数结构体
+      class CreateSyncUserTaskRequest < TencentCloud::Common::AbstractModel
+        # @param UserKind: 同步用户类型, 1-同步ioa用户
+        # @type UserKind: Integer
+
+        attr_accessor :UserKind
+
+        def initialize(userkind=nil)
+          @UserKind = userkind
+        end
+
+        def deserialize(params)
+          @UserKind = params['UserKind']
+        end
+      end
+
+      # CreateSyncUserTask返回参数结构体
+      class CreateSyncUserTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUserDirectory请求参数结构体
+      class CreateUserDirectoryRequest < TencentCloud::Common::AbstractModel
+        # @param DirId: 目录id
+        # @type DirId: Integer
+        # @param DirName: 目录名称
+        # @type DirName: String
+        # @param UserOrgSet: ioa分组信息
+        # @type UserOrgSet: Array
+        # @param Source: ioa关联用户源类型
+        # @type Source: Integer
+        # @param SourceName: ioa关联用户源名称
+        # @type SourceName: String
+        # @param UserCount: 目录包含用户数
+        # @type UserCount: Integer
+
+        attr_accessor :DirId, :DirName, :UserOrgSet, :Source, :SourceName, :UserCount
+
+        def initialize(dirid=nil, dirname=nil, userorgset=nil, source=nil, sourcename=nil, usercount=nil)
+          @DirId = dirid
+          @DirName = dirname
+          @UserOrgSet = userorgset
+          @Source = source
+          @SourceName = sourcename
+          @UserCount = usercount
+        end
+
+        def deserialize(params)
+          @DirId = params['DirId']
+          @DirName = params['DirName']
+          unless params['UserOrgSet'].nil?
+            @UserOrgSet = []
+            params['UserOrgSet'].each do |i|
+              userorg_tmp = UserOrg.new
+              userorg_tmp.deserialize(i)
+              @UserOrgSet << userorg_tmp
+            end
+          end
+          @Source = params['Source']
+          @SourceName = params['SourceName']
+          @UserCount = params['UserCount']
+        end
+      end
+
+      # CreateUserDirectory返回参数结构体
+      class CreateUserDirectoryResponse < TencentCloud::Common::AbstractModel
+        # @param Id: 目录Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateUserGroup请求参数结构体
       class CreateUserGroupRequest < TencentCloud::Common::AbstractModel
         # @param Name: 用户组名，最大长度32字符
@@ -2110,6 +2269,38 @@ module TencentCloud
         end
       end
 
+      # DeleteUserDirectory请求参数结构体
+      class DeleteUserDirectoryRequest < TencentCloud::Common::AbstractModel
+        # @param IdSet: 目录id集合
+        # @type IdSet: Array
+
+        attr_accessor :IdSet
+
+        def initialize(idset=nil)
+          @IdSet = idset
+        end
+
+        def deserialize(params)
+          @IdSet = params['IdSet']
+        end
+      end
+
+      # DeleteUserDirectory返回参数结构体
+      class DeleteUserDirectoryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteUserGroupMembers请求参数结构体
       class DeleteUserGroupMembersRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户组ID
@@ -2416,6 +2607,69 @@ module TencentCloud
           end
           @AllowAny = params['AllowAny']
           @AllowAuto = params['AllowAuto']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccountGroups请求参数结构体
+      class DescribeAccountGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param DeepIn: 是否递归查询，0为不递归，1为递归
+        # @type DeepIn: Integer
+        # @param ParentId: 父账号组ID, 默认0,查询根账号组下所有分组
+        # @type ParentId: Integer
+        # @param GroupName: 账号组名称，模糊查询
+        # @type GroupName: String
+        # @param PageSize: 分页查询，每页条数
+        # @type PageSize: Integer
+        # @param PageNum: 获取第几页的数据
+        # @type PageNum: Integer
+
+        attr_accessor :DeepIn, :ParentId, :GroupName, :PageSize, :PageNum
+
+        def initialize(deepin=nil, parentid=nil, groupname=nil, pagesize=nil, pagenum=nil)
+          @DeepIn = deepin
+          @ParentId = parentid
+          @GroupName = groupname
+          @PageSize = pagesize
+          @PageNum = pagenum
+        end
+
+        def deserialize(params)
+          @DeepIn = params['DeepIn']
+          @ParentId = params['ParentId']
+          @GroupName = params['GroupName']
+          @PageSize = params['PageSize']
+          @PageNum = params['PageNum']
+        end
+      end
+
+      # DescribeAccountGroups返回参数结构体
+      class DescribeAccountGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 账号组总数
+        # @type TotalCount: Integer
+        # @param AccountGroupSet: 账号组信息
+        # @type AccountGroupSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :AccountGroupSet, :RequestId
+
+        def initialize(totalcount=nil, accountgroupset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @AccountGroupSet = accountgroupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['AccountGroupSet'].nil?
+            @AccountGroupSet = []
+            params['AccountGroupSet'].each do |i|
+              accountgroup_tmp = AccountGroup.new
+              accountgroup_tmp.deserialize(i)
+              @AccountGroupSet << accountgroup_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3601,6 +3855,99 @@ module TencentCloud
         end
       end
 
+      # DescribeSourceTypes请求参数结构体
+      class DescribeSourceTypesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSourceTypes返回参数结构体
+      class DescribeSourceTypesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 认证源总数
+        # @type TotalCount: Integer
+        # @param SourceTypeSet: 认证源信息
+        # @type SourceTypeSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SourceTypeSet, :RequestId
+
+        def initialize(totalcount=nil, sourcetypeset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SourceTypeSet = sourcetypeset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SourceTypeSet'].nil?
+            @SourceTypeSet = []
+            params['SourceTypeSet'].each do |i|
+              sourcetype_tmp = SourceType.new
+              sourcetype_tmp.deserialize(i)
+              @SourceTypeSet << sourcetype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserDirectory请求参数结构体
+      class DescribeUserDirectoryRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+
+        attr_accessor :Limit, :Offset
+
+        def initialize(limit=nil, offset=nil)
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeUserDirectory返回参数结构体
+      class DescribeUserDirectoryResponse < TencentCloud::Common::AbstractModel
+        # @param UserDirSet: 用户目录集
+        # @type UserDirSet: Array
+        # @param TotalCount: 用户目录集总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserDirSet, :TotalCount, :RequestId
+
+        def initialize(userdirset=nil, totalcount=nil, requestid=nil)
+          @UserDirSet = userdirset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UserDirSet'].nil?
+            @UserDirSet = []
+            params['UserDirSet'].each do |i|
+              userdirectory_tmp = UserDirectory.new
+              userdirectory_tmp.deserialize(i)
+              @UserDirSet << userdirectory_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserGroupMembers请求参数结构体
       class DescribeUserGroupMembersRequest < TencentCloud::Common::AbstractModel
         # @param Id: 用户组ID
@@ -3726,6 +4073,45 @@ module TencentCloud
               group_tmp.deserialize(i)
               @GroupSet << group_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserSyncStatus请求参数结构体
+      class DescribeUserSyncStatusRequest < TencentCloud::Common::AbstractModel
+        # @param UserKind: 获取用户同步状态， 1-获取ioa用户同步状态
+        # @type UserKind: Integer
+
+        attr_accessor :UserKind
+
+        def initialize(userkind=nil)
+          @UserKind = userkind
+        end
+
+        def deserialize(params)
+          @UserKind = params['UserKind']
+        end
+      end
+
+      # DescribeUserSyncStatus返回参数结构体
+      class DescribeUserSyncStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 用户同步状态
+        # @type Status: :class:`Tencentcloud::Bh.v20230418.models.AssetSyncStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Status'].nil?
+            @Status = AssetSyncStatus.new
+            @Status.deserialize(params['Status'])
           end
           @RequestId = params['RequestId']
         end
@@ -5359,6 +5745,49 @@ module TencentCloud
 
       # ModifyResource返回参数结构体
       class ModifyResourceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserDirectory请求参数结构体
+      class ModifyUserDirectoryRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 目录id
+        # @type Id: Integer
+        # @param UserOrgSet: ioa分组信息
+        # @type UserOrgSet: Array
+
+        attr_accessor :Id, :UserOrgSet
+
+        def initialize(id=nil, userorgset=nil)
+          @Id = id
+          @UserOrgSet = userorgset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['UserOrgSet'].nil?
+            @UserOrgSet = []
+            params['UserOrgSet'].each do |i|
+              userorg_tmp = UserOrg.new
+              userorg_tmp.deserialize(i)
+              @UserOrgSet << userorg_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyUserDirectory返回参数结构体
+      class ModifyUserDirectoryResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -7214,6 +7643,98 @@ module TencentCloud
         end
       end
 
+      # ioa用户源信息
+      class SourceType < TencentCloud::Common::AbstractModel
+        # @param Source: 账号组来源
+        # @type Source: Integer
+        # @param Type: 账号组来源类型
+        # @type Type: String
+        # @param Name: 账号组来源名称
+        # @type Name: String
+        # @param Target: 区分ioa原来和iam-mini
+        # @type Target: String
+
+        attr_accessor :Source, :Type, :Name, :Target
+
+        def initialize(source=nil, type=nil, name=nil, target=nil)
+          @Source = source
+          @Type = type
+          @Name = name
+          @Target = target
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Target = params['Target']
+        end
+      end
+
+      # SyncDevicesToIOA请求参数结构体
+      class SyncDevicesToIOARequest < TencentCloud::Common::AbstractModel
+        # @param DeviceIdSet: 资产ID集合。资产必须已绑定支持IOA功能的堡垒机实例。每次最多同步200个资产。
+        # @type DeviceIdSet: Array
+
+        attr_accessor :DeviceIdSet
+
+        def initialize(deviceidset=nil)
+          @DeviceIdSet = deviceidset
+        end
+
+        def deserialize(params)
+          @DeviceIdSet = params['DeviceIdSet']
+        end
+      end
+
+      # SyncDevicesToIOA返回参数结构体
+      class SyncDevicesToIOAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SyncUserToIOA请求参数结构体
+      class SyncUserToIOARequest < TencentCloud::Common::AbstractModel
+        # @param UserIdSet: 需要同步到ioa的本地用户的id集合
+        # @type UserIdSet: Array
+
+        attr_accessor :UserIdSet
+
+        def initialize(useridset=nil)
+          @UserIdSet = useridset
+        end
+
+        def deserialize(params)
+          @UserIdSet = params['UserIdSet']
+        end
+      end
+
+      # SyncUserToIOA返回参数结构体
+      class SyncUserToIOAResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资产标签
       class TagFilter < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键
@@ -7414,6 +7935,89 @@ module TencentCloud
             @IOAUserGroup = IOAUserGroup.new
             @IOAUserGroup.deserialize(params['IOAUserGroup'])
           end
+        end
+      end
+
+      # 用户目录信息
+      class UserDirectory < TencentCloud::Common::AbstractModel
+        # @param Id: 目录id
+        # @type Id: Integer
+        # @param DirId: ioa目录id
+        # @type DirId: Integer
+        # @param DirName: ioa目录名称
+        # @type DirName: String
+        # @param Source: ioa关联用户源类型
+        # @type Source: Integer
+        # @param SourceName: ioa关联用户源名称
+        # @type SourceName: String
+        # @param UserTotal: 目录包含用户数
+        # @type UserTotal: Integer
+        # @param CreateTime: 目录接入时间
+        # @type CreateTime: String
+        # @param UserOrgSet: 目录下的组织细节信息
+        # @type UserOrgSet: Array
+
+        attr_accessor :Id, :DirId, :DirName, :Source, :SourceName, :UserTotal, :CreateTime, :UserOrgSet
+
+        def initialize(id=nil, dirid=nil, dirname=nil, source=nil, sourcename=nil, usertotal=nil, createtime=nil, userorgset=nil)
+          @Id = id
+          @DirId = dirid
+          @DirName = dirname
+          @Source = source
+          @SourceName = sourcename
+          @UserTotal = usertotal
+          @CreateTime = createtime
+          @UserOrgSet = userorgset
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @DirId = params['DirId']
+          @DirName = params['DirName']
+          @Source = params['Source']
+          @SourceName = params['SourceName']
+          @UserTotal = params['UserTotal']
+          @CreateTime = params['CreateTime']
+          unless params['UserOrgSet'].nil?
+            @UserOrgSet = []
+            params['UserOrgSet'].each do |i|
+              userorg_tmp = UserOrg.new
+              userorg_tmp.deserialize(i)
+              @UserOrgSet << userorg_tmp
+            end
+          end
+        end
+      end
+
+      # 同步的ioa用户组织信息
+      class UserOrg < TencentCloud::Common::AbstractModel
+        # @param OrgId: ioa用户组织id
+        # @type OrgId: Integer
+        # @param OrgName: ioa用户组织名称
+        # @type OrgName: String
+        # @param OrgIdPath: ioa用户组织id路径
+        # @type OrgIdPath: String
+        # @param OrgNamePath: ioa用户组织名称路径
+        # @type OrgNamePath: String
+        # @param UserTotal: ioa用户组织id下的用户数
+        # @type UserTotal: Integer
+
+        attr_accessor :OrgId, :OrgName, :OrgIdPath, :OrgNamePath, :UserTotal
+
+        def initialize(orgid=nil, orgname=nil, orgidpath=nil, orgnamepath=nil, usertotal=nil)
+          @OrgId = orgid
+          @OrgName = orgname
+          @OrgIdPath = orgidpath
+          @OrgNamePath = orgnamepath
+          @UserTotal = usertotal
+        end
+
+        def deserialize(params)
+          @OrgId = params['OrgId']
+          @OrgName = params['OrgName']
+          @OrgIdPath = params['OrgIdPath']
+          @OrgNamePath = params['OrgNamePath']
+          @UserTotal = params['UserTotal']
         end
       end
 

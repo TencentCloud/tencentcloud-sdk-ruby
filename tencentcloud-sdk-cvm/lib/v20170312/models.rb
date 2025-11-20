@@ -860,17 +860,17 @@ module TencentCloud
 
       # CreateHpcCluster请求参数结构体
       class CreateHpcClusterRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区。
+        # @param Zone: 可用区信息。可用区信息可通过 [查询可用区信息](https://cloud.tencent.com/document/api/213/15707) 接口获取。
         # @type Zone: String
-        # @param Name: 高性能计算集群名称。
+        # @param Name: 高性能计算集群名称，长度限制[1-60]。
         # @type Name: String
-        # @param Remark: 高性能计算集群备注。
+        # @param Remark: 高性能计算集群备注，长度[1-256]。
         # @type Remark: String
-        # @param HpcClusterType: 高性能计算集群类型。
+        # @param HpcClusterType: 高性能计算集群类型，当前有三个取值：分别是CDC/CHC/STANDARD，其中STANDARD是默认的标准模式。
         # @type HpcClusterType: String
-        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC。
+        # @param HpcClusterBusinessId: 高性能计算集群对应的业务场景标识，当前只支持CDC场景类型。
         # @type HpcClusterBusinessId: String
-        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的HPC高性能集群。
+        # @param TagSpecification: 标签描述列表。通过指定该参数可以同时绑定标签到相应的HPC高性能集群。集群信息可通过 [查询高性能集群信息](https://cloud.tencent.com/document/api/213/83220) 接口获取。
         # @type TagSpecification: Array
 
         attr_accessor :Zone, :Name, :Remark, :HpcClusterType, :HpcClusterBusinessId, :TagSpecification

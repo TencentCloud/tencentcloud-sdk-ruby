@@ -2173,10 +2173,12 @@ module TencentCloud
       # DescribeDBDiagEvent请求参数结构体
       class DescribeDBDiagEventRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+
+        # 查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&Shard实例ID，如：dcdbt-157xxxk&shard-qxxxx
         # @type InstanceId: String
         # @param EventId: 事件 ID 。通过“获取实例诊断历史[DescribeDBDiagHistory](https://cloud.tencent.com/document/product/1130/39559) ”获取。
         # @type EventId: Integer
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"mariadb"-mariadb;"cynosdb"-TDSQL-C for MySQL ;"dcdb"-TDSQL MySQL ;"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :EventId, :Product
@@ -2258,13 +2260,14 @@ module TencentCloud
       class DescribeDBDiagEventsRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
         # @type StartTime: String
-        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，结束时间与开始时间的间隔最大可为7天。
+        # @param EndTime: 结束时间，如“2021-05-27 01:00:00”，支持的最早查询时间为当前时间的前30天。
         # @type EndTime: String
         # @param Severities: 风险等级列表，取值按影响程度从高至低分别为：1 - 致命、2 -严重、3 - 告警、4 - 提示、5 -健康。
         # @type Severities: Array
-        # @param InstanceIds: 实例ID列表。
+        # @param InstanceIds: 实例ID列表。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # 查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&Shard实例ID，如：dcdbt-157xxxk&shard-qxxxx
         # @type InstanceIds: Array
-        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值包括："mysql" - 云数据库 MySQL，"redis" - 云数据库 Redis，"mariadb"-数据库mariadb    默认为"mysql"。
         # @type Product: String
         # @param Offset: 偏移量，默认0。
         # @type Offset: Integer
@@ -2328,12 +2331,14 @@ module TencentCloud
       # DescribeDBDiagHistory请求参数结构体
       class DescribeDBDiagHistoryRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+
+        # 查询TDSQL MySQL分布式实例:Instanceld：填写集群ID&Shard实例ID，如：dcdbt-157xxxk&shard-qxxxx
         # @type InstanceId: String
         # @param StartTime: 开始时间，如“2019-09-10 12:13:14”。结束时间与开始时间的间隔最大可为2天。
         # @type StartTime: String
         # @param EndTime: 结束时间，如“2019-09-11 12:13:14”，结束时间与开始时间的间隔最大可为2天。
         # @type EndTime: String
-        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"mariadb"-mariadb;"cynosdb"-TDSQL-C for MySQL ;"dcdb"-TDSQL MySQL ;"redis" - 云数据库 Redis，默认为"mysql"。
         # @type Product: String
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Product
@@ -3050,6 +3055,74 @@ module TencentCloud
               redismetrictopproxiesdata_tmp.deserialize(i)
               @Data << redismetrictopproxiesdata_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMongoDBProcessList请求参数结构体
+      class DescribeMongoDBProcessListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值：mongodb
+        # @type Product: String
+        # @param ID: 线程的ID，用于筛选线程列表。
+        # @type ID: Integer
+        # @param Host: 线程的操作主机地址，用于筛选线程列表。
+        # @type Host: String
+        # @param DB: 线程的操作数据库，用于筛选线程列表,如果是多个 使用 ','  分割
+        # @type DB: String
+        # @param Type: 命令类型 ,如果是多个 使用 ','  分割
+        # @type Type: String
+        # @param Time: 线程的操作时长最小值，单位秒，用于筛选操作时长大于该值的线程列表。
+        # @type Time: Integer
+        # @param Limit: 返回数量，默认20。
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :Product, :ID, :Host, :DB, :Type, :Time, :Limit
+
+        def initialize(instanceid=nil, product=nil, id=nil, host=nil, db=nil, type=nil, time=nil, limit=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @ID = id
+          @Host = host
+          @DB = db
+          @Type = type
+          @Time = time
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @ID = params['ID']
+          @Host = params['Host']
+          @DB = params['DB']
+          @Type = params['Type']
+          @Time = params['Time']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMongoDBProcessList返回参数结构体
+      class DescribeMongoDBProcessListResponse < TencentCloud::Common::AbstractModel
+        # @param ProcessList: 数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessList: :class:`Tencentcloud::Dbbrain.v20210527.models.MongoDBProcessList`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProcessList, :RequestId
+
+        def initialize(processlist=nil, requestid=nil)
+          @ProcessList = processlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ProcessList'].nil?
+            @ProcessList = MongoDBProcessList.new
+            @ProcessList.deserialize(params['ProcessList'])
           end
           @RequestId = params['RequestId']
         end
@@ -5031,7 +5104,7 @@ module TencentCloud
 
       # 实例诊断历史事件
       class DiagHistoryEventItem < TencentCloud::Common::AbstractModel
-        # @param DiagType: 诊断类型。
+        # @param DiagType: 诊断类型。支持值包括"高危账号","自增键耗尽","连接性检查","CPU利用率","死锁","全表扫描","高并发/压力请求","预编译语句过多","内存利用率","Metadata lock","磁盘超限","内存超限","只读锁","只读实例剔除","行锁","活跃会话","慢SQL","数据库快照","磁盘空间利用率","执行计划变化","主从切换","Table open cache命中率低","大表","事务未提交","事务导致复制延迟"等。
         # @type DiagType: String
         # @param EndTime: 结束时间。
         # @type EndTime: String
@@ -6172,6 +6245,98 @@ module TencentCloud
               indexestodrop_tmp = IndexesToDrop.new
               indexestodrop_tmp.deserialize(i)
               @IndexesToDrop << indexestodrop_tmp
+            end
+          end
+        end
+      end
+
+      # mongodb会话详情
+      class MongoDBProcessItem < TencentCloud::Common::AbstractModel
+        # @param IsInternalIp: 是否内部IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInternalIp: Boolean
+        # @param Type: 语句类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Command: 语句详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Command: String
+        # @param InstanceNodeId: 节点ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNodeId: String
+        # @param Host: 客户端ip
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Host: String
+        # @param Time: 运行时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Time: Float
+        # @param ID: 会话ID
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param ShardName: 分片名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShardName: String
+        # @param User: 用户
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type User: String
+        # @param DB: 数据库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DB: String
+
+        attr_accessor :IsInternalIp, :Type, :Command, :InstanceNodeId, :Host, :Time, :ID, :ShardName, :User, :DB
+
+        def initialize(isinternalip=nil, type=nil, command=nil, instancenodeid=nil, host=nil, time=nil, id=nil, shardname=nil, user=nil, db=nil)
+          @IsInternalIp = isinternalip
+          @Type = type
+          @Command = command
+          @InstanceNodeId = instancenodeid
+          @Host = host
+          @Time = time
+          @ID = id
+          @ShardName = shardname
+          @User = user
+          @DB = db
+        end
+
+        def deserialize(params)
+          @IsInternalIp = params['IsInternalIp']
+          @Type = params['Type']
+          @Command = params['Command']
+          @InstanceNodeId = params['InstanceNodeId']
+          @Host = params['Host']
+          @Time = params['Time']
+          @ID = params['ID']
+          @ShardName = params['ShardName']
+          @User = params['User']
+          @DB = params['DB']
+        end
+      end
+
+      # mongodb 会话列表 返回数据结构
+      class MongoDBProcessList < TencentCloud::Common::AbstractModel
+        # @param Names: 列名字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Names: Array
+        # @param Data: 接口返回数据详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+
+        attr_accessor :Names, :Data
+
+        def initialize(names=nil, data=nil)
+          @Names = names
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              mongodbprocessitem_tmp = MongoDBProcessItem.new
+              mongodbprocessitem_tmp.deserialize(i)
+              @Data << mongodbprocessitem_tmp
             end
           end
         end

@@ -1311,7 +1311,7 @@ module TencentCloud
         # <li>请确认该名称与企业营业执照中注册的名称一致。</li>
         # <li>如果名称中包含英文括号()，请使用中文括号（）代替。</li>
         # <li>请确保此企业已完成腾讯电子签企业认证。</li>
-        # <li>**若为子客企业员工，请使用OpenId，OrganizationOpenId参数，此参数留空即可**</li>
+        # <li>**若为子客企业员工，请使用OpenId，OrganizationOpenId参数。如果此子客企业未认证，则此参数需要传子客企业名称**</li>
         # </ul>
         # @type OrganizationName: String
         # @param SignatureTypes: 指定批量签署合同的签名类型，可传递以下值：<ul><li>**0**：手写签名</li><li>**1**：OCR楷体</li><li>**2**：姓名印章</li><li>**3**：图片印章</li><li>**4**：系统签名</li><li>**5**：长效手写签名（包含手写签名）</li></ul>注：<ul><li>不传值的情况则计算所有合同中个人签署区的签名类型，规则如下：<ul><li>1.如果所有合同中所有的个人签署区方式包含多种则是手写</li><li>2.如果所有合同中所有个人签名区签名类型仅为一种则就是那一种签名方式（例如合同1有多个签署区都是指定OCR楷体，合同2中也是多个签署区都是指定OCR楷体...则使用OCR楷体）</li></ul></li><li>该参数会覆盖您合同中的签名类型，若您在发起合同时限定了签名类型(赋值签名类型给ComponentTypeLimit)，请将这些签名类型赋予此参数</li><li>若签署方为企业员工，此参数无效，签名方式将以合同中为准。</li></ul>
@@ -6849,10 +6849,77 @@ module TencentCloud
         # @type HideSignCodeAfterStart: Boolean
         # @param NeedFlowDraft: 发起过程中是否保存草稿
         # @type NeedFlowDraft: Boolean
+        # @param HideComponentTypes: 在发起流程的可嵌入页面要隐藏的控件列表，和 ShowComponentTypes 参数 只能二选一使用（注:
+        # <font color='red'>空数组代表未指定</font>），具体的控件类型如下
 
-        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :ForbidEditApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig, :ForbidEditWatermark, :PreviewAfterStart, :SignAfterStart, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :NeedFlowDraft
+        # <ul><li>SIGN_SIGNATURE : 个人签名/印章</li>
+        # <li>SIGN_SEAL : 企业印章</li>
+        # <li>SIGN_PAGING_SEAL : 骑缝章</li>
+        # <li>SIGN_LEGAL_PERSON_SEAL : 法定代表人章</li>
+        # <li>SIGN_APPROVE : 签批</li>
+        # <li>SIGN_OPINION : 签署意见</li>
+        # <li>SIGN_PAGING_SIGNATURE : 手写签名骑缝控件</li>
+        # <li>BUSI-FULL-NAME  : 企业全称</li>
+        # <li>BUSI-CREDIT-CODE : 统一社会信用代码</li>
+        # <li>BUSI-LEGAL-NAME : 法人/经营者姓名</li>
+        # <li>PERSONAL-NAME : 签署人姓名</li>
+        # <li>PERSONAL-MOBILE : 签署人手机号</li>
+        # <li>PERSONAL-IDCARD-TYPE : 签署人证件类型</li>
+        # <li>PERSONAL-IDCARD : 签署人证件号</li>
+        # <li>TEXT : 单行文本</li>
+        # <li>MULTI_LINE_TEXT : 多行文本</li>
+        # <li>CHECK_BOX : 勾选框</li>
+        # <li>SELECTOR : 选择器</li>
+        # <li>DIGIT : 数字</li>
+        # <li>DATE : 日期</li>
+        # <li>FILL_IMAGE : 图片</li>
+        # <li>ATTACHMENT : 附件</li>
+        # <li>EMAIL : 邮箱</li>
+        # <li>LOCATION : 地址</li>
+        # <li>EDUCATION : 学历</li>
+        # <li>GENDER : 性别</li>
+        # <li>DISTRICT : 省市区</li></ul>
+        # @type HideComponentTypes: Array
+        # @param ShowComponentTypes: 在发起流程的可嵌入页面要显示的控件列表，和 HideComponentTypes 参数 只能二选一使用（注:
+        # <font color='red'>空数组代表未指定</font>），具体的控件类型如下
+        # <ul><li>SIGN_SIGNATURE : 个人签名/印章</li>
+        # <li>SIGN_SEAL : 企业印章</li>
+        # <li>SIGN_PAGING_SEAL : 骑缝章</li>
+        # <li>SIGN_LEGAL_PERSON_SEAL : 法定代表人章</li>
+        # <li>SIGN_APPROVE : 签批</li>
+        # <li>SIGN_OPINION : 签署意见</li>
+        # <li>SIGN_PAGING_SIGNATURE : 手写签名骑缝控件</li>
+        # <li>BUSI-FULL-NAME  : 企业全称</li>
+        # <li>BUSI-CREDIT-CODE : 统一社会信用代码</li>
+        # <li>BUSI-LEGAL-NAME : 法人/经营者姓名</li>
+        # <li>PERSONAL-NAME : 签署人姓名</li>
+        # <li>PERSONAL-MOBILE : 签署人手机号</li>
+        # <li>PERSONAL-IDCARD-TYPE : 签署人证件类型</li>
+        # <li>PERSONAL-IDCARD : 签署人证件号</li>
+        # <li>TEXT : 单行文本</li>
+        # <li>MULTI_LINE_TEXT : 多行文本</li>
+        # <li>CHECK_BOX : 勾选框</li>
+        # <li>SELECTOR : 选择器</li>
+        # <li>DIGIT : 数字</li>
+        # <li>DATE : 日期</li>
+        # <li>FILL_IMAGE : 图片</li>
+        # <li>ATTACHMENT : 附件</li>
+        # <li>EMAIL : 邮箱</li>
+        # <li>LOCATION : 地址</li>
+        # <li>EDUCATION : 学历</li>
+        # <li>GENDER : 性别</li>
+        # <li>DISTRICT : 省市区</li></ul>
+        # @type ShowComponentTypes: Array
+        # @param ForbidAddApprover:  禁止添加签署方，若为true则在发起流程的可嵌入页面隐藏“添加签署人按钮”
+        # @type ForbidAddApprover: Boolean
+        # @param ForbidEditFlowProperties:   禁止设置签署流程属性 (顺序、合同签署认证方式等)，若为true则在发起流程的可嵌入页面隐藏签署流程设置面板
+        # @type ForbidEditFlowProperties: Boolean
+        # @param ResultPageConfig: 发起流程的可嵌入页面结果页配置
+        # @type ResultPageConfig: :class:`Tencentcloud::Essbasic.v20210526.models.CreateResultPageConfig`
 
-        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, forbideditapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil, forbideditwatermark=nil, previewafterstart=nil, signafterstart=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, needflowdraft=nil)
+        attr_accessor :CanEditFlow, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :ForbidEditApprover, :CustomCreateFlowDescription, :ForbidEditFillComponent, :SkipUploadFile, :SignComponentConfig, :ForbidEditWatermark, :PreviewAfterStart, :SignAfterStart, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :NeedFlowDraft, :HideComponentTypes, :ShowComponentTypes, :ForbidAddApprover, :ForbidEditFlowProperties, :ResultPageConfig
+
+        def initialize(caneditflow=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, forbideditapprover=nil, customcreateflowdescription=nil, forbideditfillcomponent=nil, skipuploadfile=nil, signcomponentconfig=nil, forbideditwatermark=nil, previewafterstart=nil, signafterstart=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, needflowdraft=nil, hidecomponenttypes=nil, showcomponenttypes=nil, forbidaddapprover=nil, forbideditflowproperties=nil, resultpageconfig=nil)
           @CanEditFlow = caneditflow
           @HideShowFlowName = hideshowflowname
           @HideShowFlowType = hideshowflowtype
@@ -6870,6 +6937,11 @@ module TencentCloud
           @SelfName = selfname
           @HideSignCodeAfterStart = hidesigncodeafterstart
           @NeedFlowDraft = needflowdraft
+          @HideComponentTypes = hidecomponenttypes
+          @ShowComponentTypes = showcomponenttypes
+          @ForbidAddApprover = forbidaddapprover
+          @ForbidEditFlowProperties = forbideditflowproperties
+          @ResultPageConfig = resultpageconfig
         end
 
         def deserialize(params)
@@ -6893,6 +6965,14 @@ module TencentCloud
           @SelfName = params['SelfName']
           @HideSignCodeAfterStart = params['HideSignCodeAfterStart']
           @NeedFlowDraft = params['NeedFlowDraft']
+          @HideComponentTypes = params['HideComponentTypes']
+          @ShowComponentTypes = params['ShowComponentTypes']
+          @ForbidAddApprover = params['ForbidAddApprover']
+          @ForbidEditFlowProperties = params['ForbidEditFlowProperties']
+          unless params['ResultPageConfig'].nil?
+            @ResultPageConfig = CreateResultPageConfig.new
+            @ResultPageConfig.deserialize(params['ResultPageConfig'])
+          end
         end
       end
 
@@ -7385,6 +7465,32 @@ module TencentCloud
           @ValidFrom = params['ValidFrom']
           @ValidTo = params['ValidTo']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 发起流程的可嵌入页面操作结果页配置
+      class CreateResultPageConfig < TencentCloud::Common::AbstractModel
+        # @param Type: <ul>
+        #   <li>0 : 发起审批成功页面（通过接口<a href="https://qian.tencent.com/developers/partnerApis/embedPages/ChannelCreatePrepareFlow" target="_blank">创建发起流程web页面</a>发起时设置了NeedCreateReview参数为true）</li>
+        # </ul>
+        # @type Type: Integer
+        # @param Title: 结果页标题，不超过50字
+        # @type Title: String
+        # @param Description: 结果页描述，不超过200字
+        # @type Description: String
+
+        attr_accessor :Type, :Title, :Description
+
+        def initialize(type=nil, title=nil, description=nil)
+          @Type = type
+          @Title = title
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Title = params['Title']
+          @Description = params['Description']
         end
       end
 
