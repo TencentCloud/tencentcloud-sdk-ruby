@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量创建私有域
+
+        # @param request: Request instance for CreatePrivateZoneList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateZoneListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateZoneListResponse`
+        def CreatePrivateZoneList(request)
+          body = send_request('CreatePrivateZoneList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateZoneListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加私有域解析记录
 
         # @param request: Request instance for CreatePrivateZoneRecord.
@@ -183,6 +207,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePrivateZoneRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量添加私有域解析记录
+
+        # @param request: Request instance for CreatePrivateZoneRecordList.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateZoneRecordListRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::CreatePrivateZoneRecordListResponse`
+        def CreatePrivateZoneRecordList(request)
+          body = send_request('CreatePrivateZoneRecordList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePrivateZoneRecordListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,7 +413,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取私有域解析账号的VPC列表
+        # 获取关联账号的VPC列表
 
         # @param request: Request instance for DescribeAccountVpcList.
         # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeAccountVpcListRequest`
@@ -399,6 +447,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditLogResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询批量添加私有域解析记录结果
+
+        # @param request: Request instance for DescribeCreateRecordListResult.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeCreateRecordListResultRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeCreateRecordListResultResponse`
+        def DescribeCreateRecordListResult(request)
+          body = send_request('DescribeCreateRecordListResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCreateRecordListResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询批量添加私有域结果
+
+        # @param request: Request instance for DescribeCreateZoneListResult.
+        # @type request: :class:`Tencentcloud::privatedns::V20201028::DescribeCreateZoneListResultRequest`
+        # @rtype: :class:`Tencentcloud::privatedns::V20201028::DescribeCreateZoneListResultResponse`
+        def DescribeCreateZoneListResult(request)
+          body = send_request('DescribeCreateZoneListResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCreateZoneListResultResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -21823,12 +21823,15 @@ module TencentCloud
         # @param BatchTaskEvent: 批量处理任务信息，仅当 EventType 为 BatchTask，该字段有值。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BatchTaskEvent: :class:`Tencentcloud::Mps.v20190612.models.BatchSubTaskResult`
+        # @param ExtractBlindWatermarkTask: 数字水印提取任务信息，仅当 EventType 为 ExtractBlindWatermark，该字段有值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtractBlindWatermarkTask: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :ScheduleTaskEvent, :Timestamp, :Sign, :BatchTaskEvent, :RequestId
+        attr_accessor :EventType, :WorkflowTaskEvent, :EditMediaTaskEvent, :SessionId, :SessionContext, :ScheduleTaskEvent, :Timestamp, :Sign, :BatchTaskEvent, :ExtractBlindWatermarkTask, :RequestId
 
-        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, scheduletaskevent=nil, timestamp=nil, sign=nil, batchtaskevent=nil, requestid=nil)
+        def initialize(eventtype=nil, workflowtaskevent=nil, editmediataskevent=nil, sessionid=nil, sessioncontext=nil, scheduletaskevent=nil, timestamp=nil, sign=nil, batchtaskevent=nil, extractblindwatermarktask=nil, requestid=nil)
           @EventType = eventtype
           @WorkflowTaskEvent = workflowtaskevent
           @EditMediaTaskEvent = editmediataskevent
@@ -21838,6 +21841,7 @@ module TencentCloud
           @Timestamp = timestamp
           @Sign = sign
           @BatchTaskEvent = batchtaskevent
+          @ExtractBlindWatermarkTask = extractblindwatermarktask
           @RequestId = requestid
         end
 
@@ -21862,6 +21866,10 @@ module TencentCloud
           unless params['BatchTaskEvent'].nil?
             @BatchTaskEvent = BatchSubTaskResult.new
             @BatchTaskEvent.deserialize(params['BatchTaskEvent'])
+          end
+          unless params['ExtractBlindWatermarkTask'].nil?
+            @ExtractBlindWatermarkTask = ExtractBlindWatermarkTask.new
+            @ExtractBlindWatermarkTask.deserialize(params['ExtractBlindWatermarkTask'])
           end
           @RequestId = params['RequestId']
         end

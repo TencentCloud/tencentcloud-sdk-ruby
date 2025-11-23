@@ -1990,10 +1990,16 @@ module TencentCloud
 
         # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的[回调通知](https://qian.tencent.com/developers/company/callback_types_v2)模块。
         # @type UserData: String
+        # @param EnableGeneralChecklist: 启用附加通用风险审查清单。默认为启用状态
+        # 可选值如下：
 
-        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :ChecklistId, :Agent, :Comment, :UserData
+        # - 1: 启用系统提供的附加通用风险审查清单
+        # - 2:不启用系统提供的附加通用风险审查清单
+        # @type EnableGeneralChecklist: Integer
 
-        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, checklistid=nil, agent=nil, comment=nil, userdata=nil)
+        attr_accessor :Operator, :ResourceIds, :PolicyType, :Role, :ChecklistId, :Agent, :Comment, :UserData, :EnableGeneralChecklist
+
+        def initialize(operator=nil, resourceids=nil, policytype=nil, role=nil, checklistid=nil, agent=nil, comment=nil, userdata=nil, enablegeneralchecklist=nil)
           @Operator = operator
           @ResourceIds = resourceids
           @PolicyType = policytype
@@ -2002,6 +2008,7 @@ module TencentCloud
           @Agent = agent
           @Comment = comment
           @UserData = userdata
+          @EnableGeneralChecklist = enablegeneralchecklist
         end
 
         def deserialize(params)
@@ -2022,6 +2029,7 @@ module TencentCloud
           end
           @Comment = params['Comment']
           @UserData = params['UserData']
+          @EnableGeneralChecklist = params['EnableGeneralChecklist']
         end
       end
 

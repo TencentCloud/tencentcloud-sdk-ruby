@@ -17,6 +17,146 @@
 module TencentCloud
   module Ctem
     module V20231128
+      # CreateApp请求参数结构体
+      class CreateAppRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Name: 移动端名称
+        # @type Name: String
+        # @param Logo: 图片地址
+        # @type Logo: String
+        # @param Platform: 平台，ios或android
+        # @type Platform: String
+        # @param AppVersion: 版本
+        # @type AppVersion: String
+        # @param DownloadUrl: 下载地址
+        # @type DownloadUrl: String
+        # @param PackageName: 安装包名
+        # @type PackageName: String
+        # @param Developer: 开发者
+        # @type Developer: String
+        # @param ServerUrl: 移动端地址
+        # @type ServerUrl: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param EnterpriseUid: 子公司ID
+        # @type EnterpriseUid: String
+
+        attr_accessor :CustomerId, :Name, :Logo, :Platform, :AppVersion, :DownloadUrl, :PackageName, :Developer, :ServerUrl, :Description, :EnterpriseUid
+
+        def initialize(customerid=nil, name=nil, logo=nil, platform=nil, appversion=nil, downloadurl=nil, packagename=nil, developer=nil, serverurl=nil, description=nil, enterpriseuid=nil)
+          @CustomerId = customerid
+          @Name = name
+          @Logo = logo
+          @Platform = platform
+          @AppVersion = appversion
+          @DownloadUrl = downloadurl
+          @PackageName = packagename
+          @Developer = developer
+          @ServerUrl = serverurl
+          @Description = description
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Name = params['Name']
+          @Logo = params['Logo']
+          @Platform = params['Platform']
+          @AppVersion = params['AppVersion']
+          @DownloadUrl = params['DownloadUrl']
+          @PackageName = params['PackageName']
+          @Developer = params['Developer']
+          @ServerUrl = params['ServerUrl']
+          @Description = params['Description']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateApp返回参数结构体
+      class CreateAppResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAsset请求参数结构体
+      class CreateAssetRequest < TencentCloud::Common::AbstractModel
+        # @param Ip: IP地址
+        # @type Ip: String
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Os: 类型
+        # @type Os: String
+        # @param Country: 国家
+        # @type Country: String
+        # @param Province: 省份
+        # @type Province: String
+        # @param City: 城市
+        # @type City: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param EnterpriseUid: 子公司Id
+        # @type EnterpriseUid: String
+
+        attr_accessor :Ip, :CustomerId, :Os, :Country, :Province, :City, :Isp, :EnterpriseUid
+
+        def initialize(ip=nil, customerid=nil, os=nil, country=nil, province=nil, city=nil, isp=nil, enterpriseuid=nil)
+          @Ip = ip
+          @CustomerId = customerid
+          @Os = os
+          @Country = country
+          @Province = province
+          @City = city
+          @Isp = isp
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @Ip = params['Ip']
+          @CustomerId = params['CustomerId']
+          @Os = params['Os']
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
+          @Isp = params['Isp']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateAsset返回参数结构体
+      class CreateAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomer请求参数结构体
       class CreateCustomerRequest < TencentCloud::Common::AbstractModel
         # @param Name: 企业名称
@@ -113,6 +253,66 @@ module TencentCloud
         end
       end
 
+      # CreateDomain请求参数结构体
+      class CreateDomainRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Domain: 主域名
+        # @type Domain: String
+        # @param ICP: ICP
+        # @type ICP: String
+        # @param RegisteredTime: 注册时间
+        # @type RegisteredTime: String
+        # @param ExpiredTime: 过期时间
+        # @type ExpiredTime: String
+        # @param Company: 公司
+        # @type Company: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+
+        attr_accessor :CustomerId, :Domain, :ICP, :RegisteredTime, :ExpiredTime, :Company, :EnterpriseUid
+
+        def initialize(customerid=nil, domain=nil, icp=nil, registeredtime=nil, expiredtime=nil, company=nil, enterpriseuid=nil)
+          @CustomerId = customerid
+          @Domain = domain
+          @ICP = icp
+          @RegisteredTime = registeredtime
+          @ExpiredTime = expiredtime
+          @Company = company
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Domain = params['Domain']
+          @ICP = params['ICP']
+          @RegisteredTime = params['RegisteredTime']
+          @ExpiredTime = params['ExpiredTime']
+          @Company = params['Company']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateDomain返回参数结构体
+      class CreateDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateEnterprise请求参数结构体
       class CreateEnterpriseRequest < TencentCloud::Common::AbstractModel
         # @param CustomerId: 企业ID
@@ -171,16 +371,100 @@ module TencentCloud
 
       # CreateEnterprise返回参数结构体
       class CreateEnterpriseResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Id, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(id=nil, requestid=nil)
+          @Id = id
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHttp请求参数结构体
+      class CreateHttpRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Url: Url
+        # @type Url: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+        # @param Title: 标题
+        # @type Title: String
+        # @param ContentLength: 报文长度
+        # @type ContentLength: Integer
+        # @param Content: 报文内容
+        # @type Content: String
+        # @param ScreenshotUrl: 缩略图Url
+        # @type ScreenshotUrl: String
+        # @param Tags: 标签
+        # @type Tags: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Ip: 解析的IP
+        # @type Ip: String
+        # @param Ssl: 证书信息
+        # @type Ssl: String
+        # @param SslExpiredTime: ssl证书过期时间
+        # @type SslExpiredTime: String
+
+        attr_accessor :CustomerId, :Url, :EnterpriseUid, :Title, :ContentLength, :Content, :ScreenshotUrl, :Tags, :Code, :Ip, :Ssl, :SslExpiredTime
+
+        def initialize(customerid=nil, url=nil, enterpriseuid=nil, title=nil, contentlength=nil, content=nil, screenshoturl=nil, tags=nil, code=nil, ip=nil, ssl=nil, sslexpiredtime=nil)
+          @CustomerId = customerid
+          @Url = url
+          @EnterpriseUid = enterpriseuid
+          @Title = title
+          @ContentLength = contentlength
+          @Content = content
+          @ScreenshotUrl = screenshoturl
+          @Tags = tags
+          @Code = code
+          @Ip = ip
+          @Ssl = ssl
+          @SslExpiredTime = sslexpiredtime
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Url = params['Url']
+          @EnterpriseUid = params['EnterpriseUid']
+          @Title = params['Title']
+          @ContentLength = params['ContentLength']
+          @Content = params['Content']
+          @ScreenshotUrl = params['ScreenshotUrl']
+          @Tags = params['Tags']
+          @Code = params['Code']
+          @Ip = params['Ip']
+          @Ssl = params['Ssl']
+          @SslExpiredTime = params['SslExpiredTime']
+        end
+      end
+
+      # CreateHttp返回参数结构体
+      class CreateHttpResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
           @RequestId = params['RequestId']
         end
       end
@@ -220,6 +504,454 @@ module TencentCloud
       # CreateJobRecord返回参数结构体
       class CreateJobRecordResponse < TencentCloud::Common::AbstractModel
         # @param Id: 任务Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateManage请求参数结构体
+      class CreateManageRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Url: Url
+        # @type Url: String
+        # @param Title: 标题
+        # @type Title: String
+        # @param Screenshot: Screenshot
+        # @type Screenshot: String
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+
+        attr_accessor :CustomerId, :Url, :Title, :Screenshot, :Code, :EnterpriseUid
+
+        def initialize(customerid=nil, url=nil, title=nil, screenshot=nil, code=nil, enterpriseuid=nil)
+          @CustomerId = customerid
+          @Url = url
+          @Title = title
+          @Screenshot = screenshot
+          @Code = code
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Url = params['Url']
+          @Title = params['Title']
+          @Screenshot = params['Screenshot']
+          @Code = params['Code']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateManage返回参数结构体
+      class CreateManageResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePort请求参数结构体
+      class CreatePortRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Asset: IP或域名地址
+        # @type Asset: String
+        # @param IsHighRisk: 是否高危
+        # @type IsHighRisk: Boolean
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+        # @param Banner: base64编码后的指纹
+        # @type Banner: String
+        # @param Ip: 解析的IP
+        # @type Ip: String
+        # @param App: 组件名称
+        # @type App: String
+        # @param Service: 服务名称
+        # @type Service: String
+
+        attr_accessor :CustomerId, :Port, :Asset, :IsHighRisk, :EnterpriseUid, :Banner, :Ip, :App, :Service
+
+        def initialize(customerid=nil, port=nil, asset=nil, ishighrisk=nil, enterpriseuid=nil, banner=nil, ip=nil, app=nil, service=nil)
+          @CustomerId = customerid
+          @Port = port
+          @Asset = asset
+          @IsHighRisk = ishighrisk
+          @EnterpriseUid = enterpriseuid
+          @Banner = banner
+          @Ip = ip
+          @App = app
+          @Service = service
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Port = params['Port']
+          @Asset = params['Asset']
+          @IsHighRisk = params['IsHighRisk']
+          @EnterpriseUid = params['EnterpriseUid']
+          @Banner = params['Banner']
+          @Ip = params['Ip']
+          @App = params['App']
+          @Service = params['Service']
+        end
+      end
+
+      # CreatePort返回参数结构体
+      class CreatePortResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSeeds请求参数结构体
+      class CreateSeedsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Ips: ip种子数组
+        # @type Ips: Array
+        # @param Icons: icon种子数组
+        # @type Icons: Array
+        # @param Domains: 主域名种子数组
+        # @type Domains: Array
+        # @param Titles: title种子数组
+        # @type Titles: Array
+        # @param SubDomains: 子域名种子数组
+        # @type SubDomains: Array
+        # @param Keywords: 关键词种子数组
+        # @type Keywords: Array
+        # @param ParentCompanies: 母公司种子数组
+        # @type ParentCompanies: Array
+
+        attr_accessor :CustomerId, :Ips, :Icons, :Domains, :Titles, :SubDomains, :Keywords, :ParentCompanies
+
+        def initialize(customerid=nil, ips=nil, icons=nil, domains=nil, titles=nil, subdomains=nil, keywords=nil, parentcompanies=nil)
+          @CustomerId = customerid
+          @Ips = ips
+          @Icons = icons
+          @Domains = domains
+          @Titles = titles
+          @SubDomains = subdomains
+          @Keywords = keywords
+          @ParentCompanies = parentcompanies
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Ips = params['Ips']
+          @Icons = params['Icons']
+          @Domains = params['Domains']
+          @Titles = params['Titles']
+          @SubDomains = params['SubDomains']
+          @Keywords = params['Keywords']
+          @ParentCompanies = params['ParentCompanies']
+        end
+      end
+
+      # CreateSeeds返回参数结构体
+      class CreateSeedsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSubDomain请求参数结构体
+      class CreateSubDomainRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param SubDomain: 子域名
+        # @type SubDomain: String
+        # @param Ip: Ip
+        # @type Ip: String
+        # @param Country: 国家
+        # @type Country: String
+        # @param Province: 省
+        # @type Province: String
+        # @param City: 城市
+        # @type City: String
+        # @param Isp: Isp
+        # @type Isp: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+
+        attr_accessor :CustomerId, :SubDomain, :Ip, :Country, :Province, :City, :Isp, :EnterpriseUid
+
+        def initialize(customerid=nil, subdomain=nil, ip=nil, country=nil, province=nil, city=nil, isp=nil, enterpriseuid=nil)
+          @CustomerId = customerid
+          @SubDomain = subdomain
+          @Ip = ip
+          @Country = country
+          @Province = province
+          @City = city
+          @Isp = isp
+          @EnterpriseUid = enterpriseuid
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @SubDomain = params['SubDomain']
+          @Ip = params['Ip']
+          @Country = params['Country']
+          @Province = params['Province']
+          @City = params['City']
+          @Isp = params['Isp']
+          @EnterpriseUid = params['EnterpriseUid']
+        end
+      end
+
+      # CreateSubDomain返回参数结构体
+      class CreateSubDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSuspiciousAsset请求参数结构体
+      class CreateSuspiciousAssetRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Url: Url
+        # @type Url: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+        # @param Title: 标题
+        # @type Title: String
+        # @param Tags: 标签
+        # @type Tags: String
+        # @param Owner: 所属者
+        # @type Owner: String
+        # @param SourceType: 来源类型
+        # @type SourceType: String
+        # @param SourceValue: 来源值
+        # @type SourceValue: String
+        # @param Trusted: 是否信任
+        # @type Trusted: Boolean
+
+        attr_accessor :CustomerId, :Url, :EnterpriseUid, :Title, :Tags, :Owner, :SourceType, :SourceValue, :Trusted
+
+        def initialize(customerid=nil, url=nil, enterpriseuid=nil, title=nil, tags=nil, owner=nil, sourcetype=nil, sourcevalue=nil, trusted=nil)
+          @CustomerId = customerid
+          @Url = url
+          @EnterpriseUid = enterpriseuid
+          @Title = title
+          @Tags = tags
+          @Owner = owner
+          @SourceType = sourcetype
+          @SourceValue = sourcevalue
+          @Trusted = trusted
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Url = params['Url']
+          @EnterpriseUid = params['EnterpriseUid']
+          @Title = params['Title']
+          @Tags = params['Tags']
+          @Owner = params['Owner']
+          @SourceType = params['SourceType']
+          @SourceValue = params['SourceValue']
+          @Trusted = params['Trusted']
+        end
+      end
+
+      # CreateSuspiciousAsset返回参数结构体
+      class CreateSuspiciousAssetResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWechatApplet请求参数结构体
+      class CreateWechatAppletRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Name: 名称
+        # @type Name: String
+        # @param Logo: 图片地址
+        # @type Logo: String
+        # @param AccountId: 账号
+        # @type AccountId: String
+        # @param QrCode: 二维码
+        # @type QrCode: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+        # @param AccountAppid: 账号Appid
+        # @type AccountAppid: String
+        # @param RecordSubject: 认证主体
+        # @type RecordSubject: String
+
+        attr_accessor :CustomerId, :Name, :Logo, :AccountId, :QrCode, :Description, :EnterpriseUid, :AccountAppid, :RecordSubject
+
+        def initialize(customerid=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil, enterpriseuid=nil, accountappid=nil, recordsubject=nil)
+          @CustomerId = customerid
+          @Name = name
+          @Logo = logo
+          @AccountId = accountid
+          @QrCode = qrcode
+          @Description = description
+          @EnterpriseUid = enterpriseuid
+          @AccountAppid = accountappid
+          @RecordSubject = recordsubject
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Name = params['Name']
+          @Logo = params['Logo']
+          @AccountId = params['AccountId']
+          @QrCode = params['QrCode']
+          @Description = params['Description']
+          @EnterpriseUid = params['EnterpriseUid']
+          @AccountAppid = params['AccountAppid']
+          @RecordSubject = params['RecordSubject']
+        end
+      end
+
+      # CreateWechatApplet返回参数结构体
+      class CreateWechatAppletResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateWechatOfficialAccount请求参数结构体
+      class CreateWechatOfficialAccountRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业Id
+        # @type CustomerId: Integer
+        # @param Name: 名称
+        # @type Name: String
+        # @param Logo: 图片地址
+        # @type Logo: String
+        # @param AccountId: 账号
+        # @type AccountId: String
+        # @param QrCode: 二维码
+        # @type QrCode: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param EnterpriseUid: 子公司
+        # @type EnterpriseUid: String
+        # @param RecordSubject: 认证主体
+        # @type RecordSubject: String
+
+        attr_accessor :CustomerId, :Name, :Logo, :AccountId, :QrCode, :Description, :EnterpriseUid, :RecordSubject
+
+        def initialize(customerid=nil, name=nil, logo=nil, accountid=nil, qrcode=nil, description=nil, enterpriseuid=nil, recordsubject=nil)
+          @CustomerId = customerid
+          @Name = name
+          @Logo = logo
+          @AccountId = accountid
+          @QrCode = qrcode
+          @Description = description
+          @EnterpriseUid = enterpriseuid
+          @RecordSubject = recordsubject
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @Name = params['Name']
+          @Logo = params['Logo']
+          @AccountId = params['AccountId']
+          @QrCode = params['QrCode']
+          @Description = params['Description']
+          @EnterpriseUid = params['EnterpriseUid']
+          @RecordSubject = params['RecordSubject']
+        end
+      end
+
+      # CreateWechatOfficialAccount返回参数结构体
+      class CreateWechatOfficialAccountResponse < TencentCloud::Common::AbstractModel
+        # @param Id: Id
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -339,6 +1071,430 @@ module TencentCloud
           @SubCompanyLevel = params['SubCompanyLevel']
           @IsIncludeFullScan = params['IsIncludeFullScan']
           @EnableGroupMemberDiscovered = params['EnableGroupMemberDiscovered']
+        end
+      end
+
+      # DeleteApps请求参数结构体
+      class DeleteAppsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteApps返回参数结构体
+      class DeleteAppsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteAssets请求参数结构体
+      class DeleteAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteAssets返回参数结构体
+      class DeleteAssetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDomains请求参数结构体
+      class DeleteDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteDomains返回参数结构体
+      class DeleteDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteEnterprises请求参数结构体
+      class DeleteEnterprisesRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteEnterprises返回参数结构体
+      class DeleteEnterprisesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteHttps请求参数结构体
+      class DeleteHttpsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+
+        attr_accessor :Ids, :CustomerIdList, :IsAggregation
+
+        def initialize(ids=nil, customeridlist=nil, isaggregation=nil)
+          @Ids = ids
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+        end
+      end
+
+      # DeleteHttps返回参数结构体
+      class DeleteHttpsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteManages请求参数结构体
+      class DeleteManagesRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+
+        attr_accessor :Ids, :CustomerIdList, :IsAggregation
+
+        def initialize(ids=nil, customeridlist=nil, isaggregation=nil)
+          @Ids = ids
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+        end
+      end
+
+      # DeleteManages返回参数结构体
+      class DeleteManagesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePorts请求参数结构体
+      class DeletePortsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+
+        attr_accessor :Ids, :CustomerIdList, :IsAggregation
+
+        def initialize(ids=nil, customeridlist=nil, isaggregation=nil)
+          @Ids = ids
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+        end
+      end
+
+      # DeletePorts返回参数结构体
+      class DeletePortsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSeeds请求参数结构体
+      class DeleteSeedsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteSeeds返回参数结构体
+      class DeleteSeedsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSubDomains请求参数结构体
+      class DeleteSubDomainsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+
+        attr_accessor :Ids, :CustomerIdList, :IsAggregation
+
+        def initialize(ids=nil, customeridlist=nil, isaggregation=nil)
+          @Ids = ids
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+        end
+      end
+
+      # DeleteSubDomains返回参数结构体
+      class DeleteSubDomainsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSuspiciousAssets请求参数结构体
+      class DeleteSuspiciousAssetsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+
+        attr_accessor :Ids, :CustomerIdList, :IsAggregation
+
+        def initialize(ids=nil, customeridlist=nil, isaggregation=nil)
+          @Ids = ids
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+        end
+      end
+
+      # DeleteSuspiciousAssets返回参数结构体
+      class DeleteSuspiciousAssetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWechatApplets请求参数结构体
+      class DeleteWechatAppletsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteWechatApplets返回参数结构体
+      class DeleteWechatAppletsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteWechatOfficialAccounts请求参数结构体
+      class DeleteWechatOfficialAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+
+        attr_accessor :Ids
+
+        def initialize(ids=nil)
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+        end
+      end
+
+      # DeleteWechatOfficialAccounts返回参数结构体
+      class DeleteWechatOfficialAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -2526,6 +3682,80 @@ module TencentCloud
         end
       end
 
+      # DescribeSeeds请求参数结构体
+      class DescribeSeedsRequest < TencentCloud::Common::AbstractModel
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param CreateAtStart: 创建时间-开始
+        # @type CreateAtStart: String
+        # @param CreateAtEnd: 创建时间-结束
+        # @type CreateAtEnd: String
+        # @param Offset: 分页偏移
+        # @type Offset: Integer
+        # @param Limit: 分页大小
+        # @type Limit: Integer
+        # @param Filters: 查询数组
+        # @type Filters: Array
+
+        attr_accessor :CustomerId, :CreateAtStart, :CreateAtEnd, :Offset, :Limit, :Filters
+
+        def initialize(customerid=nil, createatstart=nil, createatend=nil, offset=nil, limit=nil, filters=nil)
+          @CustomerId = customerid
+          @CreateAtStart = createatstart
+          @CreateAtEnd = createatend
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @CustomerId = params['CustomerId']
+          @CreateAtStart = params['CreateAtStart']
+          @CreateAtEnd = params['CreateAtEnd']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSeeds返回参数结构体
+      class DescribeSeedsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param List: 种子列表
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :List, :RequestId
+
+        def initialize(total=nil, list=nil, requestid=nil)
+          @Total = total
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              displayseed_tmp = DisplaySeed.new
+              displayseed_tmp.deserialize(i)
+              @List << displayseed_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSensitiveInfos请求参数结构体
       class DescribeSensitiveInfosRequest < TencentCloud::Common::AbstractModel
         # @param CustomerIdList: 企业ID列表，可多选
@@ -4489,6 +5719,51 @@ module TencentCloud
         end
       end
 
+      # 种子详情
+      class DisplaySeed < TencentCloud::Common::AbstractModel
+        # @param Id: 主键ID
+        # @type Id: Integer
+        # @param CustomerId: 企业ID
+        # @type CustomerId: Integer
+        # @param Category: 分类，包括：domain(主域名)、icon(图标)、ip(IP)、
+        # keyword(关键词)、parent_company(母公司)、sub_domain(子域名)、title(标题)
+        # @type Category: String
+        # @param Value: 值
+        # @type Value: String
+        # @param Md5: md5值
+        # @type Md5: String
+        # @param Source: 来源
+        # @type Source: String
+        # @param CreateAt: 创建时间
+        # @type CreateAt: String
+        # @param IsValid: 是否可信
+        # @type IsValid: Boolean
+
+        attr_accessor :Id, :CustomerId, :Category, :Value, :Md5, :Source, :CreateAt, :IsValid
+
+        def initialize(id=nil, customerid=nil, category=nil, value=nil, md5=nil, source=nil, createat=nil, isvalid=nil)
+          @Id = id
+          @CustomerId = customerid
+          @Category = category
+          @Value = value
+          @Md5 = md5
+          @Source = source
+          @CreateAt = createat
+          @IsValid = isvalid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @CustomerId = params['CustomerId']
+          @Category = params['Category']
+          @Value = params['Value']
+          @Md5 = params['Md5']
+          @Source = params['Source']
+          @CreateAt = params['CreateAt']
+          @IsValid = params['IsValid']
+        end
+      end
+
       # 敏感信息泄露数据
       class DisplaySensitiveInfo < TencentCloud::Common::AbstractModel
         # @param Id: 主键Id
@@ -5048,6 +6323,58 @@ module TencentCloud
         end
       end
 
+      # IgnoreData请求参数结构体
+      class IgnoreDataRequest < TencentCloud::Common::AbstractModel
+        # @param Ids: ID列表
+        # @type Ids: Array
+        # @param Module: 模块，包括：enterprise：企业架构，domain：主域名，sub_domain：子域名，asset：IP资产，port：端口服务，http：HTTP资产，vul：漏洞信息，app：APP，wechat_applet：微信小程序，wechat_official_account：微信公众号，github：Github信息泄露，manage：管理后台暴露，config：目录爆破，dark_web：暗网泄露，net_disk：文库网盘泄露，supply_chain：供应链，weak_password：弱口令，sensitive_info：敏感信息泄露
+        # @type Module: String
+        # @param CustomerIdList: 企业ID列表，可多选
+        # @type CustomerIdList: Array
+        # @param IsAggregation: 是否聚合数据
+        # @type IsAggregation: Boolean
+        # @param Ignored: 是否显示被忽略的数据
+        # @type Ignored: Boolean
+        # @param IsAffectOther: 是否忽略全部
+        # @type IsAffectOther: Boolean
+
+        attr_accessor :Ids, :Module, :CustomerIdList, :IsAggregation, :Ignored, :IsAffectOther
+
+        def initialize(ids=nil, _module=nil, customeridlist=nil, isaggregation=nil, ignored=nil, isaffectother=nil)
+          @Ids = ids
+          @Module = _module
+          @CustomerIdList = customeridlist
+          @IsAggregation = isaggregation
+          @Ignored = ignored
+          @IsAffectOther = isaffectother
+        end
+
+        def deserialize(params)
+          @Ids = params['Ids']
+          @Module = params['Module']
+          @CustomerIdList = params['CustomerIdList']
+          @IsAggregation = params['IsAggregation']
+          @Ignored = params['Ignored']
+          @IsAffectOther = params['IsAffectOther']
+        end
+      end
+
+      # IgnoreData返回参数结构体
+      class IgnoreDataResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 子任务进度
       class JobRecordProgress < TencentCloud::Common::AbstractModel
         # @param Doing: 正在执行的任务数
@@ -5226,6 +6553,42 @@ module TencentCloud
 
       # ModifyLabel返回参数结构体
       class ModifyLabelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySeedStatus请求参数结构体
+      class ModifySeedStatusRequest < TencentCloud::Common::AbstractModel
+        # @param Id: ID
+        # @type Id: Integer
+        # @param IsValid: 是否可信
+        # @type IsValid: Boolean
+
+        attr_accessor :Id, :IsValid
+
+        def initialize(id=nil, isvalid=nil)
+          @Id = id
+          @IsValid = isvalid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @IsValid = params['IsValid']
+        end
+      end
+
+      # ModifySeedStatus返回参数结构体
+      class ModifySeedStatusResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

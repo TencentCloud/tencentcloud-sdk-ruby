@@ -29,6 +29,54 @@ module TencentCloud
         end
 
 
+        # 添加APP资产
+
+        # @param request: Request instance for CreateApp.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateAppRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateAppResponse`
+        def CreateApp(request)
+          body = send_request('CreateApp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAppResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加主机资产
+
+        # @param request: Request instance for CreateAsset.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateAssetRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateAssetResponse`
+        def CreateAsset(request)
+          body = send_request('CreateAsset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAssetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建企业
 
         # @param request: Request instance for CreateCustomer.
@@ -53,7 +101,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 添加企业架构数据
+        # 添加主域名数据
+
+        # @param request: Request instance for CreateDomain.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateDomainRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateDomainResponse`
+        def CreateDomain(request)
+          body = send_request('CreateDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加企业架构资产
 
         # @param request: Request instance for CreateEnterprise.
         # @type request: :class:`Tencentcloud::ctem::V20231128::CreateEnterpriseRequest`
@@ -63,6 +135,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateEnterpriseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加网站资产
+
+        # @param request: Request instance for CreateHttp.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateHttpRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateHttpResponse`
+        def CreateHttp(request)
+          body = send_request('CreateHttp', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateHttpResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -87,6 +183,462 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateJobRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加后台数据
+
+        # @param request: Request instance for CreateManage.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateManageRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateManageResponse`
+        def CreateManage(request)
+          body = send_request('CreateManage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateManageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加端口服务资产
+
+        # @param request: Request instance for CreatePort.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreatePortRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreatePortResponse`
+        def CreatePort(request)
+          body = send_request('CreatePort', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePortResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建种子
+
+        # @param request: Request instance for CreateSeeds.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateSeedsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateSeedsResponse`
+        def CreateSeeds(request)
+          body = send_request('CreateSeeds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSeedsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加子域名数据
+
+        # @param request: Request instance for CreateSubDomain.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateSubDomainRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateSubDomainResponse`
+        def CreateSubDomain(request)
+          body = send_request('CreateSubDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSubDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加影子资产
+
+        # @param request: Request instance for CreateSuspiciousAsset.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateSuspiciousAssetRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateSuspiciousAssetResponse`
+        def CreateSuspiciousAsset(request)
+          body = send_request('CreateSuspiciousAsset', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSuspiciousAssetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加微信小程序资产
+
+        # @param request: Request instance for CreateWechatApplet.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateWechatAppletRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateWechatAppletResponse`
+        def CreateWechatApplet(request)
+          body = send_request('CreateWechatApplet', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWechatAppletResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加微信公众号资产
+
+        # @param request: Request instance for CreateWechatOfficialAccount.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::CreateWechatOfficialAccountRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::CreateWechatOfficialAccountResponse`
+        def CreateWechatOfficialAccount(request)
+          body = send_request('CreateWechatOfficialAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateWechatOfficialAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除APP数据
+
+        # @param request: Request instance for DeleteApps.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteAppsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteAppsResponse`
+        def DeleteApps(request)
+          body = send_request('DeleteApps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAppsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主机资产数据
+
+        # @param request: Request instance for DeleteAssets.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteAssetsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteAssetsResponse`
+        def DeleteAssets(request)
+          body = send_request('DeleteAssets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除主域名数据
+
+        # @param request: Request instance for DeleteDomains.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteDomainsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteDomainsResponse`
+        def DeleteDomains(request)
+          body = send_request('DeleteDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除企业架构数据
+
+        # @param request: Request instance for DeleteEnterprises.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteEnterprisesRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteEnterprisesResponse`
+        def DeleteEnterprises(request)
+          body = send_request('DeleteEnterprises', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteEnterprisesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除网站资产数据
+
+        # @param request: Request instance for DeleteHttps.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteHttpsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteHttpsResponse`
+        def DeleteHttps(request)
+          body = send_request('DeleteHttps', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteHttpsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除后台数据
+
+        # @param request: Request instance for DeleteManages.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteManagesRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteManagesResponse`
+        def DeleteManages(request)
+          body = send_request('DeleteManages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteManagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除端口数据
+
+        # @param request: Request instance for DeletePorts.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeletePortsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeletePortsResponse`
+        def DeletePorts(request)
+          body = send_request('DeletePorts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePortsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除种子
+
+        # @param request: Request instance for DeleteSeeds.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteSeedsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteSeedsResponse`
+        def DeleteSeeds(request)
+          body = send_request('DeleteSeeds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSeedsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除子域名数据
+
+        # @param request: Request instance for DeleteSubDomains.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteSubDomainsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteSubDomainsResponse`
+        def DeleteSubDomains(request)
+          body = send_request('DeleteSubDomains', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSubDomainsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除影子资产数据
+
+        # @param request: Request instance for DeleteSuspiciousAssets.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteSuspiciousAssetsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteSuspiciousAssetsResponse`
+        def DeleteSuspiciousAssets(request)
+          body = send_request('DeleteSuspiciousAssets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSuspiciousAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除微信小程序数据
+
+        # @param request: Request instance for DeleteWechatApplets.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteWechatAppletsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteWechatAppletsResponse`
+        def DeleteWechatApplets(request)
+          body = send_request('DeleteWechatApplets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWechatAppletsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除微信公众号数据
+
+        # @param request: Request instance for DeleteWechatOfficialAccounts.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DeleteWechatOfficialAccountsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DeleteWechatOfficialAccountsResponse`
+        def DeleteWechatOfficialAccounts(request)
+          body = send_request('DeleteWechatOfficialAccounts', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteWechatOfficialAccountsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -629,6 +1181,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查看种子列表
+
+        # @param request: Request instance for DescribeSeeds.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::DescribeSeedsRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::DescribeSeedsResponse`
+        def DescribeSeeds(request)
+          body = send_request('DescribeSeeds', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSeedsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查看敏感信息泄露数据
 
         # @param request: Request instance for DescribeSensitiveInfos.
@@ -797,6 +1373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 忽略数据
+
+        # @param request: Request instance for IgnoreData.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::IgnoreDataRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::IgnoreDataResponse`
+        def IgnoreData(request)
+          body = send_request('IgnoreData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IgnoreDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 编辑企业
 
         # @param request: Request instance for ModifyCustomer.
@@ -831,6 +1431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyLabelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改种子状态
+
+        # @param request: Request instance for ModifySeedStatus.
+        # @type request: :class:`Tencentcloud::ctem::V20231128::ModifySeedStatusRequest`
+        # @rtype: :class:`Tencentcloud::ctem::V20231128::ModifySeedStatusResponse`
+        def ModifySeedStatus(request)
+          body = send_request('ModifySeedStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySeedStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

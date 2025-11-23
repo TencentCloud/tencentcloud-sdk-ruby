@@ -485,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建限流规则
+
+        # @param request: Request instance for CreateRateLimitV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::CreateRateLimitV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::CreateRateLimitV2Response`
+        def CreateRateLimitV2(request)
+          body = send_request('CreateRateLimitV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRateLimitV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除访问日志导出
 
         # @param request: Request instance for DeleteAccessExport.
@@ -879,6 +903,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteOwaspWhiteRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除自研版限流规则
+
+        # @param request: Request instance for DeleteRateLimitsV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DeleteRateLimitsV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DeleteRateLimitsV2Response`
+        def DeleteRateLimitsV2(request)
+          body = send_request('DeleteRateLimitsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteRateLimitsV2Response.new
             model.deserialize(response['Response'])
             model
           else
@@ -2285,6 +2333,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询限流规则列表接口
+
+        # @param request: Request instance for DescribeRateLimitsV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeRateLimitsV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeRateLimitsV2Response`
+        def DescribeRateLimitsV2(request)
+          body = send_request('DescribeRateLimitsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRateLimitsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取各个模块具体的规格限制
 
         # @param request: Request instance for DescribeRuleLimit.
@@ -2791,6 +2863,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量更改自研版限流规则开关
+
+        # @param request: Request instance for EnableRateLimitsV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::EnableRateLimitsV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::EnableRateLimitsV2Response`
+        def EnableRateLimitsV2(request)
+          body = send_request('EnableRateLimitsV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableRateLimitsV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 刷新防篡改url
 
         # @param request: Request instance for FreshAntiFakeUrl.
@@ -3103,6 +3199,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改api安全敏感检测规则
+
+        # @param request: Request instance for ModifyApiSecSensitiveRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyApiSecSensitiveRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyApiSecSensitiveRuleResponse`
+        def ModifyApiSecSensitiveRule(request)
+          body = send_request('ModifyApiSecSensitiveRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiSecSensitiveRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改地域封禁中的地域信息
 
         # @param request: Request instance for ModifyAreaBanAreas.
@@ -3209,6 +3329,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBatchIpAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改Bot-ID规则配置1
+
+        # @param request: Request instance for ModifyBotIdRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyBotIdRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyBotIdRuleResponse`
+        def ModifyBotIdRule(request)
+          body = send_request('ModifyBotIdRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBotIdRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4365,6 +4509,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateProtectionModesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新自研版限流规则
+
+        # @param request: Request instance for UpdateRateLimitV2.
+        # @type request: :class:`Tencentcloud::waf::V20180125::UpdateRateLimitV2Request`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::UpdateRateLimitV2Response`
+        def UpdateRateLimitV2(request)
+          body = send_request('UpdateRateLimitV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateRateLimitV2Response.new
             model.deserialize(response['Response'])
             model
           else

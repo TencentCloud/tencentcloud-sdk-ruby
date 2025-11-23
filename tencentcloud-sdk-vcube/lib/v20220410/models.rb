@@ -667,6 +667,65 @@ module TencentCloud
         end
       end
 
+      # DeleteApplicationAndVideoLicense请求参数结构体
+      class DeleteApplicationAndVideoLicenseRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteApplicationAndVideoLicense返回参数结构体
+      class DeleteApplicationAndVideoLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteApplicationAndWebPlayerLicense请求参数结构体
+      class DeleteApplicationAndWebPlayerLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseId: license唯一标识
+        # @type LicenseId: Integer
+
+        attr_accessor :LicenseId
+
+        def initialize(licenseid=nil)
+          @LicenseId = licenseid
+        end
+
+        def deserialize(params)
+          @LicenseId = params['LicenseId']
+        end
+      end
+
+      # DeleteApplicationAndWebPlayerLicense返回参数结构体
+      class DeleteApplicationAndWebPlayerLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeFeatureList请求参数结构体
       class DescribeFeatureListRequest < TencentCloud::Common::AbstractModel
 

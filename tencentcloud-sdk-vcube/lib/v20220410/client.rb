@@ -245,6 +245,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除视频播放器 License 和相关应用
+
+        # @param request: Request instance for DeleteApplicationAndVideoLicense.
+        # @type request: :class:`Tencentcloud::vcube::V20220410::DeleteApplicationAndVideoLicenseRequest`
+        # @rtype: :class:`Tencentcloud::vcube::V20220410::DeleteApplicationAndVideoLicenseResponse`
+        def DeleteApplicationAndVideoLicense(request)
+          body = send_request('DeleteApplicationAndVideoLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApplicationAndVideoLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除web播放器license和应用
+
+        # @param request: Request instance for DeleteApplicationAndWebPlayerLicense.
+        # @type request: :class:`Tencentcloud::vcube::V20220410::DeleteApplicationAndWebPlayerLicenseRequest`
+        # @rtype: :class:`Tencentcloud::vcube::V20220410::DeleteApplicationAndWebPlayerLicenseResponse`
+        def DeleteApplicationAndWebPlayerLicense(request)
+          body = send_request('DeleteApplicationAndWebPlayerLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApplicationAndWebPlayerLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询功能列表
 
         # @param request: Request instance for DescribeFeatureList.

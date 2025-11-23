@@ -1255,6 +1255,65 @@ module TencentCloud
         end
       end
 
+      # 带有请求方式的apiname结构体
+      class ApiNameMethod < TencentCloud::Common::AbstractModel
+        # @param ApiName: api名称
+        # @type ApiName: String
+        # @param Method: api请求方式
+        # @type Method: String
+        # @param Count: api近30天请求数量
+        # @type Count: Integer
+        # @param Label: api标签
+        # @type Label: Array
+
+        attr_accessor :ApiName, :Method, :Count, :Label
+
+        def initialize(apiname=nil, method=nil, count=nil, label=nil)
+          @ApiName = apiname
+          @Method = method
+          @Count = count
+          @Label = label
+        end
+
+        def deserialize(params)
+          @ApiName = params['ApiName']
+          @Method = params['Method']
+          @Count = params['Count']
+          @Label = params['Label']
+        end
+      end
+
+      # 带有匹配方式的apiname列表
+      class ApiNameOp < TencentCloud::Common::AbstractModel
+        # @param Value: 匹配值列表
+        # @type Value: Array
+        # @param Op: 匹配方式，如属于和正则等
+        # @type Op: String
+        # @param ApiNameMethod: 手动筛选的时候，要传该结构体
+        # @type ApiNameMethod: Array
+
+        attr_accessor :Value, :Op, :ApiNameMethod
+
+        def initialize(value=nil, op=nil, apinamemethod=nil)
+          @Value = value
+          @Op = op
+          @ApiNameMethod = apinamemethod
+        end
+
+        def deserialize(params)
+          @Value = params['Value']
+          @Op = params['Op']
+          unless params['ApiNameMethod'].nil?
+            @ApiNameMethod = []
+            params['ApiNameMethod'].each do |i|
+              apinamemethod_tmp = ApiNameMethod.new
+              apinamemethod_tmp.deserialize(i)
+              @ApiNameMethod << apinamemethod_tmp
+            end
+          end
+        end
+      end
+
       # api请求参数类型
       class ApiParameterType < TencentCloud::Common::AbstractModel
         # @param ParameterName: 参数名称
@@ -1355,6 +1414,151 @@ module TencentCloud
         end
       end
 
+      # api安全自定义事件规则结构体
+      class ApiSecCustomEventRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Status: 开关，1：开，0:关
+        # @type Status: Integer
+        # @param ApiNameOp: api匹配列表
+        # @type ApiNameOp: Array
+        # @param Description: 事件详情
+        # @type Description: String
+        # @param UpdateTime: 时间戳，出参有该值，入参不需要传没有
+        # @type UpdateTime: Integer
+        # @param MatchRuleList: 匹配规则列表
+        # @type MatchRuleList: Array
+        # @param StatRuleList: 统计规则列表
+        # @type StatRuleList: Array
+        # @param ReqFrequency: 访问频次，第一个字段表示次数，第二个字段表示分钟
+        # @type ReqFrequency: Array
+        # @param RiskLevel: 风险等级，取值为100,200,300，分别表示低位、中危、高危
+        # @type RiskLevel: String
+        # @param Source: 规则来源
+        # @type Source: String
+
+        attr_accessor :RuleName, :Status, :ApiNameOp, :Description, :UpdateTime, :MatchRuleList, :StatRuleList, :ReqFrequency, :RiskLevel, :Source
+
+        def initialize(rulename=nil, status=nil, apinameop=nil, description=nil, updatetime=nil, matchrulelist=nil, statrulelist=nil, reqfrequency=nil, risklevel=nil, source=nil)
+          @RuleName = rulename
+          @Status = status
+          @ApiNameOp = apinameop
+          @Description = description
+          @UpdateTime = updatetime
+          @MatchRuleList = matchrulelist
+          @StatRuleList = statrulelist
+          @ReqFrequency = reqfrequency
+          @RiskLevel = risklevel
+          @Source = source
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          unless params['ApiNameOp'].nil?
+            @ApiNameOp = []
+            params['ApiNameOp'].each do |i|
+              apinameop_tmp = ApiNameOp.new
+              apinameop_tmp.deserialize(i)
+              @ApiNameOp << apinameop_tmp
+            end
+          end
+          @Description = params['Description']
+          @UpdateTime = params['UpdateTime']
+          unless params['MatchRuleList'].nil?
+            @MatchRuleList = []
+            params['MatchRuleList'].each do |i|
+              apisecsceneruleentry_tmp = ApiSecSceneRuleEntry.new
+              apisecsceneruleentry_tmp.deserialize(i)
+              @MatchRuleList << apisecsceneruleentry_tmp
+            end
+          end
+          unless params['StatRuleList'].nil?
+            @StatRuleList = []
+            params['StatRuleList'].each do |i|
+              apisecsceneruleentry_tmp = ApiSecSceneRuleEntry.new
+              apisecsceneruleentry_tmp.deserialize(i)
+              @StatRuleList << apisecsceneruleentry_tmp
+            end
+          end
+          @ReqFrequency = params['ReqFrequency']
+          @RiskLevel = params['RiskLevel']
+          @Source = params['Source']
+        end
+      end
+
+      # api安全客户自定义敏感检测规则
+      class ApiSecCustomSensitiveRule < TencentCloud::Common::AbstractModel
+        # @param Position: 参数位置
+        # @type Position: Array
+        # @param MatchKey: 匹配条件
+        # @type MatchKey: String
+        # @param MatchValue: 匹配值
+        # @type MatchValue: Array
+        # @param Level: 风险等级
+        # @type Level: String
+        # @param MatchCond: 匹配符号，当匹配条件为关键字匹配和字符匹配的时候传该值,可传多个
+        # @type MatchCond: Array
+        # @param IsPan: 规则是否泛化，默认0表示不泛化
+        # @type IsPan: Integer
+
+        attr_accessor :Position, :MatchKey, :MatchValue, :Level, :MatchCond, :IsPan
+
+        def initialize(position=nil, matchkey=nil, matchvalue=nil, level=nil, matchcond=nil, ispan=nil)
+          @Position = position
+          @MatchKey = matchkey
+          @MatchValue = matchvalue
+          @Level = level
+          @MatchCond = matchcond
+          @IsPan = ispan
+        end
+
+        def deserialize(params)
+          @Position = params['Position']
+          @MatchKey = params['MatchKey']
+          @MatchValue = params['MatchValue']
+          @Level = params['Level']
+          @MatchCond = params['MatchCond']
+          @IsPan = params['IsPan']
+        end
+      end
+
+      # api提取规则内容
+      class ApiSecExtractRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param ApiName: api名称
+        # @type ApiName: String
+        # @param Methods: 请求方法列表
+        # @type Methods: Array
+        # @param Status: 开关状态，0是关，1是开
+        # @type Status: Integer
+        # @param Regex: 正则匹配内容
+        # @type Regex: String
+        # @param UpdateTime: 10更新时间戳
+        # @type UpdateTime: Integer
+
+        attr_accessor :RuleName, :ApiName, :Methods, :Status, :Regex, :UpdateTime
+
+        def initialize(rulename=nil, apiname=nil, methods=nil, status=nil, regex=nil, updatetime=nil)
+          @RuleName = rulename
+          @ApiName = apiname
+          @Methods = methods
+          @Status = status
+          @Regex = regex
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @ApiName = params['ApiName']
+          @Methods = params['Methods']
+          @Status = params['Status']
+          @Regex = params['Regex']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # api列表
       class ApiSecKey < TencentCloud::Common::AbstractModel
         # @param ApiName: api名称
@@ -1376,6 +1580,129 @@ module TencentCloud
           @ApiName = params['ApiName']
           @Domain = params['Domain']
           @Method = params['Method']
+        end
+      end
+
+      # 自定义api鉴权规则
+      class ApiSecPrivilegeRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 规则名称，不可重复
+        # @type RuleName: String
+        # @param Status: 1:开，0:关
+        # @type Status: Integer
+        # @param ApiName: 最多输入20个api
+        # @type ApiName: Array
+        # @param Position: 鉴权位置
+        # @type Position: String
+        # @param ParameterList: 鉴权参数列表
+        # @type ParameterList: Array
+        # @param UpdateTime: 更新时间戳
+        # @type UpdateTime: Integer
+        # @param Source: 规则来源
+        # @type Source: String
+        # @param ApiNameOp: 带有匹配方式的api列表
+        # @type ApiNameOp: Array
+        # @param Option: 应用对象取值，1表示手动填写，2表示从api资产中获取
+        # @type Option: Integer
+
+        attr_accessor :RuleName, :Status, :ApiName, :Position, :ParameterList, :UpdateTime, :Source, :ApiNameOp, :Option
+
+        def initialize(rulename=nil, status=nil, apiname=nil, position=nil, parameterlist=nil, updatetime=nil, source=nil, apinameop=nil, option=nil)
+          @RuleName = rulename
+          @Status = status
+          @ApiName = apiname
+          @Position = position
+          @ParameterList = parameterlist
+          @UpdateTime = updatetime
+          @Source = source
+          @ApiNameOp = apinameop
+          @Option = option
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          @ApiName = params['ApiName']
+          @Position = params['Position']
+          @ParameterList = params['ParameterList']
+          @UpdateTime = params['UpdateTime']
+          @Source = params['Source']
+          unless params['ApiNameOp'].nil?
+            @ApiNameOp = []
+            params['ApiNameOp'].each do |i|
+              apinameop_tmp = ApiNameOp.new
+              apinameop_tmp.deserialize(i)
+              @ApiNameOp << apinameop_tmp
+            end
+          end
+          @Option = params['Option']
+        end
+      end
+
+      # api安全自定义场景规则
+      class ApiSecSceneRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 场景名称
+        # @type RuleName: String
+        # @param Status: 开关状态，1表示开，0表示关
+        # @type Status: Integer
+        # @param UpdateTime: 更新时间，10位时间戳
+        # @type UpdateTime: Integer
+        # @param RuleList: 规则列表
+        # @type RuleList: Array
+        # @param Source: 规则来源，系统内置:OS
+        # 客户自定义：custom
+        # @type Source: String
+
+        attr_accessor :RuleName, :Status, :UpdateTime, :RuleList, :Source
+
+        def initialize(rulename=nil, status=nil, updatetime=nil, rulelist=nil, source=nil)
+          @RuleName = rulename
+          @Status = status
+          @UpdateTime = updatetime
+          @RuleList = rulelist
+          @Source = source
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Status = params['Status']
+          @UpdateTime = params['UpdateTime']
+          unless params['RuleList'].nil?
+            @RuleList = []
+            params['RuleList'].each do |i|
+              apisecsceneruleentry_tmp = ApiSecSceneRuleEntry.new
+              apisecsceneruleentry_tmp.deserialize(i)
+              @RuleList << apisecsceneruleentry_tmp
+            end
+          end
+          @Source = params['Source']
+        end
+      end
+
+      # api安全用户自定义场景规则结构体
+      class ApiSecSceneRuleEntry < TencentCloud::Common::AbstractModel
+        # @param Key: 匹配字段
+        # @type Key: String
+        # @param Value: 匹配值
+        # @type Value: Array
+        # @param Operate: 操作符
+        # @type Operate: String
+        # @param Name: 当匹配字段是get参数值，post参数值，cookie参数值，header参数值，rsp参数值的时候，可填充此字段
+        # @type Name: String
+
+        attr_accessor :Key, :Value, :Operate, :Name
+
+        def initialize(key=nil, value=nil, operate=nil, name=nil)
+          @Key = key
+          @Value = value
+          @Operate = operate
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Operate = params['Operate']
+          @Name = params['Name']
         end
       end
 
@@ -1743,6 +2070,38 @@ module TencentCloud
           @Value = params['Value']
           @Name = params['Name']
           @ValueArray = params['ValueArray']
+        end
+      end
+
+      # BOT-ID规则信息
+      class BotIdConfig < TencentCloud::Common::AbstractModel
+        # @param RuleId: 规则ID
+        # @type RuleId: String
+        # @param Status: 规则开关
+        # @type Status: Boolean
+        # @param Action: 动作配置
+        # @type Action: String
+        # @param BotId: 规则名称
+        # @type BotId: String
+        # @param Redirect: 重定向路径
+        # @type Redirect: String
+
+        attr_accessor :RuleId, :Status, :Action, :BotId, :Redirect
+
+        def initialize(ruleid=nil, status=nil, action=nil, botid=nil, redirect=nil)
+          @RuleId = ruleid
+          @Status = status
+          @Action = action
+          @BotId = botid
+          @Redirect = redirect
+        end
+
+        def deserialize(params)
+          @RuleId = params['RuleId']
+          @Status = params['Status']
+          @Action = params['Action']
+          @BotId = params['BotId']
+          @Redirect = params['Redirect']
         end
       end
 
@@ -3660,6 +4019,173 @@ module TencentCloud
         end
       end
 
+      # CreateRateLimitV2请求参数结构体
+      class CreateRateLimitV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Priority: 规则优先级
+        # @type Priority: Integer
+        # @param Status: 规则开关，0关闭，1开启
+        # @type Status: Integer
+        # @param LimitWindow: 限流窗口
+        # @type LimitWindow: :class:`Tencentcloud::Waf.v20180125.models.LimitWindow`
+        # @param LimitObject: 支持API或Domain，如果是基于API，则LimitPaths不能为空，否则LimitPaths为空
+        # @type LimitObject: String
+        # @param LimitStrategy: 限流策略，0:观察,1:拦截，2:人机
+        # @type LimitStrategy: Integer
+        # @param LimitMethod: 限流方法
+        # @type LimitMethod: :class:`Tencentcloud::Waf.v20180125.models.LimitMethod`
+        # @param LimitPaths: 限流路径列表
+        # @type LimitPaths: :class:`Tencentcloud::Waf.v20180125.models.LimitPath`
+        # @param LimitHeaders: 限流Headers
+        # @type LimitHeaders: Array
+        # @param LimitHeaderName: 基于Header参数名限流
+        # @type LimitHeaderName: :class:`Tencentcloud::Waf.v20180125.models.LimitHeaderName`
+        # @param GetParamsName: 基于Get参数名限流
+        # @type GetParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param GetParamsValue: 基于Get参数值限流
+        # @type GetParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsName: 基于Post参数名限流
+        # @type PostParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsValue: 基于Post参数值限流
+        # @type PostParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param IpLocation: 基于IP归属地限流
+        # @type IpLocation: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param RedirectInfo: 重定向信息,当LimitStrategy为重定向时，此字段必填
+        # @type RedirectInfo: :class:`Tencentcloud::Waf.v20180125.models.RedirectInfo`
+        # @param BlockPage: 拦截页面,0表示429，否则填写blockPageID
+        # @type BlockPage: Integer
+        # @param ObjectSrc: 限流对象来源，0：手动填写，1：API资产
+        # @type ObjectSrc: Integer
+        # @param QuotaShare: 是否共享配额，只有当对象为URL时有效，false表示URL独享配额，true表示所有URL共享配额
+        # @type QuotaShare: Boolean
+        # @param PathsOption: 路径选项,可配置每个路径的请求方法
+        # @type PathsOption: Array
+        # @param Order: 限流执行顺序，0：默认情况，限流优先，1：安全防护优先
+        # @type Order: Integer
+
+        attr_accessor :Domain, :Name, :Priority, :Status, :LimitWindow, :LimitObject, :LimitStrategy, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+
+        def initialize(domain=nil, name=nil, priority=nil, status=nil, limitwindow=nil, limitobject=nil, limitstrategy=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+          @Domain = domain
+          @Name = name
+          @Priority = priority
+          @Status = status
+          @LimitWindow = limitwindow
+          @LimitObject = limitobject
+          @LimitStrategy = limitstrategy
+          @LimitMethod = limitmethod
+          @LimitPaths = limitpaths
+          @LimitHeaders = limitheaders
+          @LimitHeaderName = limitheadername
+          @GetParamsName = getparamsname
+          @GetParamsValue = getparamsvalue
+          @PostParamsName = postparamsname
+          @PostParamsValue = postparamsvalue
+          @IpLocation = iplocation
+          @RedirectInfo = redirectinfo
+          @BlockPage = blockpage
+          @ObjectSrc = objectsrc
+          @QuotaShare = quotashare
+          @PathsOption = pathsoption
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Name = params['Name']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          unless params['LimitWindow'].nil?
+            @LimitWindow = LimitWindow.new
+            @LimitWindow.deserialize(params['LimitWindow'])
+          end
+          @LimitObject = params['LimitObject']
+          @LimitStrategy = params['LimitStrategy']
+          unless params['LimitMethod'].nil?
+            @LimitMethod = LimitMethod.new
+            @LimitMethod.deserialize(params['LimitMethod'])
+          end
+          unless params['LimitPaths'].nil?
+            @LimitPaths = LimitPath.new
+            @LimitPaths.deserialize(params['LimitPaths'])
+          end
+          unless params['LimitHeaders'].nil?
+            @LimitHeaders = []
+            params['LimitHeaders'].each do |i|
+              limitheader_tmp = LimitHeader.new
+              limitheader_tmp.deserialize(i)
+              @LimitHeaders << limitheader_tmp
+            end
+          end
+          unless params['LimitHeaderName'].nil?
+            @LimitHeaderName = LimitHeaderName.new
+            @LimitHeaderName.deserialize(params['LimitHeaderName'])
+          end
+          unless params['GetParamsName'].nil?
+            @GetParamsName = MatchOption.new
+            @GetParamsName.deserialize(params['GetParamsName'])
+          end
+          unless params['GetParamsValue'].nil?
+            @GetParamsValue = MatchOption.new
+            @GetParamsValue.deserialize(params['GetParamsValue'])
+          end
+          unless params['PostParamsName'].nil?
+            @PostParamsName = MatchOption.new
+            @PostParamsName.deserialize(params['PostParamsName'])
+          end
+          unless params['PostParamsValue'].nil?
+            @PostParamsValue = MatchOption.new
+            @PostParamsValue.deserialize(params['PostParamsValue'])
+          end
+          unless params['IpLocation'].nil?
+            @IpLocation = MatchOption.new
+            @IpLocation.deserialize(params['IpLocation'])
+          end
+          unless params['RedirectInfo'].nil?
+            @RedirectInfo = RedirectInfo.new
+            @RedirectInfo.deserialize(params['RedirectInfo'])
+          end
+          @BlockPage = params['BlockPage']
+          @ObjectSrc = params['ObjectSrc']
+          @QuotaShare = params['QuotaShare']
+          unless params['PathsOption'].nil?
+            @PathsOption = []
+            params['PathsOption'].each do |i|
+              pathitem_tmp = PathItem.new
+              pathitem_tmp.deserialize(i)
+              @PathsOption << pathitem_tmp
+            end
+          end
+          @Order = params['Order']
+        end
+      end
+
+      # CreateRateLimitV2返回参数结构体
+      class CreateRateLimitV2Response < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 操作结果
+        # @type BaseInfo: :class:`Tencentcloud::Waf.v20180125.models.RateLimitCommonRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BaseInfo, :RequestId
+
+        def initialize(baseinfo=nil, requestid=nil)
+          @BaseInfo = baseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = RateLimitCommonRsp.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 规则周期执行的数据结构
       class CronJob < TencentCloud::Common::AbstractModel
         # @param Days: 每个月的几号执行
@@ -4415,6 +4941,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRateLimitsV2请求参数结构体
+      class DeleteRateLimitsV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param LimitRuleIds: 要删除的限流ID列表
+        # @type LimitRuleIds: Array
+
+        attr_accessor :Domain, :LimitRuleIds
+
+        def initialize(domain=nil, limitruleids=nil)
+          @Domain = domain
+          @LimitRuleIds = limitruleids
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @LimitRuleIds = params['LimitRuleIds']
+        end
+      end
+
+      # DeleteRateLimitsV2返回参数结构体
+      class DeleteRateLimitsV2Response < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 操作结果
+        # @type BaseInfo: :class:`Tencentcloud::Waf.v20180125.models.RateLimitCommonRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BaseInfo, :RequestId
+
+        def initialize(baseinfo=nil, requestid=nil)
+          @BaseInfo = baseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = RateLimitCommonRsp.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8289,6 +8858,108 @@ module TencentCloud
         end
       end
 
+      # DescribeRateLimitsV2请求参数结构体
+      class DescribeRateLimitsV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Id: 限流规则ID
+        # @type Id: Integer
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Method: 限流接口名
+        # @type Method: String
+        # @param LimitObject: 限流对象，可选API、Domain
+        # @type LimitObject: String
+        # @param Status: 规则开关，0表示关闭，1表示开启
+        # @type Status: Integer
+        # @param Order: 排序方式，可选desc、asc
+        # @type Order: String
+        # @param By: 排序字段，可选Priority、Timestamp、ID
+        # @type By: String
+        # @param Offset: 分页的起始位置
+        # @type Offset: Integer
+        # @param Limit: 每页行数
+        # @type Limit: Integer
+        # @param Filters: 过滤器
+        # @type Filters: Array
+
+        attr_accessor :Domain, :Id, :Name, :Method, :LimitObject, :Status, :Order, :By, :Offset, :Limit, :Filters
+
+        def initialize(domain=nil, id=nil, name=nil, method=nil, limitobject=nil, status=nil, order=nil, by=nil, offset=nil, limit=nil, filters=nil)
+          @Domain = domain
+          @Id = id
+          @Name = name
+          @Method = method
+          @LimitObject = limitobject
+          @Status = status
+          @Order = order
+          @By = by
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Id = params['Id']
+          @Name = params['Name']
+          @Method = params['Method']
+          @LimitObject = params['LimitObject']
+          @Status = params['Status']
+          @Order = params['Order']
+          @By = params['By']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filtersitemnew_tmp = FiltersItemNew.new
+              filtersitemnew_tmp.deserialize(i)
+              @Filters << filtersitemnew_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRateLimitsV2返回参数结构体
+      class DescribeRateLimitsV2Response < TencentCloud::Common::AbstractModel
+        # @param Total: 查询结果中规则数量
+        # @type Total: Integer
+        # @param BaseInfo: 操作结果
+        # @type BaseInfo: :class:`Tencentcloud::Waf.v20180125.models.RateLimitCommonRsp`
+        # @param RateLimits: 规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RateLimits: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :BaseInfo, :RateLimits, :RequestId
+
+        def initialize(total=nil, baseinfo=nil, ratelimits=nil, requestid=nil)
+          @Total = total
+          @BaseInfo = baseinfo
+          @RateLimits = ratelimits
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['BaseInfo'].nil?
+            @BaseInfo = RateLimitCommonRsp.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
+          unless params['RateLimits'].nil?
+            @RateLimits = []
+            params['RateLimits'].each do |i|
+              limitrulev2_tmp = LimitRuleV2.new
+              limitrulev2_tmp.deserialize(i)
+              @RateLimits << limitrulev2_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRuleLimit请求参数结构体
       class DescribeRuleLimitRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -10144,6 +10815,76 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @ExpireTime = params['ExpireTime']
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # EnableLimitRuleItem
+      class EnableLimitRuleItem < TencentCloud::Common::AbstractModel
+        # @param LimitRuleId: 规则ID
+        # @type LimitRuleId: Integer
+        # @param Status: 规则开关，0开启，1关闭
+        # @type Status: Integer
+
+        attr_accessor :LimitRuleId, :Status
+
+        def initialize(limitruleid=nil, status=nil)
+          @LimitRuleId = limitruleid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @LimitRuleId = params['LimitRuleId']
+          @Status = params['Status']
+        end
+      end
+
+      # EnableRateLimitsV2请求参数结构体
+      class EnableRateLimitsV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param EnableItems: 具体规则列表
+        # @type EnableItems: Array
+
+        attr_accessor :Domain, :EnableItems
+
+        def initialize(domain=nil, enableitems=nil)
+          @Domain = domain
+          @EnableItems = enableitems
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          unless params['EnableItems'].nil?
+            @EnableItems = []
+            params['EnableItems'].each do |i|
+              enablelimitruleitem_tmp = EnableLimitRuleItem.new
+              enablelimitruleitem_tmp.deserialize(i)
+              @EnableItems << enablelimitruleitem_tmp
+            end
+          end
+        end
+      end
+
+      # EnableRateLimitsV2返回参数结构体
+      class EnableRateLimitsV2Response < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 操作结果
+        # @type BaseInfo: :class:`Tencentcloud::Waf.v20180125.models.RateLimitCommonRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BaseInfo, :RequestId
+
+        def initialize(baseinfo=nil, requestid=nil)
+          @BaseInfo = baseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = RateLimitCommonRsp.new
+            @BaseInfo.deserialize(params['BaseInfo'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -12158,6 +12899,290 @@ module TencentCloud
         end
       end
 
+      # 限流Header数据结构
+      class LimitHeader < TencentCloud::Common::AbstractModel
+        # @param Key: key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: value
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param Type: 匹配方式，支持EXACT(等于), REGEX（正则） , IN（属于） , NOT_IN（不属于）, CONTAINS（包含）, NOT_CONTAINS（不包含）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Key, :Value, :Type
+
+        def initialize(key=nil, value=nil, type=nil)
+          @Key = key
+          @Value = value
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Type = params['Type']
+        end
+      end
+
+      # 限流Header参数名
+      class LimitHeaderName < TencentCloud::Common::AbstractModel
+        # @param ParamsName: 参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParamsName: String
+        # @param Type: 操作符号,支持REGEX(正则),IN(属于),NOT_IN(不属于), EACH(每个参数值)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :ParamsName, :Type
+
+        def initialize(paramsname=nil, type=nil)
+          @ParamsName = paramsname
+          @Type = type
+        end
+
+        def deserialize(params)
+          @ParamsName = params['ParamsName']
+          @Type = params['Type']
+        end
+      end
+
+      # 限流方法数据结构
+      class LimitMethod < TencentCloud::Common::AbstractModel
+        # @param Method: 需要限流的请求方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Method: String
+        # @param Type: 匹配方式，支持EXACT(等于), REGEX（正则） , IN（属于） , NOT_IN（不属于）, CONTAINS（包含）, NOT_CONTAINS（不包含）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Method, :Type
+
+        def initialize(method=nil, type=nil)
+          @Method = method
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Method = params['Method']
+          @Type = params['Type']
+        end
+      end
+
+      # 限流Path
+      class LimitPath < TencentCloud::Common::AbstractModel
+        # @param Path: 限流路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Type: 匹配方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Path, :Type
+
+        def initialize(path=nil, type=nil)
+          @Path = path
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Type = params['Type']
+        end
+      end
+
+      # 自研版限流规则数据结构
+      class LimitRuleV2 < TencentCloud::Common::AbstractModel
+        # @param LimitRuleID: 规则ID
+        # @type LimitRuleID: Integer
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param Status: 规则开关，0表示关闭，1表示开启
+        # @type Status: Integer
+        # @param TsVersion: 时间戳
+        # @type TsVersion: Integer
+        # @param LimitObject: 限流对象，API或Domain
+        # @type LimitObject: String
+        # @param LimitMethod: 限流方法名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitMethod: :class:`Tencentcloud::Waf.v20180125.models.LimitMethod`
+        # @param LimitPaths: 路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitPaths: :class:`Tencentcloud::Waf.v20180125.models.LimitPath`
+        # @param LimitHeaders: Header参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitHeaders: Array
+        # @param LimitWindow: 限流窗口
+        # @type LimitWindow: :class:`Tencentcloud::Waf.v20180125.models.LimitWindow`
+        # @param LimitStrategy: 限流策略，0:观察,1:拦截，2:人机
+        # @type LimitStrategy: Integer
+        # @param LimitHeaderName: Header参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LimitHeaderName: :class:`Tencentcloud::Waf.v20180125.models.LimitHeaderName`
+        # @param GetParamsName: Get参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GetParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param GetParamsValue: Get参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GetParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsName: Post参数名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsValue: Post参数值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PostParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param IpLocation: Ip属地
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpLocation: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param RedirectInfo: 重定向信息，当LimitStrategy为2时，此字段不为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RedirectInfo: :class:`Tencentcloud::Waf.v20180125.models.RedirectInfo`
+        # @param BlockPage: 拦截页面，0表示429，否则为BlockPageID
+        # @type BlockPage: Integer
+        # @param ObjectSrc: 限流对象来源，0：手动填写，1：API资产
+        # @type ObjectSrc: Integer
+        # @param QuotaShare: 是否共享配额，只有当对象为URL时有效，false表示URL独享配额，true表示所有URL共享配额
+        # @type QuotaShare: Boolean
+        # @param PathsOption: 路径选项,可配置每个路径的请求方法
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathsOption: Array
+        # @param Order: 574新增需求，限流执行顺序，0：默认情况，限流优先，1：安全防护优先
+        # @type Order: Integer
+
+        attr_accessor :LimitRuleID, :Name, :Priority, :Status, :TsVersion, :LimitObject, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :LimitStrategy, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+
+        def initialize(limitruleid=nil, name=nil, priority=nil, status=nil, tsversion=nil, limitobject=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, limitstrategy=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+          @LimitRuleID = limitruleid
+          @Name = name
+          @Priority = priority
+          @Status = status
+          @TsVersion = tsversion
+          @LimitObject = limitobject
+          @LimitMethod = limitmethod
+          @LimitPaths = limitpaths
+          @LimitHeaders = limitheaders
+          @LimitWindow = limitwindow
+          @LimitStrategy = limitstrategy
+          @LimitHeaderName = limitheadername
+          @GetParamsName = getparamsname
+          @GetParamsValue = getparamsvalue
+          @PostParamsName = postparamsname
+          @PostParamsValue = postparamsvalue
+          @IpLocation = iplocation
+          @RedirectInfo = redirectinfo
+          @BlockPage = blockpage
+          @ObjectSrc = objectsrc
+          @QuotaShare = quotashare
+          @PathsOption = pathsoption
+          @Order = order
+        end
+
+        def deserialize(params)
+          @LimitRuleID = params['LimitRuleID']
+          @Name = params['Name']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @TsVersion = params['TsVersion']
+          @LimitObject = params['LimitObject']
+          unless params['LimitMethod'].nil?
+            @LimitMethod = LimitMethod.new
+            @LimitMethod.deserialize(params['LimitMethod'])
+          end
+          unless params['LimitPaths'].nil?
+            @LimitPaths = LimitPath.new
+            @LimitPaths.deserialize(params['LimitPaths'])
+          end
+          unless params['LimitHeaders'].nil?
+            @LimitHeaders = []
+            params['LimitHeaders'].each do |i|
+              limitheader_tmp = LimitHeader.new
+              limitheader_tmp.deserialize(i)
+              @LimitHeaders << limitheader_tmp
+            end
+          end
+          unless params['LimitWindow'].nil?
+            @LimitWindow = LimitWindow.new
+            @LimitWindow.deserialize(params['LimitWindow'])
+          end
+          @LimitStrategy = params['LimitStrategy']
+          unless params['LimitHeaderName'].nil?
+            @LimitHeaderName = LimitHeaderName.new
+            @LimitHeaderName.deserialize(params['LimitHeaderName'])
+          end
+          unless params['GetParamsName'].nil?
+            @GetParamsName = MatchOption.new
+            @GetParamsName.deserialize(params['GetParamsName'])
+          end
+          unless params['GetParamsValue'].nil?
+            @GetParamsValue = MatchOption.new
+            @GetParamsValue.deserialize(params['GetParamsValue'])
+          end
+          unless params['PostParamsName'].nil?
+            @PostParamsName = MatchOption.new
+            @PostParamsName.deserialize(params['PostParamsName'])
+          end
+          unless params['PostParamsValue'].nil?
+            @PostParamsValue = MatchOption.new
+            @PostParamsValue.deserialize(params['PostParamsValue'])
+          end
+          unless params['IpLocation'].nil?
+            @IpLocation = MatchOption.new
+            @IpLocation.deserialize(params['IpLocation'])
+          end
+          unless params['RedirectInfo'].nil?
+            @RedirectInfo = RedirectInfo.new
+            @RedirectInfo.deserialize(params['RedirectInfo'])
+          end
+          @BlockPage = params['BlockPage']
+          @ObjectSrc = params['ObjectSrc']
+          @QuotaShare = params['QuotaShare']
+          unless params['PathsOption'].nil?
+            @PathsOption = []
+            params['PathsOption'].each do |i|
+              pathitem_tmp = PathItem.new
+              pathitem_tmp.deserialize(i)
+              @PathsOption << pathitem_tmp
+            end
+          end
+          @Order = params['Order']
+        end
+      end
+
+      # 限流窗口大小
+      class LimitWindow < TencentCloud::Common::AbstractModel
+        # @param Second: 每秒允许通过的最大请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Second: Integer
+        # @param Minute: 每分钟允许通过的最大请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Minute: Integer
+        # @param Hour: 每小时允许通过的最大请求数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hour: Integer
+        # @param QuotaShare: 是否共享配额，只有当对象为URL时有效，false表示URL独享配额，true表示所有URL共享配额
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QuotaShare: Boolean
+
+        attr_accessor :Second, :Minute, :Hour, :QuotaShare
+
+        def initialize(second=nil, minute=nil, hour=nil, quotashare=nil)
+          @Second = second
+          @Minute = minute
+          @Hour = hour
+          @QuotaShare = quotashare
+        end
+
+        def deserialize(params)
+          @Second = params['Second']
+          @Minute = params['Minute']
+          @Hour = params['Hour']
+          @QuotaShare = params['QuotaShare']
+        end
+      end
+
       # 负载均衡的监听器
       class LoadBalancer < TencentCloud::Common::AbstractModel
         # @param LoadBalancerId: 负载均衡LD的ID
@@ -12527,6 +13552,33 @@ module TencentCloud
           @UsedNum = params['UsedNum']
           @RenewFlag = params['RenewFlag']
           @BillingItem = params['BillingItem']
+        end
+      end
+
+      # 限流规则中匹配条件
+      class MatchOption < TencentCloud::Common::AbstractModel
+        # @param Params: 匹配参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Params: String
+        # @param Func: 逻辑符号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Func: String
+        # @param Content: 匹配内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+
+        attr_accessor :Params, :Func, :Content
+
+        def initialize(params=nil, func=nil, content=nil)
+          @Params = params
+          @Func = func
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Params = params['Params']
+          @Func = params['Func']
+          @Content = params['Content']
         end
       end
 
@@ -12927,6 +13979,101 @@ module TencentCloud
         end
       end
 
+      # ModifyApiSecSensitiveRule请求参数结构体
+      class ModifyApiSecSensitiveRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Status: 1表示开，0表示关，3表示删除
+        # @type Status: Integer
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param CustomRule: 客户自定义配置
+        # @type CustomRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomSensitiveRule`
+        # @param RuleNameList: rulename列表，批量操作的时候填改值
+        # @type RuleNameList: Array
+        # @param CustomApiExtractRule: api提取规则内容
+        # @type CustomApiExtractRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecExtractRule`
+        # @param ApiExtractRuleName: 批量操作的时候的api提取规则
+        # @type ApiExtractRuleName: Array
+        # @param ApiSecPrivilegeRule: 自定义api鉴权规则
+        # @type ApiSecPrivilegeRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecPrivilegeRule`
+        # @param ApiSecPrivilegeRuleName: 匹配操作时候的api鉴权规则
+        # @type ApiSecPrivilegeRuleName: Array
+        # @param ApiSecSceneRuleNameList: 批量操作的时候的自定义场景列表
+        # @type ApiSecSceneRuleNameList: Array
+        # @param ApiSecSceneRule: 单条自定义api场景规则
+        # @type ApiSecSceneRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecSceneRule`
+        # @param ApiSecCustomEventRuleNameList: 批量操作的时候的自定义事件规则列表
+        # @type ApiSecCustomEventRuleNameList: Array
+        # @param ApiSecCustomEventRuleRule: 自定义事件规则
+        # @type ApiSecCustomEventRuleRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomEventRule`
+
+        attr_accessor :Domain, :Status, :RuleName, :CustomRule, :RuleNameList, :CustomApiExtractRule, :ApiExtractRuleName, :ApiSecPrivilegeRule, :ApiSecPrivilegeRuleName, :ApiSecSceneRuleNameList, :ApiSecSceneRule, :ApiSecCustomEventRuleNameList, :ApiSecCustomEventRuleRule
+
+        def initialize(domain=nil, status=nil, rulename=nil, customrule=nil, rulenamelist=nil, customapiextractrule=nil, apiextractrulename=nil, apisecprivilegerule=nil, apisecprivilegerulename=nil, apisecscenerulenamelist=nil, apisecscenerule=nil, apiseccustomeventrulenamelist=nil, apiseccustomeventrulerule=nil)
+          @Domain = domain
+          @Status = status
+          @RuleName = rulename
+          @CustomRule = customrule
+          @RuleNameList = rulenamelist
+          @CustomApiExtractRule = customapiextractrule
+          @ApiExtractRuleName = apiextractrulename
+          @ApiSecPrivilegeRule = apisecprivilegerule
+          @ApiSecPrivilegeRuleName = apisecprivilegerulename
+          @ApiSecSceneRuleNameList = apisecscenerulenamelist
+          @ApiSecSceneRule = apisecscenerule
+          @ApiSecCustomEventRuleNameList = apiseccustomeventrulenamelist
+          @ApiSecCustomEventRuleRule = apiseccustomeventrulerule
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @Status = params['Status']
+          @RuleName = params['RuleName']
+          unless params['CustomRule'].nil?
+            @CustomRule = ApiSecCustomSensitiveRule.new
+            @CustomRule.deserialize(params['CustomRule'])
+          end
+          @RuleNameList = params['RuleNameList']
+          unless params['CustomApiExtractRule'].nil?
+            @CustomApiExtractRule = ApiSecExtractRule.new
+            @CustomApiExtractRule.deserialize(params['CustomApiExtractRule'])
+          end
+          @ApiExtractRuleName = params['ApiExtractRuleName']
+          unless params['ApiSecPrivilegeRule'].nil?
+            @ApiSecPrivilegeRule = ApiSecPrivilegeRule.new
+            @ApiSecPrivilegeRule.deserialize(params['ApiSecPrivilegeRule'])
+          end
+          @ApiSecPrivilegeRuleName = params['ApiSecPrivilegeRuleName']
+          @ApiSecSceneRuleNameList = params['ApiSecSceneRuleNameList']
+          unless params['ApiSecSceneRule'].nil?
+            @ApiSecSceneRule = ApiSecSceneRule.new
+            @ApiSecSceneRule.deserialize(params['ApiSecSceneRule'])
+          end
+          @ApiSecCustomEventRuleNameList = params['ApiSecCustomEventRuleNameList']
+          unless params['ApiSecCustomEventRuleRule'].nil?
+            @ApiSecCustomEventRuleRule = ApiSecCustomEventRule.new
+            @ApiSecCustomEventRuleRule.deserialize(params['ApiSecCustomEventRuleRule'])
+          end
+        end
+      end
+
+      # ModifyApiSecSensitiveRule返回参数结构体
+      class ModifyApiSecSensitiveRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyAreaBanAreas请求参数结构体
       class ModifyAreaBanAreasRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 需要修改的域名
@@ -13213,6 +14360,73 @@ module TencentCloud
               @Failed << batchdomainresult_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBotIdRule请求参数结构体
+      class ModifyBotIdRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param Data: 配置信息，支持批量
+        # @type Data: Array
+        # @param GlobalSwitch: 0-全局设置不生效 1-全局开关配置字段生效 2-全局动作配置字段生效 3-全局开关和动作字段都生效 4-只修改全局重定向路径 5-只修改全局防护等级
+        # @type GlobalSwitch: Integer
+        # @param Status: 全局开关
+        # @type Status: Boolean
+        # @param RuleAction: 全局动作
+        # @type RuleAction: String
+        # @param GlobalRedirect: 全局重定向路径
+        # @type GlobalRedirect: String
+        # @param ProtectLevel: 防护等级：normal-正常；strict-严格
+        # @type ProtectLevel: String
+
+        attr_accessor :Domain, :SceneId, :Data, :GlobalSwitch, :Status, :RuleAction, :GlobalRedirect, :ProtectLevel
+
+        def initialize(domain=nil, sceneid=nil, data=nil, globalswitch=nil, status=nil, ruleaction=nil, globalredirect=nil, protectlevel=nil)
+          @Domain = domain
+          @SceneId = sceneid
+          @Data = data
+          @GlobalSwitch = globalswitch
+          @Status = status
+          @RuleAction = ruleaction
+          @GlobalRedirect = globalredirect
+          @ProtectLevel = protectlevel
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @SceneId = params['SceneId']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              botidconfig_tmp = BotIdConfig.new
+              botidconfig_tmp.deserialize(i)
+              @Data << botidconfig_tmp
+            end
+          end
+          @GlobalSwitch = params['GlobalSwitch']
+          @Status = params['Status']
+          @RuleAction = params['RuleAction']
+          @GlobalRedirect = params['GlobalRedirect']
+          @ProtectLevel = params['ProtectLevel']
+        end
+      end
+
+      # ModifyBotIdRule返回参数结构体
+      class ModifyBotIdRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -15712,6 +16926,26 @@ module TencentCloud
         end
       end
 
+      # 指定限流path和对应的method
+      class PathItem < TencentCloud::Common::AbstractModel
+        # @param Path: 请求路径
+        # @type Path: String
+        # @param Method: 请求方法
+        # @type Method: String
+
+        attr_accessor :Path, :Method
+
+        def initialize(path=nil, method=nil)
+          @Path = path
+          @Method = method
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Method = params['Method']
+        end
+      end
+
       # PeakPoints数组项
       class PeakPointsItem < TencentCloud::Common::AbstractModel
         # @param Time: 秒级别时间戳
@@ -16208,6 +17442,53 @@ module TencentCloud
           @UsedNum = params['UsedNum']
           @RenewFlag = params['RenewFlag']
           @BillingItem = params['BillingItem']
+        end
+      end
+
+      # 限流相关通用返回
+      class RateLimitCommonRsp < TencentCloud::Common::AbstractModel
+        # @param Code: 响应码
+        # @type Code: Integer
+        # @param Info: 提示信息
+        # @type Info: String
+
+        attr_accessor :Code, :Info
+
+        def initialize(code=nil, info=nil)
+          @Code = code
+          @Info = info
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Info = params['Info']
+        end
+      end
+
+      # 重定向信息
+      class RedirectInfo < TencentCloud::Common::AbstractModel
+        # @param Protocol: 协议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Protocol: String
+        # @param Domain: 域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param Url: url路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Url: String
+
+        attr_accessor :Protocol, :Domain, :Url
+
+        def initialize(protocol=nil, domain=nil, url=nil)
+          @Protocol = protocol
+          @Domain = domain
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          @Url = params['Url']
         end
       end
 
@@ -17666,6 +18947,177 @@ module TencentCloud
           unless params['CommonRsp'].nil?
             @CommonRsp = CommonRspData.new
             @CommonRsp.deserialize(params['CommonRsp'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateRateLimitV2请求参数结构体
+      class UpdateRateLimitV2Request < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param LimitRuleId: 规则ID
+        # @type LimitRuleId: Integer
+        # @param Name: 规则名
+        # @type Name: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param Status: 开关，0关闭，1开启
+        # @type Status: Integer
+        # @param LimitObject: 支持API，Domain。如果基于API，则LimitPaths不能为空，否则LimitPaths为空
+        # @type LimitObject: String
+        # @param LimitStrategy: 限流策略，0:观察,1:拦截，2:人机
+        # @type LimitStrategy: Integer
+        # @param LimitHeaderName: 基于Header参数名限流
+        # @type LimitHeaderName: :class:`Tencentcloud::Waf.v20180125.models.LimitHeaderName`
+        # @param LimitMethod: 限流方法
+        # @type LimitMethod: :class:`Tencentcloud::Waf.v20180125.models.LimitMethod`
+        # @param LimitPaths: 限流路径
+        # @type LimitPaths: :class:`Tencentcloud::Waf.v20180125.models.LimitPath`
+        # @param LimitHeaders: 限流Headers
+        # @type LimitHeaders: Array
+        # @param LimitWindow: 限流窗口
+        # @type LimitWindow: :class:`Tencentcloud::Waf.v20180125.models.LimitWindow`
+        # @param GetParamsName: 基于Get参数名限流
+        # @type GetParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param GetParamsValue: 基于Get参数值限流
+        # @type GetParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsName: 基于Post参数名限流
+        # @type PostParamsName: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param PostParamsValue: 基于Post参数值限流
+        # @type PostParamsValue: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param IpLocation: 基于IP归属地限流
+        # @type IpLocation: :class:`Tencentcloud::Waf.v20180125.models.MatchOption`
+        # @param RedirectInfo: 重定向信息,当LimitStrategy为重定向时，此字段必填
+        # @type RedirectInfo: :class:`Tencentcloud::Waf.v20180125.models.RedirectInfo`
+        # @param BlockPage: 拦截页面,0表示429，否则填写blockPageID
+        # @type BlockPage: Integer
+        # @param ObjectSrc: 限流对象来源，0：手动填写，1：API资产
+        # @type ObjectSrc: Integer
+        # @param QuotaShare: 是否共享配额，只有当对象为URL时有效，false表示URL独享配额，true表示所有URL共享配额
+        # @type QuotaShare: Boolean
+        # @param PathsOption: 路径选项,可配置每个路径的请求方法
+        # @type PathsOption: Array
+        # @param Order: 限流执行顺序，0：默认情况，限流优先，1：安全防护优先
+        # @type Order: Integer
+
+        attr_accessor :Domain, :LimitRuleId, :Name, :Priority, :Status, :LimitObject, :LimitStrategy, :LimitHeaderName, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+
+        def initialize(domain=nil, limitruleid=nil, name=nil, priority=nil, status=nil, limitobject=nil, limitstrategy=nil, limitheadername=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+          @Domain = domain
+          @LimitRuleId = limitruleid
+          @Name = name
+          @Priority = priority
+          @Status = status
+          @LimitObject = limitobject
+          @LimitStrategy = limitstrategy
+          @LimitHeaderName = limitheadername
+          @LimitMethod = limitmethod
+          @LimitPaths = limitpaths
+          @LimitHeaders = limitheaders
+          @LimitWindow = limitwindow
+          @GetParamsName = getparamsname
+          @GetParamsValue = getparamsvalue
+          @PostParamsName = postparamsname
+          @PostParamsValue = postparamsvalue
+          @IpLocation = iplocation
+          @RedirectInfo = redirectinfo
+          @BlockPage = blockpage
+          @ObjectSrc = objectsrc
+          @QuotaShare = quotashare
+          @PathsOption = pathsoption
+          @Order = order
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @LimitRuleId = params['LimitRuleId']
+          @Name = params['Name']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @LimitObject = params['LimitObject']
+          @LimitStrategy = params['LimitStrategy']
+          unless params['LimitHeaderName'].nil?
+            @LimitHeaderName = LimitHeaderName.new
+            @LimitHeaderName.deserialize(params['LimitHeaderName'])
+          end
+          unless params['LimitMethod'].nil?
+            @LimitMethod = LimitMethod.new
+            @LimitMethod.deserialize(params['LimitMethod'])
+          end
+          unless params['LimitPaths'].nil?
+            @LimitPaths = LimitPath.new
+            @LimitPaths.deserialize(params['LimitPaths'])
+          end
+          unless params['LimitHeaders'].nil?
+            @LimitHeaders = []
+            params['LimitHeaders'].each do |i|
+              limitheader_tmp = LimitHeader.new
+              limitheader_tmp.deserialize(i)
+              @LimitHeaders << limitheader_tmp
+            end
+          end
+          unless params['LimitWindow'].nil?
+            @LimitWindow = LimitWindow.new
+            @LimitWindow.deserialize(params['LimitWindow'])
+          end
+          unless params['GetParamsName'].nil?
+            @GetParamsName = MatchOption.new
+            @GetParamsName.deserialize(params['GetParamsName'])
+          end
+          unless params['GetParamsValue'].nil?
+            @GetParamsValue = MatchOption.new
+            @GetParamsValue.deserialize(params['GetParamsValue'])
+          end
+          unless params['PostParamsName'].nil?
+            @PostParamsName = MatchOption.new
+            @PostParamsName.deserialize(params['PostParamsName'])
+          end
+          unless params['PostParamsValue'].nil?
+            @PostParamsValue = MatchOption.new
+            @PostParamsValue.deserialize(params['PostParamsValue'])
+          end
+          unless params['IpLocation'].nil?
+            @IpLocation = MatchOption.new
+            @IpLocation.deserialize(params['IpLocation'])
+          end
+          unless params['RedirectInfo'].nil?
+            @RedirectInfo = RedirectInfo.new
+            @RedirectInfo.deserialize(params['RedirectInfo'])
+          end
+          @BlockPage = params['BlockPage']
+          @ObjectSrc = params['ObjectSrc']
+          @QuotaShare = params['QuotaShare']
+          unless params['PathsOption'].nil?
+            @PathsOption = []
+            params['PathsOption'].each do |i|
+              pathitem_tmp = PathItem.new
+              pathitem_tmp.deserialize(i)
+              @PathsOption << pathitem_tmp
+            end
+          end
+          @Order = params['Order']
+        end
+      end
+
+      # UpdateRateLimitV2返回参数结构体
+      class UpdateRateLimitV2Response < TencentCloud::Common::AbstractModel
+        # @param BaseInfo: 操作结果
+        # @type BaseInfo: :class:`Tencentcloud::Waf.v20180125.models.RateLimitCommonRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BaseInfo, :RequestId
+
+        def initialize(baseinfo=nil, requestid=nil)
+          @BaseInfo = baseinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BaseInfo'].nil?
+            @BaseInfo = RateLimitCommonRsp.new
+            @BaseInfo.deserialize(params['BaseInfo'])
           end
           @RequestId = params['RequestId']
         end

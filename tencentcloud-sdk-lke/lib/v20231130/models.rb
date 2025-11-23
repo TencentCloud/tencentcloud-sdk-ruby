@@ -4904,17 +4904,34 @@ module TencentCloud
         # @type AppBizId: String
         # @param WorkflowRunId: 工作流运行实例ID
         # @type WorkflowRunId: String
+        # @param SubWorkflowNodePath: 指定的子工作流对应的NodePath。
+        # 格式：`[<node_id>[<index>].]*<node_id>[<index>]`
+        # - 此路径用于定位一个具体的工作流实例（Workflow Run），可以是主工作流实例或某个子工作流节点产生的子实例。
+        # - 路径由点号（.）分隔的节点标识符组成，每个节点标识符格式为 `节点ID[实例索引]`。
+        # - **节点ID (node_id)**：子工作流所属的节点的ID。
+        # - **实例索引 (index)**：“实例索引” 在工作流节点的时候为空，循环、批处理节点非空，从1开始。
+        # 示例：
+        # - "" 或 不设置 -> 查询主工作流实例 (父工作流)
+        # - "node_id_a" -> 查询由主工作流中工作流节点`node_id_a`对应的子工作流实例
+        # - "node_id_a.node_id_b[1]" -> 查询工作流节点`node_id_a`对应的子工作流的循环节点node_id_b的第1轮循环的子工作流运行状态
+        # @type SubWorkflowNodePath: String
+        # @param IncludeWorkflowGraph: 是否需要返回工作流的流程图配置
+        # @type IncludeWorkflowGraph: Boolean
 
-        attr_accessor :AppBizId, :WorkflowRunId
+        attr_accessor :AppBizId, :WorkflowRunId, :SubWorkflowNodePath, :IncludeWorkflowGraph
 
-        def initialize(appbizid=nil, workflowrunid=nil)
+        def initialize(appbizid=nil, workflowrunid=nil, subworkflownodepath=nil, includeworkflowgraph=nil)
           @AppBizId = appbizid
           @WorkflowRunId = workflowrunid
+          @SubWorkflowNodePath = subworkflownodepath
+          @IncludeWorkflowGraph = includeworkflowgraph
         end
 
         def deserialize(params)
           @AppBizId = params['AppBizId']
           @WorkflowRunId = params['WorkflowRunId']
+          @SubWorkflowNodePath = params['SubWorkflowNodePath']
+          @IncludeWorkflowGraph = params['IncludeWorkflowGraph']
         end
       end
 
@@ -4924,14 +4941,17 @@ module TencentCloud
         # @type WorkflowRun: :class:`Tencentcloud::Lke.v20231130.models.WorkflowRunDetail`
         # @param NodeRuns: 节点列表
         # @type NodeRuns: Array
+        # @param SubWorkflowNodePath: 子工作流对应的NodePath
+        # @type SubWorkflowNodePath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WorkflowRun, :NodeRuns, :RequestId
+        attr_accessor :WorkflowRun, :NodeRuns, :SubWorkflowNodePath, :RequestId
 
-        def initialize(workflowrun=nil, noderuns=nil, requestid=nil)
+        def initialize(workflowrun=nil, noderuns=nil, subworkflownodepath=nil, requestid=nil)
           @WorkflowRun = workflowrun
           @NodeRuns = noderuns
+          @SubWorkflowNodePath = subworkflownodepath
           @RequestId = requestid
         end
 
@@ -4948,6 +4968,7 @@ module TencentCloud
               @NodeRuns << noderunbase_tmp
             end
           end
+          @SubWorkflowNodePath = params['SubWorkflowNodePath']
           @RequestId = params['RequestId']
         end
       end
@@ -12875,10 +12896,15 @@ module TencentCloud
         # @type MainModelName: String
         # @param CustomVariables: API参数配置
         # @type CustomVariables: Array
+        # @param WorkflowGraph: 工作流的流程图
+        # @type WorkflowGraph: String
 
-        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables
+        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph
+        extend Gem::Deprecate
+        deprecate :DialogJson, :none, 2025, 11
+        deprecate :DialogJson=, :none, 2025, 11
 
-        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil)
+        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil)
           @RunEnv = runenv
           @AppBizId = appbizid
           @WorkflowRunId = workflowrunid
@@ -12895,6 +12921,7 @@ module TencentCloud
           @Query = query
           @MainModelName = mainmodelname
           @CustomVariables = customvariables
+          @WorkflowGraph = workflowgraph
         end
 
         def deserialize(params)
@@ -12921,6 +12948,7 @@ module TencentCloud
               @CustomVariables << customvariable_tmp
             end
           end
+          @WorkflowGraph = params['WorkflowGraph']
         end
       end
 

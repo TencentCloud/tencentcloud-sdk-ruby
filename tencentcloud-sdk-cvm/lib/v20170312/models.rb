@@ -729,7 +729,7 @@ module TencentCloud
 
       # ConvertOperatingSystems返回参数结构体
       class ConvertOperatingSystemsResponse < TencentCloud::Common::AbstractModel
-        # @param SupportTargetOSList: 转换的目标操系统信息，仅在入参 DryRun 为 true 时返回。
+        # @param SupportTargetOSList: 转换的目标操作系统信息，仅在入参 DryRun 为 true 时返回。
         # @type SupportTargetOSList: Array
         # @param TaskId: 操作系统转换的任务 ID
         # @type TaskId: String

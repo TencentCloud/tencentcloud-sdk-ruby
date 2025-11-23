@@ -437,6 +437,81 @@ module TencentCloud
         end
       end
 
+      # CreatePrivateZoneList请求参数结构体
+      class CreatePrivateZoneListRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 私有域域名数组，域名格式必须是标准的TLD
+        # @type Domains: Array
+
+        attr_accessor :Domains
+
+        def initialize(domains=nil)
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+        end
+      end
+
+      # CreatePrivateZoneList返回参数结构体
+      class CreatePrivateZoneListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePrivateZoneRecordList请求参数结构体
+      class CreatePrivateZoneRecordListRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: 私有域ID数组
+        # @type ZoneIds: Array
+        # @param RecordsInfo: 私有域解析记录数据
+        # @type RecordsInfo: Array
+
+        attr_accessor :ZoneIds, :RecordsInfo
+
+        def initialize(zoneids=nil, recordsinfo=nil)
+          @ZoneIds = zoneids
+          @RecordsInfo = recordsinfo
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          unless params['RecordsInfo'].nil?
+            @RecordsInfo = []
+            params['RecordsInfo'].each do |i|
+              recordsinfo_tmp = RecordsInfo.new
+              recordsinfo_tmp.deserialize(i)
+              @RecordsInfo << recordsinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreatePrivateZoneRecordList返回参数结构体
+      class CreatePrivateZoneRecordListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePrivateZoneRecord请求参数结构体
       class CreatePrivateZoneRecordRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 私有域ID
@@ -952,9 +1027,9 @@ module TencentCloud
 
       # DescribeAccountVpcList返回参数结构体
       class DescribeAccountVpcListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: VPC数量
+        # @param TotalCount: 关联账号VPC数量
         # @type TotalCount: Integer
-        # @param VpcSet: VPC 列表
+        # @param VpcSet: 关联账号VPC 列表
         # @type VpcSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1041,6 +1116,105 @@ module TencentCloud
               auditlog_tmp = AuditLog.new
               auditlog_tmp.deserialize(i)
               @Data << auditlog_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCreateRecordListResult请求参数结构体
+      class DescribeCreateRecordListResultRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: 私有域ID数组
+        # @type ZoneIds: Array
+        # @param RecordsInfo: 私有域解析记录数据
+        # @type RecordsInfo: Array
+
+        attr_accessor :ZoneIds, :RecordsInfo
+
+        def initialize(zoneids=nil, recordsinfo=nil)
+          @ZoneIds = zoneids
+          @RecordsInfo = recordsinfo
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          unless params['RecordsInfo'].nil?
+            @RecordsInfo = []
+            params['RecordsInfo'].each do |i|
+              recordsinfo_tmp = RecordsInfo.new
+              recordsinfo_tmp.deserialize(i)
+              @RecordsInfo << recordsinfo_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeCreateRecordListResult返回参数结构体
+      class DescribeCreateRecordListResultResponse < TencentCloud::Common::AbstractModel
+        # @param RecordsResult: 批量添加解析记录结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordsResult: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RecordsResult, :RequestId
+
+        def initialize(recordsresult=nil, requestid=nil)
+          @RecordsResult = recordsresult
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RecordsResult'].nil?
+            @RecordsResult = []
+            params['RecordsResult'].each do |i|
+              recordsinforesult_tmp = RecordsInfoResult.new
+              recordsinforesult_tmp.deserialize(i)
+              @RecordsResult << recordsinforesult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCreateZoneListResult请求参数结构体
+      class DescribeCreateZoneListResultRequest < TencentCloud::Common::AbstractModel
+        # @param Domains: 私有域域名数组，域名格式必须是标准的TLD
+        # @type Domains: Array
+
+        attr_accessor :Domains
+
+        def initialize(domains=nil)
+          @Domains = domains
+        end
+
+        def deserialize(params)
+          @Domains = params['Domains']
+        end
+      end
+
+      # DescribeCreateZoneListResult返回参数结构体
+      class DescribeCreateZoneListResultResponse < TencentCloud::Common::AbstractModel
+        # @param ZonesInfo: 私有域域名和zoneId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZonesInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZonesInfo, :RequestId
+
+        def initialize(zonesinfo=nil, requestid=nil)
+          @ZonesInfo = zonesinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ZonesInfo'].nil?
+            @ZonesInfo = []
+            params['ZonesInfo'].each do |i|
+              zoneinfo_tmp = ZoneInfo.new
+              zoneinfo_tmp.deserialize(i)
+              @ZonesInfo << zoneinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -1212,7 +1386,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页限制数目， 最大100，默认20
         # @type Limit: Integer
-        # @param Filters: 过滤参数，支持EndPointName，EndpointName，EndpointId
+        # @param Filters: 过滤参数，支持EndPointName，EndpointName，EndPointId
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters
@@ -2537,6 +2711,130 @@ module TencentCloud
         end
       end
 
+      # 私有域解析记录信息
+      class RecordsInfo < TencentCloud::Common::AbstractModel
+        # @param RecordType: 记录类型，可选的记录类型为："A", "AAAA", "CNAME", "MX", "TXT", "PTR"
+        # @type RecordType: String
+        # @param SubDomain: 子域名，例如 "www", "m", "@"
+        # @type SubDomain: String
+        # @param RecordValue: 记录值，例如 IP：192.168.10.2，CNAME：cname.qcloud.com.，MX：mail.qcloud.com.
+        # @type RecordValue: String
+        # @param Weight: 记录权重，值为1-100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TTL: Integer
+        # @param MX: MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MX: Integer
+
+        attr_accessor :RecordType, :SubDomain, :RecordValue, :Weight, :TTL, :MX
+
+        def initialize(recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, ttl=nil, mx=nil)
+          @RecordType = recordtype
+          @SubDomain = subdomain
+          @RecordValue = recordvalue
+          @Weight = weight
+          @TTL = ttl
+          @MX = mx
+        end
+
+        def deserialize(params)
+          @RecordType = params['RecordType']
+          @SubDomain = params['SubDomain']
+          @RecordValue = params['RecordValue']
+          @Weight = params['Weight']
+          @TTL = params['TTL']
+          @MX = params['MX']
+        end
+      end
+
+      # 批量添加解析记录返回结果
+      class RecordsInfoResult < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域ID
+        # @type ZoneId: String
+        # @param Domain: 私有域域名
+        # @type Domain: String
+        # @param RecordsStatus: 私有域解析记录创建结果
+        # @type RecordsStatus: Array
+        # @param Remark: 备注
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Remark: String
+
+        attr_accessor :ZoneId, :Domain, :RecordsStatus, :Remark
+
+        def initialize(zoneid=nil, domain=nil, recordsstatus=nil, remark=nil)
+          @ZoneId = zoneid
+          @Domain = domain
+          @RecordsStatus = recordsstatus
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Domain = params['Domain']
+          unless params['RecordsStatus'].nil?
+            @RecordsStatus = []
+            params['RecordsStatus'].each do |i|
+              recordsinfostatus_tmp = RecordsInfoStatus.new
+              recordsinfostatus_tmp.deserialize(i)
+              @RecordsStatus << recordsinfostatus_tmp
+            end
+          end
+          @Remark = params['Remark']
+        end
+      end
+
+      # 批量添加解析记录结果
+      class RecordsInfoStatus < TencentCloud::Common::AbstractModel
+        # @param RecordType: 记录类型，可选的记录类型为："A", "AAAA", "CNAME", "MX", "TXT", "PTR"
+        # @type RecordType: String
+        # @param SubDomain: 子域名，例如 "www", "m", "@"
+        # @type SubDomain: String
+        # @param RecordValue: 记录值，例如 IP：192.168.10.2，CNAME：cname.qcloud.com.，MX：mail.qcloud.com.
+        # @type RecordValue: String
+        # @param Weight: 记录权重，值为1-100
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Integer
+        # @param TTL: 记录缓存时间，数值越小生效越快，取值1-86400s, 默认 600
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TTL: Integer
+        # @param MX: MX优先级：记录类型为MX时必填。取值范围：5,10,15,20,30,40,50
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MX: Integer
+        # @param Status: 是否添加成功：0是失败，1是成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param Message: 若status为0，则此处为失败原因描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :RecordType, :SubDomain, :RecordValue, :Weight, :TTL, :MX, :Status, :Message
+
+        def initialize(recordtype=nil, subdomain=nil, recordvalue=nil, weight=nil, ttl=nil, mx=nil, status=nil, message=nil)
+          @RecordType = recordtype
+          @SubDomain = subdomain
+          @RecordValue = recordvalue
+          @Weight = weight
+          @TTL = ttl
+          @MX = mx
+          @Status = status
+          @Message = message
+        end
+
+        def deserialize(params)
+          @RecordType = params['RecordType']
+          @SubDomain = params['SubDomain']
+          @RecordValue = params['RecordValue']
+          @Weight = params['Weight']
+          @TTL = params['TTL']
+          @MX = params['MX']
+          @Status = params['Status']
+          @Message = params['Message']
+        end
+      end
+
       # 终端节点信息
       class SubnetIpInfo < TencentCloud::Common::AbstractModel
         # @param SubnetId: 子网ID
@@ -2653,6 +2951,32 @@ module TencentCloud
         def deserialize(params)
           @UniqVpcId = params['UniqVpcId']
           @Region = params['Region']
+        end
+      end
+
+      # 创建私有域成功后返回私有域信息
+      class ZoneInfo < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 私有域ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneId: String
+        # @param Domain: 私有域域名
+        # @type Domain: String
+        # @param Reason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :ZoneId, :Domain, :Reason
+
+        def initialize(zoneid=nil, domain=nil, reason=nil)
+          @ZoneId = zoneid
+          @Domain = domain
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Domain = params['Domain']
+          @Reason = params['Reason']
         end
       end
 

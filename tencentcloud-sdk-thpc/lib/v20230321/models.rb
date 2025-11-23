@@ -2156,17 +2156,21 @@ module TencentCloud
         # @type Masters: Array
         # @param LocalPath: 文件系统的本地挂载路径。GooseFSx目前只支持挂载在/goosefsx/{文件系统ID}_proxy/目录下。
         # @type LocalPath: String
+        # @param FileSystemId: GooseFSx文件系统ID 文件系统ID通过调用接口[DescribeFileSystems](https://cloud.tencent.com/document/api/1424/95789)获取。
+        # @type FileSystemId: String
 
-        attr_accessor :Masters, :LocalPath
+        attr_accessor :Masters, :LocalPath, :FileSystemId
 
-        def initialize(masters=nil, localpath=nil)
+        def initialize(masters=nil, localpath=nil, filesystemid=nil)
           @Masters = masters
           @LocalPath = localpath
+          @FileSystemId = filesystemid
         end
 
         def deserialize(params)
           @Masters = params['Masters']
           @LocalPath = params['LocalPath']
+          @FileSystemId = params['FileSystemId']
         end
       end
 
