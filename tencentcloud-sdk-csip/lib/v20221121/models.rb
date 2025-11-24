@@ -1624,10 +1624,12 @@ module TencentCloud
         # @type Severity: String
         # @param RiskRuleId: 风险规则ID
         # @type RiskRuleId: String
+        # @param Classify: 处置分类
+        # @type Classify: String
 
-        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId
+        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify
 
-        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil)
+        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil)
           @AppId = appid
           @Provider = provider
           @ProviderName = providername
@@ -1642,6 +1644,7 @@ module TencentCloud
           @CheckType = checktype
           @Severity = severity
           @RiskRuleId = riskruleid
+          @Classify = classify
         end
 
         def deserialize(params)
@@ -1659,6 +1662,7 @@ module TencentCloud
           @CheckType = params['CheckType']
           @Severity = params['Severity']
           @RiskRuleId = params['RiskRuleId']
+          @Classify = params['Classify']
         end
       end
 
@@ -2965,10 +2969,12 @@ module TencentCloud
         # @type AssetType: String
         # @param EventType: 事件类型
         # @type EventType: String
+        # @param Classify: 处置分类
+        # @type Classify: String
 
-        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType
+        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType, :Classify
 
-        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil)
+        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil, classify=nil)
           @RiskRuleId = riskruleid
           @RiskTitle = risktitle
           @CheckType = checktype
@@ -2982,6 +2988,7 @@ module TencentCloud
           @RiskCount = riskcount
           @AssetType = assettype
           @EventType = eventtype
+          @Classify = classify
         end
 
         def deserialize(params)
@@ -2998,6 +3005,7 @@ module TencentCloud
           @RiskCount = params['RiskCount']
           @AssetType = params['AssetType']
           @EventType = params['EventType']
+          @Classify = params['Classify']
         end
       end
 
@@ -9583,10 +9591,18 @@ module TencentCloud
         # @type PortDetectCount: Integer
         # @param PortDetectResult: 端口开放结果
         # @type PortDetectResult: String
+        # @param Tag: 标签
+        # @type Tag: String
+        # @param Comment: 备注
+        # @type Comment: String
+        # @param ToGovernedRiskCount: 待治理风险数量
+        # @type ToGovernedRiskCount: Integer
+        # @param ToGovernedRiskContent: 待治理风险内容
+        # @type ToGovernedRiskContent: String
 
-        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr, :ExposureID, :PortDetectCount, :PortDetectResult
+        attr_accessor :Provider, :CloudAccountName, :CloudAccountId, :Domain, :Ip, :Port, :Status, :RiskType, :AclType, :AclList, :AssetId, :InstanceName, :AssetType, :PortServiceCount, :HighRiskPortServiceCount, :WebAppCount, :RiskWebAppCount, :WeakPasswordCount, :VulCount, :CreateTime, :UpdateTime, :AssetTypeName, :DisplayStatus, :DisplayRiskType, :ScanTaskStatus, :Uuid, :HasScan, :AppId, :AppIdStr, :ExposureID, :PortDetectCount, :PortDetectResult, :Tag, :Comment, :ToGovernedRiskCount, :ToGovernedRiskContent
 
-        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil, exposureid=nil, portdetectcount=nil, portdetectresult=nil)
+        def initialize(provider=nil, cloudaccountname=nil, cloudaccountid=nil, domain=nil, ip=nil, port=nil, status=nil, risktype=nil, acltype=nil, acllist=nil, assetid=nil, instancename=nil, assettype=nil, portservicecount=nil, highriskportservicecount=nil, webappcount=nil, riskwebappcount=nil, weakpasswordcount=nil, vulcount=nil, createtime=nil, updatetime=nil, assettypename=nil, displaystatus=nil, displayrisktype=nil, scantaskstatus=nil, uuid=nil, hasscan=nil, appid=nil, appidstr=nil, exposureid=nil, portdetectcount=nil, portdetectresult=nil, tag=nil, comment=nil, togovernedriskcount=nil, togovernedriskcontent=nil)
           @Provider = provider
           @CloudAccountName = cloudaccountname
           @CloudAccountId = cloudaccountid
@@ -9619,6 +9635,10 @@ module TencentCloud
           @ExposureID = exposureid
           @PortDetectCount = portdetectcount
           @PortDetectResult = portdetectresult
+          @Tag = tag
+          @Comment = comment
+          @ToGovernedRiskCount = togovernedriskcount
+          @ToGovernedRiskContent = togovernedriskcontent
         end
 
         def deserialize(params)
@@ -9654,6 +9674,10 @@ module TencentCloud
           @ExposureID = params['ExposureID']
           @PortDetectCount = params['PortDetectCount']
           @PortDetectResult = params['PortDetectResult']
+          @Tag = params['Tag']
+          @Comment = params['Comment']
+          @ToGovernedRiskCount = params['ToGovernedRiskCount']
+          @ToGovernedRiskContent = params['ToGovernedRiskContent']
         end
       end
 
@@ -9811,10 +9835,12 @@ module TencentCloud
         # @type Status: String
         # @param EngineRegion: TSE的网关真实地域
         # @type EngineRegion: String
+        # @param WeakPasswordRisk: 弱口令风险
+        # @type WeakPasswordRisk: Integer
 
-        attr_accessor :AppId, :Uin, :AssetId, :AssetName, :AssetType, :PrivateIp, :PublicIp, :Region, :VpcId, :VpcName, :Tag, :OutboundPeakBandwidth, :InboundPeakBandwidth, :OutboundCumulativeFlow, :InboundCumulativeFlow, :NetworkAttack, :ExposedPort, :ExposedVUL, :ConfigureRisk, :CreateTime, :ScanTask, :LastScanTime, :Nick, :AddressIPV6, :IsCore, :RiskExposure, :IsNewAsset, :Status, :EngineRegion
+        attr_accessor :AppId, :Uin, :AssetId, :AssetName, :AssetType, :PrivateIp, :PublicIp, :Region, :VpcId, :VpcName, :Tag, :OutboundPeakBandwidth, :InboundPeakBandwidth, :OutboundCumulativeFlow, :InboundCumulativeFlow, :NetworkAttack, :ExposedPort, :ExposedVUL, :ConfigureRisk, :CreateTime, :ScanTask, :LastScanTime, :Nick, :AddressIPV6, :IsCore, :RiskExposure, :IsNewAsset, :Status, :EngineRegion, :WeakPasswordRisk
 
-        def initialize(appid=nil, uin=nil, assetid=nil, assetname=nil, assettype=nil, privateip=nil, publicip=nil, region=nil, vpcid=nil, vpcname=nil, tag=nil, outboundpeakbandwidth=nil, inboundpeakbandwidth=nil, outboundcumulativeflow=nil, inboundcumulativeflow=nil, networkattack=nil, exposedport=nil, exposedvul=nil, configurerisk=nil, createtime=nil, scantask=nil, lastscantime=nil, nick=nil, addressipv6=nil, iscore=nil, riskexposure=nil, isnewasset=nil, status=nil, engineregion=nil)
+        def initialize(appid=nil, uin=nil, assetid=nil, assetname=nil, assettype=nil, privateip=nil, publicip=nil, region=nil, vpcid=nil, vpcname=nil, tag=nil, outboundpeakbandwidth=nil, inboundpeakbandwidth=nil, outboundcumulativeflow=nil, inboundcumulativeflow=nil, networkattack=nil, exposedport=nil, exposedvul=nil, configurerisk=nil, createtime=nil, scantask=nil, lastscantime=nil, nick=nil, addressipv6=nil, iscore=nil, riskexposure=nil, isnewasset=nil, status=nil, engineregion=nil, weakpasswordrisk=nil)
           @AppId = appid
           @Uin = uin
           @AssetId = assetid
@@ -9844,6 +9870,7 @@ module TencentCloud
           @IsNewAsset = isnewasset
           @Status = status
           @EngineRegion = engineregion
+          @WeakPasswordRisk = weakpasswordrisk
         end
 
         def deserialize(params)
@@ -9883,6 +9910,7 @@ module TencentCloud
           @IsNewAsset = params['IsNewAsset']
           @Status = params['Status']
           @EngineRegion = params['EngineRegion']
+          @WeakPasswordRisk = params['WeakPasswordRisk']
         end
       end
 

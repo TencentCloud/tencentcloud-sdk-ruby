@@ -5798,6 +5798,46 @@ module TencentCloud
         end
       end
 
+      # 数字水印模板详情
+      class BlindWatermarkTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：NAGRA取证水印；</li>
+        # @type Type: String
+        # @param Name: 数字水印模板名称。
+        # @type Name: String
+        # @param TextContent: 数字水印模板文本内容，长度不超过64个字符。
+        # @type TextContent: String
+        # @param Comment: 数字水印模板描述信息。
+        # @type Comment: String
+        # @param CreateTime: 数字水印模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param UpdateTime: 数字水印模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Type, :Name, :TextContent, :Comment, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, type=nil, name=nil, textcontent=nil, comment=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Type = type
+          @Name = name
+          @TextContent = textcontent
+          @Comment = comment
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Type = params['Type']
+          @Name = params['Name']
+          @TextContent = params['TextContent']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 智能分类任务控制参数
       class ClassificationConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能分类任务开关，可选值：
@@ -7367,6 +7407,54 @@ module TencentCloud
         end
       end
 
+      # CreateBlindWatermarkTemplate请求参数结构体
+      class CreateBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：NAGRA水印；</li>
+        # @type Type: String
+        # @param TextContent: 数字水印文字内容，长度不超过64个字符，NAGRA水印类型的模板创建后不支持修改文字内容。
+        # @type TextContent: String
+        # @param Name: 数字水印模板名称，支持中文、英文、数字、_、-和. 六种格式，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 数字水印模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :Type, :TextContent, :Name, :Comment
+
+        def initialize(type=nil, textcontent=nil, name=nil, comment=nil)
+          @Type = type
+          @TextContent = textcontent
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TextContent = params['TextContent']
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateBlindWatermarkTemplate返回参数结构体
+      class CreateBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateContentReviewTemplate请求参数结构体
       class CreateContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Name: 内容审核模板名称，长度限制：64 个字符。
@@ -8320,6 +8408,53 @@ module TencentCloud
               @FailFaceInfoSet << aisamplefailfaceinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateProcessImageTemplate请求参数结构体
+      class CreateProcessImageTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ProcessImageTemplate: 图片处理模板。
+        # @type ProcessImageTemplate: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
+        # @param Name: 图片处理模板名称，长度限制：64个字符。
+        # @type Name: String
+        # @param Comment: 图片处理模板描述信息，长度限制：256个字符。
+        # @type Comment: String
+
+        attr_accessor :ProcessImageTemplate, :Name, :Comment
+
+        def initialize(processimagetemplate=nil, name=nil, comment=nil)
+          @ProcessImageTemplate = processimagetemplate
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          unless params['ProcessImageTemplate'].nil?
+            @ProcessImageTemplate = ImageTaskInput.new
+            @ProcessImageTemplate.deserialize(params['ProcessImageTemplate'])
+          end
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateProcessImageTemplate返回参数结构体
+      class CreateProcessImageTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片处理模板唯一标识
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
           @RequestId = params['RequestId']
         end
       end
@@ -9685,6 +9820,38 @@ module TencentCloud
         end
       end
 
+      # DeleteBlindWatermarkTemplate请求参数结构体
+      class DeleteBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteBlindWatermarkTemplate返回参数结构体
+      class DeleteBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteContentReviewTemplate请求参数结构体
       class DeleteContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 内容审核模板唯一标识。
@@ -9799,6 +9966,38 @@ module TencentCloud
 
       # DeletePersonSample返回参数结构体
       class DeletePersonSampleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProcessImageTemplate请求参数结构体
+      class DeleteProcessImageTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片处理模板唯一标识。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # DeleteProcessImageTemplate返回参数结构体
+      class DeleteProcessImageTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -10822,6 +11021,71 @@ module TencentCloud
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @ExtInfo = params['ExtInfo']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlindWatermarkTemplates请求参数结构体
+      class DescribeBlindWatermarkTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 数字水印模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Name: 数字水印模板标识过滤条件，长度限制：64 个字符。
+        # @type Name: String
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：Nagra取证水印；</li>
+        # @type Type: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数
+        # <li>默认值：10；</li>
+        # <li>最大值：100。</li>
+        # @type Limit: Integer
+
+        attr_accessor :Definitions, :Name, :Type, :Offset, :Limit
+
+        def initialize(definitions=nil, name=nil, type=nil, offset=nil, limit=nil)
+          @Definitions = definitions
+          @Name = name
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBlindWatermarkTemplates返回参数结构体
+      class DescribeBlindWatermarkTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param BlindWatermarkTemplateSet: 数字水印模板详情列表。
+        # @type BlindWatermarkTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BlindWatermarkTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, blindwatermarktemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BlindWatermarkTemplateSet = blindwatermarktemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BlindWatermarkTemplateSet'].nil?
+            @BlindWatermarkTemplateSet = []
+            params['BlindWatermarkTemplateSet'].each do |i|
+              blindwatermarktemplate_tmp = BlindWatermarkTemplate.new
+              blindwatermarktemplate_tmp.deserialize(i)
+              @BlindWatermarkTemplateSet << blindwatermarktemplate_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12204,6 +12468,79 @@ module TencentCloud
               aisampleperson_tmp = AiSamplePerson.new
               aisampleperson_tmp.deserialize(i)
               @PersonSet << aisampleperson_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeProcessImageTemplates请求参数结构体
+      class DescribeProcessImageTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param Definitions: 图片处理模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数 默认值：10；最大值：100。
+        # @type Limit: Integer
+        # @param Name: 图片处理模板标识过滤条件。
+        # @type Name: String
+        # @param OrderType: 排序方式，OrderBy设置后才有效，可选值：   0：升序   1：降序  默认 0。
+        # @type OrderType: Integer
+        # @param OrderBy: 排序字段，可选值：
+        # Definition：模板唯一标识；
+        # 默认值：创建时间。
+        # @type OrderBy: String
+        # @param Type: 模板类型过滤条件，可选值： <li>Preset：系统预置模板；</li> <li>Custom：用户自定义模板。</li>
+        # @type Type: String
+
+        attr_accessor :Definitions, :Offset, :Limit, :Name, :OrderType, :OrderBy, :Type
+
+        def initialize(definitions=nil, offset=nil, limit=nil, name=nil, ordertype=nil, orderby=nil, type=nil)
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+          @Name = name
+          @OrderType = ordertype
+          @OrderBy = orderby
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
+          @OrderType = params['OrderType']
+          @OrderBy = params['OrderBy']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeProcessImageTemplates返回参数结构体
+      class DescribeProcessImageTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param ProcessImageTemplateSet: 图片处理模板详情列表。
+        # @type ProcessImageTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ProcessImageTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, processimagetemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ProcessImageTemplateSet = processimagetemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ProcessImageTemplateSet'].nil?
+            @ProcessImageTemplateSet = []
+            params['ProcessImageTemplateSet'].each do |i|
+              processimagetemplate_tmp = ProcessImageTemplate.new
+              processimagetemplate_tmp.deserialize(i)
+              @ProcessImageTemplateSet << processimagetemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14990,6 +15327,67 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # ExtractBlindWatermark请求参数结构体
+      class ExtractBlindWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-abseq：ab序列版权数字水印；</li>
+        # @type Type: String
+        # @param InputInfo: 媒体处理的文件输入信息。
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
+        # @param ExtractBlindWatermarkConfig: 提取数字水印任务配置
+        # @type ExtractBlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkTaskConfig`
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
+        # @type ResourceId: String
+
+        attr_accessor :Type, :InputInfo, :TaskNotifyConfig, :ExtractBlindWatermarkConfig, :ResourceId
+
+        def initialize(type=nil, inputinfo=nil, tasknotifyconfig=nil, extractblindwatermarkconfig=nil, resourceid=nil)
+          @Type = type
+          @InputInfo = inputinfo
+          @TaskNotifyConfig = tasknotifyconfig
+          @ExtractBlindWatermarkConfig = extractblindwatermarkconfig
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['InputInfo'].nil?
+            @InputInfo = MediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = TaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+          unless params['ExtractBlindWatermarkConfig'].nil?
+            @ExtractBlindWatermarkConfig = ExtractBlindWatermarkTaskConfig.new
+            @ExtractBlindWatermarkConfig.deserialize(params['ExtractBlindWatermarkConfig'])
+          end
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # ExtractBlindWatermark返回参数结构体
+      class ExtractBlindWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -19843,6 +20241,50 @@ module TencentCloud
         end
       end
 
+      # ModifyBlindWatermarkTemplate请求参数结构体
+      class ModifyBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 数字水印模板名称，支持 中文、英文、数字、_、-和. 六种格式，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 数字水印模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param TextContent: 数字水印文字内容，长度不超过64个字符，NAGRA水印类型的模板不支持修改文字内容。
+        # @type TextContent: String
+
+        attr_accessor :Definition, :Name, :Comment, :TextContent
+
+        def initialize(definition=nil, name=nil, comment=nil, textcontent=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @TextContent = textcontent
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @TextContent = params['TextContent']
+        end
+      end
+
+      # ModifyBlindWatermarkTemplate返回参数结构体
+      class ModifyBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyContentReviewTemplate请求参数结构体
       class ModifyContentReviewTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 内容审核模板唯一标识。
@@ -20352,6 +20794,53 @@ module TencentCloud
               @FailFaceInfoSet << aisamplefailfaceinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyProcessImageTemplate请求参数结构体
+      class ModifyProcessImageTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片处理模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 图片处理模板名称，长度限制：64个字符。
+        # @type Name: String
+        # @param Comment: 模板描述信息，长度限制256个字符。
+        # @type Comment: String
+        # @param ProcessImageTemplate: 图片处理模板参数。
+        # @type ProcessImageTemplate: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
+
+        attr_accessor :Definition, :Name, :Comment, :ProcessImageTemplate
+
+        def initialize(definition=nil, name=nil, comment=nil, processimagetemplate=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @ProcessImageTemplate = processimagetemplate
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['ProcessImageTemplate'].nil?
+            @ProcessImageTemplate = ImageTaskInput.new
+            @ProcessImageTemplate.deserialize(params['ProcessImageTemplate'])
+          end
+        end
+      end
+
+      # ModifyProcessImageTemplate返回参数结构体
+      class ModifyProcessImageTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -22454,6 +22943,49 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图片处理模板
+      class ProcessImageTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片处理模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 图片处理模板名称。
+        # @type Name: String
+        # @param Comment: 图片处理模板描述信息。
+        # @type Comment: String
+        # @param Type: 模板类型。
+        # @type Type: String
+        # @param ProcessImageConfig: 图片处理模板配置参数。
+        # @type ProcessImageConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
+        # @param CreateTime: 模板创建时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Name, :Comment, :Type, :ProcessImageConfig, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, processimageconfig=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Type = type
+          @ProcessImageConfig = processimageconfig
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Type = params['Type']
+          unless params['ProcessImageConfig'].nil?
+            @ProcessImageConfig = ImageTaskInput.new
+            @ProcessImageConfig.deserialize(params['ProcessImageConfig'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

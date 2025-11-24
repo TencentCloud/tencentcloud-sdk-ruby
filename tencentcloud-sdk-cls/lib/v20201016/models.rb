@@ -3146,6 +3146,78 @@ module TencentCloud
         end
       end
 
+      # CreateDlcDeliver请求参数结构体
+      class CreateDlcDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @type Name: String
+        # @param DeliverType: 投递类型。0:批投递,1:实时投递
+        # @type DeliverType: Integer
+        # @param StartTime: 投递时间范围的开始时间
+        # @type StartTime: Integer
+        # @param DlcInfo: dlc配置信息
+        # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
+        # @param MaxSize: 投递文件大小,单位MB。 DeliverType=0时必填，范围 5<= MaxSize <= 256。
+        # @type MaxSize: Integer
+        # @param Interval: 投递间隔，单位秒。 DeliverType=0时必填，范围 300<= Interval <=900。
+        # @type Interval: Integer
+        # @param EndTime: 投递时间范围的结束时间。 如果为空，则表示不限时。EndTime不为空时，需要大于StartTime。
+        # @type EndTime: Integer
+        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启。默认开启
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TopicId, :Name, :DeliverType, :StartTime, :DlcInfo, :MaxSize, :Interval, :EndTime, :HasServicesLog
+
+        def initialize(topicid=nil, name=nil, delivertype=nil, starttime=nil, dlcinfo=nil, maxsize=nil, interval=nil, endtime=nil, hasserviceslog=nil)
+          @TopicId = topicid
+          @Name = name
+          @DeliverType = delivertype
+          @StartTime = starttime
+          @DlcInfo = dlcinfo
+          @MaxSize = maxsize
+          @Interval = interval
+          @EndTime = endtime
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @DeliverType = params['DeliverType']
+          @StartTime = params['StartTime']
+          unless params['DlcInfo'].nil?
+            @DlcInfo = DlcInfo.new
+            @DlcInfo.deserialize(params['DlcInfo'])
+          end
+          @MaxSize = params['MaxSize']
+          @Interval = params['Interval']
+          @EndTime = params['EndTime']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # CreateDlcDeliver返回参数结构体
+      class CreateDlcDeliverResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 配置id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id
@@ -4911,6 +4983,43 @@ module TencentCloud
         end
       end
 
+      # DeleteDlcDeliver请求参数结构体
+      class DeleteDlcDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param TaskId: 任务id。
+        # @type TaskId: String
+
+        attr_accessor :TopicId, :TaskId
+
+        def initialize(topicid=nil, taskid=nil)
+          @TopicId = topicid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteDlcDeliver返回参数结构体
+      class DeleteDlcDeliverResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteExport请求参数结构体
       class DeleteExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务Id
@@ -6392,6 +6501,93 @@ module TencentCloud
         end
       end
 
+      # DescribeDlcDelivers请求参数结构体
+      class DescribeDlcDeliversRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Filters: - taskId
+        # 按照【任务id】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - name
+        # 按照【任务名称】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - tableName
+        # 按照【数据表】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - statusFlag
+        # 按照【状态】进行过滤。支持："1","2","3","4"。含义：1：RUNNING，2：STOPPED，3：FINISHED，4：FAILED
+        # 类型：String
+        # 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeDlcDelivers返回参数结构体
+      class DescribeDlcDeliversResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: 告警渠道回调配置列表。
+        # @type Infos: Array
+        # @param Total: 符合条件的通知内容配置总数。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              dlcdeliverinfo_tmp = DlcDeliverInfo.new
+              dlcdeliverinfo_tmp.deserialize(i)
+              @Infos << dlcdeliverinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExports请求参数结构体
       class DescribeExportsRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id
@@ -7757,6 +7953,233 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 投递DLC任务配置信息
+      class DlcDeliverInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id。
+        # @type TaskId: String
+        # @param Uin: 账号id。
+        # @type Uin: Integer
+        # @param TopicId: 日志主题id。
+        # @type TopicId: String
+        # @param Name: 任务名称。
+        # @type Name: String
+        # @param DeliverType: 投递类型，0：实时投递，1：历史投递
+        # @type DeliverType: Integer
+        # @param MaxSize: 投递文件大小，单位MB
+        # @type MaxSize: Integer
+        # @param Interval: 投递间隔 单位秒
+        # @type Interval: Integer
+        # @param StartTime: 投递时间范围的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 投递时间范围的结束时间
+        # @type EndTime: Integer
+        # @param DlcInfo: dlc配置信息
+        # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
+        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启
+        # @type HasServicesLog: Integer
+        # @param Status: 任务状态。
+        # @type Status: Integer
+        # @param Progress: 任务进度。历史投递任务生效。
+        # @type Progress: Integer
+        # @param BizType: 日志主题类型。0:标准主题，1:指标主题
+        # @type BizType: Integer
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 任务修改时间。
+        # @type UpdateTime: Integer
+
+        attr_accessor :TaskId, :Uin, :TopicId, :Name, :DeliverType, :MaxSize, :Interval, :StartTime, :EndTime, :DlcInfo, :HasServicesLog, :Status, :Progress, :BizType, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, uin=nil, topicid=nil, name=nil, delivertype=nil, maxsize=nil, interval=nil, starttime=nil, endtime=nil, dlcinfo=nil, hasserviceslog=nil, status=nil, progress=nil, biztype=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @Uin = uin
+          @TopicId = topicid
+          @Name = name
+          @DeliverType = delivertype
+          @MaxSize = maxsize
+          @Interval = interval
+          @StartTime = starttime
+          @EndTime = endtime
+          @DlcInfo = dlcinfo
+          @HasServicesLog = hasserviceslog
+          @Status = status
+          @Progress = progress
+          @BizType = biztype
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Uin = params['Uin']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @DeliverType = params['DeliverType']
+          @MaxSize = params['MaxSize']
+          @Interval = params['Interval']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['DlcInfo'].nil?
+            @DlcInfo = DlcInfo.new
+            @DlcInfo.deserialize(params['DlcInfo'])
+          end
+          @HasServicesLog = params['HasServicesLog']
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @BizType = params['BizType']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 数据湖计算服务（Data Lake Compute，简称DLC）数据字段配置信息
+      class DlcFiledInfo < TencentCloud::Common::AbstractModel
+        # @param ClsField: cls日志中的字段名
+        # @type ClsField: String
+        # @param DlcField: 数据湖计算服务表的列名
+        # @type DlcField: String
+        # @param DlcFieldType: 数据湖计算服务字段类型
+        # @type DlcFieldType: String
+        # @param FillField: 解析失败填充字段
+        # @type FillField: String
+        # @param Disable: 是否禁用
+        # @type Disable: Boolean
+
+        attr_accessor :ClsField, :DlcField, :DlcFieldType, :FillField, :Disable
+
+        def initialize(clsfield=nil, dlcfield=nil, dlcfieldtype=nil, fillfield=nil, disable=nil)
+          @ClsField = clsfield
+          @DlcField = dlcfield
+          @DlcFieldType = dlcfieldtype
+          @FillField = fillfield
+          @Disable = disable
+        end
+
+        def deserialize(params)
+          @ClsField = params['ClsField']
+          @DlcField = params['DlcField']
+          @DlcFieldType = params['DlcFieldType']
+          @FillField = params['FillField']
+          @Disable = params['Disable']
+        end
+      end
+
+      # 数据湖计算服务（Data Lake Compute，简称DLC）导入配置信息
+      class DlcInfo < TencentCloud::Common::AbstractModel
+        # @param TableInfo: dlc表信息
+        # @type TableInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcTableInfo`
+        # @param FieldInfos: dlc数据字段信息
+        # @type FieldInfos: Array
+        # @param PartitionInfos: dlc分区信息
+        # @type PartitionInfos: Array
+        # @param PartitionExtra: dlc分区额外信息
+        # @type PartitionExtra: :class:`Tencentcloud::Cls.v20201016.models.DlcPartitionExtra`
+
+        attr_accessor :TableInfo, :FieldInfos, :PartitionInfos, :PartitionExtra
+
+        def initialize(tableinfo=nil, fieldinfos=nil, partitioninfos=nil, partitionextra=nil)
+          @TableInfo = tableinfo
+          @FieldInfos = fieldinfos
+          @PartitionInfos = partitioninfos
+          @PartitionExtra = partitionextra
+        end
+
+        def deserialize(params)
+          unless params['TableInfo'].nil?
+            @TableInfo = DlcTableInfo.new
+            @TableInfo.deserialize(params['TableInfo'])
+          end
+          unless params['FieldInfos'].nil?
+            @FieldInfos = []
+            params['FieldInfos'].each do |i|
+              dlcfiledinfo_tmp = DlcFiledInfo.new
+              dlcfiledinfo_tmp.deserialize(i)
+              @FieldInfos << dlcfiledinfo_tmp
+            end
+          end
+          unless params['PartitionInfos'].nil?
+            @PartitionInfos = []
+            params['PartitionInfos'].each do |i|
+              dlcpartitioninfo_tmp = DlcPartitionInfo.new
+              dlcpartitioninfo_tmp.deserialize(i)
+              @PartitionInfos << dlcpartitioninfo_tmp
+            end
+          end
+          unless params['PartitionExtra'].nil?
+            @PartitionExtra = DlcPartitionExtra.new
+            @PartitionExtra.deserialize(params['PartitionExtra'])
+          end
+        end
+      end
+
+      # 数据湖计算服务（Data Lake Compute，简称DLC）数据分区额外信息
+      class DlcPartitionExtra < TencentCloud::Common::AbstractModel
+        # @param TimeFormat: 时间格式	eg: %Y-%m-%d %H:%M:%S.%f
+        # @type TimeFormat: String
+        # @param TimeZone: 时间时区
+        # @type TimeZone: String
+
+        attr_accessor :TimeFormat, :TimeZone
+
+        def initialize(timeformat=nil, timezone=nil)
+          @TimeFormat = timeformat
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @TimeFormat = params['TimeFormat']
+          @TimeZone = params['TimeZone']
+        end
+      end
+
+      # 数据湖计算服务（Data Lake Compute，简称DLC）数据分区配置
+      class DlcPartitionInfo < TencentCloud::Common::AbstractModel
+        # @param ClsField: cls日志中的字段名
+        # @type ClsField: String
+        # @param DlcField: dlc表的列名
+        # @type DlcField: String
+        # @param DlcFieldType: dlc字段类型
+        # @type DlcFieldType: String
+
+        attr_accessor :ClsField, :DlcField, :DlcFieldType
+
+        def initialize(clsfield=nil, dlcfield=nil, dlcfieldtype=nil)
+          @ClsField = clsfield
+          @DlcField = dlcfield
+          @DlcFieldType = dlcfieldtype
+        end
+
+        def deserialize(params)
+          @ClsField = params['ClsField']
+          @DlcField = params['DlcField']
+          @DlcFieldType = params['DlcFieldType']
+        end
+      end
+
+      # 数据湖计算服务（Data Lake Compute，简称DLC）数据表配置信息
+      class DlcTableInfo < TencentCloud::Common::AbstractModel
+        # @param DataDirectory: 数据目录
+        # @type DataDirectory: String
+        # @param DatabaseName: 数据库
+        # @type DatabaseName: String
+        # @param TableName: 数据表
+        # @type TableName: String
+
+        attr_accessor :DataDirectory, :DatabaseName, :TableName
+
+        def initialize(datadirectory=nil, databasename=nil, tablename=nil)
+          @DataDirectory = datadirectory
+          @DatabaseName = databasename
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @DataDirectory = params['DataDirectory']
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
         end
       end
 
@@ -10350,6 +10773,82 @@ module TencentCloud
 
       # ModifyDataTransform返回参数结构体
       class ModifyDataTransformResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDlcDeliver请求参数结构体
+      class ModifyDlcDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param TaskId: 任务id。
+        # @type TaskId: String
+        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @type Name: String
+        # @param DeliverType: 投递类型。0:批投递,1:实时投递
+        # @type DeliverType: Integer
+        # @param StartTime: 投递时间范围的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 投递时间范围的结束时间。 如果为空，则表示不限时
+        # @type EndTime: Integer
+        # @param MaxSize: 投递文件大小,单位MB。 DeliverType=0时必填，范围 5<= MaxSize <= 256。
+        # @type MaxSize: Integer
+        # @param Interval: 投递间隔，单位秒。 DeliverType=0时必填，范围 300<= Interval <=900。
+        # @type Interval: Integer
+        # @param DlcInfo: dlc配置信息
+        # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
+        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启。默认开启
+        # @type HasServicesLog: Integer
+        # @param Status: 任务状态。
+        # @type Status: Integer
+
+        attr_accessor :TopicId, :TaskId, :Name, :DeliverType, :StartTime, :EndTime, :MaxSize, :Interval, :DlcInfo, :HasServicesLog, :Status
+
+        def initialize(topicid=nil, taskid=nil, name=nil, delivertype=nil, starttime=nil, endtime=nil, maxsize=nil, interval=nil, dlcinfo=nil, hasserviceslog=nil, status=nil)
+          @TopicId = topicid
+          @TaskId = taskid
+          @Name = name
+          @DeliverType = delivertype
+          @StartTime = starttime
+          @EndTime = endtime
+          @MaxSize = maxsize
+          @Interval = interval
+          @DlcInfo = dlcinfo
+          @HasServicesLog = hasserviceslog
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @DeliverType = params['DeliverType']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MaxSize = params['MaxSize']
+          @Interval = params['Interval']
+          unless params['DlcInfo'].nil?
+            @DlcInfo = DlcInfo.new
+            @DlcInfo.deserialize(params['DlcInfo'])
+          end
+          @HasServicesLog = params['HasServicesLog']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyDlcDeliver返回参数结构体
+      class ModifyDlcDeliverResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

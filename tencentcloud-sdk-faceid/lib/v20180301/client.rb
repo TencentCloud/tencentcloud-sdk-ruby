@@ -653,30 +653,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 活体检测
-
-        # @param request: Request instance for Liveness.
-        # @type request: :class:`Tencentcloud::faceid::V20180301::LivenessRequest`
-        # @rtype: :class:`Tencentcloud::faceid::V20180301::LivenessResponse`
-        def Liveness(request)
-          body = send_request('Liveness', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = LivenessResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
 
         # @param request: Request instance for LivenessCompare.

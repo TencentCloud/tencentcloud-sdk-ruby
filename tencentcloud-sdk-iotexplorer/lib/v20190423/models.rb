@@ -2453,6 +2453,8 @@ module TencentCloud
         # @type DeviceName: String
         # @param InputURL: 输入视频 / 图片的 URL
         # @type InputURL: String
+        # @param ChannelId: 通道 ID
+        # @type ChannelId: Integer
         # @param CustomId: 自定义事件 ID
         # @type CustomId: String
         # @param EnableSearch: 是否保存该事件使其可被搜索
@@ -2484,12 +2486,13 @@ module TencentCloud
         # @param ObjectDetectConfig: 目标检测配置
         # @type ObjectDetectConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.VisionObjectDetectConfig`
 
-        attr_accessor :ProductId, :DeviceName, :InputURL, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig, :ServiceType, :ObjectDetectConfig
+        attr_accessor :ProductId, :DeviceName, :InputURL, :ChannelId, :CustomId, :EnableSearch, :StartTimeMs, :EndTimeMs, :Config, :IsCustomDevice, :InputType, :SummaryQOS, :SummaryConfig, :ServiceType, :ObjectDetectConfig
 
-        def initialize(productid=nil, devicename=nil, inputurl=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil, servicetype=nil, objectdetectconfig=nil)
+        def initialize(productid=nil, devicename=nil, inputurl=nil, channelid=nil, customid=nil, enablesearch=nil, starttimems=nil, endtimems=nil, config=nil, iscustomdevice=nil, inputtype=nil, summaryqos=nil, summaryconfig=nil, servicetype=nil, objectdetectconfig=nil)
           @ProductId = productid
           @DeviceName = devicename
           @InputURL = inputurl
+          @ChannelId = channelid
           @CustomId = customid
           @EnableSearch = enablesearch
           @StartTimeMs = starttimems
@@ -2507,6 +2510,7 @@ module TencentCloud
           @ProductId = params['ProductId']
           @DeviceName = params['DeviceName']
           @InputURL = params['InputURL']
+          @ChannelId = params['ChannelId']
           @CustomId = params['CustomId']
           @EnableSearch = params['EnableSearch']
           @StartTimeMs = params['StartTimeMs']

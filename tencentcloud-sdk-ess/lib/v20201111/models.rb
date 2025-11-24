@@ -10586,6 +10586,9 @@ module TencentCloud
         # @type Id: String
 
         attr_accessor :Operator, :Limit, :Offset, :Name, :Status, :Export, :Id
+        extend Gem::Deprecate
+        deprecate :Name, :none, 2025, 11
+        deprecate :Name=, :none, 2025, 11
 
         def initialize(operator=nil, limit=nil, offset=nil, name=nil, status=nil, export=nil, id=nil)
           @Operator = operator

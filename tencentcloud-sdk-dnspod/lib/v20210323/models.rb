@@ -6830,7 +6830,7 @@ module TencentCloud
         # @type MonitorStatus: String
         # @param Remark: 记录备注说明
         # @type Remark: String
-        # @param TTL: 记录缓存时间
+        # @param TTL: 记录缓存时间，单位：秒
         # @type TTL: Integer
         # @param MX: MX值
         # @type MX: Integer

@@ -4078,6 +4078,96 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceOplog请求参数结构体
+      class DescribeInstanceOplogRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR实例ID
+        # @type InstanceId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 页大小
+        # @type Limit: Integer
+        # @param StartTime: 开头时间时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 结尾时间时间戳
+        # @type EndTime: Integer
+        # @param SearchFields: 搜索项数组
+        # @type SearchFields: Array
+        # @param Operand: 集群、节点、组件
+        # @type Operand: String
+        # @param SecurityLevel: 一般、危险、高危
+        # @type SecurityLevel: String
+
+        attr_accessor :InstanceId, :Offset, :Limit, :StartTime, :EndTime, :SearchFields, :Operand, :SecurityLevel
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil, searchfields=nil, operand=nil, securitylevel=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @StartTime = starttime
+          @EndTime = endtime
+          @SearchFields = searchfields
+          @Operand = operand
+          @SecurityLevel = securitylevel
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['SearchFields'].nil?
+            @SearchFields = []
+            params['SearchFields'].each do |i|
+              searchitem_tmp = SearchItem.new
+              searchitem_tmp.deserialize(i)
+              @SearchFields << searchitem_tmp
+            end
+          end
+          @Operand = params['Operand']
+          @SecurityLevel = params['SecurityLevel']
+        end
+      end
+
+      # DescribeInstanceOplog返回参数结构体
+      class DescribeInstanceOplogResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 操作日志数量
+        # @type TotalCnt: Integer
+        # @param LogList: 操作日志列表
+        # @type LogList: Array
+        # @param OperandList: 操作对象筛选项数组
+        # @type OperandList: Array
+        # @param SecurityLevelList: 安全级别筛选数组
+        # @type SecurityLevelList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :LogList, :OperandList, :SecurityLevelList, :RequestId
+
+        def initialize(totalcnt=nil, loglist=nil, operandlist=nil, securitylevellist=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @LogList = loglist
+          @OperandList = operandlist
+          @SecurityLevelList = securitylevellist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['LogList'].nil?
+            @LogList = []
+            params['LogList'].each do |i|
+              operationlog_tmp = OperationLog.new
+              operationlog_tmp.deserialize(i)
+              @LogList << operationlog_tmp
+            end
+          end
+          @OperandList = params['OperandList']
+          @SecurityLevelList = params['SecurityLevelList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceRenewNodes请求参数结构体
       class DescribeInstanceRenewNodesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例ID,实例ID形如: emr-xxxxxxxx
@@ -10352,6 +10442,54 @@ module TencentCloud
               @ServiceInfoList << servicebasicrestartinfo_tmp
             end
           end
+        end
+      end
+
+      # 操作日志描述
+      class OperationLog < TencentCloud::Common::AbstractModel
+        # @param InstanceId: EMR实例ID
+        # @type InstanceId: Integer
+        # @param Operation: 操作名称
+        # @type Operation: String
+        # @param OperationType: 操作类型
+        # @type OperationType: Integer
+        # @param UserType: 用户类型
+        # @type UserType: Integer
+        # @param Operator: 操作者
+        # @type Operator: String
+        # @param CreateTime: 操作时间
+        # @type CreateTime: String
+        # @param Operand: 操作对象
+        # @type Operand: String
+        # @param OperationDesc: 操作详情
+        # @type OperationDesc: String
+        # @param SecurityLevel: 安全级别
+        # @type SecurityLevel: String
+
+        attr_accessor :InstanceId, :Operation, :OperationType, :UserType, :Operator, :CreateTime, :Operand, :OperationDesc, :SecurityLevel
+
+        def initialize(instanceid=nil, operation=nil, operationtype=nil, usertype=nil, operator=nil, createtime=nil, operand=nil, operationdesc=nil, securitylevel=nil)
+          @InstanceId = instanceid
+          @Operation = operation
+          @OperationType = operationtype
+          @UserType = usertype
+          @Operator = operator
+          @CreateTime = createtime
+          @Operand = operand
+          @OperationDesc = operationdesc
+          @SecurityLevel = securitylevel
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Operation = params['Operation']
+          @OperationType = params['OperationType']
+          @UserType = params['UserType']
+          @Operator = params['Operator']
+          @CreateTime = params['CreateTime']
+          @Operand = params['Operand']
+          @OperationDesc = params['OperationDesc']
+          @SecurityLevel = params['SecurityLevel']
         end
       end
 

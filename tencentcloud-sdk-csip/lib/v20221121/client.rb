@@ -605,7 +605,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 检查视角下云资源配置风险列表示例
+        # 检查视角下云资源配置风险列表
 
         # @param request: Request instance for DescribeCheckViewRisks.
         # @type request: :class:`Tencentcloud::csip::V20221121::DescribeCheckViewRisksRequest`

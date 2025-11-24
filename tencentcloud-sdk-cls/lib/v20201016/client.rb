@@ -444,6 +444,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建DLC投递任务
+
+        # @param request: Request instance for CreateDlcDeliver.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateDlcDeliverRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateDlcDeliverResponse`
+        def CreateDlcDeliver(request)
+          body = send_request('CreateDlcDeliver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDlcDeliverResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口仅创建下载任务。任务返回的下载地址，请用户调用[DescribeExports](https://cloud.tencent.com/document/product/614/56449)查看任务列表，其中有下载地址CosPath参数。
 
         # @param request: Request instance for CreateExport.
@@ -958,6 +982,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataTransformResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除DLC投递任务
+
+        # @param request: Request instance for DeleteDlcDeliver.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteDlcDeliverRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteDlcDeliverResponse`
+        def DeleteDlcDeliver(request)
+          body = send_request('DeleteDlcDeliver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDlcDeliverResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1558,6 +1606,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDataTransformInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取告警渠道回调配置列表。
+
+        # @param request: Request instance for DescribeDlcDelivers.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeDlcDeliversRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeDlcDeliversResponse`
+        def DescribeDlcDelivers(request)
+          body = send_request('DescribeDlcDelivers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDlcDeliversResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2327,6 +2399,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyDataTransformResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改DLC投递任务
+
+        # @param request: Request instance for ModifyDlcDeliver.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyDlcDeliverRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyDlcDeliverResponse`
+        def ModifyDlcDeliver(request)
+          body = send_request('ModifyDlcDeliver', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDlcDeliverResponse.new
             model.deserialize(response['Response'])
             model
           else

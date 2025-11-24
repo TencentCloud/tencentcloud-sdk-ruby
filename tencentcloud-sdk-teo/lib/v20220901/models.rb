@@ -18347,6 +18347,53 @@ module TencentCloud
         end
       end
 
+      # 回源鉴权参数。
+      class OriginAuthenticationParameters < TencentCloud::Common::AbstractModel
+        # @param RequestProperties: 回源鉴权请求属性。
+        # @type RequestProperties: Array
+
+        attr_accessor :RequestProperties
+
+        def initialize(requestproperties=nil)
+          @RequestProperties = requestproperties
+        end
+
+        def deserialize(params)
+          unless params['RequestProperties'].nil?
+            @RequestProperties = []
+            params['RequestProperties'].each do |i|
+              originauthenticationrequestproperties_tmp = OriginAuthenticationRequestProperties.new
+              originauthenticationrequestproperties_tmp.deserialize(i)
+              @RequestProperties << originauthenticationrequestproperties_tmp
+            end
+          end
+        end
+      end
+
+      # 回源鉴权请求属性。
+      class OriginAuthenticationRequestProperties < TencentCloud::Common::AbstractModel
+        # @param Type: 设置回源鉴权参数类型，取值有：<li>QueryString：表示设置回源鉴权参数类型为查询字符串；</li><li>Header：表示设置回源鉴权参数类型为请求头。</li>
+        # @type Type: String
+        # @param Name: 设置回源鉴权类型对应的参数名称。
+        # @type Name: String
+        # @param Value: 设置回源鉴权类型对应的参数值。
+        # @type Value: String
+
+        attr_accessor :Type, :Name, :Value
+
+        def initialize(type=nil, name=nil, value=nil)
+          @Type = type
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # HTTPS 源站证书校验的模式。
       class OriginCertificateVerify < TencentCloud::Common::AbstractModel
         # @param VerificationMode: 源站证书校验模式。取值有：<li>disable:禁用源站证书校验。</li><li>custom_ca:使用指定受信任 CA 证书校验。</li>
@@ -20487,7 +20534,9 @@ module TencentCloud
         # <li>ModifyRequestHeader：修改 HTTP 节点请求头；</li>
         # <li>ResponseSpeedLimit：单连接下载限速；</li>
         # <li>SetContentIdentifier：设置内容标识符；</li>
-        # <li>Vary：Vary 特性配置。</li>
+        # <li>Vary：Vary 特性配置；</li>
+        # <li>ContentCompression：内容压缩配置；</li>
+        # <li>OriginAuthentication：回源鉴权配置。</li>
         # @type Name: String
         # @param CacheParameters: 节点缓存 TTL 配置参数，当 Name 取值为 Cache 时，该参数必填。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -20599,10 +20648,12 @@ module TencentCloud
         # @type VaryParameters: :class:`Tencentcloud::Teo.v20220901.models.VaryParameters`
         # @param ContentCompressionParameters: 内容压缩配置参数，当 Name 取值为 ContentCompression 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
         # @type ContentCompressionParameters: :class:`Tencentcloud::Teo.v20220901.models.ContentCompressionParameters`
+        # @param OriginAuthenticationParameters: 回源鉴权配置参数，当 Name 取值为 OriginAuthentication 时，该参数必填。该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
+        # @type OriginAuthenticationParameters: :class:`Tencentcloud::Teo.v20220901.models.OriginAuthenticationParameters`
 
-        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters
+        attr_accessor :Name, :CacheParameters, :CacheKeyParameters, :CachePrefreshParameters, :AccessURLRedirectParameters, :UpstreamURLRewriteParameters, :QUICParameters, :WebSocketParameters, :AuthenticationParameters, :MaxAgeParameters, :StatusCodeCacheParameters, :OfflineCacheParameters, :SmartRoutingParameters, :RangeOriginPullParameters, :UpstreamHTTP2Parameters, :HostHeaderParameters, :ForceRedirectHTTPSParameters, :OriginPullProtocolParameters, :CompressionParameters, :HSTSParameters, :ClientIPHeaderParameters, :OCSPStaplingParameters, :HTTP2Parameters, :PostMaxSizeParameters, :ClientIPCountryParameters, :UpstreamFollowRedirectParameters, :UpstreamRequestParameters, :TLSConfigParameters, :ModifyOriginParameters, :HTTPUpstreamTimeoutParameters, :HttpResponseParameters, :ErrorPageParameters, :ModifyResponseHeaderParameters, :ModifyRequestHeaderParameters, :ResponseSpeedLimitParameters, :SetContentIdentifierParameters, :VaryParameters, :ContentCompressionParameters, :OriginAuthenticationParameters
 
-        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil)
+        def initialize(name=nil, cacheparameters=nil, cachekeyparameters=nil, cacheprefreshparameters=nil, accessurlredirectparameters=nil, upstreamurlrewriteparameters=nil, quicparameters=nil, websocketparameters=nil, authenticationparameters=nil, maxageparameters=nil, statuscodecacheparameters=nil, offlinecacheparameters=nil, smartroutingparameters=nil, rangeoriginpullparameters=nil, upstreamhttp2parameters=nil, hostheaderparameters=nil, forceredirecthttpsparameters=nil, originpullprotocolparameters=nil, compressionparameters=nil, hstsparameters=nil, clientipheaderparameters=nil, ocspstaplingparameters=nil, http2parameters=nil, postmaxsizeparameters=nil, clientipcountryparameters=nil, upstreamfollowredirectparameters=nil, upstreamrequestparameters=nil, tlsconfigparameters=nil, modifyoriginparameters=nil, httpupstreamtimeoutparameters=nil, httpresponseparameters=nil, errorpageparameters=nil, modifyresponseheaderparameters=nil, modifyrequestheaderparameters=nil, responsespeedlimitparameters=nil, setcontentidentifierparameters=nil, varyparameters=nil, contentcompressionparameters=nil, originauthenticationparameters=nil)
           @Name = name
           @CacheParameters = cacheparameters
           @CacheKeyParameters = cachekeyparameters
@@ -20641,6 +20692,7 @@ module TencentCloud
           @SetContentIdentifierParameters = setcontentidentifierparameters
           @VaryParameters = varyparameters
           @ContentCompressionParameters = contentcompressionparameters
+          @OriginAuthenticationParameters = originauthenticationparameters
         end
 
         def deserialize(params)
@@ -20792,6 +20844,10 @@ module TencentCloud
           unless params['ContentCompressionParameters'].nil?
             @ContentCompressionParameters = ContentCompressionParameters.new
             @ContentCompressionParameters.deserialize(params['ContentCompressionParameters'])
+          end
+          unless params['OriginAuthenticationParameters'].nil?
+            @OriginAuthenticationParameters = OriginAuthenticationParameters.new
+            @OriginAuthenticationParameters.deserialize(params['OriginAuthenticationParameters'])
           end
         end
       end

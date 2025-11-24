@@ -756,6 +756,55 @@ module TencentCloud
         end
       end
 
+      # ID NAME 组合
+      class CommonIdName < TencentCloud::Common::AbstractModel
+        # @param Id: 资源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 资源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+
+        attr_accessor :Id, :Name
+
+        def initialize(id=nil, name=nil)
+          @Id = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+        end
+      end
+
+      # ID NAME STATUS 组合结构
+      class CommonIdNameStatus < TencentCloud::Common::AbstractModel
+        # @param Id: 资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: String
+        # @param Name: 资源name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+
+        attr_accessor :Id, :Name, :Status
+
+        def initialize(id=nil, name=nil, status=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
+        end
+      end
+
       # CreateAcRules请求参数结构体
       class CreateAcRulesRequest < TencentCloud::Common::AbstractModel
         # @param Data: 创建规则数据
@@ -4326,6 +4375,136 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNatFwSwitch请求参数结构体
+      class DescribeNatFwSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，分页用
+        # @type Offset: Integer
+        # @param Limit: 条数，分页用
+        # @type Limit: Integer
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Offset, :Limit, :Filters, :Order, :By
+
+        def initialize(offset=nil, limit=nil, filters=nil, order=nil, by=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeNatFwSwitch返回参数结构体
+      class DescribeNatFwSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Data: NAT边界防火墙开关列表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param VpcList: 开关相关VPC列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcList: Array
+        # @param NatList: 开关相关NAT列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatList: Array
+        # @param RouteList: 开关相关ROUTE列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteList: Array
+        # @param OnNum: 开启开关个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OnNum: Integer
+        # @param OffNum: 关闭开关个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OffNum: Integer
+        # @param FailData: 失败开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailData: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :VpcList, :NatList, :RouteList, :OnNum, :OffNum, :FailData, :RequestId
+
+        def initialize(total=nil, data=nil, vpclist=nil, natlist=nil, routelist=nil, onnum=nil, offnum=nil, faildata=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @VpcList = vpclist
+          @NatList = natlist
+          @RouteList = routelist
+          @OnNum = onnum
+          @OffNum = offnum
+          @FailData = faildata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              natswitchlistdata_tmp = NatSwitchListData.new
+              natswitchlistdata_tmp.deserialize(i)
+              @Data << natswitchlistdata_tmp
+            end
+          end
+          unless params['VpcList'].nil?
+            @VpcList = []
+            params['VpcList'].each do |i|
+              commonidname_tmp = CommonIdName.new
+              commonidname_tmp.deserialize(i)
+              @VpcList << commonidname_tmp
+            end
+          end
+          unless params['NatList'].nil?
+            @NatList = []
+            params['NatList'].each do |i|
+              commonidname_tmp = CommonIdName.new
+              commonidname_tmp.deserialize(i)
+              @NatList << commonidname_tmp
+            end
+          end
+          unless params['RouteList'].nil?
+            @RouteList = []
+            params['RouteList'].each do |i|
+              commonidname_tmp = CommonIdName.new
+              commonidname_tmp.deserialize(i)
+              @RouteList << commonidname_tmp
+            end
+          end
+          @OnNum = params['OnNum']
+          @OffNum = params['OffNum']
+          unless params['FailData'].nil?
+            @FailData = []
+            params['FailData'].each do |i|
+              commonidnamestatus_tmp = CommonIdNameStatus.new
+              commonidnamestatus_tmp.deserialize(i)
+              @FailData << commonidnamestatus_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7992,6 +8171,117 @@ module TencentCloud
           @ElasticSwitch = params['ElasticSwitch']
           @ElasticBandwidth = params['ElasticBandwidth']
           @IsFirstAfterPay = params['IsFirstAfterPay']
+        end
+      end
+
+      # NAT防火墙开关列表数据
+      class NatSwitchListData < TencentCloud::Common::AbstractModel
+        # @param Id: 列表ID
+        # @type Id: Integer
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param SubnetName: 子网名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetName: String
+        # @param SubnetCidr: IPv4 CIDR
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetCidr: String
+        # @param RouteId: 关联路由ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteId: String
+        # @param RouteName: 关联路由名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RouteName: String
+        # @param CvmNum: 云服务器个数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CvmNum: Integer
+        # @param VpcId: 所属VPC ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param VpcName: 所属VPC名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcName: String
+        # @param Enable: 是否生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Integer
+        # @param Status: 开关状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param NatId: NAT网关ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatId: String
+        # @param NatName: NAT网关名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatName: String
+        # @param NatInsId: NAT防火墙实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatInsId: String
+        # @param NatInsName: NAT防火墙实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatInsName: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Abnormal: 开关是否异常,0:正常,1:异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abnormal: Integer
+        # @param ORTableId: nat防火墙出口路由表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ORTableId: String
+        # @param ORTableName: nat防火墙出口路由表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ORTableName: String
+        # @param Ohavips: 出口Snat Ip列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ohavips: Array
+
+        attr_accessor :Id, :SubnetId, :SubnetName, :SubnetCidr, :RouteId, :RouteName, :CvmNum, :VpcId, :VpcName, :Enable, :Status, :NatId, :NatName, :NatInsId, :NatInsName, :Region, :Abnormal, :ORTableId, :ORTableName, :Ohavips
+
+        def initialize(id=nil, subnetid=nil, subnetname=nil, subnetcidr=nil, routeid=nil, routename=nil, cvmnum=nil, vpcid=nil, vpcname=nil, enable=nil, status=nil, natid=nil, natname=nil, natinsid=nil, natinsname=nil, region=nil, abnormal=nil, ortableid=nil, ortablename=nil, ohavips=nil)
+          @Id = id
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+          @SubnetCidr = subnetcidr
+          @RouteId = routeid
+          @RouteName = routename
+          @CvmNum = cvmnum
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @Enable = enable
+          @Status = status
+          @NatId = natid
+          @NatName = natname
+          @NatInsId = natinsid
+          @NatInsName = natinsname
+          @Region = region
+          @Abnormal = abnormal
+          @ORTableId = ortableid
+          @ORTableName = ortablename
+          @Ohavips = ohavips
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+          @SubnetCidr = params['SubnetCidr']
+          @RouteId = params['RouteId']
+          @RouteName = params['RouteName']
+          @CvmNum = params['CvmNum']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @Enable = params['Enable']
+          @Status = params['Status']
+          @NatId = params['NatId']
+          @NatName = params['NatName']
+          @NatInsId = params['NatInsId']
+          @NatInsName = params['NatInsName']
+          @Region = params['Region']
+          @Abnormal = params['Abnormal']
+          @ORTableId = params['ORTableId']
+          @ORTableName = params['ORTableName']
+          @Ohavips = params['Ohavips']
         end
       end
 

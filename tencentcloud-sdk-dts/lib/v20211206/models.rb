@@ -429,13 +429,19 @@ module TencentCloud
         # @type ColumnMode: String
         # @param Columns: 当 ColumnMode 为 partial 时必填(该参数仅对数据同步任务有效)
         # @type Columns: Array
+        # @param FilterCondition: 过滤条件
+        # @type FilterCondition: String
+        # @param FilterTimeZone: 时区选择。如 "+08:00", "-08:00", "+00:00"（空值等价于"+00:00"）
+        # @type FilterTimeZone: String
 
-        attr_accessor :TableName, :ColumnMode, :Columns
+        attr_accessor :TableName, :ColumnMode, :Columns, :FilterCondition, :FilterTimeZone
 
-        def initialize(tablename=nil, columnmode=nil, columns=nil)
+        def initialize(tablename=nil, columnmode=nil, columns=nil, filtercondition=nil, filtertimezone=nil)
           @TableName = tablename
           @ColumnMode = columnmode
           @Columns = columns
+          @FilterCondition = filtercondition
+          @FilterTimeZone = filtertimezone
         end
 
         def deserialize(params)
@@ -449,6 +455,8 @@ module TencentCloud
               @Columns << comparecolumnitem_tmp
             end
           end
+          @FilterCondition = params['FilterCondition']
+          @FilterTimeZone = params['FilterTimeZone']
         end
       end
 
@@ -1324,6 +1332,65 @@ module TencentCloud
         end
       end
 
+      # CreateSyncCompareTask请求参数结构体
+      class CreateSyncCompareTaskRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param TaskName: 数据对比任务名称，若为空则默认给CompareTaskId相同值
+        # @type TaskName: String
+        # @param ObjectMode: 数据对比对象模式，sameAsMigrate(全部迁移对象， 默认为此项配置)，custom(自定义模式)
+        # @type ObjectMode: String
+        # @param Objects: 对比对象，当ObjectMode值为custom时，此项需要填写
+        # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.CompareObject`
+        # @param Options: 一致性校验选项
+        # @type Options: :class:`Tencentcloud::Dts.v20211206.models.CompareOptions`
+
+        attr_accessor :JobId, :TaskName, :ObjectMode, :Objects, :Options
+
+        def initialize(jobid=nil, taskname=nil, objectmode=nil, objects=nil, options=nil)
+          @JobId = jobid
+          @TaskName = taskname
+          @ObjectMode = objectmode
+          @Objects = objects
+          @Options = options
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @TaskName = params['TaskName']
+          @ObjectMode = params['ObjectMode']
+          unless params['Objects'].nil?
+            @Objects = CompareObject.new
+            @Objects.deserialize(params['Objects'])
+          end
+          unless params['Options'].nil?
+            @Options = CompareOptions.new
+            @Options.deserialize(params['Options'])
+          end
+        end
+      end
+
+      # CreateSyncCompareTask返回参数结构体
+      class CreateSyncCompareTaskResponse < TencentCloud::Common::AbstractModel
+        # @param CompareTaskId: 数据对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareTaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CompareTaskId, :RequestId
+
+        def initialize(comparetaskid=nil, requestid=nil)
+          @CompareTaskId = comparetaskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CompareTaskId = params['CompareTaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSyncJob请求参数结构体
       class CreateSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param PayMode: 付款类型, 如：PrePay(表示包年包月)、PostPay(表示按时按量)
@@ -1917,6 +1984,42 @@ module TencentCloud
 
       # DeleteConsumerGroup返回参数结构体
       class DeleteConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSyncCompareTask请求参数结构体
+      class DeleteSyncCompareTaskRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # @type CompareTaskId: String
+
+        attr_accessor :JobId, :CompareTaskId
+
+        def initialize(jobid=nil, comparetaskid=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+        end
+      end
+
+      # DeleteSyncCompareTask返回参数结构体
+      class DeleteSyncCompareTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -3130,6 +3233,162 @@ module TencentCloud
         end
       end
 
+      # DescribeSyncCompareReport请求参数结构体
+      class DescribeSyncCompareReportRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 校验任务 Id
+        # @type CompareTaskId: String
+        # @param DifferenceLimit: 校验不一致结果的 limit
+        # @type DifferenceLimit: Integer
+        # @param DifferenceOffset: 不一致的 Offset
+        # @type DifferenceOffset: Integer
+        # @param DifferenceDB: 搜索条件，不一致的库名
+        # @type DifferenceDB: String
+        # @param DifferenceTable: 搜索条件，不一致的表名
+        # @type DifferenceTable: String
+        # @param SkippedLimit: 未校验的 Limit
+        # @type SkippedLimit: Integer
+        # @param SkippedOffset: 未校验的 Offset
+        # @type SkippedOffset: Integer
+        # @param SkippedDB: 搜索条件，未校验的库名
+        # @type SkippedDB: String
+        # @param SkippedTable: 搜索条件，未校验的表名
+        # @type SkippedTable: String
+
+        attr_accessor :JobId, :CompareTaskId, :DifferenceLimit, :DifferenceOffset, :DifferenceDB, :DifferenceTable, :SkippedLimit, :SkippedOffset, :SkippedDB, :SkippedTable
+
+        def initialize(jobid=nil, comparetaskid=nil, differencelimit=nil, differenceoffset=nil, differencedb=nil, differencetable=nil, skippedlimit=nil, skippedoffset=nil, skippeddb=nil, skippedtable=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @DifferenceLimit = differencelimit
+          @DifferenceOffset = differenceoffset
+          @DifferenceDB = differencedb
+          @DifferenceTable = differencetable
+          @SkippedLimit = skippedlimit
+          @SkippedOffset = skippedoffset
+          @SkippedDB = skippeddb
+          @SkippedTable = skippedtable
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @DifferenceLimit = params['DifferenceLimit']
+          @DifferenceOffset = params['DifferenceOffset']
+          @DifferenceDB = params['DifferenceDB']
+          @DifferenceTable = params['DifferenceTable']
+          @SkippedLimit = params['SkippedLimit']
+          @SkippedOffset = params['SkippedOffset']
+          @SkippedDB = params['SkippedDB']
+          @SkippedTable = params['SkippedTable']
+        end
+      end
+
+      # DescribeSyncCompareReport返回参数结构体
+      class DescribeSyncCompareReportResponse < TencentCloud::Common::AbstractModel
+        # @param Abstract: 一致性校验摘要信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Abstract: :class:`Tencentcloud::Dts.v20211206.models.CompareAbstractInfo`
+        # @param Detail: 一致性校验详细信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Detail: :class:`Tencentcloud::Dts.v20211206.models.CompareDetailInfo`
+        # @param IncAbstract: 增量校验阶段的摘要
+        # @type IncAbstract: :class:`Tencentcloud::Dts.v20211206.models.IncCompareAbstractInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Abstract, :Detail, :IncAbstract, :RequestId
+
+        def initialize(abstract=nil, detail=nil, incabstract=nil, requestid=nil)
+          @Abstract = abstract
+          @Detail = detail
+          @IncAbstract = incabstract
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Abstract'].nil?
+            @Abstract = CompareAbstractInfo.new
+            @Abstract.deserialize(params['Abstract'])
+          end
+          unless params['Detail'].nil?
+            @Detail = CompareDetailInfo.new
+            @Detail.deserialize(params['Detail'])
+          end
+          unless params['IncAbstract'].nil?
+            @IncAbstract = IncCompareAbstractInfo.new
+            @IncAbstract.deserialize(params['IncAbstract'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSyncCompareTasks请求参数结构体
+      class DescribeSyncCompareTasksRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param Limit: 分页设置，表示每页显示多少条任务，默认为 20
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param CompareTaskId: 校验任务 ID
+        # @type CompareTaskId: String
+        # @param Status: 任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止
+        # @type Status: Array
+
+        attr_accessor :JobId, :Limit, :Offset, :CompareTaskId, :Status
+
+        def initialize(jobid=nil, limit=nil, offset=nil, comparetaskid=nil, status=nil)
+          @JobId = jobid
+          @Limit = limit
+          @Offset = offset
+          @CompareTaskId = comparetaskid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @CompareTaskId = params['CompareTaskId']
+          @Status = params['Status']
+        end
+      end
+
+      # DescribeSyncCompareTasks返回参数结构体
+      class DescribeSyncCompareTasksResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 一致性校验任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              comparetaskitem_tmp = CompareTaskItem.new
+              comparetaskitem_tmp.deserialize(i)
+              @Items << comparetaskitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSyncJobs请求参数结构体
       class DescribeSyncJobsRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，如sync-werwfs23，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
@@ -4078,6 +4337,38 @@ module TencentCloud
               @PartitionAssignment << partitionassignment_tmp
             end
           end
+        end
+      end
+
+      # 增量校验阶段的摘要信息
+      class IncCompareAbstractInfo < TencentCloud::Common::AbstractModel
+        # @param StartPosition: 增量起始位点
+        # @type StartPosition: String
+        # @param CurrentPosition: 增量当前位点
+        # @type CurrentPosition: String
+        # @param CheckedRecord: 已校验行数
+        # @type CheckedRecord: Integer
+        # @param DiffRecord: 不一致行数
+        # @type DiffRecord: Integer
+        # @param DiffTable: 不一致表的数量
+        # @type DiffTable: Integer
+
+        attr_accessor :StartPosition, :CurrentPosition, :CheckedRecord, :DiffRecord, :DiffTable
+
+        def initialize(startposition=nil, currentposition=nil, checkedrecord=nil, diffrecord=nil, difftable=nil)
+          @StartPosition = startposition
+          @CurrentPosition = currentposition
+          @CheckedRecord = checkedrecord
+          @DiffRecord = diffrecord
+          @DiffTable = difftable
+        end
+
+        def deserialize(params)
+          @StartPosition = params['StartPosition']
+          @CurrentPosition = params['CurrentPosition']
+          @CheckedRecord = params['CheckedRecord']
+          @DiffRecord = params['DiffRecord']
+          @DiffTable = params['DiffTable']
         end
       end
 
@@ -5105,6 +5396,104 @@ module TencentCloud
 
       # ModifySubscribeObjects返回参数结构体
       class ModifySubscribeObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySyncCompareTaskName请求参数结构体
+      class ModifySyncCompareTaskNameRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # @type CompareTaskId: String
+        # @param TaskName: 一致性校验任务名称
+        # @type TaskName: String
+
+        attr_accessor :JobId, :CompareTaskId, :TaskName
+
+        def initialize(jobid=nil, comparetaskid=nil, taskname=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @TaskName = params['TaskName']
+        end
+      end
+
+      # ModifySyncCompareTaskName返回参数结构体
+      class ModifySyncCompareTaskNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySyncCompareTask请求参数结构体
+      class ModifySyncCompareTaskRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # @type CompareTaskId: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param ObjectMode: 数据对比对象模式，sameAsMigrate(全部迁移对象， 默认为此项配置)、custom(自定义)，注意自定义对比对象必须是迁移对象的子集
+        # @type ObjectMode: String
+        # @param Objects: 对比对象，若CompareObjectMode取值为custom，则此项必填
+        # @type Objects: :class:`Tencentcloud::Dts.v20211206.models.CompareObject`
+        # @param Options: 一致性校验选项
+        # @type Options: :class:`Tencentcloud::Dts.v20211206.models.CompareOptions`
+
+        attr_accessor :JobId, :CompareTaskId, :TaskName, :ObjectMode, :Objects, :Options
+
+        def initialize(jobid=nil, comparetaskid=nil, taskname=nil, objectmode=nil, objects=nil, options=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @TaskName = taskname
+          @ObjectMode = objectmode
+          @Objects = objects
+          @Options = options
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @TaskName = params['TaskName']
+          @ObjectMode = params['ObjectMode']
+          unless params['Objects'].nil?
+            @Objects = CompareObject.new
+            @Objects.deserialize(params['Objects'])
+          end
+          unless params['Options'].nil?
+            @Options = CompareOptions.new
+            @Options.deserialize(params['Options'])
+          end
+        end
+      end
+
+      # ModifySyncCompareTask返回参数结构体
+      class ModifySyncCompareTaskResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6329,6 +6718,42 @@ module TencentCloud
         end
       end
 
+      # StartSyncCompare请求参数结构体
+      class StartSyncCompareRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # @type CompareTaskId: String
+
+        attr_accessor :JobId, :CompareTaskId
+
+        def initialize(jobid=nil, comparetaskid=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+        end
+      end
+
+      # StartSyncCompare返回参数结构体
+      class StartSyncCompareResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartSyncJob请求参数结构体
       class StartSyncJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 同步任务id，可通过[DescribeSyncJobs](https://cloud.tencent.com/document/product/571/82103)接口获取。
@@ -6573,6 +6998,46 @@ module TencentCloud
 
       # StopMigrateJob返回参数结构体
       class StopMigrateJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopSyncCompare请求参数结构体
+      class StopSyncCompareRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 Id
+        # @type JobId: String
+        # @param CompareTaskId: 对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9
+        # @type CompareTaskId: String
+        # @param ForceStop: 是否强制停止。如果填true，迁移任务增量阶段会跳过一致性校验产生的binlog，达到快速恢复任务的效果
+        # @type ForceStop: Boolean
+
+        attr_accessor :JobId, :CompareTaskId, :ForceStop
+
+        def initialize(jobid=nil, comparetaskid=nil, forcestop=nil)
+          @JobId = jobid
+          @CompareTaskId = comparetaskid
+          @ForceStop = forcestop
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @CompareTaskId = params['CompareTaskId']
+          @ForceStop = params['ForceStop']
+        end
+      end
+
+      # StopSyncCompare返回参数结构体
+      class StopSyncCompareResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

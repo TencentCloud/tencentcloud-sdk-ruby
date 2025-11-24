@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 9
-        deprecate :Idcard=, :none, 2025, 9
+        deprecate :Idcard, :none, 2025, 11
+        deprecate :Idcard=, :none, 2025, 11
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -764,13 +764,15 @@ module TencentCloud
         # 视频分辨率建议为480x640（最大支持720p），帧率在25fps~30fps之间。
         # 请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。
 
-        # 示例值：/9j/4AAQSkZJRg.....s97n//2Q==
+        # 若您未使用Encryption进行加密传输，则本字段为必填参数。
         # @type FaceInput: String
         # @param FaceInputType: 传入的类型。
         # - 取值范围：
         # 1：传入的是图片类型。
         # 2：传入的是视频类型。
         # 其他：返回错误码InvalidParameter。
+
+        # 若您未使用Encryption进行加密传输，则本字段为必填参数。
         # @type FaceInputType: Integer
         # @param Encryption: 是否需要对请求信息进行全包体加密。
         # - 支持的加密算法:AES-256-CBC、SM4-GCM。
@@ -1220,7 +1222,7 @@ module TencentCloud
         # @type Comparemsg: String
         # @param Sim: 本次流程活体一比一的分数。
         # - 取值范围 [0.00, 100.00]。
-        # - 相似度大于等于70时才判断为同一人，也可根据具体场景自行调整阈值。
+        # - 相似度大于等于70时才判断为同一人，阈值不支持自定义。
         # - 阈值70的误通过率为千分之一，阈值80的误通过率是万分之一。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Sim: String
@@ -1284,10 +1286,21 @@ module TencentCloud
         # @param VisaNum: 港澳台居住证签发次数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VisaNum: String
+        # @param LivenessActionSequence: 活体检测的动作顺序，多动作以“,”分隔。
+        # 输出格式如：“1,2”表示“张嘴+眨眼”。
+        # - 详细序列值含义如下：
+        #    1：张嘴
+        # 2：眨眼
+        # 3：点头
+        # 4：摇头
+        # 5：静默
+        # 注：仅浮层H5产品返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LivenessActionSequence: String
 
-        attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :LivenessInfoTag, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum
+        attr_accessor :ErrCode, :ErrMsg, :IdCard, :UseIDType, :Name, :OcrNation, :OcrAddress, :OcrBirth, :OcrAuthority, :OcrValidDate, :OcrName, :OcrIdCard, :OcrGender, :IdInfoFrom, :LiveStatus, :LiveMsg, :Comparestatus, :Comparemsg, :Sim, :Location, :Extra, :LivenessDetail, :LivenessInfoTag, :Mobile, :CompareLibType, :LivenessMode, :NFCRequestIds, :NFCBillingCounts, :PassNo, :VisaNum, :LivenessActionSequence
 
-        def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, livenessinfotag=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil)
+        def initialize(errcode=nil, errmsg=nil, idcard=nil, useidtype=nil, name=nil, ocrnation=nil, ocraddress=nil, ocrbirth=nil, ocrauthority=nil, ocrvaliddate=nil, ocrname=nil, ocridcard=nil, ocrgender=nil, idinfofrom=nil, livestatus=nil, livemsg=nil, comparestatus=nil, comparemsg=nil, sim=nil, location=nil, extra=nil, livenessdetail=nil, livenessinfotag=nil, mobile=nil, comparelibtype=nil, livenessmode=nil, nfcrequestids=nil, nfcbillingcounts=nil, passno=nil, visanum=nil, livenessactionsequence=nil)
           @ErrCode = errcode
           @ErrMsg = errmsg
           @IdCard = idcard
@@ -1318,6 +1331,7 @@ module TencentCloud
           @NFCBillingCounts = nfcbillingcounts
           @PassNo = passno
           @VisaNum = visanum
+          @LivenessActionSequence = livenessactionsequence
         end
 
         def deserialize(params)
@@ -1358,6 +1372,7 @@ module TencentCloud
           @NFCBillingCounts = params['NFCBillingCounts']
           @PassNo = params['PassNo']
           @VisaNum = params['VisaNum']
+          @LivenessActionSequence = params['LivenessActionSequence']
         end
       end
 
@@ -2968,7 +2983,7 @@ module TencentCloud
 
       # 意愿核身（点头确认模式）配置
       class IntentionActionConfig < TencentCloud::Common::AbstractModel
-        # @param Text: 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为150个字符。
+        # @param Text: 点头确认模式下，系统语音播报使用的问题文本，问题最大长度为250个字符。
         # @type Text: String
 
         attr_accessor :Text
@@ -3062,7 +3077,7 @@ module TencentCloud
       # 意愿核身过程中播报的问题文本、用户回答的标准文本。
       class IntentionQuestion < TencentCloud::Common::AbstractModel
         # @param Question: 当选择语音问答模式时，系统自动播报的问题文本。
-        # - 最大长度为150个字符。
+        # - 最大长度为250个字符。
         # @type Question: String
         # @param Answers: 当选择语音问答模式时，用于判断用户回答是否通过的标准答案列表。
         # - 传入后可自动判断用户回答文本是否在标准文本列表中。
@@ -3195,8 +3210,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 9
-        deprecate :AsrResultSimilarity=, :none, 2025, 9
+        deprecate :AsrResultSimilarity, :none, 2025, 11
+        deprecate :AsrResultSimilarity=, :none, 2025, 11
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo
@@ -3426,75 +3441,6 @@ module TencentCloud
         def deserialize(params)
           @BestFrameBase64 = params['BestFrameBase64']
           @Sim = params['Sim']
-          @Result = params['Result']
-          @Description = params['Description']
-          @BestFrameList = params['BestFrameList']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # Liveness请求参数结构体
-      class LivenessRequest < TencentCloud::Common::AbstractModel
-        # @param VideoBase64: 用于活体检测的视频，视频的BASE64值；
-        # BASE64编码后的大小不超过8M，支持mp4、avi、flv格式。
-        # @type VideoBase64: String
-        # @param LivenessType: 活体检测类型，取值：LIP/ACTION/SILENT。
-        # LIP为数字模式，ACTION为动作模式，SILENT为静默模式，三种模式选择一种传入。
-        # @type LivenessType: String
-        # @param ValidateData: 数字模式传参：数字验证码(1234)，需先调用接口获取数字验证码；
-        # 动作模式传参：传动作顺序(2,1 or 1,2)，需先调用接口获取动作顺序；
-        # 静默模式传参：不需要传递此参数。
-        # @type ValidateData: String
-        # @param Optional: 额外配置，传入JSON字符串。
-        # {
-        # "BestFrameNum": 2  //需要返回多张最佳截图，取值范围1-10
-        # }
-        # @type Optional: String
-
-        attr_accessor :VideoBase64, :LivenessType, :ValidateData, :Optional
-
-        def initialize(videobase64=nil, livenesstype=nil, validatedata=nil, optional=nil)
-          @VideoBase64 = videobase64
-          @LivenessType = livenesstype
-          @ValidateData = validatedata
-          @Optional = optional
-        end
-
-        def deserialize(params)
-          @VideoBase64 = params['VideoBase64']
-          @LivenessType = params['LivenessType']
-          @ValidateData = params['ValidateData']
-          @Optional = params['Optional']
-        end
-      end
-
-      # Liveness返回参数结构体
-      class LivenessResponse < TencentCloud::Common::AbstractModel
-        # @param BestFrameBase64: 验证通过后的视频最佳截图照片，照片为BASE64编码后的值，jpg格式。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BestFrameBase64: String
-        # @param Result: 业务错误码，成功情况返回Success, 错误情况请参考下方错误码 列表中FailedOperation部分
-        # @type Result: String
-        # @param Description: 业务结果描述。
-        # @type Description: String
-        # @param BestFrameList: 最佳最佳截图列表，仅在配置了返回多张最佳截图时有效。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type BestFrameList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :BestFrameBase64, :Result, :Description, :BestFrameList, :RequestId
-
-        def initialize(bestframebase64=nil, result=nil, description=nil, bestframelist=nil, requestid=nil)
-          @BestFrameBase64 = bestframebase64
-          @Result = result
-          @Description = description
-          @BestFrameList = bestframelist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @BestFrameBase64 = params['BestFrameBase64']
           @Result = params['Result']
           @Description = params['Description']
           @BestFrameList = params['BestFrameList']

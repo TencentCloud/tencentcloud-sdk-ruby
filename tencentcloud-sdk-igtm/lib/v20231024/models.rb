@@ -334,16 +334,20 @@ module TencentCloud
 
       # CreateInstance返回参数结构体
       class CreateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :InstanceId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(instanceid=nil, requestid=nil)
+          @InstanceId = instanceid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           @RequestId = params['RequestId']
         end
       end
@@ -881,19 +885,23 @@ module TencentCloud
 
       # DescribeDetectTaskPackageList请求参数结构体
       class DescribeDetectTaskPackageListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
         # @param Limit: 每页条数
         # @type Limit: Integer
         # @param Filters: 探测任务过滤条件：ResourceId 探测任务的资源id，PeriodStart 最小过期时间,PeriodEnd 最大过期时间
         # @type Filters: Array
 
-        attr_accessor :Limit, :Filters
+        attr_accessor :Offset, :Limit, :Filters
 
-        def initialize(limit=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
           @Limit = limit
           @Filters = filters
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
@@ -1020,12 +1028,17 @@ module TencentCloud
 
       # DescribeInstanceDetail请求参数结构体
       class DescribeInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
 
+        attr_accessor :InstanceId
 
-        def initialize()
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -1120,6 +1133,8 @@ module TencentCloud
 
       # DescribeInstancePackageList请求参数结构体
       class DescribeInstancePackageListRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量
+        # @type Offset: Integer
         # @param Limit: 每页条数
         # @type Limit: Integer
         # @param Filters: InstanceId实例Id，InstanceName实例名称，ResourceId套餐Id，PackageType套餐类型
@@ -1127,15 +1142,17 @@ module TencentCloud
         # @param IsUsed: 是否使用：0未使用1已使用
         # @type IsUsed: Integer
 
-        attr_accessor :Limit, :Filters, :IsUsed
+        attr_accessor :Offset, :Limit, :Filters, :IsUsed
 
-        def initialize(limit=nil, filters=nil, isused=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, isused=nil)
+          @Offset = offset
           @Limit = limit
           @Filters = filters
           @IsUsed = isused
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
           @Limit = params['Limit']
           unless params['Filters'].nil?
             @Filters = []
@@ -1225,20 +1242,31 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页，当前分页记录数
         # @type Limit: Integer
+        # @param Filters: 查询过滤条件：MonitorName：监控器名称；MonitorId：监控器id
+        # @type Filters: Array
         # @param IsDetectNum: 是否查探测次数0否1是
         # @type IsDetectNum: Integer
 
-        attr_accessor :Offset, :Limit, :IsDetectNum
+        attr_accessor :Offset, :Limit, :Filters, :IsDetectNum
 
-        def initialize(offset=nil, limit=nil, isdetectnum=nil)
+        def initialize(offset=nil, limit=nil, filters=nil, isdetectnum=nil)
           @Offset = offset
           @Limit = limit
+          @Filters = filters
           @IsDetectNum = isdetectnum
         end
 
         def deserialize(params)
           @Offset = params['Offset']
           @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              resourcefilter_tmp = ResourceFilter.new
+              resourcefilter_tmp.deserialize(i)
+              @Filters << resourcefilter_tmp
+            end
+          end
           @IsDetectNum = params['IsDetectNum']
         end
       end
@@ -2029,16 +2057,20 @@ module TencentCloud
 
       # ModifyInstanceConfig请求参数结构体
       class ModifyInstanceConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
         # @param InstanceConfig: 实例配置详情
         # @type InstanceConfig: :class:`Tencentcloud::Igtm.v20231024.models.InstanceConfig`
 
-        attr_accessor :InstanceConfig
+        attr_accessor :InstanceId, :InstanceConfig
 
-        def initialize(instanceconfig=nil)
+        def initialize(instanceid=nil, instanceconfig=nil)
+          @InstanceId = instanceid
           @InstanceConfig = instanceconfig
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
           unless params['InstanceConfig'].nil?
             @InstanceConfig = InstanceConfig.new
             @InstanceConfig.deserialize(params['InstanceConfig'])

@@ -346,6 +346,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建数据对比任务，创建成功后会返回数据对比任务 ID，形如：sync-8yv4w2i1-cmp-37skmii9，创建成功后可通过StartSyncCompare启动一致性校验任务
+
+        # @param request: Request instance for CreateSyncCompareTask.
+        # @type request: :class:`Tencentcloud::dts::V20211206::CreateSyncCompareTaskRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::CreateSyncCompareTaskResponse`
+        def CreateSyncCompareTask(request)
+          body = send_request('CreateSyncCompareTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSyncCompareTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建一个同步任务
 
         # @param request: Request instance for CreateSyncJob.
@@ -404,6 +428,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteConsumerGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除一致性校验任务。当一致性校验任务状态为success、failed、canceled 时可以执行此操作。
+
+        # @param request: Request instance for DeleteSyncCompareTask.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DeleteSyncCompareTaskRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DeleteSyncCompareTaskResponse`
+        def DeleteSyncCompareTask(request)
+          body = send_request('DeleteSyncCompareTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSyncCompareTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -746,6 +794,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSubscribeReturnableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询一致性校验任务详情
+
+        # @param request: Request instance for DescribeSyncCompareReport.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareReportRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareReportResponse`
+        def DescribeSyncCompareReport(request)
+          body = send_request('DescribeSyncCompareReport', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSyncCompareReportResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询一致性校验任务列表。通过该接口可查看改任务下所有一致性校验任务。
+
+        # @param request: Request instance for DescribeSyncCompareTasks.
+        # @type request: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareTasksRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::DescribeSyncCompareTasksResponse`
+        def DescribeSyncCompareTasks(request)
+          body = send_request('DescribeSyncCompareTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSyncCompareTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1202,6 +1298,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifySubscribeObjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
+
+        # @param request: Request instance for ModifySyncCompareTask.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifySyncCompareTaskRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifySyncCompareTaskResponse`
+        def ModifySyncCompareTask(request)
+          body = send_request('ModifySyncCompareTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySyncCompareTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改同步一致性校验任务名称
+
+        # @param request: Request instance for ModifySyncCompareTaskName.
+        # @type request: :class:`Tencentcloud::dts::V20211206::ModifySyncCompareTaskNameRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::ModifySyncCompareTaskNameResponse`
+        def ModifySyncCompareTaskName(request)
+          body = send_request('ModifySyncCompareTaskName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySyncCompareTaskNameResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1674,6 +1818,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 启动一致性校验任务，启动之前需要先通过接口`CreateSyncCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeSyncCompareTasks` 查询一致性校验任务列表来获得启动后的状态
+
+        # @param request: Request instance for StartSyncCompare.
+        # @type request: :class:`Tencentcloud::dts::V20211206::StartSyncCompareRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::StartSyncCompareResponse`
+        def StartSyncCompare(request)
+          body = send_request('StartSyncCompare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartSyncCompareResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启动同步任务
 
         # @param request: Request instance for StartSyncJob.
@@ -1733,6 +1901,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopMigrateJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 终止一致性校验任务
+
+        # @param request: Request instance for StopSyncCompare.
+        # @type request: :class:`Tencentcloud::dts::V20211206::StopSyncCompareRequest`
+        # @rtype: :class:`Tencentcloud::dts::V20211206::StopSyncCompareResponse`
+        def StopSyncCompare(request)
+          body = send_request('StopSyncCompare', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopSyncCompareResponse.new
             model.deserialize(response['Response'])
             model
           else

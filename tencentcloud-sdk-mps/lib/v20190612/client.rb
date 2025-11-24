@@ -246,6 +246,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户自定义数字水印模板，数量上限：1000。
+
+        # @param request: Request instance for CreateBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateBlindWatermarkTemplateResponse`
+        def CreateBlindWatermarkTemplate(request)
+          body = send_request('CreateBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlindWatermarkTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义内容审核模板，数量上限：50。
 
         # @param request: Request instance for CreateContentReviewTemplate.
@@ -355,6 +379,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreatePersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建图片处理模板
+
+        # @param request: Request instance for CreateProcessImageTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateProcessImageTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateProcessImageTemplateResponse`
+        def CreateProcessImageTemplate(request)
+          body = send_request('CreateProcessImageTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProcessImageTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -925,6 +973,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除用户自定义数字水印模板。
+
+        # @param request: Request instance for DeleteBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteBlindWatermarkTemplateResponse`
+        def DeleteBlindWatermarkTemplate(request)
+          body = send_request('DeleteBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBlindWatermarkTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义内容审核模板。
 
         # @param request: Request instance for DeleteContentReviewTemplate.
@@ -1007,6 +1079,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除图片处理模板
+
+        # @param request: Request instance for DeleteProcessImageTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DeleteProcessImageTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DeleteProcessImageTemplateResponse`
+        def DeleteProcessImageTemplate(request)
+          body = send_request('DeleteProcessImageTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProcessImageTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1525,6 +1621,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户自定义数字水印模板，支持根据条件，分页查询。
+
+        # @param request: Request instance for DescribeBlindWatermarkTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeBlindWatermarkTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeBlindWatermarkTemplatesResponse`
+        def DescribeBlindWatermarkTemplates(request)
+          body = send_request('DescribeBlindWatermarkTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlindWatermarkTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据智能审核模板唯一标识，获取智能审核模板详情列表。返回结果包含符合条件的所有用户自定义模板及系统预置智能审核模板。
 
         # @param request: Request instance for DescribeContentReviewTemplates.
@@ -1679,6 +1799,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePersonSamplesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询图片处理模板列表。
+
+        # @param request: Request instance for DescribeProcessImageTemplates.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeProcessImageTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeProcessImageTemplatesResponse`
+        def DescribeProcessImageTemplates(request)
+          body = send_request('DescribeProcessImageTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProcessImageTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2523,6 +2667,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于发起提取视频数字水印任务，提取结果可以通过DescribeTaskDetail查询。
+
+        # @param request: Request instance for ExtractBlindWatermark.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ExtractBlindWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ExtractBlindWatermarkResponse`
+        def ExtractBlindWatermark(request)
+          body = send_request('ExtractBlindWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractBlindWatermarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对已发起的任务进行管理。
 
         # @param request: Request instance for ManageTask.
@@ -2669,6 +2837,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户自定义数字水印模板，数字水印类型不允许修改。
+
+        # @param request: Request instance for ModifyBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyBlindWatermarkTemplateResponse`
+        def ModifyBlindWatermarkTemplate(request)
+          body = send_request('ModifyBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlindWatermarkTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改用户自定义内容审核模板。
 
         # @param request: Request instance for ModifyContentReviewTemplate.
@@ -2751,6 +2943,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPersonSampleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改图片处理模板。
+
+        # @param request: Request instance for ModifyProcessImageTemplate.
+        # @type request: :class:`Tencentcloud::mps::V20190612::ModifyProcessImageTemplateRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::ModifyProcessImageTemplateResponse`
+        def ModifyProcessImageTemplate(request)
+          body = send_request('ModifyProcessImageTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProcessImageTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
