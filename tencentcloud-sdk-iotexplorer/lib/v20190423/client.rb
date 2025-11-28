@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于绑定一个产品和智能体。
+
+        # @param request: Request instance for BindTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::BindTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::BindTWeTalkAIBotResponse`
+        def BindTWeTalkAIBot(request)
+          body = send_request('BindTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BindTWeTalkAIBotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供给用户异步调用设备行为的能力
 
         # @param request: Request instance for CallDeviceActionAsync.
@@ -847,6 +871,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于新增TWeTalk智能体。
+
+        # @param request: Request instance for CreateTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateTWeTalkAIBotResponse`
+        def CreateTWeTalkAIBot(request)
+          body = send_request('CreateTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTWeTalkAIBotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于配置TWeTalk服务连接产品配置信息。
 
         # @param request: Request instance for CreateTWeTalkProductConfig.
@@ -1193,6 +1241,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteStudioProductResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于删除TWeTalk智能体。
+
+        # @param request: Request instance for DeleteTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DeleteTWeTalkAIBotResponse`
+        def DeleteTWeTalkAIBot(request)
+          body = send_request('DeleteTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTWeTalkAIBotResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2623,6 +2695,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于查询TWeTalk智能体详情。
+
+        # @param request: Request instance for DescribeTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::DescribeTWeTalkAIBotResponse`
+        def DescribeTWeTalkAIBot(request)
+          body = send_request('DescribeTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTWeTalkAIBotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于获取TWeTalk服务连接产品配置信息。
 
         # @param request: Request instance for DescribeTWeTalkProductConfig.
@@ -3233,6 +3329,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetTWeCallActiveStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于查询TWeTalk智能体列表。
+
+        # @param request: Request instance for GetTWeTalkAIBotList.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkAIBotListRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::GetTWeTalkAIBotListResponse`
+        def GetTWeTalkAIBotList(request)
+          body = send_request('GetTWeTalkAIBotList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetTWeTalkAIBotListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3967,6 +4087,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于修改TWeTalk智能体。
+
+        # @param request: Request instance for ModifyTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::ModifyTWeTalkAIBotResponse`
+        def ModifyTWeTalkAIBot(request)
+          body = send_request('ModifyTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTWeTalkAIBotResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于修改TWeTalk服务连接产品配置信息。
 
         # @param request: Request instance for ModifyTWeTalkProductConfig.
@@ -4509,6 +4653,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnbindProductsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于解除一个产品和智能体的绑定。
+
+        # @param request: Request instance for UnbindTWeTalkAIBot.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::UnbindTWeTalkAIBotRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::UnbindTWeTalkAIBotResponse`
+        def UnbindTWeTalkAIBot(request)
+          body = send_request('UnbindTWeTalkAIBot', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnbindTWeTalkAIBotResponse.new
             model.deserialize(response['Response'])
             model
           else

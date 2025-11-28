@@ -2311,84 +2311,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
-
-        # 用于查询RocketMQ平滑迁移任务列表
-
-        # @param request: Request instance for DescribeRocketMQSmoothMigrationTaskList.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskListRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSmoothMigrationTaskListResponse`
-        def DescribeRocketMQSmoothMigrationTaskList(request)
-          body = send_request('DescribeRocketMQSmoothMigrationTaskList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRocketMQSmoothMigrationTaskListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
-
-        # 平滑迁移过程获取源集群group列表接口
-
-        # @param request: Request instance for DescribeRocketMQSourceClusterGroupList.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterGroupListRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterGroupListResponse`
-        def DescribeRocketMQSourceClusterGroupList(request)
-          body = send_request('DescribeRocketMQSourceClusterGroupList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRocketMQSourceClusterGroupListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 平滑迁移相关接口已迁移至trocket产品下，该接口已废弃
-
-        # 平滑迁移过程获取源集群topic列表接口
-
-        # @param request: Request instance for DescribeRocketMQSourceClusterTopicList.
-        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterTopicListRequest`
-        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQSourceClusterTopicListResponse`
-        def DescribeRocketMQSourceClusterTopicList(request)
-          body = send_request('DescribeRocketMQSourceClusterTopicList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeRocketMQSourceClusterTopicListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 用于获取RocketMQ消费组订阅关系数据
 
         # @param request: Request instance for DescribeRocketMQSubscriptions.
@@ -2423,6 +2345,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeRocketMQTopUsagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取RocketMQ主题详情
+
+        # @param request: Request instance for DescribeRocketMQTopic.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicRequest`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQTopicResponse`
+        def DescribeRocketMQTopic(request)
+          body = send_request('DescribeRocketMQTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRocketMQTopicResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -456,12 +456,14 @@ module TencentCloud
         # @type RenewFlag: Integer
         # @param Manufacturer: 厂商
         # @type Manufacturer: String
+        # @param PqcFlag: 0-关闭，1-开启
+        # @type PqcFlag: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :RequestId
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :SgList, :SubnetName, :RegionName, :ZoneName, :Expired, :RemainSeconds, :VpcName, :VpcCidrBlock, :SubnetCidrBlock, :Tags, :RenewFlag, :Manufacturer, :PqcFlag, :RequestId
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, requestid=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, sglist=nil, subnetname=nil, regionname=nil, zonename=nil, expired=nil, remainseconds=nil, vpcname=nil, vpccidrblock=nil, subnetcidrblock=nil, tags=nil, renewflag=nil, manufacturer=nil, pqcflag=nil, requestid=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -485,6 +487,7 @@ module TencentCloud
           @Tags = tags
           @RenewFlag = renewflag
           @Manufacturer = manufacturer
+          @PqcFlag = pqcflag
           @RequestId = requestid
         end
 
@@ -526,6 +529,7 @@ module TencentCloud
           end
           @RenewFlag = params['RenewFlag']
           @Manufacturer = params['Manufacturer']
+          @PqcFlag = params['PqcFlag']
           @RequestId = params['RequestId']
         end
       end
@@ -971,10 +975,16 @@ module TencentCloud
         # @type Manufacturer: String
         # @param AlarmStatus: 告警状态，0：停用，1：启用
         # @type AlarmStatus: Integer
+        # @param PqcStatus: 0不支持
+        # 1关闭
+        # 2开启
+        # @type PqcStatus: Integer
+        # @param PqcFlag: 0关闭，1开启
+        # @type PqcFlag: Integer
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -998,6 +1008,8 @@ module TencentCloud
           @Tags = tags
           @Manufacturer = manufacturer
           @AlarmStatus = alarmstatus
+          @PqcStatus = pqcstatus
+          @PqcFlag = pqcflag
         end
 
         def deserialize(params)
@@ -1038,6 +1050,8 @@ module TencentCloud
           end
           @Manufacturer = params['Manufacturer']
           @AlarmStatus = params['AlarmStatus']
+          @PqcStatus = params['PqcStatus']
+          @PqcFlag = params['PqcFlag']
         end
       end
 

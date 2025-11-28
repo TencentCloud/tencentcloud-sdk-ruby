@@ -1681,10 +1681,12 @@ module TencentCloud
         # @type AvailableTime: Array
         # @param AIAgentId: 智能体 ID，不填写时需要填写 IvrId
         # @type AIAgentId: Integer
+        # @param RetryInterval: 任务失败重试时间间隔，重试间隔 600秒～86400 秒
+        # @type RetryInterval: Integer
 
-        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime, :AIAgentId
+        attr_accessor :SdkAppId, :NotBefore, :Callees, :Callers, :IvrId, :Name, :Description, :NotAfter, :Tries, :Variables, :UUI, :CalleeAttributes, :TimeZone, :AvailableTime, :AIAgentId, :RetryInterval
 
-        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil, aiagentid=nil)
+        def initialize(sdkappid=nil, notbefore=nil, callees=nil, callers=nil, ivrid=nil, name=nil, description=nil, notafter=nil, tries=nil, variables=nil, uui=nil, calleeattributes=nil, timezone=nil, availabletime=nil, aiagentid=nil, retryinterval=nil)
           @SdkAppId = sdkappid
           @NotBefore = notbefore
           @Callees = callees
@@ -1700,6 +1702,7 @@ module TencentCloud
           @TimeZone = timezone
           @AvailableTime = availabletime
           @AIAgentId = aiagentid
+          @RetryInterval = retryinterval
         end
 
         def deserialize(params)
@@ -1739,6 +1742,7 @@ module TencentCloud
             end
           end
           @AIAgentId = params['AIAgentId']
+          @RetryInterval = params['RetryInterval']
         end
       end
 

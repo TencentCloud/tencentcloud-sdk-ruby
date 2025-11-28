@@ -3990,6 +3990,15 @@ module TencentCloud
         # @param Zone: 可用区
         # @type Zone: String
         # @param Status: 实例状态
+        # creating：创建中
+        # running：运行中
+        # isolating：隔离中
+        # isolated：已隔离
+        # activating：解隔离中
+        # offlining：下线中
+        # offlined：已下线
+        # deleting：删除中
+        # deleted：已删除
         # @type Status: String
         # @param StatusDesc: 实例状态中文描述
         # @type StatusDesc: String
@@ -8790,7 +8799,7 @@ module TencentCloud
         # @type StandbyClusterRegion: String
         # @param StandbyClusterId: 从集群ID
         # @type StandbyClusterId: String
-        # @param StandbyClusterName: 从集群别名
+        # @param StandbyClusterName: 从集群名称
         # @type StandbyClusterName: String
 
         attr_accessor :GdnId, :GdnName, :PrimaryClusterId, :PrimaryClusterRegion, :StandbyClusterRegion, :StandbyClusterId, :StandbyClusterName
@@ -13485,6 +13494,9 @@ module TencentCloud
         # @type Operator: String
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
+        extend Gem::Deprecate
+        deprecate :Operator, :none, 2025, 11
+        deprecate :Operator=, :none, 2025, 11
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values
@@ -15621,16 +15633,25 @@ module TencentCloud
         # @type UnitPriceDiscount: Integer
         # @param ChargeUnit: 计费价格单位
         # @type ChargeUnit: String
+        # @param UnitPriceHighPrecision: 高精度下不包含优惠价格
+        # @type UnitPriceHighPrecision: String
+        # @param UnitPriceDiscountHighPrecision: 高精度下优惠后价格
+        # @type UnitPriceDiscountHighPrecision: String
+        # @param AmountUnit: 货币单位
+        # @type AmountUnit: String
 
-        attr_accessor :TotalPrice, :Discount, :TotalPriceDiscount, :UnitPrice, :UnitPriceDiscount, :ChargeUnit
+        attr_accessor :TotalPrice, :Discount, :TotalPriceDiscount, :UnitPrice, :UnitPriceDiscount, :ChargeUnit, :UnitPriceHighPrecision, :UnitPriceDiscountHighPrecision, :AmountUnit
 
-        def initialize(totalprice=nil, discount=nil, totalpricediscount=nil, unitprice=nil, unitpricediscount=nil, chargeunit=nil)
+        def initialize(totalprice=nil, discount=nil, totalpricediscount=nil, unitprice=nil, unitpricediscount=nil, chargeunit=nil, unitpricehighprecision=nil, unitpricediscounthighprecision=nil, amountunit=nil)
           @TotalPrice = totalprice
           @Discount = discount
           @TotalPriceDiscount = totalpricediscount
           @UnitPrice = unitprice
           @UnitPriceDiscount = unitpricediscount
           @ChargeUnit = chargeunit
+          @UnitPriceHighPrecision = unitpricehighprecision
+          @UnitPriceDiscountHighPrecision = unitpricediscounthighprecision
+          @AmountUnit = amountunit
         end
 
         def deserialize(params)
@@ -15640,6 +15661,9 @@ module TencentCloud
           @UnitPrice = params['UnitPrice']
           @UnitPriceDiscount = params['UnitPriceDiscount']
           @ChargeUnit = params['ChargeUnit']
+          @UnitPriceHighPrecision = params['UnitPriceHighPrecision']
+          @UnitPriceDiscountHighPrecision = params['UnitPriceDiscountHighPrecision']
+          @AmountUnit = params['AmountUnit']
         end
       end
 
@@ -15863,10 +15887,14 @@ module TencentCloud
         # @type IsInMaintainPeriod: String
         # @param ProxyZones: 数据库代理节点信息
         # @type ProxyZones: Array
+        # @param IsRollUpgrade: 是否滚动升级
+        # @type IsRollUpgrade: String
+        # @param RollUpgradeWaitingTime: 滚动升级等待时间，单位：秒
+        # @type RollUpgradeWaitingTime: Integer
 
-        attr_accessor :ClusterId, :Cpu, :Mem, :ProxyCount, :ProxyGroupId, :ReloadBalance, :IsInMaintainPeriod, :ProxyZones
+        attr_accessor :ClusterId, :Cpu, :Mem, :ProxyCount, :ProxyGroupId, :ReloadBalance, :IsInMaintainPeriod, :ProxyZones, :IsRollUpgrade, :RollUpgradeWaitingTime
 
-        def initialize(clusterid=nil, cpu=nil, mem=nil, proxycount=nil, proxygroupid=nil, reloadbalance=nil, isinmaintainperiod=nil, proxyzones=nil)
+        def initialize(clusterid=nil, cpu=nil, mem=nil, proxycount=nil, proxygroupid=nil, reloadbalance=nil, isinmaintainperiod=nil, proxyzones=nil, isrollupgrade=nil, rollupgradewaitingtime=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Mem = mem
@@ -15875,6 +15903,8 @@ module TencentCloud
           @ReloadBalance = reloadbalance
           @IsInMaintainPeriod = isinmaintainperiod
           @ProxyZones = proxyzones
+          @IsRollUpgrade = isrollupgrade
+          @RollUpgradeWaitingTime = rollupgradewaitingtime
         end
 
         def deserialize(params)
@@ -15893,6 +15923,8 @@ module TencentCloud
               @ProxyZones << proxyzone_tmp
             end
           end
+          @IsRollUpgrade = params['IsRollUpgrade']
+          @RollUpgradeWaitingTime = params['RollUpgradeWaitingTime']
         end
       end
 

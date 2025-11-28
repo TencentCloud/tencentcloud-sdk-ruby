@@ -125,6 +125,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 添加一键bypass能力支持,直接添加APPID
+
+        # @param request: Request instance for AddBypassAllRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::AddBypassAllRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::AddBypassAllRuleResponse`
+        def AddBypassAllRule(request)
+          body = send_request('AddBypassAllRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddBypassAllRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 增加访问控制（自定义策略）
 
         # @param request: Request instance for AddCustomRule.
@@ -4352,6 +4376,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询该用户是否被加入了全局的bypass列表
+
+        # @param request: Request instance for QueryBypassAllStatus.
+        # @type request: :class:`Tencentcloud::waf::V20180125::QueryBypassAllStatusRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::QueryBypassAllStatusResponse`
+        def QueryBypassAllStatus(request)
+          body = send_request('QueryBypassAllStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryBypassAllStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 刷新接入检查的结果，后台会生成接入检查任务
 
         # @param request: Request instance for RefreshAccessCheckResult.
@@ -4362,6 +4410,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RefreshAccessCheckResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除一键bypass规则
+
+        # @param request: Request instance for RemoveBypassAllRule.
+        # @type request: :class:`Tencentcloud::waf::V20180125::RemoveBypassAllRuleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::RemoveBypassAllRuleResponse`
+        def RemoveBypassAllRule(request)
+          body = send_request('RemoveBypassAllRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RemoveBypassAllRuleResponse.new
             model.deserialize(response['Response'])
             model
           else

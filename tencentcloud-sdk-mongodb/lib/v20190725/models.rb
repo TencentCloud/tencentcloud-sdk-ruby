@@ -5615,7 +5615,7 @@ module TencentCloud
 
       # SetBackupRules请求参数结构体
       class SetBackupRulesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @param InstanceId: 实例id，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
         # @type InstanceId: String
         # @param BackupMethod: 备份方式。
         # - 0：逻辑备份。
@@ -5627,29 +5627,61 @@ module TencentCloud
         # @type BackupMethod: Integer
         # @param BackupTime: 设置自动备份开始时间。取值范围为：[0,23]，例如：该参数设置为2，表示02:00开始备份。
         # @type BackupTime: Integer
+        # @param BackupFrequency: 自动备份频率，内部展示，默认取值为24h。
+        # @type BackupFrequency: Integer
         # @param Notify: 设置自动备份发生错误时，是否发送失败告警。
         # - true：发送。
         # - false：不发送。
         # @type Notify: Boolean
         # @param BackupRetentionPeriod: 指定备份数据保存天数。默认为 7 天，支持设置为7、30、90、180、365。
         # @type BackupRetentionPeriod: Integer
+        # @param ActiveWeekdays: 周几备份，0-6，逗号分割。仅对高级备份生效
+        # @type ActiveWeekdays: String
+        # @param LongTermUnit: 长期保留周期，周weekly，月monthly，空不开启
+        # @type LongTermUnit: String
+        # @param LongTermActiveDays: 长期保留哪些天的，周0-6，月1-31，逗号分割
+        # @type LongTermActiveDays: String
+        # @param LongTermExpiredDays: 长期备份保留多少天
+        # @type LongTermExpiredDays: Integer
+        # @param OplogExpiredDays: 增量保留多少天
+        # @type OplogExpiredDays: Integer
+        # @param BackupVersion: 备份版本。旧版本备份为0，高级备份为1。开启高级备份此值传1
+        # @type BackupVersion: Integer
+        # @param AlarmWaterLevel: 告警额度。50-300
+        # @type AlarmWaterLevel: Integer
 
-        attr_accessor :InstanceId, :BackupMethod, :BackupTime, :Notify, :BackupRetentionPeriod
+        attr_accessor :InstanceId, :BackupMethod, :BackupTime, :BackupFrequency, :Notify, :BackupRetentionPeriod, :ActiveWeekdays, :LongTermUnit, :LongTermActiveDays, :LongTermExpiredDays, :OplogExpiredDays, :BackupVersion, :AlarmWaterLevel
 
-        def initialize(instanceid=nil, backupmethod=nil, backuptime=nil, notify=nil, backupretentionperiod=nil)
+        def initialize(instanceid=nil, backupmethod=nil, backuptime=nil, backupfrequency=nil, notify=nil, backupretentionperiod=nil, activeweekdays=nil, longtermunit=nil, longtermactivedays=nil, longtermexpireddays=nil, oplogexpireddays=nil, backupversion=nil, alarmwaterlevel=nil)
           @InstanceId = instanceid
           @BackupMethod = backupmethod
           @BackupTime = backuptime
+          @BackupFrequency = backupfrequency
           @Notify = notify
           @BackupRetentionPeriod = backupretentionperiod
+          @ActiveWeekdays = activeweekdays
+          @LongTermUnit = longtermunit
+          @LongTermActiveDays = longtermactivedays
+          @LongTermExpiredDays = longtermexpireddays
+          @OplogExpiredDays = oplogexpireddays
+          @BackupVersion = backupversion
+          @AlarmWaterLevel = alarmwaterlevel
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @BackupMethod = params['BackupMethod']
           @BackupTime = params['BackupTime']
+          @BackupFrequency = params['BackupFrequency']
           @Notify = params['Notify']
           @BackupRetentionPeriod = params['BackupRetentionPeriod']
+          @ActiveWeekdays = params['ActiveWeekdays']
+          @LongTermUnit = params['LongTermUnit']
+          @LongTermActiveDays = params['LongTermActiveDays']
+          @LongTermExpiredDays = params['LongTermExpiredDays']
+          @OplogExpiredDays = params['OplogExpiredDays']
+          @BackupVersion = params['BackupVersion']
+          @AlarmWaterLevel = params['AlarmWaterLevel']
         end
       end
 

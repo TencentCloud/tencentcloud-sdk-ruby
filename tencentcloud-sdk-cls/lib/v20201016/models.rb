@@ -3884,6 +3884,12 @@ module TencentCloud
         # 非0：日志主题开启日志沉降后标准存储的天数，HotPeriod需要大于等于7，且小于Period。
         # 仅在StorageType为 hot 时生效，指标主题不支持该配置。
         # @type HotPeriod: Integer
+        # @param Encryption: 加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。
+        # 0或者不传： 不加密
+        # 1：kms-cls 云产品密钥加密
+
+        # 支持地域：ap-beijing,ap-guangzhou,ap-shanghai,ap-singapore,ap-bangkok,ap-jakarta,eu-frankfurt,ap-seoul,ap-tokyo
+        # @type Encryption: Integer
         # @param BizType: 主题类型
         # - 0:日志主题，默认值
         # - 1:指标主题
@@ -3901,9 +3907,9 @@ module TencentCloud
         # @param IsSourceFrom: 开启记录公网来源ip和服务端接收时间
         # @type IsSourceFrom: Boolean
 
-        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom
+        attr_accessor :LogsetId, :TopicName, :PartitionCount, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :Describes, :HotPeriod, :Encryption, :BizType, :TopicId, :IsWebTracking, :Extends, :IsSourceFrom
 
-        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil)
+        def initialize(logsetid=nil, topicname=nil, partitioncount=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, describes=nil, hotperiod=nil, encryption=nil, biztype=nil, topicid=nil, iswebtracking=nil, extends=nil, issourcefrom=nil)
           @LogsetId = logsetid
           @TopicName = topicname
           @PartitionCount = partitioncount
@@ -3914,6 +3920,7 @@ module TencentCloud
           @Period = period
           @Describes = describes
           @HotPeriod = hotperiod
+          @Encryption = encryption
           @BizType = biztype
           @TopicId = topicid
           @IsWebTracking = iswebtracking
@@ -3939,6 +3946,7 @@ module TencentCloud
           @Period = params['Period']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @Encryption = params['Encryption']
           @BizType = params['BizType']
           @TopicId = params['TopicId']
           @IsWebTracking = params['IsWebTracking']

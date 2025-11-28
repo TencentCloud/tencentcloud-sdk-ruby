@@ -328,15 +328,18 @@ module TencentCloud
         # @type ImageId: String
         # @param ResourceType: 要新增节点的资源类型。<li>CVM：CVM实例类型资源</li><li>WORKSPACE：工作空间类型实例资源</li>默认值：CVM。
         # @type ResourceType: String
+        # @param UserData: 提供给实例使用的用户数据，需要以 base64 方式编码，支持的最大数据大小为 16KB。关于获取此参数的详细介绍，请参阅[Windows](https://cloud.tencent.com/document/product/213/17526)和[Linux](https://cloud.tencent.com/document/product/213/17525)启动时运行命令。
+        # @type UserData: String
 
-        attr_accessor :ClusterId, :ResourceSet, :QueueName, :ImageId, :ResourceType
+        attr_accessor :ClusterId, :ResourceSet, :QueueName, :ImageId, :ResourceType, :UserData
 
-        def initialize(clusterid=nil, resourceset=nil, queuename=nil, imageid=nil, resourcetype=nil)
+        def initialize(clusterid=nil, resourceset=nil, queuename=nil, imageid=nil, resourcetype=nil, userdata=nil)
           @ClusterId = clusterid
           @ResourceSet = resourceset
           @QueueName = queuename
           @ImageId = imageid
           @ResourceType = resourcetype
+          @UserData = userdata
         end
 
         def deserialize(params)
@@ -345,6 +348,7 @@ module TencentCloud
           @QueueName = params['QueueName']
           @ImageId = params['ImageId']
           @ResourceType = params['ResourceType']
+          @UserData = params['UserData']
         end
       end
 

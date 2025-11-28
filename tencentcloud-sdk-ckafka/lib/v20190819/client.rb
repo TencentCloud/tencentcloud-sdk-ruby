@@ -701,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除消费分组订阅的topic(消费分组必须是Empty 状态)
+
+        # @param request: Request instance for DeleteGroupSubscribeTopic.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DeleteGroupSubscribeTopicRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DeleteGroupSubscribeTopicResponse`
+        def DeleteGroupSubscribeTopic(request)
+          body = send_request('DeleteGroupSubscribeTopic', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGroupSubscribeTopicResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除后付费实例，通过调用API删除不会对连接器和任务进行关联预检查，直接进行实例销毁。
 
         # @param request: Request instance for DeleteInstancePost.
@@ -1311,6 +1335,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeInstancesDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例变配类型
+
+        # @param request: Request instance for DescribeModifyType.
+        # @type request: :class:`Tencentcloud::ckafka::V20190819::DescribeModifyTypeRequest`
+        # @rtype: :class:`Tencentcloud::ckafka::V20190819::DescribeModifyTypeResponse`
+        def DescribeModifyType(request)
+          body = send_request('DescribeModifyType', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModifyTypeResponse.new
             model.deserialize(response['Response'])
             model
           else

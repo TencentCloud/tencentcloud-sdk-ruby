@@ -2367,6 +2367,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口返回查询时间范围内每天使用的媒体处理用量信息。
+        #    1. 可以查询最近365天内的媒体处理统计数据。
+        #    2. 查询时间跨度不超过90天。
+
+        # @param request: Request instance for DescribeUsageData.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeUsageDataRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeUsageDataResponse`
+        def DescribeUsageData(request)
+          body = send_request('DescribeUsageData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据任务ID查询视频入库任务的状态。
 
         # @param request: Request instance for DescribeVideoDatabaseEntryTaskDetail.

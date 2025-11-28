@@ -556,6 +556,33 @@ module TencentCloud
         end
       end
 
+      # AddBypassAllRule请求参数结构体
+      class AddBypassAllRuleRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # AddBypassAllRule返回参数结构体
+      class AddBypassAllRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddCustomRule请求参数结构体
       class AddCustomRuleRequest < TencentCloud::Common::AbstractModel
         # @param Name: 规则名称
@@ -17397,6 +17424,37 @@ module TencentCloud
         end
       end
 
+      # QueryBypassAllStatus请求参数结构体
+      class QueryBypassAllStatusRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # QueryBypassAllStatus返回参数结构体
+      class QueryBypassAllStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 该用户是否被加入了全局的bypass列表
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 有效REC设备安全包信息
       class RCEPkg < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 资源id
@@ -17510,6 +17568,33 @@ module TencentCloud
 
       # RefreshAccessCheckResult返回参数结构体
       class RefreshAccessCheckResultResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RemoveBypassAllRule请求参数结构体
+      class RemoveBypassAllRuleRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RemoveBypassAllRule返回参数结构体
+      class RemoveBypassAllRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

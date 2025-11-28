@@ -3490,6 +3490,53 @@ module TencentCloud
         end
       end
 
+      # DeleteGroupSubscribeTopic请求参数结构体
+      class DeleteGroupSubscribeTopicRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+        # @param Group: 消费分组名称
+        # @type Group: String
+        # @param Topic: 主题名
+        # @type Topic: String
+
+        attr_accessor :InstanceId, :Group, :Topic
+
+        def initialize(instanceid=nil, group=nil, topic=nil)
+          @InstanceId = instanceid
+          @Group = group
+          @Topic = topic
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Group = params['Group']
+          @Topic = params['Topic']
+        end
+      end
+
+      # DeleteGroupSubscribeTopic返回参数结构体
+      class DeleteGroupSubscribeTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回结果
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = JgwOperateResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteInstancePost请求参数结构体
       class DeleteInstancePostRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
@@ -3785,6 +3832,41 @@ module TencentCloud
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 变配类型查询出参
+      class DescModifyType < TencentCloud::Common::AbstractModel
+        # @param ModifyType: 变配类型
+        # @type ModifyType: Integer
+        # @param MigrateFlag: 是否迁移标志
+        # @type MigrateFlag: Boolean
+        # @param MigrateCostTime: 迁移预计耗时(稳定模式)秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateCostTime: Integer
+        # @param UpgradeStrategy: 升配模式(1:稳定模式，2:高速模式)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpgradeStrategy: Integer
+        # @param MigrateCostTimeHighSpeed: 迁移预计耗时(高速模式)秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateCostTimeHighSpeed: Integer
+
+        attr_accessor :ModifyType, :MigrateFlag, :MigrateCostTime, :UpgradeStrategy, :MigrateCostTimeHighSpeed
+
+        def initialize(modifytype=nil, migrateflag=nil, migratecosttime=nil, upgradestrategy=nil, migratecosttimehighspeed=nil)
+          @ModifyType = modifytype
+          @MigrateFlag = migrateflag
+          @MigrateCostTime = migratecosttime
+          @UpgradeStrategy = upgradestrategy
+          @MigrateCostTimeHighSpeed = migratecosttimehighspeed
+        end
+
+        def deserialize(params)
+          @ModifyType = params['ModifyType']
+          @MigrateFlag = params['MigrateFlag']
+          @MigrateCostTime = params['MigrateCostTime']
+          @UpgradeStrategy = params['UpgradeStrategy']
+          @MigrateCostTimeHighSpeed = params['MigrateCostTimeHighSpeed']
         end
       end
 
@@ -5355,6 +5437,73 @@ module TencentCloud
         def deserialize(params)
           unless params['Result'].nil?
             @Result = InstanceResponse.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeModifyType请求参数结构体
+      class DescribeModifyTypeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: ckafka集群实例Id
+        # @type InstanceId: String
+        # @param BandWidth: 升配后的带宽，单位mb
+        # @type BandWidth: Integer
+        # @param DiskSize: 升配后的磁盘，单位G
+        # @type DiskSize: Integer
+        # @param DiskType: 磁盘类型，例如 CLOUD_PREMIUM
+        # @type DiskType: String
+        # @param Partition: 分区数量
+        # @type Partition: Integer
+        # @param Topic: topic数量
+        # @type Topic: Integer
+        # @param Type: 实例类型例如 sp_ckafka_profession
+        # @type Type: String
+        # @param ModifyEntry: 变配入口
+        # @type ModifyEntry: String
+
+        attr_accessor :InstanceId, :BandWidth, :DiskSize, :DiskType, :Partition, :Topic, :Type, :ModifyEntry
+
+        def initialize(instanceid=nil, bandwidth=nil, disksize=nil, disktype=nil, partition=nil, topic=nil, type=nil, modifyentry=nil)
+          @InstanceId = instanceid
+          @BandWidth = bandwidth
+          @DiskSize = disksize
+          @DiskType = disktype
+          @Partition = partition
+          @Topic = topic
+          @Type = type
+          @ModifyEntry = modifyentry
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @BandWidth = params['BandWidth']
+          @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          @Partition = params['Partition']
+          @Topic = params['Topic']
+          @Type = params['Type']
+          @ModifyEntry = params['ModifyEntry']
+        end
+      end
+
+      # DescribeModifyType返回参数结构体
+      class DescribeModifyTypeResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 返回的变配类型结构
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescModifyType`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = DescModifyType.new
             @Result.deserialize(params['Result'])
           end
           @RequestId = params['RequestId']

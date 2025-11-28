@@ -11523,7 +11523,8 @@ module TencentCloud
         # @param TemplateId: 合同模板ID，为32位字符串。
         # 注: ` 此处为第三方应用平台模板库模板ID，非子客模板ID`
         # @type TemplateId: String
-        # @param ProxyOrganizationOpenIds: 第三方平台子客企业的唯一标识，支持批量(用,分割)，
+        # @param ProxyOrganizationOpenIds: 第三方平台子客企业的唯一标识，支持批量(用,分割)
+        # 一次批量操作最多支持100个第三方平台子客
         # @type ProxyOrganizationOpenIds: String
         # @param AuthTag: 模板可见范围, 可以设置的值如下:
 
@@ -11546,13 +11547,18 @@ module TencentCloud
         # @type Available: Integer
         # @param Operator: 暂未开放
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 100。
+        # 不传默认值为 20
+        # @type Limit: Integer
+        # @param Offset: 分页查询偏移量，默认为0
+        # @type Offset: Integer
 
-        attr_accessor :Agent, :OperateType, :TemplateId, :ProxyOrganizationOpenIds, :AuthTag, :Available, :Operator
+        attr_accessor :Agent, :OperateType, :TemplateId, :ProxyOrganizationOpenIds, :AuthTag, :Available, :Operator, :Limit, :Offset
         extend Gem::Deprecate
         deprecate :Operator, :none, 2025, 11
         deprecate :Operator=, :none, 2025, 11
 
-        def initialize(agent=nil, operatetype=nil, templateid=nil, proxyorganizationopenids=nil, authtag=nil, available=nil, operator=nil)
+        def initialize(agent=nil, operatetype=nil, templateid=nil, proxyorganizationopenids=nil, authtag=nil, available=nil, operator=nil, limit=nil, offset=nil)
           @Agent = agent
           @OperateType = operatetype
           @TemplateId = templateid
@@ -11560,6 +11566,8 @@ module TencentCloud
           @AuthTag = authtag
           @Available = available
           @Operator = operator
+          @Limit = limit
+          @Offset = offset
         end
 
         def deserialize(params)
@@ -11576,6 +11584,8 @@ module TencentCloud
             @Operator = UserInfo.new
             @Operator.deserialize(params['Operator'])
           end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
         end
       end
 
@@ -11596,22 +11606,25 @@ module TencentCloud
         # **all**: 所有本第三方应用合作企业可见
         # **part**: 指定的本第三方应用合作企业
         # @type AuthTag: String
-        # @param ProxyOrganizationOpenIds: 第三方平台子客企业标识列表
+        # @param ProxyOrganizationOpenIds: 第三方平台子客企业标识列表，仅在select 模式下返回
         # @type ProxyOrganizationOpenIds: Array
         # @param FailMessageList: 操作失败信息数组
         # @type FailMessageList: Array
+        # @param Total: 授权的平台子企业数量，OperateType 为select 时返回。
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AppId, :TemplateId, :OperateResult, :AuthTag, :ProxyOrganizationOpenIds, :FailMessageList, :RequestId
+        attr_accessor :AppId, :TemplateId, :OperateResult, :AuthTag, :ProxyOrganizationOpenIds, :FailMessageList, :Total, :RequestId
 
-        def initialize(appid=nil, templateid=nil, operateresult=nil, authtag=nil, proxyorganizationopenids=nil, failmessagelist=nil, requestid=nil)
+        def initialize(appid=nil, templateid=nil, operateresult=nil, authtag=nil, proxyorganizationopenids=nil, failmessagelist=nil, total=nil, requestid=nil)
           @AppId = appid
           @TemplateId = templateid
           @OperateResult = operateresult
           @AuthTag = authtag
           @ProxyOrganizationOpenIds = proxyorganizationopenids
           @FailMessageList = failmessagelist
+          @Total = total
           @RequestId = requestid
         end
 
@@ -11629,6 +11642,7 @@ module TencentCloud
               @FailMessageList << authfailmessage_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end

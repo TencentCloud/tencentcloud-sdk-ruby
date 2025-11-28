@@ -9106,6 +9106,101 @@ module TencentCloud
         end
       end
 
+      # DescribeTaskList请求参数结构体
+      class DescribeTaskListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 返回数量，默认为10，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: Integer
+        # @param Filters: 过滤条件，如下支持的过滤类型，传参Name应为以下其中一个,其中task-id支持最大50个过滤个数，其他过滤参数支持的总数不超过5个。
+        # task-id - String - （任务ID准确过滤）task-id取值形如：e386471f-139a-4e59-877f-50ece8135b99。
+        # task-state - String - （任务状态过滤）取值范围 0(初始化)， 1(运行中)， 2(成功)， -1(失败)。
+        # task-sql-keyword - String - （SQL语句关键字模糊过滤）取值形如：DROP TABLE。
+        # task-operator- string （子uin过滤）
+        # task-kind - string （任务类型过滤）
+        # @type Filters: Array
+        # @param SortBy: 排序字段，支持如下字段类型，create-time（创建时间，默认）、update-time（更新时间）
+        # @type SortBy: String
+        # @param Sorting: 排序方式，desc表示正序，asc表示反序， 默认为asc。
+        # @type Sorting: String
+        # @param StartTime: 起始时间点，格式为yyyy-mm-dd HH:MM:SS。默认为45天前的当前时刻
+        # @type StartTime: String
+        # @param EndTime: 结束时间点，格式为yyyy-mm-dd HH:MM:SS时间跨度在(0,30天]，支持最近45天数据查询。默认为当前时刻
+        # @type EndTime: String
+        # @param DataEngineName: 数据引擎名称，用于筛选
+        # @type DataEngineName: String
+        # @param ResourceGroupName: spark引擎资源组名称
+        # @type ResourceGroupName: String
+        # @param HouseIds: 引擎id列表
+        # @type HouseIds: Array
+
+        attr_accessor :Limit, :Offset, :Filters, :SortBy, :Sorting, :StartTime, :EndTime, :DataEngineName, :ResourceGroupName, :HouseIds
+
+        def initialize(limit=nil, offset=nil, filters=nil, sortby=nil, sorting=nil, starttime=nil, endtime=nil, dataenginename=nil, resourcegroupname=nil, houseids=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+          @SortBy = sortby
+          @Sorting = sorting
+          @StartTime = starttime
+          @EndTime = endtime
+          @DataEngineName = dataenginename
+          @ResourceGroupName = resourcegroupname
+          @HouseIds = houseids
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @SortBy = params['SortBy']
+          @Sorting = params['Sorting']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DataEngineName = params['DataEngineName']
+          @ResourceGroupName = params['ResourceGroupName']
+          @HouseIds = params['HouseIds']
+        end
+      end
+
+      # DescribeTaskList返回参数结构体
+      class DescribeTaskListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskList: 任务对象列表。
+        # @type TaskList: Array
+        # @param TotalCount: 实例总数。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskList, :TotalCount, :RequestId
+
+        def initialize(tasklist=nil, totalcount=nil, requestid=nil)
+          @TaskList = tasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TaskList'].nil?
+            @TaskList = []
+            params['TaskList'].each do |i|
+              taskfullrespinfo_tmp = TaskFullRespInfo.new
+              taskfullrespinfo_tmp.deserialize(i)
+              @TaskList << taskfullrespinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskLog请求参数结构体
       class DescribeTaskLogRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 列表返回的Id
@@ -13688,7 +13783,23 @@ module TencentCloud
         end
       end
 
-      # ResourceInfo
+      # 数据治理资源配置项
+      class ResourceConf < TencentCloud::Common::AbstractModel
+        # @param Parallelism: 当为TCLake优化资源时，优化任务的并行度
+        # @type Parallelism: Integer
+
+        attr_accessor :Parallelism
+
+        def initialize(parallelism=nil)
+          @Parallelism = parallelism
+        end
+
+        def deserialize(params)
+          @Parallelism = params['Parallelism']
+        end
+      end
+
+      # 数据优化资源信息结构
       class ResourceInfo < TencentCloud::Common::AbstractModel
         # @param AttributionType: 归属类型
         # @type AttributionType: String
@@ -13705,10 +13816,12 @@ module TencentCloud
         # @type Status: Integer
         # @param ResourceGroupName: 标准引擎资源组信息
         # @type ResourceGroupName: String
+        # @param ResourceConf: 资源配置信息
+        # @type ResourceConf: :class:`Tencentcloud::Dlc.v20210125.models.ResourceConf`
 
-        attr_accessor :AttributionType, :ResourceType, :Name, :Instance, :Favor, :Status, :ResourceGroupName
+        attr_accessor :AttributionType, :ResourceType, :Name, :Instance, :Favor, :Status, :ResourceGroupName, :ResourceConf
 
-        def initialize(attributiontype=nil, resourcetype=nil, name=nil, instance=nil, favor=nil, status=nil, resourcegroupname=nil)
+        def initialize(attributiontype=nil, resourcetype=nil, name=nil, instance=nil, favor=nil, status=nil, resourcegroupname=nil, resourceconf=nil)
           @AttributionType = attributiontype
           @ResourceType = resourcetype
           @Name = name
@@ -13716,6 +13829,7 @@ module TencentCloud
           @Favor = favor
           @Status = status
           @ResourceGroupName = resourcegroupname
+          @ResourceConf = resourceconf
         end
 
         def deserialize(params)
@@ -13733,6 +13847,10 @@ module TencentCloud
           end
           @Status = params['Status']
           @ResourceGroupName = params['ResourceGroupName']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
         end
       end
 
@@ -15478,6 +15596,328 @@ module TencentCloud
             @SparkSQLTask = SQLTask.new
             @SparkSQLTask.deserialize(params['SparkSQLTask'])
           end
+        end
+      end
+
+      # 任务实例。
+      class TaskFullRespInfo < TencentCloud::Common::AbstractModel
+        # @param DatabaseName: 任务所属Database的名称。
+        # @type DatabaseName: String
+        # @param DataAmount: 任务数据量。
+        # @type DataAmount: Integer
+        # @param Id: 任务Id。
+        # @type Id: String
+        # @param UsedTime: 计算耗时，单位： ms
+        # @type UsedTime: Integer
+        # @param OutputPath: 任务输出路径。
+        # @type OutputPath: String
+        # @param CreateTime: 任务创建时间。
+        # @type CreateTime: String
+        # @param State: 任务状态：0 初始化， 1 执行中， 2 执行成功，3 数据写入中，4 排队中。-1 执行失败，-3 已取消。
+        # @type State: Integer
+        # @param SQLType: 任务SQL类型，DDL|DML等
+        # @type SQLType: String
+        # @param SQL: 任务SQL语句
+        # @type SQL: String
+        # @param ResultExpired: 结果是否过期。
+        # @type ResultExpired: Boolean
+        # @param RowAffectInfo: 数据影响统计信息。
+        # @type RowAffectInfo: String
+        # @param DataSet: 任务结果数据表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSet: String
+        # @param Error: 失败信息, 例如：errorMessage。该字段已废弃。
+        # @type Error: String
+        # @param Percentage: 任务执行进度num/100(%)
+        # @type Percentage: Integer
+        # @param OutputMessage: 任务执行输出信息。
+        # @type OutputMessage: String
+        # @param TaskType: 执行SQL的引擎类型
+        # @type TaskType: String
+        # @param ProgressDetail: 任务进度明细
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProgressDetail: String
+        # @param UpdateTime: 任务结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param DataEngineId: 计算资源id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineId: String
+        # @param OperateUin: 执行sql的子uin
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OperateUin: String
+        # @param DataEngineName: 计算资源名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataEngineName: String
+        # @param InputType: 导入类型是本地导入还是cos
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputType: String
+        # @param InputConf: 导入配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputConf: String
+        # @param DataNumber: 数据条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataNumber: Integer
+        # @param CanDownload: 查询数据能不能下载
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDownload: Boolean
+        # @param UserAlias: 用户别名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserAlias: String
+        # @param SparkJobName: spark应用作业名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobName: String
+        # @param SparkJobId: spark应用作业Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobId: String
+        # @param SparkJobFile: spark应用入口jar文件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkJobFile: String
+        # @param UiUrl: spark ui url
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UiUrl: String
+        # @param TotalTime: 任务耗时，单位： ms
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTime: Integer
+        # @param CmdArgs: spark app job执行task的程序入口参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CmdArgs: String
+        # @param ImageVersion: 集群镜像大版本名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageVersion: String
+        # @param DriverSize: driver规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DriverSize: String
+        # @param ExecutorSize: executor规格：small,medium,large,xlarge；内存型(引擎类型)：m.small,m.medium,m.large,m.xlarge
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorSize: String
+        # @param ExecutorNums: 指定executor数量，最小值为1，最大值小于集群规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorNums: Integer
+        # @param ExecutorMaxNumbers: 指定executor max数量（动态配置场景下），最小值为1，最大值小于集群规格（当ExecutorMaxNumbers小于ExecutorNums时，改值设定为ExecutorNums）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutorMaxNumbers: Integer
+        # @param CommonMetrics: 任务公共指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CommonMetrics: :class:`Tencentcloud::Dlc.v20210125.models.CommonMetrics`
+        # @param SparkMonitorMetrics: spark任务指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SparkMonitorMetrics: :class:`Tencentcloud::Dlc.v20210125.models.SparkMonitorMetrics`
+        # @param PrestoMonitorMetrics: presto任务指标数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrestoMonitorMetrics: :class:`Tencentcloud::Dlc.v20210125.models.PrestoMonitorMetrics`
+        # @param ResultFormat: 结果文件格式：默认为csv
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultFormat: String
+        # @param EngineTypeDetail: 引擎类型，SparkSQL：SparkSQL 引擎；SparkBatch：Spark作业引擎；PrestoSQL：Presto引擎
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EngineTypeDetail: String
+        # @param ResourceGroupName: spark引擎资源组名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceGroupName: String
+        # @param Source: 任务来源信息,如thirdPartyApi,dataExploration, sparkAppTask等
+        # @type Source: String
+        # @param SourceExtra: 子渠道信息，一般由第三方调用定义
+        # @type SourceExtra: String
+        # @param CreatorUin: 创建人uin
+        # @type CreatorUin: String
+        # @param CreatorAlias: 创建人名字
+        # @type CreatorAlias: String
+        # @param CustomizedConf: 引擎参数
+        # @type CustomizedConf: String
+        # @param TaskTimeSum: 单位秒，累计 CPU* 秒 ( 累计 CPU * 时 = 累计 CPU* 秒/ 3600)，统计参与计算所用 Spark Executor 每个 core 的 CPU 执行时长总和
+        # 示例值：4329
+        # @type TaskTimeSum: Integer
+        # @param StageStartTime: 引擎执行时间
+        # @type StageStartTime: Integer
+        # @param InputRecordsSum: 数据扫描条数
+        # @type InputRecordsSum: Integer
+        # @param AnalysisStatusType: 健康状态
+        # @type AnalysisStatusType: Integer
+        # @param OutputRecordsSum: 输出总行数
+        # @type OutputRecordsSum: Integer
+        # @param OutputBytesSum: 输出总大小
+        # @type OutputBytesSum: Integer
+        # @param OutputFilesNum: 输出文件个数
+        # @type OutputFilesNum: Integer
+        # @param OutputSmallFilesNum: 输出小文件个数
+        # @type OutputSmallFilesNum: Integer
+        # @param ShuffleReadRecordsSum: 数据shuffle行数
+        # @type ShuffleReadRecordsSum: Integer
+        # @param ShuffleReadBytesSum: 数据shuffle大小
+        # @type ShuffleReadBytesSum: Integer
+        # @param SparkAppId: spark作业id
+        # @type SparkAppId: String
+        # @param TaskCategory: 任务大类，DLC2.0中任务区分为两大类，sql任务和作业任务
+        # @type TaskCategory: String
+        # @param TaskName: 任务名称
+        # @type TaskName: String
+        # @param EngineType: 引擎类型，用做任务详情页跳转引擎tab
+        # @type EngineType: String
+        # @param EngineHasListenerConfig: 引擎是否支持洞察数据采集
+        # @type EngineHasListenerConfig: Boolean
+        # @param ResourceGroupId: spark引擎资源组id
+        # @type ResourceGroupId: String
+        # @param JobTimeSum: 任务计算耗时
+        # @type JobTimeSum: Integer
+        # @param LaunchTime: 任务启动耗时
+        # @type LaunchTime: String
+        # @param GpuDriverSize: Gpu Driver 规格
+        # @type GpuDriverSize: Integer
+        # @param GpuExecutorSize: Gpu Executor 规格
+        # @type GpuExecutorSize: Integer
+
+        attr_accessor :DatabaseName, :DataAmount, :Id, :UsedTime, :OutputPath, :CreateTime, :State, :SQLType, :SQL, :ResultExpired, :RowAffectInfo, :DataSet, :Error, :Percentage, :OutputMessage, :TaskType, :ProgressDetail, :UpdateTime, :DataEngineId, :OperateUin, :DataEngineName, :InputType, :InputConf, :DataNumber, :CanDownload, :UserAlias, :SparkJobName, :SparkJobId, :SparkJobFile, :UiUrl, :TotalTime, :CmdArgs, :ImageVersion, :DriverSize, :ExecutorSize, :ExecutorNums, :ExecutorMaxNumbers, :CommonMetrics, :SparkMonitorMetrics, :PrestoMonitorMetrics, :ResultFormat, :EngineTypeDetail, :ResourceGroupName, :Source, :SourceExtra, :CreatorUin, :CreatorAlias, :CustomizedConf, :TaskTimeSum, :StageStartTime, :InputRecordsSum, :AnalysisStatusType, :OutputRecordsSum, :OutputBytesSum, :OutputFilesNum, :OutputSmallFilesNum, :ShuffleReadRecordsSum, :ShuffleReadBytesSum, :SparkAppId, :TaskCategory, :TaskName, :EngineType, :EngineHasListenerConfig, :ResourceGroupId, :JobTimeSum, :LaunchTime, :GpuDriverSize, :GpuExecutorSize
+
+        def initialize(databasename=nil, dataamount=nil, id=nil, usedtime=nil, outputpath=nil, createtime=nil, state=nil, sqltype=nil, sql=nil, resultexpired=nil, rowaffectinfo=nil, dataset=nil, error=nil, percentage=nil, outputmessage=nil, tasktype=nil, progressdetail=nil, updatetime=nil, dataengineid=nil, operateuin=nil, dataenginename=nil, inputtype=nil, inputconf=nil, datanumber=nil, candownload=nil, useralias=nil, sparkjobname=nil, sparkjobid=nil, sparkjobfile=nil, uiurl=nil, totaltime=nil, cmdargs=nil, imageversion=nil, driversize=nil, executorsize=nil, executornums=nil, executormaxnumbers=nil, commonmetrics=nil, sparkmonitormetrics=nil, prestomonitormetrics=nil, resultformat=nil, enginetypedetail=nil, resourcegroupname=nil, source=nil, sourceextra=nil, creatoruin=nil, creatoralias=nil, customizedconf=nil, tasktimesum=nil, stagestarttime=nil, inputrecordssum=nil, analysisstatustype=nil, outputrecordssum=nil, outputbytessum=nil, outputfilesnum=nil, outputsmallfilesnum=nil, shufflereadrecordssum=nil, shufflereadbytessum=nil, sparkappid=nil, taskcategory=nil, taskname=nil, enginetype=nil, enginehaslistenerconfig=nil, resourcegroupid=nil, jobtimesum=nil, launchtime=nil, gpudriversize=nil, gpuexecutorsize=nil)
+          @DatabaseName = databasename
+          @DataAmount = dataamount
+          @Id = id
+          @UsedTime = usedtime
+          @OutputPath = outputpath
+          @CreateTime = createtime
+          @State = state
+          @SQLType = sqltype
+          @SQL = sql
+          @ResultExpired = resultexpired
+          @RowAffectInfo = rowaffectinfo
+          @DataSet = dataset
+          @Error = error
+          @Percentage = percentage
+          @OutputMessage = outputmessage
+          @TaskType = tasktype
+          @ProgressDetail = progressdetail
+          @UpdateTime = updatetime
+          @DataEngineId = dataengineid
+          @OperateUin = operateuin
+          @DataEngineName = dataenginename
+          @InputType = inputtype
+          @InputConf = inputconf
+          @DataNumber = datanumber
+          @CanDownload = candownload
+          @UserAlias = useralias
+          @SparkJobName = sparkjobname
+          @SparkJobId = sparkjobid
+          @SparkJobFile = sparkjobfile
+          @UiUrl = uiurl
+          @TotalTime = totaltime
+          @CmdArgs = cmdargs
+          @ImageVersion = imageversion
+          @DriverSize = driversize
+          @ExecutorSize = executorsize
+          @ExecutorNums = executornums
+          @ExecutorMaxNumbers = executormaxnumbers
+          @CommonMetrics = commonmetrics
+          @SparkMonitorMetrics = sparkmonitormetrics
+          @PrestoMonitorMetrics = prestomonitormetrics
+          @ResultFormat = resultformat
+          @EngineTypeDetail = enginetypedetail
+          @ResourceGroupName = resourcegroupname
+          @Source = source
+          @SourceExtra = sourceextra
+          @CreatorUin = creatoruin
+          @CreatorAlias = creatoralias
+          @CustomizedConf = customizedconf
+          @TaskTimeSum = tasktimesum
+          @StageStartTime = stagestarttime
+          @InputRecordsSum = inputrecordssum
+          @AnalysisStatusType = analysisstatustype
+          @OutputRecordsSum = outputrecordssum
+          @OutputBytesSum = outputbytessum
+          @OutputFilesNum = outputfilesnum
+          @OutputSmallFilesNum = outputsmallfilesnum
+          @ShuffleReadRecordsSum = shufflereadrecordssum
+          @ShuffleReadBytesSum = shufflereadbytessum
+          @SparkAppId = sparkappid
+          @TaskCategory = taskcategory
+          @TaskName = taskname
+          @EngineType = enginetype
+          @EngineHasListenerConfig = enginehaslistenerconfig
+          @ResourceGroupId = resourcegroupid
+          @JobTimeSum = jobtimesum
+          @LaunchTime = launchtime
+          @GpuDriverSize = gpudriversize
+          @GpuExecutorSize = gpuexecutorsize
+        end
+
+        def deserialize(params)
+          @DatabaseName = params['DatabaseName']
+          @DataAmount = params['DataAmount']
+          @Id = params['Id']
+          @UsedTime = params['UsedTime']
+          @OutputPath = params['OutputPath']
+          @CreateTime = params['CreateTime']
+          @State = params['State']
+          @SQLType = params['SQLType']
+          @SQL = params['SQL']
+          @ResultExpired = params['ResultExpired']
+          @RowAffectInfo = params['RowAffectInfo']
+          @DataSet = params['DataSet']
+          @Error = params['Error']
+          @Percentage = params['Percentage']
+          @OutputMessage = params['OutputMessage']
+          @TaskType = params['TaskType']
+          @ProgressDetail = params['ProgressDetail']
+          @UpdateTime = params['UpdateTime']
+          @DataEngineId = params['DataEngineId']
+          @OperateUin = params['OperateUin']
+          @DataEngineName = params['DataEngineName']
+          @InputType = params['InputType']
+          @InputConf = params['InputConf']
+          @DataNumber = params['DataNumber']
+          @CanDownload = params['CanDownload']
+          @UserAlias = params['UserAlias']
+          @SparkJobName = params['SparkJobName']
+          @SparkJobId = params['SparkJobId']
+          @SparkJobFile = params['SparkJobFile']
+          @UiUrl = params['UiUrl']
+          @TotalTime = params['TotalTime']
+          @CmdArgs = params['CmdArgs']
+          @ImageVersion = params['ImageVersion']
+          @DriverSize = params['DriverSize']
+          @ExecutorSize = params['ExecutorSize']
+          @ExecutorNums = params['ExecutorNums']
+          @ExecutorMaxNumbers = params['ExecutorMaxNumbers']
+          unless params['CommonMetrics'].nil?
+            @CommonMetrics = CommonMetrics.new
+            @CommonMetrics.deserialize(params['CommonMetrics'])
+          end
+          unless params['SparkMonitorMetrics'].nil?
+            @SparkMonitorMetrics = SparkMonitorMetrics.new
+            @SparkMonitorMetrics.deserialize(params['SparkMonitorMetrics'])
+          end
+          unless params['PrestoMonitorMetrics'].nil?
+            @PrestoMonitorMetrics = PrestoMonitorMetrics.new
+            @PrestoMonitorMetrics.deserialize(params['PrestoMonitorMetrics'])
+          end
+          @ResultFormat = params['ResultFormat']
+          @EngineTypeDetail = params['EngineTypeDetail']
+          @ResourceGroupName = params['ResourceGroupName']
+          @Source = params['Source']
+          @SourceExtra = params['SourceExtra']
+          @CreatorUin = params['CreatorUin']
+          @CreatorAlias = params['CreatorAlias']
+          @CustomizedConf = params['CustomizedConf']
+          @TaskTimeSum = params['TaskTimeSum']
+          @StageStartTime = params['StageStartTime']
+          @InputRecordsSum = params['InputRecordsSum']
+          @AnalysisStatusType = params['AnalysisStatusType']
+          @OutputRecordsSum = params['OutputRecordsSum']
+          @OutputBytesSum = params['OutputBytesSum']
+          @OutputFilesNum = params['OutputFilesNum']
+          @OutputSmallFilesNum = params['OutputSmallFilesNum']
+          @ShuffleReadRecordsSum = params['ShuffleReadRecordsSum']
+          @ShuffleReadBytesSum = params['ShuffleReadBytesSum']
+          @SparkAppId = params['SparkAppId']
+          @TaskCategory = params['TaskCategory']
+          @TaskName = params['TaskName']
+          @EngineType = params['EngineType']
+          @EngineHasListenerConfig = params['EngineHasListenerConfig']
+          @ResourceGroupId = params['ResourceGroupId']
+          @JobTimeSum = params['JobTimeSum']
+          @LaunchTime = params['LaunchTime']
+          @GpuDriverSize = params['GpuDriverSize']
+          @GpuExecutorSize = params['GpuExecutorSize']
         end
       end
 

@@ -1751,11 +1751,11 @@ module TencentCloud
         # @param ClusterName: 集群名称
         # @type ClusterName: String
         # @param NodeSpec: 集群的节点规格，需要输入对应的规格标识：
-        # 2C8G：rabbit-vip-basic-2c8g
-        # 4C16G：rabbit-vip-basic-4c16g
-        # 8C32G：rabbit-vip-basic-8c32g
+        # 2C8G：rabbit-vip-profession-2c8g
+        # 4C16G：rabbit-vip-profession-4c16g
+        # 8C32G：rabbit-vip-profession-8c32g
         # 16C32G：rabbit-vip-basic-4
-        # 16C64G：rabbit-vip-basic-16c64g
+        # 16C64G：rabbit-vip-profession-16c64g
         # 2C4G：rabbit-vip-basic-5
         # 4C8G：rabbit-vip-basic-1
         # 8C16G（已售罄）：rabbit-vip-basic-2
@@ -1773,7 +1773,7 @@ module TencentCloud
         # @type TimeSpan: Integer
         # @param PayMode: 付费方式，0 为后付费，即按量计费；1 为预付费，即包年包月。默认包年包月
         # @type PayMode: Integer
-        # @param ClusterVersion: 集群版本，不传默认为 3.8.30，可选值为 3.8.30 和 3.11.8
+        # @param ClusterVersion: 集群版本，不传默认为 3.8.30，可选值为 3.8.30、3.11.8和3.13.7
         # @type ClusterVersion: String
         # @param IsIntl: 是否国际站请求，默认 false
         # @type IsIntl: Boolean
@@ -4443,18 +4443,26 @@ module TencentCloud
         # @type MsgId: String
         # @param ProducerName: 生产者名称。
         # @type ProducerName: String
+        # @param Key: 消息 key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Metadata: 消息的元数据信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Properties, :Body, :BatchId, :ProduceTime, :MsgId, :ProducerName, :RequestId
+        attr_accessor :Properties, :Body, :BatchId, :ProduceTime, :MsgId, :ProducerName, :Key, :Metadata, :RequestId
 
-        def initialize(properties=nil, body=nil, batchid=nil, producetime=nil, msgid=nil, producername=nil, requestid=nil)
+        def initialize(properties=nil, body=nil, batchid=nil, producetime=nil, msgid=nil, producername=nil, key=nil, metadata=nil, requestid=nil)
           @Properties = properties
           @Body = body
           @BatchId = batchid
           @ProduceTime = producetime
           @MsgId = msgid
           @ProducerName = producername
+          @Key = key
+          @Metadata = metadata
           @RequestId = requestid
         end
 
@@ -4465,6 +4473,8 @@ module TencentCloud
           @ProduceTime = params['ProduceTime']
           @MsgId = params['MsgId']
           @ProducerName = params['ProducerName']
+          @Key = params['Key']
+          @Metadata = params['Metadata']
           @RequestId = params['RequestId']
         end
       end
@@ -6228,10 +6238,12 @@ module TencentCloud
         # @type FilterOneGroup: String
         # @param Types: group类型
         # @type Types: Array
+        # @param TagFilters: 标签过滤器
+        # @type TagFilters: Array
 
-        attr_accessor :ClusterId, :NamespaceId, :Offset, :Limit, :FilterTopic, :FilterGroup, :SortedBy, :SortOrder, :FilterOneGroup, :Types
+        attr_accessor :ClusterId, :NamespaceId, :Offset, :Limit, :FilterTopic, :FilterGroup, :SortedBy, :SortOrder, :FilterOneGroup, :Types, :TagFilters
 
-        def initialize(clusterid=nil, namespaceid=nil, offset=nil, limit=nil, filtertopic=nil, filtergroup=nil, sortedby=nil, sortorder=nil, filteronegroup=nil, types=nil)
+        def initialize(clusterid=nil, namespaceid=nil, offset=nil, limit=nil, filtertopic=nil, filtergroup=nil, sortedby=nil, sortorder=nil, filteronegroup=nil, types=nil, tagfilters=nil)
           @ClusterId = clusterid
           @NamespaceId = namespaceid
           @Offset = offset
@@ -6242,6 +6254,7 @@ module TencentCloud
           @SortOrder = sortorder
           @FilterOneGroup = filteronegroup
           @Types = types
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -6255,6 +6268,14 @@ module TencentCloud
           @SortOrder = params['SortOrder']
           @FilterOneGroup = params['FilterOneGroup']
           @Types = params['Types']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -6380,8 +6401,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 8
-        deprecate :QueryDlqMsg=, :none, 2025, 8
+        deprecate :QueryDlqMsg, :none, 2025, 11
+        deprecate :QueryDlqMsg=, :none, 2025, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6486,8 +6507,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 8
-        deprecate :QueryDLQMsg=, :none, 2025, 8
+        deprecate :QueryDLQMsg, :none, 2025, 11
+        deprecate :QueryDLQMsg=, :none, 2025, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -6912,73 +6933,6 @@ module TencentCloud
         end
       end
 
-      # DescribeRocketMQSmoothMigrationTaskList请求参数结构体
-      class DescribeRocketMQSmoothMigrationTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 查询起始偏移量
-        # @type Offset: Integer
-        # @param Limit: 查询最大数量
-        # @type Limit: Integer
-        # @param Filters: 查询过滤器，
-        # 支持的字段如下
-        # TaskStatus, 支持多选
-        # ConnectionType，支持多选
-        # ClusterId，精确搜索
-        # TaskName，支持模糊搜索
-        # @type Filters: Array
-
-        attr_accessor :Offset, :Limit, :Filters
-
-        def initialize(offset=nil, limit=nil, filters=nil)
-          @Offset = offset
-          @Limit = limit
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Offset = params['Offset']
-          @Limit = params['Limit']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeRocketMQSmoothMigrationTaskList返回参数结构体
-      class DescribeRocketMQSmoothMigrationTaskListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 任务总数
-        # @type TotalCount: Integer
-        # @param Data: 任务列表
-        # @type Data: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :Data, :RequestId
-
-        def initialize(totalcount=nil, data=nil, requestid=nil)
-          @TotalCount = totalcount
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['Data'].nil?
-            @Data = []
-            params['Data'].each do |i|
-              rocketmqsmoothmigrationtaskitem_tmp = RocketMQSmoothMigrationTaskItem.new
-              rocketmqsmoothmigrationtaskitem_tmp.deserialize(i)
-              @Data << rocketmqsmoothmigrationtaskitem_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeRocketMQSmoothMigrationTask请求参数结构体
       class DescribeRocketMQSmoothMigrationTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -7107,140 +7061,6 @@ module TencentCloud
               @TopicStageDistribution << rocketmqmigrationtopicdistribution_tmp
             end
           end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRocketMQSourceClusterGroupList请求参数结构体
-      class DescribeRocketMQSourceClusterGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 页大小
-        # @type Limit: Integer
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param TaskId: 迁移任务名称
-        # @type TaskId: String
-        # @param Filters: 查询过滤器，支持字段groupName，imported
-        # @type Filters: Array
-
-        attr_accessor :Limit, :Offset, :TaskId, :Filters
-
-        def initialize(limit=nil, offset=nil, taskid=nil, filters=nil)
-          @Limit = limit
-          @Offset = offset
-          @TaskId = taskid
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @TaskId = params['TaskId']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeRocketMQSourceClusterGroupList返回参数结构体
-      class DescribeRocketMQSourceClusterGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param Groups: group列表
-        # @type Groups: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Groups, :TotalCount, :RequestId
-
-        def initialize(groups=nil, totalcount=nil, requestid=nil)
-          @Groups = groups
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Groups'].nil?
-            @Groups = []
-            params['Groups'].each do |i|
-              rocketmqgroupconfigoutput_tmp = RocketMQGroupConfigOutput.new
-              rocketmqgroupconfigoutput_tmp.deserialize(i)
-              @Groups << rocketmqgroupconfigoutput_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeRocketMQSourceClusterTopicList请求参数结构体
-      class DescribeRocketMQSourceClusterTopicListRequest < TencentCloud::Common::AbstractModel
-        # @param Limit: 分页大小
-        # @type Limit: Integer
-        # @param Offset: 偏移量
-        # @type Offset: Integer
-        # @param TaskId: 迁移任务名
-        # @type TaskId: String
-        # @param Filters: 查询过滤器，支持字段如下
-        # TopicName,
-        # Type，Imported
-        # @type Filters: Array
-
-        attr_accessor :Limit, :Offset, :TaskId, :Filters
-
-        def initialize(limit=nil, offset=nil, taskid=nil, filters=nil)
-          @Limit = limit
-          @Offset = offset
-          @TaskId = taskid
-          @Filters = filters
-        end
-
-        def deserialize(params)
-          @Limit = params['Limit']
-          @Offset = params['Offset']
-          @TaskId = params['TaskId']
-          unless params['Filters'].nil?
-            @Filters = []
-            params['Filters'].each do |i|
-              filter_tmp = Filter.new
-              filter_tmp.deserialize(i)
-              @Filters << filter_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeRocketMQSourceClusterTopicList返回参数结构体
-      class DescribeRocketMQSourceClusterTopicListResponse < TencentCloud::Common::AbstractModel
-        # @param Topics: topic层列表
-        # @type Topics: Array
-        # @param TotalCount: 总条数
-        # @type TotalCount: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Topics, :TotalCount, :RequestId
-
-        def initialize(topics=nil, totalcount=nil, requestid=nil)
-          @Topics = topics
-          @TotalCount = totalcount
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Topics'].nil?
-            @Topics = []
-            params['Topics'].each do |i|
-              rocketmqtopicconfigoutput_tmp = RocketMQTopicConfigOutput.new
-              rocketmqtopicconfigoutput_tmp.deserialize(i)
-              @Topics << rocketmqtopicconfigoutput_tmp
-            end
-          end
-          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7404,8 +7224,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 8
-        deprecate :QueryDlqMsg=, :none, 2025, 8
+        deprecate :QueryDlqMsg, :none, 2025, 11
+        deprecate :QueryDlqMsg=, :none, 2025, 11
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7474,6 +7294,65 @@ module TencentCloud
             end
           end
           @TaskRequestId = params['TaskRequestId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRocketMQTopic请求参数结构体
+      class DescribeRocketMQTopicRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param NamespaceId: 命名空间
+        # @type NamespaceId: String
+        # @param TopicName: 主题名称
+        # @type TopicName: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+        # @param Offset: 订阅列表分页参数Offset
+        # @type Offset: Integer
+        # @param Limit: 订阅列表分页参数Limit
+        # @type Limit: Integer
+
+        attr_accessor :ClusterId, :NamespaceId, :TopicName, :ConsumerGroup, :Offset, :Limit
+
+        def initialize(clusterid=nil, namespaceid=nil, topicname=nil, consumergroup=nil, offset=nil, limit=nil)
+          @ClusterId = clusterid
+          @NamespaceId = namespaceid
+          @TopicName = topicname
+          @ConsumerGroup = consumergroup
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @NamespaceId = params['NamespaceId']
+          @TopicName = params['TopicName']
+          @ConsumerGroup = params['ConsumerGroup']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRocketMQTopic返回参数结构体
+      class DescribeRocketMQTopicResponse < TencentCloud::Common::AbstractModel
+        # @param Topic: Topic详情
+        # @type Topic: :class:`Tencentcloud::Tdmq.v20200217.models.RocketMQTopic`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Topic, :RequestId
+
+        def initialize(topic=nil, requestid=nil)
+          @Topic = topic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Topic'].nil?
+            @Topic = RocketMQTopic.new
+            @Topic.deserialize(params['Topic'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7601,10 +7480,12 @@ module TencentCloud
         # @type FilterName: String
         # @param FilterGroup: 按订阅消费组名称过滤
         # @type FilterGroup: String
+        # @param TagFilters: 标签过滤器
+        # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :ClusterId, :NamespaceId, :FilterType, :FilterName, :FilterGroup
+        attr_accessor :Offset, :Limit, :ClusterId, :NamespaceId, :FilterType, :FilterName, :FilterGroup, :TagFilters
 
-        def initialize(offset=nil, limit=nil, clusterid=nil, namespaceid=nil, filtertype=nil, filtername=nil, filtergroup=nil)
+        def initialize(offset=nil, limit=nil, clusterid=nil, namespaceid=nil, filtertype=nil, filtername=nil, filtergroup=nil, tagfilters=nil)
           @Offset = offset
           @Limit = limit
           @ClusterId = clusterid
@@ -7612,6 +7493,7 @@ module TencentCloud
           @FilterType = filtertype
           @FilterName = filtername
           @FilterGroup = filtergroup
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -7622,6 +7504,14 @@ module TencentCloud
           @FilterType = params['FilterType']
           @FilterName = params['FilterName']
           @FilterGroup = params['FilterGroup']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 
@@ -9342,14 +9232,20 @@ module TencentCloud
         # @type Remark: String
         # @param EnableDeletionProtection: 是否开启删除保护，不填则不修改
         # @type EnableDeletionProtection: Boolean
+        # @param RemoveAllTags: 是否删除所有标签，默认为false
+        # @type RemoveAllTags: Boolean
+        # @param Tags: 修改实例的标签信息，全量标签信息，非增量
+        # @type Tags: Array
 
-        attr_accessor :InstanceId, :ClusterName, :Remark, :EnableDeletionProtection
+        attr_accessor :InstanceId, :ClusterName, :Remark, :EnableDeletionProtection, :RemoveAllTags, :Tags
 
-        def initialize(instanceid=nil, clustername=nil, remark=nil, enabledeletionprotection=nil)
+        def initialize(instanceid=nil, clustername=nil, remark=nil, enabledeletionprotection=nil, removealltags=nil, tags=nil)
           @InstanceId = instanceid
           @ClusterName = clustername
           @Remark = remark
           @EnableDeletionProtection = enabledeletionprotection
+          @RemoveAllTags = removealltags
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -9357,6 +9253,15 @@ module TencentCloud
           @ClusterName = params['ClusterName']
           @Remark = params['Remark']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @RemoveAllTags = params['RemoveAllTags']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -9591,15 +9496,18 @@ module TencentCloud
         # @type MessageRetention: Integer
         # @param EnableDeletionProtection: 是否开启删除保护
         # @type EnableDeletionProtection: Boolean
+        # @param SendReceiveRatio: 控制生产和消费消息的 TPS 占比，取值范围0～1，默认值为0.5
+        # @type SendReceiveRatio: Float
 
-        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention, :EnableDeletionProtection
+        attr_accessor :InstanceId, :Name, :Remark, :MessageRetention, :EnableDeletionProtection, :SendReceiveRatio
 
-        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil, enabledeletionprotection=nil)
+        def initialize(instanceid=nil, name=nil, remark=nil, messageretention=nil, enabledeletionprotection=nil, sendreceiveratio=nil)
           @InstanceId = instanceid
           @Name = name
           @Remark = remark
           @MessageRetention = messageretention
           @EnableDeletionProtection = enabledeletionprotection
+          @SendReceiveRatio = sendreceiveratio
         end
 
         def deserialize(params)
@@ -9608,6 +9516,7 @@ module TencentCloud
           @Remark = params['Remark']
           @MessageRetention = params['MessageRetention']
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @SendReceiveRatio = params['SendReceiveRatio']
         end
       end
 
@@ -10767,10 +10676,12 @@ module TencentCloud
         # @type ControlPlaneEndpointInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcEndpointInfo`
         # @param PublicTlsAccessEndpoint: TLS加密的数据流公网接入点
         # @type PublicTlsAccessEndpoint: String
+        # @param PublicIpReused: 公网IP是否复用
+        # @type PublicIpReused: Boolean
 
-        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo, :PublicTlsAccessEndpoint
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo, :PublicTlsAccessEndpoint, :PublicIpReused
 
-        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil, publictlsaccessendpoint=nil)
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil, publictlsaccessendpoint=nil, publicipreused=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @WebConsoleEndpoint = webconsoleendpoint
           @WebConsoleUsername = webconsoleusername
@@ -10786,6 +10697,7 @@ module TencentCloud
           @WebConsoleDomainEndpoint = webconsoledomainendpoint
           @ControlPlaneEndpointInfo = controlplaneendpointinfo
           @PublicTlsAccessEndpoint = publictlsaccessendpoint
+          @PublicIpReused = publicipreused
         end
 
         def deserialize(params)
@@ -10810,6 +10722,7 @@ module TencentCloud
             @ControlPlaneEndpointInfo.deserialize(params['ControlPlaneEndpointInfo'])
           end
           @PublicTlsAccessEndpoint = params['PublicTlsAccessEndpoint']
+          @PublicIpReused = params['PublicIpReused']
         end
       end
 
@@ -11428,16 +11341,16 @@ module TencentCloud
         # @type PayMode: Integer
         # @param Remark: 备注信息
         # @type Remark: String
-        # @param SpecName: 集群的节点规格，需要输入对应的规格标识：
-        # 2C8G：rabbit-vip-basic-2c8g
-        # 4C16G：rabbit-vip-basic-4c16g
-        # 8C32G：rabbit-vip-basic-8c32g
+        # @param SpecName: 集群的节点规格，对应的规格标识：
+        # 2C8G：rabbit-vip-profession-2c8g
+        # 4C16G：rabbit-vip-profession-4c16g
+        # 8C32G：rabbit-vip-profession-8c32g
         # 16C32G：rabbit-vip-basic-4
-        # 16C64G：rabbit-vip-basic-16c64g
+        # 16C64G：rabbit-vip-profession-16c64g
         # 2C4G：rabbit-vip-basic-5
         # 4C8G：rabbit-vip-basic-1
         # 8C16G（已售罄）：rabbit-vip-basic-2
-        # 不传默认为4C8G：rabbit-vip-basic-1
+        # 不传默认为 4C8G：rabbit-vip-basic-1
         # @type SpecName: String
         # @param ExceptionInformation: 集群异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -11963,8 +11876,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 8
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 8
+        deprecate :MaxTpsPerNamespace, :none, 2025, 11
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 11
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12365,15 +12278,17 @@ module TencentCloud
         # @type Namespace: String
         # @param SubscribeTopicNum: 订阅的主题个数
         # @type SubscribeTopicNum: Integer
+        # @param TagList: 绑定的标签列表
+        # @type TagList: Array
 
-        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum
+        attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2025, 8
-        deprecate :TPS=, :none, 2025, 8
-        deprecate :TotalAccumulative, :none, 2025, 8
-        deprecate :TotalAccumulative=, :none, 2025, 8
+        deprecate :TPS, :none, 2025, 11
+        deprecate :TPS=, :none, 2025, 11
+        deprecate :TotalAccumulative, :none, 2025, 11
+        deprecate :TotalAccumulative=, :none, 2025, 11
 
-        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil)
+        def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name
           @ConsumerNum = consumernum
           @TPS = tps
@@ -12392,6 +12307,7 @@ module TencentCloud
           @InstanceId = instanceid
           @Namespace = namespace
           @SubscribeTopicNum = subscribetopicnum
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -12413,6 +12329,14 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Namespace = params['Namespace']
           @SubscribeTopicNum = params['SubscribeTopicNum']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
         end
       end
 
@@ -12451,38 +12375,6 @@ module TencentCloud
           @ConsumeEnable = params['ConsumeEnable']
           @Remark = params['Remark']
           @ConsumerGroupType = params['ConsumerGroupType']
-        end
-      end
-
-      # RocketMQ消费组配置信息
-      class RocketMQGroupConfigOutput < TencentCloud::Common::AbstractModel
-        # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Namespace: String
-        # @param GroupName: 消费组名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type GroupName: String
-        # @param Imported: 是否已导入
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Imported: Boolean
-        # @param Remark: remark
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Remark: String
-
-        attr_accessor :Namespace, :GroupName, :Imported, :Remark
-
-        def initialize(namespace=nil, groupname=nil, imported=nil, remark=nil)
-          @Namespace = namespace
-          @GroupName = groupname
-          @Imported = imported
-          @Remark = remark
-        end
-
-        def deserialize(params)
-          @Namespace = params['Namespace']
-          @GroupName = params['GroupName']
-          @Imported = params['Imported']
-          @Remark = params['Remark']
         end
       end
 
@@ -12528,10 +12420,12 @@ module TencentCloud
         # @param TopicNumUpperLimit: Topic个数最大配额，默认为集群规格单节点最大配额*节点个数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopicNumUpperLimit: Integer
+        # @param SendReceiveRatio: 控制生产和消费消息的 TPS 占比，取值范围0～1，默认值为0.5
+        # @type SendReceiveRatio: Float
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic, :MaxRetention, :MinRetention, :Retention, :TopicNumLowerLimit, :TopicNumUpperLimit
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic, :MaxRetention, :MinRetention, :Retention, :TopicNumLowerLimit, :TopicNumUpperLimit, :SendReceiveRatio
 
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil, maxretention=nil, minretention=nil, retention=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil, maxretention=nil, minretention=nil, retention=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, sendreceiveratio=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -12549,6 +12443,7 @@ module TencentCloud
           @Retention = retention
           @TopicNumLowerLimit = topicnumlowerlimit
           @TopicNumUpperLimit = topicnumupperlimit
+          @SendReceiveRatio = sendreceiveratio
         end
 
         def deserialize(params)
@@ -12583,6 +12478,7 @@ module TencentCloud
           @Retention = params['Retention']
           @TopicNumLowerLimit = params['TopicNumLowerLimit']
           @TopicNumUpperLimit = params['TopicNumUpperLimit']
+          @SendReceiveRatio = params['SendReceiveRatio']
         end
       end
 
@@ -12735,63 +12631,6 @@ module TencentCloud
         end
       end
 
-      # RocketMQ平滑迁移任务
-      class RocketMQSmoothMigrationTaskItem < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskId: String
-        # @param TaskName: 任务名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskName: String
-        # @param SourceClusterName: 源集群名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceClusterName: String
-        # @param ClusterId: 目标集群ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ClusterId: String
-        # @param ConnectionType: 网络连接类型，
-        # PUBLIC 公网
-        # VPC 私有网络
-        # OTHER 其他
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ConnectionType: String
-        # @param SourceNameServer: 源集群NameServer地址
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type SourceNameServer: String
-        # @param TaskStatus: 任务状态
-        # Configuration 迁移配置
-        # SourceConnecting 连接源集群中
-        # MetaDataImport 元数据导入
-        # EndpointSetup 切换接入点
-        # ServiceMigration 切流中
-        # Completed 已完成
-        # Cancelled 已取消
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TaskStatus: String
-
-        attr_accessor :TaskId, :TaskName, :SourceClusterName, :ClusterId, :ConnectionType, :SourceNameServer, :TaskStatus
-
-        def initialize(taskid=nil, taskname=nil, sourceclustername=nil, clusterid=nil, connectiontype=nil, sourcenameserver=nil, taskstatus=nil)
-          @TaskId = taskid
-          @TaskName = taskname
-          @SourceClusterName = sourceclustername
-          @ClusterId = clusterid
-          @ConnectionType = connectiontype
-          @SourceNameServer = sourcenameserver
-          @TaskStatus = taskstatus
-        end
-
-        def deserialize(params)
-          @TaskId = params['TaskId']
-          @TaskName = params['TaskName']
-          @SourceClusterName = params['SourceClusterName']
-          @ClusterId = params['ClusterId']
-          @ConnectionType = params['ConnectionType']
-          @SourceNameServer = params['SourceNameServer']
-          @TaskStatus = params['TaskStatus']
-        end
-      end
-
       # RocketMQ消费组订阅信息
       class RocketMQSubscription < TencentCloud::Common::AbstractModel
         # @param Topic: 主题名称
@@ -12934,10 +12773,12 @@ module TencentCloud
         # @param SubscriptionData: 订阅关系列表
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubscriptionData: Array
+        # @param TagList: 绑定的标签列表
+        # @type TagList: Array
 
-        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime, :InstanceId, :Namespace, :LastUpdateTime, :SubscriptionCount, :SubscriptionData
+        attr_accessor :Name, :Type, :GroupNum, :Remark, :PartitionNum, :CreateTime, :UpdateTime, :InstanceId, :Namespace, :LastUpdateTime, :SubscriptionCount, :SubscriptionData, :TagList
 
-        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil, instanceid=nil, namespace=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil)
+        def initialize(name=nil, type=nil, groupnum=nil, remark=nil, partitionnum=nil, createtime=nil, updatetime=nil, instanceid=nil, namespace=nil, lastupdatetime=nil, subscriptioncount=nil, subscriptiondata=nil, taglist=nil)
           @Name = name
           @Type = type
           @GroupNum = groupnum
@@ -12950,6 +12791,7 @@ module TencentCloud
           @LastUpdateTime = lastupdatetime
           @SubscriptionCount = subscriptioncount
           @SubscriptionData = subscriptiondata
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -12970,6 +12812,14 @@ module TencentCloud
               rocketmqsubscription_tmp = RocketMQSubscription.new
               rocketmqsubscription_tmp.deserialize(i)
               @SubscriptionData << rocketmqsubscription_tmp
+            end
+          end
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
             end
           end
         end
@@ -13008,53 +12858,6 @@ module TencentCloud
           @Type = params['Type']
           @Partitions = params['Partitions']
           @Remark = params['Remark']
-        end
-      end
-
-      # RocketMQ主题配置信息
-      class RocketMQTopicConfigOutput < TencentCloud::Common::AbstractModel
-        # @param Namespace: 命名空间
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Namespace: String
-        # @param TopicName: 主题名称
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type TopicName: String
-        # @param Type: 主题类型：
-        # Normal，普通
-        # GlobalOrder， 全局顺序
-        # PartitionedOrder, 分区顺序
-        # Transaction，事务消息
-        # DelayScheduled，延迟/定时消息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Type: String
-        # @param Partitions: 分区个数
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Partitions: Integer
-        # @param Remark: 备注信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Remark: String
-        # @param Imported: 是否导入
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Imported: Boolean
-
-        attr_accessor :Namespace, :TopicName, :Type, :Partitions, :Remark, :Imported
-
-        def initialize(namespace=nil, topicname=nil, type=nil, partitions=nil, remark=nil, imported=nil)
-          @Namespace = namespace
-          @TopicName = topicname
-          @Type = type
-          @Partitions = partitions
-          @Remark = remark
-          @Imported = imported
-        end
-
-        def deserialize(params)
-          @Namespace = params['Namespace']
-          @TopicName = params['TopicName']
-          @Type = params['Type']
-          @Partitions = params['Partitions']
-          @Remark = params['Remark']
-          @Imported = params['Imported']
         end
       end
 
@@ -13784,6 +13587,26 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签过滤器
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键名称
+        # @type TagKey: String
+        # @param TagValues: 标签值列表
+        # @type TagValues: Array
+
+        attr_accessor :TagKey, :TagValues
+
+        def initialize(tagkey=nil, tagvalues=nil)
+          @TagKey = tagkey
+          @TagValues = tagvalues
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValues = params['TagValues']
         end
       end
 

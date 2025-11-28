@@ -2176,6 +2176,9 @@ module TencentCloud
         # @param ProtocolParams: HTTP函数配置ProtocolType访问协议，当前协议配置的参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProtocolParams: :class:`Tencentcloud::Scf.v20180416.models.ProtocolParams`
+        # @param InstanceConcurrencyConfig: 单实例多并发配置。只支持Web函数。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceConcurrencyConfig: :class:`Tencentcloud::Scf.v20180416.models.InstanceConcurrencyConfig`
         # @param DnsCache: 是否开启DNS缓存
         # @type DnsCache: String
         # @param IntranetConfig: 内网访问配置
@@ -2184,9 +2187,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :ImageConfig, :ProtocolType, :ProtocolParams, :DnsCache, :IntranetConfig, :RequestId
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :CodeError, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :StatusDesc, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :AccessInfo, :Type, :L5Enable, :Layers, :DeadLetterConfig, :AddTime, :PublicNetConfig, :OnsEnable, :CfsConfig, :AvailableStatus, :Qualifier, :InitTimeout, :StatusReasons, :AsyncRunEnable, :TraceEnable, :ImageConfig, :ProtocolType, :ProtocolParams, :InstanceConcurrencyConfig, :DnsCache, :IntranetConfig, :RequestId
 
-        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, protocoltype=nil, protocolparams=nil, dnscache=nil, intranetconfig=nil, requestid=nil)
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, codeerror=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, statusdesc=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, accessinfo=nil, type=nil, l5enable=nil, layers=nil, deadletterconfig=nil, addtime=nil, publicnetconfig=nil, onsenable=nil, cfsconfig=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, statusreasons=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, protocoltype=nil, protocolparams=nil, instanceconcurrencyconfig=nil, dnscache=nil, intranetconfig=nil, requestid=nil)
           @ModTime = modtime
           @CodeInfo = codeinfo
           @Description = description
@@ -2232,6 +2235,7 @@ module TencentCloud
           @ImageConfig = imageconfig
           @ProtocolType = protocoltype
           @ProtocolParams = protocolparams
+          @InstanceConcurrencyConfig = instanceconcurrencyconfig
           @DnsCache = dnscache
           @IntranetConfig = intranetconfig
           @RequestId = requestid
@@ -2337,6 +2341,10 @@ module TencentCloud
           unless params['ProtocolParams'].nil?
             @ProtocolParams = ProtocolParams.new
             @ProtocolParams.deserialize(params['ProtocolParams'])
+          end
+          unless params['InstanceConcurrencyConfig'].nil?
+            @InstanceConcurrencyConfig = InstanceConcurrencyConfig.new
+            @InstanceConcurrencyConfig.deserialize(params['InstanceConcurrencyConfig'])
           end
           @DnsCache = params['DnsCache']
           unless params['IntranetConfig'].nil?
@@ -2643,17 +2651,43 @@ module TencentCloud
         # @param MaxConcurrency: 单实例并发数最大值。取值范围 [1,100]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxConcurrency: Integer
+        # @param InstanceIsolationEnabled: 安全隔离开关
+        # @type InstanceIsolationEnabled: String
+        # @param Type: 基于会话：Session-Based ， 或者基于请求：Request-Based，二选一
+        # @type Type: String
+        # @param MixNodeConfig: 动态并发参数
+        # @type MixNodeConfig: Array
+        # @param SessionConfig: 会话配置参数
+        # @type SessionConfig: :class:`Tencentcloud::Scf.v20180416.models.SessionConfig`
 
-        attr_accessor :DynamicEnabled, :MaxConcurrency
+        attr_accessor :DynamicEnabled, :MaxConcurrency, :InstanceIsolationEnabled, :Type, :MixNodeConfig, :SessionConfig
 
-        def initialize(dynamicenabled=nil, maxconcurrency=nil)
+        def initialize(dynamicenabled=nil, maxconcurrency=nil, instanceisolationenabled=nil, type=nil, mixnodeconfig=nil, sessionconfig=nil)
           @DynamicEnabled = dynamicenabled
           @MaxConcurrency = maxconcurrency
+          @InstanceIsolationEnabled = instanceisolationenabled
+          @Type = type
+          @MixNodeConfig = mixnodeconfig
+          @SessionConfig = sessionconfig
         end
 
         def deserialize(params)
           @DynamicEnabled = params['DynamicEnabled']
           @MaxConcurrency = params['MaxConcurrency']
+          @InstanceIsolationEnabled = params['InstanceIsolationEnabled']
+          @Type = params['Type']
+          unless params['MixNodeConfig'].nil?
+            @MixNodeConfig = []
+            params['MixNodeConfig'].each do |i|
+              mixnodeconfig_tmp = MixNodeConfig.new
+              mixnodeconfig_tmp.deserialize(i)
+              @MixNodeConfig << mixnodeconfig_tmp
+            end
+          end
+          unless params['SessionConfig'].nil?
+            @SessionConfig = SessionConfig.new
+            @SessionConfig.deserialize(params['SessionConfig'])
+          end
         end
       end
 
@@ -3671,6 +3705,26 @@ module TencentCloud
         end
       end
 
+      # 动态并发配置
+      class MixNodeConfig < TencentCloud::Common::AbstractModel
+        # @param NodeSpec: GPU机型名
+        # @type NodeSpec: String
+        # @param Num: 并发个数
+        # @type Num: Integer
+
+        attr_accessor :NodeSpec, :Num
+
+        def initialize(nodespec=nil, num=nil)
+          @NodeSpec = nodespec
+          @Num = num
+        end
+
+        def deserialize(params)
+          @NodeSpec = params['NodeSpec']
+          @Num = params['Num']
+        end
+      end
+
       # 命名空间
       class Namespace < TencentCloud::Common::AbstractModel
         # @param ModTime: 命名空间创建时间
@@ -4422,6 +4476,46 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 会话参数
+      class SessionConfig < TencentCloud::Common::AbstractModel
+        # @param SessionSource: session 来源，三选一：'HEADER', 'COOKIE', 'QUERY_STRING'
+        # @type SessionSource: String
+        # @param SessionName: session 名称，以字母开头，非首字母可包含数字、字母、下划线、中划线，长度5-40个字符
+        # @type SessionName: String
+        # @param MaximumConcurrencySessionPerInstance: 最大并发会话数
+        # @type MaximumConcurrencySessionPerInstance: Integer
+        # @param MaximumTTLInSeconds: 生命周期
+        # @type MaximumTTLInSeconds: Integer
+        # @param MaximumIdleTimeInSeconds: 空闲时长
+        # @type MaximumIdleTimeInSeconds: Integer
+        # @param SessionPath: session 对应的路径信息
+        # @type SessionPath: String
+        # @param IdleTimeoutStrategy: 自动销毁 FATAL、自动暂停PAUSE， 只有启动安全隔离的时候才会有
+        # @type IdleTimeoutStrategy: String
+
+        attr_accessor :SessionSource, :SessionName, :MaximumConcurrencySessionPerInstance, :MaximumTTLInSeconds, :MaximumIdleTimeInSeconds, :SessionPath, :IdleTimeoutStrategy
+
+        def initialize(sessionsource=nil, sessionname=nil, maximumconcurrencysessionperinstance=nil, maximumttlinseconds=nil, maximumidletimeinseconds=nil, sessionpath=nil, idletimeoutstrategy=nil)
+          @SessionSource = sessionsource
+          @SessionName = sessionname
+          @MaximumConcurrencySessionPerInstance = maximumconcurrencysessionperinstance
+          @MaximumTTLInSeconds = maximumttlinseconds
+          @MaximumIdleTimeInSeconds = maximumidletimeinseconds
+          @SessionPath = sessionpath
+          @IdleTimeoutStrategy = idletimeoutstrategy
+        end
+
+        def deserialize(params)
+          @SessionSource = params['SessionSource']
+          @SessionName = params['SessionName']
+          @MaximumConcurrencySessionPerInstance = params['MaximumConcurrencySessionPerInstance']
+          @MaximumTTLInSeconds = params['MaximumTTLInSeconds']
+          @MaximumIdleTimeInSeconds = params['MaximumIdleTimeInSeconds']
+          @SessionPath = params['SessionPath']
+          @IdleTimeoutStrategy = params['IdleTimeoutStrategy']
         end
       end
 

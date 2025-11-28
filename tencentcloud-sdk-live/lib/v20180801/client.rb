@@ -2528,32 +2528,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取禁推流列表。
-
-        # 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
-
-        # @param request: Request instance for DescribeLiveForbidStreamList.
-        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveForbidStreamListRequest`
-        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveForbidStreamListResponse`
-        def DescribeLiveForbidStreamList(request)
-          body = send_request('DescribeLiveForbidStreamList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeLiveForbidStreamListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
 
         # @param request: Request instance for DescribeLivePackageInfo.

@@ -615,6 +615,42 @@ module TencentCloud
         end
       end
 
+      # CancelUpgradePlan请求参数结构体
+      class CancelUpgradePlanRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param PlanID: 升级计划ID
+        # @type PlanID: Integer
+
+        attr_accessor :ClusterID, :PlanID
+
+        def initialize(clusterid=nil, planid=nil)
+          @ClusterID = clusterid
+          @PlanID = planid
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @PlanID = params['PlanID']
+        end
+      end
+
+      # CancelUpgradePlan返回参数结构体
+      class CancelUpgradePlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # cloudrun安全特性能力
       class Capabilities < TencentCloud::Common::AbstractModel
         # @param Add: 启用安全能力项列表
@@ -1642,6 +1678,41 @@ module TencentCloud
         end
       end
 
+      # 集群发布序列标签
+      class ClusterRollOutSequenceTag < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Tags: 集群发布序列标签
+        # @type Tags: Array
+        # @param Region: 地域
+        # @type Region: String
+
+        attr_accessor :ClusterID, :ClusterName, :Tags, :Region
+
+        def initialize(clusterid=nil, clustername=nil, tags=nil, region=nil)
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @Tags = tags
+          @Region = region
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Region = params['Region']
+        end
+      end
+
       # 集群状态信息
       class ClusterStatus < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群Id
@@ -2148,6 +2219,61 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceIdSet = params['InstanceIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateClusterMaintenanceWindowAndExclusions请求参数结构体
+      class CreateClusterMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长（小时）
+        # @type Duration: Integer
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param Exclusions: 维护排除项
+        # @type Exclusions: Array
+
+        attr_accessor :ClusterID, :MaintenanceTime, :Duration, :DayOfWeek, :Exclusions
+
+        def initialize(clusterid=nil, maintenancetime=nil, duration=nil, dayofweek=nil, exclusions=nil)
+          @ClusterID = clusterid
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @DayOfWeek = dayofweek
+          @Exclusions = exclusions
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @DayOfWeek = params['DayOfWeek']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+        end
+      end
+
+      # CreateClusterMaintenanceWindowAndExclusions返回参数结构体
+      class CreateClusterMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3195,6 +3321,61 @@ module TencentCloud
         end
       end
 
+      # CreateGlobalMaintenanceWindowAndExclusions请求参数结构体
+      class CreateGlobalMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长(小时)
+        # @type Duration: Integer
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param TargetRegions: 地域
+        # @type TargetRegions: Array
+        # @param Exclusions: 维护排除项
+        # @type Exclusions: Array
+
+        attr_accessor :MaintenanceTime, :Duration, :DayOfWeek, :TargetRegions, :Exclusions
+
+        def initialize(maintenancetime=nil, duration=nil, dayofweek=nil, targetregions=nil, exclusions=nil)
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @DayOfWeek = dayofweek
+          @TargetRegions = targetregions
+          @Exclusions = exclusions
+        end
+
+        def deserialize(params)
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @DayOfWeek = params['DayOfWeek']
+          @TargetRegions = params['TargetRegions']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGlobalMaintenanceWindowAndExclusions返回参数结构体
+      class CreateGlobalMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImageCache请求参数结构体
       class CreateImageCacheRequest < TencentCloud::Common::AbstractModel
         # @param Images: 用于制作镜像缓存的容器镜像列表
@@ -3781,6 +3962,53 @@ module TencentCloud
         end
       end
 
+      # CreateRollOutSequence请求参数结构体
+      class CreateRollOutSequenceRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 发布序列名称
+        # @type Name: String
+        # @param SequenceFlows: 发布序列步骤
+        # @type SequenceFlows: Array
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :SequenceFlows, :Enabled
+
+        def initialize(name=nil, sequenceflows=nil, enabled=nil)
+          @Name = name
+          @SequenceFlows = sequenceflows
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['SequenceFlows'].nil?
+            @SequenceFlows = []
+            params['SequenceFlows'].each do |i|
+              sequenceflow_tmp = SequenceFlow.new
+              sequenceflow_tmp.deserialize(i)
+              @SequenceFlows << sequenceflow_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # CreateRollOutSequence返回参数结构体
+      class CreateRollOutSequenceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTKEEdgeCluster请求参数结构体
       class CreateTKEEdgeClusterRequest < TencentCloud::Common::AbstractModel
         # @param K8SVersion: k8s版本号
@@ -4233,6 +4461,38 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterMaintenanceWindowAndExclusion请求参数结构体
+      class DeleteClusterMaintenanceWindowAndExclusionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+
+        attr_accessor :ClusterID
+
+        def initialize(clusterid=nil)
+          @ClusterID = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+        end
+      end
+
+      # DeleteClusterMaintenanceWindowAndExclusion返回参数结构体
+      class DeleteClusterMaintenanceWindowAndExclusionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClusterNodePool请求参数结构体
       class DeleteClusterNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 节点池对应的 ClusterId
@@ -4634,6 +4894,38 @@ module TencentCloud
 
       # DeleteEdgeClusterInstances返回参数结构体
       class DeleteEdgeClusterInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGlobalMaintenanceWindowAndExclusion请求参数结构体
+      class DeleteGlobalMaintenanceWindowAndExclusionRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 全局维护时间窗口ID
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DeleteGlobalMaintenanceWindowAndExclusion返回参数结构体
+      class DeleteGlobalMaintenanceWindowAndExclusionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5107,6 +5399,38 @@ module TencentCloud
 
       # DeleteReservedInstances返回参数结构体
       class DeleteReservedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteRollOutSequence请求参数结构体
+      class DeleteRollOutSequenceRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 发布序列ID
+        # @type ID: Integer
+
+        attr_accessor :ID
+
+        def initialize(id=nil)
+          @ID = id
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+        end
+      end
+
+      # DeleteRollOutSequence返回参数结构体
+      class DeleteRollOutSequenceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -6237,6 +6561,68 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterMaintenanceWindowAndExclusions请求参数结构体
+      class DescribeClusterMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+        # @param Filters: 过滤项
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeClusterMaintenanceWindowAndExclusions返回参数结构体
+      class DescribeClusterMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param MaintenanceWindowAndExclusions: 维护时间窗口和排除项
+        # @type MaintenanceWindowAndExclusions: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MaintenanceWindowAndExclusions, :TotalCount, :RequestId
+
+        def initialize(maintenancewindowandexclusions=nil, totalcount=nil, requestid=nil)
+          @MaintenanceWindowAndExclusions = maintenancewindowandexclusions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MaintenanceWindowAndExclusions'].nil?
+            @MaintenanceWindowAndExclusions = []
+            params['MaintenanceWindowAndExclusions'].each do |i|
+              maintenancewindowandexclusion_tmp = MaintenanceWindowAndExclusion.new
+              maintenancewindowandexclusion_tmp.deserialize(i)
+              @MaintenanceWindowAndExclusions << maintenancewindowandexclusion_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusterNodePoolDetail请求参数结构体
       class DescribeClusterNodePoolDetailRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
@@ -6603,6 +6989,68 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterRollOutSequenceTags请求参数结构体
+      class DescribeClusterRollOutSequenceTagsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+        # @param Filters: 过滤项
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeClusterRollOutSequenceTags返回参数结构体
+      class DescribeClusterRollOutSequenceTagsResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterTags: 集群发布序列标签
+        # @type ClusterTags: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterTags, :TotalCount, :RequestId
+
+        def initialize(clustertags=nil, totalcount=nil, requestid=nil)
+          @ClusterTags = clustertags
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterTags'].nil?
+            @ClusterTags = []
+            params['ClusterTags'].each do |i|
+              clusterrolloutsequencetag_tmp = ClusterRollOutSequenceTag.new
+              clusterrolloutsequencetag_tmp.deserialize(i)
+              @ClusterTags << clusterrolloutsequencetag_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -7975,6 +8423,68 @@ module TencentCloud
           @EnabledPublicConnect = params['EnabledPublicConnect']
           @PublicConnectUrl = params['PublicConnectUrl']
           @PublicCustomDomain = params['PublicCustomDomain']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGlobalMaintenanceWindowAndExclusions请求参数结构体
+      class DescribeGlobalMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+        # @param Filters: 筛选项
+        # @type Filters: Array
+
+        attr_accessor :Offset, :Limit, :Filters
+
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeGlobalMaintenanceWindowAndExclusions返回参数结构体
+      class DescribeGlobalMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param MaintenanceWindowAndExclusions: 维护时间窗口
+        # @type MaintenanceWindowAndExclusions: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :MaintenanceWindowAndExclusions, :RequestId
+
+        def initialize(totalcount=nil, maintenancewindowandexclusions=nil, requestid=nil)
+          @TotalCount = totalcount
+          @MaintenanceWindowAndExclusions = maintenancewindowandexclusions
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['MaintenanceWindowAndExclusions'].nil?
+            @MaintenanceWindowAndExclusions = []
+            params['MaintenanceWindowAndExclusions'].each do |i|
+              globalmaintenancewindowandexclusion_tmp = GlobalMaintenanceWindowAndExclusion.new
+              globalmaintenancewindowandexclusion_tmp.deserialize(i)
+              @MaintenanceWindowAndExclusions << globalmaintenancewindowandexclusion_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -10188,6 +10698,57 @@ module TencentCloud
         end
       end
 
+      # DescribeRollOutSequences请求参数结构体
+      class DescribeRollOutSequencesRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRollOutSequences返回参数结构体
+      class DescribeRollOutSequencesResponse < TencentCloud::Common::AbstractModel
+        # @param Sequences: 发布序列
+        # @type Sequences: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Sequences, :TotalCount, :RequestId
+
+        def initialize(sequences=nil, totalcount=nil, requestid=nil)
+          @Sequences = sequences
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Sequences'].nil?
+            @Sequences = []
+            params['Sequences'].each do |i|
+              rolloutsequence_tmp = RollOutSequence.new
+              rolloutsequence_tmp.deserialize(i)
+              @Sequences << rolloutsequence_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRouteTableConflicts请求参数结构体
       class DescribeRouteTableConflictsRequest < TencentCloud::Common::AbstractModel
         # @param RouteTableCidrBlock: 路由表CIDR
@@ -10632,6 +11193,112 @@ module TencentCloud
               @Tasks << task_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUpgradeTaskDetail请求参数结构体
+      class DescribeUpgradeTaskDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 升级任务ID
+        # @type ID: Integer
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :ID, :Offset, :Limit
+
+        def initialize(id=nil, offset=nil, limit=nil)
+          @ID = id
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUpgradeTaskDetail返回参数结构体
+      class DescribeUpgradeTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param UpgradePlans: 升级计划
+        # @type UpgradePlans: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpgradePlans, :TotalCount, :RequestId
+
+        def initialize(upgradeplans=nil, totalcount=nil, requestid=nil)
+          @UpgradePlans = upgradeplans
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UpgradePlans'].nil?
+            @UpgradePlans = []
+            params['UpgradePlans'].each do |i|
+              upgradeplan_tmp = UpgradePlan.new
+              upgradeplan_tmp.deserialize(i)
+              @UpgradePlans << upgradeplan_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUpgradeTasks请求参数结构体
+      class DescribeUpgradeTasksRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Limit: 最大输出条目数，默认为20
+        # @type Limit: Integer
+
+        attr_accessor :Offset, :Limit
+
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeUpgradeTasks返回参数结构体
+      class DescribeUpgradeTasksResponse < TencentCloud::Common::AbstractModel
+        # @param UpgradeTasks: 升级任务
+        # @type UpgradeTasks: Array
+        # @param TotalCount: 总条目数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UpgradeTasks, :TotalCount, :RequestId
+
+        def initialize(upgradetasks=nil, totalcount=nil, requestid=nil)
+          @UpgradeTasks = upgradetasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['UpgradeTasks'].nil?
+            @UpgradeTasks = []
+            params['UpgradeTasks'].each do |i|
+              upgradetask_tmp = UpgradeTask.new
+              upgradetask_tmp.deserialize(i)
+              @UpgradeTasks << upgradetask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -12539,6 +13206,49 @@ module TencentCloud
         end
       end
 
+      # 全局维护时间窗口和排除项
+      class GlobalMaintenanceWindowAndExclusion < TencentCloud::Common::AbstractModel
+        # @param TargetRegions: 地域
+        # @type TargetRegions: Array
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长（小时）
+        # @type Duration: Integer
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param Exclusions: 排除项
+        # @type Exclusions: Array
+        # @param ID: 维护窗口ID
+        # @type ID: Integer
+
+        attr_accessor :TargetRegions, :MaintenanceTime, :Duration, :DayOfWeek, :Exclusions, :ID
+
+        def initialize(targetregions=nil, maintenancetime=nil, duration=nil, dayofweek=nil, exclusions=nil, id=nil)
+          @TargetRegions = targetregions
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @DayOfWeek = dayofweek
+          @Exclusions = exclusions
+          @ID = id
+        end
+
+        def deserialize(params)
+          @TargetRegions = params['TargetRegions']
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @DayOfWeek = params['DayOfWeek']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+          @ID = params['ID']
+        end
+      end
+
       # Probe中的HttpGet
       class HttpGet < TencentCloud::Common::AbstractModel
         # @param Path: HttpGet检测的路径
@@ -13811,6 +14521,85 @@ module TencentCloud
         end
       end
 
+      # 维护时间排除项
+      class MaintenanceExclusion < TencentCloud::Common::AbstractModel
+        # @param Name: 维护排除项名称
+        # @type Name: String
+        # @param StartAt: 维护排除项开始时间
+        # @type StartAt: String
+        # @param EndAt: 维护排除项结束时间
+        # @type EndAt: String
+        # @param ID: 维护排除项ID
+        # @type ID: Integer
+
+        attr_accessor :Name, :StartAt, :EndAt, :ID
+
+        def initialize(name=nil, startat=nil, endat=nil, id=nil)
+          @Name = name
+          @StartAt = startat
+          @EndAt = endat
+          @ID = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @StartAt = params['StartAt']
+          @EndAt = params['EndAt']
+          @ID = params['ID']
+        end
+      end
+
+      # 维护时间窗口和排除项
+      class MaintenanceWindowAndExclusion < TencentCloud::Common::AbstractModel
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长（小时）
+        # @type Duration: Integer
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param Region: 地域
+        # @type Region: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param ClusterVersion: 集群版本
+        # @type ClusterVersion: String
+        # @param Exclusions: 排除项
+        # @type Exclusions: Array
+
+        attr_accessor :MaintenanceTime, :Duration, :ClusterID, :DayOfWeek, :Region, :ClusterName, :ClusterVersion, :Exclusions
+
+        def initialize(maintenancetime=nil, duration=nil, clusterid=nil, dayofweek=nil, region=nil, clustername=nil, clusterversion=nil, exclusions=nil)
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @ClusterID = clusterid
+          @DayOfWeek = dayofweek
+          @Region = region
+          @ClusterName = clustername
+          @ClusterVersion = clusterversion
+          @Exclusions = exclusions
+        end
+
+        def deserialize(params)
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @ClusterID = params['ClusterID']
+          @DayOfWeek = params['DayOfWeek']
+          @Region = params['Region']
+          @ClusterName = params['ClusterName']
+          @ClusterVersion = params['ClusterVersion']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+        end
+      end
+
       # 手动加入的节点
       class ManuallyAdded < TencentCloud::Common::AbstractModel
         # @param Joining: 加入中的节点数量
@@ -14215,6 +15004,61 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterMaintenanceWindowAndExclusions请求参数结构体
+      class ModifyClusterMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长（小时）
+        # @type Duration: Integer
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param Exclusions: 维护排除项
+        # @type Exclusions: Array
+
+        attr_accessor :ClusterID, :MaintenanceTime, :Duration, :DayOfWeek, :Exclusions
+
+        def initialize(clusterid=nil, maintenancetime=nil, duration=nil, dayofweek=nil, exclusions=nil)
+          @ClusterID = clusterid
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @DayOfWeek = dayofweek
+          @Exclusions = exclusions
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @DayOfWeek = params['DayOfWeek']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterMaintenanceWindowAndExclusions返回参数结构体
+      class ModifyClusterMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyClusterNodePool请求参数结构体
       class ModifyClusterNodePoolRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -14343,6 +15187,49 @@ module TencentCloud
 
       # ModifyClusterNodePool返回参数结构体
       class ModifyClusterNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterRollOutSequenceTags请求参数结构体
+      class ModifyClusterRollOutSequenceTagsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param Tags: 集群发布序列标签（为空时表示移除集群标签）
+        # @type Tags: Array
+
+        attr_accessor :ClusterID, :Tags
+
+        def initialize(clusterid=nil, tags=nil)
+          @ClusterID = clusterid
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @ClusterID = params['ClusterID']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterRollOutSequenceTags返回参数结构体
+      class ModifyClusterRollOutSequenceTagsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14527,6 +15414,65 @@ module TencentCloud
 
       # ModifyClusterVirtualNodePool返回参数结构体
       class ModifyClusterVirtualNodePoolResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGlobalMaintenanceWindowAndExclusions请求参数结构体
+      class ModifyGlobalMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 维护窗口ID
+        # @type ID: Integer
+        # @param TargetRegions: 地域
+        # @type TargetRegions: Array
+        # @param MaintenanceTime: 维护开始时间
+        # @type MaintenanceTime: String
+        # @param Duration: 维护时长（小时）
+        # @type Duration: Integer
+        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @type DayOfWeek: Array
+        # @param Exclusions: 维护排除项
+        # @type Exclusions: Array
+
+        attr_accessor :ID, :TargetRegions, :MaintenanceTime, :Duration, :DayOfWeek, :Exclusions
+
+        def initialize(id=nil, targetregions=nil, maintenancetime=nil, duration=nil, dayofweek=nil, exclusions=nil)
+          @ID = id
+          @TargetRegions = targetregions
+          @MaintenanceTime = maintenancetime
+          @Duration = duration
+          @DayOfWeek = dayofweek
+          @Exclusions = exclusions
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @TargetRegions = params['TargetRegions']
+          @MaintenanceTime = params['MaintenanceTime']
+          @Duration = params['Duration']
+          @DayOfWeek = params['DayOfWeek']
+          unless params['Exclusions'].nil?
+            @Exclusions = []
+            params['Exclusions'].each do |i|
+              maintenanceexclusion_tmp = MaintenanceExclusion.new
+              maintenanceexclusion_tmp.deserialize(i)
+              @Exclusions << maintenanceexclusion_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGlobalMaintenanceWindowAndExclusions返回参数结构体
+      class ModifyGlobalMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15103,6 +16049,57 @@ module TencentCloud
 
       # ModifyReservedInstanceScope返回参数结构体
       class ModifyReservedInstanceScopeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRollOutSequence请求参数结构体
+      class ModifyRollOutSequenceRequest < TencentCloud::Common::AbstractModel
+        # @param ID: 发布序列ID
+        # @type ID: Integer
+        # @param Name: 发布序列名称
+        # @type Name: String
+        # @param SequenceFlows: 发布序列步骤
+        # @type SequenceFlows: Array
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+
+        attr_accessor :ID, :Name, :SequenceFlows, :Enabled
+
+        def initialize(id=nil, name=nil, sequenceflows=nil, enabled=nil)
+          @ID = id
+          @Name = name
+          @SequenceFlows = sequenceflows
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          unless params['SequenceFlows'].nil?
+            @SequenceFlows = []
+            params['SequenceFlows'].each do |i|
+              sequenceflow_tmp = SequenceFlow.new
+              sequenceflow_tmp.deserialize(i)
+              @SequenceFlows << sequenceflow_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # ModifyRollOutSequence返回参数结构体
+      class ModifyRollOutSequenceResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -18047,6 +19044,41 @@ module TencentCloud
         end
       end
 
+      # 发布序列
+      class RollOutSequence < TencentCloud::Common::AbstractModel
+        # @param Name: 发布序列名称
+        # @type Name: String
+        # @param SequenceFlows: 发布序列步骤
+        # @type SequenceFlows: Array
+        # @param Enabled: 是否启用
+        # @type Enabled: Boolean
+        # @param ID: 发布序列ID
+        # @type ID: Integer
+
+        attr_accessor :Name, :SequenceFlows, :Enabled, :ID
+
+        def initialize(name=nil, sequenceflows=nil, enabled=nil, id=nil)
+          @Name = name
+          @SequenceFlows = sequenceflows
+          @Enabled = enabled
+          @ID = id
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['SequenceFlows'].nil?
+            @SequenceFlows = []
+            params['SequenceFlows'].each do |i|
+              sequenceflow_tmp = SequenceFlow.new
+              sequenceflow_tmp.deserialize(i)
+              @SequenceFlows << sequenceflow_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+          @ID = params['ID']
+        end
+      end
+
       # RollbackClusterRelease请求参数结构体
       class RollbackClusterReleaseRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -18469,6 +19501,53 @@ module TencentCloud
         end
       end
 
+      # 发布序列步骤
+      class SequenceFlow < TencentCloud::Common::AbstractModel
+        # @param Tags: 发布序列步骤标签
+        # @type Tags: Array
+        # @param SoakTime: 等待时间（秒）
+        # @type SoakTime: Integer
+
+        attr_accessor :Tags, :SoakTime
+
+        def initialize(tags=nil, soaktime=nil)
+          @Tags = tags
+          @SoakTime = soaktime
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              sequencetag_tmp = SequenceTag.new
+              sequencetag_tmp.deserialize(i)
+              @Tags << sequencetag_tmp
+            end
+          end
+          @SoakTime = params['SoakTime']
+        end
+      end
+
+      # 发布序列标签
+      class SequenceTag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: Array
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
       # ServiceAccount认证相关配置
       class ServiceAccountAuthenticationOptions < TencentCloud::Common::AbstractModel
         # @param UseTKEDefault: 使用TKE默认issuer和jwksuri
@@ -18707,6 +19786,46 @@ module TencentCloud
             @MasterLog = SwitchInfo.new
             @MasterLog.deserialize(params['MasterLog'])
           end
+        end
+      end
+
+      # SwitchClusterEndpoint请求参数结构体
+      class SwitchClusterEndpointRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param IsExtranet: 是否为外网访问（TRUE 外网访问 FALSE 内网访问，默认值： FALSE）
+        # @type IsExtranet: Boolean
+        # @param Rollback: 切换回滚至非直连
+        # @type Rollback: Boolean
+
+        attr_accessor :ClusterId, :IsExtranet, :Rollback
+
+        def initialize(clusterid=nil, isextranet=nil, rollback=nil)
+          @ClusterId = clusterid
+          @IsExtranet = isextranet
+          @Rollback = rollback
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @IsExtranet = params['IsExtranet']
+          @Rollback = params['Rollback']
+        end
+      end
+
+      # SwitchClusterEndpoint返回参数结构体
+      class SwitchClusterEndpointResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -19922,6 +21041,90 @@ module TencentCloud
             @LoginSettings.deserialize(params['LoginSettings'])
           end
           @SecurityGroupIds = params['SecurityGroupIds']
+        end
+      end
+
+      # 升级计划
+      class UpgradePlan < TencentCloud::Common::AbstractModel
+        # @param ID: 升级计划ID
+        # @type ID: Integer
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param PlanedStartAt: 预计开始时间
+        # @type PlanedStartAt: String
+        # @param UpgradeStartAt: 升级开始时间
+        # @type UpgradeStartAt: String
+        # @param UpgradeEndAt: 升级结束时间
+        # @type UpgradeEndAt: String
+        # @param Status: 升级状态
+        # @type Status: String
+        # @param Reason: 原因
+        # @type Reason: String
+
+        attr_accessor :ID, :ClusterID, :ClusterName, :PlanedStartAt, :UpgradeStartAt, :UpgradeEndAt, :Status, :Reason
+
+        def initialize(id=nil, clusterid=nil, clustername=nil, planedstartat=nil, upgradestartat=nil, upgradeendat=nil, status=nil, reason=nil)
+          @ID = id
+          @ClusterID = clusterid
+          @ClusterName = clustername
+          @PlanedStartAt = planedstartat
+          @UpgradeStartAt = upgradestartat
+          @UpgradeEndAt = upgradeendat
+          @Status = status
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @ClusterID = params['ClusterID']
+          @ClusterName = params['ClusterName']
+          @PlanedStartAt = params['PlanedStartAt']
+          @UpgradeStartAt = params['UpgradeStartAt']
+          @UpgradeEndAt = params['UpgradeEndAt']
+          @Status = params['Status']
+          @Reason = params['Reason']
+        end
+      end
+
+      # 升级任务
+      class UpgradeTask < TencentCloud::Common::AbstractModel
+        # @param ID: 任务ID
+        # @type ID: Integer
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Component: 组件名称
+        # @type Component: String
+        # @param RelatedResources: 关联资源
+        # @type RelatedResources: Array
+        # @param UpgradeImpact: 升级影响
+        # @type UpgradeImpact: String
+        # @param PlanedStartAt: 预计开始时间
+        # @type PlanedStartAt: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+
+        attr_accessor :ID, :Name, :Component, :RelatedResources, :UpgradeImpact, :PlanedStartAt, :CreatedAt
+
+        def initialize(id=nil, name=nil, component=nil, relatedresources=nil, upgradeimpact=nil, planedstartat=nil, createdat=nil)
+          @ID = id
+          @Name = name
+          @Component = component
+          @RelatedResources = relatedresources
+          @UpgradeImpact = upgradeimpact
+          @PlanedStartAt = planedstartat
+          @CreatedAt = createdat
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Component = params['Component']
+          @RelatedResources = params['RelatedResources']
+          @UpgradeImpact = params['UpgradeImpact']
+          @PlanedStartAt = params['PlanedStartAt']
+          @CreatedAt = params['CreatedAt']
         end
       end
 

@@ -14053,6 +14053,90 @@ module TencentCloud
         end
       end
 
+      # DescribeUsageData请求参数结构体
+      class DescribeUsageDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @type StartTime: String
+        # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @type EndTime: String
+        # @param Types: 查询媒体处理任务类型，默认查询转码。
+        # <li>Transcode：转码</li>
+        # <li>Enhance：增强</li>
+        # <li>AIAnalysis：智能分析</li>
+        # <li>AIRecognition：智能识别</li>
+        # <li>AIReview：内容审核</li>
+        # <li>Snapshot：截图</li>
+        # <li>AnimatedGraphics：转动图</li>
+        # <li>AiQualityControl：质检</li>
+        # <li>Evaluation：视频评测</li>
+        # <li>ImageProcess: 图片处理</li>
+        # <li>AddBlindWatermark: 添加基础版权数字水印</li>
+        # <li>AddNagraWatermark: 添加NAGRA数字水印</li>
+        # <li>ExtractBlindWatermark: 提取基础版权数字水印</li>
+        # @type Types: Array
+        # @param ProcessRegions: 媒体处理园区，默认返回 ap-guangzhou 园区。
+        # <li>ap-guangzhou：广州</li>
+        # <li>ap-hongkong：中国香港</li>
+        # <li>ap-taipei：中国台北</li>
+        # <li>ap-singapore：新加坡</li>
+        # <li>ap-mumbai：印度</li>
+        # <li>ap-jakarta：雅加达</li>
+        # <li>ap-seoul：首尔</li>
+        # <li>ap-bangkok：泰国</li>
+        # <li>ap-tokyo：日本</li>
+        # <li>na-siliconvalley：美国硅谷</li>
+        # <li>na-ashburn：弗吉尼亚</li>
+        # <li>na-toronto：多伦多</li>
+        # <li>sa-saopaulo：圣保罗</li>
+        # <li>eu-frankfurt：法兰克福</li>
+        # <li>eu-moscow：俄罗斯</li>
+        # <li>aws：AWS</li>
+        # @type ProcessRegions: Array
+
+        attr_accessor :StartTime, :EndTime, :Types, :ProcessRegions
+
+        def initialize(starttime=nil, endtime=nil, types=nil, processregions=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Types = types
+          @ProcessRegions = processregions
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Types = params['Types']
+          @ProcessRegions = params['ProcessRegions']
+        end
+      end
+
+      # DescribeUsageData返回参数结构体
+      class DescribeUsageDataResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 媒体处理统计数据概览，展示所查询任务的概览以及详细数据。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              taskstatdata_tmp = TaskStatData.new
+              taskstatdata_tmp.deserialize(i)
+              @Data << taskstatdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoDatabaseEntryTaskDetail请求参数结构体
       class DescribeVideoDatabaseEntryTaskDetailRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 待查询的任务Id
@@ -26594,6 +26678,33 @@ module TencentCloud
         end
       end
 
+      # 指定规格任务统计数据。
+      class SpecificationDataItem < TencentCloud::Common::AbstractModel
+        # @param Specification: 任务规格。
+        # @type Specification: String
+        # @param Data: 统计数据。
+        # @type Data: Array
+
+        attr_accessor :Specification, :Data
+
+        def initialize(specification=nil, data=nil)
+          @Specification = specification
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Specification = params['Specification']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              taskstatdataitem_tmp = TaskStatDataItem.new
+              taskstatdataitem_tmp.deserialize(i)
+              @Data << taskstatdataitem_tmp
+            end
+          end
+        end
+      end
+
       # FairPlay，WideVine，PlayReady 等Drm加密方式。
       class SpekeDrm < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源标记，该字段内容为用户自定义；
@@ -27326,6 +27437,155 @@ module TencentCloud
           @BeginProcessTime = params['BeginProcessTime']
           @FinishTime = params['FinishTime']
           @SubTaskTypes = params['SubTaskTypes']
+        end
+      end
+
+      # 任务统计数据。
+      class TaskStatData < TencentCloud::Common::AbstractModel
+        # @param TaskType: 任务类型。
+        # <li>Transcode: 转码</li>
+        # <li>Enhance: 增强</li>
+        # <li>AIAnalysis: 智能分析</li>
+        # <li>AIRecognition: 智能识别</li>
+        # <li>AIReview: 内容审核</li>
+        # <li>Snapshot: 截图</li>
+        # <li>AnimatedGraphics: 转动图</li>
+        # <li>ImageProcess: 图片处理</li>
+        # @type TaskType: String
+        # @param Summary: 任务数统计数据概览。
+        # <li>Transcode：用量单位为秒</li>
+        # <li>Enhance：用量单位为秒</li>
+        # <li>AIAnalysis：用量单位为秒</li>
+        # <li>AIRecognition：用量单位为秒</li>
+        # <li>AIReview：用量单位为秒</li>
+        # <li>Snapshot：用量单位为张</li>
+        # <li>AnimatedGraphics: 用量单位为秒</li>
+        # <li>ImageProcess: 用量单位为张</li>
+        # @type Summary: Array
+        # @param Details: 不同规格任务统计数据详情。
+
+        # 1、转码规格：
+        # <li>Audio：纯音频</li>
+        # <li>Remuxing：转封装</li>
+        # <li>其他转码规格：{TYPE}.{CODEC}.{SPECIFICATION}</li>  其中 TYPE 取值
+        #     Standard：普通转码
+        #     TESHD-10：视频极速高清
+        #     TESHD-20：音频极速高清
+        #     TESHD-30：音视频极速高清
+        #     TESHD-30-SDK：音视频极速高清SDK按时长计费
+        #     TESHD-30-SDKCores：音视频极速高清SDK按核心数计费
+        #     Edit：视频编辑
+        #   其中 CODEC 取值
+        #     H264：H.264 编码
+        #     H265：H.265 编码
+        #     AV1：AV1 编码
+        #     MV-HEVC：MV-HEVC 编码
+        #   其中 SPECIFICATION 取值
+        #     SD：标清
+        #     HD：高清
+        #     FHD：全高清
+        #     2K：2K
+        #     4K：4K
+        # 例如 TESHD-10.H265.HD 表示 H.265 编码方式高清极速高清转码
+
+        # 2、增强规格：视频增强格式：{TYPE}.{CODEC}.{SPECIFICATION}.{FPS}，其中 CODEC 和 SPECIFICATION 同转码，FPS在原子类型时才存在；音频增强格式：{TYPE}。
+        # 增强TYPE 取值：
+        # <li>Enhance：通用增强类型，可能是任意一种原子增强类型</li>
+        # <li>原子增强类型</li>  视频原子增强类型取值：
+        #     Sdr2hdr：SDR2HDR
+        #     SuperResolution：超分
+        #     InsertFrame：插帧
+        #     ComprehensiveEnhancement：综合增强
+        #     NoiseReduction：视频降噪
+        #     ColorEnhancement：色彩增强
+        #     RemoveScratches：去划痕
+        #     Deburr：去毛刺
+        #     DetailEnhancement：细节增强
+        #     LightEnhancement：低光照增强
+        #     FaceEnhancement：人脸增强
+        #   音频原子增强类型取值：
+        #     AudioNoiseReduction
+        #     VolumeBalance
+        #     AudioBeautify
+        #     AudioSeparation
+
+        # 3、截图规格：
+        # <li>ImageSprite：雪碧图</li>
+        # <li>SampleSnapshot：采样截图</li>
+        # <li>SnapshotByTime：时间点截图</li>
+        # 4、图片处理规格：{TYPE}.{CODEC}.{SPECIFICATION}
+        # <li> ImageCompression：图片编码</li>
+        # <li> ImageSuperResolution：图片超分</li>
+        # <li> EnhanceImageColor：图片色彩增强</li>
+        # 5、智能分析规格：
+        # <li>AIAnalysis：分析大类，对于未拆分的</li>
+        # <li>VideoTag：视频标签</li>
+        # <li>VideoClassification：视频分类</li>
+        # <li>SmartCover：智能封面</li>
+        # <li>FrameLabel：帧标签</li>
+        # <li>VideoSplit：视频拆条</li>
+        # <li>Highlights：精彩集锦</li>
+        # <li>OpeningAndEnding：片头片尾</li>
+        # 6、智能识别规格：
+        # <li>AIRecognition：识别大类，对于未拆分的</li>
+        # <li>FaceRecognition：人脸识别</li>
+        # <li>TextRecognition：文字识别</li>
+        # <li>ObjectRecognition：物体识别</li>
+        # <li>VoiceRecognition：语音识别</li>
+        # <li>VoiceTranslation：语音翻译</li>
+        # 7、内容审核、转动图无细分规格。
+        # @type Details: Array
+
+        attr_accessor :TaskType, :Summary, :Details
+
+        def initialize(tasktype=nil, summary=nil, details=nil)
+          @TaskType = tasktype
+          @Summary = summary
+          @Details = details
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          unless params['Summary'].nil?
+            @Summary = []
+            params['Summary'].each do |i|
+              taskstatdataitem_tmp = TaskStatDataItem.new
+              taskstatdataitem_tmp.deserialize(i)
+              @Summary << taskstatdataitem_tmp
+            end
+          end
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              specificationdataitem_tmp = SpecificationDataItem.new
+              specificationdataitem_tmp.deserialize(i)
+              @Details << specificationdataitem_tmp
+            end
+          end
+        end
+      end
+
+      # 任务统计数据，包括任务数和用量。
+      class TaskStatDataItem < TencentCloud::Common::AbstractModel
+        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
+        # @type Time: String
+        # @param Count: 任务数。
+        # @type Count: Integer
+        # @param Usage: 任务用量。
+        # @type Usage: Integer
+
+        attr_accessor :Time, :Count, :Usage
+
+        def initialize(time=nil, count=nil, usage=nil)
+          @Time = time
+          @Count = count
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @Count = params['Count']
+          @Usage = params['Usage']
         end
       end
 

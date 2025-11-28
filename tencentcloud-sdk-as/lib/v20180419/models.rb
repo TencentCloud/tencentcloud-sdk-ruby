@@ -5389,16 +5389,19 @@ module TencentCloud
         # <li>True: 修改最大值或最小值时，如与当前期望数存在冲突，则同步调整期望数。例如修改时传入最小值 2，当前期望数为 1，则同步调整期望数为 2。</li>
         # <li>False: 修改最大值或最小值时，如与当前期望数存在冲突，报错提示不允许修改。</li>
         # @type DesiredCapacitySyncWithMaxMinSize: Boolean
+        # @param PriorityScaleInUnhealthy: 优先缩容不健康实例。若开启，缩容时会优先选择不健康实例。默认值为 False。
+        # @type PriorityScaleInUnhealthy: Boolean
 
-        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode, :AutoUpdateInstanceTags, :DesiredCapacitySyncWithMaxMinSize
+        attr_accessor :ReplaceMonitorUnhealthy, :ScalingMode, :ReplaceLoadBalancerUnhealthy, :ReplaceMode, :AutoUpdateInstanceTags, :DesiredCapacitySyncWithMaxMinSize, :PriorityScaleInUnhealthy
 
-        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil, replacemode=nil, autoupdateinstancetags=nil, desiredcapacitysyncwithmaxminsize=nil)
+        def initialize(replacemonitorunhealthy=nil, scalingmode=nil, replaceloadbalancerunhealthy=nil, replacemode=nil, autoupdateinstancetags=nil, desiredcapacitysyncwithmaxminsize=nil, priorityscaleinunhealthy=nil)
           @ReplaceMonitorUnhealthy = replacemonitorunhealthy
           @ScalingMode = scalingmode
           @ReplaceLoadBalancerUnhealthy = replaceloadbalancerunhealthy
           @ReplaceMode = replacemode
           @AutoUpdateInstanceTags = autoupdateinstancetags
           @DesiredCapacitySyncWithMaxMinSize = desiredcapacitysyncwithmaxminsize
+          @PriorityScaleInUnhealthy = priorityscaleinunhealthy
         end
 
         def deserialize(params)
@@ -5408,6 +5411,7 @@ module TencentCloud
           @ReplaceMode = params['ReplaceMode']
           @AutoUpdateInstanceTags = params['AutoUpdateInstanceTags']
           @DesiredCapacitySyncWithMaxMinSize = params['DesiredCapacitySyncWithMaxMinSize']
+          @PriorityScaleInUnhealthy = params['PriorityScaleInUnhealthy']
         end
       end
 

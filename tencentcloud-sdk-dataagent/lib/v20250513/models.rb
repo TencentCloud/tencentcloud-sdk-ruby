@@ -149,19 +149,23 @@ module TencentCloud
         # @type Content: String
         # @param Size: 切片的字数
         # @type Size: Integer
+        # @param Summary: 切片概要
+        # @type Summary: String
 
-        attr_accessor :Id, :Content, :Size
+        attr_accessor :Id, :Content, :Size, :Summary
 
-        def initialize(id=nil, content=nil, size=nil)
+        def initialize(id=nil, content=nil, size=nil, summary=nil)
           @Id = id
           @Content = content
           @Size = size
+          @Summary = summary
         end
 
         def deserialize(params)
           @Id = params['Id']
           @Content = params['Content']
           @Size = params['Size']
+          @Summary = params['Summary']
         end
       end
 

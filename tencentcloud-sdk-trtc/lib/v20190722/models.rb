@@ -4005,7 +4005,7 @@ module TencentCloud
         # @type MediaId: Integer
         # @param ImageLayer: 该画布的图层顺序, 这个值越小表示图层越靠后。默认值为0。
         # @type ImageLayer: Integer
-        # @param SubBackgroundImage: 图片的url地址， 只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
+        # @param SubBackgroundImage: 图片的url地址， 只支持jpg, png, jpeg，图片分辨率限制不超过2K，图片大小限制不超过5MB。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type SubBackgroundImage: String
 
         attr_accessor :Top, :Left, :Width, :Height, :UserId, :Alpha, :RenderMode, :MediaId, :ImageLayer, :SubBackgroundImage
@@ -4064,13 +4064,13 @@ module TencentCloud
         # 1：辅流（屏幕分享）；
         # 这个位置的MediaId代表的是对应MaxResolutionUserId的主辅路，MixLayoutList内代表的是自定义用户的主辅路。
         # @type MediaId: Integer
-        # @param BackgroundImageUrl: 图片的url地址，只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
+        # @param BackgroundImageUrl: 图片的url地址，只支持jpg, png, jpeg，图片分辨率限制不超过2K，图片大小限制不超过5MB。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type BackgroundImageUrl: String
         # @param PlaceHolderMode: 设置为1时代表启用占位图功能，0时代表不启用占位图功能，默认为0。启用占位图功能时，在预设位置的用户没有上行音视频时可显示对应的占位图。
         # @type PlaceHolderMode: Integer
         # @param BackgroundImageRenderMode: 背景画面宽高比不一致的时候处理方案，与MixLayoutList定义的RenderMode一致。
         # @type BackgroundImageRenderMode: Integer
-        # @param DefaultSubBackgroundImage: 子画面占位图url地址，只支持jpg, png, jpeg，大小限制不超过5M。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
+        # @param DefaultSubBackgroundImage: 子画面占位图url地址，只支持jpg, png, jpeg，图片分辨率限制不超过2K，图片大小限制不超过5MB。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
         # @type DefaultSubBackgroundImage: String
         # @param WaterMarkList: 水印布局参数， 最多支持25个。
         # @type WaterMarkList: Array
@@ -5327,10 +5327,12 @@ module TencentCloud
         # @type Priority: Integer
         # @param AddHistory: 是否将文本加入到llm历史上下文中
         # @type AddHistory: Boolean
+        # @param MetaInfo: 如果填写，会和字幕绑定发送到端上，注意确保内容为json字符串
+        # @type MetaInfo: String
 
-        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority, :AddHistory
+        attr_accessor :Text, :Interrupt, :StopAfterPlay, :Audio, :DropMode, :Priority, :AddHistory, :MetaInfo
 
-        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil, addhistory=nil)
+        def initialize(text=nil, interrupt=nil, stopafterplay=nil, audio=nil, dropmode=nil, priority=nil, addhistory=nil, metainfo=nil)
           @Text = text
           @Interrupt = interrupt
           @StopAfterPlay = stopafterplay
@@ -5338,6 +5340,7 @@ module TencentCloud
           @DropMode = dropmode
           @Priority = priority
           @AddHistory = addhistory
+          @MetaInfo = metainfo
         end
 
         def deserialize(params)
@@ -5348,6 +5351,7 @@ module TencentCloud
           @DropMode = params['DropMode']
           @Priority = params['Priority']
           @AddHistory = params['AddHistory']
+          @MetaInfo = params['MetaInfo']
         end
       end
 

@@ -7051,75 +7051,6 @@ module TencentCloud
         end
       end
 
-      # DescribeLiveForbidStreamList请求参数结构体
-      class DescribeLiveForbidStreamListRequest < TencentCloud::Common::AbstractModel
-        # @param PageNum: 取得第几页，默认1。
-        # @type PageNum: Integer
-        # @param PageSize: 每页大小，最大100。
-        # 取值：1~100之前的任意整数。
-        # 默认值：10。
-        # @type PageSize: Integer
-        # @param StreamName: 按流名称查询。
-        # @type StreamName: String
-
-        attr_accessor :PageNum, :PageSize, :StreamName
-
-        def initialize(pagenum=nil, pagesize=nil, streamname=nil)
-          @PageNum = pagenum
-          @PageSize = pagesize
-          @StreamName = streamname
-        end
-
-        def deserialize(params)
-          @PageNum = params['PageNum']
-          @PageSize = params['PageSize']
-          @StreamName = params['StreamName']
-        end
-      end
-
-      # DescribeLiveForbidStreamList返回参数结构体
-      class DescribeLiveForbidStreamListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalNum: 符合条件的总个数。
-        # @type TotalNum: Integer
-        # @param TotalPage: 总页数。
-        # @type TotalPage: Integer
-        # @param PageNum: 分页的页码。
-        # @type PageNum: Integer
-        # @param PageSize: 每页显示的条数。
-        # @type PageSize: Integer
-        # @param ForbidStreamList: 禁推流列表。
-        # @type ForbidStreamList: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalNum, :TotalPage, :PageNum, :PageSize, :ForbidStreamList, :RequestId
-
-        def initialize(totalnum=nil, totalpage=nil, pagenum=nil, pagesize=nil, forbidstreamlist=nil, requestid=nil)
-          @TotalNum = totalnum
-          @TotalPage = totalpage
-          @PageNum = pagenum
-          @PageSize = pagesize
-          @ForbidStreamList = forbidstreamlist
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalNum = params['TotalNum']
-          @TotalPage = params['TotalPage']
-          @PageNum = params['PageNum']
-          @PageSize = params['PageSize']
-          unless params['ForbidStreamList'].nil?
-            @ForbidStreamList = []
-            params['ForbidStreamList'].each do |i|
-              forbidstreaminfo_tmp = ForbidStreamInfo.new
-              forbidstreaminfo_tmp.deserialize(i)
-              @ForbidStreamList << forbidstreaminfo_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeLivePackageInfo请求参数结构体
       class DescribeLivePackageInfoRequest < TencentCloud::Common::AbstractModel
         # @param PackageType: 包类型，可选值：
@@ -11055,42 +10986,6 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
-        end
-      end
-
-      # 禁推流列表
-      class ForbidStreamInfo < TencentCloud::Common::AbstractModel
-        # @param StreamName: 流名称。
-        # @type StreamName: String
-        # @param CreateTime: 创建时间。
-        # 注：此字段为北京时间（UTC+8时区）。
-        # @type CreateTime: String
-        # @param ExpireTime: 禁推过期时间。
-        # 注：此字段为北京时间（UTC+8时区）。
-        # @type ExpireTime: String
-        # @param AppName: 推流路径。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppName: String
-        # @param DomainName: 推流域名。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DomainName: String
-
-        attr_accessor :StreamName, :CreateTime, :ExpireTime, :AppName, :DomainName
-
-        def initialize(streamname=nil, createtime=nil, expiretime=nil, appname=nil, domainname=nil)
-          @StreamName = streamname
-          @CreateTime = createtime
-          @ExpireTime = expiretime
-          @AppName = appname
-          @DomainName = domainname
-        end
-
-        def deserialize(params)
-          @StreamName = params['StreamName']
-          @CreateTime = params['CreateTime']
-          @ExpireTime = params['ExpireTime']
-          @AppName = params['AppName']
-          @DomainName = params['DomainName']
         end
       end
 
