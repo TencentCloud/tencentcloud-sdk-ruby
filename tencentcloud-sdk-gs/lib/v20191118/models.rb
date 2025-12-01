@@ -275,8 +275,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2025, 11
-        deprecate :PackageVersion=, :none, 2025, 11
+        deprecate :PackageVersion, :none, 2025, 12
+        deprecate :PackageVersion=, :none, 2025, 12
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -2092,8 +2092,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2025, 11
-        deprecate :Labels=, :none, 2025, 11
+        deprecate :Labels, :none, 2025, 12
+        deprecate :Labels=, :none, 2025, 12
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -3008,19 +3008,25 @@ module TencentCloud
         # @type AndroidAppId: String
         # @param AndroidAppVersion: 应用版本
         # @type AndroidAppVersion: String
+        # @param InstallationMethod: 安装方式。
+        # CLEAR_DATA 默认，清理数据
+        # KEEP_DATA 保留数据
+        # @type InstallationMethod: String
 
-        attr_accessor :AndroidInstanceIds, :AndroidAppId, :AndroidAppVersion
+        attr_accessor :AndroidInstanceIds, :AndroidAppId, :AndroidAppVersion, :InstallationMethod
 
-        def initialize(androidinstanceids=nil, androidappid=nil, androidappversion=nil)
+        def initialize(androidinstanceids=nil, androidappid=nil, androidappversion=nil, installationmethod=nil)
           @AndroidInstanceIds = androidinstanceids
           @AndroidAppId = androidappid
           @AndroidAppVersion = androidappversion
+          @InstallationMethod = installationmethod
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @AndroidAppId = params['AndroidAppId']
           @AndroidAppVersion = params['AndroidAppVersion']
+          @InstallationMethod = params['InstallationMethod']
         end
       end
 
@@ -3635,17 +3641,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param UserId: 用户 ID
         # @type UserId: String
+        # @param ExpirationDuration: 有效时长。如果不填该字段，默认为永久。支持 s（秒）、m（分）、h（小时）、d（天）等单位，比如 12h 表示 12 小时，1h2m3s 表示一小时两分三秒
+        # @type ExpirationDuration: String
 
-        attr_accessor :AndroidInstanceIds, :UserId
+        attr_accessor :AndroidInstanceIds, :UserId, :ExpirationDuration
 
-        def initialize(androidinstanceids=nil, userid=nil)
+        def initialize(androidinstanceids=nil, userid=nil, expirationduration=nil)
           @AndroidInstanceIds = androidinstanceids
           @UserId = userid
+          @ExpirationDuration = expirationduration
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @UserId = params['UserId']
+          @ExpirationDuration = params['ExpirationDuration']
         end
       end
 

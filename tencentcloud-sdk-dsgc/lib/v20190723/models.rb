@@ -1388,12 +1388,12 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :TemplateId, :BusinessName, :BusinessDept, :BusinessOwner, :ComplianceId, :DiscoveryCondition, :Description
         extend Gem::Deprecate
-        deprecate :BusinessName, :none, 2025, 11
-        deprecate :BusinessName=, :none, 2025, 11
-        deprecate :BusinessDept, :none, 2025, 11
-        deprecate :BusinessDept=, :none, 2025, 11
-        deprecate :BusinessOwner, :none, 2025, 11
-        deprecate :BusinessOwner=, :none, 2025, 11
+        deprecate :BusinessName, :none, 2025, 12
+        deprecate :BusinessName=, :none, 2025, 12
+        deprecate :BusinessDept, :none, 2025, 12
+        deprecate :BusinessDept=, :none, 2025, 12
+        deprecate :BusinessOwner, :none, 2025, 12
+        deprecate :BusinessOwner=, :none, 2025, 12
 
         def initialize(dspaid=nil, name=nil, templateid=nil, businessname=nil, businessdept=nil, businessowner=nil, complianceid=nil, discoverycondition=nil, description=nil)
           @DspaId = dspaid
@@ -1742,31 +1742,29 @@ module TencentCloud
       class CreateDSPACosMetaResourcesRequest < TencentCloud::Common::AbstractModel
         # @param DspaId: DSPA实例ID。
         # @type DspaId: String
+        # @param CosBucketItems: 必填，COS资源列表
+        # @type CosBucketItems: Array
         # @param ResourceRegion: 资源所处地域。
         # @type ResourceRegion: String
         # @param Buckets: COS桶列表
         # @type Buckets: Array
-        # @param CosBucketItems: 必填，COS资源列表
-        # @type CosBucketItems: Array
 
-        attr_accessor :DspaId, :ResourceRegion, :Buckets, :CosBucketItems
+        attr_accessor :DspaId, :CosBucketItems, :ResourceRegion, :Buckets
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2025, 11
-        deprecate :ResourceRegion=, :none, 2025, 11
-        deprecate :Buckets, :none, 2025, 11
-        deprecate :Buckets=, :none, 2025, 11
+        deprecate :ResourceRegion, :none, 2025, 12
+        deprecate :ResourceRegion=, :none, 2025, 12
+        deprecate :Buckets, :none, 2025, 12
+        deprecate :Buckets=, :none, 2025, 12
 
-        def initialize(dspaid=nil, resourceregion=nil, buckets=nil, cosbucketitems=nil)
+        def initialize(dspaid=nil, cosbucketitems=nil, resourceregion=nil, buckets=nil)
           @DspaId = dspaid
+          @CosBucketItems = cosbucketitems
           @ResourceRegion = resourceregion
           @Buckets = buckets
-          @CosBucketItems = cosbucketitems
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
-          @ResourceRegion = params['ResourceRegion']
-          @Buckets = params['Buckets']
           unless params['CosBucketItems'].nil?
             @CosBucketItems = []
             params['CosBucketItems'].each do |i|
@@ -1775,6 +1773,8 @@ module TencentCloud
               @CosBucketItems << cosbucketitem_tmp
             end
           end
+          @ResourceRegion = params['ResourceRegion']
+          @Buckets = params['Buckets']
         end
       end
 
@@ -1800,6 +1800,8 @@ module TencentCloud
         # @type DspaId: String
         # @param MetaType: 资源类型，支持：cdb（云数据库 MySQL）、dcdb（TDSQL MySQL版）、mariadb（云数据库 MariaDB）、postgres（云数据库 PostgreSQL）、cynosdbpg（TDSQL-C PostgreSQL版）、cynosdbmysql（TDSQL-C MySQL版）
         # @type MetaType: String
+        # @param CloudResourceItems: 必填，云数据库资源列表。
+        # @type CloudResourceItems: Array
         # @param ResourceRegion: 资源所处地域。
         # @type ResourceRegion: String
         # @param UpdateStatus: 用来标记本次更新是否已经是最后一次，可选值：continue（后续还需要更新）、finished（本次是最后一次更新）。
@@ -1808,33 +1810,39 @@ module TencentCloud
         # @type UpdateId: String
         # @param Items: 云上资源列表。
         # @type Items: Array
-        # @param CloudResourceItems: 必填，云数据库资源列表。
-        # @type CloudResourceItems: Array
 
-        attr_accessor :DspaId, :MetaType, :ResourceRegion, :UpdateStatus, :UpdateId, :Items, :CloudResourceItems
+        attr_accessor :DspaId, :MetaType, :CloudResourceItems, :ResourceRegion, :UpdateStatus, :UpdateId, :Items
         extend Gem::Deprecate
-        deprecate :ResourceRegion, :none, 2025, 11
-        deprecate :ResourceRegion=, :none, 2025, 11
-        deprecate :UpdateStatus, :none, 2025, 11
-        deprecate :UpdateStatus=, :none, 2025, 11
-        deprecate :UpdateId, :none, 2025, 11
-        deprecate :UpdateId=, :none, 2025, 11
-        deprecate :Items, :none, 2025, 11
-        deprecate :Items=, :none, 2025, 11
+        deprecate :ResourceRegion, :none, 2025, 12
+        deprecate :ResourceRegion=, :none, 2025, 12
+        deprecate :UpdateStatus, :none, 2025, 12
+        deprecate :UpdateStatus=, :none, 2025, 12
+        deprecate :UpdateId, :none, 2025, 12
+        deprecate :UpdateId=, :none, 2025, 12
+        deprecate :Items, :none, 2025, 12
+        deprecate :Items=, :none, 2025, 12
 
-        def initialize(dspaid=nil, metatype=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil, cloudresourceitems=nil)
+        def initialize(dspaid=nil, metatype=nil, cloudresourceitems=nil, resourceregion=nil, updatestatus=nil, updateid=nil, items=nil)
           @DspaId = dspaid
           @MetaType = metatype
+          @CloudResourceItems = cloudresourceitems
           @ResourceRegion = resourceregion
           @UpdateStatus = updatestatus
           @UpdateId = updateid
           @Items = items
-          @CloudResourceItems = cloudresourceitems
         end
 
         def deserialize(params)
           @DspaId = params['DspaId']
           @MetaType = params['MetaType']
+          unless params['CloudResourceItems'].nil?
+            @CloudResourceItems = []
+            params['CloudResourceItems'].each do |i|
+              cloudresourceitem_tmp = CloudResourceItem.new
+              cloudresourceitem_tmp.deserialize(i)
+              @CloudResourceItems << cloudresourceitem_tmp
+            end
+          end
           @ResourceRegion = params['ResourceRegion']
           @UpdateStatus = params['UpdateStatus']
           @UpdateId = params['UpdateId']
@@ -1844,14 +1852,6 @@ module TencentCloud
               dspacloudresourcemeta_tmp = DspaCloudResourceMeta.new
               dspacloudresourcemeta_tmp.deserialize(i)
               @Items << dspacloudresourcemeta_tmp
-            end
-          end
-          unless params['CloudResourceItems'].nil?
-            @CloudResourceItems = []
-            params['CloudResourceItems'].each do |i|
-              cloudresourceitem_tmp = CloudResourceItem.new
-              cloudresourceitem_tmp.deserialize(i)
-              @CloudResourceItems << cloudresourceitem_tmp
             end
           end
         end
@@ -1872,10 +1872,10 @@ module TencentCloud
 
         attr_accessor :UpdateId, :MetaType, :DspaId, :ResourceRegion, :RequestId
         extend Gem::Deprecate
-        deprecate :UpdateId, :none, 2025, 11
-        deprecate :UpdateId=, :none, 2025, 11
-        deprecate :ResourceRegion, :none, 2025, 11
-        deprecate :ResourceRegion=, :none, 2025, 11
+        deprecate :UpdateId, :none, 2025, 12
+        deprecate :UpdateId=, :none, 2025, 12
+        deprecate :ResourceRegion, :none, 2025, 12
+        deprecate :ResourceRegion=, :none, 2025, 12
 
         def initialize(updateid=nil, metatype=nil, dspaid=nil, resourceregion=nil, requestid=nil)
           @UpdateId = updateid
@@ -2003,8 +2003,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Name, :DataSourceId, :Enable, :Plan, :Period, :ResourceRegion, :DataSourceType, :GeneralRuleSetEnable, :Description, :Condition, :ComplianceGroupIds, :TimingStartTime, :Order, :Rows, :GlobalOrderField, :ScanRange
         extend Gem::Deprecate
-        deprecate :GeneralRuleSetEnable, :none, 2025, 11
-        deprecate :GeneralRuleSetEnable=, :none, 2025, 11
+        deprecate :GeneralRuleSetEnable, :none, 2025, 12
+        deprecate :GeneralRuleSetEnable=, :none, 2025, 12
 
         def initialize(dspaid=nil, name=nil, datasourceid=nil, enable=nil, plan=nil, period=nil, resourceregion=nil, datasourcetype=nil, generalrulesetenable=nil, description=nil, condition=nil, compliancegroupids=nil, timingstarttime=nil, order=nil, rows=nil, globalorderfield=nil, scanrange=nil)
           @DspaId = dspaid
@@ -3312,10 +3312,10 @@ module TencentCloud
 
         attr_accessor :DspaId, :DataSourceType, :DataSourceId
         extend Gem::Deprecate
-        deprecate :DataSourceType, :none, 2025, 11
-        deprecate :DataSourceType=, :none, 2025, 11
-        deprecate :DataSourceId, :none, 2025, 11
-        deprecate :DataSourceId=, :none, 2025, 11
+        deprecate :DataSourceType, :none, 2025, 12
+        deprecate :DataSourceType=, :none, 2025, 12
+        deprecate :DataSourceId, :none, 2025, 12
+        deprecate :DataSourceId=, :none, 2025, 12
 
         def initialize(dspaid=nil, datasourcetype=nil, datasourceid=nil)
           @DspaId = dspaid
@@ -4525,8 +4525,8 @@ module TencentCloud
 
         attr_accessor :RiskSideItmeList, :RiskSideItemList, :RequestId
         extend Gem::Deprecate
-        deprecate :RiskSideItmeList, :none, 2025, 11
-        deprecate :RiskSideItmeList=, :none, 2025, 11
+        deprecate :RiskSideItmeList, :none, 2025, 12
+        deprecate :RiskSideItmeList=, :none, 2025, 12
 
         def initialize(risksideitmelist=nil, risksideitemlist=nil, requestid=nil)
           @RiskSideItmeList = risksideitmelist
@@ -5178,8 +5178,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :TaskId, :BucketResultId, :ScanResultId
         extend Gem::Deprecate
-        deprecate :BucketResultId, :none, 2025, 11
-        deprecate :BucketResultId=, :none, 2025, 11
+        deprecate :BucketResultId, :none, 2025, 12
+        deprecate :BucketResultId=, :none, 2025, 12
 
         def initialize(dspaid=nil, taskid=nil, bucketresultid=nil, scanresultid=nil)
           @DspaId = dspaid
@@ -5400,8 +5400,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :TaskId, :ComplianceId, :BucketResultId, :FileName, :CategoryId, :LevelId, :Offset, :Limit, :BucketName, :CategoryIdList, :ScanResultId
         extend Gem::Deprecate
-        deprecate :BucketResultId, :none, 2025, 11
-        deprecate :BucketResultId=, :none, 2025, 11
+        deprecate :BucketResultId, :none, 2025, 12
+        deprecate :BucketResultId=, :none, 2025, 12
 
         def initialize(dspaid=nil, taskid=nil, complianceid=nil, bucketresultid=nil, filename=nil, categoryid=nil, levelid=nil, offset=nil, limit=nil, bucketname=nil, categoryidlist=nil, scanresultid=nil)
           @DspaId = dspaid
@@ -6277,8 +6277,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :TaskId, :DbResultId, :DbName, :ScanResultId
         extend Gem::Deprecate
-        deprecate :DbResultId, :none, 2025, 11
-        deprecate :DbResultId=, :none, 2025, 11
+        deprecate :DbResultId, :none, 2025, 12
+        deprecate :DbResultId=, :none, 2025, 12
 
         def initialize(dspaid=nil, taskid=nil, dbresultid=nil, dbname=nil, scanresultid=nil)
           @DspaId = dspaid
@@ -10556,8 +10556,8 @@ module TencentCloud
 
         attr_accessor :DspaId, :Status, :RiskLatestTableId, :Note, :ProcessPeople, :BathRiskIdList
         extend Gem::Deprecate
-        deprecate :RiskLatestTableId, :none, 2025, 11
-        deprecate :RiskLatestTableId=, :none, 2025, 11
+        deprecate :RiskLatestTableId, :none, 2025, 12
+        deprecate :RiskLatestTableId=, :none, 2025, 12
 
         def initialize(dspaid=nil, status=nil, risklatesttableid=nil, note=nil, processpeople=nil, bathriskidlist=nil)
           @DspaId = dspaid

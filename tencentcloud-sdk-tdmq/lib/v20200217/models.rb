@@ -2235,6 +2235,69 @@ module TencentCloud
         end
       end
 
+      # CreateRocketMQTopicV2请求参数结构体
+      class CreateRocketMQTopicV2Request < TencentCloud::Common::AbstractModel
+        # @param Topic: 主题名称
+        # @type Topic: String
+        # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder, Transaction, DelayScheduled。Transaction仅在专享版支持。
+        # @type Type: String
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param PartitionNum: 分区数，全局顺序无效
+        # @type PartitionNum: Integer
+        # @param TagList: 标签列表
+        # @type TagList: Array
+
+        attr_accessor :Topic, :Type, :ClusterId, :Namespace, :Remark, :PartitionNum, :TagList
+
+        def initialize(topic=nil, type=nil, clusterid=nil, namespace=nil, remark=nil, partitionnum=nil, taglist=nil)
+          @Topic = topic
+          @Type = type
+          @ClusterId = clusterid
+          @Namespace = namespace
+          @Remark = remark
+          @PartitionNum = partitionnum
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @Topic = params['Topic']
+          @Type = params['Type']
+          @ClusterId = params['ClusterId']
+          @Namespace = params['Namespace']
+          @Remark = params['Remark']
+          @PartitionNum = params['PartitionNum']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @TagList << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateRocketMQTopicV2返回参数结构体
+      class CreateRocketMQTopicV2Response < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateRocketMQVipInstance请求参数结构体
       class CreateRocketMQVipInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 实例名称
@@ -6401,8 +6464,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 11
-        deprecate :QueryDlqMsg=, :none, 2025, 11
+        deprecate :QueryDlqMsg, :none, 2025, 12
+        deprecate :QueryDlqMsg=, :none, 2025, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6507,8 +6570,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 11
-        deprecate :QueryDLQMsg=, :none, 2025, 11
+        deprecate :QueryDLQMsg, :none, 2025, 12
+        deprecate :QueryDLQMsg=, :none, 2025, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7224,8 +7287,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 11
-        deprecate :QueryDlqMsg=, :none, 2025, 11
+        deprecate :QueryDlqMsg, :none, 2025, 12
+        deprecate :QueryDlqMsg=, :none, 2025, 12
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -11876,8 +11939,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 11
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 11
+        deprecate :MaxTpsPerNamespace, :none, 2025, 12
+        deprecate :MaxTpsPerNamespace=, :none, 2025, 12
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12283,10 +12346,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2025, 11
-        deprecate :TPS=, :none, 2025, 11
-        deprecate :TotalAccumulative, :none, 2025, 11
-        deprecate :TotalAccumulative=, :none, 2025, 11
+        deprecate :TPS, :none, 2025, 12
+        deprecate :TPS=, :none, 2025, 12
+        deprecate :TotalAccumulative, :none, 2025, 12
+        deprecate :TotalAccumulative=, :none, 2025, 12
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name

@@ -373,15 +373,19 @@ module TencentCloud
       class CreateChatCompletionRequest < TencentCloud::Common::AbstractModel
         # @param IsHidden: 是否隐藏
         # @type IsHidden: Boolean
+        # @param IsChatHidden: 是否隐藏会话
+        # @type IsChatHidden: Boolean
 
-        attr_accessor :IsHidden
+        attr_accessor :IsHidden, :IsChatHidden
 
-        def initialize(ishidden=nil)
+        def initialize(ishidden=nil, ischathidden=nil)
           @IsHidden = ishidden
+          @IsChatHidden = ischathidden
         end
 
         def deserialize(params)
           @IsHidden = params['IsHidden']
+          @IsChatHidden = params['IsChatHidden']
         end
       end
 

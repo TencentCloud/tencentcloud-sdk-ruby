@@ -509,6 +509,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建RocketMQ主题
+
+        # @param request: Request instance for CreateRocketMQTopicV2.
+        # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRocketMQTopicV2Request`
+        # @rtype: :class:`Tencentcloud::tdmq::V20200217::CreateRocketMQTopicV2Response`
+        def CreateRocketMQTopicV2(request)
+          body = send_request('CreateRocketMQTopicV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRocketMQTopicV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建RocketMQ专享实例
 
         # @param request: Request instance for CreateRocketMQVipInstance.

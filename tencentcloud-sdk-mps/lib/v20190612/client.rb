@@ -246,7 +246,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建用户自定义数字水印模板，数量上限：1000。
+        # 创建用户自定义数字水印模板。
 
         # @param request: Request instance for CreateBlindWatermarkTemplate.
         # @type request: :class:`Tencentcloud::mps::V20190612::CreateBlindWatermarkTemplateRequest`

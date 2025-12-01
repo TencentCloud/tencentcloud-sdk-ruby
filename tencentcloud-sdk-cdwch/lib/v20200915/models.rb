@@ -441,14 +441,17 @@ module TencentCloud
         # @type NewConfValue: String
         # @param FilePath: 保存配置文件的路径
         # @type FilePath: String
+        # @param Ip: 节点ip信息，可选参数，当修改集群节点级配置（例如keeper_config.xml）时此参数必填；
+        # @type Ip: String
 
-        attr_accessor :FileName, :OldConfValue, :NewConfValue, :FilePath
+        attr_accessor :FileName, :OldConfValue, :NewConfValue, :FilePath, :Ip
 
-        def initialize(filename=nil, oldconfvalue=nil, newconfvalue=nil, filepath=nil)
+        def initialize(filename=nil, oldconfvalue=nil, newconfvalue=nil, filepath=nil, ip=nil)
           @FileName = filename
           @OldConfValue = oldconfvalue
           @NewConfValue = newconfvalue
           @FilePath = filepath
+          @Ip = ip
         end
 
         def deserialize(params)
@@ -456,6 +459,7 @@ module TencentCloud
           @OldConfValue = params['OldConfValue']
           @NewConfValue = params['NewConfValue']
           @FilePath = params['FilePath']
+          @Ip = params['Ip']
         end
       end
 
@@ -570,8 +574,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 11
-        deprecate :Tags=, :none, 2025, 11
+        deprecate :Tags, :none, 2025, 12
+        deprecate :Tags=, :none, 2025, 12
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
           @Zone = zone
@@ -2110,7 +2114,7 @@ module TencentCloud
         # @type NodeGroups: Array
         # @param Rip: VPC IP
         # @type Rip: String
-        # @param IsCHProxy: ture的时候表示该节点上部署了chproxy进程
+        # @param IsCHProxy: ture的时候表示该节点上部署了chPROXY进程
         # @type IsCHProxy: Boolean
         # @param Status: 节点状态
         # @type Status: String
@@ -2118,14 +2122,16 @@ module TencentCloud
         # @type UUID: String
         # @param Zone: 区
         # @type Zone: String
-        # @param ZoneDesc: 区描述
+        # @param ZoneDesc: 去描述
         # @type ZoneDesc: String
         # @param RealResourceId: 真实资源id
         # @type RealResourceId: String
+        # @param SubnetId: 子网信息
+        # @type SubnetId: String
 
-        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Cluster, :NodeGroups, :Rip, :IsCHProxy, :Status, :UUID, :Zone, :ZoneDesc, :RealResourceId
+        attr_accessor :Ip, :Spec, :Core, :Memory, :DiskType, :DiskSize, :Cluster, :NodeGroups, :Rip, :IsCHProxy, :Status, :UUID, :Zone, :ZoneDesc, :RealResourceId, :SubnetId
 
-        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, cluster=nil, nodegroups=nil, rip=nil, ischproxy=nil, status=nil, uuid=nil, zone=nil, zonedesc=nil, realresourceid=nil)
+        def initialize(ip=nil, spec=nil, core=nil, memory=nil, disktype=nil, disksize=nil, cluster=nil, nodegroups=nil, rip=nil, ischproxy=nil, status=nil, uuid=nil, zone=nil, zonedesc=nil, realresourceid=nil, subnetid=nil)
           @Ip = ip
           @Spec = spec
           @Core = core
@@ -2141,6 +2147,7 @@ module TencentCloud
           @Zone = zone
           @ZoneDesc = zonedesc
           @RealResourceId = realresourceid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
@@ -2166,6 +2173,7 @@ module TencentCloud
           @Zone = params['Zone']
           @ZoneDesc = params['ZoneDesc']
           @RealResourceId = params['RealResourceId']
+          @SubnetId = params['SubnetId']
         end
       end
 

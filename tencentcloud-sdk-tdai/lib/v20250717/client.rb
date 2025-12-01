@@ -77,7 +77,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 用于创建一次回话的SSE接口
+        # 用于创建一次会话的SSE接口
 
         # @param request: Request instance for CreateChatCompletion.
         # @type request: :class:`Tencentcloud::tdai::V20250717::CreateChatCompletionRequest`

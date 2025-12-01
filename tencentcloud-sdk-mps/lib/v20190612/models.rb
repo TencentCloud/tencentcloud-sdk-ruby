@@ -10466,7 +10466,7 @@ module TencentCloud
 
       # DescribeAIAnalysisTemplates请求参数结构体
       class DescribeAIAnalysisTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 视频内容分析模板唯一标识过滤条件，数组长度限制：10。
+        # @param Definitions: 视频内容分析模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
@@ -10531,7 +10531,7 @@ module TencentCloud
 
       # DescribeAIRecognitionTemplates请求参数结构体
       class DescribeAIRecognitionTemplatesRequest < TencentCloud::Common::AbstractModel
-        # @param Definitions: 视频内容识别模板唯一标识过滤条件，数组长度限制：10。
+        # @param Definitions: 视频内容识别模板唯一标识过滤条件，数组长度限制：100。
         # @type Definitions: Array
         # @param Offset: 分页偏移量，默认值：0。
         # @type Offset: Integer
