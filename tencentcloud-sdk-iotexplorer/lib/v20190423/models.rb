@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 11
-        deprecate :MiniProgramAppId=, :none, 2025, 11
+        deprecate :MiniProgramAppId, :none, 2025, 12
+        deprecate :MiniProgramAppId=, :none, 2025, 12
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 11
-        deprecate :DeviceList=, :none, 2025, 11
+        deprecate :DeviceList, :none, 2025, 12
+        deprecate :DeviceList=, :none, 2025, 12
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -5844,12 +5844,14 @@ module TencentCloud
         # @type OverrideMode: Integer
         # @param TaskUserDefine: 用户自定义消息
         # @type TaskUserDefine: String
+        # @param RateLimit: 每分钟发送设备量
+        # @type RateLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :DelayTime, :TimeoutInterval, :UpgradeMethod, :MaxRetryNum, :FwType, :RetryInterval, :OverrideMode, :TaskUserDefine, :RequestId
+        attr_accessor :TaskId, :Status, :CreateTime, :Type, :ProductName, :UpgradeMode, :ProductId, :OriginalVersion, :CreateUserId, :CreatorNickName, :DelayTime, :TimeoutInterval, :UpgradeMethod, :MaxRetryNum, :FwType, :RetryInterval, :OverrideMode, :TaskUserDefine, :RateLimit, :RequestId
 
-        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, delaytime=nil, timeoutinterval=nil, upgrademethod=nil, maxretrynum=nil, fwtype=nil, retryinterval=nil, overridemode=nil, taskuserdefine=nil, requestid=nil)
+        def initialize(taskid=nil, status=nil, createtime=nil, type=nil, productname=nil, upgrademode=nil, productid=nil, originalversion=nil, createuserid=nil, creatornickname=nil, delaytime=nil, timeoutinterval=nil, upgrademethod=nil, maxretrynum=nil, fwtype=nil, retryinterval=nil, overridemode=nil, taskuserdefine=nil, ratelimit=nil, requestid=nil)
           @TaskId = taskid
           @Status = status
           @CreateTime = createtime
@@ -5868,6 +5870,7 @@ module TencentCloud
           @RetryInterval = retryinterval
           @OverrideMode = overridemode
           @TaskUserDefine = taskuserdefine
+          @RateLimit = ratelimit
           @RequestId = requestid
         end
 
@@ -5890,6 +5893,7 @@ module TencentCloud
           @RetryInterval = params['RetryInterval']
           @OverrideMode = params['OverrideMode']
           @TaskUserDefine = params['TaskUserDefine']
+          @RateLimit = params['RateLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -7277,8 +7281,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 11
-        deprecate :ModelId=, :none, 2025, 11
+        deprecate :ModelId, :none, 2025, 12
+        deprecate :ModelId=, :none, 2025, 12
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -8994,8 +8998,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 11
-        deprecate :MiniProgramAppId=, :none, 2025, 11
+        deprecate :MiniProgramAppId, :none, 2025, 12
+        deprecate :MiniProgramAppId=, :none, 2025, 12
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -13121,8 +13125,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 11
-        deprecate :ModelId=, :none, 2025, 11
+        deprecate :ModelId, :none, 2025, 12
+        deprecate :ModelId=, :none, 2025, 12
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -13152,10 +13156,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 11
-        deprecate :ModelId=, :none, 2025, 11
-        deprecate :ActiveNum, :none, 2025, 11
-        deprecate :ActiveNum=, :none, 2025, 11
+        deprecate :ModelId, :none, 2025, 12
+        deprecate :ModelId=, :none, 2025, 12
+        deprecate :ActiveNum, :none, 2025, 12
+        deprecate :ActiveNum=, :none, 2025, 12
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

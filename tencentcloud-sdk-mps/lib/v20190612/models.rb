@@ -2505,8 +2505,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2025, 11
-        deprecate :OutputStorage=, :none, 2025, 11
+        deprecate :OutputStorage, :none, 2025, 12
+        deprecate :OutputStorage=, :none, 2025, 12
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -8076,8 +8076,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 11
-        deprecate :PidSelector=, :none, 2025, 11
+        deprecate :PidSelector, :none, 2025, 12
+        deprecate :PidSelector=, :none, 2025, 12
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -11996,8 +11996,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 11
-        deprecate :PidSelector=, :none, 2025, 11
+        deprecate :PidSelector, :none, 2025, 12
+        deprecate :PidSelector=, :none, 2025, 12
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -15222,8 +15222,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2025, 11
-        deprecate :ContrastInfoSet=, :none, 2025, 11
+        deprecate :ContrastInfoSet, :none, 2025, 12
+        deprecate :ContrastInfoSet=, :none, 2025, 12
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -16676,6 +16676,7 @@ module TencentCloud
         # @param DetectTypes: 图片框选区域类型，可选值：
         # <li>logo：图标；</li>
         # <li>text：文字；</li>
+        # <li>watermark：水印；</li>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DetectTypes: Array
 
@@ -17583,10 +17584,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2025, 11
-        deprecate :QualityControlResults=, :none, 2025, 11
-        deprecate :DiagnoseResults, :none, 2025, 11
-        deprecate :DiagnoseResults=, :none, 2025, 11
+        deprecate :QualityControlResults, :none, 2025, 12
+        deprecate :QualityControlResults=, :none, 2025, 12
+        deprecate :DiagnoseResults, :none, 2025, 12
+        deprecate :DiagnoseResults=, :none, 2025, 12
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -20743,8 +20744,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2025, 11
-        deprecate :PidSelector=, :none, 2025, 11
+        deprecate :PidSelector, :none, 2025, 12
+        deprecate :PidSelector=, :none, 2025, 12
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -22972,8 +22973,9 @@ module TencentCloud
         # 如果不填，则默认为相对路径：{inputName}.{format}。
         # @type OutputPath: String
         # @param Definition: 图片处理模板唯一标识。
+        # 图片模板功能内测中，如需使用请提交工单申请。
         # @type Definition: Integer
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
         # @type ResourceId: String
         # @param ImageTask: 图片处理参数。
         # @type ImageTask: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`

@@ -741,21 +741,29 @@ module TencentCloud
         # @type InstanceId: String
         # @param ChatId: 会话Id
         # @type ChatId: String
-        # @param LastStreamingTokenId: 最后一条流式TokenID
-        # @type LastStreamingTokenId: Integer
+        # @param StreamingId: 流ID
+        # @type StreamingId: String
+        # @param BeginStreamingTokenId: 开始拉取的流式TokenID。0表示从该流最早的TokenID开始获取
+        # @type BeginStreamingTokenId: String
+        # @param TokenLimit: 单次获取的token数量，默认2000
+        # @type TokenLimit: Integer
 
-        attr_accessor :InstanceId, :ChatId, :LastStreamingTokenId
+        attr_accessor :InstanceId, :ChatId, :StreamingId, :BeginStreamingTokenId, :TokenLimit
 
-        def initialize(instanceid=nil, chatid=nil, laststreamingtokenid=nil)
+        def initialize(instanceid=nil, chatid=nil, streamingid=nil, beginstreamingtokenid=nil, tokenlimit=nil)
           @InstanceId = instanceid
           @ChatId = chatid
-          @LastStreamingTokenId = laststreamingtokenid
+          @StreamingId = streamingid
+          @BeginStreamingTokenId = beginstreamingtokenid
+          @TokenLimit = tokenlimit
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @ChatId = params['ChatId']
-          @LastStreamingTokenId = params['LastStreamingTokenId']
+          @StreamingId = params['StreamingId']
+          @BeginStreamingTokenId = params['BeginStreamingTokenId']
+          @TokenLimit = params['TokenLimit']
         end
       end
 

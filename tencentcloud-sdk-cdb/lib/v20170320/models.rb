@@ -61,8 +61,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2025, 11
-        deprecate :CreateTime=, :none, 2025, 11
+        deprecate :CreateTime, :none, 2025, 12
+        deprecate :CreateTime=, :none, 2025, 12
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -448,8 +448,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2025, 11
-        deprecate :AuditLogFilter=, :none, 2025, 11
+        deprecate :AuditLogFilter, :none, 2025, 12
+        deprecate :AuditLogFilter=, :none, 2025, 12
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1108,10 +1108,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2025, 11
-        deprecate :ExpandPeriod=, :none, 2025, 11
-        deprecate :ShrinkPeriod, :none, 2025, 11
-        deprecate :ShrinkPeriod=, :none, 2025, 11
+        deprecate :ExpandPeriod, :none, 2025, 12
+        deprecate :ExpandPeriod=, :none, 2025, 12
+        deprecate :ShrinkPeriod, :none, 2025, 12
+        deprecate :ShrinkPeriod=, :none, 2025, 12
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1424,8 +1424,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 11
-        deprecate :InstanceId=, :none, 2025, 11
+        deprecate :InstanceId, :none, 2025, 12
+        deprecate :InstanceId=, :none, 2025, 12
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil)
           @Name = name
@@ -2375,8 +2375,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2025, 11
-        deprecate :Filter=, :none, 2025, 11
+        deprecate :Filter, :none, 2025, 12
+        deprecate :Filter=, :none, 2025, 12
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -3075,10 +3075,10 @@ module TencentCloud
         # @param Volume: 实例硬盘大小，单位：GB，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的硬盘范围。
         # @type Volume: Integer
         # @param EngineVersion: MySQL 版本，值包括：5.5、5.6、5.7和8.0，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的实例版本。
-        # 说明：创建非集群版实例时，请根据需要指定实例版本（推荐5.7或8.0），若此参数不填，则默认值为5.6；若创建的是集群版实例，则此参数仅能指定为5.7或8.0。
+        # 说明：创建非云盘版实例时，请根据需要指定实例版本（推荐5.7或8.0），若此参数不填，则默认值为8.0；若创建的是云盘版实例，则此参数仅能指定为5.7或8.0。
         # @type EngineVersion: String
         # @param UniqVpcId: 私有网络 ID，请使用 [查询私有网络列表](/document/api/215/15778)。
-        # 说明：如果创建的是集群版实例，此参数为必填且为私有网络类型。若此项不填，则系统会选择默认的 VPC。
+        # 说明：如果创建的是云盘版实例，此参数为必填且为私有网络类型。若此项不填，则系统会选择默认的 VPC。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 [查询子网列表](/document/api/215/15784)。
         # 说明：若此项不填，则系统会选择默认 VPC 下的默认子网。
@@ -3086,7 +3086,7 @@ module TencentCloud
         # @param ProjectId: 项目 ID，不填为默认项目。
         # @type ProjectId: Integer
         # @param Zone: 可用区信息，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的可用区。
-        # 说明：若您创建单节点、双节点、三节点实例，此参数为必填项，请指定可用区，若不指定可用区，则系统会自动选择一个可用区（可能不是您希望部署的可用区）；若您创建集群版实例，此参数不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置。
+        # 说明：若您创建单节点、双节点、三节点实例，此参数为必填项，请指定可用区，若不指定可用区，则系统会自动选择一个可用区（可能不是您希望部署的可用区）；若您创建云盘版实例，此参数不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置。
         # @type Zone: String
         # @param MasterInstanceId: 实例 ID，购买只读实例或者灾备实例时必填，该字段表示只读实例或者灾备实例的主实例 ID，请使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询云数据库实例 ID。
         # @type MasterInstanceId: String
@@ -3108,7 +3108,7 @@ module TencentCloud
         # @param DeployMode: 多可用区域，默认为 0，支持值包括：0 - 表示单可用区，1 - 表示多可用区，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
         # @type DeployMode: Integer
         # @param SlaveZone: 备库 1 的可用区信息。
-        # 说明：双节点、三节点实例请指定此参数值，若不指定，则默认为 Zone 的值；集群版实例此参数可不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置；单节点实例为单可用区，无需指定此参数。
+        # 说明：双节点、三节点实例请指定此参数值，若不指定，则默认为 Zone 的值；云盘版实例此参数可不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置；单节点实例为单可用区，无需指定此参数。
         # @type SlaveZone: String
         # @param BackupZone: 备库 2 的可用区信息，默认为空，购买三节点主实例时可指定该参数。
         # @type BackupZone: String
@@ -3126,8 +3126,8 @@ module TencentCloud
         # @type DeployGroupId: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param DeviceType: 实例隔离类型。支持值包括："UNIVERSAL" - 通用型实例，"EXCLUSIVE" - 独享型实例，"BASIC_V2" - ONTKE 单节点实例，"CLOUD_NATIVE_CLUSTER" - 集群版标准型，"CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 集群版加强型。不指定则默认为通用型实例。
-        # 说明：如果创建的是集群版实例，此参数为必填。
+        # @param DeviceType: 实例隔离类型。支持值包括："UNIVERSAL" - 通用型实例，"EXCLUSIVE" - 独享型实例，"BASIC_V2" - ONTKE 单节点实例，"CLOUD_NATIVE_CLUSTER" - 云盘版标准型，"CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 云盘版加强型。不指定则默认为通用型实例。
+        # 说明：如果创建的是云盘版实例，此参数为必填。
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板 id。
         # 备注：如您使用自定义参数模板 id，可传入自定义参数模板 id；如您计划使用默认参数模板，该参数模板 id 传入 id 无效，需设置 ParamTemplateType。
@@ -3153,20 +3153,22 @@ module TencentCloud
         # @type EngineType: String
         # @param Vips: 指定实例的IP列表。仅支持主实例指定，按实例顺序，不足则按未指定处理。
         # @type Vips: Array
-        # @param DataProtectVolume: 集群版实例的数据保护空间大小，单位 GB，设置范围1 - 10。
+        # @param DataProtectVolume: 云盘版实例的数据保护空间大小，单位 GB，设置范围1 - 10。
         # @type DataProtectVolume: Integer
-        # @param ClusterTopology: 集群版节点拓扑配置。
-        # 说明：若购买的是集群版实例，此参数为必填，需设置集群版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
+        # @param ClusterTopology: 云盘版节点拓扑配置。
+        # 说明：若购买的是云盘版实例，此参数为必填，需设置云盘版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
-        # @param DiskType: 硬盘类型，单节点（云盘版）或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
-        # 说明：单节点（云盘版）、集群版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
+        # @param DiskType: 硬盘类型，单节点（云盘）或者云盘版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘，CLOUD_PREMIUM 表示高性能云硬盘。
+        # 说明：单节点（云盘）、云盘版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
         # @type DiskType: String
         # @param ClusterType: 集群类型:cage——金融围拢，cdc——CDB ON CDC；dedicate——独享集群
         # @type ClusterType: String
+        # @param DestroyProtect: 开启或关闭实例销毁保护。on-开启，off-关闭
+        # @type DestroyProtect: String
 
-        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :ClusterType
+        attr_accessor :GoodsNum, :Memory, :Volume, :EngineVersion, :UniqVpcId, :UniqSubnetId, :ProjectId, :Zone, :MasterInstanceId, :InstanceRole, :MasterRegion, :Port, :Password, :ParamList, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :SecurityGroup, :RoGroup, :AutoRenewFlag, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :ClusterType, :DestroyProtect
 
-        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, clustertype=nil)
+        def initialize(goodsnum=nil, memory=nil, volume=nil, engineversion=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, zone=nil, masterinstanceid=nil, instancerole=nil, masterregion=nil, port=nil, password=nil, paramlist=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, securitygroup=nil, rogroup=nil, autorenewflag=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, clustertype=nil, destroyprotect=nil)
           @GoodsNum = goodsnum
           @Memory = memory
           @Volume = volume
@@ -3208,6 +3210,7 @@ module TencentCloud
           @ClusterTopology = clustertopology
           @DiskType = disktype
           @ClusterType = clustertype
+          @DestroyProtect = destroyprotect
         end
 
         def deserialize(params)
@@ -3272,6 +3275,7 @@ module TencentCloud
           end
           @DiskType = params['DiskType']
           @ClusterType = params['ClusterType']
+          @DestroyProtect = params['DestroyProtect']
         end
       end
 
@@ -3310,10 +3314,10 @@ module TencentCloud
         # @param GoodsNum: 实例数量，默认值为1, 最小值1，最大值为100。
         # @type GoodsNum: Integer
         # @param Zone: 可用区信息，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的可用区。
-        # 说明：若您创建单节点、双节点、三节点实例，此参数为必填项，请指定可用区，若不指定可用区，则系统会自动选择一个可用区（可能不是您希望部署的可用区）；若您创建集群版实例，此参数不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置。
+        # 说明：若您创建单节点、双节点、三节点实例，此参数为必填项，请指定可用区，若不指定可用区，则系统会自动选择一个可用区（可能不是您希望部署的可用区）；若您创建云盘版实例，此参数不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置。
         # @type Zone: String
         # @param UniqVpcId: 私有网络 ID，请使用 [查询私有网络列表](/document/api/215/15778)。
-        # 说明：如果创建的是集群版实例，此参数为必填且为私有网络类型。若此项不填，则系统会选择默认的 VPC。
+        # 说明：如果创建的是云盘版实例，此参数为必填且为私有网络类型。若此项不填，则系统会选择默认的 VPC。
         # @type UniqVpcId: String
         # @param UniqSubnetId: 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 [查询子网列表](/document/api/215/15784)。
         # 说明：若此项不填，则系统会选择默认 VPC 下的默认子网。
@@ -3329,7 +3333,7 @@ module TencentCloud
         # @param MasterInstanceId: 实例 ID，购买只读实例或灾备实例时必填，该字段表示只读实例或灾备实例的主实例 ID，请使用 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询云数据库实例 ID。
         # @type MasterInstanceId: String
         # @param EngineVersion: MySQL 版本，值包括：5.5、5.6、5.7和8.0，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的实例版本。
-        # 说明：创建非集群版实例时，请根据需要指定实例版本（推荐5.7或8.0），若此参数不填，则默认值为5.6；若创建的是集群版实例，则此参数仅能指定为5.7或8.0。
+        # 说明：创建非云盘版实例时，请根据需要指定实例版本（推荐5.7或8.0），若此参数不填，则默认值为8.0；若创建的是云盘版实例，则此参数仅能指定为5.7或8.0。
         # @type EngineVersion: String
         # @param Password: 设置 root 账号密码，密码规则：8 - 64 个字符，至少包含字母、数字、字符（支持的字符：_+-&=!@#$%^*()）中的两种，购买主实例时可指定该参数，购买只读实例或者灾备实例时指定该参数无意义。
         # @type Password: String
@@ -3338,7 +3342,7 @@ module TencentCloud
         # @param DeployMode: 多可用区域，默认为 0，支持值包括：0 - 表示单可用区，1 - 表示多可用区。
         # @type DeployMode: Integer
         # @param SlaveZone: 备库 1 的可用区信息。
-        # 说明：双节点、三节点实例请指定此参数值，若不指定，则默认为 Zone 的值；集群版实例此参数可不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置；单节点实例为单可用区，无需指定此参数。
+        # 说明：双节点、三节点实例请指定此参数值，若不指定，则默认为 Zone 的值；云盘版实例此参数可不填，请通过参数 ClusterTopology 进行读写节点和只读节点的可用区配置；单节点实例为单可用区，无需指定此参数。
         # @type SlaveZone: String
         # @param ParamList: 参数列表，参数格式如 ParamList.0.Name=auto_increment&ParamList.0.Value=1。可通过 [查询默认的可设置参数列表](https://cloud.tencent.com/document/api/236/32662) 查询支持设置的参数。
         # 说明：表名大小写敏感的开启和关闭可通过参数 lower_case_table_names 进行设置，参数值为0表示开启，参数值为1表示关闭，若不设置则此参数默认值为0。若您创建的是 MySQL 8.0 版本的实例，则需要在创建实例时通过设置 lower_case_table_names 参数来开启或关闭表名大小写敏感，创建实例后无法修改参数，即创建后无法修改表名大小写敏感。其他数据库版本的实例支持在创建实例后修改 lower_case_table_names 参数。创建实例时设置表名大小写敏感的 API 调用方法请参见本文中的示例3。
@@ -3361,8 +3365,8 @@ module TencentCloud
         # @type DeployGroupId: String
         # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间在48小时内唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
         # @type ClientToken: String
-        # @param DeviceType: 实例隔离类型。支持值包括："UNIVERSAL" - 通用型实例，"EXCLUSIVE" - 独享型实例，"BASIC_V2" - ONTKE 单节点实例，"CLOUD_NATIVE_CLUSTER" - 集群版标准型，"CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 集群版加强型。不指定则默认为通用型实例。
-        # 说明：如果创建的是集群版实例，此参数为必填。
+        # @param DeviceType: 实例隔离类型。支持值包括："UNIVERSAL" - 通用型实例，"EXCLUSIVE" - 独享型实例，"BASIC_V2" - ONTKE 单节点实例，"CLOUD_NATIVE_CLUSTER" - 云盘版标准型，"CLOUD_NATIVE_CLUSTER_EXCLUSIVE" - 云盘版加强型。不指定则默认为通用型实例。
+        # 说明：如果创建的是云盘版实例，此参数为必填。
         # @type DeviceType: String
         # @param ParamTemplateId: 参数模板 id。
         # 备注：如您使用自定义参数模板 id，可传入自定义参数模板 id；如您计划使用默认参数模板，该参数模板 id 传入 id 无效，需设置 ParamTemplateType。
@@ -3389,18 +3393,20 @@ module TencentCloud
         # @type EngineType: String
         # @param Vips: 指定实例的IP列表。仅支持主实例指定，按实例顺序，不足则按未指定处理。
         # @type Vips: Array
-        # @param DataProtectVolume: 集群版实例的数据保护空间大小，单位 GB，设置范围1 - 10。
+        # @param DataProtectVolume: 云盘版实例的数据保护空间大小，单位 GB，设置范围1 - 10。
         # @type DataProtectVolume: Integer
-        # @param ClusterTopology: 集群版节点拓扑配置。
-        # 说明：若购买的是集群版实例，此参数为必填，需设置集群版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
+        # @param ClusterTopology: 云盘版节点拓扑配置。
+        # 说明：若购买的是云盘版实例，此参数为必填，需设置云盘版实例的 RW 和 RO 节点拓扑，RO 节点范围是1 - 5个，请至少设置1个 RO 节点。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
-        # @param DiskType: 磁盘类型，单节点（云盘版）或者集群版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘。
-        # 说明：单节点（云盘版）、集群版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
+        # @param DiskType: 磁盘类型，单节点（云盘版）或者云盘版实例可以指定此参数。CLOUD_SSD 表示 SSD 云硬盘，CLOUD_HSSD 表示增强型 SSD 云硬盘，CLOUD_PREMIUM 表示高性能云硬盘。
+        # 说明：单节点（云盘版）、云盘版实例硬盘类型所支持的地域略有不同，具体支持情况请参考 [地域和可用区](https://cloud.tencent.com/document/product/236/8458)。
         # @type DiskType: String
+        # @param DestroyProtect: 开启或关闭实例销毁保护。on-开启，off-关闭
+        # @type DestroyProtect: String
 
-        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType
+        attr_accessor :Memory, :Volume, :Period, :GoodsNum, :Zone, :UniqVpcId, :UniqSubnetId, :ProjectId, :Port, :InstanceRole, :MasterInstanceId, :EngineVersion, :Password, :ProtectMode, :DeployMode, :SlaveZone, :ParamList, :BackupZone, :AutoRenewFlag, :MasterRegion, :SecurityGroup, :RoGroup, :InstanceName, :ResourceTags, :DeployGroupId, :ClientToken, :DeviceType, :ParamTemplateId, :AlarmPolicyList, :InstanceNodes, :Cpu, :AutoSyncFlag, :CageId, :ParamTemplateType, :AlarmPolicyIdList, :DryRun, :EngineType, :Vips, :DataProtectVolume, :ClusterTopology, :DiskType, :DestroyProtect
 
-        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil)
+        def initialize(memory=nil, volume=nil, period=nil, goodsnum=nil, zone=nil, uniqvpcid=nil, uniqsubnetid=nil, projectid=nil, port=nil, instancerole=nil, masterinstanceid=nil, engineversion=nil, password=nil, protectmode=nil, deploymode=nil, slavezone=nil, paramlist=nil, backupzone=nil, autorenewflag=nil, masterregion=nil, securitygroup=nil, rogroup=nil, instancename=nil, resourcetags=nil, deploygroupid=nil, clienttoken=nil, devicetype=nil, paramtemplateid=nil, alarmpolicylist=nil, instancenodes=nil, cpu=nil, autosyncflag=nil, cageid=nil, paramtemplatetype=nil, alarmpolicyidlist=nil, dryrun=nil, enginetype=nil, vips=nil, dataprotectvolume=nil, clustertopology=nil, disktype=nil, destroyprotect=nil)
           @Memory = memory
           @Volume = volume
           @Period = period
@@ -3442,6 +3448,7 @@ module TencentCloud
           @DataProtectVolume = dataprotectvolume
           @ClusterTopology = clustertopology
           @DiskType = disktype
+          @DestroyProtect = destroyprotect
         end
 
         def deserialize(params)
@@ -3506,6 +3513,7 @@ module TencentCloud
             @ClusterTopology.deserialize(params['ClusterTopology'])
           end
           @DiskType = params['DiskType']
+          @DestroyProtect = params['DestroyProtect']
         end
       end
 
@@ -5110,10 +5118,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2025, 11
-        deprecate :StartTimeMin=, :none, 2025, 11
-        deprecate :StartTimeMax, :none, 2025, 11
-        deprecate :StartTimeMax=, :none, 2025, 11
+        deprecate :StartTimeMin, :none, 2025, 12
+        deprecate :StartTimeMin=, :none, 2025, 12
+        deprecate :StartTimeMax, :none, 2025, 12
+        deprecate :StartTimeMax=, :none, 2025, 12
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -7805,8 +7813,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2025, 11
-        deprecate :CustomConf=, :none, 2025, 11
+        deprecate :CustomConf, :none, 2025, 12
+        deprecate :CustomConf=, :none, 2025, 12
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9801,8 +9809,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 11
-        deprecate :AsyncRequestId=, :none, 2025, 11
+        deprecate :AsyncRequestId, :none, 2025, 12
+        deprecate :AsyncRequestId=, :none, 2025, 12
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10542,8 +10550,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 11
-        deprecate :AuditRuleFilters=, :none, 2025, 11
+        deprecate :AuditRuleFilters, :none, 2025, 12
+        deprecate :AuditRuleFilters=, :none, 2025, 12
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11297,8 +11305,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2025, 11
-        deprecate :AsyncRequestId=, :none, 2025, 11
+        deprecate :AsyncRequestId, :none, 2025, 12
+        deprecate :AsyncRequestId=, :none, 2025, 12
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11723,8 +11731,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2025, 11
-        deprecate :ReplicationDelayTime=, :none, 2025, 11
+        deprecate :ReplicationDelayTime, :none, 2025, 12
+        deprecate :ReplicationDelayTime=, :none, 2025, 12
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -11955,8 +11963,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2025, 11
-        deprecate :AuditRuleFilters=, :none, 2025, 11
+        deprecate :AuditRuleFilters, :none, 2025, 12
+        deprecate :AuditRuleFilters=, :none, 2025, 12
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12235,8 +12243,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2025, 11
-        deprecate :IsSucess=, :none, 2025, 11
+        deprecate :IsSucess, :none, 2025, 12
+        deprecate :IsSucess=, :none, 2025, 12
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
