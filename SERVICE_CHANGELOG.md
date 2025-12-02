@@ -1,4 +1,4 @@
-# Release 3.0.1176
+# Release 3.0.1177
 
 ## 腾讯云数据仓库TCHouse-C(cdwch) 版本：2020-09-15
 
