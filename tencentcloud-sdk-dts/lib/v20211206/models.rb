@@ -1771,6 +1771,51 @@ module TencentCloud
         end
       end
 
+      # 库/表/视图级别的 DDL/DML 白名单
+      class DBOpFilter < TencentCloud::Common::AbstractModel
+        # @param DbName: 规则生效的库名
+        # @type DbName: String
+        # @param OpFilter: 库级 DDL/DML 过滤规则
+        # @type OpFilter: :class:`Tencentcloud::Dts.v20211206.models.OpFilter`
+        # @param Tables: 表级 DDL/DML 过滤信息
+        # @type Tables: Array
+        # @param Views: 视图级 DDL/DML 过滤信息
+        # @type Views: Array
+
+        attr_accessor :DbName, :OpFilter, :Tables, :Views
+
+        def initialize(dbname=nil, opfilter=nil, tables=nil, views=nil)
+          @DbName = dbname
+          @OpFilter = opfilter
+          @Tables = tables
+          @Views = views
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          unless params['OpFilter'].nil?
+            @OpFilter = OpFilter.new
+            @OpFilter.deserialize(params['OpFilter'])
+          end
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              tablefilter_tmp = TableFilter.new
+              tablefilter_tmp.deserialize(i)
+              @Tables << tablefilter_tmp
+            end
+          end
+          unless params['Views'].nil?
+            @Views = []
+            params['Views'].each do |i|
+              viewfilter_tmp = ViewFilter.new
+              viewfilter_tmp.deserialize(i)
+              @Views << viewfilter_tmp
+            end
+          end
+        end
+      end
+
       # 需要同步的库表对象
       class Database < TencentCloud::Common::AbstractModel
         # @param DbName: 需要迁移或同步的库名，当ObjectMode为Partial时，此项必填
@@ -5645,14 +5690,17 @@ module TencentCloud
         # @type AdvancedObjects: Array
         # @param OnlineDDL: OnlineDDL类型，冗余字段不做配置用途
         # @type OnlineDDL: :class:`Tencentcloud::Dts.v20211206.models.OnlineDDL`
+        # @param DatabasesOpFilter: 库/表/视图级 DML/DDL 白名单
+        # @type DatabasesOpFilter: Array
 
-        attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL
+        attr_accessor :Mode, :Databases, :AdvancedObjects, :OnlineDDL, :DatabasesOpFilter
 
-        def initialize(mode=nil, databases=nil, advancedobjects=nil, onlineddl=nil)
+        def initialize(mode=nil, databases=nil, advancedobjects=nil, onlineddl=nil, databasesopfilter=nil)
           @Mode = mode
           @Databases = databases
           @AdvancedObjects = advancedobjects
           @OnlineDDL = onlineddl
+          @DatabasesOpFilter = databasesopfilter
         end
 
         def deserialize(params)
@@ -5669,6 +5717,14 @@ module TencentCloud
           unless params['OnlineDDL'].nil?
             @OnlineDDL = OnlineDDL.new
             @OnlineDDL.deserialize(params['OnlineDDL'])
+          end
+          unless params['DatabasesOpFilter'].nil?
+            @DatabasesOpFilter = []
+            params['DatabasesOpFilter'].each do |i|
+              dbopfilter_tmp = DBOpFilter.new
+              dbopfilter_tmp.deserialize(i)
+              @DatabasesOpFilter << dbopfilter_tmp
+            end
           end
         end
       end
@@ -5706,6 +5762,33 @@ module TencentCloud
 
         def deserialize(params)
           @Status = params['Status']
+        end
+      end
+
+      # DDL/DML 过滤规则
+      class OpFilter < TencentCloud::Common::AbstractModel
+        # @param OpTypes: DML 白名单
+        # @type OpTypes: Array
+        # @param DdlOptions: DDL 白名单
+        # @type DdlOptions: Array
+
+        attr_accessor :OpTypes, :DdlOptions
+
+        def initialize(optypes=nil, ddloptions=nil)
+          @OpTypes = optypes
+          @DdlOptions = ddloptions
+        end
+
+        def deserialize(params)
+          @OpTypes = params['OpTypes']
+          unless params['DdlOptions'].nil?
+            @DdlOptions = []
+            params['DdlOptions'].each do |i|
+              ddloption_tmp = DdlOption.new
+              ddloption_tmp.deserialize(i)
+              @DdlOptions << ddloption_tmp
+            end
+          end
         end
       end
 
@@ -7694,6 +7777,29 @@ module TencentCloud
         end
       end
 
+      # 表级 DDL/DML 过滤信息
+      class TableFilter < TencentCloud::Common::AbstractModel
+        # @param TableName: 规则生效的表名
+        # @type TableName: String
+        # @param OpFilter: 表级 DDL/DML 过滤规则
+        # @type OpFilter: :class:`Tencentcloud::Dts.v20211206.models.OpFilter`
+
+        attr_accessor :TableName, :OpFilter
+
+        def initialize(tablename=nil, opfilter=nil)
+          @TableName = tablename
+          @OpFilter = opfilter
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          unless params['OpFilter'].nil?
+            @OpFilter = OpFilter.new
+            @OpFilter.deserialize(params['OpFilter'])
+          end
+        end
+      end
+
       # 表对象集合，当 TableMode 为 partial 时，此项需要填写
       class TableItem < TencentCloud::Common::AbstractModel
         # @param TableName: 迁移的表名，大小写敏感
@@ -7876,6 +7982,29 @@ module TencentCloud
         def deserialize(params)
           @ViewName = params['ViewName']
           @NewViewName = params['NewViewName']
+        end
+      end
+
+      # 视图级 DDL/DML 过滤信息
+      class ViewFilter < TencentCloud::Common::AbstractModel
+        # @param ViewName: 规则生效的视图名
+        # @type ViewName: String
+        # @param OpFilter: 视图级 DDL/DML 过滤规则
+        # @type OpFilter: :class:`Tencentcloud::Dts.v20211206.models.OpFilter`
+
+        attr_accessor :ViewName, :OpFilter
+
+        def initialize(viewname=nil, opfilter=nil)
+          @ViewName = viewname
+          @OpFilter = opfilter
+        end
+
+        def deserialize(params)
+          @ViewName = params['ViewName']
+          unless params['OpFilter'].nil?
+            @OpFilter = OpFilter.new
+            @OpFilter.deserialize(params['OpFilter'])
+          end
         end
       end
 

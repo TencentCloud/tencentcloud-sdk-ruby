@@ -213,6 +213,22 @@ module TencentCloud
         end
       end
 
+      # Agent转交高级设置
+      class AgentHandoffAdvancedSetting < TencentCloud::Common::AbstractModel
+        # @param ConversationPolicy: 对话流转策略；0-由上一轮回复用户的 Agent 继续发起，1- 回到主Agent
+        # @type ConversationPolicy: Integer
+
+        attr_accessor :ConversationPolicy
+
+        def initialize(conversationpolicy=nil)
+          @ConversationPolicy = conversationpolicy
+        end
+
+        def deserialize(params)
+          @ConversationPolicy = params['ConversationPolicy']
+        end
+      end
+
       # Agent输入值，支持直接赋值和引用
       class AgentInput < TencentCloud::Common::AbstractModel
         # @param InputType: 输入来源类型：0 用户输入，3 自定义变量（API参数）
@@ -1043,10 +1059,12 @@ module TencentCloud
         # @type FinanceStatus: Integer
         # @param ToolSource: 工具来源: 0-来自插件，1-来自工作流
         # @type ToolSource: Integer
+        # @param FinanceType: 计费状态；0-不计费，1-限时免费，2-官方收费
+        # @type FinanceType: Integer
 
-        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource
+        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource, :FinanceType
 
-        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil)
+        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil, financetype=nil)
           @PluginId = pluginid
           @PluginName = pluginname
           @IconUrl = iconurl
@@ -1065,6 +1083,7 @@ module TencentCloud
           @Query = query
           @FinanceStatus = financestatus
           @ToolSource = toolsource
+          @FinanceType = financetype
         end
 
         def deserialize(params)
@@ -1117,6 +1136,7 @@ module TencentCloud
           end
           @FinanceStatus = params['FinanceStatus']
           @ToolSource = params['ToolSource']
+          @FinanceType = params['FinanceType']
         end
       end
 
@@ -2602,8 +2622,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 11
-        deprecate :EmbeddingModel=, :none, 2025, 11
+        deprecate :EmbeddingModel, :none, 2025, 12
+        deprecate :EmbeddingModel=, :none, 2025, 12
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -3234,14 +3254,17 @@ module TencentCloud
         # @type StaringAgentId: String
         # @param Agents: 应用Agent信息列表
         # @type Agents: Array
+        # @param HandoffAdvancedSetting: Agent转交高级设置
+        # @type HandoffAdvancedSetting: :class:`Tencentcloud::Lke.v20231130.models.AgentHandoffAdvancedSetting`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StaringAgentId, :Agents, :RequestId
+        attr_accessor :StaringAgentId, :Agents, :HandoffAdvancedSetting, :RequestId
 
-        def initialize(staringagentid=nil, agents=nil, requestid=nil)
+        def initialize(staringagentid=nil, agents=nil, handoffadvancedsetting=nil, requestid=nil)
           @StaringAgentId = staringagentid
           @Agents = agents
+          @HandoffAdvancedSetting = handoffadvancedsetting
           @RequestId = requestid
         end
 
@@ -3254,6 +3277,10 @@ module TencentCloud
               agent_tmp.deserialize(i)
               @Agents << agent_tmp
             end
+          end
+          unless params['HandoffAdvancedSetting'].nil?
+            @HandoffAdvancedSetting = AgentHandoffAdvancedSetting.new
+            @HandoffAdvancedSetting.deserialize(params['HandoffAdvancedSetting'])
           end
           @RequestId = params['RequestId']
         end
@@ -7084,10 +7111,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2025, 11
-        deprecate :EmbeddingModel=, :none, 2025, 11
-        deprecate :QaExtractModel, :none, 2025, 11
-        deprecate :QaExtractModel=, :none, 2025, 11
+        deprecate :EmbeddingModel, :none, 2025, 12
+        deprecate :EmbeddingModel=, :none, 2025, 12
+        deprecate :QaExtractModel, :none, 2025, 12
+        deprecate :QaExtractModel=, :none, 2025, 12
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -7368,8 +7395,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2025, 11
-        deprecate :BotBizId=, :none, 2025, 11
+        deprecate :BotBizId, :none, 2025, 12
+        deprecate :BotBizId=, :none, 2025, 12
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid
@@ -12901,8 +12928,8 @@ module TencentCloud
 
         attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph
         extend Gem::Deprecate
-        deprecate :DialogJson, :none, 2025, 11
-        deprecate :DialogJson=, :none, 2025, 11
+        deprecate :DialogJson, :none, 2025, 12
+        deprecate :DialogJson=, :none, 2025, 12
 
         def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil)
           @RunEnv = runenv

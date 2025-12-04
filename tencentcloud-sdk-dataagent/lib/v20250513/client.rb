@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询上传任务
+
+        # @param request: Request instance for GetUploadJobDetails.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::GetUploadJobDetailsRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::GetUploadJobDetailsResponse`
+        def GetUploadJobDetails(request)
+          body = send_request('GetUploadJobDetails', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetUploadJobDetailsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 编辑修改分片
 
         # @param request: Request instance for ModifyChunk.
@@ -279,6 +303,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopChatAIResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 上传提交文件
+
+        # @param request: Request instance for UploadAndCommitFile.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::UploadAndCommitFileRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::UploadAndCommitFileResponse`
+        def UploadAndCommitFile(request)
+          body = send_request('UploadAndCommitFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UploadAndCommitFileResponse.new
             model.deserialize(response['Response'])
             model
           else

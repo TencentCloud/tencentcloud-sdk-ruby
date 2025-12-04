@@ -1758,6 +1758,53 @@ module TencentCloud
         end
       end
 
+      # ModifyClusterMachine请求参数结构体
+      class ModifyClusterMachineRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param MachineNames: 节点名列表
+        # @type MachineNames: Array
+        # @param DisplayName: machine的display name
+        # @type DisplayName: String
+        # @param InstanceChargePrepaid: 节点预付费信息
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
+
+        attr_accessor :ClusterId, :MachineNames, :DisplayName, :InstanceChargePrepaid
+
+        def initialize(clusterid=nil, machinenames=nil, displayname=nil, instancechargeprepaid=nil)
+          @ClusterId = clusterid
+          @MachineNames = machinenames
+          @DisplayName = displayname
+          @InstanceChargePrepaid = instancechargeprepaid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @MachineNames = params['MachineNames']
+          @DisplayName = params['DisplayName']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+        end
+      end
+
+      # ModifyClusterMachine返回参数结构体
+      class ModifyClusterMachineResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyHealthCheckPolicy请求参数结构体
       class ModifyHealthCheckPolicyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID

@@ -625,12 +625,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2025, 11
-        deprecate :AddressTemplateName=, :none, 2025, 11
-        deprecate :From, :none, 2025, 11
-        deprecate :From=, :none, 2025, 11
-        deprecate :To, :none, 2025, 11
-        deprecate :To=, :none, 2025, 11
+        deprecate :AddressTemplateName, :none, 2025, 12
+        deprecate :AddressTemplateName=, :none, 2025, 12
+        deprecate :From, :none, 2025, 12
+        deprecate :From=, :none, 2025, 12
+        deprecate :To, :none, 2025, 12
+        deprecate :To=, :none, 2025, 12
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -752,6 +752,9 @@ module TencentCloud
         # <li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费</li></ul>默认值：TRAFFIC_POSTPAID_BY_HOUR。</li>
         # <li>传统账户类型，无需传递此参数，EIP计费方式与其绑定的实例的计费方式一致，无需传递此参数。</li></ul>
         # @type InternetChargeType: String
+        # @param IPChargeType: IP 资源计费模式，当前仅支持原生 IP。
+        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值：<ul><li>IP_POSTPAID_BY_HOUR：IP资源按小时后付费</li><li>IP_PREPAID_BY_MONTH：IP资源包月预付费</li></ul></li></ul>
+        # @type IPChargeType: String
         # @param InternetMaxBandwidthOut: EIP出带宽上限，单位：Mbps。
         # <ul style="margin:0"><li>标准账户类型EIP出带宽上限，可选值范围取决于EIP计费方式：<ul><li>BANDWIDTH_PACKAGE：1 Mbps 至 2000 Mbps</li>
         # <li>BANDWIDTH_POSTPAID_BY_HOUR：1 Mbps 至 100 Mbps</li>
@@ -765,7 +768,9 @@ module TencentCloud
         # <li>EIP：弹性公网 IP。 </li>
         # <li>AnycastEIP：加速 IP，已开通 [Anycast 公网加速](https://cloud.tencent.com/document/product/644)白名单的用户可选。仅部分地域支持加速IP，详情可见Anycast公网加速[购买指南](https://cloud.tencent.com/document/product/644/12617)。</li>
         # <li>HighQualityEIP：精品 IP。仅新加坡和中国香港支持精品IP。</li>
-        # <li>AntiDDoSEIP：高防 IP。仅部分地域支持高防IP，详情可见弹性公网IP[产品概述](https://cloud.tencent.com/document/product/1199/41646)。</li>
+        # <li>AntiDDoSEIP：高防 IP。仅部分地域支持高防IP。</li>
+        # <li>ResidentialEIP：原生 IP。仅部分地域支持原生IP。</li>
+        # 关于弹性公网 IP 支持的 IP 类型，请见[产品概述](https://cloud.tencent.com/document/product/1199/41646)。
         # @type AddressType: String
         # @param AnycastZone: Anycast发布域。
         # <ul style="margin:0"><li>已开通Anycast公网加速白名单的用户，可选值：<ul><li>ANYCAST_ZONE_GLOBAL：全球发布域（需要额外开通Anycast全球加速白名单）</li><li>ANYCAST_ZONE_OVERSEAS：境外发布域</li></ul>默认值：ANYCAST_ZONE_OVERSEAS。</li></ul>
@@ -797,23 +802,17 @@ module TencentCloud
         # @type AntiDDoSPackageId: String
         # @param ClientToken: 保证请求幂等性。从您的客户端生成一个参数值，确保不同请求间该参数值唯一。ClientToken只支持ASCII字符，且不能超过64个字符。
         # @type ClientToken: String
-        # @param IPChargeType: 原生EIP IP资源的计费方式。
-        # <ul style="margin:0"><li>账号为标准账户类型的用户，可选值：<ul>
-        # <li>IP_POSTPAID_BY_HOUR：IP资源按小时后付费</li>
-        # <li>IP_PREPAID_BY_MONTH：IP资源包月预付费</li>
-        # </ul></li>
-        # </ul>
-        # @type IPChargeType: String
 
-        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken, :IPChargeType
+        attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 11
-        deprecate :ApplicableForCLB=, :none, 2025, 11
+        deprecate :ApplicableForCLB, :none, 2025, 12
+        deprecate :ApplicableForCLB=, :none, 2025, 12
 
-        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil, ipchargetype=nil)
+        def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
           @InternetServiceProvider = internetserviceprovider
           @InternetChargeType = internetchargetype
+          @IPChargeType = ipchargetype
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @AddressChargePrepaid = addresschargeprepaid
           @AddressType = addresstype
@@ -828,13 +827,13 @@ module TencentCloud
           @Egress = egress
           @AntiDDoSPackageId = antiddospackageid
           @ClientToken = clienttoken
-          @IPChargeType = ipchargetype
         end
 
         def deserialize(params)
           @AddressCount = params['AddressCount']
           @InternetServiceProvider = params['InternetServiceProvider']
           @InternetChargeType = params['InternetChargeType']
+          @IPChargeType = params['IPChargeType']
           @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
           unless params['AddressChargePrepaid'].nil?
             @AddressChargePrepaid = AddressChargePrepaid.new
@@ -859,7 +858,6 @@ module TencentCloud
           @Egress = params['Egress']
           @AntiDDoSPackageId = params['AntiDDoSPackageId']
           @ClientToken = params['ClientToken']
-          @IPChargeType = params['IPChargeType']
         end
       end
 
@@ -3419,8 +3417,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2025, 11
-        deprecate :ConfilctId=, :none, 2025, 11
+        deprecate :ConfilctId, :none, 2025, 12
+        deprecate :ConfilctId=, :none, 2025, 12
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -3463,6 +3461,30 @@ module TencentCloud
               @ConflictItemSet << conflictitem_tmp
             end
           end
+        end
+      end
+
+      # NAT网关超时时间
+      class ConnectionStateTimeouts < TencentCloud::Common::AbstractModel
+        # @param UDPMappingTimeout: UDP映射空闲时间，指多少秒以后UDP流停止向端点发送。取值范围为：3-7200秒，默认为10秒。
+        # @type UDPMappingTimeout: Integer
+        # @param TCPEstablishedConnectionTimeout: TCP已建立的连接空闲超时，指多少秒以后连接变为空闲状态。取值范围为：40-10800秒，默认为10800秒。
+        # @type TCPEstablishedConnectionTimeout: Integer
+        # @param TcpTimeWaitTimeout: TCP TIME_WAIT超时，指完全关闭的TCP连接在到期后保留在NAT映射中的秒数。取值范围为：10-600秒，默认为120秒。
+        # @type TcpTimeWaitTimeout: Integer
+
+        attr_accessor :UDPMappingTimeout, :TCPEstablishedConnectionTimeout, :TcpTimeWaitTimeout
+
+        def initialize(udpmappingtimeout=nil, tcpestablishedconnectiontimeout=nil, tcptimewaittimeout=nil)
+          @UDPMappingTimeout = udpmappingtimeout
+          @TCPEstablishedConnectionTimeout = tcpestablishedconnectiontimeout
+          @TcpTimeWaitTimeout = tcptimewaittimeout
+        end
+
+        def deserialize(params)
+          @UDPMappingTimeout = params['UDPMappingTimeout']
+          @TCPEstablishedConnectionTimeout = params['TCPEstablishedConnectionTimeout']
+          @TcpTimeWaitTimeout = params['TcpTimeWaitTimeout']
         end
       end
 
@@ -4846,13 +4868,15 @@ module TencentCloud
         # @type NatProductVersion: Integer
         # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
         # @type DeletionProtectionEnabled: Boolean
+        # @param ExclusiveType: 独享实例规格。取值范围：ExclusiveSmall/ExclusiveMedium1/ExclusiveLarge1
+        # @type ExclusiveType: String
 
-        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled
+        attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 11
-        deprecate :SubnetId=, :none, 2025, 11
+        deprecate :SubnetId, :none, 2025, 12
+        deprecate :SubnetId=, :none, 2025, 12
 
-        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil)
+        def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
           @VpcId = vpcid
           @InternetMaxBandwidthOut = internetmaxbandwidthout
@@ -4867,6 +4891,7 @@ module TencentCloud
           @PublicIpFromSameZone = publicipfromsamezone
           @NatProductVersion = natproductversion
           @DeletionProtectionEnabled = deletionprotectionenabled
+          @ExclusiveType = exclusivetype
         end
 
         def deserialize(params)
@@ -4891,6 +4916,7 @@ module TencentCloud
           @PublicIpFromSameZone = params['PublicIpFromSameZone']
           @NatProductVersion = params['NatProductVersion']
           @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
+          @ExclusiveType = params['ExclusiveType']
         end
       end
 
@@ -6766,10 +6792,12 @@ module TencentCloud
         # @type Tags: Array
         # @param EnableRouteVpcPublish: vpc关联云联网时路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时,请通过工单加入白名单
         # @type EnableRouteVpcPublish: Boolean
+        # @param EnableRouteVpcPublishIpv6: vpc关联云联网时IPv6类型路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时，请通过工单加入白名单。
+        # @type EnableRouteVpcPublishIpv6: Boolean
 
-        attr_accessor :VpcName, :CidrBlock, :EnableMulticast, :DnsServers, :DomainName, :Tags, :EnableRouteVpcPublish
+        attr_accessor :VpcName, :CidrBlock, :EnableMulticast, :DnsServers, :DomainName, :Tags, :EnableRouteVpcPublish, :EnableRouteVpcPublishIpv6
 
-        def initialize(vpcname=nil, cidrblock=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil, enableroutevpcpublish=nil)
+        def initialize(vpcname=nil, cidrblock=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, tags=nil, enableroutevpcpublish=nil, enableroutevpcpublishipv6=nil)
           @VpcName = vpcname
           @CidrBlock = cidrblock
           @EnableMulticast = enablemulticast
@@ -6777,6 +6805,7 @@ module TencentCloud
           @DomainName = domainname
           @Tags = tags
           @EnableRouteVpcPublish = enableroutevpcpublish
+          @EnableRouteVpcPublishIpv6 = enableroutevpcpublishipv6
         end
 
         def deserialize(params)
@@ -6794,6 +6823,7 @@ module TencentCloud
             end
           end
           @EnableRouteVpcPublish = params['EnableRouteVpcPublish']
+          @EnableRouteVpcPublishIpv6 = params['EnableRouteVpcPublishIpv6']
         end
       end
 
@@ -19402,8 +19432,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 11
-        deprecate :IntegrityAlgorith=, :none, 2025, 11
+        deprecate :IntegrityAlgorith, :none, 2025, 12
+        deprecate :IntegrityAlgorith=, :none, 2025, 12
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20814,10 +20844,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 11
-        deprecate :StartTime=, :none, 2025, 11
-        deprecate :EndTime, :none, 2025, 11
-        deprecate :EndTime=, :none, 2025, 11
+        deprecate :StartTime, :none, 2025, 12
+        deprecate :StartTime=, :none, 2025, 12
+        deprecate :EndTime, :none, 2025, 12
+        deprecate :EndTime=, :none, 2025, 12
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -23188,10 +23218,12 @@ module TencentCloud
         # @type EnableRouteVpcPublish: Boolean
         # @param EnableCdcPublish: 发布cdc 子网到云联网的开关。true: 发布, false: 不发布。
         # @type EnableCdcPublish: Boolean
+        # @param EnableRouteVpcPublishIpv6: vpc关联云联网时IPv6类型路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时，请通过工单加入白名单。
+        # @type EnableRouteVpcPublishIpv6: Boolean
 
-        attr_accessor :VpcId, :VpcName, :EnableMulticast, :DnsServers, :DomainName, :EnableRouteVpcPublish, :EnableCdcPublish
+        attr_accessor :VpcId, :VpcName, :EnableMulticast, :DnsServers, :DomainName, :EnableRouteVpcPublish, :EnableCdcPublish, :EnableRouteVpcPublishIpv6
 
-        def initialize(vpcid=nil, vpcname=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, enableroutevpcpublish=nil, enablecdcpublish=nil)
+        def initialize(vpcid=nil, vpcname=nil, enablemulticast=nil, dnsservers=nil, domainname=nil, enableroutevpcpublish=nil, enablecdcpublish=nil, enableroutevpcpublishipv6=nil)
           @VpcId = vpcid
           @VpcName = vpcname
           @EnableMulticast = enablemulticast
@@ -23199,6 +23231,7 @@ module TencentCloud
           @DomainName = domainname
           @EnableRouteVpcPublish = enableroutevpcpublish
           @EnableCdcPublish = enablecdcpublish
+          @EnableRouteVpcPublishIpv6 = enableroutevpcpublishipv6
         end
 
         def deserialize(params)
@@ -23209,6 +23242,7 @@ module TencentCloud
           @DomainName = params['DomainName']
           @EnableRouteVpcPublish = params['EnableRouteVpcPublish']
           @EnableCdcPublish = params['EnableCdcPublish']
+          @EnableRouteVpcPublishIpv6 = params['EnableRouteVpcPublishIpv6']
         end
       end
 
@@ -23862,10 +23896,14 @@ module TencentCloud
         # @type DedicatedClusterId: String
         # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
         # @type DeletionProtectionEnabled: Boolean
+        # @param ConnectionStateTimeouts: NAT实例连接超时时间
+        # @type ConnectionStateTimeouts: :class:`Tencentcloud::Vpc.v20170312.models.ConnectionStateTimeouts`
+        # @param ExclusiveType: 独享实例规格。取值范围：ExclusiveSmall/ExclusiveMedium1/ExclusiveLarge1
+        # @type ExclusiveType: String
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled, :ConnectionStateTimeouts, :ExclusiveType
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil, deletionprotectionenabled=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil, deletionprotectionenabled=nil, connectionstatetimeouts=nil, exclusivetype=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -23889,6 +23927,8 @@ module TencentCloud
           @SmartScheduleMode = smartschedulemode
           @DedicatedClusterId = dedicatedclusterid
           @DeletionProtectionEnabled = deletionprotectionenabled
+          @ConnectionStateTimeouts = connectionstatetimeouts
+          @ExclusiveType = exclusivetype
         end
 
         def deserialize(params)
@@ -23943,6 +23983,11 @@ module TencentCloud
           @SmartScheduleMode = params['SmartScheduleMode']
           @DedicatedClusterId = params['DedicatedClusterId']
           @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
+          unless params['ConnectionStateTimeouts'].nil?
+            @ConnectionStateTimeouts = ConnectionStateTimeouts.new
+            @ConnectionStateTimeouts.deserialize(params['ConnectionStateTimeouts'])
+          end
+          @ExclusiveType = params['ExclusiveType']
         end
       end
 
@@ -26225,17 +26270,21 @@ module TencentCloud
         # @type NatGatewayId: String
         # @param MaxConcurrentConnection: NAT网关并发连接上限，形如：1000000、3000000、10000000。
         # @type MaxConcurrentConnection: Integer
+        # @param ExclusiveType: 独享实例规格。如果要变配到独享实例，此参数必选，取值范围：ExclusiveSmall/ExclusiveMedium1/ExclusiveLarge1
+        # @type ExclusiveType: String
 
-        attr_accessor :NatGatewayId, :MaxConcurrentConnection
+        attr_accessor :NatGatewayId, :MaxConcurrentConnection, :ExclusiveType
 
-        def initialize(natgatewayid=nil, maxconcurrentconnection=nil)
+        def initialize(natgatewayid=nil, maxconcurrentconnection=nil, exclusivetype=nil)
           @NatGatewayId = natgatewayid
           @MaxConcurrentConnection = maxconcurrentconnection
+          @ExclusiveType = exclusivetype
         end
 
         def deserialize(params)
           @NatGatewayId = params['NatGatewayId']
           @MaxConcurrentConnection = params['MaxConcurrentConnection']
+          @ExclusiveType = params['ExclusiveType']
         end
       end
 
@@ -28844,12 +28893,12 @@ module TencentCloud
         # @type Protocol: String
         # @param SourcePort: 源端口。
         # @type SourcePort: String
-        # @param SourceCidr: 源地址。支持`ip`或`cidr`格式"xxx.xxx.xxx.000/xx"
-        # @type SourceCidr: String
         # @param DestinationPort: 目的端口。
         # @type DestinationPort: String
         # @param DestinationCidr: 目的地址。
         # @type DestinationCidr: String
+        # @param SourceCidr: 源地址。支持`ip`或`cidr`格式"xxx.xxx.xxx.000/xx"
+        # @type SourceCidr: String
         # @param AclRuleId: ACL规则`ID`。
         # @type AclRuleId: Integer
         # @param Action: 是否匹配。
@@ -28857,14 +28906,14 @@ module TencentCloud
         # @param Description: ACL规则描述
         # @type Description: String
 
-        attr_accessor :Protocol, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :AclRuleId, :Action, :Description
+        attr_accessor :Protocol, :SourcePort, :DestinationPort, :DestinationCidr, :SourceCidr, :AclRuleId, :Action, :Description
 
-        def initialize(protocol=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, aclruleid=nil, action=nil, description=nil)
+        def initialize(protocol=nil, sourceport=nil, destinationport=nil, destinationcidr=nil, sourcecidr=nil, aclruleid=nil, action=nil, description=nil)
           @Protocol = protocol
           @SourcePort = sourceport
-          @SourceCidr = sourcecidr
           @DestinationPort = destinationport
           @DestinationCidr = destinationcidr
+          @SourceCidr = sourcecidr
           @AclRuleId = aclruleid
           @Action = action
           @Description = description
@@ -28873,9 +28922,9 @@ module TencentCloud
         def deserialize(params)
           @Protocol = params['Protocol']
           @SourcePort = params['SourcePort']
-          @SourceCidr = params['SourceCidr']
           @DestinationPort = params['DestinationPort']
           @DestinationCidr = params['DestinationCidr']
+          @SourceCidr = params['SourceCidr']
           @AclRuleId = params['AclRuleId']
           @Action = params['Action']
           @Description = params['Description']
@@ -29413,10 +29462,12 @@ module TencentCloud
         # @type EnableRouteVpcPublish: Boolean
         # @param Ipv6CidrBlockSet: 返回多运营商IPv6 Cidr Block
         # @type Ipv6CidrBlockSet: Array
+        # @param EnableRouteVpcPublishIpv6: vpc关联云联网时IPv6类型路由发布策略， true：开启cidr路由发布，false：开启subnet子网路由发布。创建vpc时默认为子网路由发布，当选择cidr路由发布时，请通过工单加入白名单。
+        # @type EnableRouteVpcPublishIpv6: Boolean
 
-        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :EnableRouteVpcPublish, :Ipv6CidrBlockSet
+        attr_accessor :VpcName, :VpcId, :CidrBlock, :IsDefault, :EnableMulticast, :CreatedTime, :DnsServerSet, :DomainName, :DhcpOptionsId, :EnableDhcp, :Ipv6CidrBlock, :TagSet, :AssistantCidrSet, :EnableRouteVpcPublish, :Ipv6CidrBlockSet, :EnableRouteVpcPublishIpv6
 
-        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, enableroutevpcpublish=nil, ipv6cidrblockset=nil)
+        def initialize(vpcname=nil, vpcid=nil, cidrblock=nil, isdefault=nil, enablemulticast=nil, createdtime=nil, dnsserverset=nil, domainname=nil, dhcpoptionsid=nil, enabledhcp=nil, ipv6cidrblock=nil, tagset=nil, assistantcidrset=nil, enableroutevpcpublish=nil, ipv6cidrblockset=nil, enableroutevpcpublishipv6=nil)
           @VpcName = vpcname
           @VpcId = vpcid
           @CidrBlock = cidrblock
@@ -29432,6 +29483,7 @@ module TencentCloud
           @AssistantCidrSet = assistantcidrset
           @EnableRouteVpcPublish = enableroutevpcpublish
           @Ipv6CidrBlockSet = ipv6cidrblockset
+          @EnableRouteVpcPublishIpv6 = enableroutevpcpublishipv6
         end
 
         def deserialize(params)
@@ -29471,6 +29523,7 @@ module TencentCloud
               @Ipv6CidrBlockSet << ispipv6cidrblock_tmp
             end
           end
+          @EnableRouteVpcPublishIpv6 = params['EnableRouteVpcPublishIpv6']
         end
       end
 

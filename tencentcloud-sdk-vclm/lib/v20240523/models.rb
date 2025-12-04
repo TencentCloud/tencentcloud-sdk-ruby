@@ -338,6 +338,54 @@ module TencentCloud
         end
       end
 
+      # DescribeVideoFaceFusionJob请求参数结构体
+      class DescribeVideoFaceFusionJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeVideoFaceFusionJob返回参数结构体
+      class DescribeVideoFaceFusionJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type Status: String
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param ResultVideoUrl: 结果视频 URL。有效期 24 小时。
+        # @type ResultVideoUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultVideoUrl, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultvideourl=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultVideoUrl = resultvideourl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @ResultVideoUrl = params['ResultVideoUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoStylizationJob请求参数结构体
       class DescribeVideoStylizationJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
@@ -409,6 +457,95 @@ module TencentCloud
 
         def deserialize(params)
           @UserDesignatedUrl = params['UserDesignatedUrl']
+        end
+      end
+
+      # 人脸图片和待被融合的素材模板图的人脸位置信息。
+      class FaceMergeInfo < TencentCloud::Common::AbstractModel
+        # @param MergeFaceImage: 融合图片
+        # @type MergeFaceImage: :class:`Tencentcloud::Vclm.v20240523.models.Image`
+        # @param MergeFaceRect: 上传的图片人脸位置信息（人脸框）
+        # Width、Height >= 30。
+        # @type MergeFaceRect: :class:`Tencentcloud::Vclm.v20240523.models.FaceRect`
+        # @param TemplateFaceID: 素材人脸ID，不填默认取上传图片中最大人脸。
+        # @type TemplateFaceID: String
+
+        attr_accessor :MergeFaceImage, :MergeFaceRect, :TemplateFaceID
+
+        def initialize(mergefaceimage=nil, mergefacerect=nil, templatefaceid=nil)
+          @MergeFaceImage = mergefaceimage
+          @MergeFaceRect = mergefacerect
+          @TemplateFaceID = templatefaceid
+        end
+
+        def deserialize(params)
+          unless params['MergeFaceImage'].nil?
+            @MergeFaceImage = Image.new
+            @MergeFaceImage.deserialize(params['MergeFaceImage'])
+          end
+          unless params['MergeFaceRect'].nil?
+            @MergeFaceRect = FaceRect.new
+            @MergeFaceRect.deserialize(params['MergeFaceRect'])
+          end
+          @TemplateFaceID = params['TemplateFaceID']
+        end
+      end
+
+      # 人脸框信息。
+      class FaceRect < TencentCloud::Common::AbstractModel
+        # @param X: 人脸框左上角横坐标。
+        # @type X: Integer
+        # @param Y: 人脸框左上角纵坐标。
+        # @type Y: Integer
+        # @param Width: 人脸框宽度。
+        # @type Width: Integer
+        # @param Height: 人脸框高度。
+        # @type Height: Integer
+
+        attr_accessor :X, :Y, :Width, :Height
+
+        def initialize(x=nil, y=nil, width=nil, height=nil)
+          @X = x
+          @Y = y
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
+      # 模板信息
+      class FaceTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateFaceID: 角色ID。需要与MergeInfos中的TemplateFaceID依次对应。需要填数字，建议填"0"、"1"，依次累加。
+        # @type TemplateFaceID: String
+        # @param TemplateFaceImage: 视频模板中要替换的人脸图片
+        # @type TemplateFaceImage: :class:`Tencentcloud::Vclm.v20240523.models.Image`
+        # @param TemplateFaceRect: 视频模板中要替换的人脸图片的人脸框。不填默认取要替换的人脸图片中最大人脸。
+        # @type TemplateFaceRect: :class:`Tencentcloud::Vclm.v20240523.models.FaceRect`
+
+        attr_accessor :TemplateFaceID, :TemplateFaceImage, :TemplateFaceRect
+
+        def initialize(templatefaceid=nil, templatefaceimage=nil, templatefacerect=nil)
+          @TemplateFaceID = templatefaceid
+          @TemplateFaceImage = templatefaceimage
+          @TemplateFaceRect = templatefacerect
+        end
+
+        def deserialize(params)
+          @TemplateFaceID = params['TemplateFaceID']
+          unless params['TemplateFaceImage'].nil?
+            @TemplateFaceImage = Image.new
+            @TemplateFaceImage.deserialize(params['TemplateFaceImage'])
+          end
+          unless params['TemplateFaceRect'].nil?
+            @TemplateFaceRect = FaceRect.new
+            @TemplateFaceRect.deserialize(params['TemplateFaceRect'])
+          end
         end
       end
 
@@ -866,6 +1003,97 @@ module TencentCloud
       # SubmitTemplateToVideoJob返回参数结构体
       class SubmitTemplateToVideoJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitVideoFaceFusionJob请求参数结构体
+      class SubmitVideoFaceFusionJobRequest < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: 视频素材下载地址。用户自定义模版视频下载地址，使用前需要先调用视频审核接口进行内容审核。视频限制：分辨率≤4k，fps≤25，视频大小≤1G，时长≤20 秒，支持格式mp4。
+
+        # 输入视频建议：
+        # 姿态：人脸相对镜头水平方向角度转动不超过 90°,垂直方向角度转动不超过 20°。遮挡：脸部遮挡面积不超过 50%，不要完全遮挡五官，不要有半透明遮挡（强光，玻璃，透明眼镜等）、以及细碎离散的脸部遮挡（如飘落的花瓣）。妆容及光照：避免浓妆、复杂妆容，避免复杂光照、闪烁，这些属性无法完全恢复，并对稳定性有影响。针对特殊表情和微表情，针对局部肌肉控制下的微表情，以及过于夸张的特殊表情等不保证表情效果完全恢复。
+        # @type VideoUrl: String
+        # @param TemplateInfos: 视频素材模板的人脸位置信息。
+        # 目前最多支持融合视频素材中的 6 张人脸
+        # 输入图片要求：
+        # 1、用户图限制大小不超过 10MB
+        # 2、图片最大分辨率不超过 4k，建议最小为 128，  人脸框最小为 68
+        # 3、支持格式 jpg，png
+        # 4、如果用户图中未指定人脸且有多张人脸，  默认融合最大人脸
+        # 输入图片建议：  包含上述视频中出现的人物的单人照，并且正面、清晰、无遮挡
+        # @type TemplateInfos: Array
+        # @param MergeInfos: 用户人脸图片位置信息。
+        # 输入图片要求：
+        # 1、用户图限制大小不超过 10MB
+        # 2、图片最大分辨率不超过 4k，建议最小为 128，人脸框最小为 68
+        # 3、支持格式 jpg，png
+        # 4、如果未指定人脸且用户图中有多张人脸，
+        # 默认融合最大人脸
+        # 输入图建议：
+        # 正脸无遮挡
+        # @type MergeInfos: Array
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。
+        # 1：添加标识。 0：不添加标识。 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 视频水印Logo参数标识内容设置。
+        # 默认在融合结果图右下角添加“AI生成”类似字样，您可根据自身需要替换为其他的Logo图片。
+        # 输入建议：输入水印图片宽高需小于视频宽高
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+
+        attr_accessor :VideoUrl, :TemplateInfos, :MergeInfos, :LogoAdd, :LogoParam
+
+        def initialize(videourl=nil, templateinfos=nil, mergeinfos=nil, logoadd=nil, logoparam=nil)
+          @VideoUrl = videourl
+          @TemplateInfos = templateinfos
+          @MergeInfos = mergeinfos
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
+          unless params['TemplateInfos'].nil?
+            @TemplateInfos = []
+            params['TemplateInfos'].each do |i|
+              facetemplateinfo_tmp = FaceTemplateInfo.new
+              facetemplateinfo_tmp.deserialize(i)
+              @TemplateInfos << facetemplateinfo_tmp
+            end
+          end
+          unless params['MergeInfos'].nil?
+            @MergeInfos = []
+            params['MergeInfos'].each do |i|
+              facemergeinfo_tmp = FaceMergeInfo.new
+              facemergeinfo_tmp.deserialize(i)
+              @MergeInfos << facemergeinfo_tmp
+            end
+          end
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitVideoFaceFusionJob返回参数结构体
+      class SubmitVideoFaceFusionJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 视频人脸融合任务的job id（job有效期24小时）
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

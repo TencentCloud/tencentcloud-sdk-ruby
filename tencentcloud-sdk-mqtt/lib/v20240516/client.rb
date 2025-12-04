@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建一条消息属性增强规则
+
+        # @param request: Request instance for CreateMessageEnrichmentRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::CreateMessageEnrichmentRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::CreateMessageEnrichmentRuleResponse`
+        def CreateMessageEnrichmentRule(request)
+          body = send_request('CreateMessageEnrichmentRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMessageEnrichmentRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建主题
 
         # @param request: Request instance for CreateTopic.
@@ -567,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除消息属性增强规则
+
+        # @param request: Request instance for DeleteMessageEnrichmentRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DeleteMessageEnrichmentRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DeleteMessageEnrichmentRuleResponse`
+        def DeleteMessageEnrichmentRule(request)
+          body = send_request('DeleteMessageEnrichmentRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteMessageEnrichmentRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -994,6 +1042,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询消息属性增强规则
+
+        # @param request: Request instance for DescribeMessageEnrichmentRules.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageEnrichmentRulesRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::DescribeMessageEnrichmentRulesResponse`
+        def DescribeMessageEnrichmentRules(request)
+          body = send_request('DescribeMessageEnrichmentRules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMessageEnrichmentRulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据一级Topic查询消息列表
 
         # @param request: Request instance for DescribeMessageList.
@@ -1360,6 +1432,31 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改消息属性增强规则
+        # 注意：需要提交当前规则的所有属性，即使某些字段没有修改。
+
+        # @param request: Request instance for ModifyMessageEnrichmentRule.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::ModifyMessageEnrichmentRuleRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::ModifyMessageEnrichmentRuleResponse`
+        def ModifyMessageEnrichmentRule(request)
+          body = send_request('ModifyMessageEnrichmentRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyMessageEnrichmentRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改主题属性
 
         # @param request: Request instance for ModifyTopic.
@@ -1514,6 +1611,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateAuthorizationPolicyPriorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改消息属性增强规则优先级
+
+        # @param request: Request instance for UpdateMessageEnrichmentRulePriority.
+        # @type request: :class:`Tencentcloud::mqtt::V20240516::UpdateMessageEnrichmentRulePriorityRequest`
+        # @rtype: :class:`Tencentcloud::mqtt::V20240516::UpdateMessageEnrichmentRulePriorityResponse`
+        def UpdateMessageEnrichmentRulePriority(request)
+          body = send_request('UpdateMessageEnrichmentRulePriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateMessageEnrichmentRulePriorityResponse.new
             model.deserialize(response['Response'])
             model
           else

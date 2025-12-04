@@ -6763,9 +6763,12 @@ module TencentCloud
 
       # DescribeRocketMQPublicAccessMonitorData请求参数结构体
       class DescribeRocketMQPublicAccessMonitorDataRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 专享集群ID
+        # @param InstanceId: 集群 ID
         # @type InstanceId: String
-        # @param MetricName: 指标名称，仅支持单指标拉取。目前仅支持：ClientIntraffic; ClientOuttraffic
+        # @param MetricName: 指标名称，仅支持单指标拉取。指标枚举如下：
+
+        # - ClientIntraffic：入流量
+        # - ClientOuttraffic：出流量
         # @type MetricName: String
         # @param StartTime: 起始时间
         # @type StartTime: String

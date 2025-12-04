@@ -880,6 +880,78 @@ module TencentCloud
         end
       end
 
+      # CreateMessageEnrichmentRule请求参数结构体
+      class CreateMessageEnrichmentRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param RuleName: 规则名称
+        # @type RuleName: String
+        # @param Condition: 规则匹配条件，JSON格式，需要Base64编码
+        # 样例
+        # {"clientId":"client-1","username":"client-1","topic":"home/room1"}
+        # Base64后
+        # eyJjbGllbnRJZCI6ImNsaWVudC0xIiwidXNlcm5hbWUiOiJjbGllbnQtMSIsInRvcGljIjoiaG9tZS9yb29tMSJ9
+        # @type Condition: String
+        # @param Actions: 规则执行的动作，JSON格式，需要Base64编码
+        # 样例
+        # {"messageExpiryInterval":360,"responseTopic":"replies/devices/${clientid}","correlationData":"${traceid}","userProperty":[{"key":"trace-id","value":"${traceid}"}]}
+        # BASE64后
+        # eyJtZXNzYWdlRXhwaXJ5SW50ZXJ2YWwiOjM2MCwicmVzcG9uc2VUb3BpYyI6InJlcGxpZXMvZGV2aWNlcy8ke2NsaWVudGlkfSIsImNvcnJlbGF0aW9uRGF0YSI6IiR7dHJhY2VpZH0iLCJ1c2VyUHJvcGVydHkiOlt7ImtleSI6InRyYWNlLWlkIiwidmFsdWUiOiIke3RyYWNlaWR9In1dfQ==
+        # @type Actions: String
+        # @param Priority: 规则优先级，数字越小，优先级越高，高优先级覆盖低低优先级。UserPropertiy字段会合并
+        # @type Priority: Integer
+        # @param Status: 策略状态。 0:未定义；1:激活；2:不激活；默认不激活
+        # @type Status: Integer
+        # @param Remark: 备注，长度不超过128个字符。
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :RuleName, :Condition, :Actions, :Priority, :Status, :Remark
+
+        def initialize(instanceid=nil, rulename=nil, condition=nil, actions=nil, priority=nil, status=nil, remark=nil)
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @Condition = condition
+          @Actions = actions
+          @Priority = priority
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @Condition = params['Condition']
+          @Actions = params['Actions']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateMessageEnrichmentRule返回参数结构体
+      class CreateMessageEnrichmentRuleResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param Id: 规则id
+        # @type Id: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Id, :RequestId
+
+        def initialize(instanceid=nil, id=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -1317,6 +1389,42 @@ module TencentCloud
 
       # DeleteInstance返回参数结构体
       class DeleteInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMessageEnrichmentRule请求参数结构体
+      class DeleteMessageEnrichmentRuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param Id: 消息属性增强规则id
+        # @type Id: Integer
+
+        attr_accessor :InstanceId, :Id
+
+        def initialize(instanceid=nil, id=nil)
+          @InstanceId = instanceid
+          @Id = id
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Id = params['Id']
+        end
+      end
+
+      # DeleteMessageEnrichmentRule返回参数结构体
+      class DeleteMessageEnrichmentRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2530,6 +2638,49 @@ module TencentCloud
         end
       end
 
+      # DescribeMessageEnrichmentRules请求参数结构体
+      class DescribeMessageEnrichmentRulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 DescribeInstanceList接口或控制台获得。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeMessageEnrichmentRules返回参数结构体
+      class DescribeMessageEnrichmentRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 消息增强策略
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              messageenrichmentruleitem_tmp = MessageEnrichmentRuleItem.new
+              messageenrichmentruleitem_tmp.deserialize(i)
+              @Data << messageenrichmentruleitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeMessageList请求参数结构体
       class DescribeMessageListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
@@ -3484,12 +3635,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 11
-        deprecate :DeadLetterResendTimes=, :none, 2025, 11
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 11
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 11
-        deprecate :SubTopic, :none, 2025, 11
-        deprecate :SubTopic=, :none, 2025, 11
+        deprecate :DeadLetterResendTimes, :none, 2025, 12
+        deprecate :DeadLetterResendTimes=, :none, 2025, 12
+        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 12
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 12
+        deprecate :SubTopic, :none, 2025, 12
+        deprecate :SubTopic=, :none, 2025, 12
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -3569,6 +3720,83 @@ module TencentCloud
           @Remark = params['Remark']
           @CreatedTime = params['CreatedTime']
           @ModifiedTime = params['ModifiedTime']
+        end
+      end
+
+      # MessageEnrichmentRuleItem
+      class MessageEnrichmentRuleItem < TencentCloud::Common::AbstractModel
+        # @param Id: 策略规则ID
+        # @type Id: Integer
+        # @param InstanceId: MQTT集群ID
+        # @type InstanceId: String
+        # @param RuleName: 策略规则名
+        # @type RuleName: String
+        # @param Condition: 规则匹配条件，JSON格式，需要Base64编码
+        # 样例 {"clientId":"client-1","username":"client-1","topic":"home/room1"}
+        # Base64后 eyJjbGllbnRJZCI6ImNsaWVudC0xIiwidXNlcm5hbWUiOiJjbGllbnQtMSIsInRvcGljIjoiaG9tZS9yb29tMSJ9
+        # @type Condition: String
+        # @param Actions: 规则执行的动作，JSON格式，需要Base64编码
+        #  样例
+        # {"messageExpiryInterval":360,"response Topic":"replies/devices/${clientid}","correlationData":"${traceid}","userProperty":[{"key":"trace-id","value":"${traceid}"},{"key":"data-source","value":"rule-engine"}]}
+        # BASE64后 eyJtZXNzYWdlRXhwaXJ5SW50ZXJ2YWwiOjM2MCwicmVzcG9uc2UgVG9waWMiOiJyZXBsaWVzL2RldmljZXMvJHtjbGllbnRpZH0iLCJjb3JyZWxhdGlvbkRhdGEiOiIke3RyYWNlaWR9IiwidXNlclByb3BlcnR5IjpbeyJrZXkiOiJ0cmFjZS1pZCIsInZhbHVlIjoiJHt0cmFjZWlkfSJ9LHsia2V5IjoiZGF0YS1zb3VyY2UiLCJ2YWx1ZSI6InJ1bGUtZW5naW5lIn1dfQ==
+        # @type Actions: String
+        # @param Priority: 规则优先级，数字越小，优先级越高，高优先级覆盖低优先级。UserProperty字段会合并
+        # @type Priority: Integer
+        # @param Status: 策略状态。 0:未定义；1:激活；2:不激活；默认不激活
+        # @type Status: Integer
+        # @param Remark: 备注
+        # @type Remark: String
+        # @param CreatedTime: 创建时间。毫秒级时间戳 。
+        # @type CreatedTime: Integer
+        # @param UpdateTime: 更新时间。毫秒级时间戳 。
+        # @type UpdateTime: Integer
+
+        attr_accessor :Id, :InstanceId, :RuleName, :Condition, :Actions, :Priority, :Status, :Remark, :CreatedTime, :UpdateTime
+
+        def initialize(id=nil, instanceid=nil, rulename=nil, condition=nil, actions=nil, priority=nil, status=nil, remark=nil, createdtime=nil, updatetime=nil)
+          @Id = id
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @Condition = condition
+          @Actions = actions
+          @Priority = priority
+          @Status = status
+          @Remark = remark
+          @CreatedTime = createdtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @Condition = params['Condition']
+          @Actions = params['Actions']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @Remark = params['Remark']
+          @CreatedTime = params['CreatedTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 消息属性增强规则优先级
+      class MessageEnrichmentRulePriority < TencentCloud::Common::AbstractModel
+        # @param Id: 消息属性增强规则id
+        # @type Id: Integer
+        # @param Priority: 优先级
+        # @type Priority: Integer
+
+        attr_accessor :Id, :Priority
+
+        def initialize(id=nil, priority=nil)
+          @Id = id
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Priority = params['Priority']
         end
       end
 
@@ -3944,10 +4172,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 11
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 11
-        deprecate :AutomaticActivation, :none, 2025, 11
-        deprecate :AutomaticActivation=, :none, 2025, 11
+        deprecate :DeviceCertificateProvisionType, :none, 2025, 12
+        deprecate :DeviceCertificateProvisionType=, :none, 2025, 12
+        deprecate :AutomaticActivation, :none, 2025, 12
+        deprecate :AutomaticActivation=, :none, 2025, 12
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -4073,8 +4301,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 11
-        deprecate :Text=, :none, 2025, 11
+        deprecate :Text, :none, 2025, 12
+        deprecate :Text=, :none, 2025, 12
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid
@@ -4101,6 +4329,73 @@ module TencentCloud
 
       # ModifyJWTAuthenticator返回参数结构体
       class ModifyJWTAuthenticatorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMessageEnrichmentRule请求参数结构体
+      class ModifyMessageEnrichmentRuleRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 消息属性增强规则ID
+        # @type Id: Integer
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param RuleName: 策略名称，不能为空，3-64个字符，支持中文、字母、数字、“-”及“_”。
+        # @type RuleName: String
+        # @param Condition: 规则匹配条件，JSON格式，需要Base64编码
+        # 样例
+        # {"clientId":"client-1","username":"client-1","topic":"home/room1"}
+        # Base64后
+        # eyJjbGllbnRJZCI6ImNsaWVudC0xIiwidXNlcm5hbWUiOiJjbGllbnQtMSIsInRvcGljIjoiaG9tZS9yb29tMSJ9
+        # @type Condition: String
+        # @param Actions: 规则执行的动作，JSON格式，需要Base64编码
+        # 样例
+        # {"messageExpiryInterval":360,"responseTopic":"replies/${clientid}","correlationData":"${traceid}","userProperty":[{"key":"trace-id","value":"${traceid}"}]}
+        #  BASE64后 eyJtZXNzYWdlRXhwaXJ5SW50ZXJ2YWwiOjM2MCwicmVzcG9uc2VUb3BpYyI6InJlcGxpZXMvJHtjbGllbnRpZH0iLCJjb3JyZWxhdGlvbkRhdGEiOiIke3RyYWNlaWR9IiwidXNlclByb3BlcnR5IjpbeyJrZXkiOiJ0cmFjZS1pZCIsInZhbHVlIjoiJHt0cmFjZWlkfSJ9XX0=
+        # @type Actions: String
+        # @param Priority: 规则优先级，数字越小，优先级越高，高优先级覆盖低优先级。UserProperty字段会合并
+        # @type Priority: Integer
+        # @param Status: 策略状态。 0:未定义；1:激活；2:不激活；默认不激活
+        # @type Status: Integer
+        # @param Remark: 备注信息，最长 128 字符
+        # @type Remark: String
+
+        attr_accessor :Id, :InstanceId, :RuleName, :Condition, :Actions, :Priority, :Status, :Remark
+
+        def initialize(id=nil, instanceid=nil, rulename=nil, condition=nil, actions=nil, priority=nil, status=nil, remark=nil)
+          @Id = id
+          @InstanceId = instanceid
+          @RuleName = rulename
+          @Condition = condition
+          @Actions = actions
+          @Priority = priority
+          @Status = status
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @RuleName = params['RuleName']
+          @Condition = params['Condition']
+          @Actions = params['Actions']
+          @Priority = params['Priority']
+          @Status = params['Status']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyMessageEnrichmentRule返回参数结构体
+      class ModifyMessageEnrichmentRuleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -4636,6 +4931,49 @@ module TencentCloud
 
       # UpdateAuthorizationPolicyPriority返回参数结构体
       class UpdateAuthorizationPolicyPriorityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateMessageEnrichmentRulePriority请求参数结构体
+      class UpdateMessageEnrichmentRulePriorityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @type InstanceId: String
+        # @param Priorities: 策略ID和优先级
+        # @type Priorities: Array
+
+        attr_accessor :InstanceId, :Priorities
+
+        def initialize(instanceid=nil, priorities=nil)
+          @InstanceId = instanceid
+          @Priorities = priorities
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Priorities'].nil?
+            @Priorities = []
+            params['Priorities'].each do |i|
+              messageenrichmentrulepriority_tmp = MessageEnrichmentRulePriority.new
+              messageenrichmentrulepriority_tmp.deserialize(i)
+              @Priorities << messageenrichmentrulepriority_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateMessageEnrichmentRulePriority返回参数结构体
+      class UpdateMessageEnrichmentRulePriorityResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

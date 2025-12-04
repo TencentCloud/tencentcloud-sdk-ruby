@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 11
-        deprecate :LoginAccount=, :none, 2025, 11
-        deprecate :LoginPassword, :none, 2025, 11
-        deprecate :LoginPassword=, :none, 2025, 11
+        deprecate :LoginAccount, :none, 2025, 12
+        deprecate :LoginAccount=, :none, 2025, 12
+        deprecate :LoginPassword, :none, 2025, 12
+        deprecate :LoginPassword=, :none, 2025, 12
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -685,6 +685,22 @@ module TencentCloud
           @LastStatus = params['LastStatus']
           @InProcess = params['InProcess']
           @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 认证方式设置
+      class AuthModeSetting < TencentCloud::Common::AbstractModel
+        # @param AuthMode: 双因子认证，0-不开启，1-OTP，2-短信
+        # @type AuthMode: Integer
+
+        attr_accessor :AuthMode
+
+        def initialize(authmode=nil)
+          @AuthMode = authmode
+        end
+
+        def deserialize(params)
+          @AuthMode = params['AuthMode']
         end
       end
 
@@ -3841,16 +3857,23 @@ module TencentCloud
 
       # DescribeSecuritySetting返回参数结构体
       class DescribeSecuritySettingResponse < TencentCloud::Common::AbstractModel
+        # @param SecuritySetting: 无
+        # @type SecuritySetting: :class:`Tencentcloud::Bh.v20230418.models.SecuritySetting`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SecuritySetting, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(securitysetting=nil, requestid=nil)
+          @SecuritySetting = securitysetting
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['SecuritySetting'].nil?
+            @SecuritySetting = SecuritySetting.new
+            @SecuritySetting.deserialize(params['SecuritySetting'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5717,8 +5740,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 11
-        deprecate :Status=, :none, 2025, 11
+        deprecate :Status, :none, 2025, 12
+        deprecate :Status=, :none, 2025, 12
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -6001,6 +6024,26 @@ module TencentCloud
           @Period = params['Period']
           @NextTime = params['NextTime']
           @FirstTime = params['FirstTime']
+        end
+      end
+
+      # 运维资产重连次数
+      class ReconnectionSetting < TencentCloud::Common::AbstractModel
+        # @param ReconnectionMaxCount: 重连次数
+        # @type ReconnectionMaxCount: Integer
+        # @param Enable: true：可以重连，false：不可以重连
+        # @type Enable: Boolean
+
+        attr_accessor :ReconnectionMaxCount, :Enable
+
+        def initialize(reconnectionmaxcount=nil, enable=nil)
+          @ReconnectionMaxCount = reconnectionmaxcount
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @ReconnectionMaxCount = params['ReconnectionMaxCount']
+          @Enable = params['Enable']
         end
       end
 
@@ -7504,6 +7547,32 @@ module TencentCloud
         end
       end
 
+      # 系统安全设置
+      class SecuritySetting < TencentCloud::Common::AbstractModel
+        # @param AuthModeGM: 国密认证方式设置
+        # @type AuthModeGM: :class:`Tencentcloud::Bh.v20230418.models.AuthModeSetting`
+        # @param Reconnection: 资产重连次数
+        # @type Reconnection: :class:`Tencentcloud::Bh.v20230418.models.ReconnectionSetting`
+
+        attr_accessor :AuthModeGM, :Reconnection
+
+        def initialize(authmodegm=nil, reconnection=nil)
+          @AuthModeGM = authmodegm
+          @Reconnection = reconnection
+        end
+
+        def deserialize(params)
+          unless params['AuthModeGM'].nil?
+            @AuthModeGM = AuthModeSetting.new
+            @AuthModeGM.deserialize(params['AuthModeGM'])
+          end
+          unless params['Reconnection'].nil?
+            @Reconnection = ReconnectionSetting.new
+            @Reconnection.deserialize(params['Reconnection'])
+          end
+        end
+      end
+
       # 搜索字符或图形会话时返回的SessionResul结构体
       class SessionResult < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -7837,7 +7906,7 @@ module TencentCloud
 
       # 用户信息
       class User < TencentCloud::Common::AbstractModel
-        # @param UserName: 用户名, 3-20个字符 必须以英文字母开头，且不能包含字母、数字、.、_、-以外的字符
+        # @param UserName: 用户名,1 - 128个字符 必须以英文字母开头，只能由a-zA-Z0-9以及+=,.@_-组成，支持邮箱格式
         # @type UserName: String
         # @param RealName: 用户姓名， 最大20个字符，不能包含空白字符
         # @type RealName: String
@@ -7877,10 +7946,12 @@ module TencentCloud
         # @type UserFrom: Integer
         # @param IOAUserGroup: ioa同步过来的用户相关信息
         # @type IOAUserGroup: :class:`Tencentcloud::Bh.v20230418.models.IOAUserGroup`
+        # @param RoleArn: cam角色用户载体
+        # @type RoleArn: String
 
-        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :UKeyStatus, :Status, :AclVersion, :UserFrom, :IOAUserGroup
+        attr_accessor :UserName, :RealName, :Id, :Phone, :Email, :ValidateFrom, :ValidateTo, :GroupSet, :AuthType, :ValidateTime, :Department, :DepartmentId, :ActiveStatus, :LockStatus, :UKeyStatus, :Status, :AclVersion, :UserFrom, :IOAUserGroup, :RoleArn
 
-        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, ukeystatus=nil, status=nil, aclversion=nil, userfrom=nil, ioausergroup=nil)
+        def initialize(username=nil, realname=nil, id=nil, phone=nil, email=nil, validatefrom=nil, validateto=nil, groupset=nil, authtype=nil, validatetime=nil, department=nil, departmentid=nil, activestatus=nil, lockstatus=nil, ukeystatus=nil, status=nil, aclversion=nil, userfrom=nil, ioausergroup=nil, rolearn=nil)
           @UserName = username
           @RealName = realname
           @Id = id
@@ -7900,6 +7971,7 @@ module TencentCloud
           @AclVersion = aclversion
           @UserFrom = userfrom
           @IOAUserGroup = ioausergroup
+          @RoleArn = rolearn
         end
 
         def deserialize(params)
@@ -7935,6 +8007,7 @@ module TencentCloud
             @IOAUserGroup = IOAUserGroup.new
             @IOAUserGroup.deserialize(params['IOAUserGroup'])
           end
+          @RoleArn = params['RoleArn']
         end
       end
 

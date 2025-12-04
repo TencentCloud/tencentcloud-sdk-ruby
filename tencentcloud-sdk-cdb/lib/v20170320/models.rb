@@ -10209,13 +10209,16 @@ module TencentCloud
         # @type NewPassword: String
         # @param Accounts: 云数据库账号。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type Accounts: Array
+        # @param SkipValidatePassword: 是否跳过校验密码复杂度
+        # @type SkipValidatePassword: Boolean
 
-        attr_accessor :InstanceId, :NewPassword, :Accounts
+        attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
 
-        def initialize(instanceid=nil, newpassword=nil, accounts=nil)
+        def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
           @NewPassword = newpassword
           @Accounts = accounts
+          @SkipValidatePassword = skipvalidatepassword
         end
 
         def deserialize(params)
@@ -10229,6 +10232,7 @@ module TencentCloud
               @Accounts << account_tmp
             end
           end
+          @SkipValidatePassword = params['SkipValidatePassword']
         end
       end
 
@@ -14373,15 +14377,19 @@ module TencentCloud
       class SwitchForUpgradeRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         # @type InstanceId: String
+        # @param IsRelatedSwitch: 是否开启关联切换，true为开启，false为关闭，默认false
+        # @type IsRelatedSwitch: Boolean
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :IsRelatedSwitch
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, isrelatedswitch=nil)
           @InstanceId = instanceid
+          @IsRelatedSwitch = isrelatedswitch
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @IsRelatedSwitch = params['IsRelatedSwitch']
         end
       end
 

@@ -169,6 +169,30 @@ module TencentCloud
         end
       end
 
+      # cos 文件信息
+      class CosFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称，包含后缀
+        # @type FileName: String
+        # @param FileType: 文件类型，"PDF", "DOC", "DOCX", "XLS", "XLSX", "PPT", "PPTX", "MD", "TXT", "PNG", "JPG", "JPEG", "CSV"
+        # @type FileType: String
+        # @param UserCosUrl: 用户文件的cosurl
+        # @type UserCosUrl: String
+
+        attr_accessor :FileName, :FileType, :UserCosUrl
+
+        def initialize(filename=nil, filetype=nil, usercosurl=nil)
+          @FileName = filename
+          @FileType = filetype
+          @UserCosUrl = usercosurl
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileType = params['FileType']
+          @UserCosUrl = params['UserCosUrl']
+        end
+      end
+
       # CreateDataAgentSession请求参数结构体
       class CreateDataAgentSessionRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -379,6 +403,49 @@ module TencentCloud
           end
           @RecordCount = params['RecordCount']
           @RunRecord = params['RunRecord']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetUploadJobDetails请求参数结构体
+      class GetUploadJobDetailsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param JobId: 任务id
+        # @type JobId: String
+
+        attr_accessor :InstanceId, :JobId
+
+        def initialize(instanceid=nil, jobid=nil)
+          @InstanceId = instanceid
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @JobId = params['JobId']
+        end
+      end
+
+      # GetUploadJobDetails返回参数结构体
+      class GetUploadJobDetailsResponse < TencentCloud::Common::AbstractModel
+        # @param Job: 任务详情
+        # @type Job: :class:`Tencentcloud::Dataagent.v20250513.models.UploadJob`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Job, :RequestId
+
+        def initialize(job=nil, requestid=nil)
+          @Job = job
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Job'].nil?
+            @Job = UploadJob.new
+            @Job.deserialize(params['Job'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -788,6 +855,113 @@ module TencentCloud
               @StepInfoList << stepinfo_tmp
             end
           end
+        end
+      end
+
+      # UploadAndCommitFile请求参数结构体
+      class UploadAndCommitFileRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param CosFiles: 上传文件列表
+        # @type CosFiles: Array
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
+
+        attr_accessor :InstanceId, :CosFiles, :KnowledgeBaseId
+
+        def initialize(instanceid=nil, cosfiles=nil, knowledgebaseid=nil)
+          @InstanceId = instanceid
+          @CosFiles = cosfiles
+          @KnowledgeBaseId = knowledgebaseid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['CosFiles'].nil?
+            @CosFiles = []
+            params['CosFiles'].each do |i|
+              cosfileinfo_tmp = CosFileInfo.new
+              cosfileinfo_tmp.deserialize(i)
+              @CosFiles << cosfileinfo_tmp
+            end
+          end
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+        end
+      end
+
+      # UploadAndCommitFile返回参数结构体
+      class UploadAndCommitFileResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 上传任务
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 上传任务
+      class UploadJob < TencentCloud::Common::AbstractModel
+        # @param Id: id
+        # @type Id: Integer
+        # @param JobId: 任务id
+        # @type JobId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
+        # @param Uin: uin
+        # @type Uin: String
+        # @param SubUin: subuin
+        # @type SubUin: String
+        # @param Status: Pending、FileUploading、
+        # FileParsing、
+        # Success、
+        # Failed
+
+        # @type Status: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 任务更新时间
+        # @type UpdateTime: String
+        # @param Message: 错误信息
+        # @type Message: String
+
+        attr_accessor :Id, :JobId, :InstanceId, :KnowledgeBaseId, :Uin, :SubUin, :Status, :CreateTime, :UpdateTime, :Message
+
+        def initialize(id=nil, jobid=nil, instanceid=nil, knowledgebaseid=nil, uin=nil, subuin=nil, status=nil, createtime=nil, updatetime=nil, message=nil)
+          @Id = id
+          @JobId = jobid
+          @InstanceId = instanceid
+          @KnowledgeBaseId = knowledgebaseid
+          @Uin = uin
+          @SubUin = subuin
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @JobId = params['JobId']
+          @InstanceId = params['InstanceId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Message = params['Message']
         end
       end
 

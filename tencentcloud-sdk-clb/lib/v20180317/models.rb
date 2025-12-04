@@ -164,6 +164,32 @@ module TencentCloud
         end
       end
 
+      # 可用区转发亲和信息
+      class AvailableZoneAffinityInfo < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启可用区转发亲和。true：开启可用区转发亲和；false：开启可用区转发亲和。
+        # @type Enable: Boolean
+        # @param ExitRatio: 可用区转发亲和失效阈值，当可用区内后端服务健康比例小于该阈值时，负载均衡会退出可用区转发亲和，转为全可用区转发。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExitRatio: Integer
+        # @param ReentryRatio: 可用区转发亲和的重新生效阈值，当处于全可用区转发，且负载均衡可用区内的后端服务健康比例大于等于该阈值时，负载均衡会重新进入可用区转发亲和。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReentryRatio: Integer
+
+        attr_accessor :Enable, :ExitRatio, :ReentryRatio
+
+        def initialize(enable=nil, exitratio=nil, reentryratio=nil)
+          @Enable = enable
+          @ExitRatio = exitratio
+          @ReentryRatio = reentryratio
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @ExitRatio = params['ExitRatio']
+          @ReentryRatio = params['ReentryRatio']
+        end
+      end
+
       # 监听器绑定的后端服务的详细信息
       class Backend < TencentCloud::Common::AbstractModel
         # @param Type: 后端服务的类型，可取：CVM、ENI、CCN、EVM、GLOBALROUTE、NAT、SRV等
@@ -189,10 +215,13 @@ module TencentCloud
         # @type EniId: String
         # @param Tag: 标签。
         # @type Tag: String
+        # @param Zone: 后端服务所在的可用区，如ap-guangzhou-1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
 
-        attr_accessor :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId, :Tag
+        attr_accessor :Type, :InstanceId, :Port, :Weight, :PublicIpAddresses, :PrivateIpAddresses, :InstanceName, :RegisteredTime, :EniId, :Tag, :Zone
 
-        def initialize(type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil, tag=nil)
+        def initialize(type=nil, instanceid=nil, port=nil, weight=nil, publicipaddresses=nil, privateipaddresses=nil, instancename=nil, registeredtime=nil, eniid=nil, tag=nil, zone=nil)
           @Type = type
           @InstanceId = instanceid
           @Port = port
@@ -203,6 +232,7 @@ module TencentCloud
           @RegisteredTime = registeredtime
           @EniId = eniid
           @Tag = tag
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -216,6 +246,7 @@ module TencentCloud
           @RegisteredTime = params['RegisteredTime']
           @EniId = params['EniId']
           @Tag = params['Tag']
+          @Zone = params['Zone']
         end
       end
 
@@ -1286,8 +1317,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 11
-        deprecate :Period=, :none, 2025, 11
+        deprecate :Period, :none, 2025, 12
+        deprecate :Period=, :none, 2025, 12
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5514,13 +5545,15 @@ module TencentCloud
         # @type TargetCount: Integer
         # @param AssociateEndpoint: 负载均衡实例关联的Endpoint id。
         # @type AssociateEndpoint: String
+        # @param AvailableZoneAffinityInfo: 可用区转发亲和信息
+        # @type AvailableZoneAffinityInfo: :class:`Tencentcloud::Clb.v20180317.models.AvailableZoneAffinityInfo`
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 11
-        deprecate :Log=, :none, 2025, 11
+        deprecate :Log, :none, 2025, 12
+        deprecate :Log=, :none, 2025, 12
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -5579,6 +5612,7 @@ module TencentCloud
           @Exclusive = exclusive
           @TargetCount = targetcount
           @AssociateEndpoint = associateendpoint
+          @AvailableZoneAffinityInfo = availablezoneaffinityinfo
         end
 
         def deserialize(params)
@@ -5679,6 +5713,10 @@ module TencentCloud
           @Exclusive = params['Exclusive']
           @TargetCount = params['TargetCount']
           @AssociateEndpoint = params['AssociateEndpoint']
+          unless params['AvailableZoneAffinityInfo'].nil?
+            @AvailableZoneAffinityInfo = AvailableZoneAffinityInfo.new
+            @AvailableZoneAffinityInfo.deserialize(params['AvailableZoneAffinityInfo'])
+          end
         end
       end
 
@@ -5809,10 +5847,13 @@ module TencentCloud
         # @param Exclusive: 0：表示非独占型实例，1：表示独占型态实例。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Exclusive: Integer
+        # @param AvailableZoneAffinityInfo: 可用区转发亲和信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableZoneAffinityInfo: :class:`Tencentcloud::Clb.v20180317.models.AvailableZoneAffinityInfo`
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain, :Egress, :AttributeFlags, :SlaType, :Exclusive
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Status, :Address, :AddressIPv6, :AddressIPVersion, :IPv6Mode, :Zone, :AddressIsp, :VpcId, :ProjectId, :CreateTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :ExtraInfo, :ConfigId, :Tags, :ListenerId, :Protocol, :Port, :LocationId, :Domain, :Url, :TargetId, :TargetAddress, :TargetPort, :TargetWeight, :Isolation, :SecurityGroup, :LoadBalancerPassToTarget, :TargetHealth, :Domains, :SlaveZone, :Zones, :SniSwitch, :LoadBalancerDomain, :Egress, :AttributeFlags, :SlaType, :Exclusive, :AvailableZoneAffinityInfo
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil, egress=nil, attributeflags=nil, slatype=nil, exclusive=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, status=nil, address=nil, addressipv6=nil, addressipversion=nil, ipv6mode=nil, zone=nil, addressisp=nil, vpcid=nil, projectid=nil, createtime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, extrainfo=nil, configid=nil, tags=nil, listenerid=nil, protocol=nil, port=nil, locationid=nil, domain=nil, url=nil, targetid=nil, targetaddress=nil, targetport=nil, targetweight=nil, isolation=nil, securitygroup=nil, loadbalancerpasstotarget=nil, targethealth=nil, domains=nil, slavezone=nil, zones=nil, sniswitch=nil, loadbalancerdomain=nil, egress=nil, attributeflags=nil, slatype=nil, exclusive=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @LoadBalancerType = loadbalancertype
@@ -5855,6 +5896,7 @@ module TencentCloud
           @AttributeFlags = attributeflags
           @SlaType = slatype
           @Exclusive = exclusive
+          @AvailableZoneAffinityInfo = availablezoneaffinityinfo
         end
 
         def deserialize(params)
@@ -5916,6 +5958,10 @@ module TencentCloud
           @AttributeFlags = params['AttributeFlags']
           @SlaType = params['SlaType']
           @Exclusive = params['Exclusive']
+          unless params['AvailableZoneAffinityInfo'].nil?
+            @AvailableZoneAffinityInfo = AvailableZoneAffinityInfo.new
+            @AvailableZoneAffinityInfo.deserialize(params['AvailableZoneAffinityInfo'])
+          end
         end
       end
 
@@ -7566,10 +7612,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 11
-        deprecate :Domain=, :none, 2025, 11
-        deprecate :Url, :none, 2025, 11
-        deprecate :Url=, :none, 2025, 11
+        deprecate :Domain, :none, 2025, 12
+        deprecate :Domain=, :none, 2025, 12
+        deprecate :Url, :none, 2025, 12
+        deprecate :Url=, :none, 2025, 12
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8648,8 +8694,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 11
-        deprecate :HealthStatusDetial=, :none, 2025, 11
+        deprecate :HealthStatusDetial, :none, 2025, 12
+        deprecate :HealthStatusDetial=, :none, 2025, 12
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

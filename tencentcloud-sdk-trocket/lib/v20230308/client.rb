@@ -981,7 +981,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询消息详情
+        # 查询消息详情。
+        # 当前 API 适用集群：5.x 集群。4.x 集群的查询消息详情接口文档见 [DescribeRocketMQMsg](https://cloud.tencent.com/document/product/1179/91055)。
 
         # @param request: Request instance for DescribeMessage.
         # @type request: :class:`Tencentcloud::trocket::V20230308::DescribeMessageRequest`

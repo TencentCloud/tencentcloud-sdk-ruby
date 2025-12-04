@@ -4843,7 +4843,7 @@ module TencentCloud
       class DomainShareUserInfo < TencentCloud::Common::AbstractModel
         # @param DomainShareId: 共享记录ID
         # @type DomainShareId: Integer
-        # @param Mode: 共享模式。r-只读；w-可写；rw-可读写。
+        # @param Mode: 共享模式。r-只读；rw-可读写。
         # @type Mode: String
         # @param Nickname: 共享到的用户昵称
         # @type Nickname: String
@@ -5522,7 +5522,7 @@ module TencentCloud
       class ModifyDomainStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 域名状态，”enable” 、”disable” 分别代表启用和暂停
+        # @param Status: 域名状态，"enable"、"disable" 分别代表启用和暂停
         # @type Status: String
         # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
         # @type DomainId: Integer
@@ -5752,7 +5752,7 @@ module TencentCloud
 
       # ModifyPackageAutoRenew请求参数结构体
       class ModifyPackageAutoRenewRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID。可以在控制台查看所有的资源
+        # @param ResourceId: 计费资源ID
         # @type ResourceId: String
         # @param Status: enable 开启自动续费；disable 关闭自动续费
         # @type Status: String

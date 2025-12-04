@@ -10112,7 +10112,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
+        # 本接口（ResetNatGatewayConnection）用于调整传统型NAT网关并发连接数上限。
 
         # @param request: Request instance for ResetNatGatewayConnection.
         # @type request: :class:`Tencentcloud::vpc::V20170312::ResetNatGatewayConnectionRequest`

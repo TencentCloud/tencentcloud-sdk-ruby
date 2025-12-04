@@ -493,6 +493,8 @@ module TencentCloud
         # @type DataKeyId: String
         # @param KeyId: CMK的全局唯一标识
         # @type KeyId: String
+        # @param KeyName: CMK的名称
+        # @type KeyName: String
         # @param DataKeyName: 作为密钥更容易辨识，更容易被人看懂的数据密钥名称
         # @type DataKeyName: String
         # @param NumberOfBytes: 数据密钥的长度,单位字节
@@ -530,11 +532,12 @@ module TencentCloud
         # @param SourceHsmClusterId: 同步的原始集群，如果为空，是公有云公共集群
         # @type SourceHsmClusterId: String
 
-        attr_accessor :DataKeyId, :KeyId, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
+        attr_accessor :DataKeyId, :KeyId, :KeyName, :DataKeyName, :NumberOfBytes, :CreateTime, :Description, :KeyState, :CreatorUin, :Owner, :DeletionDate, :Origin, :HsmClusterId, :ResourceId, :IsSyncReplica, :SourceRegion, :SyncStatus, :SyncMessages, :SyncStartTime, :SyncEndTime, :SourceHsmClusterId
 
-        def initialize(datakeyid=nil, keyid=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
+        def initialize(datakeyid=nil, keyid=nil, keyname=nil, datakeyname=nil, numberofbytes=nil, createtime=nil, description=nil, keystate=nil, creatoruin=nil, owner=nil, deletiondate=nil, origin=nil, hsmclusterid=nil, resourceid=nil, issyncreplica=nil, sourceregion=nil, syncstatus=nil, syncmessages=nil, syncstarttime=nil, syncendtime=nil, sourcehsmclusterid=nil)
           @DataKeyId = datakeyid
           @KeyId = keyid
+          @KeyName = keyname
           @DataKeyName = datakeyname
           @NumberOfBytes = numberofbytes
           @CreateTime = createtime
@@ -558,6 +561,7 @@ module TencentCloud
         def deserialize(params)
           @DataKeyId = params['DataKeyId']
           @KeyId = params['KeyId']
+          @KeyName = params['KeyName']
           @DataKeyName = params['DataKeyName']
           @NumberOfBytes = params['NumberOfBytes']
           @CreateTime = params['CreateTime']
@@ -796,7 +800,7 @@ module TencentCloud
 
       # DescribeKey返回参数结构体
       class DescribeKeyResponse < TencentCloud::Common::AbstractModel
-        # @param KeyMetadata: 密钥属性信息
+        # @param KeyMetadata: 密钥属性信息。
         # @type KeyMetadata: :class:`Tencentcloud::Kms.v20190118.models.KeyMetadata`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1705,10 +1709,12 @@ module TencentCloud
         # @type Description: String
         # @param HsmClusterId: KMS 独享版对应的 HSM 集群 ID。如果指定HsmClusterId，表明根密钥在此集群里，会校验KeyId是否和HsmClusterId对应。
         # @type HsmClusterId: String
+        # @param Tags: 标签列表,当参数IsHostedByKms=1，数据密钥托管到kms时有效.
+        # @type Tags: Array
 
-        attr_accessor :KeyId, :KeySpec, :NumberOfBytes, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm, :IsHostedByKms, :DataKeyName, :Description, :HsmClusterId
+        attr_accessor :KeyId, :KeySpec, :NumberOfBytes, :EncryptionContext, :EncryptionPublicKey, :EncryptionAlgorithm, :IsHostedByKms, :DataKeyName, :Description, :HsmClusterId, :Tags
 
-        def initialize(keyid=nil, keyspec=nil, numberofbytes=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil, ishostedbykms=nil, datakeyname=nil, description=nil, hsmclusterid=nil)
+        def initialize(keyid=nil, keyspec=nil, numberofbytes=nil, encryptioncontext=nil, encryptionpublickey=nil, encryptionalgorithm=nil, ishostedbykms=nil, datakeyname=nil, description=nil, hsmclusterid=nil, tags=nil)
           @KeyId = keyid
           @KeySpec = keyspec
           @NumberOfBytes = numberofbytes
@@ -1719,6 +1725,7 @@ module TencentCloud
           @DataKeyName = datakeyname
           @Description = description
           @HsmClusterId = hsmclusterid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1732,6 +1739,14 @@ module TencentCloud
           @DataKeyName = params['DataKeyName']
           @Description = params['Description']
           @HsmClusterId = params['HsmClusterId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -1746,16 +1761,22 @@ module TencentCloud
         # @type CiphertextBlob: String
         # @param DataKeyId: DataKey的全局唯一标识,当KMS托管数据密钥时返回。
         # @type DataKeyId: String
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # @type TagCode: Integer
+        # @param TagMsg: 标签操作的返回信息
+        # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :DataKeyId, :RequestId
+        attr_accessor :KeyId, :Plaintext, :CiphertextBlob, :DataKeyId, :TagCode, :TagMsg, :RequestId
 
-        def initialize(keyid=nil, plaintext=nil, ciphertextblob=nil, datakeyid=nil, requestid=nil)
+        def initialize(keyid=nil, plaintext=nil, ciphertextblob=nil, datakeyid=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @KeyId = keyid
           @Plaintext = plaintext
           @CiphertextBlob = ciphertextblob
           @DataKeyId = datakeyid
+          @TagCode = tagcode
+          @TagMsg = tagmsg
           @RequestId = requestid
         end
 
@@ -1764,6 +1785,8 @@ module TencentCloud
           @Plaintext = params['Plaintext']
           @CiphertextBlob = params['CiphertextBlob']
           @DataKeyId = params['DataKeyId']
+          @TagCode = params['TagCode']
+          @TagMsg = params['TagMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -2179,16 +2202,19 @@ module TencentCloud
         # @type KeyId: String
         # @param HsmClusterId: KMS 独享版对应的 HSM 集群 ID。如果指定HsmClusterId，表明根密钥在此集群里，会校验KeyId是否和HsmClusterId对应。
         # @type HsmClusterId: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :DataKeyName, :ImportKeyMaterial, :ImportType, :Description, :KeyId, :HsmClusterId
+        attr_accessor :DataKeyName, :ImportKeyMaterial, :ImportType, :Description, :KeyId, :HsmClusterId, :Tags
 
-        def initialize(datakeyname=nil, importkeymaterial=nil, importtype=nil, description=nil, keyid=nil, hsmclusterid=nil)
+        def initialize(datakeyname=nil, importkeymaterial=nil, importtype=nil, description=nil, keyid=nil, hsmclusterid=nil, tags=nil)
           @DataKeyName = datakeyname
           @ImportKeyMaterial = importkeymaterial
           @ImportType = importtype
           @Description = description
           @KeyId = keyid
           @HsmClusterId = hsmclusterid
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -2198,6 +2224,14 @@ module TencentCloud
           @Description = params['Description']
           @KeyId = params['KeyId']
           @HsmClusterId = params['HsmClusterId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2207,20 +2241,28 @@ module TencentCloud
         # @type KeyId: String
         # @param DataKeyId: DataKey的全局唯一标识  否  官网/国内&国际站展示
         # @type DataKeyId: String
+        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # @type TagCode: Integer
+        # @param TagMsg: 标签操作的返回信息
+        # @type TagMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :KeyId, :DataKeyId, :RequestId
+        attr_accessor :KeyId, :DataKeyId, :TagCode, :TagMsg, :RequestId
 
-        def initialize(keyid=nil, datakeyid=nil, requestid=nil)
+        def initialize(keyid=nil, datakeyid=nil, tagcode=nil, tagmsg=nil, requestid=nil)
           @KeyId = keyid
           @DataKeyId = datakeyid
+          @TagCode = tagcode
+          @TagMsg = tagmsg
           @RequestId = requestid
         end
 
         def deserialize(params)
           @KeyId = params['KeyId']
           @DataKeyId = params['DataKeyId']
+          @TagCode = params['TagCode']
+          @TagMsg = params['TagMsg']
           @RequestId = params['RequestId']
         end
       end
@@ -2479,10 +2521,12 @@ module TencentCloud
         # @type KeyId: String
         # @param DataKeyLen: 数据密钥的长度
         # @type DataKeyLen: Integer
+        # @param TagFilters: 标签过滤条件
+        # @type TagFilters: Array
 
-        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen
+        attr_accessor :Offset, :Limit, :Role, :OrderType, :KeyState, :SearchKeyAlias, :Origin, :HsmClusterId, :KeyId, :DataKeyLen, :TagFilters
 
-        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, hsmclusterid=nil, keyid=nil, datakeylen=nil)
+        def initialize(offset=nil, limit=nil, role=nil, ordertype=nil, keystate=nil, searchkeyalias=nil, origin=nil, hsmclusterid=nil, keyid=nil, datakeylen=nil, tagfilters=nil)
           @Offset = offset
           @Limit = limit
           @Role = role
@@ -2493,6 +2537,7 @@ module TencentCloud
           @HsmClusterId = hsmclusterid
           @KeyId = keyid
           @DataKeyLen = datakeylen
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -2506,6 +2551,14 @@ module TencentCloud
           @HsmClusterId = params['HsmClusterId']
           @KeyId = params['KeyId']
           @DataKeyLen = params['DataKeyLen']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
         end
       end
 

@@ -335,16 +335,22 @@ module TencentCloud
         # @type NeedRestart: Integer
         # @param FilePath: 保存配置文件的路径
         # @type FilePath: String
+        # @param Ip: 节点级配置的ip，当ConfigLevel取值为node时，此参数必选；
+        # @type Ip: String
+        # @param ConfigLevel: 可选参数，参数取值：node,cluster; node: 节点级参数配置，cluster: 实例级参数配置；
+        # @type ConfigLevel: String
 
-        attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath
+        attr_accessor :FileName, :FileConf, :KeyConf, :OriParam, :NeedRestart, :FilePath, :Ip, :ConfigLevel
 
-        def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil)
+        def initialize(filename=nil, fileconf=nil, keyconf=nil, oriparam=nil, needrestart=nil, filepath=nil, ip=nil, configlevel=nil)
           @FileName = filename
           @FileConf = fileconf
           @KeyConf = keyconf
           @OriParam = oriparam
           @NeedRestart = needrestart
           @FilePath = filepath
+          @Ip = ip
+          @ConfigLevel = configlevel
         end
 
         def deserialize(params)
@@ -354,6 +360,8 @@ module TencentCloud
           @OriParam = params['OriParam']
           @NeedRestart = params['NeedRestart']
           @FilePath = params['FilePath']
+          @Ip = params['Ip']
+          @ConfigLevel = params['ConfigLevel']
         end
       end
 
