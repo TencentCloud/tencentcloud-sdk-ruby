@@ -11504,7 +11504,6 @@ module TencentCloud
         # @param WeightMode: 读写权重分配模式；系统自动分配："system"， 自定义："custom"
         # @type WeightMode: String
         # @param InstanceWeights: 实例只读权重。
-        # 该参数必填。
         # @type InstanceWeights: Array
         # @param FailOver: 是否开启故障转移，代理出现故障后，连接地址将路由到主实例，取值："yes" , "no"
         # @type FailOver: String

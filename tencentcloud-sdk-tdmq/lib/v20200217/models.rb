@@ -392,9 +392,13 @@ module TencentCloud
         # @param PublicEndPoint: 公网访问接入点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicEndPoint: String
+        # @param OldPublicEndPoint: 旧的公网访问接入点
+        # @type OldPublicEndPoint: String
         # @param VpcEndPoint: VPC访问接入点
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcEndPoint: String
+        # @param OldVpcEndPoint: 旧的VPC访问接入点
+        # @type OldVpcEndPoint: String
         # @param NamespaceNum: 命名空间数量
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceNum: Integer
@@ -425,6 +429,10 @@ module TencentCloud
         # @param Tags: 标签
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param OldInternalPulsarEndPoint: 旧的支撑网 Pulsar 接入点
+        # @type OldInternalPulsarEndPoint: String
+        # @param OldInternalHttpEndPoint: 旧的支撑网 HTTP 接入点
+        # @type OldInternalHttpEndPoint: String
         # @param PayMode: 计费模式：
         # 0: 按量计费
         # 1: 包年包月
@@ -439,9 +447,9 @@ module TencentCloud
         # @param UpgradeProInstance: 是否支持升级专业版实例
         # @type UpgradeProInstance: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :VpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :PayMode, :ProjectId, :ProjectName, :UpgradeProInstance
+        attr_accessor :ClusterId, :ClusterName, :Remark, :EndPointNum, :CreateTime, :Healthy, :HealthyInfo, :Status, :MaxNamespaceNum, :MaxTopicNum, :MaxQps, :MessageRetentionTime, :MaxStorageCapacity, :Version, :PublicEndPoint, :OldPublicEndPoint, :VpcEndPoint, :OldVpcEndPoint, :NamespaceNum, :UsedStorageBudget, :MaxPublishRateInMessages, :MaxDispatchRateInMessages, :MaxPublishRateInBytes, :MaxDispatchRateInBytes, :TopicNum, :MaxMessageDelayInSeconds, :PublicAccessEnabled, :Tags, :OldInternalPulsarEndPoint, :OldInternalHttpEndPoint, :PayMode, :ProjectId, :ProjectName, :UpgradeProInstance
 
-        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, vpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, paymode=nil, projectid=nil, projectname=nil, upgradeproinstance=nil)
+        def initialize(clusterid=nil, clustername=nil, remark=nil, endpointnum=nil, createtime=nil, healthy=nil, healthyinfo=nil, status=nil, maxnamespacenum=nil, maxtopicnum=nil, maxqps=nil, messageretentiontime=nil, maxstoragecapacity=nil, version=nil, publicendpoint=nil, oldpublicendpoint=nil, vpcendpoint=nil, oldvpcendpoint=nil, namespacenum=nil, usedstoragebudget=nil, maxpublishrateinmessages=nil, maxdispatchrateinmessages=nil, maxpublishrateinbytes=nil, maxdispatchrateinbytes=nil, topicnum=nil, maxmessagedelayinseconds=nil, publicaccessenabled=nil, tags=nil, oldinternalpulsarendpoint=nil, oldinternalhttpendpoint=nil, paymode=nil, projectid=nil, projectname=nil, upgradeproinstance=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Remark = remark
@@ -457,7 +465,9 @@ module TencentCloud
           @MaxStorageCapacity = maxstoragecapacity
           @Version = version
           @PublicEndPoint = publicendpoint
+          @OldPublicEndPoint = oldpublicendpoint
           @VpcEndPoint = vpcendpoint
+          @OldVpcEndPoint = oldvpcendpoint
           @NamespaceNum = namespacenum
           @UsedStorageBudget = usedstoragebudget
           @MaxPublishRateInMessages = maxpublishrateinmessages
@@ -468,6 +478,8 @@ module TencentCloud
           @MaxMessageDelayInSeconds = maxmessagedelayinseconds
           @PublicAccessEnabled = publicaccessenabled
           @Tags = tags
+          @OldInternalPulsarEndPoint = oldinternalpulsarendpoint
+          @OldInternalHttpEndPoint = oldinternalhttpendpoint
           @PayMode = paymode
           @ProjectId = projectid
           @ProjectName = projectname
@@ -490,7 +502,9 @@ module TencentCloud
           @MaxStorageCapacity = params['MaxStorageCapacity']
           @Version = params['Version']
           @PublicEndPoint = params['PublicEndPoint']
+          @OldPublicEndPoint = params['OldPublicEndPoint']
           @VpcEndPoint = params['VpcEndPoint']
+          @OldVpcEndPoint = params['OldVpcEndPoint']
           @NamespaceNum = params['NamespaceNum']
           @UsedStorageBudget = params['UsedStorageBudget']
           @MaxPublishRateInMessages = params['MaxPublishRateInMessages']
@@ -508,6 +522,8 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @OldInternalPulsarEndPoint = params['OldInternalPulsarEndPoint']
+          @OldInternalHttpEndPoint = params['OldInternalHttpEndPoint']
           @PayMode = params['PayMode']
           @ProjectId = params['ProjectId']
           @ProjectName = params['ProjectName']
@@ -1171,7 +1187,7 @@ module TencentCloud
 
       # CreateCmqQueue请求参数结构体
       class CreateCmqQueueRequest < TencentCloud::Common::AbstractModel
-        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称是一个不超过 64 个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param QueueName: 队列名字，在单个地域同一账号下唯一。队列名称以字母起始，只能包含字母、数字、“-”及“_”，最大64字符，不区分大小写。
         # @type QueueName: String
         # @param MaxMsgHeapNum: 最大堆积消息数。取值范围在公测期间为 1,000,000 - 10,000,000，正式上线后范围可达到 1000,000-1000,000,000。默认取值在公测期间为 10,000,000，正式上线后为 100,000,000。
         # @type MaxMsgHeapNum: Integer
@@ -1280,7 +1296,7 @@ module TencentCloud
       class CreateCmqSubscribeRequest < TencentCloud::Common::AbstractModel
         # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
         # @type TopicName: String
-        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线(-)。
+        # @param SubscriptionName: 订阅名字，在单个地域同一账号的同一主题下唯一。订阅名称以字母起始，只能包含字母、数字、“-”及“_”，最大64字符，创建后不能修改。
         # @type SubscriptionName: String
         # @param Protocol: 订阅的协议，目前支持两种协议：http、queue。使用http协议，用户需自己搭建接受消息的web server。使用queue，消息会自动推送到CMQ queue，用户可以并发地拉取消息。
         # @type Protocol: String
@@ -1342,7 +1358,7 @@ module TencentCloud
 
       # CreateCmqTopic请求参数结构体
       class CreateCmqTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线（-）。
+        # @param TopicName: 主题名字，在单个地域同一账号下唯一。主题名称只能包含字母、数字、“-”及“_”，最大64字符，创建后不能修改，不区分大小写。
         # @type TopicName: String
         # @param MaxMsgSize: 消息最大长度。取值范围 1024-65536 Byte（即1-64K），默认值 65536。
         # @type MaxMsgSize: Integer
@@ -1417,16 +1433,22 @@ module TencentCloud
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
         # @param AutoSubscriptionCreation: 是否开启自动创建订阅
         # @type AutoSubscriptionCreation: Boolean
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
+        # @type SubscriptionExpirationTimeEnable: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation
+        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable
 
-        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
+        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @ClusterId = clusterid
           @Remark = remark
           @RetentionPolicy = retentionpolicy
           @AutoSubscriptionCreation = autosubscriptioncreation
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
         end
 
         def deserialize(params)
@@ -1439,6 +1461,8 @@ module TencentCloud
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
           @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
         end
       end
 
@@ -1453,16 +1477,22 @@ module TencentCloud
         # @type Remark: String
         # @param NamespaceId: 命名空间ID
         # @type NamespaceId: String
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTimeEnable: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable, :RequestId
 
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, requestid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil, requestid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @NamespaceId = namespaceid
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
           @RequestId = requestid
         end
 
@@ -1471,6 +1501,8 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
           @NamespaceId = params['NamespaceId']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
           @RequestId = params['RequestId']
         end
       end
@@ -1528,9 +1560,6 @@ module TencentCloud
         # @param ProductName: 集群规格代号
         # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
         # @type ProductName: String
-        # @param StorageSize: 存储规格
-        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
-        # @type StorageSize: Integer
         # @param AutoRenewFlag: 1: true，开启自动按月续费
 
         # 0: false，关闭自动按月续费
@@ -1541,21 +1570,24 @@ module TencentCloud
         # @type ClusterName: String
         # @param AutoVoucher: 是否自动选择代金券 1是 0否 默认为0
         # @type AutoVoucher: Integer
+        # @param StorageSize: 存储规格
+        # 参考 [专业集群规格](https://cloud.tencent.com/document/product/1179/83705)
+        # @type StorageSize: Integer
         # @param Vpc: vpc网络标签
         # @type Vpc: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
         # @param Tags: 集群的标签列表(已废弃)
         # @type Tags: Array
 
-        attr_accessor :ZoneIds, :ProductName, :StorageSize, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :Vpc, :Tags
+        attr_accessor :ZoneIds, :ProductName, :AutoRenewFlag, :TimeSpan, :ClusterName, :AutoVoucher, :StorageSize, :Vpc, :Tags
 
-        def initialize(zoneids=nil, productname=nil, storagesize=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, vpc=nil, tags=nil)
+        def initialize(zoneids=nil, productname=nil, autorenewflag=nil, timespan=nil, clustername=nil, autovoucher=nil, storagesize=nil, vpc=nil, tags=nil)
           @ZoneIds = zoneids
           @ProductName = productname
-          @StorageSize = storagesize
           @AutoRenewFlag = autorenewflag
           @TimeSpan = timespan
           @ClusterName = clustername
           @AutoVoucher = autovoucher
+          @StorageSize = storagesize
           @Vpc = vpc
           @Tags = tags
         end
@@ -1563,11 +1595,11 @@ module TencentCloud
         def deserialize(params)
           @ZoneIds = params['ZoneIds']
           @ProductName = params['ProductName']
-          @StorageSize = params['StorageSize']
           @AutoRenewFlag = params['AutoRenewFlag']
           @TimeSpan = params['TimeSpan']
           @ClusterName = params['ClusterName']
           @AutoVoucher = params['AutoVoucher']
+          @StorageSize = params['StorageSize']
           unless params['Vpc'].nil?
             @Vpc = VpcInfo.new
             @Vpc.deserialize(params['Vpc'])
@@ -1965,7 +1997,7 @@ module TencentCloud
 
       # CreateRocketMQEnvironmentRole请求参数结构体
       class CreateRocketMQEnvironmentRoleRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 命名空间
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param RoleName: 角色名称。
         # @type RoleName: String
@@ -2557,10 +2589,12 @@ module TencentCloud
         # @type IsolateConsumerEnable: Boolean
         # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒，范围60-（3600*24）
         # @type AckTimeOut: Integer
+        # @param PulsarTopicMessageType: Pulsar主题消息类型0: 混合消息1:普通消息2:延迟消息
+        # @type PulsarTopicMessageType: Integer
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -2572,6 +2606,7 @@ module TencentCloud
           @UnackPolicy = unackpolicy
           @IsolateConsumerEnable = isolateconsumerenable
           @AckTimeOut = acktimeout
+          @PulsarTopicMessageType = pulsartopicmessagetype
         end
 
         def deserialize(params)
@@ -2586,6 +2621,7 @@ module TencentCloud
           @UnackPolicy = params['UnackPolicy']
           @IsolateConsumerEnable = params['IsolateConsumerEnable']
           @AckTimeOut = params['AckTimeOut']
+          @PulsarTopicMessageType = params['PulsarTopicMessageType']
         end
       end
 
@@ -3123,7 +3159,7 @@ module TencentCloud
 
       # DeleteRocketMQEnvironmentRoles请求参数结构体
       class DeleteRocketMQEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param RoleNames: 角色名称数组。
         # @type RoleNames: Array
@@ -4205,12 +4241,16 @@ module TencentCloud
         # @type Replicas: Integer
         # @param Remark: 备注。
         # @type Remark: String
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
+        # @type SubscriptionExpirationTimeEnable: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :MsgTTL, :RateInByte, :RateInSize, :RetentionHours, :RetentionSize, :EnvironmentId, :Replicas, :Remark, :RequestId
+        attr_accessor :MsgTTL, :RateInByte, :RateInSize, :RetentionHours, :RetentionSize, :EnvironmentId, :Replicas, :Remark, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable, :RequestId
 
-        def initialize(msgttl=nil, rateinbyte=nil, rateinsize=nil, retentionhours=nil, retentionsize=nil, environmentid=nil, replicas=nil, remark=nil, requestid=nil)
+        def initialize(msgttl=nil, rateinbyte=nil, rateinsize=nil, retentionhours=nil, retentionsize=nil, environmentid=nil, replicas=nil, remark=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil, requestid=nil)
           @MsgTTL = msgttl
           @RateInByte = rateinbyte
           @RateInSize = rateinsize
@@ -4219,6 +4259,8 @@ module TencentCloud
           @EnvironmentId = environmentid
           @Replicas = replicas
           @Remark = remark
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
           @RequestId = requestid
         end
 
@@ -4231,6 +4273,8 @@ module TencentCloud
           @EnvironmentId = params['EnvironmentId']
           @Replicas = params['Replicas']
           @Remark = params['Remark']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
           @RequestId = params['RequestId']
         end
       end
@@ -4558,10 +4602,12 @@ module TencentCloud
         # @type SubscriptionName: String
         # @param ClusterId: Pulsar 集群的ID
         # @type ClusterId: String
+        # @param TopicName: topic 名字
+        # @type TopicName: String
 
-        attr_accessor :EnvironmentId, :MsgId, :ProduceTime, :Offset, :Limit, :SubscriptionName, :ClusterId
+        attr_accessor :EnvironmentId, :MsgId, :ProduceTime, :Offset, :Limit, :SubscriptionName, :ClusterId, :TopicName
 
-        def initialize(environmentid=nil, msgid=nil, producetime=nil, offset=nil, limit=nil, subscriptionname=nil, clusterid=nil)
+        def initialize(environmentid=nil, msgid=nil, producetime=nil, offset=nil, limit=nil, subscriptionname=nil, clusterid=nil, topicname=nil)
           @EnvironmentId = environmentid
           @MsgId = msgid
           @ProduceTime = producetime
@@ -4569,6 +4615,7 @@ module TencentCloud
           @Limit = limit
           @SubscriptionName = subscriptionname
           @ClusterId = clusterid
+          @TopicName = topicname
         end
 
         def deserialize(params)
@@ -4579,6 +4626,7 @@ module TencentCloud
           @Limit = params['Limit']
           @SubscriptionName = params['SubscriptionName']
           @ClusterId = params['ClusterId']
+          @TopicName = params['TopicName']
         end
       end
 
@@ -4874,7 +4922,7 @@ module TencentCloud
 
       # DescribePulsarProInstanceDetail请求参数结构体
       class DescribePulsarProInstanceDetailRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: 集群id
         # @type ClusterId: String
 
         attr_accessor :ClusterId
@@ -4898,15 +4946,18 @@ module TencentCloud
         # @param ClusterSpecInfo: 集群规格信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterSpecInfo: :class:`Tencentcloud::Tdmq.v20200217.models.PulsarProClusterSpecInfo`
+        # @param CertificateList: 集群的证书列表
+        # @type CertificateList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ClusterInfo, :NetworkAccessPointInfos, :ClusterSpecInfo, :RequestId
+        attr_accessor :ClusterInfo, :NetworkAccessPointInfos, :ClusterSpecInfo, :CertificateList, :RequestId
 
-        def initialize(clusterinfo=nil, networkaccesspointinfos=nil, clusterspecinfo=nil, requestid=nil)
+        def initialize(clusterinfo=nil, networkaccesspointinfos=nil, clusterspecinfo=nil, certificatelist=nil, requestid=nil)
           @ClusterInfo = clusterinfo
           @NetworkAccessPointInfos = networkaccesspointinfos
           @ClusterSpecInfo = clusterspecinfo
+          @CertificateList = certificatelist
           @RequestId = requestid
         end
 
@@ -4926,6 +4977,14 @@ module TencentCloud
           unless params['ClusterSpecInfo'].nil?
             @ClusterSpecInfo = PulsarProClusterSpecInfo.new
             @ClusterSpecInfo.deserialize(params['ClusterSpecInfo'])
+          end
+          unless params['CertificateList'].nil?
+            @CertificateList = []
+            params['CertificateList'].each do |i|
+              certificateinfo_tmp = CertificateInfo.new
+              certificateinfo_tmp.deserialize(i)
+              @CertificateList << certificateinfo_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -6209,7 +6268,7 @@ module TencentCloud
       class DescribeRocketMQEnvironmentRolesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 必填字段，RocketMQ集群的ID
         # @type ClusterId: String
-        # @param EnvironmentId: 命名空间
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param Offset: 起始下标，不填默认为0。
         # @type Offset: Integer
@@ -6250,9 +6309,9 @@ module TencentCloud
 
       # DescribeRocketMQEnvironmentRoles返回参数结构体
       class DescribeRocketMQEnvironmentRolesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数。
+        # @param TotalCount: 总数
         # @type TotalCount: Integer
-        # @param EnvironmentRoleSets: 命名空间角色集合。
+        # @param EnvironmentRoleSets: 角色授权列表
         # @type EnvironmentRoleSets: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6970,9 +7029,9 @@ module TencentCloud
 
       # DescribeRocketMQRoles返回参数结构体
       class DescribeRocketMQRolesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数。
+        # @param TotalCount: 总数
         # @type TotalCount: Integer
-        # @param RoleSets: 角色数组。
+        # @param RoleSets: 角色列表
         # @type RoleSets: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8048,7 +8107,10 @@ module TencentCloud
         # @type PermWrite: Boolean
         # @param PermRead: 是否开启消费权限
         # @type PermRead: Boolean
-        # @param ResourceType: 授权资源类型（Topic:主题; Group:消费组）
+        # @param ResourceType: 授权资源类型，枚举值如下：
+        # - Topic：主题维度
+        # - Group：消费组维度
+        # - Cluster：集群维度（默认值）
         # @type ResourceType: String
         # @param Remark: 资源备注
         # @type Remark: String
@@ -8143,10 +8205,14 @@ module TencentCloud
         # @param AutoSubscriptionCreation: 是否自动创建订阅
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoSubscriptionCreation: Boolean
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
+        # @type SubscriptionExpirationTimeEnable: Boolean
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable
 
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
@@ -8157,6 +8223,8 @@ module TencentCloud
           @TopicNum = topicnum
           @RetentionPolicy = retentionpolicy
           @AutoSubscriptionCreation = autosubscriptioncreation
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
         end
 
         def deserialize(params)
@@ -8173,6 +8241,8 @@ module TencentCloud
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
           @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
         end
       end
 
@@ -8665,10 +8735,14 @@ module TencentCloud
         # @param PublicAccessEnabled: public Access Enabled
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PublicAccessEnabled: Boolean
+        # @param TagList: 实例标签列表
+        # @type TagList: Array
+        # @param TenantSpec: 实例规格
+        # @type TenantSpec: String
 
-        attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB, :PublicAccessEnabled
+        attr_accessor :TenantId, :TenantName, :CustomerUin, :CustomerAppId, :ClusterName, :Type, :MaxNamespaces, :UsedNamespaces, :MaxTopics, :UsedTopics, :MaxPartitions, :UsedPartitions, :MaxMsgBacklogSize, :MaxPublishTps, :MaxRetention, :CreateTime, :UpdateTime, :MaxDispatchTps, :MaxDispatchRateInBytes, :MaxPublishRateInBytes, :MaxRetentionSizeInMB, :PublicAccessEnabled, :TagList, :TenantSpec
 
-        def initialize(tenantid=nil, tenantname=nil, customeruin=nil, customerappid=nil, clustername=nil, type=nil, maxnamespaces=nil, usednamespaces=nil, maxtopics=nil, usedtopics=nil, maxpartitions=nil, usedpartitions=nil, maxmsgbacklogsize=nil, maxpublishtps=nil, maxretention=nil, createtime=nil, updatetime=nil, maxdispatchtps=nil, maxdispatchrateinbytes=nil, maxpublishrateinbytes=nil, maxretentionsizeinmb=nil, publicaccessenabled=nil)
+        def initialize(tenantid=nil, tenantname=nil, customeruin=nil, customerappid=nil, clustername=nil, type=nil, maxnamespaces=nil, usednamespaces=nil, maxtopics=nil, usedtopics=nil, maxpartitions=nil, usedpartitions=nil, maxmsgbacklogsize=nil, maxpublishtps=nil, maxretention=nil, createtime=nil, updatetime=nil, maxdispatchtps=nil, maxdispatchrateinbytes=nil, maxpublishrateinbytes=nil, maxretentionsizeinmb=nil, publicaccessenabled=nil, taglist=nil, tenantspec=nil)
           @TenantId = tenantid
           @TenantName = tenantname
           @CustomerUin = customeruin
@@ -8691,6 +8765,8 @@ module TencentCloud
           @MaxPublishRateInBytes = maxpublishrateinbytes
           @MaxRetentionSizeInMB = maxretentionsizeinmb
           @PublicAccessEnabled = publicaccessenabled
+          @TagList = taglist
+          @TenantSpec = tenantspec
         end
 
         def deserialize(params)
@@ -8716,6 +8792,8 @@ module TencentCloud
           @MaxPublishRateInBytes = params['MaxPublishRateInBytes']
           @MaxRetentionSizeInMB = params['MaxRetentionSizeInMB']
           @PublicAccessEnabled = params['PublicAccessEnabled']
+          @TagList = params['TagList']
+          @TenantSpec = params['TenantSpec']
         end
       end
 
@@ -9025,16 +9103,22 @@ module TencentCloud
         # @type RetentionPolicy: :class:`Tencentcloud::Tdmq.v20200217.models.RetentionPolicy`
         # @param AutoSubscriptionCreation: 是否开启自动创建订阅
         # @type AutoSubscriptionCreation: Boolean
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
+        # @type SubscriptionExpirationTimeEnable: Boolean
 
-        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation
+        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable
 
-        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil)
+        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @ClusterId = clusterid
           @Remark = remark
           @RetentionPolicy = retentionpolicy
           @AutoSubscriptionCreation = autosubscriptioncreation
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
         end
 
         def deserialize(params)
@@ -9047,6 +9131,8 @@ module TencentCloud
             @RetentionPolicy.deserialize(params['RetentionPolicy'])
           end
           @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
         end
       end
 
@@ -9062,16 +9148,22 @@ module TencentCloud
         # @param NamespaceId: 命名空间ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NamespaceId: String
+        # @param SubscriptionExpirationTime: 离线订阅过期自动清理时间
+        # @type SubscriptionExpirationTime: Integer
+        # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
+        # @type SubscriptionExpirationTimeEnable: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :RequestId
+        attr_accessor :EnvironmentId, :MsgTTL, :Remark, :NamespaceId, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable, :RequestId
 
-        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, requestid=nil)
+        def initialize(environmentid=nil, msgttl=nil, remark=nil, namespaceid=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil, requestid=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @Remark = remark
           @NamespaceId = namespaceid
+          @SubscriptionExpirationTime = subscriptionexpirationtime
+          @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
           @RequestId = requestid
         end
 
@@ -9080,6 +9172,8 @@ module TencentCloud
           @MsgTTL = params['MsgTTL']
           @Remark = params['Remark']
           @NamespaceId = params['NamespaceId']
+          @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
+          @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
           @RequestId = params['RequestId']
         end
       end
@@ -9441,7 +9535,7 @@ module TencentCloud
 
       # ModifyRocketMQEnvironmentRole请求参数结构体
       class ModifyRocketMQEnvironmentRoleRequest < TencentCloud::Common::AbstractModel
-        # @param EnvironmentId: 环境（命名空间）名称。
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param RoleName: 角色名称。
         # @type RoleName: String
@@ -10339,10 +10433,12 @@ module TencentCloud
         # @type Tls: Boolean
         # @param CustomUrl: 接入点自定义域名
         # @type CustomUrl: String
+        # @param SecurityGroupIds: 接入点绑定的安全组id列表，仅限vpc接入点有效
+        # @type SecurityGroupIds: Array
 
-        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType, :Bandwidth, :SecurityPolicy, :StandardAccessPoint, :ZoneName, :Tls, :CustomUrl
+        attr_accessor :VpcId, :SubnetId, :Endpoint, :InstanceId, :RouteType, :OperationType, :AccessPointsType, :Bandwidth, :SecurityPolicy, :StandardAccessPoint, :ZoneName, :Tls, :CustomUrl, :SecurityGroupIds
 
-        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil, bandwidth=nil, securitypolicy=nil, standardaccesspoint=nil, zonename=nil, tls=nil, customurl=nil)
+        def initialize(vpcid=nil, subnetid=nil, endpoint=nil, instanceid=nil, routetype=nil, operationtype=nil, accesspointstype=nil, bandwidth=nil, securitypolicy=nil, standardaccesspoint=nil, zonename=nil, tls=nil, customurl=nil, securitygroupids=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @Endpoint = endpoint
@@ -10356,6 +10452,7 @@ module TencentCloud
           @ZoneName = zonename
           @Tls = tls
           @CustomUrl = customurl
+          @SecurityGroupIds = securitygroupids
         end
 
         def deserialize(params)
@@ -10379,6 +10476,7 @@ module TencentCloud
           @ZoneName = params['ZoneName']
           @Tls = params['Tls']
           @CustomUrl = params['CustomUrl']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 
@@ -11757,7 +11855,7 @@ module TencentCloud
       class ResetRocketMQConsumerOffSetRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
@@ -11765,7 +11863,7 @@ module TencentCloud
         # @type Type: Integer
         # @param Topic: 主题名称
         # @type Topic: String
-        # @param ResetTimestamp: 重置指定的时间戳，仅在 Type 为1是生效，以毫秒为单位
+        # @param ResetTimestamp: 重置指定的时间戳，仅在 Type 为1时生效，以毫秒为单位
         # @type ResetTimestamp: Integer
         # @param RetryFlag: 重置的是否是retry topic
         # @type RetryFlag: Boolean
@@ -13765,10 +13863,12 @@ module TencentCloud
         # @type IsolateConsumerEnable: Boolean
         # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒
         # @type AckTimeOut: Integer
+        # @param PulsarTopicMessageType: Pulsar主题消息类型0: 混合消息1:普通消息2:延迟消息
+        # @type PulsarTopicMessageType: Integer
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant, :IsolateConsumerEnable, :AckTimeOut
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType
 
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil, isolateconsumerenable=nil, acktimeout=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -13796,6 +13896,7 @@ module TencentCloud
           @Tenant = tenant
           @IsolateConsumerEnable = isolateconsumerenable
           @AckTimeOut = acktimeout
+          @PulsarTopicMessageType = pulsartopicmessagetype
         end
 
         def deserialize(params)
@@ -13833,6 +13934,7 @@ module TencentCloud
           @Tenant = params['Tenant']
           @IsolateConsumerEnable = params['IsolateConsumerEnable']
           @AckTimeOut = params['AckTimeOut']
+          @PulsarTopicMessageType = params['PulsarTopicMessageType']
         end
       end
 

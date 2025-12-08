@@ -5860,6 +5860,58 @@ module TencentCloud
         end
       end
 
+      # SendMessage请求参数结构体
+      class SendMessageRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
+        # @type InstanceId: String
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
+        # @type Topic: String
+        # @param MsgBody: 消息内容
+        # @type MsgBody: String
+        # @param MsgKey: 消息Key
+        # @type MsgKey: String
+        # @param MsgTag: 消息Tag
+        # @type MsgTag: String
+
+        attr_accessor :InstanceId, :Topic, :MsgBody, :MsgKey, :MsgTag
+
+        def initialize(instanceid=nil, topic=nil, msgbody=nil, msgkey=nil, msgtag=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @MsgBody = msgbody
+          @MsgKey = msgkey
+          @MsgTag = msgtag
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @MsgBody = params['MsgBody']
+          @MsgKey = params['MsgKey']
+          @MsgTag = params['MsgTag']
+        end
+      end
+
+      # SendMessage返回参数结构体
+      class SendMessageResponse < TencentCloud::Common::AbstractModel
+        # @param MsgId: 消息ID
+        # @type MsgId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MsgId, :RequestId
+
+        def initialize(msgid=nil, requestid=nil)
+          @MsgId = msgid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MsgId = params['MsgId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 平滑迁移任务
       class SmoothMigrationTaskItem < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务ID
@@ -6370,6 +6422,54 @@ module TencentCloud
           @TopicName = params['TopicName']
           @Success = params['Success']
           @Namespace = params['Namespace']
+        end
+      end
+
+      # VerifyMessageConsumption请求参数结构体
+      class VerifyMessageConsumptionRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Topic: 主题
+        # @type Topic: String
+        # @param ClientId: 客户端ID
+        # @type ClientId: String
+        # @param MsgId: 消息ID
+        # @type MsgId: String
+        # @param ConsumerGroup: 消费组名称
+        # @type ConsumerGroup: String
+
+        attr_accessor :InstanceId, :Topic, :ClientId, :MsgId, :ConsumerGroup
+
+        def initialize(instanceid=nil, topic=nil, clientid=nil, msgid=nil, consumergroup=nil)
+          @InstanceId = instanceid
+          @Topic = topic
+          @ClientId = clientid
+          @MsgId = msgid
+          @ConsumerGroup = consumergroup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Topic = params['Topic']
+          @ClientId = params['ClientId']
+          @MsgId = params['MsgId']
+          @ConsumerGroup = params['ConsumerGroup']
+        end
+      end
+
+      # VerifyMessageConsumption返回参数结构体
+      class VerifyMessageConsumptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

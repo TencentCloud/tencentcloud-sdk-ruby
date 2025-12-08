@@ -2144,8 +2144,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2025, 11
-        deprecate :SegmentSet=, :none, 2025, 11
+        deprecate :SegmentSet, :none, 2025, 12
+        deprecate :SegmentSet=, :none, 2025, 12
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4291,8 +4291,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2025, 11
-        deprecate :SubtitleFormat=, :none, 2025, 11
+        deprecate :SubtitleFormat, :none, 2025, 12
+        deprecate :SubtitleFormat=, :none, 2025, 12
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -4335,8 +4335,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2025, 11
-        deprecate :SubtitleFormat=, :none, 2025, 11
+        deprecate :SubtitleFormat, :none, 2025, 12
+        deprecate :SubtitleFormat=, :none, 2025, 12
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -7498,8 +7498,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 11
-        deprecate :AiRecognitionTask=, :none, 2025, 11
+        deprecate :AiRecognitionTask, :none, 2025, 12
+        deprecate :AiRecognitionTask=, :none, 2025, 12
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -10708,8 +10708,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2025, 11
-        deprecate :DomainName=, :none, 2025, 11
+        deprecate :DomainName, :none, 2025, 12
+        deprecate :DomainName=, :none, 2025, 12
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -12182,8 +12182,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2025, 11
-        deprecate :Offset=, :none, 2025, 11
+        deprecate :Offset, :none, 2025, 12
+        deprecate :Offset=, :none, 2025, 12
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -12227,8 +12227,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2025, 11
-        deprecate :TotalCount=, :none, 2025, 11
+        deprecate :TotalCount, :none, 2025, 12
+        deprecate :TotalCount=, :none, 2025, 12
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -14754,8 +14754,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2025, 11
-        deprecate :Uid=, :none, 2025, 11
+        deprecate :Uid, :none, 2025, 12
+        deprecate :Uid=, :none, 2025, 12
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -16331,6 +16331,87 @@ module TencentCloud
         end
       end
 
+      # 使用MPS进行处理后的智能媒体信息
+      class MPSAiMediaInfo < TencentCloud::Common::AbstractModel
+        # @param AiMediaList: MPS处理后的智能媒体信息列表
+        # @type AiMediaList: Array
+
+        attr_accessor :AiMediaList
+
+        def initialize(aimedialist=nil)
+          @AiMediaList = aimedialist
+        end
+
+        def deserialize(params)
+          unless params['AiMediaList'].nil?
+            @AiMediaList = []
+            params['AiMediaList'].each do |i|
+              mpsaimediaitem_tmp = MPSAiMediaItem.new
+              mpsaimediaitem_tmp.deserialize(i)
+              @AiMediaList << mpsaimediaitem_tmp
+            end
+          end
+        end
+      end
+
+      # MPS AI媒资任务项
+      class MPSAiMediaItem < TencentCloud::Common::AbstractModel
+        # @param TaskType: MPS智能处理任务类型
+        # @type TaskType: String
+        # @param AiMediaTasks: MPS 智能媒资任务输出
+        # @type AiMediaTasks: Array
+
+        attr_accessor :TaskType, :AiMediaTasks
+
+        def initialize(tasktype=nil, aimediatasks=nil)
+          @TaskType = tasktype
+          @AiMediaTasks = aimediatasks
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          unless params['AiMediaTasks'].nil?
+            @AiMediaTasks = []
+            params['AiMediaTasks'].each do |i|
+              mpsaimediatask_tmp = MPSAiMediaTask.new
+              mpsaimediatask_tmp.deserialize(i)
+              @AiMediaTasks << mpsaimediatask_tmp
+            end
+          end
+        end
+      end
+
+      # MPS智能任务
+      class MPSAiMediaTask < TencentCloud::Common::AbstractModel
+        # @param Definition: MPS智能任务的模板 ID
+        # @type Definition: Integer
+        # @param OutputFile: MPS智能任务输出文件集合
+        # @type OutputFile: Array
+        # @param OutputText: MPS智能任务输出
+        # @type OutputText: String
+
+        attr_accessor :Definition, :OutputFile, :OutputText
+
+        def initialize(definition=nil, outputfile=nil, outputtext=nil)
+          @Definition = definition
+          @OutputFile = outputfile
+          @OutputText = outputtext
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['OutputFile'].nil?
+            @OutputFile = []
+            params['OutputFile'].each do |i|
+              mpsoutputfileinfo_tmp = MPSOutputFileInfo.new
+              mpsoutputfileinfo_tmp.deserialize(i)
+              @OutputFile << mpsoutputfileinfo_tmp
+            end
+          end
+          @OutputText = params['OutputText']
+        end
+      end
+
       # 用于描述 MPS 视频处理任务中的返回文件结果。
       class MPSOutputFile < TencentCloud::Common::AbstractModel
         # @param FileType: 文件类型。用于标识 MPS 视频处理任务执行结果中的特定返回文件。
@@ -16365,6 +16446,26 @@ module TencentCloud
           @Url = params['Url']
           @Definition = params['Definition']
           @ExpiredTime = params['ExpiredTime']
+        end
+      end
+
+      # MPS输出文件信息
+      class MPSOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param FileType: MPS输出文件类型
+        # @type FileType: String
+        # @param Url: MPS输出文件的URL
+        # @type Url: String
+
+        attr_accessor :FileType, :Url
+
+        def initialize(filetype=nil, url=nil)
+          @FileType = filetype
+          @Url = url
+        end
+
+        def deserialize(params)
+          @FileType = params['FileType']
+          @Url = params['Url']
         end
       end
 
@@ -16411,11 +16512,14 @@ module TencentCloud
       class MPSTaskOutput < TencentCloud::Common::AbstractModel
         # @param OutputFiles: 任务返回结果中的文件类型结果。如智能擦除中，擦除后的视频文件将被存入媒资，并在此字段中给出 FileId；基于画面提取的字幕文件 Url 将在此字段中给出。
         # @type OutputFiles: Array
+        # @param OutputText: 任务返回的结果JSON
+        # @type OutputText: String
 
-        attr_accessor :OutputFiles
+        attr_accessor :OutputFiles, :OutputText
 
-        def initialize(outputfiles=nil)
+        def initialize(outputfiles=nil, outputtext=nil)
           @OutputFiles = outputfiles
+          @OutputText = outputtext
         end
 
         def deserialize(params)
@@ -16427,6 +16531,7 @@ module TencentCloud
               @OutputFiles << mpsoutputfile_tmp
             end
           end
+          @OutputText = params['OutputText']
         end
       end
 
@@ -17059,8 +17164,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2025, 11
-        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 11
+        deprecate :PicUrlExpireTimeStamp, :none, 2025, 12
+        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 12
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -17114,8 +17219,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2025, 11
-        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 11
+        deprecate :PicUrlExpireTimeStamp, :none, 2025, 12
+        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 12
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -17267,10 +17372,12 @@ module TencentCloud
         # @param ReviewInfo: 审核信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.FileReviewInfo`
+        # @param MPSAiMediaInfo: MPS智能媒资信息
+        # @type MPSAiMediaInfo: :class:`Tencentcloud::Vod.v20180717.models.MPSAiMediaInfo`
 
-        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo
+        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo, :MPSAiMediaInfo
 
-        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil)
+        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil, mpsaimediainfo=nil)
           @BasicInfo = basicinfo
           @MetaData = metadata
           @TranscodeInfo = transcodeinfo
@@ -17284,6 +17391,7 @@ module TencentCloud
           @SubtitleInfo = subtitleinfo
           @FileId = fileid
           @ReviewInfo = reviewinfo
+          @MPSAiMediaInfo = mpsaimediainfo
         end
 
         def deserialize(params)
@@ -17335,6 +17443,10 @@ module TencentCloud
           unless params['ReviewInfo'].nil?
             @ReviewInfo = FileReviewInfo.new
             @ReviewInfo.deserialize(params['ReviewInfo'])
+          end
+          unless params['MPSAiMediaInfo'].nil?
+            @MPSAiMediaInfo = MPSAiMediaInfo.new
+            @MPSAiMediaInfo.deserialize(params['MPSAiMediaInfo'])
           end
         end
       end
@@ -18705,8 +18817,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2025, 11
-        deprecate :Transitions=, :none, 2025, 11
+        deprecate :Transitions, :none, 2025, 12
+        deprecate :Transitions=, :none, 2025, 12
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -22167,10 +22279,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2025, 11
-        deprecate :ErrCode=, :none, 2025, 11
-        deprecate :Message, :none, 2025, 11
-        deprecate :Message=, :none, 2025, 11
+        deprecate :ErrCode, :none, 2025, 12
+        deprecate :ErrCode=, :none, 2025, 12
+        deprecate :Message, :none, 2025, 12
+        deprecate :Message=, :none, 2025, 12
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -22284,8 +22396,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 11
-        deprecate :AiRecognitionTask=, :none, 2025, 11
+        deprecate :AiRecognitionTask, :none, 2025, 12
+        deprecate :AiRecognitionTask=, :none, 2025, 12
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -22777,8 +22889,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2025, 11
-        deprecate :ProductInstanceResourceSet=, :none, 2025, 11
+        deprecate :ProductInstanceResourceSet, :none, 2025, 12
+        deprecate :ProductInstanceResourceSet=, :none, 2025, 12
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -25194,8 +25306,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 11
-        deprecate :AiRecognitionTask=, :none, 2025, 11
+        deprecate :AiRecognitionTask, :none, 2025, 12
+        deprecate :AiRecognitionTask=, :none, 2025, 12
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -25372,10 +25484,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 11
-        deprecate :Status=, :none, 2025, 11
-        deprecate :Message, :none, 2025, 11
-        deprecate :Message=, :none, 2025, 11
+        deprecate :Status, :none, 2025, 12
+        deprecate :Status=, :none, 2025, 12
+        deprecate :Message, :none, 2025, 12
+        deprecate :Message=, :none, 2025, 12
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -25722,8 +25834,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2025, 11
-        deprecate :ReviewResultSet=, :none, 2025, 11
+        deprecate :ReviewResultSet, :none, 2025, 12
+        deprecate :ReviewResultSet=, :none, 2025, 12
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -27617,8 +27729,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2025, 11
-        deprecate :CycleConfig=, :none, 2025, 11
+        deprecate :CycleConfig, :none, 2025, 12
+        deprecate :CycleConfig=, :none, 2025, 12
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -28279,8 +28391,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2025, 11
-        deprecate :Definition=, :none, 2025, 11
+        deprecate :Definition, :none, 2025, 12
+        deprecate :Definition=, :none, 2025, 12
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

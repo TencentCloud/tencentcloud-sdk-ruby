@@ -2169,10 +2169,18 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ElectronicAirTransportDetails: Array
+        # @param Fare: 票价
+        # @type Fare: String
+        # @param FuelSurcharge: 燃油附加费
+        # @type FuelSurcharge: String
+        # @param TaxAmount: 增值税税额
+        # @type TaxAmount: String
+        # @param DevelopmentFund: 民航发展基金
+        # @type DevelopmentFund: String
 
-        attr_accessor :Code, :Number, :Date, :Amount, :CheckCode, :Total, :DeductionMark, :StateCode, :BuyerTaxCode, :BuyerName, :Tax, :DomesticInternationalMark, :PassengerName, :PassengerNo, :ElectronicNumber, :ElectronicAirTransportDetails
+        attr_accessor :Code, :Number, :Date, :Amount, :CheckCode, :Total, :DeductionMark, :StateCode, :BuyerTaxCode, :BuyerName, :Tax, :DomesticInternationalMark, :PassengerName, :PassengerNo, :ElectronicNumber, :ElectronicAirTransportDetails, :Fare, :FuelSurcharge, :TaxAmount, :DevelopmentFund
 
-        def initialize(code=nil, number=nil, date=nil, amount=nil, checkcode=nil, total=nil, deductionmark=nil, statecode=nil, buyertaxcode=nil, buyername=nil, tax=nil, domesticinternationalmark=nil, passengername=nil, passengerno=nil, electronicnumber=nil, electronicairtransportdetails=nil)
+        def initialize(code=nil, number=nil, date=nil, amount=nil, checkcode=nil, total=nil, deductionmark=nil, statecode=nil, buyertaxcode=nil, buyername=nil, tax=nil, domesticinternationalmark=nil, passengername=nil, passengerno=nil, electronicnumber=nil, electronicairtransportdetails=nil, fare=nil, fuelsurcharge=nil, taxamount=nil, developmentfund=nil)
           @Code = code
           @Number = number
           @Date = date
@@ -2189,6 +2197,10 @@ module TencentCloud
           @PassengerNo = passengerno
           @ElectronicNumber = electronicnumber
           @ElectronicAirTransportDetails = electronicairtransportdetails
+          @Fare = fare
+          @FuelSurcharge = fuelsurcharge
+          @TaxAmount = taxamount
+          @DevelopmentFund = developmentfund
         end
 
         def deserialize(params)
@@ -2215,6 +2227,10 @@ module TencentCloud
               @ElectronicAirTransportDetails << electronicairtransportdetail_tmp
             end
           end
+          @Fare = params['Fare']
+          @FuelSurcharge = params['FuelSurcharge']
+          @TaxAmount = params['TaxAmount']
+          @DevelopmentFund = params['DevelopmentFund']
         end
       end
 
@@ -3044,6 +3060,7 @@ module TencentCloud
         # @type ReturnFullText: Boolean
         # @param ConfigId: 配置id支持：
         # General -- 通用场景
+        # GeneralNoDate -- 无后处理日期格式模版
         # OnlineTaxiItinerary -- 网约车行程单
         # RideHailingDriverLicense -- 网约车驾驶证
         # RideHailingTransportLicense -- 网约车运输证
@@ -9363,7 +9380,7 @@ module TencentCloud
         # @param PdfPageSize: 图片为PDF时，返回PDF的总页数，默认为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PdfPageSize: Integer
-        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°，统一以逆时针方向旋转，逆时针为负，角度范围为-360°至0°。
+        # @param Angle: 图片旋转角度（角度制），文本的水平方向为0°。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Angle: Float
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

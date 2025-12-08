@@ -1185,7 +1185,7 @@ module TencentCloud
         # @type TrainingJobName: String
         # @param TrainingModelCosPath: 模型来源cos目录，以/结尾
         # @type TrainingModelCosPath: :class:`Tencentcloud::Tione.v20211111.models.CosPathInfo`
-        # @param AlgorithmFramework: 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML/MMDETECTION)
+        # @param AlgorithmFramework: 算法框架 （PYTORCH/TENSORFLOW/DETECTRON2/PMML/MMDETECTION/ONNX)
         # @type AlgorithmFramework: String
         # @param ReasoningEnvironment: 推理环境
         # @type ReasoningEnvironment: String
@@ -1215,7 +1215,7 @@ module TencentCloud
         # 枚举值：NORMAL(通用)  ACCELERATE(加速)
         # 注意:  默认为NORMAL
         # @type ModelVersionType: String
-        # @param ModelFormat: 模型格式 （PYTORCH/TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML/MMDETECTION/ONNX/HUGGING_FACE）
+        # @param ModelFormat: 模型格式 （PYTORCH/TORCH_SCRIPT/DETECTRON2/SAVED_MODEL/FROZEN_GRAPH/PMML/MMDETECTION/ONNX/HUGGING_FACE_BERT/HUGGING_FACE_STABLE_DIFFUSION/HUGGING_FACE_STABLE_DIFFUSION_LORA/WEB_UI_STABLE_DIFFUSION）
         # @type ModelFormat: String
         # @param ReasoningEnvironmentId: 推理镜像ID
         # @type ReasoningEnvironmentId: String
@@ -2286,6 +2286,9 @@ module TencentCloud
         # @type ServiceCategory: String
 
         attr_accessor :ServiceId, :ServiceCategory
+        extend Gem::Deprecate
+        deprecate :ServiceCategory, :none, 2025, 12
+        deprecate :ServiceCategory=, :none, 2025, 12
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -3399,6 +3402,9 @@ module TencentCloud
         # @type ServiceCategory: String
 
         attr_accessor :ServiceGroupId, :ServiceCategory
+        extend Gem::Deprecate
+        deprecate :ServiceCategory, :none, 2025, 12
+        deprecate :ServiceCategory=, :none, 2025, 12
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -3483,6 +3489,9 @@ module TencentCloud
         # @type ServiceCategory: String
 
         attr_accessor :ServiceGroupId, :ServiceCategory
+        extend Gem::Deprecate
+        deprecate :ServiceCategory, :none, 2025, 12
+        deprecate :ServiceCategory=, :none, 2025, 12
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -3538,6 +3547,9 @@ module TencentCloud
         # @type ServiceCategory: String
 
         attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
+        extend Gem::Deprecate
+        deprecate :ServiceCategory, :none, 2025, 12
+        deprecate :ServiceCategory=, :none, 2025, 12
 
         def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @Offset = offset
@@ -3668,6 +3680,9 @@ module TencentCloud
         # @type ServiceCategory: String
 
         attr_accessor :ServiceId, :ServiceCategory
+        extend Gem::Deprecate
+        deprecate :ServiceCategory, :none, 2025, 12
+        deprecate :ServiceCategory=, :none, 2025, 12
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -3805,7 +3820,7 @@ module TencentCloud
 
       # DescribeNotebooks返回参数结构体
       class DescribeNotebooksResponse < TencentCloud::Common::AbstractModel
-        # @param NotebookSet: 详情
+        # @param NotebookSet: notebook详情
         # @type NotebookSet: Array
         # @param TotalCount: 总条数
         # @type TotalCount: Integer
@@ -4280,6 +4295,17 @@ module TencentCloud
 
         def deserialize(params)
           @Command = params['Command']
+        end
+      end
+
+      # 暴露端口信息
+      class ExposePortConfig < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 
@@ -6380,10 +6406,12 @@ module TencentCloud
         # @param AppId: AppId
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
+        # @param ExposePortConfig: 容器服务暴露端口配置
+        # @type ExposePortConfig: :class:`Tencentcloud::Tione.v20211111.models.ExposePortConfig`
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -6414,6 +6442,7 @@ module TencentCloud
           @SubUin = subuin
           @SubUinName = subuinname
           @AppId = appid
+          @ExposePortConfig = exposeportconfig
         end
 
         def deserialize(params)
@@ -6466,6 +6495,10 @@ module TencentCloud
           @SubUin = params['SubUin']
           @SubUinName = params['SubUinName']
           @AppId = params['AppId']
+          unless params['ExposePortConfig'].nil?
+            @ExposePortConfig = ExposePortConfig.new
+            @ExposePortConfig.deserialize(params['ExposePortConfig'])
+          end
         end
       end
 
@@ -6646,8 +6679,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 11
-        deprecate :Containers=, :none, 2025, 11
+        deprecate :Containers, :none, 2025, 12
+        deprecate :Containers=, :none, 2025, 12
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -7536,10 +7569,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 11
-        deprecate :ServiceLimit=, :none, 2025, 11
-        deprecate :ScheduledAction, :none, 2025, 11
-        deprecate :ScheduledAction=, :none, 2025, 11
+        deprecate :ServiceLimit, :none, 2025, 12
+        deprecate :ServiceLimit=, :none, 2025, 12
+        deprecate :ScheduledAction, :none, 2025, 12
+        deprecate :ScheduledAction=, :none, 2025, 12
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
           @ServiceGroupId = servicegroupid
@@ -8085,10 +8118,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 11
-        deprecate :PodList=, :none, 2025, 11
-        deprecate :Pods, :none, 2025, 11
-        deprecate :Pods=, :none, 2025, 11
+        deprecate :PodList, :none, 2025, 12
+        deprecate :PodList=, :none, 2025, 12
+        deprecate :Pods, :none, 2025, 12
+        deprecate :Pods=, :none, 2025, 12
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil)
           @Replicas = replicas
@@ -9358,8 +9391,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 11
-        deprecate :StatefulSetCondition=, :none, 2025, 11
+        deprecate :StatefulSetCondition, :none, 2025, 12
+        deprecate :StatefulSetCondition=, :none, 2025, 12
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

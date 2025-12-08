@@ -3085,10 +3085,12 @@ module TencentCloud
         # @type LicenseType: Integer
         # @param SceneKey: <ul><li> **E_PRESCRIPTION_AUTO_SIGN** :  电子处方场景</li><li> **OTHER** :  通用场景</li></ul>
         # @type SceneKey: String
+        # @param FileId: 印章图片文件 id取值：填写的FileId通过UploadFiles接口上传文件获取。
+        # @type FileId: String
 
-        attr_accessor :Agent, :UserName, :IdCardNumber, :SealName, :SealImage, :Operator, :IdCardType, :SealImageCompress, :Mobile, :EnableAutoSign, :LicenseType, :SceneKey
+        attr_accessor :Agent, :UserName, :IdCardNumber, :SealName, :SealImage, :Operator, :IdCardType, :SealImageCompress, :Mobile, :EnableAutoSign, :LicenseType, :SceneKey, :FileId
 
-        def initialize(agent=nil, username=nil, idcardnumber=nil, sealname=nil, sealimage=nil, operator=nil, idcardtype=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, licensetype=nil, scenekey=nil)
+        def initialize(agent=nil, username=nil, idcardnumber=nil, sealname=nil, sealimage=nil, operator=nil, idcardtype=nil, sealimagecompress=nil, mobile=nil, enableautosign=nil, licensetype=nil, scenekey=nil, fileid=nil)
           @Agent = agent
           @UserName = username
           @IdCardNumber = idcardnumber
@@ -3101,6 +3103,7 @@ module TencentCloud
           @EnableAutoSign = enableautosign
           @LicenseType = licensetype
           @SceneKey = scenekey
+          @FileId = fileid
         end
 
         def deserialize(params)
@@ -3122,6 +3125,7 @@ module TencentCloud
           @EnableAutoSign = params['EnableAutoSign']
           @LicenseType = params['LicenseType']
           @SceneKey = params['SceneKey']
+          @FileId = params['FileId']
         end
       end
 
@@ -4245,7 +4249,7 @@ module TencentCloud
         # </ul>
         # 第三方平台子客企业和员工必须已经经过实名认证
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 100。
+        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 100。默认值为20
         # @type Limit: Integer
         # @param Offset: 分页查询偏移量，默认为0，最大为20000
         # @type Offset: Integer

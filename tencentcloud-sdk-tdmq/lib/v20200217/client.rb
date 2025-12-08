@@ -389,7 +389,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建环境角色授权
+        # 创建角色授权。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的创建角色接口文档见 [CreateRole](https://cloud.tencent.com/document/api/1493/98864)。
 
         # @param request: Request instance for CreateRocketMQEnvironmentRole.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRocketMQEnvironmentRoleRequest`
@@ -461,7 +462,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建角色
+        # 创建角色。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的创建角色接口文档见 [CreateRole](https://cloud.tencent.com/document/api/1493/98864)。
 
         # @param request: Request instance for CreateRocketMQRole.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::CreateRocketMQRoleRequest`
@@ -941,7 +943,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除环境角色授权。
+        # 批量删除角色授权。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的删除角色接口文档见 [DeleteRole](https://cloud.tencent.com/document/api/1493/98863)。
 
         # @param request: Request instance for DeleteRocketMQEnvironmentRoles.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRocketMQEnvironmentRolesRequest`
@@ -1013,7 +1016,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除角色，支持批量。
+        # 批量删除角色。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的删除角色接口文档见 [DeleteRole](https://cloud.tencent.com/document/api/1493/98863)。
 
         # @param request: Request instance for DeleteRocketMQRoles.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DeleteRocketMQRolesRequest`
@@ -1543,7 +1547,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询消息轨迹
+        # 查询单条消息的消息轨迹
 
         # @param request: Request instance for DescribeMsgTrace.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeMsgTraceRequest`
@@ -2071,7 +2075,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取命名空间角色列表
+        # 查询角色授权列表。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的查询角色列表接口文档见 [DescribeRoleList](https://cloud.tencent.com/document/api/1493/98862)。
 
         # @param request: Request instance for DescribeRocketMQEnvironmentRoles.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQEnvironmentRolesRequest`
@@ -2288,7 +2293,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取角色列表
+        # 查询角色列表。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的查询角色列表接口文档见 [DescribeRoleList](https://cloud.tencent.com/document/api/1493/98862)。
 
         # @param request: Request instance for DescribeRocketMQRoles.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::DescribeRocketMQRolesRequest`
@@ -3056,7 +3062,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改环境角色授权。
+        # 修改角色授权。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的修改角色接口文档见 [ModifyRole](https://cloud.tencent.com/document/api/1493/98861)。
 
         # @param request: Request instance for ModifyRocketMQEnvironmentRole.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRocketMQEnvironmentRoleRequest`
@@ -3176,7 +3183,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 角色修改
+        # 修改角色。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的修改角色接口文档见 [ModifyRole](https://cloud.tencent.com/document/api/1493/98861)。
 
         # @param request: Request instance for ModifyRocketMQRole.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::ModifyRocketMQRoleRequest`
@@ -3363,7 +3371,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 重置指定Group的消费位点到指定时间戳
+        # 重置消费位点。
+        # 当前 API 适用集群：4.x 虚拟集群，4.x 专享集群 和 4.x 通用集群。5.x 集群的重置消费位点接口文档见 [ResetConsumerGroupOffset](https://cloud.tencent.com/document/api/1493/116942)。
 
         # @param request: Request instance for ResetRocketMQConsumerOffSet.
         # @type request: :class:`Tencentcloud::tdmq::V20200217::ResetRocketMQConsumerOffSetRequest`

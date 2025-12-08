@@ -15135,7 +15135,7 @@ module TencentCloud
         # @type RiskName: String
         # @param RiskDescription: 风险描述
         # @type RiskDescription: String
-        # @param RiskLevel: 风险等级。
+        # @param RiskLevel: 风险等级别名。
 
         # 等级描述如下：
         # <ul>
@@ -15153,7 +15153,7 @@ module TencentCloud
         # @type Positions: Array
         # @param RiskBasis: 审查依据
         # @type RiskBasis: String
-        # @param RiskLevelId: 风险等级id
+        # @param RiskLevelId: 风险等级id。1 为最高风险等级，0 为最低风险等级，从[2,n]数字越大风险等级逐渐降低。
         # @type RiskLevelId: Integer
 
         attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis, :RiskLevelId

@@ -7221,8 +7221,9 @@ module TencentCloud
         # 注意：
         # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
-        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
-        # 注：自适应码流的分片格式以此字段为准
+        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
+
+        # 注：自适应码流的分片格式以此字段为准。DASH格式下SegmentType只能为mp4-byterange。
         # @type SegmentType: String
 
         attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio, :SegmentType
@@ -18619,16 +18620,25 @@ module TencentCloud
         # @param MindMapUrl: 摘要思维导图地址
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MindMapUrl: String
+        # @param MindMapPath: 摘要思维导图路径。
+        # @type MindMapPath: String
+        # @param SubtitlePath: 视频字幕文件路径。
+        # @type SubtitlePath: String
+        # @param OutputStorage: 摘要文件存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :Description, :Confidence, :Title, :Keywords, :Paragraphs, :MindMapUrl
+        attr_accessor :Description, :Confidence, :Title, :Keywords, :Paragraphs, :MindMapUrl, :MindMapPath, :SubtitlePath, :OutputStorage
 
-        def initialize(description=nil, confidence=nil, title=nil, keywords=nil, paragraphs=nil, mindmapurl=nil)
+        def initialize(description=nil, confidence=nil, title=nil, keywords=nil, paragraphs=nil, mindmapurl=nil, mindmappath=nil, subtitlepath=nil, outputstorage=nil)
           @Description = description
           @Confidence = confidence
           @Title = title
           @Keywords = keywords
           @Paragraphs = paragraphs
           @MindMapUrl = mindmapurl
+          @MindMapPath = mindmappath
+          @SubtitlePath = subtitlepath
+          @OutputStorage = outputstorage
         end
 
         def deserialize(params)
@@ -18645,6 +18655,12 @@ module TencentCloud
             end
           end
           @MindMapUrl = params['MindMapUrl']
+          @MindMapPath = params['MindMapPath']
+          @SubtitlePath = params['SubtitlePath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
         end
       end
 
@@ -20143,8 +20159,8 @@ module TencentCloud
         # 注意：
         # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
-        # @param SegmentType: hls 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
-        # 注：自适应码流的hls分片格式已此字段为准
+        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
+        # 注：自适应码流的hls分片格式已此字段为准。DASH格式下SegmentType只能为mp4-byterange。
         # @type SegmentType: String
 
         attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :PureAudio, :SegmentType

@@ -309,6 +309,50 @@ module TencentCloud
         end
       end
 
+      # GetKnowledgeBaseFileList请求参数结构体
+      class GetKnowledgeBaseFileListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Page: 默认 1 表示第一页，可以不填
+        # @type Page: Integer
+        # @param PageSize: 默认 10 一页展示 10 条，可以不填
+        # @type PageSize: Integer
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
+
+        attr_accessor :InstanceId, :Page, :PageSize, :KnowledgeBaseId
+
+        def initialize(instanceid=nil, page=nil, pagesize=nil, knowledgebaseid=nil)
+          @InstanceId = instanceid
+          @Page = page
+          @PageSize = pagesize
+          @KnowledgeBaseId = knowledgebaseid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+        end
+      end
+
+      # GetKnowledgeBaseFileList返回参数结构体
+      class GetKnowledgeBaseFileListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetKnowledgeBaseList请求参数结构体
       class GetKnowledgeBaseListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id

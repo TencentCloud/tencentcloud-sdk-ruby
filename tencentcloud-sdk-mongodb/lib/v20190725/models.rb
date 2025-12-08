@@ -706,6 +706,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param MachineCode: 产品规格类型。
         # - HIO10G：通用高HIO万兆型。
@@ -894,6 +895,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param ClusterType: 实例类型。当 MirrorTplId 为空值时，该参数必填。
         # - REPLSET：副本集实例。
@@ -972,6 +974,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param GoodsNum: 实例数量, 最小值1，最大值为30。
         # @type GoodsNum: Integer
@@ -2260,6 +2263,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param ClusterType: 模板适配集群类型。
         # - REPLSET：副本集实例。
@@ -2340,6 +2344,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: Array
         # @param TplType: 指定查询的模板类型。
         # - DEFAULT：系统默认模板。
@@ -3518,6 +3523,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param MachineCode: 产品规格类型。
         # - HIO10G：通用高HIO万兆型。
@@ -3797,6 +3803,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param Memory: 实例内存规格，单位：MB。
         # @type Memory: Integer
@@ -4781,8 +4788,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 11
-        deprecate :OplogSize=, :none, 2025, 11
+        deprecate :OplogSize, :none, 2025, 12
+        deprecate :OplogSize=, :none, 2025, 12
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -5173,6 +5180,7 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersion: String
         # @param ClusterType: 参数模板适用的数据库类型。
         # - REPLSET：副本集实例。
@@ -5887,7 +5895,7 @@ module TencentCloud
         # - 内存规格：支持4、8、16、32、64、128、240、512。单位g：表示GB。128g 则表示128GB。
         # @type SpecCode: String
         # @param Status: 售卖规格有效标志，取值范围如下：
-        # - 0：停止售卖，
+        # - 0：停止售卖。
         # - 1：开放售卖。
         # @type Status: Integer
         # @param Cpu: 计算资源规格，CPU核数。
@@ -5911,12 +5919,22 @@ module TencentCloud
         # - MONGO_50_WT：MongoDB 5.0 WiredTiger存储引擎版本。
         # - MONGO_60_WT：MongoDB 6.0 WiredTiger存储引擎版本。
         # - MONGO_70_WT：MongoDB 7.0 WiredTiger存储引擎版本。
+        # - MONGO_80_WT：MongoDB 8.0 WiredTiger存储引擎版本。
         # @type MongoVersionCode: String
         # @param MongoVersionValue: 实例版本对应的数字版本。
+        # - MongoDB 3.2 版本：2。
+        # - MongoDB 3.6 版本：4。
+        # - MongoDB 4.0 版本：5。
+        # - MongoDB 4.2 版本：9。
+        # - MongoDB 4.4 版本：10。
+        # - MongoDB 5.0 版本：11。
+        # - MongoDB 6.0 版本：12。
+        # - MongoDB 7.0 版本：13。
+        # - MongoDB 8.0 版本：14。
         # @type MongoVersionValue: Integer
-        # @param Version: 实例版本信息。支持：4.2、4.4、5.0、6.0、7.0。
+        # @param Version: 实例版本信息。支持：4.2、4.4、5.0、6.0、7.0、8.0。
         # @type Version: String
-        # @param EngineName: 存储引擎。
+        # @param EngineName: 存储引擎，仅支持 WiredTiger。
         # @type EngineName: String
         # @param ClusterType: 集群类型，取值如下：
         # - 1：分片集群。

@@ -397,8 +397,8 @@ module TencentCloud
 
         attr_accessor :User, :Message, :Timestamp, :Start, :End
         extend Gem::Deprecate
-        deprecate :Timestamp, :none, 2025, 11
-        deprecate :Timestamp=, :none, 2025, 11
+        deprecate :Timestamp, :none, 2025, 12
+        deprecate :Timestamp=, :none, 2025, 12
 
         def initialize(user=nil, message=nil, timestamp=nil, start=nil, _end=nil)
           @User = user
@@ -612,27 +612,26 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param StaffEmail: 座席邮箱
         # @type StaffEmail: String
-        # @param SkillGroupList: 绑定技能组列表
-        # @type SkillGroupList: Array
         # @param StaffSkillGroupList: 绑定技能组列表(必填)
         # @type StaffSkillGroupList: Array
+        # @param SkillGroupList: 绑定技能组列表
+        # @type SkillGroupList: Array
 
-        attr_accessor :SdkAppId, :StaffEmail, :SkillGroupList, :StaffSkillGroupList
+        attr_accessor :SdkAppId, :StaffEmail, :StaffSkillGroupList, :SkillGroupList
         extend Gem::Deprecate
-        deprecate :SkillGroupList, :none, 2025, 11
-        deprecate :SkillGroupList=, :none, 2025, 11
+        deprecate :SkillGroupList, :none, 2025, 12
+        deprecate :SkillGroupList=, :none, 2025, 12
 
-        def initialize(sdkappid=nil, staffemail=nil, skillgrouplist=nil, staffskillgrouplist=nil)
+        def initialize(sdkappid=nil, staffemail=nil, staffskillgrouplist=nil, skillgrouplist=nil)
           @SdkAppId = sdkappid
           @StaffEmail = staffemail
-          @SkillGroupList = skillgrouplist
           @StaffSkillGroupList = staffskillgrouplist
+          @SkillGroupList = skillgrouplist
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @StaffEmail = params['StaffEmail']
-          @SkillGroupList = params['SkillGroupList']
           unless params['StaffSkillGroupList'].nil?
             @StaffSkillGroupList = []
             params['StaffSkillGroupList'].each do |i|
@@ -641,6 +640,7 @@ module TencentCloud
               @StaffSkillGroupList << staffskillgrouplist_tmp
             end
           end
+          @SkillGroupList = params['SkillGroupList']
         end
       end
 
@@ -1102,8 +1102,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :AIAgentId, :Callee, :Callers, :PromptVariables, :Variables
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 11
-        deprecate :PromptVariables=, :none, 2025, 11
+        deprecate :PromptVariables, :none, 2025, 12
+        deprecate :PromptVariables=, :none, 2025, 12
 
         def initialize(sdkappid=nil, aiagentid=nil, callee=nil, callers=nil, promptvariables=nil, variables=nil)
           @SdkAppId = sdkappid
@@ -1404,8 +1404,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody
         extend Gem::Deprecate
-        deprecate :PromptVariables, :none, 2025, 11
-        deprecate :PromptVariables=, :none, 2025, 11
+        deprecate :PromptVariables, :none, 2025, 12
+        deprecate :PromptVariables=, :none, 2025, 12
 
         def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil)
           @SdkAppId = sdkappid
@@ -1836,8 +1836,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :UserId, :Callee, :Caller, :Callers, :IsForceUseMobile, :Uui, :UUI
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 11
-        deprecate :Uui=, :none, 2025, 11
+        deprecate :Uui, :none, 2025, 12
+        deprecate :Uui=, :none, 2025, 12
 
         def initialize(sdkappid=nil, userid=nil, callee=nil, caller=nil, callers=nil, isforceusemobile=nil, uui=nil)
           @SdkAppId = sdkappid
@@ -2382,25 +2382,25 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param Uid: 用户 ID，该值必须与 ClientData 字段中 Uid 的值一致
         # @type Uid: String
-        # @param ExpiredTime: 有效期，单位秒，不超过 1 小时
-        # @type ExpiredTime: Integer
         # @param ClientData: 用户签名数据，必填字段，为标准 JSON 格式
         # @type ClientData: String
+        # @param ExpiredTime: 有效期，单位秒，不超过 1 小时
+        # @type ExpiredTime: Integer
 
-        attr_accessor :SdkAppId, :Uid, :ExpiredTime, :ClientData
+        attr_accessor :SdkAppId, :Uid, :ClientData, :ExpiredTime
 
-        def initialize(sdkappid=nil, uid=nil, expiredtime=nil, clientdata=nil)
+        def initialize(sdkappid=nil, uid=nil, clientdata=nil, expiredtime=nil)
           @SdkAppId = sdkappid
           @Uid = uid
-          @ExpiredTime = expiredtime
           @ClientData = clientdata
+          @ExpiredTime = expiredtime
         end
 
         def deserialize(params)
           @SdkAppId = params['SdkAppId']
           @Uid = params['Uid']
-          @ExpiredTime = params['ExpiredTime']
           @ClientData = params['ClientData']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 
@@ -3298,10 +3298,10 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :InstanceId, :CdrId, :Limit, :Offset, :Order, :SessionId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 11
-        deprecate :InstanceId=, :none, 2025, 11
-        deprecate :CdrId, :none, 2025, 11
-        deprecate :CdrId=, :none, 2025, 11
+        deprecate :InstanceId, :none, 2025, 12
+        deprecate :InstanceId=, :none, 2025, 12
+        deprecate :CdrId, :none, 2025, 12
+        deprecate :CdrId=, :none, 2025, 12
 
         def initialize(sdkappid=nil, instanceid=nil, cdrid=nil, limit=nil, offset=nil, order=nil, sessionid=nil)
           @SdkAppId = sdkappid
@@ -3627,8 +3627,8 @@ module TencentCloud
 
         attr_accessor :StartTimestamp, :EndTimestamp, :InstanceId, :SdkAppId, :Limit, :Offset, :Type
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 11
-        deprecate :InstanceId=, :none, 2025, 11
+        deprecate :InstanceId, :none, 2025, 12
+        deprecate :InstanceId=, :none, 2025, 12
 
         def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, sdkappid=nil, limit=nil, offset=nil, type=nil)
           @StartTimestamp = starttimestamp
@@ -3665,8 +3665,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :IMCdrs, :IMCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :IMCdrs, :none, 2025, 11
-        deprecate :IMCdrs=, :none, 2025, 11
+        deprecate :IMCdrs, :none, 2025, 12
+        deprecate :IMCdrs=, :none, 2025, 12
 
         def initialize(totalcount=nil, imcdrs=nil, imcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4158,8 +4158,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 11
-        deprecate :TelCdrs=, :none, 2025, 11
+        deprecate :TelCdrs, :none, 2025, 12
+        deprecate :TelCdrs=, :none, 2025, 12
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4651,8 +4651,8 @@ module TencentCloud
 
         attr_accessor :TelCallOutCount, :TelCallInCount, :SeatUsedCount, :VoipCallInCount, :VOIPCallInCount, :AsrOfflineCount, :AsrRealtimeCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VoipCallInCount, :none, 2025, 11
-        deprecate :VoipCallInCount=, :none, 2025, 11
+        deprecate :VoipCallInCount, :none, 2025, 12
+        deprecate :VoipCallInCount=, :none, 2025, 12
 
         def initialize(telcalloutcount=nil, telcallincount=nil, seatusedcount=nil, voipcallincount=nil, asrofflinecount=nil, asrrealtimecount=nil, requestid=nil)
           @TelCallOutCount = telcalloutcount
@@ -4681,37 +4681,37 @@ module TencentCloud
         # @type StartTimeStamp: Integer
         # @param EndTimeStamp: 结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。
         # @type EndTimeStamp: Integer
-        # @param InstanceId: 实例 ID（废弃）
-        # @type InstanceId: Integer
-        # @param Limit: 返回数据条数，上限（废弃）
-        # @type Limit: Integer
-        # @param Offset: 偏移（废弃）
-        # @type Offset: Integer
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         # @type SdkAppId: Integer
         # @param PageSize: 分页尺寸（必填），上限 100
         # @type PageSize: Integer
         # @param PageNumber: 分页页码（必填），从 0 开始
         # @type PageNumber: Integer
+        # @param InstanceId: 实例 ID（废弃）
+        # @type InstanceId: Integer
+        # @param Limit: 返回数据条数，上限（废弃）
+        # @type Limit: Integer
+        # @param Offset: 偏移（废弃）
+        # @type Offset: Integer
         # @param Phones: 按手机号筛选
         # @type Phones: Array
         # @param SessionIds: 按SessionId筛选
         # @type SessionIds: Array
 
-        attr_accessor :StartTimeStamp, :EndTimeStamp, :InstanceId, :Limit, :Offset, :SdkAppId, :PageSize, :PageNumber, :Phones, :SessionIds
+        attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppId, :PageSize, :PageNumber, :InstanceId, :Limit, :Offset, :Phones, :SessionIds
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2025, 11
-        deprecate :InstanceId=, :none, 2025, 11
+        deprecate :InstanceId, :none, 2025, 12
+        deprecate :InstanceId=, :none, 2025, 12
 
-        def initialize(starttimestamp=nil, endtimestamp=nil, instanceid=nil, limit=nil, offset=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, phones=nil, sessionids=nil)
+        def initialize(starttimestamp=nil, endtimestamp=nil, sdkappid=nil, pagesize=nil, pagenumber=nil, instanceid=nil, limit=nil, offset=nil, phones=nil, sessionids=nil)
           @StartTimeStamp = starttimestamp
           @EndTimeStamp = endtimestamp
-          @InstanceId = instanceid
-          @Limit = limit
-          @Offset = offset
           @SdkAppId = sdkappid
           @PageSize = pagesize
           @PageNumber = pagenumber
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
           @Phones = phones
           @SessionIds = sessionids
         end
@@ -4719,12 +4719,12 @@ module TencentCloud
         def deserialize(params)
           @StartTimeStamp = params['StartTimeStamp']
           @EndTimeStamp = params['EndTimeStamp']
-          @InstanceId = params['InstanceId']
-          @Limit = params['Limit']
-          @Offset = params['Offset']
           @SdkAppId = params['SdkAppId']
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
           @Phones = params['Phones']
           @SessionIds = params['SessionIds']
         end
@@ -4743,8 +4743,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TelCdrs, :TelCdrList, :RequestId
         extend Gem::Deprecate
-        deprecate :TelCdrs, :none, 2025, 11
-        deprecate :TelCdrs=, :none, 2025, 11
+        deprecate :TelCdrs, :none, 2025, 12
+        deprecate :TelCdrs=, :none, 2025, 12
 
         def initialize(totalcount=nil, telcdrs=nil, telcdrlist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6661,10 +6661,10 @@ module TencentCloud
 
         attr_accessor :Name, :Mail, :Phone, :Nick, :StaffNumber, :RoleId, :RoleIdList, :RoleList, :SkillGroupList, :LastModifyTimestamp, :ExtensionNumber, :ForwardingConfig
         extend Gem::Deprecate
-        deprecate :RoleId, :none, 2025, 11
-        deprecate :RoleId=, :none, 2025, 11
-        deprecate :RoleIdList, :none, 2025, 11
-        deprecate :RoleIdList=, :none, 2025, 11
+        deprecate :RoleId, :none, 2025, 12
+        deprecate :RoleId=, :none, 2025, 12
+        deprecate :RoleIdList, :none, 2025, 12
+        deprecate :RoleIdList=, :none, 2025, 12
 
         def initialize(name=nil, mail=nil, phone=nil, nick=nil, staffnumber=nil, roleid=nil, roleidlist=nil, rolelist=nil, skillgrouplist=nil, lastmodifytimestamp=nil, extensionnumber=nil, forwardingconfig=nil)
           @Name = name
@@ -7001,6 +7001,8 @@ module TencentCloud
 
         # 电话呼出        221     callerCancelWithoutRing      **未振铃被叫号码异常**
 
+        # 电话呼出        222     voiceMailReached      **语音信箱挂断**
+
         # 音频呼入        501     callConflict      **VoIP用户呼叫冲突终止**
 
         # 音频呼入        502     clientTimeout      **VoIP用户客户端超时**
@@ -7076,8 +7078,8 @@ module TencentCloud
 
         attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
         extend Gem::Deprecate
-        deprecate :Uui, :none, 2025, 11
-        deprecate :Uui=, :none, 2025, 11
+        deprecate :Uui, :none, 2025, 12
+        deprecate :Uui=, :none, 2025, 12
 
         def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
           @Caller = caller

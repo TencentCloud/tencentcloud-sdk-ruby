@@ -5786,6 +5786,50 @@ module TencentCloud
         end
       end
 
+      # ModifyPackageDomain请求参数结构体
+      class ModifyPackageDomainRequest < TencentCloud::Common::AbstractModel
+        # @param Operation: 操作类型：change: 套餐换域名；unbind: 解绑套餐域名；bind: 套餐绑定域名。
+        # @type Operation: String
+        # @param DomainId: 域名ID。Operation为change时必传，代表更换前的域名。
+        # @type DomainId: Integer
+        # @param NewDomainId: 域名ID。Operation为change或bind时必传，代表更换后或要绑定的域名。
+        # @type NewDomainId: Integer
+        # @param ResourceId: 套餐资源ID。Operation为bind或unbind时必传，代表将要操作的套餐资源。
+        # @type ResourceId: String
+
+        attr_accessor :Operation, :DomainId, :NewDomainId, :ResourceId
+
+        def initialize(operation=nil, domainid=nil, newdomainid=nil, resourceid=nil)
+          @Operation = operation
+          @DomainId = domainid
+          @NewDomainId = newdomainid
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @Operation = params['Operation']
+          @DomainId = params['DomainId']
+          @NewDomainId = params['NewDomainId']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
+      # ModifyPackageDomain返回参数结构体
+      class ModifyPackageDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 批量添加记录返回结构
       class ModifyRecordBatchDetail < TencentCloud::Common::AbstractModel
         # @param RecordList: 见RecordInfoBatchModify

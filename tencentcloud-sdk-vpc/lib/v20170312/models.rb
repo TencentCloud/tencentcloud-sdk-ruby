@@ -2214,12 +2214,16 @@ module TencentCloud
         # @type Ipv6Flag: Boolean
         # @param MrtbAggregatePolicyFlag: 是否支持路由表聚合策略
         # @type MrtbAggregatePolicyFlag: Boolean
-        # @param MrtbPolicyValueFlag: 是否支持策略值
+        # @param MrtbPolicyValueFlag: 是否支持AsPath策略值
         # @type MrtbPolicyValueFlag: Boolean
+        # @param RouteTablePolicyValueCommunityFlag: 是否支持Community策略值
+        # @type RouteTablePolicyValueCommunityFlag: Boolean
+        # @param PolicyBasedRoutingFlag: 是否支持策略路由
+        # @type PolicyBasedRoutingFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag, :RouteTablePolicyValueCommunityFlag, :PolicyBasedRoutingFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil, routetablepolicyvaluecommunityflag=nil, policybasedroutingflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -2243,6 +2247,8 @@ module TencentCloud
           @Ipv6Flag = ipv6flag
           @MrtbAggregatePolicyFlag = mrtbaggregatepolicyflag
           @MrtbPolicyValueFlag = mrtbpolicyvalueflag
+          @RouteTablePolicyValueCommunityFlag = routetablepolicyvaluecommunityflag
+          @PolicyBasedRoutingFlag = policybasedroutingflag
         end
 
         def deserialize(params)
@@ -2276,6 +2282,8 @@ module TencentCloud
           @Ipv6Flag = params['Ipv6Flag']
           @MrtbAggregatePolicyFlag = params['MrtbAggregatePolicyFlag']
           @MrtbPolicyValueFlag = params['MrtbPolicyValueFlag']
+          @RouteTablePolicyValueCommunityFlag = params['RouteTablePolicyValueCommunityFlag']
+          @PolicyBasedRoutingFlag = params['PolicyBasedRoutingFlag']
         end
       end
 

@@ -1935,6 +1935,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 套餐绑定、解绑、更换域名
+
+        # @param request: Request instance for ModifyPackageDomain.
+        # @type request: :class:`Tencentcloud::dnspod::V20210323::ModifyPackageDomainRequest`
+        # @rtype: :class:`Tencentcloud::dnspod::V20210323::ModifyPackageDomainResponse`
+        def ModifyPackageDomain(request)
+          body = send_request('ModifyPackageDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPackageDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改记录
 
         # @param request: Request instance for ModifyRecord.

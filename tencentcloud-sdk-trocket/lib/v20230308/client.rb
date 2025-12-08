@@ -1814,6 +1814,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 发送 RocketMQ 消息，该接口仅用于控制台发送少量测试消息，不保证SLA，且云 API 存在限流，在真实业务场景下，请使用 RocketMQ SDK 发送消息。
+
+        # @param request: Request instance for SendMessage.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::SendMessageRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::SendMessageResponse`
+        def SendMessage(request)
+          body = send_request('SendMessage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SendMessageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 消息消费验证
+
+        # @param request: Request instance for VerifyMessageConsumption.
+        # @type request: :class:`Tencentcloud::trocket::V20230308::VerifyMessageConsumptionRequest`
+        # @rtype: :class:`Tencentcloud::trocket::V20230308::VerifyMessageConsumptionResponse`
+        def VerifyMessageConsumption(request)
+          body = send_request('VerifyMessageConsumption', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = VerifyMessageConsumptionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

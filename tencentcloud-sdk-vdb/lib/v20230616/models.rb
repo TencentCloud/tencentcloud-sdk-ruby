@@ -136,32 +136,32 @@ module TencentCloud
 
         attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :ProductType, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
         extend Gem::Deprecate
-        deprecate :Project, :none, 2025, 11
-        deprecate :Project=, :none, 2025, 11
-        deprecate :NetworkType, :none, 2025, 11
-        deprecate :NetworkType=, :none, 2025, 11
-        deprecate :TemplateId, :none, 2025, 11
-        deprecate :TemplateId=, :none, 2025, 11
-        deprecate :Components, :none, 2025, 11
-        deprecate :Components=, :none, 2025, 11
-        deprecate :Zone, :none, 2025, 11
-        deprecate :Zone=, :none, 2025, 11
-        deprecate :SlaveZones, :none, 2025, 11
-        deprecate :SlaveZones=, :none, 2025, 11
-        deprecate :IsNoExpired, :none, 2025, 11
-        deprecate :IsNoExpired=, :none, 2025, 11
-        deprecate :EngineName, :none, 2025, 11
-        deprecate :EngineName=, :none, 2025, 11
-        deprecate :EngineVersion, :none, 2025, 11
-        deprecate :EngineVersion=, :none, 2025, 11
-        deprecate :Brief, :none, 2025, 11
-        deprecate :Brief=, :none, 2025, 11
-        deprecate :Chief, :none, 2025, 11
-        deprecate :Chief=, :none, 2025, 11
-        deprecate :DBA, :none, 2025, 11
-        deprecate :DBA=, :none, 2025, 11
-        deprecate :NodeType, :none, 2025, 11
-        deprecate :NodeType=, :none, 2025, 11
+        deprecate :Project, :none, 2025, 12
+        deprecate :Project=, :none, 2025, 12
+        deprecate :NetworkType, :none, 2025, 12
+        deprecate :NetworkType=, :none, 2025, 12
+        deprecate :TemplateId, :none, 2025, 12
+        deprecate :TemplateId=, :none, 2025, 12
+        deprecate :Components, :none, 2025, 12
+        deprecate :Components=, :none, 2025, 12
+        deprecate :Zone, :none, 2025, 12
+        deprecate :Zone=, :none, 2025, 12
+        deprecate :SlaveZones, :none, 2025, 12
+        deprecate :SlaveZones=, :none, 2025, 12
+        deprecate :IsNoExpired, :none, 2025, 12
+        deprecate :IsNoExpired=, :none, 2025, 12
+        deprecate :EngineName, :none, 2025, 12
+        deprecate :EngineName=, :none, 2025, 12
+        deprecate :EngineVersion, :none, 2025, 12
+        deprecate :EngineVersion=, :none, 2025, 12
+        deprecate :Brief, :none, 2025, 12
+        deprecate :Brief=, :none, 2025, 12
+        deprecate :Chief, :none, 2025, 12
+        deprecate :Chief=, :none, 2025, 12
+        deprecate :DBA, :none, 2025, 12
+        deprecate :DBA=, :none, 2025, 12
+        deprecate :NodeType, :none, 2025, 12
+        deprecate :NodeType=, :none, 2025, 12
 
         def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, producttype=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
           @VpcId = vpcid
@@ -496,10 +496,10 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus, :Networks
         extend Gem::Deprecate
-        deprecate :EngineNames, :none, 2025, 11
-        deprecate :EngineNames=, :none, 2025, 11
-        deprecate :Zones, :none, 2025, 11
-        deprecate :Zones=, :none, 2025, 11
+        deprecate :EngineNames, :none, 2025, 12
+        deprecate :EngineNames=, :none, 2025, 12
+        deprecate :Zones, :none, 2025, 12
+        deprecate :Zones=, :none, 2025, 12
 
         def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil, networks=nil)
           @InstanceIds = instanceids
@@ -764,12 +764,12 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :ProductType, :InstanceType, :NodeType, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus, :SecurityGroupIds
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2025, 11
-        deprecate :HealthScore=, :none, 2025, 11
-        deprecate :Warning, :none, 2025, 11
-        deprecate :Warning=, :none, 2025, 11
-        deprecate :Project, :none, 2025, 11
-        deprecate :Project=, :none, 2025, 11
+        deprecate :HealthScore, :none, 2025, 12
+        deprecate :HealthScore=, :none, 2025, 12
+        deprecate :Warning, :none, 2025, 12
+        deprecate :Warning=, :none, 2025, 12
+        deprecate :Project, :none, 2025, 12
+        deprecate :Project=, :none, 2025, 12
 
         def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, producttype=nil, instancetype=nil, nodetype=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil, securitygroupids=nil)
           @InstanceId = instanceid
