@@ -6502,7 +6502,7 @@ module TencentCloud
       class DescribeRocketMQMsgRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param EnvironmentId: 命名空间
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param TopicName: 主题，查询死信时传groupId
         # @type TopicName: String
@@ -6747,7 +6747,7 @@ module TencentCloud
       class DescribeRocketMQProducersRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param Topic: 主题名
         # @type Topic: String

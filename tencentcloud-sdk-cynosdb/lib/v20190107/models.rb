@@ -231,7 +231,9 @@ module TencentCloud
         # @type Memory: Integer
         # @param ReadOnlyCount: 新增只读实例数，取值范围为(0,15]
         # @type ReadOnlyCount: Integer
-        # @param DeviceType: 实例机器类型
+        # @param DeviceType: 实例机器类型，支持值如下：
+        # - common：表示通用型
+        # - exclusive：表示独享型
         # @type DeviceType: String
         # @param InstanceGrpId: 实例组ID，在已有RO组中新增实例时使用，不传则新增RO组。当前版本不建议传输该值。
         # @type InstanceGrpId: String
@@ -1028,15 +1030,18 @@ module TencentCloud
         # @type FinishTime: String
         # @param BinlogId: Binlog文件ID
         # @type BinlogId: Integer
+        # @param CrossRegions: binlog所跨地域
+        # @type CrossRegions: Array
 
-        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId
+        attr_accessor :FileName, :FileSize, :StartTime, :FinishTime, :BinlogId, :CrossRegions
 
-        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil)
+        def initialize(filename=nil, filesize=nil, starttime=nil, finishtime=nil, binlogid=nil, crossregions=nil)
           @FileName = filename
           @FileSize = filesize
           @StartTime = starttime
           @FinishTime = finishtime
           @BinlogId = binlogid
+          @CrossRegions = crossregions
         end
 
         def deserialize(params)
@@ -1045,6 +1050,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @FinishTime = params['FinishTime']
           @BinlogId = params['BinlogId']
+          @CrossRegions = params['CrossRegions']
         end
       end
 
@@ -3385,7 +3391,16 @@ module TencentCloud
         # @type Zone: String
         # @param PhysicalZone: 物理可用区
         # @type PhysicalZone: String
-        # @param Status: 状态
+        # @param Status: 状态，支持的值如下：
+        # - creating：创建中
+        # - running：运行中
+        # - isolating：隔离中
+        # - isolated：已隔离
+        # - activating：从回收站重新恢复
+        # - offlining：下线中
+        # - offlined：已下线
+        # - deleting：删除中
+        # - deleted：已删除
         # @type Status: String
         # @param StatusDesc: 状态描述
         # @type StatusDesc: String
@@ -8994,7 +9009,9 @@ module TencentCloud
         # @type InstancePayMode: String
         # @param StoragePayMode: 存储购买类型，可选值为：PREPAID, POSTPAID
         # @type StoragePayMode: String
-        # @param DeviceType: 实例设备类型
+        # @param DeviceType: 实例设备类型，支持值如下：
+        # - common：表示通用型
+        # - exclusive：表示独享型
         # @type DeviceType: String
         # @param Cpu: CPU核数，PREPAID与POSTPAID实例类型必传
         # @type Cpu: Integer

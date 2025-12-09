@@ -6425,7 +6425,7 @@ module TencentCloud
         # @type SubnetIds: Array
         # @param CdbErrors: 是否锁定标记，可选值：0 - 不锁定，1 - 锁定，默认为0。
         # @type CdbErrors: Array
-        # @param OrderBy: 返回结果集排序的字段，目前支持："InstanceId"，"InstanceName"，"CreateTime"，"DeadlineTime"。
+        # @param OrderBy: 返回结果集排序的字段，目前支持："instanceId"，"instanceName"，"createTime"，"deadlineTime"。
         # @type OrderBy: String
         # @param OrderDirection: 返回结果集排序方式。目前支持值："ASC" - 表示升序，"DESC" - 表示降序，默认为 "DESC"。
         # @type OrderDirection: String
@@ -6467,7 +6467,7 @@ module TencentCloud
         # @type ProxyIds: Array
         # @param EngineTypes: 数据库引擎类型。可选值为：InnoDB、RocksDB。
         # @type EngineTypes: Array
-        # @param QueryClusterInfo: 是否获取集群版实例节点信息，可填：true 或 false。默认为 false。
+        # @param QueryClusterInfo: 是否获取云盘版实例节点信息，可填：true 或 false。默认为 false。
         # @type QueryClusterInfo: Boolean
 
         attr_accessor :ProjectId, :InstanceTypes, :Vips, :Status, :Offset, :Limit, :SecurityGroupId, :PayTypes, :InstanceNames, :TaskStatus, :EngineVersions, :VpcIds, :ZoneIds, :SubnetIds, :CdbErrors, :OrderBy, :OrderDirection, :WithSecurityGroup, :WithExCluster, :ExClusterId, :InstanceIds, :InitFlag, :WithDr, :WithRo, :WithMaster, :DeployGroupIds, :TagKeysForSearch, :CageIds, :TagValues, :UniqueVpcIds, :UniqSubnetIds, :Tags, :ProxyVips, :ProxyIds, :EngineTypes, :QueryClusterInfo
@@ -7383,9 +7383,9 @@ module TencentCloud
 
       # DescribeInstancePasswordComplexity返回参数结构体
       class DescribeInstancePasswordComplexityResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 实例的参数总数
+        # @param TotalCount: 密码复杂度相关参数总数
         # @type TotalCount: Integer
-        # @param Items: 参数详情
+        # @param Items: 密码复杂度参数详情，policy取值范围["","LOW","MEDIUM"],空或者LOW表示：密码复杂度关，MEDIUM表示：密码复杂度开；当policy参数值是MEDIUM时，以下参数才有意义，length:取值范围[8-64],表示：最少字符数；mixed_case_count：取值范围[1-16]，表示大写字母和小写字母的最少个数。number_count：取值范围[1-16]，表示数字字符的最少个数。special_char_count：取值范围[1-16]，表示特殊字符的最少个数。
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

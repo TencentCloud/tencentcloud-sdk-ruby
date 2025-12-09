@@ -6427,15 +6427,15 @@ module TencentCloud
 
       # VerifyMessageConsumption请求参数结构体
       class VerifyMessageConsumptionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
-        # @param Topic: 主题
+        # @param Topic: 主题名称，从 [DescribeTopicList](https://cloud.tencent.com/document/api/1493/96030) 接口返回的 [TopicItem](https://cloud.tencent.com/document/api/1493/96031#TopicItem) 或控制台获得。
         # @type Topic: String
         # @param ClientId: 客户端ID
         # @type ClientId: String
         # @param MsgId: 消息ID
         # @type MsgId: String
-        # @param ConsumerGroup: 消费组名称
+        # @param ConsumerGroup: 消费组名称，从 [DescribeConsumerGroupList](https://cloud.tencent.com/document/api/1493/101535) 接口返回的 [ConsumeGroupItem](https://cloud.tencent.com/document/api/1493/96031#ConsumeGroupItem) 或控制台获得。
         # @type ConsumerGroup: String
 
         attr_accessor :InstanceId, :Topic, :ClientId, :MsgId, :ConsumerGroup

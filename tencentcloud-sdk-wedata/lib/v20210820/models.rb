@@ -17624,10 +17624,14 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageIndex: 分页索引
         # @type PageIndex: Integer
+        # @param StatusList: 状态列表  LAUNCHED:等待运行 RUNNING:运行中 KILLING:终止中 KILLED:已终止 SUCCESS:成功 FAILED:失败 SKIP_RUNNING 跳过运行 NEVER_RUN:未运行
+        # @type StatusList: Array
+        # @param OrderConditionList: 排序条件 排序的key：timeCost,startTime
+        # @type OrderConditionList: Array
 
-        attr_accessor :ProjectId, :TaskId, :SearchWord, :SearchUserUin, :CreateTime, :EndTime, :RecordIdList, :PageSize, :PageIndex
+        attr_accessor :ProjectId, :TaskId, :SearchWord, :SearchUserUin, :CreateTime, :EndTime, :RecordIdList, :PageSize, :PageIndex, :StatusList, :OrderConditionList
 
-        def initialize(projectid=nil, taskid=nil, searchword=nil, searchuseruin=nil, createtime=nil, endtime=nil, recordidlist=nil, pagesize=nil, pageindex=nil)
+        def initialize(projectid=nil, taskid=nil, searchword=nil, searchuseruin=nil, createtime=nil, endtime=nil, recordidlist=nil, pagesize=nil, pageindex=nil, statuslist=nil, orderconditionlist=nil)
           @ProjectId = projectid
           @TaskId = taskid
           @SearchWord = searchword
@@ -17637,6 +17641,8 @@ module TencentCloud
           @RecordIdList = recordidlist
           @PageSize = pagesize
           @PageIndex = pageindex
+          @StatusList = statuslist
+          @OrderConditionList = orderconditionlist
         end
 
         def deserialize(params)
@@ -17649,6 +17655,15 @@ module TencentCloud
           @RecordIdList = params['RecordIdList']
           @PageSize = params['PageSize']
           @PageIndex = params['PageIndex']
+          @StatusList = params['StatusList']
+          unless params['OrderConditionList'].nil?
+            @OrderConditionList = []
+            params['OrderConditionList'].each do |i|
+              ordercondition_tmp = OrderCondition.new
+              ordercondition_tmp.deserialize(i)
+              @OrderConditionList << ordercondition_tmp
+            end
+          end
         end
       end
 
@@ -40652,10 +40667,12 @@ module TencentCloud
         # @type WorkflowParams: Array
         # @param GeneralTaskParams: 用于配置优化参数（线程、内存、CPU核数等），仅作用于Spark SQL节点。多个参数用英文分号分隔。
         # @type GeneralTaskParams: Array
+        # @param DependencyWorkflow: 工作流依赖，yes/no。开启后表示当前任务依赖本工作流上个周期的所有任务。仅支持当前任务所在工作流的任务全部为同周期的情况，如果非同周期则不生效，请在工作流-统一调度上进行配置。
+        # @type DependencyWorkflow: String
 
-        attr_accessor :ProjectId, :OperatorName, :WorkflowId, :Owner, :OwnerId, :WorkflowDesc, :WorkflowName, :FolderId, :UserGroupId, :UserGroupName, :WorkflowParams, :GeneralTaskParams
+        attr_accessor :ProjectId, :OperatorName, :WorkflowId, :Owner, :OwnerId, :WorkflowDesc, :WorkflowName, :FolderId, :UserGroupId, :UserGroupName, :WorkflowParams, :GeneralTaskParams, :DependencyWorkflow
 
-        def initialize(projectid=nil, operatorname=nil, workflowid=nil, owner=nil, ownerid=nil, workflowdesc=nil, workflowname=nil, folderid=nil, usergroupid=nil, usergroupname=nil, workflowparams=nil, generaltaskparams=nil)
+        def initialize(projectid=nil, operatorname=nil, workflowid=nil, owner=nil, ownerid=nil, workflowdesc=nil, workflowname=nil, folderid=nil, usergroupid=nil, usergroupname=nil, workflowparams=nil, generaltaskparams=nil, dependencyworkflow=nil)
           @ProjectId = projectid
           @OperatorName = operatorname
           @WorkflowId = workflowid
@@ -40668,6 +40685,7 @@ module TencentCloud
           @UserGroupName = usergroupname
           @WorkflowParams = workflowparams
           @GeneralTaskParams = generaltaskparams
+          @DependencyWorkflow = dependencyworkflow
         end
 
         def deserialize(params)
@@ -40697,6 +40715,7 @@ module TencentCloud
               @GeneralTaskParams << generaltaskparam_tmp
             end
           end
+          @DependencyWorkflow = params['DependencyWorkflow']
         end
       end
 

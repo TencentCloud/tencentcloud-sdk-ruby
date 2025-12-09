@@ -1475,7 +1475,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口(SetBackupRules)用于设置 MongoDB 云数据库的自动备份规则。
+        # 本接口（SetBackupRules）用于设置 MongoDB 云数据库的自动备份规则。
 
         # @param request: Request instance for SetBackupRules.
         # @type request: :class:`Tencentcloud::mongodb::V20190725::SetBackupRulesRequest`

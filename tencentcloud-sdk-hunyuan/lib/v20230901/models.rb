@@ -210,6 +210,11 @@ module TencentCloud
         # @type EnableThinking: Boolean
 
         attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice, :EnableThinking
+        extend Gem::Deprecate
+        deprecate :EnableDeepSearch, :none, 2025, 12
+        deprecate :EnableDeepSearch=, :none, 2025, 12
+        deprecate :EnableDeepRead, :none, 2025, 12
+        deprecate :EnableDeepRead=, :none, 2025, 12
 
         def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil, enablethinking=nil)
           @Model = model
@@ -319,8 +324,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2025, 11
-        deprecate :ModerationLevel=, :none, 2025, 11
+        deprecate :ModerationLevel, :none, 2025, 12
+        deprecate :ModerationLevel=, :none, 2025, 12
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -1047,10 +1052,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2025, 11
-        deprecate :FirstID=, :none, 2025, 11
-        deprecate :LastID, :none, 2025, 11
-        deprecate :LastID=, :none, 2025, 11
+        deprecate :FirstID, :none, 2025, 12
+        deprecate :FirstID=, :none, 2025, 12
+        deprecate :LastID, :none, 2025, 12
+        deprecate :LastID=, :none, 2025, 12
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -1942,6 +1947,22 @@ module TencentCloud
           @Message = params['Message']
           @State = params['State']
           @Num = params['Num']
+        end
+      end
+
+      # 输入token的详细信息。
+      class PromptTokensDetails < TencentCloud::Common::AbstractModel
+        # @param CachedTokens: 缓存 token 的数量。
+        # @type CachedTokens: String
+
+        attr_accessor :CachedTokens
+
+        def initialize(cachedtokens=nil)
+          @CachedTokens = cachedtokens
+        end
+
+        def deserialize(params)
+          @CachedTokens = params['CachedTokens']
         end
       end
 
@@ -3064,19 +3085,26 @@ module TencentCloud
         # @type CompletionTokens: Integer
         # @param TotalTokens: 总 Token 数量。
         # @type TotalTokens: Integer
+        # @param PromptTokensDetails: 输入 token 的详情。
+        # @type PromptTokensDetails: :class:`Tencentcloud::Hunyuan.v20230901.models.PromptTokensDetails`
 
-        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens
+        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens, :PromptTokensDetails
 
-        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil)
+        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil, prompttokensdetails=nil)
           @PromptTokens = prompttokens
           @CompletionTokens = completiontokens
           @TotalTokens = totaltokens
+          @PromptTokensDetails = prompttokensdetails
         end
 
         def deserialize(params)
           @PromptTokens = params['PromptTokens']
           @CompletionTokens = params['CompletionTokens']
           @TotalTokens = params['TotalTokens']
+          unless params['PromptTokensDetails'].nil?
+            @PromptTokensDetails = PromptTokensDetails.new
+            @PromptTokensDetails.deserialize(params['PromptTokensDetails'])
+          end
         end
       end
 

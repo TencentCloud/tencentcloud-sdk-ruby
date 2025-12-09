@@ -20,13 +20,10 @@ module TencentCloud
       # CreateFinancialLLMTask请求参数结构体
       class CreateFinancialLLMTaskRequest < TencentCloud::Common::AbstractModel
         # @param BizType: 接口使用的识别策略 ID，请参考 [快速指引](https://cloud.tencent.com/document/product/1124/124604) 获取该值。
-        # 示例值：TencentCloudFinancialLLMDefault
         # @type BizType: String
         # @param ContentType: 送审内容的格式，有两个可选值：
         # - 1：代表送审内容为**文档**，如DOC文档
         # - 2：代表送审内容为**纯文本**
-
-        # 示例值：1
         # @type ContentType: Integer
         # @param FileType: 若送审内容为文档（ContentType=1），需要传入具体格式，当前支持：DOC、DOCX、PDF。
         # 说明：若送审内容为纯文本（ContentType=2），则本字段传空（FileType=""）。
@@ -34,8 +31,6 @@ module TencentCloud
         # @param Content: 送审内容的传入方式如下：
         # - 若为文档类，需传入文档的URL（原文档文字数不超过10,000字），例如：http://xxxxxxxxxxxx/financial_test.doc
         # - 若为纯文本类，请以UTF-8格式进行Base64编码后传入（编码后字符数不超过10,000字），例如：5piO5aSpNjAz5LiA5a6a5rao
-
-        # 示例值：5piO5aSpNjAz5LiA5a6a5rao
         # @type Content: String
 
         attr_accessor :BizType, :ContentType, :FileType, :Content
@@ -58,7 +53,6 @@ module TencentCloud
       # CreateFinancialLLMTask返回参数结构体
       class CreateFinancialLLMTaskResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 本次请求返回的任务ID将用于后续查询接口，以获取对应的审校结果。
-        # 示例值：3570106e-b156-45d9-8af5-99b46f7eb2f9。
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -239,7 +233,6 @@ module TencentCloud
       # GetFinancialLLMTaskResult请求参数结构体
       class GetFinancialLLMTaskResultRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: 该值对应创建任务接口里返回的TaskId字段值，创建任务接口见[创建金融大模型审校任务](https://cloud.tencent.com/document/product/1124/124463)。
-        # 示例值：3570106e-b156-45d9-8af5-99b46f7eb2f9
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -265,10 +258,8 @@ module TencentCloud
         # @param ReviewedLabels: 本次检测的违规点列表
         # @type ReviewedLabels: Array
         # @param StartTime: 审校任务的开始时间
-        # 示例值：2025-09-25 19:42:35
         # @type StartTime: String
         # @param FailureReason: 若审校任务失败（Status="Failed"），该字段返回失败的具体原因。
-        # 示例值：文档解析失败
         # @type FailureReason: String
         # @param ModerationResult: 该字段为历史结构字段，不再推荐使用。
         # @type ModerationResult: String
@@ -462,17 +453,13 @@ module TencentCloud
       # TextModeration请求参数结构体
       class TextModerationRequest < TencentCloud::Common::AbstractModel
         # @param Content: 待检测的文本内容，需为UTF-8编码并以Base64格式传入。
-        # 示例值：5L2g55qE5Lil6LCo6K6p5L2g5Y+R546w77yM5Lqn5ZOB57uP55CG5Y+r5YmR6Z2S
         # @type Content: String
         # @param BizType: 接口使用的识别策略编号，需在[控制台](https://console.cloud.tencent.com/cms/clouds/manage)获取。详细获取方式请参考以下链接：
         # - **内容安全**（详见步骤四：策略配置）：[点击这里](https://cloud.tencent.com/document/product/1124/37119)
         # - **AI生成识别**（详见服务对接->方式二）：[点击这里](https://cloud.tencent.com/document/product/1124/118694)
-
-        # 示例值：TencentCloudDefault
         # @type BizType: String
         # @param DataId: 该字段表示您为待检测文本分配的数据ID，作用是方便您对数据进行标识和管理。
         # 取值：可由英文字母、数字、四种特殊符号（_，-，@，#）组成，**长度不超过64个字符**。
-        # 示例值：a6127dd-c2a0-43e7-a3da-d27022d39ba7
         # @type DataId: String
         # @param User: 该字段标识用户信息，传入后可增强甄别有违规风险的发布者账号。
         # @type User: :class:`Tencentcloud::Tms.v20201229.models.User`
@@ -481,15 +468,12 @@ module TencentCloud
         # @param SourceLanguage: Content字段的原始语种，枚举值包括 zh 和 en：
         # - 推荐使用 zh
         # - en 适用于纯英文内容，耗时较高。若需使用 en，请先通过[反馈工单](https://console.cloud.tencent.com/workorder/category?level1_id=141&level2_id=1287&source=14&data_title=%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%E5%AE%89%E5%85%A8&step=1)确认
-
-        # 示例值：zh
         # @type SourceLanguage: String
         # @param Type: 服务类型，枚举值包括 TEXT 和 TEXT_AIGC：
         # TEXT：内容安全
         # TEXT_AIGC：AI生成识别
         # @type Type: String
         # @param SessionId: 适用于上下文关联审核场景，若多条文本内容需要联合审核，通过该字段关联会话。
-        # 示例值：7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
         # @type SessionId: String
 
         attr_accessor :Content, :BizType, :DataId, :User, :Device, :SourceLanguage, :Type, :SessionId
@@ -526,7 +510,6 @@ module TencentCloud
       # TextModeration返回参数结构体
       class TextModerationResponse < TencentCloud::Common::AbstractModel
         # @param BizType: 该字段用于回显检测对象请求参数中的 BizType，与输入的 BizType 值对应。
-        # 示例值：TencentCloudDefault
         # @type BizType: String
         # @param Suggestion: 用于标识对本次请求的处置建议，共三种返回值。
         # 返回值：**Block**: 建议直接做违规处置，**Review**: 建议人工二次确认，**Pass**: 未识别到风险。
@@ -534,13 +517,10 @@ module TencentCloud
         # @param Label: 该字段用于返回检测结果（DetailResults）中所对应的**优先级最高的恶意标签**，表示模型推荐的审核结果，建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告；以及其他令人反感、不安全或不适宜的内容类型
         # @type Label: String
         # @param SubLabel: 对应 Label 字段下的二级子标签，表示该 Label 下更细分的违规点。
-        # 示例值：SexualBehavior（该值为 Porn 下的一个二级标签）
         # @type SubLabel: String
         # @param Score: 该字段标识 SubLabel 的置信度，取值范围为 0 - 100，值越高代表置信度越高。
-        # 示例值：85
         # @type Score: Integer
         # @param Keywords: 该字段标识被检测文本所命中的关键词，可能返回0个或多个关键词。
-        # 示例值：["优惠券", "线下兑换"]
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Keywords: Array
         # @param DetailResults: 该字段返回的检测的详细信息，返回值信息可参阅对应数据结构 DetailResults 的详细描述。
@@ -553,7 +533,6 @@ module TencentCloud
         # 备注：不同客户或Biztype下返回信息不同，如需配置该字段请提交工单咨询或联系售后专员处理。
         # @type Extra: String
         # @param DataId: 该字段用于回显检测对象请求参数中的 DataId，与输入的 DataId 值对应。
-        # 示例值：a6127dd-c2a0-43e7-a3da-d27022d39ba7
         # @type DataId: String
         # @param ContextText: 历史上下文关联的字段，不再推荐使用。上下文关联审核可通过入参的 SessionId 来实现。
         # @type ContextText: String
@@ -563,7 +542,6 @@ module TencentCloud
         # @param HitType: 该字段为历史结构字段，不再推荐使用。
         # @type HitType: String
         # @param SessionId: 该字段用于回显检测对象请求参数中的 SessionId，与输入的 SessionId 值对应。
-        # 示例值：7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b
         # @type SessionId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

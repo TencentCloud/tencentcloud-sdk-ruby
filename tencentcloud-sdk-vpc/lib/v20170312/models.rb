@@ -27605,10 +27605,12 @@ module TencentCloud
         # @type PolicyDescription: String
         # @param ModifyTime: 安全组最近修改时间。
         # @type ModifyTime: String
+        # @param Priority: 安全组规则优先级，值会随着安全组规则的变更动态变化。使用Priority时，请先调用`DescribeSecurityGroupPolicies`获取到规则的Priority，并且结合返回值中的Version一起使用处理规则。
+        # @type Priority: Integer
 
-        attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :Ipv6CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime
+        attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :Ipv6CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime, :Priority
 
-        def initialize(policyindex=nil, protocol=nil, port=nil, servicetemplate=nil, cidrblock=nil, ipv6cidrblock=nil, securitygroupid=nil, addresstemplate=nil, action=nil, policydescription=nil, modifytime=nil)
+        def initialize(policyindex=nil, protocol=nil, port=nil, servicetemplate=nil, cidrblock=nil, ipv6cidrblock=nil, securitygroupid=nil, addresstemplate=nil, action=nil, policydescription=nil, modifytime=nil, priority=nil)
           @PolicyIndex = policyindex
           @Protocol = protocol
           @Port = port
@@ -27620,6 +27622,7 @@ module TencentCloud
           @Action = action
           @PolicyDescription = policydescription
           @ModifyTime = modifytime
+          @Priority = priority
         end
 
         def deserialize(params)
@@ -27640,6 +27643,7 @@ module TencentCloud
           @Action = params['Action']
           @PolicyDescription = params['PolicyDescription']
           @ModifyTime = params['ModifyTime']
+          @Priority = params['Priority']
         end
       end
 
