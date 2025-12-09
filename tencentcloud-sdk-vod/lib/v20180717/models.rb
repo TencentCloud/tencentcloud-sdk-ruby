@@ -3995,6 +3995,555 @@ module TencentCloud
         end
       end
 
+      # AIGC 生图任务的输出媒体文件配置。
+      class AigcImageOutputConfig < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>
+        # 默认值：Temporary
+        # @type StorageMode: String
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param Resolution: 生成图片的分辨率。可选值为 720P、1080P、2K、4K、1024x1024、2048x2048、2304x1728、2496x1664、2560x1440、3024x1296、4096x4096、4694x3520、4992x3328、5404x3040、6198x2656，其中使用模型 Jimeng 时，推荐通过 Prompt 指定图片分辨率和宽高比。
+        # @type Resolution: String
+        # @param AspectRatio: 指定所生成图片的宽高比。<li>当 ModelName 是 GEM，可选值是 1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9；</li><li>当 ModelName 是 Qwen、Jimeng，则暂不支持，其中 Jimeng 会结合 Prompt意图、参考图片尺寸，由模型智能判断输出图片的宽高比。</li>
+        # @type AspectRatio: String
+        # @param PersonGeneration: 是否允许人物或人脸生成。取值有： <li>AllowAdult：允许生成成人；</li> <li>Disallowed：禁止在图片中包含人物或人脸；</li>
+        # @type PersonGeneration: String
+        # @param InputComplianceCheck: 是否开启输入内容的合规性检查。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type InputComplianceCheck: String
+        # @param OutputComplianceCheck: 是否开启输出内容的合规性检查。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type OutputComplianceCheck: String
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Resolution, :AspectRatio, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, resolution=nil, aspectratio=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @Resolution = resolution
+          @AspectRatio = aspectratio
+          @PersonGeneration = persongeneration
+          @InputComplianceCheck = inputcompliancecheck
+          @OutputComplianceCheck = outputcompliancecheck
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @Resolution = params['Resolution']
+          @AspectRatio = params['AspectRatio']
+          @PersonGeneration = params['PersonGeneration']
+          @InputComplianceCheck = params['InputComplianceCheck']
+          @OutputComplianceCheck = params['OutputComplianceCheck']
+        end
+      end
+
+      # AIGC 生图任务信息
+      class AigcImageTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param Input: AIGC 生图任务的输入信息。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTaskInput`
+        # @param Output: AIGC 生图任务的输出信息。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = AigcImageTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AigcImageTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # AIGC 生图任务的输入。
+      class AigcImageTaskInput < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称。
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本。
+        # @type ModelVersion: String
+        # @param FileInfos: AIGC生图任务输入文件信息。
+        # @type FileInfos: Array
+        # @param Prompt: 生成图片的提示词。最大支持1000字符，当 FileInfos 为空时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 要阻止模型生成图片的提示词。最大支持1000字符。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type EnhancePrompt: String
+        # @param GenerationMode: 生成模式。取值有： <li>Standard：标准模式；</li> <li>Professional：高品质模式；</li>
+        # @type GenerationMode: String
+        # @param OutputConfig: AIGC 生图输出结果文件输出。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
+
+        attr_accessor :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig
+
+        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @FileInfos = fileinfos
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @GenerationMode = generationmode
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcimagetaskinputfileinfo_tmp = AigcImageTaskInputFileInfo.new
+              aigcimagetaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcimagetaskinputfileinfo_tmp
+            end
+          end
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          @GenerationMode = params['GenerationMode']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcImageOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
+      # AIGC生图任务输入文件信息
+      class AigcImageTaskInputFileInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 URL；</li>
+        # @type Type: String
+        # @param FileId: 图片文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。当 Type 取值为 File 时，本参数有效。
+        # 说明：
+        # 1. 推荐使用小于7M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @type FileId: String
+        # @param Url: 可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。
+        # 说明：
+        # 1. 推荐使用小于7M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
+        end
+      end
+
+      # AIGC 生图任务的输出。
+      class AigcImageTaskOutput < TencentCloud::Common::AbstractModel
+        # @param FileInfos: AIGC 生图任务的输出文件信息。
+        # @type FileInfos: Array
+
+        attr_accessor :FileInfos
+
+        def initialize(fileinfos=nil)
+          @FileInfos = fileinfos
+        end
+
+        def deserialize(params)
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcimagetaskoutputfileinfo_tmp = AigcImageTaskOutputFileInfo.new
+              aigcimagetaskoutputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcimagetaskoutputfileinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AIGC 生图任务的输出文件信息。
+      class AigcImageTaskOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储；</li> <li>Temporary：临时存储；</li>
+        # @type StorageMode: String
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。当 StorageMode 为 Permanent 时有效。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param FileType: 文件类型，例如 mp4、flv 等。
+        # @type FileType: String
+        # @param FileUrl: 媒体文件播放地址。
+        # @type FileUrl: String
+        # @param FileId: 媒体文件 ID。当 StorageMode 为 Permanent 时有效。
+        # @type FileId: String
+        # @param MetaData: 输出视频的元信息。当 StorageMode 为 Permanent 时有效。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileId, :MetaData
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, fileid=nil, metadata=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileId = fileid
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileId = params['FileId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
+      # AIGC 生视频任务的输出媒体文件配置。
+      class AigcVideoOutputConfig < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>
+        # 默认值：Temporary
+        # @type StorageMode: String
+        # @param MediaName: 输出媒体文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param Duration: 生成视频的时长，单位：秒。<li>当 ModelName 是 Kling，可选值为 5、10，默认为 5；</li><li>当 ModelName 是 Jimeng，可选值为 5、10，默认为 5；</li><li>当 ModelName 是 Hailuo，可选值为 6、10，默认为 6；</li><li>当 ModelName 是 Vidu，可指定1-10；</li><li>当 ModelName 是 GV，可选值为 8，默认为 8；</li><li>当 ModelName 是 OS，可选值为 4、8、12，默认为 8；</li>
+        # @type Duration: Float
+        # @param Resolution: 生成视频的分辨率。
+        # <li>当 ModelName 是 Kling，可选值为 720P、1080P，默认为 720P；</li>
+        # <li>当 ModelName 是 Jimeng，可选值为 768P、1080P，默认为 768P；</li>
+        # <li>当 ModelName 是 Hailuo，可选值为 1080P；</li>
+        # <li>当 ModelName 是 Vidu，可选值为 720P、1080P，默认为 720P；</li>
+        # <li>当 ModelName 是 GV，可选值为 720P、1080P，默认为 720P；</li>
+        # <li>当 ModelName 是 OS，可选值为 720P；</li>
+        # 说明：除模型可支持的分辨率外，还支持 2K、4K分辨率。
+        # @type Resolution: String
+        # @param AspectRatio: 指定所生成视频的宽高比。
+        # <li>当 ModelName 是 Kling，当文生视频时，则可选值为 16:9、9:16、 1:1，默认为16:9；</li>
+        # <li>当 ModelName 是 Jimeng，当文生视频时，则可选值为 16:9、4:3、1:1、3:4、9:16、21:9</li>
+        # <li>当 ModelName 是 Vidu，当文生视频时和使用参考图片生成时，则可选值为 16:9、9:16、4:3、3:4、1:1，其中仅版本q2支持4:3、3:4</li>
+        # <li>当 ModelName 是 GV，则可选值为 16:9、9:16，默认为 16:9；</li>
+        # <li>当 ModelName 是 OS，当文生视频时，则可选值为 16:9、9:16，默认为 16:9；</li>
+        # <li>当 ModelName 是 Hailuo，则暂不支持。</li>
+        # @type AspectRatio: String
+        # @param AudioGeneration: 是否生成音频。支持的模型包括 GV、OS。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # 默认值：Enabled
+        # @type AudioGeneration: String
+        # @param PersonGeneration: 是否允许人物或人脸生成。取值有： <li>AllowAdult：允许生成成人；</li> <li>Disallowed：禁止在图片中包含人物或人脸；</li>
+        # @type PersonGeneration: String
+        # @param InputComplianceCheck: 是否开启输入内容的合规性检查。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type InputComplianceCheck: String
+        # @param OutputComplianceCheck: 是否开启输出内容的合规性检查。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type OutputComplianceCheck: String
+        # @param EnhanceSwitch: 是否启用视频增强。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # 说明：
+        # 1. 对于选择的分辨率超过模型可生成分辨率时，默认会启用增强。
+        # 2. 对于模型可以直出的分辨率，也可以主动选择模型直出低分辨率，使用增强获得指定分辨率。
+        # @type EnhanceSwitch: String
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Duration, :Resolution, :AspectRatio, :AudioGeneration, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :EnhanceSwitch
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, duration=nil, resolution=nil, aspectratio=nil, audiogeneration=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, enhanceswitch=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @Duration = duration
+          @Resolution = resolution
+          @AspectRatio = aspectratio
+          @AudioGeneration = audiogeneration
+          @PersonGeneration = persongeneration
+          @InputComplianceCheck = inputcompliancecheck
+          @OutputComplianceCheck = outputcompliancecheck
+          @EnhanceSwitch = enhanceswitch
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @Duration = params['Duration']
+          @Resolution = params['Resolution']
+          @AspectRatio = params['AspectRatio']
+          @AudioGeneration = params['AudioGeneration']
+          @PersonGeneration = params['PersonGeneration']
+          @InputComplianceCheck = params['InputComplianceCheck']
+          @OutputComplianceCheck = params['OutputComplianceCheck']
+          @EnhanceSwitch = params['EnhanceSwitch']
+        end
+      end
+
+      # AIGC 生视频任务信息
+      class AigcVideoTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param Input: AIGC 生视频任务的输入信息。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTaskInput`
+        # @param Output: AIGC 生视频任务的输出信息。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = AigcVideoTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AigcVideoTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # AIGC 生视频任务的输入。
+      class AigcVideoTaskInput < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称。
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本。
+        # @type ModelVersion: String
+        # @param FileInfos: AIGC生图任务输入文件信息。
+        # @type FileInfos: Array
+        # @param LastFrameFileId: 用于作为尾帧画面来生成视频的媒体文件 ID。该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type LastFrameFileId: String
+        # @param Prompt: 生成视频的提示词。最大支持1000字符，当 FileInfos 为空时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 要阻止模型生成视频的提示词。最大支持1000字符。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type EnhancePrompt: String
+        # @param GenerationMode: 生成模式。取值有： <li>Standard：标准模式；</li> <li>Professional：高品质模式；</li>
+        # @type GenerationMode: String
+        # @param OutputConfig: AIGC 生图输出结果文件输出。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoOutputConfig`
+
+        attr_accessor :ModelName, :ModelVersion, :FileInfos, :LastFrameFileId, :Prompt, :NegativePrompt, :EnhancePrompt, :GenerationMode, :OutputConfig
+
+        def initialize(modelname=nil, modelversion=nil, fileinfos=nil, lastframefileid=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, generationmode=nil, outputconfig=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @FileInfos = fileinfos
+          @LastFrameFileId = lastframefileid
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @GenerationMode = generationmode
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcvideotaskinputfileinfo_tmp = AigcVideoTaskInputFileInfo.new
+              aigcvideotaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcvideotaskinputfileinfo_tmp
+            end
+          end
+          @LastFrameFileId = params['LastFrameFileId']
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          @GenerationMode = params['GenerationMode']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcVideoOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
+      # AIGC 生视频任务输入的图片文件信息。
+      class AigcVideoTaskInputFileInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 URL；</li>
+        # @type Type: String
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。当 Type 取值为 File 时，本参数有效。说明：
+        # 1. 推荐使用小于10M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png。
+        # @type FileId: String
+        # @param Url: 可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。
+        # 说明：
+        # 1. 推荐使用小于10M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png。
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
+        end
+      end
+
+      # AIGC 生视频任务的输出信息。
+      class AigcVideoTaskOutput < TencentCloud::Common::AbstractModel
+        # @param FileInfos: AIGC 生视频任务的输出文件信息。
+        # @type FileInfos: Array
+
+        attr_accessor :FileInfos
+
+        def initialize(fileinfos=nil)
+          @FileInfos = fileinfos
+        end
+
+        def deserialize(params)
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcvideotaskoutputfileinfo_tmp = AigcVideoTaskOutputFileInfo.new
+              aigcvideotaskoutputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcvideotaskoutputfileinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AIGC 生视频任务的输出文件信息。
+      class AigcVideoTaskOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储；</li> <li>Temporary：临时存储；</li>
+        # 默认值：Temporary
+        # @type StorageMode: String
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。当 StorageMode 为 Permanent 时有效。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param FileType: 文件类型，例如 mp4、flv 等。
+        # @type FileType: String
+        # @param FileUrl: 媒体文件播放地址。
+        # @type FileUrl: String
+        # @param FileId: 媒体文件 ID。当 StorageMode 为 Permanent 时有效。
+        # @type FileId: String
+        # @param MetaData: 输出视频的元信息。当 StorageMode 为 Permanent 时有效。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileId, :MetaData
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, fileid=nil, metadata=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileId = fileid
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileId = params['FileId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
       # 转动图任务类型
       class AnimatedGraphicTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频转动图模板 ID
@@ -6494,6 +7043,201 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAigcImageTask请求参数结构体
+      class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param ModelName: 模型名称。取值：
+        # <li>GEM：Gemini；</li>
+        # <li>Jimeng：即梦；</li>
+        # <li>Qwen：千问。</li>
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本。取值：
+        # <li>当 ModelName 是 GEM，可选值为 2.5、3.0；</li>
+        # <li>当 ModelName 是 Jimeng，可选值为 4.0；</li>
+        # <li>当 ModelName 是 Qwen，可选值为 0925；</li>
+        # @type ModelVersion: String
+        # @param FileInfos: AIGC 生图任务的输入图片的文件信息。默认只支持指定1个，使用模型 GEM 时最多指定3个。
+        # @type FileInfos: Array
+        # @param Prompt: 生成图片的提示词。最大支持1000字符，当 FileInfos 为空时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 要阻止模型生成图片的提示词。最大支持500个字符。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的 Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type EnhancePrompt: String
+        # @param OutputConfig: 生图任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @FileInfos = fileinfos
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcimagetaskinputfileinfo_tmp = AigcImageTaskInputFileInfo.new
+              aigcimagetaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcimagetaskinputfileinfo_tmp
+            end
+          end
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcImageOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # CreateAigcImageTask返回参数结构体
+      class CreateAigcImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAigcVideoTask请求参数结构体
+      class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param ModelName: 模型名称。取值：<li>Hailuo：海螺；</li><li>Kling：可灵；</li><li> Jimeng：即梦；</li><li>Vidu；</li><li>GV：Google Veo；</li><li>OS：OpenAI Sora。</li>
+        # @type ModelName: String
+        # @param ModelVersion: 模型版本。取值：<li>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；</li><li>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5；</li><li>当 ModelName 是 Jimeng，可选值为 3.0pro；</li><li>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo；</li><li>当 ModelName 是 GV，可选值为 3.1；</li><li>当 ModelName 是 OS，可选值为 2.0；</li>
+        # @type ModelVersion: String
+        # @param FileInfos: AIGC 生视频任务的输入图片的文件信息。说明
+        # 1. 当 ModelName 是 GV 时，最大长度为 3；其他情况下最大长度为1。
+        # 2. 当 ModelName 是 GV 时，并且长度大于1时，则不能再指定 LastFrameFileId 参数。
+        # @type FileInfos: Array
+        # @param LastFrameFileId: 用于作为尾帧画面来生成视频的媒体文件 ID。该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。说明：
+        # 1. 只支持模型 GV 、Kling、Vidu，其他模型暂不支持。当 ModelName 为 GV 时，如果指定该参数，则需同时指定 FileInfos 作为待生成视频的首帧。当 ModelName 为 Kling 、ModelVersion 为 2.1 并且指定输出分辨率 Resolution 为 1080P 时，才能指定该参数。当 ModelName 为 Vidu、ModelVersion 为 q2-pro、q2-turbo 时，才能指定该参数。
+        # 2. 图片大小需小于5M。
+        # 3. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @type LastFrameFileId: String
+        # @param Prompt: 生成图片的提示词。最大支持2000个字符，当 FileInfos 为空时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 要阻止模型生成图片的提示词。最大支持500个字符。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的 Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type EnhancePrompt: String
+        # @param OutputConfig: 生视频任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :LastFrameFileId, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, lastframefileid=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @FileInfos = fileinfos
+          @LastFrameFileId = lastframefileid
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              aigcvideotaskinputfileinfo_tmp = AigcVideoTaskInputFileInfo.new
+              aigcvideotaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << aigcvideotaskinputfileinfo_tmp
+            end
+          end
+          @LastFrameFileId = params['LastFrameFileId']
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          unless params['OutputConfig'].nil?
+            @OutputConfig = AigcVideoOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # CreateAigcVideoTask返回参数结构体
+      class CreateAigcVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -12811,12 +13555,16 @@ module TencentCloud
         # @type ComplexAdaptiveDynamicStreamingTask: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
         # @param ProcessMediaByMPSTask: MPS 视频处理任务信息，仅当 TaskType 为 ProcessMediaByMPS，该字段有值。
         # @type ProcessMediaByMPSTask: :class:`Tencentcloud::Vod.v20180717.models.ProcessMediaByMPS`
+        # @param AigcImageTask: AIGC 生图任务信息，仅当 TaskType 为 AigcImageTask，该字段有值。
+        # @type AigcImageTask: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTask`
+        # @param AigcVideoTask: AIGC 生视频任务信息，仅当 TaskType 为 AigcVideoTask，该字段有值。
+        # @type AigcVideoTask: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -12845,6 +13593,8 @@ module TencentCloud
           @QualityEnhanceTask = qualityenhancetask
           @ComplexAdaptiveDynamicStreamingTask = complexadaptivedynamicstreamingtask
           @ProcessMediaByMPSTask = processmediabympstask
+          @AigcImageTask = aigcimagetask
+          @AigcVideoTask = aigcvideotask
           @RequestId = requestid
         end
 
@@ -12945,6 +13695,14 @@ module TencentCloud
           unless params['ProcessMediaByMPSTask'].nil?
             @ProcessMediaByMPSTask = ProcessMediaByMPS.new
             @ProcessMediaByMPSTask.deserialize(params['ProcessMediaByMPSTask'])
+          end
+          unless params['AigcImageTask'].nil?
+            @AigcImageTask = AigcImageTask.new
+            @AigcImageTask.deserialize(params['AigcImageTask'])
+          end
+          unless params['AigcVideoTask'].nil?
+            @AigcVideoTask = AigcVideoTask.new
+            @AigcVideoTask.deserialize(params['AigcVideoTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -14156,8 +14914,8 @@ module TencentCloud
         # <li>PersistenceComplete：剪辑固化完成；</li>
         # <li>ComplexAdaptiveDynamicStreamingComplete：复杂自适应码流任务完成。</li>
         # <li>ProcessMediaByMPSComplete：MPS视频处理完成。</li>
-        # <li>AigcImageComplete：AIGC 生图任务完成。</li>
-        # <li>AigcVideoComplete：AIGC 生视频任务完成。</li>
+        # <li>AigcImageTaskComplete：AIGC 生图任务完成。</li>
+        # <li>AigcVideoTaskComplete：AIGC 生视频任务完成。</li>
         # <b>兼容 2017 版的事件类型：</b>
         # <li>TranscodeComplete：视频转码完成；</li>
         # <li>ConcatComplete：视频拼接完成；</li>
@@ -14248,10 +15006,14 @@ module TencentCloud
         # @type ComplexAdaptiveDynamicStreamingCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ComplexAdaptiveDynamicStreamingTask`
         # @param ProcessMediaByMPSCompleteEvent: MPS 视频处理任务信息，仅当 EventType 为 ProcessMediaByMPSComplete 时有效。
         # @type ProcessMediaByMPSCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.ProcessMediaByMPS`
+        # @param AigcImageCompleteEvent: AIGC 生图任务信息，仅当 EventType 为 AigcImageTaskComplete 时有效。
+        # @type AigcImageCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTask`
+        # @param AigcVideoCompleteEvent: AIGC 生视频任务信息，仅当 EventType 为 AigcVideoTaskComplete 时有效。
+        # @type AigcVideoCompleteEvent: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTask`
 
-        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent, :ProcessMediaByMPSCompleteEvent
+        attr_accessor :EventHandle, :EventType, :FileUploadEvent, :ProcedureStateChangeEvent, :FileDeleteEvent, :PullCompleteEvent, :EditMediaCompleteEvent, :SplitMediaCompleteEvent, :ComposeMediaCompleteEvent, :ClipCompleteEvent, :TranscodeCompleteEvent, :CreateImageSpriteCompleteEvent, :ConcatCompleteEvent, :SnapshotByTimeOffsetCompleteEvent, :WechatPublishCompleteEvent, :WechatMiniProgramPublishCompleteEvent, :RemoveWatermarkCompleteEvent, :RestoreMediaCompleteEvent, :RebuildMediaCompleteEvent, :ExtractTraceWatermarkCompleteEvent, :ExtractCopyRightWatermarkCompleteEvent, :ReviewAudioVideoCompleteEvent, :ReduceMediaBitrateCompleteEvent, :DescribeFileAttributesCompleteEvent, :QualityInspectCompleteEvent, :QualityEnhanceCompleteEvent, :MediaCastStatusChangedEvent, :PersistenceCompleteEvent, :ComplexAdaptiveDynamicStreamingCompleteEvent, :ProcessMediaByMPSCompleteEvent, :AigcImageCompleteEvent, :AigcVideoCompleteEvent
 
-        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil, processmediabympscompleteevent=nil)
+        def initialize(eventhandle=nil, eventtype=nil, fileuploadevent=nil, procedurestatechangeevent=nil, filedeleteevent=nil, pullcompleteevent=nil, editmediacompleteevent=nil, splitmediacompleteevent=nil, composemediacompleteevent=nil, clipcompleteevent=nil, transcodecompleteevent=nil, createimagespritecompleteevent=nil, concatcompleteevent=nil, snapshotbytimeoffsetcompleteevent=nil, wechatpublishcompleteevent=nil, wechatminiprogrampublishcompleteevent=nil, removewatermarkcompleteevent=nil, restoremediacompleteevent=nil, rebuildmediacompleteevent=nil, extracttracewatermarkcompleteevent=nil, extractcopyrightwatermarkcompleteevent=nil, reviewaudiovideocompleteevent=nil, reducemediabitratecompleteevent=nil, describefileattributescompleteevent=nil, qualityinspectcompleteevent=nil, qualityenhancecompleteevent=nil, mediacaststatuschangedevent=nil, persistencecompleteevent=nil, complexadaptivedynamicstreamingcompleteevent=nil, processmediabympscompleteevent=nil, aigcimagecompleteevent=nil, aigcvideocompleteevent=nil)
           @EventHandle = eventhandle
           @EventType = eventtype
           @FileUploadEvent = fileuploadevent
@@ -14282,6 +15044,8 @@ module TencentCloud
           @PersistenceCompleteEvent = persistencecompleteevent
           @ComplexAdaptiveDynamicStreamingCompleteEvent = complexadaptivedynamicstreamingcompleteevent
           @ProcessMediaByMPSCompleteEvent = processmediabympscompleteevent
+          @AigcImageCompleteEvent = aigcimagecompleteevent
+          @AigcVideoCompleteEvent = aigcvideocompleteevent
         end
 
         def deserialize(params)
@@ -14398,6 +15162,14 @@ module TencentCloud
           unless params['ProcessMediaByMPSCompleteEvent'].nil?
             @ProcessMediaByMPSCompleteEvent = ProcessMediaByMPS.new
             @ProcessMediaByMPSCompleteEvent.deserialize(params['ProcessMediaByMPSCompleteEvent'])
+          end
+          unless params['AigcImageCompleteEvent'].nil?
+            @AigcImageCompleteEvent = AigcImageTask.new
+            @AigcImageCompleteEvent.deserialize(params['AigcImageCompleteEvent'])
+          end
+          unless params['AigcVideoCompleteEvent'].nil?
+            @AigcVideoCompleteEvent = AigcVideoTask.new
+            @AigcVideoCompleteEvent.deserialize(params['AigcVideoCompleteEvent'])
           end
         end
       end

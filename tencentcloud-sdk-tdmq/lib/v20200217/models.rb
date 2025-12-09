@@ -2054,7 +2054,7 @@ module TencentCloud
       class CreateRocketMQGroupRequest < TencentCloud::Common::AbstractModel
         # @param GroupId: Group名称，8~64个字符
         # @type GroupId: String
-        # @param Namespaces: 命名空间，目前只支持单个命名空间
+        # @param Namespaces: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type Namespaces: Array
         # @param ReadEnable: 是否开启消费
         # @type ReadEnable: Boolean
@@ -2219,7 +2219,7 @@ module TencentCloud
       class CreateRocketMQTopicRequest < TencentCloud::Common::AbstractModel
         # @param Topic: 主题名称，3-64个字符，只能包含字母、数字、“-”及“_”
         # @type Topic: String
-        # @param Namespaces: 主题所在的命名空间，目前支持在单个命名空间下创建主题
+        # @param Namespaces: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type Namespaces: Array
         # @param Type: 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder, Transaction, DelayScheduled。Transaction仅在专享版支持。
         # @type Type: String
@@ -2275,7 +2275,7 @@ module TencentCloud
         # @type Type: String
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Namespace: 命名空间
+        # @param Namespace: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type Namespace: String
         # @param Remark: 备注
         # @type Remark: String
@@ -3201,7 +3201,7 @@ module TencentCloud
       class DeleteRocketMQGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
@@ -3317,7 +3317,7 @@ module TencentCloud
       class DeleteRocketMQTopicRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param Topic: 主题名称
         # @type Topic: String
@@ -6067,7 +6067,7 @@ module TencentCloud
       class DescribeRocketMQConsumeStatsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 实例ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param ConsumerGroup: 消费组
         # @type ConsumerGroup: String
@@ -6118,7 +6118,7 @@ module TencentCloud
       class DescribeRocketMQConsumerConnectionDetailRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
@@ -6189,7 +6189,7 @@ module TencentCloud
       class DescribeRocketMQConsumerConnectionsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组ID
         # @type GroupId: String
@@ -6342,7 +6342,7 @@ module TencentCloud
       class DescribeRocketMQGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
@@ -6614,7 +6614,7 @@ module TencentCloud
       class DescribeRocketMQMsgTraceRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param EnvironmentId: 命名空间
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param TopicName: 主题，rocketmq查询死信时值为groupId
         # @type TopicName: String
@@ -7194,7 +7194,7 @@ module TencentCloud
       class DescribeRocketMQSubscriptionsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param Namespace: 命名空间名称
+        # @param Namespace: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type Namespace: String
         # @param Group: 消费组名称
         # @type Group: String
@@ -7320,7 +7320,7 @@ module TencentCloud
       class DescribeRocketMQTopicMsgsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群 ID
         # @type ClusterId: String
-        # @param EnvironmentId: 命名空间
+        # @param EnvironmentId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type EnvironmentId: String
         # @param TopicName: 主题名称，查询死信时为groupId
         # @type TopicName: String
@@ -7486,7 +7486,7 @@ module TencentCloud
       class DescribeRocketMQTopicStatsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 实例ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param TopicName: 主题名
         # @type TopicName: String
@@ -7537,7 +7537,7 @@ module TencentCloud
       class DescribeRocketMQTopicsByGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
@@ -7597,7 +7597,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param FilterType: 按主题类型过滤查询结果，可选择Normal, GlobalOrder, PartitionedOrder, Transaction
         # @type FilterType: Array
@@ -9592,7 +9592,7 @@ module TencentCloud
       class ModifyRocketMQGroupRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间
+        # @param NamespaceId: 消费组所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupId: 消费组名称
         # @type GroupId: String
@@ -9856,7 +9856,7 @@ module TencentCloud
       class ModifyRocketMQTopicRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 主题所在的命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param Topic: 主题名称
         # @type Topic: String
@@ -11931,7 +11931,7 @@ module TencentCloud
       class RetryRocketMQDlqMessageRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群id
         # @type ClusterId: String
-        # @param NamespaceId: 命名空间名称
+        # @param NamespaceId: 命名空间，4.x 通用集群命名空间固定为: tdmq_default
         # @type NamespaceId: String
         # @param GroupName: group名称
         # @type GroupName: String

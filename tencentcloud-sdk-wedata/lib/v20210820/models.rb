@@ -1016,6 +1016,205 @@ module TencentCloud
         end
       end
 
+      # 资产维度信息结构定义
+      class AssetDim < TencentCloud::Common::AbstractModel
+        # @param FolderId: 文件夹 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FolderId: Integer
+        # @param DimCode: 维度编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimCode: String
+        # @param DimName: 维度名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimName: String
+        # @param Description: 维度描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param OwnerAccount: 维度负责人UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OwnerAccount: Integer
+        # @param Owner: 维度负责人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param ModifyUserId: 变更人ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyUserId: Integer
+        # @param ModifyUser: 维度最近修改人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyUser: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param DimType: 维度录入方式， 取值：manual-手动录入；dict-关联字典表；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimType: String
+        # @param ValuePairCount: 枚举值数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValuePairCount: Integer
+        # @param IndicatorPairCount: 关联指标数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorPairCount: Integer
+        # @param TableColumnCount: 关联字段数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableColumnCount: Integer
+        # @param DimId: 维度 ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimId: Integer
+        # @param DimTableLink: 维度关联表字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimTableLink: :class:`Tencentcloud::Wedata.v20210820.models.DimTableLink`
+        # @param ValuePairs: 枚举值列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValuePairs: Array
+        # @param TableColumns: 维度关联字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableColumns: Array
+        # @param SourceIndicatorIds: 关联指标列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceIndicatorIds: Array
+        # @param DimPermission: 权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DimPermission: :class:`Tencentcloud::Wedata.v20210820.models.PermissionStatus`
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param ProjectName: 项目名称
+        # @type ProjectName: String
+
+        attr_accessor :FolderId, :DimCode, :DimName, :Description, :OwnerAccount, :Owner, :ModifyUserId, :ModifyUser, :ModifyTime, :CreateTime, :DimType, :ValuePairCount, :IndicatorPairCount, :TableColumnCount, :DimId, :DimTableLink, :ValuePairs, :TableColumns, :SourceIndicatorIds, :DimPermission, :ProjectId, :ProjectName
+
+        def initialize(folderid=nil, dimcode=nil, dimname=nil, description=nil, owneraccount=nil, owner=nil, modifyuserid=nil, modifyuser=nil, modifytime=nil, createtime=nil, dimtype=nil, valuepaircount=nil, indicatorpaircount=nil, tablecolumncount=nil, dimid=nil, dimtablelink=nil, valuepairs=nil, tablecolumns=nil, sourceindicatorids=nil, dimpermission=nil, projectid=nil, projectname=nil)
+          @FolderId = folderid
+          @DimCode = dimcode
+          @DimName = dimname
+          @Description = description
+          @OwnerAccount = owneraccount
+          @Owner = owner
+          @ModifyUserId = modifyuserid
+          @ModifyUser = modifyuser
+          @ModifyTime = modifytime
+          @CreateTime = createtime
+          @DimType = dimtype
+          @ValuePairCount = valuepaircount
+          @IndicatorPairCount = indicatorpaircount
+          @TableColumnCount = tablecolumncount
+          @DimId = dimid
+          @DimTableLink = dimtablelink
+          @ValuePairs = valuepairs
+          @TableColumns = tablecolumns
+          @SourceIndicatorIds = sourceindicatorids
+          @DimPermission = dimpermission
+          @ProjectId = projectid
+          @ProjectName = projectname
+        end
+
+        def deserialize(params)
+          @FolderId = params['FolderId']
+          @DimCode = params['DimCode']
+          @DimName = params['DimName']
+          @Description = params['Description']
+          @OwnerAccount = params['OwnerAccount']
+          @Owner = params['Owner']
+          @ModifyUserId = params['ModifyUserId']
+          @ModifyUser = params['ModifyUser']
+          @ModifyTime = params['ModifyTime']
+          @CreateTime = params['CreateTime']
+          @DimType = params['DimType']
+          @ValuePairCount = params['ValuePairCount']
+          @IndicatorPairCount = params['IndicatorPairCount']
+          @TableColumnCount = params['TableColumnCount']
+          @DimId = params['DimId']
+          unless params['DimTableLink'].nil?
+            @DimTableLink = DimTableLink.new
+            @DimTableLink.deserialize(params['DimTableLink'])
+          end
+          unless params['ValuePairs'].nil?
+            @ValuePairs = []
+            params['ValuePairs'].each do |i|
+              pair_tmp = Pair.new
+              pair_tmp.deserialize(i)
+              @ValuePairs << pair_tmp
+            end
+          end
+          unless params['TableColumns'].nil?
+            @TableColumns = []
+            params['TableColumns'].each do |i|
+              assetdimtablecolumn_tmp = AssetDimTableColumn.new
+              assetdimtablecolumn_tmp.deserialize(i)
+              @TableColumns << assetdimtablecolumn_tmp
+            end
+          end
+          unless params['SourceIndicatorIds'].nil?
+            @SourceIndicatorIds = []
+            params['SourceIndicatorIds'].each do |i|
+              indicatorbasesimpleinfo_tmp = IndicatorBaseSimpleInfo.new
+              indicatorbasesimpleinfo_tmp.deserialize(i)
+              @SourceIndicatorIds << indicatorbasesimpleinfo_tmp
+            end
+          end
+          unless params['DimPermission'].nil?
+            @DimPermission = PermissionStatus.new
+            @DimPermission.deserialize(params['DimPermission'])
+          end
+          @ProjectId = params['ProjectId']
+          @ProjectName = params['ProjectName']
+        end
+      end
+
+      # 资产维度关联数据表字段结构定义
+      class AssetDimTableColumn < TencentCloud::Common::AbstractModel
+        # @param ColumnName: 表字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnName: String
+        # @param ColumnNameCn: 表字段中文名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnNameCn: String
+        # @param ColumnType: 表字段类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnType: String
+        # @param ColumnDescription: 表字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnDescription: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TableGuid: 表GUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGuid: String
+        # @param DatabaseName: 表归属的数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SchemaName: 表归属的Schema名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+
+        attr_accessor :ColumnName, :ColumnNameCn, :ColumnType, :ColumnDescription, :TableName, :TableGuid, :DatabaseName, :SchemaName
+
+        def initialize(columnname=nil, columnnamecn=nil, columntype=nil, columndescription=nil, tablename=nil, tableguid=nil, databasename=nil, schemaname=nil)
+          @ColumnName = columnname
+          @ColumnNameCn = columnnamecn
+          @ColumnType = columntype
+          @ColumnDescription = columndescription
+          @TableName = tablename
+          @TableGuid = tableguid
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @ColumnNameCn = params['ColumnNameCn']
+          @ColumnType = params['ColumnType']
+          @ColumnDescription = params['ColumnDescription']
+          @TableName = params['TableName']
+          @TableGuid = params['TableGuid']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+        end
+      end
+
       # 操作资源DTO
       class AsyncResourceVO < TencentCloud::Common::AbstractModel
         # @param ProcessId: 处理Id
@@ -2850,8 +3049,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 10
-        deprecate :TaskId=, :none, 2025, 10
+        deprecate :TaskId, :none, 2025, 12
+        deprecate :TaskId=, :none, 2025, 12
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -3747,10 +3946,22 @@ module TencentCloud
         # @param Specification: 字段使用说明
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Specification: String
+        # @param CategoryName: 目录名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CategoryName: String
+        # @param OriginType: 源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OriginType: String
+        # @param IndicatorBase: 列绑定的指标信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorBase: :class:`Tencentcloud::Wedata.v20210820.models.IndicatorBaseSimpleInfo`
+        # @param AssetDim: 列绑定的维度信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssetDim: :class:`Tencentcloud::Wedata.v20210820.models.AssetDim`
 
-        attr_accessor :NameEn, :NameCn, :Type, :Description, :Position, :IsPartition, :Name, :ColumnFamiliesFieldSet, :DictionaryId, :DictionaryName, :LevelName, :LevelRank, :InfluxCategory, :Specification
+        attr_accessor :NameEn, :NameCn, :Type, :Description, :Position, :IsPartition, :Name, :ColumnFamiliesFieldSet, :DictionaryId, :DictionaryName, :LevelName, :LevelRank, :InfluxCategory, :Specification, :CategoryName, :OriginType, :IndicatorBase, :AssetDim
 
-        def initialize(nameen=nil, namecn=nil, type=nil, description=nil, position=nil, ispartition=nil, name=nil, columnfamiliesfieldset=nil, dictionaryid=nil, dictionaryname=nil, levelname=nil, levelrank=nil, influxcategory=nil, specification=nil)
+        def initialize(nameen=nil, namecn=nil, type=nil, description=nil, position=nil, ispartition=nil, name=nil, columnfamiliesfieldset=nil, dictionaryid=nil, dictionaryname=nil, levelname=nil, levelrank=nil, influxcategory=nil, specification=nil, categoryname=nil, origintype=nil, indicatorbase=nil, assetdim=nil)
           @NameEn = nameen
           @NameCn = namecn
           @Type = type
@@ -3765,6 +3976,10 @@ module TencentCloud
           @LevelRank = levelrank
           @InfluxCategory = influxcategory
           @Specification = specification
+          @CategoryName = categoryname
+          @OriginType = origintype
+          @IndicatorBase = indicatorbase
+          @AssetDim = assetdim
         end
 
         def deserialize(params)
@@ -3789,6 +4004,16 @@ module TencentCloud
           @LevelRank = params['LevelRank']
           @InfluxCategory = params['InfluxCategory']
           @Specification = params['Specification']
+          @CategoryName = params['CategoryName']
+          @OriginType = params['OriginType']
+          unless params['IndicatorBase'].nil?
+            @IndicatorBase = IndicatorBaseSimpleInfo.new
+            @IndicatorBase.deserialize(params['IndicatorBase'])
+          end
+          unless params['AssetDim'].nil?
+            @AssetDim = AssetDim.new
+            @AssetDim.deserialize(params['AssetDim'])
+          end
         end
       end
 
@@ -4024,15 +4249,20 @@ module TencentCloud
         # @param Id: 返回补录计划名称_ok
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Id: String
+        # @param MakeId: 补录计划Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MakeId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :MakeId
 
-        def initialize(id=nil)
+        def initialize(id=nil, makeid=nil)
           @Id = id
+          @MakeId = makeid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @MakeId = params['MakeId']
         end
       end
 
@@ -6364,10 +6594,12 @@ module TencentCloud
         # @param BizParams: 配置信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BizParams: String
+        # @param TcCatalogOpen: 是否支持tccatalog
+        # @type TcCatalogOpen: Boolean
 
-        attr_accessor :Env, :DataSourceType, :ClusterId, :Params, :ProjectId, :DataSourceId, :EnvDataSourceId, :BizParams
+        attr_accessor :Env, :DataSourceType, :ClusterId, :Params, :ProjectId, :DataSourceId, :EnvDataSourceId, :BizParams, :TcCatalogOpen
 
-        def initialize(env=nil, datasourcetype=nil, clusterid=nil, params=nil, projectid=nil, datasourceid=nil, envdatasourceid=nil, bizparams=nil)
+        def initialize(env=nil, datasourcetype=nil, clusterid=nil, params=nil, projectid=nil, datasourceid=nil, envdatasourceid=nil, bizparams=nil, tccatalogopen=nil)
           @Env = env
           @DataSourceType = datasourcetype
           @ClusterId = clusterid
@@ -6376,6 +6608,7 @@ module TencentCloud
           @DataSourceId = datasourceid
           @EnvDataSourceId = envdatasourceid
           @BizParams = bizparams
+          @TcCatalogOpen = tccatalogopen
         end
 
         def deserialize(params)
@@ -6387,6 +6620,7 @@ module TencentCloud
           @DataSourceId = params['DataSourceId']
           @EnvDataSourceId = params['EnvDataSourceId']
           @BizParams = params['BizParams']
+          @TcCatalogOpen = params['TcCatalogOpen']
         end
       end
 
@@ -6517,10 +6751,12 @@ module TencentCloud
         # @param DatasourceType: 数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: String
+        # @param TcCatalogOpen: 是否开通tccatalog,默认没有开启
+        # @type TcCatalogOpen: Boolean
 
-        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus, :DisplayType, :Env, :DatasourceUrn, :Model, :DataSourceEnvInfos, :ForbidProbe, :DatasourceType
+        attr_accessor :DatabaseName, :Description, :ID, :Instance, :Name, :Region, :Type, :ClusterId, :AppId, :BizParams, :Category, :Display, :OwnerAccount, :Params, :Status, :OwnerAccountName, :ClusterName, :OwnerProjectId, :OwnerProjectName, :OwnerProjectIdent, :AuthorityProjectName, :AuthorityUserName, :Edit, :Author, :Deliver, :DataSourceStatus, :CreateTime, :ParamsString, :BizParamsString, :ModifiedTime, :ShowType, :ProductId, :DevelopmentId, :DevelopmentParams, :ConnectStatus, :DisplayType, :Env, :DatasourceUrn, :Model, :DataSourceEnvInfos, :ForbidProbe, :DatasourceType, :TcCatalogOpen
 
-        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil, displaytype=nil, env=nil, datasourceurn=nil, model=nil, datasourceenvinfos=nil, forbidprobe=nil, datasourcetype=nil)
+        def initialize(databasename=nil, description=nil, id=nil, instance=nil, name=nil, region=nil, type=nil, clusterid=nil, appid=nil, bizparams=nil, category=nil, display=nil, owneraccount=nil, params=nil, status=nil, owneraccountname=nil, clustername=nil, ownerprojectid=nil, ownerprojectname=nil, ownerprojectident=nil, authorityprojectname=nil, authorityusername=nil, edit=nil, author=nil, deliver=nil, datasourcestatus=nil, createtime=nil, paramsstring=nil, bizparamsstring=nil, modifiedtime=nil, showtype=nil, productid=nil, developmentid=nil, developmentparams=nil, connectstatus=nil, displaytype=nil, env=nil, datasourceurn=nil, model=nil, datasourceenvinfos=nil, forbidprobe=nil, datasourcetype=nil, tccatalogopen=nil)
           @DatabaseName = databasename
           @Description = description
           @ID = id
@@ -6563,6 +6799,7 @@ module TencentCloud
           @DataSourceEnvInfos = datasourceenvinfos
           @ForbidProbe = forbidprobe
           @DatasourceType = datasourcetype
+          @TcCatalogOpen = tccatalogopen
         end
 
         def deserialize(params)
@@ -6618,6 +6855,7 @@ module TencentCloud
           end
           @ForbidProbe = params['ForbidProbe']
           @DatasourceType = params['DatasourceType']
+          @TcCatalogOpen = params['TcCatalogOpen']
         end
       end
 
@@ -10386,12 +10624,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 10
-        deprecate :EventType=, :none, 2025, 10
-        deprecate :EventBroadcastType, :none, 2025, 10
-        deprecate :EventBroadcastType=, :none, 2025, 10
-        deprecate :Status, :none, 2025, 10
-        deprecate :Status=, :none, 2025, 10
+        deprecate :EventType, :none, 2025, 12
+        deprecate :EventType=, :none, 2025, 12
+        deprecate :EventBroadcastType, :none, 2025, 12
+        deprecate :EventBroadcastType=, :none, 2025, 12
+        deprecate :Status, :none, 2025, 12
+        deprecate :Status=, :none, 2025, 12
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -12334,10 +12572,14 @@ module TencentCloud
         # @type ScheduleTimeZone: String
         # @param RunPriorityList: 根据任务优先级筛选
         # @type RunPriorityList: Array
+        # @param IncludeManualTask: 是否包含手动工作流
+        # @type IncludeManualTask: String
+        # @param CheckPrivilege: 是否检查权限
+        # @type CheckPrivilege: Boolean
 
-        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord, :InitStrategy, :RequestResourceTypes, :ProjectIds, :BlackTaskIdList, :ScheduleTimeZone, :RunPriorityList
+        attr_accessor :ProjectId, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :PageNumber, :PageSize, :SortItem, :SortType, :InChargeList, :TaskTypeIdList, :StatusList, :TaskCycleUnitList, :ProductNameList, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :AlarmType, :ExecutorGroupIdList, :TaskTags, :KeyWord, :InitStrategy, :RequestResourceTypes, :ProjectIds, :BlackTaskIdList, :ScheduleTimeZone, :RunPriorityList, :IncludeManualTask, :CheckPrivilege
 
-        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil, initstrategy=nil, requestresourcetypes=nil, projectids=nil, blacktaskidlist=nil, scheduletimezone=nil, runprioritylist=nil)
+        def initialize(projectid=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, inchargelist=nil, tasktypeidlist=nil, statuslist=nil, taskcycleunitlist=nil, productnamelist=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, alarmtype=nil, executorgroupidlist=nil, tasktags=nil, keyword=nil, initstrategy=nil, requestresourcetypes=nil, projectids=nil, blacktaskidlist=nil, scheduletimezone=nil, runprioritylist=nil, includemanualtask=nil, checkprivilege=nil)
           @ProjectId = projectid
           @FolderIdList = folderidlist
           @WorkFlowIdList = workflowidlist
@@ -12367,6 +12609,8 @@ module TencentCloud
           @BlackTaskIdList = blacktaskidlist
           @ScheduleTimeZone = scheduletimezone
           @RunPriorityList = runprioritylist
+          @IncludeManualTask = includemanualtask
+          @CheckPrivilege = checkprivilege
         end
 
         def deserialize(params)
@@ -12406,6 +12650,8 @@ module TencentCloud
           @BlackTaskIdList = params['BlackTaskIdList']
           @ScheduleTimeZone = params['ScheduleTimeZone']
           @RunPriorityList = params['RunPriorityList']
+          @IncludeManualTask = params['IncludeManualTask']
+          @CheckPrivilege = params['CheckPrivilege']
         end
       end
 
@@ -12716,10 +12962,14 @@ module TencentCloud
         # @type KeyWord: String
         # @param ScheduleTimeZone: **时区** timeZone, 默认UTC+8
         # @type ScheduleTimeZone: String
+        # @param CheckPrivilege: 是否过滤无权限的工作流
+        # true: 过滤无权限的仅返回有权限的工作流列表(默认)
+        # false： 返回所有的工作流列表
+        # @type CheckPrivilege: Boolean
 
-        attr_accessor :ProjectId, :ProductNameList, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :StatusList, :InChargeList, :PageNumber, :PageSize, :SortItem, :SortType, :ProjectIds, :WorkflowTypeList, :KeyWord, :ScheduleTimeZone
+        attr_accessor :ProjectId, :ProductNameList, :FolderIdList, :WorkFlowIdList, :WorkFlowNameList, :TaskNameList, :TaskIdList, :StatusList, :InChargeList, :PageNumber, :PageSize, :SortItem, :SortType, :ProjectIds, :WorkflowTypeList, :KeyWord, :ScheduleTimeZone, :CheckPrivilege
 
-        def initialize(projectid=nil, productnamelist=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, statuslist=nil, inchargelist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, projectids=nil, workflowtypelist=nil, keyword=nil, scheduletimezone=nil)
+        def initialize(projectid=nil, productnamelist=nil, folderidlist=nil, workflowidlist=nil, workflownamelist=nil, tasknamelist=nil, taskidlist=nil, statuslist=nil, inchargelist=nil, pagenumber=nil, pagesize=nil, sortitem=nil, sorttype=nil, projectids=nil, workflowtypelist=nil, keyword=nil, scheduletimezone=nil, checkprivilege=nil)
           @ProjectId = projectid
           @ProductNameList = productnamelist
           @FolderIdList = folderidlist
@@ -12737,6 +12987,7 @@ module TencentCloud
           @WorkflowTypeList = workflowtypelist
           @KeyWord = keyword
           @ScheduleTimeZone = scheduletimezone
+          @CheckPrivilege = checkprivilege
         end
 
         def deserialize(params)
@@ -12757,6 +13008,7 @@ module TencentCloud
           @WorkflowTypeList = params['WorkflowTypeList']
           @KeyWord = params['KeyWord']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @CheckPrivilege = params['CheckPrivilege']
         end
       end
 
@@ -18049,6 +18301,38 @@ module TencentCloud
         end
       end
 
+      # 维度关联单个表字段
+      class DimTableLink < TencentCloud::Common::AbstractModel
+        # @param Key: 维度主键KEY对应的表列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 维度值对应的表列
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param TableGuid: 表 GUID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableGuid: String
+        # @param TableName: 表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+
+        attr_accessor :Key, :Value, :TableGuid, :TableName
+
+        def initialize(key=nil, value=nil, tableguid=nil, tablename=nil)
+          @Key = key
+          @Value = value
+          @TableGuid = tableguid
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @TableGuid = params['TableGuid']
+          @TableName = params['TableName']
+        end
+      end
+
       # 维度统计业务视图
       class DimensionCount < TencentCloud::Common::AbstractModel
         # @param DimType: 维度类型1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性
@@ -18063,8 +18347,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 10
-        deprecate :DimType=, :none, 2025, 10
+        deprecate :DimType, :none, 2025, 12
+        deprecate :DimType=, :none, 2025, 12
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -21598,6 +21882,62 @@ module TencentCloud
         end
       end
 
+      # 指标列表简单结构
+      class IndicatorBaseSimpleInfo < TencentCloud::Common::AbstractModel
+        # @param Id: ID
+        # @type Id: Integer
+        # @param Name: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param MeasureUnit: 单位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MeasureUnit: Integer
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IndicatorCode: 编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorCode: String
+        # @param BizOwnerName: 业务负责人名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizOwnerName: String
+        # @param TechOwnerName: 技术服务站名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TechOwnerName: String
+        # @param BizCaliber: 业务口径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BizCaliber: String
+        # @param IndicatorType: 指标类型（1-原子指标 2-衍生指标 3-复合指标）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndicatorType: Integer
+
+        attr_accessor :Id, :Name, :MeasureUnit, :Status, :IndicatorCode, :BizOwnerName, :TechOwnerName, :BizCaliber, :IndicatorType
+
+        def initialize(id=nil, name=nil, measureunit=nil, status=nil, indicatorcode=nil, bizownername=nil, techownername=nil, bizcaliber=nil, indicatortype=nil)
+          @Id = id
+          @Name = name
+          @MeasureUnit = measureunit
+          @Status = status
+          @IndicatorCode = indicatorcode
+          @BizOwnerName = bizownername
+          @TechOwnerName = techownername
+          @BizCaliber = bizcaliber
+          @IndicatorType = indicatortype
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @MeasureUnit = params['MeasureUnit']
+          @Status = params['Status']
+          @IndicatorCode = params['IndicatorCode']
+          @BizOwnerName = params['BizOwnerName']
+          @TechOwnerName = params['TechOwnerName']
+          @BizCaliber = params['BizCaliber']
+          @IndicatorType = params['IndicatorType']
+        end
+      end
+
       # 实例查询类型
       class InstanceApiOpsRequest < TencentCloud::Common::AbstractModel
         # @param Instance: 单个查询条件
@@ -22996,10 +23336,12 @@ module TencentCloud
         # @type InstanceCycleType: String
         # @param InstanceSchedulerDesc: 实例执行计划描述
         # @type InstanceSchedulerDesc: String
+        # @param Privileges: 当前用户对该实例的权限列表
+        # @type Privileges: Array
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts, :DeletedFatherList, :CirculateInstanceList, :ConcurrentStrategy, :ScheduleRunType, :AllowRedoType, :InstanceCycleType, :InstanceSchedulerDesc
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :InCharge, :CycleType, :CurRunDate, :NextCurDate, :RunPriority, :TryLimit, :Tries, :TotalRunNum, :DoFlag, :RedoFlag, :State, :RuntimeBroker, :ErrorDesc, :TaskType, :DependenceFulfillTime, :FirstDependenceFulfillTime, :FirstStartTime, :StartTime, :EndTime, :CostTime, :CostMillisecond, :MaxCostTime, :MinCostTime, :AvgCostTime, :LastLog, :SchedulerDateTime, :LastSchedulerDateTime, :LastUpdate, :CreateTime, :DependencyRel, :ExecutionSpace, :IgnoreEvent, :VirtualFlag, :FolderId, :FolderName, :SonList, :ProductName, :ResourceGroup, :ResourceInstanceId, :YarnQueue, :SchedulerDesc, :FirstSubmitTime, :FirstRunTime, :ProjectId, :ProjectIdent, :ProjectName, :TenantId, :InstanceKey, :ExecutorGroupId, :ExecutorGroupName, :RelatedInstanceList, :RelatedInstanceSize, :OwnerId, :UserId, :InstanceLifeCycleOpsDto, :RetryAttempts, :DeletedFatherList, :CirculateInstanceList, :ConcurrentStrategy, :ScheduleRunType, :AllowRedoType, :InstanceCycleType, :InstanceSchedulerDesc, :Privileges
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil, deletedfatherlist=nil, circulateinstancelist=nil, concurrentstrategy=nil, scheduleruntype=nil, allowredotype=nil, instancecycletype=nil, instanceschedulerdesc=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, incharge=nil, cycletype=nil, currundate=nil, nextcurdate=nil, runpriority=nil, trylimit=nil, tries=nil, totalrunnum=nil, doflag=nil, redoflag=nil, state=nil, runtimebroker=nil, errordesc=nil, tasktype=nil, dependencefulfilltime=nil, firstdependencefulfilltime=nil, firststarttime=nil, starttime=nil, endtime=nil, costtime=nil, costmillisecond=nil, maxcosttime=nil, mincosttime=nil, avgcosttime=nil, lastlog=nil, schedulerdatetime=nil, lastschedulerdatetime=nil, lastupdate=nil, createtime=nil, dependencyrel=nil, executionspace=nil, ignoreevent=nil, virtualflag=nil, folderid=nil, foldername=nil, sonlist=nil, productname=nil, resourcegroup=nil, resourceinstanceid=nil, yarnqueue=nil, schedulerdesc=nil, firstsubmittime=nil, firstruntime=nil, projectid=nil, projectident=nil, projectname=nil, tenantid=nil, instancekey=nil, executorgroupid=nil, executorgroupname=nil, relatedinstancelist=nil, relatedinstancesize=nil, ownerid=nil, userid=nil, instancelifecycleopsdto=nil, retryattempts=nil, deletedfatherlist=nil, circulateinstancelist=nil, concurrentstrategy=nil, scheduleruntype=nil, allowredotype=nil, instancecycletype=nil, instanceschedulerdesc=nil, privileges=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -23067,6 +23409,7 @@ module TencentCloud
           @AllowRedoType = allowredotype
           @InstanceCycleType = instancecycletype
           @InstanceSchedulerDesc = instanceschedulerdesc
+          @Privileges = privileges
         end
 
         def deserialize(params)
@@ -23157,6 +23500,7 @@ module TencentCloud
           @AllowRedoType = params['AllowRedoType']
           @InstanceCycleType = params['InstanceCycleType']
           @InstanceSchedulerDesc = params['InstanceSchedulerDesc']
+          @Privileges = params['Privileges']
         end
       end
 
@@ -26830,8 +27174,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 10
-        deprecate :InCharge=, :none, 2025, 10
+        deprecate :InCharge, :none, 2025, 12
+        deprecate :InCharge=, :none, 2025, 12
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -28715,6 +29059,33 @@ module TencentCloud
         end
       end
 
+      # 读写权限状态
+      class PermissionStatus < TencentCloud::Common::AbstractModel
+        # @param CanWrite: 写权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanWrite: Boolean
+        # @param CanDelete: 写权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDelete: Boolean
+        # @param CanRead: 写权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanRead: Boolean
+
+        attr_accessor :CanWrite, :CanDelete, :CanRead
+
+        def initialize(canwrite=nil, candelete=nil, canread=nil)
+          @CanWrite = canwrite
+          @CanDelete = candelete
+          @CanRead = canread
+        end
+
+        def deserialize(params)
+          @CanWrite = params['CanWrite']
+          @CanDelete = params['CanDelete']
+          @CanRead = params['CanRead']
+        end
+      end
+
       # 数据质量生产调度任务业务实体
       class ProdSchedulerTask < TencentCloud::Common::AbstractModel
         # @param WorkflowId: 生产调度任务工作流ID
@@ -28735,16 +29106,24 @@ module TencentCloud
         # @param ScheduleTimeZone: 时区
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
+        # @param InChargeIdList: 负责人id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeIdList: Array
+        # @param InChargeNameList: 负责人name
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InChargeNameList: Array
 
-        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType, :TaskType, :ScheduleTimeZone
+        attr_accessor :WorkflowId, :TaskId, :TaskName, :CycleType, :TaskType, :ScheduleTimeZone, :InChargeIdList, :InChargeNameList
 
-        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil, tasktype=nil, scheduletimezone=nil)
+        def initialize(workflowid=nil, taskid=nil, taskname=nil, cycletype=nil, tasktype=nil, scheduletimezone=nil, inchargeidlist=nil, inchargenamelist=nil)
           @WorkflowId = workflowid
           @TaskId = taskid
           @TaskName = taskname
           @CycleType = cycletype
           @TaskType = tasktype
           @ScheduleTimeZone = scheduletimezone
+          @InChargeIdList = inchargeidlist
+          @InChargeNameList = inchargenamelist
         end
 
         def deserialize(params)
@@ -28754,6 +29133,8 @@ module TencentCloud
           @CycleType = params['CycleType']
           @TaskType = params['TaskType']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @InChargeIdList = params['InChargeIdList']
+          @InChargeNameList = params['InChargeNameList']
         end
       end
 
@@ -29469,12 +29850,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 10
-        deprecate :EventType=, :none, 2025, 10
-        deprecate :EventBroadcastType, :none, 2025, 10
-        deprecate :EventBroadcastType=, :none, 2025, 10
-        deprecate :DimensionFormat, :none, 2025, 10
-        deprecate :DimensionFormat=, :none, 2025, 10
+        deprecate :EventType, :none, 2025, 12
+        deprecate :EventType=, :none, 2025, 12
+        deprecate :EventBroadcastType, :none, 2025, 12
+        deprecate :EventBroadcastType=, :none, 2025, 12
+        deprecate :DimensionFormat, :none, 2025, 12
+        deprecate :DimensionFormat=, :none, 2025, 12
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid
@@ -29599,9 +29980,9 @@ module TencentCloud
         # @type TimeUnit: String
         # @param Owner: 事件所属人
         # @type Owner: String
-        # @param EventType: 必填，事件类型，默认值：TIME_SERIES
+        # @param EventType: 事件类型，不填会使用默认值 TIME_SERIES 填充
         # @type EventType: String
-        # @param DimensionFormat: 必填，对应day： yyyyMMdd，对应HOUR：yyyyMMddHH，对应MIN：yyyyMMddHHmm，对应SECOND：yyyyMMddHHmmss，默认值：yyyyMMdd
+        # @param DimensionFormat: 对应day： yyyyMMdd，对应HOUR：yyyyMMddHH，对应MIN：yyyyMMddHHmm，对应SECOND：yyyyMMddHHmmss，默认值：yyyyMMdd
         # @type DimensionFormat: String
         # @param TimeToLive: 存活时间
         # @type TimeToLive: Integer
@@ -34644,10 +35025,14 @@ module TencentCloud
         # @param TaskTypeDesc: 任务类型描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskTypeDesc: String
+        # @param Privileges: 当前用户对该资源的权限列表
+        # CAN_MANAGE 有修改操作权限
+        # NO_PERMISSION 无权限
+        # @type Privileges: Array
 
-        attr_accessor :TaskId, :WorkflowId, :TaskName, :Layer, :Status, :TaskTypeId, :InCharge, :ProjectId, :ProjectName, :WorkflowName, :CycleUnit, :ScheduleDesc, :TaskTypeDesc
+        attr_accessor :TaskId, :WorkflowId, :TaskName, :Layer, :Status, :TaskTypeId, :InCharge, :ProjectId, :ProjectName, :WorkflowName, :CycleUnit, :ScheduleDesc, :TaskTypeDesc, :Privileges
 
-        def initialize(taskid=nil, workflowid=nil, taskname=nil, layer=nil, status=nil, tasktypeid=nil, incharge=nil, projectid=nil, projectname=nil, workflowname=nil, cycleunit=nil, scheduledesc=nil, tasktypedesc=nil)
+        def initialize(taskid=nil, workflowid=nil, taskname=nil, layer=nil, status=nil, tasktypeid=nil, incharge=nil, projectid=nil, projectname=nil, workflowname=nil, cycleunit=nil, scheduledesc=nil, tasktypedesc=nil, privileges=nil)
           @TaskId = taskid
           @WorkflowId = workflowid
           @TaskName = taskname
@@ -34661,6 +35046,7 @@ module TencentCloud
           @CycleUnit = cycleunit
           @ScheduleDesc = scheduledesc
           @TaskTypeDesc = tasktypedesc
+          @Privileges = privileges
         end
 
         def deserialize(params)
@@ -34677,6 +35063,7 @@ module TencentCloud
           @CycleUnit = params['CycleUnit']
           @ScheduleDesc = params['ScheduleDesc']
           @TaskTypeDesc = params['TaskTypeDesc']
+          @Privileges = params['Privileges']
         end
       end
 
@@ -36187,36 +36574,56 @@ module TencentCloud
         end
       end
 
-      # 基于表的标签统计信息
+      # 基于资产的标签统计信息
       class TagVoteSum < TencentCloud::Common::AbstractModel
         # @param TagId: 标签id
         # @type TagId: Integer
+        # @param TagName: 标签名
+        # @type TagName: String
         # @param VoteSum: 该表该标签投票次数
         # @type VoteSum: Integer
         # @param Status: 当前用户对这张表是否加了该标签 true 已添加 false 未添加
         # @type Status: Boolean
-        # @param TagName: 标签名
-        # @type TagName: String
         # @param TagDesc: 标签描述
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagDesc: String
+        # @param TagValueId: 标签值Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValueId: Integer
+        # @param TagValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValue: String
+        # @param TagIsDeleted: 标签是否已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagIsDeleted: Boolean
+        # @param TagValueIsDeleted: 标签值是否已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagValueIsDeleted: Boolean
 
-        attr_accessor :TagId, :VoteSum, :Status, :TagName, :TagDesc
+        attr_accessor :TagId, :TagName, :VoteSum, :Status, :TagDesc, :TagValueId, :TagValue, :TagIsDeleted, :TagValueIsDeleted
 
-        def initialize(tagid=nil, votesum=nil, status=nil, tagname=nil, tagdesc=nil)
+        def initialize(tagid=nil, tagname=nil, votesum=nil, status=nil, tagdesc=nil, tagvalueid=nil, tagvalue=nil, tagisdeleted=nil, tagvalueisdeleted=nil)
           @TagId = tagid
+          @TagName = tagname
           @VoteSum = votesum
           @Status = status
-          @TagName = tagname
           @TagDesc = tagdesc
+          @TagValueId = tagvalueid
+          @TagValue = tagvalue
+          @TagIsDeleted = tagisdeleted
+          @TagValueIsDeleted = tagvalueisdeleted
         end
 
         def deserialize(params)
           @TagId = params['TagId']
+          @TagName = params['TagName']
           @VoteSum = params['VoteSum']
           @Status = params['Status']
-          @TagName = params['TagName']
           @TagDesc = params['TagDesc']
+          @TagValueId = params['TagValueId']
+          @TagValue = params['TagValue']
+          @TagIsDeleted = params['TagIsDeleted']
+          @TagValueIsDeleted = params['TagValueIsDeleted']
         end
       end
 
@@ -38315,10 +38722,19 @@ module TencentCloud
         # @param OwnerId: 负责人Id
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OwnerId: String
+        # @param Privileges: 当前用户对该任务的权限列表， 当前支持
+        # CAN_MANAGE : 有权限管理操作
+        # @type Privileges: Array
+        # @param BundleId: bundle客户端唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BundleId: String
+        # @param BundleInfo: bundle客户端信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BundleInfo: String
 
-        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId
+        attr_accessor :TaskId, :VirtualTaskId, :VirtualFlag, :TaskName, :WorkflowId, :RealWorkflowId, :WorkflowName, :FolderId, :FolderName, :CreateTime, :LastUpdate, :Status, :InCharge, :InChargeId, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CycleType, :CycleStep, :CrontabExpression, :DelayTime, :StartupTime, :RetryWait, :RetryAble, :TaskAction, :TryLimit, :RunPriority, :TaskType, :BrokerIp, :ClusterId, :MinDateTime, :MaxDateTime, :ExecutionTTL, :SelfDepend, :LeftCoordinate, :TopCoordinate, :Notes, :InstanceInitStrategy, :YarnQueue, :LastSchedulerCommitTime, :NormalizedJobStartTime, :SchedulerDesc, :ResourceGroup, :Creator, :DependencyRel, :DependencyWorkflow, :EventListenerConfig, :EventPublisherConfig, :VirtualTaskStatus, :TaskLinkInfo, :ProductName, :ProjectId, :ProjectIdent, :ProjectName, :OwnId, :UserId, :TenantId, :UpdateUser, :UpdateTime, :UpdateUserId, :TaskTypeId, :TaskTypeDesc, :ShowWorkflow, :FirstSubmitTime, :FirstRunTime, :ScheduleDesc, :CycleNum, :Crontab, :StartDate, :EndDate, :CycleUnit, :InitStrategy, :Layer, :SourceServiceId, :SourceServiceType, :TargetServiceId, :TargetServiceType, :TasksStr, :Submit, :ExecutorGroupId, :ExecutorGroupName, :TaskExtInfo, :EventListenerInfos, :ScriptInfo, :DLCResourceConfig, :ParentTaskInfos, :ExtResourceFlag, :NewParentTaskInfos, :SelfWorkFlowDependType, :AllowRedoType, :OwnerId, :Privileges, :BundleId, :BundleInfo
 
-        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil)
+        def initialize(taskid=nil, virtualtaskid=nil, virtualflag=nil, taskname=nil, workflowid=nil, realworkflowid=nil, workflowname=nil, folderid=nil, foldername=nil, createtime=nil, lastupdate=nil, status=nil, incharge=nil, inchargeid=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, delaytime=nil, startuptime=nil, retrywait=nil, retryable=nil, taskaction=nil, trylimit=nil, runpriority=nil, tasktype=nil, brokerip=nil, clusterid=nil, mindatetime=nil, maxdatetime=nil, executionttl=nil, selfdepend=nil, leftcoordinate=nil, topcoordinate=nil, notes=nil, instanceinitstrategy=nil, yarnqueue=nil, lastschedulercommittime=nil, normalizedjobstarttime=nil, schedulerdesc=nil, resourcegroup=nil, creator=nil, dependencyrel=nil, dependencyworkflow=nil, eventlistenerconfig=nil, eventpublisherconfig=nil, virtualtaskstatus=nil, tasklinkinfo=nil, productname=nil, projectid=nil, projectident=nil, projectname=nil, ownid=nil, userid=nil, tenantid=nil, updateuser=nil, updatetime=nil, updateuserid=nil, tasktypeid=nil, tasktypedesc=nil, showworkflow=nil, firstsubmittime=nil, firstruntime=nil, scheduledesc=nil, cyclenum=nil, crontab=nil, startdate=nil, enddate=nil, cycleunit=nil, initstrategy=nil, layer=nil, sourceserviceid=nil, sourceservicetype=nil, targetserviceid=nil, targetservicetype=nil, tasksstr=nil, submit=nil, executorgroupid=nil, executorgroupname=nil, taskextinfo=nil, eventlistenerinfos=nil, scriptinfo=nil, dlcresourceconfig=nil, parenttaskinfos=nil, extresourceflag=nil, newparenttaskinfos=nil, selfworkflowdependtype=nil, allowredotype=nil, ownerid=nil, privileges=nil, bundleid=nil, bundleinfo=nil)
           @TaskId = taskid
           @VirtualTaskId = virtualtaskid
           @VirtualFlag = virtualflag
@@ -38411,6 +38827,9 @@ module TencentCloud
           @SelfWorkFlowDependType = selfworkflowdependtype
           @AllowRedoType = allowredotype
           @OwnerId = ownerid
+          @Privileges = privileges
+          @BundleId = bundleid
+          @BundleInfo = bundleinfo
         end
 
         def deserialize(params)
@@ -38538,6 +38957,9 @@ module TencentCloud
           @SelfWorkFlowDependType = params['SelfWorkFlowDependType']
           @AllowRedoType = params['AllowRedoType']
           @OwnerId = params['OwnerId']
+          @Privileges = params['Privileges']
+          @BundleId = params['BundleId']
+          @BundleInfo = params['BundleInfo']
         end
       end
 
@@ -41189,10 +41611,14 @@ module TencentCloud
         # @param WorkflowType: 工作流类型，周期cycle，手动manual
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowType: String
+        # @param BundleId: bundle客户端绑定唯一id
+        # @type BundleId: String
+        # @param BundleInfo: bundle客户端扩展信息，json格式
+        # @type BundleInfo: String
 
-        attr_accessor :TaskCount, :FolderName, :WorkFlowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkFlowDesc, :WorkFlowName, :FolderId, :Status, :CreateTime, :ModifyTime, :ModifyUser, :WorkflowType
+        attr_accessor :TaskCount, :FolderName, :WorkFlowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkFlowDesc, :WorkFlowName, :FolderId, :Status, :CreateTime, :ModifyTime, :ModifyUser, :WorkflowType, :BundleId, :BundleInfo
 
-        def initialize(taskcount=nil, foldername=nil, workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, status=nil, createtime=nil, modifytime=nil, modifyuser=nil, workflowtype=nil)
+        def initialize(taskcount=nil, foldername=nil, workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, status=nil, createtime=nil, modifytime=nil, modifyuser=nil, workflowtype=nil, bundleid=nil, bundleinfo=nil)
           @TaskCount = taskcount
           @FolderName = foldername
           @WorkFlowId = workflowid
@@ -41209,6 +41635,8 @@ module TencentCloud
           @ModifyTime = modifytime
           @ModifyUser = modifyuser
           @WorkflowType = workflowtype
+          @BundleId = bundleid
+          @BundleInfo = bundleinfo
         end
 
         def deserialize(params)
@@ -41228,6 +41656,8 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @ModifyUser = params['ModifyUser']
           @WorkflowType = params['WorkflowType']
+          @BundleId = params['BundleId']
+          @BundleInfo = params['BundleInfo']
         end
       end
 

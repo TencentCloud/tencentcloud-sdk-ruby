@@ -2693,10 +2693,10 @@ module TencentCloud
         # @type ClusterId: String
         # @param Name: 节点池名称
         # @type Name: String
+        # @param SecurityGroupIds: 安全组ID列表
+        # @type SecurityGroupIds: Array
         # @param SubnetIds: 子网ID列表
         # @type SubnetIds: Array
-        # @param SecurityGroupIds: 安全组ID列表，必选参数
-        # @type SecurityGroupIds: Array
         # @param Labels: 虚拟节点label
         # @type Labels: Array
         # @param Taints: 虚拟节点taint
@@ -2710,13 +2710,13 @@ module TencentCloud
         # - windows
         # @type OS: String
 
-        attr_accessor :ClusterId, :Name, :SubnetIds, :SecurityGroupIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
+        attr_accessor :ClusterId, :Name, :SecurityGroupIds, :SubnetIds, :Labels, :Taints, :VirtualNodes, :DeletionProtection, :OS
 
-        def initialize(clusterid=nil, name=nil, subnetids=nil, securitygroupids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
+        def initialize(clusterid=nil, name=nil, securitygroupids=nil, subnetids=nil, labels=nil, taints=nil, virtualnodes=nil, deletionprotection=nil, os=nil)
           @ClusterId = clusterid
           @Name = name
-          @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
+          @SubnetIds = subnetids
           @Labels = labels
           @Taints = taints
           @VirtualNodes = virtualnodes
@@ -2727,8 +2727,8 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @Name = params['Name']
-          @SubnetIds = params['SubnetIds']
           @SecurityGroupIds = params['SecurityGroupIds']
+          @SubnetIds = params['SubnetIds']
           unless params['Labels'].nil?
             @Labels = []
             params['Labels'].each do |i|

@@ -3828,7 +3828,7 @@ module TencentCloud
         # @type ProgramId: String
         # @param KuberneteApiServer: api地址
         # @type KuberneteApiServer: String
-        # @param KuberneteNativeType: K : kubeconfig, S : service account
+        # @param KuberneteNativeType: K : kubeconfig, S : service account (公有云不支持通过kubeconfig和service account的方式创建集群)
         # @type KuberneteNativeType: String
         # @param KuberneteNativeSecret: Kubernetes 原生 Secret 资源对象
         # @type KuberneteNativeSecret: String

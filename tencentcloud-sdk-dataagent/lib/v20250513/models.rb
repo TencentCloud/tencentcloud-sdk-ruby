@@ -169,6 +169,38 @@ module TencentCloud
         end
       end
 
+      # 知识库文档表列信息
+      class ColumnInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 列名称
+        # @type Name: String
+        # @param Type: 列类型：int, bigint, double, date, datetime, string，decimal
+        # @type Type: String
+        # @param Description: 列名称描述
+        # @type Description: String
+        # @param Index: 列索引
+        # @type Index: Integer
+        # @param OriginalName: 原始字段名称
+        # @type OriginalName: String
+
+        attr_accessor :Name, :Type, :Description, :Index, :OriginalName
+
+        def initialize(name=nil, type=nil, description=nil, index=nil, originalname=nil)
+          @Name = name
+          @Type = type
+          @Description = description
+          @Index = index
+          @OriginalName = originalname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Description = params['Description']
+          @Index = params['Index']
+          @OriginalName = params['OriginalName']
+        end
+      end
+
       # cos 文件信息
       class CosFileInfo < TencentCloud::Common::AbstractModel
         # @param FileName: 文件名称，包含后缀
@@ -309,6 +341,69 @@ module TencentCloud
         end
       end
 
+      # 知识库文件信息
+      class FileInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名称
+        # @type FileName: String
+        # @param FileSize: 文件大小，字节
+        # @type FileSize: Float
+        # @param Type: 文件类型,0=文本,1=表格，默认0
+        # @type Type: Integer
+        # @param FileId: 文件ID
+        # @type FileId: String
+        # @param Status: 状态，0：数据处理中  1：可用 -1：错误
+        # @type Status: Integer
+        # @param CreateUser: 操作者
+        # @type CreateUser: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param ChunkConfig: 分片策略
+        # @type ChunkConfig: :class:`Tencentcloud::Dataagent.v20250513.models.KnowledgeTaskConfig`
+        # @param Source: 文件来源0=unknow,1=user_cos,2=local
+        # @type Source: Integer
+        # @param FileUrl: 文件url
+        # @type FileUrl: String
+        # @param IsShowCase: 是否官方示例，0=否，1=是
+        # @type IsShowCase: Integer
+        # @param DocumentSummary: 文档摘要
+        # @type DocumentSummary: String
+
+        attr_accessor :FileName, :FileSize, :Type, :FileId, :Status, :CreateUser, :CreateTime, :ChunkConfig, :Source, :FileUrl, :IsShowCase, :DocumentSummary
+
+        def initialize(filename=nil, filesize=nil, type=nil, fileid=nil, status=nil, createuser=nil, createtime=nil, chunkconfig=nil, source=nil, fileurl=nil, isshowcase=nil, documentsummary=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @Type = type
+          @FileId = fileid
+          @Status = status
+          @CreateUser = createuser
+          @CreateTime = createtime
+          @ChunkConfig = chunkconfig
+          @Source = source
+          @FileUrl = fileurl
+          @IsShowCase = isshowcase
+          @DocumentSummary = documentsummary
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Status = params['Status']
+          @CreateUser = params['CreateUser']
+          @CreateTime = params['CreateTime']
+          unless params['ChunkConfig'].nil?
+            @ChunkConfig = KnowledgeTaskConfig.new
+            @ChunkConfig.deserialize(params['ChunkConfig'])
+          end
+          @Source = params['Source']
+          @FileUrl = params['FileUrl']
+          @IsShowCase = params['IsShowCase']
+          @DocumentSummary = params['DocumentSummary']
+        end
+      end
+
       # GetKnowledgeBaseFileList请求参数结构体
       class GetKnowledgeBaseFileListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -339,16 +434,31 @@ module TencentCloud
 
       # GetKnowledgeBaseFileList返回参数结构体
       class GetKnowledgeBaseFileListResponse < TencentCloud::Common::AbstractModel
+        # @param FileList: 文件信息列表
+        # @type FileList: Array
+        # @param Total: 文件信息总数
+        # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FileList, :Total, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(filelist=nil, total=nil, requestid=nil)
+          @FileList = filelist
+          @Total = total
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @FileList << fileinfo_tmp
+            end
+          end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -531,6 +641,58 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @FileNum = params['FileNum']
           @DatasourceIds = params['DatasourceIds']
+        end
+      end
+
+      # 任务配置
+      class KnowledgeTaskConfig < TencentCloud::Common::AbstractModel
+        # @param ChunkType: 切片类型  0:自定义切片，1：智能切片
+        # @type ChunkType: Integer
+        # @param MaxChunkSize: /智能切片：最小值 1000，默认 4800 自定义切片：正整数即可,默认值 1000
+        # @type MaxChunkSize: Integer
+        # @param Delimiters:  切片分隔符,自定义切片使用：默认值为：["\n\n", "\n", "。", "！", "？", "，", ""]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Delimiters: Array
+        # @param ChunkOverlap: 自定义切片使用:默认0 可重叠字符长度
+        # @type ChunkOverlap: Integer
+        # @param Columns: 表格类文档解析
+        # @type Columns: Array
+        # @param Indexes: 带检索的索引列表
+        # @type Indexes: Array
+        # @param GenDocSummary: 0：不生成文档摘要，1：生成文档概要。默认0，当取1时，GenParaSummary必须也为1
+        # @type GenDocSummary: Integer
+        # @param GenParaSummary: 0：不生成段落摘要，1：生成段落概要。默认0
+        # @type GenParaSummary: Integer
+
+        attr_accessor :ChunkType, :MaxChunkSize, :Delimiters, :ChunkOverlap, :Columns, :Indexes, :GenDocSummary, :GenParaSummary
+
+        def initialize(chunktype=nil, maxchunksize=nil, delimiters=nil, chunkoverlap=nil, columns=nil, indexes=nil, gendocsummary=nil, genparasummary=nil)
+          @ChunkType = chunktype
+          @MaxChunkSize = maxchunksize
+          @Delimiters = delimiters
+          @ChunkOverlap = chunkoverlap
+          @Columns = columns
+          @Indexes = indexes
+          @GenDocSummary = gendocsummary
+          @GenParaSummary = genparasummary
+        end
+
+        def deserialize(params)
+          @ChunkType = params['ChunkType']
+          @MaxChunkSize = params['MaxChunkSize']
+          @Delimiters = params['Delimiters']
+          @ChunkOverlap = params['ChunkOverlap']
+          unless params['Columns'].nil?
+            @Columns = []
+            params['Columns'].each do |i|
+              columninfo_tmp = ColumnInfo.new
+              columninfo_tmp.deserialize(i)
+              @Columns << columninfo_tmp
+            end
+          end
+          @Indexes = params['Indexes']
+          @GenDocSummary = params['GenDocSummary']
+          @GenParaSummary = params['GenParaSummary']
         end
       end
 
