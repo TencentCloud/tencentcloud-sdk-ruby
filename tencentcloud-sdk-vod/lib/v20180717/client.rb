@@ -3291,6 +3291,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于将智能分析的结果导入到知识库中。
+
+        # @param request: Request instance for ImportMediaKnowledge.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ImportMediaKnowledgeRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ImportMediaKnowledgeResponse`
+        def ImportMediaKnowledge(request)
+          body = send_request('ImportMediaKnowledge', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ImportMediaKnowledgeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 对点播中的音视频媒体发起音画质检测任务。
 
         # @param request: Request instance for InspectMediaQuality.
@@ -4674,6 +4698,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchMediaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用自然语言对媒体进行语义搜索。
+
+        # @param request: Request instance for SearchMediaBySemantics.
+        # @type request: :class:`Tencentcloud::vod::V20180717::SearchMediaBySemanticsRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::SearchMediaBySemanticsResponse`
+        def SearchMediaBySemantics(request)
+          body = send_request('SearchMediaBySemantics', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SearchMediaBySemanticsResponse.new
             model.deserialize(response['Response'])
             model
           else

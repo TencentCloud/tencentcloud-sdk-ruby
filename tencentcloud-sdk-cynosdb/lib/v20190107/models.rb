@@ -1669,10 +1669,12 @@ module TencentCloud
         # @param InstanceDeviceType: 实例机器类型
         # @type InstanceDeviceType: String
         # @param InstanceStorageType: 实例存储类型
+        # 说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。
         # @type InstanceStorageType: String
         # @param DbMode: 数据库类型
         # @type DbMode: String
         # @param NodeList: 节点列表
+        # 说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。
         # @type NodeList: Array
 
         attr_accessor :InstanceId, :InstanceName, :InstanceType, :InstanceStatus, :InstanceStatusDesc, :InstanceCpu, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :ServerlessStatus, :InstanceTasks, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList
@@ -5786,7 +5788,7 @@ module TencentCloud
         # @type EndTime: String
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制条数
+        # @param Limit: 限制条数，默认值为20
         # @type Limit: Integer
 
         attr_accessor :ClusterId, :StartTime, :EndTime, :Offset, :Limit

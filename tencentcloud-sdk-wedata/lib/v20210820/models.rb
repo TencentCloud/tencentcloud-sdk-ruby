@@ -8941,7 +8941,15 @@ module TencentCloud
         # @param CreateTime: 创造时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param CycleUnit: 周期类型
+        # @param CycleUnit: 周期类型D天周期
+        # H小时
+        # Ccrontab类型
+        # I分钟
+        # O一次性
+        # Y年
+        # R用户驱动
+        # W周
+        # M月
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CycleUnit: String
         # @param ScheduleDesc: 调度计划
@@ -8953,10 +8961,19 @@ module TencentCloud
         # @param DatasourceType: 数据源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DatasourceType: String
+        # @param ComputeResource: 引擎名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ComputeResource: String
+        # @param DlcRegion: dlc地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DlcRegion: String
+        # @param IsInherit: 资源组或自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInherit: String
 
-        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime, :CycleUnit, :ScheduleDesc, :DatasourceId, :DatasourceType
+        attr_accessor :TaskId, :TaskName, :WorkflowId, :WorkflowName, :Status, :TaskTypeId, :TaskTypeDesc, :FolderName, :FolderId, :InCharge, :Submit, :DataEngine, :UpdateTime, :CreateTime, :CycleUnit, :ScheduleDesc, :DatasourceId, :DatasourceType, :ComputeResource, :DlcRegion, :IsInherit
 
-        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil, cycleunit=nil, scheduledesc=nil, datasourceid=nil, datasourcetype=nil)
+        def initialize(taskid=nil, taskname=nil, workflowid=nil, workflowname=nil, status=nil, tasktypeid=nil, tasktypedesc=nil, foldername=nil, folderid=nil, incharge=nil, submit=nil, dataengine=nil, updatetime=nil, createtime=nil, cycleunit=nil, scheduledesc=nil, datasourceid=nil, datasourcetype=nil, computeresource=nil, dlcregion=nil, isinherit=nil)
           @TaskId = taskid
           @TaskName = taskname
           @WorkflowId = workflowid
@@ -8975,6 +8992,9 @@ module TencentCloud
           @ScheduleDesc = scheduledesc
           @DatasourceId = datasourceid
           @DatasourceType = datasourcetype
+          @ComputeResource = computeresource
+          @DlcRegion = dlcregion
+          @IsInherit = isinherit
         end
 
         def deserialize(params)
@@ -8996,6 +9016,9 @@ module TencentCloud
           @ScheduleDesc = params['ScheduleDesc']
           @DatasourceId = params['DatasourceId']
           @DatasourceType = params['DatasourceType']
+          @ComputeResource = params['ComputeResource']
+          @DlcRegion = params['DlcRegion']
+          @IsInherit = params['IsInherit']
         end
       end
 
@@ -9088,10 +9111,16 @@ module TencentCloud
         # @type CycleUnitList: Array
         # @param CanSubmit: 是否筛选出可提交的任务
         # @type CanSubmit: Boolean
+        # @param TimeZone: 返回时间字段需要转换的时区
+        # @type TimeZone: String
+        # @param MinUpdateTime: 任务最后更新时间最小值，ISO8601格式，如2025-07-16T15:00:00+08:00
+        # @type MinUpdateTime: String
+        # @param MaxUpdateTime: 任务最后更新时间最大值，ISO8601格式，如2025-07-17T15:00:00+08:00
+        # @type MaxUpdateTime: String
 
-        attr_accessor :ProjectId, :Page, :Size, :StatusList, :OwnerNameList, :WorkflowIdList, :TaskNameFilter, :TaskTypeList, :FordIdList, :TaskIdFilter, :OwnerNameFilter, :SortItem, :SortType, :DataEngineList, :UserId, :OwnerId, :TenantId, :DatasourceIdList, :DatasourceTypeList, :CycleUnitList, :CanSubmit
+        attr_accessor :ProjectId, :Page, :Size, :StatusList, :OwnerNameList, :WorkflowIdList, :TaskNameFilter, :TaskTypeList, :FordIdList, :TaskIdFilter, :OwnerNameFilter, :SortItem, :SortType, :DataEngineList, :UserId, :OwnerId, :TenantId, :DatasourceIdList, :DatasourceTypeList, :CycleUnitList, :CanSubmit, :TimeZone, :MinUpdateTime, :MaxUpdateTime
 
-        def initialize(projectid=nil, page=nil, size=nil, statuslist=nil, ownernamelist=nil, workflowidlist=nil, tasknamefilter=nil, tasktypelist=nil, fordidlist=nil, taskidfilter=nil, ownernamefilter=nil, sortitem=nil, sorttype=nil, dataenginelist=nil, userid=nil, ownerid=nil, tenantid=nil, datasourceidlist=nil, datasourcetypelist=nil, cycleunitlist=nil, cansubmit=nil)
+        def initialize(projectid=nil, page=nil, size=nil, statuslist=nil, ownernamelist=nil, workflowidlist=nil, tasknamefilter=nil, tasktypelist=nil, fordidlist=nil, taskidfilter=nil, ownernamefilter=nil, sortitem=nil, sorttype=nil, dataenginelist=nil, userid=nil, ownerid=nil, tenantid=nil, datasourceidlist=nil, datasourcetypelist=nil, cycleunitlist=nil, cansubmit=nil, timezone=nil, minupdatetime=nil, maxupdatetime=nil)
           @ProjectId = projectid
           @Page = page
           @Size = size
@@ -9113,6 +9142,9 @@ module TencentCloud
           @DatasourceTypeList = datasourcetypelist
           @CycleUnitList = cycleunitlist
           @CanSubmit = cansubmit
+          @TimeZone = timezone
+          @MinUpdateTime = minupdatetime
+          @MaxUpdateTime = maxupdatetime
         end
 
         def deserialize(params)
@@ -9137,6 +9169,9 @@ module TencentCloud
           @DatasourceTypeList = params['DatasourceTypeList']
           @CycleUnitList = params['CycleUnitList']
           @CanSubmit = params['CanSubmit']
+          @TimeZone = params['TimeZone']
+          @MinUpdateTime = params['MinUpdateTime']
+          @MaxUpdateTime = params['MaxUpdateTime']
         end
       end
 

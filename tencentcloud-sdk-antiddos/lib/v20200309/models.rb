@@ -8104,9 +8104,9 @@ module TencentCloud
 
       # 标签信息，用于资源列表返回关联的标签
       class TagInfo < TencentCloud::Common::AbstractModel
-        # @param TagKey: 标签键
+        # @param TagKey: 标签键。
         # @type TagKey: String
-        # @param TagValue: 标签值
+        # @param TagValue: 标签值。
         # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue

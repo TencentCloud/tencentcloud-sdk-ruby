@@ -1766,15 +1766,18 @@ module TencentCloud
         # @type MachineNames: Array
         # @param DisplayName: machine的display name
         # @type DisplayName: String
+        # @param SystemDisk: 系统盘的信息
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
         # @param InstanceChargePrepaid: 节点预付费信息
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
 
-        attr_accessor :ClusterId, :MachineNames, :DisplayName, :InstanceChargePrepaid
+        attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :InstanceChargePrepaid
 
-        def initialize(clusterid=nil, machinenames=nil, displayname=nil, instancechargeprepaid=nil)
+        def initialize(clusterid=nil, machinenames=nil, displayname=nil, systemdisk=nil, instancechargeprepaid=nil)
           @ClusterId = clusterid
           @MachineNames = machinenames
           @DisplayName = displayname
+          @SystemDisk = systemdisk
           @InstanceChargePrepaid = instancechargeprepaid
         end
 
@@ -1782,6 +1785,10 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @MachineNames = params['MachineNames']
           @DisplayName = params['DisplayName']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])

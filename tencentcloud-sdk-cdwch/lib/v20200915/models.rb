@@ -303,14 +303,17 @@ module TencentCloud
         # @type PassWord: String
         # @param Describe: 描述
         # @type Describe: String
+        # @param OriginalPassword: 账户的当前密码
+        # @type OriginalPassword: String
 
-        attr_accessor :InstanceId, :UserName, :PassWord, :Describe
+        attr_accessor :InstanceId, :UserName, :PassWord, :Describe, :OriginalPassword
 
-        def initialize(instanceid=nil, username=nil, password=nil, describe=nil)
+        def initialize(instanceid=nil, username=nil, password=nil, describe=nil, originalpassword=nil)
           @InstanceId = instanceid
           @UserName = username
           @PassWord = password
           @Describe = describe
+          @OriginalPassword = originalpassword
         end
 
         def deserialize(params)
@@ -318,6 +321,7 @@ module TencentCloud
           @UserName = params['UserName']
           @PassWord = params['PassWord']
           @Describe = params['Describe']
+          @OriginalPassword = params['OriginalPassword']
         end
       end
 

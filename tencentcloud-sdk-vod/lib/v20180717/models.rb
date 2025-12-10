@@ -4269,8 +4269,8 @@ module TencentCloud
         # @type Duration: Float
         # @param Resolution: 生成视频的分辨率。
         # <li>当 ModelName 是 Kling，可选值为 720P、1080P，默认为 720P；</li>
-        # <li>当 ModelName 是 Jimeng，可选值为 768P、1080P，默认为 768P；</li>
-        # <li>当 ModelName 是 Hailuo，可选值为 1080P；</li>
+        # <li>当 ModelName 是 Hailuo，可选值为 768P、1080P，默认为 768P；</li>
+        # <li>当 ModelName 是 Jimeng，可选值为 1080P；</li>
         # <li>当 ModelName 是 Vidu，可选值为 720P、1080P，默认为 720P；</li>
         # <li>当 ModelName 是 GV，可选值为 720P、1080P，默认为 720P；</li>
         # <li>当 ModelName 是 OS，可选值为 720P；</li>
@@ -16736,6 +16736,52 @@ module TencentCloud
         end
       end
 
+      # ImportMediaKnowledge请求参数结构体
+      class ImportMediaKnowledgeRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。</b>
+        # @type SubAppId: Integer
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type FileId: String
+        # @param ImportTasks: 需要导入知识库任务类型，可选值有：
+        # - AiAnalysis.DescriptionTask
+        # - SmartSubtitle.AsrFullTextTask
+        # @type ImportTasks: Array
+
+        attr_accessor :SubAppId, :FileId, :ImportTasks
+
+        def initialize(subappid=nil, fileid=nil, importtasks=nil)
+          @SubAppId = subappid
+          @FileId = fileid
+          @ImportTasks = importtasks
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @FileId = params['FileId']
+          @ImportTasks = params['ImportTasks']
+        end
+      end
+
+      # ImportMediaKnowledge返回参数结构体
+      class ImportMediaKnowledgeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # InspectMediaQuality请求参数结构体
       class InspectMediaQualityRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
@@ -27127,6 +27173,71 @@ module TencentCloud
         end
       end
 
+      # SearchMediaBySemantics请求参数结构体
+      class SearchMediaBySemanticsRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Text: 需要进行搜索的内容
+        # @type Text: String
+        # @param Limit: 返回的记录条数，默认值：20。
+        # @type Limit: Integer
+        # @param Categories: 文件类型。匹配集合中的任意元素： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li>
+        # @type Categories: Array
+        # @param Tags: 标签集合，匹配集合中任意元素。 <li>单个标签长度限制：32个字符。</li> <li>数组长度限制：16。</li>
+        # @type Tags: Array
+        # @param TaskTypes: 搜索的任务类型，可选值有：
+        # - AiAnalysis.DescriptionTask
+        # - SmartSubtitle.AsrFullTextTask
+        # @type TaskTypes: Array
+
+        attr_accessor :SubAppId, :Text, :Limit, :Categories, :Tags, :TaskTypes
+
+        def initialize(subappid=nil, text=nil, limit=nil, categories=nil, tags=nil, tasktypes=nil)
+          @SubAppId = subappid
+          @Text = text
+          @Limit = limit
+          @Categories = categories
+          @Tags = tags
+          @TaskTypes = tasktypes
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Text = params['Text']
+          @Limit = params['Limit']
+          @Categories = params['Categories']
+          @Tags = params['Tags']
+          @TaskTypes = params['TaskTypes']
+        end
+      end
+
+      # SearchMediaBySemantics返回参数结构体
+      class SearchMediaBySemanticsResponse < TencentCloud::Common::AbstractModel
+        # @param SearchResults: 媒体列表。
+        # @type SearchResults: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SearchResults, :RequestId
+
+        def initialize(searchresults=nil, requestid=nil)
+          @SearchResults = searchresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SearchResults'].nil?
+            @SearchResults = []
+            params['SearchResults'].each do |i|
+              semanticssearchresult_tmp = SemanticsSearchResult.new
+              semanticssearchresult_tmp.deserialize(i)
+              @SearchResults << semanticssearchresult_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SearchMedia请求参数结构体
       class SearchMediaRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -27393,6 +27504,34 @@ module TencentCloud
 
         def deserialize(params)
           @Switch = params['Switch']
+        end
+      end
+
+      # 语义搜索结果。
+      class SemanticsSearchResult < TencentCloud::Common::AbstractModel
+        # @param FileId: 媒体文件唯一标识 ID。
+        # @type FileId: String
+        # @param Score: 视频在本次检索中的得分，得分越高和检索值越相似，取值范围[0,1]
+        # @type Score: Float
+        # @param StartTimeOffset: 视频片段的开始时间，单位：秒
+        # @type StartTimeOffset: Float
+        # @param EndTimeOffset: 视频片段的开始时间，单位：秒
+        # @type EndTimeOffset: Float
+
+        attr_accessor :FileId, :Score, :StartTimeOffset, :EndTimeOffset
+
+        def initialize(fileid=nil, score=nil, starttimeoffset=nil, endtimeoffset=nil)
+          @FileId = fileid
+          @Score = score
+          @StartTimeOffset = starttimeoffset
+          @EndTimeOffset = endtimeoffset
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @Score = params['Score']
+          @StartTimeOffset = params['StartTimeOffset']
+          @EndTimeOffset = params['EndTimeOffset']
         end
       end
 
