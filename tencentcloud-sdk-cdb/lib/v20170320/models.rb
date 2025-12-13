@@ -10213,6 +10213,9 @@ module TencentCloud
         # @type SkipValidatePassword: Boolean
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
+        extend Gem::Deprecate
+        deprecate :SkipValidatePassword, :none, 2025, 12
+        deprecate :SkipValidatePassword=, :none, 2025, 12
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid

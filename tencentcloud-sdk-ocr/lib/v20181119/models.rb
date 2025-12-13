@@ -8911,12 +8911,14 @@ module TencentCloud
         # @type Overlap: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param Watermark: 是否水印
         # @type Watermark: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
+        # @param Electron: 是否电子证照（目前仅支持电子身份证、电子营业执照识别
+        # @type Electron: :class:`Tencentcloud::Ocr.v20181119.models.GeneralCardWarnInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :Screenshot, :Cover, :Overlap, :Watermark, :RequestId
+        attr_accessor :CardType, :Blur, :BorderIncomplete, :Copy, :Ps, :Reflection, :Reprint, :Screenshot, :Cover, :Overlap, :Watermark, :Electron, :RequestId
 
-        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, screenshot=nil, cover=nil, overlap=nil, watermark=nil, requestid=nil)
+        def initialize(cardtype=nil, blur=nil, borderincomplete=nil, copy=nil, ps=nil, reflection=nil, reprint=nil, screenshot=nil, cover=nil, overlap=nil, watermark=nil, electron=nil, requestid=nil)
           @CardType = cardtype
           @Blur = blur
           @BorderIncomplete = borderincomplete
@@ -8928,6 +8930,7 @@ module TencentCloud
           @Cover = cover
           @Overlap = overlap
           @Watermark = watermark
+          @Electron = electron
           @RequestId = requestid
         end
 
@@ -8972,6 +8975,10 @@ module TencentCloud
           unless params['Watermark'].nil?
             @Watermark = GeneralCardWarnInfo.new
             @Watermark.deserialize(params['Watermark'])
+          end
+          unless params['Electron'].nil?
+            @Electron = GeneralCardWarnInfo.new
+            @Electron.deserialize(params['Electron'])
           end
           @RequestId = params['RequestId']
         end

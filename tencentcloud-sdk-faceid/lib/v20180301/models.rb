@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 11
-        deprecate :Idcard=, :none, 2025, 11
+        deprecate :Idcard, :none, 2025, 12
+        deprecate :Idcard=, :none, 2025, 12
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1613,8 +1613,7 @@ module TencentCloud
         # - 例如 13 表示拉取文本类、视频最佳截图信息。
         # - 默认值：0
         # @type InfoType: String
-        # @param BestFramesCount: 从活体视频中截取一定张数的最佳帧。
-        # - 仅部分服务支持，若需使用请与慧眼小助手沟通。
+        # @param BestFramesCount: 从活体视频中截取一定张数的自截帧。
         # - 默认值为0，最大值为10，超出10的最多只给10张。
         # - InfoType需要包含3。
         # @type BestFramesCount: Integer
@@ -1702,12 +1701,12 @@ module TencentCloud
         # @param EncryptedBody: 加密后的数据。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptedBody: String
-        # @param IsVerifyIntention: 本次请求是否配置开启意愿校验。
-        # false：未开启意愿校验
-        # true：已开启意愿校验
-        # 说明：若请求开启了意愿校验，可结合IntentionVerifyType中具体使用的校验模式从对应的出参Result中获取最终的核验结果；若请求没有开启意愿校验，则可在出参Text中获取最终的核验结果。
+        # @param IsVerifyIntention: 本次请求是否配置开启意愿核身校验。
+        # false：未开启意愿核身校验
+        # true：已开启意愿核身校验
+        # 说明：若请求开启了意愿核身校验，可结合IntentionVerifyType中具体使用的校验模式从对应的出参Result中获取最终的核验结果；若请求没有开启意愿核身校验，则可在出参Text中获取最终的核验结果。
         # @type IsVerifyIntention: Boolean
-        # @param IntentionVerifyType: 本次请求意愿校验使用的具体模式。
+        # @param IntentionVerifyType: 本次请求意愿核身校验使用的具体模式。
         # 0：问答模式
         # 1：点头确认模式
         # 2：朗读模式
@@ -3210,8 +3209,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 11
-        deprecate :AsrResultSimilarity=, :none, 2025, 11
+        deprecate :AsrResultSimilarity, :none, 2025, 12
+        deprecate :AsrResultSimilarity=, :none, 2025, 12
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo

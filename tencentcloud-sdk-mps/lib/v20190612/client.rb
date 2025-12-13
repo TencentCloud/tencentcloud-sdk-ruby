@@ -3584,6 +3584,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 文本翻译
+
+        # @param request: Request instance for TextTranslation.
+        # @type request: :class:`Tencentcloud::mps::V20190612::TextTranslationRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::TextTranslationResponse`
+        def TextTranslation(request)
+          body = send_request('TextTranslation', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = TextTranslationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提取视频中的盲水印。
 
         # @param request: Request instance for WithdrawsWatermark.

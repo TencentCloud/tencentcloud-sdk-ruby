@@ -4445,10 +4445,12 @@ module TencentCloud
         # @type TxhBackupExpireDay: Integer
         # @param SyncTableInfo: 表格的缓写信息
         # @type SyncTableInfo: :class:`Tencentcloud::Tcaplusdb.v20190823.models.SyncTableInfo`
+        # @param ShardNum: 表格分片数量
+        # @type ShardNum: Integer
 
-        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay, :SyncTableInfo
+        attr_accessor :TableName, :TableInstanceId, :TableType, :TableIdlType, :ClusterId, :ClusterName, :TableGroupId, :TableGroupName, :KeyStruct, :ValueStruct, :ShardingKeySet, :IndexStruct, :ListElementNum, :IdlFiles, :ReservedVolume, :ReservedReadQps, :ReservedWriteQps, :TableSize, :Status, :CreatedTime, :UpdatedTime, :Memo, :Error, :ApiAccessId, :SortFieldNum, :SortRule, :DbClusterInfoStruct, :TxhBackupExpireDay, :SyncTableInfo, :ShardNum
 
-        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil, synctableinfo=nil)
+        def initialize(tablename=nil, tableinstanceid=nil, tabletype=nil, tableidltype=nil, clusterid=nil, clustername=nil, tablegroupid=nil, tablegroupname=nil, keystruct=nil, valuestruct=nil, shardingkeyset=nil, indexstruct=nil, listelementnum=nil, idlfiles=nil, reservedvolume=nil, reservedreadqps=nil, reservedwriteqps=nil, tablesize=nil, status=nil, createdtime=nil, updatedtime=nil, memo=nil, error=nil, apiaccessid=nil, sortfieldnum=nil, sortrule=nil, dbclusterinfostruct=nil, txhbackupexpireday=nil, synctableinfo=nil, shardnum=nil)
           @TableName = tablename
           @TableInstanceId = tableinstanceid
           @TableType = tabletype
@@ -4478,6 +4480,7 @@ module TencentCloud
           @DbClusterInfoStruct = dbclusterinfostruct
           @TxhBackupExpireDay = txhbackupexpireday
           @SyncTableInfo = synctableinfo
+          @ShardNum = shardnum
         end
 
         def deserialize(params)
@@ -4523,6 +4526,7 @@ module TencentCloud
             @SyncTableInfo = SyncTableInfo.new
             @SyncTableInfo.deserialize(params['SyncTableInfo'])
           end
+          @ShardNum = params['ShardNum']
         end
       end
 

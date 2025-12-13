@@ -278,9 +278,20 @@ module TencentCloud
 
       # TTS音频输出的格式
       class AudioFormat < TencentCloud::Common::AbstractModel
-        # @param Format: 生成的音频格式，默认pcm，目前支持的格式列表：流式：[pcm]，非流式 [pcm，wav]
+        # @param Format: 生成的音频格式
+
+        # - TextToSpeech流式接口
+
+        #  支持 pcm, 默认: pcm
+
+        # - TextToSpeech非流式接口
+
+        #  支持 pcm,wav,  默认: pcm
         # @type Format: String
-        # @param SampleRate: 采样率，默认24000， 可选16000, 24000
+        # @param SampleRate: 生成的音频采样率，默认24000
+        # 可选
+        # - 16000
+        # - 24000
         # @type SampleRate: Integer
 
         attr_accessor :Format, :SampleRate
@@ -4775,10 +4786,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 11
-        deprecate :Model=, :none, 2025, 11
-        deprecate :TranslationLanguage, :none, 2025, 11
-        deprecate :TranslationLanguage=, :none, 2025, 11
+        deprecate :Model, :none, 2025, 12
+        deprecate :Model=, :none, 2025, 12
+        deprecate :TranslationLanguage, :none, 2025, 12
+        deprecate :TranslationLanguage=, :none, 2025, 12
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5905,12 +5916,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 11
-        deprecate :VideoEncodeParams=, :none, 2025, 11
-        deprecate :AudioEncodeParams, :none, 2025, 11
-        deprecate :AudioEncodeParams=, :none, 2025, 11
-        deprecate :SourceUrl, :none, 2025, 11
-        deprecate :SourceUrl=, :none, 2025, 11
+        deprecate :VideoEncodeParams, :none, 2025, 12
+        deprecate :VideoEncodeParams=, :none, 2025, 12
+        deprecate :AudioEncodeParams, :none, 2025, 12
+        deprecate :AudioEncodeParams=, :none, 2025, 12
+        deprecate :SourceUrl, :none, 2025, 12
+        deprecate :SourceUrl=, :none, 2025, 12
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
           @SdkAppId = sdkappid
@@ -6607,15 +6618,15 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: TTS的API密钥
         # @type APIKey: String
-        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @param Model: TTS的模型，当前固定为：flow_01_turbo
         # @type Model: String
-        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @param Language:  需要合成的语言（ISO 639-1），支持 zh（中文）、en（英文）、yue（粤语）、ja（日语）、ko（韩语），默认自动识别
         # @type Language: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2025, 11
-        deprecate :APIKey=, :none, 2025, 11
+        deprecate :APIKey, :none, 2025, 12
+        deprecate :APIKey=, :none, 2025, 12
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6676,12 +6687,15 @@ module TencentCloud
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param APIKey: TTS的API密钥
         # @type APIKey: String
-        # @param Model: TTS的模型：flow_01_turbo，flow_01_ex
+        # @param Model: TTS的模型，当前固定为：flow_01_turbo
         # @type Model: String
-        # @param Language: 语言参数，默认为空， 参考： (ISO 639-1)
+        # @param Language:  需要合成的语言（ISO 639-1），支持 zh（中文）、en（英文）、yue（粤语）、ja（日语）、ko（韩语），默认自动识别
         # @type Language: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
+        extend Gem::Deprecate
+        deprecate :APIKey, :none, 2025, 12
+        deprecate :APIKey=, :none, 2025, 12
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6773,10 +6787,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 11
-        deprecate :IMAdminUserId=, :none, 2025, 11
-        deprecate :IMAdminUserSig, :none, 2025, 11
-        deprecate :IMAdminUserSig=, :none, 2025, 11
+        deprecate :IMAdminUserId, :none, 2025, 12
+        deprecate :IMAdminUserId=, :none, 2025, 12
+        deprecate :IMAdminUserSig, :none, 2025, 12
+        deprecate :IMAdminUserSig=, :none, 2025, 12
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7319,15 +7333,15 @@ module TencentCloud
         end
       end
 
-      # TTS的声音参数
+      # TTS的声音参数配置
       class Voice < TencentCloud::Common::AbstractModel
-        # @param VoiceId: TTS的声音的ID
+        # @param VoiceId:  音色 ID，可从音色列表获取，或使用声音克隆生成的自定义音色 ID
         # @type VoiceId: String
-        # @param Speed: 语速，范围 0.5-2.0，默认 1.0
+        # @param Speed: 语速调节，0.5 为半速慢放，2.0 为两倍速快放，1.0 为正常语速，区间：[0.5, 2.0]，默认1.0
         # @type Speed: Float
-        # @param Volume: (0, 10]   默认值1.0
+        # @param Volume:  音量调节，0 为静音，10 为最大音量，建议保持默认值 1.0，区间：[0, 10]，默认1.0
         # @type Volume: Float
-        # @param Pitch: 取值[-12,12],默认0
+        # @param Pitch:  音高调节，负值声音更低沉，正值声音更尖锐，0 为原始音高，区间 [-12, 12],  默认0
         # @type Pitch: Integer
 
         attr_accessor :VoiceId, :Speed, :Volume, :Pitch

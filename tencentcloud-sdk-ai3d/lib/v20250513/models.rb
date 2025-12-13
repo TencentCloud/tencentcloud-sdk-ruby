@@ -17,6 +17,211 @@
 module TencentCloud
   module Ai3d
     module V20250513
+      # Convert3DFormat请求参数结构体
+      class Convert3DFormatRequest < TencentCloud::Common::AbstractModel
+        # @param File3D: 3D文件url地址。
+        # @type File3D: String
+        # @param Format: 返回的3D文件格式，参考值：STL, USDZ, FBX, MP4, GIF。
+        # @type Format: String
+
+        attr_accessor :File3D, :Format
+
+        def initialize(file3d=nil, format=nil)
+          @File3D = file3d
+          @Format = format
+        end
+
+        def deserialize(params)
+          @File3D = params['File3D']
+          @Format = params['Format']
+        end
+      end
+
+      # Convert3DFormat返回参数结构体
+      class Convert3DFormatResponse < TencentCloud::Common::AbstractModel
+        # @param ResultFile3D: 3D文件地址
+        # @type ResultFile3D: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResultFile3D, :RequestId
+
+        def initialize(resultfile3d=nil, requestid=nil)
+          @ResultFile3D = resultfile3d
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResultFile3D = params['ResultFile3D']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHunyuanTo3DUVJob请求参数结构体
+      class DescribeHunyuanTo3DUVJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeHunyuanTo3DUVJob返回参数结构体
+      class DescribeHunyuanTo3DUVJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。
+        # @type Status: String
+        # @param ErrorCode: 错误码。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息。
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: 生成文件的URL地址，有效期1天。
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReduceFaceJob请求参数结构体
+      class DescribeReduceFaceJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeReduceFaceJob返回参数结构体
+      class DescribeReduceFaceJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type Status: String
+        # @param ErrorCode: 错误码
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: 生成的3D文件数组。
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTextureTo3DJob请求参数结构体
+      class DescribeTextureTo3DJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeTextureTo3DJob返回参数结构体
+      class DescribeTextureTo3DJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type Status: String
+        # @param ErrorCode: 错误码
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: 生成的3D文件数组。
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 3D文件
       class File3D < TencentCloud::Common::AbstractModel
         # @param Type: 文件格式
@@ -38,6 +243,101 @@ module TencentCloud
           @Type = params['Type']
           @Url = params['Url']
           @PreviewImageUrl = params['PreviewImageUrl']
+        end
+      end
+
+      # 图片
+      class Image < TencentCloud::Common::AbstractModel
+        # @param Base64: 图片base64
+        # @type Base64: String
+        # @param Url: 图片url
+        # @type Url: String
+
+        attr_accessor :Base64, :Url
+
+        def initialize(base64=nil, url=nil)
+          @Base64 = base64
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Base64 = params['Base64']
+          @Url = params['Url']
+        end
+      end
+
+      # 3D文件
+      class InputFile3D < TencentCloud::Common::AbstractModel
+        # @param Url: 文件的Url（有效期24小时）
+        # @type Url: String
+        # @param Type: 文件格式
+        # @type Type: String
+
+        attr_accessor :Url, :Type
+
+        def initialize(url=nil, type=nil)
+          @Url = url
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
+          @Type = params['Type']
+        end
+      end
+
+      # QueryHunyuan3DPartJob请求参数结构体
+      class QueryHunyuan3DPartJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # QueryHunyuan3DPartJob返回参数结构体
+      class QueryHunyuan3DPartJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。
+        # @type Status: String
+        # @param ErrorCode: 错误码。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 错误信息。
+        # @type ErrorMessage: String
+        # @param ResultFile3Ds: 生成文件的URL地址，有效期1天。
+        # @type ResultFile3Ds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultFile3Ds = resultfile3ds
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          unless params['ResultFile3Ds'].nil?
+            @ResultFile3Ds = []
+            params['ResultFile3Ds'].each do |i|
+              file3d_tmp = File3D.new
+              file3d_tmp.deserialize(i)
+              @ResultFile3Ds << file3d_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -147,6 +447,45 @@ module TencentCloud
               @ResultFile3Ds << file3d_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitHunyuan3DPartJob请求参数结构体
+      class SubmitHunyuan3DPartJobRequest < TencentCloud::Common::AbstractModel
+        # @param File: 需进行组件生成的3D模型文件，仅支持FBX格式。
+        # @type File: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
+
+        attr_accessor :File
+
+        def initialize(file=nil)
+          @File = file
+        end
+
+        def deserialize(params)
+          unless params['File'].nil?
+            @File = InputFile3D.new
+            @File.deserialize(params['File'])
+          end
+        end
+      end
+
+      # SubmitHunyuan3DPartJob返回参数结构体
+      class SubmitHunyuan3DPartJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
           @RequestId = params['RequestId']
         end
       end
@@ -295,6 +634,154 @@ module TencentCloud
 
       # SubmitHunyuanTo3DRapidJob返回参数结构体
       class SubmitHunyuanTo3DRapidJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID（有效期24小时）
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitHunyuanTo3DUVJob请求参数结构体
+      class SubmitHunyuanTo3DUVJobRequest < TencentCloud::Common::AbstractModel
+        # @param File: 需进行UV展开的3D文件URL，可支持FBX,OBJ,GLB格式。
+        # @type File: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
+
+        attr_accessor :File
+
+        def initialize(file=nil)
+          @File = file
+        end
+
+        def deserialize(params)
+          unless params['File'].nil?
+            @File = InputFile3D.new
+            @File.deserialize(params['File'])
+          end
+        end
+      end
+
+      # SubmitHunyuanTo3DUVJob返回参数结构体
+      class SubmitHunyuanTo3DUVJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitReduceFaceJob请求参数结构体
+      class SubmitReduceFaceJobRequest < TencentCloud::Common::AbstractModel
+        # @param File3D: 源3D模型文件。其中参数 Type 和 Url 必填，参数 PreviewImageUrl 无意义，可忽略。
+        # Type可选值：OBJ，GLB
+        # @type File3D: :class:`Tencentcloud::Ai3d.v20250513.models.File3D`
+        # @param PolygonType: 多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:
+        # triangle:三角形面。
+        # quadrilateral：四边形面。
+        # @type PolygonType: String
+        # @param FaceLevel: 减面后面数档位类型，可选值：high，medium, low。
+        # @type FaceLevel: String
+
+        attr_accessor :File3D, :PolygonType, :FaceLevel
+
+        def initialize(file3d=nil, polygontype=nil, facelevel=nil)
+          @File3D = file3d
+          @PolygonType = polygontype
+          @FaceLevel = facelevel
+        end
+
+        def deserialize(params)
+          unless params['File3D'].nil?
+            @File3D = File3D.new
+            @File3D.deserialize(params['File3D'])
+          end
+          @PolygonType = params['PolygonType']
+          @FaceLevel = params['FaceLevel']
+        end
+      end
+
+      # SubmitReduceFaceJob返回参数结构体
+      class SubmitReduceFaceJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID（有效期24小时）
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitTextureTo3DJob请求参数结构体
+      class SubmitTextureTo3DJobRequest < TencentCloud::Common::AbstractModel
+        # @param File3D: 源3D模型文件。
+        # Type可选值：OBJ，GLB
+        # @type File3D: :class:`Tencentcloud::Ai3d.v20250513.models.File3D`
+        # @param Prompt: 文生3D，3D内容的描述，中文正向提示词。
+        # 最多支持200个 utf-8 字符。
+        # 文生3D, image、image_url和 prompt必填其一，且prompt和image/image_url不能同时存在。
+        # @type Prompt: String
+        # @param Image: 3D模型纹理参考图 Base64 数据和参考图图 Url。
+        # - Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # - 图片限制：单边分辨率小于4096且大于128，转成 Base64 字符串后小于 10MB，格式支持 jpg、jpeg、png。
+        # @type Image: :class:`Tencentcloud::Ai3d.v20250513.models.Image`
+        # @param EnablePBR: 是否开启 PBR材质生成，默认 false。
+        # @type EnablePBR: Boolean
+
+        attr_accessor :File3D, :Prompt, :Image, :EnablePBR
+
+        def initialize(file3d=nil, prompt=nil, image=nil, enablepbr=nil)
+          @File3D = file3d
+          @Prompt = prompt
+          @Image = image
+          @EnablePBR = enablepbr
+        end
+
+        def deserialize(params)
+          unless params['File3D'].nil?
+            @File3D = File3D.new
+            @File3D.deserialize(params['File3D'])
+          end
+          @Prompt = params['Prompt']
+          unless params['Image'].nil?
+            @Image = Image.new
+            @Image.deserialize(params['Image'])
+          end
+          @EnablePBR = params['EnablePBR']
+        end
+      end
+
+      # SubmitTextureTo3DJob返回参数结构体
+      class SubmitTextureTo3DJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID（有效期24小时）
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
