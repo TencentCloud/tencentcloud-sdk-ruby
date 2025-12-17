@@ -2693,6 +2693,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询插件日志采集配置
+
+        # @param request: Request instance for DescribeControlPlaneLogs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeControlPlaneLogsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeControlPlaneLogsResponse`
+        def DescribeControlPlaneLogs(request)
+          body = send_request('DescribeControlPlaneLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeControlPlaneLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取ECM实例相关信息
 
         # @param request: Request instance for DescribeECMInstances.
@@ -4349,6 +4373,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除插件日志采集配置
+
+        # @param request: Request instance for DisableControlPlaneLogs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DisableControlPlaneLogsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DisableControlPlaneLogsResponse`
+        def DisableControlPlaneLogs(request)
+          body = send_request('DisableControlPlaneLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableControlPlaneLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 关闭加密信息保护
 
         # @param request: Request instance for DisableEncryptionProtection.
@@ -4479,6 +4527,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = EnableClusterDeletionProtectionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建插件日志采集配置
+
+        # @param request: Request instance for EnableControlPlaneLogs.
+        # @type request: :class:`Tencentcloud::tke::V20180525::EnableControlPlaneLogsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::EnableControlPlaneLogsResponse`
+        def EnableControlPlaneLogs(request)
+          body = send_request('EnableControlPlaneLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableControlPlaneLogsResponse.new
             model.deserialize(response['Response'])
             model
           else

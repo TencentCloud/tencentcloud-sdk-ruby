@@ -1255,6 +1255,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询目标组后端服务状态。目前仅支持网关负载均衡类型的目标组支持查询后端服务状态。
+
+        # @param request: Request instance for DescribeTargetGroupInstanceStatus.
+        # @type request: :class:`Tencentcloud::clb::V20180317::DescribeTargetGroupInstanceStatusRequest`
+        # @rtype: :class:`Tencentcloud::clb::V20180317::DescribeTargetGroupInstanceStatusResponse`
+        def DescribeTargetGroupInstanceStatus(request)
+          body = send_request('DescribeTargetGroupInstanceStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTargetGroupInstanceStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取目标组绑定的服务器信息
 
         # @param request: Request instance for DescribeTargetGroupInstances.

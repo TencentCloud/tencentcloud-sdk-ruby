@@ -1512,6 +1512,37 @@ module TencentCloud
         end
       end
 
+      # 模型详情
+      class AppModelDetailInfo < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称
+        # @type ModelName: String
+        # @param ModelParams: 模型参数
+        # @type ModelParams: :class:`Tencentcloud::Lke.v20231130.models.ModelParams`
+        # @param HistoryLimit: 限制
+        # @type HistoryLimit: Integer
+        # @param AliasName: 模型别名
+        # @type AliasName: String
+
+        attr_accessor :ModelName, :ModelParams, :HistoryLimit, :AliasName
+
+        def initialize(modelname=nil, modelparams=nil, historylimit=nil, aliasname=nil)
+          @ModelName = modelname
+          @ModelParams = modelparams
+          @HistoryLimit = historylimit
+          @AliasName = aliasname
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          unless params['ModelParams'].nil?
+            @ModelParams = ModelParams.new
+            @ModelParams.deserialize(params['ModelParams'])
+          end
+          @HistoryLimit = params['HistoryLimit']
+          @AliasName = params['AliasName']
+        end
+      end
+
       # 标签详情信息
       class AttrLabel < TencentCloud::Common::AbstractModel
         # @param Source: 标签来源
@@ -1573,7 +1604,7 @@ module TencentCloud
         # @param IsUpdating: 标签是否在更新中
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUpdating: Boolean
-        # @param Status: 状态
+        # @param Status: 发布状态(1 待发布 2 发布中 3 已发布 4 发布失败)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
         # @param StatusDesc: 状态描述
@@ -1583,6 +1614,9 @@ module TencentCloud
         # @type LabelTotalCount: String
 
         attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating, :Status, :StatusDesc, :LabelTotalCount
+        extend Gem::Deprecate
+        deprecate :AttrKey, :none, 2025, 12
+        deprecate :AttrKey=, :none, 2025, 12
 
         def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil, status=nil, statusdesc=nil, labeltotalcount=nil)
           @AttrBizId = attrbizid
@@ -1953,17 +1987,17 @@ module TencentCloud
 
       # CheckAttributeLabelExist请求参数结构体
       class CheckAttributeLabelExistRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param LabelName: 属性名称
+        # @param LabelName: 标签名称
         # @type LabelName: String
-        # @param AttributeBizId: 属性ID
+        # @param AttributeBizId: 标签ID
         # @type AttributeBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param LastLabelBizId: 滚动加载，最后一个属性标签ID
+        # @param LastLabelBizId: 最后一个标签ID。用于滚动加载：是一种分批、滚动式的存在性检查机制。客户端需要持续调用接口，并每次传入上一次返回的最后一个记录的ID，直到接口明确返回“存在”或“已检查全部数据且不存在”为止。
         # @type LastLabelBizId: String
 
         attr_accessor :BotBizId, :LabelName, :AttributeBizId, :LoginUin, :LoginSubAccountUin, :LastLabelBizId
@@ -2009,15 +2043,15 @@ module TencentCloud
 
       # CheckAttributeLabelRefer请求参数结构体
       class CheckAttributeLabelReferRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID,获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param LabelBizId: 属性标签
+        # @param LabelBizId: 属性标签ID
         # @type LabelBizId: String
-        # @param AttributeBizId: 属性ID
+        # @param AttributeBizId: 标签ID
         # @type AttributeBizId: Array
 
         attr_accessor :BotBizId, :LoginUin, :LoginSubAccountUin, :LabelBizId, :AttributeBizId
@@ -2248,7 +2282,7 @@ module TencentCloud
 
       # CreateAttributeLabel请求参数结构体
       class CreateAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param AttrName: 标签名
         # @type AttrName: String
@@ -2521,12 +2555,12 @@ module TencentCloud
 
       # CreateRejectedQuestion请求参数结构体
       class CreateRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID, 获取方式参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param Question: 拒答问题
 
         # @type Question: String
-        # @param BusinessSource: 拒答问题来源的数据源唯一id， - 拒答来源于不满意回复  2 - 拒答来源于手动添加
+        # @param BusinessSource: 拒答问题来源， 1- 来源于不满意回复;  2 - 来源于手动添加
         # @type BusinessSource: Integer
         # @param BusinessId: 拒答问题来源的数据源唯一id
 
@@ -2932,7 +2966,7 @@ module TencentCloud
 
       # DeleteAttributeLabel请求参数结构体
       class DeleteAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param AttributeBizIds: 标签ID
         # @type AttributeBizIds: Array
@@ -3120,7 +3154,7 @@ module TencentCloud
 
       # DeleteRejectedQuestion请求参数结构体
       class DeleteRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID, 获取方法参看如何获取 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
         # @type BotBizId: String
         # @param RejectedBizIds: 拒答问题来源的数据源唯一id
 
@@ -3394,19 +3428,19 @@ module TencentCloud
 
       # DescribeAttributeLabel请求参数结构体
       class DescribeAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param AttributeBizId: 属性ID
+        # @param AttributeBizId: 标签ID
         # @type AttributeBizId: String
-        # @param Limit: 每次加载的数量
+        # @param Limit: 每次请求返回的最大标签数量​，限制单次接口返回的标签数量，避免数据量过大。取值范围：大于0。
         # @type Limit: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param Query: 查询标签或相似标签
+        # @param Query: 搜索关键词，用于查询标签标准词或相似词
         # @type Query: String
-        # @param LastLabelBizId: 滚动加载游标的标签ID
+        # @param LastLabelBizId: 滚动加载游标，上一次请求返回的最后一个标签ID
         # @type LastLabelBizId: String
         # @param QueryScope: 查询范围 all(或者传空):标准词和相似词 standard:标准词 similar:相似词
         # @type QueryScope: String
@@ -4871,9 +4905,9 @@ module TencentCloud
 
       # DescribeUnsatisfiedReplyContext请求参数结构体
       class DescribeUnsatisfiedReplyContextRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param ReplyBizId: 回复ID
+        # @param ReplyBizId: 回复ID，调用这个接口获得：[ListUnsatisfiedReply](https://capi.woa.com/api/detail?product=lke&version=2023-11-30&action=ListUnsatisfiedReply)
         # @type ReplyBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -4927,7 +4961,7 @@ module TencentCloud
 
       # DescribeWorkflowRun请求参数结构体
       class DescribeWorkflowRunRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: 应用ID, 获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
         # @type AppBizId: String
         # @param WorkflowRunId: 工作流运行实例ID
         # @type WorkflowRunId: String
@@ -4964,7 +4998,7 @@ module TencentCloud
 
       # DescribeWorkflowRun返回参数结构体
       class DescribeWorkflowRunResponse < TencentCloud::Common::AbstractModel
-        # @param WorkflowRun: 工作流的详情
+        # @param WorkflowRun: 工作流运行实例详情
         # @type WorkflowRun: :class:`Tencentcloud::Lke.v20231130.models.WorkflowRunDetail`
         # @param NodeRuns: 节点列表
         # @type NodeRuns: Array
@@ -5140,13 +5174,13 @@ module TencentCloud
 
       # ExportAttributeLabel请求参数结构体
       class ExportAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param AttributeBizIds: 属性ID
+        # @param AttributeBizIds: 标签ID
         # @type AttributeBizIds: Array
         # @param Filters: 根据筛选数据导出
         # @type Filters: :class:`Tencentcloud::Lke.v20231130.models.AttributeFilters`
@@ -5352,23 +5386,27 @@ module TencentCloud
         # @type Query: String
         # @param Reasons: 错误类型检索
         # @type Reasons: Array
+        # @param HandlingStatuses: 处理状态 0-待处理 1-已拒答 2-已忽略 3-已添加为新问答 4-已添加为相似问
+        # @type HandlingStatuses: Array
 
-        attr_accessor :Query, :Reasons
+        attr_accessor :Query, :Reasons, :HandlingStatuses
 
-        def initialize(query=nil, reasons=nil)
+        def initialize(query=nil, reasons=nil, handlingstatuses=nil)
           @Query = query
           @Reasons = reasons
+          @HandlingStatuses = handlingstatuses
         end
 
         def deserialize(params)
           @Query = params['Query']
           @Reasons = params['Reasons']
+          @HandlingStatuses = params['HandlingStatuses']
         end
       end
 
       # GenerateQA请求参数结构体
       class GenerateQARequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID,获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param DocBizIds: 文档ID
         # @type DocBizIds: Array
@@ -6030,17 +6068,21 @@ module TencentCloud
         # @type Pattern: String
         # @param SingleWorkflow: SingleWorkflow
         # @type SingleWorkflow: :class:`Tencentcloud::Lke.v20231130.models.KnowledgeQaSingleWorkflow`
+        # @param VisionModelInputLimit: 使用视觉模型时对话窗口输入字符限制
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VisionModelInputLimit: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Token, :Balance, :InputLenLimit, :Pattern, :SingleWorkflow, :RequestId
+        attr_accessor :Token, :Balance, :InputLenLimit, :Pattern, :SingleWorkflow, :VisionModelInputLimit, :RequestId
 
-        def initialize(token=nil, balance=nil, inputlenlimit=nil, pattern=nil, singleworkflow=nil, requestid=nil)
+        def initialize(token=nil, balance=nil, inputlenlimit=nil, pattern=nil, singleworkflow=nil, visionmodelinputlimit=nil, requestid=nil)
           @Token = token
           @Balance = balance
           @InputLenLimit = inputlenlimit
           @Pattern = pattern
           @SingleWorkflow = singleworkflow
+          @VisionModelInputLimit = visionmodelinputlimit
           @RequestId = requestid
         end
 
@@ -6053,6 +6095,7 @@ module TencentCloud
             @SingleWorkflow = KnowledgeQaSingleWorkflow.new
             @SingleWorkflow.deserialize(params['SingleWorkflow'])
           end
+          @VisionModelInputLimit = params['VisionModelInputLimit']
           @RequestId = params['RequestId']
         end
       end
@@ -8670,11 +8713,11 @@ module TencentCloud
 
       # ListSelectDoc请求参数结构体
       class ListSelectDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID,获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param FileName: 文档名称。可通过文档名称检索支持生成问答的文档，不支持xlsx、xls、csv格式
         # @type FileName: String
-        # @param Status: 文档状态筛选。文档状态对应码为7 审核中、8 审核失败、10 待发布、11 发布中、12 已发布、13 学习中、14 学习失败 20 已过期。其中仅状态为10 待发布、12 已发布的文档支持生成问答
+        # @param Status: 文档状态筛选。文档状态对应码为7 审核中、8 审核失败、10 待发布、11 发布中、12 已发布、13 学习中、14 学习失败 20 已过期。其中仅状态为10 待发布、12 已发布的文档支持生成问答（未填写时默认值为空数组）
         # @type Status: Array
 
         attr_accessor :BotBizId, :FileName, :Status
@@ -8781,26 +8824,28 @@ module TencentCloud
 
       # ListUnsatisfiedReply请求参数结构体
       class ListUnsatisfiedReplyRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码，取值范围：大于0
         # @type PageNumber: Integer
-        # @param PageSize: 分页数量
+        # @param PageSize: 分页数量，取值范围：大于0
         # @type PageSize: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param Query: 用户请求(问题或答案)
+        # @param Query: 用户请求(问题或答案)，按关键词检索，可匹配用户问题或答案
         # @type Query: String
-        # @param Reasons: 错误类型检索
+        # @param Reasons: 按错误类型检索
         # @type Reasons: Array
-        # @param Status: 操作状态  0-全部 1-待处理  2-已处理【包括答案纠错，拒答，忽略】
+        # @param Status: 按操作状态检索  0-全部 1-待处理  2-已处理【包括答案纠错，拒答，忽略】，不填时默认值为0
         # @type Status: Integer
+        # @param HandlingStatuses: 处理状态 0-待处理 1-已拒答 2-已忽略 3-已添加为新问答 4-已添加为相似问
+        # @type HandlingStatuses: Array
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :LoginUin, :LoginSubAccountUin, :Query, :Reasons, :Status
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :LoginUin, :LoginSubAccountUin, :Query, :Reasons, :Status, :HandlingStatuses
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil, query=nil, reasons=nil, status=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, loginuin=nil, loginsubaccountuin=nil, query=nil, reasons=nil, status=nil, handlingstatuses=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -8809,6 +8854,7 @@ module TencentCloud
           @Query = query
           @Reasons = reasons
           @Status = status
+          @HandlingStatuses = handlingstatuses
         end
 
         def deserialize(params)
@@ -8820,6 +8866,7 @@ module TencentCloud
           @Query = params['Query']
           @Reasons = params['Reasons']
           @Status = params['Status']
+          @HandlingStatuses = params['HandlingStatuses']
         end
       end
 
@@ -10072,6 +10119,26 @@ module TencentCloud
           @DocBizId = params['DocBizId']
           @QaBizId = params['QaBizId']
           @Index = params['Index']
+        end
+      end
+
+      # Nl2Sql模型配置
+      class NL2SQLModelConfig < TencentCloud::Common::AbstractModel
+        # @param Model: 模型配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: :class:`Tencentcloud::Lke.v20231130.models.AppModelDetailInfo`
+
+        attr_accessor :Model
+
+        def initialize(model=nil)
+          @Model = model
+        end
+
+        def deserialize(params)
+          unless params['Model'].nil?
+            @Model = AppModelDetailInfo.new
+            @Model.deserialize(params['Model'])
+          end
         end
       end
 
@@ -11679,15 +11746,19 @@ module TencentCloud
         # @param RerankModel: 结果重排序模型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RerankModel: String
+        # @param NatureLanguageToSqlModelConfig: NL2SQL模型配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NatureLanguageToSqlModelConfig: :class:`Tencentcloud::Lke.v20231130.models.NL2SQLModelConfig`
 
-        attr_accessor :StrategyType, :TableEnhancement, :EmbeddingModel, :RerankModelSwitch, :RerankModel
+        attr_accessor :StrategyType, :TableEnhancement, :EmbeddingModel, :RerankModelSwitch, :RerankModel, :NatureLanguageToSqlModelConfig
 
-        def initialize(strategytype=nil, tableenhancement=nil, embeddingmodel=nil, rerankmodelswitch=nil, rerankmodel=nil)
+        def initialize(strategytype=nil, tableenhancement=nil, embeddingmodel=nil, rerankmodelswitch=nil, rerankmodel=nil, naturelanguagetosqlmodelconfig=nil)
           @StrategyType = strategytype
           @TableEnhancement = tableenhancement
           @EmbeddingModel = embeddingmodel
           @RerankModelSwitch = rerankmodelswitch
           @RerankModel = rerankmodel
+          @NatureLanguageToSqlModelConfig = naturelanguagetosqlmodelconfig
         end
 
         def deserialize(params)
@@ -11696,6 +11767,10 @@ module TencentCloud
           @EmbeddingModel = params['EmbeddingModel']
           @RerankModelSwitch = params['RerankModelSwitch']
           @RerankModel = params['RerankModel']
+          unless params['NatureLanguageToSqlModelConfig'].nil?
+            @NatureLanguageToSqlModelConfig = NL2SQLModelConfig.new
+            @NatureLanguageToSqlModelConfig.deserialize(params['NatureLanguageToSqlModelConfig'])
+          end
         end
       end
 

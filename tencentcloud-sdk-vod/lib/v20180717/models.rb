@@ -4253,6 +4253,61 @@ module TencentCloud
         end
       end
 
+      # AIGC 统计数据
+      class AigcUsageDataItem < TencentCloud::Common::AbstractModel
+        # @param Specification: AIGC规格。
+        # 取值有：
+        # <li>Qwen2.0</li>
+        # <li>Gem2.5</li>
+        # <li>Gem3.0_1K</li>
+        # <li>Gem3.0_2K</li>
+        # <li>Gem3.0_4K</li>
+        # <li>Seedream4.0</li>
+        # <li>Sora2</li>
+        # <li>Veo3.1Standard</li>
+        # <li>Veo3.1Fast</li>
+        # <li>Kling2.5pro_720P</li>
+        # <li>Kling2.5pro_1080P</li>
+        # <li>Kling2.0&2.1std_720P</li>
+        # <li>Kling2.0&2.1pro_1080P</li>
+        # <li>Hailuo02&2.3_1080P</li>
+        # <li>Hailuo02&2.3_768P</li>
+        # <li>Hailuo2.3fast_768P</li>
+        # <li>Hailuo2.3fast_1080P</li>
+        # <li>Seedance3.0pro</li>
+        # <li>Jimeng4.0</li>
+        # <li>Jimeng3.0pro</li>
+        # <li>Vidu2.0_720P</li>
+        # <li>Vidu2.0_1080P</li>
+        # <li>ViduQ2pro_720P</li>
+        # <li>ViduQ2pro_1080P</li>
+        # <li>ViduQ2turbo_720P</li>
+        # <li>ViduQ2turbo_1080P</li>
+        # <li> unknown</li>
+        # @type Specification: String
+        # @param DataSet: 用量数据。
+        # @type DataSet: Array
+
+        attr_accessor :Specification, :DataSet
+
+        def initialize(specification=nil, dataset=nil)
+          @Specification = specification
+          @DataSet = dataset
+        end
+
+        def deserialize(params)
+          @Specification = params['Specification']
+          unless params['DataSet'].nil?
+            @DataSet = []
+            params['DataSet'].each do |i|
+              taskstatdataitem_tmp = TaskStatDataItem.new
+              taskstatdataitem_tmp.deserialize(i)
+              @DataSet << taskstatdataitem_tmp
+            end
+          end
+        end
+      end
+
       # AIGC 生视频任务的输出媒体文件配置。
       class AigcVideoOutputConfig < TencentCloud::Common::AbstractModel
         # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储，生成的视频文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的视频文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>
@@ -10528,6 +10583,61 @@ module TencentCloud
               adaptivedynamicstreamingtemplate_tmp = AdaptiveDynamicStreamingTemplate.new
               adaptivedynamicstreamingtemplate_tmp.deserialize(i)
               @AdaptiveDynamicStreamingTemplateSet << adaptivedynamicstreamingtemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcUsageData请求参数结构体
+      class DescribeAigcUsageDataRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type StartTime: String
+        # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
+        # @type EndTime: String
+        # @param AigcType: AIGC类型，取值有：<li> Video：视频。</li><li> Image：图片。</li>
+        # @type AigcType: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :StartTime, :EndTime, :AigcType, :SubAppId
+
+        def initialize(starttime=nil, endtime=nil, aigctype=nil, subappid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @AigcType = aigctype
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AigcType = params['AigcType']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DescribeAigcUsageData返回参数结构体
+      class DescribeAigcUsageDataResponse < TencentCloud::Common::AbstractModel
+        # @param AigcUsageDataSet: AIGC统计数据。
+        # @type AigcUsageDataSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AigcUsageDataSet, :RequestId
+
+        def initialize(aigcusagedataset=nil, requestid=nil)
+          @AigcUsageDataSet = aigcusagedataset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AigcUsageDataSet'].nil?
+            @AigcUsageDataSet = []
+            params['AigcUsageDataSet'].each do |i|
+              aigcusagedataitem_tmp = AigcUsageDataItem.new
+              aigcusagedataitem_tmp.deserialize(i)
+              @AigcUsageDataSet << aigcusagedataitem_tmp
             end
           end
           @RequestId = params['RequestId']

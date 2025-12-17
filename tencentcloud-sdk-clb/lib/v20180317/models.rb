@@ -3969,6 +3969,53 @@ module TencentCloud
         end
       end
 
+      # DescribeTargetGroupInstanceStatus请求参数结构体
+      class DescribeTargetGroupInstanceStatusRequest < TencentCloud::Common::AbstractModel
+        # @param TargetGroupId: 目标组唯一id
+        # @type TargetGroupId: String
+        # @param TargetGroupInstanceIps: 目标组绑定的后端服务ip列表
+        # @type TargetGroupInstanceIps: Array
+
+        attr_accessor :TargetGroupId, :TargetGroupInstanceIps
+
+        def initialize(targetgroupid=nil, targetgroupinstanceips=nil)
+          @TargetGroupId = targetgroupid
+          @TargetGroupInstanceIps = targetgroupinstanceips
+        end
+
+        def deserialize(params)
+          @TargetGroupId = params['TargetGroupId']
+          @TargetGroupInstanceIps = params['TargetGroupInstanceIps']
+        end
+      end
+
+      # DescribeTargetGroupInstanceStatus返回参数结构体
+      class DescribeTargetGroupInstanceStatusResponse < TencentCloud::Common::AbstractModel
+        # @param TargetGroupInstanceSet: 健康检查后端rs状态列表
+        # @type TargetGroupInstanceSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TargetGroupInstanceSet, :RequestId
+
+        def initialize(targetgroupinstanceset=nil, requestid=nil)
+          @TargetGroupInstanceSet = targetgroupinstanceset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['TargetGroupInstanceSet'].nil?
+            @TargetGroupInstanceSet = []
+            params['TargetGroupInstanceSet'].each do |i|
+              targetgroupinstancestatus_tmp = TargetGroupInstanceStatus.new
+              targetgroupinstancestatus_tmp.deserialize(i)
+              @TargetGroupInstanceSet << targetgroupinstancestatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTargetGroupInstances请求参数结构体
       class DescribeTargetGroupInstancesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，当前支持按照 TargetGroupId，BindIP，InstanceId 多个条件组合过滤。
@@ -8670,6 +8717,43 @@ module TencentCloud
           @Port = params['Port']
           @Weight = params['Weight']
           @NewPort = params['NewPort']
+        end
+      end
+
+      # 用于目标组后端rs健康检查状态。
+      class TargetGroupInstanceStatus < TencentCloud::Common::AbstractModel
+        # @param InstanceIp: 后端rs的IP
+        # @type InstanceIp: String
+        # @param Status: 健康检查状态，参数值及含义如下：
+        # ● on：表示探测中。
+        # ● off：表示健康检查关闭。
+        # ● health：表示健康。
+        # ● unhealth：表示异常。
+        # @type Status: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param EniId: 网卡ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EniId: String
+
+        attr_accessor :InstanceIp, :Status, :InstanceId, :Port, :EniId
+
+        def initialize(instanceip=nil, status=nil, instanceid=nil, port=nil, eniid=nil)
+          @InstanceIp = instanceip
+          @Status = status
+          @InstanceId = instanceid
+          @Port = port
+          @EniId = eniid
+        end
+
+        def deserialize(params)
+          @InstanceIp = params['InstanceIp']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+          @Port = params['Port']
+          @EniId = params['EniId']
         end
       end
 

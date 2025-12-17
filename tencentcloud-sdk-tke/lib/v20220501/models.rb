@@ -247,10 +247,12 @@ module TencentCloud
         # @type MachineType: String
         # @param AutomationService: 原生节点池安装节点自动化助手开关
         # @type AutomationService: Boolean
+        # @param Password: 原生节点池密码
+        # @type Password: String
 
-        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password
 
-        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil)
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil, password=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @InstanceChargeType = instancechargetype
@@ -274,6 +276,7 @@ module TencentCloud
           @KeyIds = keyids
           @MachineType = machinetype
           @AutomationService = automationservice
+          @Password = password
         end
 
         def deserialize(params)
@@ -328,6 +331,7 @@ module TencentCloud
           @KeyIds = params['KeyIds']
           @MachineType = params['MachineType']
           @AutomationService = params['AutomationService']
+          @Password = params['Password']
         end
       end
 
@@ -2920,10 +2924,12 @@ module TencentCloud
         # @type KeyIds: Array
         # @param GPUConfigs: 节点池 GPU 配置
         # @type GPUConfigs: Array
+        # @param Password: 原生节点池密码
+        # @type Password: String
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :GPUConfigs
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :GPUConfigs, :Password
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, gpuconfigs=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, gpuconfigs=nil, password=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -2945,6 +2951,7 @@ module TencentCloud
           @DataDisks = datadisks
           @KeyIds = keyids
           @GPUConfigs = gpuconfigs
+          @Password = password
         end
 
         def deserialize(params)
@@ -3001,6 +3008,7 @@ module TencentCloud
               @GPUConfigs << gpuconfig_tmp
             end
           end
+          @Password = params['Password']
         end
       end
 

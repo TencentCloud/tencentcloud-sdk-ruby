@@ -996,26 +996,28 @@ module TencentCloud
 
       # CreateAndroidInstanceAcceleratorToken请求参数结构体
       class CreateAndroidInstanceAcceleratorTokenRequest < TencentCloud::Common::AbstractModel
-        # @param UserIP: 用户IP，用户客户端的公网IP，用于就近选择起始加速节点
-        # @type UserIP: String
         # @param AndroidInstanceIds: 实例 ID 列表。每次请求的实例的上限为 500。
         # @type AndroidInstanceIds: Array
+        # @param UserIP: 用户IP，可以根据该 IP 选择就近加速点。如果不填，将自动选择就近加速点。
+        # @type UserIP: String
 
-        attr_accessor :UserIP, :AndroidInstanceIds
+        attr_accessor :AndroidInstanceIds, :UserIP
 
-        def initialize(userip=nil, androidinstanceids=nil)
-          @UserIP = userip
+        def initialize(androidinstanceids=nil, userip=nil)
           @AndroidInstanceIds = androidinstanceids
+          @UserIP = userip
         end
 
         def deserialize(params)
-          @UserIP = params['UserIP']
           @AndroidInstanceIds = params['AndroidInstanceIds']
+          @UserIP = params['UserIP']
         end
       end
 
       # CreateAndroidInstanceAcceleratorToken返回参数结构体
       class CreateAndroidInstanceAcceleratorTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: token
+        # @type Token: String
         # @param AcceleratorInfo: 加速信息
         # @type AcceleratorInfo: String
         # @param AndroidInstanceErrors: 安卓实例错误列表。列表包含有问题的安卓实例 ID 以及发生的错误信息。
@@ -1023,15 +1025,17 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AcceleratorInfo, :AndroidInstanceErrors, :RequestId
+        attr_accessor :Token, :AcceleratorInfo, :AndroidInstanceErrors, :RequestId
 
-        def initialize(acceleratorinfo=nil, androidinstanceerrors=nil, requestid=nil)
+        def initialize(token=nil, acceleratorinfo=nil, androidinstanceerrors=nil, requestid=nil)
+          @Token = token
           @AcceleratorInfo = acceleratorinfo
           @AndroidInstanceErrors = androidinstanceerrors
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Token = params['Token']
           @AcceleratorInfo = params['AcceleratorInfo']
           unless params['AndroidInstanceErrors'].nil?
             @AndroidInstanceErrors = []

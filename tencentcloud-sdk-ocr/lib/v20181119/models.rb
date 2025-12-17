@@ -3042,6 +3042,80 @@ module TencentCloud
         end
       end
 
+      # ExtractDocAgent请求参数结构体
+      class ExtractDocAgentRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片/PDF的 Base64 值。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片/PDF的 Url 地址。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
+        # @type ImageUrl: String
+        # @param ItemNames: 自定义抽取需要的字段名称、字段类型、字段提示词。
+        # @type ItemNames: Array
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF时有效。
+        # @type PdfPageNumber: Integer
+
+        attr_accessor :ImageBase64, :ImageUrl, :ItemNames, :PdfPageNumber
+
+        def initialize(imagebase64=nil, imageurl=nil, itemnames=nil, pdfpagenumber=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @ItemNames = itemnames
+          @PdfPageNumber = pdfpagenumber
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          unless params['ItemNames'].nil?
+            @ItemNames = []
+            params['ItemNames'].each do |i|
+              itemnames_tmp = ItemNames.new
+              itemnames_tmp.deserialize(i)
+              @ItemNames << itemnames_tmp
+            end
+          end
+          @PdfPageNumber = params['PdfPageNumber']
+        end
+      end
+
+      # ExtractDocAgent返回参数结构体
+      class ExtractDocAgentResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @type Angle: Float
+        # @param StructuralList: 配置结构化文本信息。
+        # @type StructuralList: Array
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :StructuralList, :ErrorCode, :ErrorMessage, :RequestId
+
+        def initialize(angle=nil, structurallist=nil, errorcode=nil, errormessage=nil, requestid=nil)
+          @Angle = angle
+          @StructuralList = structurallist
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['StructuralList'].nil?
+            @StructuralList = []
+            params['StructuralList'].each do |i|
+              groupinfo_tmp = GroupInfo.new
+              groupinfo_tmp.deserialize(i)
+              @StructuralList << groupinfo_tmp
+            end
+          end
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ExtractDocBasic请求参数结构体
       class ExtractDocBasicRequest < TencentCloud::Common::AbstractModel
         # @param ImageUrl: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。

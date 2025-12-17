@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 购买套餐并支付，此接口会在余额扣费，谨慎调用
+
+        # @param request: Request instance for CreatePackageAndPay.
+        # @type request: :class:`Tencentcloud::igtm::V20231024::CreatePackageAndPayRequest`
+        # @rtype: :class:`Tencentcloud::igtm::V20231024::CreatePackageAndPayResponse`
+        def CreatePackageAndPay(request)
+          body = send_request('CreatePackageAndPay', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePackageAndPayResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建策略接口
 
         # @param request: Request instance for CreateStrategy.
@@ -615,6 +639,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 设置自动续费接口
+
+        # @param request: Request instance for ModifyPackageAutoRenew.
+        # @type request: :class:`Tencentcloud::igtm::V20231024::ModifyPackageAutoRenewRequest`
+        # @rtype: :class:`Tencentcloud::igtm::V20231024::ModifyPackageAutoRenewResponse`
+        def ModifyPackageAutoRenew(request)
+          body = send_request('ModifyPackageAutoRenew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPackageAutoRenewResponse.new
             model.deserialize(response['Response'])
             model
           else

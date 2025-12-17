@@ -552,14 +552,14 @@ module TencentCloud
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
         extend Gem::Deprecate
-        deprecate :DedicatedClusterTypeId, :none, 2025, 11
-        deprecate :DedicatedClusterTypeId=, :none, 2025, 11
-        deprecate :SupportedStorageType, :none, 2025, 11
-        deprecate :SupportedStorageType=, :none, 2025, 11
-        deprecate :SupportedUplinkSpeed, :none, 2025, 11
-        deprecate :SupportedUplinkSpeed=, :none, 2025, 11
-        deprecate :SupportedInstanceFamily, :none, 2025, 11
-        deprecate :SupportedInstanceFamily=, :none, 2025, 11
+        deprecate :DedicatedClusterTypeId, :none, 2025, 12
+        deprecate :DedicatedClusterTypeId=, :none, 2025, 12
+        deprecate :SupportedStorageType, :none, 2025, 12
+        deprecate :SupportedStorageType=, :none, 2025, 12
+        deprecate :SupportedUplinkSpeed, :none, 2025, 12
+        deprecate :SupportedUplinkSpeed=, :none, 2025, 12
+        deprecate :SupportedInstanceFamily, :none, 2025, 12
+        deprecate :SupportedInstanceFamily=, :none, 2025, 12
 
         def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil, checkstatus=nil, deliverexpecttime=nil, deliverfinishtime=nil, checkexpecttime=nil, checkfinishtime=nil, ordersla=nil, orderpayplan=nil)
           @DedicatedClusterId = dedicatedclusterid
@@ -1263,12 +1263,14 @@ module TencentCloud
         # @type HostStandbyCount: Integer
         # @param HostNormalCount: 普通宿主机数量
         # @type HostNormalCount: Integer
+        # @param HostAbnormalCount: 异常宿主机数量
+        # @type HostAbnormalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :HostDetailInfo, :HostStandbyCount, :HostNormalCount, :RequestId
+        attr_accessor :CvmCount, :HostCount, :VpnConnectionState, :VpngwBandwidthData, :LocalNetInfo, :VpnConnectionBandwidthData, :HostDetailInfo, :HostStandbyCount, :HostNormalCount, :HostAbnormalCount, :RequestId
 
-        def initialize(cvmcount=nil, hostcount=nil, vpnconnectionstate=nil, vpngwbandwidthdata=nil, localnetinfo=nil, vpnconnectionbandwidthdata=nil, hostdetailinfo=nil, hoststandbycount=nil, hostnormalcount=nil, requestid=nil)
+        def initialize(cvmcount=nil, hostcount=nil, vpnconnectionstate=nil, vpngwbandwidthdata=nil, localnetinfo=nil, vpnconnectionbandwidthdata=nil, hostdetailinfo=nil, hoststandbycount=nil, hostnormalcount=nil, hostabnormalcount=nil, requestid=nil)
           @CvmCount = cvmcount
           @HostCount = hostcount
           @VpnConnectionState = vpnconnectionstate
@@ -1278,6 +1280,7 @@ module TencentCloud
           @HostDetailInfo = hostdetailinfo
           @HostStandbyCount = hoststandbycount
           @HostNormalCount = hostnormalcount
+          @HostAbnormalCount = hostabnormalcount
           @RequestId = requestid
         end
 
@@ -1311,6 +1314,7 @@ module TencentCloud
           end
           @HostStandbyCount = params['HostStandbyCount']
           @HostNormalCount = params['HostNormalCount']
+          @HostAbnormalCount = params['HostAbnormalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -1689,8 +1693,8 @@ module TencentCloud
 
         attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
         extend Gem::Deprecate
-        deprecate :HostIp, :none, 2025, 11
-        deprecate :HostIp=, :none, 2025, 11
+        deprecate :HostIp, :none, 2025, 12
+        deprecate :HostIp=, :none, 2025, 12
 
         def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil, hostid=nil)
           @HostIp = hostip

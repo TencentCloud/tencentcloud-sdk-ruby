@@ -1110,7 +1110,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 导出属性标签
+        # 导出标签
 
         # @param request: Request instance for ExportAttributeLabel.
         # @type request: :class:`Tencentcloud::lke::V20231130::ExportAttributeLabelRequest`
@@ -1903,7 +1903,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 文档生成问答时，可通过该接口获得当前支持生成问答的文档列表，当前不支持xlsx、xls、csv格式的文档生成问答，且文档需处于待发布或已发布状态才可生成问答。
+        # 获取文档下拉列表。
 
         # @param request: Request instance for ListSelectDoc.
         # @type request: :class:`Tencentcloud::lke::V20231130::ListSelectDocRequest`

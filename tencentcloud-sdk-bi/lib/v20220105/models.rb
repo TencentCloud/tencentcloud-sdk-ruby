@@ -904,8 +904,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :RoleIdList, :UserList, :UserInfoList
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 11
-        deprecate :UserList=, :none, 2025, 11
+        deprecate :UserList, :none, 2025, 12
+        deprecate :UserList=, :none, 2025, 12
 
         def initialize(projectid=nil, roleidlist=nil, userlist=nil, userinfolist=nil)
           @ProjectId = projectid
@@ -991,8 +991,8 @@ module TencentCloud
 
         attr_accessor :RoleIdList, :UserList, :UserInfoList, :UserGroups
         extend Gem::Deprecate
-        deprecate :UserList, :none, 2025, 11
-        deprecate :UserList=, :none, 2025, 11
+        deprecate :UserList, :none, 2025, 12
+        deprecate :UserList=, :none, 2025, 12
 
         def initialize(roleidlist=nil, userlist=nil, userinfolist=nil, usergroups=nil)
           @RoleIdList = roleidlist
@@ -3830,7 +3830,7 @@ module TencentCloud
         # @param Status: 停启用状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param FirstModify: 首次登陆是否修改密码
+        # @param FirstModify: 首次登录是否修改密码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FirstModify: Integer
         # @param PhoneNumber: 手机号码
@@ -3845,16 +3845,16 @@ module TencentCloud
         # @param CreatedAt: 创建时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreatedAt: String
-        # @param UpdatedUser: 更改人
+        # @param UpdatedUser: 修改人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedUser: String
         # @param UpdatedAt: 更改时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatedAt: String
-        # @param GlobalUserName: 全局角色
+        # @param GlobalUserName: 系统全局角色
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalUserName: String
-        # @param GlobalUserCode: 全局角色编码
+        # @param GlobalUserCode: 系统全局角色编码
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GlobalUserCode: String
         # @param Mobile: 手机号

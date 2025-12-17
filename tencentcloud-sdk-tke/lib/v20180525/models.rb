@@ -1809,6 +1809,38 @@ module TencentCloud
         end
       end
 
+      # 组件日志采集配置
+      class ComponentLogConfig < TencentCloud::Common::AbstractModel
+        # @param Name: 组件名称
+        # @type Name: String
+        # @param LogLevel: 日志级别，对于支持动态调整日志级别的组件，开启日志时可指定该参数
+        # @type LogLevel: Integer
+        # @param LogSetId: 日志集ID。如果不指定，则自动创建
+        # @type LogSetId: String
+        # @param TopicId: 日志主题ID。如果不指定，则自动创建
+        # @type TopicId: String
+        # @param TopicRegion: topic 所属region。 该参数可实现日志跨地域投递
+        # @type TopicRegion: String
+
+        attr_accessor :Name, :LogLevel, :LogSetId, :TopicId, :TopicRegion
+
+        def initialize(name=nil, loglevel=nil, logsetid=nil, topicid=nil, topicregion=nil)
+          @Name = name
+          @LogLevel = loglevel
+          @LogSetId = logsetid
+          @TopicId = topicid
+          @TopicRegion = topicregion
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LogLevel = params['LogLevel']
+          @LogSetId = params['LogSetId']
+          @TopicId = params['TopicId']
+          @TopicRegion = params['TopicRegion']
+        end
+      end
+
       # EKS Instance Container容器
       class Container < TencentCloud::Common::AbstractModel
         # @param Image: 镜像
@@ -7445,6 +7477,53 @@ module TencentCloud
         end
       end
 
+      # DescribeControlPlaneLogs请求参数结构体
+      class DescribeControlPlaneLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型。当前只支持tke
+        # @type ClusterType: String
+
+        attr_accessor :ClusterId, :ClusterType
+
+        def initialize(clusterid=nil, clustertype=nil)
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+        end
+      end
+
+      # DescribeControlPlaneLogs返回参数结构体
+      class DescribeControlPlaneLogsResponse < TencentCloud::Common::AbstractModel
+        # @param Details: 日志采集配置查询结果
+        # @type Details: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Details, :RequestId
+
+        def initialize(details=nil, requestid=nil)
+          @Details = details
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              componentlogconfig_tmp = ComponentLogConfig.new
+              componentlogconfig_tmp.deserialize(i)
+              @Details << componentlogconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeECMInstances请求参数结构体
       class DescribeECMInstancesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterID: 集群id
@@ -11468,6 +11547,50 @@ module TencentCloud
         end
       end
 
+      # DisableControlPlaneLogs请求参数结构体
+      class DisableControlPlaneLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型。当前只支持tke
+        # @type ClusterType: String
+        # @param ComponentNames: 组件名称列表，目前支持的组件有：kube-apiserver、kube-controller-manager、kube-scheduler、cluster-autoscaler、kapenter
+        # @type ComponentNames: Array
+        # @param DeleteLogSetAndTopic: 是否删除日志集和topic。 如果日志集和topic被其他采集规则使用，则不会被删除
+        # @type DeleteLogSetAndTopic: Boolean
+
+        attr_accessor :ClusterId, :ClusterType, :ComponentNames, :DeleteLogSetAndTopic
+
+        def initialize(clusterid=nil, clustertype=nil, componentnames=nil, deletelogsetandtopic=nil)
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+          @ComponentNames = componentnames
+          @DeleteLogSetAndTopic = deletelogsetandtopic
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+          @ComponentNames = params['ComponentNames']
+          @DeleteLogSetAndTopic = params['DeleteLogSetAndTopic']
+        end
+      end
+
+      # DisableControlPlaneLogs返回参数结构体
+      class DisableControlPlaneLogsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DisableEncryptionProtection请求参数结构体
       class DisableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -12362,6 +12485,53 @@ module TencentCloud
 
       # EnableClusterDeletionProtection返回参数结构体
       class EnableClusterDeletionProtectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableControlPlaneLogs请求参数结构体
+      class EnableControlPlaneLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterType: 集群类型。当前只支持tke
+        # @type ClusterType: String
+        # @param Components: 各组件日志采集配置，目前支持的组件有：kube-apiserver、kube-controller-manager、kube-scheduler、cluster-autoscaler、kapenter
+        # @type Components: Array
+
+        attr_accessor :ClusterId, :ClusterType, :Components
+
+        def initialize(clusterid=nil, clustertype=nil, components=nil)
+          @ClusterId = clusterid
+          @ClusterType = clustertype
+          @Components = components
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterType = params['ClusterType']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              componentlogconfig_tmp = ComponentLogConfig.new
+              componentlogconfig_tmp.deserialize(i)
+              @Components << componentlogconfig_tmp
+            end
+          end
+        end
+      end
+
+      # EnableControlPlaneLogs返回参数结构体
+      class EnableControlPlaneLogsResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

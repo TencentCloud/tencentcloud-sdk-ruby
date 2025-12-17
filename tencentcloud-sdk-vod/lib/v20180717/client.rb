@@ -1720,6 +1720,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口返回查询时间范围内AIGC的统计信息。
+        #    1. 可以查询最近365天内的AIGC统计数据。
+        #    2. 查询时间跨度不超过90天。
+        #    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
+
+        # @param request: Request instance for DescribeAigcUsageData.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcUsageDataRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcUsageDataResponse`
+        def DescribeAigcUsageData(request)
+          body = send_request('DescribeAigcUsageData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcUsageDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # * 获得用户的所有分类信息。
 
         # @param request: Request instance for DescribeAllClass.

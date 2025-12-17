@@ -308,10 +308,13 @@ module TencentCloud
         # @type SlaveZones: Array
         # @param LogCOSBucket: 集群的日志cos存储
         # @type LogCOSBucket: String
+        # @param CdcId: Cdc集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdcId: String
 
-        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket
+        attr_accessor :ClusterId, :Name, :Region, :AppId, :OwnerUin, :CreatorUin, :Status, :Remark, :CreateTime, :UpdateTime, :CuNum, :CuMem, :Zone, :StatusDesc, :CCNs, :NetEnvironmentType, :FreeCuNum, :Tags, :IsolatedTime, :ExpireTime, :SecondsUntilExpiry, :AutoRenewFlag, :DefaultCOSBucket, :CLSLogSet, :CLSTopicId, :CLSLogName, :CLSTopicName, :Version, :FreeCu, :DefaultLogCollectConf, :CustomizedDNSEnabled, :Correlations, :RunningCu, :PayMode, :IsNeedManageNode, :ClusterSessions, :ArchGeneration, :ClusterType, :Orders, :SqlGateways, :WebUIType, :Type, :SubEks, :AgentSerialId, :ResourceType, :BillingResourceMode, :MemRatio, :CrossTenantEniMode, :TotalCpu, :TotalMem, :RunningCpu, :RunningMem, :Setats, :Yarns, :DeploymentMode, :SlaveZones, :LogCOSBucket, :CdcId
 
-        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil)
+        def initialize(clusterid=nil, name=nil, region=nil, appid=nil, owneruin=nil, creatoruin=nil, status=nil, remark=nil, createtime=nil, updatetime=nil, cunum=nil, cumem=nil, zone=nil, statusdesc=nil, ccns=nil, netenvironmenttype=nil, freecunum=nil, tags=nil, isolatedtime=nil, expiretime=nil, secondsuntilexpiry=nil, autorenewflag=nil, defaultcosbucket=nil, clslogset=nil, clstopicid=nil, clslogname=nil, clstopicname=nil, version=nil, freecu=nil, defaultlogcollectconf=nil, customizeddnsenabled=nil, correlations=nil, runningcu=nil, paymode=nil, isneedmanagenode=nil, clustersessions=nil, archgeneration=nil, clustertype=nil, orders=nil, sqlgateways=nil, webuitype=nil, type=nil, subeks=nil, agentserialid=nil, resourcetype=nil, billingresourcemode=nil, memratio=nil, crosstenantenimode=nil, totalcpu=nil, totalmem=nil, runningcpu=nil, runningmem=nil, setats=nil, yarns=nil, deploymentmode=nil, slavezones=nil, logcosbucket=nil, cdcid=nil)
           @ClusterId = clusterid
           @Name = name
           @Region = region
@@ -369,6 +372,7 @@ module TencentCloud
           @DeploymentMode = deploymentmode
           @SlaveZones = slavezones
           @LogCOSBucket = logcosbucket
+          @CdcId = cdcid
         end
 
         def deserialize(params)
@@ -494,6 +498,7 @@ module TencentCloud
             end
           end
           @LogCOSBucket = params['LogCOSBucket']
+          @CdcId = params['CdcId']
         end
       end
 

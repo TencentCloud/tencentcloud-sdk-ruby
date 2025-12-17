@@ -3362,16 +3362,19 @@ module TencentCloud
         # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
         # 若指定Tags入参且指定IsCloneTags为true，会合并源安全组的标签和新增的标签。
         # @type Tags: Array
+        # @param IsCloneTags: 是否克隆标签。
+        # @type IsCloneTags: Boolean
 
-        attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion, :Tags
+        attr_accessor :SecurityGroupId, :GroupName, :GroupDescription, :ProjectId, :RemoteRegion, :Tags, :IsCloneTags
 
-        def initialize(securitygroupid=nil, groupname=nil, groupdescription=nil, projectid=nil, remoteregion=nil, tags=nil)
+        def initialize(securitygroupid=nil, groupname=nil, groupdescription=nil, projectid=nil, remoteregion=nil, tags=nil, isclonetags=nil)
           @SecurityGroupId = securitygroupid
           @GroupName = groupname
           @GroupDescription = groupdescription
           @ProjectId = projectid
           @RemoteRegion = remoteregion
           @Tags = tags
+          @IsCloneTags = isclonetags
         end
 
         def deserialize(params)
@@ -3388,6 +3391,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @IsCloneTags = params['IsCloneTags']
         end
       end
 
@@ -6611,6 +6615,9 @@ module TencentCloud
         # @type IpAddressType: String
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
+        extend Gem::Deprecate
+        deprecate :IsPassService, :none, 2025, 12
+        deprecate :IsPassService=, :none, 2025, 12
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -11943,6 +11950,7 @@ module TencentCloud
         # @param HaVipIds: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
         # @type HaVipIds: Array
         # @param Filters: 过滤条件，参数不支持同时指定`HaVipIds`和`Filters`。<li>havip-id - String - `HAVIP`唯一`ID`，形如：`havip-9o233uri`。</li><li>havip-name - String - `HAVIP`名称。</li><li>vpc-id - String - `HAVIP`所在私有网络`ID`。</li><li>subnet-id - String - `HAVIP`所在子网`ID`。</li><li>vip - String - `HAVIP`的地址`VIP`。</li><li>address-ip - String - `HAVIP`绑定的弹性公网`IP`。</li><li>havip-association.instance-id - String - `HAVIP`绑定的子机或网卡。</li><li>havip-association.instance-type - String - `HAVIP`绑定的类型，取值:CVM, ENI。</li><li>check-associate - Bool - 是否开启HaVip飘移时校验绑定的子机或网卡。</li><li>cdc-id - String - CDC实例ID。</li>
+        # <li>type- String - HAVIP类型。取值: NORMAL(普通); GWLB(网关负载均衡); OPTIMIZATION(优化模式)。</li>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。
         # @type Offset: Integer
@@ -14099,6 +14107,82 @@ module TencentCloud
         end
       end
 
+      # DescribeRoutePolicies请求参数结构体
+      class DescribeRoutePoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param RoutePolicyIds: 路由策略实例唯一ID。形如：rrp-q7ywkx31。每次请求的实例的上限为100。参数不支持同时指定RoutePolicyIds和Filters。
+        # @type RoutePolicyIds: Array
+        # @param Filters: 过滤条件，不支持同时指定RoutePolicyIds和Filters参数。
+        # 支持的过滤条件如下：
+        # <li>route-policy-name：路由策略实例名称，支持模糊查询。</li>
+        # <li>route-policy-description：路由策略实例描述，支持模糊查询。</li>
+        # <li>route-policy-id ：路由策略实例ID，例如：rrp-q7ywkx3w。</li>
+
+        #   **说明：**若同一个过滤条件（Filter）存在多个Values，则同一Filter下Values间的关系为逻辑或（OR）关系；若存在多个过滤条件（Filter），Filter之间的关系为逻辑与（AND）关系。
+        # @type Filters: Array
+        # @param Offset: 偏移量，默认为0。
+        # @type Offset: String
+        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @type Limit: String
+        # @param NeedRoutePolicyEntry: 是否返回路由策略条目。默认为False。当该参数为False时，仍然会返回空的返回空的RoutePolicyEntrySet。
+        # @type NeedRoutePolicyEntry: Boolean
+
+        attr_accessor :RoutePolicyIds, :Filters, :Offset, :Limit, :NeedRoutePolicyEntry
+
+        def initialize(routepolicyids=nil, filters=nil, offset=nil, limit=nil, needroutepolicyentry=nil)
+          @RoutePolicyIds = routepolicyids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @NeedRoutePolicyEntry = needroutepolicyentry
+        end
+
+        def deserialize(params)
+          @RoutePolicyIds = params['RoutePolicyIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @NeedRoutePolicyEntry = params['NeedRoutePolicyEntry']
+        end
+      end
+
+      # DescribeRoutePolicies返回参数结构体
+      class DescribeRoutePoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的对象数。
+        # @type TotalCount: Integer
+        # @param RoutePolicySet: 路由策略对象。
+        # @type RoutePolicySet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RoutePolicySet, :RequestId
+
+        def initialize(totalcount=nil, routepolicyset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RoutePolicySet = routepolicyset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RoutePolicySet'].nil?
+            @RoutePolicySet = []
+            params['RoutePolicySet'].each do |i|
+              routepolicy_tmp = RoutePolicy.new
+              routepolicy_tmp.deserialize(i)
+              @RoutePolicySet << routepolicy_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRoutePolicyEntries请求参数结构体
       class DescribeRoutePolicyEntriesRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤条件，参数不支持同时指定RoutePolicyEntryIds和Filters。
@@ -14340,6 +14424,7 @@ module TencentCloud
         # <li>association.main - String - （过滤条件）是否主路由表。</li>
         # <li>tag-key - String -是否必填：否 - （过滤条件）按照标签键进行过滤。</li>
         # <li>tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。使用请参考示例2。</li>
+        # <li>visible - String - （过滤条件）是否可见。</li>
         # <li>next-hop-type - String - 是否必填：否 - （过滤条件）按下一跳类型进行过滤。使用next-hop-type进行过滤时，必须同时携带route-table-id与vpc-id。
         # 目前我们支持的类型有：
         # LOCAL: 本地路由
@@ -14353,6 +14438,7 @@ module TencentCloud
         # EIP：云服务器的公网IP；
         # CCN：云联网；
         # LOCAL_GATEWAY：本地网关。
+        # GWLB_ENDPOINT：网关负载均衡终端节点。
         # </li>
         # @type Filters: Array
         # @param RouteTableIds: 路由表实例ID，例如：rtb-azd4dt1c。
@@ -16175,23 +16261,17 @@ module TencentCloud
         # @type RequestId: String
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
+        extend Gem::Deprecate
+        deprecate :VpcEndpointServiceUserSet, :none, 2025, 12
+        deprecate :VpcEndpointServiceUserSet=, :none, 2025, 12
 
-        def initialize(vpcendpointserviceuserset=nil, vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
-          @VpcEndpointServiceUserSet = vpcendpointserviceuserset
+        def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
           @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['VpcEndpointServiceUserSet'].nil?
-            @VpcEndpointServiceUserSet = []
-            params['VpcEndpointServiceUserSet'].each do |i|
-              vpcendpointserviceuser_tmp = VpcEndPointServiceUser.new
-              vpcendpointserviceuser_tmp.deserialize(i)
-              @VpcEndpointServiceUserSet << vpcendpointserviceuser_tmp
-            end
-          end
           unless params['VpcEndPointServiceUserSet'].nil?
             @VpcEndPointServiceUserSet = []
             params['VpcEndPointServiceUserSet'].each do |i|
@@ -25745,7 +25825,7 @@ module TencentCloud
       class ReplaceHighPriorityRouteTableAssociationRequest < TencentCloud::Common::AbstractModel
         # @param HighPriorityRouteTableId: 高优路由表唯一 ID。
         # @type HighPriorityRouteTableId: String
-        # @param SubnetId: 子网唯一 ID
+        # @param SubnetId: 子网唯一 ID。对于存在子网唯一ID的场景，该参数为必选。对于不存在子网ID的特殊场景，SubnetId和CidrBlock参数至少提供一个，二选一。
         # @type SubnetId: String
 
         attr_accessor :HighPriorityRouteTableId, :SubnetId
@@ -25926,21 +26006,21 @@ module TencentCloud
 
       # ReplaceRouteTableAssociation请求参数结构体
       class ReplaceRouteTableAssociationRequest < TencentCloud::Common::AbstractModel
-        # @param SubnetId: 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。
-        # @type SubnetId: String
         # @param RouteTableId: 路由表实例ID，例如：rtb-azd4dt1c。
         # @type RouteTableId: String
+        # @param SubnetId: 子网实例ID，例如：subnet-3x5lf5q0。可通过DescribeSubnets接口查询。对于存在子网唯一ID的子网，该参数为必选；否则， SubnetId和CidrBlock必选二选一。
+        # @type SubnetId: String
 
-        attr_accessor :SubnetId, :RouteTableId
+        attr_accessor :RouteTableId, :SubnetId
 
-        def initialize(subnetid=nil, routetableid=nil)
-          @SubnetId = subnetid
+        def initialize(routetableid=nil, subnetid=nil)
           @RouteTableId = routetableid
+          @SubnetId = subnetid
         end
 
         def deserialize(params)
-          @SubnetId = params['SubnetId']
           @RouteTableId = params['RouteTableId']
+          @SubnetId = params['SubnetId']
         end
       end
 
@@ -26031,15 +26111,18 @@ module TencentCloud
         # @type SecurityGroupId: String
         # @param SecurityGroupPolicySet: 安全组规则集合对象。
         # @type SecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
-        # @param OriginalSecurityGroupPolicySet: 旧的安全组规则集合对象，可选，日志记录用。
+        # @param OriginalSecurityGroupPolicySet: 旧的安全组规则集合对象，当更新优先级时为必选，且修改顺序与SecurityGroupPolicySet参数顺序一一对应，入参长度需要与SecurityGroupPolicySet参数保持一致。
         # @type OriginalSecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
+        # @param UpdateType: 更新类型，默认 Policy  Policy：只更新内容  Priority：只更新优先级  Both：内容和优先级都更新
+        # @type UpdateType: String
 
-        attr_accessor :SecurityGroupId, :SecurityGroupPolicySet, :OriginalSecurityGroupPolicySet
+        attr_accessor :SecurityGroupId, :SecurityGroupPolicySet, :OriginalSecurityGroupPolicySet, :UpdateType
 
-        def initialize(securitygroupid=nil, securitygrouppolicyset=nil, originalsecuritygrouppolicyset=nil)
+        def initialize(securitygroupid=nil, securitygrouppolicyset=nil, originalsecuritygrouppolicyset=nil, updatetype=nil)
           @SecurityGroupId = securitygroupid
           @SecurityGroupPolicySet = securitygrouppolicyset
           @OriginalSecurityGroupPolicySet = originalsecuritygrouppolicyset
+          @UpdateType = updatetype
         end
 
         def deserialize(params)
@@ -26052,6 +26135,7 @@ module TencentCloud
             @OriginalSecurityGroupPolicySet = SecurityGroupPolicySet.new
             @OriginalSecurityGroupPolicySet.deserialize(params['OriginalSecurityGroupPolicySet'])
           end
+          @UpdateType = params['UpdateType']
         end
       end
 

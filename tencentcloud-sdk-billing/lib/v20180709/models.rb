@@ -4725,10 +4725,12 @@ module TencentCloud
         # @type ComponentSet: Array
         # @param ProductCode: 子产品名称代码
         # @type ProductCode: String
+        # @param Tags: 标签信息
+        # @type Tags: Array
 
-        attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode
+        attr_accessor :PayerUin, :BusinessCodeName, :ProductCodeName, :PayModeName, :ProjectName, :RegionName, :ZoneName, :ResourceId, :ResourceName, :ActionTypeName, :OrderId, :BillId, :FeeBeginTime, :FeeEndTime, :ComponentSet, :ProductCode, :Tags
 
-        def initialize(payeruin=nil, businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, feebegintime=nil, feeendtime=nil, componentset=nil, productcode=nil)
+        def initialize(payeruin=nil, businesscodename=nil, productcodename=nil, paymodename=nil, projectname=nil, regionname=nil, zonename=nil, resourceid=nil, resourcename=nil, actiontypename=nil, orderid=nil, billid=nil, feebegintime=nil, feeendtime=nil, componentset=nil, productcode=nil, tags=nil)
           @PayerUin = payeruin
           @BusinessCodeName = businesscodename
           @ProductCodeName = productcodename
@@ -4745,6 +4747,7 @@ module TencentCloud
           @FeeEndTime = feeendtime
           @ComponentSet = componentset
           @ProductCode = productcode
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4771,6 +4774,14 @@ module TencentCloud
             end
           end
           @ProductCode = params['ProductCode']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              billtaginfo_tmp = BillTagInfo.new
+              billtaginfo_tmp.deserialize(i)
+              @Tags << billtaginfo_tmp
+            end
+          end
         end
       end
 

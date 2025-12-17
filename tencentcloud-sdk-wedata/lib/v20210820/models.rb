@@ -16983,6 +16983,81 @@ module TencentCloud
         end
       end
 
+      # 分组获取编排空间测试运行记录
+      class DescribeTaskInstancesStatusDto < TencentCloud::Common::AbstractModel
+        # @param Instances: 根据任务信息获取实例状态信息实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Instances: Array
+
+        attr_accessor :Instances
+
+        def initialize(instances=nil)
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              paramgettaskinstancesstatusinforesponseinstance_tmp = ParamGetTaskInstancesStatusInfoResponseInstance.new
+              paramgettaskinstancesstatusinforesponseinstance_tmp.deserialize(i)
+              @Instances << paramgettaskinstancesstatusinforesponseinstance_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeTaskInstancesStatus请求参数结构体
+      class DescribeTaskInstancesStatusRequest < TencentCloud::Common::AbstractModel
+        # @param RecordIdList: 任务列表
+        # @type RecordIdList: Array
+        # @param WorkflowId: 工作流id
+        # @type WorkflowId: String
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+
+        attr_accessor :RecordIdList, :WorkflowId, :ProjectId
+
+        def initialize(recordidlist=nil, workflowid=nil, projectid=nil)
+          @RecordIdList = recordidlist
+          @WorkflowId = workflowid
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @RecordIdList = params['RecordIdList']
+          @WorkflowId = params['WorkflowId']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DescribeTaskInstancesStatus返回参数结构体
+      class DescribeTaskInstancesStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 实例列表
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              describetaskinstancesstatusdto_tmp = DescribeTaskInstancesStatusDto.new
+              describetaskinstancesstatusdto_tmp.deserialize(i)
+              @Data << describetaskinstancesstatusdto_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTaskLineage请求参数结构体
       class DescribeTaskLineageRequest < TencentCloud::Common::AbstractModel
         # @param RequestFromSource: 请求来源，WEB 前端；CLIENT 客户端
@@ -28786,6 +28861,38 @@ module TencentCloud
           @Key = params['Key']
           @Value = params['Value']
           @Description = params['Description']
+        end
+      end
+
+      # 根据任务信息获取实例状态信息实例
+      class ParamGetTaskInstancesStatusInfoResponseInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Status: 状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param RecordId: 记录编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RecordId: String
+        # @param TaskId: 任务编号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+
+        attr_accessor :InstanceId, :Status, :RecordId, :TaskId
+
+        def initialize(instanceid=nil, status=nil, recordid=nil, taskid=nil)
+          @InstanceId = instanceid
+          @Status = status
+          @RecordId = recordid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Status = params['Status']
+          @RecordId = params['RecordId']
+          @TaskId = params['TaskId']
         end
       end
 

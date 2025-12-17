@@ -8628,7 +8628,7 @@ module TencentCloud
         # @type OutputDir: String
         # @param TaskNotifyConfig: 任务的事件通知配置，不填代表不获取事件通知。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
         # @type ResourceId: String
 
         attr_accessor :ScheduleName, :Trigger, :Activities, :OutputStorage, :OutputDir, :TaskNotifyConfig, :ResourceId
@@ -8831,7 +8831,7 @@ module TencentCloud
         # `en-AU`：英语（澳大利亚）
         # `en-CA`：英语（加拿大）
         # `en-GH`：英语（加纳）
-        # `en-HK`：英语（香港）
+        # `en-HK`：英语（中国香港）
         # `en-IN`：英语（印度）
         # `en-IE`：英语（爱尔兰）
         # `en-KE`：英语（肯尼亚）
@@ -21643,7 +21643,7 @@ module TencentCloud
         # `en-AU`：英语（澳大利亚）
         # `en-CA`：英语（加拿大）
         # `en-GH`：英语（加纳）
-        # `en-HK`：英语（香港）
+        # `en-HK`：英语（中国香港）
         # `en-IN`：英语（印度）
         # `en-IE`：英语（爱尔兰）
         # `en-KE`：英语（肯尼亚）
@@ -23866,7 +23866,7 @@ module TencentCloud
         # <li> Online：实时任务</li>
         # <li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
         # @type TaskType: String
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
         # @type ResourceId: String
         # @param SkipMateData: 是否跳过元信息获取，可选值：
         # 0：表示不跳过
@@ -24767,7 +24767,7 @@ module TencentCloud
         # `en-AU`：英语（澳大利亚）
         # `en-CA`：英语（加拿大）
         # `en-GH`：英语（加纳）
-        # `en-HK`：英语（香港）
+        # `en-HK`：英语（中国香港）
         # `en-IN`：英语（印度）
         # `en-IE`：英语（爱尔兰）
         # `en-KE`：英语（肯尼亚）
@@ -28857,7 +28857,7 @@ module TencentCloud
 
       # TextTranslation请求参数结构体
       class TextTranslationRequest < TencentCloud::Common::AbstractModel
-        # @param SourceText: 待翻译的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度需要低于1000字符。
+        # @param SourceText: 待翻译的文本，文本统一使用utf-8格式编码，非utf-8格式编码字符会翻译失败，请传入有效文本，html标记等非常规翻译文本可能会翻译失败。单次请求的文本长度需要低于2000字符。
         # @type SourceText: String
         # @param Source: 源语言，支持：
         #     "auto": "自动识别（识别为一种语言）",

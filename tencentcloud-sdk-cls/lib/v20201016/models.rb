@@ -82,6 +82,29 @@ module TencentCloud
         end
       end
 
+      # 投递Ckafka 高级配置
+      class AdvancedConsumerConfiguration < TencentCloud::Common::AbstractModel
+        # @param PartitionHashStatus: Ckafka分区hash状态。 默认 false
+
+        # - true：开启根据字段 Hash 值结果相等的信息投递到统一 ckafka 分区
+        # - false：关闭根据字段 Hash 值结果相等的信息投递到统一 ckafka 分区
+        # @type PartitionHashStatus: Boolean
+        # @param PartitionFields: 需要计算 hash 的字段列表。最大支持5个字段。
+        # @type PartitionFields: Array
+
+        attr_accessor :PartitionHashStatus, :PartitionFields
+
+        def initialize(partitionhashstatus=nil, partitionfields=nil)
+          @PartitionHashStatus = partitionhashstatus
+          @PartitionFields = partitionfields
+        end
+
+        def deserialize(params)
+          @PartitionHashStatus = params['PartitionHashStatus']
+          @PartitionFields = params['PartitionFields']
+        end
+      end
+
       # 告警多维分析一些配置信息
       class AlarmAnalysisConfig < TencentCloud::Common::AbstractModel
         # @param Key: 键。支持以下key：
@@ -312,10 +335,35 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 最近更新时间。格式： YYYY-MM-DD HH:MM:SS
         # @type UpdateTime: String
+        # @param DeliverStatus: 投递日志开关。
 
-        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime
+        # 参数值：
 
-        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, noticerules=nil, alarmshieldstatus=nil, jumpdomain=nil, alarmnoticedeliverconfig=nil, createtime=nil, updatetime=nil)
+        # 1：关闭
+
+        # 2：开启
+        # @type DeliverStatus: Integer
+        # @param DeliverFlag: 投递日志标识。
+
+        # 参数值：
+
+        # 1：未启用
+
+        # 2：已启用
+
+        # 3：投递异常
+        # @type DeliverFlag: Integer
+        # @param AlarmShieldCount: 通知渠道组配置的告警屏蔽统计状态数量信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmShieldCount: :class:`Tencentcloud::Cls.v20201016.models.AlarmShieldCount`
+        # @param CallbackPrioritize: 统一设定自定义回调参数。
+        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
+        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @type CallbackPrioritize: Boolean
+
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :AlarmNoticeId, :NoticeRules, :AlarmShieldStatus, :JumpDomain, :AlarmNoticeDeliverConfig, :CreateTime, :UpdateTime, :DeliverStatus, :DeliverFlag, :AlarmShieldCount, :CallbackPrioritize
+
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, alarmnoticeid=nil, noticerules=nil, alarmshieldstatus=nil, jumpdomain=nil, alarmnoticedeliverconfig=nil, createtime=nil, updatetime=nil, deliverstatus=nil, deliverflag=nil, alarmshieldcount=nil, callbackprioritize=nil)
           @Name = name
           @Tags = tags
           @Type = type
@@ -328,6 +376,10 @@ module TencentCloud
           @AlarmNoticeDeliverConfig = alarmnoticedeliverconfig
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @DeliverStatus = deliverstatus
+          @DeliverFlag = deliverflag
+          @AlarmShieldCount = alarmshieldcount
+          @CallbackPrioritize = callbackprioritize
         end
 
         def deserialize(params)
@@ -374,6 +426,13 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @DeliverStatus = params['DeliverStatus']
+          @DeliverFlag = params['DeliverFlag']
+          unless params['AlarmShieldCount'].nil?
+            @AlarmShieldCount = AlarmShieldCount.new
+            @AlarmShieldCount.deserialize(params['AlarmShieldCount'])
+          end
+          @CallbackPrioritize = params['CallbackPrioritize']
         end
       end
 
@@ -397,6 +456,34 @@ module TencentCloud
             @DeliverConfig.deserialize(params['DeliverConfig'])
           end
           @ErrMsg = params['ErrMsg']
+        end
+      end
+
+      # 告警屏蔽统计信息
+      class AlarmShieldCount < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合检索条件的告警屏蔽总数量
+        # @type TotalCount: Integer
+        # @param InvalidCount: 告警屏蔽未生效数量
+        # @type InvalidCount: Integer
+        # @param ValidCount: 告警屏蔽生效中数量
+        # @type ValidCount: Integer
+        # @param ExpireCount: 告警屏蔽已过期数量
+        # @type ExpireCount: Integer
+
+        attr_accessor :TotalCount, :InvalidCount, :ValidCount, :ExpireCount
+
+        def initialize(totalcount=nil, invalidcount=nil, validcount=nil, expirecount=nil)
+          @TotalCount = totalcount
+          @InvalidCount = invalidcount
+          @ValidCount = validcount
+          @ExpireCount = expirecount
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @InvalidCount = params['InvalidCount']
+          @ValidCount = params['ValidCount']
+          @ExpireCount = params['ExpireCount']
         end
       end
 
@@ -2013,10 +2100,14 @@ module TencentCloud
         # -      1：关闭
         # -      2：开启（默认值）
         # @type AlarmShieldStatus: Integer
+        # @param CallbackPrioritize: 统一设定自定义回调参数。
+        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
+        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @type CallbackPrioritize: Boolean
 
-        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus
+        attr_accessor :Name, :Tags, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :CallbackPrioritize
 
-        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil)
+        def initialize(name=nil, tags=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, callbackprioritize=nil)
           @Name = name
           @Tags = tags
           @Type = type
@@ -2027,6 +2118,7 @@ module TencentCloud
           @DeliverStatus = deliverstatus
           @DeliverConfig = deliverconfig
           @AlarmShieldStatus = alarmshieldstatus
+          @CallbackPrioritize = callbackprioritize
         end
 
         def deserialize(params)
@@ -2071,6 +2163,7 @@ module TencentCloud
             @DeliverConfig.deserialize(params['DeliverConfig'])
           end
           @AlarmShieldStatus = params['AlarmShieldStatus']
+          @CallbackPrioritize = params['CallbackPrioritize']
         end
       end
 
@@ -2156,8 +2249,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 11
-        deprecate :Enable=, :none, 2025, 11
+        deprecate :Enable, :none, 2025, 12
+        deprecate :Enable=, :none, 2025, 12
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2496,8 +2589,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 11
-        deprecate :LogFormat=, :none, 2025, 11
+        deprecate :LogFormat, :none, 2025, 12
+        deprecate :LogFormat=, :none, 2025, 12
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -2749,15 +2842,24 @@ module TencentCloud
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
         # @param Compression: 投递时压缩方式，取值0，2，3。[0：NONE；2：SNAPPY；3：LZ4]
         # @type Compression: Integer
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # @type ExternalId: String
+        # @param AdvancedConfig: 高级配置项
+        # @type AdvancedConfig: :class:`Tencentcloud::Cls.v20201016.models.AdvancedConsumerConfiguration`
 
-        attr_accessor :TopicId, :NeedContent, :Content, :Ckafka, :Compression
+        attr_accessor :TopicId, :NeedContent, :Content, :Ckafka, :Compression, :RoleArn, :ExternalId, :AdvancedConfig
 
-        def initialize(topicid=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil)
+        def initialize(topicid=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil, rolearn=nil, externalid=nil, advancedconfig=nil)
           @TopicId = topicid
           @NeedContent = needcontent
           @Content = content
           @Ckafka = ckafka
           @Compression = compression
+          @RoleArn = rolearn
+          @ExternalId = externalid
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -2772,6 +2874,12 @@ module TencentCloud
             @Ckafka.deserialize(params['Ckafka'])
           end
           @Compression = params['Compression']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = AdvancedConsumerConfiguration.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
         end
       end
 
@@ -3306,15 +3414,18 @@ module TencentCloud
         # * 1:包含所有元数据字段
         # * 2:不包含任何元数据字段
         # @type MetadataFlag: Integer
+        # @param CoverageField: 自定义日志解析异常存储字段。
+        # @type CoverageField: String
 
-        attr_accessor :TopicId, :Rule, :Status, :IncludeInternalFields, :MetadataFlag
+        attr_accessor :TopicId, :Rule, :Status, :IncludeInternalFields, :MetadataFlag, :CoverageField
 
-        def initialize(topicid=nil, rule=nil, status=nil, includeinternalfields=nil, metadataflag=nil)
+        def initialize(topicid=nil, rule=nil, status=nil, includeinternalfields=nil, metadataflag=nil, coveragefield=nil)
           @TopicId = topicid
           @Rule = rule
           @Status = status
           @IncludeInternalFields = includeinternalfields
           @MetadataFlag = metadataflag
+          @CoverageField = coveragefield
         end
 
         def deserialize(params)
@@ -3326,6 +3437,7 @@ module TencentCloud
           @Status = params['Status']
           @IncludeInternalFields = params['IncludeInternalFields']
           @MetadataFlag = params['MetadataFlag']
+          @CoverageField = params['CoverageField']
         end
       end
 
@@ -3781,10 +3893,14 @@ module TencentCloud
         # - INTELLIGENT_TIERING：智能分层存储
         # - MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # @type ExternalId: String
 
-        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime, :StorageType
+        attr_accessor :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StartTime, :EndTime, :StorageType, :RoleArn, :ExternalId
 
-        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, starttime=nil, endtime=nil, storagetype=nil)
+        def initialize(topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, starttime=nil, endtime=nil, storagetype=nil, rolearn=nil, externalid=nil)
           @TopicId = topicid
           @Bucket = bucket
           @Prefix = prefix
@@ -3799,6 +3915,8 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @StorageType = storagetype
+          @RoleArn = rolearn
+          @ExternalId = externalid
         end
 
         def deserialize(params)
@@ -3829,6 +3947,8 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @StorageType = params['StorageType']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
         end
       end
 
@@ -5442,32 +5562,32 @@ module TencentCloud
 
       # DescribeAlarmNotices请求参数结构体
       class DescribeAlarmNoticesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: <li> name
+        # @param Filters: name
         # 按照【通知渠道组名称】进行过滤。
         # 类型：String
         # 示例："Filters":[{"Key":"name","Values":["test-notice"]}]
-        # 必选：否</li>
-        # <li> alarmNoticeId
+        # 必选：否
+        # alarmNoticeId
         # 按照【通知渠道组ID】进行过滤。
         # 类型：String
         # 示例："Filters": [{Key: "alarmNoticeId", Values: ["notice-5281f1d2-6275-4e56-9ec3-a1eb19d8bc2f"]}]
-        # 必选：否</li>
-        # <li> uid
+        # 必选：否
+        # uid
         # 按照【接收用户ID】进行过滤。
         # 类型：String
         # 示例："Filters": [{Key: "uid", Values: ["1137546"]}]
-        # 必选：否</li>
-        # <li> groupId
+        # 必选：否
+        # groupId
         # 按照【接收用户组ID】进行过滤。
         # 类型：String
         # 示例："Filters": [{Key: "groupId", Values: ["344098"]}]
-        # 必选：否</li>
+        # 必选：否
 
-        # <li> deliverFlag
+        # deliverFlag
         # 按照【投递状态】进行过滤。
         # 类型：String
         # 必选：否
-        # 可选值： "1":未启用,  "2": 已启用, "3":投递异常</li>
+        # 可选值： "1":未启用,  "2": 已启用, "3":投递异常
         # 示例："Filters":[{"Key":"deliverFlag","Values":["2"]}]
         # 每次请求的Filters的上限为10，Filter.Values的上限为5。
         # @type Filters: Array
@@ -5475,13 +5595,18 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页单页限制数目，默认值为20，最大值100。
         # @type Limit: Integer
+        # @param HasAlarmShieldCount: 是否需要返回通知渠道组配置的告警屏蔽统计状态数量信息。
+        # - true：需要返回；
+        # - false：不返回（默认false）。
+        # @type HasAlarmShieldCount: Boolean
 
-        attr_accessor :Filters, :Offset, :Limit
+        attr_accessor :Filters, :Offset, :Limit, :HasAlarmShieldCount
 
-        def initialize(filters=nil, offset=nil, limit=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, hasalarmshieldcount=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @HasAlarmShieldCount = hasalarmshieldcount
         end
 
         def deserialize(params)
@@ -5495,6 +5620,7 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @HasAlarmShieldCount = params['HasAlarmShieldCount']
         end
       end
 
@@ -6690,18 +6816,21 @@ module TencentCloud
         # * 1:包含所有元数据字段
         # * 2:不包含任何元数据字段
         # @type MetadataFlag: Integer
+        # @param CoverageField: 自定义日志解析异常存储字段。
+        # @type CoverageField: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TopicId, :Status, :Rule, :ModifyTime, :IncludeInternalFields, :MetadataFlag, :RequestId
+        attr_accessor :TopicId, :Status, :Rule, :ModifyTime, :IncludeInternalFields, :MetadataFlag, :CoverageField, :RequestId
 
-        def initialize(topicid=nil, status=nil, rule=nil, modifytime=nil, includeinternalfields=nil, metadataflag=nil, requestid=nil)
+        def initialize(topicid=nil, status=nil, rule=nil, modifytime=nil, includeinternalfields=nil, metadataflag=nil, coveragefield=nil, requestid=nil)
           @TopicId = topicid
           @Status = status
           @Rule = rule
           @ModifyTime = modifytime
           @IncludeInternalFields = includeinternalfields
           @MetadataFlag = metadataflag
+          @CoverageField = coveragefield
           @RequestId = requestid
         end
 
@@ -6715,6 +6844,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @IncludeInternalFields = params['IncludeInternalFields']
           @MetadataFlag = params['MetadataFlag']
+          @CoverageField = params['CoverageField']
           @RequestId = params['RequestId']
         end
       end
@@ -9512,6 +9642,8 @@ module TencentCloud
         # @type LogsetName: String
         # @param CreateTime: 创建时间。格式 `YYYY-MM-DD HH:MM:SS`
         # @type CreateTime: String
+        # @param AssumerUin: 若AssumerUin非空，则表示创建该日志集的服务方Uin
+        # @type AssumerUin: Integer
         # @param AssumerName: 云产品标识，日志集由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
         # @type AssumerName: String
         # @param Tags: 日志集绑定的标签
@@ -9520,23 +9652,28 @@ module TencentCloud
         # @type TopicCount: Integer
         # @param RoleName: 若AssumerName非空，则表示创建该日志集的服务方角色
         # @type RoleName: String
+        # @param MetricTopicCount: 日志集下指标主题的数目
+        # @type MetricTopicCount: Integer
 
-        attr_accessor :LogsetId, :LogsetName, :CreateTime, :AssumerName, :Tags, :TopicCount, :RoleName
+        attr_accessor :LogsetId, :LogsetName, :CreateTime, :AssumerUin, :AssumerName, :Tags, :TopicCount, :RoleName, :MetricTopicCount
 
-        def initialize(logsetid=nil, logsetname=nil, createtime=nil, assumername=nil, tags=nil, topiccount=nil, rolename=nil)
+        def initialize(logsetid=nil, logsetname=nil, createtime=nil, assumeruin=nil, assumername=nil, tags=nil, topiccount=nil, rolename=nil, metrictopiccount=nil)
           @LogsetId = logsetid
           @LogsetName = logsetname
           @CreateTime = createtime
+          @AssumerUin = assumeruin
           @AssumerName = assumername
           @Tags = tags
           @TopicCount = topiccount
           @RoleName = rolename
+          @MetricTopicCount = metrictopiccount
         end
 
         def deserialize(params)
           @LogsetId = params['LogsetId']
           @LogsetName = params['LogsetName']
           @CreateTime = params['CreateTime']
+          @AssumerUin = params['AssumerUin']
           @AssumerName = params['AssumerName']
           unless params['Tags'].nil?
             @Tags = []
@@ -9548,6 +9685,7 @@ module TencentCloud
           end
           @TopicCount = params['TopicCount']
           @RoleName = params['RoleName']
+          @MetricTopicCount = params['MetricTopicCount']
         end
       end
 
@@ -9836,10 +9974,14 @@ module TencentCloud
         #         1：关闭
         #         2：开启（默认开启）
         # @type AlarmShieldStatus: Integer
+        # @param CallbackPrioritize: 统一设定自定义回调参数。
+        # -  true: 使用通知内容模板中的自定义回调参数覆盖告警策略中单独配置的请求头及请求内容。
+        # -  false:优先使用告警策略中单独配置的请求头及请求内容。
+        # @type CallbackPrioritize: Boolean
 
-        attr_accessor :AlarmNoticeId, :Tags, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus
+        attr_accessor :AlarmNoticeId, :Tags, :Name, :Type, :NoticeReceivers, :WebCallbacks, :NoticeRules, :JumpDomain, :DeliverStatus, :DeliverConfig, :AlarmShieldStatus, :CallbackPrioritize
 
-        def initialize(alarmnoticeid=nil, tags=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil)
+        def initialize(alarmnoticeid=nil, tags=nil, name=nil, type=nil, noticereceivers=nil, webcallbacks=nil, noticerules=nil, jumpdomain=nil, deliverstatus=nil, deliverconfig=nil, alarmshieldstatus=nil, callbackprioritize=nil)
           @AlarmNoticeId = alarmnoticeid
           @Tags = tags
           @Name = name
@@ -9851,6 +9993,7 @@ module TencentCloud
           @DeliverStatus = deliverstatus
           @DeliverConfig = deliverconfig
           @AlarmShieldStatus = alarmshieldstatus
+          @CallbackPrioritize = callbackprioritize
         end
 
         def deserialize(params)
@@ -9896,6 +10039,7 @@ module TencentCloud
             @DeliverConfig.deserialize(params['DeliverConfig'])
           end
           @AlarmShieldStatus = params['AlarmShieldStatus']
+          @CallbackPrioritize = params['CallbackPrioritize']
         end
       end
 
@@ -9975,8 +10119,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 11
-        deprecate :Enable=, :none, 2025, 11
+        deprecate :Enable, :none, 2025, 12
+        deprecate :Enable=, :none, 2025, 12
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -10274,8 +10418,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 11
-        deprecate :LogFormat=, :none, 2025, 11
+        deprecate :LogFormat, :none, 2025, 12
+        deprecate :LogFormat=, :none, 2025, 12
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -10510,16 +10654,25 @@ module TencentCloud
         # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
         # @param Compression: 投递时压缩方式，取值0，2，3。[0：NONE；2：SNAPPY；3：LZ4]
         # @type Compression: Integer
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # @type ExternalId: String
+        # @param AdvancedConfig: 高级配置
+        # @type AdvancedConfig: :class:`Tencentcloud::Cls.v20201016.models.AdvancedConsumerConfiguration`
 
-        attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka, :Compression
+        attr_accessor :TopicId, :Effective, :NeedContent, :Content, :Ckafka, :Compression, :RoleArn, :ExternalId, :AdvancedConfig
 
-        def initialize(topicid=nil, effective=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil)
+        def initialize(topicid=nil, effective=nil, needcontent=nil, content=nil, ckafka=nil, compression=nil, rolearn=nil, externalid=nil, advancedconfig=nil)
           @TopicId = topicid
           @Effective = effective
           @NeedContent = needcontent
           @Content = content
           @Ckafka = ckafka
           @Compression = compression
+          @RoleArn = rolearn
+          @ExternalId = externalid
+          @AdvancedConfig = advancedconfig
         end
 
         def deserialize(params)
@@ -10535,6 +10688,12 @@ module TencentCloud
             @Ckafka.deserialize(params['Ckafka'])
           end
           @Compression = params['Compression']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = AdvancedConsumerConfiguration.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
         end
       end
 
@@ -10890,15 +11049,18 @@ module TencentCloud
         # * 1:包含所有元数据字段
         # * 2:不包含任何元数据字段
         # @type MetadataFlag: Integer
+        # @param CoverageField: 自定义日志解析异常存储字段。
+        # @type CoverageField: String
 
-        attr_accessor :TopicId, :Status, :Rule, :IncludeInternalFields, :MetadataFlag
+        attr_accessor :TopicId, :Status, :Rule, :IncludeInternalFields, :MetadataFlag, :CoverageField
 
-        def initialize(topicid=nil, status=nil, rule=nil, includeinternalfields=nil, metadataflag=nil)
+        def initialize(topicid=nil, status=nil, rule=nil, includeinternalfields=nil, metadataflag=nil, coveragefield=nil)
           @TopicId = topicid
           @Status = status
           @Rule = rule
           @IncludeInternalFields = includeinternalfields
           @MetadataFlag = metadataflag
+          @CoverageField = coveragefield
         end
 
         def deserialize(params)
@@ -10910,6 +11072,7 @@ module TencentCloud
           end
           @IncludeInternalFields = params['IncludeInternalFields']
           @MetadataFlag = params['MetadataFlag']
+          @CoverageField = params['CoverageField']
         end
       end
 
@@ -11413,10 +11576,14 @@ module TencentCloud
         # - INTELLIGENT_TIERING：智能分层存储
         # - MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # @type ExternalId: String
 
-        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StorageType
+        attr_accessor :ShipperId, :Bucket, :Prefix, :Status, :ShipperName, :Interval, :MaxSize, :FilterRules, :Partition, :Compress, :Content, :FilenameMode, :StorageType, :RoleArn, :ExternalId
 
-        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, storagetype=nil)
+        def initialize(shipperid=nil, bucket=nil, prefix=nil, status=nil, shippername=nil, interval=nil, maxsize=nil, filterrules=nil, partition=nil, compress=nil, content=nil, filenamemode=nil, storagetype=nil, rolearn=nil, externalid=nil)
           @ShipperId = shipperid
           @Bucket = bucket
           @Prefix = prefix
@@ -11430,6 +11597,8 @@ module TencentCloud
           @Content = content
           @FilenameMode = filenamemode
           @StorageType = storagetype
+          @RoleArn = rolearn
+          @ExternalId = externalid
         end
 
         def deserialize(params)
@@ -11459,6 +11628,8 @@ module TencentCloud
           end
           @FilenameMode = params['FilenameMode']
           @StorageType = params['StorageType']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
         end
       end
 
@@ -11480,8 +11651,7 @@ module TencentCloud
 
       # ModifyTopic请求参数结构体
       class ModifyTopicRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 主题ID
-        # - 通过[获取主题列表](https://cloud.tencent.com/document/product/614/56454)获取主题Id。
+        # @param TopicId:  主题ID- 通过[获取主题列表](https://cloud.tencent.com/document/product/614/56454)获取主题Id。
         # @type TopicId: String
         # @param TopicName: 主题名称
         # 输入限制：
@@ -11501,6 +11671,8 @@ module TencentCloud
         # @type MaxSplitPartitions: Integer
         # @param Period: 生命周期，单位天，标准存储取值范围1\~3600，低频存储取值范围7\~3600。取值为3640时代表永久保存
         # @type Period: Integer
+        # @param StorageType: 存储类型：cold 低频存储，hot 标准存储
+        # @type StorageType: String
         # @param Describes: 主题描述
         # @type Describes: String
         # @param HotPeriod: 0：日志主题关闭日志沉降。
@@ -11522,10 +11694,15 @@ module TencentCloud
         # @param CancelTopicAsyncTaskID: 取消切换存储任务的id
         # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取取消切换存储任务的id【Topics中的TopicAsyncTaskID字段】。
         # @type CancelTopicAsyncTaskID: String
+        # @param Encryption: 加密相关参数。 支持加密地域并且开白用户可以传此参数，其他场景不能传递该参数。
+        # 只支持传入1：kms-cls 云产品秘钥加密
+        # @type Encryption: Integer
+        # @param IsSourceFrom: 开启记录公网来源ip和服务端接收时间
+        # @type IsSourceFrom: Boolean
 
-        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID
+        attr_accessor :TopicId, :TopicName, :Tags, :Status, :AutoSplit, :MaxSplitPartitions, :Period, :StorageType, :Describes, :HotPeriod, :IsWebTracking, :Extends, :PartitionCount, :CancelTopicAsyncTaskID, :Encryption, :IsSourceFrom
 
-        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil)
+        def initialize(topicid=nil, topicname=nil, tags=nil, status=nil, autosplit=nil, maxsplitpartitions=nil, period=nil, storagetype=nil, describes=nil, hotperiod=nil, iswebtracking=nil, extends=nil, partitioncount=nil, canceltopicasynctaskid=nil, encryption=nil, issourcefrom=nil)
           @TopicId = topicid
           @TopicName = topicname
           @Tags = tags
@@ -11533,12 +11710,15 @@ module TencentCloud
           @AutoSplit = autosplit
           @MaxSplitPartitions = maxsplitpartitions
           @Period = period
+          @StorageType = storagetype
           @Describes = describes
           @HotPeriod = hotperiod
           @IsWebTracking = iswebtracking
           @Extends = extends
           @PartitionCount = partitioncount
           @CancelTopicAsyncTaskID = canceltopicasynctaskid
+          @Encryption = encryption
+          @IsSourceFrom = issourcefrom
         end
 
         def deserialize(params)
@@ -11556,6 +11736,7 @@ module TencentCloud
           @AutoSplit = params['AutoSplit']
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @Period = params['Period']
+          @StorageType = params['StorageType']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
           @IsWebTracking = params['IsWebTracking']
@@ -11565,6 +11746,8 @@ module TencentCloud
           end
           @PartitionCount = params['PartitionCount']
           @CancelTopicAsyncTaskID = params['CancelTopicAsyncTaskID']
+          @Encryption = params['Encryption']
+          @IsSourceFrom = params['IsSourceFrom']
         end
       end
 
@@ -12302,8 +12485,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 11
-        deprecate :DstTopicName=, :none, 2025, 11
+        deprecate :DstTopicName, :none, 2025, 12
+        deprecate :DstTopicName=, :none, 2025, 12
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -13204,10 +13387,20 @@ module TencentCloud
         # INTELLIGENT_TIERING：智能分层存储
         # MAZ_INTELLIGENT_TIERING：智能分层存储（多 AZ）
         # @type StorageType: String
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # @type ExternalId: String
+        # @param TaskStatus: 任务运行状态。支持`0`,`1`,`2`
 
-        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType
+        # - `0`: 停止
+        # - `1`: 运行中
+        # - `2`: 异常
+        # @type TaskStatus: Integer
 
-        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil, starttime=nil, endtime=nil, progress=nil, remaintime=nil, historystatus=nil, storagetype=nil)
+        attr_accessor :ShipperId, :TopicId, :Bucket, :Prefix, :ShipperName, :Interval, :MaxSize, :Status, :FilterRules, :Partition, :Compress, :Content, :CreateTime, :FilenameMode, :StartTime, :EndTime, :Progress, :RemainTime, :HistoryStatus, :StorageType, :RoleArn, :ExternalId, :TaskStatus
+
+        def initialize(shipperid=nil, topicid=nil, bucket=nil, prefix=nil, shippername=nil, interval=nil, maxsize=nil, status=nil, filterrules=nil, partition=nil, compress=nil, content=nil, createtime=nil, filenamemode=nil, starttime=nil, endtime=nil, progress=nil, remaintime=nil, historystatus=nil, storagetype=nil, rolearn=nil, externalid=nil, taskstatus=nil)
           @ShipperId = shipperid
           @TopicId = topicid
           @Bucket = bucket
@@ -13228,6 +13421,9 @@ module TencentCloud
           @RemainTime = remaintime
           @HistoryStatus = historystatus
           @StorageType = storagetype
+          @RoleArn = rolearn
+          @ExternalId = externalid
+          @TaskStatus = taskstatus
         end
 
         def deserialize(params)
@@ -13264,6 +13460,9 @@ module TencentCloud
           @RemainTime = params['RemainTime']
           @HistoryStatus = params['HistoryStatus']
           @StorageType = params['StorageType']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
+          @TaskStatus = params['TaskStatus']
         end
       end
 
@@ -13469,10 +13668,11 @@ module TencentCloud
         # @type PartitionCount: Integer
         # @param Index: 主题是否开启索引（主题类型需为日志主题）
         # @type Index: Boolean
+        # @param AssumerUin: AssumerUin非空则表示创建该日志主题的服务方Uin
+        # @type AssumerUin: Integer
         # @param AssumerName: 云产品标识，主题由其它云产品创建时，该字段会显示云产品名称，例如CDN、TKE
         # @type AssumerName: String
-        # @param CreateTime: 创建时间
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param CreateTime: 创建时间。格式：yyyy-MM-dd HH:mm:ss
         # @type CreateTime: String
         # @param Status: 主题是否开启采集，true：开启采集；false：关闭采集。
         # 创建日志主题时默认开启，可通过SDK调用ModifyTopic修改此字段。
@@ -13480,6 +13680,8 @@ module TencentCloud
         # @type Status: Boolean
         # @param Tags: 主题绑定的标签信息
         # @type Tags: Array
+        # @param RoleName: RoleName非空则表示创建该日志主题的服务方使用的角色
+        # @type RoleName: String
         # @param AutoSplit: 该主题是否开启自动分裂
         # @type AutoSplit: Boolean
         # @param MaxSplitPartitions: 若开启自动分裂的话，该主题能够允许的最大分区数
@@ -13519,19 +13721,23 @@ module TencentCloud
         # @param EffectiveDate: 异步迁移完成后，预计生效日期
         # 时间格式：yyyy-MM-dd HH:mm:ss
         # @type EffectiveDate: String
+        # @param IsSourceFrom: IsSourceFrom 开启记录公网来源ip和服务端接收时间
+        # @type IsSourceFrom: Boolean
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerName, :CreateTime, :Status, :Tags, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumername=nil, createtime=nil, status=nil, tags=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
           @PartitionCount = partitioncount
           @Index = index
+          @AssumerUin = assumeruin
           @AssumerName = assumername
           @CreateTime = createtime
           @Status = status
           @Tags = tags
+          @RoleName = rolename
           @AutoSplit = autosplit
           @MaxSplitPartitions = maxsplitpartitions
           @StorageType = storagetype
@@ -13545,6 +13751,7 @@ module TencentCloud
           @TopicAsyncTaskID = topicasynctaskid
           @MigrationStatus = migrationstatus
           @EffectiveDate = effectivedate
+          @IsSourceFrom = issourcefrom
         end
 
         def deserialize(params)
@@ -13553,6 +13760,7 @@ module TencentCloud
           @TopicName = params['TopicName']
           @PartitionCount = params['PartitionCount']
           @Index = params['Index']
+          @AssumerUin = params['AssumerUin']
           @AssumerName = params['AssumerName']
           @CreateTime = params['CreateTime']
           @Status = params['Status']
@@ -13564,6 +13772,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @RoleName = params['RoleName']
           @AutoSplit = params['AutoSplit']
           @MaxSplitPartitions = params['MaxSplitPartitions']
           @StorageType = params['StorageType']
@@ -13580,6 +13789,7 @@ module TencentCloud
           @TopicAsyncTaskID = params['TopicAsyncTaskID']
           @MigrationStatus = params['MigrationStatus']
           @EffectiveDate = params['EffectiveDate']
+          @IsSourceFrom = params['IsSourceFrom']
         end
       end
 
@@ -13597,8 +13807,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 11
-        deprecate :HashKey=, :none, 2025, 11
+        deprecate :HashKey, :none, 2025, 12
+        deprecate :HashKey=, :none, 2025, 12
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -13733,10 +13943,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 11
-        deprecate :Headers=, :none, 2025, 11
-        deprecate :Body, :none, 2025, 11
-        deprecate :Body=, :none, 2025, 11
+        deprecate :Headers, :none, 2025, 12
+        deprecate :Headers=, :none, 2025, 12
+        deprecate :Body, :none, 2025, 12
+        deprecate :Body=, :none, 2025, 12
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

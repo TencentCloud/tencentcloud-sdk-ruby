@@ -21,35 +21,47 @@ module TencentCloud
       class ActivityRecordItem < TencentCloud::Common::AbstractModel
         # @param Uin: 用户uin
         # @type Uin: String
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param ActivityId: 活动id
         # @type ActivityId: Integer
+        # @param ActivityName: 活动名称（唯一英文标识）
+        # @type ActivityName: String
         # @param Status: 自定义状态码
         # @type Status: Integer
         # @param SubStatus: 自定义子状态码
         # @type SubStatus: String
         # @param SubStatusInt: 整型子状态码
         # @type SubStatusInt: Integer
-        # @param IsDeleted: 是否软删除
+        # @param IsDeleted: 是否已删除
         # @type IsDeleted: Boolean
+        # @param CreateTime: 活动参与时间
+        # @type CreateTime: String
 
-        attr_accessor :Uin, :ActivityId, :Status, :SubStatus, :SubStatusInt, :IsDeleted
+        attr_accessor :Uin, :EnvId, :ActivityId, :ActivityName, :Status, :SubStatus, :SubStatusInt, :IsDeleted, :CreateTime
 
-        def initialize(uin=nil, activityid=nil, status=nil, substatus=nil, substatusint=nil, isdeleted=nil)
+        def initialize(uin=nil, envid=nil, activityid=nil, activityname=nil, status=nil, substatus=nil, substatusint=nil, isdeleted=nil, createtime=nil)
           @Uin = uin
+          @EnvId = envid
           @ActivityId = activityid
+          @ActivityName = activityname
           @Status = status
           @SubStatus = substatus
           @SubStatusInt = substatusint
           @IsDeleted = isdeleted
+          @CreateTime = createtime
         end
 
         def deserialize(params)
           @Uin = params['Uin']
+          @EnvId = params['EnvId']
           @ActivityId = params['ActivityId']
+          @ActivityName = params['ActivityName']
           @Status = params['Status']
           @SubStatus = params['SubStatus']
           @SubStatusInt = params['SubStatusInt']
           @IsDeleted = params['IsDeleted']
+          @CreateTime = params['CreateTime']
         end
       end
 

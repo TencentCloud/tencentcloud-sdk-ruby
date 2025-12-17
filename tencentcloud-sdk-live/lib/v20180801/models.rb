@@ -1220,23 +1220,17 @@ module TencentCloud
 
       # 导播台布局参数。
       class CasterLayoutInfo < TencentCloud::Common::AbstractModel
-        # @param LayoutIndex: 布局Index。
+        # @param LayoutIndex: <p>布局Index。</p>取值范围：[1, 1000]
         # @type LayoutIndex: Integer
-        # @param LayoutTemplateId: 布局模板Id。
-        # 有效值[1，20，21，31，32，41]
-        # 当使用布局模板时，无需LayoutParams参数，导播台将使用模板布局参数。
+        # @param LayoutTemplateId: <p>布局模板Id。有效值[1，20，21，31，32，41]当使用布局模板时，无需LayoutParams参数，导播台将使用模板布局参数。</p>
         # @type LayoutTemplateId: Integer
-        # @param InputIndexList: 布局绑定的输入列表。按布局LayerId从小到大，按顺序排列。
-        # 已有两个画面的布局为例，输入1对应LayerId为1，输入2对应的LayerId为2，该字段应该填入"1|2"。
+        # @param InputIndexList: <p>布局绑定的输入列表。按布局LayerId从小到大，按顺序排列。已有两个画面的布局为例，输入1对应LayerId为1，输入2对应的LayerId为2，该字段应该填入"1|2"。</p>
         # @type InputIndexList: String
-        # @param LayoutParams: 详细的布局参数列表。
+        # @param LayoutParams: <p>详细的布局参数列表。</p>
         # @type LayoutParams: Array
-        # @param LayoutWidth: 布局输出的宽度，单位为像素。
-        # 默认为1280像素。
-        # 注：该值仅在画中画布局，且未设置PgmWidth时生效。
+        # @param LayoutWidth: <p>布局输出的宽度，单位为像素。默认为1280像素。注：该值仅在画中画布局，且未设置PgmWidth时生效。</p>
         # @type LayoutWidth: Integer
-        # @param LayoutHeight: 布局输出的高度，单位为像素。
-        # 注：该参数仅在画中画布局，且未设置PgmHeight时生效。
+        # @param LayoutHeight: <p>布局输出的高度，单位为像素。注：该参数仅在画中画布局，且未设置PgmHeight时生效。</p>
         # @type LayoutHeight: Integer
 
         attr_accessor :LayoutIndex, :LayoutTemplateId, :InputIndexList, :LayoutParams, :LayoutWidth, :LayoutHeight

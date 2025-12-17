@@ -1037,6 +1037,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询部门信息
+
+        # @param request: Request instance for DescribeDepartments.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeDepartmentsRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeDepartmentsResponse`
+        def DescribeDepartments(request)
+          body = send_request('DescribeDepartments', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDepartmentsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询主机账号列表
 
         # @param request: Request instance for DescribeDeviceAccounts.

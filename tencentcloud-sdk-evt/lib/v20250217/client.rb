@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 执行审批
+
+        # @param request: Request instance for CompleteApproval.
+        # @type request: :class:`Tencentcloud::evt::V20250217::CompleteApprovalRequest`
+        # @rtype: :class:`Tencentcloud::evt::V20250217::CompleteApprovalResponse`
+        def CompleteApproval(request)
+          body = send_request('CompleteApproval', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CompleteApprovalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建人员
 
         # @param request: Request instance for CreateRoleUser.

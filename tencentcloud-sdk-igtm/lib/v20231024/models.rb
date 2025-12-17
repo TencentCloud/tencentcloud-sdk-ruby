@@ -452,6 +452,70 @@ module TencentCloud
         end
       end
 
+      # CreatePackageAndPay请求参数结构体
+      class CreatePackageAndPayRequest < TencentCloud::Common::AbstractModel
+        # @param DealType: 下单类型：CREATE 新购；RENEW 续费；MODIFY 变配
+        # @type DealType: String
+        # @param GoodsType: 套餐类型：STANDARD 标准版；ULTIMATE 旗舰版；TASK 任务探测
+        # @type GoodsType: String
+        # @param GoodsNum: 商品数量：STANDARD和ULTIMATE固定为1，TASK为任务探测数量。取值范围：1～10000
+        # @type GoodsNum: Integer
+        # @param AutoRenew: 自动续费：1 开启自动续费；2 关闭自动续费
+        # @type AutoRenew: Integer
+        # @param ResourceId: 资源ID，续费和变配的时候需要传
+        # @type ResourceId: String
+        # @param TimeSpan: 套餐时长，以月为单位，创建和续费的时候需要传。取值范围：1～120
+        # @type TimeSpan: Integer
+        # @param NewPackageType: 升级的套餐类型，暂时只支持传ULTIMATE，不支持降配
+        # @type NewPackageType: String
+        # @param AutoVoucher: 是否自动选择代金券，1 是；0否，默认为0
+        # @type AutoVoucher: Integer
+
+        attr_accessor :DealType, :GoodsType, :GoodsNum, :AutoRenew, :ResourceId, :TimeSpan, :NewPackageType, :AutoVoucher
+
+        def initialize(dealtype=nil, goodstype=nil, goodsnum=nil, autorenew=nil, resourceid=nil, timespan=nil, newpackagetype=nil, autovoucher=nil)
+          @DealType = dealtype
+          @GoodsType = goodstype
+          @GoodsNum = goodsnum
+          @AutoRenew = autorenew
+          @ResourceId = resourceid
+          @TimeSpan = timespan
+          @NewPackageType = newpackagetype
+          @AutoVoucher = autovoucher
+        end
+
+        def deserialize(params)
+          @DealType = params['DealType']
+          @GoodsType = params['GoodsType']
+          @GoodsNum = params['GoodsNum']
+          @AutoRenew = params['AutoRenew']
+          @ResourceId = params['ResourceId']
+          @TimeSpan = params['TimeSpan']
+          @NewPackageType = params['NewPackageType']
+          @AutoVoucher = params['AutoVoucher']
+        end
+      end
+
+      # CreatePackageAndPay返回参数结构体
+      class CreatePackageAndPayResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id列表，目前只会返回一个资源，取第一个值即可
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceIds, :RequestId
+
+        def initialize(resourceids=nil, requestid=nil)
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateStrategy请求参数结构体
       class CreateStrategyRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -2201,6 +2265,46 @@ module TencentCloud
 
         def deserialize(params)
           @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPackageAutoRenew请求参数结构体
+      class ModifyPackageAutoRenewRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceId: 资源ID，续费和变配的时候需要传
+        # @type ResourceId: String
+        # @param AutoRenew: 自动续费：1 开启自动续费；2 关闭自动续费
+        # @type AutoRenew: Integer
+
+        attr_accessor :ResourceId, :AutoRenew
+
+        def initialize(resourceid=nil, autorenew=nil)
+          @ResourceId = resourceid
+          @AutoRenew = autorenew
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @AutoRenew = params['AutoRenew']
+        end
+      end
+
+      # ModifyPackageAutoRenew返回参数结构体
+      class ModifyPackageAutoRenewResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 资源id列表，目前只会返回一个资源，取第一个值即可
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceIds, :RequestId
+
+        def initialize(resourceids=nil, requestid=nil)
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
           @RequestId = params['RequestId']
         end
       end

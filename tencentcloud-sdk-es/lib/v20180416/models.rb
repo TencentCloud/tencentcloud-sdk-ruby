@@ -299,33 +299,73 @@ module TencentCloud
         # @type IsAutoBackup: Boolean
         # @param BackupTime: 自动备份执行时间（精确到小时）, e.g. "22:00"
         # @type BackupTime: String
+        # @param SnapshotName: 备份快照前缀
+        # @type SnapshotName: String
         # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
         # @type EsRepositoryType: Integer
+        # @param PaasEsRepository: 托管快照仓库名称
+        # @type PaasEsRepository: String
         # @param UserEsRepository: 客户快照仓库名称
         # @type UserEsRepository: String
         # @param StorageDuration: 快照存储周期 单位天
         # @type StorageDuration: Integer
         # @param AutoBackupInterval: 自动备份频率单位小时
         # @type AutoBackupInterval: Integer
+        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # @type CosRetention: Integer
+        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # @type RetainUntilDate: String
+        # @param RetentionGraceTime: 锁定宽限期
+        # @type RetentionGraceTime: Integer
+        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # @type RemoteCos: Integer
+        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # @type RemoteCosRegion: String
+        # @param StrategyName: 策略名称
+        # @type StrategyName: String
+        # @param Indices: 备份索引列表，如果不填表示备份所有索引
+        # @type Indices: String
+        # @param CreateTime: 策略创建时间
+        # @type CreateTime: String
 
-        attr_accessor :IsAutoBackup, :BackupTime, :EsRepositoryType, :UserEsRepository, :StorageDuration, :AutoBackupInterval
+        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :CreateTime
 
-        def initialize(isautobackup=nil, backuptime=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil)
+        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, createtime=nil)
           @IsAutoBackup = isautobackup
           @BackupTime = backuptime
+          @SnapshotName = snapshotname
           @EsRepositoryType = esrepositorytype
+          @PaasEsRepository = paasesrepository
           @UserEsRepository = useresrepository
           @StorageDuration = storageduration
           @AutoBackupInterval = autobackupinterval
+          @CosRetention = cosretention
+          @RetainUntilDate = retainuntildate
+          @RetentionGraceTime = retentiongracetime
+          @RemoteCos = remotecos
+          @RemoteCosRegion = remotecosregion
+          @StrategyName = strategyname
+          @Indices = indices
+          @CreateTime = createtime
         end
 
         def deserialize(params)
           @IsAutoBackup = params['IsAutoBackup']
           @BackupTime = params['BackupTime']
+          @SnapshotName = params['SnapshotName']
           @EsRepositoryType = params['EsRepositoryType']
+          @PaasEsRepository = params['PaasEsRepository']
           @UserEsRepository = params['UserEsRepository']
           @StorageDuration = params['StorageDuration']
           @AutoBackupInterval = params['AutoBackupInterval']
+          @CosRetention = params['CosRetention']
+          @RetainUntilDate = params['RetainUntilDate']
+          @RetentionGraceTime = params['RetentionGraceTime']
+          @RemoteCos = params['RemoteCos']
+          @RemoteCosRegion = params['RemoteCosRegion']
+          @StrategyName = params['StrategyName']
+          @Indices = params['Indices']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -398,19 +438,51 @@ module TencentCloud
         # @type SnapshotName: String
         # @param Indices: 索引名称
         # @type Indices: String
+        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # @type EsRepositoryType: Integer
+        # @param UserEsRepository: 客户快照仓库名称
+        # @type UserEsRepository: String
+        # @param StorageDuration: 快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天
+        # @type StorageDuration: Integer
+        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # @type CosRetention: Integer
+        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # @type RetainUntilDate: String
+        # @param RetentionGraceTime: 锁定宽限期,单位天
+        # @type RetentionGraceTime: Integer
+        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # @type RemoteCos: Integer
+        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # @type RemoteCosRegion: String
 
-        attr_accessor :InstanceId, :SnapshotName, :Indices
+        attr_accessor :InstanceId, :SnapshotName, :Indices, :EsRepositoryType, :UserEsRepository, :StorageDuration, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion
 
-        def initialize(instanceid=nil, snapshotname=nil, indices=nil)
+        def initialize(instanceid=nil, snapshotname=nil, indices=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil)
           @InstanceId = instanceid
           @SnapshotName = snapshotname
           @Indices = indices
+          @EsRepositoryType = esrepositorytype
+          @UserEsRepository = useresrepository
+          @StorageDuration = storageduration
+          @CosRetention = cosretention
+          @RetainUntilDate = retainuntildate
+          @RetentionGraceTime = retentiongracetime
+          @RemoteCos = remotecos
+          @RemoteCosRegion = remotecosregion
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SnapshotName = params['SnapshotName']
           @Indices = params['Indices']
+          @EsRepositoryType = params['EsRepositoryType']
+          @UserEsRepository = params['UserEsRepository']
+          @StorageDuration = params['StorageDuration']
+          @CosRetention = params['CosRetention']
+          @RetainUntilDate = params['RetainUntilDate']
+          @RetentionGraceTime = params['RetentionGraceTime']
+          @RemoteCos = params['RemoteCos']
+          @RemoteCosRegion = params['RemoteCosRegion']
         end
       end
 
@@ -6935,10 +7007,52 @@ module TencentCloud
         # @param UserBackUp: 是否用户备份
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserBackUp: String
+        # @param EsRepositoryType: 0 腾讯云仓库; 1 客户仓库
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EsRepositoryType: Integer
+        # @param PaasEsRepository: 托管快照仓库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PaasEsRepository: String
+        # @param UserEsRepository: 客户快照仓库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserEsRepository: String
+        # @param StorageDuration: 快照存储周期 单位天，范围[0, INF), 如果没有设置则默认7天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageDuration: Integer
+        # @param AutoBackupInterval: 自动备份频率, 如果是0,则等效24
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoBackupInterval: Integer
+        # @param CosRetention: 备份锁定 0 不锁定; 1 锁定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosRetention: Integer
+        # @param RetainUntilDate: 锁定截止日期 2022-12-10T08:34:48.000Z
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetainUntilDate: String
+        # @param RetentionGraceTime: 锁定宽限期,单位天
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionGraceTime: Integer
+        # @param IsLocked: 是否已经备份锁定 0 不锁定; 1 锁定
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsLocked: Integer
+        # @param RemoteCos: 跨地域备份 0 不跨地域; 1 跨地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteCos: Integer
+        # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RemoteCosRegion: String
+        # @param CosEncryption: 备份加密 0 不加密; 1 加密
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosEncryption: Integer
+        # @param KmsKey: kms密钥
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKey: String
+        # @param StrategyName: 策略名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyName: String
 
-        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp
+        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :IsLocked, :RemoteCos, :RemoteCosRegion, :CosEncryption, :KmsKey, :StrategyName
 
-        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil)
+        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, islocked=nil, remotecos=nil, remotecosregion=nil, cosencryption=nil, kmskey=nil, strategyname=nil)
           @SnapshotName = snapshotname
           @Uuid = uuid
           @Repository = repository
@@ -6954,6 +7068,20 @@ module TencentCloud
           @SuccessfulShards = successfulshards
           @Failures = failures
           @UserBackUp = userbackup
+          @EsRepositoryType = esrepositorytype
+          @PaasEsRepository = paasesrepository
+          @UserEsRepository = useresrepository
+          @StorageDuration = storageduration
+          @AutoBackupInterval = autobackupinterval
+          @CosRetention = cosretention
+          @RetainUntilDate = retainuntildate
+          @RetentionGraceTime = retentiongracetime
+          @IsLocked = islocked
+          @RemoteCos = remotecos
+          @RemoteCosRegion = remotecosregion
+          @CosEncryption = cosencryption
+          @KmsKey = kmskey
+          @StrategyName = strategyname
         end
 
         def deserialize(params)
@@ -6979,6 +7107,20 @@ module TencentCloud
             end
           end
           @UserBackUp = params['UserBackUp']
+          @EsRepositoryType = params['EsRepositoryType']
+          @PaasEsRepository = params['PaasEsRepository']
+          @UserEsRepository = params['UserEsRepository']
+          @StorageDuration = params['StorageDuration']
+          @AutoBackupInterval = params['AutoBackupInterval']
+          @CosRetention = params['CosRetention']
+          @RetainUntilDate = params['RetainUntilDate']
+          @RetentionGraceTime = params['RetentionGraceTime']
+          @IsLocked = params['IsLocked']
+          @RemoteCos = params['RemoteCos']
+          @RemoteCosRegion = params['RemoteCosRegion']
+          @CosEncryption = params['CosEncryption']
+          @KmsKey = params['KmsKey']
+          @StrategyName = params['StrategyName']
         end
       end
 

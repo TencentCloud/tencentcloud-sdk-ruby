@@ -2472,6 +2472,37 @@ module TencentCloud
         end
       end
 
+      # 部门列表
+      class Departments < TencentCloud::Common::AbstractModel
+        # @param DepartmentSet: 部门列表
+        # @type DepartmentSet: Array
+        # @param Enabled: 是否开启了部门管理 true - 已开启, false - 未开启
+        # @type Enabled: Boolean
+        # @param RootManager: 当前操作UIN是否是根部门管理员
+        # @type RootManager: Boolean
+
+        attr_accessor :DepartmentSet, :Enabled, :RootManager
+
+        def initialize(departmentset=nil, enabled=nil, rootmanager=nil)
+          @DepartmentSet = departmentset
+          @Enabled = enabled
+          @RootManager = rootmanager
+        end
+
+        def deserialize(params)
+          unless params['DepartmentSet'].nil?
+            @DepartmentSet = []
+            params['DepartmentSet'].each do |i|
+              department_tmp = Department.new
+              department_tmp.deserialize(i)
+              @DepartmentSet << department_tmp
+            end
+          end
+          @Enabled = params['Enabled']
+          @RootManager = params['RootManager']
+        end
+      end
+
       # DeployResource请求参数结构体
       class DeployResourceRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 需要开通服务的资源ID
@@ -3064,6 +3095,40 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDepartments请求参数结构体
+      class DescribeDepartmentsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDepartments返回参数结构体
+      class DescribeDepartmentsResponse < TencentCloud::Common::AbstractModel
+        # @param Departments: 部门列表
+        # @type Departments: :class:`Tencentcloud::Bh.v20230418.models.Departments`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Departments, :RequestId
+
+        def initialize(departments=nil, requestid=nil)
+          @Departments = departments
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Departments'].nil?
+            @Departments = Departments.new
+            @Departments.deserialize(params['Departments'])
+          end
           @RequestId = params['RequestId']
         end
       end
