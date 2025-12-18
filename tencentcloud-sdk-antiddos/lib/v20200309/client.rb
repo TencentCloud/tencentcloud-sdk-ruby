@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过API 购买高防包接口
+
+        # @param request: Request instance for CreateBgpInstance.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::CreateBgpInstanceRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::CreateBgpInstanceResponse`
+        def CreateBgpInstance(request)
+          body = send_request('CreateBgpInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBgpInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 添加DDoS防护的IP黑白名单
 
         # @param request: Request instance for CreateBlackWhiteIpList.
@@ -975,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBgpBizTrendResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 购买后，查询购买的高防包实例信息
+
+        # @param request: Request instance for DescribeBgpInstances.
+        # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeBgpInstancesRequest`
+        # @rtype: :class:`Tencentcloud::antiddos::V20200309::DescribeBgpInstancesResponse`
+        def DescribeBgpInstances(request)
+          body = send_request('DescribeBgpInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBgpInstancesResponse.new
             model.deserialize(response['Response'])
             model
           else

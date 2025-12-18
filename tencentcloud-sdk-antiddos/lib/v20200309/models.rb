@@ -730,6 +730,104 @@ module TencentCloud
         end
       end
 
+      # {
+      #     "InstanceId": "bgp-00000436",
+      #     "InstanceChargePrepaid": {
+      #         "Period": 3,
+      #         "RenewFlag": "NOTIFY_AND_AUTO_RENEW"
+      #     },
+      #     "EnterprisePackageConfig": null,
+      #     "StandardPackageConfig": null,
+      #     "StandardPlusPackageConfig": {
+      #         "Region": "ap-guangzhou",
+      #         "ProtectCount": "TWO_TIMES",
+      #         "ProtectIpCount": 1,
+      #         "Bandwidth": 100,
+      #         "ElasticBandwidthFlag": true
+      #     },
+      #     "TagInfoList": [
+      #     ],
+      #     "PackageType": "StandardPlus",
+      #     "InstanceCount": 1,
+      #     "InstanceChargeType": "PREPAID",
+      #     "DryRun": false
+      # }
+      class BGPInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例Id
+        # @type InstanceId: String
+        # @param InstanceChargePrepaid: 续费周期相关
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Antiddos.v20200309.models.InstanceChargePrepaid`
+        # @param EnterprisePackageConfig: 企业版高防包配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnterprisePackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.EnterprisePackageConfig`
+        # @param StandardPackageConfig: 标准版高防包配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardPackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.StandardPackageConfig`
+        # @param StandardPlusPackageConfig: 标准版2.0高防包配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StandardPlusPackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.StandardPlusPackageConfig`
+        # @param TagInfoList: tag信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TagInfoList: Array
+        # @param PackageType: 高防包类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PackageType: String
+        # @param InstanceCount: 数量1
+        # @type InstanceCount: Integer
+        # @param InstanceChargeType: 付费方式
+        # @type InstanceChargeType: String
+        # @param DryRun: 无实际意义，创建时如果为true，只进行参数校验，默认为false
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceId, :InstanceChargePrepaid, :EnterprisePackageConfig, :StandardPackageConfig, :StandardPlusPackageConfig, :TagInfoList, :PackageType, :InstanceCount, :InstanceChargeType, :DryRun
+
+        def initialize(instanceid=nil, instancechargeprepaid=nil, enterprisepackageconfig=nil, standardpackageconfig=nil, standardpluspackageconfig=nil, taginfolist=nil, packagetype=nil, instancecount=nil, instancechargetype=nil, dryrun=nil)
+          @InstanceId = instanceid
+          @InstanceChargePrepaid = instancechargeprepaid
+          @EnterprisePackageConfig = enterprisepackageconfig
+          @StandardPackageConfig = standardpackageconfig
+          @StandardPlusPackageConfig = standardpluspackageconfig
+          @TagInfoList = taginfolist
+          @PackageType = packagetype
+          @InstanceCount = instancecount
+          @InstanceChargeType = instancechargetype
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['EnterprisePackageConfig'].nil?
+            @EnterprisePackageConfig = EnterprisePackageConfig.new
+            @EnterprisePackageConfig.deserialize(params['EnterprisePackageConfig'])
+          end
+          unless params['StandardPackageConfig'].nil?
+            @StandardPackageConfig = StandardPackageConfig.new
+            @StandardPackageConfig.deserialize(params['StandardPackageConfig'])
+          end
+          unless params['StandardPlusPackageConfig'].nil?
+            @StandardPlusPackageConfig = StandardPlusPackageConfig.new
+            @StandardPlusPackageConfig.deserialize(params['StandardPlusPackageConfig'])
+          end
+          unless params['TagInfoList'].nil?
+            @TagInfoList = []
+            params['TagInfoList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfoList << taginfo_tmp
+            end
+          end
+          @PackageType = params['PackageType']
+          @InstanceCount = params['InstanceCount']
+          @InstanceChargeType = params['InstanceChargeType']
+          @DryRun = params['DryRun']
+        end
+      end
+
       # 高防包资产实例的规格信息
       class BGPInstanceSpecification < TencentCloud::Common::AbstractModel
         # @param ProtectBandwidth: 保底防护峰值，单位Gbps
@@ -1383,6 +1481,93 @@ module TencentCloud
               @InstanceDetailList << instancerelation_tmp
             end
           end
+        end
+      end
+
+      # CreateBgpInstance请求参数结构体
+      class CreateBgpInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceChargeType: 付费类型：付费模式：PREPAID 预付费 POSTPAID_BY_MONTH 后付费
+        # @type InstanceChargeType: String
+        # @param PackageType: 高防包类型：高防包类型，Enterprise(企业版) Standard(标准版) StandardPlus(标准版2.0)
+        # @type PackageType: String
+        # @param InstanceCount: 购买高防包的数量，一次购买数量不超过10
+        # @type InstanceCount: Integer
+        # @param InstanceChargePrepaid: { "Period": 3, "RenewFlag": "NOTIFY_AND_AUTO_RENEW" }
+        # @type InstanceChargePrepaid: :class:`Tencentcloud::Antiddos.v20200309.models.InstanceChargePrepaid`
+        # @param EnterprisePackageConfig: { "Region": "ap-guangzhou", "ProtectIpCount": 1, "BasicProtectBandwidth": 300, "Bandwidth": 100, "ElasticProtectLimit": 0, "ElasticBandwidthFlag": true }
+        # @type EnterprisePackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.EnterprisePackageConfig`
+        # @param StandardPackageConfig: { "Region": "ap-guangzhou", "ProtectIpCount": 1, "BasicProtectBandwidth": 300, "Bandwidth": 100, "ElasticProtectLimit": 0, "ElasticBandwidthFlag": true }
+        # @type StandardPackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.StandardPackageConfig`
+        # @param StandardPlusPackageConfig: { "Region": "ap-guangzhou", "ProtectCount": "TWO_TIMES", "ProtectIpCount": 1, "Bandwidth": 100, "ElasticBandwidthFlag": true }
+        # @type StandardPlusPackageConfig: :class:`Tencentcloud::Antiddos.v20200309.models.StandardPlusPackageConfig`
+        # @param TagInfoList: [ { "TagKey": "beal-test",                 "TagValue": "beal-test"               }             ]
+        # @type TagInfoList: Array
+        # @param DryRun: 默认为false,true表示只进行参数校验，不进行实际购买
+        # @type DryRun: Boolean
+
+        attr_accessor :InstanceChargeType, :PackageType, :InstanceCount, :InstanceChargePrepaid, :EnterprisePackageConfig, :StandardPackageConfig, :StandardPlusPackageConfig, :TagInfoList, :DryRun
+
+        def initialize(instancechargetype=nil, packagetype=nil, instancecount=nil, instancechargeprepaid=nil, enterprisepackageconfig=nil, standardpackageconfig=nil, standardpluspackageconfig=nil, taginfolist=nil, dryrun=nil)
+          @InstanceChargeType = instancechargetype
+          @PackageType = packagetype
+          @InstanceCount = instancecount
+          @InstanceChargePrepaid = instancechargeprepaid
+          @EnterprisePackageConfig = enterprisepackageconfig
+          @StandardPackageConfig = standardpackageconfig
+          @StandardPlusPackageConfig = standardpluspackageconfig
+          @TagInfoList = taginfolist
+          @DryRun = dryrun
+        end
+
+        def deserialize(params)
+          @InstanceChargeType = params['InstanceChargeType']
+          @PackageType = params['PackageType']
+          @InstanceCount = params['InstanceCount']
+          unless params['InstanceChargePrepaid'].nil?
+            @InstanceChargePrepaid = InstanceChargePrepaid.new
+            @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
+          end
+          unless params['EnterprisePackageConfig'].nil?
+            @EnterprisePackageConfig = EnterprisePackageConfig.new
+            @EnterprisePackageConfig.deserialize(params['EnterprisePackageConfig'])
+          end
+          unless params['StandardPackageConfig'].nil?
+            @StandardPackageConfig = StandardPackageConfig.new
+            @StandardPackageConfig.deserialize(params['StandardPackageConfig'])
+          end
+          unless params['StandardPlusPackageConfig'].nil?
+            @StandardPlusPackageConfig = StandardPlusPackageConfig.new
+            @StandardPlusPackageConfig.deserialize(params['StandardPlusPackageConfig'])
+          end
+          unless params['TagInfoList'].nil?
+            @TagInfoList = []
+            params['TagInfoList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagInfoList << taginfo_tmp
+            end
+          end
+          @DryRun = params['DryRun']
+        end
+      end
+
+      # CreateBgpInstance返回参数结构体
+      class CreateBgpInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: bgpIds
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceIds, :RequestId
+
+        def initialize(resourceids=nil, requestid=nil)
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3332,6 +3517,76 @@ module TencentCloud
           @Total = params['Total']
           @MetricName = params['MetricName']
           @MaxData = params['MaxData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBgpInstances请求参数结构体
+      class DescribeBgpInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param FilterRegion: 地域
+        # @type FilterRegion: String
+        # @param FilterInstanceIdList: ["bgp-0000041i"]
+        # @type FilterInstanceIdList: Array
+        # @param FilterTag: [{}]
+        # @type FilterTag: Array
+        # @param Limit: 分页数量
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+
+        attr_accessor :FilterRegion, :FilterInstanceIdList, :FilterTag, :Limit, :Offset
+
+        def initialize(filterregion=nil, filterinstanceidlist=nil, filtertag=nil, limit=nil, offset=nil)
+          @FilterRegion = filterregion
+          @FilterInstanceIdList = filterinstanceidlist
+          @FilterTag = filtertag
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @FilterRegion = params['FilterRegion']
+          @FilterInstanceIdList = params['FilterInstanceIdList']
+          unless params['FilterTag'].nil?
+            @FilterTag = []
+            params['FilterTag'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @FilterTag << taginfo_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeBgpInstances返回参数结构体
+      class DescribeBgpInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 返回数量
+        # @type Total: Integer
+        # @param BGPInstanceList: 返回购买高防包信息
+        # @type BGPInstanceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :BGPInstanceList, :RequestId
+
+        def initialize(total=nil, bgpinstancelist=nil, requestid=nil)
+          @Total = total
+          @BGPInstanceList = bgpinstancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['BGPInstanceList'].nil?
+            @BGPInstanceList = []
+            params['BGPInstanceList'].each do |i|
+              bgpinstanceinfo_tmp = BGPInstanceInfo.new
+              bgpinstanceinfo_tmp.deserialize(i)
+              @BGPInstanceList << bgpinstanceinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6021,6 +6276,51 @@ module TencentCloud
         end
       end
 
+      # {
+      #     "Region": "ap-guangzhou",
+      #     "ProtectIpCount": 1,
+      #     "BasicProtectBandwidth": 300,
+      #     "Bandwidth": 100,
+      #     "ElasticProtectBandwidth": 0,
+      #     "ElasticBandwidthFlag": true
+      # }
+      class EnterprisePackageConfig < TencentCloud::Common::AbstractModel
+        # @param Region: 购买高防包所属地域
+        # @type Region: String
+        # @param ProtectIpCount: 防护IP数
+        # @type ProtectIpCount: Integer
+        # @param BasicProtectBandwidth: 保底防护带宽
+        # @type BasicProtectBandwidth: Integer
+        # @param Bandwidth: 业务带宽规模
+        # @type Bandwidth: Integer
+        # @param ElasticProtectBandwidth: 弹性带宽 Gbps，可选择的弹性带宽[0,400,500,600,800,1000]
+        # 默认为0
+        # @type ElasticProtectBandwidth: Integer
+        # @param ElasticBandwidthFlag: 是否开启弹性业务带宽
+        # 默认为false
+        # @type ElasticBandwidthFlag: Boolean
+
+        attr_accessor :Region, :ProtectIpCount, :BasicProtectBandwidth, :Bandwidth, :ElasticProtectBandwidth, :ElasticBandwidthFlag
+
+        def initialize(region=nil, protectipcount=nil, basicprotectbandwidth=nil, bandwidth=nil, elasticprotectbandwidth=nil, elasticbandwidthflag=nil)
+          @Region = region
+          @ProtectIpCount = protectipcount
+          @BasicProtectBandwidth = basicprotectbandwidth
+          @Bandwidth = bandwidth
+          @ElasticProtectBandwidth = elasticprotectbandwidth
+          @ElasticBandwidthFlag = elasticbandwidthflag
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @ProtectIpCount = params['ProtectIpCount']
+          @BasicProtectBandwidth = params['BasicProtectBandwidth']
+          @Bandwidth = params['Bandwidth']
+          @ElasticProtectBandwidth = params['ElasticProtectBandwidth']
+          @ElasticBandwidthFlag = params['ElasticBandwidthFlag']
+        end
+      end
+
       # 转发监听器
       class ForwardListener < TencentCloud::Common::AbstractModel
         # @param FrontendPort: 转发监听端口下限，取值1~65535
@@ -6210,6 +6510,34 @@ module TencentCloud
           @AppId = params['AppId']
           @VirtualPort = params['VirtualPort']
           @SSLId = params['SSLId']
+        end
+      end
+
+      # {
+      #         "Period": 12,
+      #         "RenewFlag": "NOTIFY_AND_AUTO_RENEW"
+      # }
+      class InstanceChargePrepaid < TencentCloud::Common::AbstractModel
+        # @param Period: 购买时长：单位月
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param RenewFlag: NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
+        # NOTIFY_AND_AUTO_RENEW：到期通知且自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        # 默认为：通知过期不自动续费
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+
+        attr_accessor :Period, :RenewFlag
+
+        def initialize(period=nil, renewflag=nil)
+          @Period = period
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @Period = params['Period']
+          @RenewFlag = params['RenewFlag']
         end
       end
 
@@ -7987,6 +8315,90 @@ module TencentCloud
         def deserialize(params)
           @Type = params['Type']
           @Value = params['Value']
+        end
+      end
+
+      # {
+      #     "Region": "ap-guangzhou",
+      #     "ProtectIpCount": 1,
+      #     "Bandwidth": 100,
+      #     "ElasticBandwidthFlag": true
+      # }
+      class StandardPackageConfig < TencentCloud::Common::AbstractModel
+        # @param Region: 高防包购买地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param ProtectIpCount: 防护IP数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectIpCount: Integer
+        # @param Bandwidth: 防护业务带宽 50Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param ElasticBandwidthFlag: 是否开启弹性防护带宽 true 开启
+        # 默认为false 不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidthFlag: Boolean
+
+        attr_accessor :Region, :ProtectIpCount, :Bandwidth, :ElasticBandwidthFlag
+
+        def initialize(region=nil, protectipcount=nil, bandwidth=nil, elasticbandwidthflag=nil)
+          @Region = region
+          @ProtectIpCount = protectipcount
+          @Bandwidth = bandwidth
+          @ElasticBandwidthFlag = elasticbandwidthflag
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @ProtectIpCount = params['ProtectIpCount']
+          @Bandwidth = params['Bandwidth']
+          @ElasticBandwidthFlag = params['ElasticBandwidthFlag']
+        end
+      end
+
+      # {
+      #     "Region": "ap-guangzhou",
+      #     "ProtectCount": "TWO_TIMES",
+      #     "ProtectIpCount": 1,
+      #     "Bandwidth": 50,
+      #     "ElasticBandwidthFlag": true
+      # }
+      class StandardPlusPackageConfig < TencentCloud::Common::AbstractModel
+        # @param Region: 购买高防包所属地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param ProtectCount: 防护次数：TWO_TIMES:两次全力防 UNLIMITED无限次防
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectCount: String
+        # @param ProtectIpCount: 防护IP数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProtectIpCount: Integer
+        # @param Bandwidth: 防护带宽50Mbps
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bandwidth: Integer
+        # @param ElasticBandwidthFlag: 是否开启弹性业务带宽
+        # true 开启
+        # false 不开启
+        # 默认不开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ElasticBandwidthFlag: Boolean
+
+        attr_accessor :Region, :ProtectCount, :ProtectIpCount, :Bandwidth, :ElasticBandwidthFlag
+
+        def initialize(region=nil, protectcount=nil, protectipcount=nil, bandwidth=nil, elasticbandwidthflag=nil)
+          @Region = region
+          @ProtectCount = protectcount
+          @ProtectIpCount = protectipcount
+          @Bandwidth = bandwidth
+          @ElasticBandwidthFlag = elasticbandwidthflag
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @ProtectCount = params['ProtectCount']
+          @ProtectIpCount = params['ProtectIpCount']
+          @Bandwidth = params['Bandwidth']
+          @ElasticBandwidthFlag = params['ElasticBandwidthFlag']
         end
       end
 

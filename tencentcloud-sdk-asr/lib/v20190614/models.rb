@@ -433,6 +433,7 @@ module TencentCloud
         # @param SpeakerDiarization: 是否开启说话人分离
         # 0：不开启；
         # 1：开启（仅支持以下引擎：8k_zh/8k_zh_large/16k_zh/16k_ms/16k_en/16k_id/16k_zh_large/16k_zh_dialect/16k_zh_en，且ChannelNum=1时可用）；
+        # 3: 开启角色分离，需配合SpeakerRoles参数使用（增值服务，仅支持16k_zh_en引擎，可支持传入声纹对录音文件内的说话人进行角色认证）
         # 默认值为 0
 
         # 注意：
@@ -537,13 +538,21 @@ module TencentCloud
         # 注意：
         # 1. 本功能配置完成后，预计在10分钟后生效
         # @type ReplaceTextId: String
+        # @param SpeakerRoles: 开启角色分离能力
+        # 配合SpeakerDiarization: 3 使用，ASR增值服务，可传入一组声纹信息进行角色认证，仅支持16k_zh_en引擎。
+        # 需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及RoleAudioUrl和RoleName两个参数。
+        # RoleAudioUrl：需要认证角色的声纹音频地址，建议30s内的纯净人声，最长不能超过45s。
+        # RoleName：需要认证角色的名称，若匹配成功，会替换话者分离中的SpeakerID。
+        # 示例：
+        # "{\"EngineModelType\":\"16k_zh_en\",\"ChannelNum\":1,\"ResTextFormat\":1,\"SourceType\":0,\"Url\":\"需要进行ASR识别的音频链接\",\"SpeakerDiarization\":3,\"SpeakerRoles\":[{\"RoleAudioUrl\":\"需要认证角色的声纹音频地址\",\"RoleName\":\"需要认证角色的名称\"}]}"
+        # @type SpeakerRoles: Array
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
         deprecate :ReinforceHotword, :none, 2025, 12
         deprecate :ReinforceHotword=, :none, 2025, 12
 
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -568,6 +577,7 @@ module TencentCloud
           @HotwordList = hotwordlist
           @KeyWordLibIdList = keywordlibidlist
           @ReplaceTextId = replacetextid
+          @SpeakerRoles = speakerroles
         end
 
         def deserialize(params)
@@ -595,6 +605,14 @@ module TencentCloud
           @HotwordList = params['HotwordList']
           @KeyWordLibIdList = params['KeyWordLibIdList']
           @ReplaceTextId = params['ReplaceTextId']
+          unless params['SpeakerRoles'].nil?
+            @SpeakerRoles = []
+            params['SpeakerRoles'].each do |i|
+              speakerroleinfo_tmp = SpeakerRoleInfo.new
+              speakerroleinfo_tmp.deserialize(i)
+              @SpeakerRoles << speakerroleinfo_tmp
+            end
+          end
         end
       end
 
@@ -1821,6 +1839,26 @@ module TencentCloud
         def deserialize(params)
           @VocabId = params['VocabId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 说话人注册角色声纹信息
+      class SpeakerRoleInfo < TencentCloud::Common::AbstractModel
+        # @param RoleAudioUrl: 音频url地址，建议不超过30秒，最大45秒
+        # @type RoleAudioUrl: String
+        # @param RoleName: 不超过30字节
+        # @type RoleName: String
+
+        attr_accessor :RoleAudioUrl, :RoleName
+
+        def initialize(roleaudiourl=nil, rolename=nil)
+          @RoleAudioUrl = roleaudiourl
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @RoleAudioUrl = params['RoleAudioUrl']
+          @RoleName = params['RoleName']
         end
       end
 

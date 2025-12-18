@@ -5723,6 +5723,7 @@ module TencentCloud
         # @param SubTypeDescription: 发票详细类型描述，详见上方 SubType 返回值说明
         # @type SubTypeDescription: String
         # @param ItemPolygon: 该发票中所有字段坐标信息。包括字段英文名称、字段值所在位置四点坐标、字段所属行号，具体内容请点击左侧链接。
+        # 字段在原始图的坐标可以根据Polygon转换得出。
         # @type ItemPolygon: Array
         # @param QRCode: 二维码数据。
         # @type QRCode: String

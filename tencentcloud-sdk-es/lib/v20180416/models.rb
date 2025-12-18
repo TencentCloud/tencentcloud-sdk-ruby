@@ -307,6 +307,8 @@ module TencentCloud
         # @type PaasEsRepository: String
         # @param UserEsRepository: 客户快照仓库名称
         # @type UserEsRepository: String
+        # @param CosBasePath: cos存储文件夹目录
+        # @type CosBasePath: String
         # @param StorageDuration: 快照存储周期 单位天
         # @type StorageDuration: Integer
         # @param AutoBackupInterval: 自动备份频率单位小时
@@ -328,15 +330,16 @@ module TencentCloud
         # @param CreateTime: 策略创建时间
         # @type CreateTime: String
 
-        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :CreateTime
+        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :CosBasePath, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :CreateTime
 
-        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, createtime=nil)
+        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, cosbasepath=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, createtime=nil)
           @IsAutoBackup = isautobackup
           @BackupTime = backuptime
           @SnapshotName = snapshotname
           @EsRepositoryType = esrepositorytype
           @PaasEsRepository = paasesrepository
           @UserEsRepository = useresrepository
+          @CosBasePath = cosbasepath
           @StorageDuration = storageduration
           @AutoBackupInterval = autobackupinterval
           @CosRetention = cosretention
@@ -356,6 +359,7 @@ module TencentCloud
           @EsRepositoryType = params['EsRepositoryType']
           @PaasEsRepository = params['PaasEsRepository']
           @UserEsRepository = params['UserEsRepository']
+          @CosBasePath = params['CosBasePath']
           @StorageDuration = params['StorageDuration']
           @AutoBackupInterval = params['AutoBackupInterval']
           @CosRetention = params['CosRetention']

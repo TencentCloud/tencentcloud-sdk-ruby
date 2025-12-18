@@ -407,10 +407,14 @@ module TencentCloud
         # @type InstanceID: String
         # @param Resources: 无
         # @type Resources: Array
+        # @param IsSecondaryZone: desc
+        # @type IsSecondaryZone: String
+        # @param SecondaryZoneInfo: desc
+        # @type SecondaryZoneInfo: String
 
-        attr_accessor :ID, :InstanceType, :InstanceName, :Status, :StatusDesc, :InstanceStateInfo, :InstanceID, :Resources
+        attr_accessor :ID, :InstanceType, :InstanceName, :Status, :StatusDesc, :InstanceStateInfo, :InstanceID, :Resources, :IsSecondaryZone, :SecondaryZoneInfo
 
-        def initialize(id=nil, instancetype=nil, instancename=nil, status=nil, statusdesc=nil, instancestateinfo=nil, instanceid=nil, resources=nil)
+        def initialize(id=nil, instancetype=nil, instancename=nil, status=nil, statusdesc=nil, instancestateinfo=nil, instanceid=nil, resources=nil, issecondaryzone=nil, secondaryzoneinfo=nil)
           @ID = id
           @InstanceType = instancetype
           @InstanceName = instancename
@@ -419,6 +423,8 @@ module TencentCloud
           @InstanceStateInfo = instancestateinfo
           @InstanceID = instanceid
           @Resources = resources
+          @IsSecondaryZone = issecondaryzone
+          @SecondaryZoneInfo = secondaryzoneinfo
         end
 
         def deserialize(params)
@@ -440,6 +446,8 @@ module TencentCloud
               @Resources << cnresource_tmp
             end
           end
+          @IsSecondaryZone = params['IsSecondaryZone']
+          @SecondaryZoneInfo = params['SecondaryZoneInfo']
         end
       end
 

@@ -58,10 +58,12 @@ module TencentCloud
         # @type LabelResults: Array
         # @param HitType: 审核命中类型
         # @type HitType: String
+        # @param Sentences: ASR句子的起止时间
+        # @type Sentences: Array
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :TravelResults, :SubTag, :SubTagCode, :LabelResults, :HitType
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :TravelResults, :SubTag, :SubTagCode, :LabelResults, :HitType, :Sentences
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, labelresults=nil, hittype=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, labelresults=nil, hittype=nil, sentences=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -81,6 +83,7 @@ module TencentCloud
           @SubTagCode = subtagcode
           @LabelResults = labelresults
           @HitType = hittype
+          @Sentences = sentences
         end
 
         def deserialize(params)
@@ -152,6 +155,14 @@ module TencentCloud
             end
           end
           @HitType = params['HitType']
+          unless params['Sentences'].nil?
+            @Sentences = []
+            params['Sentences'].each do |i|
+              sentence_tmp = Sentence.new
+              sentence_tmp.deserialize(i)
+              @Sentences << sentence_tmp
+            end
+          end
         end
       end
 
@@ -1174,6 +1185,30 @@ module TencentCloud
           @ImageBlockUrl = params['ImageBlockUrl']
           @AudioBlockUrl = params['AudioBlockUrl']
           @AsrUrl = params['AsrUrl']
+        end
+      end
+
+      # ASR识别结果在音频中的起止时间
+      class Sentence < TencentCloud::Common::AbstractModel
+        # @param Text: ASR句子
+        # @type Text: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Text, :StartTime, :EndTime
+
+        def initialize(text=nil, starttime=nil, endtime=nil)
+          @Text = text
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

@@ -4185,15 +4185,32 @@ module TencentCloud
         # <li>是否通知其他签署方</li>
         # </ul>
         # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
+        # @param UserFlowType: 用户自定义合同类型。
 
-        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions
+        # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
 
-        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil)
+        # 注意：
+        # 如果传递了自定义合同类型，则每一个子合同设置的自定义合同类型将会失效，已最外层定义的为准。
+        # 例如：
+        # 这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font>
+        # 第一份子合同设置的合同自定义合同类型是<font color="blue">采购</font>
+        # 第二份和第三份子合同设置的合同自定义合同类型是<font color="blue">人事/劳务</font>
+        # 但最终这个合同组的合同类型是<font color="blue">人事/劳务</font>
+
+
+
+
+        # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
+
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions, :UserFlowType
+
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil, userflowtype=nil)
           @Operator = operator
           @FlowGroupName = flowgroupname
           @FlowGroupInfos = flowgroupinfos
           @Agent = agent
           @FlowGroupOptions = flowgroupoptions
+          @UserFlowType = userflowtype
         end
 
         def deserialize(params)
@@ -4217,6 +4234,10 @@ module TencentCloud
           unless params['FlowGroupOptions'].nil?
             @FlowGroupOptions = FlowGroupOptions.new
             @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
+          end
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
           end
         end
       end
@@ -4275,15 +4296,21 @@ module TencentCloud
         # <li>是否通知其他签署方</li>
         # </ul>
         # @type FlowGroupOptions: :class:`Tencentcloud::Ess.v20201111.models.FlowGroupOptions`
+        # @param UserFlowType: 用户自定义合同类型。
+        # 自定义合同类型配置的地方如链接图所示。[点击查看自定义合同类型管理的位置](https://qcloudimg.tencent-cloud.cn/raw/36582cea03ae6a2559894844942b5d5c.png)
 
-        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions
+        # 注意： 如果传递了自定义合同类型，则每一个子合同对应模板上面的自定义合同类型将会失效，已最外层定义的为准。 例如： 这份合同组有三个子合同，设置合同类型为<font color="blue">人事/劳务</font> 第一份子合同选择的模板的合同自定义合同类型是<font color="blue">采购</font> 第二份和第三份子合同选择的模板的合同自定义合同类型是<font color="blue">人事/劳务</font> 但最终这个合同组的合同类型是<font color="blue">人事/劳务</font>
+        # @type UserFlowType: :class:`Tencentcloud::Ess.v20201111.models.UserFlowType`
 
-        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil)
+        attr_accessor :Operator, :FlowGroupName, :FlowGroupInfos, :Agent, :FlowGroupOptions, :UserFlowType
+
+        def initialize(operator=nil, flowgroupname=nil, flowgroupinfos=nil, agent=nil, flowgroupoptions=nil, userflowtype=nil)
           @Operator = operator
           @FlowGroupName = flowgroupname
           @FlowGroupInfos = flowgroupinfos
           @Agent = agent
           @FlowGroupOptions = flowgroupoptions
+          @UserFlowType = userflowtype
         end
 
         def deserialize(params)
@@ -4307,6 +4334,10 @@ module TencentCloud
           unless params['FlowGroupOptions'].nil?
             @FlowGroupOptions = FlowGroupOptions.new
             @FlowGroupOptions.deserialize(params['FlowGroupOptions'])
+          end
+          unless params['UserFlowType'].nil?
+            @UserFlowType = UserFlowType.new
+            @UserFlowType.deserialize(params['UserFlowType'])
           end
         end
       end
@@ -4729,7 +4760,7 @@ module TencentCloud
 
         # 到达提醒时间后，腾讯电子签会短信通知发起方企业合同提醒，可用于处理合同到期事务，如合同续签等事宜。
         # @type RemindedOn: Integer
-        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64方式编码，支持的最大数据大小为 20480长度。
+        # @param UserData: 调用方自定义的个性化字段(可自定义此名称)，并以base64格式编码，支持的最大数据大小为 20480长度。
 
         # 在合同状态变更的回调信息等场景中，该字段的信息将原封不动地透传给贵方。回调的相关说明可参考开发者中心的<a href="https://qian.tencent.com/developers/company/callback_types_v2" target="_blank">回调通知</a>模块。
         # @type UserData: String

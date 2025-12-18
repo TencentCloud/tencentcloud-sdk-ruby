@@ -11777,10 +11777,12 @@ module TencentCloud
         # @type MaxRoCount: Integer
         # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
         # @type AutoArchive: String
+        # @param UpgradeType: 升级类型。 默认值：upgradeImmediate。 可选值： upgradeImmediate：立即完成修改 upgradeInMaintain：在维护时间窗口内完成修改
+        # @type UpgradeType: String
 
-        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive
+        attr_accessor :ClusterId, :AutoPause, :AutoPauseDelay, :AutoScaleUpDelay, :AutoScaleDownDelay, :MinCpu, :MaxCpu, :MinRoCpu, :MaxRoCpu, :MinRoCount, :MaxRoCount, :AutoArchive, :UpgradeType
 
-        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoarchive=nil)
+        def initialize(clusterid=nil, autopause=nil, autopausedelay=nil, autoscaleupdelay=nil, autoscaledowndelay=nil, mincpu=nil, maxcpu=nil, minrocpu=nil, maxrocpu=nil, minrocount=nil, maxrocount=nil, autoarchive=nil, upgradetype=nil)
           @ClusterId = clusterid
           @AutoPause = autopause
           @AutoPauseDelay = autopausedelay
@@ -11793,6 +11795,7 @@ module TencentCloud
           @MinRoCount = minrocount
           @MaxRoCount = maxrocount
           @AutoArchive = autoarchive
+          @UpgradeType = upgradetype
         end
 
         def deserialize(params)
@@ -11808,6 +11811,7 @@ module TencentCloud
           @MinRoCount = params['MinRoCount']
           @MaxRoCount = params['MaxRoCount']
           @AutoArchive = params['AutoArchive']
+          @UpgradeType = params['UpgradeType']
         end
       end
 
@@ -11815,18 +11819,25 @@ module TencentCloud
       class ModifyServerlessStrategyResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 异步流程id
         # @type FlowId: Integer
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FlowId, :RequestId
+        attr_accessor :FlowId, :TaskId, :RequestId
+        extend Gem::Deprecate
+        deprecate :FlowId, :none, 2025, 12
+        deprecate :FlowId=, :none, 2025, 12
 
-        def initialize(flowid=nil, requestid=nil)
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end

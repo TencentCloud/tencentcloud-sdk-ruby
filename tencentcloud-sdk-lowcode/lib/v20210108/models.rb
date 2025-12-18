@@ -249,13 +249,15 @@ module TencentCloud
         # @param DbSourceType: DB来源类型
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DbSourceType: String
+        # @param StagingSwitch: 模型预览状态开关
+        # @type StagingSwitch: Boolean
 
-        attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType
+        attr_accessor :Id, :Title, :Name, :Type, :Description, :Schema, :CmsProject, :PkgId, :SchemaVersion, :CreatorId, :CreatedAt, :UpdatedAt, :EnvId, :DataSourceVersion, :AppUsageList, :PublishedAt, :ChildDataSourceIds, :Fun, :ScfStatus, :Methods, :ChildDataSourceNames, :IsNewDataSource, :ViewId, :Configuration, :TemplateCode, :Source, :PublishVersion, :PublishViewId, :SubType, :AuthStatus, :AuthInfo, :PublishStatus, :UpdateVersion, :RelationFieldList, :DbInstanceType, :PreviewTableName, :PublishedTableName, :DbSourceType, :StagingSwitch
         extend Gem::Deprecate
-        deprecate :PublishVersion, :none, 2025, 11
-        deprecate :PublishVersion=, :none, 2025, 11
+        deprecate :PublishVersion, :none, 2025, 12
+        deprecate :PublishVersion=, :none, 2025, 12
 
-        def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil)
+        def initialize(id=nil, title=nil, name=nil, type=nil, description=nil, schema=nil, cmsproject=nil, pkgid=nil, schemaversion=nil, creatorid=nil, createdat=nil, updatedat=nil, envid=nil, datasourceversion=nil, appusagelist=nil, publishedat=nil, childdatasourceids=nil, fun=nil, scfstatus=nil, methods=nil, childdatasourcenames=nil, isnewdatasource=nil, viewid=nil, configuration=nil, templatecode=nil, source=nil, publishversion=nil, publishviewid=nil, subtype=nil, authstatus=nil, authinfo=nil, publishstatus=nil, updateversion=nil, relationfieldlist=nil, dbinstancetype=nil, previewtablename=nil, publishedtablename=nil, dbsourcetype=nil, stagingswitch=nil)
           @Id = id
           @Title = title
           @Name = name
@@ -294,6 +296,7 @@ module TencentCloud
           @PreviewTableName = previewtablename
           @PublishedTableName = publishedtablename
           @DbSourceType = dbsourcetype
+          @StagingSwitch = stagingswitch
         end
 
         def deserialize(params)
@@ -352,6 +355,7 @@ module TencentCloud
           @PreviewTableName = params['PreviewTableName']
           @PublishedTableName = params['PublishedTableName']
           @DbSourceType = params['DbSourceType']
+          @StagingSwitch = params['StagingSwitch']
         end
       end
 
@@ -2011,8 +2015,8 @@ module TencentCloud
 
         attr_accessor :DocumentSetId, :DocumentSetName, :FileTitle, :FileMetaData, :FileId
         extend Gem::Deprecate
-        deprecate :DocumentSetId, :none, 2025, 11
-        deprecate :DocumentSetId=, :none, 2025, 11
+        deprecate :DocumentSetId, :none, 2025, 12
+        deprecate :DocumentSetId=, :none, 2025, 12
 
         def initialize(documentsetid=nil, documentsetname=nil, filetitle=nil, filemetadata=nil, fileid=nil)
           @DocumentSetId = documentsetid

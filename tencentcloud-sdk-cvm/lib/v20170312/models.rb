@@ -1999,8 +1999,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2025, 11
-        deprecate :CvmInSwGroupQuota=, :none, 2025, 11
+        deprecate :CvmInSwGroupQuota, :none, 2025, 12
+        deprecate :CvmInSwGroupQuota=, :none, 2025, 12
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -2950,7 +2950,7 @@ module TencentCloud
 
       # DescribeInstancesStatus请求参数结构体
       class DescribeInstancesStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：`ins-11112222`。此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的`ids.N`一节）。每次请求的实例的上限为100。
+        # @param InstanceIds: 按照一个或者多个实例ID查询。实例ID形如：`ins-dyzp06q6`。此参数的具体格式可参考API[简介](https://cloud.tencent.com/document/api/213/15688)的`ids.N`一节）。每次请求的实例的上限为100。
         # @type InstanceIds: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer
@@ -3750,8 +3750,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 11
-        deprecate :ForceStop=, :none, 2025, 11
+        deprecate :ForceStop, :none, 2025, 12
+        deprecate :ForceStop=, :none, 2025, 12
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -6741,7 +6741,7 @@ module TencentCloud
 
       # ModifyInstancesChargeType请求参数结构体
       class ModifyInstancesChargeTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为30。
+        # @param InstanceIds: 一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为20。
         # @type InstanceIds: Array
         # @param InstanceChargeType: 修改后实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。<li> PREPAID：预付费，即包年包月。</li><li> POSTPAID_BY_HOUR：后付费，即按量付费。</li>
         # @type InstanceChargeType: String
@@ -7244,8 +7244,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2025, 11
-        deprecate :ForceReboot=, :none, 2025, 11
+        deprecate :ForceReboot, :none, 2025, 12
+        deprecate :ForceReboot=, :none, 2025, 12
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8353,8 +8353,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2025, 11
-        deprecate :ForceStop=, :none, 2025, 11
+        deprecate :ForceStop, :none, 2025, 12
+        deprecate :ForceStop=, :none, 2025, 12
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

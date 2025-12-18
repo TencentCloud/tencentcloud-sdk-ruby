@@ -13701,6 +13701,8 @@ module TencentCloud
         # 标准存储为 hotPeriod, 低频存储则为 Period-hotPeriod。（主题类型需为日志主题）
         # HotPeriod=0为没有开启日志沉降。
         # @type HotPeriod: Integer
+        # @param KeyId: kms-cls服务秘钥id
+        # @type KeyId: String
         # @param BizType: 主题类型。
         # - 0: 日志主题
         # - 1: 指标主题
@@ -13724,9 +13726,9 @@ module TencentCloud
         # @param IsSourceFrom: IsSourceFrom 开启记录公网来源ip和服务端接收时间
         # @type IsSourceFrom: Boolean
 
-        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom
+        attr_accessor :LogsetId, :TopicId, :TopicName, :PartitionCount, :Index, :AssumerUin, :AssumerName, :CreateTime, :Status, :Tags, :RoleName, :AutoSplit, :MaxSplitPartitions, :StorageType, :Period, :SubAssumerName, :Describes, :HotPeriod, :KeyId, :BizType, :IsWebTracking, :Extends, :TopicAsyncTaskID, :MigrationStatus, :EffectiveDate, :IsSourceFrom
 
-        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil)
+        def initialize(logsetid=nil, topicid=nil, topicname=nil, partitioncount=nil, index=nil, assumeruin=nil, assumername=nil, createtime=nil, status=nil, tags=nil, rolename=nil, autosplit=nil, maxsplitpartitions=nil, storagetype=nil, period=nil, subassumername=nil, describes=nil, hotperiod=nil, keyid=nil, biztype=nil, iswebtracking=nil, extends=nil, topicasynctaskid=nil, migrationstatus=nil, effectivedate=nil, issourcefrom=nil)
           @LogsetId = logsetid
           @TopicId = topicid
           @TopicName = topicname
@@ -13745,6 +13747,7 @@ module TencentCloud
           @SubAssumerName = subassumername
           @Describes = describes
           @HotPeriod = hotperiod
+          @KeyId = keyid
           @BizType = biztype
           @IsWebTracking = iswebtracking
           @Extends = extends
@@ -13780,6 +13783,7 @@ module TencentCloud
           @SubAssumerName = params['SubAssumerName']
           @Describes = params['Describes']
           @HotPeriod = params['HotPeriod']
+          @KeyId = params['KeyId']
           @BizType = params['BizType']
           @IsWebTracking = params['IsWebTracking']
           unless params['Extends'].nil?

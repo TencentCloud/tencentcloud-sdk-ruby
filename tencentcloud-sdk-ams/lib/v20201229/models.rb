@@ -58,10 +58,12 @@ module TencentCloud
         # @type SubTagCode: String
         # @param HitType: 审核检测类型
         # @type HitType: String
+        # @param Sentences: ASR句子的起止时间
+        # @type Sentences: Array
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType, :Sentences
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil, sentences=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -81,6 +83,7 @@ module TencentCloud
           @SubTag = subtag
           @SubTagCode = subtagcode
           @HitType = hittype
+          @Sentences = sentences
         end
 
         def deserialize(params)
@@ -152,6 +155,14 @@ module TencentCloud
           @SubTag = params['SubTag']
           @SubTagCode = params['SubTagCode']
           @HitType = params['HitType']
+          unless params['Sentences'].nil?
+            @Sentences = []
+            params['Sentences'].each do |i|
+              sentence_tmp = Sentence.new
+              sentence_tmp.deserialize(i)
+              @Sentences << sentence_tmp
+            end
+          end
         end
       end
 
@@ -206,8 +217,8 @@ module TencentCloud
 
         attr_accessor :Label, :Score, :StartTime, :EndTime, :SubLabelCode, :SubLabel, :Suggestion
         extend Gem::Deprecate
-        deprecate :SubLabelCode, :none, 2025, 11
-        deprecate :SubLabelCode=, :none, 2025, 11
+        deprecate :SubLabelCode, :none, 2025, 12
+        deprecate :SubLabelCode=, :none, 2025, 12
 
         def initialize(label=nil, score=nil, starttime=nil, endtime=nil, sublabelcode=nil, sublabel=nil, suggestion=nil)
           @Label = label
@@ -1051,6 +1062,30 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+        end
+      end
+
+      # ASR识别结果在音频中的起止时间
+      class Sentence < TencentCloud::Common::AbstractModel
+        # @param Text: ASR句子
+        # @type Text: String
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Text, :StartTime, :EndTime
+
+        def initialize(text=nil, starttime=nil, endtime=nil)
+          @Text = text
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
