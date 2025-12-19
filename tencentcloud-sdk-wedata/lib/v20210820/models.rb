@@ -12438,6 +12438,82 @@ module TencentCloud
         end
       end
 
+      # DescribeLineageInfo请求参数结构体
+      class DescribeLineageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceOriId: 实体原始唯一ID
+        # @type ResourceOriId: String
+        # @param ResourceType: 实体类型
+        # @type ResourceType: String
+        # @param QualifiedId: 血缘唯一ID
+        # @type QualifiedId: String
+        # @param Direction: 查询方向
+        # @type Direction: String
+        # @param InputDepth: 查询入度
+        # @type InputDepth: Integer
+        # @param OutputDepth: 查询出度
+        # @type OutputDepth: Integer
+        # @param Platform: 数据来源
+        # @type Platform: String
+        # @param LineageType: 血缘类型（分页使用）
+        # @type LineageType: String
+        # @param PageNumber: 页码
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+
+        attr_accessor :ResourceOriId, :ResourceType, :QualifiedId, :Direction, :InputDepth, :OutputDepth, :Platform, :LineageType, :PageNumber, :PageSize
+
+        def initialize(resourceoriid=nil, resourcetype=nil, qualifiedid=nil, direction=nil, inputdepth=nil, outputdepth=nil, platform=nil, lineagetype=nil, pagenumber=nil, pagesize=nil)
+          @ResourceOriId = resourceoriid
+          @ResourceType = resourcetype
+          @QualifiedId = qualifiedid
+          @Direction = direction
+          @InputDepth = inputdepth
+          @OutputDepth = outputdepth
+          @Platform = platform
+          @LineageType = lineagetype
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @ResourceOriId = params['ResourceOriId']
+          @ResourceType = params['ResourceType']
+          @QualifiedId = params['QualifiedId']
+          @Direction = params['Direction']
+          @InputDepth = params['InputDepth']
+          @OutputDepth = params['OutputDepth']
+          @Platform = params['Platform']
+          @LineageType = params['LineageType']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeLineageInfo返回参数结构体
+      class DescribeLineageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 血缘信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20210820.models.LineageCommonInfoVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = LineageCommonInfoVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeManualTriggerRecordPage请求参数结构体
       class DescribeManualTriggerRecordPageRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -24979,6 +25055,132 @@ module TencentCloud
         end
       end
 
+      # LineageCommonInfoVO
+      class LineageCommonInfoVO < TencentCloud::Common::AbstractModel
+        # @param CurrentResource: 当前节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentResource: :class:`Tencentcloud::Wedata.v20210820.models.LineageResouce`
+        # @param ParentSet: 上游节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: Array
+        # @param ChildSet: 下游节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: Array
+        # @param DownStreamCount: 下游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 上游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param StreamCountFlag: 父/子节点是否展示上下游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamCountFlag: Boolean
+
+        attr_accessor :CurrentResource, :ParentSet, :ChildSet, :DownStreamCount, :UpStreamCount, :StreamCountFlag
+
+        def initialize(currentresource=nil, parentset=nil, childset=nil, downstreamcount=nil, upstreamcount=nil, streamcountflag=nil)
+          @CurrentResource = currentresource
+          @ParentSet = parentset
+          @ChildSet = childset
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @StreamCountFlag = streamcountflag
+        end
+
+        def deserialize(params)
+          unless params['CurrentResource'].nil?
+            @CurrentResource = LineageResouce.new
+            @CurrentResource.deserialize(params['CurrentResource'])
+          end
+          unless params['ParentSet'].nil?
+            @ParentSet = []
+            params['ParentSet'].each do |i|
+              lineagenodeinfovo_tmp = LineageNodeInfoVO.new
+              lineagenodeinfovo_tmp.deserialize(i)
+              @ParentSet << lineagenodeinfovo_tmp
+            end
+          end
+          unless params['ChildSet'].nil?
+            @ChildSet = []
+            params['ChildSet'].each do |i|
+              lineagenodeinfovo_tmp = LineageNodeInfoVO.new
+              lineagenodeinfovo_tmp.deserialize(i)
+              @ChildSet << lineagenodeinfovo_tmp
+            end
+          end
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          @StreamCountFlag = params['StreamCountFlag']
+        end
+      end
+
+      # LineageNodeInfoVo
+      class LineageNodeInfoVO < TencentCloud::Common::AbstractModel
+        # @param CurrentResource: 当前资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentResource: :class:`Tencentcloud::Wedata.v20210820.models.LineageResouce`
+        # @param Relation: 关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Relation: :class:`Tencentcloud::Wedata.v20210820.models.LineageRelationVO`
+        # @param DownStreamCount: 上游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 下游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpStreamCount: Integer
+        # @param ParentSet: 上游节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ParentSet: Array
+        # @param ChildSet: 下游节点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ChildSet: Array
+        # @param StreamCountFlag: 父/子节点是否展示上下游数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StreamCountFlag: Boolean
+
+        attr_accessor :CurrentResource, :Relation, :DownStreamCount, :UpStreamCount, :ParentSet, :ChildSet, :StreamCountFlag
+
+        def initialize(currentresource=nil, relation=nil, downstreamcount=nil, upstreamcount=nil, parentset=nil, childset=nil, streamcountflag=nil)
+          @CurrentResource = currentresource
+          @Relation = relation
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
+          @ParentSet = parentset
+          @ChildSet = childset
+          @StreamCountFlag = streamcountflag
+        end
+
+        def deserialize(params)
+          unless params['CurrentResource'].nil?
+            @CurrentResource = LineageResouce.new
+            @CurrentResource.deserialize(params['CurrentResource'])
+          end
+          unless params['Relation'].nil?
+            @Relation = LineageRelationVO.new
+            @Relation.deserialize(params['Relation'])
+          end
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
+          unless params['ParentSet'].nil?
+            @ParentSet = []
+            params['ParentSet'].each do |i|
+              lineagenodeinfovo_tmp = LineageNodeInfoVO.new
+              lineagenodeinfovo_tmp.deserialize(i)
+              @ParentSet << lineagenodeinfovo_tmp
+            end
+          end
+          unless params['ChildSet'].nil?
+            @ChildSet = []
+            params['ChildSet'].each do |i|
+              lineagenodeinfovo_tmp = LineageNodeInfoVO.new
+              lineagenodeinfovo_tmp.deserialize(i)
+              @ChildSet << lineagenodeinfovo_tmp
+            end
+          end
+          @StreamCountFlag = params['StreamCountFlag']
+        end
+      end
+
       # 血缘参数记录
       class LineageParamRecord < TencentCloud::Common::AbstractModel
         # @param Name: 字段名
@@ -24997,6 +25199,192 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # LineageProcessVO
+      class LineageProcessVO < TencentCloud::Common::AbstractModel
+        # @param ProcessId: 原始唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessId: String
+        # @param ProcessType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessType: String
+        # @param ProcessSubType: 任务子类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessSubType: String
+        # @param ProcessName: 名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessName: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param QualifiedId: 唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedId: String
+        # @param Platform: 来源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param ProcessProperties: 额外扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProcessProperties: Array
+
+        attr_accessor :ProcessId, :ProcessType, :ProcessSubType, :ProcessName, :Description, :QualifiedId, :Platform, :ProcessProperties
+
+        def initialize(processid=nil, processtype=nil, processsubtype=nil, processname=nil, description=nil, qualifiedid=nil, platform=nil, processproperties=nil)
+          @ProcessId = processid
+          @ProcessType = processtype
+          @ProcessSubType = processsubtype
+          @ProcessName = processname
+          @Description = description
+          @QualifiedId = qualifiedid
+          @Platform = platform
+          @ProcessProperties = processproperties
+        end
+
+        def deserialize(params)
+          @ProcessId = params['ProcessId']
+          @ProcessType = params['ProcessType']
+          @ProcessSubType = params['ProcessSubType']
+          @ProcessName = params['ProcessName']
+          @Description = params['Description']
+          @QualifiedId = params['QualifiedId']
+          @Platform = params['Platform']
+          unless params['ProcessProperties'].nil?
+            @ProcessProperties = []
+            params['ProcessProperties'].each do |i|
+              lineageproperty_tmp = LineageProperty.new
+              lineageproperty_tmp.deserialize(i)
+              @ProcessProperties << lineageproperty_tmp
+            end
+          end
+        end
+      end
+
+      # LineageProperty额外扩展参数
+      class LineageProperty < TencentCloud::Common::AbstractModel
+        # @param Name: 属性名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 属性值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
+      # LineageRelationVO
+      class LineageRelationVO < TencentCloud::Common::AbstractModel
+        # @param RelationId: 关联ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelationId: String
+        # @param SourceQualifiedId: 源端唯一血缘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceQualifiedId: String
+        # @param TargetQualifiedId: 目标端唯一血缘ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetQualifiedId: String
+        # @param Processes: 血缘加工过程
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Processes: Array
+
+        attr_accessor :RelationId, :SourceQualifiedId, :TargetQualifiedId, :Processes
+
+        def initialize(relationid=nil, sourcequalifiedid=nil, targetqualifiedid=nil, processes=nil)
+          @RelationId = relationid
+          @SourceQualifiedId = sourcequalifiedid
+          @TargetQualifiedId = targetqualifiedid
+          @Processes = processes
+        end
+
+        def deserialize(params)
+          @RelationId = params['RelationId']
+          @SourceQualifiedId = params['SourceQualifiedId']
+          @TargetQualifiedId = params['TargetQualifiedId']
+          unless params['Processes'].nil?
+            @Processes = []
+            params['Processes'].each do |i|
+              lineageprocessvo_tmp = LineageProcessVO.new
+              lineageprocessvo_tmp.deserialize(i)
+              @Processes << lineageprocessvo_tmp
+            end
+          end
+        end
+      end
+
+      # 血缘实体
+      class LineageResouce < TencentCloud::Common::AbstractModel
+        # @param ResourceOriId: 实体原始唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceOriId: String
+        # @param ResourceName: 业务名称：库名.表名｜指标名称｜模型名称|字段名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceName: String
+        # @param ResourceType: 实体类型
+        # TABLE|METRIC|MODEL|SERVICE|COLUMN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param QualifiedId: 血缘全局唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedId: String
+        # @param Description: 描述：表类型｜指标描述｜模型描述|字段描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Platform: 来源：WEDATA|THIRD
+        # 默认wedata
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Platform: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param ResourceProperties: resource 额外扩展参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceProperties: Array
+
+        attr_accessor :ResourceOriId, :ResourceName, :ResourceType, :QualifiedId, :Description, :Platform, :CreateTime, :UpdateTime, :ResourceProperties
+
+        def initialize(resourceoriid=nil, resourcename=nil, resourcetype=nil, qualifiedid=nil, description=nil, platform=nil, createtime=nil, updatetime=nil, resourceproperties=nil)
+          @ResourceOriId = resourceoriid
+          @ResourceName = resourcename
+          @ResourceType = resourcetype
+          @QualifiedId = qualifiedid
+          @Description = description
+          @Platform = platform
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ResourceProperties = resourceproperties
+        end
+
+        def deserialize(params)
+          @ResourceOriId = params['ResourceOriId']
+          @ResourceName = params['ResourceName']
+          @ResourceType = params['ResourceType']
+          @QualifiedId = params['QualifiedId']
+          @Description = params['Description']
+          @Platform = params['Platform']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['ResourceProperties'].nil?
+            @ResourceProperties = []
+            params['ResourceProperties'].each do |i|
+              lineageproperty_tmp = LineageProperty.new
+              lineageproperty_tmp.deserialize(i)
+              @ResourceProperties << lineageproperty_tmp
+            end
+          end
         end
       end
 

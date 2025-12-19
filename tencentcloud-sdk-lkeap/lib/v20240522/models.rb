@@ -1868,9 +1868,7 @@ module TencentCloud
         # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的起始页码，识别的页码包含当前值。
         # 默认值：无
         # @type FileStartPageNumber: Integer
-        # @param FileEndPageNumber: 说明：文档的结束页码。
-        # 备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值。
-        # 默认值：无
+        # @param FileEndPageNumber: 说明：文档的结束页码。备注：当传入文件是PDF、PDF、PPT、PPTX、DOC类型时，用来指定识别的结束页码，识别的页码包含当前值，文档页码大于100页建议使用异步解析接入。默认值：无
         # @type FileEndPageNumber: Integer
         # @param Config: 说明：文档解析配置信息
         # 备注：可设置返回markdown结果的格式

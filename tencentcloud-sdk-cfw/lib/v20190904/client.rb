@@ -485,6 +485,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 业务废弃
+
         # 全部删除规则
 
         # @param request: Request instance for DeleteAllAccessControlRule.

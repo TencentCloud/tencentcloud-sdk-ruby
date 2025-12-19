@@ -2533,6 +2533,9 @@ module TencentCloud
         end
 
         # 校验问答
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for VerifyQA.
         # @type request: :class:`Tencentcloud::lke::V20231130::VerifyQARequest`

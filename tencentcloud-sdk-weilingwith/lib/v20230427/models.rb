@@ -254,30 +254,6 @@ module TencentCloud
         end
       end
 
-      # 行政区划详情
-      class AdministrativeDetail < TencentCloud::Common::AbstractModel
-        # @param AdministrativeTypeCode: 行政区域类型编码
-        # @type AdministrativeTypeCode: String
-        # @param AdministrativeCode: 行政区域编码
-        # @type AdministrativeCode: String
-        # @param AdministrativeName: 行政区域名称
-        # @type AdministrativeName: String
-
-        attr_accessor :AdministrativeTypeCode, :AdministrativeCode, :AdministrativeName
-
-        def initialize(administrativetypecode=nil, administrativecode=nil, administrativename=nil)
-          @AdministrativeTypeCode = administrativetypecode
-          @AdministrativeCode = administrativecode
-          @AdministrativeName = administrativename
-        end
-
-        def deserialize(params)
-          @AdministrativeTypeCode = params['AdministrativeTypeCode']
-          @AdministrativeCode = params['AdministrativeCode']
-          @AdministrativeName = params['AdministrativeName']
-        end
-      end
-
       # 告警信息
       class AlarmInfo < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 工作空间id
@@ -2485,73 +2461,6 @@ module TencentCloud
         end
       end
 
-      # DescribeCityWorkspaceList请求参数结构体
-      class DescribeCityWorkspaceListRequest < TencentCloud::Common::AbstractModel
-        # @param AdministrativeCodeSet: 行政区编码集合
-        # @type AdministrativeCodeSet: Array
-        # @param ApplicationToken: 应用token
-        # @type ApplicationToken: String
-
-        attr_accessor :AdministrativeCodeSet, :ApplicationToken
-
-        def initialize(administrativecodeset=nil, applicationtoken=nil)
-          @AdministrativeCodeSet = administrativecodeset
-          @ApplicationToken = applicationtoken
-        end
-
-        def deserialize(params)
-          @AdministrativeCodeSet = params['AdministrativeCodeSet']
-          @ApplicationToken = params['ApplicationToken']
-        end
-      end
-
-      # 通过城市id查询工作空间列表
-      class DescribeCityWorkspaceListRes < TencentCloud::Common::AbstractModel
-        # @param WorkspaceSet: 通过城市id查询工作空间列表结果
-        # @type WorkspaceSet: Array
-
-        attr_accessor :WorkspaceSet
-
-        def initialize(workspaceset=nil)
-          @WorkspaceSet = workspaceset
-        end
-
-        def deserialize(params)
-          unless params['WorkspaceSet'].nil?
-            @WorkspaceSet = []
-            params['WorkspaceSet'].each do |i|
-              workspaceinfo_tmp = WorkspaceInfo.new
-              workspaceinfo_tmp.deserialize(i)
-              @WorkspaceSet << workspaceinfo_tmp
-            end
-          end
-        end
-      end
-
-      # DescribeCityWorkspaceList返回参数结构体
-      class DescribeCityWorkspaceListResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 工作空间信息集合
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.DescribeCityWorkspaceListRes`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Result, :RequestId
-
-        def initialize(result=nil, requestid=nil)
-          @Result = result
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Result'].nil?
-            @Result = DescribeCityWorkspaceListRes.new
-            @Result.deserialize(params['Result'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDeviceGroupList请求参数结构体
       class DescribeDeviceGroupListRequest < TencentCloud::Common::AbstractModel
         # @param ApplicationToken: 应用token
@@ -4542,16 +4451,23 @@ module TencentCloud
 
       # DescribeVideoRecordStream返回参数结构体
       class DescribeVideoRecordStreamResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 获取历史流结果
+        # @type Result: :class:`Tencentcloud::Weilingwith.v20230427.models.VideoRecordStreamRes`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = VideoRecordStreamRes.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -7624,53 +7540,6 @@ module TencentCloud
             @RAW.deserialize(params['RAW'])
           end
           @Stream = params['Stream']
-        end
-      end
-
-      # 工作空间信息描述
-      class WorkspaceInfo < TencentCloud::Common::AbstractModel
-        # @param WorkspaceId: 工作空间Id
-        # @type WorkspaceId: Integer
-        # @param ChineseName: 工作空间中文名字
-        # @type ChineseName: String
-        # @param Description: 工作空间描述
-        # @type Description: String
-        # @param Status: 工作空间是否删除状态
-        # @type Status: Integer
-        # @param ParkName: 该工作空间绑定的区/县的行政区名字
-        # @type ParkName: String
-        # @param ParkNum: 该工作空间绑定的区/县的行政区编码
-        # @type ParkNum: String
-        # @param AdministrativeDetailSet: 获取该工作空间绑定的区/县的上级行政区划信息
-        # @type AdministrativeDetailSet: Array
-
-        attr_accessor :WorkspaceId, :ChineseName, :Description, :Status, :ParkName, :ParkNum, :AdministrativeDetailSet
-
-        def initialize(workspaceid=nil, chinesename=nil, description=nil, status=nil, parkname=nil, parknum=nil, administrativedetailset=nil)
-          @WorkspaceId = workspaceid
-          @ChineseName = chinesename
-          @Description = description
-          @Status = status
-          @ParkName = parkname
-          @ParkNum = parknum
-          @AdministrativeDetailSet = administrativedetailset
-        end
-
-        def deserialize(params)
-          @WorkspaceId = params['WorkspaceId']
-          @ChineseName = params['ChineseName']
-          @Description = params['Description']
-          @Status = params['Status']
-          @ParkName = params['ParkName']
-          @ParkNum = params['ParkNum']
-          unless params['AdministrativeDetailSet'].nil?
-            @AdministrativeDetailSet = []
-            params['AdministrativeDetailSet'].each do |i|
-              administrativedetail_tmp = AdministrativeDetail.new
-              administrativedetail_tmp.deserialize(i)
-              @AdministrativeDetailSet << administrativedetail_tmp
-            end
-          end
         end
       end
 

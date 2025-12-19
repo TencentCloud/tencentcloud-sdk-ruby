@@ -404,6 +404,53 @@ module TencentCloud
         end
       end
 
+      # GetJobsByKnowledgeBaseId请求参数结构体
+      class GetJobsByKnowledgeBaseIdRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
+
+        attr_accessor :InstanceId, :KnowledgeBaseId
+
+        def initialize(instanceid=nil, knowledgebaseid=nil)
+          @InstanceId = instanceid
+          @KnowledgeBaseId = knowledgebaseid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
+        end
+      end
+
+      # GetJobsByKnowledgeBaseId返回参数结构体
+      class GetJobsByKnowledgeBaseIdResponse < TencentCloud::Common::AbstractModel
+        # @param Jobs: 任务列表详情
+        # @type Jobs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Jobs, :RequestId
+
+        def initialize(jobs=nil, requestid=nil)
+          @Jobs = jobs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Jobs'].nil?
+            @Jobs = []
+            params['Jobs'].each do |i|
+              uploadjob_tmp = UploadJob.new
+              uploadjob_tmp.deserialize(i)
+              @Jobs << uploadjob_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetKnowledgeBaseFileList请求参数结构体
       class GetKnowledgeBaseFileListRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id

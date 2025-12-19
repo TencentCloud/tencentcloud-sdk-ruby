@@ -533,32 +533,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 老微瓴后续不继续更新
-
-        # 通过城市id查询工作空间列表
-
-        # @param request: Request instance for DescribeCityWorkspaceList.
-        # @type request: :class:`Tencentcloud::weilingwith::V20230427::DescribeCityWorkspaceListRequest`
-        # @rtype: :class:`Tencentcloud::weilingwith::V20230427::DescribeCityWorkspaceListResponse`
-        def DescribeCityWorkspaceList(request)
-          body = send_request('DescribeCityWorkspaceList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCityWorkspaceListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 设备分组列表
 
         # @param request: Request instance for DescribeDeviceGroupList.

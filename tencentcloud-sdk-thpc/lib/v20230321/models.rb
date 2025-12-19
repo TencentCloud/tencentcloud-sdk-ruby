@@ -264,8 +264,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2025, 11
-        deprecate :JobType=, :none, 2025, 11
+        deprecate :JobType, :none, 2025, 12
+        deprecate :JobType=, :none, 2025, 12
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -1650,24 +1650,7 @@ module TencentCloud
       class DescribeNodesRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID。
         # @type ClusterId: String
-        # @param Filters: <ul>
-        #     <li><strong>queue-name</strong>
-        #         <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p>
-        #         <p style="padding-left: 30px;">类型：String</p>
-        #         <p style="padding-left: 30px;">必选：否</p>
-        #     </li>
-        #     <li><strong>node-role</strong>
-        #         <p style="padding-left: 30px;">按照【<strong>节点角色</strong>】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）</p>
-        #         <p style="padding-left: 30px;">类型：String</p>
-        #         <p style="padding-left: 30px;">必选：否</p>
-        #     </li>
-        #     <li><strong>node-type</strong>
-        #         <p style="padding-left: 30px;">按照【<strong>节点类型</strong>】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)</p>
-        #         <p style="padding-left: 30px;">类型：String</p>
-        #         <p style="padding-left: 30px;">必选：否</p>
-        #     </li>
-        # </ul>
-        # <p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。</p>
+        # @param Filters: <ul>    <li><strong>queue-name</strong>        <p style="padding-left: 30px;">按照【<strong>队列名称</strong>】进行过滤。队列名称形如：compute。</p>        <p style="padding-left: 30px;">类型：String</p>        <p style="padding-left: 30px;">必选：否</p>    </li>    <li><strong>node-role</strong>        <p style="padding-left: 30px;">按照【<strong>节点角色</strong>】进行过滤。节点角色形如：Manager。（Manager：管控节点。Compute：计算节点。Login：登录节点。ManagerBackup：备用管控节点。）</p>        <p style="padding-left: 30px;">类型：String</p>        <p style="padding-left: 30px;">必选：否</p>    </li>    <li><strong>node-type</strong>        <p style="padding-left: 30px;">按照【<strong>节点类型</strong>】进行过滤。节点类型形如：STATIC。(STATIC：静态节点。DYNAMIC：弹性节点。)</p>        <p style="padding-left: 30px;">类型：String</p>        <p style="padding-left: 30px;">必选：否</p>    </li>  <li><strong>instance-id</strong>        <p style="padding-left: 30px;">按照【<strong>CVM实例资源ID</strong>】进行过滤。资源ID名称形如：ins-xxx。</p>        <p style="padding-left: 30px;">类型：String</p>        <p style="padding-left: 30px;">必选：否</p>    </li> </ul><p style="padding-left: 30px;">每次请求的`Filters`的上限为10，`Filter.Values`的上限为100。</p>
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         # @type Offset: Integer

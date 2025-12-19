@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 11
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 11
+        deprecate :ActivityRelatedInstanceSet, :none, 2025, 12
+        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 12
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -417,10 +417,14 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。
         # @type InstanceNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameIndexSettings`
+        # @param HostNameIndexSettings: 实例主机名序号相关设置。
+        # @type HostNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.HostNameIndexSettings`
+        # @param ConcurrentScaleOutForDesiredCapacity: 匹配期望数并发扩容功能，不能在InstanceAllocationPolicy为竞价混合模式时设置，也不能在ScalingMode为扩容优先开机模式时设置。目前仅支持两个匹配期望数扩容活动并发进行，不支持指定数量扩容、缩容等其他类型活动并发。默认值为FALSE，表示不开启。
+        # @type ConcurrentScaleOutForDesiredCapacity: Boolean
 
-        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :AutoScalingGroupStatus, :CreatedTime, :DefaultCooldown, :DesiredCapacity, :EnabledStatus, :ForwardLoadBalancerSet, :InstanceCount, :InServiceInstanceCount, :LaunchConfigurationId, :LaunchConfigurationName, :LoadBalancerIdSet, :MaxSize, :MinSize, :ProjectId, :SubnetIdSet, :TerminationPolicySet, :VpcId, :ZoneSet, :RetryPolicy, :InActivityStatus, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings
+        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :AutoScalingGroupStatus, :CreatedTime, :DefaultCooldown, :DesiredCapacity, :EnabledStatus, :ForwardLoadBalancerSet, :InstanceCount, :InServiceInstanceCount, :LaunchConfigurationId, :LaunchConfigurationName, :LoadBalancerIdSet, :MaxSize, :MinSize, :ProjectId, :SubnetIdSet, :TerminationPolicySet, :VpcId, :ZoneSet, :RetryPolicy, :InActivityStatus, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings, :HostNameIndexSettings, :ConcurrentScaleOutForDesiredCapacity
 
-        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, autoscalinggroupstatus=nil, createdtime=nil, defaultcooldown=nil, desiredcapacity=nil, enabledstatus=nil, forwardloadbalancerset=nil, instancecount=nil, inserviceinstancecount=nil, launchconfigurationid=nil, launchconfigurationname=nil, loadbalanceridset=nil, maxsize=nil, minsize=nil, projectid=nil, subnetidset=nil, terminationpolicyset=nil, vpcid=nil, zoneset=nil, retrypolicy=nil, inactivitystatus=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil)
+        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, autoscalinggroupstatus=nil, createdtime=nil, defaultcooldown=nil, desiredcapacity=nil, enabledstatus=nil, forwardloadbalancerset=nil, instancecount=nil, inserviceinstancecount=nil, launchconfigurationid=nil, launchconfigurationname=nil, loadbalanceridset=nil, maxsize=nil, minsize=nil, projectid=nil, subnetidset=nil, terminationpolicyset=nil, vpcid=nil, zoneset=nil, retrypolicy=nil, inactivitystatus=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil, hostnameindexsettings=nil, concurrentscaleoutfordesiredcapacity=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
           @AutoScalingGroupStatus = autoscalinggroupstatus
@@ -453,6 +457,8 @@ module TencentCloud
           @SpotMixedAllocationPolicy = spotmixedallocationpolicy
           @CapacityRebalance = capacityrebalance
           @InstanceNameIndexSettings = instancenameindexsettings
+          @HostNameIndexSettings = hostnameindexsettings
+          @ConcurrentScaleOutForDesiredCapacity = concurrentscaleoutfordesiredcapacity
         end
 
         def deserialize(params)
@@ -511,6 +517,11 @@ module TencentCloud
             @InstanceNameIndexSettings = InstanceNameIndexSettings.new
             @InstanceNameIndexSettings.deserialize(params['InstanceNameIndexSettings'])
           end
+          unless params['HostNameIndexSettings'].nil?
+            @HostNameIndexSettings = HostNameIndexSettings.new
+            @HostNameIndexSettings.deserialize(params['HostNameIndexSettings'])
+          end
+          @ConcurrentScaleOutForDesiredCapacity = params['ConcurrentScaleOutForDesiredCapacity']
         end
       end
 
@@ -867,10 +878,14 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。若不指定该参数，则默认不开启。开启后为伸缩组内自动创建的实例名称添加递增的数字序号。
         # @type InstanceNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameIndexSettings`
+        # @param HostNameIndexSettings: 实例主机名序号相关设置。若不指定该参数，则默认不开启。开启后为伸缩组内自动创建的实例主机名添加递增的数字序号。
+        # @type HostNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.HostNameIndexSettings`
+        # @param ConcurrentScaleOutForDesiredCapacity: 匹配期望数并发扩容功能，不能在InstanceAllocationPolicy为竞价混合模式时设置，也不能在ScalingMode为扩容优先开机模式时设置。目前仅支持两个匹配期望数扩容活动并发进行，不支持指定数量扩容、缩容等其他类型活动并发。默认值为FALSE，表示不开启。
+        # @type ConcurrentScaleOutForDesiredCapacity: Boolean
 
-        attr_accessor :AutoScalingGroupName, :LaunchConfigurationId, :MaxSize, :MinSize, :VpcId, :DefaultCooldown, :DesiredCapacity, :LoadBalancerIds, :ProjectId, :ForwardLoadBalancers, :SubnetIds, :TerminationPolicies, :Zones, :RetryPolicy, :ZonesCheckPolicy, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings
+        attr_accessor :AutoScalingGroupName, :LaunchConfigurationId, :MaxSize, :MinSize, :VpcId, :DefaultCooldown, :DesiredCapacity, :LoadBalancerIds, :ProjectId, :ForwardLoadBalancers, :SubnetIds, :TerminationPolicies, :Zones, :RetryPolicy, :ZonesCheckPolicy, :Tags, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings, :HostNameIndexSettings, :ConcurrentScaleOutForDesiredCapacity
 
-        def initialize(autoscalinggroupname=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, vpcid=nil, defaultcooldown=nil, desiredcapacity=nil, loadbalancerids=nil, projectid=nil, forwardloadbalancers=nil, subnetids=nil, terminationpolicies=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil)
+        def initialize(autoscalinggroupname=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, vpcid=nil, defaultcooldown=nil, desiredcapacity=nil, loadbalancerids=nil, projectid=nil, forwardloadbalancers=nil, subnetids=nil, terminationpolicies=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, tags=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil, hostnameindexsettings=nil, concurrentscaleoutfordesiredcapacity=nil)
           @AutoScalingGroupName = autoscalinggroupname
           @LaunchConfigurationId = launchconfigurationid
           @MaxSize = maxsize
@@ -896,6 +911,8 @@ module TencentCloud
           @SpotMixedAllocationPolicy = spotmixedallocationpolicy
           @CapacityRebalance = capacityrebalance
           @InstanceNameIndexSettings = instancenameindexsettings
+          @HostNameIndexSettings = hostnameindexsettings
+          @ConcurrentScaleOutForDesiredCapacity = concurrentscaleoutfordesiredcapacity
         end
 
         def deserialize(params)
@@ -947,6 +964,11 @@ module TencentCloud
             @InstanceNameIndexSettings = InstanceNameIndexSettings.new
             @InstanceNameIndexSettings.deserialize(params['InstanceNameIndexSettings'])
           end
+          unless params['HostNameIndexSettings'].nil?
+            @HostNameIndexSettings = HostNameIndexSettings.new
+            @HostNameIndexSettings.deserialize(params['HostNameIndexSettings'])
+          end
+          @ConcurrentScaleOutForDesiredCapacity = params['ConcurrentScaleOutForDesiredCapacity']
         end
       end
 
@@ -2751,8 +2773,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 11
-        deprecate :AutomationService=, :none, 2025, 11
+        deprecate :AutomationService, :none, 2025, 12
+        deprecate :AutomationService=, :none, 2025, 12
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3008,6 +3030,45 @@ module TencentCloud
           @LoadBalancerId = params['LoadBalancerId']
           @ListenerId = params['ListenerId']
           @LocationId = params['LocationId']
+        end
+      end
+
+      # 实例主机名称序号相关设置。
+      class HostNameIndexSettings < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否开启实例主机名创建序号，默认不开启。取值范围：
+
+        # TRUE：表示开启实例主机名创建序号
+        # FALSE：表示不开启实例主机名创建序号
+        # @type Enabled: Boolean
+        # @param BeginIndex: 初始序号。
+        # 序号固定位数 IndexLength 为默认值0时，取值范围为 [0, 99999999]。
+        # 序号固定位数 IndexLength 为 [1, 8] 时，取值范围为为 [0, 10^IndexLength-1]，最大值即为固定位数的最大数字。
+        # 当序号递增后超出取值范围时，扩容活动会失败。
+
+        # 首次开启实例主机名称序号：默认值为 0。
+        # 非首次开启实例主机名称序号：若不指定该参数，沿用历史序号。
+        # 下调初始序号可能会造成伸缩组内实例主机名称序号重复。
+        # @type BeginIndex: Integer
+        # @param IndexLength: 实例主机名递增序号位数，默认为0，表示不指定序号位数。不指定序号时，采用默认值0。
+        # 取值范围：0-8，最大为整数8。
+        # 采用取值1-8时，会检查序号是否超过此序号位数的最大数字。
+
+        # 假设设置为3，那么序号形如：001、002 ... 010、011 ... 100 ... 999，序号上限为999;
+        # 假设设置为0，对应的序号为1、2 ... 10、11 ... 100 ... 1000 ...10000 ... 99999999，序号上限为99999999。
+        # @type IndexLength: Integer
+
+        attr_accessor :Enabled, :BeginIndex, :IndexLength
+
+        def initialize(enabled=nil, beginindex=nil, indexlength=nil)
+          @Enabled = enabled
+          @BeginIndex = beginindex
+          @IndexLength = indexlength
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @BeginIndex = params['BeginIndex']
+          @IndexLength = params['IndexLength']
         end
       end
 
@@ -3980,10 +4041,14 @@ module TencentCloud
         # @type CapacityRebalance: Boolean
         # @param InstanceNameIndexSettings: 实例名称序号相关设置。开启后为伸缩组内自动创建的实例名称添加递增的数字序号。
         # @type InstanceNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameIndexSettings`
+        # @param HostNameIndexSettings: 实例主机名序号相关设置。开启后为伸缩组内自动创建的实例主机名添加递增的数字序号。
+        # @type HostNameIndexSettings: :class:`Tencentcloud::As.v20180419.models.HostNameIndexSettings`
+        # @param ConcurrentScaleOutForDesiredCapacity: 匹配期望数并发扩容功能，不能在InstanceAllocationPolicy为竞价混合模式时设置，也不能在ScalingMode为扩容优先开机模式时设置。目前仅支持两个匹配期望数扩容活动并发进行，不支持指定数量扩容、缩容等其他类型活动并发。设置为FALSE表示不开启。
+        # @type ConcurrentScaleOutForDesiredCapacity: Boolean
 
-        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :DefaultCooldown, :DesiredCapacity, :LaunchConfigurationId, :MaxSize, :MinSize, :ProjectId, :SubnetIds, :TerminationPolicies, :VpcId, :Zones, :RetryPolicy, :ZonesCheckPolicy, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings
+        attr_accessor :AutoScalingGroupId, :AutoScalingGroupName, :DefaultCooldown, :DesiredCapacity, :LaunchConfigurationId, :MaxSize, :MinSize, :ProjectId, :SubnetIds, :TerminationPolicies, :VpcId, :Zones, :RetryPolicy, :ZonesCheckPolicy, :ServiceSettings, :Ipv6AddressCount, :MultiZoneSubnetPolicy, :HealthCheckType, :LoadBalancerHealthCheckGracePeriod, :InstanceAllocationPolicy, :SpotMixedAllocationPolicy, :CapacityRebalance, :InstanceNameIndexSettings, :HostNameIndexSettings, :ConcurrentScaleOutForDesiredCapacity
 
-        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, defaultcooldown=nil, desiredcapacity=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, projectid=nil, subnetids=nil, terminationpolicies=nil, vpcid=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil)
+        def initialize(autoscalinggroupid=nil, autoscalinggroupname=nil, defaultcooldown=nil, desiredcapacity=nil, launchconfigurationid=nil, maxsize=nil, minsize=nil, projectid=nil, subnetids=nil, terminationpolicies=nil, vpcid=nil, zones=nil, retrypolicy=nil, zonescheckpolicy=nil, servicesettings=nil, ipv6addresscount=nil, multizonesubnetpolicy=nil, healthchecktype=nil, loadbalancerhealthcheckgraceperiod=nil, instanceallocationpolicy=nil, spotmixedallocationpolicy=nil, capacityrebalance=nil, instancenameindexsettings=nil, hostnameindexsettings=nil, concurrentscaleoutfordesiredcapacity=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @AutoScalingGroupName = autoscalinggroupname
           @DefaultCooldown = defaultcooldown
@@ -4007,6 +4072,8 @@ module TencentCloud
           @SpotMixedAllocationPolicy = spotmixedallocationpolicy
           @CapacityRebalance = capacityrebalance
           @InstanceNameIndexSettings = instancenameindexsettings
+          @HostNameIndexSettings = hostnameindexsettings
+          @ConcurrentScaleOutForDesiredCapacity = concurrentscaleoutfordesiredcapacity
         end
 
         def deserialize(params)
@@ -4042,6 +4109,11 @@ module TencentCloud
             @InstanceNameIndexSettings = InstanceNameIndexSettings.new
             @InstanceNameIndexSettings.deserialize(params['InstanceNameIndexSettings'])
           end
+          unless params['HostNameIndexSettings'].nil?
+            @HostNameIndexSettings = HostNameIndexSettings.new
+            @HostNameIndexSettings.deserialize(params['HostNameIndexSettings'])
+          end
+          @ConcurrentScaleOutForDesiredCapacity = params['ConcurrentScaleOutForDesiredCapacity']
         end
       end
 

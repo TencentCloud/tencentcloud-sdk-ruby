@@ -2756,7 +2756,7 @@ module TencentCloud
 
       # CreateWorkflowRun请求参数结构体
       class CreateWorkflowRunRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: 应用ID, 获取方法参看如何获取 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type AppBizId: String
         # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
         # @type RunEnv: Integer
@@ -7352,19 +7352,19 @@ module TencentCloud
 
       # ListAttributeLabel请求参数结构体
       class ListAttributeLabelRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看如何获取[BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码，取值范围：大于0
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量，取值范围：大于0
         # @type PageSize: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
-        # @param Query: 查询内容
+        # @param Query: 查询内容，同时匹配标签内容和标签值内容
         # @type Query: String
-        # @param LabelSize: 每个属性同步拉取的标签值数量
+        # @param LabelSize: 每个标签同步拉取的标签值数量。即在展示标签列表时，为每一个标签加载多少个具体的标签值。
         # @type LabelSize: Integer
 
         attr_accessor :BotBizId, :PageNumber, :PageSize, :LoginUin, :LoginSubAccountUin, :Query, :LabelSize
@@ -7423,17 +7423,17 @@ module TencentCloud
 
       # ListChannel请求参数结构体
       class ListChannelRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: 应用ID（获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)）
         # @type AppBizId: String
         # @param BotBizId: 应用ID
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 分页数量
+        # @param PageSize: 分页数量（取值范围为1-200）
         # @type PageSize: Integer
-        # @param ChannelType: 渠道类型, 10000: 微信订阅号，10001: 微信服务号，10002：企微应用，10004：微信客服，10005：小程序，10009：企微智能机器人
+        # @param ChannelType: 渠道类型, 10000: 微信订阅号，10001: 微信服务号，10002：企微应用，10004：微信客服，10005：小程序，10009：企微智能机器人 。（默认为[]）
         # @type ChannelType: Array
-        # @param ChannelStatus: 渠道状态 1未发布 2运行中 3已下线
+        # @param ChannelStatus: 渠道状态 1未发布 2运行中 3已下线 （默认为[]）
         # @type ChannelStatus: Array
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
@@ -8243,21 +8243,21 @@ module TencentCloud
 
       # ListRejectedQuestionPreview请求参数结构体
       class ListRejectedQuestionPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID（获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)）
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量（取值范围为1-200）
         # @type PageSize: Integer
-        # @param Query: 查询内容
+        # @param Query: 查询内容关键字，用于模糊查询，若未提供该参数，默认为查询全部。
         # @type Query: String
-        # @param ReleaseBizId: 发布单ID
+        # @param ReleaseBizId: 发布单ID（可以通过[ListRelease](https://cloud.tencent.com/document/product/1759/105077)获得）
         # @type ReleaseBizId: String
         # @param Actions: 状态(1新增2更新3删除)
         # @type Actions: Array
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。Unix 时间戳，单位是秒，默认为空。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。Unix 时间戳，单位是秒，默认为空。
         # @type EndTime: String
 
         attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :ReleaseBizId, :Actions, :StartTime, :EndTime
@@ -8318,11 +8318,11 @@ module TencentCloud
 
       # ListRejectedQuestion请求参数结构体
       class ListRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID, 获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量（取值范围1-200）
         # @type PageSize: Integer
         # @param Query: 查询内容
         # @type Query: String
@@ -8377,23 +8377,23 @@ module TencentCloud
 
       # ListReleaseConfigPreview请求参数结构体
       class ListReleaseConfigPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID（获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)）
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量（取值范围为1-200）
         # @type PageSize: Integer
-        # @param Query: 查询内容
+        # @param Query: 查询内容关键字，用于模糊查询，若未提供该参数，默认为查询全部。
         # @type Query: String
-        # @param ReleaseBizId: 发布单ID
+        # @param ReleaseBizId: 发布单ID（可以通过[ListRelease](https://cloud.tencent.com/document/product/1759/105077)获得）
         # @type ReleaseBizId: String
         # @param Actions: 状态(1新增2更新3删除)
         # @type Actions: Array
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。Unix 时间戳，单位是秒，默认为空。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。Unix 时间戳，单位是秒，默认为空。
         # @type EndTime: String
-        # @param ReleaseStatus: 发布状态
+        # @param ReleaseStatus: 发布状态(2 待发布 3 发布中 4 已发布 5 发布失败)，默认为空
         # @type ReleaseStatus: Array
 
         attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :ReleaseBizId, :Actions, :StartTime, :EndTime, :ReleaseStatus
@@ -8456,21 +8456,21 @@ module TencentCloud
 
       # ListReleaseDocPreview请求参数结构体
       class ListReleaseDocPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID（获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)）
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量（取值范围为1-200）
         # @type PageSize: Integer
-        # @param Query: 查询内容
+        # @param Query: 查询内容关键字，用于模糊查询，若未提供该参数，默认为查询全部。
         # @type Query: String
-        # @param ReleaseBizId: 发布单ID
+        # @param ReleaseBizId: 发布单ID（可以通过[ListRelease](https://cloud.tencent.com/document/product/1759/105077)获得）
         # @type ReleaseBizId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。Unix 时间戳，单位是秒，默认为空。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。Unix 时间戳，单位是秒，默认为空。
         # @type EndTime: String
-        # @param Actions: 状态(1新增2修改3删除)
+        # @param Actions: 状态(1新增2修改3删除)，其和ReleaseStatus的区别为： Actions表示的是对数据/内容的操作状态，ReleaseStatus表示数据 / 内容本身的发布状态
         # @type Actions: Array
 
         attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :ReleaseBizId, :StartTime, :EndTime, :Actions
@@ -8579,23 +8579,23 @@ module TencentCloud
 
       # ListReleaseQAPreview请求参数结构体
       class ListReleaseQAPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID（获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)）
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（必须大于0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量（取值范围为1-200）
         # @type PageSize: Integer
-        # @param Query: 查询内容
+        # @param Query: 查询内容关键字，用于模糊查询，若未提供该参数，默认为查询全部。
         # @type Query: String
-        # @param ReleaseBizId: 发布单ID
+        # @param ReleaseBizId: 发布单ID（可以通过[ListRelease](https://cloud.tencent.com/document/product/1759/105077)获得）
         # @type ReleaseBizId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: 开始时间。Unix 时间戳，单位是秒，默认为空。
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: 结束时间。Unix 时间戳，单位是秒，默认为空。
         # @type EndTime: String
-        # @param Actions: 状态(1新增2修改3删除)
+        # @param Actions: 状态(1新增2修改3删除)，其和ReleaseStatus的区别为：Actions表示的是对数据/内容的操作状态，ReleaseStatus表示数据/内容本身的发布状态
         # @type Actions: Array
-        # @param ReleaseStatus: 发布状态(4发布成功5发布失败)
+        # @param ReleaseStatus: 发布状态(4发布成功5发布失败)。其和Actions的区别为：Actions表示的是对数据/内容的操作状态，ReleaseStatus表示数据/内容本身的发布状态
         # @type ReleaseStatus: Array
 
         attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :ReleaseBizId, :StartTime, :EndTime, :Actions, :ReleaseStatus
@@ -9003,13 +9003,13 @@ module TencentCloud
 
       # ListWorkflowRuns请求参数结构体
       class ListWorkflowRunsRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: 应用ID, 获取方法参看如何获取 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type AppBizId: String
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量(取值范围1-200)
         # @type PageSize: Integer
         # @param RunEnv: 运行环境。0: 测试环境； 1: 正式环境
         # @type RunEnv: Integer
-        # @param Page: 页码
+        # @param Page: 页码(必须大于0)
         # @type Page: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -9814,12 +9814,12 @@ module TencentCloud
 
       # ModifyRejectedQuestion请求参数结构体
       class ModifyRejectedQuestionRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID, 获取方法参看如何获取 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param Question: 拒答问题
 
         # @type Question: String
-        # @param RejectedBizId: 拒答问题来源的数据源唯一id
+        # @param RejectedBizId: 拒答问题来源的数据源唯一id, 通过[ListRejectedQuestion](https://capi.woa.com/api/detail?product=lke&version=2023-11-30&action=ListRejectedQuestion)接口获取
 
 
         # @type RejectedBizId: String
@@ -10828,7 +10828,7 @@ module TencentCloud
       class RateMsgRecordRequest < TencentCloud::Common::AbstractModel
         # @param BotAppKey: 应用appKey
         # @type BotAppKey: String
-        # @param RecordId: 消息ID 【大模型回复答案的RecordID】
+        # @param RecordId: 消息ID 【大模型回复答案的RecordID】可以通过[GetMsgRecord](https://cloud.tencent.com/document/product/1759/105090)接口获取
         # @type RecordId: String
         # @param Score: 0: 取消前置状态 ; 1: 点赞;   2: 点踩;
         # 注：
@@ -12701,14 +12701,17 @@ module TencentCloud
         # @type LoginUin: String
         # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
         # @type LoginSubAccountUin: String
+        # @param KnowledgeBizId: 用于操作共享知识库
+        # @type KnowledgeBizId: String
 
-        attr_accessor :List, :BotBizId, :LoginUin, :LoginSubAccountUin
+        attr_accessor :List, :BotBizId, :LoginUin, :LoginSubAccountUin, :KnowledgeBizId
 
-        def initialize(list=nil, botbizid=nil, loginuin=nil, loginsubaccountuin=nil)
+        def initialize(list=nil, botbizid=nil, loginuin=nil, loginsubaccountuin=nil, knowledgebizid=nil)
           @List = list
           @BotBizId = botbizid
           @LoginUin = loginuin
           @LoginSubAccountUin = loginsubaccountuin
+          @KnowledgeBizId = knowledgebizid
         end
 
         def deserialize(params)
@@ -12723,6 +12726,7 @@ module TencentCloud
           @BotBizId = params['BotBizId']
           @LoginUin = params['LoginUin']
           @LoginSubAccountUin = params['LoginSubAccountUin']
+          @KnowledgeBizId = params['KnowledgeBizId']
         end
       end
 

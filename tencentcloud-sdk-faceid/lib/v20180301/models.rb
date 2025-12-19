@@ -4083,6 +4083,7 @@ module TencentCloud
         # -9: 没有记录。
         # -11: 验证中心服务繁忙。
         # -12: 认证次数超过当日限制，请次日重试。
+        # -13：该号段不支持验证
         # @type Result: String
         # @param Description: 业务结果描述。
         # @type Description: String
