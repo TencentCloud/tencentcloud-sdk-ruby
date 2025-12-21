@@ -19,9 +19,9 @@ module TencentCloud
     module V20180801
       # AddCasterInputInfo请求参数结构体
       class AddCasterInputInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID。
+        # @param CasterId: <p>导播台ID。</p>
         # @type CasterId: Integer
-        # @param InputInfo: 导播台输入源详细信息。
+        # @param InputInfo: <p>导播台输入源详细信息。</p>
         # @type InputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterInputInfo`
 
         attr_accessor :CasterId, :InputInfo
@@ -42,13 +42,9 @@ module TencentCloud
 
       # AddCasterInputInfo返回参数结构体
       class AddCasterInputInfoResponse < TencentCloud::Common::AbstractModel
-        # @param InputPlayUrl: rtmp协议输入源播放地址。
-        # 注：仅可作为预览使用，不可分发。
+        # @param InputPlayUrl: <p>rtmp协议输入源播放地址。注：仅可作为预览使用，不可分发。</p>
         # @type InputPlayUrl: String
-        # @param InputWebRTCPlayUrl: webrtc协议播放地址。
-        # 注：
-        # 1. 需配合使用腾讯云快直播播放SDK使用才可正常播放。
-        # 2. 仅作为预览使用，不可分发。
+        # @param InputWebRTCPlayUrl: <p>webrtc协议播放地址。注：1. 需配合使用腾讯云快直播播放SDK使用才可正常播放。2. 仅作为预览使用，不可分发。</p>
         # @type InputWebRTCPlayUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -70,9 +66,9 @@ module TencentCloud
 
       # AddCasterLayoutInfo请求参数结构体
       class AddCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID
+        # @param CasterId: <p>导播台ID</p>
         # @type CasterId: Integer
-        # @param LayoutInfo: 导播台布局参数信息。
+        # @param LayoutInfo: <p>导播台布局参数信息。</p>
         # @type LayoutInfo: :class:`Tencentcloud::Live.v20180801.models.CasterLayoutInfo`
 
         attr_accessor :CasterId, :LayoutInfo
@@ -1151,44 +1147,23 @@ module TencentCloud
 
       # 导播台输入信息参数
       class CasterInputInfo < TencentCloud::Common::AbstractModel
-        # @param InputIndex: 输入源Index。
-        # 范围[1, 24]
+        # @param InputIndex: <p>输入源Index。范围[1, 24]</p>
         # @type InputIndex: Integer
-        # @param InputType: 输入源类型。
-        # 范围[0,1,2,3,4]。
-        # 0：推流地址。
-        # 1：点播文件地址。
-        # 2：直播拉流地址。
-        # 3：图片地址。
-        # 4：webrtc协议推流地址。
+        # @param InputType: <p>输入源类型。范围[0,1,2,3,4]。0：推流地址。1：点播文件地址。2：直播拉流地址。3：图片地址。4：webrtc协议推流地址。</p>
         # @type InputType: Integer
-        # @param InputUrl: 输入源的源地址。
-        # 最大允许长度512。
-        # 当InputType为0（推流地址），2（直播拉流地址），3（图片地址）,4（webrtc推流地址）这几种类型时，URL需填入该字段。
+        # @param InputUrl: <p>输入源的源地址。最大允许长度512。当InputType为0（推流地址），2（直播拉流地址），3（图片地址）,4（webrtc推流地址）这几种类型时，URL需填入该字段。</p>
         # @type InputUrl: String
-        # @param Description: 输入源描述。
-        # 最大允许长度256字符。
+        # @param Description: <p>输入源描述。最大允许长度256字符。</p>
         # @type Description: String
-        # @param InputUrls: 点播地址列表。仅当input type为1（点播地址）时，将一个或多个点播地址，填入该字段。
-        # 单个地址最大允许长度512字符。
-        # 最多允许同时填入5个地址。
-        # 注：此时需保持InputUrl字段为空。
+        # @param InputUrls: <p>点播地址列表。仅当input type为1（点播地址）时，将一个或多个点播地址，填入该字段。单个地址最大允许长度512字符。最多允许同时填入5个地址。注：此时需保持InputUrl字段为空。</p>
         # @type InputUrls: Array
-        # @param LoopEnable: 是否启用点播无限循环播放。
-        # 注：当前该字段未生效，默认为True。
+        # @param LoopEnable: <p>是否启用点播无限循环播放。注：当前该字段未生效，默认为True。</p>
         # @type LoopEnable: Boolean
-        # @param LoopNumber: 点播循环次数。
-        # 允许值-1或正整数。
-        # 当值为-1时，表示无限循环。
-        # 当值为其他正整数时，表示循环对应次数。
-        # 注：该字段暂未生效。
+        # @param LoopNumber: <p>点播循环次数。允许值-1或正整数。当值为-1时，表示无限循环。当值为其他正整数时，表示循环对应次数。注：该字段暂未生效。</p>
         # @type LoopNumber: Integer
-        # @param PullPushEnable: 是否启用拉取到导播台。
-        # 注：该字段默认强制为true。
+        # @param PullPushEnable: <p>是否启用拉取到导播台。注：该字段默认强制为true。</p>
         # @type PullPushEnable: Boolean
-        # @param Volume: 输入源音量百分比。
-        # 默认为100。表示音量为原始大小。
-        # 允许值[0,200]。
+        # @param Volume: <p>输入源音量百分比。默认为100。表示音量为原始大小。允许值[0,200]。</p>
         # @type Volume: Integer
 
         attr_accessor :InputIndex, :InputType, :InputUrl, :Description, :InputUrls, :LoopEnable, :LoopNumber, :PullPushEnable, :Volume
@@ -4221,10 +4196,9 @@ module TencentCloud
 
       # DeleteCasterLayoutInfo请求参数结构体
       class DeleteCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID。
+        # @param CasterId: <p>导播台ID。</p>
         # @type CasterId: Integer
-        # @param LayoutIndex: 要删除的布局Index。
-        # 注：待删除的Index对应的布局需存在。
+        # @param LayoutIndex: <p>要删除的布局Index。注：待删除的Index对应的布局需存在。</p>
         # @type LayoutIndex: Integer
 
         attr_accessor :CasterId, :LayoutIndex
@@ -11625,9 +11599,9 @@ module TencentCloud
 
       # ModifyCasterInputInfo请求参数结构体
       class ModifyCasterInputInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID。
+        # @param CasterId: <p>导播台ID。</p>
         # @type CasterId: Integer
-        # @param InputInfo: 修改的导播台输入源信息
+        # @param InputInfo: <p>修改的导播台输入源信息</p>
         # @type InputInfo: :class:`Tencentcloud::Live.v20180801.models.CasterInputInfo`
 
         attr_accessor :CasterId, :InputInfo
@@ -11648,12 +11622,9 @@ module TencentCloud
 
       # ModifyCasterInputInfo返回参数结构体
       class ModifyCasterInputInfoResponse < TencentCloud::Common::AbstractModel
-        # @param InputPlayUrl: 修改输入源后的预览地址。
-        # 注：该地址仅作为预览使用，不可分发。
+        # @param InputPlayUrl: <p>修改输入源后的预览地址。注：该地址仅作为预览使用，不可分发。</p>
         # @type InputPlayUrl: String
-        # @param InputWebRTCPlayUrl: 修改后的输入源webrtc预览地址。
-        # 该地址需配合腾讯云快直播播放SDK使用。
-        # 注：该地址仅做预览使用，不可分发。
+        # @param InputWebRTCPlayUrl: <p>修改后的输入源webrtc预览地址。该地址需配合腾讯云快直播播放SDK使用。注：该地址仅做预览使用，不可分发。</p>
         # @type InputWebRTCPlayUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11675,9 +11646,9 @@ module TencentCloud
 
       # ModifyCasterLayoutInfo请求参数结构体
       class ModifyCasterLayoutInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID。
+        # @param CasterId: <p>导播台ID。</p>
         # @type CasterId: Integer
-        # @param LayoutInfo: 导播台布局参数信息。
+        # @param LayoutInfo: <p>导播台布局参数信息。</p>
         # @type LayoutInfo: :class:`Tencentcloud::Live.v20180801.models.CasterLayoutInfo`
 
         attr_accessor :CasterId, :LayoutInfo
@@ -11831,60 +11802,35 @@ module TencentCloud
 
       # ModifyCaster请求参数结构体
       class ModifyCasterRequest < TencentCloud::Common::AbstractModel
-        # @param CasterId: 导播台ID
+        # @param CasterId: <p>导播台ID</p>
         # @type CasterId: Integer
-        # @param CasterName: 导播台名称
+        # @param CasterName: <p>导播台名称</p>
         # @type CasterName: String
-        # @param Description: 导播台的描述，最大允许长度256
+        # @param Description: <p>导播台的描述，最大允许长度256</p>
         # @type Description: String
-        # @param RecordTemplateId: 录制模板id。
-        # 默认为0。
-        # 当使用直播录制功能时，可将使用的录制模版填入。
-        # 该接口仅保存字段，不涉及任何录制功能。
+        # @param RecordTemplateId: <p>录制模板id。默认为0。当使用直播录制功能时，可将使用的录制模版填入。该接口仅保存字段，不涉及任何录制功能。</p>
         # @type RecordTemplateId: Integer
-        # @param RecordStatus: 录制状态，当调用录制接口后，可通过该字段保存录制状态。
-        # 0：未录制
-        # 1：录制中
-        # 该接口仅保存字段，不涉及任何录制处理。
+        # @param RecordStatus: <p>录制状态，当调用录制接口后，可通过该字段保存录制状态。0：未录制 1：录制中该接口仅保存字段，不涉及任何录制处理。</p>
         # @type RecordStatus: Integer
-        # @param ExpireTime: 导播台的过期时间戳。值为-1或unix时间戳。
-        # 默认值为-1。
-        # 当值为-1时，表示该导播台永不过期。
-        # 当值为正常unix时间戳时，导播台将在该时间过期。
-        # 导播台过期后，预监与主监画面将自动停止，转推自动停止。
-        # 点播、直播url将停止转拉，推流url需自行停止推流。
+        # @param ExpireTime: <p>导播台的过期时间戳。值为-1或unix时间戳。默认值为-1。 当值为-1时，表示该导播台永不过期。 当值为正常unix时间戳时，导播台将在该时间过期。导播台过期后，预监与主监画面将自动停止，转推自动停止。 点播、直播url将停止转拉，推流url需自行停止推流。</p>
         # @type ExpireTime: Integer
-        # @param DelayTime: 导播台延时播放时间，单位为秒。
-        # 默认为0，最大支持300秒
+        # @param DelayTime: <p>导播台延时播放时间，单位为秒。 默认为0，最大支持300秒</p>
         # @type DelayTime: Integer
-        # @param TransitionType: 导播台转场类型。
-        # 默认为空。
-        # 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。
+        # @param TransitionType: <p>导播台转场类型。 默认为空。 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。</p>
         # @type TransitionType: String
-        # @param PgmWidth: 导播台主监输出的宽度，单位为像素。
-        # 默认为1280，最大允许4096。
+        # @param PgmWidth: <p>导播台主监输出的宽度，单位为像素。 默认为1280，最大允许4096。</p>
         # @type PgmWidth: Integer
-        # @param PgmHeight: 导播台主监输出的高度，单位为像素。
-        # 默认为720，最大允许2160。
+        # @param PgmHeight: <p>导播台主监输出的高度，单位为像素。 默认为720，最大允许2160。</p>
         # @type PgmHeight: Integer
-        # @param PgmFps: 导播台主监输出的帧率。
-        # 默认为0，表示随源输出。 最大支持60。
+        # @param PgmFps: <p>导播台主监输出的帧率。 默认为0，表示随源输出。 最大支持60。</p>
         # @type PgmFps: Integer
-        # @param PgmBitRate: 导播台主监输出的码率，单位为kbps。
-        # 默认为0，表示随源的码率输出。
-        # 最大允许10000kbps。
+        # @param PgmBitRate: <p>导播台主监输出的码率，单位为kbps。 默认为0，表示随源的码率输出。 最大允许10000kbps。</p>
         # @type PgmBitRate: Integer
-        # @param FeeType: 导播台的计费类型。
-        # 0 通用型
-        # 1 播单型。
-        # 注： 本参数暂无作用。
+        # @param FeeType: <p>导播台的计费类型。 0 通用型 1 播单型。 注： 本参数暂无作用。</p>
         # @type FeeType: Integer
-        # @param RecordTaskId: 录制接口返回的taskid
-        # 注：该接口只做字段保存，不涉及录制操作。
+        # @param RecordTaskId: <p>录制接口返回的taskid注：该接口只做字段保存，不涉及录制操作。</p>
         # @type RecordTaskId: String
-        # @param PgmAudioBitRate: 导播台主监输出的音频码率，单位为kbps。
-        # 可选项：[0, 128, 192, 256]
-        # 默认值为0，表示随源的音频码率输出。
+        # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。 可选项：[0, 128, 192, 256] 默认值为0，表示随源的音频码率输出。</p>
         # @type PgmAudioBitRate: Integer
 
         attr_accessor :CasterId, :CasterName, :Description, :RecordTemplateId, :RecordStatus, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :RecordTaskId, :PgmAudioBitRate

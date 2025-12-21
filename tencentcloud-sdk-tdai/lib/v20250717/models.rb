@@ -1223,6 +1223,46 @@ module TencentCloud
         end
       end
 
+      # StartAgentTask请求参数结构体
+      class StartAgentTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceToken: 配置Token
+        # @type InstanceToken: String
+
+        attr_accessor :InstanceId, :InstanceToken
+
+        def initialize(instanceid=nil, instancetoken=nil)
+          @InstanceId = instanceid
+          @InstanceToken = instancetoken
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceToken = params['InstanceToken']
+        end
+      end
+
+      # StartAgentTask返回参数结构体
+      class StartAgentTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 通过标签对资源进行过滤
       class TagFilter < TencentCloud::Common::AbstractModel
         # @param TagKey: 标签键

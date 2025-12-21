@@ -1470,41 +1470,51 @@ module TencentCloud
         # @type AutoScalingGroupId: String
         # @param ScheduledActionName: 定时任务名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。同一伸缩组下必须唯一。
         # @type ScheduledActionName: String
-        # @param MaxSize: 当定时任务触发时，设置的伸缩组最大实例数。
-        # @type MaxSize: Integer
         # @param MinSize: 当定时任务触发时，设置的伸缩组最小实例数。
         # @type MinSize: Integer
-        # @param DesiredCapacity: 当定时任务触发时，设置的伸缩组期望实例数。
-        # @type DesiredCapacity: Integer
         # @param StartTime: 定时任务的首次触发时间，取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。
         # @type StartTime: String
+        # @param DesiredCapacity: 当定时任务触发时，设置的伸缩组期望实例数。
+        # @type DesiredCapacity: Integer
+        # @param MaxSize: 当定时任务触发时，设置的伸缩组最大实例数。
+        # @type MaxSize: Integer
         # @param EndTime: 定时任务的结束时间，取值为`北京时间`（UTC+8），按照`ISO8601`标准，格式：`YYYY-MM-DDThh:mm:ss+08:00`。<br><br>此参数与`Recurrence`需要同时指定，到达结束时间之后，定时任务将不再生效。
         # @type EndTime: String
         # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式。定时任务中的 [Recurrence参数限制](https://cloud.tencent.com/document/product/377/88119) 为5个字段，由空格分开，结构为：分，小时，日期，月份，星期。此参数与`EndTime`需要同时指定。
         # @type Recurrence: String
+        # @param DisableUpdateDesiredCapacity: 停用期望数更新。默认值为 False，表示定时任务触发时期望实例数正常更新。
+        # 该值为 True 时，定时任务触发时不会主动修改期望实例数，但可能会因最大最小值机制修改期望实例数。
+        # 以下案例的前提都是停用期望数更新为 True：
 
-        attr_accessor :AutoScalingGroupId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
+        # - 定时任务触发时，原期望数为 5，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 5 小于最小值 10，最终新期望数为 10。
+        # - 定时任务触发时，原期望数为 25，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 25 大于最大值 20，最终新期望数为 20。
+        # - 定时任务触发时，原期望数为 13，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，期望数保持为 13 。
+        # @type DisableUpdateDesiredCapacity: Boolean
 
-        def initialize(autoscalinggroupid=nil, scheduledactionname=nil, maxsize=nil, minsize=nil, desiredcapacity=nil, starttime=nil, endtime=nil, recurrence=nil)
+        attr_accessor :AutoScalingGroupId, :ScheduledActionName, :MinSize, :StartTime, :DesiredCapacity, :MaxSize, :EndTime, :Recurrence, :DisableUpdateDesiredCapacity
+
+        def initialize(autoscalinggroupid=nil, scheduledactionname=nil, minsize=nil, starttime=nil, desiredcapacity=nil, maxsize=nil, endtime=nil, recurrence=nil, disableupdatedesiredcapacity=nil)
           @AutoScalingGroupId = autoscalinggroupid
           @ScheduledActionName = scheduledactionname
-          @MaxSize = maxsize
           @MinSize = minsize
-          @DesiredCapacity = desiredcapacity
           @StartTime = starttime
+          @DesiredCapacity = desiredcapacity
+          @MaxSize = maxsize
           @EndTime = endtime
           @Recurrence = recurrence
+          @DisableUpdateDesiredCapacity = disableupdatedesiredcapacity
         end
 
         def deserialize(params)
           @AutoScalingGroupId = params['AutoScalingGroupId']
           @ScheduledActionName = params['ScheduledActionName']
-          @MaxSize = params['MaxSize']
           @MinSize = params['MinSize']
-          @DesiredCapacity = params['DesiredCapacity']
           @StartTime = params['StartTime']
+          @DesiredCapacity = params['DesiredCapacity']
+          @MaxSize = params['MaxSize']
           @EndTime = params['EndTime']
           @Recurrence = params['Recurrence']
+          @DisableUpdateDesiredCapacity = params['DisableUpdateDesiredCapacity']
         end
       end
 
@@ -3040,21 +3050,18 @@ module TencentCloud
         # TRUE：表示开启实例主机名创建序号
         # FALSE：表示不开启实例主机名创建序号
         # @type Enabled: Boolean
-        # @param BeginIndex: 初始序号。
-        # 序号固定位数 IndexLength 为默认值0时，取值范围为 [0, 99999999]。
-        # 序号固定位数 IndexLength 为 [1, 8] 时，取值范围为为 [0, 10^IndexLength-1]，最大值即为固定位数的最大数字。
-        # 当序号递增后超出取值范围时，扩容活动会失败。
-
-        # 首次开启实例主机名称序号：默认值为 0。
-        # 非首次开启实例主机名称序号：若不指定该参数，沿用历史序号。
-        # 下调初始序号可能会造成伸缩组内实例主机名称序号重复。
+        # @param BeginIndex: 初始序号。取值范围与 IndexLength 参数有关：
+        # - IndexLength 为 0 时，取值范围为 [0, 99999999]。
+        # - IndexLength 为 [1, 8] 时，取值范围为为 [0, 10^IndexLength-1]，最大值即为指定位数的最大数字。
+        # 初始序号默认值如下：
+        # - 首次启用递增序号：初始序号默认值为 0 （ 展示位数与 IndexLength 有关，例如 IndexLength 为  4，展示值为 0000）
+        # - 非首次开启递增序号：顺延之前的递增序号，例如上次使用递增至序号 069，则新的初始序号默认值为 070。
+        # 注意：修改初始序号可能会造成伸缩组内序号重复。
         # @type BeginIndex: Integer
-        # @param IndexLength: 实例主机名递增序号位数，默认为0，表示不指定序号位数。不指定序号时，采用默认值0。
-        # 取值范围：0-8，最大为整数8。
-        # 采用取值1-8时，会检查序号是否超过此序号位数的最大数字。
-
-        # 假设设置为3，那么序号形如：001、002 ... 010、011 ... 100 ... 999，序号上限为999;
-        # 假设设置为0，对应的序号为1、2 ... 10、11 ... 100 ... 1000 ...10000 ... 99999999，序号上限为99999999。
+        # @param IndexLength: 递增序号长度，默认为0，表示不指定序号长度。 取值范围：0-8，最大为整数8。
+        # - 长度设置为3，序号展示形式为：000、001、002 ... 010、011 ... 100 ... 999，序号上限为999
+        # - 长度设置为0，序号展示形式为：0、1、2 ... 10、11 ... 100 ... 1000 ...10000 ... 99999999，序号上限为99999999
+        # 注意：递增序号持续超出上限会导致扩容失败，请不要设置过小的递增序号长度。
         # @type IndexLength: Integer
 
         attr_accessor :Enabled, :BeginIndex, :IndexLength
@@ -3086,18 +3093,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNameStyle: String
         # @param HostNameSuffix: 云服务器的主机名后缀。
-        # HostNameSettings的该入参非必选，未选时不设置主机名后缀。
-        # <li> 点号（.）和短横线（-）不能作为 HostNameSuffix 的首尾字符，不能连续使用。</li>
+        # <li> 点号（.）和短横线（-）不能作为 HostNameSuffix 的尾字符，不能连续使用。</li>
         # <li> 不支持 Windows 实例。</li>
         # <li>其他类型（Linux 等）实例：字符长度为[1, 39]，且与 HostName 的长度和不能超过 41，允许支持多个点号，点之间为一段，每段允许字母（不限制大小写）、数字和短横线（-）组成。</li>
-        # 假设后缀名称为 suffix，原主机名为 test.0，最终主机名为 test.0.suffix。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HostNameSuffix: String
-        # @param HostNameDelimiter: 云服务器的主机名分隔符。
-        # 默认的分隔符是点号（.），可选短横线（-）。仅有点号（.）和短横线（-）能作为主机名的分隔符。如果不设置，则默认采用点号（.）分隔符。
-        # 通过分割符连接多段。
-
-        # 假设原主机名为“product-as-host”，分隔符HostNameDelimiter为“-”，设置主机名后缀"suffix"，那么最终主机名为“product-as-host-suffix”。
+        # @param HostNameDelimiter: 云服务器的主机名分隔符。默认的分隔符是点号（.），可选短横线（-）或空字符串。
+        # 分隔符用于拼接主机名，递增序号，后缀。假设主机名为 testGpu4090 ，递增序号为 0007，后缀为 server：
+        # - 分隔符为英文点号（.），最终拼接为 testGpu4090.007.server
+        # - 分隔符为短横线（-），最终拼接为 testGpu4090-007-server
+        # - 分隔符为空字符串，最终拼接为 testGpu4090007server
         # @type HostNameDelimiter: String
 
         attr_accessor :HostName, :HostNameStyle, :HostNameSuffix, :HostNameDelimiter
@@ -3294,19 +3299,19 @@ module TencentCloud
         # **TRUE**：表示开启实例创建序号; **FALSE**：表示不开启实例创建序号
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Enabled: Boolean
-        # @param BeginIndex: 初始序号。取值范围为 [0, 99999999]。
-
-        # 当序号递增后超出取值范围时，扩容活动会失败。
-
-        # 首次开启实例名称序号：默认值为 0。
-        # 非首次开启实例名称序号：若不指定该参数，沿用历史序号。
-        # 下调初始序号可能会造成伸缩组内实例名称序号重复。
+        # @param BeginIndex: 初始序号。取值范围与 IndexLength 参数有关：
+        # - IndexLength 为 0 时，取值范围为 [0, 99999999]。
+        # - IndexLength 为 [1, 8] 时，取值范围为为 [0, 10^IndexLength-1]，最大值即为指定位数的最大数字。
+        # 初始序号默认值如下：
+        # - 首次启用递增序号：初始序号默认值为 0 （ 展示位数与 IndexLength 有关，例如 IndexLength 为  4，展示值为 0000）
+        # - 非首次开启递增序号：顺延之前的递增序号，例如上次使用递增至序号 069，则新的初始序号默认值为 070。
+        # 注意：修改初始序号可能会造成伸缩组内序号重复。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BeginIndex: Integer
-        # @param IndexLength: 实例名称递增序号位数，默认为0，表示不指定序号位数。不指定序号时，采用默认值0。 取值范围：0-8，最大为整数8。 采用取值1-8时，会检查序号是否超过此序号位数的最大数字。
-
-        # 假设设置为3，那么序号形如：000、001、002 ... 010、011 ... 100 ... 999，序号上限为999;
-        # 假设设置为0，对应的序号为0、1、2 ... 10、11 ... 100 ... 1000 ...10000 ... 99999999，序号上限为99999999。
+        # @param IndexLength: 递增序号长度，默认为0，表示不指定序号长度。 取值范围：0-8，最大为整数8。
+        # - 长度设置为3，序号展示形式为：000、001、002 ... 010、011 ... 100 ... 999，序号上限为999
+        # - 长度设置为0，序号展示形式为：0、1、2 ... 10、11 ... 100 ... 1000 ...10000 ... 99999999，序号上限为99999999
+        # 注意：递增序号持续超出上限会导致扩容失败，请不要设置过小的递增序号长度。
         # @type IndexLength: Integer
 
         attr_accessor :Enabled, :BeginIndex, :IndexLength
@@ -3335,13 +3340,13 @@ module TencentCloud
         # UNIQUE，入参所填的 InstanceName 相当于实例名前缀，AS 和 CVM 会对其进行拓展，伸缩组中实例的 InstanceName 可以保证唯一。
         # @type InstanceNameStyle: String
         # @param InstanceNameSuffix: 云服务器实例名后缀。字符长度为[1,105]，且与 InstanceName 的长度和不能超过107。
-
-        # 假设后缀名称为 suffix，原实例名为 test.0，最终实例名为 test.0.suffix。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceNameSuffix: String
-        # @param InstanceNameDelimiter: 云服务器实例名分隔符。 默认的分隔符是点号（.），可选短横线（-）。仅有点号（.）和短横线（-）能作为实例名的分隔符。如果不设置，则默认采用点号（.）分隔符。 通过分割符连接多段。
-
-        # 假设原实例名为“product-as-instance”，分隔符InstanceNameDelimiter为“-”，设置实例名后缀"suffix"，那么最终实例名为“product-as-instance-suffix”。
+        # @param InstanceNameDelimiter: 云服务器的实例名分隔符。默认的分隔符是点号（.），可选短横线（-）或空字符串。
+        # 分隔符用于拼接实例名，递增序号，后缀。假设实例名为 testGpu4090 ，递增序号为 0007，后缀为 server：
+        # - 分隔符为英文点号（.），最终拼接为 testGpu4090.007.server
+        # - 分隔符为短横线（-），最终拼接为 testGpu4090-007-server
+        # - 分隔符为空字符串，最终拼接为 testGpu4090007server
         # @type InstanceNameDelimiter: String
 
         attr_accessor :InstanceName, :InstanceNameStyle, :InstanceNameSuffix, :InstanceNameDelimiter
@@ -4708,10 +4713,18 @@ module TencentCloud
         # @type EndTime: String
         # @param Recurrence: 定时任务的重复方式。为标准 Cron 格式，[Recurrence参数限制](https://cloud.tencent.com/document/product/377/88119)为5个字段，由空格分开，结构为：分，小时，日期，月份，星期。此参数与`EndTime`需要同时指定。
         # @type Recurrence: String
+        # @param DisableUpdateDesiredCapacity: 停用期望数更新。默认值为 False，表示定时任务触发时期望实例数正常更新。
+        # 该值为 True 时，定时任务触发时不会主动修改期望实例数，但可能会因最大最小值机制修改期望实例数。
+        # 以下案例的前提都是停用期望数更新为 True：
 
-        attr_accessor :ScheduledActionId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence
+        # - 定时任务触发时，原期望数为 5，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 5 小于最小值 10，最终新期望数为 10。
+        # - 定时任务触发时，原期望数为 25，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 25 大于最大值 20，最终新期望数为 20。
+        # - 定时任务触发时，原期望数为 13，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，期望数保持为 13 。
+        # @type DisableUpdateDesiredCapacity: Boolean
 
-        def initialize(scheduledactionid=nil, scheduledactionname=nil, maxsize=nil, minsize=nil, desiredcapacity=nil, starttime=nil, endtime=nil, recurrence=nil)
+        attr_accessor :ScheduledActionId, :ScheduledActionName, :MaxSize, :MinSize, :DesiredCapacity, :StartTime, :EndTime, :Recurrence, :DisableUpdateDesiredCapacity
+
+        def initialize(scheduledactionid=nil, scheduledactionname=nil, maxsize=nil, minsize=nil, desiredcapacity=nil, starttime=nil, endtime=nil, recurrence=nil, disableupdatedesiredcapacity=nil)
           @ScheduledActionId = scheduledactionid
           @ScheduledActionName = scheduledactionname
           @MaxSize = maxsize
@@ -4720,6 +4733,7 @@ module TencentCloud
           @StartTime = starttime
           @EndTime = endtime
           @Recurrence = recurrence
+          @DisableUpdateDesiredCapacity = disableupdatedesiredcapacity
         end
 
         def deserialize(params)
@@ -4731,6 +4745,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Recurrence = params['Recurrence']
+          @DisableUpdateDesiredCapacity = params['DisableUpdateDesiredCapacity']
         end
       end
 
@@ -5407,10 +5422,18 @@ module TencentCloud
         # <li>CRONTAB：代表定时任务为重复执行。</li>
         # <li>ONCE：代表定时任务为单次执行。</li>
         # @type ScheduledType: String
+        # @param DisableUpdateDesiredCapacity: 停用期望数更新。表示定时任务触发时期望实例数正常更新。
+        # 该值为 True 时，定时任务触发时不会主动修改期望实例数，但可能会因最大最小值机制修改期望实例数。
+        # 以下案例的前提都是停用期望数更新为 True：
 
-        attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime, :ScheduledType
+        # - 定时任务触发时，原期望数为 5，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 5 小于最小值 10，最终新期望数为 10。
+        # - 定时任务触发时，原期望数为 25，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，但原期望数 25 大于最大值 20，最终新期望数为 20。
+        # - 定时任务触发时，原期望数为 13，定时任务将最小值改为 10，最大值改为 20，期望数改为 15，由于停用期望数更新，15不生效，期望数保持为 13 。
+        # @type DisableUpdateDesiredCapacity: Boolean
 
-        def initialize(scheduledactionid=nil, scheduledactionname=nil, autoscalinggroupid=nil, starttime=nil, recurrence=nil, endtime=nil, maxsize=nil, desiredcapacity=nil, minsize=nil, createdtime=nil, scheduledtype=nil)
+        attr_accessor :ScheduledActionId, :ScheduledActionName, :AutoScalingGroupId, :StartTime, :Recurrence, :EndTime, :MaxSize, :DesiredCapacity, :MinSize, :CreatedTime, :ScheduledType, :DisableUpdateDesiredCapacity
+
+        def initialize(scheduledactionid=nil, scheduledactionname=nil, autoscalinggroupid=nil, starttime=nil, recurrence=nil, endtime=nil, maxsize=nil, desiredcapacity=nil, minsize=nil, createdtime=nil, scheduledtype=nil, disableupdatedesiredcapacity=nil)
           @ScheduledActionId = scheduledactionid
           @ScheduledActionName = scheduledactionname
           @AutoScalingGroupId = autoscalinggroupid
@@ -5422,6 +5445,7 @@ module TencentCloud
           @MinSize = minsize
           @CreatedTime = createdtime
           @ScheduledType = scheduledtype
+          @DisableUpdateDesiredCapacity = disableupdatedesiredcapacity
         end
 
         def deserialize(params)
@@ -5436,6 +5460,7 @@ module TencentCloud
           @MinSize = params['MinSize']
           @CreatedTime = params['CreatedTime']
           @ScheduledType = params['ScheduledType']
+          @DisableUpdateDesiredCapacity = params['DisableUpdateDesiredCapacity']
         end
       end
 

@@ -437,6 +437,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于启动一个智能体的任务
+
+        # @param request: Request instance for StartAgentTask.
+        # @type request: :class:`Tencentcloud::tdai::V20250717::StartAgentTaskRequest`
+        # @rtype: :class:`Tencentcloud::tdai::V20250717::StartAgentTaskResponse`
+        def StartAgentTask(request)
+          body = send_request('StartAgentTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartAgentTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（TerminateAgentInstance）用于下线智能体实例，通常在用户需要下线智能体实例时使用。
 
         # @param request: Request instance for TerminateAgentInstance.

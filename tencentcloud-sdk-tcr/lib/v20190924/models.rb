@@ -1908,6 +1908,46 @@ module TencentCloud
         end
       end
 
+      # DeleteReplicationRule请求参数结构体
+      class DeleteReplicationRuleRequest < TencentCloud::Common::AbstractModel
+        # @param SourceRegistryId: 源实例ID
+        # @type SourceRegistryId: String
+        # @param RuleName: 同步规则名称
+        # @type RuleName: String
+        # @param Description: 规则描述
+        # @type Description: String
+
+        attr_accessor :SourceRegistryId, :RuleName, :Description
+
+        def initialize(sourceregistryid=nil, rulename=nil, description=nil)
+          @SourceRegistryId = sourceregistryid
+          @RuleName = rulename
+          @Description = description
+        end
+
+        def deserialize(params)
+          @SourceRegistryId = params['SourceRegistryId']
+          @RuleName = params['RuleName']
+          @Description = params['Description']
+        end
+      end
+
+      # DeleteReplicationRule返回参数结构体
+      class DeleteReplicationRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteRepositoryPersonal请求参数结构体
       class DeleteRepositoryPersonalRequest < TencentCloud::Common::AbstractModel
         # @param RepoName: 仓库名称
@@ -3672,6 +3712,63 @@ module TencentCloud
               @ReplicationRegistries << replicationregistry_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeReplicationPolicies请求参数结构体
+      class DescribeReplicationPoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例ID
+        # @type RegistryId: String
+        # @param Page: 页数，默认为1
+        # @type Page: Integer
+        # @param PageSize: 每页展示个数，默认为100
+        # @type PageSize: Integer
+
+        attr_accessor :RegistryId, :Page, :PageSize
+
+        def initialize(registryid=nil, page=nil, pagesize=nil)
+          @RegistryId = registryid
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # DescribeReplicationPolicies返回参数结构体
+      class DescribeReplicationPoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param ReplicationPolicyInfoList: 实例同步策略列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationPolicyInfoList: Array
+        # @param TotalCount: 策略总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ReplicationPolicyInfoList, :TotalCount, :RequestId
+
+        def initialize(replicationpolicyinfolist=nil, totalcount=nil, requestid=nil)
+          @ReplicationPolicyInfoList = replicationpolicyinfolist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ReplicationPolicyInfoList'].nil?
+            @ReplicationPolicyInfoList = []
+            params['ReplicationPolicyInfoList'].each do |i|
+              replicationpolicyinfo_tmp = ReplicationPolicyInfo.new
+              replicationpolicyinfo_tmp.deserialize(i)
+              @ReplicationPolicyInfoList << replicationpolicyinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5759,6 +5856,28 @@ module TencentCloud
         end
       end
 
+      # 策略过滤条件
+      class PolicyFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 策略过滤类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: 策略过滤值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Type, :Value
+
+        def initialize(type=nil, value=nil)
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+        end
+      end
+
       # 地域信息
       class Region < TencentCloud::Common::AbstractModel
         # @param Alias: gz
@@ -6068,6 +6187,75 @@ module TencentCloud
           @Status = params['Status']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # 实例复制/实例同步策略信息ID
+      class ReplicationPolicyInfo < TencentCloud::Common::AbstractModel
+        # @param ID: 策略ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+        # @param Name: 策略名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Description: 策略描述信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Filters: 策略过滤条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Filters: Array
+        # @param Override: 是否覆盖对端同名镜像
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Override: Boolean
+        # @param Enabled: 是否开启
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enabled: Boolean
+        # @param SrcResource: 源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcResource: String
+        # @param DestResource: 目的资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestResource: String
+        # @param CreationTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreationTime: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+
+        attr_accessor :ID, :Name, :Description, :Filters, :Override, :Enabled, :SrcResource, :DestResource, :CreationTime, :UpdateTime
+
+        def initialize(id=nil, name=nil, description=nil, filters=nil, override=nil, enabled=nil, srcresource=nil, destresource=nil, creationtime=nil, updatetime=nil)
+          @ID = id
+          @Name = name
+          @Description = description
+          @Filters = filters
+          @Override = override
+          @Enabled = enabled
+          @SrcResource = srcresource
+          @DestResource = destresource
+          @CreationTime = creationtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @Description = params['Description']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              policyfilter_tmp = PolicyFilter.new
+              policyfilter_tmp.deserialize(i)
+              @Filters << policyfilter_tmp
+            end
+          end
+          @Override = params['Override']
+          @Enabled = params['Enabled']
+          @SrcResource = params['SrcResource']
+          @DestResource = params['DestResource']
+          @CreationTime = params['CreationTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

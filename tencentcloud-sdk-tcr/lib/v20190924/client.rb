@@ -965,6 +965,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除实例同步规则
+
+        # @param request: Request instance for DeleteReplicationRule.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DeleteReplicationRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DeleteReplicationRuleResponse`
+        def DeleteReplicationRule(request)
+          body = send_request('DeleteReplicationRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteReplicationRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除镜像仓库
 
         # @param request: Request instance for DeleteRepository.
@@ -1793,6 +1817,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeReplicationInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取实例同步规则列表
+
+        # @param request: Request instance for DescribeReplicationPolicies.
+        # @type request: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationPoliciesRequest`
+        # @rtype: :class:`Tencentcloud::tcr::V20190924::DescribeReplicationPoliciesResponse`
+        def DescribeReplicationPolicies(request)
+          body = send_request('DescribeReplicationPolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeReplicationPoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else

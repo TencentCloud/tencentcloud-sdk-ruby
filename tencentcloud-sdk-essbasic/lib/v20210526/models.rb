@@ -12805,12 +12805,13 @@ module TencentCloud
         # @param UserId: 员工在电子签平台的用户ID
         # @type UserId: String
         # @param DisplayName: 显示的员工名
-        # 注意：2024-07-08 及之后创建的应用号，该字段返回的是打码信息
+        # 注意：该字段返回的是打码信息
         # @type DisplayName: String
         # @param Mobile: 员工手机号
-        # 注意：2024-07-08 及之后创建的应用号，该字段返回的是打码信息
+        # 注意：该字段返回的是打码信息
         # @type Mobile: String
         # @param Email: 员工邮箱
+        # 注意：该字段返回的是打码信息
         # @type Email: String
         # @param OpenId: 员工在第三方应用平台的用户ID
         # @type OpenId: String

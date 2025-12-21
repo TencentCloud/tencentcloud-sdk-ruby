@@ -299,6 +299,42 @@ module TencentCloud
         end
       end
 
+      # 安卓实例备份
+      class AndroidInstanceBackup < TencentCloud::Common::AbstractModel
+        # @param BackupId: 备份ID
+        # @type BackupId: String
+        # @param State: 备份状态
+        # @type State: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param Size: 大小，单位 Byte
+        # @type Size: Integer
+        # @param AndroidInstanceId: 备份的安卓实例 ID
+        # @type AndroidInstanceId: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+
+        attr_accessor :BackupId, :State, :Zone, :Size, :AndroidInstanceId, :CreateTime
+
+        def initialize(backupid=nil, state=nil, zone=nil, size=nil, androidinstanceid=nil, createtime=nil)
+          @BackupId = backupid
+          @State = state
+          @Zone = zone
+          @Size = size
+          @AndroidInstanceId = androidinstanceid
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @State = params['State']
+          @Zone = params['Zone']
+          @Size = params['Size']
+          @AndroidInstanceId = params['AndroidInstanceId']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 安卓实例设备信息
       class AndroidInstanceDevice < TencentCloud::Common::AbstractModel
         # @param Brand: 品牌
@@ -1968,16 +2004,31 @@ module TencentCloud
 
       # DescribeAndroidInstanceBackups返回参数结构体
       class DescribeAndroidInstanceBackupsResponse < TencentCloud::Common::AbstractModel
+        # @param Backups: 备份列表
+        # @type Backups: Array
+        # @param TotalCount: 备份总数
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Backups, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(backups=nil, totalcount=nil, requestid=nil)
+          @Backups = backups
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Backups'].nil?
+            @Backups = []
+            params['Backups'].each do |i|
+              androidinstancebackup_tmp = AndroidInstanceBackup.new
+              androidinstancebackup_tmp.deserialize(i)
+              @Backups << androidinstancebackup_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end

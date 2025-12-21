@@ -4167,19 +4167,23 @@ module TencentCloud
         # 1. 推荐使用小于7M的图片；
         # 2. 图片格式的取值为：jpeg，jpg, png, webp。
         # @type Url: String
+        # @param Text: 输入图片的描述信息，用于帮助模型理解图片。仅GEM 2.5、GEM 3.0 有效。
+        # @type Text: String
 
-        attr_accessor :Type, :FileId, :Url
+        attr_accessor :Type, :FileId, :Url, :Text
 
-        def initialize(type=nil, fileid=nil, url=nil)
+        def initialize(type=nil, fileid=nil, url=nil, text=nil)
           @Type = type
           @FileId = fileid
           @Url = url
+          @Text = text
         end
 
         def deserialize(params)
           @Type = params['Type']
           @FileId = params['FileId']
           @Url = params['Url']
+          @Text = params['Text']
         end
       end
 
@@ -4262,7 +4266,6 @@ module TencentCloud
         # <li>Gem3.0_1K</li>
         # <li>Gem3.0_2K</li>
         # <li>Gem3.0_4K</li>
-        # <li>Seedream4.0</li>
         # <li>Sora2</li>
         # <li>Veo3.1Standard</li>
         # <li>Veo3.1Fast</li>
@@ -4274,7 +4277,6 @@ module TencentCloud
         # <li>Hailuo02&2.3_768P</li>
         # <li>Hailuo2.3fast_768P</li>
         # <li>Hailuo2.3fast_1080P</li>
-        # <li>Seedance3.0pro</li>
         # <li>Jimeng4.0</li>
         # <li>Jimeng3.0pro</li>
         # <li>Vidu2.0_720P</li>
@@ -4329,7 +4331,6 @@ module TencentCloud
         # <li>当 ModelName 是 Vidu，可选值为 720P、1080P，默认为 720P；</li>
         # <li>当 ModelName 是 GV，可选值为 720P、1080P，默认为 720P；</li>
         # <li>当 ModelName 是 OS，可选值为 720P；</li>
-        # 说明：除模型可支持的分辨率外，还支持 2K、4K分辨率。
         # @type Resolution: String
         # @param AspectRatio: 指定所生成视频的宽高比。
         # <li>当 ModelName 是 Kling，当文生视频时，则可选值为 16:9、9:16、 1:1，默认为16:9；</li>
@@ -7110,15 +7111,19 @@ module TencentCloud
         # <li>GEM：Gemini；</li>
         # <li>Jimeng：即梦；</li>
         # <li>Qwen：千问。</li>
+        # <li>Hunyuan：混元。</li>
+        # <li>Mingmou：明眸。</li>
         # @type ModelName: String
         # @param ModelVersion: 模型版本。取值：
         # <li>当 ModelName 是 GEM，可选值为 2.5、3.0；</li>
         # <li>当 ModelName 是 Jimeng，可选值为 4.0；</li>
         # <li>当 ModelName 是 Qwen，可选值为 0925；</li>
+        # <li>当 ModelName 是 Hunyuan，可选值为 3.0；</li>
+        # <li>当 ModelName 是 Mingmou，可选值为 1.0；</li>
         # @type ModelVersion: String
         # @param FileInfos: AIGC 生图任务的输入图片的文件信息。默认只支持指定1个，使用模型 GEM 时最多指定3个。
         # @type FileInfos: Array
-        # @param Prompt: 生成图片的提示词。最大支持1000字符，当 FileInfos 为空时，此参数必填。
+        # @param Prompt: 生成图片的提示词。最大支持2000字符，当 FileInfos 为空时，此参数必填。
         # @type Prompt: String
         # @param NegativePrompt: 要阻止模型生成图片的提示词。最大支持500个字符。
         # @type NegativePrompt: String

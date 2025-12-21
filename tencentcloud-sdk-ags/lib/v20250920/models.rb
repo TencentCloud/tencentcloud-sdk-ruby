@@ -89,6 +89,30 @@ module TencentCloud
         end
       end
 
+      # 沙箱实例对象存储挂载配置
+      class CosStorageSource < TencentCloud::Common::AbstractModel
+        # @param Endpoint: 对象存储访问域名
+        # @type Endpoint: String
+        # @param BucketName: 对象存储桶名称
+        # @type BucketName: String
+        # @param BucketPath: 对象存储桶路径，必须为以/起始的绝对路径
+        # @type BucketPath: String
+
+        attr_accessor :Endpoint, :BucketName, :BucketPath
+
+        def initialize(endpoint=nil, bucketname=nil, bucketpath=nil)
+          @Endpoint = endpoint
+          @BucketName = bucketname
+          @BucketPath = bucketpath
+        end
+
+        def deserialize(params)
+          @Endpoint = params['Endpoint']
+          @BucketName = params['BucketName']
+          @BucketPath = params['BucketPath']
+        end
+      end
+
       # CreateAPIKey请求参数结构体
       class CreateAPIKeyRequest < TencentCloud::Common::AbstractModel
         # @param Name: API密钥名称，方便用户记忆
@@ -149,10 +173,14 @@ module TencentCloud
         # @type Tags: Array
         # @param ClientToken: 幂等性 Token，长度不超过 64 字符
         # @type ClientToken: String
+        # @param RoleArn: 角色ARN
+        # @type RoleArn: String
+        # @param StorageMounts: 沙箱工具存储配置
+        # @type StorageMounts: Array
 
-        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken
+        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts
 
-        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil)
+        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil)
           @ToolName = toolname
           @ToolType = tooltype
           @NetworkConfiguration = networkconfiguration
@@ -160,6 +188,8 @@ module TencentCloud
           @DefaultTimeout = defaulttimeout
           @Tags = tags
           @ClientToken = clienttoken
+          @RoleArn = rolearn
+          @StorageMounts = storagemounts
         end
 
         def deserialize(params)
@@ -180,6 +210,15 @@ module TencentCloud
             end
           end
           @ClientToken = params['ClientToken']
+          @RoleArn = params['RoleArn']
+          unless params['StorageMounts'].nil?
+            @StorageMounts = []
+            params['StorageMounts'].each do |i|
+              storagemount_tmp = StorageMount.new
+              storagemount_tmp.deserialize(i)
+              @StorageMounts << storagemount_tmp
+            end
+          end
         end
       end
 
@@ -465,19 +504,54 @@ module TencentCloud
         end
       end
 
+      # 沙箱实例存储挂载配置可选项，用于覆盖沙箱工具的存储配置的部分选项，并提供子路径挂载配置。
+      class MountOption < TencentCloud::Common::AbstractModel
+        # @param Name: 指定沙箱工具中的存储配置名称
+        # @type Name: String
+        # @param MountPath: 沙箱实例本地挂载路径（可选），默认继承工具中的存储配置
+        # @type MountPath: String
+        # @param SubPath: 沙箱实例存储挂载子路径（可选）
+        # @type SubPath: String
+        # @param ReadOnly: 沙箱实例存储挂载读写权限（可选），默认继承工具存储配置
+        # @type ReadOnly: Boolean
+
+        attr_accessor :Name, :MountPath, :SubPath, :ReadOnly
+
+        def initialize(name=nil, mountpath=nil, subpath=nil, readonly=nil)
+          @Name = name
+          @MountPath = mountpath
+          @SubPath = subpath
+          @ReadOnly = readonly
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @MountPath = params['MountPath']
+          @SubPath = params['SubPath']
+          @ReadOnly = params['ReadOnly']
+        end
+      end
+
       # 沙箱网络配置
       class NetworkConfiguration < TencentCloud::Common::AbstractModel
-        # @param NetworkMode: 网络模式（当前支持 PUBLIC）
+        # @param NetworkMode: 网络模式（当前支持 PUBLIC, VPC, SANDBOX）
         # @type NetworkMode: String
+        # @param VpcConfig: VPC网络相关配置
+        # @type VpcConfig: :class:`Tencentcloud::Ags.v20250920.models.VPCConfig`
 
-        attr_accessor :NetworkMode
+        attr_accessor :NetworkMode, :VpcConfig
 
-        def initialize(networkmode=nil)
+        def initialize(networkmode=nil, vpcconfig=nil)
           @NetworkMode = networkmode
+          @VpcConfig = vpcconfig
         end
 
         def deserialize(params)
           @NetworkMode = params['NetworkMode']
+          unless params['VpcConfig'].nil?
+            @VpcConfig = VPCConfig.new
+            @VpcConfig.deserialize(params['VpcConfig'])
+          end
         end
       end
 
@@ -501,10 +575,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间（ISO 8601 格式）
         # @type UpdateTime: String
+        # @param MountOptions: 存储挂载选项
+        # @type MountOptions: Array
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -514,6 +590,7 @@ module TencentCloud
           @StopReason = stopreason
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @MountOptions = mountoptions
         end
 
         def deserialize(params)
@@ -526,6 +603,14 @@ module TencentCloud
           @StopReason = params['StopReason']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['MountOptions'].nil?
+            @MountOptions = []
+            params['MountOptions'].each do |i|
+              mountoption_tmp = MountOption.new
+              mountoption_tmp.deserialize(i)
+              @MountOptions << mountoption_tmp
+            end
+          end
         end
       end
 
@@ -551,10 +636,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 沙箱工具更新时间，格式：ISO8601
         # @type UpdateTime: String
+        # @param RoleArn: 沙箱工具绑定角色ARN
+        # @type RoleArn: String
+        # @param StorageMounts: 沙箱工具中实例存储挂载配置
+        # @type StorageMounts: Array
 
-        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime
+        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts
 
-        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil)
+        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil)
           @ToolId = toolid
           @ToolName = toolname
           @ToolType = tooltype
@@ -565,6 +654,8 @@ module TencentCloud
           @Tags = tags
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @RoleArn = rolearn
+          @StorageMounts = storagemounts
         end
 
         def deserialize(params)
@@ -588,6 +679,15 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @RoleArn = params['RoleArn']
+          unless params['StorageMounts'].nil?
+            @StorageMounts = []
+            params['StorageMounts'].each do |i|
+              storagemount_tmp = StorageMount.new
+              storagemount_tmp.deserialize(i)
+              @StorageMounts << storagemount_tmp
+            end
+          end
         end
       end
 
@@ -601,14 +701,17 @@ module TencentCloud
         # @type Timeout: String
         # @param ClientToken: 幂等性 Token，长度不超过 64 字符
         # @type ClientToken: String
+        # @param MountOptions: 沙箱实例存储挂载配置
+        # @type MountOptions: Array
 
-        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken
+        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions
 
-        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil)
+        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil)
           @ToolId = toolid
           @ToolName = toolname
           @Timeout = timeout
           @ClientToken = clienttoken
+          @MountOptions = mountoptions
         end
 
         def deserialize(params)
@@ -616,6 +719,14 @@ module TencentCloud
           @ToolName = params['ToolName']
           @Timeout = params['Timeout']
           @ClientToken = params['ClientToken']
+          unless params['MountOptions'].nil?
+            @MountOptions = []
+            params['MountOptions'].each do |i|
+              mountoption_tmp = MountOption.new
+              mountoption_tmp.deserialize(i)
+              @MountOptions << mountoption_tmp
+            end
+          end
         end
       end
 
@@ -671,6 +782,56 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 沙箱工具中实例存储挂载配置
+      class StorageMount < TencentCloud::Common::AbstractModel
+        # @param Name: 存储挂载配置名称
+        # @type Name: String
+        # @param StorageSource: 存储配置
+        # @type StorageSource: :class:`Tencentcloud::Ags.v20250920.models.StorageSource`
+        # @param MountPath: 沙箱实例本地挂载路径
+        # @type MountPath: String
+        # @param ReadOnly: 存储挂载读写权限配置，默认为false
+        # @type ReadOnly: Boolean
+
+        attr_accessor :Name, :StorageSource, :MountPath, :ReadOnly
+
+        def initialize(name=nil, storagesource=nil, mountpath=nil, readonly=nil)
+          @Name = name
+          @StorageSource = storagesource
+          @MountPath = mountpath
+          @ReadOnly = readonly
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['StorageSource'].nil?
+            @StorageSource = StorageSource.new
+            @StorageSource.deserialize(params['StorageSource'])
+          end
+          @MountPath = params['MountPath']
+          @ReadOnly = params['ReadOnly']
+        end
+      end
+
+      # 挂载存储配置
+      class StorageSource < TencentCloud::Common::AbstractModel
+        # @param Cos: 对象存储桶配置
+        # @type Cos: :class:`Tencentcloud::Ags.v20250920.models.CosStorageSource`
+
+        attr_accessor :Cos
+
+        def initialize(cos=nil)
+          @Cos = cos
+        end
+
+        def deserialize(params)
+          unless params['Cos'].nil?
+            @Cos = CosStorageSource.new
+            @Cos.deserialize(params['Cos'])
+          end
         end
       end
 
@@ -781,6 +942,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 沙箱工具VPC相关配置
+      class VPCConfig < TencentCloud::Common::AbstractModel
+        # @param SubnetIds: VPC子网ID列表
+        # @type SubnetIds: Array
+        # @param SecurityGroupIds: 安全组ID列表
+        # @type SecurityGroupIds: Array
+
+        attr_accessor :SubnetIds, :SecurityGroupIds
+
+        def initialize(subnetids=nil, securitygroupids=nil)
+          @SubnetIds = subnetids
+          @SecurityGroupIds = securitygroupids
+        end
+
+        def deserialize(params)
+          @SubnetIds = params['SubnetIds']
+          @SecurityGroupIds = params['SecurityGroupIds']
         end
       end
 

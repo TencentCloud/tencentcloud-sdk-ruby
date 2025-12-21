@@ -1302,18 +1302,14 @@ module TencentCloud
         # @param ConfigPath: 配置项日志路径
         # @type ConfigPath: String
         # @param ConfigDesc: 配置项描述
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigDesc: String
         # @param ConfigTags: 配置项标签
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigTags: String
         # @param ConfigPipeline: 配置项对应的ES管道
         # @type ConfigPipeline: String
         # @param ConfigCreateTime: 配置项创建时间，格式为yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigCreateTime: String
         # @param ConfigUpdateTime: 配置项更新时间，格式为yyyy-MM-dd HH:mm:ss
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ConfigUpdateTime: String
         # @param ConfigSchema: 配置项解析规则
         # @type ConfigSchema: :class:`Tencentcloud::Tsf.v20180326.models.BusinessLogConfigSchema`
@@ -1334,13 +1330,15 @@ module TencentCloud
         # @type FilebeatCloseInactive: Integer
         # @param FilebeatCleanInactive: filebeat clean_inactive参数
         # @type FilebeatCleanInactive: Integer
+        # @param CustomMultilinePattern: 是否开启自定义pattern
+        # @type CustomMultilinePattern: Boolean
 
-        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive
+        attr_accessor :ConfigId, :ConfigName, :ConfigPath, :ConfigDesc, :ConfigTags, :ConfigPipeline, :ConfigCreateTime, :ConfigUpdateTime, :ConfigSchema, :ConfigAssociatedGroups, :ConfigAssociatedGroupList, :FilebeatConfigEnable, :FilebeatCloseTimeout, :FilebeatIgnoreOlder, :FilebeatHarvesterLimit, :FilebeatCloseInactive, :FilebeatCleanInactive, :CustomMultilinePattern
         extend Gem::Deprecate
         deprecate :ConfigAssociatedGroups, :none, 2025, 12
         deprecate :ConfigAssociatedGroups=, :none, 2025, 12
 
-        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil)
+        def initialize(configid=nil, configname=nil, configpath=nil, configdesc=nil, configtags=nil, configpipeline=nil, configcreatetime=nil, configupdatetime=nil, configschema=nil, configassociatedgroups=nil, configassociatedgrouplist=nil, filebeatconfigenable=nil, filebeatclosetimeout=nil, filebeatignoreolder=nil, filebeatharvesterlimit=nil, filebeatcloseinactive=nil, filebeatcleaninactive=nil, custommultilinepattern=nil)
           @ConfigId = configid
           @ConfigName = configname
           @ConfigPath = configpath
@@ -1358,6 +1356,7 @@ module TencentCloud
           @FilebeatHarvesterLimit = filebeatharvesterlimit
           @FilebeatCloseInactive = filebeatcloseinactive
           @FilebeatCleanInactive = filebeatcleaninactive
+          @CustomMultilinePattern = custommultilinepattern
         end
 
         def deserialize(params)
@@ -1395,6 +1394,7 @@ module TencentCloud
           @FilebeatHarvesterLimit = params['FilebeatHarvesterLimit']
           @FilebeatCloseInactive = params['FilebeatCloseInactive']
           @FilebeatCleanInactive = params['FilebeatCleanInactive']
+          @CustomMultilinePattern = params['CustomMultilinePattern']
         end
       end
 
@@ -1459,18 +1459,14 @@ module TencentCloud
         # @param SchemaType: 解析规则类型。可选值 0（SPRING_BOOT：默认Spring Boot格式），1（NONE：无解析规则），4（NGINX_ACCESS：nginx access日志），5（CUSTOM_LOGBACK：自定义Logback），6（CUSTOM_LOG4J：自定义Log4J），7（CUSTOM_LOG4J2：自定义Log4J2），8（TEXT：单行/多行文本），9（ENVOY_MSGW_ACCESS：envoy access日志）。
         # @type SchemaType: Integer
         # @param SchemaContent: 解析规则内容
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaContent: String
         # @param SchemaDateFormat: 解析规则时间格式
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaDateFormat: String
         # @param SchemaMultilinePattern: 解析规则对应的多行匹配规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaMultilinePattern: String
         # @param SchemaCreateTime: 解析规则创建时间，格式为yyyy-MM-dd HH:mm:ss
         # @type SchemaCreateTime: String
         # @param SchemaPatternLayout: 用户填写的解析规则
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SchemaPatternLayout: String
 
         attr_accessor :SchemaType, :SchemaContent, :SchemaDateFormat, :SchemaMultilinePattern, :SchemaCreateTime, :SchemaPatternLayout

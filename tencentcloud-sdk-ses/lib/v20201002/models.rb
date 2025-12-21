@@ -1994,8 +1994,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2025, 11
-        deprecate :UserComplainted=, :none, 2025, 11
+        deprecate :UserComplainted, :none, 2025, 12
+        deprecate :UserComplainted=, :none, 2025, 12
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid

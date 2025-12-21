@@ -1761,8 +1761,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 11
-        deprecate :PrivateLinkParam=, :none, 2025, 11
+        deprecate :PrivateLinkParam, :none, 2025, 12
+        deprecate :PrivateLinkParam=, :none, 2025, 12
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -2019,54 +2019,56 @@ module TencentCloud
 
       # CreateInstancePre请求参数结构体
       class CreateInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: ckafka集群实例Name，是一个不超过 128 个字符的任意字符串。
+        # @param InstanceName: <p>ckafka集群实例Name，是一个不超过 128 个字符的任意字符串。</p>
         # @type InstanceName: String
-        # @param ZoneId: 可用区。当购买多可用区实例时，当前参数为主可用区。  [查看可用区](https://cloud.tencent.com/document/product/597/55246)
+        # @param ZoneId: <p>可用区。当购买多可用区实例时，当前参数为主可用区。  <a href="https://cloud.tencent.com/document/product/597/55246">查看可用区</a></p>
         # @type ZoneId: Integer
-        # @param Period: 预付费购买时长，例如 "1m",就是一个月,取值范围 1m~36m
+        # @param Period: <p>预付费购买时长，例如 "1m",就是一个月,取值范围 1m~36m</p>
         # @type Period: String
-        # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
+        # @param InstanceType: <p>国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。</p>
         # @type InstanceType: Integer
-        # @param VpcId: 私有网络Id
+        # @param VpcId: <p>私有网络Id</p>
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: <p>子网id</p>
         # @type SubnetId: String
-        # @param MsgRetentionTime: 可选。实例日志的最长保留时间，单位分钟，不填默认为1440（1天），可设置范围为1分钟到90天。
+        # @param MsgRetentionTime: <p>可选。实例日志的最长保留时间，单位分钟，不填默认为1440（1天），可设置范围为1分钟到90天。</p>
         # @type MsgRetentionTime: Integer
-        # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id
+        # @param ClusterId: <p>创建实例时可以选择集群Id, 该入参表示集群Id</p>
         # @type ClusterId: Integer
-        # @param RenewFlag: 预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)
+        # @param RenewFlag: <p>预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type RenewFlag: Integer
-        # @param KafkaVersion: CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。
+        # @param KafkaVersion: <p>CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
-        # @param SpecificationsType: 实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession",[高级版实例]填写"premium"
+        # @param SpecificationsType: <p>实例类型: [标准版实例]填写 "standard" (默认), [专业版实例]填写 "profession",[高级版实例]填写"premium"</p>
         # @type SpecificationsType: String
-        # @param DiskSize: 磁盘大小，如果跟控制台规格配比不相符，则无法创建成功。默认取值为500，步长设置为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562
+        # @param DiskSize: <p>磁盘大小，如果跟控制台规格配比不相符，则无法创建成功。默认取值为500，步长设置为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562</p>
         # @type DiskSize: Integer
-        # @param BandWidth: 实例带宽,默认值为40，单位MB/s; 最小值:20MB/s, 高级版最大值:360MB/s,专业版最大值:100000MB/s  标准版固定带宽规格: 40MB/s, 100MB/s, 150MB/s。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745
+        # @param BandWidth: <p>实例带宽,默认值为40，单位MB/s; 最小值:20MB/s, 高级版最大值:360MB/s,专业版最大值:100000MB/s  标准版固定带宽规格: 40MB/s, 100MB/s, 150MB/s。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745</p>
         # @type BandWidth: Integer
-        # @param Partition: 分区大小，如果跟控制台规格配比不相符，则无法创建成功。默认值为800，步长为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122563
+        # @param Partition: <p>分区大小，如果跟控制台规格配比不相符，则无法创建成功。默认值为800，步长为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122563</p>
         # @type Partition: Integer
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param DiskType: 专业版/高级版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"
+        # @param DiskType: <p>专业版/高级版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认为 "CLOUD_BASIC"</p>
         # @type DiskType: String
-        # @param MultiZoneFlag: 是否创建跨可用区实例，当前参数为 true 时，zoneIds必填
+        # @param MultiZoneFlag: <p>是否创建跨可用区实例，当前参数为 true 时，zoneIds必填</p>
         # @type MultiZoneFlag: Boolean
-        # @param ZoneIds: 可用区列表，购买多可用区实例时为必填项
+        # @param ZoneIds: <p>可用区列表，购买多可用区实例时为必填项</p>
         # @type ZoneIds: Array
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。默认值为 0。需要保证传入参数为 3 的整数倍
+        # @param PublicNetworkMonthly: <p>公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。默认值为 0。需要保证传入参数为 3 的整数倍</p>
         # @type PublicNetworkMonthly: Integer
-        # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
+        # @param InstanceNum: <p>购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例</p>
         # @type InstanceNum: Integer
-        # @param AutoVoucher: 是否自动选择代金券:1-是;0否。默认为0
+        # @param AutoVoucher: <p>是否自动选择代金券:1-是;0否。默认为0</p>
         # @type AutoVoucher: Integer
-        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认）
+        # @param ElasticBandwidthSwitch: <p>弹性带宽开关 0不开启  1开启（0默认）</p>
         # @type ElasticBandwidthSwitch: Integer
+        # @param CustomSSLCertId: <p>自定义证书Id,仅当SpecificationsType为profession时生效,支持自定义证书能力</p><p>可通过<a href="https://cloud.tencent.com/document/product/400/41673">DescribeCertificateDetail</a>接口获取</p>
+        # @type CustomSSLCertId: String
 
-        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher, :ElasticBandwidthSwitch
+        attr_accessor :InstanceName, :ZoneId, :Period, :InstanceType, :VpcId, :SubnetId, :MsgRetentionTime, :ClusterId, :RenewFlag, :KafkaVersion, :SpecificationsType, :DiskSize, :BandWidth, :Partition, :Tags, :DiskType, :MultiZoneFlag, :ZoneIds, :PublicNetworkMonthly, :InstanceNum, :AutoVoucher, :ElasticBandwidthSwitch, :CustomSSLCertId
 
-        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil, elasticbandwidthswitch=nil)
+        def initialize(instancename=nil, zoneid=nil, period=nil, instancetype=nil, vpcid=nil, subnetid=nil, msgretentiontime=nil, clusterid=nil, renewflag=nil, kafkaversion=nil, specificationstype=nil, disksize=nil, bandwidth=nil, partition=nil, tags=nil, disktype=nil, multizoneflag=nil, zoneids=nil, publicnetworkmonthly=nil, instancenum=nil, autovoucher=nil, elasticbandwidthswitch=nil, customsslcertid=nil)
           @InstanceName = instancename
           @ZoneId = zoneid
           @Period = period
@@ -2089,6 +2091,7 @@ module TencentCloud
           @InstanceNum = instancenum
           @AutoVoucher = autovoucher
           @ElasticBandwidthSwitch = elasticbandwidthswitch
+          @CustomSSLCertId = customsslcertid
         end
 
         def deserialize(params)
@@ -2121,6 +2124,7 @@ module TencentCloud
           @InstanceNum = params['InstanceNum']
           @AutoVoucher = params['AutoVoucher']
           @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
+          @CustomSSLCertId = params['CustomSSLCertId']
         end
       end
 
@@ -2138,8 +2142,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 11
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 11
+        deprecate :DeleteRouteTimestamp, :none, 2025, 12
+        deprecate :DeleteRouteTimestamp=, :none, 2025, 12
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2161,7 +2165,7 @@ module TencentCloud
 
       # CreateInstancePre返回参数结构体
       class CreateInstancePreResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2231,50 +2235,52 @@ module TencentCloud
 
       # CreatePostPaidInstance请求参数结构体
       class CreatePostPaidInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param VpcId: 私有网络Id,可通过[DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)接口获取
+        # @param VpcId: <p>私有网络Id,可通过<a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a>接口获取</p>
         # @type VpcId: String
-        # @param SubnetId: 子网Id,可通过[DescribeSubnets](https://cloud.tencent.com/document/product/215/15784)接口获取
+        # @param SubnetId: <p>子网Id,可通过<a href="https://cloud.tencent.com/document/product/215/15784">DescribeSubnets</a>接口获取</p>
         # @type SubnetId: String
-        # @param InstanceName: ckafka集群实例名称，是一个长度不超过128的任意字符。
+        # @param InstanceName: <p>ckafka集群实例名称，是一个长度不超过128的任意字符。</p>
         # @type InstanceName: String
-        # @param InstanceType: 国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。
+        # @param InstanceType: <p>国际站标准版实例规格。目前只有国际站标准版使用当前字段区分规格，国内站标准版使用峰值带宽区分规格。除了国际站标准版外的所有实例填写 1 即可。国际站标准版实例：入门型(general)]填写1；[标准型(standard)]填写2；[进阶型(advanced)]填写3；[容量型(capacity)]填写4；[高阶型1(specialized-1)]填写5；[高阶型2(specialized-2)]填写6；[高阶型3(specialized-3)]填写7；[高阶型4(specialized-4)]填写8。</p>
         # @type InstanceType: Integer
-        # @param MsgRetentionTime: 实例日志的默认最长保留时间，单位分钟。不传入该参数时默认为 1440 分钟（1天），最大30天。当 topic 显式设置消息保留时间时，以 topic 保留时间为准
+        # @param MsgRetentionTime: <p>实例日志的默认最长保留时间，单位分钟。不传入该参数时默认为 1440 分钟（1天），最大30天。当 topic 显式设置消息保留时间时，以 topic 保留时间为准</p>
         # @type MsgRetentionTime: Integer
-        # @param ClusterId: 创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数
+        # @param ClusterId: <p>创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数</p>
         # @type ClusterId: Integer
-        # @param KafkaVersion: 实例版本。目前支持当前支持"2.4.1", "2.4.2","2.8.1", "3.2.3"，默认取值"2.4.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。
+        # @param KafkaVersion: <p>实例版本。目前支持当前支持"2.4.1", "2.4.2","2.8.1", "3.2.3"，默认取值"2.4.1"。"2.4.1" 与 "2.4.2" 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
-        # @param SpecificationsType: 实例类型。"standard"：标准版，"profession"：专业版。  (标准版仅国际站支持，国内站目前支持专业版)
+        # @param SpecificationsType: <p>实例类型。"standard"：标准版，"profession"：专业版。  (标准版仅国际站支持，国内站目前支持专业版)</p>
         # @type SpecificationsType: String
-        # @param DiskType: 专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认值为 "CLOUD_BASIC"
+        # @param DiskType: <p>专业版实例磁盘类型，标准版实例不需要填写。"CLOUD_SSD"：SSD云硬盘；"CLOUD_BASIC"：高性能云硬盘。不传默认值为 "CLOUD_BASIC"</p>
         # @type DiskType: String
-        # @param BandWidth: 实例内网峰值带宽，默认值为40。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格，可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745
+        # @param BandWidth: <p>实例内网峰值带宽，默认值为40。单位 MB/s。标准版需传入当前实例规格所对应的峰值带宽。注意如果创建的实例为专业版实例，峰值带宽，分区数等参数配置需要满足专业版的计费规格，可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/11745</p>
         # @type BandWidth: Integer
-        # @param DiskSize: 实例硬盘大小，默认取值为500，步长设置为100。需要满足当前实例的计费规格，可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562
+        # @param DiskSize: <p>实例硬盘大小，默认取值为500，步长设置为100。需要满足当前实例的计费规格，可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122562</p>
         # @type DiskSize: Integer
-        # @param Partition: 实例最大分区数量，需要满足当前实例的计费规格。默认值为800，步长为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122563
+        # @param Partition: <p>实例最大分区数量，需要满足当前实例的计费规格。默认值为800，步长为100。可以通过以下链接查看计费规格：https://cloud.tencent.com/document/product/597/122563</p>
         # @type Partition: Integer
-        # @param TopicNum: 实例最大 topic 数量，需要满足当前实例的计费规格。默认值为800，步长设置为100。
+        # @param TopicNum: <p>实例最大 topic 数量，需要满足当前实例的计费规格。默认值为800，步长设置为100。</p>
         # @type TopicNum: Integer
-        # @param ZoneId: 实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在子网的可用区 id。ZoneId、ZoneIds不能同时为空，可通过[DescribeCkafkaZone](https://cloud.tencent.com/document/product/597/55246)接口获取。
+        # @param ZoneId: <p>实例所在的可用区。当创建多可用区实例时，该参数为创建的默认接入点所在子网的可用区 id。ZoneId、ZoneIds不能同时为空，可通过<a href="https://cloud.tencent.com/document/product/597/55246">DescribeCkafkaZone</a>接口获取。</p>
         # @type ZoneId: Integer
-        # @param MultiZoneFlag: 当前实例是否为多可用区实例。
+        # @param MultiZoneFlag: <p>当前实例是否为多可用区实例。</p>
         # @type MultiZoneFlag: Boolean
-        # @param ZoneIds: 当实例为多可用区实例时，多可用区 id 列表。注意参数 ZoneId 对应的多可用区需要包含在该参数数组中。ZoneId、ZoneIds不能同时为空，可通过[DescribeCkafkaZone](https://cloud.tencent.com/document/product/597/55246)接口获取。
+        # @param ZoneIds: <p>当实例为多可用区实例时，多可用区 id 列表。注意参数 ZoneId 对应的多可用区需要包含在该参数数组中。ZoneId、ZoneIds不能同时为空，可通过<a href="https://cloud.tencent.com/document/product/597/55246">DescribeCkafkaZone</a>接口获取。</p>
         # @type ZoneIds: Array
-        # @param InstanceNum: 购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例
+        # @param InstanceNum: <p>购买实例数量。非必填，默认值为 1。当传入该参数时，会创建多个 instanceName 加后缀区分的实例</p>
         # @type InstanceNum: Integer
-        # @param PublicNetworkMonthly: 公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍
+        # @param PublicNetworkMonthly: <p>公网带宽大小，单位 Mbps。默认是没有加上免费 3Mbps 带宽。例如总共需要 3Mbps 公网带宽，此处传 0；总共需要 6Mbps 公网带宽，此处传 3。需要保证传入参数为 3 的整数倍</p>
         # @type PublicNetworkMonthly: Integer
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param ElasticBandwidthSwitch: 弹性带宽开关 0不开启  1开启（0默认)
+        # @param ElasticBandwidthSwitch: <p>弹性带宽开关 0不开启  1开启（0默认)</p>
         # @type ElasticBandwidthSwitch: Integer
+        # @param CustomSSLCertId: <p>自定义证书Id,仅当SpecificationsType为profession时生效,支持自定义证书能力</p><p>可通过<a href="https://cloud.tencent.com/document/product/400/41673">DescribeCertificateDetail</a>接口获取</p>
+        # @type CustomSSLCertId: String
 
-        attr_accessor :VpcId, :SubnetId, :InstanceName, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch
+        attr_accessor :VpcId, :SubnetId, :InstanceName, :InstanceType, :MsgRetentionTime, :ClusterId, :KafkaVersion, :SpecificationsType, :DiskType, :BandWidth, :DiskSize, :Partition, :TopicNum, :ZoneId, :MultiZoneFlag, :ZoneIds, :InstanceNum, :PublicNetworkMonthly, :Tags, :ElasticBandwidthSwitch, :CustomSSLCertId
 
-        def initialize(vpcid=nil, subnetid=nil, instancename=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil)
+        def initialize(vpcid=nil, subnetid=nil, instancename=nil, instancetype=nil, msgretentiontime=nil, clusterid=nil, kafkaversion=nil, specificationstype=nil, disktype=nil, bandwidth=nil, disksize=nil, partition=nil, topicnum=nil, zoneid=nil, multizoneflag=nil, zoneids=nil, instancenum=nil, publicnetworkmonthly=nil, tags=nil, elasticbandwidthswitch=nil, customsslcertid=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @InstanceName = instancename
@@ -2295,6 +2301,7 @@ module TencentCloud
           @PublicNetworkMonthly = publicnetworkmonthly
           @Tags = tags
           @ElasticBandwidthSwitch = elasticbandwidthswitch
+          @CustomSSLCertId = customsslcertid
         end
 
         def deserialize(params)
@@ -2325,12 +2332,13 @@ module TencentCloud
             end
           end
           @ElasticBandwidthSwitch = params['ElasticBandwidthSwitch']
+          @CustomSSLCertId = params['CustomSSLCertId']
         end
       end
 
       # CreatePostPaidInstance返回参数结构体
       class CreatePostPaidInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePostResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3998,16 +4006,23 @@ module TencentCloud
 
       # DescribeCkafkaVersion返回参数结构体
       class DescribeCkafkaVersionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 实例版本信息
+        # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceVersion`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Result, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(result=nil, requestid=nil)
+          @Result = result
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Result'].nil?
+            @Result = InstanceVersion.new
+            @Result.deserialize(params['Result'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5310,8 +5325,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 11
-        deprecate :InstanceIds=, :none, 2025, 11
+        deprecate :InstanceIds, :none, 2025, 12
+        deprecate :InstanceIds=, :none, 2025, 12
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5396,8 +5411,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 11
-        deprecate :TagKey=, :none, 2025, 11
+        deprecate :TagKey, :none, 2025, 12
+        deprecate :TagKey=, :none, 2025, 12
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -7860,116 +7875,97 @@ module TencentCloud
 
       # 实例属性返回结果对象
       class InstanceAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param InstanceName: ckafka集群实例Name
+        # @param InstanceName: <p>ckafka集群实例Name</p>
         # @type InstanceName: String
-        # @param VipList: 接入点 VIP 列表信息
+        # @param VipList: <p>接入点 VIP 列表信息</p>
         # @type VipList: Array
-        # @param Vip: 虚拟IP
+        # @param Vip: <p>虚拟IP</p>
         # @type Vip: String
-        # @param Vport: 虚拟端口
+        # @param Vport: <p>虚拟端口</p>
         # @type Vport: String
-        # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
+        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败 </p>
         # @type Status: Integer
-        # @param Bandwidth: 实例带宽，单位：Mbps
+        # @param Bandwidth: <p>实例带宽，单位：Mbps</p>
         # @type Bandwidth: Integer
-        # @param DiskSize: 实例的存储大小，单位：GB
+        # @param DiskSize: <p>实例的存储大小，单位：GB</p>
         # @type DiskSize: Integer
-        # @param ZoneId: 可用区
+        # @param ZoneId: <p>可用区</p>
         # @type ZoneId: Integer
-        # @param VpcId: VPC 的 ID，为空表示是基础网络
+        # @param VpcId: <p>VPC 的 ID，为空表示是基础网络</p>
         # @type VpcId: String
-        # @param SubnetId: 子网 ID， 为空表示基础网络
+        # @param SubnetId: <p>子网 ID， 为空表示基础网络</p>
         # @type SubnetId: String
-        # @param Healthy: 实例健康状态， 1：健康，2：告警，3：异常
+        # @param Healthy: <p>实例健康状态， 1：健康，2：告警，3：异常</p>
         # @type Healthy: Integer
-        # @param HealthyMessage: 实例健康信息，当前会展示磁盘利用率，最大长度为256
+        # @param HealthyMessage: <p>实例健康信息，当前会展示磁盘利用率，最大长度为256</p>
         # @type HealthyMessage: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
-        # @param MsgRetentionTime: 消息保存时间,单位为分钟
+        # @param MsgRetentionTime: <p>消息保存时间,单位为分钟</p>
         # @type MsgRetentionTime: Integer
-        # @param Config: 自动创建 Topic 配置， 若该字段为空，则表示未开启自动创建
+        # @param Config: <p>自动创建 Topic 配置， 若该字段为空，则表示未开启自动创建</p>
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceConfigDO`
-        # @param RemainderPartitions: 剩余创建分区数
+        # @param RemainderPartitions: <p>剩余创建分区数</p>
         # @type RemainderPartitions: Integer
-        # @param RemainderTopics: 剩余创建主题数
+        # @param RemainderTopics: <p>剩余创建主题数</p>
         # @type RemainderTopics: Integer
-        # @param CreatedPartitions: 当前创建分区数
+        # @param CreatedPartitions: <p>当前创建分区数</p>
         # @type CreatedPartitions: Integer
-        # @param CreatedTopics: 当前创建主题数
+        # @param CreatedTopics: <p>当前创建主题数</p>
         # @type CreatedTopics: Integer
-        # @param Tags: 标签数组
+        # @param Tags: <p>标签数组</p>
         # @type Tags: Array
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # @type ExpireTime: Integer
-        # @param ZoneIds: 可用区列表
+        # @param ZoneIds: <p>可用区列表</p>
         # @type ZoneIds: Array
-        # @param Version: ckafka集群实例版本
+        # @param Version: <p>ckafka集群实例版本</p>
         # @type Version: String
-        # @param MaxGroupNum: 最大分组数
+        # @param MaxGroupNum: <p>最大分组数</p>
         # @type MaxGroupNum: Integer
-        # @param Cvm: 售卖类型,0:标准版,1:专业版
+        # @param Cvm: <p>售卖类型,0:标准版,1:专业版</p>
         # @type Cvm: Integer
-        # @param InstanceType: 实例类型  枚举列表:
-        # profession  :专业版
-        # standards2  :标准版
-        # premium   :高级版
-        # serverless  :serverless版
+        # @param InstanceType: <p>实例类型  枚举列表: profession  :专业版  <br />standards2  :标准版premium   :高级版serverless  :serverless版</p>
         # @type InstanceType: String
-        # @param Features: 表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。
+        # @param Features: <p>表示该实例支持的特性。FEATURE_SUBNET_ACL:表示acl策略支持设置子网。</p>
         # @type Features: Array
-        # @param RetentionTimeConfig: 动态消息保留策略
+        # @param RetentionTimeConfig: <p>动态消息保留策略</p>
         # @type RetentionTimeConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
-        # @param MaxConnection: 最大连接数
+        # @param MaxConnection: <p>最大连接数</p>
         # @type MaxConnection: Integer
-        # @param PublicNetwork: 公网带宽
+        # @param PublicNetwork: <p>公网带宽</p>
         # @type PublicNetwork: Integer
-        # @param DeleteRouteTimestamp: 该字段已废弃,无实际含义
+        # @param DeleteRouteTimestamp: <p>该字段已废弃,无实际含义</p>
         # @type DeleteRouteTimestamp: String
-        # @param RemainingPartitions: 剩余创建分区数
+        # @param RemainingPartitions: <p>剩余创建分区数</p>
         # @type RemainingPartitions: Integer
-        # @param RemainingTopics: 剩余创建主题数
+        # @param RemainingTopics: <p>剩余创建主题数</p>
         # @type RemainingTopics: Integer
-        # @param DynamicDiskConfig: 动态硬盘扩容策略
+        # @param DynamicDiskConfig: <p>动态硬盘扩容策略</p>
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
-        # @param SystemMaintenanceTime: 系统维护时间
+        # @param SystemMaintenanceTime: <p>系统维护时间</p>
         # @type SystemMaintenanceTime: String
-        # @param MaxMessageByte: 实例级别消息最大大小
+        # @param MaxMessageByte: <p>实例级别消息最大大小</p>
         # @type MaxMessageByte: Integer
-        # @param InstanceChargeType: 实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月
+        # @param InstanceChargeType: <p>实例计费类型  POSTPAID_BY_HOUR 按小时付费; PREPAID 包年包月</p>
         # @type InstanceChargeType: String
-        # @param ElasticBandwidthSwitch: 是否开启弹性带宽白名单
-        # 1:已开启弹性带宽白名单;
-        # 0:未开启弹性带宽白名单;
+        # @param ElasticBandwidthSwitch: <p>是否开启弹性带宽白名单 <br />1:已开启弹性带宽白名单;0:未开启弹性带宽白名单;</p>
         # @type ElasticBandwidthSwitch: Integer
-        # @param ElasticBandwidthOpenStatus: 弹性带宽开通状态
-        # 1:未开启弹性带宽;
-        # 16: 开启弹性带宽中;
-        # 32:开启弹性带宽成功;
-        # 33:关闭弹性带宽中;
-        # 34:关闭弹性带宽成功;
-        # 64:开启弹性带宽失败;
-        # 65:关闭弹性带宽失败;
+        # @param ElasticBandwidthOpenStatus: <p>弹性带宽开通状态1:未开启弹性带宽;16: 开启弹性带宽中;32:开启弹性带宽成功;33:关闭弹性带宽中;34:关闭弹性带宽成功;64:开启弹性带宽失败;65:关闭弹性带宽失败;</p>
         # @type ElasticBandwidthOpenStatus: Integer
-        # @param ClusterType: 集群类型
-        # CLOUD_IDC IDC集群
-        # CLOUD_CVM_SHARE CVM共享集群
-        # CLOUD_CVM_YUNTI 云梯CVM集群
-        # CLOUD_CVM    CVM集群
-        # CLOUD_CDC CDC集群
-        # CLOUD_EKS_TSE EKS集群
+        # @param ClusterType: <p>集群类型<br />CLOUD_IDC IDC集群CLOUD_CVM_SHARE CVM共享集群CLOUD_CVM_YUNTI 云梯CVM集群CLOUD_CVM    CVM集群CLOUD_CDC CDC集群CLOUD_EKS_TSE EKS集群</p>
         # @type ClusterType: String
-        # @param FreePartitionNumber: 免费分区数量
+        # @param FreePartitionNumber: <p>免费分区数量</p>
         # @type FreePartitionNumber: Integer
-        # @param ElasticFloatBandwidth: 弹性带宽上浮值
+        # @param ElasticFloatBandwidth: <p>弹性带宽上浮值</p>
         # @type ElasticFloatBandwidth: Integer
-        # @param CustomCertId: ssl自定义证书id  仅自定义证书实例集群返回
+        # @param CustomCertId: <p>ssl自定义证书id  仅自定义证书实例集群返回</p>
         # @type CustomCertId: String
-        # @param UncleanLeaderElectionEnable: 集群topic默认 unclean.leader.election.enable配置: 1 开启 0 关闭
+        # @param UncleanLeaderElectionEnable: <p>集群topic默认 unclean.leader.election.enable配置: 1 开启 0 关闭</p>
         # @type UncleanLeaderElectionEnable: Integer
-        # @param DeleteProtectionEnable: 实例删除保护开关: 1 开启 0 关闭
+        # @param DeleteProtectionEnable: <p>实例删除保护开关: 1 开启 0 关闭</p>
         # @type DeleteProtectionEnable: Integer
 
         attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :SystemMaintenanceTime, :MaxMessageByte, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
@@ -8158,69 +8154,69 @@ module TencentCloud
 
       # 实例详情
       class InstanceDetail < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param InstanceName: ckafka集群实例名称
+        # @param InstanceName: <p>ckafka集群实例名称</p>
         # @type InstanceName: String
-        # @param Vip: 访问实例的vip 信息
+        # @param Vip: <p>访问实例的vip 信息</p>
         # @type Vip: String
-        # @param Vport: 访问实例的端口信息
+        # @param Vport: <p>访问实例的端口信息</p>
         # @type Vport: String
-        # @param VipList: 虚拟IP列表
+        # @param VipList: <p>虚拟IP列表</p>
         # @type VipList: Array
-        # @param Status: 实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败
+        # @param Status: <p>实例的状态。0: 创建中，1: 运行中，2: 删除中,  3: 已删除,  5: 隔离中,  7: 升级中,  -1: 创建失败 </p>
         # @type Status: Integer
-        # @param Bandwidth: 实例带宽，单位Mbps
+        # @param Bandwidth: <p>实例带宽，单位Mbps</p>
         # @type Bandwidth: Integer
-        # @param DiskSize: ckafka集群实例磁盘大小，单位G
+        # @param DiskSize: <p>ckafka集群实例磁盘大小，单位G</p>
         # @type DiskSize: Integer
-        # @param ZoneId: 可用区域ID
+        # @param ZoneId: <p>可用区域ID</p>
         # @type ZoneId: Integer
-        # @param VpcId: vpcId，如果为空，说明是基础网络
+        # @param VpcId: <p>vpcId，如果为空，说明是基础网络</p>
         # @type VpcId: String
-        # @param SubnetId: 子网id
+        # @param SubnetId: <p>子网id</p>
         # @type SubnetId: String
-        # @param RenewFlag: 实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费
+        # @param RenewFlag: <p>实例是否续费，int  枚举值：1表示自动续费，2表示明确不自动续费</p>
         # @type RenewFlag: Integer
-        # @param Healthy: 实例状态 int：1表示健康，2表示告警，3 表示实例状态异常
+        # @param Healthy: <p>实例状态 int：1表示健康，2表示告警，3 表示实例状态异常</p>
         # @type Healthy: Integer
-        # @param HealthyMessage: 实例状态信息
+        # @param HealthyMessage: <p>实例状态信息</p>
         # @type HealthyMessage: String
-        # @param CreateTime: 实例创建时间
+        # @param CreateTime: <p>实例创建时间</p>
         # @type CreateTime: Integer
-        # @param ExpireTime: 实例过期时间
+        # @param ExpireTime: <p>实例过期时间</p>
         # @type ExpireTime: Integer
-        # @param IsInternal: 是否为内部客户。值为1 表示内部客户
+        # @param IsInternal: <p>是否为内部客户。值为1 表示内部客户</p>
         # @type IsInternal: Integer
-        # @param TopicNum: Topic个数
+        # @param TopicNum: <p>Topic个数</p>
         # @type TopicNum: Integer
-        # @param Tags: 标识tag
+        # @param Tags: <p>标识tag</p>
         # @type Tags: Array
-        # @param Version: kafka版本信息
+        # @param Version: <p>kafka版本信息</p>
         # @type Version: String
-        # @param ZoneIds: 跨可用区
+        # @param ZoneIds: <p>跨可用区</p>
         # @type ZoneIds: Array
-        # @param Cvm: ckafka售卖类型
+        # @param Cvm: <p>ckafka售卖类型</p>
         # @type Cvm: Integer
-        # @param InstanceType: ckafka集群实例类型
+        # @param InstanceType: <p>ckafka集群实例类型</p>
         # @type InstanceType: String
-        # @param DiskType: ckafka集群实例磁盘类型
+        # @param DiskType: <p>ckafka集群实例磁盘类型</p>
         # @type DiskType: String
-        # @param MaxTopicNumber: 当前规格最大Topic数
+        # @param MaxTopicNumber: <p>当前规格最大Topic数</p>
         # @type MaxTopicNumber: Integer
-        # @param MaxPartitionNumber: 当前规格最大Partition数
+        # @param MaxPartitionNumber: <p>当前规格最大Partition数</p>
         # @type MaxPartitionNumber: Integer
-        # @param RebalanceTime: 计划升级配置时间
+        # @param RebalanceTime: <p>计划升级配置时间</p>
         # @type RebalanceTime: String
-        # @param PartitionNumber: 实例当前partition数量
+        # @param PartitionNumber: <p>实例当前partition数量</p>
         # @type PartitionNumber: Integer
-        # @param PublicNetworkChargeType: ckafka集群实例公网带宽类型
+        # @param PublicNetworkChargeType: <p>ckafka集群实例公网带宽类型</p>
         # @type PublicNetworkChargeType: String
-        # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
+        # @param PublicNetwork: <p>公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写</p>
         # @type PublicNetwork: Integer
-        # @param ClusterType: ckafka集群实例底层集群类型
+        # @param ClusterType: <p>ckafka集群实例底层集群类型</p>
         # @type ClusterType: String
-        # @param Features: 实例功能列表
+        # @param Features: <p>实例功能列表</p>
         # @type Features: Array
 
         attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features
@@ -8466,6 +8462,49 @@ module TencentCloud
         end
       end
 
+      # 实例版本信息
+      class InstanceVersion < TencentCloud::Common::AbstractModel
+        # @param KafkaVersion: ckafka集群实例版本
+        # @type KafkaVersion: String
+        # @param CurBrokerVersion: broker版本信息
+        # @type CurBrokerVersion: String
+        # @param LatestBrokerVersion: 最新版本信息
+        # @type LatestBrokerVersion: Array
+        # @param AllowUpgradeHighVersion: 允许跨大版本内核升级
+        # @type AllowUpgradeHighVersion: Boolean
+        # @param HighVersionSet: 允许升级的大版本
+        # @type HighVersionSet: Array
+        # @param AllowAutoDeleteTimestamp: 允许小版本号配置自动删除消费者组
+        # @type AllowAutoDeleteTimestamp: Boolean
+
+        attr_accessor :KafkaVersion, :CurBrokerVersion, :LatestBrokerVersion, :AllowUpgradeHighVersion, :HighVersionSet, :AllowAutoDeleteTimestamp
+
+        def initialize(kafkaversion=nil, curbrokerversion=nil, latestbrokerversion=nil, allowupgradehighversion=nil, highversionset=nil, allowautodeletetimestamp=nil)
+          @KafkaVersion = kafkaversion
+          @CurBrokerVersion = curbrokerversion
+          @LatestBrokerVersion = latestbrokerversion
+          @AllowUpgradeHighVersion = allowupgradehighversion
+          @HighVersionSet = highversionset
+          @AllowAutoDeleteTimestamp = allowautodeletetimestamp
+        end
+
+        def deserialize(params)
+          @KafkaVersion = params['KafkaVersion']
+          @CurBrokerVersion = params['CurBrokerVersion']
+          unless params['LatestBrokerVersion'].nil?
+            @LatestBrokerVersion = []
+            params['LatestBrokerVersion'].each do |i|
+              latestbrokerversion_tmp = LatestBrokerVersion.new
+              latestbrokerversion_tmp.deserialize(i)
+              @LatestBrokerVersion << latestbrokerversion_tmp
+            end
+          end
+          @AllowUpgradeHighVersion = params['AllowUpgradeHighVersion']
+          @HighVersionSet = params['HighVersionSet']
+          @AllowAutoDeleteTimestamp = params['AllowAutoDeleteTimestamp']
+        end
+      end
+
       # 操作型结果返回值
       class JgwOperateResponse < TencentCloud::Common::AbstractModel
         # @param ReturnCode: 返回的code，0为正常，非0为错误
@@ -8703,6 +8742,26 @@ module TencentCloud
           @TopicRegularExpression = params['TopicRegularExpression']
           @Prefix = params['Prefix']
           @Separator = params['Separator']
+        end
+      end
+
+      # 最新版本信息列表
+      class LatestBrokerVersion < TencentCloud::Common::AbstractModel
+        # @param KafkaVersion: ckafka集群实例版本
+        # @type KafkaVersion: String
+        # @param BrokerVersion: broker版本号
+        # @type BrokerVersion: String
+
+        attr_accessor :KafkaVersion, :BrokerVersion
+
+        def initialize(kafkaversion=nil, brokerversion=nil)
+          @KafkaVersion = kafkaversion
+          @BrokerVersion = brokerversion
+        end
+
+        def deserialize(params)
+          @KafkaVersion = params['KafkaVersion']
+          @BrokerVersion = params['BrokerVersion']
         end
       end
 
@@ -9302,8 +9361,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 11
-        deprecate :DynamicDiskConfig=, :none, 2025, 11
+        deprecate :DynamicDiskConfig, :none, 2025, 12
+        deprecate :DynamicDiskConfig=, :none, 2025, 12
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
           @InstanceId = instanceid
@@ -12544,8 +12603,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 11
-        deprecate :Exflag=, :none, 2025, 11
+        deprecate :Exflag, :none, 2025, 12
+        deprecate :Exflag=, :none, 2025, 12
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

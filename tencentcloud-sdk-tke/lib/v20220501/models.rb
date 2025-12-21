@@ -694,6 +694,92 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterMachines请求参数结构体
+      class DescribeClusterMachinesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Filters: 节点过滤条件，支持以下过滤条件：
+        # ·  NodePoolsName
+        #     按照【节点池名】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  NodePoolsId
+        #     按照【节点池id】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tags
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+
+        # ·  tag:tag-key
+        #     按照【标签键值对】进行过滤。
+        #     类型：String
+        #     必选：否
+        # @type Filters: Array
+        # @param Limit: 偏移量，默认0
+        # @type Limit: Integer
+        # @param Offset: 最大输出条数，默认20，最大为100
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :Filters, :Limit, :Offset
+
+        def initialize(clusterid=nil, filters=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeClusterMachines返回参数结构体
+      class DescribeClusterMachinesResponse < TencentCloud::Common::AbstractModel
+        # @param Machines: 节点池节点列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Machines: Array
+        # @param TotalCount: 资源总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Machines, :TotalCount, :RequestId
+
+        def initialize(machines=nil, totalcount=nil, requestid=nil)
+          @Machines = machines
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Machines'].nil?
+            @Machines = []
+            params['Machines'].each do |i|
+              machine_tmp = Machine.new
+              machine_tmp.deserialize(i)
+              @Machines << machine_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeClusters请求参数结构体
       class DescribeClustersRequest < TencentCloud::Common::AbstractModel
         # @param ClusterIds: 集群ID列表(为空时，
@@ -1644,6 +1730,105 @@ module TencentCloud
         def deserialize(params)
           @PreInit = params['PreInit']
           @PostInit = params['PostInit']
+        end
+      end
+
+      # 节点信息
+      class Machine < TencentCloud::Common::AbstractModel
+        # @param MachineName: 节点名称
+        # @type MachineName: String
+        # @param MachineState: Machine 状态
+        # @type MachineState: String
+        # @param Zone: Machine 所在可用区
+        # @type Zone: String
+        # @param InstanceChargeType: 节点计费类型。PREPAID：包年包月；POSTPAID_BY_HOUR：按量计费（默认）；
+        # @type InstanceChargeType: String
+        # @param CreatedAt: 创建时间
+        # @type CreatedAt: String
+        # @param LoginStatus: Machine 登录状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LoginStatus: String
+        # @param IsProtectedFromScaleIn: 是否开启缩容保护
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsProtectedFromScaleIn: Boolean
+        # @param DisplayName: Machine 名字
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param CPU: CPU核数，单位：核
+        # @type CPU: Integer
+        # @param GPU: GPU核数，单位：核
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GPU: Integer
+        # @param RenewFlag: 自动续费标识
+        # @type RenewFlag: String
+        # @param PayMode: 节点计费模式（已弃用）
+        # @type PayMode: String
+        # @param Memory: 节点内存容量，单位：`GB`
+        # @type Memory: Integer
+        # @param SystemDisk: 节点系统盘配置信息
+        # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
+        # @param InternetAccessible: 公网带宽相关信息设置
+        # @type InternetAccessible: :class:`Tencentcloud::Tke.v20220501.models.InternetAccessible`
+        # @param InstanceFamily: 机型所属机型族
+        # @type InstanceFamily: String
+        # @param LanIP: 节点内网 IP
+        # @type LanIP: String
+        # @param InstanceType: 机型
+        # @type InstanceType: String
+        # @param ExpiredTime: 包年包月节点计费过期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredTime: String
+
+        attr_accessor :MachineName, :MachineState, :Zone, :InstanceChargeType, :CreatedAt, :LoginStatus, :IsProtectedFromScaleIn, :DisplayName, :CPU, :GPU, :RenewFlag, :PayMode, :Memory, :SystemDisk, :InternetAccessible, :InstanceFamily, :LanIP, :InstanceType, :ExpiredTime
+
+        def initialize(machinename=nil, machinestate=nil, zone=nil, instancechargetype=nil, createdat=nil, loginstatus=nil, isprotectedfromscalein=nil, displayname=nil, cpu=nil, gpu=nil, renewflag=nil, paymode=nil, memory=nil, systemdisk=nil, internetaccessible=nil, instancefamily=nil, lanip=nil, instancetype=nil, expiredtime=nil)
+          @MachineName = machinename
+          @MachineState = machinestate
+          @Zone = zone
+          @InstanceChargeType = instancechargetype
+          @CreatedAt = createdat
+          @LoginStatus = loginstatus
+          @IsProtectedFromScaleIn = isprotectedfromscalein
+          @DisplayName = displayname
+          @CPU = cpu
+          @GPU = gpu
+          @RenewFlag = renewflag
+          @PayMode = paymode
+          @Memory = memory
+          @SystemDisk = systemdisk
+          @InternetAccessible = internetaccessible
+          @InstanceFamily = instancefamily
+          @LanIP = lanip
+          @InstanceType = instancetype
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @MachineName = params['MachineName']
+          @MachineState = params['MachineState']
+          @Zone = params['Zone']
+          @InstanceChargeType = params['InstanceChargeType']
+          @CreatedAt = params['CreatedAt']
+          @LoginStatus = params['LoginStatus']
+          @IsProtectedFromScaleIn = params['IsProtectedFromScaleIn']
+          @DisplayName = params['DisplayName']
+          @CPU = params['CPU']
+          @GPU = params['GPU']
+          @RenewFlag = params['RenewFlag']
+          @PayMode = params['PayMode']
+          @Memory = params['Memory']
+          unless params['SystemDisk'].nil?
+            @SystemDisk = Disk.new
+            @SystemDisk.deserialize(params['SystemDisk'])
+          end
+          unless params['InternetAccessible'].nil?
+            @InternetAccessible = InternetAccessible.new
+            @InternetAccessible.deserialize(params['InternetAccessible'])
+          end
+          @InstanceFamily = params['InstanceFamily']
+          @LanIP = params['LanIP']
+          @InstanceType = params['InstanceType']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

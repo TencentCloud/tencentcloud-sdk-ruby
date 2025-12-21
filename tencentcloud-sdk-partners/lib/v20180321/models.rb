@@ -999,27 +999,25 @@ module TencentCloud
 
       # DescribeAgentDealsByCache请求参数结构体
       class DescribeAgentDealsByCacheRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目 最大200
+        # @param Limit: <p>限制数目 最大200</p>
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点【*请必传并控制时间范围最大90天，避免出现超时】
+        # @param CreatTimeRangeStart: <p>下单时间范围起始点【*请必传并控制时间范围最大90天，避免出现超时】</p>
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点【*请必传并控制时间范围最大90天，避免出现超时】
+        # @param CreatTimeRangeEnd: <p>下单时间范围终止点【*请必传并控制时间范围最大90天，避免出现超时】</p>
         # @type CreatTimeRangeEnd: String
-        # @param Order: 0:下单时间降序；其他：下单时间升序
+        # @param Order: <p>0:下单时间降序；其他：下单时间升序</p>
         # @type Order: Integer
-        # @param Status: 子订单状态(1-待支付,2-已支付,3-发货中,4-已发货,5-发货失败,6-已退款,7-已取消,8-已过期,9-已失效,12-支付中,13-退款中,30-处理中)
-
-        # 控制台订单状态为以上状态的组合：未支付(1) 处理中(2,3,5,12,13,30) 已取消(7) 交易成功(4) 已过期(8) 已退款(6) 订单错误(9)
+        # @param Status: <p>子订单状态(1-待支付,2-已支付,3-发货中,4-已发货,5-发货失败,6-已退款,7-已取消,8-已过期,9-已失效,12-支付中,13-退款中,30-处理中)</p><p>控制台订单状态为以上状态的组合：未支付(1) 处理中(2,3,5,12,13,30) 已取消(7) 交易成功(4) 已过期(8) 已退款(6) 订单错误(9)</p>
         # @type Status: Integer
-        # @param OwnerUins: 下单人账号ID列表
+        # @param OwnerUins: <p>下单人账号ID列表</p>
         # @type OwnerUins: Array
-        # @param DealNames: 子订单号列表
+        # @param DealNames: <p>子订单号列表</p>
         # @type DealNames: Array
-        # @param BigDealIds: 大订单号列表
+        # @param BigDealIds: <p>大订单号列表</p>
         # @type BigDealIds: Array
-        # @param PayerMode: 支付方式，0：自付；1：代付
+        # @param PayerMode: <p>支付方式，0：自付；1：代付</p>
         # @type PayerMode: Integer
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds, :PayerMode
@@ -1053,9 +1051,9 @@ module TencentCloud
 
       # DescribeAgentDealsByCache返回参数结构体
       class DescribeAgentDealsByCacheResponse < TencentCloud::Common::AbstractModel
-        # @param AgentDealSet: 订单数组
+        # @param AgentDealSet: <p>订单数组</p>
         # @type AgentDealSet: Array
-        # @param TotalCount: 符合条件的订单总数量
+        # @param TotalCount: <p>符合条件的订单总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1135,23 +1133,23 @@ module TencentCloud
 
       # DescribeAgentPayDealsV2请求参数结构体
       class DescribeAgentPayDealsV2Request < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目 最大100
+        # @param Limit: <p>限制数目 最大100</p>
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查最近15天内订单，传值时需要传最近15天内的起始时间)
+        # @param CreatTimeRangeStart: <p>下单时间范围起始点(不传时会默认查最近15天内订单，传值时需要传最近15天内的起始时间)</p>
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点
+        # @param CreatTimeRangeEnd: <p>下单时间范围终止点</p>
         # @type CreatTimeRangeEnd: String
-        # @param Order: 0:下单时间降序；其他：下单时间升序
+        # @param Order: <p>0:下单时间降序；其他：下单时间升序</p>
         # @type Order: Integer
-        # @param Status: 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
+        # @param Status: <p>订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)</p>
         # @type Status: Integer
-        # @param OwnerUins: 下单人账号ID列表
+        # @param OwnerUins: <p>下单人账号ID列表</p>
         # @type OwnerUins: Array
-        # @param DealNames: 子订单号列表
+        # @param DealNames: <p>子订单号列表</p>
         # @type DealNames: Array
-        # @param BigDealIds: 大订单号列表
+        # @param BigDealIds: <p>大订单号列表</p>
         # @type BigDealIds: Array
 
         attr_accessor :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :OwnerUins, :DealNames, :BigDealIds
@@ -1183,9 +1181,9 @@ module TencentCloud
 
       # DescribeAgentPayDealsV2返回参数结构体
       class DescribeAgentPayDealsV2Response < TencentCloud::Common::AbstractModel
-        # @param AgentPayDealSet: 订单数组
+        # @param AgentPayDealSet: <p>订单数组</p>
         # @type AgentPayDealSet: Array
-        # @param TotalCount: 符合条件的订单总数量
+        # @param TotalCount: <p>符合条件的订单总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1250,23 +1248,23 @@ module TencentCloud
 
       # DescribeAgentSelfPayDealsV2请求参数结构体
       class DescribeAgentSelfPayDealsV2Request < TencentCloud::Common::AbstractModel
-        # @param OwnerUin: 下单人账号ID
+        # @param OwnerUin: <p>下单人账号ID</p>
         # @type OwnerUin: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目 最大100
+        # @param Limit: <p>限制数目 最大100</p>
         # @type Limit: Integer
-        # @param CreatTimeRangeStart: 下单时间范围起始点(不传时会默认查最近15天内订单，传值时需要传最近15天内的起始时间)
+        # @param CreatTimeRangeStart: <p>下单时间范围起始点(不传时会默认查最近15天内订单，传值时需要传最近15天内的起始时间)</p>
         # @type CreatTimeRangeStart: String
-        # @param CreatTimeRangeEnd: 下单时间范围终止点
+        # @param CreatTimeRangeEnd: <p>下单时间范围终止点</p>
         # @type CreatTimeRangeEnd: String
-        # @param Order: 0:下单时间降序；其他：下单时间升序
+        # @param Order: <p>0:下单时间降序；其他：下单时间升序</p>
         # @type Order: Integer
-        # @param Status: 订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)
+        # @param Status: <p>订单的状态(1：未支付;2：已支付;3：发货中;4：已发货;5：发货失败;6：已退款;7：已关单;8：订单过期;9：订单已失效;10：产品已失效;11：代付拒绝;12：支付中)</p>
         # @type Status: Integer
-        # @param DealNames: 子订单号列表
+        # @param DealNames: <p>子订单号列表</p>
         # @type DealNames: Array
-        # @param BigDealIds: 大订单号列表
+        # @param BigDealIds: <p>大订单号列表</p>
         # @type BigDealIds: Array
 
         attr_accessor :OwnerUin, :Offset, :Limit, :CreatTimeRangeStart, :CreatTimeRangeEnd, :Order, :Status, :DealNames, :BigDealIds
@@ -1298,9 +1296,9 @@ module TencentCloud
 
       # DescribeAgentSelfPayDealsV2返回参数结构体
       class DescribeAgentSelfPayDealsV2Response < TencentCloud::Common::AbstractModel
-        # @param AgentPayDealSet: 订单数组
+        # @param AgentPayDealSet: <p>订单数组</p>
         # @type AgentPayDealSet: Array
-        # @param TotalCount: 符合条件的订单总数量
+        # @param TotalCount: <p>符合条件的订单总数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1468,11 +1466,11 @@ module TencentCloud
 
       # DescribeRebateInfosNew请求参数结构体
       class DescribeRebateInfosNewRequest < TencentCloud::Common::AbstractModel
-        # @param RebateMonth: 返佣月份，如2018-02
+        # @param RebateMonth: <p>返佣月份，如2018-02</p>
         # @type RebateMonth: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: <p>限制数目</p>
         # @type Limit: Integer
 
         attr_accessor :RebateMonth, :Offset, :Limit
@@ -1492,9 +1490,9 @@ module TencentCloud
 
       # DescribeRebateInfosNew返回参数结构体
       class DescribeRebateInfosNewResponse < TencentCloud::Common::AbstractModel
-        # @param RebateInfoSet: 返佣信息列表
+        # @param RebateInfoSet: <p>返佣信息列表</p>
         # @type RebateInfoSet: Array
-        # @param TotalCount: 符合查询条件返佣信息数目
+        # @param TotalCount: <p>符合查询条件返佣信息数目</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1523,11 +1521,11 @@ module TencentCloud
 
       # DescribeRebateInfos请求参数结构体
       class DescribeRebateInfosRequest < TencentCloud::Common::AbstractModel
-        # @param RebateMonth: 返佣月份，如2018-02
+        # @param RebateMonth: <p>返佣月份，如2018-02</p>
         # @type RebateMonth: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 限制数目
+        # @param Limit: <p>限制数目</p>
         # @type Limit: Integer
 
         attr_accessor :RebateMonth, :Offset, :Limit
@@ -1547,9 +1545,9 @@ module TencentCloud
 
       # DescribeRebateInfos返回参数结构体
       class DescribeRebateInfosResponse < TencentCloud::Common::AbstractModel
-        # @param RebateInfoSet: 返佣信息列表
+        # @param RebateInfoSet: <p>返佣信息列表</p>
         # @type RebateInfoSet: Array
-        # @param TotalCount: 符合查询条件返佣信息数目
+        # @param TotalCount: <p>符合查询条件返佣信息数目</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

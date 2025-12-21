@@ -1114,10 +1114,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 11
-        deprecate :Ftitle=, :none, 2025, 11
-        deprecate :Config, :none, 2025, 11
-        deprecate :Config=, :none, 2025, 11
+        deprecate :Ftitle, :none, 2025, 12
+        deprecate :Ftitle=, :none, 2025, 12
+        deprecate :Config, :none, 2025, 12
+        deprecate :Config=, :none, 2025, 12
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -3730,6 +3730,134 @@ module TencentCloud
               tableschemaitem_tmp = TableSchemaItem.new
               tableschemaitem_tmp.deserialize(i)
               @SchemaList << tableschemaitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHBaseTableRequestMetric请求参数结构体
+      class DescribeHBaseTableRequestMetricRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param TableName: Hbase表名
+        # @type TableName: String
+        # @param RegionServer: Hbase的RegionServer服务
+        # @type RegionServer: String
+        # @param Downsample: 获取监控的数据粒度
+        # @type Downsample: String
+        # @param StartTime: 查询监控数据起始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 查询监控数据结束时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :InstanceId, :TableName, :RegionServer, :Downsample, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, tablename=nil, regionserver=nil, downsample=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @TableName = tablename
+          @RegionServer = regionserver
+          @Downsample = downsample
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TableName = params['TableName']
+          @RegionServer = params['RegionServer']
+          @Downsample = params['Downsample']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeHBaseTableRequestMetric返回参数结构体
+      class DescribeHBaseTableRequestMetricResponse < TencentCloud::Common::AbstractModel
+        # @param MetricDataList: Hbase监控指标返回包装结构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDataList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricDataList, :RequestId
+
+        def initialize(metricdatalist=nil, requestid=nil)
+          @MetricDataList = metricdatalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MetricDataList'].nil?
+            @MetricDataList = []
+            params['MetricDataList'].each do |i|
+              hbasemetricdata_tmp = HBaseMetricData.new
+              hbasemetricdata_tmp.deserialize(i)
+              @MetricDataList << hbasemetricdata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHBaseTableStoreSizeMetric请求参数结构体
+      class DescribeHBaseTableStoreSizeMetricRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param TableName: Hbase表名
+        # @type TableName: String
+        # @param RegionServer: Hbase的RegionServer服务
+        # @type RegionServer: String
+        # @param Downsample: 获取监控的数据粒度
+        # @type Downsample: String
+        # @param StartTime: 查询监控数据起始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 查询监控数据结束时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :InstanceId, :TableName, :RegionServer, :Downsample, :StartTime, :EndTime
+
+        def initialize(instanceid=nil, tablename=nil, regionserver=nil, downsample=nil, starttime=nil, endtime=nil)
+          @InstanceId = instanceid
+          @TableName = tablename
+          @RegionServer = regionserver
+          @Downsample = downsample
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @TableName = params['TableName']
+          @RegionServer = params['RegionServer']
+          @Downsample = params['Downsample']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeHBaseTableStoreSizeMetric返回参数结构体
+      class DescribeHBaseTableStoreSizeMetricResponse < TencentCloud::Common::AbstractModel
+        # @param MetricDataList: Hbase监控指标返回包装结构
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricDataList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MetricDataList, :RequestId
+
+        def initialize(metricdatalist=nil, requestid=nil)
+          @MetricDataList = metricdatalist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MetricDataList'].nil?
+            @MetricDataList = []
+            params['MetricDataList'].each do |i|
+              hbasemetricdata_tmp = HBaseMetricData.new
+              hbasemetricdata_tmp.deserialize(i)
+              @MetricDataList << hbasemetricdata_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6875,6 +7003,34 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @GroupType = params['GroupType']
           @GroupTypeDesc = params['GroupTypeDesc']
+        end
+      end
+
+      # HBase监控数据结构
+      class HBaseMetricData < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名称，如 read_request_rate
+        # @type MetricName: String
+        # @param MetricDesc: 指标描述，如 read request rate
+        # @type MetricDesc: String
+        # @param Timestamps: 时间戳数组
+        # @type Timestamps: Array
+        # @param Values: 数值数组
+        # @type Values: Array
+
+        attr_accessor :MetricName, :MetricDesc, :Timestamps, :Values
+
+        def initialize(metricname=nil, metricdesc=nil, timestamps=nil, values=nil)
+          @MetricName = metricname
+          @MetricDesc = metricdesc
+          @Timestamps = timestamps
+          @Values = values
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @MetricDesc = params['MetricDesc']
+          @Timestamps = params['Timestamps']
+          @Values = params['Values']
         end
       end
 
@@ -13113,12 +13269,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 11
-        deprecate :DetetcFunctionKey=, :none, 2025, 11
-        deprecate :DetetcFunctionValue, :none, 2025, 11
-        deprecate :DetetcFunctionValue=, :none, 2025, 11
-        deprecate :DetetcTime, :none, 2025, 11
-        deprecate :DetetcTime=, :none, 2025, 11
+        deprecate :DetetcFunctionKey, :none, 2025, 12
+        deprecate :DetetcFunctionKey=, :none, 2025, 12
+        deprecate :DetetcFunctionValue, :none, 2025, 12
+        deprecate :DetetcFunctionValue=, :none, 2025, 12
+        deprecate :DetetcTime, :none, 2025, 12
+        deprecate :DetetcTime=, :none, 2025, 12
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

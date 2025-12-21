@@ -680,6 +680,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Hbase的表粒度读取和写入速率
+
+        # @param request: Request instance for DescribeHBaseTableRequestMetric.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableRequestMetricRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableRequestMetricResponse`
+        def DescribeHBaseTableRequestMetric(request)
+          body = send_request('DescribeHBaseTableRequestMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHBaseTableRequestMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Hbase的表粒度StoreSize大小监控指标数据
+
+        # @param request: Request instance for DescribeHBaseTableStoreSizeMetric.
+        # @type request: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableStoreSizeMetricRequest`
+        # @rtype: :class:`Tencentcloud::emr::V20190103::DescribeHBaseTableStoreSizeMetricResponse`
+        def DescribeHBaseTableStoreSizeMetric(request)
+          body = send_request('DescribeHBaseTableStoreSizeMetric', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHBaseTableStoreSizeMetricResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询HDFS存储文件信息
 
         # @param request: Request instance for DescribeHDFSStorageInfo.
