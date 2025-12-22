@@ -1626,10 +1626,12 @@ module TencentCloud
         # @type RiskRuleId: String
         # @param Classify: 处置分类
         # @type Classify: String
+        # @param StandardTerms: 等保合规
+        # @type StandardTerms: Array
 
-        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify
+        attr_accessor :AppId, :Provider, :ProviderName, :CloudAccountName, :CloudAccountId, :InstanceName, :InstanceId, :CreateTime, :UpdateTime, :RiskStatus, :RiskTitle, :CheckType, :Severity, :RiskRuleId, :Classify, :StandardTerms
 
-        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil)
+        def initialize(appid=nil, provider=nil, providername=nil, cloudaccountname=nil, cloudaccountid=nil, instancename=nil, instanceid=nil, createtime=nil, updatetime=nil, riskstatus=nil, risktitle=nil, checktype=nil, severity=nil, riskruleid=nil, classify=nil, standardterms=nil)
           @AppId = appid
           @Provider = provider
           @ProviderName = providername
@@ -1645,6 +1647,7 @@ module TencentCloud
           @Severity = severity
           @RiskRuleId = riskruleid
           @Classify = classify
+          @StandardTerms = standardterms
         end
 
         def deserialize(params)
@@ -1663,6 +1666,14 @@ module TencentCloud
           @Severity = params['Severity']
           @RiskRuleId = params['RiskRuleId']
           @Classify = params['Classify']
+          unless params['StandardTerms'].nil?
+            @StandardTerms = []
+            params['StandardTerms'].each do |i|
+              standardterm_tmp = StandardTerm.new
+              standardterm_tmp.deserialize(i)
+              @StandardTerms << standardterm_tmp
+            end
+          end
         end
       end
 
@@ -2971,10 +2982,12 @@ module TencentCloud
         # @type EventType: String
         # @param Classify: 处置分类
         # @type Classify: String
+        # @param StandardTerms: cspm规范条款
+        # @type StandardTerms: Array
 
-        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType, :Classify
+        attr_accessor :RiskRuleId, :RiskTitle, :CheckType, :Severity, :RiskDesc, :CreateTime, :UpdateTime, :Provider, :RiskStatus, :AssetCount, :RiskCount, :AssetType, :EventType, :Classify, :StandardTerms
 
-        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil, classify=nil)
+        def initialize(riskruleid=nil, risktitle=nil, checktype=nil, severity=nil, riskdesc=nil, createtime=nil, updatetime=nil, provider=nil, riskstatus=nil, assetcount=nil, riskcount=nil, assettype=nil, eventtype=nil, classify=nil, standardterms=nil)
           @RiskRuleId = riskruleid
           @RiskTitle = risktitle
           @CheckType = checktype
@@ -2989,6 +3002,7 @@ module TencentCloud
           @AssetType = assettype
           @EventType = eventtype
           @Classify = classify
+          @StandardTerms = standardterms
         end
 
         def deserialize(params)
@@ -3006,6 +3020,14 @@ module TencentCloud
           @AssetType = params['AssetType']
           @EventType = params['EventType']
           @Classify = params['Classify']
+          unless params['StandardTerms'].nil?
+            @StandardTerms = []
+            params['StandardTerms'].each do |i|
+              standardterm_tmp = StandardTerm.new
+              standardterm_tmp.deserialize(i)
+              @StandardTerms << standardterm_tmp
+            end
+          end
         end
       end
 
@@ -4478,14 +4500,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param AssetRiskList: 资产视角下风险列表
         # @type AssetRiskList: Array
+        # @param StandardNameList: 等保规范名称集合
+        # @type StandardNameList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :AssetRiskList, :RequestId
+        attr_accessor :TotalCount, :AssetRiskList, :StandardNameList, :RequestId
 
-        def initialize(totalcount=nil, assetrisklist=nil, requestid=nil)
+        def initialize(totalcount=nil, assetrisklist=nil, standardnamelist=nil, requestid=nil)
           @TotalCount = totalcount
           @AssetRiskList = assetrisklist
+          @StandardNameList = standardnamelist
           @RequestId = requestid
         end
 
@@ -4497,6 +4522,14 @@ module TencentCloud
               assetriskitem_tmp = AssetRiskItem.new
               assetriskitem_tmp.deserialize(i)
               @AssetRiskList << assetriskitem_tmp
+            end
+          end
+          unless params['StandardNameList'].nil?
+            @StandardNameList = []
+            params['StandardNameList'].each do |i|
+              standarditem_tmp = StandardItem.new
+              standarditem_tmp.deserialize(i)
+              @StandardNameList << standarditem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5091,14 +5124,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param CheckViewRiskList: 检查视角下风险列表
         # @type CheckViewRiskList: Array
+        # @param StandardNameList: 检查视角下cspm规范标签列表
+        # @type StandardNameList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :CheckViewRiskList, :RequestId
+        attr_accessor :TotalCount, :CheckViewRiskList, :StandardNameList, :RequestId
 
-        def initialize(totalcount=nil, checkviewrisklist=nil, requestid=nil)
+        def initialize(totalcount=nil, checkviewrisklist=nil, standardnamelist=nil, requestid=nil)
           @TotalCount = totalcount
           @CheckViewRiskList = checkviewrisklist
+          @StandardNameList = standardnamelist
           @RequestId = requestid
         end
 
@@ -5110,6 +5146,14 @@ module TencentCloud
               checkviewriskitem_tmp = CheckViewRiskItem.new
               checkviewriskitem_tmp.deserialize(i)
               @CheckViewRiskList << checkviewriskitem_tmp
+            end
+          end
+          unless params['StandardNameList'].nil?
+            @StandardNameList = []
+            params['StandardNameList'].each do |i|
+              standarditem_tmp = StandardItem.new
+              standarditem_tmp.deserialize(i)
+              @StandardNameList << standarditem_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -12005,6 +12049,46 @@ module TencentCloud
           @AppID = params['AppID']
           @VpcID = params['VpcID']
           @VpcName = params['VpcName']
+        end
+      end
+
+      # CSPM规范
+      class StandardItem < TencentCloud::Common::AbstractModel
+        # @param ID: 规范ID
+        # @type ID: Integer
+        # @param Name: 规范名称
+        # @type Name: String
+
+        attr_accessor :ID, :Name
+
+        def initialize(id=nil, name=nil)
+          @ID = id
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+        end
+      end
+
+      # CSPM条款
+      class StandardTerm < TencentCloud::Common::AbstractModel
+        # @param Tag: 标签
+        # @type Tag: String
+        # @param Terms: 条款
+        # @type Terms: Array
+
+        attr_accessor :Tag, :Terms
+
+        def initialize(tag=nil, terms=nil)
+          @Tag = tag
+          @Terms = terms
+        end
+
+        def deserialize(params)
+          @Tag = params['Tag']
+          @Terms = params['Terms']
         end
       end
 

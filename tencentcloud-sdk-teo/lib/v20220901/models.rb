@@ -4918,35 +4918,44 @@ module TencentCloud
         # @param ZoneId: 站点 ID。
         # 若您希望快速提交不同站点下的 Targets Url，可以将其填写为 *，但前提是调用该 API 的账号必须具备主账号下全部站点资源的权限。
         # @type ZoneId: String
-        # @param Targets: 要预热的资源列表，每个元素格式类似如下:
-        # http://www.example.com/example.txt。参数值当前必填。
+        # @param Targets: 要预热的资源列表，必填。每个元素格式类似如下:
+        # http://www.example.com/example.txt。
         # 注意：提交任务数受计费套餐配额限制，请查看 [EO计费套餐](https://cloud.tencent.com/document/product/1552/77380)。
         # @type Targets: Array
+        # @param Mode: 预热模式，取值有：
+        # <li>default：默认模式，即预热到中间层；</li>
+        # <li>edge：边缘预热模式，即预热到边缘和中间层。</li>不填写时，默认值为 default。
+        # 注意事项：
+        # 1.预热至边缘产生的边缘层流量，会计入计费流量；
+        # 2.边缘预热默认分配单独的预热额度 1000 条/天，不消费常规预热额度。
+        # 说明：
+        # 该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
+        # @type Mode: String
         # @param EncodeUrl: 是否对url进行encode，若内容含有非 ASCII 字符集的字符，请开启此开关进行编码转换（编码规则遵循 RFC3986）。
         # @type EncodeUrl: Boolean
-        # @param Headers: 附带的http头部信息。
+        # @param Headers: 若需要携带 HTTP 头部信息预热，可入参该参数，否则放空即可。
         # @type Headers: Array
         # @param PrefetchMediaSegments: 媒体分片预热控制，取值有：
         # <li>on：开启分片预热，预热描述文件，并递归解析描述文件分片进行预热；</li>
         # <li>off：仅预热提交的描述文件；</li>不填写时，默认值为 off。
-
         # 注意事项：
         # 1. 支持的描述文件为 M3U8，对应分片为 TS；
         # 2. 要求描述文件能正常请求，并按行业标准描述分片路径；
         # 3. 递归解析深度不超过 3 层；
         # 4. 解析获取的分片会正常累加每日预热用量，当用量超出配额时，会静默处理，不再执行预热。
-
+        # 说明：
         # 该参数为白名单功能，如有需要，请联系腾讯云工程师处理。
         # @type PrefetchMediaSegments: String
 
-        attr_accessor :ZoneId, :Targets, :EncodeUrl, :Headers, :PrefetchMediaSegments
+        attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
         deprecate :EncodeUrl, :none, 2025, 12
         deprecate :EncodeUrl=, :none, 2025, 12
 
-        def initialize(zoneid=nil, targets=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
+        def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
           @Targets = targets
+          @Mode = mode
           @EncodeUrl = encodeurl
           @Headers = headers
           @PrefetchMediaSegments = prefetchmediasegments
@@ -4955,6 +4964,7 @@ module TencentCloud
         def deserialize(params)
           @ZoneId = params['ZoneId']
           @Targets = params['Targets']
+          @Mode = params['Mode']
           @EncodeUrl = params['EncodeUrl']
           unless params['Headers'].nil?
             @Headers = []
@@ -14870,10 +14880,12 @@ module TencentCloud
         # @type L4UsedList: Array
         # @param L7UsedList: 该负载均衡实例绑定的七层域名列表。
         # @type L7UsedList: Array
+        # @param References: 负载均衡被引用实例的列表。
+        # @type References: Array
 
-        attr_accessor :InstanceId, :Name, :Type, :HealthChecker, :SteeringPolicy, :FailoverPolicy, :OriginGroupHealthStatus, :Status, :L4UsedList, :L7UsedList
+        attr_accessor :InstanceId, :Name, :Type, :HealthChecker, :SteeringPolicy, :FailoverPolicy, :OriginGroupHealthStatus, :Status, :L4UsedList, :L7UsedList, :References
 
-        def initialize(instanceid=nil, name=nil, type=nil, healthchecker=nil, steeringpolicy=nil, failoverpolicy=nil, origingrouphealthstatus=nil, status=nil, l4usedlist=nil, l7usedlist=nil)
+        def initialize(instanceid=nil, name=nil, type=nil, healthchecker=nil, steeringpolicy=nil, failoverpolicy=nil, origingrouphealthstatus=nil, status=nil, l4usedlist=nil, l7usedlist=nil, references=nil)
           @InstanceId = instanceid
           @Name = name
           @Type = type
@@ -14884,6 +14896,7 @@ module TencentCloud
           @Status = status
           @L4UsedList = l4usedlist
           @L7UsedList = l7usedlist
+          @References = references
         end
 
         def deserialize(params)
@@ -14907,6 +14920,14 @@ module TencentCloud
           @Status = params['Status']
           @L4UsedList = params['L4UsedList']
           @L7UsedList = params['L7UsedList']
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              origingroupreference_tmp = OriginGroupReference.new
+              origingroupreference_tmp.deserialize(i)
+              @References << origingroupreference_tmp
+            end
+          end
         end
       end
 
@@ -18682,28 +18703,40 @@ module TencentCloud
       # 源站组引用服务。
       class OriginGroupReference < TencentCloud::Common::AbstractModel
         # @param InstanceType: 引用服务类型，取值有：
-        # <li>AccelerationDomain: 加速域名；</li>
-        # <li>RuleEngine: 规则引擎；</li>
-        # <li>Loadbalance: 负载均衡；</li>
-        # <li>ApplicationProxy: 四层代理。</li>
+        # <li>acceleration-domain: 加速域名；</li>
+        # <li>rule-engine: 规则引擎；</li>
+        # <li>load-balancer: 负载均衡；</li>
+        # <li>application-proxy: 四层代理。</li>
         # @type InstanceType: String
         # @param InstanceId: 引用类型的实例ID。
         # @type InstanceId: String
-        # @param InstanceName: 应用类型的实例名称。
+        # @param InstanceName: 引用类型的实例名称。
         # @type InstanceName: String
+        # @param ZoneId: 引用站点ID。
+        # @type ZoneId: String
+        # @param ZoneName: 引用站点名称。
+        # @type ZoneName: String
+        # @param AliasZoneName: 引用站点别名。
+        # @type AliasZoneName: String
 
-        attr_accessor :InstanceType, :InstanceId, :InstanceName
+        attr_accessor :InstanceType, :InstanceId, :InstanceName, :ZoneId, :ZoneName, :AliasZoneName
 
-        def initialize(instancetype=nil, instanceid=nil, instancename=nil)
+        def initialize(instancetype=nil, instanceid=nil, instancename=nil, zoneid=nil, zonename=nil, aliaszonename=nil)
           @InstanceType = instancetype
           @InstanceId = instanceid
           @InstanceName = instancename
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @AliasZoneName = aliaszonename
         end
 
         def deserialize(params)
           @InstanceType = params['InstanceType']
           @InstanceId = params['InstanceId']
           @InstanceName = params['InstanceName']
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @AliasZoneName = params['AliasZoneName']
         end
       end
 

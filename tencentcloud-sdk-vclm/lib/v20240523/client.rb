@@ -198,6 +198,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于提交视频编辑任务，支持上传视频、文本及图片素材开展编辑操作，涵盖风格迁移、元素替换、内容增减等核心能力。
+
+        # @param request: Request instance for DescribeVideoEditJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeVideoEditJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeVideoEditJobResponse`
+        def DescribeVideoEditJob(request)
+          body = send_request('DescribeVideoEditJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVideoEditJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询视频人脸融合任务
 
         # @param request: Request instance for DescribeVideoFaceFusionJob.
@@ -404,6 +428,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitTemplateToVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 用于提交视频编辑任务，支持上传视频、文本及图片素材开展编辑操作，涵盖风格迁移、元素替换、内容增减等核心能力。
+
+        # @param request: Request instance for SubmitVideoEditJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitVideoEditJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitVideoEditJobResponse`
+        def SubmitVideoEditJob(request)
+          body = send_request('SubmitVideoEditJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitVideoEditJobResponse.new
             model.deserialize(response['Response'])
             model
           else

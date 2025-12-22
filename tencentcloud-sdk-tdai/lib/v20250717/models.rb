@@ -748,7 +748,7 @@ module TencentCloud
         # @param StreamingId: 流ID
         # @type StreamingId: String
         # @param BeginStreamingTokenId: 开始拉取的流式TokenID。0表示从该流最早的TokenID开始获取
-        # @type BeginStreamingTokenId: String
+        # @type BeginStreamingTokenId: Integer
         # @param TokenLimit: 单次获取的token数量，默认2000
         # @type TokenLimit: Integer
 

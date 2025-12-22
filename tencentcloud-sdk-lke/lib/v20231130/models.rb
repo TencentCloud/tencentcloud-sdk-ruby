@@ -2469,6 +2469,7 @@ module TencentCloud
       # CreateQA请求参数结构体
       class CreateQARequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
+        # 若要操作共享知识库，传KnowledgeBizId
         # @type BotBizId: String
         # @param Question: 问题
         # @type Question: String
@@ -2484,7 +2485,7 @@ module TencentCloud
         # @type DocBizId: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
-        # @param ExpireStart: 有效开始时间，unix时间戳
+        # @param ExpireStart: 有效开始时间，单位是unix时间戳。默认值为0，表示问答为永久有效.
         # @type ExpireStart: String
         # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
         # @type ExpireEnd: String
@@ -2492,10 +2493,12 @@ module TencentCloud
         # @type SimilarQuestions: Array
         # @param QuestionDesc: 问题描述
         # @type QuestionDesc: String
+        # @param EnableScope: 问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :Question, :Answer, :AttrRange, :CustomParam, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QuestionDesc
+        attr_accessor :BotBizId, :Question, :Answer, :AttrRange, :CustomParam, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QuestionDesc, :EnableScope
 
-        def initialize(botbizid=nil, question=nil, answer=nil, attrrange=nil, customparam=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestions=nil, questiondesc=nil)
+        def initialize(botbizid=nil, question=nil, answer=nil, attrrange=nil, customparam=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestions=nil, questiondesc=nil, enablescope=nil)
           @BotBizId = botbizid
           @Question = question
           @Answer = answer
@@ -2508,6 +2511,7 @@ module TencentCloud
           @ExpireEnd = expireend
           @SimilarQuestions = similarquestions
           @QuestionDesc = questiondesc
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -2530,6 +2534,7 @@ module TencentCloud
           @ExpireEnd = params['ExpireEnd']
           @SimilarQuestions = params['SimilarQuestions']
           @QuestionDesc = params['QuestionDesc']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -3838,12 +3843,20 @@ module TencentCloud
         # @param UpdatePeriodInfo: 文档更新频率
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdatePeriodInfo: :class:`Tencentcloud::Lke.v20231130.models.UpdatePeriodInfo`
+        # @param CateBizIdPath: 从根节点开始的路径分类ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CateBizIdPath: Array
+        # @param CateNamePath: 从根节点开始的路径分类名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CateNamePath: Array
+        # @param EnableScope: 文档生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :IsDisabled, :IsDownload, :SplitRule, :UpdatePeriodInfo, :RequestId
+        attr_accessor :DocBizId, :FileName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :IsAllowEdit, :AttrRange, :AttrLabels, :CateBizId, :IsDisabled, :IsDownload, :SplitRule, :UpdatePeriodInfo, :CateBizIdPath, :CateNamePath, :EnableScope, :RequestId
 
-        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, isdisabled=nil, isdownload=nil, splitrule=nil, updateperiodinfo=nil, requestid=nil)
+        def initialize(docbizid=nil, filename=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, isallowedit=nil, attrrange=nil, attrlabels=nil, catebizid=nil, isdisabled=nil, isdownload=nil, splitrule=nil, updateperiodinfo=nil, catebizidpath=nil, catenamepath=nil, enablescope=nil, requestid=nil)
           @DocBizId = docbizid
           @FileName = filename
           @FileType = filetype
@@ -3872,6 +3885,9 @@ module TencentCloud
           @IsDownload = isdownload
           @SplitRule = splitrule
           @UpdatePeriodInfo = updateperiodinfo
+          @CateBizIdPath = catebizidpath
+          @CateNamePath = catenamepath
+          @EnableScope = enablescope
           @RequestId = requestid
         end
 
@@ -3914,6 +3930,9 @@ module TencentCloud
             @UpdatePeriodInfo = UpdatePeriodInfo.new
             @UpdatePeriodInfo.deserialize(params['UpdatePeriodInfo'])
           end
+          @CateBizIdPath = params['CateBizIdPath']
+          @CateNamePath = params['CateNamePath']
+          @EnableScope = params['EnableScope']
           @RequestId = params['RequestId']
         end
       end
@@ -4133,12 +4152,23 @@ module TencentCloud
         # @type QuestionDesc: String
         # @param IsDisabled: 问答是否停用，false:未停用，true已停用
         # @type IsDisabled: Boolean
+        # @param CateBizIdPath: 从根节点开始的路径分类ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CateBizIdPath: Array
+        # @param CateNamePath: 从根节点开始的路径分类名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CateNamePath: Array
+        # @param EnableScope: 问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableScope: Integer
+        # @param DocEnableScope: 问答关联的文档生效域
+        # @type DocEnableScope: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QaAuditStatus, :PicAuditStatus, :VideoAuditStatus, :QuestionDesc, :IsDisabled, :RequestId
+        attr_accessor :QaBizId, :Question, :Answer, :CustomParam, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :CateBizId, :IsAllowAccept, :IsAllowDelete, :IsAllowEdit, :DocBizId, :FileName, :FileType, :SegmentBizId, :PageContent, :Highlights, :OrgData, :AttrRange, :AttrLabels, :ExpireStart, :ExpireEnd, :SimilarQuestions, :QaAuditStatus, :PicAuditStatus, :VideoAuditStatus, :QuestionDesc, :IsDisabled, :CateBizIdPath, :CateNamePath, :EnableScope, :DocEnableScope, :RequestId
 
-        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, similarquestions=nil, qaauditstatus=nil, picauditstatus=nil, videoauditstatus=nil, questiondesc=nil, isdisabled=nil, requestid=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, customparam=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, catebizid=nil, isallowaccept=nil, isallowdelete=nil, isallowedit=nil, docbizid=nil, filename=nil, filetype=nil, segmentbizid=nil, pagecontent=nil, highlights=nil, orgdata=nil, attrrange=nil, attrlabels=nil, expirestart=nil, expireend=nil, similarquestions=nil, qaauditstatus=nil, picauditstatus=nil, videoauditstatus=nil, questiondesc=nil, isdisabled=nil, catebizidpath=nil, catenamepath=nil, enablescope=nil, docenablescope=nil, requestid=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -4169,6 +4199,10 @@ module TencentCloud
           @VideoAuditStatus = videoauditstatus
           @QuestionDesc = questiondesc
           @IsDisabled = isdisabled
+          @CateBizIdPath = catebizidpath
+          @CateNamePath = catenamepath
+          @EnableScope = enablescope
+          @DocEnableScope = docenablescope
           @RequestId = requestid
         end
 
@@ -4224,6 +4258,10 @@ module TencentCloud
           @VideoAuditStatus = params['VideoAuditStatus']
           @QuestionDesc = params['QuestionDesc']
           @IsDisabled = params['IsDisabled']
+          @CateBizIdPath = params['CateBizIdPath']
+          @CateNamePath = params['CateNamePath']
+          @EnableScope = params['EnableScope']
+          @DocEnableScope = params['DocEnableScope']
           @RequestId = params['RequestId']
         end
       end
@@ -7659,10 +7697,13 @@ module TencentCloud
         # @type IsDisabled: Boolean
         # @param StaffName: 员工名称
         # @type StaffName: String
+        # @param EnableScope: 文档生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableScope: Integer
 
-        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :IsDisabled, :StaffName
+        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :IsDisabled, :StaffName, :EnableScope
 
-        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, isdisabled=nil, staffname=nil)
+        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, isdisabled=nil, staffname=nil, enablescope=nil)
           @DocBizId = docbizid
           @FileName = filename
           @NewName = newname
@@ -7699,6 +7740,7 @@ module TencentCloud
           @AttributeFlags = attributeflags
           @IsDisabled = isdisabled
           @StaffName = staffname
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -7745,16 +7787,17 @@ module TencentCloud
           @AttributeFlags = params['AttributeFlags']
           @IsDisabled = params['IsDisabled']
           @StaffName = params['StaffName']
+          @EnableScope = params['EnableScope']
         end
       end
 
       # ListDoc请求参数结构体
       class ListDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID, 获取方式参看 [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码(必须大于0)
         # @type PageNumber: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: 每页数量(取值范围1-200)
         # @type PageSize: Integer
         # @param Query: 查询内容
 
@@ -7764,7 +7807,7 @@ module TencentCloud
         # @type Status: Array
         # @param QueryType: 查询类型 filename 文档、 attribute 标签
         # @type QueryType: String
-        # @param CateBizId: 分类ID
+        # @param CateBizId: 分类ID, 调用接口[ListDocCate](https://capi.woa.com/api/detail?product=lke&version=2023-11-30&action=ListDocCate)获取
         # @type CateBizId: String
         # @param FileTypes: 文件类型分类筛选
         # @type FileTypes: Array
@@ -7772,10 +7815,12 @@ module TencentCloud
         # @type FilterFlag: Array
         # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
         # @type ShowCurrCate: Integer
+        # @param EnableScope: 文档生效域；不检索默认为0
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag, :ShowCurrCate
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :Status, :QueryType, :CateBizId, :FileTypes, :FilterFlag, :ShowCurrCate, :EnableScope
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil, showcurrcate=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, status=nil, querytype=nil, catebizid=nil, filetypes=nil, filterflag=nil, showcurrcate=nil, enablescope=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -7786,6 +7831,7 @@ module TencentCloud
           @FileTypes = filetypes
           @FilterFlag = filterflag
           @ShowCurrCate = showcurrcate
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -7806,6 +7852,7 @@ module TencentCloud
             end
           end
           @ShowCurrCate = params['ShowCurrCate']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -7965,22 +8012,26 @@ module TencentCloud
       # ListQA请求参数结构体
       class ListQARequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
+        # 若要操作共享知识库，传KnowledgeBizId
         # @type BotBizId: String
-        # @param PageNumber: 页码
+        # @param PageNumber: 页码（取值范围>0）
         # @type PageNumber: Integer
-        # @param PageSize: 每页大小
+        # @param PageSize: 每页大小(取值范围1-200)
         # @type PageSize: Integer
         # @param Query: 查询问题
 
         # 输入特定标识 lke:system:untagged  将查询所有未关联标签的问答
         # @type Query: String
         # @param AcceptStatus: 校验状态(1未校验2采纳3不采纳)
+        # 如果不填默认值为空数组，表示不筛选，返回所有状态
         # @type AcceptStatus: Array
         # @param ReleaseStatus: 发布状态(2待发布 3发布中 4已发布 7审核中 8审核失败 9人工申述中 11人工申述失败 12已过期 13超量失效 14超量失效恢复)
+        # 如果不填默认值为空数组，表示不筛选返回所有状态
         # @type ReleaseStatus: Array
         # @param DocBizId: 文档ID
         # @type DocBizId: String
         # @param Source: 来源(1 文档生成 2 批量导入 3 手动添加)
+        # 不填默认值为0，表示不过滤，返回所有状态
         # @type Source: Integer
         # @param QueryAnswer: 查询答案
         # @type QueryAnswer: String
@@ -7989,13 +8040,16 @@ module TencentCloud
         # @param QaBizIds: QA业务ID列表
         # @type QaBizIds: Array
         # @param QueryType: 查询类型 filename 名称、 attribute 标签
+        # 如果不填默认值为"filename"
         # @type QueryType: String
         # @param ShowCurrCate: 是否只展示当前分类的数据 0不是，1是
         # @type ShowCurrCate: Integer
+        # @param EnableScope: // 知识生效作用域枚举值 enum RetrievalEnableScope {   ENABLE_SCOPE_TYPE_UNKNOWN = 0; // 未知类型   ENABLE_SCOPE_TYPE_NONE = 1; // 停用   ENABLE_SCOPE_TYPE_DEV = 2; // 仅开发域   ENABLE_SCOPE_TYPE_RELEASE = 3; // 仅发布域   ENABLE_SCOPE_TYPE_ALL = 4; // 全域 }  问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType, :ShowCurrCate
+        attr_accessor :BotBizId, :PageNumber, :PageSize, :Query, :AcceptStatus, :ReleaseStatus, :DocBizId, :Source, :QueryAnswer, :CateBizId, :QaBizIds, :QueryType, :ShowCurrCate, :EnableScope
 
-        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil, showcurrcate=nil)
+        def initialize(botbizid=nil, pagenumber=nil, pagesize=nil, query=nil, acceptstatus=nil, releasestatus=nil, docbizid=nil, source=nil, queryanswer=nil, catebizid=nil, qabizids=nil, querytype=nil, showcurrcate=nil, enablescope=nil)
           @BotBizId = botbizid
           @PageNumber = pagenumber
           @PageSize = pagesize
@@ -8009,6 +8063,7 @@ module TencentCloud
           @QaBizIds = qabizids
           @QueryType = querytype
           @ShowCurrCate = showcurrcate
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -8025,6 +8080,7 @@ module TencentCloud
           @QaBizIds = params['QaBizIds']
           @QueryType = params['QueryType']
           @ShowCurrCate = params['ShowCurrCate']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -8125,10 +8181,15 @@ module TencentCloud
         # @type IsDisabled: Boolean
         # @param StaffName: 员工名称
         # @type StaffName: String
+        # @param EnableScope: 问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableScope: Integer
+        # @param DocEnableScope: 问答关联的文档生效域
+        # @type DocEnableScope: Integer
 
-        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips, :IsDisabled, :StaffName
+        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips, :IsDisabled, :StaffName, :EnableScope, :DocEnableScope
 
-        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil, isdisabled=nil, staffname=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil, isdisabled=nil, staffname=nil, enablescope=nil, docenablescope=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -8153,6 +8214,8 @@ module TencentCloud
           @SimilarQuestionTips = similarquestiontips
           @IsDisabled = isdisabled
           @StaffName = staffname
+          @EnableScope = enablescope
+          @DocEnableScope = docenablescope
         end
 
         def deserialize(params)
@@ -8187,6 +8250,8 @@ module TencentCloud
           @SimilarQuestionTips = params['SimilarQuestionTips']
           @IsDisabled = params['IsDisabled']
           @StaffName = params['StaffName']
+          @EnableScope = params['EnableScope']
+          @DocEnableScope = params['DocEnableScope']
         end
       end
 
@@ -9530,13 +9595,13 @@ module TencentCloud
 
       # ModifyDoc请求参数结构体
       class ModifyDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param DocBizId: 文档ID
         # @type DocBizId: String
         # @param IsRefer: 是否引用链接
         # @type IsRefer: Boolean
-        # @param AttrRange: 标签适用范围，需要传参为1
+        # @param AttrRange: 标签适用范围，1:全部，2:按条件。默认为1。
         # @type AttrRange: Integer
         # @param LoginUin: 登录用户主账号(集成商模式必填)
         # @type LoginUin: String
@@ -9549,9 +9614,9 @@ module TencentCloud
         # @param ReferUrlType: 外部引用链接类型 0：系统链接 1：自定义链接
         # 值为1时，WebUrl 字段不能为空，否则不生效。
         # @type ReferUrlType: Integer
-        # @param ExpireStart: 有效开始时间，unix时间戳
+        # @param ExpireStart: 有效开始时间，单位为unix时间戳
         # @type ExpireStart: String
-        # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
+        # @param ExpireEnd: 有效结束时间，单位为unix时间戳，默认值为0代表永久有效
         # @type ExpireEnd: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
@@ -9563,10 +9628,12 @@ module TencentCloud
         # @type UpdatePeriodInfo: :class:`Tencentcloud::Lke.v20231130.models.UpdatePeriodInfo`
         # @param SplitRule: 自定义切分规则
         # @type SplitRule: String
+        # @param EnableScope: 文档生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId, :IsDownload, :ModifyTypes, :UpdatePeriodInfo, :SplitRule
+        attr_accessor :BotBizId, :DocBizId, :IsRefer, :AttrRange, :LoginUin, :LoginSubAccountUin, :AttrLabels, :WebUrl, :ReferUrlType, :ExpireStart, :ExpireEnd, :CateBizId, :IsDownload, :ModifyTypes, :UpdatePeriodInfo, :SplitRule, :EnableScope
 
-        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil, isdownload=nil, modifytypes=nil, updateperiodinfo=nil, splitrule=nil)
+        def initialize(botbizid=nil, docbizid=nil, isrefer=nil, attrrange=nil, loginuin=nil, loginsubaccountuin=nil, attrlabels=nil, weburl=nil, referurltype=nil, expirestart=nil, expireend=nil, catebizid=nil, isdownload=nil, modifytypes=nil, updateperiodinfo=nil, splitrule=nil, enablescope=nil)
           @BotBizId = botbizid
           @DocBizId = docbizid
           @IsRefer = isrefer
@@ -9583,6 +9650,7 @@ module TencentCloud
           @ModifyTypes = modifytypes
           @UpdatePeriodInfo = updateperiodinfo
           @SplitRule = splitrule
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -9612,6 +9680,7 @@ module TencentCloud
             @UpdatePeriodInfo.deserialize(params['UpdatePeriodInfo'])
           end
           @SplitRule = params['SplitRule']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -9725,6 +9794,7 @@ module TencentCloud
       # ModifyQA请求参数结构体
       class ModifyQARequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID
+        # 若要操作共享知识库，传KnowledgeBizId
         # @type BotBizId: String
         # @param QaBizId: 问答ID
         # @type QaBizId: String
@@ -9735,6 +9805,8 @@ module TencentCloud
         # @param CustomParam: 自定义参数
         # @type CustomParam: String
         # @param AttrRange: 标签适用范围 1：全部，2：按条件
+        # 默认值：当没有属性标签，labelRefers为空时，默认值为1
+        # 有属性标签，labelRefers不为空，默认值为2
         # @type AttrRange: Integer
         # @param AttrLabels: 标签引用
         # @type AttrLabels: Array
@@ -9742,18 +9814,20 @@ module TencentCloud
         # @type DocBizId: String
         # @param CateBizId: 分类ID
         # @type CateBizId: String
-        # @param ExpireStart: 有效开始时间，unix时间戳
+        # @param ExpireStart: 有效开始时间，单位是unix时间戳，默认值为0，代表永久有效
         # @type ExpireStart: String
-        # @param ExpireEnd: 有效结束时间，unix时间戳，0代表永久有效
+        # @param ExpireEnd: 有效结束时间，单位是unix时间戳，默认值为0，代表永久有效
         # @type ExpireEnd: String
         # @param SimilarQuestionModify: 相似问修改信息(相似问没有修改则不传)
         # @type SimilarQuestionModify: :class:`Tencentcloud::Lke.v20231130.models.SimilarQuestionModify`
         # @param QuestionDesc: 问题描述
         # @type QuestionDesc: String
+        # @param EnableScope: 问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :QaBizId, :Question, :Answer, :CustomParam, :AttrRange, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestionModify, :QuestionDesc
+        attr_accessor :BotBizId, :QaBizId, :Question, :Answer, :CustomParam, :AttrRange, :AttrLabels, :DocBizId, :CateBizId, :ExpireStart, :ExpireEnd, :SimilarQuestionModify, :QuestionDesc, :EnableScope
 
-        def initialize(botbizid=nil, qabizid=nil, question=nil, answer=nil, customparam=nil, attrrange=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestionmodify=nil, questiondesc=nil)
+        def initialize(botbizid=nil, qabizid=nil, question=nil, answer=nil, customparam=nil, attrrange=nil, attrlabels=nil, docbizid=nil, catebizid=nil, expirestart=nil, expireend=nil, similarquestionmodify=nil, questiondesc=nil, enablescope=nil)
           @BotBizId = botbizid
           @QaBizId = qabizid
           @Question = question
@@ -9767,6 +9841,7 @@ module TencentCloud
           @ExpireEnd = expireend
           @SimilarQuestionModify = similarquestionmodify
           @QuestionDesc = questiondesc
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -9793,6 +9868,7 @@ module TencentCloud
             @SimilarQuestionModify.deserialize(params['SimilarQuestionModify'])
           end
           @QuestionDesc = params['QuestionDesc']
+          @EnableScope = params['EnableScope']
         end
       end
 
@@ -11459,9 +11535,9 @@ module TencentCloud
 
       # SaveDoc请求参数结构体
       class SaveDocRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
-        # @param FileName: 文件名
+        # @param FileName: 文件名，需要包含文件扩展名
         # @type FileName: String
         # @param FileType: 文档支持下面类型
         # pdf、doc、docx、ppt、mhtml、pptx、wps、ppsx，单个文件不超过200MB；
@@ -11482,7 +11558,7 @@ module TencentCloud
         # @type CosHash: String
         # @param Size: 文件大小
         # @type Size: String
-        # @param AttrRange: 标签适用范围，需要传参为1
+        # @param AttrRange: 标签适用范围，1:全部，2:按条件。默认为1。
         # @type AttrRange: Integer
         # @param Source: 来源（0 从本地文档导入），默认值为0
         # @type Source: Integer
@@ -11493,13 +11569,13 @@ module TencentCloud
         # @param ReferUrlType: 外部引用链接类型 0：系统链接 1：自定义链接
         # 值为1时，WebUrl 字段不能为空，否则不生效。
         # @type ReferUrlType: Integer
-        # @param ExpireStart: 有效开始时间，unix秒级时间戳
+        # @param ExpireStart: 有效开始时间，unix秒级时间戳，默认为0
         # @type ExpireStart: String
-        # @param ExpireEnd: 有效结束时间，unix秒级时间戳，0代表永久有效
+        # @param ExpireEnd: 有效结束时间，unix秒级时间戳，默认为0代表永久有效
         # @type ExpireEnd: String
-        # @param IsRefer: 是否引用链接
+        # @param IsRefer: 是否显示引用的文档来源(false不显示 true显示）默认false
         # @type IsRefer: Boolean
-        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档） 默认为1  <br> 请注意，opt=1的时候请从腾讯云智能体开发平台页面下载excel模板
+        # @param Opt: 文档操作类型：1：批量导入（批量导入问答对）；2:文档导入（正常导入单个文档） 默认为2 <br> 请注意，opt=1的时候请从腾讯云智能体开发平台页面下载excel模板
         # @type Opt: Integer
         # @param CateBizId: 分类ID
         # @type CateBizId: String
@@ -11593,12 +11669,14 @@ module TencentCloud
         # |--------------|--------|----------------------------------------------------------------------|
         # | `table_style` | String | 指定表格内容的输出格式。可用值：<br>• `"html"`：以 HTML 表格形式返回，适合网页展示。<br>• `"md"`：以 Markdown 表格语法返回，适合文档或 Markdown 渲染环境。|
         # @type SplitRule: String
-        # @param UpdatePeriodInfo: 文档更新频率
+        # @param UpdatePeriodInfo: 文档更新频率，默认值为0不更新
         # @type UpdatePeriodInfo: :class:`Tencentcloud::Lke.v20231130.models.UpdatePeriodInfo`
+        # @param EnableScope: 文档生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @type EnableScope: Integer
 
-        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId, :IsDownload, :DuplicateFileHandles, :SplitRule, :UpdatePeriodInfo
+        attr_accessor :BotBizId, :FileName, :FileType, :CosUrl, :ETag, :CosHash, :Size, :AttrRange, :Source, :WebUrl, :AttrLabels, :ReferUrlType, :ExpireStart, :ExpireEnd, :IsRefer, :Opt, :CateBizId, :IsDownload, :DuplicateFileHandles, :SplitRule, :UpdatePeriodInfo, :EnableScope
 
-        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil, isdownload=nil, duplicatefilehandles=nil, splitrule=nil, updateperiodinfo=nil)
+        def initialize(botbizid=nil, filename=nil, filetype=nil, cosurl=nil, etag=nil, coshash=nil, size=nil, attrrange=nil, source=nil, weburl=nil, attrlabels=nil, referurltype=nil, expirestart=nil, expireend=nil, isrefer=nil, opt=nil, catebizid=nil, isdownload=nil, duplicatefilehandles=nil, splitrule=nil, updateperiodinfo=nil, enablescope=nil)
           @BotBizId = botbizid
           @FileName = filename
           @FileType = filetype
@@ -11620,6 +11698,7 @@ module TencentCloud
           @DuplicateFileHandles = duplicatefilehandles
           @SplitRule = splitrule
           @UpdatePeriodInfo = updateperiodinfo
+          @EnableScope = enablescope
         end
 
         def deserialize(params)
@@ -11661,6 +11740,7 @@ module TencentCloud
             @UpdatePeriodInfo = UpdatePeriodInfo.new
             @UpdatePeriodInfo.deserialize(params['UpdatePeriodInfo'])
           end
+          @EnableScope = params['EnableScope']
         end
       end
 

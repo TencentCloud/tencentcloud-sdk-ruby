@@ -19,7 +19,7 @@ module TencentCloud
     module V20250513
       # Convert3DFormat请求参数结构体
       class Convert3DFormatRequest < TencentCloud::Common::AbstractModel
-        # @param File3D: 3D文件url地址。
+        # @param File3D: 3D文件url地址，模型文件大小≤60m，支持fbx，obj，glb格式3D文件输入。
         # @type File3D: String
         # @param Format: 返回的3D文件格式，参考值：STL, USDZ, FBX, MP4, GIF。
         # @type Format: String
@@ -497,14 +497,14 @@ module TencentCloud
         # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
         # @type Prompt: String
         # @param ImageBase64: 输入图 Base64 数据。
-        # 大小：单边分辨率要求不小于128，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过5m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤6m (因base64编码后会大30%左右)
+        # 格式: jpg，png，jpeg，webp.
+        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
         # @type ImageBase64: String
-        # @param ImageUrl: 输入图Url。
-        # 大小：单边分辨率要求不小于128，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过5m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # @param ImageUrl: 输入图Url
+        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤8m
+        # 格式: jpg，png，jpeg，webp.
+        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
         # @type ImageUrl: String
         # @param MultiViewImages: 多视角的模型图片，视角参考值：
         # left：左视图；
@@ -512,7 +512,7 @@ module TencentCloud
         # back：后视图；
 
         # 每个视角仅限制一张图片。
-        # ●图片大小限制：编码后大小不可超过8M。（base64编码后会大30%左右，建议实际输入图片不超过5m）
+        # ●图片大小限制：编码后所有图片大小总和不可超过8M。（base64编码下图片大小总和不超过6M，因base64编码后图片大小会大30%左右）
         # ●图片分辨率限制：单边分辨率小于5000且大于128。
         # ●支持图片格式：支持jpg或png
         # @type MultiViewImages: Array
@@ -593,14 +593,14 @@ module TencentCloud
         # 文生3D, ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
         # @type Prompt: String
         # @param ImageBase64: 输入图 Base64 数据。
-        # 大小：单边分辨率要求不小于128，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过5m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤6m (因base64编码后会大30%左右)
+        # 格式: jpg，png，jpeg，webp.
+        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
         # @type ImageBase64: String
-        # @param ImageUrl: 输入图Url。
-        # 大小：单边分辨率要求不小于128，不大于5000。大小不超过8m（base64编码后会大30%左右，建议实际输入图片不超过5m）
-        # 格式：jpg，png，jpeg，webp。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # @param ImageUrl: 输入图Url
+        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤8m
+        # 格式: jpg，png，jpeg，webp.
+        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
         # @type ImageUrl: String
         # @param ResultFormat: 生成模型的格式，仅限制生成一种格式。
         # 生成模型文件组默认返回obj格式。

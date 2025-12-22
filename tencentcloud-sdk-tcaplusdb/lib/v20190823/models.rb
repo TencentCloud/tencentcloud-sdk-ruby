@@ -3717,72 +3717,6 @@ module TencentCloud
         end
       end
 
-      # RollbackTables请求参数结构体
-      class RollbackTablesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 待回档表格所在集群ID
-        # @type ClusterId: String
-        # @param SelectedTables: 待回档表格列表
-        # @type SelectedTables: Array
-        # @param RollbackTime: 待回档时间
-        # @type RollbackTime: String
-        # @param Mode: 回档模式，支持：`KEYS`
-        # @type Mode: String
-
-        attr_accessor :ClusterId, :SelectedTables, :RollbackTime, :Mode
-
-        def initialize(clusterid=nil, selectedtables=nil, rollbacktime=nil, mode=nil)
-          @ClusterId = clusterid
-          @SelectedTables = selectedtables
-          @RollbackTime = rollbacktime
-          @Mode = mode
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          unless params['SelectedTables'].nil?
-            @SelectedTables = []
-            params['SelectedTables'].each do |i|
-              selectedtableinfonew_tmp = SelectedTableInfoNew.new
-              selectedtableinfonew_tmp.deserialize(i)
-              @SelectedTables << selectedtableinfonew_tmp
-            end
-          end
-          @RollbackTime = params['RollbackTime']
-          @Mode = params['Mode']
-        end
-      end
-
-      # RollbackTables返回参数结构体
-      class RollbackTablesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 表格回档任务结果数量
-        # @type TotalCount: Integer
-        # @param TableResults: 表格回档任务结果列表
-        # @type TableResults: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :TotalCount, :TableResults, :RequestId
-
-        def initialize(totalcount=nil, tableresults=nil, requestid=nil)
-          @TotalCount = totalcount
-          @TableResults = tableresults
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @TotalCount = params['TotalCount']
-          unless params['TableResults'].nil?
-            @TableResults = []
-            params['TableResults'].each do |i|
-              tablerollbackresultnew_tmp = TableRollbackResultNew.new
-              tablerollbackresultnew_tmp.deserialize(i)
-              @TableResults << tablerollbackresultnew_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # 被选中的表信息
       class SelectedTableInfoNew < TencentCloud::Common::AbstractModel
         # @param TableGroupId: 表所属表格组ID
@@ -4578,65 +4512,6 @@ module TencentCloud
           end
           @TaskIds = params['TaskIds']
           @ApplicationId = params['ApplicationId']
-        end
-      end
-
-      # 表格回档结果信息
-      class TableRollbackResultNew < TencentCloud::Common::AbstractModel
-        # @param TableInstanceId: 表格实例ID，形如：tcaplus-3be64cbb
-        # @type TableInstanceId: String
-        # @param TaskId: 任务ID，对于创建单任务的接口有效
-        # @type TaskId: String
-        # @param TableName: 表格名称
-        # @type TableName: String
-        # @param TableType: 表格数据结构类型，如：`GENERIC`或`LIST`
-        # @type TableType: String
-        # @param TableIdlType: 表格数据描述语言（IDL）类型，如：`PROTO`或`TDR`
-        # @type TableIdlType: String
-        # @param TableGroupId: 表格所属表格组ID
-        # @type TableGroupId: String
-        # @param Error: 错误信息
-        # @type Error: :class:`Tencentcloud::Tcaplusdb.v20190823.models.ErrorInfo`
-        # @param TaskIds: 任务ID列表，对于创建多任务的接口有效
-        # @type TaskIds: Array
-        # @param FileId: 上传的key文件ID
-        # @type FileId: String
-        # @param SuccKeyNum: 校验成功Key数量
-        # @type SuccKeyNum: Integer
-        # @param TotalKeyNum: Key文件中包含总的Key数量
-        # @type TotalKeyNum: Integer
-
-        attr_accessor :TableInstanceId, :TaskId, :TableName, :TableType, :TableIdlType, :TableGroupId, :Error, :TaskIds, :FileId, :SuccKeyNum, :TotalKeyNum
-
-        def initialize(tableinstanceid=nil, taskid=nil, tablename=nil, tabletype=nil, tableidltype=nil, tablegroupid=nil, error=nil, taskids=nil, fileid=nil, succkeynum=nil, totalkeynum=nil)
-          @TableInstanceId = tableinstanceid
-          @TaskId = taskid
-          @TableName = tablename
-          @TableType = tabletype
-          @TableIdlType = tableidltype
-          @TableGroupId = tablegroupid
-          @Error = error
-          @TaskIds = taskids
-          @FileId = fileid
-          @SuccKeyNum = succkeynum
-          @TotalKeyNum = totalkeynum
-        end
-
-        def deserialize(params)
-          @TableInstanceId = params['TableInstanceId']
-          @TaskId = params['TaskId']
-          @TableName = params['TableName']
-          @TableType = params['TableType']
-          @TableIdlType = params['TableIdlType']
-          @TableGroupId = params['TableGroupId']
-          unless params['Error'].nil?
-            @Error = ErrorInfo.new
-            @Error.deserialize(params['Error'])
-          end
-          @TaskIds = params['TaskIds']
-          @FileId = params['FileId']
-          @SuccKeyNum = params['SuccKeyNum']
-          @TotalKeyNum = params['TotalKeyNum']
         end
       end
 

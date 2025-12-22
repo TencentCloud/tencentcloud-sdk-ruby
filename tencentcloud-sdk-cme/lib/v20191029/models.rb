@@ -682,8 +682,8 @@ module TencentCloud
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
         extend Gem::Deprecate
-        deprecate :AspectRatio, :none, 2025, 11
-        deprecate :AspectRatio=, :none, 2025, 11
+        deprecate :AspectRatio, :none, 2025, 12
+        deprecate :AspectRatio=, :none, 2025, 12
 
         def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil, mediacastprojectinput=nil)
           @Platform = platform
@@ -2616,8 +2616,8 @@ module TencentCloud
 
         attr_accessor :MediaKey, :Definition, :StorageId
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2025, 11
-        deprecate :Definition=, :none, 2025, 11
+        deprecate :Definition, :none, 2025, 12
+        deprecate :Definition=, :none, 2025, 12
 
         def initialize(mediakey=nil, definition=nil, storageid=nil)
           @MediaKey = mediakey
@@ -3587,8 +3587,8 @@ module TencentCloud
 
         attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
         extend Gem::Deprecate
-        deprecate :TagInfoSet, :none, 2025, 11
-        deprecate :TagInfoSet=, :none, 2025, 11
+        deprecate :TagInfoSet, :none, 2025, 12
+        deprecate :TagInfoSet=, :none, 2025, 12
 
         def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
@@ -4377,15 +4377,22 @@ module TencentCloud
         # @param PreprocessOperation: 预处理操作。
         # 注：目前该功能暂不支持，请勿使用。
         # @type PreprocessOperation: :class:`Tencentcloud::Cme.v20191029.models.MediaPreprocessOperation`
+        # @param MuteSwitch: 静音开关，仅对视频类型媒体生效。取值有：
+        # <li>ON：视频媒体开启静音，该段媒体在导出中会屏蔽音频；</li>
+        # <li>OFF：视频媒体关闭静音；</li>
 
-        attr_accessor :MediaType, :MaterialId, :MediaUrl, :StartTimeOffset, :PreprocessOperation
+        # 注：默认为 OFF，即不对视频媒体的音频做静音处理。
+        # @type MuteSwitch: String
 
-        def initialize(mediatype=nil, materialid=nil, mediaurl=nil, starttimeoffset=nil, preprocessoperation=nil)
+        attr_accessor :MediaType, :MaterialId, :MediaUrl, :StartTimeOffset, :PreprocessOperation, :MuteSwitch
+
+        def initialize(mediatype=nil, materialid=nil, mediaurl=nil, starttimeoffset=nil, preprocessoperation=nil, muteswitch=nil)
           @MediaType = mediatype
           @MaterialId = materialid
           @MediaUrl = mediaurl
           @StartTimeOffset = starttimeoffset
           @PreprocessOperation = preprocessoperation
+          @MuteSwitch = muteswitch
         end
 
         def deserialize(params)
@@ -4397,6 +4404,7 @@ module TencentCloud
             @PreprocessOperation = MediaPreprocessOperation.new
             @PreprocessOperation.deserialize(params['PreprocessOperation'])
           end
+          @MuteSwitch = params['MuteSwitch']
         end
       end
 
@@ -5645,8 +5653,8 @@ module TencentCloud
 
         attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2025, 11
-        deprecate :Operator=, :none, 2025, 11
+        deprecate :Operator, :none, 2025, 12
+        deprecate :Operator=, :none, 2025, 12
 
         def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid

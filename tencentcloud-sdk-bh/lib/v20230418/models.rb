@@ -4701,6 +4701,26 @@ module TencentCloud
         end
       end
 
+      # 大区环境网络配置
+      class EnvInternetAccessSetting < TencentCloud::Common::AbstractModel
+        # @param DisableExternalAccess: true：不能访问公网
+        # @type DisableExternalAccess: Boolean
+        # @param DisableDownloadDataAcl: true：不能创建数据下载权限
+        # @type DisableDownloadDataAcl: Boolean
+
+        attr_accessor :DisableExternalAccess, :DisableDownloadDataAcl
+
+        def initialize(disableexternalaccess=nil, disabledownloaddataacl=nil)
+          @DisableExternalAccess = disableexternalaccess
+          @DisableDownloadDataAcl = disabledownloaddataacl
+        end
+
+        def deserialize(params)
+          @DisableExternalAccess = params['DisableExternalAccess']
+          @DisableDownloadDataAcl = params['DisableDownloadDataAcl']
+        end
+      end
+
       # 主机参数，导入外部主机时使用
       class ExternalDevice < TencentCloud::Common::AbstractModel
         # @param OsName: 操作系统名称，只能是Linux、Windows或MySQL
@@ -6355,6 +6375,8 @@ module TencentCloud
         # @type IntranetPrivateIpSet: Array
         # @param IntranetVpcId: 开通内网访问的vpc
         # @type IntranetVpcId: String
+        # @param IntranetSubnetId: 开通内网访问的subnetId
+        # @type IntranetSubnetId: String
         # @param IntranetVpcCidr: 开通内网访问vpc的网段
         # @type IntranetVpcCidr: String
         # @param DomainName: 堡垒机内网ip自定义域名
@@ -6384,9 +6406,9 @@ module TencentCloud
         # @param IOAResourceId: 堡垒机实例对应的零信任实例id
         # @type IOAResourceId: String
 
-        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
+        attr_accessor :ResourceId, :ApCode, :SvArgs, :VpcId, :Nodes, :RenewFlag, :ExpireTime, :Status, :ResourceName, :Pid, :CreateTime, :ProductCode, :SubProductCode, :Zone, :Expired, :Deployed, :VpcName, :VpcCidrBlock, :SubnetId, :SubnetName, :CidrBlock, :PublicIpSet, :PrivateIpSet, :ModuleSet, :UsedNodes, :ExtendPoints, :PackageBandwidth, :PackageNode, :LogDeliveryArgs, :ClbSet, :DomainCount, :UsedDomainCount, :Trial, :LogDelivery, :CdcClusterId, :DeployModel, :IntranetAccess, :IntranetPrivateIpSet, :IntranetVpcId, :IntranetSubnetId, :IntranetVpcCidr, :DomainName, :ShareClb, :OpenClbId, :LbVipIsp, :TUICmdPort, :TUIDirectPort, :WebAccess, :ClientAccess, :ExternalAccess, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :IOAResourceId
 
-        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
+        def initialize(resourceid=nil, apcode=nil, svargs=nil, vpcid=nil, nodes=nil, renewflag=nil, expiretime=nil, status=nil, resourcename=nil, pid=nil, createtime=nil, productcode=nil, subproductcode=nil, zone=nil, expired=nil, deployed=nil, vpcname=nil, vpccidrblock=nil, subnetid=nil, subnetname=nil, cidrblock=nil, publicipset=nil, privateipset=nil, moduleset=nil, usednodes=nil, extendpoints=nil, packagebandwidth=nil, packagenode=nil, logdeliveryargs=nil, clbset=nil, domaincount=nil, useddomaincount=nil, trial=nil, logdelivery=nil, cdcclusterid=nil, deploymodel=nil, intranetaccess=nil, intranetprivateipset=nil, intranetvpcid=nil, intranetsubnetid=nil, intranetvpccidr=nil, domainname=nil, shareclb=nil, openclbid=nil, lbvipisp=nil, tuicmdport=nil, tuidirectport=nil, webaccess=nil, clientaccess=nil, externalaccess=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, ioaresourceid=nil)
           @ResourceId = resourceid
           @ApCode = apcode
           @SvArgs = svargs
@@ -6426,6 +6448,7 @@ module TencentCloud
           @IntranetAccess = intranetaccess
           @IntranetPrivateIpSet = intranetprivateipset
           @IntranetVpcId = intranetvpcid
+          @IntranetSubnetId = intranetsubnetid
           @IntranetVpcCidr = intranetvpccidr
           @DomainName = domainname
           @ShareClb = shareclb
@@ -6489,6 +6512,7 @@ module TencentCloud
           @IntranetAccess = params['IntranetAccess']
           @IntranetPrivateIpSet = params['IntranetPrivateIpSet']
           @IntranetVpcId = params['IntranetVpcId']
+          @IntranetSubnetId = params['IntranetSubnetId']
           @IntranetVpcCidr = params['IntranetVpcCidr']
           @DomainName = params['DomainName']
           @ShareClb = params['ShareClb']
@@ -7618,12 +7642,15 @@ module TencentCloud
         # @type AuthModeGM: :class:`Tencentcloud::Bh.v20230418.models.AuthModeSetting`
         # @param Reconnection: 资产重连次数
         # @type Reconnection: :class:`Tencentcloud::Bh.v20230418.models.ReconnectionSetting`
+        # @param EnvInternetAccess: 大区环境网络设置
+        # @type EnvInternetAccess: :class:`Tencentcloud::Bh.v20230418.models.EnvInternetAccessSetting`
 
-        attr_accessor :AuthModeGM, :Reconnection
+        attr_accessor :AuthModeGM, :Reconnection, :EnvInternetAccess
 
-        def initialize(authmodegm=nil, reconnection=nil)
+        def initialize(authmodegm=nil, reconnection=nil, envinternetaccess=nil)
           @AuthModeGM = authmodegm
           @Reconnection = reconnection
+          @EnvInternetAccess = envinternetaccess
         end
 
         def deserialize(params)
@@ -7634,6 +7661,10 @@ module TencentCloud
           unless params['Reconnection'].nil?
             @Reconnection = ReconnectionSetting.new
             @Reconnection.deserialize(params['Reconnection'])
+          end
+          unless params['EnvInternetAccess'].nil?
+            @EnvInternetAccess = EnvInternetAccessSetting.new
+            @EnvInternetAccess.deserialize(params['EnvInternetAccess'])
           end
         end
       end

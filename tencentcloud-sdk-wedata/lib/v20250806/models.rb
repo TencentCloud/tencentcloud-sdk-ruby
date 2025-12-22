@@ -1651,7 +1651,7 @@ module TencentCloud
         # @param ParentFolderPath: 项目中资源文件上传的路径, 取值示例: /wedata/qxxxm/, 根目录,请使用/即可
         # @type ParentFolderPath: String
         # @param ResourceFile: - 上传文件及手填两种方式只能选择其一，如果两者均提供，取值顺序为文件>手填值
-        # -   手填值必须是存在的cos路径, /datastudio/resource/ 为固定前缀, projectId 为项目ID,需传入具体值, parentFolderPath为父文件夹路径, name为文件名, 手填值取值示例:     /datastudio/resource/projectId/parentFolderPath/name
+        # -   手填值必须是存在的cos路径, parentFolderPath为父文件夹路径, name为文件名, 手填值取值示例:     /datastudio/resource/projectId/parentFolderPath/name
         # @type ResourceFile: String
         # @param BundleId: bundle客户端ID
         # @type BundleId: String
@@ -1998,15 +1998,22 @@ module TencentCloud
         # @type OwnerUin: String
         # @param TaskDescription: 任务描述
         # @type TaskDescription: String
+        # @param TaskFolderPath: 任务文件夹路径
 
-        attr_accessor :TaskName, :TaskTypeId, :WorkflowId, :OwnerUin, :TaskDescription
+        # 注意：
+        # - 路径上不要填写任务节点类型；例如，在 一个名为 wf01 的工作流，“通用” 分类下，现在想要在这个分类下的 tf_01 文件夹下，新建一个 shell 任务；则 填写 /tf_01 即可；
+        # - 如果 tf_01 文件夹不存在，则需要先创建这个文件夹（使用 CreateTaskFolder 接口）才能操作成功；
+        # @type TaskFolderPath: String
 
-        def initialize(taskname=nil, tasktypeid=nil, workflowid=nil, owneruin=nil, taskdescription=nil)
+        attr_accessor :TaskName, :TaskTypeId, :WorkflowId, :OwnerUin, :TaskDescription, :TaskFolderPath
+
+        def initialize(taskname=nil, tasktypeid=nil, workflowid=nil, owneruin=nil, taskdescription=nil, taskfolderpath=nil)
           @TaskName = taskname
           @TaskTypeId = tasktypeid
           @WorkflowId = workflowid
           @OwnerUin = owneruin
           @TaskDescription = taskdescription
+          @TaskFolderPath = taskfolderpath
         end
 
         def deserialize(params)
@@ -2015,6 +2022,7 @@ module TencentCloud
           @WorkflowId = params['WorkflowId']
           @OwnerUin = params['OwnerUin']
           @TaskDescription = params['TaskDescription']
+          @TaskFolderPath = params['TaskFolderPath']
         end
       end
 
@@ -2192,8 +2200,6 @@ module TencentCloud
         # @type ExecutionStartTime: String
         # @param ExecutionEndTime: 执行时间 右闭区间，默认 23:59
         # @type ExecutionEndTime: String
-        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
-        # @type ScheduleRunType: String
         # @param CalendarOpen: 日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0
         # @type CalendarOpen: String
         # @param CalendarId: 日历调度 日历 ID
@@ -2204,16 +2210,6 @@ module TencentCloud
         # @type UpstreamDependencyConfigList: Array
         # @param EventListenerList: 事件数组
         # @type EventListenerList: Array
-        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
-        # @type RunPriority: String
-        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
-        # @type RetryWait: String
-        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
-        # @type MaxRetryAttempts: String
-        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
-        # @type ExecutionTTL: String
-        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
-        # @type WaitExecutionTotalTTL: String
         # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
         # @type AllowRedoType: String
         # @param ParamTaskOutList: 输出参数数组
@@ -2226,10 +2222,47 @@ module TencentCloud
         # * T_PLUS_0: T+0生成,默认策略
         # * T_PLUS_1: T+1生成
         # @type InitStrategy: String
+        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @type ScheduleRunType: String
+        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @type RunPriority: String
+        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @type RetryWait: String
+        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
+        # @type MaxRetryAttempts: String
+        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @type ExecutionTTL: String
+        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @type WaitExecutionTotalTTL: String
+        # @param ScheduleType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # @type ScheduleType: Integer
+        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # @type RunPriorityType: Integer
+        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # @type RetryWaitMinute: Integer
+        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # @type MaxRetryNumber: Integer
+        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # @type ExecutionTTLMinute: Integer
+        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # @type WaitExecutionTotalTTLMinute: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ScheduleRunType, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
+        extend Gem::Deprecate
+        deprecate :ScheduleRunType, :none, 2025, 12
+        deprecate :ScheduleRunType=, :none, 2025, 12
+        deprecate :RunPriority, :none, 2025, 12
+        deprecate :RunPriority=, :none, 2025, 12
+        deprecate :RetryWait, :none, 2025, 12
+        deprecate :RetryWait=, :none, 2025, 12
+        deprecate :MaxRetryAttempts, :none, 2025, 12
+        deprecate :MaxRetryAttempts=, :none, 2025, 12
+        deprecate :ExecutionTTL, :none, 2025, 12
+        deprecate :ExecutionTTL=, :none, 2025, 12
+        deprecate :WaitExecutionTotalTTL, :none, 2025, 12
+        deprecate :WaitExecutionTotalTTL=, :none, 2025, 12
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, scheduleruntype=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -2237,22 +2270,28 @@ module TencentCloud
           @EndTime = endtime
           @ExecutionStartTime = executionstarttime
           @ExecutionEndTime = executionendtime
-          @ScheduleRunType = scheduleruntype
           @CalendarOpen = calendaropen
           @CalendarId = calendarid
           @SelfDepend = selfdepend
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @EventListenerList = eventlistenerlist
-          @RunPriority = runpriority
-          @RetryWait = retrywait
-          @MaxRetryAttempts = maxretryattempts
-          @ExecutionTTL = executionttl
-          @WaitExecutionTotalTTL = waitexecutiontotalttl
           @AllowRedoType = allowredotype
           @ParamTaskOutList = paramtaskoutlist
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
           @InitStrategy = initstrategy
+          @ScheduleRunType = scheduleruntype
+          @RunPriority = runpriority
+          @RetryWait = retrywait
+          @MaxRetryAttempts = maxretryattempts
+          @ExecutionTTL = executionttl
+          @WaitExecutionTotalTTL = waitexecutiontotalttl
+          @ScheduleType = scheduletype
+          @RunPriorityType = runprioritytype
+          @RetryWaitMinute = retrywaitminute
+          @MaxRetryNumber = maxretrynumber
+          @ExecutionTTLMinute = executionttlminute
+          @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
         end
 
         def deserialize(params)
@@ -2263,7 +2302,6 @@ module TencentCloud
           @EndTime = params['EndTime']
           @ExecutionStartTime = params['ExecutionStartTime']
           @ExecutionEndTime = params['ExecutionEndTime']
-          @ScheduleRunType = params['ScheduleRunType']
           @CalendarOpen = params['CalendarOpen']
           @CalendarId = params['CalendarId']
           @SelfDepend = params['SelfDepend']
@@ -2283,11 +2321,6 @@ module TencentCloud
               @EventListenerList << eventlistener_tmp
             end
           end
-          @RunPriority = params['RunPriority']
-          @RetryWait = params['RetryWait']
-          @MaxRetryAttempts = params['MaxRetryAttempts']
-          @ExecutionTTL = params['ExecutionTTL']
-          @WaitExecutionTotalTTL = params['WaitExecutionTotalTTL']
           @AllowRedoType = params['AllowRedoType']
           unless params['ParamTaskOutList'].nil?
             @ParamTaskOutList = []
@@ -2314,6 +2347,18 @@ module TencentCloud
             end
           end
           @InitStrategy = params['InitStrategy']
+          @ScheduleRunType = params['ScheduleRunType']
+          @RunPriority = params['RunPriority']
+          @RetryWait = params['RetryWait']
+          @MaxRetryAttempts = params['MaxRetryAttempts']
+          @ExecutionTTL = params['ExecutionTTL']
+          @WaitExecutionTotalTTL = params['WaitExecutionTotalTTL']
+          @ScheduleType = params['ScheduleType']
+          @RunPriorityType = params['RunPriorityType']
+          @RetryWaitMinute = params['RetryWaitMinute']
+          @MaxRetryNumber = params['MaxRetryNumber']
+          @ExecutionTTLMinute = params['ExecutionTTLMinute']
+          @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
         end
       end
 
@@ -11570,10 +11615,17 @@ module TencentCloud
         # @param CreateUserUin: 创建用户ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateUserUin: String
+        # @param TaskFolderPath: 任务文件夹路径
 
-        attr_accessor :TaskId, :TaskTypeId, :WorkflowId, :TaskName, :TaskLatestVersionNo, :TaskLatestSubmitVersionNo, :WorkflowName, :Status, :Submit, :CreateTime, :LastUpdateTime, :LastUpdateUserName, :LastOpsTime, :LastOpsUserName, :OwnerUin, :TaskDescription, :UpdateUserUin, :CreateUserUin
+        # 注意：
+        # - 路径上不要填写任务节点类型；例如，在 一个名为 wf01 的工作流，“通用” 分类下，现在想要在这个分类下的 tf_01 文件夹下，新建一个 shell 任务；则 填写 /tf_01 即可；
+        # - 如果 tf_01 文件夹不存在，则需要先创建这个文件夹（使用 CreateTaskFolder 接口）才能操作成功；
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskFolderPath: String
 
-        def initialize(taskid=nil, tasktypeid=nil, workflowid=nil, taskname=nil, tasklatestversionno=nil, tasklatestsubmitversionno=nil, workflowname=nil, status=nil, submit=nil, createtime=nil, lastupdatetime=nil, lastupdateusername=nil, lastopstime=nil, lastopsusername=nil, owneruin=nil, taskdescription=nil, updateuseruin=nil, createuseruin=nil)
+        attr_accessor :TaskId, :TaskTypeId, :WorkflowId, :TaskName, :TaskLatestVersionNo, :TaskLatestSubmitVersionNo, :WorkflowName, :Status, :Submit, :CreateTime, :LastUpdateTime, :LastUpdateUserName, :LastOpsTime, :LastOpsUserName, :OwnerUin, :TaskDescription, :UpdateUserUin, :CreateUserUin, :TaskFolderPath
+
+        def initialize(taskid=nil, tasktypeid=nil, workflowid=nil, taskname=nil, tasklatestversionno=nil, tasklatestsubmitversionno=nil, workflowname=nil, status=nil, submit=nil, createtime=nil, lastupdatetime=nil, lastupdateusername=nil, lastopstime=nil, lastopsusername=nil, owneruin=nil, taskdescription=nil, updateuseruin=nil, createuseruin=nil, taskfolderpath=nil)
           @TaskId = taskid
           @TaskTypeId = tasktypeid
           @WorkflowId = workflowid
@@ -11592,6 +11644,7 @@ module TencentCloud
           @TaskDescription = taskdescription
           @UpdateUserUin = updateuseruin
           @CreateUserUin = createuseruin
+          @TaskFolderPath = taskfolderpath
         end
 
         def deserialize(params)
@@ -11613,6 +11666,7 @@ module TencentCloud
           @TaskDescription = params['TaskDescription']
           @UpdateUserUin = params['UpdateUserUin']
           @CreateUserUin = params['CreateUserUin']
+          @TaskFolderPath = params['TaskFolderPath']
         end
       end
 
@@ -12592,9 +12646,6 @@ module TencentCloud
         # @param ExecutionEndTime: 执行时间 右闭区间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionEndTime: String
-        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ScheduleRunType: Integer
         # @param CalendarOpen: 日历调度 取值为 0 和 1， 1为打开，0为关闭，默认为0
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CalendarOpen: String
@@ -12610,27 +12661,12 @@ module TencentCloud
         # @param UpstreamDependencyConfigList: 上游依赖数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpstreamDependencyConfigList: Array
-        # @param DownStreamDependencyConfigList: 下游依赖数组
+        # @param DownstreamDependencyConfigList: 下游依赖数组
         # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DownStreamDependencyConfigList: Array
+        # @type DownstreamDependencyConfigList: Array
         # @param EventListenerList: 事件数组
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EventListenerList: Array
-        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RunPriority: Integer
-        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type RetryWait: Integer
-        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MaxRetryAttempts: Integer
-        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type ExecutionTTL: Integer
-        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type WaitExecutionTotalTTL: String
         # @param AllowRedoType: 重跑&补录配置, 默认为 ALL; , ALL 运行成功或失败后皆可重跑或补录, FAILURE 运行成功后不可重跑或补录，运行失败后可重跑或补录, NONE 运行成功或失败后皆不可重跑或补录;
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AllowRedoType: String
@@ -12648,10 +12684,64 @@ module TencentCloud
         # * T_PLUS_1: T+1生成
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InitStrategy: String
+        # @param ScheduleRunType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleRunType: Integer
+        # @param DownStreamDependencyConfigList: （废弃，建议使用 DownstreamDependencyConfigList）下游依赖数组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownStreamDependencyConfigList: Array
+        # @param RunPriority: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunPriority: Integer
+        # @param RetryWait: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryWait: Integer
+        # @param MaxRetryAttempts: 重试策略 最大尝试次数, 默认: 4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetryAttempts: Integer
+        # @param ExecutionTTL: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionTTL: Integer
+        # @param WaitExecutionTotalTTL: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitExecutionTotalTTL: String
+        # @param ScheduleType: 调度类型: 0 正常调度 1 空跑调度，默认为 0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleType: Integer
+        # @param RunPriorityType: 任务调度优先级 运行优先级 4高 5中 6低 , 默认:6
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunPriorityType: Integer
+        # @param RetryWaitMinute: 重试策略 重试等待时间,单位分钟: 默认: 5
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetryWaitMinute: Integer
+        # @param MaxRetryNumber: 重试策略 最大尝试次数, 默认: 4
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxRetryNumber: Integer
+        # @param ExecutionTTLMinute: 超时处理策略 运行耗时超时（单位：分钟）默认为 -1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecutionTTLMinute: Integer
+        # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WaitExecutionTotalTTLMinute: Integer
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :ScheduleRunType, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownStreamDependencyConfigList, :EventListenerList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
+        extend Gem::Deprecate
+        deprecate :ScheduleRunType, :none, 2025, 12
+        deprecate :ScheduleRunType=, :none, 2025, 12
+        deprecate :DownStreamDependencyConfigList, :none, 2025, 12
+        deprecate :DownStreamDependencyConfigList=, :none, 2025, 12
+        deprecate :RunPriority, :none, 2025, 12
+        deprecate :RunPriority=, :none, 2025, 12
+        deprecate :RetryWait, :none, 2025, 12
+        deprecate :RetryWait=, :none, 2025, 12
+        deprecate :MaxRetryAttempts, :none, 2025, 12
+        deprecate :MaxRetryAttempts=, :none, 2025, 12
+        deprecate :ExecutionTTL, :none, 2025, 12
+        deprecate :ExecutionTTL=, :none, 2025, 12
+        deprecate :WaitExecutionTotalTTL, :none, 2025, 12
+        deprecate :WaitExecutionTotalTTL=, :none, 2025, 12
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, scheduleruntype=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -12659,24 +12749,30 @@ module TencentCloud
           @EndTime = endtime
           @ExecutionStartTime = executionstarttime
           @ExecutionEndTime = executionendtime
-          @ScheduleRunType = scheduleruntype
           @CalendarOpen = calendaropen
           @CalendarId = calendarid
           @CalendarName = calendarname
           @SelfDepend = selfdepend
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
-          @DownStreamDependencyConfigList = downstreamdependencyconfiglist
+          @DownstreamDependencyConfigList = downstreamdependencyconfiglist
           @EventListenerList = eventlistenerlist
-          @RunPriority = runpriority
-          @RetryWait = retrywait
-          @MaxRetryAttempts = maxretryattempts
-          @ExecutionTTL = executionttl
-          @WaitExecutionTotalTTL = waitexecutiontotalttl
           @AllowRedoType = allowredotype
           @ParamTaskOutList = paramtaskoutlist
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
           @InitStrategy = initstrategy
+          @ScheduleRunType = scheduleruntype
+          @RunPriority = runpriority
+          @RetryWait = retrywait
+          @MaxRetryAttempts = maxretryattempts
+          @ExecutionTTL = executionttl
+          @WaitExecutionTotalTTL = waitexecutiontotalttl
+          @ScheduleType = scheduletype
+          @RunPriorityType = runprioritytype
+          @RetryWaitMinute = retrywaitminute
+          @MaxRetryNumber = maxretrynumber
+          @ExecutionTTLMinute = executionttlminute
+          @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
         end
 
         def deserialize(params)
@@ -12687,7 +12783,6 @@ module TencentCloud
           @EndTime = params['EndTime']
           @ExecutionStartTime = params['ExecutionStartTime']
           @ExecutionEndTime = params['ExecutionEndTime']
-          @ScheduleRunType = params['ScheduleRunType']
           @CalendarOpen = params['CalendarOpen']
           @CalendarId = params['CalendarId']
           @CalendarName = params['CalendarName']
@@ -12700,12 +12795,12 @@ module TencentCloud
               @UpstreamDependencyConfigList << dependencytaskbrief_tmp
             end
           end
-          unless params['DownStreamDependencyConfigList'].nil?
-            @DownStreamDependencyConfigList = []
-            params['DownStreamDependencyConfigList'].each do |i|
+          unless params['DownstreamDependencyConfigList'].nil?
+            @DownstreamDependencyConfigList = []
+            params['DownstreamDependencyConfigList'].each do |i|
               dependencytaskbrief_tmp = DependencyTaskBrief.new
               dependencytaskbrief_tmp.deserialize(i)
-              @DownStreamDependencyConfigList << dependencytaskbrief_tmp
+              @DownstreamDependencyConfigList << dependencytaskbrief_tmp
             end
           end
           unless params['EventListenerList'].nil?
@@ -12716,11 +12811,6 @@ module TencentCloud
               @EventListenerList << eventlistener_tmp
             end
           end
-          @RunPriority = params['RunPriority']
-          @RetryWait = params['RetryWait']
-          @MaxRetryAttempts = params['MaxRetryAttempts']
-          @ExecutionTTL = params['ExecutionTTL']
-          @WaitExecutionTotalTTL = params['WaitExecutionTotalTTL']
           @AllowRedoType = params['AllowRedoType']
           unless params['ParamTaskOutList'].nil?
             @ParamTaskOutList = []
@@ -12747,6 +12837,18 @@ module TencentCloud
             end
           end
           @InitStrategy = params['InitStrategy']
+          @ScheduleRunType = params['ScheduleRunType']
+          @RunPriority = params['RunPriority']
+          @RetryWait = params['RetryWait']
+          @MaxRetryAttempts = params['MaxRetryAttempts']
+          @ExecutionTTL = params['ExecutionTTL']
+          @WaitExecutionTotalTTL = params['WaitExecutionTotalTTL']
+          @ScheduleType = params['ScheduleType']
+          @RunPriorityType = params['RunPriorityType']
+          @RetryWaitMinute = params['RetryWaitMinute']
+          @MaxRetryNumber = params['MaxRetryNumber']
+          @ExecutionTTLMinute = params['ExecutionTTLMinute']
+          @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
         end
       end
 
@@ -13466,7 +13568,7 @@ module TencentCloud
         # @param ResourceId: 资源文件ID,可通过ListResourceFiles接口获取
         # @type ResourceId: String
         # @param ResourceFile: - 上传文件及手填两种方式只能选择其一，如果两者均提供，取值顺序为文件>手填值
-        # -  手填值必须是存在的cos路径, /datastudio/resource/ 为固定前缀, projectId 为项目ID,需传入具体值, parentFolderPath为父文件夹路径, name为文件名, 手填值取值示例:
+        # -  手填值必须是存在的cos路径, parentFolderPath为父文件夹路径, name为文件名, 手填值取值示例:
         #      /datastudio/resource/projectId/parentFolderPath/name
         # @type ResourceFile: String
         # @param ResourceName: 资源名称, 尽可能和文件名保持一致
@@ -13775,19 +13877,25 @@ module TencentCloud
         # @type OwnerUin: String
         # @param TaskDescription: 任务描述
         # @type TaskDescription: String
+        # @param TaskFolderPath: 注意：
+        # - 路径上不要填写任务节点类型；例如，在 一个名为 wf01 的工作流，“通用” 分类下，现在想要在这个分类下的 tf_01 文件夹下，新建一个 shell 任务；则 填写 /tf_01 即可；
+        # - 如果 tf_01 文件夹不存在，则需要先创建这个文件夹（使用 CreateTaskFolder 接口）才能操作成功；
+        # @type TaskFolderPath: String
 
-        attr_accessor :TaskName, :OwnerUin, :TaskDescription
+        attr_accessor :TaskName, :OwnerUin, :TaskDescription, :TaskFolderPath
 
-        def initialize(taskname=nil, owneruin=nil, taskdescription=nil)
+        def initialize(taskname=nil, owneruin=nil, taskdescription=nil, taskfolderpath=nil)
           @TaskName = taskname
           @OwnerUin = owneruin
           @TaskDescription = taskdescription
+          @TaskFolderPath = taskfolderpath
         end
 
         def deserialize(params)
           @TaskName = params['TaskName']
           @OwnerUin = params['OwnerUin']
           @TaskDescription = params['TaskDescription']
+          @TaskFolderPath = params['TaskFolderPath']
         end
       end
 

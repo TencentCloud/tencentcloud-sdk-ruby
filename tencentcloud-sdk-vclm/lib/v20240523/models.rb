@@ -386,6 +386,54 @@ module TencentCloud
         end
       end
 
+      # DescribeVideoEditJob请求参数结构体
+      class DescribeVideoEditJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeVideoEditJob返回参数结构体
+      class DescribeVideoEditJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。  WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type Status: String
+        # @param ResultVideoUrl: 结果视频URL。有效期 24 小时。
+        # @type ResultVideoUrl: String
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ResultVideoUrl, :ErrorCode, :ErrorMessage, :RequestId
+
+        def initialize(status=nil, resultvideourl=nil, errorcode=nil, errormessage=nil, requestid=nil)
+          @Status = status
+          @ResultVideoUrl = resultvideourl
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ResultVideoUrl = params['ResultVideoUrl']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVideoFaceFusionJob请求参数结构体
       class DescribeVideoFaceFusionJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID
@@ -1160,6 +1208,74 @@ module TencentCloud
 
       # SubmitTemplateToVideoJob返回参数结构体
       class SubmitTemplateToVideoJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitVideoEditJob请求参数结构体
+      class SubmitVideoEditJobRequest < TencentCloud::Common::AbstractModel
+        # @param VideoUrl: 输入视频
+
+        # - 视频格式：MP4
+        # - 视频时长：5s以内
+        # - 视频分辨率：无限制（待验证是否可以无损输出）
+        # @type VideoUrl: String
+        # @param Prompt: 视频内容的描述，中文正向提示词。最多支持200个 utf-8 字符（首尾空格不计入字符数）。
+        # 支持风格迁移、替换、元素增加、删除控制
+        # @type Prompt: String
+        # @param Image: 图片base64或者图片url
+
+        # - Base64 和 Url 必须提供一个，如果都提供以Url为准。
+        # - 上传图url大小不超过 8M
+        # - 支持jpg，png，jpeg，webp，bmp，tiff 格式
+        # - 单边分辨率不超过5000，不小于50，长宽限制1:4 ~ 4:1
+        # @type Image: :class:`Tencentcloud::Vclm.v20240523.models.Image`
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。 1：添加标识。 0：不添加标识。 其他数值：默认按1处理。 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+
+        attr_accessor :VideoUrl, :Prompt, :Image, :LogoAdd, :LogoParam
+
+        def initialize(videourl=nil, prompt=nil, image=nil, logoadd=nil, logoparam=nil)
+          @VideoUrl = videourl
+          @Prompt = prompt
+          @Image = image
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @VideoUrl = params['VideoUrl']
+          @Prompt = params['Prompt']
+          unless params['Image'].nil?
+            @Image = Image.new
+            @Image.deserialize(params['Image'])
+          end
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitVideoEditJob返回参数结构体
+      class SubmitVideoEditJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

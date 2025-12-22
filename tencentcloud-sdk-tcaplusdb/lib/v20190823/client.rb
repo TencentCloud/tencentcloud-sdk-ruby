@@ -1161,32 +1161,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 不再使用
-
-        # 表格数据回档
-
-        # @param request: Request instance for RollbackTables.
-        # @type request: :class:`Tencentcloud::tcaplusdb::V20190823::RollbackTablesRequest`
-        # @rtype: :class:`Tencentcloud::tcaplusdb::V20190823::RollbackTablesResponse`
-        def RollbackTables(request)
-          body = send_request('RollbackTables', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = RollbackTablesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 新增、删除、修改备份过期策略， ClusterId必须为具体的集群Id（appid）
 
         # @param request: Request instance for SetBackupExpireRule.

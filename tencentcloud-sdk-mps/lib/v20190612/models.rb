@@ -801,6 +801,55 @@ module TencentCloud
         end
       end
 
+      # 图片处理编排中使用的输入参数。
+      class AddOnImageInput < TencentCloud::Common::AbstractModel
+        # @param Image: 图片路径。
+        # @type Image: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+
+        attr_accessor :Image
+
+        def initialize(image=nil)
+          @Image = image
+        end
+
+        def deserialize(params)
+          unless params['Image'].nil?
+            @Image = MediaInputInfo.new
+            @Image.deserialize(params['Image'])
+          end
+        end
+      end
+
+      # 图片处理附加输入参数。
+      class AddOnParameter < TencentCloud::Common::AbstractModel
+        # @param ImageSet: 附加图片输入。
+        # @type ImageSet: Array
+        # @param OutputConfig: 图片处理输出配置。
+        # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageProcessOutputConfig`
+
+        attr_accessor :ImageSet, :OutputConfig
+
+        def initialize(imageset=nil, outputconfig=nil)
+          @ImageSet = imageset
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          unless params['ImageSet'].nil?
+            @ImageSet = []
+            params['ImageSet'].each do |i|
+              addonimageinput_tmp = AddOnImageInput.new
+              addonimageinput_tmp.deserialize(i)
+              @ImageSet << addonimageinput_tmp
+            end
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = ImageProcessOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
       # 外挂字幕。
       class AddOnSubtitle < TencentCloud::Common::AbstractModel
         # @param Type: 插入形式，可选值：
@@ -17017,6 +17066,38 @@ module TencentCloud
         end
       end
 
+      # 图片处理编排输出配置。
+      class ImageProcessOutputConfig < TencentCloud::Common::AbstractModel
+        # @param AspectRatio: 输出图片的宽高比。可以配合ImageWidth 和 ImageHeight 使用，规则如下：
+
+        # 1. 仅指定 AspectRatio 时，根据原图输入进行自适应调整。
+        # 2. 指定 AspectRatio 和 ImageWidth 时，ImageHeight  由两者计算得出，反亦是如此。
+        # 3. 当AspectRatio、ImageWidth、ImageHeight 同时指定的时候，优先使用ImageWidth、ImageHeight。
+
+        # 可取值：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9、21:9
+
+        # 支持该参数 ScheduleId: 30010(扩图)
+        # @type AspectRatio: String
+        # @param ImageHeight: 图片输出高度，单位：像素。
+        # @type ImageHeight: Integer
+        # @param ImageWidth: 图片输出宽度，单位：像素。
+        # @type ImageWidth: Integer
+
+        attr_accessor :AspectRatio, :ImageHeight, :ImageWidth
+
+        def initialize(aspectratio=nil, imageheight=nil, imagewidth=nil)
+          @AspectRatio = aspectratio
+          @ImageHeight = imageheight
+          @ImageWidth = imagewidth
+        end
+
+        def deserialize(params)
+          @AspectRatio = params['AspectRatio']
+          @ImageHeight = params['ImageHeight']
+          @ImageWidth = params['ImageWidth']
+        end
+      end
+
       # 图片处理结果信息
       class ImageProcessTaskOutput < TencentCloud::Common::AbstractModel
         # @param Path: 输出文件的路径。
@@ -23621,10 +23702,18 @@ module TencentCloud
         # @type ResourceId: String
         # @param ImageTask: 图片处理参数。
         # @type ImageTask: :class:`Tencentcloud::Mps.v20190612.models.ImageTaskInput`
+        # @param ScheduleId: 图片处理编排场景 ID。
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :Definition, :ResourceId, :ImageTask
+        # - 30000：文字水印擦除
+        # - 30010：图片扩展
+        # - 30100：换装场景
+        # @type ScheduleId: Integer
+        # @param AddOnParameter: 图片处理附加参数。
+        # @type AddOnParameter: :class:`Tencentcloud::Mps.v20190612.models.AddOnParameter`
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, definition=nil, resourceid=nil, imagetask=nil)
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :Definition, :ResourceId, :ImageTask, :ScheduleId, :AddOnParameter
+
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, definition=nil, resourceid=nil, imagetask=nil, scheduleid=nil, addonparameter=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -23632,6 +23721,8 @@ module TencentCloud
           @Definition = definition
           @ResourceId = resourceid
           @ImageTask = imagetask
+          @ScheduleId = scheduleid
+          @AddOnParameter = addonparameter
         end
 
         def deserialize(params)
@@ -23650,6 +23741,11 @@ module TencentCloud
           unless params['ImageTask'].nil?
             @ImageTask = ImageTaskInput.new
             @ImageTask.deserialize(params['ImageTask'])
+          end
+          @ScheduleId = params['ScheduleId']
+          unless params['AddOnParameter'].nil?
+            @AddOnParameter = AddOnParameter.new
+            @AddOnParameter.deserialize(params['AddOnParameter'])
           end
         end
       end

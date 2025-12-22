@@ -901,6 +901,64 @@ module TencentCloud
         end
       end
 
+      # 元数据Pod label标签结构体
+      class AppointLabel < TencentCloud::Common::AbstractModel
+        # @param Type: 指定标签类型。
+
+        # - 0：所有Pod label，Keys字段无效
+        # - 1：指定Pod label，Keys字段不能为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param Keys: 元数据Pod标签的键。有效标签键有两个部分：可选前缀和名称，以斜杠 (/) 分隔。名称部分是必需的，并且必须不超过 63 个字符，以字母数字字符 ([a-z0-9A-Z]) 开头和结尾，中间有破折号(-)、下划线(_)、点(.) 和字母数字。前缀是可选的。如果指定，前缀必须是 DNS 子域：一系列以点 (.) 分隔的 DNS 标签，总长度不超过 253 个字符，后跟斜杠 ( /)。
+
+        # -  prefix 格式  `[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*`
+        # -  name 格式 `([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]`
+        # - key不能重复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+
+        attr_accessor :Type, :Keys
+
+        def initialize(type=nil, keys=nil)
+          @Type = type
+          @Keys = keys
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Keys = params['Keys']
+        end
+      end
+
+      # 指标采集配置
+      class BaseMetricCollectConfig < TencentCloud::Common::AbstractModel
+        # @param GroupId: 机器组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupId: String
+        # @param Configs: 基础监控采集配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Configs: Array
+
+        attr_accessor :GroupId, :Configs
+
+        def initialize(groupid=nil, configs=nil)
+          @GroupId = groupid
+          @Configs = configs
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['Configs'].nil?
+            @Configs = []
+            params['Configs'].each do |i|
+              metriccollectconfig_tmp = MetricCollectConfig.new
+              metriccollectconfig_tmp.deserialize(i)
+              @Configs << metriccollectconfig_tmp
+            end
+          end
+        end
+      end
+
       # 回调配置
       class CallBackInfo < TencentCloud::Common::AbstractModel
         # @param Body: 回调时的Body。
@@ -1269,6 +1327,57 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Type = params['Type']
+        end
+      end
+
+      # CommitConsumerOffsets请求参数结构体
+      class CommitConsumerOffsetsRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 消费组标识
+        # @type ConsumerGroup: String
+        # @param Consumer: 消费机器名称
+        # @type Consumer: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param TopicPartitionOffsetsInfo: topic分区点位信息
+        # @type TopicPartitionOffsetsInfo: Array
+
+        attr_accessor :ConsumerGroup, :Consumer, :LogsetId, :TopicPartitionOffsetsInfo
+
+        def initialize(consumergroup=nil, consumer=nil, logsetid=nil, topicpartitionoffsetsinfo=nil)
+          @ConsumerGroup = consumergroup
+          @Consumer = consumer
+          @LogsetId = logsetid
+          @TopicPartitionOffsetsInfo = topicpartitionoffsetsinfo
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @Consumer = params['Consumer']
+          @LogsetId = params['LogsetId']
+          unless params['TopicPartitionOffsetsInfo'].nil?
+            @TopicPartitionOffsetsInfo = []
+            params['TopicPartitionOffsetsInfo'].each do |i|
+              topicpartitionoffsetinfo_tmp = TopicPartitionOffsetInfo.new
+              topicpartitionoffsetinfo_tmp.deserialize(i)
+              @TopicPartitionOffsetsInfo << topicpartitionoffsetinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CommitConsumerOffsets返回参数结构体
+      class CommitConsumerOffsetsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1780,6 +1889,105 @@ module TencentCloud
           @Group = params['Group']
           @State = params['State']
           @ProtocolName = params['ProtocolName']
+        end
+      end
+
+      # 消费组信息
+      class ConsumerGroupInfo < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 消费组标识
+        # @type ConsumerGroup: String
+        # @param Timeout: 消费者心跳超时时间（秒）
+        # @type Timeout: Integer
+        # @param Topics: topic列表
+        # @type Topics: Array
+
+        attr_accessor :ConsumerGroup, :Timeout, :Topics
+
+        def initialize(consumergroup=nil, timeout=nil, topics=nil)
+          @ConsumerGroup = consumergroup
+          @Timeout = timeout
+          @Topics = topics
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @Timeout = params['Timeout']
+          @Topics = params['Topics']
+        end
+      end
+
+      # 投递规则
+      class ConsumerInfo < TencentCloud::Common::AbstractModel
+        # @param ConsumerId: 投递规则ID
+        # @type ConsumerId: String
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param Effective: 投递任务是否生效
+        # @type Effective: Boolean
+        # @param Ckafka: CKafka的描述
+        # @type Ckafka: :class:`Tencentcloud::Cls.v20201016.models.Ckafka`
+        # @param NeedContent: 是否投递日志的元数据信息
+        # @type NeedContent: Boolean
+        # @param Content: 如果需要投递元数据信息，元数据信息的描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: :class:`Tencentcloud::Cls.v20201016.models.ConsumerContent`
+        # @param Compression: 压缩方式[0:NONE；2:SNAPPY；3:LZ4]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Compression: Integer
+        # @param CreateTime: 投递任务创建毫秒时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param RoleArn: 角色访问描述名 [创建角色](https://cloud.tencent.com/document/product/598/19381)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleArn: String
+        # @param ExternalId: 外部ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExternalId: String
+        # @param TaskStatus: 任务运行状态。支持`0`,`1`,`2` - `0`: 停止 - `1`: 运行中 - `2`: 异常
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskStatus: Integer
+        # @param AdvancedConfig: 高级配置
+        # @type AdvancedConfig: :class:`Tencentcloud::Cls.v20201016.models.AdvancedConsumerConfiguration`
+
+        attr_accessor :ConsumerId, :TopicId, :Effective, :Ckafka, :NeedContent, :Content, :Compression, :CreateTime, :RoleArn, :ExternalId, :TaskStatus, :AdvancedConfig
+
+        def initialize(consumerid=nil, topicid=nil, effective=nil, ckafka=nil, needcontent=nil, content=nil, compression=nil, createtime=nil, rolearn=nil, externalid=nil, taskstatus=nil, advancedconfig=nil)
+          @ConsumerId = consumerid
+          @TopicId = topicid
+          @Effective = effective
+          @Ckafka = ckafka
+          @NeedContent = needcontent
+          @Content = content
+          @Compression = compression
+          @CreateTime = createtime
+          @RoleArn = rolearn
+          @ExternalId = externalid
+          @TaskStatus = taskstatus
+          @AdvancedConfig = advancedconfig
+        end
+
+        def deserialize(params)
+          @ConsumerId = params['ConsumerId']
+          @TopicId = params['TopicId']
+          @Effective = params['Effective']
+          unless params['Ckafka'].nil?
+            @Ckafka = Ckafka.new
+            @Ckafka.deserialize(params['Ckafka'])
+          end
+          @NeedContent = params['NeedContent']
+          unless params['Content'].nil?
+            @Content = ConsumerContent.new
+            @Content.deserialize(params['Content'])
+          end
+          @Compression = params['Compression']
+          @CreateTime = params['CreateTime']
+          @RoleArn = params['RoleArn']
+          @ExternalId = params['ExternalId']
+          @TaskStatus = params['TaskStatus']
+          unless params['AdvancedConfig'].nil?
+            @AdvancedConfig = AdvancedConsumerConfiguration.new
+            @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
         end
       end
 
@@ -2826,6 +3034,55 @@ module TencentCloud
         end
       end
 
+      # CreateConsumerGroup请求参数结构体
+      class CreateConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 创建的消费者组标识
+        # 限制： 字母数字下划线，不允许数字开头，长度限制256
+        # @type ConsumerGroup: String
+        # @param Timeout: 消费者心跳超时时间（秒）
+        # @type Timeout: Integer
+        # @param Topics: 创建的消费者组包含的日志主题列表
+        # @type Topics: Array
+        # @param LogsetId: 日志集Id（日志主题所属的日志集）
+        # @type LogsetId: String
+
+        attr_accessor :ConsumerGroup, :Timeout, :Topics, :LogsetId
+
+        def initialize(consumergroup=nil, timeout=nil, topics=nil, logsetid=nil)
+          @ConsumerGroup = consumergroup
+          @Timeout = timeout
+          @Topics = topics
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @Timeout = params['Timeout']
+          @Topics = params['Topics']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # CreateConsumerGroup返回参数结构体
+      class CreateConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 消费组标识
+        # @type ConsumerGroup: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerGroup, :RequestId
+
+        def initialize(consumergroup=nil, requestid=nil)
+          @ConsumerGroup = consumergroup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateConsumer请求参数结构体
       class CreateConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题Id。
@@ -3326,6 +3583,81 @@ module TencentCloud
         end
       end
 
+      # CreateEsRecharge请求参数结构体
+      class CreateEsRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: 名称：长度不超过64字符。
+        # @type Name: String
+        # @param Index: 索引信息。不同索引可以通过英文逗号分隔，支持*通配符
+        # @type Index: String
+        # @param Query: es查询语句。
+        # @type Query: String
+        # @param EsInfo: es集群配置信息。
+        # @type EsInfo: :class:`Tencentcloud::Cls.v20201016.models.EsInfo`
+        # @param ImportInfo: es导入信息。
+        # @type ImportInfo: :class:`Tencentcloud::Cls.v20201016.models.EsImportInfo`
+        # @param TimeInfo: es导入时间字段信息。
+        # @type TimeInfo: :class:`Tencentcloud::Cls.v20201016.models.EsTimeInfo`
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。默认开启。
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TopicId, :Name, :Index, :Query, :EsInfo, :ImportInfo, :TimeInfo, :HasServicesLog
+
+        def initialize(topicid=nil, name=nil, index=nil, query=nil, esinfo=nil, importinfo=nil, timeinfo=nil, hasserviceslog=nil)
+          @TopicId = topicid
+          @Name = name
+          @Index = index
+          @Query = query
+          @EsInfo = esinfo
+          @ImportInfo = importinfo
+          @TimeInfo = timeinfo
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Index = params['Index']
+          @Query = params['Query']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new
+            @EsInfo.deserialize(params['EsInfo'])
+          end
+          unless params['ImportInfo'].nil?
+            @ImportInfo = EsImportInfo.new
+            @ImportInfo.deserialize(params['ImportInfo'])
+          end
+          unless params['TimeInfo'].nil?
+            @TimeInfo = EsTimeInfo.new
+            @TimeInfo.deserialize(params['TimeInfo'])
+          end
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # CreateEsRecharge返回参数结构体
+      class CreateEsRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 配置id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExport请求参数结构体
       class CreateExportRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id
@@ -3392,6 +3724,74 @@ module TencentCloud
 
         def deserialize(params)
           @ExportId = params['ExportId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateHostMetricConfig请求参数结构体
+      class CreateHostMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param Name: 名称。
+
+        # - 长度不超过 64字符。
+        # @type Name: String
+        # @param MachineGroupIds: 机器组id列表。最多支持100个机器组。
+        # @type MachineGroupIds: Array
+        # @param Interval: 采集频率。单位:ms。 最小支持5000ms
+        # @type Interval: Integer
+        # @param HostMetricItems: 采集项。支持"cpu"，"mem"，"net"，"disk"，"system"。**目前仅支持:所有采集项都需配置**。
+        # - cpu：CPU
+        # - mem：内存
+        # - net：网络
+        # - disk：磁盘
+        # - system：系统
+        # @type HostMetricItems: Array
+
+        attr_accessor :TopicId, :Name, :MachineGroupIds, :Interval, :HostMetricItems
+
+        def initialize(topicid=nil, name=nil, machinegroupids=nil, interval=nil, hostmetricitems=nil)
+          @TopicId = topicid
+          @Name = name
+          @MachineGroupIds = machinegroupids
+          @Interval = interval
+          @HostMetricItems = hostmetricitems
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @MachineGroupIds = params['MachineGroupIds']
+          @Interval = params['Interval']
+          unless params['HostMetricItems'].nil?
+            @HostMetricItems = []
+            params['HostMetricItems'].each do |i|
+              hostmetricitem_tmp = HostMetricItem.new
+              hostmetricitem_tmp.deserialize(i)
+              @HostMetricItems << hostmetricitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateHostMetricConfig返回参数结构体
+      class CreateHostMetricConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 主机指标采集配置id
+        # @type ConfigId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigId, :RequestId
+
+        def initialize(configid=nil, requestid=nil)
+          @ConfigId = configid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
           @RequestId = params['RequestId']
         end
       end
@@ -3708,6 +4108,186 @@ module TencentCloud
         end
       end
 
+      # CreateMetricConfig请求参数结构体
+      class CreateMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param Source: 采集配置来源。支持 ：`0`、`1`
+        # - 0:自建k8s
+        # - 1:TKE
+        # @type Source: Integer
+        # @param GroupIds: 机器组id。
+        # @type GroupIds: Array
+        # @param Type: 监控类型。支持 ：`0`、`1`，不支持修改
+        # - 0:基础监控
+        # - 1:自定义监控,
+        # @type Type: Integer
+        # @param Flag: 采集配置方式。支持 ：`0`、`1`，不支持修改
+        # - 0:普通配置方式，Type字段只能为：``1`
+        # - 1:YAML导入方式， Type 可以是：`0`或者`1`
+        # @type Flag: Integer
+        # @param Name: 名称：长度不超过253字符，校验格式  ` [a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*`。
+        # @type Name: String
+        # @param Spec: 采集对象, Flag=0时生效
+        # @type Spec: :class:`Tencentcloud::Cls.v20201016.models.MetricSpec`
+        # @param MetricRelabels: 标签处理, Flag=0时生效
+        # @type MetricRelabels: Array
+        # @param MetricLabel: 自定义元数据, Flag=0时生效
+        # @type MetricLabel: :class:`Tencentcloud::Cls.v20201016.models.MetricConfigLabel`
+        # @param Scheme: 通信协议 http、https; Flag=0时生效
+        # @type Scheme: String
+        # @param ScrapeInterval: 采集频率,  Flag=0时生效
+        # - 校验格式：`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+        # - 默认：60s
+        # @type ScrapeInterval: String
+        # @param ScrapeTimeout: 采集超时时间， Flag=0时生效
+        # - 校验格式：`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+        # - 默认：30s
+        # @type ScrapeTimeout: String
+        # @param HonorLabels: Prometheus如何处理标签之间的冲突。当Flag=0时生效，支持`true`,`false`
+        # - `false`:配置数据中冲突的标签重命名
+        # - `true`:忽略冲突的服务器端标签
+        # @type HonorLabels: Boolean
+        # @param YamlSpec: 采集配置yaml格式字符串, Flag=1时必填
+        # @type YamlSpec: :class:`Tencentcloud::Cls.v20201016.models.MetricYamlSpec`
+
+        attr_accessor :TopicId, :Source, :GroupIds, :Type, :Flag, :Name, :Spec, :MetricRelabels, :MetricLabel, :Scheme, :ScrapeInterval, :ScrapeTimeout, :HonorLabels, :YamlSpec
+
+        def initialize(topicid=nil, source=nil, groupids=nil, type=nil, flag=nil, name=nil, spec=nil, metricrelabels=nil, metriclabel=nil, scheme=nil, scrapeinterval=nil, scrapetimeout=nil, honorlabels=nil, yamlspec=nil)
+          @TopicId = topicid
+          @Source = source
+          @GroupIds = groupids
+          @Type = type
+          @Flag = flag
+          @Name = name
+          @Spec = spec
+          @MetricRelabels = metricrelabels
+          @MetricLabel = metriclabel
+          @Scheme = scheme
+          @ScrapeInterval = scrapeinterval
+          @ScrapeTimeout = scrapetimeout
+          @HonorLabels = honorlabels
+          @YamlSpec = yamlspec
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Source = params['Source']
+          @GroupIds = params['GroupIds']
+          @Type = params['Type']
+          @Flag = params['Flag']
+          @Name = params['Name']
+          unless params['Spec'].nil?
+            @Spec = MetricSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['MetricRelabels'].nil?
+            @MetricRelabels = []
+            params['MetricRelabels'].each do |i|
+              relabeling_tmp = Relabeling.new
+              relabeling_tmp.deserialize(i)
+              @MetricRelabels << relabeling_tmp
+            end
+          end
+          unless params['MetricLabel'].nil?
+            @MetricLabel = MetricConfigLabel.new
+            @MetricLabel.deserialize(params['MetricLabel'])
+          end
+          @Scheme = params['Scheme']
+          @ScrapeInterval = params['ScrapeInterval']
+          @ScrapeTimeout = params['ScrapeTimeout']
+          @HonorLabels = params['HonorLabels']
+          unless params['YamlSpec'].nil?
+            @YamlSpec = MetricYamlSpec.new
+            @YamlSpec.deserialize(params['YamlSpec'])
+          end
+        end
+      end
+
+      # CreateMetricConfig返回参数结构体
+      class CreateMetricConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ConfigIds: 指标采集配置id列表。
+        # @type ConfigIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConfigIds, :RequestId
+
+        def initialize(configids=nil, requestid=nil)
+          @ConfigIds = configids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConfigIds = params['ConfigIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateMetricSubscribe请求参数结构体
+      class CreateMetricSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @type Name: String
+        # @param TopicId: 日志主题id。
+        # @type TopicId: String
+        # @param Namespace: 云产品命名空间。
+        # @type Namespace: String
+        # @param Metrics: 数据库配置信息。
+        # @type Metrics: Array
+        # @param InstanceInfo: 实例配置配置。
+        # @type InstanceInfo: :class:`Tencentcloud::Cls.v20201016.models.InstanceConfig`
+
+        attr_accessor :Name, :TopicId, :Namespace, :Metrics, :InstanceInfo
+
+        def initialize(name=nil, topicid=nil, namespace=nil, metrics=nil, instanceinfo=nil)
+          @Name = name
+          @TopicId = topicid
+          @Namespace = namespace
+          @Metrics = metrics
+          @InstanceInfo = instanceinfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TopicId = params['TopicId']
+          @Namespace = params['Namespace']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metricconfig_tmp = MetricConfig.new
+              metricconfig_tmp.deserialize(i)
+              @Metrics << metricconfig_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceConfig.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+        end
+      end
+
+      # CreateMetricSubscribe返回参数结构体
+      class CreateMetricSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 配置id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateNoticeContent请求参数结构体
       class CreateNoticeContentRequest < TencentCloud::Common::AbstractModel
         # @param Name: 模板名称。最大支持255个字节
@@ -3972,6 +4552,91 @@ module TencentCloud
         end
       end
 
+      # CreateSplunkDeliver请求参数结构体
+      class CreateSplunkDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: splunk投递任务名称；
+        # name有如下限制：
+        # - 不能为空
+        # - 长度不大于64
+        # - 只能包含aA-zZ、下划线、-、0-9
+        # @type Name: String
+        # @param NetInfo: Splunk投递任务-目标配置-网络信息
+        # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
+        # @param MetadataInfo: Splunk投递任务元信息
+        # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
+        # @param HasServiceLog: 是否开启服务日志 1:关闭；2:开启 ;默认开启
+        # @type HasServiceLog: Integer
+        # @param IndexAck: 高级配置-是否启用索引器；1-不启用；2-启用；
+        # 默认：1
+        # @type IndexAck: Integer
+        # @param Source: 高级配置-数据来源；不超过64个字符
+        # @type Source: String
+        # @param SourceType: 高级配置-数据来源类型；不超过64个字符
+        # @type SourceType: String
+        # @param Index: 高级配置-Splunk写入的索引；不超过64个字符
+        # @type Index: String
+        # @param Channel: 高级配置-通道
+        # 需满足限制：如果启用索引器，那么Channel必填
+        # @type Channel: String
+
+        attr_accessor :TopicId, :Name, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel
+
+        def initialize(topicid=nil, name=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil)
+          @TopicId = topicid
+          @Name = name
+          @NetInfo = netinfo
+          @MetadataInfo = metadatainfo
+          @HasServiceLog = hasservicelog
+          @IndexAck = indexack
+          @Source = source
+          @SourceType = sourcetype
+          @Index = index
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          unless params['NetInfo'].nil?
+            @NetInfo = NetInfo.new
+            @NetInfo.deserialize(params['NetInfo'])
+          end
+          unless params['MetadataInfo'].nil?
+            @MetadataInfo = MetadataInfo.new
+            @MetadataInfo.deserialize(params['MetadataInfo'])
+          end
+          @HasServiceLog = params['HasServiceLog']
+          @IndexAck = params['IndexAck']
+          @Source = params['Source']
+          @SourceType = params['SourceType']
+          @Index = params['Index']
+          @Channel = params['Channel']
+        end
+      end
+
+      # CreateSplunkDeliver返回参数结构体
+      class CreateSplunkDeliverResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: splunk投递任务id
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
         # @param LogsetId: 日志集ID
@@ -4184,6 +4849,76 @@ module TencentCloud
           @Delimiter = params['Delimiter']
           @EscapeChar = params['EscapeChar']
           @NonExistingField = params['NonExistingField']
+        end
+      end
+
+      # 自定义标签结构体
+      class CustomLabel < TencentCloud::Common::AbstractModel
+        # @param Key: 标签的键。
+        # - 必须以字母或下划线开头，但不可以双下划线（__）开头，后面可以跟任意字母，数字或下划线。
+        # - 最大支持256个字符。
+        # - key不能重复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 标签的值。
+        # - 最大支持256个字符。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 自定义指标采集对象
+      class CustomMetricSpec < TencentCloud::Common::AbstractModel
+        # @param Port: 端口。取值范围 [1,65535]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Port: String
+        # @param Path: Metric地址。校验格式：`^/[a-zA-Z0-9-_./]*$`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Namespaces: 命名空间列表。
+        # - 最大支持100个
+        # - namespace 校验格式 `[a-z0-9]([-a-z0-9]*[a-z0-9])?` ， 长度不能超过63
+        # - namespace 不能重复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespaces: Array
+        # @param PodLabel: Pod标签。
+        # - 最大支持100个
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLabel: Array
+
+        attr_accessor :Port, :Path, :Namespaces, :PodLabel
+
+        def initialize(port=nil, path=nil, namespaces=nil, podlabel=nil)
+          @Port = port
+          @Path = path
+          @Namespaces = namespaces
+          @PodLabel = podlabel
+        end
+
+        def deserialize(params)
+          @Port = params['Port']
+          @Path = params['Path']
+          @Namespaces = params['Namespaces']
+          unless params['PodLabel'].nil?
+            @PodLabel = []
+            params['PodLabel'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @PodLabel << label_tmp
+            end
+          end
         end
       end
 
@@ -4975,6 +5710,42 @@ module TencentCloud
         end
       end
 
+      # DeleteConsumerGroup请求参数结构体
+      class DeleteConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 需要删除的消费者组标识
+        # @type ConsumerGroup: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+
+        attr_accessor :ConsumerGroup, :LogsetId
+
+        def initialize(consumergroup=nil, logsetid=nil)
+          @ConsumerGroup = consumergroup
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # DeleteConsumerGroup返回参数结构体
+      class DeleteConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteConsumer请求参数结构体
       class DeleteConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题Id。
@@ -5148,6 +5919,44 @@ module TencentCloud
         end
       end
 
+      # DeleteEsRecharge请求参数结构体
+      class DeleteEsRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param TopicId: 任务配置的日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+
+        attr_accessor :TaskId, :TopicId
+
+        def initialize(taskid=nil, topicid=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteEsRecharge返回参数结构体
+      class DeleteEsRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteExport请求参数结构体
       class DeleteExportRequest < TencentCloud::Common::AbstractModel
         # @param ExportId: 日志导出任务Id
@@ -5167,6 +5976,44 @@ module TencentCloud
 
       # DeleteExport返回参数结构体
       class DeleteExportResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteHostMetricConfig请求参数结构体
+      class DeleteHostMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param ConfigId: 采集配置id。
+        # @type ConfigId: String
+
+        attr_accessor :TopicId, :ConfigId
+
+        def initialize(topicid=nil, configid=nil)
+          @TopicId = topicid
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DeleteHostMetricConfig返回参数结构体
+      class DeleteHostMetricConfigResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5360,6 +6207,80 @@ module TencentCloud
         end
       end
 
+      # DeleteMetricConfig请求参数结构体
+      class DeleteMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param ConfigId: 指标采集配置id。
+        # @type ConfigId: String
+
+        attr_accessor :TopicId, :ConfigId
+
+        def initialize(topicid=nil, configid=nil)
+          @TopicId = topicid
+          @ConfigId = configid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ConfigId = params['ConfigId']
+        end
+      end
+
+      # DeleteMetricConfig返回参数结构体
+      class DeleteMetricConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteMetricSubscribe请求参数结构体
+      class DeleteMetricSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 指标采集任务id
+        # @type TaskId: String
+        # @param TopicId: 指标采集任务配置的日志主题id。
+        # @type TopicId: String
+
+        attr_accessor :TaskId, :TopicId
+
+        def initialize(taskid=nil, topicid=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteMetricSubscribe返回参数结构体
+      class DeleteMetricSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteNoticeContent请求参数结构体
       class DeleteNoticeContentRequest < TencentCloud::Common::AbstractModel
         # @param NoticeContentId: 通知内容模板ID。-通过[获取通知内容模板](https://cloud.tencent.com/document/api/614/111714)获取通知内容模版ID
@@ -5447,6 +6368,43 @@ module TencentCloud
 
       # DeleteShipper返回参数结构体
       class DeleteShipperResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteSplunkDeliver请求参数结构体
+      class DeleteSplunkDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+
+        attr_accessor :TaskId, :TopicId
+
+        def initialize(taskid=nil, topicid=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+        end
+      end
+
+      # DeleteSplunkDeliver返回参数结构体
+      class DeleteSplunkDeliverResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -5960,6 +6918,143 @@ module TencentCloud
         end
       end
 
+      # DescribeClusterBaseMetricConfigs请求参数结构体
+      class DescribeClusterBaseMetricConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 机器组id
+        # @type GroupId: String
+        # @param Filters: <li> topicId按照【指标主题id】进行过滤。类型：String  必选：否</li>
+        # <li> 每次请求的Filters的上限为10，所有Filter.Values总和上限为100。</li>
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :GroupId, :Filters, :Offset, :Limit
+
+        def initialize(groupid=nil, filters=nil, offset=nil, limit=nil)
+          @GroupId = groupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusterBaseMetricConfigs返回参数结构体
+      class DescribeClusterBaseMetricConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Datas: 指标采集配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Datas, :RequestId
+
+        def initialize(totalcount=nil, datas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              basemetriccollectconfig_tmp = BaseMetricCollectConfig.new
+              basemetriccollectconfig_tmp.deserialize(i)
+              @Datas << basemetriccollectconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterMetricConfigs请求参数结构体
+      class DescribeClusterMetricConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param GroupId: 机器组id
+        # @type GroupId: String
+        # @param Filters: <li> configId按照【指标采集配置id】进行过滤。类型：String  必选：否</li>
+        # <li> name按照【配置名称】进行过滤。类型：String 必选：否</li>
+        # <li> 每次请求的Filters的上限为10，所有Filter.Values总和上限为100。</li>
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :GroupId, :Filters, :Offset, :Limit
+
+        def initialize(groupid=nil, filters=nil, offset=nil, limit=nil)
+          @GroupId = groupid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeClusterMetricConfigs返回参数结构体
+      class DescribeClusterMetricConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Datas: 指标采集配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Datas, :RequestId
+
+        def initialize(totalcount=nil, datas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              metriccollectconfig_tmp = MetricCollectConfig.new
+              metriccollectconfig_tmp.deserialize(i)
+              @Datas << metriccollectconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConfigExtras请求参数结构体
       class DescribeConfigExtrasRequest < TencentCloud::Common::AbstractModel
         # @param Filters: 过滤器，支持如下选项：
@@ -6213,6 +7308,143 @@ module TencentCloud
         end
       end
 
+      # DescribeConsumerGroups请求参数结构体
+      class DescribeConsumerGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param LogsetId: 日志集Id（日志主题所属的日志集）
+        # @type LogsetId: String
+        # @param Topics: topic列表
+        # @type Topics: Array
+
+        attr_accessor :LogsetId, :Topics
+
+        def initialize(logsetid=nil, topics=nil)
+          @LogsetId = logsetid
+          @Topics = topics
+        end
+
+        def deserialize(params)
+          @LogsetId = params['LogsetId']
+          @Topics = params['Topics']
+        end
+      end
+
+      # DescribeConsumerGroups返回参数结构体
+      class DescribeConsumerGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroupsInfo: 消费组详情列表
+        # @type ConsumerGroupsInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerGroupsInfo, :RequestId
+
+        def initialize(consumergroupsinfo=nil, requestid=nil)
+          @ConsumerGroupsInfo = consumergroupsinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ConsumerGroupsInfo'].nil?
+            @ConsumerGroupsInfo = []
+            params['ConsumerGroupsInfo'].each do |i|
+              consumergroupinfo_tmp = ConsumerGroupInfo.new
+              consumergroupinfo_tmp.deserialize(i)
+              @ConsumerGroupsInfo << consumergroupinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerOffsets请求参数结构体
+      class DescribeConsumerOffsetsRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 日志主题对应的消费组标识
+        # @type ConsumerGroup: String
+        # @param From: 时间戳(秒级时间戳)
+        # @type From: String
+        # @param LogsetId: 日志集id(日志主题对应的id)
+        # @type LogsetId: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param PartitionId: 分区id
+        # @type PartitionId: String
+
+        attr_accessor :ConsumerGroup, :From, :LogsetId, :TopicId, :PartitionId
+
+        def initialize(consumergroup=nil, from=nil, logsetid=nil, topicid=nil, partitionid=nil)
+          @ConsumerGroup = consumergroup
+          @From = from
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @PartitionId = partitionid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @From = params['From']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @PartitionId = params['PartitionId']
+        end
+      end
+
+      # DescribeConsumerOffsets返回参数结构体
+      class DescribeConsumerOffsetsResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 消费者组标识
+        # @type ConsumerGroup: String
+        # @param TopicPartitionOffsetsInfo: 消费点位信息
+        # @type TopicPartitionOffsetsInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerGroup, :TopicPartitionOffsetsInfo, :RequestId
+
+        def initialize(consumergroup=nil, topicpartitionoffsetsinfo=nil, requestid=nil)
+          @ConsumerGroup = consumergroup
+          @TopicPartitionOffsetsInfo = topicpartitionoffsetsinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          unless params['TopicPartitionOffsetsInfo'].nil?
+            @TopicPartitionOffsetsInfo = []
+            params['TopicPartitionOffsetsInfo'].each do |i|
+              topicpartitionoffsetinfo_tmp = TopicPartitionOffsetInfo.new
+              topicpartitionoffsetinfo_tmp.deserialize(i)
+              @TopicPartitionOffsetsInfo << topicpartitionoffsetinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumerPreview请求参数结构体
+      class DescribeConsumerPreviewRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeConsumerPreview返回参数结构体
+      class DescribeConsumerPreviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeConsumer请求参数结构体
       class DescribeConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题Id。
@@ -6270,6 +7502,85 @@ module TencentCloud
             @Ckafka.deserialize(params['Ckafka'])
           end
           @Compression = params['Compression']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConsumers请求参数结构体
+      class DescribeConsumersRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: - consumerId
+        # 按照【投递规则ID】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - topicId
+        # 按照【日志主题】进行过滤。
+        # 类型：String
+        # 必选：否
+
+        # - taskStatus
+        # 按照【任务运行状态】进行过滤。 支持`0`：停止，`1`：运行中，`2`：异常
+        # 类型：String
+        # 必选：否
+
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 分页单页的限制数目，默认值为20，最大值100
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeConsumers返回参数结构体
+      class DescribeConsumersResponse < TencentCloud::Common::AbstractModel
+        # @param Consumers: 投递规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consumers: Array
+        # @param TotalCount: 本次查询获取到的总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Consumers, :TotalCount, :RequestId
+
+        def initialize(consumers=nil, totalcount=nil, requestid=nil)
+          @Consumers = consumers
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Consumers'].nil?
+            @Consumers = []
+            params['Consumers'].each do |i|
+              consumerinfo_tmp = ConsumerInfo.new
+              consumerinfo_tmp.deserialize(i)
+              @Consumers << consumerinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -6722,6 +8033,148 @@ module TencentCloud
         end
       end
 
+      # DescribeEsRechargePreview请求参数结构体
+      class DescribeEsRechargePreviewRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 名称：长度不超过64字符。
+        # @type Name: String
+        # @param TopicId: 日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+        # @param Index: 索引信息。不同索引可以通过英文逗号分隔，支持*通配符
+        # @type Index: String
+        # @param Query: es查询语句。
+        # @type Query: String
+        # @param EsInfo: es集群配置信息。
+        # @type EsInfo: :class:`Tencentcloud::Cls.v20201016.models.EsInfo`
+        # @param ImportInfo: es导入信息。
+        # @type ImportInfo: :class:`Tencentcloud::Cls.v20201016.models.EsImportInfo`
+        # @param TimeInfo: es导入时间字段信息。
+        # @type TimeInfo: :class:`Tencentcloud::Cls.v20201016.models.EsTimeInfo`
+
+        attr_accessor :Name, :TopicId, :Index, :Query, :EsInfo, :ImportInfo, :TimeInfo
+
+        def initialize(name=nil, topicid=nil, index=nil, query=nil, esinfo=nil, importinfo=nil, timeinfo=nil)
+          @Name = name
+          @TopicId = topicid
+          @Index = index
+          @Query = query
+          @EsInfo = esinfo
+          @ImportInfo = importinfo
+          @TimeInfo = timeinfo
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @TopicId = params['TopicId']
+          @Index = params['Index']
+          @Query = params['Query']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new
+            @EsInfo.deserialize(params['EsInfo'])
+          end
+          unless params['ImportInfo'].nil?
+            @ImportInfo = EsImportInfo.new
+            @ImportInfo.deserialize(params['ImportInfo'])
+          end
+          unless params['TimeInfo'].nil?
+            @TimeInfo = EsTimeInfo.new
+            @TimeInfo.deserialize(params['TimeInfo'])
+          end
+        end
+      end
+
+      # DescribeEsRechargePreview返回参数结构体
+      class DescribeEsRechargePreviewResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 预览数据信息
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEsRecharges请求参数结构体
+      class DescribeEsRechargesRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+        # @param Filters: -  taskId按照【配置id】进行过滤。类型：String  必选：否
+        # -  name按照【配置名称】进行过滤。类型：String 必选：否
+        # -  statusFlag按照【配置状态标记】进行过滤。类型：String 必选：否
+        # -  每次请求的Filters的上限为10，Filter.Values的上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEsRecharges返回参数结构体
+      class DescribeEsRechargesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Infos: es导入配置信息
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Infos, :RequestId
+
+        def initialize(totalcount=nil, infos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              esrechargeinfo_tmp = EsRechargeInfo.new
+              esrechargeinfo_tmp.deserialize(i)
+              @Infos << esrechargeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExports请求参数结构体
       class DescribeExportsRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id
@@ -6774,6 +8227,77 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeHostMetricConfigs请求参数结构体
+      class DescribeHostMetricConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param Filters: - configId按照【配置id】进行过滤。类型：String  必选：否
+        # - name按照【配置名称】进行过滤。类型：String 必选：否
+
+        # 每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeHostMetricConfigs返回参数结构体
+      class DescribeHostMetricConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Infos: 指标订阅配置信息
+        # @type Infos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Infos, :RequestId
+
+        def initialize(totalcount=nil, infos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Infos = infos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              hostmetricconfig_tmp = HostMetricConfig.new
+              hostmetricconfig_tmp.deserialize(i)
+              @Infos << hostmetricconfig_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6994,6 +8518,33 @@ module TencentCloud
         end
       end
 
+      # DescribeKafkaConsumerPreview请求参数结构体
+      class DescribeKafkaConsumerPreviewRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeKafkaConsumerPreview返回参数结构体
+      class DescribeKafkaConsumerPreviewResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeKafkaConsumer请求参数结构体
       class DescribeKafkaConsumerRequest < TencentCloud::Common::AbstractModel
         # @param FromTopicId: 日志主题Id。
@@ -7043,6 +8594,33 @@ module TencentCloud
             @ConsumerContent = KafkaConsumerContent.new
             @ConsumerContent.deserialize(params['ConsumerContent'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeKafkaConsumerTopics请求参数结构体
+      class DescribeKafkaConsumerTopicsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeKafkaConsumerTopics返回参数结构体
+      class DescribeKafkaConsumerTopicsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -7606,6 +9184,186 @@ module TencentCloud
         end
       end
 
+      # DescribeMetricCorrectDimension请求参数结构体
+      class DescribeMetricCorrectDimensionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeMetricCorrectDimension返回参数结构体
+      class DescribeMetricCorrectDimensionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMetricSubscribePreview请求参数结构体
+      class DescribeMetricSubscribePreviewRequest < TencentCloud::Common::AbstractModel
+        # @param Namespace: 云产品命名空间。
+        # @type Namespace: String
+        # @param Metrics: 数据库配置信息。
+        # @type Metrics: Array
+        # @param InstanceInfo: 实例配置配置。
+        # @type InstanceInfo: :class:`Tencentcloud::Cls.v20201016.models.InstanceConfig`
+
+        attr_accessor :Namespace, :Metrics, :InstanceInfo
+
+        def initialize(namespace=nil, metrics=nil, instanceinfo=nil)
+          @Namespace = namespace
+          @Metrics = metrics
+          @InstanceInfo = instanceinfo
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metricconfig_tmp = MetricConfig.new
+              metricconfig_tmp.deserialize(i)
+              @Metrics << metricconfig_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceConfig.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+        end
+      end
+
+      # DescribeMetricSubscribePreview返回参数结构体
+      class DescribeMetricSubscribePreviewResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数量
+        # @type TotalCount: Integer
+        # @param SuccessCount: 成功数量
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败数量
+        # @type FailCount: Integer
+        # @param SuccessInstances: 成功实例数据
+        # @type SuccessInstances: Array
+        # @param FailInstances: 失败实例数据
+        # @type FailInstances: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SuccessCount, :FailCount, :SuccessInstances, :FailInstances, :RequestId
+
+        def initialize(totalcount=nil, successcount=nil, failcount=nil, successinstances=nil, failinstances=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @SuccessInstances = successinstances
+          @FailInstances = failinstances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          unless params['SuccessInstances'].nil?
+            @SuccessInstances = []
+            params['SuccessInstances'].each do |i|
+              instancedata_tmp = InstanceData.new
+              instancedata_tmp.deserialize(i)
+              @SuccessInstances << instancedata_tmp
+            end
+          end
+          unless params['FailInstances'].nil?
+            @FailInstances = []
+            params['FailInstances'].each do |i|
+              instancedata_tmp = InstanceData.new
+              instancedata_tmp.deserialize(i)
+              @FailInstances << instancedata_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMetricSubscribes请求参数结构体
+      class DescribeMetricSubscribesRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param Filters: <br><li> taskId按照【配置id】进行过滤。类型：String  必选：否</li>
+        # <br><li> name按照【配置名称】进行过滤。类型：String 必选：否</li>
+        # <br><li> status按照【配置状态标记】进行过滤。类型：String 必选：否</li>
+        # <br><li> 每次请求的Filters的上限为10，Filter.Values的上限为100。</li>
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeMetricSubscribes返回参数结构体
+      class DescribeMetricSubscribesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Datas: 指标订阅配置信息
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Datas, :RequestId
+
+        def initialize(totalcount=nil, datas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              metricsubscribeinfo_tmp = MetricSubscribeInfo.new
+              metricsubscribeinfo_tmp.deserialize(i)
+              @Datas << metricsubscribeinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNoticeContents请求参数结构体
       class DescribeNoticeContentsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <li> name
@@ -7934,6 +9692,261 @@ module TencentCloud
         end
       end
 
+      # DescribeSplunkDelivers请求参数结构体
+      class DescribeSplunkDeliversRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题Id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Filters: - taskId 按照【任务id】进行过滤。 类型：String 必选：否
+        # - name 按照【任务名称】进行过滤。 类型：String 必选：否
+        # - statusFlag 按照【状态】进行过滤。 类型：String 必选：否
+        #  每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeSplunkDelivers返回参数结构体
+      class DescribeSplunkDeliversResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: Splunk投递任务信息列表
+        # @type Infos: Array
+        # @param Total: 符合条件的任务总数。
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              splunkdeliverinfo_tmp = SplunkDeliverInfo.new
+              splunkdeliverinfo_tmp.deserialize(i)
+              @Infos << splunkdeliverinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSplunkPreview请求参数结构体
+      class DescribeSplunkPreviewRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题id。
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param MetadataInfo: splunk投递任务-元信息
+        # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
+
+        attr_accessor :TopicId, :MetadataInfo
+
+        def initialize(topicid=nil, metadatainfo=nil)
+          @TopicId = topicid
+          @MetadataInfo = metadatainfo
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['MetadataInfo'].nil?
+            @MetadataInfo = MetadataInfo.new
+            @MetadataInfo.deserialize(params['MetadataInfo'])
+          end
+        end
+      end
+
+      # DescribeSplunkPreview返回参数结构体
+      class DescribeSplunkPreviewResponse < TencentCloud::Common::AbstractModel
+        # @param PreviewInfos: 预览结果
+        # @type PreviewInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PreviewInfos, :RequestId
+
+        def initialize(previewinfos=nil, requestid=nil)
+          @PreviewInfos = previewinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PreviewInfos = params['PreviewInfos']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicBaseMetricConfigs请求参数结构体
+      class DescribeTopicBaseMetricConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param Filters: groupId按照【机器组id】进行过滤。类型：String  必选：否
+        # 每次请求的Filters的上限为10，所有Filter.Values总和上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopicBaseMetricConfigs返回参数结构体
+      class DescribeTopicBaseMetricConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Datas: 指标采集配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Datas, :RequestId
+
+        def initialize(totalcount=nil, datas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              basemetriccollectconfig_tmp = BaseMetricCollectConfig.new
+              basemetriccollectconfig_tmp.deserialize(i)
+              @Datas << basemetriccollectconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopicMetricConfigs请求参数结构体
+      class DescribeTopicMetricConfigsRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param Filters: configId按照【指标采集配置id】进行过滤。类型：String  必选：否
+        # name按照【配置名称】进行过滤。类型：String 必选：否
+        # 每次请求的Filters的上限为10，所有Filter.Values总和上限为100。
+        # @type Filters: Array
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :Filters, :Offset, :Limit
+
+        def initialize(topicid=nil, filters=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTopicMetricConfigs返回参数结构体
+      class DescribeTopicMetricConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数目
+        # @type TotalCount: Integer
+        # @param Datas: 指标采集配置列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Datas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Datas, :RequestId
+
+        def initialize(totalcount=nil, datas=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Datas = datas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              metriccollectconfig_tmp = MetricCollectConfig.new
+              metriccollectconfig_tmp.deserialize(i)
+              @Datas << metriccollectconfig_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTopics请求参数结构体
       class DescribeTopicsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <ul><li>topicName 按照【主题名称】进行过滤，默认为模糊匹配，可使用 PreciseSearch 参数设置为精确匹配。类型：String。必选：否</li>
@@ -8091,6 +10104,28 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云产品实例维度信息
+      class Dimension < TencentCloud::Common::AbstractModel
+        # @param Name: 实例维度名称,此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Value: 实例维度值,此字段可能返回 null，表示取不到有效值。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
         end
       end
 
@@ -8354,6 +10389,214 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # Es导入信息
+      class EsImportInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 导入模式。
+        # 1. 导入历史数据
+        # 2. 导入实时数据
+        # @type Type: Integer
+        # @param StartTime: 开始时间。 单位:秒级时间戳。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间。 单位：秒级时间戳。
+        # @type EndTime: Integer
+        # @param MaxDelay: 最大延迟时间。单位：s
+
+        # 导入模式为 2: 导入实时数据时必填
+        # @type MaxDelay: Integer
+        # @param CheckInterval: 检查间隔。单位：s
+
+        # 导入模式为 2: 导入实时数据时必填
+        # @type CheckInterval: Integer
+
+        attr_accessor :Type, :StartTime, :EndTime, :MaxDelay, :CheckInterval
+
+        def initialize(type=nil, starttime=nil, endtime=nil, maxdelay=nil, checkinterval=nil)
+          @Type = type
+          @StartTime = starttime
+          @EndTime = endtime
+          @MaxDelay = maxdelay
+          @CheckInterval = checkinterval
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MaxDelay = params['MaxDelay']
+          @CheckInterval = params['CheckInterval']
+        end
+      end
+
+      # es集群配置信息
+      class EsInfo < TencentCloud::Common::AbstractModel
+        # @param EsType: es类型。 1:云es, 2:自建es
+        # @type EsType: Integer
+        # @param AccessMode: 访问方式 1:内网, 2:外网。自建es必填
+        # @type AccessMode: Integer
+        # @param InstanceId: 实例id。云es实例必填
+        # @type InstanceId: String
+        # @param User: 用户名。
+        # @type User: String
+        # @param Address: 访问地址。自建es必填
+        # @type Address: String
+        # @param Port: 访问端口。自建es必填
+        # @type Port: Integer
+        # @param VpcId: 所属网络。自建es且访问方式为内网访问时必填
+        # @type VpcId: String
+        # @param VirtualGatewayType: 网络服务类型。自建es且访问方式为内网访问时必填。
+        # 负载均衡 CLB:1025 云服务器CVM:0
+        # @type VirtualGatewayType: Integer
+        # @param Password: 密码。
+        # @type Password: String
+
+        attr_accessor :EsType, :AccessMode, :InstanceId, :User, :Address, :Port, :VpcId, :VirtualGatewayType, :Password
+
+        def initialize(estype=nil, accessmode=nil, instanceid=nil, user=nil, address=nil, port=nil, vpcid=nil, virtualgatewaytype=nil, password=nil)
+          @EsType = estype
+          @AccessMode = accessmode
+          @InstanceId = instanceid
+          @User = user
+          @Address = address
+          @Port = port
+          @VpcId = vpcid
+          @VirtualGatewayType = virtualgatewaytype
+          @Password = password
+        end
+
+        def deserialize(params)
+          @EsType = params['EsType']
+          @AccessMode = params['AccessMode']
+          @InstanceId = params['InstanceId']
+          @User = params['User']
+          @Address = params['Address']
+          @Port = params['Port']
+          @VpcId = params['VpcId']
+          @VirtualGatewayType = params['VirtualGatewayType']
+          @Password = params['Password']
+        end
+      end
+
+      # es导入配置信息
+      class EsRechargeInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id。
+        # @type TaskId: String
+        # @param Uin: 主账号id。
+        # @type Uin: Integer
+        # @param TopicId: 日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: 配置名称。
+        # @type Name: String
+        # @param Index: es索引。
+        # @type Index: String
+        # @param Query: es查询语句。
+        # @type Query: String
+        # @param EsInfo: es集群信息。
+        # @type EsInfo: :class:`Tencentcloud::Cls.v20201016.models.EsInfo`
+        # @param ImportInfo: es导入信息。
+        # @type ImportInfo: :class:`Tencentcloud::Cls.v20201016.models.EsImportInfo`
+        # @param TimeInfo: es导入时间配置信息。
+        # @type TimeInfo: :class:`Tencentcloud::Cls.v20201016.models.EsTimeInfo`
+        # @param Status: 任务状态。
+        # 1. 运行中
+        # 2. 暂停
+        # 3. 完成
+        # 4. 异常
+        # @type Status: Integer
+        # @param Progress: 任务进度 0~100 百分比。100：表示完成。
+        # @type Progress: Integer
+        # @param SubUin: 子账号id。
+        # @type SubUin: Integer
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间。
+        # @type UpdateTime: Integer
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TaskId, :Uin, :TopicId, :Name, :Index, :Query, :EsInfo, :ImportInfo, :TimeInfo, :Status, :Progress, :SubUin, :CreateTime, :UpdateTime, :HasServicesLog
+
+        def initialize(taskid=nil, uin=nil, topicid=nil, name=nil, index=nil, query=nil, esinfo=nil, importinfo=nil, timeinfo=nil, status=nil, progress=nil, subuin=nil, createtime=nil, updatetime=nil, hasserviceslog=nil)
+          @TaskId = taskid
+          @Uin = uin
+          @TopicId = topicid
+          @Name = name
+          @Index = index
+          @Query = query
+          @EsInfo = esinfo
+          @ImportInfo = importinfo
+          @TimeInfo = timeinfo
+          @Status = status
+          @Progress = progress
+          @SubUin = subuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Uin = params['Uin']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Index = params['Index']
+          @Query = params['Query']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new
+            @EsInfo.deserialize(params['EsInfo'])
+          end
+          unless params['ImportInfo'].nil?
+            @ImportInfo = EsImportInfo.new
+            @ImportInfo.deserialize(params['ImportInfo'])
+          end
+          unless params['TimeInfo'].nil?
+            @TimeInfo = EsTimeInfo.new
+            @TimeInfo.deserialize(params['TimeInfo'])
+          end
+          @Status = params['Status']
+          @Progress = params['Progress']
+          @SubUin = params['SubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # Es导入时间字段信息
+      class EsTimeInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 时间类型 1: 日志采集时间 2: 指定日志字段
+        # @type Type: Integer
+        # @param TimeKey: 日志时间字段。
+
+        # 时间类型为 2: 指定日志字段时必填
+        # @type TimeKey: String
+        # @param TimeFormat: 日志时间格式。
+
+        # 时间类型为 2: 指定日志字段时必填
+        # @type TimeFormat: String
+        # @param TimeZone: 时间字段时区。
+
+        # 时间类型为 2: 指定日志字段时必填
+        # @type TimeZone: String
+
+        attr_accessor :Type, :TimeKey, :TimeFormat, :TimeZone
+
+        def initialize(type=nil, timekey=nil, timeformat=nil, timezone=nil)
+          @Type = type
+          @TimeKey = timekey
+          @TimeFormat = timeformat
+          @TimeZone = timezone
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TimeKey = params['TimeKey']
+          @TimeFormat = params['TimeFormat']
+          @TimeZone = params['TimeZone']
         end
       end
 
@@ -8931,6 +11174,37 @@ module TencentCloud
         end
       end
 
+      # GetMetricLabelValues请求参数结构体
+      class GetMetricLabelValuesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetMetricLabelValues返回参数结构体
+      class GetMetricLabelValuesResponse < TencentCloud::Common::AbstractModel
+        # @param Values: 时序metric label values
+        # @type Values: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Values, :RequestId
+
+        def initialize(values=nil, requestid=nil)
+          @Values = values
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # kafka协议消费组区分信息
       class GroupPartitionInfo < TencentCloud::Common::AbstractModel
         # @param PartitionId: 分区id
@@ -9037,6 +11311,172 @@ module TencentCloud
           @LogPath = params['LogPath']
           @FilePattern = params['FilePattern']
           @CustomLabels = params['CustomLabels']
+        end
+      end
+
+      # 主机指标采集配置
+      class HostMetricConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 采集配置 id
+        # @type ConfigId: String
+        # @param Name: 采集配置名称
+        # @type Name: String
+        # @param Interval: 采集频率,单位ms
+        # @type Interval: Integer
+        # @param HostMetricItems: 采集项.
+        # @type HostMetricItems: Array
+        # @param MachineGroupIds: 机器组 id 列表
+        # @type MachineGroupIds: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: Integer
+        # @param UpdateTime: 修改时间
+        # @type UpdateTime: Integer
+
+        attr_accessor :ConfigId, :Name, :Interval, :HostMetricItems, :MachineGroupIds, :CreateTime, :UpdateTime
+
+        def initialize(configid=nil, name=nil, interval=nil, hostmetricitems=nil, machinegroupids=nil, createtime=nil, updatetime=nil)
+          @ConfigId = configid
+          @Name = name
+          @Interval = interval
+          @HostMetricItems = hostmetricitems
+          @MachineGroupIds = machinegroupids
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @Name = params['Name']
+          @Interval = params['Interval']
+          unless params['HostMetricItems'].nil?
+            @HostMetricItems = []
+            params['HostMetricItems'].each do |i|
+              hostmetricitem_tmp = HostMetricItem.new
+              hostmetricitem_tmp.deserialize(i)
+              @HostMetricItems << hostmetricitem_tmp
+            end
+          end
+          @MachineGroupIds = params['MachineGroupIds']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 主机指标采集项
+      class HostMetricItem < TencentCloud::Common::AbstractModel
+        # @param Type: 主机指标采集项类型。支持"cpu"，"mem"，"net"，"disk"，"system"。
+
+        # - cpu：CPU
+        # - mem：内存
+        # - net：网络
+        # - disk：磁盘
+        # - system：系统
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+        end
+      end
+
+      # 实例信息
+      class Instance < TencentCloud::Common::AbstractModel
+        # @param Values: 实例信息
+        # @type Values: Array
+
+        attr_accessor :Values
+
+        def initialize(values=nil)
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Values = params['Values']
+        end
+      end
+
+      # 实例配置信息
+      class InstanceConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceDimension: 实例维度
+        # @type InstanceDimension: Array
+        # @param Instances: 实例值
+        # @type Instances: Array
+
+        attr_accessor :InstanceDimension, :Instances
+
+        def initialize(instancedimension=nil, instances=nil)
+          @InstanceDimension = instancedimension
+          @Instances = instances
+        end
+
+        def deserialize(params)
+          @InstanceDimension = params['InstanceDimension']
+          unless params['Instances'].nil?
+            @Instances = []
+            params['Instances'].each do |i|
+              instance_tmp = Instance.new
+              instance_tmp.deserialize(i)
+              @Instances << instance_tmp
+            end
+          end
+        end
+      end
+
+      # 云产品指标订阅预览结果实例信息
+      class InstanceData < TencentCloud::Common::AbstractModel
+        # @param MetricName: 云监控指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricName: String
+        # @param CLSMetricName: CLS指标名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CLSMetricName: String
+        # @param Namespace: 云产品命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Dimensions: 实例信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Dimensions: Array
+        # @param Period: 周期,单位：秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Period: Integer
+        # @param Value: 指标统计值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Float
+        # @param ErrMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+
+        attr_accessor :MetricName, :CLSMetricName, :Namespace, :Dimensions, :Period, :Value, :ErrMsg
+
+        def initialize(metricname=nil, clsmetricname=nil, namespace=nil, dimensions=nil, period=nil, value=nil, errmsg=nil)
+          @MetricName = metricname
+          @CLSMetricName = clsmetricname
+          @Namespace = namespace
+          @Dimensions = dimensions
+          @Period = period
+          @Value = value
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @CLSMetricName = params['CLSMetricName']
+          @Namespace = params['Namespace']
+          unless params['Dimensions'].nil?
+            @Dimensions = []
+            params['Dimensions'].each do |i|
+              dimension_tmp = Dimension.new
+              dimension_tmp.deserialize(i)
+              @Dimensions << dimension_tmp
+            end
+          end
+          @Period = params['Period']
+          @Value = params['Value']
+          @ErrMsg = params['ErrMsg']
         end
       end
 
@@ -9298,6 +11738,40 @@ module TencentCloud
             @Value = ValueInfo.new
             @Value.deserialize(params['Value'])
           end
+        end
+      end
+
+      # 标签结构体
+      class Label < TencentCloud::Common::AbstractModel
+        # @param Key: 标签的键。有效标签键有两个部分：可选前缀和名称，以斜杠 (/) 分隔。名称部分是必需的，并且必须不超过 63 个字符，以字母数字字符 ([a-z0-9A-Z]) 开头和结尾，中间有破折号(-)、下划线(_)、点(.) 和字母数字。前缀是可选的。如果指定，前缀必须是 DNS 子域：一系列以点 (.) 分隔的 DNS 标签，总长度不超过 253 个字符，后跟斜杠 ( /)。
+
+        # -  prefix 格式  `[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*`
+        # -  name 格式 `([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]`
+        # - key不能重复
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Operate: 标签键值直接的比较关系。 不同业务场景支持的比较符不同，具体支持那些参考接口业务描述。
+        # 例如：`in`、`notin`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Operate: String
+        # @param Values: 标签的值.
+        # - 最大支持63个字符。
+        # - 格式：`([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Values: Array
+
+        attr_accessor :Key, :Operate, :Values
+
+        def initialize(key=nil, operate=nil, values=nil)
+          @Key = key
+          @Operate = operate
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Operate = params['Operate']
+          @Values = params['Values']
         end
       end
 
@@ -9913,6 +12387,236 @@ module TencentCloud
         end
       end
 
+      # Splunk任务投递元信息
+      class MetadataInfo < TencentCloud::Common::AbstractModel
+        # @param Format: 数据格式,rawlog/json
+        # @type Format: String
+        # @param MetaFields: 投递字段，包括\_\_SOURCE\_\_、\_\_FILENAME\_\_
+        # 、\_\_TIMESTAMP\_\_、\_\_HOSTNAME\_\_、\_\_PKG\_ID\_\_
+        # @type MetaFields: Array
+        # @param EnableTag: 是否投递__TAG__字段
+        # @type EnableTag: Boolean
+        # @param TagJsonTiled: JSON是否平铺，投递__TAG__字段时必填
+        # @type TagJsonTiled: Boolean
+
+        attr_accessor :Format, :MetaFields, :EnableTag, :TagJsonTiled
+
+        def initialize(format=nil, metafields=nil, enabletag=nil, tagjsontiled=nil)
+          @Format = format
+          @MetaFields = metafields
+          @EnableTag = enabletag
+          @TagJsonTiled = tagjsontiled
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @MetaFields = params['MetaFields']
+          @EnableTag = params['EnableTag']
+          @TagJsonTiled = params['TagJsonTiled']
+        end
+      end
+
+      # 指标采集配置
+      class MetricCollectConfig < TencentCloud::Common::AbstractModel
+        # @param ConfigId: 采集配置id
+        # @type ConfigId: String
+        # @param TopicIds: 日志主题id。
+        # @type TopicIds: Array
+        # @param Source: 采集配置来源。支持 ：`0`、`1`
+        # - 0:自建k8s
+        # - 1:TKE
+        # @type Source: Integer
+        # @param GroupIds: 机器组id。
+        # @type GroupIds: Array
+        # @param Type: 监控类型。支持 ：`0`、`1`，不支持修改
+
+        # - 0:基础监控
+        # - 1:自定义监控,
+        # @type Type: Integer
+        # @param Flag: 采集配置方式。支持 ：`0`、`1`，不支持修改
+        # - 0:普通配置方式，Type字段只能为：`1`
+        # - 1:YAML导入方式，Type 可以是：`0`或者`1`
+        # @type Flag: Integer
+        # @param Name: 名称：长度不超过253字符，校验格式  ` [a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*`。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Spec: 采集对象, Flag=0时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: :class:`Tencentcloud::Cls.v20201016.models.MetricSpec`
+        # @param MetricRelabels: 标签处理, Flag=0时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricRelabels: Array
+        # @param MetricLabel: 自定义元数据, Flag=0时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MetricLabel: :class:`Tencentcloud::Cls.v20201016.models.MetricConfigLabel`
+        # @param Scheme: 通信协议 `http`、`https`；Flag=0时生效
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Scheme: String
+        # @param ScrapeInterval: 采集频率,  Flag=0时生效
+        # - 校验格式：`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrapeInterval: String
+        # @param ScrapeTimeout: 采集超时时间。  Flag=0 && Type=1时生效
+        # - format:`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScrapeTimeout: String
+        # @param HonorLabels: Prometheus如何处理标签之间的冲突。当Flag=0生效，支持`true`,`false`
+
+        # - `false`:配置数据中冲突的标签重命名
+        # - `true`:忽略冲突的服务器端标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HonorLabels: Boolean
+        # @param YamlSpec: 采集配置yaml格式字符串, Flag=1时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type YamlSpec: :class:`Tencentcloud::Cls.v20201016.models.MetricYamlSpec`
+        # @param Operate: 操作状态,0:应用,1:暂停
+        # @type Operate: Integer
+        # @param CreateTime: 创建时间戳 秒级
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间戳 秒级
+        # @type UpdateTime: Integer
+
+        attr_accessor :ConfigId, :TopicIds, :Source, :GroupIds, :Type, :Flag, :Name, :Spec, :MetricRelabels, :MetricLabel, :Scheme, :ScrapeInterval, :ScrapeTimeout, :HonorLabels, :YamlSpec, :Operate, :CreateTime, :UpdateTime
+
+        def initialize(configid=nil, topicids=nil, source=nil, groupids=nil, type=nil, flag=nil, name=nil, spec=nil, metricrelabels=nil, metriclabel=nil, scheme=nil, scrapeinterval=nil, scrapetimeout=nil, honorlabels=nil, yamlspec=nil, operate=nil, createtime=nil, updatetime=nil)
+          @ConfigId = configid
+          @TopicIds = topicids
+          @Source = source
+          @GroupIds = groupids
+          @Type = type
+          @Flag = flag
+          @Name = name
+          @Spec = spec
+          @MetricRelabels = metricrelabels
+          @MetricLabel = metriclabel
+          @Scheme = scheme
+          @ScrapeInterval = scrapeinterval
+          @ScrapeTimeout = scrapetimeout
+          @HonorLabels = honorlabels
+          @YamlSpec = yamlspec
+          @Operate = operate
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ConfigId = params['ConfigId']
+          @TopicIds = params['TopicIds']
+          @Source = params['Source']
+          @GroupIds = params['GroupIds']
+          @Type = params['Type']
+          @Flag = params['Flag']
+          @Name = params['Name']
+          unless params['Spec'].nil?
+            @Spec = MetricSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['MetricRelabels'].nil?
+            @MetricRelabels = []
+            params['MetricRelabels'].each do |i|
+              relabeling_tmp = Relabeling.new
+              relabeling_tmp.deserialize(i)
+              @MetricRelabels << relabeling_tmp
+            end
+          end
+          unless params['MetricLabel'].nil?
+            @MetricLabel = MetricConfigLabel.new
+            @MetricLabel.deserialize(params['MetricLabel'])
+          end
+          @Scheme = params['Scheme']
+          @ScrapeInterval = params['ScrapeInterval']
+          @ScrapeTimeout = params['ScrapeTimeout']
+          @HonorLabels = params['HonorLabels']
+          unless params['YamlSpec'].nil?
+            @YamlSpec = MetricYamlSpec.new
+            @YamlSpec.deserialize(params['YamlSpec'])
+          end
+          @Operate = params['Operate']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 指标配置信息
+      class MetricConfig < TencentCloud::Common::AbstractModel
+        # @param MetricName: 指标名称
+        # @type MetricName: String
+        # @param Periods: 统计周期,单位:秒（s）
+        # @type Periods: Array
+        # @param MetricLabels: 自定义指标标签
+        # @type MetricLabels: Array
+
+        attr_accessor :MetricName, :Periods, :MetricLabels
+
+        def initialize(metricname=nil, periods=nil, metriclabels=nil)
+          @MetricName = metricname
+          @Periods = periods
+          @MetricLabels = metriclabels
+        end
+
+        def deserialize(params)
+          @MetricName = params['MetricName']
+          @Periods = params['Periods']
+          unless params['MetricLabels'].nil?
+            @MetricLabels = []
+            params['MetricLabels'].each do |i|
+              metriclabel_tmp = MetricLabel.new
+              metriclabel_tmp.deserialize(i)
+              @MetricLabels << metriclabel_tmp
+            end
+          end
+        end
+      end
+
+      # 指标采集label配置信息
+      class MetricConfigLabel < TencentCloud::Common::AbstractModel
+        # @param Metadata: 元数据。
+        # 支持
+        # - `namespace`
+        # - `pod_name`
+        # - `pod_ip`
+        # - `pod_uid`
+        # - `container_name`
+        # - `container_id`
+        # - `image_name`
+        # - `cluster_id`
+        # - `node_id`
+        # - `node_ip`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Metadata: Array
+        # @param Label: 元数据Pod Label信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Label: :class:`Tencentcloud::Cls.v20201016.models.AppointLabel`
+        # @param CustomLabels: 自定义label信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomLabels: Array
+
+        attr_accessor :Metadata, :Label, :CustomLabels
+
+        def initialize(metadata=nil, label=nil, customlabels=nil)
+          @Metadata = metadata
+          @Label = label
+          @CustomLabels = customlabels
+        end
+
+        def deserialize(params)
+          @Metadata = params['Metadata']
+          unless params['Label'].nil?
+            @Label = AppointLabel.new
+            @Label.deserialize(params['Label'])
+          end
+          unless params['CustomLabels'].nil?
+            @CustomLabels = []
+            params['CustomLabels'].each do |i|
+              customlabel_tmp = CustomLabel.new
+              customlabel_tmp.deserialize(i)
+              @CustomLabels << customlabel_tmp
+            end
+          end
+        end
+      end
+
       # 过滤器
       class MetricLabel < TencentCloud::Common::AbstractModel
         # @param Key: 指标名称
@@ -9930,6 +12634,158 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 采集对象
+      class MetricSpec < TencentCloud::Common::AbstractModel
+        # @param CustomSpecs: 自定义指标采集配置项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomSpecs: Array
+
+        attr_accessor :CustomSpecs
+
+        def initialize(customspecs=nil)
+          @CustomSpecs = customspecs
+        end
+
+        def deserialize(params)
+          unless params['CustomSpecs'].nil?
+            @CustomSpecs = []
+            params['CustomSpecs'].each do |i|
+              custommetricspec_tmp = CustomMetricSpec.new
+              custommetricspec_tmp.deserialize(i)
+              @CustomSpecs << custommetricspec_tmp
+            end
+          end
+        end
+      end
+
+      # 指标订阅配置信息
+      class MetricSubscribeInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 订阅任务id。
+        # @type TaskId: String
+        # @param TopicId: 日志主题id。
+        # @type TopicId: String
+        # @param Name: 订阅任务名称。
+        # @type Name: String
+        # @param Namespace: 云产品命名空间。
+        # @type Namespace: String
+        # @param Metrics: 指标配置信息。
+        # @type Metrics: Array
+        # @param InstanceInfo: 实例配置信息。
+        # @type InstanceInfo: :class:`Tencentcloud::Cls.v20201016.models.InstanceConfig`
+        # @param Enable: 订阅任务开关。1:暂停 2:启用
+        # @type Enable: Integer
+        # @param Status: 订阅任务运行状态。0:创建中 1:暂停 2:运行中 3:异常
+        # @type Status: Integer
+        # @param ErrMsg: 订阅任务运行异常时的错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param CreateTime: 创建时间（秒级时间戳）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间（秒级时间戳）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+
+        attr_accessor :TaskId, :TopicId, :Name, :Namespace, :Metrics, :InstanceInfo, :Enable, :Status, :ErrMsg, :CreateTime, :UpdateTime
+
+        def initialize(taskid=nil, topicid=nil, name=nil, namespace=nil, metrics=nil, instanceinfo=nil, enable=nil, status=nil, errmsg=nil, createtime=nil, updatetime=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+          @Name = name
+          @Namespace = namespace
+          @Metrics = metrics
+          @InstanceInfo = instanceinfo
+          @Enable = enable
+          @Status = status
+          @ErrMsg = errmsg
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metricconfig_tmp = MetricConfig.new
+              metricconfig_tmp.deserialize(i)
+              @Metrics << metricconfig_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceConfig.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @Enable = params['Enable']
+          @Status = params['Status']
+          @ErrMsg = params['ErrMsg']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 指标采集yaml格式配置
+      class MetricYamlSpec < TencentCloud::Common::AbstractModel
+        # @param Type: yaml监控类型。
+        # 支持：
+        # - PodMonitor
+        # - ServiceMonitor
+        # - ScrapeConfig
+        # - ScrapeConfig-prometheus
+
+        # `PodMonitor `,`ServiceMonitor `,`ScrapeConfig ` 属于prometheus-operator
+        # `ScrapeConfig-prometheus` 属于prometheus
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Spec: 配置yaml格式。
+        # 例如：Type: ServiceMonitor
+
+
+        # ```
+        # apiVersion: monitoring.coreos.com/v1
+        # kind: ServiceMonitor
+        # metadata:
+        #   name: test
+        #   namespace: test
+        #   labels:
+        #     k8s-app1: test
+        #     k8s-app2: test
+        # spec:
+        #   endpoints:
+        #     - interval: 15s
+        #       port: 8080-8080-tcp
+        #       path: /metrics
+        #       relabelings:
+        #         - action: replace
+        #           sourceLabels:
+        #             - __meta_kubernetes_pod_label_app
+        #           targetLabel: application
+        #   namespaceSelector:
+        #     matchNames:
+        #       - test
+        #   selector:
+        #     matchLabels:
+        #       app: test
+        # ```
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Spec: String
+
+        attr_accessor :Type, :Spec
+
+        def initialize(type=nil, spec=nil)
+          @Type = type
+          @Spec = spec
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Spec = params['Spec']
         end
       end
 
@@ -10636,6 +13492,50 @@ module TencentCloud
         end
       end
 
+      # ModifyConsumerGroup请求参数结构体
+      class ModifyConsumerGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 更新的目标消费者组标识
+        # @type ConsumerGroup: String
+        # @param Timeout: 消费者心跳超时时间（秒）
+        # @type Timeout: Integer
+        # @param Topics: 更新的消费者组包含的日志主题列表
+        # @type Topics: Array
+        # @param LogsetId: 日志集Id（日志主题所属的日志集）
+        # @type LogsetId: String
+
+        attr_accessor :ConsumerGroup, :Timeout, :Topics, :LogsetId
+
+        def initialize(consumergroup=nil, timeout=nil, topics=nil, logsetid=nil)
+          @ConsumerGroup = consumergroup
+          @Timeout = timeout
+          @Topics = topics
+          @LogsetId = logsetid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @Timeout = params['Timeout']
+          @Topics = params['Topics']
+          @LogsetId = params['LogsetId']
+        end
+      end
+
+      # ModifyConsumerGroup返回参数结构体
+      class ModifyConsumerGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyConsumer请求参数结构体
       class ModifyConsumerRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 投递任务绑定的日志主题Id。
@@ -11030,6 +13930,153 @@ module TencentCloud
         end
       end
 
+      # ModifyEsRecharge请求参数结构体
+      class ModifyEsRechargeRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导入任务id。
+        # @type TaskId: String
+        # @param TopicId: 日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: 名称：长度不超过64字符。
+        # @type Name: String
+        # @param Index: 索引信息。不同索引可以通过英文逗号分隔，支持*通配符
+        # @type Index: String
+        # @param Query: es查询语句。
+        # @type Query: String
+        # @param EsInfo: es集群配置信息。
+        # @type EsInfo: :class:`Tencentcloud::Cls.v20201016.models.EsInfo`
+        # @param ImportInfo: es导入信息。
+        # @type ImportInfo: :class:`Tencentcloud::Cls.v20201016.models.EsImportInfo`
+        # @param TimeInfo: es导入时间字段信息。
+        # @type TimeInfo: :class:`Tencentcloud::Cls.v20201016.models.EsTimeInfo`
+        # @param Status: 任务状态。1:运行， 2:暂停
+        # @type Status: Integer
+        # @param HasServicesLog: 是否开启投递服务日志。1：关闭，2：开启。
+        # @type HasServicesLog: Integer
+
+        attr_accessor :TaskId, :TopicId, :Name, :Index, :Query, :EsInfo, :ImportInfo, :TimeInfo, :Status, :HasServicesLog
+
+        def initialize(taskid=nil, topicid=nil, name=nil, index=nil, query=nil, esinfo=nil, importinfo=nil, timeinfo=nil, status=nil, hasserviceslog=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+          @Name = name
+          @Index = index
+          @Query = query
+          @EsInfo = esinfo
+          @ImportInfo = importinfo
+          @TimeInfo = timeinfo
+          @Status = status
+          @HasServicesLog = hasserviceslog
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Index = params['Index']
+          @Query = params['Query']
+          unless params['EsInfo'].nil?
+            @EsInfo = EsInfo.new
+            @EsInfo.deserialize(params['EsInfo'])
+          end
+          unless params['ImportInfo'].nil?
+            @ImportInfo = EsImportInfo.new
+            @ImportInfo.deserialize(params['ImportInfo'])
+          end
+          unless params['TimeInfo'].nil?
+            @TimeInfo = EsTimeInfo.new
+            @TimeInfo.deserialize(params['TimeInfo'])
+          end
+          @Status = params['Status']
+          @HasServicesLog = params['HasServicesLog']
+        end
+      end
+
+      # ModifyEsRecharge返回参数结构体
+      class ModifyEsRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyHostMetricConfig请求参数结构体
+      class ModifyHostMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param ConfigId: 采集配置id
+        # @type ConfigId: String
+        # @param Name: 名称。
+
+        # - 长度不超过 64字符。
+        # @type Name: String
+        # @param MachineGroupIds: 机器组id列表。最多支持100个机器组。
+        # @type MachineGroupIds: Array
+        # @param Interval: 采集频率。单位:ms。 最小支持5000ms
+        # @type Interval: Integer
+        # @param HostMetricItems: 采集项。支持"cpu"，"mem"，"net"，"disk"，"system"。**目前仅支持:所有采集项都需配置**。
+        # - cpu：CPU
+        # - mem：内存
+        # - net：网络
+        # - disk：磁盘
+        # - system：系统
+        # @type HostMetricItems: Array
+
+        attr_accessor :TopicId, :ConfigId, :Name, :MachineGroupIds, :Interval, :HostMetricItems
+
+        def initialize(topicid=nil, configid=nil, name=nil, machinegroupids=nil, interval=nil, hostmetricitems=nil)
+          @TopicId = topicid
+          @ConfigId = configid
+          @Name = name
+          @MachineGroupIds = machinegroupids
+          @Interval = interval
+          @HostMetricItems = hostmetricitems
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ConfigId = params['ConfigId']
+          @Name = params['Name']
+          @MachineGroupIds = params['MachineGroupIds']
+          @Interval = params['Interval']
+          unless params['HostMetricItems'].nil?
+            @HostMetricItems = []
+            params['HostMetricItems'].each do |i|
+              hostmetricitem_tmp = HostMetricItem.new
+              hostmetricitem_tmp.deserialize(i)
+              @HostMetricItems << hostmetricitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyHostMetricConfig返回参数结构体
+      class ModifyHostMetricConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyIndex请求参数结构体
       class ModifyIndexRequest < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志主题Id。
@@ -11404,6 +14451,181 @@ module TencentCloud
         end
       end
 
+      # ModifyMetricConfig请求参数结构体
+      class ModifyMetricConfigRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标日志主题id。
+        # - 通过 [获取日志主题列表](https://cloud.tencent.com/document/product/614/56454) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # - 通过 [创建日志主题](https://cloud.tencent.com/document/product/614/56456) 获取日志主题Id。注意BizType 0:日志主题（默认值）， 1:指标主题
+        # @type TopicId: String
+        # @param ConfigId: 指标采集配置id
+        # @type ConfigId: String
+        # @param Source: 采集配置来源。支持 ：`0`、`1`
+        # - 0:自建k8s
+        # - 1:TKE
+        # @type Source: Integer
+        # @param GroupIds: 机器组id。
+        # @type GroupIds: Array
+        # @param Operate: 操作状态,0:应用,1:暂停
+        # @type Operate: Integer
+        # @param Spec: 采集对象, Flag=0时生效
+        # @type Spec: :class:`Tencentcloud::Cls.v20201016.models.MetricSpec`
+        # @param MetricRelabels: 标签处理, Flag=0时生效
+        # @type MetricRelabels: Array
+        # @param MetricLabel: 自定义元数据, Flag=0时生效
+        # @type MetricLabel: :class:`Tencentcloud::Cls.v20201016.models.MetricConfigLabel`
+        # @param Scheme: 通信协议 `http`、`https`；Flag=0时生效
+        # @type Scheme: String
+        # @param ScrapeInterval: 采集频率,  Flag=0时生效
+        # - 校验格式：`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+        # - 默认：60s
+        # @type ScrapeInterval: String
+        # @param ScrapeTimeout: 采集超时时间。   Flag=0时生效
+        # - 校验格式：`^(((\d+)y)?((\d+)w)?((\d+)d)?((\d+)h)?((\d+)m)?((\d+)s)?((\d+)ms)?|0)$`
+        # @type ScrapeTimeout: String
+        # @param HonorLabels: Prometheus如何处理标签之间的冲突。当Flag=0 && Type=1时生效，支持`true`,`false`
+        # - `false`:配置数据中冲突的标签重命名
+        # - `true`:忽略冲突的服务器端标签
+        # @type HonorLabels: Boolean
+        # @param YamlSpec: 采集配置yaml格式字符串, Flag=1时必填
+        # @type YamlSpec: :class:`Tencentcloud::Cls.v20201016.models.MetricYamlSpec`
+
+        attr_accessor :TopicId, :ConfigId, :Source, :GroupIds, :Operate, :Spec, :MetricRelabels, :MetricLabel, :Scheme, :ScrapeInterval, :ScrapeTimeout, :HonorLabels, :YamlSpec
+
+        def initialize(topicid=nil, configid=nil, source=nil, groupids=nil, operate=nil, spec=nil, metricrelabels=nil, metriclabel=nil, scheme=nil, scrapeinterval=nil, scrapetimeout=nil, honorlabels=nil, yamlspec=nil)
+          @TopicId = topicid
+          @ConfigId = configid
+          @Source = source
+          @GroupIds = groupids
+          @Operate = operate
+          @Spec = spec
+          @MetricRelabels = metricrelabels
+          @MetricLabel = metriclabel
+          @Scheme = scheme
+          @ScrapeInterval = scrapeinterval
+          @ScrapeTimeout = scrapetimeout
+          @HonorLabels = honorlabels
+          @YamlSpec = yamlspec
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @ConfigId = params['ConfigId']
+          @Source = params['Source']
+          @GroupIds = params['GroupIds']
+          @Operate = params['Operate']
+          unless params['Spec'].nil?
+            @Spec = MetricSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['MetricRelabels'].nil?
+            @MetricRelabels = []
+            params['MetricRelabels'].each do |i|
+              relabeling_tmp = Relabeling.new
+              relabeling_tmp.deserialize(i)
+              @MetricRelabels << relabeling_tmp
+            end
+          end
+          unless params['MetricLabel'].nil?
+            @MetricLabel = MetricConfigLabel.new
+            @MetricLabel.deserialize(params['MetricLabel'])
+          end
+          @Scheme = params['Scheme']
+          @ScrapeInterval = params['ScrapeInterval']
+          @ScrapeTimeout = params['ScrapeTimeout']
+          @HonorLabels = params['HonorLabels']
+          unless params['YamlSpec'].nil?
+            @YamlSpec = MetricYamlSpec.new
+            @YamlSpec.deserialize(params['YamlSpec'])
+          end
+        end
+      end
+
+      # ModifyMetricConfig返回参数结构体
+      class ModifyMetricConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyMetricSubscribe请求参数结构体
+      class ModifyMetricSubscribeRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 指标采集任务的日志主题id。必填字段
+        # @type TopicId: String
+        # @param TaskId: 指标采集任务id。必填字段
+        # @type TaskId: String
+        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @type Name: String
+        # @param Namespace: 云产品命名空间。
+        # @type Namespace: String
+        # @param Metrics: 指标配置信息。
+        # @type Metrics: Array
+        # @param InstanceInfo: 实例配置信息。
+        # @type InstanceInfo: :class:`Tencentcloud::Cls.v20201016.models.InstanceConfig`
+        # @param Enable: 任务状态。
+
+        # 1： 未启用
+
+        # 2： 启用
+        # @type Enable: Integer
+
+        attr_accessor :TopicId, :TaskId, :Name, :Namespace, :Metrics, :InstanceInfo, :Enable
+
+        def initialize(topicid=nil, taskid=nil, name=nil, namespace=nil, metrics=nil, instanceinfo=nil, enable=nil)
+          @TopicId = topicid
+          @TaskId = taskid
+          @Name = name
+          @Namespace = namespace
+          @Metrics = metrics
+          @InstanceInfo = instanceinfo
+          @Enable = enable
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @Namespace = params['Namespace']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              metricconfig_tmp = MetricConfig.new
+              metricconfig_tmp.deserialize(i)
+              @Metrics << metricconfig_tmp
+            end
+          end
+          unless params['InstanceInfo'].nil?
+            @InstanceInfo = InstanceConfig.new
+            @InstanceInfo.deserialize(params['InstanceInfo'])
+          end
+          @Enable = params['Enable']
+        end
+      end
+
+      # ModifyMetricSubscribe返回参数结构体
+      class ModifyMetricSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNoticeContent请求参数结构体
       class ModifyNoticeContentRequest < TencentCloud::Common::AbstractModel
         # @param NoticeContentId: 通知内容模板ID。-通过[获取通知内容模板](https://cloud.tencent.com/document/api/614/111714)获取通知内容模板ID
@@ -11635,6 +14857,95 @@ module TencentCloud
 
       # ModifyShipper返回参数结构体
       class ModifyShipperResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySplunkDeliver请求参数结构体
+      class ModifySplunkDeliverRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param TopicId: 日志主题id
+        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @type TopicId: String
+        # @param Name: 投递任务名称
+        # name有以下限制：
+        # - 不能为空
+        # - 长度不大于64
+        # - 只能包含aA-zZ、下划线、-、0-9
+        # @type Name: String
+        # @param Enable: 投递任务启用状态；0:禁用；1:启用
+        # @type Enable: Integer
+        # @param NetInfo: splunk投递任务-目标配置
+        # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
+        # @param MetadataInfo: splunk投递任务元信息
+        # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
+        # @param HasServiceLog: 是否启用服务日志；1:关闭；2:开启
+        # @type HasServiceLog: Integer
+        # @param IndexAck: 高级配置-是否启用索引器;
+        # 1-不开启；2-开启；默认为：1
+        # @type IndexAck: Integer
+        # @param Source: 高级配置-数据来源；不超过64个字符
+        # @type Source: String
+        # @param SourceType: 高级配置-数据来源类型；不超过64个字符
+        # @type SourceType: String
+        # @param Index: 高级配置-Splunk写入的索引；不超过64个字符
+        # @type Index: String
+        # @param Channel: 高级配置-通道。
+        # 需满足限制：如果启用索引器，该值不能为空
+        # @type Channel: String
+
+        attr_accessor :TaskId, :TopicId, :Name, :Enable, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel
+
+        def initialize(taskid=nil, topicid=nil, name=nil, enable=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil)
+          @TaskId = taskid
+          @TopicId = topicid
+          @Name = name
+          @Enable = enable
+          @NetInfo = netinfo
+          @MetadataInfo = metadatainfo
+          @HasServiceLog = hasservicelog
+          @IndexAck = indexack
+          @Source = source
+          @SourceType = sourcetype
+          @Index = index
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TopicId = params['TopicId']
+          @Name = params['Name']
+          @Enable = params['Enable']
+          unless params['NetInfo'].nil?
+            @NetInfo = NetInfo.new
+            @NetInfo.deserialize(params['NetInfo'])
+          end
+          unless params['MetadataInfo'].nil?
+            @MetadataInfo = MetadataInfo.new
+            @MetadataInfo.deserialize(params['MetadataInfo'])
+          end
+          @HasServiceLog = params['HasServiceLog']
+          @IndexAck = params['IndexAck']
+          @Source = params['Source']
+          @SourceType = params['SourceType']
+          @Index = params['Index']
+          @Channel = params['Channel']
+        end
+      end
+
+      # ModifySplunkDeliver返回参数结构体
+      class ModifySplunkDeliverResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -11942,6 +15253,50 @@ module TencentCloud
         def deserialize(params)
           @TopicId = params['TopicId']
           @Context = params['Context']
+        end
+      end
+
+      # Splunk投递任务-目标配置网络信息相关
+      class NetInfo < TencentCloud::Common::AbstractModel
+        # @param Host: 网络地址
+        # @type Host: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Token: 认证token
+        # @type Token: String
+        # @param NetType: 网络类型;1：内网；2:外网
+        # @type NetType: Integer
+        # @param VpcId: 所属网络；如果网络类型为内网，该字段必填
+        # @type VpcId: String
+        # @param VirtualGatewayType: 网络服务类型；如果网络类型为内网，该字段必填
+        # - 0:云上cvm
+        # - 3:云上专线网关
+        # - 11:云联网
+        # - 1025:云上clb
+        # @type VirtualGatewayType: Integer
+        # @param IsSSL: 认证机制，是否使用SSL，默认不使用
+        # @type IsSSL: Boolean
+
+        attr_accessor :Host, :Port, :Token, :NetType, :VpcId, :VirtualGatewayType, :IsSSL
+
+        def initialize(host=nil, port=nil, token=nil, nettype=nil, vpcid=nil, virtualgatewaytype=nil, isssl=nil)
+          @Host = host
+          @Port = port
+          @Token = token
+          @NetType = nettype
+          @VpcId = vpcid
+          @VirtualGatewayType = virtualgatewaytype
+          @IsSSL = isssl
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Port = params['Port']
+          @Token = params['Token']
+          @NetType = params['NetType']
+          @VpcId = params['VpcId']
+          @VirtualGatewayType = params['VirtualGatewayType']
+          @IsSSL = params['IsSSL']
         end
       end
 
@@ -12367,6 +15722,28 @@ module TencentCloud
         end
       end
 
+      # PartitionOffsetInfo
+      class PartitionOffsetInfo < TencentCloud::Common::AbstractModel
+        # @param PartitionId: 分区id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionId: Integer
+        # @param Offset: offset点位
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+
+        attr_accessor :PartitionId, :Offset
+
+        def initialize(partitionid=nil, offset=nil)
+          @PartitionId = partitionid
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @PartitionId = params['PartitionId']
+          @Offset = params['Offset']
+        end
+      end
+
       # PreviewKafkaRecharge请求参数结构体
       class PreviewKafkaRechargeRequest < TencentCloud::Common::AbstractModel
         # @param PreviewType: 预览类型，1：源数据预览；2：导出结果预览。
@@ -12620,6 +15997,67 @@ module TencentCloud
           @ResultType = params['ResultType']
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 标签重新标记配置。
+      # 允许动态重写目标、警报、抓取样本和远程写入样本的标签集。
+      class Relabeling < TencentCloud::Common::AbstractModel
+        # @param Action: 基于正则表达式匹配执行的动作。
+        # - replace: Label替换, 必填: SourceLabels, Separator, Regex, TargetLabel, Replacement
+        # - labeldrop: 丢弃Label, 必填: Regex
+        # - labelkeep: 保留Label, 必填: Regex
+        # - lowercase: 小写化, 必填: SourceLabels, Separator, TargetLabel
+        # - uppercase: 大写化, 必填: SourceLabels, Separator, TargetLabel
+        # - dropequal: 丢弃指标-完全匹配, 必填: SourceLabels, Separator, TargetLabel
+        # - keepequal: 保留指标-完全匹配, 必填: SourceLabels, Separator, TargetLabel
+        # - drop: 丢弃指标-正则匹配, 必填: SourceLabels, Separator, Regex
+        # - keep: 保留指标-正则匹配, 必填: SourceLabels, Separator, Regex
+        # - hashmod:哈希取模, 必填: SourceLabels, Separator, TargetLabel, Modulus
+        # - labelmap:Label映射, 必填: Regex, Replacement
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Action: String
+        # @param SourceLabels: 原始label
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceLabels: Array
+        # @param Separator: 原始label连接符。 必填时不能为空串， 长度不能超过256
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Separator: String
+        # @param TargetLabel: 目标label。必填时不能为空串，校验格式：`^[a-zA-Z_][a-zA-Z0-9_]*$` ， 长度不能超过256
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetLabel: String
+        # @param Replacement: 替换值。如果正则表达式匹配，则对其执行替换操作。
+        # - 必填时不能为空串，长度不能超过256
+        # - 当action为LabelMap时， Replacement 校验格式：`^(?:(?:[a-zA-Z_]|\$(?:\{\w+\}|\w+))+\w*)+$`
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replacement: String
+        # @param Regex: 正则表达式。提取与之匹配值。必填时不能为空串，校验必须是一个合法的 RE2
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regex: String
+        # @param Modulus: 获取源标签值的哈希值。必填时不能为空,不能为0
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Modulus: Integer
+
+        attr_accessor :Action, :SourceLabels, :Separator, :TargetLabel, :Replacement, :Regex, :Modulus
+
+        def initialize(action=nil, sourcelabels=nil, separator=nil, targetlabel=nil, replacement=nil, regex=nil, modulus=nil)
+          @Action = action
+          @SourceLabels = sourcelabels
+          @Separator = separator
+          @TargetLabel = targetlabel
+          @Replacement = replacement
+          @Regex = regex
+          @Modulus = modulus
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          @SourceLabels = params['SourceLabels']
+          @Separator = params['Separator']
+          @TargetLabel = params['TargetLabel']
+          @Replacement = params['Replacement']
+          @Regex = params['Regex']
+          @Modulus = params['Modulus']
         end
       end
 
@@ -13331,6 +16769,73 @@ module TencentCloud
         end
       end
 
+      # SendConsumerHeartbeat请求参数结构体
+      class SendConsumerHeartbeatRequest < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 上报心跳的消费组标识
+        # @type ConsumerGroup: String
+        # @param Consumer: 上报心跳的消费者名称
+        # （字母数字下划线，不允许数字、_开头， 长度小于256）
+        # @type Consumer: String
+        # @param LogsetId: 日志集ID
+        # @type LogsetId: String
+        # @param TopicPartitionsInfo: topic 分区信息
+        # @type TopicPartitionsInfo: Array
+
+        attr_accessor :ConsumerGroup, :Consumer, :LogsetId, :TopicPartitionsInfo
+
+        def initialize(consumergroup=nil, consumer=nil, logsetid=nil, topicpartitionsinfo=nil)
+          @ConsumerGroup = consumergroup
+          @Consumer = consumer
+          @LogsetId = logsetid
+          @TopicPartitionsInfo = topicpartitionsinfo
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          @Consumer = params['Consumer']
+          @LogsetId = params['LogsetId']
+          unless params['TopicPartitionsInfo'].nil?
+            @TopicPartitionsInfo = []
+            params['TopicPartitionsInfo'].each do |i|
+              topicpartitioninfo_tmp = TopicPartitionInfo.new
+              topicpartitioninfo_tmp.deserialize(i)
+              @TopicPartitionsInfo << topicpartitioninfo_tmp
+            end
+          end
+        end
+      end
+
+      # SendConsumerHeartbeat返回参数结构体
+      class SendConsumerHeartbeatResponse < TencentCloud::Common::AbstractModel
+        # @param ConsumerGroup: 日志主题对应的消费组标识
+        # @type ConsumerGroup: String
+        # @param TopicPartitionsInfo: 分区信息
+        # @type TopicPartitionsInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ConsumerGroup, :TopicPartitionsInfo, :RequestId
+
+        def initialize(consumergroup=nil, topicpartitionsinfo=nil, requestid=nil)
+          @ConsumerGroup = consumergroup
+          @TopicPartitionsInfo = topicpartitionsinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ConsumerGroup = params['ConsumerGroup']
+          unless params['TopicPartitionsInfo'].nil?
+            @TopicPartitionsInfo = []
+            params['TopicPartitionsInfo'].each do |i|
+              topicpartitioninfo_tmp = TopicPartitionInfo.new
+              topicpartitioninfo_tmp.deserialize(i)
+              @TopicPartitionsInfo << topicpartitioninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 投递规则
       class ShipperInfo < TencentCloud::Common::AbstractModel
         # @param ShipperId: 投递规则ID
@@ -13575,6 +17080,88 @@ module TencentCloud
         end
       end
 
+      # Splunk投递任务信息
+      class SplunkDeliverInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: String
+        # @param Name: 任务名称
+        # @type Name: String
+        # @param Uin: 用户id
+        # @type Uin: Integer
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param Status: 任务状态；1.运行中；2:暂停；3：异常
+        # @type Status: Integer
+        # @param Enable: 启用状态；0:禁用；1:启用
+        # @type Enable: Integer
+        # @param CreateTime: 创建时间；单位：秒
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间；单位：秒
+        # @type UpdateTime: Integer
+        # @param NetInfo: splunk投递任务-目标配置
+        # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
+        # @param Metadata: splunk投递任务元信息
+        # @type Metadata: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
+        # @param HasServiceLog: 是否启用服务日志；1:关闭；2:开启
+        # @type HasServiceLog: Integer
+        # @param Source: 高级配置-数据来源；
+        # @type Source: String
+        # @param SourceType: 高级配置-数据来源类型；
+        # @type SourceType: String
+        # @param Index: 高级配置-Splunk写入的索引
+        # @type Index: String
+        # @param IndexAck: 高级配置-是否启用索引器；1-不开启；2-开启；
+        # @type IndexAck: Integer
+        # @param Channel: 高级配置-通道
+        # @type Channel: String
+
+        attr_accessor :TaskId, :Name, :Uin, :TopicId, :Status, :Enable, :CreateTime, :UpdateTime, :NetInfo, :Metadata, :HasServiceLog, :Source, :SourceType, :Index, :IndexAck, :Channel
+
+        def initialize(taskid=nil, name=nil, uin=nil, topicid=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, netinfo=nil, metadata=nil, hasservicelog=nil, source=nil, sourcetype=nil, index=nil, indexack=nil, channel=nil)
+          @TaskId = taskid
+          @Name = name
+          @Uin = uin
+          @TopicId = topicid
+          @Status = status
+          @Enable = enable
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @NetInfo = netinfo
+          @Metadata = metadata
+          @HasServiceLog = hasservicelog
+          @Source = source
+          @SourceType = sourcetype
+          @Index = index
+          @IndexAck = indexack
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Name = params['Name']
+          @Uin = params['Uin']
+          @TopicId = params['TopicId']
+          @Status = params['Status']
+          @Enable = params['Enable']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['NetInfo'].nil?
+            @NetInfo = NetInfo.new
+            @NetInfo.deserialize(params['NetInfo'])
+          end
+          unless params['Metadata'].nil?
+            @Metadata = MetadataInfo.new
+            @Metadata.deserialize(params['Metadata'])
+          end
+          @HasServiceLog = params['HasServiceLog']
+          @Source = params['Source']
+          @SourceType = params['SourceType']
+          @Index = params['Index']
+          @IndexAck = params['IndexAck']
+          @Channel = params['Channel']
+        end
+      end
+
       # 创建资源实例时同时绑定的标签对说明
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -13794,6 +17381,57 @@ module TencentCloud
           @MigrationStatus = params['MigrationStatus']
           @EffectiveDate = params['EffectiveDate']
           @IsSourceFrom = params['IsSourceFrom']
+        end
+      end
+
+      # Partitions
+      class TopicPartitionInfo < TencentCloud::Common::AbstractModel
+        # @param TopicID: 日志主题ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicID: String
+        # @param Partitions: 分区id列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Partitions: Array
+
+        attr_accessor :TopicID, :Partitions
+
+        def initialize(topicid=nil, partitions=nil)
+          @TopicID = topicid
+          @Partitions = partitions
+        end
+
+        def deserialize(params)
+          @TopicID = params['TopicID']
+          @Partitions = params['Partitions']
+        end
+      end
+
+      # TopicPartitionOffsetInfo
+      class TopicPartitionOffsetInfo < TencentCloud::Common::AbstractModel
+        # @param TopicID: 日志主题id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopicID: String
+        # @param PartitionOffsets: 分区点位信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PartitionOffsets: Array
+
+        attr_accessor :TopicID, :PartitionOffsets
+
+        def initialize(topicid=nil, partitionoffsets=nil)
+          @TopicID = topicid
+          @PartitionOffsets = partitionoffsets
+        end
+
+        def deserialize(params)
+          @TopicID = params['TopicID']
+          unless params['PartitionOffsets'].nil?
+            @PartitionOffsets = []
+            params['PartitionOffsets'].each do |i|
+              partitionoffsetinfo_tmp = PartitionOffsetInfo.new
+              partitionoffsetinfo_tmp.deserialize(i)
+              @PartitionOffsets << partitionoffsetinfo_tmp
+            end
+          end
         end
       end
 

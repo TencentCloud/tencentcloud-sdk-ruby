@@ -923,11 +923,18 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApplyId: String
         # @param Metadata: 扩展字段
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Metadata: String
+        # @param CreateTimestamp: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimestamp: Integer
+        # @param ApproveTimestamp: 审批时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApproveTimestamp: Integer
 
-        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName, :ApplyId, :Metadata
+        attr_accessor :ApplicantId, :ApplicantName, :Remark, :ApproveClassification, :ApproveId, :ApproveType, :Reason, :CreateTime, :ApproveTime, :ApproveClassificationName, :Status, :ApproveTypeName, :ErrorMessage, :ApplyName, :ApproverId, :ApproverName, :ApproveProjectName, :ApplyId, :Metadata, :CreateTimestamp, :ApproveTimestamp
 
-        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil, applyid=nil, metadata=nil)
+        def initialize(applicantid=nil, applicantname=nil, remark=nil, approveclassification=nil, approveid=nil, approvetype=nil, reason=nil, createtime=nil, approvetime=nil, approveclassificationname=nil, status=nil, approvetypename=nil, errormessage=nil, applyname=nil, approverid=nil, approvername=nil, approveprojectname=nil, applyid=nil, metadata=nil, createtimestamp=nil, approvetimestamp=nil)
           @ApplicantId = applicantid
           @ApplicantName = applicantname
           @Remark = remark
@@ -947,6 +954,8 @@ module TencentCloud
           @ApproveProjectName = approveprojectname
           @ApplyId = applyid
           @Metadata = metadata
+          @CreateTimestamp = createtimestamp
+          @ApproveTimestamp = approvetimestamp
         end
 
         def deserialize(params)
@@ -969,6 +978,8 @@ module TencentCloud
           @ApproveProjectName = params['ApproveProjectName']
           @ApplyId = params['ApplyId']
           @Metadata = params['Metadata']
+          @CreateTimestamp = params['CreateTimestamp']
+          @ApproveTimestamp = params['ApproveTimestamp']
         end
       end
 
@@ -1361,10 +1372,16 @@ module TencentCloud
         # @param CdwUserName: cdw账号（用于展示）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CdwUserName: String
+        # @param CreateTimestamp: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimestamp: Integer
+        # @param UpdateTimestamp: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTimestamp: Integer
 
-        attr_accessor :ClusterId, :ClusterType, :ClusterName, :RegionCn, :RegionEn, :RegionArea, :Used, :Status, :StatusInfo, :StorageType, :ComputeType, :ClusterResource, :ChargeType, :CreateTime, :ExtraConf, :RangerUserName, :CdwUserName
+        attr_accessor :ClusterId, :ClusterType, :ClusterName, :RegionCn, :RegionEn, :RegionArea, :Used, :Status, :StatusInfo, :StorageType, :ComputeType, :ClusterResource, :ChargeType, :CreateTime, :ExtraConf, :RangerUserName, :CdwUserName, :CreateTimestamp, :UpdateTimestamp
 
-        def initialize(clusterid=nil, clustertype=nil, clustername=nil, regioncn=nil, regionen=nil, regionarea=nil, used=nil, status=nil, statusinfo=nil, storagetype=nil, computetype=nil, clusterresource=nil, chargetype=nil, createtime=nil, extraconf=nil, rangerusername=nil, cdwusername=nil)
+        def initialize(clusterid=nil, clustertype=nil, clustername=nil, regioncn=nil, regionen=nil, regionarea=nil, used=nil, status=nil, statusinfo=nil, storagetype=nil, computetype=nil, clusterresource=nil, chargetype=nil, createtime=nil, extraconf=nil, rangerusername=nil, cdwusername=nil, createtimestamp=nil, updatetimestamp=nil)
           @ClusterId = clusterid
           @ClusterType = clustertype
           @ClusterName = clustername
@@ -1382,6 +1399,8 @@ module TencentCloud
           @ExtraConf = extraconf
           @RangerUserName = rangerusername
           @CdwUserName = cdwusername
+          @CreateTimestamp = createtimestamp
+          @UpdateTimestamp = updatetimestamp
         end
 
         def deserialize(params)
@@ -1402,6 +1421,8 @@ module TencentCloud
           @ExtraConf = params['ExtraConf']
           @RangerUserName = params['RangerUserName']
           @CdwUserName = params['CdwUserName']
+          @CreateTimestamp = params['CreateTimestamp']
+          @UpdateTimestamp = params['UpdateTimestamp']
         end
       end
 
@@ -1434,10 +1455,12 @@ module TencentCloud
         # @param Model: 项目类型，SIMPLE：简单模式 STANDARD：标准模式
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: String
+        # @param ScheduleMode: 项目调度模式，task：任务模式 workflow：工作流模式
+        # @type ScheduleMode: String
 
-        attr_accessor :ProjectName, :DisplayName, :Region, :TenantId, :ProjectId, :Description, :CreateTime, :Status, :Model
+        attr_accessor :ProjectName, :DisplayName, :Region, :TenantId, :ProjectId, :Description, :CreateTime, :Status, :Model, :ScheduleMode
 
-        def initialize(projectname=nil, displayname=nil, region=nil, tenantid=nil, projectid=nil, description=nil, createtime=nil, status=nil, model=nil)
+        def initialize(projectname=nil, displayname=nil, region=nil, tenantid=nil, projectid=nil, description=nil, createtime=nil, status=nil, model=nil, schedulemode=nil)
           @ProjectName = projectname
           @DisplayName = displayname
           @Region = region
@@ -1447,6 +1470,7 @@ module TencentCloud
           @CreateTime = createtime
           @Status = status
           @Model = model
+          @ScheduleMode = schedulemode
         end
 
         def deserialize(params)
@@ -1459,6 +1483,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Status = params['Status']
           @Model = params['Model']
+          @ScheduleMode = params['ScheduleMode']
         end
       end
 
@@ -8369,6 +8394,38 @@ module TencentCloud
         end
       end
 
+      # 超时弱依赖配置
+      class DependencyConfigTimeoutDTO < TencentCloud::Common::AbstractModel
+        # @param TimeoutType: 超时类型
+        # WAIT_TOTAL_TIMEOUT 等待总时长
+
+        # RUNNING_TIMEOUT 运行时长
+
+        # WAIT_TIME_POINT_TIMEOUT 等待超过配置时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeoutType: String
+        # @param TimeoutValue: 超时时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeoutValue: Integer
+        # @param TimeoutPoint: 固定时间点
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TimeoutPoint: String
+
+        attr_accessor :TimeoutType, :TimeoutValue, :TimeoutPoint
+
+        def initialize(timeouttype=nil, timeoutvalue=nil, timeoutpoint=nil)
+          @TimeoutType = timeouttype
+          @TimeoutValue = timeoutvalue
+          @TimeoutPoint = timeoutpoint
+        end
+
+        def deserialize(params)
+          @TimeoutType = params['TimeoutType']
+          @TimeoutValue = params['TimeoutValue']
+          @TimeoutPoint = params['TimeoutPoint']
+        end
+      end
+
       # 依赖配置策略
       class DependencyStrategyDs < TencentCloud::Common::AbstractModel
         # @param PollingNullStrategy: 等待上游任务实例策略：EXECUTING（执行）；WAITING（等待）
@@ -8383,19 +8440,31 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskDependencyExecutingTimeoutValue: Integer
+        # @param DependencyConfigTimeoutTypeList: 超时依赖策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependencyConfigTimeoutTypeList: Array
 
-        attr_accessor :PollingNullStrategy, :TaskDependencyExecutingStrategies, :TaskDependencyExecutingTimeoutValue
+        attr_accessor :PollingNullStrategy, :TaskDependencyExecutingStrategies, :TaskDependencyExecutingTimeoutValue, :DependencyConfigTimeoutTypeList
 
-        def initialize(pollingnullstrategy=nil, taskdependencyexecutingstrategies=nil, taskdependencyexecutingtimeoutvalue=nil)
+        def initialize(pollingnullstrategy=nil, taskdependencyexecutingstrategies=nil, taskdependencyexecutingtimeoutvalue=nil, dependencyconfigtimeouttypelist=nil)
           @PollingNullStrategy = pollingnullstrategy
           @TaskDependencyExecutingStrategies = taskdependencyexecutingstrategies
           @TaskDependencyExecutingTimeoutValue = taskdependencyexecutingtimeoutvalue
+          @DependencyConfigTimeoutTypeList = dependencyconfigtimeouttypelist
         end
 
         def deserialize(params)
           @PollingNullStrategy = params['PollingNullStrategy']
           @TaskDependencyExecutingStrategies = params['TaskDependencyExecutingStrategies']
           @TaskDependencyExecutingTimeoutValue = params['TaskDependencyExecutingTimeoutValue']
+          unless params['DependencyConfigTimeoutTypeList'].nil?
+            @DependencyConfigTimeoutTypeList = []
+            params['DependencyConfigTimeoutTypeList'].each do |i|
+              dependencyconfigtimeoutdto_tmp = DependencyConfigTimeoutDTO.new
+              dependencyconfigtimeoutdto_tmp.deserialize(i)
+              @DependencyConfigTimeoutTypeList << dependencyconfigtimeoutdto_tmp
+            end
+          end
         end
       end
 
@@ -11123,15 +11192,18 @@ module TencentCloud
         # @type Page: Integer
         # @param Size: 页号
         # @type Size: Integer
+        # @param Source: 来源 studio(Studio脚本)/codeTemplate(代码模版)
+        # @type Source: String
 
-        attr_accessor :ProjectId, :CodeTemplateId, :OriginalParams, :Page, :Size
+        attr_accessor :ProjectId, :CodeTemplateId, :OriginalParams, :Page, :Size, :Source
 
-        def initialize(projectid=nil, codetemplateid=nil, originalparams=nil, page=nil, size=nil)
+        def initialize(projectid=nil, codetemplateid=nil, originalparams=nil, page=nil, size=nil, source=nil)
           @ProjectId = projectid
           @CodeTemplateId = codetemplateid
           @OriginalParams = originalparams
           @Page = page
           @Size = size
+          @Source = source
         end
 
         def deserialize(params)
@@ -11140,6 +11212,7 @@ module TencentCloud
           @OriginalParams = params['OriginalParams']
           @Page = params['Page']
           @Size = params['Size']
+          @Source = params['Source']
         end
       end
 
@@ -29735,10 +29808,13 @@ module TencentCloud
         # @param WorkspaceExt: 项目扩展信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkspaceExt: Array
+        # @param CreateTimestamp: 创建时间时间戳
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimestamp: Integer
 
-        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model, :SecondModuleList, :Owner, :WorkspaceExt
+        attr_accessor :TenantId, :ProjectId, :ProjectName, :DisplayName, :Region, :Description, :CreateTime, :Creator, :Tenant, :AdminUsers, :Clusters, :Params, :Status, :Model, :SecondModuleList, :Owner, :WorkspaceExt, :CreateTimestamp
 
-        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil, secondmodulelist=nil, owner=nil, workspaceext=nil)
+        def initialize(tenantid=nil, projectid=nil, projectname=nil, displayname=nil, region=nil, description=nil, createtime=nil, creator=nil, tenant=nil, adminusers=nil, clusters=nil, params=nil, status=nil, model=nil, secondmodulelist=nil, owner=nil, workspaceext=nil, createtimestamp=nil)
           @TenantId = tenantid
           @ProjectId = projectid
           @ProjectName = projectname
@@ -29756,6 +29832,7 @@ module TencentCloud
           @SecondModuleList = secondmodulelist
           @Owner = owner
           @WorkspaceExt = workspaceext
+          @CreateTimestamp = createtimestamp
         end
 
         def deserialize(params)
@@ -29806,6 +29883,7 @@ module TencentCloud
               @WorkspaceExt << workspaceext_tmp
             end
           end
+          @CreateTimestamp = params['CreateTimestamp']
         end
       end
 
@@ -29919,10 +29997,16 @@ module TencentCloud
         # @param IsProjectOwner: 是否项目负责人
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsProjectOwner: Boolean
+        # @param CreateTimestamp: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTimestamp: Integer
+        # @param Status: 用户状态 0:历史 1:正常 2:已删除
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
 
-        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId, :IsProjectOwner
+        attr_accessor :Roles, :UserName, :UserId, :CreateTime, :Creator, :DisplayName, :IsProjectAdmin, :PhoneNum, :Email, :OwnerUin, :AppId, :IsProjectOwner, :CreateTimestamp, :Status
 
-        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil, isprojectowner=nil)
+        def initialize(roles=nil, username=nil, userid=nil, createtime=nil, creator=nil, displayname=nil, isprojectadmin=nil, phonenum=nil, email=nil, owneruin=nil, appid=nil, isprojectowner=nil, createtimestamp=nil, status=nil)
           @Roles = roles
           @UserName = username
           @UserId = userid
@@ -29935,6 +30019,8 @@ module TencentCloud
           @OwnerUin = owneruin
           @AppId = appid
           @IsProjectOwner = isprojectowner
+          @CreateTimestamp = createtimestamp
+          @Status = status
         end
 
         def deserialize(params)
@@ -29957,6 +30043,8 @@ module TencentCloud
           @OwnerUin = params['OwnerUin']
           @AppId = params['AppId']
           @IsProjectOwner = params['IsProjectOwner']
+          @CreateTimestamp = params['CreateTimestamp']
+          @Status = params['Status']
         end
       end
 
