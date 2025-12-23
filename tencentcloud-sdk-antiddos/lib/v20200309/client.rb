@@ -1685,7 +1685,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等等
+        # 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等。
 
         # @param request: Request instance for DescribeListProtectThresholdConfigNew.
         # @type request: :class:`Tencentcloud::antiddos::V20200309::DescribeListProtectThresholdConfigNewRequest`

@@ -2753,6 +2753,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询回源限速限制，该功能白名单内测中。
+
+        # @param request: Request instance for DescribePrefetchOriginLimit.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribePrefetchOriginLimitRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribePrefetchOriginLimitResponse`
+        def DescribePrefetchOriginLimit(request)
+          body = send_request('DescribePrefetchOriginLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePrefetchOriginLimitResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DescribePrefetchTasks 用于查询预热任务提交历史记录及执行进度，通过 CreatePrefetchTasks 接口提交的任务可通过此接口进行查询。
 
         # @param request: Request instance for DescribePrefetchTasks.
@@ -4377,6 +4401,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于配置回源限速限制，该功能白名单内测中。
+        # 可通过此接口创建、修改与删除预热回源限速限制，每个账号最多支持 100 条限制。
+
+        # @param request: Request instance for ModifyPrefetchOriginLimit.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyPrefetchOriginLimitRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyPrefetchOriginLimitResponse`
+        def ModifyPrefetchOriginLimit(request)
+          body = send_request('ModifyPrefetchOriginLimit', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPrefetchOriginLimitResponse.new
             model.deserialize(response['Response'])
             model
           else

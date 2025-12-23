@@ -1006,6 +1006,82 @@ module TencentCloud
         end
       end
 
+      # 绑定状态Response
+      class BindProgressResponse < TencentCloud::Common::AbstractModel
+        # @param Steps: 绑定步骤
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Steps: Array
+        # @param ClusterId: 集群id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param Status: 集群绑定状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+
+        attr_accessor :Steps, :ClusterId, :Status
+
+        def initialize(steps=nil, clusterid=nil, status=nil)
+          @Steps = steps
+          @ClusterId = clusterid
+          @Status = status
+        end
+
+        def deserialize(params)
+          unless params['Steps'].nil?
+            @Steps = []
+            params['Steps'].each do |i|
+              bindprogressstep_tmp = BindProgressStep.new
+              bindprogressstep_tmp.deserialize(i)
+              @Steps << bindprogressstep_tmp
+            end
+          end
+          @ClusterId = params['ClusterId']
+          @Status = params['Status']
+        end
+      end
+
+      # 绑定进度参数
+      class BindProgressStep < TencentCloud::Common::AbstractModel
+        # @param EndAt: 结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndAt: String
+        # @param FailedMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedMsg: String
+        # @param LifeState: 状态
+        # @type LifeState: String
+        # @param StartAt: 开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartAt: String
+        # @param Step: 任务进程
+        # "prepare_env"   // 准备环境,安装instance EKS
+        # "check_target"  // 检查target是否为running
+        # "install_crd"   // 安装需要测crd
+        # "install_rbac"  // 安装rbac
+        # "install_agent" // 安装agent
+        # "install_cr"    // 安装prometheus CR
+        # "install_basic" // 安装基础采集信息，标记target状态为normal
+        # @type Step: String
+
+        attr_accessor :EndAt, :FailedMsg, :LifeState, :StartAt, :Step
+
+        def initialize(endat=nil, failedmsg=nil, lifestate=nil, startat=nil, step=nil)
+          @EndAt = endat
+          @FailedMsg = failedmsg
+          @LifeState = lifestate
+          @StartAt = startat
+          @Step = step
+        end
+
+        def deserialize(params)
+          @EndAt = params['EndAt']
+          @FailedMsg = params['FailedMsg']
+          @LifeState = params['LifeState']
+          @StartAt = params['StartAt']
+          @Step = params['Step']
+        end
+      end
+
       # BindPrometheusManagedGrafana请求参数结构体
       class BindPrometheusManagedGrafanaRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: Prometheus 实例 ID
@@ -5481,27 +5557,47 @@ module TencentCloud
 
       # DescribeClusterAgentCreatingProgress请求参数结构体
       class DescribeClusterAgentCreatingProgressRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: prom实例id
+        # @type InstanceId: String
+        # @param ClusterIds: 集群ids
+        # @type ClusterIds: Array
 
+        attr_accessor :InstanceId, :ClusterIds
 
-        def initialize()
+        def initialize(instanceid=nil, clusterids=nil)
+          @InstanceId = instanceid
+          @ClusterIds = clusterids
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterIds = params['ClusterIds']
         end
       end
 
       # DescribeClusterAgentCreatingProgress返回参数结构体
       class DescribeClusterAgentCreatingProgressResponse < TencentCloud::Common::AbstractModel
+        # @param Response: 绑定状态response
+        # @type Response: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Response, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(response=nil, requestid=nil)
+          @Response = response
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Response'].nil?
+            @Response = []
+            params['Response'].each do |i|
+              bindprogressresponse_tmp = BindProgressResponse.new
+              bindprogressresponse_tmp.deserialize(i)
+              @Response << bindprogressresponse_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

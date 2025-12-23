@@ -6346,7 +6346,7 @@ module TencentCloud
         # @type NamespaceId: String
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param Limit: 限制条数
+        # @param Limit: 单次查询最大条数。取值范围：[0~100]，默认值为20
         # @type Limit: Integer
         # @param FilterTopic: 主题名称，输入此参数可查询该主题下所有的订阅组
         # @type FilterTopic: String
@@ -12663,14 +12663,20 @@ module TencentCloud
         # @param ExceptionDesc: 异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionDesc: String
+        # @param ConsumeStatusSource: 消费状态来源，枚举值如下：
 
-        attr_accessor :Group, :ConsumeStatus, :TrackType, :ExceptionDesc
+        # - DIFF_OFFSET：通过服务端offset计算
+        # - TRACE_REPORT：通过上报的轨迹判断
+        # @type ConsumeStatusSource: String
 
-        def initialize(group=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil)
+        attr_accessor :Group, :ConsumeStatus, :TrackType, :ExceptionDesc, :ConsumeStatusSource
+
+        def initialize(group=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil, consumestatussource=nil)
           @Group = group
           @ConsumeStatus = consumestatus
           @TrackType = tracktype
           @ExceptionDesc = exceptiondesc
+          @ConsumeStatusSource = consumestatussource
         end
 
         def deserialize(params)
@@ -12678,6 +12684,7 @@ module TencentCloud
           @ConsumeStatus = params['ConsumeStatus']
           @TrackType = params['TrackType']
           @ExceptionDesc = params['ExceptionDesc']
+          @ConsumeStatusSource = params['ConsumeStatusSource']
         end
       end
 

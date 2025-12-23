@@ -1897,8 +1897,8 @@ module TencentCloud
 
         attr_accessor :EngineType, :DataEngineName, :ClusterType, :Mode, :AutoResume, :MinClusters, :MaxClusters, :DefaultDataEngine, :CidrBlock, :Message, :Size, :PayMode, :TimeSpan, :TimeUnit, :AutoRenew, :Tags, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :MaxConcurrency, :TolerableQueueTime, :AutoSuspendTime, :ResourceType, :DataEngineConfigPairs, :ImageVersionName, :MainClusterName, :ElasticSwitch, :ElasticLimit, :SessionResourceTemplate, :AutoAuthorization, :EngineNetworkId, :EngineGeneration
         extend Gem::Deprecate
-        deprecate :DefaultDataEngine, :none, 2025, 11
-        deprecate :DefaultDataEngine=, :none, 2025, 11
+        deprecate :DefaultDataEngine, :none, 2025, 12
+        deprecate :DefaultDataEngine=, :none, 2025, 12
 
         def initialize(enginetype=nil, dataenginename=nil, clustertype=nil, mode=nil, autoresume=nil, minclusters=nil, maxclusters=nil, defaultdataengine=nil, cidrblock=nil, message=nil, size=nil, paymode=nil, timespan=nil, timeunit=nil, autorenew=nil, tags=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, maxconcurrency=nil, tolerablequeuetime=nil, autosuspendtime=nil, resourcetype=nil, dataengineconfigpairs=nil, imageversionname=nil, mainclustername=nil, elasticswitch=nil, elasticlimit=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginenetworkid=nil, enginegeneration=nil)
           @EngineType = enginetype
@@ -7526,17 +7526,25 @@ module TencentCloud
         # @type DataEngineId: String
         # @param ResourceGroupId: 资源组ID
         # @type ResourceGroupId: String
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param UserUin: 用户Uin
+        # @type UserUin: String
 
-        attr_accessor :DataEngineId, :ResourceGroupId
+        attr_accessor :DataEngineId, :ResourceGroupId, :ProjectId, :UserUin
 
-        def initialize(dataengineid=nil, resourcegroupid=nil)
+        def initialize(dataengineid=nil, resourcegroupid=nil, projectid=nil, useruin=nil)
           @DataEngineId = dataengineid
           @ResourceGroupId = resourcegroupid
+          @ProjectId = projectid
+          @UserUin = useruin
         end
 
         def deserialize(params)
           @DataEngineId = params['DataEngineId']
           @ResourceGroupId = params['ResourceGroupId']
+          @ProjectId = params['ProjectId']
+          @UserUin = params['UserUin']
         end
       end
 
@@ -15368,10 +15376,10 @@ module TencentCloud
 
         attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName, :TableComment, :Type, :TableFormat, :UserAlias, :UserSubUin, :GovernPolicy, :DbGovernPolicyIsDisable, :SmartPolicy, :PrimaryKeys
         extend Gem::Deprecate
-        deprecate :GovernPolicy, :none, 2025, 11
-        deprecate :GovernPolicy=, :none, 2025, 11
-        deprecate :DbGovernPolicyIsDisable, :none, 2025, 11
-        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 11
+        deprecate :GovernPolicy, :none, 2025, 12
+        deprecate :GovernPolicy=, :none, 2025, 12
+        deprecate :DbGovernPolicyIsDisable, :none, 2025, 12
+        deprecate :DbGovernPolicyIsDisable=, :none, 2025, 12
 
         def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil, tablecomment=nil, type=nil, tableformat=nil, useralias=nil, usersubuin=nil, governpolicy=nil, dbgovernpolicyisdisable=nil, smartpolicy=nil, primarykeys=nil)
           @DatabaseName = databasename

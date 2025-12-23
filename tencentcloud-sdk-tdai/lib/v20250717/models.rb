@@ -73,6 +73,53 @@ module TencentCloud
         end
       end
 
+      # 智能体值守任务信息
+      class AgentDutyTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param CreateTime: 任务创建时间
+        # @type CreateTime: String
+        # @param StartTime: 任务开始运行时间
+        # @type StartTime: String
+        # @param FinishTime: 任务结束时间
+        # @type FinishTime: String
+        # @param Status: 任务状态
+        # @type Status: String
+        # @param ResultExtraKey: 对外展示的Extra信息
+        # @type ResultExtraKey: Array
+        # @param Extra: 业务的额外敏感信息
+        # @type Extra: Array
+
+        attr_accessor :TaskId, :CreateTime, :StartTime, :FinishTime, :Status, :ResultExtraKey, :Extra
+
+        def initialize(taskid=nil, createtime=nil, starttime=nil, finishtime=nil, status=nil, resultextrakey=nil, extra=nil)
+          @TaskId = taskid
+          @CreateTime = createtime
+          @StartTime = starttime
+          @FinishTime = finishtime
+          @Status = status
+          @ResultExtraKey = resultextrakey
+          @Extra = extra
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @CreateTime = params['CreateTime']
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+          @Status = params['Status']
+          @ResultExtraKey = params['ResultExtraKey']
+          unless params['Extra'].nil?
+            @Extra = []
+            params['Extra'].each do |i|
+              extrainfo_tmp = ExtraInfo.new
+              extrainfo_tmp.deserialize(i)
+              @Extra << extrainfo_tmp
+            end
+          end
+        end
+      end
+
       # 智能体实例
       class AgentInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 智能体实例ID
@@ -493,16 +540,23 @@ module TencentCloud
 
       # DescribeAgentDutyTaskDetail返回参数结构体
       class DescribeAgentDutyTaskDetailResponse < TencentCloud::Common::AbstractModel
+        # @param AgentDutyTask: 任务详细信息
+        # @type AgentDutyTask: :class:`Tencentcloud::Tdai.v20250717.models.AgentDutyTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AgentDutyTask, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(agentdutytask=nil, requestid=nil)
+          @AgentDutyTask = agentdutytask
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['AgentDutyTask'].nil?
+            @AgentDutyTask = AgentDutyTask.new
+            @AgentDutyTask.deserialize(params['AgentDutyTask'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -909,6 +963,34 @@ module TencentCloud
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 智能体值守任务额外信息
+      class ExtraInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 出参额外信息的Key
+        # @type Key: String
+        # @param Description: 额外信息描述
+        # @type Description: String
+        # @param Value: ExtraInfo的值
+        # @type Value: String
+        # @param ValueType: 值的数据结构类型
+        # @type ValueType: String
+
+        attr_accessor :Key, :Description, :Value, :ValueType
+
+        def initialize(key=nil, description=nil, value=nil, valuetype=nil)
+          @Key = key
+          @Description = description
+          @Value = value
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Description = params['Description']
+          @Value = params['Value']
+          @ValueType = params['ValueType']
         end
       end
 

@@ -5471,12 +5471,17 @@ module TencentCloud
 
       # DescribeAccountBalance请求参数结构体
       class DescribeAccountBalanceRequest < TencentCloud::Common::AbstractModel
+        # @param TempCredit: 是否查询临时额度
+        # @type TempCredit: Boolean
 
+        attr_accessor :TempCredit
 
-        def initialize()
+        def initialize(tempcredit=nil)
+          @TempCredit = tempcredit
         end
 
         def deserialize(params)
+          @TempCredit = params['TempCredit']
         end
       end
 
@@ -5508,17 +5513,21 @@ module TencentCloud
         # @type CreditBalance: Float
         # @param RealCreditBalance: 真实可用信用额度,单位 分
         # @type RealCreditBalance: Float
+        # @param TempCredit: 临时额度，单位 分
+        # @type TempCredit: Float
+        # @param TempAmountInfoList: 临时额度详情
+        # @type TempAmountInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :RequestId
+        attr_accessor :Balance, :Uin, :RealBalance, :CashAccountBalance, :IncomeIntoAccountBalance, :PresentAccountBalance, :FreezeAmount, :OweAmount, :IsAllowArrears, :IsCreditLimited, :CreditAmount, :CreditBalance, :RealCreditBalance, :TempCredit, :TempAmountInfoList, :RequestId
         extend Gem::Deprecate
         deprecate :IsAllowArrears, :none, 2025, 12
         deprecate :IsAllowArrears=, :none, 2025, 12
         deprecate :IsCreditLimited, :none, 2025, 12
         deprecate :IsCreditLimited=, :none, 2025, 12
 
-        def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, requestid=nil)
+        def initialize(balance=nil, uin=nil, realbalance=nil, cashaccountbalance=nil, incomeintoaccountbalance=nil, presentaccountbalance=nil, freezeamount=nil, oweamount=nil, isallowarrears=nil, iscreditlimited=nil, creditamount=nil, creditbalance=nil, realcreditbalance=nil, tempcredit=nil, tempamountinfolist=nil, requestid=nil)
           @Balance = balance
           @Uin = uin
           @RealBalance = realbalance
@@ -5532,6 +5541,8 @@ module TencentCloud
           @CreditAmount = creditamount
           @CreditBalance = creditbalance
           @RealCreditBalance = realcreditbalance
+          @TempCredit = tempcredit
+          @TempAmountInfoList = tempamountinfolist
           @RequestId = requestid
         end
 
@@ -5549,6 +5560,15 @@ module TencentCloud
           @CreditAmount = params['CreditAmount']
           @CreditBalance = params['CreditBalance']
           @RealCreditBalance = params['RealCreditBalance']
+          @TempCredit = params['TempCredit']
+          unless params['TempAmountInfoList'].nil?
+            @TempAmountInfoList = []
+            params['TempAmountInfoList'].each do |i|
+              uintempamountmodel_tmp = UinTempAmountModel.new
+              uintempamountmodel_tmp.deserialize(i)
+              @TempAmountInfoList << uintempamountmodel_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8403,14 +8423,14 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: 偏移量
         # @type Offset: Integer
-        # @param BeginTime: 周期开始时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通成本分析后，且距今 24 个月内的数据。
+        # @param BeginTime: 周期开始时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。
         # @type BeginTime: String
-        # @param EndTime: 周期结束时间，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通成本分析后，且距今 24 个月内的数据。
+        # @param EndTime: 周期结束时间，查询粒度为天级别，需传入时分秒参数，格式为yyyy-mm-dd hh:ii:ss，Month和BeginTime&EndTime必传一个，如果有该字段则Month字段无效。BeginTime和EndTime必须一起传，且为同一月份，暂不支持跨月拉取。可拉取的数据是开通消耗账单后，且距今 18 个月内的数据。
         # @type EndTime: String
         # @param NeedRecordNum: 是否需要访问列表的总记录数，用于前端分页
         # 1-表示需要， 0-表示不需要
         # @type NeedRecordNum: Integer
-        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通成本分析的月份，最多可拉取24个月内的数据。
+        # @param Month: 月份，格式为yyyy-mm，Month和BeginTime&EndTime必传一个，如果有传BeginTime&EndTime则Month字段无效。不能早于开通消耗账单的月份，最多可拉取18个月内的数据。
         # @type Month: String
         # @param ProductCode: 查询指定产品信息
         # @type ProductCode: String
@@ -11007,6 +11027,34 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
+        end
+      end
+
+      # 临时额度详情
+      class UinTempAmountModel < TencentCloud::Common::AbstractModel
+        # @param Uin: 用户uin
+        # @type Uin: String
+        # @param TempAmount: 临时额度
+        # @type TempAmount: Float
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+
+        attr_accessor :Uin, :TempAmount, :StartTime, :EndTime
+
+        def initialize(uin=nil, tempamount=nil, starttime=nil, endtime=nil)
+          @Uin = uin
+          @TempAmount = tempamount
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @TempAmount = params['TempAmount']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 

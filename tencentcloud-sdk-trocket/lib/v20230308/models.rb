@@ -4794,14 +4794,20 @@ module TencentCloud
         # @param ExceptionDesc: 异常信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExceptionDesc: String
+        # @param ConsumeStatusSource: 消费状态来源，枚举值如下：
 
-        attr_accessor :ConsumerGroup, :ConsumeStatus, :TrackType, :ExceptionDesc
+        # - DIFF_OFFSET：通过服务端offset计算
+        # - TRACE_REPORT：通过上报的轨迹判断
+        # @type ConsumeStatusSource: String
 
-        def initialize(consumergroup=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil)
+        attr_accessor :ConsumerGroup, :ConsumeStatus, :TrackType, :ExceptionDesc, :ConsumeStatusSource
+
+        def initialize(consumergroup=nil, consumestatus=nil, tracktype=nil, exceptiondesc=nil, consumestatussource=nil)
           @ConsumerGroup = consumergroup
           @ConsumeStatus = consumestatus
           @TrackType = tracktype
           @ExceptionDesc = exceptiondesc
+          @ConsumeStatusSource = consumestatussource
         end
 
         def deserialize(params)
@@ -4809,6 +4815,7 @@ module TencentCloud
           @ConsumeStatus = params['ConsumeStatus']
           @TrackType = params['TrackType']
           @ExceptionDesc = params['ExceptionDesc']
+          @ConsumeStatusSource = params['ConsumeStatusSource']
         end
       end
 
@@ -4913,34 +4920,34 @@ module TencentCloud
       class ModifyConsumerGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 腾讯云 RocketMQ 实例 ID，从 [DescribeFusionInstanceList](https://cloud.tencent.com/document/api/1493/106745) 接口或控制台获得。
         # @type InstanceId: String
-        # @param ConsumerGroup: 消费组名称，从 [DescribeConsumerGroupList](https://cloud.tencent.com/document/api/1493/101535) 接口返回的 [ConsumeGroupItem](https://cloud.tencent.com/document/api/1493/96031#ConsumeGroupItem) 或控制台获得。
-        # @type ConsumerGroup: String
         # @param ConsumeEnable: 是否开启消费
         # @type ConsumeEnable: Boolean
         # @param ConsumeMessageOrderly: 顺序投递：true
         # 并发投递：false
         # @type ConsumeMessageOrderly: Boolean
+        # @param ConsumerGroup: 消费组名称，从 [DescribeConsumerGroupList](https://cloud.tencent.com/document/api/1493/101535) 接口返回的 [ConsumeGroupItem](https://cloud.tencent.com/document/api/1493/96031#ConsumeGroupItem) 或控制台获得。
+        # @type ConsumerGroup: String
         # @param MaxRetryTimes: 最大重试次数，取值范围0～1000
         # @type MaxRetryTimes: Integer
         # @param Remark: 备注信息，最多 128 个字符
         # @type Remark: String
 
-        attr_accessor :InstanceId, :ConsumerGroup, :ConsumeEnable, :ConsumeMessageOrderly, :MaxRetryTimes, :Remark
+        attr_accessor :InstanceId, :ConsumeEnable, :ConsumeMessageOrderly, :ConsumerGroup, :MaxRetryTimes, :Remark
 
-        def initialize(instanceid=nil, consumergroup=nil, consumeenable=nil, consumemessageorderly=nil, maxretrytimes=nil, remark=nil)
+        def initialize(instanceid=nil, consumeenable=nil, consumemessageorderly=nil, consumergroup=nil, maxretrytimes=nil, remark=nil)
           @InstanceId = instanceid
-          @ConsumerGroup = consumergroup
           @ConsumeEnable = consumeenable
           @ConsumeMessageOrderly = consumemessageorderly
+          @ConsumerGroup = consumergroup
           @MaxRetryTimes = maxretrytimes
           @Remark = remark
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @ConsumerGroup = params['ConsumerGroup']
           @ConsumeEnable = params['ConsumeEnable']
           @ConsumeMessageOrderly = params['ConsumeMessageOrderly']
+          @ConsumerGroup = params['ConsumerGroup']
           @MaxRetryTimes = params['MaxRetryTimes']
           @Remark = params['Remark']
         end

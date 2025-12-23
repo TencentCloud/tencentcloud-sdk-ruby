@@ -96,6 +96,55 @@ module TencentCloud
         end
       end
 
+      # DescribeTemplateToImageJob请求参数结构体
+      class DescribeTemplateToImageJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeTemplateToImageJob返回参数结构体
+      class DescribeTemplateToImageJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 当前任务状态码：
+        # 1：等待中、2：运行中、4：处理失败、5：处理完成。
+        # @type Status: String
+        # @param ErrorCode: 任务处理失败错误码。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务处理失败错误信息。
+        # @type ErrorMessage: String
+        # @param ResultImage: 生成图 URL 列表，有效期1小时，请及时保存。
+        # @type ResultImage: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultImage, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resultimage=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultImage = resultimage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @ResultImage = params['ResultImage']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 融合信息
       class FaceInfo < TencentCloud::Common::AbstractModel
         # @param ImageUrls: 用户图 URL 列表
@@ -1422,6 +1471,67 @@ module TencentCloud
       # SubmitMemeJob返回参数结构体
       class SubmitMemeJobResponse < TencentCloud::Common::AbstractModel
         # @param JobId: 任务id
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitTemplateToImageJob请求参数结构体
+      class SubmitTemplateToImageJobRequest < TencentCloud::Common::AbstractModel
+        # @param Image: 算法将根据输入的图片，结合文本描述智能生成与之相关的图像。
+        # Base64 和 Url 必须提供一个，如果都提供以 Url 为准。
+        # 图片限制：单边分辨率小于5000且大于50，转成 Base64 字符串后小于 8MB，格式支持 jpg、jpeg、png、bmp、tiff、webp。
+        # @type Image: :class:`Tencentcloud::Aiart.v20221229.models.Image`
+        # @param Style: 绘画风格当前仅支持美术馆风格（gallerying）。
+        # @type Style: String
+        # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
+        # 1：添加。
+        # 0：不添加。
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。
+        # @type LogoAdd: Integer
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
+
+        attr_accessor :Image, :Style, :LogoAdd, :LogoParam
+
+        def initialize(image=nil, style=nil, logoadd=nil, logoparam=nil)
+          @Image = image
+          @Style = style
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          unless params['Image'].nil?
+            @Image = Image.new
+            @Image.deserialize(params['Image'])
+          end
+          @Style = params['Style']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitTemplateToImageJob返回参数结构体
+      class SubmitTemplateToImageJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务 ID。
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

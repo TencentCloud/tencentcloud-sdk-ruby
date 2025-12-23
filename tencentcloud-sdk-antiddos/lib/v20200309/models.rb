@@ -5448,9 +5448,9 @@ module TencentCloud
         # @type FilterInstanceId: String
         # @param FilterIp: IP搜索
         # @type FilterIp: String
-        # @param FilterDomain: 域名搜索(查询域名与协议的CC防护阈值时使用）
+        # @param FilterDomain: 域名搜索，查询域名与协议的CC防护阈值时使用
         # @type FilterDomain: String
-        # @param FilterProtocol: 协议搜索(查询域名与协议的CC防护阈值时使用）
+        # @param FilterProtocol: 协议搜索，查询域名与协议的CC防护阈值时使用
         # @type FilterProtocol: String
 
         attr_accessor :Offset, :Limit, :FilterInstanceId, :FilterIp, :FilterDomain, :FilterProtocol

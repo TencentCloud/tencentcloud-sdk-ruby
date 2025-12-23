@@ -4804,7 +4804,8 @@ module TencentCloud
         # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，当上传文件为PDF且IsPdf参数值为true时有效，默认值为前3页。
         # @type PdfPageNumber: Integer
         # @param ConfigId: 配置id支持：
-        # ArticleRecognize -- 手写作文模板
+        # ArticleRecognize -- 手写中文作文模板
+        # ArticleRecognizeEng -- 手写英文作文模板
         # 默认：ArticleRecognize
         # @type ConfigId: String
         # @param Scene: 模板的单个属性配置

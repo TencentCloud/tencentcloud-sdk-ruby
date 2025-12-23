@@ -79,27 +79,25 @@ module TencentCloud
 
       # CreateCloudRunEnv请求参数结构体
       class CreateCloudRunEnvRequest < TencentCloud::Common::AbstractModel
-        # @param PackageType: Trial,Standard,Professional,Enterprise
+        # @param PackageType: <p>Trial,Standard,Professional,Enterprise</p>
         # @type PackageType: String
-        # @param Alias: 环境别名，要以a-z开头，不能包含 a-z,0-9,- 以外的字符
+        # @param Alias: <p>环境别名，要以a-z开头，不能包含 a-z,0-9,- 以外的字符</p>
         # @type Alias: String
-        # @param FreeQuota: 用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。
+        # @param FreeQuota: <p>用户享有的免费额度级别，目前只能为“basic”，不传该字段或该字段为空，标识不享受免费额度。</p>
         # @type FreeQuota: String
-        # @param Flag: 订单标记。建议使用方统一转大小写之后再判断。
-        # QuickStart：快速启动来源
-        # Activity：活动来源
+        # @param Flag: <p>订单标记。建议使用方统一转大小写之后再判断。QuickStart：快速启动来源Activity：活动来源</p>
         # @type Flag: String
-        # @param VpcId: 私有网络Id
+        # @param VpcId: <p>私有网络Id</p>
         # @type VpcId: String
-        # @param SubNetIds: 子网列表
+        # @param SubNetIds: <p>子网列表</p>
         # @type SubNetIds: Array
-        # @param ReqKey: 请求key 用于防重
+        # @param ReqKey: <p>请求key 用于防重</p>
         # @type ReqKey: String
-        # @param Source: 来源：wechat | cloud | weda
+        # @param Source: <p>来源：wechat | cloud | weda</p>
         # @type Source: String
-        # @param Channel: 渠道：wechat | cloud | weda
+        # @param Channel: <p>渠道：wechat | cloud | weda</p>
         # @type Channel: String
-        # @param EnvId: 环境ID 云开发平台必填
+        # @param EnvId: <p>环境ID 云开发平台必填</p>
         # @type EnvId: String
 
         attr_accessor :PackageType, :Alias, :FreeQuota, :Flag, :VpcId, :SubNetIds, :ReqKey, :Source, :Channel, :EnvId
@@ -133,9 +131,9 @@ module TencentCloud
 
       # CreateCloudRunEnv返回参数结构体
       class CreateCloudRunEnvResponse < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境Id
+        # @param EnvId: <p>环境Id</p>
         # @type EnvId: String
-        # @param TranId: 后付费订单号
+        # @param TranId: <p>后付费订单号</p>
         # @type TranId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -157,17 +155,17 @@ module TencentCloud
 
       # CreateCloudRunServer请求参数结构体
       class CreateCloudRunServerRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境Id
+        # @param EnvId: <p>环境Id</p>
         # @type EnvId: String
-        # @param ServerName: 服务名
+        # @param ServerName: <p>服务名</p>
         # @type ServerName: String
-        # @param DeployInfo: 部署信息
+        # @param DeployInfo: <p>部署信息</p>
         # @type DeployInfo: :class:`Tencentcloud::Tcbr.v20220217.models.DeployParam`
-        # @param ServerConfig: 服务配置信息(已废弃)
+        # @param ServerConfig: <p>服务配置信息(已废弃)</p>
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
-        # @param Items: 服务配置信息
+        # @param Items: <p>服务配置信息</p>
         # @type Items: Array
-        # @param VpcInfo: vpc 信息
+        # @param VpcInfo: <p>vpc 信息</p>
         # @type VpcInfo: :class:`Tencentcloud::Tcbr.v20220217.models.CreateVpcInfo`
 
         attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Items, :VpcInfo
@@ -209,7 +207,7 @@ module TencentCloud
 
       # CreateCloudRunServer返回参数结构体
       class CreateCloudRunServerResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 一键部署任务Id，微信云托管，暂时用不到
+        # @param TaskId: <p>一键部署任务Id，微信云托管，暂时用不到</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -848,7 +846,7 @@ module TencentCloud
 
       # DescribeEnvBaseInfo请求参数结构体
       class DescribeEnvBaseInfoRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境 Id
+        # @param EnvId: <p>环境 Id</p>
         # @type EnvId: String
 
         attr_accessor :EnvId
@@ -864,9 +862,9 @@ module TencentCloud
 
       # DescribeEnvBaseInfo返回参数结构体
       class DescribeEnvBaseInfoResponse < TencentCloud::Common::AbstractModel
-        # @param EnvBaseInfo: 环境基础信息
+        # @param EnvBaseInfo: <p>环境基础信息</p>
         # @type EnvBaseInfo: :class:`Tencentcloud::Tcbr.v20220217.models.EnvBaseInfo`
-        # @param IsExist: 是否存在
+        # @param IsExist: <p>是否存在</p>
         # @type IsExist: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2526,17 +2524,17 @@ module TencentCloud
 
       # UpdateCloudRunServer请求参数结构体
       class UpdateCloudRunServerRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境Id
+        # @param EnvId: <p>环境Id</p>
         # @type EnvId: String
-        # @param ServerName: 服务名
+        # @param ServerName: <p>服务名</p>
         # @type ServerName: String
-        # @param DeployInfo: 部署信息
+        # @param DeployInfo: <p>部署信息</p>
         # @type DeployInfo: :class:`Tencentcloud::Tcbr.v20220217.models.DeployParam`
-        # @param ServerConfig: 服务配置信息(已废弃)
+        # @param ServerConfig: <p>服务配置信息(已废弃)</p>
         # @type ServerConfig: :class:`Tencentcloud::Tcbr.v20220217.models.ServerBaseConfig`
-        # @param Business: 业务类型，默认tcr
+        # @param Business: <p>业务类型，默认tcr</p>
         # @type Business: String
-        # @param Items: 服务配置信息
+        # @param Items: <p>服务配置信息</p>
         # @type Items: Array
 
         attr_accessor :EnvId, :ServerName, :DeployInfo, :ServerConfig, :Business, :Items
@@ -2575,9 +2573,9 @@ module TencentCloud
 
       # UpdateCloudRunServer返回参数结构体
       class UpdateCloudRunServerResponse < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境Id
+        # @param EnvId: <p>环境Id</p>
         # @type EnvId: String
-        # @param TaskId: 一键部署任务Id，暂时用不到
+        # @param TaskId: <p>一键部署任务Id，暂时用不到</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

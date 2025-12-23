@@ -10051,6 +10051,74 @@ module TencentCloud
         end
       end
 
+      # DescribePrefetchOriginLimit请求参数结构体
+      class DescribePrefetchOriginLimitRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点ID。
+        # @type ZoneId: String
+        # @param Offset: 分页查询偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 分页查询限制数目，默认值：20，上限：100。
+        # @type Limit: Integer
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。详细的过滤条件如下：
+        # <li>domain-name：按照域名过滤。domain-name 形如：www.qq.com，不支持模糊查询；</li>
+        # <li>area：按照限制加速区域过滤，不支持模糊查询。可选项：<br> Overseas：全球可用区（不含中国大陆）；<br> MainlandChina：中国大陆可用区。</li>
+        # @type Filters: Array
+
+        attr_accessor :ZoneId, :Offset, :Limit, :Filters
+
+        def initialize(zoneid=nil, offset=nil, limit=nil, filters=nil)
+          @ZoneId = zoneid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePrefetchOriginLimit返回参数结构体
+      class DescribePrefetchOriginLimitResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 回源限速限制总数。
+        # @type TotalCount: Integer
+        # @param Limits: 回源限速限制详情List。
+        # @type Limits: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Limits, :RequestId
+
+        def initialize(totalcount=nil, limits=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Limits = limits
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Limits'].nil?
+            @Limits = []
+            params['Limits'].each do |i|
+              prefetchoriginlimit_tmp = PrefetchOriginLimit.new
+              prefetchoriginlimit_tmp.deserialize(i)
+              @Limits << prefetchoriginlimit_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePrefetchTasks请求参数结构体
       class DescribePrefetchTasksRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点ID。此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
@@ -16935,6 +17003,61 @@ module TencentCloud
         end
       end
 
+      # ModifyPrefetchOriginLimit请求参数结构体
+      class ModifyPrefetchOriginLimitRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param DomainName: 加速域名。
+        # @type DomainName: String
+        # @param Area: 回源限速限制的加速区域。
+        # 预热时，该加速区域将会受到配置的Bandwidth值限制。取值有：
+        # <li>Overseas：全球可用区（不含中国大陆）；</li>
+        # <li>MainlandChina：中国大陆可用区。</li>
+        # @type Area: String
+        # @param Bandwidth: 回源限速带宽。
+        # 预热时回到源站的带宽上限值，取值范围 100 - 100,000，单位 Mbps。
+        # @type Bandwidth: Integer
+        # @param Enabled: 回源限速限制控制开关。
+        # 用于启用/删除本条回源限速限制，取值有：
+        # <li>on：启用限制；</li>
+        # <li>off：删除限制。</li>
+        # @type Enabled: String
+
+        attr_accessor :ZoneId, :DomainName, :Area, :Bandwidth, :Enabled
+
+        def initialize(zoneid=nil, domainname=nil, area=nil, bandwidth=nil, enabled=nil)
+          @ZoneId = zoneid
+          @DomainName = domainname
+          @Area = area
+          @Bandwidth = bandwidth
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainName = params['DomainName']
+          @Area = params['Area']
+          @Bandwidth = params['Bandwidth']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # ModifyPrefetchOriginLimit返回参数结构体
+      class ModifyPrefetchOriginLimitResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyRealtimeLogDeliveryTask请求参数结构体
       class ModifyRealtimeLogDeliveryTaskRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -19299,6 +19422,46 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @MaxSize = params['MaxSize']
+        end
+      end
+
+      # 回源限速限制详情。
+      class PrefetchOriginLimit < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param DomainName: 加速域名。
+        # @type DomainName: String
+        # @param Area: 回源限速限制的加速区域。
+        # 预热时，该加速区域将会受到配置的Bandwidth值限制。取值有：
+        # <li>Overseas：全球可用区（不含中国大陆）；</li>
+        # <li>MainlandChina：中国大陆可用区。</li>
+        # @type Area: String
+        # @param Bandwidth: 回源限速带宽。
+        # 预热时回到源站的带宽上限值，取值范围 100 - 100,000，单位 Mbps。
+        # @type Bandwidth: Integer
+        # @param CreateTime: 回源限速限制创建的时间。
+        # @type CreateTime: String
+        # @param UpdateTime: 回源限速限制更新的时间。
+        # @type UpdateTime: String
+
+        attr_accessor :ZoneId, :DomainName, :Area, :Bandwidth, :CreateTime, :UpdateTime
+
+        def initialize(zoneid=nil, domainname=nil, area=nil, bandwidth=nil, createtime=nil, updatetime=nil)
+          @ZoneId = zoneid
+          @DomainName = domainname
+          @Area = area
+          @Bandwidth = bandwidth
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @DomainName = params['DomainName']
+          @Area = params['Area']
+          @Bandwidth = params['Bandwidth']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 

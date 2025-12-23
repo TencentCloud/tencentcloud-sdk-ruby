@@ -2022,7 +2022,7 @@ module TencentCloud
         # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
         # @param BusinessName: 业务自身服务名，控制台用户请填写taw
         # @type BusinessName: String
-        # @param Limit: 单页项目个数，默认为10000，合法取值范围为0～10000
+        # @param Limit: 单页项目个数，默认为1000，合法取值范围为1～1000
         # @type Limit: Integer
         # @param Offset: 分页
         # @type Offset: Integer
