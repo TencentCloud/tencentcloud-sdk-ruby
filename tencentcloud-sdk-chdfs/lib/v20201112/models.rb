@@ -647,17 +647,21 @@ module TencentCloud
         # @type VpcId: String
         # @param OwnerUin: 资源所属者Uin
         # @type OwnerUin: Integer
+        # @param AccessGroupIdMarker: 起始权限组ID标记
+        # @type AccessGroupIdMarker: String
 
-        attr_accessor :VpcId, :OwnerUin
+        attr_accessor :VpcId, :OwnerUin, :AccessGroupIdMarker
 
-        def initialize(vpcid=nil, owneruin=nil)
+        def initialize(vpcid=nil, owneruin=nil, accessgroupidmarker=nil)
           @VpcId = vpcid
           @OwnerUin = owneruin
+          @AccessGroupIdMarker = accessgroupidmarker
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @OwnerUin = params['OwnerUin']
+          @AccessGroupIdMarker = params['AccessGroupIdMarker']
         end
       end
 
@@ -665,13 +669,19 @@ module TencentCloud
       class DescribeAccessGroupsResponse < TencentCloud::Common::AbstractModel
         # @param AccessGroups: 权限组列表
         # @type AccessGroups: Array
+        # @param IsOver: 标识是否已获取全量
+        # @type IsOver: Boolean
+        # @param NextAccessGroupIdMarker: 下一次请求起始权限组ID标记
+        # @type NextAccessGroupIdMarker: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AccessGroups, :RequestId
+        attr_accessor :AccessGroups, :IsOver, :NextAccessGroupIdMarker, :RequestId
 
-        def initialize(accessgroups=nil, requestid=nil)
+        def initialize(accessgroups=nil, isover=nil, nextaccessgroupidmarker=nil, requestid=nil)
           @AccessGroups = accessgroups
+          @IsOver = isover
+          @NextAccessGroupIdMarker = nextaccessgroupidmarker
           @RequestId = requestid
         end
 
@@ -684,6 +694,8 @@ module TencentCloud
               @AccessGroups << accessgroup_tmp
             end
           end
+          @IsOver = params['IsOver']
+          @NextAccessGroupIdMarker = params['NextAccessGroupIdMarker']
           @RequestId = params['RequestId']
         end
       end
@@ -796,12 +808,17 @@ module TencentCloud
 
       # DescribeFileSystems请求参数结构体
       class DescribeFileSystemsRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemIdMarker: 起始文件系统ID标记
+        # @type FileSystemIdMarker: String
 
+        attr_accessor :FileSystemIdMarker
 
-        def initialize()
+        def initialize(filesystemidmarker=nil)
+          @FileSystemIdMarker = filesystemidmarker
         end
 
         def deserialize(params)
+          @FileSystemIdMarker = params['FileSystemIdMarker']
         end
       end
 
@@ -809,13 +826,19 @@ module TencentCloud
       class DescribeFileSystemsResponse < TencentCloud::Common::AbstractModel
         # @param FileSystems: 文件系统列表
         # @type FileSystems: Array
+        # @param IsOver: 标识是否已获取全量
+        # @type IsOver: Boolean
+        # @param NextFileSystemIdMarker: 下一次请求起始文件系统ID标记
+        # @type NextFileSystemIdMarker: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :FileSystems, :RequestId
+        attr_accessor :FileSystems, :IsOver, :NextFileSystemIdMarker, :RequestId
 
-        def initialize(filesystems=nil, requestid=nil)
+        def initialize(filesystems=nil, isover=nil, nextfilesystemidmarker=nil, requestid=nil)
           @FileSystems = filesystems
+          @IsOver = isover
+          @NextFileSystemIdMarker = nextfilesystemidmarker
           @RequestId = requestid
         end
 
@@ -828,6 +851,8 @@ module TencentCloud
               @FileSystems << filesystem_tmp
             end
           end
+          @IsOver = params['IsOver']
+          @NextFileSystemIdMarker = params['NextFileSystemIdMarker']
           @RequestId = params['RequestId']
         end
       end
@@ -1013,15 +1038,19 @@ module TencentCloud
       class DescribeRestoreTasksRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
         # @type FileSystemId: String
+        # @param RestoreTaskIdMarker: 起始回热任务ID标记
+        # @type RestoreTaskIdMarker: Integer
 
-        attr_accessor :FileSystemId
+        attr_accessor :FileSystemId, :RestoreTaskIdMarker
 
-        def initialize(filesystemid=nil)
+        def initialize(filesystemid=nil, restoretaskidmarker=nil)
           @FileSystemId = filesystemid
+          @RestoreTaskIdMarker = restoretaskidmarker
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
+          @RestoreTaskIdMarker = params['RestoreTaskIdMarker']
         end
       end
 
@@ -1029,13 +1058,19 @@ module TencentCloud
       class DescribeRestoreTasksResponse < TencentCloud::Common::AbstractModel
         # @param RestoreTasks: 回热任务列表
         # @type RestoreTasks: Array
+        # @param IsOver: 标识是否已获取全量
+        # @type IsOver: Boolean
+        # @param NextRestoreTaskIdMarker: 下一次请求起始回热任务ID标记
+        # @type NextRestoreTaskIdMarker: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RestoreTasks, :RequestId
+        attr_accessor :RestoreTasks, :IsOver, :NextRestoreTaskIdMarker, :RequestId
 
-        def initialize(restoretasks=nil, requestid=nil)
+        def initialize(restoretasks=nil, isover=nil, nextrestoretaskidmarker=nil, requestid=nil)
           @RestoreTasks = restoretasks
+          @IsOver = isover
+          @NextRestoreTaskIdMarker = nextrestoretaskidmarker
           @RequestId = requestid
         end
 
@@ -1048,6 +1083,8 @@ module TencentCloud
               @RestoreTasks << restoretask_tmp
             end
           end
+          @IsOver = params['IsOver']
+          @NextRestoreTaskIdMarker = params['NextRestoreTaskIdMarker']
           @RequestId = params['RequestId']
         end
       end

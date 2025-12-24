@@ -25345,6 +25345,187 @@ module TencentCloud
         end
       end
 
+      # RecognizeAudio请求参数结构体
+      class RecognizeAudioRequest < TencentCloud::Common::AbstractModel
+        # @param AudioData: base64编码的音频数据
+        # @type AudioData: String
+        # @param Source: 识别目标语言，为空默认 auto 自动识别语种。
+        # 注：如果自动识别语种识别效果不佳，可以指定语种提高准确率
+
+        # 当前支持语言：
+        # auto: 自动识别
+        # zh: 简体中文
+        # en: 英语
+        # ja: 日语
+        # ko: 韩语
+        # vi: 越南语
+        # ms: 马来语
+        # id: 印度尼西亚语
+        # fil: 菲律宾语
+        # th: 泰语
+        # pt: 葡萄牙语
+        # tr: 土耳其语
+        # ar: 阿拉伯语
+        # es: 西班牙语
+        # hi: 印地语
+        # fr: 法语
+        # de: 德语
+        # it: 意大利语
+        # yue: 粤语
+        # ru: 俄语
+        # af: 南非荷兰语
+        # sq: 阿尔巴尼亚语
+        # am: 阿姆哈拉语
+        # hy: 亚美尼亚语
+        # az: 阿塞拜疆语
+        # eu: 巴斯克语
+        # bn: 孟加拉语
+        # bs: 波斯尼亚语
+        # bg: 保加利亚语
+        # my: 缅甸语
+        # ca: 加泰罗尼亚语
+        # hr: 克罗地亚语
+        # cs: 捷克语
+        # da: 丹麦语
+        # nl: 荷兰语
+        # et: 爱沙尼亚语
+        # fi: 芬兰语
+        # gl: 加利西亚语
+        # ka: 格鲁吉亚语
+        # el: 希腊语
+        # gu: 古吉拉特语
+        # iw: 希伯来语
+        # hu: 匈牙利语
+        # is: 冰岛语
+        # jv: 爪哇语
+        # kn: 卡纳达语
+        # kk: 哈萨克语
+        # km: 高棉语
+        # rw: 卢旺达语
+        # lo: 老挝语
+        # lv: 拉脱维亚语
+        # lt: 立陶宛语
+        # mk: 马其顿语
+        # ml: 马拉雅拉姆语
+        # mr: 马拉地语
+        # mn: 蒙古语
+        # ne: 尼泊尔语
+        # no: 博克马尔挪威语
+        # fa: 波斯语
+        # pl: 波兰语
+        # ro: 罗马尼亚语
+        # sr: 塞尔维亚语
+        # si: 僧伽罗语
+        # sk: 斯洛伐克语
+        # sl: 斯洛文尼亚语
+        # st: 南索托语
+        # su: 巽他语
+        # sw: 斯瓦希里语
+        # sv: 瑞典语
+        # ta: 泰米尔语
+        # te: 泰卢固语
+        # ts: 聪加语
+        # uk: 乌克兰语
+        # ur: 乌尔都语
+        # uz: 乌兹别克语
+        # ve: 文达语
+        # xh: 科萨语
+        # zu: 祖鲁语
+        # @type Source: String
+        # @param AudioFormat: 音频数据格式，默认为 pcm
+
+        # 支持的格式：pcm (16k 采样率的单声道 16 位采样 pcm 数据)
+        # @type AudioFormat: String
+        # @param UserExtPara: 扩展参数，默认不填，特殊需求使用
+        # @type UserExtPara: String
+
+        attr_accessor :AudioData, :Source, :AudioFormat, :UserExtPara
+
+        def initialize(audiodata=nil, source=nil, audioformat=nil, userextpara=nil)
+          @AudioData = audiodata
+          @Source = source
+          @AudioFormat = audioformat
+          @UserExtPara = userextpara
+        end
+
+        def deserialize(params)
+          @AudioData = params['AudioData']
+          @Source = params['Source']
+          @AudioFormat = params['AudioFormat']
+          @UserExtPara = params['UserExtPara']
+        end
+      end
+
+      # RecognizeAudio返回参数结构体
+      class RecognizeAudioResponse < TencentCloud::Common::AbstractModel
+        # @param Text: 整段音频的识别结果
+        # @type Text: String
+        # @param AudioLength: 音频长度，单位秒
+        # @type AudioLength: Float
+        # @param Sentence: 分句的识别结果
+        # @type Sentence: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Text, :AudioLength, :Sentence, :RequestId
+
+        def initialize(text=nil, audiolength=nil, sentence=nil, requestid=nil)
+          @Text = text
+          @AudioLength = audiolength
+          @Sentence = sentence
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @AudioLength = params['AudioLength']
+          unless params['Sentence'].nil?
+            @Sentence = []
+            params['Sentence'].each do |i|
+              recognizeaudiosentence_tmp = RecognizeAudioSentence.new
+              recognizeaudiosentence_tmp.deserialize(i)
+              @Sentence << recognizeaudiosentence_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 识别音频单句结果
+      class RecognizeAudioSentence < TencentCloud::Common::AbstractModel
+        # @param Start: 在音频中的起始时间，单位秒
+        # @type Start: Float
+        # @param End: 在音频中的截止时间，单位秒
+        # @type End: Float
+        # @param Text: 音频识别结果
+        # @type Text: String
+        # @param WordsInfo: 字词时间戳结果
+        # @type WordsInfo: Array
+
+        attr_accessor :Start, :End, :Text, :WordsInfo
+
+        def initialize(start=nil, _end=nil, text=nil, wordsinfo=nil)
+          @Start = start
+          @End = _end
+          @Text = text
+          @WordsInfo = wordsinfo
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+          @Text = params['Text']
+          unless params['WordsInfo'].nil?
+            @WordsInfo = []
+            params['WordsInfo'].each do |i|
+              wordresult_tmp = WordResult.new
+              wordresult_tmp.deserialize(i)
+              @WordsInfo << wordresult_tmp
+            end
+          end
+        end
+      end
+
       # RecognizeMediaForZhiXue请求参数结构体
       class RecognizeMediaForZhiXueRequest < TencentCloud::Common::AbstractModel
         # @param InputInfo: 输入媒体文件存储信息。

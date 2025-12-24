@@ -5913,8 +5913,12 @@ module TencentCloud
         # @type MaxDuration: Integer
         # @param Volume: 音量，取值范围[0, 100]，默认100，表示原音量。
         # @type Volume: Integer
+        # @param EnableProgress: 开启播放进度回调, 默认false，当开启后，播放进度会通过trtc custom data 回调给播放端
+        # @type EnableProgress: Boolean
+        # @param Tempo: 播放倍速，默认1.0，可取[0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
+        # @type Tempo: Float
 
-        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo
         extend Gem::Deprecate
         deprecate :VideoEncodeParams, :none, 2025, 12
         deprecate :VideoEncodeParams=, :none, 2025, 12
@@ -5923,7 +5927,7 @@ module TencentCloud
         deprecate :SourceUrl, :none, 2025, 12
         deprecate :SourceUrl=, :none, 2025, 12
 
-        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil)
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @RoomIdType = roomidtype
@@ -5939,6 +5943,8 @@ module TencentCloud
           @RepeatNum = repeatnum
           @MaxDuration = maxduration
           @Volume = volume
+          @EnableProgress = enableprogress
+          @Tempo = tempo
         end
 
         def deserialize(params)
@@ -5963,6 +5969,8 @@ module TencentCloud
           @RepeatNum = params['RepeatNum']
           @MaxDuration = params['MaxDuration']
           @Volume = params['Volume']
+          @EnableProgress = params['EnableProgress']
+          @Tempo = params['Tempo']
         end
       end
 
@@ -7082,15 +7090,21 @@ module TencentCloud
         # @type Volume: Integer
         # @param IsPause: 是否暂停，默认false表示不暂停。暂停期间任务仍在进行中仍会计费，暂停超过12小时会自动销毁任务, 建议主动调用停止任务接口。
         # @type IsPause: Boolean
+        # @param EnableProgress: 是否开启播放进度回调, 默认false，当开启后，播放进度会通过trtc custom data 回调给播放端
+        # @type EnableProgress: Boolean
+        # @param Tempo: 播放倍速，默认1.0，可取[0.5, 0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
+        # @type Tempo: Float
 
-        attr_accessor :SdkAppId, :TaskId, :StreamUrl, :Volume, :IsPause
+        attr_accessor :SdkAppId, :TaskId, :StreamUrl, :Volume, :IsPause, :EnableProgress, :Tempo
 
-        def initialize(sdkappid=nil, taskid=nil, streamurl=nil, volume=nil, ispause=nil)
+        def initialize(sdkappid=nil, taskid=nil, streamurl=nil, volume=nil, ispause=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
           @TaskId = taskid
           @StreamUrl = streamurl
           @Volume = volume
           @IsPause = ispause
+          @EnableProgress = enableprogress
+          @Tempo = tempo
         end
 
         def deserialize(params)
@@ -7099,6 +7113,8 @@ module TencentCloud
           @StreamUrl = params['StreamUrl']
           @Volume = params['Volume']
           @IsPause = params['IsPause']
+          @EnableProgress = params['EnableProgress']
+          @Tempo = params['Tempo']
         end
       end
 
@@ -7367,7 +7383,7 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param VoiceName: 声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位
         # @type VoiceName: String
-        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在5秒～12秒之间
+        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在10秒～180秒之间
         # @type PromptAudio: String
         # @param APIKey: TTS的API密钥
         # @type APIKey: String

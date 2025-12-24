@@ -486,6 +486,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 根据应用名查询服务拓扑图
+
+        # @param request: Request instance for DescribeTopologyNew.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeTopologyNewRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeTopologyNewResponse`
+        def DescribeTopologyNew(request)
+          body = send_request('DescribeTopologyNew', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopologyNewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改应用配置接口
 
         # @param request: Request instance for ModifyApmApplicationConfig.

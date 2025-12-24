@@ -1046,15 +1046,18 @@ module TencentCloud
         # @type PageSize: Integer
         # @param EnvType: 环境类型
         # @type EnvType: String
+        # @param RoleStringId: 新角色id
+        # @type RoleStringId: String
 
-        attr_accessor :RoleId, :EnvId, :PageNo, :PageSize, :EnvType
+        attr_accessor :RoleId, :EnvId, :PageNo, :PageSize, :EnvType, :RoleStringId
 
-        def initialize(roleid=nil, envid=nil, pageno=nil, pagesize=nil, envtype=nil)
+        def initialize(roleid=nil, envid=nil, pageno=nil, pagesize=nil, envtype=nil, rolestringid=nil)
           @RoleId = roleid
           @EnvId = envid
           @PageNo = pageno
           @PageSize = pagesize
           @EnvType = envtype
+          @RoleStringId = rolestringid
         end
 
         def deserialize(params)
@@ -1063,6 +1066,7 @@ module TencentCloud
           @PageNo = params['PageNo']
           @PageSize = params['PageSize']
           @EnvType = params['EnvType']
+          @RoleStringId = params['RoleStringId']
         end
       end
 

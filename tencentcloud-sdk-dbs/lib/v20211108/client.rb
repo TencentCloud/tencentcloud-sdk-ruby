@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于创建备份计划。
+
+        # @param request: Request instance for CreateBackupPlan.
+        # @type request: :class:`Tencentcloud::dbs::V20211108::CreateBackupPlanRequest`
+        # @rtype: :class:`Tencentcloud::dbs::V20211108::CreateBackupPlanResponse`
+        def CreateBackupPlan(request)
+          body = send_request('CreateBackupPlan', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBackupPlanResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建连通性检测任务，请在创建备份计划前，通过该接口来检测你的源端实例是否连通性正常。
 
         # @param request: Request instance for CreateConnectTestJob.
@@ -87,6 +111,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBackupCheckJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeBackupPlans）用于查询备份计划列表。
+
+        # @param request: Request instance for DescribeBackupPlans.
+        # @type request: :class:`Tencentcloud::dbs::V20211108::DescribeBackupPlansRequest`
+        # @rtype: :class:`Tencentcloud::dbs::V20211108::DescribeBackupPlansResponse`
+        def DescribeBackupPlans(request)
+          body = send_request('DescribeBackupPlans', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBackupPlansResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于查询连通性检测任务的结果
+
+        # @param request: Request instance for DescribeConnectTestResult.
+        # @type request: :class:`Tencentcloud::dbs::V20211108::DescribeConnectTestResultRequest`
+        # @rtype: :class:`Tencentcloud::dbs::V20211108::DescribeConnectTestResultResponse`
+        def DescribeConnectTestResult(request)
+          body = send_request('DescribeConnectTestResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConnectTestResultResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -141,10 +141,14 @@ module TencentCloud
         # @type UpgradeSoftId: Integer
         # @param RemarkName: 终端备注名
         # @type RemarkName: String
+        # @param SoftwareId: 软件id
+        # @type SoftwareId: Integer
+        # @param OsType: 0:win 2:mac
+        # @type OsType: Integer
 
-        attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName
+        attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName, :SoftwareId, :OsType
 
-        def initialize(devicename=nil, lastloginaccount=nil, deviceusername=nil, version=nil, piracyrisk=nil, piracyreason=nil, installtime=nil, userpath=nil, usergroup=nil, ip=nil, mac=nil, usetime=nil, deviceid=nil, fullsoftname=nil, id=nil, newversion=nil, upgradesoftid=nil, remarkname=nil)
+        def initialize(devicename=nil, lastloginaccount=nil, deviceusername=nil, version=nil, piracyrisk=nil, piracyreason=nil, installtime=nil, userpath=nil, usergroup=nil, ip=nil, mac=nil, usetime=nil, deviceid=nil, fullsoftname=nil, id=nil, newversion=nil, upgradesoftid=nil, remarkname=nil, softwareid=nil, ostype=nil)
           @DeviceName = devicename
           @LastLoginAccount = lastloginaccount
           @DeviceUserName = deviceusername
@@ -163,6 +167,8 @@ module TencentCloud
           @NewVersion = newversion
           @UpgradeSoftId = upgradesoftid
           @RemarkName = remarkname
+          @SoftwareId = softwareid
+          @OsType = ostype
         end
 
         def deserialize(params)
@@ -184,6 +190,8 @@ module TencentCloud
           @NewVersion = params['NewVersion']
           @UpgradeSoftId = params['UpgradeSoftId']
           @RemarkName = params['RemarkName']
+          @SoftwareId = params['SoftwareId']
+          @OsType = params['OsType']
         end
       end
 
@@ -3856,10 +3864,14 @@ module TencentCloud
         # @type Id: Integer
         # @param PiracyRisk: 盗版风险（0:未支持，1:风险，2:未发现，3:未开启）
         # @type PiracyRisk: Integer
+        # @param DeviceId: 设备id
+        # @type DeviceId: Integer
+        # @param OsType: 平台类型
+        # @type OsType: Integer
 
-        attr_accessor :Name, :InstallDate, :SoftwareId, :Mid, :Version, :CorpName, :Id, :PiracyRisk
+        attr_accessor :Name, :InstallDate, :SoftwareId, :Mid, :Version, :CorpName, :Id, :PiracyRisk, :DeviceId, :OsType
 
-        def initialize(name=nil, installdate=nil, softwareid=nil, mid=nil, version=nil, corpname=nil, id=nil, piracyrisk=nil)
+        def initialize(name=nil, installdate=nil, softwareid=nil, mid=nil, version=nil, corpname=nil, id=nil, piracyrisk=nil, deviceid=nil, ostype=nil)
           @Name = name
           @InstallDate = installdate
           @SoftwareId = softwareid
@@ -3868,6 +3880,8 @@ module TencentCloud
           @CorpName = corpname
           @Id = id
           @PiracyRisk = piracyrisk
+          @DeviceId = deviceid
+          @OsType = ostype
         end
 
         def deserialize(params)
@@ -3879,6 +3893,8 @@ module TencentCloud
           @CorpName = params['CorpName']
           @Id = params['Id']
           @PiracyRisk = params['PiracyRisk']
+          @DeviceId = params['DeviceId']
+          @OsType = params['OsType']
         end
       end
 

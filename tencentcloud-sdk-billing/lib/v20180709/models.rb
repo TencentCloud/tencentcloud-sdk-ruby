@@ -8954,6 +8954,68 @@ module TencentCloud
         end
       end
 
+      # DescribeCostSummaryByTag请求参数结构体
+      class DescribeCostSummaryByTagRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2025-12，EndTime 为 2025-12，查询结果是 2025 年 12 月数据。
+        # @type BeginTime: String
+        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2025-12，EndTime 为 2025-12，查询结果是 2025 年 12 月数据。
+        # @type EndTime: String
+        # @param TagKey: 分账标签键，用户自定义
+        # @type TagKey: String
+
+        attr_accessor :BeginTime, :EndTime, :TagKey
+
+        def initialize(begintime=nil, endtime=nil, tagkey=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @TagKey = tagkey
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @TagKey = params['TagKey']
+        end
+      end
+
+      # DescribeCostSummaryByTag返回参数结构体
+      class DescribeCostSummaryByTagResponse < TencentCloud::Common::AbstractModel
+        # @param Ready: 数据是否准备好，0准备中，1已就绪。
+        # @type Ready: Integer
+        # @param SummaryOverview: 各标签值消耗分布详情
+        # @type SummaryOverview: Array
+        # @param SummaryTotal: 总计
+        # @type SummaryTotal: :class:`Tencentcloud::Billing.v20180709.models.SummaryTotal`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Ready, :SummaryOverview, :SummaryTotal, :RequestId
+
+        def initialize(ready=nil, summaryoverview=nil, summarytotal=nil, requestid=nil)
+          @Ready = ready
+          @SummaryOverview = summaryoverview
+          @SummaryTotal = summarytotal
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Ready = params['Ready']
+          unless params['SummaryOverview'].nil?
+            @SummaryOverview = []
+            params['SummaryOverview'].each do |i|
+              tagsummaryoverviewitem_tmp = TagSummaryOverviewItem.new
+              tagsummaryoverviewitem_tmp.deserialize(i)
+              @SummaryOverview << tagsummaryoverviewitem_tmp
+            end
+          end
+          unless params['SummaryTotal'].nil?
+            @SummaryTotal = SummaryTotal.new
+            @SummaryTotal.deserialize(params['SummaryTotal'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDealsByCond请求参数结构体
       class DescribeDealsByCondRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间 2016-01-01 00:00:00

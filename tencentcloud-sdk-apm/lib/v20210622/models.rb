@@ -1042,6 +1042,55 @@ module TencentCloud
         end
       end
 
+      # CVM元数据
+      class CVMMeta < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param InstanceID: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+
+        attr_accessor :Region, :InstanceID
+
+        def initialize(region=nil, instanceid=nil)
+          @Region = region
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # 包含了视图中节点组件类型的数量
+      class ComponentTopologyView < TencentCloud::Common::AbstractModel
+        # @param Service: 服务纬度的节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: Integer
+        # @param Database: 数据库节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Database: Integer
+        # @param MQ: 消息队列节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MQ: Integer
+
+        attr_accessor :Service, :Database, :MQ
+
+        def initialize(service=nil, database=nil, mq=nil)
+          @Service = service
+          @Database = database
+          @MQ = mq
+        end
+
+        def deserialize(params)
+          @Service = params['Service']
+          @Database = params['Database']
+          @MQ = params['MQ']
+        end
+      end
+
       # CreateApmInstance请求参数结构体
       class CreateApmInstanceRequest < TencentCloud::Common::AbstractModel
         # @param Name: 业务系统名
@@ -2395,6 +2444,158 @@ module TencentCloud
         end
       end
 
+      # DescribeTopologyNew请求参数结构体
+      class DescribeTopologyNewRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param StartTime: 查询开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 查询结束时间
+        # @type EndTime: Integer
+        # @param ServiceName: 应用名
+        # @type ServiceName: String
+        # @param UpLevel: 上游层级
+        # @type UpLevel: Integer
+        # @param ServiceInstance: 应用实例信息
+        # @type ServiceInstance: String
+        # @param DownLevel: 下游层级
+        # @type DownLevel: Integer
+        # @param View: 视角
+        # @type View: String
+        # @param Filters: 过滤器
+        # @type Filters: Array
+        # @param Topic: 表示Topic（MQ拓扑图用）
+        # @type Topic: String
+        # @param Selectors: 视图筛选列表
+        # @type Selectors: :class:`Tencentcloud::Apm.v20210622.models.Selectors`
+        # @param Id: 视图ID
+        # @type Id: String
+        # @param TraceID: TraceID
+        # @type TraceID: String
+        # @param IsSlowTopFive: 查询top5慢响应节点
+        # @type IsSlowTopFive: Boolean
+        # @param GetResource: 是否获取资源层信息
+        # @type GetResource: Boolean
+        # @param Tags: 根据应用标签过滤
+        # @type Tags: Array
+        # @param Hidden: 不显示的节点类型
+        # @type Hidden: :class:`Tencentcloud::Apm.v20210622.models.Selectors`
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :ServiceName, :UpLevel, :ServiceInstance, :DownLevel, :View, :Filters, :Topic, :Selectors, :Id, :TraceID, :IsSlowTopFive, :GetResource, :Tags, :Hidden
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, servicename=nil, uplevel=nil, serviceinstance=nil, downlevel=nil, view=nil, filters=nil, topic=nil, selectors=nil, id=nil, traceid=nil, isslowtopfive=nil, getresource=nil, tags=nil, hidden=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @ServiceName = servicename
+          @UpLevel = uplevel
+          @ServiceInstance = serviceinstance
+          @DownLevel = downlevel
+          @View = view
+          @Filters = filters
+          @Topic = topic
+          @Selectors = selectors
+          @Id = id
+          @TraceID = traceid
+          @IsSlowTopFive = isslowtopfive
+          @GetResource = getresource
+          @Tags = tags
+          @Hidden = hidden
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ServiceName = params['ServiceName']
+          @UpLevel = params['UpLevel']
+          @ServiceInstance = params['ServiceInstance']
+          @DownLevel = params['DownLevel']
+          @View = params['View']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Topic = params['Topic']
+          unless params['Selectors'].nil?
+            @Selectors = Selectors.new
+            @Selectors.deserialize(params['Selectors'])
+          end
+          @Id = params['Id']
+          @TraceID = params['TraceID']
+          @IsSlowTopFive = params['IsSlowTopFive']
+          @GetResource = params['GetResource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          unless params['Hidden'].nil?
+            @Hidden = Selectors.new
+            @Hidden.deserialize(params['Hidden'])
+          end
+        end
+      end
+
+      # DescribeTopologyNew返回参数结构体
+      class DescribeTopologyNewResponse < TencentCloud::Common::AbstractModel
+        # @param Nodes: 节点集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Nodes: Array
+        # @param Edges: 边集合
+        # @type Edges: Array
+        # @param TopologyModifyFlag: 拓扑图是否有修改
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TopologyModifyFlag: Integer
+        # @param Selectors: 节点数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Selectors: :class:`Tencentcloud::Apm.v20210622.models.SelectorView`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Nodes, :Edges, :TopologyModifyFlag, :Selectors, :RequestId
+
+        def initialize(nodes=nil, edges=nil, topologymodifyflag=nil, selectors=nil, requestid=nil)
+          @Nodes = nodes
+          @Edges = edges
+          @TopologyModifyFlag = topologymodifyflag
+          @Selectors = selectors
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Nodes'].nil?
+            @Nodes = []
+            params['Nodes'].each do |i|
+              topologynode_tmp = TopologyNode.new
+              topologynode_tmp.deserialize(i)
+              @Nodes << topologynode_tmp
+            end
+          end
+          unless params['Edges'].nil?
+            @Edges = []
+            params['Edges'].each do |i|
+              topologyedgenew_tmp = TopologyEdgeNew.new
+              topologyedgenew_tmp.deserialize(i)
+              @Edges << topologyedgenew_tmp
+            end
+          end
+          @TopologyModifyFlag = params['TopologyModifyFlag']
+          unless params['Selectors'].nil?
+            @Selectors = SelectorView.new
+            @Selectors.deserialize(params['Selectors'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询过滤参数
       class Filter < TencentCloud::Common::AbstractModel
         # @param Type: 过滤方式（=, !=, in）
@@ -3201,6 +3402,28 @@ module TencentCloud
         end
       end
 
+      # 节点位置信息
+      class Position < TencentCloud::Common::AbstractModel
+        # @param X: 节点位置横坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type X: Float
+        # @param Y: 节点位置纵坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Y: Float
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
+        end
+      end
+
       # 查询
       class QueryMetricItem < TencentCloud::Common::AbstractModel
         # @param MetricName: 指标名
@@ -3222,6 +3445,83 @@ module TencentCloud
           @MetricName = params['MetricName']
           @Compares = params['Compares']
           @Compare = params['Compare']
+        end
+      end
+
+      # 资源层信息
+      class Resource < TencentCloud::Common::AbstractModel
+        # @param Type: 资源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Array
+        # @param TKEMeta: tke资源层信息
+        # @type TKEMeta: Array
+        # @param CVMMeta: cvm资源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CVMMeta: Array
+
+        attr_accessor :Type, :TKEMeta, :CVMMeta
+
+        def initialize(type=nil, tkemeta=nil, cvmmeta=nil)
+          @Type = type
+          @TKEMeta = tkemeta
+          @CVMMeta = cvmmeta
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['TKEMeta'].nil?
+            @TKEMeta = []
+            params['TKEMeta'].each do |i|
+              tkemeta_tmp = TkeMeta.new
+              tkemeta_tmp.deserialize(i)
+              @TKEMeta << tkemeta_tmp
+            end
+          end
+          unless params['CVMMeta'].nil?
+            @CVMMeta = []
+            params['CVMMeta'].each do |i|
+              cvmmeta_tmp = CVMMeta.new
+              cvmmeta_tmp.deserialize(i)
+              @CVMMeta << cvmmeta_tmp
+            end
+          end
+        end
+      end
+
+      # 包含了节点的组件数量和健康度数量
+      class SelectorView < TencentCloud::Common::AbstractModel
+        # @param Component: 组件数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Component: :class:`Tencentcloud::Apm.v20210622.models.ComponentTopologyView`
+
+        attr_accessor :Component
+
+        def initialize(component=nil)
+          @Component = component
+        end
+
+        def deserialize(params)
+          unless params['Component'].nil?
+            @Component = ComponentTopologyView.new
+            @Component.deserialize(params['Component'])
+          end
+        end
+      end
+
+      # 视图方案勾选情况
+      class Selectors < TencentCloud::Common::AbstractModel
+        # @param Component: 组件勾选情况
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Component: Array
+
+        attr_accessor :Component
+
+        def initialize(component=nil)
+          @Component = component
+        end
+
+        def deserialize(params)
+          @Component = params['Component']
         end
       end
 
@@ -3506,6 +3806,236 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # tke资源元数据
+      class TkeMeta < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param ClusterID: 集群ID
+        # @type ClusterID: String
+        # @param PodName: pod name
+        # @type PodName: String
+        # @param Namespace: 命名空间
+        # @type Namespace: String
+        # @param Deployment: 工作负载
+        # @type Deployment: String
+        # @param PodIP: pod ip
+        # @type PodIP: String
+        # @param NodeIP: node ip
+        # @type NodeIP: String
+
+        attr_accessor :Region, :ClusterID, :PodName, :Namespace, :Deployment, :PodIP, :NodeIP
+
+        def initialize(region=nil, clusterid=nil, podname=nil, namespace=nil, deployment=nil, podip=nil, nodeip=nil)
+          @Region = region
+          @ClusterID = clusterid
+          @PodName = podname
+          @Namespace = namespace
+          @Deployment = deployment
+          @PodIP = podip
+          @NodeIP = nodeip
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @ClusterID = params['ClusterID']
+          @PodName = params['PodName']
+          @Namespace = params['Namespace']
+          @Deployment = params['Deployment']
+          @PodIP = params['PodIP']
+          @NodeIP = params['NodeIP']
+        end
+      end
+
+      # 拓扑图边定义
+      class TopologyEdgeNew < TencentCloud::Common::AbstractModel
+        # @param Source: 源节点
+        # @type Source: String
+        # @param Id: 边ID
+        # @type Id: String
+        # @param Weight: 边权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Float
+        # @param Target: 目标节点
+        # @type Target: String
+        # @param Duration: 响应时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Float
+        # @param ErrRate: 错误率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrRate: Float
+        # @param Qps: 吞吐量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qps: Float
+        # @param Type: 边类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Color: 边颜色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Color: String
+        # @param SqlRequestCount: Sql调用数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlRequestCount: Float
+        # @param SqlErrorRequestCount: Sql调用错误数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SqlErrorRequestCount: Float
+        # @param SourceComp: 边上源节点类型 应用/MQ/DB
+        # @type SourceComp: String
+        # @param TargetComp: 边上目标节点类型 应用/MQ/DB
+        # @type TargetComp: String
+
+        attr_accessor :Source, :Id, :Weight, :Target, :Duration, :ErrRate, :Qps, :Type, :Color, :SqlRequestCount, :SqlErrorRequestCount, :SourceComp, :TargetComp
+
+        def initialize(source=nil, id=nil, weight=nil, target=nil, duration=nil, errrate=nil, qps=nil, type=nil, color=nil, sqlrequestcount=nil, sqlerrorrequestcount=nil, sourcecomp=nil, targetcomp=nil)
+          @Source = source
+          @Id = id
+          @Weight = weight
+          @Target = target
+          @Duration = duration
+          @ErrRate = errrate
+          @Qps = qps
+          @Type = type
+          @Color = color
+          @SqlRequestCount = sqlrequestcount
+          @SqlErrorRequestCount = sqlerrorrequestcount
+          @SourceComp = sourcecomp
+          @TargetComp = targetcomp
+        end
+
+        def deserialize(params)
+          @Source = params['Source']
+          @Id = params['Id']
+          @Weight = params['Weight']
+          @Target = params['Target']
+          @Duration = params['Duration']
+          @ErrRate = params['ErrRate']
+          @Qps = params['Qps']
+          @Type = params['Type']
+          @Color = params['Color']
+          @SqlRequestCount = params['SqlRequestCount']
+          @SqlErrorRequestCount = params['SqlErrorRequestCount']
+          @SourceComp = params['SourceComp']
+          @TargetComp = params['TargetComp']
+        end
+      end
+
+      # 拓扑图边节点
+      class TopologyNode < TencentCloud::Common::AbstractModel
+        # @param ErrRate: 错误率
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrRate: Float
+        # @param Kind: 节点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Kind: String
+        # @param Name: 节点名
+        # @type Name: String
+        # @param Weight: 节点权重
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Weight: Float
+        # @param Color: 节点颜色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Color: String
+        # @param Duration: 响应时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Float
+        # @param Qps: 吞吐量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Qps: Float
+        # @param Type: 节点类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Id: 节点ID
+        # @type Id: String
+        # @param Size: 节点大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: String
+        # @param IsModule: 节点是否为组件类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsModule: Boolean
+        # @param Position: 节点位置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: :class:`Tencentcloud::Apm.v20210622.models.Position`
+        # @param Tags: 节点标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param CanDrillDown: 节点是否可以下钻
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CanDrillDown: Boolean
+        # @param Resource: 资源层信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Apm.v20210622.models.Resource`
+        # @param NodeView: 拓扑节点视图名字
+        # @type NodeView: String
+        # @param ConsumerDuration: MQ 消费者视角的响应时间 ms
+        # @type ConsumerDuration: Float
+        # @param ConsumerErrRate: MQ 消费者视角的错误率 %
+        # @type ConsumerErrRate: Float
+        # @param ConsumerQps: MQ 消费者视角的吞吐量
+        # @type ConsumerQps: Float
+        # @param ServiceId: 应用 ID
+        # @type ServiceId: String
+
+        attr_accessor :ErrRate, :Kind, :Name, :Weight, :Color, :Duration, :Qps, :Type, :Id, :Size, :IsModule, :Position, :Tags, :CanDrillDown, :Resource, :NodeView, :ConsumerDuration, :ConsumerErrRate, :ConsumerQps, :ServiceId
+
+        def initialize(errrate=nil, kind=nil, name=nil, weight=nil, color=nil, duration=nil, qps=nil, type=nil, id=nil, size=nil, ismodule=nil, position=nil, tags=nil, candrilldown=nil, resource=nil, nodeview=nil, consumerduration=nil, consumererrrate=nil, consumerqps=nil, serviceid=nil)
+          @ErrRate = errrate
+          @Kind = kind
+          @Name = name
+          @Weight = weight
+          @Color = color
+          @Duration = duration
+          @Qps = qps
+          @Type = type
+          @Id = id
+          @Size = size
+          @IsModule = ismodule
+          @Position = position
+          @Tags = tags
+          @CanDrillDown = candrilldown
+          @Resource = resource
+          @NodeView = nodeview
+          @ConsumerDuration = consumerduration
+          @ConsumerErrRate = consumererrrate
+          @ConsumerQps = consumerqps
+          @ServiceId = serviceid
+        end
+
+        def deserialize(params)
+          @ErrRate = params['ErrRate']
+          @Kind = params['Kind']
+          @Name = params['Name']
+          @Weight = params['Weight']
+          @Color = params['Color']
+          @Duration = params['Duration']
+          @Qps = params['Qps']
+          @Type = params['Type']
+          @Id = params['Id']
+          @Size = params['Size']
+          @IsModule = params['IsModule']
+          unless params['Position'].nil?
+            @Position = Position.new
+            @Position.deserialize(params['Position'])
+          end
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          @CanDrillDown = params['CanDrillDown']
+          unless params['Resource'].nil?
+            @Resource = Resource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @NodeView = params['NodeView']
+          @ConsumerDuration = params['ConsumerDuration']
+          @ConsumerErrRate = params['ConsumerErrRate']
+          @ConsumerQps = params['ConsumerQps']
+          @ServiceId = params['ServiceId']
         end
       end
 

@@ -60,10 +60,12 @@ module TencentCloud
         # @type HitType: String
         # @param Sentences: ASR句子的起止时间
         # @type Sentences: Array
+        # @param RequestId: 切片请求ID
+        # @type RequestId: String
 
-        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType, :Sentences
+        attr_accessor :HitFlag, :Label, :Suggestion, :Score, :Text, :Url, :Duration, :Extra, :TextResults, :MoanResults, :LanguageResults, :SubLabel, :RecognitionResults, :SpeakerResults, :LabelResults, :TravelResults, :SubTag, :SubTagCode, :HitType, :Sentences, :RequestId
 
-        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil, sentences=nil)
+        def initialize(hitflag=nil, label=nil, suggestion=nil, score=nil, text=nil, url=nil, duration=nil, extra=nil, textresults=nil, moanresults=nil, languageresults=nil, sublabel=nil, recognitionresults=nil, speakerresults=nil, labelresults=nil, travelresults=nil, subtag=nil, subtagcode=nil, hittype=nil, sentences=nil, requestid=nil)
           @HitFlag = hitflag
           @Label = label
           @Suggestion = suggestion
@@ -84,6 +86,7 @@ module TencentCloud
           @SubTagCode = subtagcode
           @HitType = hittype
           @Sentences = sentences
+          @RequestId = requestid
         end
 
         def deserialize(params)
@@ -163,6 +166,7 @@ module TencentCloud
               @Sentences << sentence_tmp
             end
           end
+          @RequestId = params['RequestId']
         end
       end
 

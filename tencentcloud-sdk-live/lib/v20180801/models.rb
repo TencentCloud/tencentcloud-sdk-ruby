@@ -9471,6 +9471,61 @@ module TencentCloud
         end
       end
 
+      # DescribePullTransformPushInfoList请求参数结构体
+      class DescribePullTransformPushInfoListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: utc开始时间，格式为：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I，
+        # 例如：北京时间2019-01-08 10:00:00，对应utc时间为：2019-01-08T10:00:00+08:00。
+        # 支持最近一个月的查询。
+        # @type StartTime: String
+        # @param EndTime: utc结束时间，格式为：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I，
+        # 例如：北京时间2019-01-08 10:00:00，对应utc时间为：2019-01-08T10:00:00+08:00。
+        # 支持最近一个月的查询，时间跨度为一个月。
+        # @type EndTime: String
+        # @param TaskId: 拉流转推任务Id。
+        # @type TaskId: String
+
+        attr_accessor :StartTime, :EndTime, :TaskId
+
+        def initialize(starttime=nil, endtime=nil, taskid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribePullTransformPushInfoList返回参数结构体
+      class DescribePullTransformPushInfoListResponse < TencentCloud::Common::AbstractModel
+        # @param DataInfoList: 拉流任务流信息列表。
+        # @type DataInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataInfoList, :RequestId
+
+        def initialize(datainfolist=nil, requestid=nil)
+          @DataInfoList = datainfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataInfoList'].nil?
+            @DataInfoList = []
+            params['DataInfoList'].each do |i|
+              turnpushinfo_tmp = TurnPushInfo.new
+              turnpushinfo_tmp.deserialize(i)
+              @DataInfoList << turnpushinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePullTransformPushInfo请求参数结构体
       class DescribePullTransformPushInfoRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始时间点，接口查询支持两种时间格式：
@@ -15736,6 +15791,42 @@ module TencentCloud
           @TransitionType = params['TransitionType']
           @SourceUrl = params['SourceUrl']
           @Index = params['Index']
+        end
+      end
+
+      # 拉流转推任务流数据信息。
+      class TurnPushInfo < TencentCloud::Common::AbstractModel
+        # @param VideoFps: 视频帧率，单位fps。
+        # @type VideoFps: Integer
+        # @param AudioFps: 音频帧率，单位fps。
+        # @type AudioFps: Integer
+        # @param VideoRate: 视频码率，单位bps。
+        # @type VideoRate: Integer
+        # @param AudioRate: 音频码率，单位bps。
+        # @type AudioRate: Integer
+        # @param StreamFlag: 流标识。
+        # @type StreamFlag: String
+        # @param Time: 时间，utc格式：yyyy-mm-ddTHH:MM:SSZ，参考https://cloud.tencent.com/document/product/266/11732#I。
+        # @type Time: String
+
+        attr_accessor :VideoFps, :AudioFps, :VideoRate, :AudioRate, :StreamFlag, :Time
+
+        def initialize(videofps=nil, audiofps=nil, videorate=nil, audiorate=nil, streamflag=nil, time=nil)
+          @VideoFps = videofps
+          @AudioFps = audiofps
+          @VideoRate = videorate
+          @AudioRate = audiorate
+          @StreamFlag = streamflag
+          @Time = time
+        end
+
+        def deserialize(params)
+          @VideoFps = params['VideoFps']
+          @AudioFps = params['AudioFps']
+          @VideoRate = params['VideoRate']
+          @AudioRate = params['AudioRate']
+          @StreamFlag = params['StreamFlag']
+          @Time = params['Time']
         end
       end
 

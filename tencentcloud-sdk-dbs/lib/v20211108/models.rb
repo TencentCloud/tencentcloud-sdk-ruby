@@ -225,6 +225,119 @@ module TencentCloud
         end
       end
 
+      # 备份计划信息
+      class BackupPlanInfo < TencentCloud::Common::AbstractModel
+        # @param Region: 地域信息。
+        # @type Region: String
+        # @param BackupPlanId: 备份计划 ID。
+        # @type BackupPlanId: String
+        # @param BackupPlanName: 备份计划名称。
+        # @type BackupPlanName: String
+        # @param Status: 备份计划状态。可能的取值为：
+        # "notStarted" - 未启动;
+        # "checking" - 校验中;
+        # "checkPass" - 校验通过;
+        # "checkNotPass" - 校验未通过;
+        # "running" - 运行中;
+        # "fullBacking" - 全量备份中;
+        # "isolating" - 隔离中;
+        # "isolated" - 已隔离;
+        # "offlining" - 下线中;
+        # "offlined" - 已下线;
+        # "paused" - 已暂停。
+        # @type Status: String
+        # @param DatabaseType: 数据库类型。
+        # @type DatabaseType: String
+        # @param AccessType: 访问类型。可能的取值为：
+        # "extranet" - 外网;
+        # "cvm" - cvm 自建实例;
+        # "dcg" - 专线接入;
+        # "vpncloud" - 云vpn接入;
+        # "cdb" - 腾讯云数据库实例;
+        # "ccn" - 云联网。
+        # @type AccessType: String
+        # @param SourceInfo: 源实例信息。
+        # @type SourceInfo: Array
+        # @param CreateTime: 创建时间。
+        # @type CreateTime: String
+        # @param ExpireTime: 到期时间。
+        # @type ExpireTime: String
+        # @param OfflineTime: 下线时间。
+        # @type OfflineTime: String
+        # @param InstanceClass: 实例规格类型。可能的取值为：["micro", "small", "medium", "large", "xlarge"]。
+        # @type InstanceClass: String
+        # @param BackupMethod: 备份方式。可能的取值为：
+        # "logical" - 逻辑备份;
+        # "physical" - 物理备份。
+        # @type BackupMethod: String
+        # @param Tags: 标签信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param AutoRenewFlag: 自动续费标记。可能的取值为：
+        # 0 - 未开启自动续费;
+        # 1 - 已开启自动续费;
+        # 2 - 已关闭自动续费。
+        # @type AutoRenewFlag: Integer
+        # @param EnableIncrement: 是否开启增量备份标记。
+        # @type EnableIncrement: Boolean
+        # @param PayType: 付费类型。可能的取值为：
+        # "prePay" - 预付费类型;
+        # "postPay" - 后付费类型。
+        # @type PayType: String
+        # @param SetSourceInfo: 源端信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SetSourceInfo: Array
+
+        attr_accessor :Region, :BackupPlanId, :BackupPlanName, :Status, :DatabaseType, :AccessType, :SourceInfo, :CreateTime, :ExpireTime, :OfflineTime, :InstanceClass, :BackupMethod, :Tags, :AutoRenewFlag, :EnableIncrement, :PayType, :SetSourceInfo
+
+        def initialize(region=nil, backupplanid=nil, backupplanname=nil, status=nil, databasetype=nil, accesstype=nil, sourceinfo=nil, createtime=nil, expiretime=nil, offlinetime=nil, instanceclass=nil, backupmethod=nil, tags=nil, autorenewflag=nil, enableincrement=nil, paytype=nil, setsourceinfo=nil)
+          @Region = region
+          @BackupPlanId = backupplanid
+          @BackupPlanName = backupplanname
+          @Status = status
+          @DatabaseType = databasetype
+          @AccessType = accesstype
+          @SourceInfo = sourceinfo
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @OfflineTime = offlinetime
+          @InstanceClass = instanceclass
+          @BackupMethod = backupmethod
+          @Tags = tags
+          @AutoRenewFlag = autorenewflag
+          @EnableIncrement = enableincrement
+          @PayType = paytype
+          @SetSourceInfo = setsourceinfo
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @BackupPlanId = params['BackupPlanId']
+          @BackupPlanName = params['BackupPlanName']
+          @Status = params['Status']
+          @DatabaseType = params['DatabaseType']
+          @AccessType = params['AccessType']
+          @SourceInfo = params['SourceInfo']
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @OfflineTime = params['OfflineTime']
+          @InstanceClass = params['InstanceClass']
+          @BackupMethod = params['BackupMethod']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @EnableIncrement = params['EnableIncrement']
+          @PayType = params['PayType']
+          @SetSourceInfo = params['SetSourceInfo']
+        end
+      end
+
       # 备份策略
       class BackupStrategy < TencentCloud::Common::AbstractModel
         # @param BackupStartTime: 全量备份开始时间。周期性的全量备份将在当天该时间开始。
@@ -308,6 +421,8 @@ module TencentCloud
         # @type BackupPlanId: String
         # @param BackupPlanName: 备份计划名称。支持数字、英文大小写字母、中文以及特殊字符_-./()（）[]+=：:@,且长度不能超过60。
         # @type BackupPlanName: String
+        # @param UpperParallel: 全量备份并发数上限。
+        # @type UpperParallel: Integer
         # @param SourceEndPoint: 备份源实例信息。
         # @type SourceEndPoint: :class:`Tencentcloud::Dbs.v20211108.models.BackupEndpoint`
         # @param BackupObject: 备份对象信息。
@@ -317,11 +432,12 @@ module TencentCloud
         # @param PlainText: 加密信息。当需要使用SSE-KMS需要传入该值，你可以通过 KMS 的 GenerateDataKey 接口生成。
         # @type PlainText: String
 
-        attr_accessor :BackupPlanId, :BackupPlanName, :SourceEndPoint, :BackupObject, :BackupStrategy, :PlainText
+        attr_accessor :BackupPlanId, :BackupPlanName, :UpperParallel, :SourceEndPoint, :BackupObject, :BackupStrategy, :PlainText
 
-        def initialize(backupplanid=nil, backupplanname=nil, sourceendpoint=nil, backupobject=nil, backupstrategy=nil, plaintext=nil)
+        def initialize(backupplanid=nil, backupplanname=nil, upperparallel=nil, sourceendpoint=nil, backupobject=nil, backupstrategy=nil, plaintext=nil)
           @BackupPlanId = backupplanid
           @BackupPlanName = backupplanname
+          @UpperParallel = upperparallel
           @SourceEndPoint = sourceendpoint
           @BackupObject = backupobject
           @BackupStrategy = backupstrategy
@@ -331,6 +447,7 @@ module TencentCloud
         def deserialize(params)
           @BackupPlanId = params['BackupPlanId']
           @BackupPlanName = params['BackupPlanName']
+          @UpperParallel = params['UpperParallel']
           unless params['SourceEndPoint'].nil?
             @SourceEndPoint = BackupEndpoint.new
             @SourceEndPoint.deserialize(params['SourceEndPoint'])
@@ -359,6 +476,125 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 连通性检测结果
+      class ConnectTestResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务 ID</p>
+        # @type TaskId: Integer
+        # @param Status: <p>任务状态</p>
+        # @type Status: String
+        # @param IsPass: <p>是否通过。0 表示未通过，1 表示通过。</p>
+        # @type IsPass: Integer
+        # @param Addr: <p>源端地址</p>
+        # @type Addr: String
+        # @param SNatIp: <p>源地址转换IP</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SNatIp: String
+        # @param TestItems: <p>检测结果集</p>
+        # @type TestItems: Array
+
+        attr_accessor :TaskId, :Status, :IsPass, :Addr, :SNatIp, :TestItems
+
+        def initialize(taskid=nil, status=nil, ispass=nil, addr=nil, snatip=nil, testitems=nil)
+          @TaskId = taskid
+          @Status = status
+          @IsPass = ispass
+          @Addr = addr
+          @SNatIp = snatip
+          @TestItems = testitems
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @IsPass = params['IsPass']
+          @Addr = params['Addr']
+          @SNatIp = params['SNatIp']
+          unless params['TestItems'].nil?
+            @TestItems = []
+            params['TestItems'].each do |i|
+              testitem_tmp = TestItem.new
+              testitem_tmp.deserialize(i)
+              @TestItems << testitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBackupPlan请求参数结构体
+      class CreateBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param DatabaseType: 源端数据库类型。当前支持值为: ["mysql","cynosdbmysql","percona","mariadb","tdsqlmysql"]。
+        # @type DatabaseType: String
+        # @param BackupMethod: 备份方式。当前仅支持"logical"，即逻辑备份。
+        # @type BackupMethod: String
+        # @param InstanceClass: 规格。当前支持值为: ["micro","small","medium","large","xlarge"]。默认为"small"。
+        # @type InstanceClass: String
+        # @param Period: 购买时长，单位为月，默认值为1。
+        # @type Period: Integer
+        # @param PayType: 计费模式。当前仅支持"prepay"，即包年包月。
+        # @type PayType: String
+        # @param Count: 购买数量。取值范围为[1, 10]，默认值为1。
+        # @type Count: Integer
+        # @param AutoRenew: 自动续费标识。1 - 开启自动续费；0 - 不开启自动续费。
+        # @type AutoRenew: Integer
+        # @param Tags: 标签值。
+        # @type Tags: Array
+
+        attr_accessor :DatabaseType, :BackupMethod, :InstanceClass, :Period, :PayType, :Count, :AutoRenew, :Tags
+
+        def initialize(databasetype=nil, backupmethod=nil, instanceclass=nil, period=nil, paytype=nil, count=nil, autorenew=nil, tags=nil)
+          @DatabaseType = databasetype
+          @BackupMethod = backupmethod
+          @InstanceClass = instanceclass
+          @Period = period
+          @PayType = paytype
+          @Count = count
+          @AutoRenew = autorenew
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DatabaseType = params['DatabaseType']
+          @BackupMethod = params['BackupMethod']
+          @InstanceClass = params['InstanceClass']
+          @Period = params['Period']
+          @PayType = params['PayType']
+          @Count = params['Count']
+          @AutoRenew = params['AutoRenew']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateBackupPlan返回参数结构体
+      class CreateBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单参数。
+        # @type OrderId: String
+        # @param BackupPlanIds: 资源ID。
+        # @type BackupPlanIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :BackupPlanIds, :RequestId
+
+        def initialize(orderid=nil, backupplanids=nil, requestid=nil)
+          @OrderId = orderid
+          @BackupPlanIds = backupplanids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @BackupPlanIds = params['BackupPlanIds']
           @RequestId = params['RequestId']
         end
       end
@@ -446,6 +682,135 @@ module TencentCloud
           @Progress = params['Progress']
           @CheckFlag = params['CheckFlag']
           @ErrMessage = params['ErrMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupPlans请求参数结构体
+      class DescribeBackupPlansRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 过滤条件，备份计划 ID。
+        # @type BackupPlanId: String
+        # @param Status: 过滤条件，备份计划状态。
+        # @type Status: Array
+        # @param DatabaseType: 过滤条件，数据库类型。
+        # @type DatabaseType: Array
+        # @param AccessType: 过滤条件，接入访问类型。
+        # @type AccessType: Array
+        # @param BackupPlanName: 过滤条件，备份计划名称。
+        # @type BackupPlanName: String
+        # @param TagFilters: 过滤条件，标签键值。
+        # @type TagFilters: Array
+        # @param Limit: 分页参数。取值范围为(0, 100]，默认值为20。
+        # @type Limit: Integer
+        # @param Offset: 分页参数。默认值为0。
+        # @type Offset: Integer
+
+        attr_accessor :BackupPlanId, :Status, :DatabaseType, :AccessType, :BackupPlanName, :TagFilters, :Limit, :Offset
+
+        def initialize(backupplanid=nil, status=nil, databasetype=nil, accesstype=nil, backupplanname=nil, tagfilters=nil, limit=nil, offset=nil)
+          @BackupPlanId = backupplanid
+          @Status = status
+          @DatabaseType = databasetype
+          @AccessType = accesstype
+          @BackupPlanName = backupplanname
+          @TagFilters = tagfilters
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+          @Status = params['Status']
+          @DatabaseType = params['DatabaseType']
+          @AccessType = params['AccessType']
+          @BackupPlanName = params['BackupPlanName']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagfilter_tmp = TagFilter.new
+              tagfilter_tmp.deserialize(i)
+              @TagFilters << tagfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeBackupPlans返回参数结构体
+      class DescribeBackupPlansResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 备份计划数量。
+        # @type TotalCount: Integer
+        # @param Items: 备份计划详情。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              backupplaninfo_tmp = BackupPlanInfo.new
+              backupplaninfo_tmp.deserialize(i)
+              @Items << backupplaninfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeConnectTestResult请求参数结构体
+      class DescribeConnectTestResultRequest < TencentCloud::Common::AbstractModel
+        # @param TaskIds: <p>连通性检测任务 ID。</p>
+        # @type TaskIds: Array
+
+        attr_accessor :TaskIds
+
+        def initialize(taskids=nil)
+          @TaskIds = taskids
+        end
+
+        def deserialize(params)
+          @TaskIds = params['TaskIds']
+        end
+      end
+
+      # DescribeConnectTestResult返回参数结构体
+      class DescribeConnectTestResultResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>任务总数。</p>
+        # @type TotalCount: Integer
+        # @param Items: <p>检测结果详情。</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              connecttestresult_tmp = ConnectTestResult.new
+              connecttestresult_tmp.deserialize(i)
+              @Items << connecttestresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -538,6 +903,70 @@ module TencentCloud
           @StorageType = params['StorageType']
           @Encryption = params['Encryption']
           @BackupRetentionPeriod = params['BackupRetentionPeriod']
+        end
+      end
+
+      # 标签信息
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键。
+        # @type TagKey: String
+        # @param TagValue: 标签值。
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签过滤条件
+      class TagFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键。
+        # @type TagKey: String
+        # @param TagValue: 标签值。
+        # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 检测步骤详情
+      class TestItem < TencentCloud::Common::AbstractModel
+        # @param TestName: <p>检测步骤名称</p>
+        # @type TestName: String
+        # @param Code: <p>错误码</p>
+        # @type Code: Integer
+        # @param Message: <p>错误信息</p>
+        # @type Message: String
+
+        attr_accessor :TestName, :Code, :Message
+
+        def initialize(testname=nil, code=nil, message=nil)
+          @TestName = testname
+          @Code = code
+          @Message = message
+        end
+
+        def deserialize(params)
+          @TestName = params['TestName']
+          @Code = params['Code']
+          @Message = params['Message']
         end
       end
 

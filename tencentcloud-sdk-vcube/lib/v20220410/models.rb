@@ -669,12 +669,17 @@ module TencentCloud
 
       # DeleteApplicationAndVideoLicense请求参数结构体
       class DeleteApplicationAndVideoLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param LicenseId: license唯一标识
+        # @type LicenseId: Integer
 
+        attr_accessor :LicenseId
 
-        def initialize()
+        def initialize(licenseid=nil)
+          @LicenseId = licenseid
         end
 
         def deserialize(params)
+          @LicenseId = params['LicenseId']
         end
       end
 

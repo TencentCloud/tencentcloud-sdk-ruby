@@ -3205,10 +3205,16 @@ module TencentCloud
         # @type ModifyTime: String
         # @param AddTime: 创建时间
         # @type AddTime: String
+        # @param MemberAppId: 跨账号时，表示成员账号的appid
+        # @type MemberAppId: Integer
+        # @param MemberUin: 跨账号时，表示成员账号的uin
+        # @type MemberUin: String
+        # @param MemberNickName: 跨账号时，表示成员账号的昵称
+        # @type MemberNickName: String
 
-        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime
+        attr_accessor :ObjectId, :InstanceId, :InstanceName, :PreciseDomains, :Status, :ClsStatus, :VirtualDomain, :ObjectName, :PublicIp, :PrivateIp, :VpcName, :Vpc, :InstanceLevel, :PostCLSStatus, :PostCKafkaStatus, :Type, :Region, :Proxy, :IpHeaders, :BotStatus, :ApiStatus, :ObjectFlowMode, :NumericalVpcId, :ModifyTime, :AddTime, :MemberAppId, :MemberUin, :MemberNickName
 
-        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil)
+        def initialize(objectid=nil, instanceid=nil, instancename=nil, precisedomains=nil, status=nil, clsstatus=nil, virtualdomain=nil, objectname=nil, publicip=nil, privateip=nil, vpcname=nil, vpc=nil, instancelevel=nil, postclsstatus=nil, postckafkastatus=nil, type=nil, region=nil, proxy=nil, ipheaders=nil, botstatus=nil, apistatus=nil, objectflowmode=nil, numericalvpcid=nil, modifytime=nil, addtime=nil, memberappid=nil, memberuin=nil, membernickname=nil)
           @ObjectId = objectid
           @InstanceId = instanceid
           @InstanceName = instancename
@@ -3234,6 +3240,9 @@ module TencentCloud
           @NumericalVpcId = numericalvpcid
           @ModifyTime = modifytime
           @AddTime = addtime
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
+          @MemberNickName = membernickname
         end
 
         def deserialize(params)
@@ -3262,6 +3271,9 @@ module TencentCloud
           @NumericalVpcId = params['NumericalVpcId']
           @ModifyTime = params['ModifyTime']
           @AddTime = params['AddTime']
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
+          @MemberNickName = params['MemberNickName']
         end
       end
 
@@ -8344,13 +8356,19 @@ module TencentCloud
         # @type Order: String
         # @param By: 根据哪个字段排序
         # @type By: String
+        # @param MemberAppIdList: 集团成员列表
+        # @type MemberAppIdList: Array
+        # @param IsCrossAccount: 1代表跨账号情况，0代表单账号情况
+        # @type IsCrossAccount: Integer
 
-        attr_accessor :Filters, :Order, :By
+        attr_accessor :Filters, :Order, :By, :MemberAppIdList, :IsCrossAccount
 
-        def initialize(filters=nil, order=nil, by=nil)
+        def initialize(filters=nil, order=nil, by=nil, memberappidlist=nil, iscrossaccount=nil)
           @Filters = filters
           @Order = order
           @By = by
+          @MemberAppIdList = memberappidlist
+          @IsCrossAccount = iscrossaccount
         end
 
         def deserialize(params)
@@ -8364,6 +8382,8 @@ module TencentCloud
           end
           @Order = params['Order']
           @By = params['By']
+          @MemberAppIdList = params['MemberAppIdList']
+          @IsCrossAccount = params['IsCrossAccount']
         end
       end
 
@@ -13346,10 +13366,14 @@ module TencentCloud
         # @type LoadBalancerType: String
         # @param LoadBalancerDomain: 负载均衡的域名
         # @type LoadBalancerDomain: String
+        # @param MemberAppId: 监听器所属成员id
+        # @type MemberAppId: Integer
+        # @param MemberUin: 监听器所属成员的uin
+        # @type MemberUin: String
 
-        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vport, :Region, :Protocol, :Zone, :Vip, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
+        attr_accessor :LoadBalancerId, :LoadBalancerName, :ListenerId, :ListenerName, :Vport, :Region, :Protocol, :Zone, :Vip, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain, :MemberAppId, :MemberUin
 
-        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vport=nil, region=nil, protocol=nil, zone=nil, vip=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
+        def initialize(loadbalancerid=nil, loadbalancername=nil, listenerid=nil, listenername=nil, vport=nil, region=nil, protocol=nil, zone=nil, vip=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil)
           @LoadBalancerId = loadbalancerid
           @LoadBalancerName = loadbalancername
           @ListenerId = listenerid
@@ -13362,6 +13386,8 @@ module TencentCloud
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
           @LoadBalancerDomain = loadbalancerdomain
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
         end
 
         def deserialize(params)
@@ -13377,6 +13403,8 @@ module TencentCloud
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
           @LoadBalancerDomain = params['LoadBalancerDomain']
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
         end
       end
 
@@ -13435,10 +13463,18 @@ module TencentCloud
         # @type LoadBalancerType: String
         # @param LoadBalancerDomain: 负载均衡器的域名
         # @type LoadBalancerDomain: String
+        # @param MemberAppId: 监听器所属appid
+        # @type MemberAppId: Integer
+        # @param MemberUin: 监听器自身所属uin
+        # @type MemberUin: String
+        # @param Appid: 监听器被接入的waf账号
+        # @type Appid: Integer
+        # @param MemberNickName: 集团账号昵称
+        # @type MemberNickName: String
 
-        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain
+        attr_accessor :ListenerId, :ListenerName, :LoadBalancerId, :LoadBalancerName, :Protocol, :Region, :Vip, :Vport, :Zone, :NumericalVpcId, :LoadBalancerType, :LoadBalancerDomain, :MemberAppId, :MemberUin, :Appid, :MemberNickName
 
-        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil)
+        def initialize(listenerid=nil, listenername=nil, loadbalancerid=nil, loadbalancername=nil, protocol=nil, region=nil, vip=nil, vport=nil, zone=nil, numericalvpcid=nil, loadbalancertype=nil, loadbalancerdomain=nil, memberappid=nil, memberuin=nil, appid=nil, membernickname=nil)
           @ListenerId = listenerid
           @ListenerName = listenername
           @LoadBalancerId = loadbalancerid
@@ -13451,6 +13487,10 @@ module TencentCloud
           @NumericalVpcId = numericalvpcid
           @LoadBalancerType = loadbalancertype
           @LoadBalancerDomain = loadbalancerdomain
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
+          @Appid = appid
+          @MemberNickName = membernickname
         end
 
         def deserialize(params)
@@ -13466,6 +13506,10 @@ module TencentCloud
           @NumericalVpcId = params['NumericalVpcId']
           @LoadBalancerType = params['LoadBalancerType']
           @LoadBalancerDomain = params['LoadBalancerDomain']
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
+          @Appid = params['Appid']
+          @MemberNickName = params['MemberNickName']
         end
       end
 
@@ -15840,16 +15884,22 @@ module TencentCloud
         # @type Proxy: Integer
         # @param IpHeaders: IsCdn=3时，需要填此参数，表示自定义header(OpType为Status或Proxy时，该值有效)
         # @type IpHeaders: Array
+        # @param MemberAppId: 对象所属集团成员appid
+        # @type MemberAppId: Integer
+        # @param MemberUin: 对象所属集团成员uin
+        # @type MemberUin: String
 
-        attr_accessor :ObjectId, :OpType, :Status, :InstanceId, :Proxy, :IpHeaders
+        attr_accessor :ObjectId, :OpType, :Status, :InstanceId, :Proxy, :IpHeaders, :MemberAppId, :MemberUin
 
-        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil, proxy=nil, ipheaders=nil)
+        def initialize(objectid=nil, optype=nil, status=nil, instanceid=nil, proxy=nil, ipheaders=nil, memberappid=nil, memberuin=nil)
           @ObjectId = objectid
           @OpType = optype
           @Status = status
           @InstanceId = instanceid
           @Proxy = proxy
           @IpHeaders = ipheaders
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
         end
 
         def deserialize(params)
@@ -15859,6 +15909,8 @@ module TencentCloud
           @InstanceId = params['InstanceId']
           @Proxy = params['Proxy']
           @IpHeaders = params['IpHeaders']
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
         end
       end
 

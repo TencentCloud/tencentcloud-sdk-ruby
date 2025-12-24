@@ -13512,17 +13512,21 @@ module TencentCloud
         # @type DatabaseName: String
         # @param TableName: 表名
         # @type TableName: String
+        # @param DatasourceConnectionName: catalog名称
+        # @type DatasourceConnectionName: String
 
-        attr_accessor :DatabaseName, :TableName
+        attr_accessor :DatabaseName, :TableName, :DatasourceConnectionName
 
-        def initialize(databasename=nil, tablename=nil)
+        def initialize(databasename=nil, tablename=nil, datasourceconnectionname=nil)
           @DatabaseName = databasename
           @TableName = tablename
+          @DatasourceConnectionName = datasourceconnectionname
         end
 
         def deserialize(params)
           @DatabaseName = params['DatabaseName']
           @TableName = params['TableName']
+          @DatasourceConnectionName = params['DatasourceConnectionName']
         end
       end
 

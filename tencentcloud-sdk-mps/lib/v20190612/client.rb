@@ -3488,6 +3488,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 同步接口，返回语音识别结果
+
+        # @param request: Request instance for RecognizeAudio.
+        # @type request: :class:`Tencentcloud::mps::V20190612::RecognizeAudioRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::RecognizeAudioResponse`
+        def RecognizeAudio(request)
+          body = send_request('RecognizeAudio', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RecognizeAudioResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 智能媒体识别，包含表情和动作识别。仅用于智学，其他调用无效。
 
         # @param request: Request instance for RecognizeMediaForZhiXue.
