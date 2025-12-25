@@ -3692,13 +3692,15 @@ module TencentCloud
         # @type MasterInstance: String
         # @param SlaveInstances: 对应备集群
         # @type SlaveInstances: Array
+        # @param SyncerIp: ccr服务部署节点ip
+        # @type SyncerIp: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CoreSummary, :HA, :HaType, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :CosBucketName, :CanAttachCbs, :BuildVersion, :Components, :IfExistCatalog, :Characteristic, :RestartTimeout, :GraceShutdownWaitSeconds, :CaseSensitive, :IsWhiteSGs, :BindSGs, :EnableMultiZones, :UserNetworkInfos, :EnableCoolDown, :CoolDownBucket, :Details, :EnableDlc, :AccountType, :MonitorMode, :CNSummary, :ComputeGroupCount, :CosStorageSize, :IsMasterNonVM, :CosPkgCapacity, :UseManagedBucket, :InstanceType, :MasterInstance, :SlaveInstances, :SyncerIp
         extend Gem::Deprecate
         deprecate :IfExistCatalog, :none, 2025, 12
         deprecate :IfExistCatalog=, :none, 2025, 12
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, coresummary=nil, ha=nil, hatype=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, cosbucketname=nil, canattachcbs=nil, buildversion=nil, components=nil, ifexistcatalog=nil, characteristic=nil, restarttimeout=nil, graceshutdownwaitseconds=nil, casesensitive=nil, iswhitesgs=nil, bindsgs=nil, enablemultizones=nil, usernetworkinfos=nil, enablecooldown=nil, cooldownbucket=nil, details=nil, enabledlc=nil, accounttype=nil, monitormode=nil, cnsummary=nil, computegroupcount=nil, cosstoragesize=nil, ismasternonvm=nil, cospkgcapacity=nil, usemanagedbucket=nil, instancetype=nil, masterinstance=nil, slaveinstances=nil, syncerip=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -3759,6 +3761,7 @@ module TencentCloud
           @InstanceType = instancetype
           @MasterInstance = masterinstance
           @SlaveInstances = slaveinstances
+          @SyncerIp = syncerip
         end
 
         def deserialize(params)
@@ -3841,6 +3844,7 @@ module TencentCloud
           @InstanceType = params['InstanceType']
           @MasterInstance = params['MasterInstance']
           @SlaveInstances = params['SlaveInstances']
+          @SyncerIp = params['SyncerIp']
         end
       end
 

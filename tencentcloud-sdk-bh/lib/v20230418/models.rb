@@ -1373,7 +1373,7 @@ module TencentCloud
 
       # CreateAssetSyncJob请求参数结构体
       class CreateAssetSyncJobRequest < TencentCloud::Common::AbstractModel
-        # @param Category: 同步资产类别，1 - 主机资产, 2 - 数据库资产
+        # @param Category: 同步资产类别，1 - 主机资产, 2 - 数据库资产，3-容器资产
         # @type Category: Integer
 
         attr_accessor :Category
@@ -4723,7 +4723,7 @@ module TencentCloud
 
       # 主机参数，导入外部主机时使用
       class ExternalDevice < TencentCloud::Common::AbstractModel
-        # @param OsName: 操作系统名称，只能是Linux、Windows或MySQL
+        # @param OsName: 操作系统名称，只能是主机（Linux、Windows）、数据库（MySQL、SQL Server、MariaDB、PostgreSQL、MongoDBReplicaSet、MongoDBSharded、Redis）、容器（TKE、EKS）
         # @type OsName: String
         # @param Ip: IP地址
         # @type Ip: String

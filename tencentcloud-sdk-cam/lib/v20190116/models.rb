@@ -843,19 +843,30 @@ module TencentCloud
         # @type PolicyDocument: String
         # @param Description: 策略描述
         # @type Description: String
+        # @param Tags: 策略关联的标签列表
+        # @type Tags: Array
 
-        attr_accessor :PolicyName, :PolicyDocument, :Description
+        attr_accessor :PolicyName, :PolicyDocument, :Description, :Tags
 
-        def initialize(policyname=nil, policydocument=nil, description=nil)
+        def initialize(policyname=nil, policydocument=nil, description=nil, tags=nil)
           @PolicyName = policyname
           @PolicyDocument = policydocument
           @Description = description
+          @Tags = tags
         end
 
         def deserialize(params)
           @PolicyName = params['PolicyName']
           @PolicyDocument = params['PolicyDocument']
           @Description = params['Description']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2417,12 +2428,14 @@ module TencentCloud
         # @type PresetAlias: String
         # @param IsServiceLinkedRolePolicy: 是否是服务相关策略，0代表不是服务相关策略，1代表是服务相关策略。
         # @type IsServiceLinkedRolePolicy: Integer
+        # @param Tags: 策略关联的标签列表
+        # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PolicyName, :Description, :Type, :AddTime, :UpdateTime, :PolicyDocument, :PresetAlias, :IsServiceLinkedRolePolicy, :RequestId
+        attr_accessor :PolicyName, :Description, :Type, :AddTime, :UpdateTime, :PolicyDocument, :PresetAlias, :IsServiceLinkedRolePolicy, :Tags, :RequestId
 
-        def initialize(policyname=nil, description=nil, type=nil, addtime=nil, updatetime=nil, policydocument=nil, presetalias=nil, isservicelinkedrolepolicy=nil, requestid=nil)
+        def initialize(policyname=nil, description=nil, type=nil, addtime=nil, updatetime=nil, policydocument=nil, presetalias=nil, isservicelinkedrolepolicy=nil, tags=nil, requestid=nil)
           @PolicyName = policyname
           @Description = description
           @Type = type
@@ -2431,6 +2444,7 @@ module TencentCloud
           @PolicyDocument = policydocument
           @PresetAlias = presetalias
           @IsServiceLinkedRolePolicy = isservicelinkedrolepolicy
+          @Tags = tags
           @RequestId = requestid
         end
 
@@ -2443,6 +2457,14 @@ module TencentCloud
           @PolicyDocument = params['PolicyDocument']
           @PresetAlias = params['PresetAlias']
           @IsServiceLinkedRolePolicy = params['IsServiceLinkedRolePolicy']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4668,7 +4690,6 @@ module TencentCloud
         # @param PolicyName: 策略名称。
         # @type PolicyName: String
         # @param AddTime: 策略创建时间。
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AddTime: String
         # @param Type: 策略类型。1 表示自定义策略，2 表示预设策略。
         # @type Type: Integer
@@ -4703,10 +4724,12 @@ module TencentCloud
         # @param UpdateTime: 最后编辑时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
+        # @param Tags: 标签列表
+        # @type Tags: Array
 
-        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy, :AttachEntityCount, :AttachEntityBoundaryCount, :UpdateTime
+        attr_accessor :PolicyId, :PolicyName, :AddTime, :Type, :Description, :CreateMode, :Attachments, :ServiceType, :IsAttached, :Deactived, :DeactivedDetail, :IsServiceLinkedPolicy, :AttachEntityCount, :AttachEntityBoundaryCount, :UpdateTime, :Tags
 
-        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil, attachentitycount=nil, attachentityboundarycount=nil, updatetime=nil)
+        def initialize(policyid=nil, policyname=nil, addtime=nil, type=nil, description=nil, createmode=nil, attachments=nil, servicetype=nil, isattached=nil, deactived=nil, deactiveddetail=nil, isservicelinkedpolicy=nil, attachentitycount=nil, attachentityboundarycount=nil, updatetime=nil, tags=nil)
           @PolicyId = policyid
           @PolicyName = policyname
           @AddTime = addtime
@@ -4722,6 +4745,7 @@ module TencentCloud
           @AttachEntityCount = attachentitycount
           @AttachEntityBoundaryCount = attachentityboundarycount
           @UpdateTime = updatetime
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -4740,6 +4764,14 @@ module TencentCloud
           @AttachEntityCount = params['AttachEntityCount']
           @AttachEntityBoundaryCount = params['AttachEntityBoundaryCount']
           @UpdateTime = params['UpdateTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -4838,6 +4870,26 @@ module TencentCloud
           @UserType = params['UserType']
           @LastLoginIp = params['LastLoginIp']
           @LastLoginTime = params['LastLoginTime']
+        end
+      end
+
+      # 标签
+      class Tag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 

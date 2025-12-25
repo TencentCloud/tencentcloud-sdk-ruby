@@ -3991,6 +3991,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 设置优化策略的接口
+
+        # @param request: Request instance for SetOptimizerPolicy.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::SetOptimizerPolicyRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::SetOptimizerPolicyResponse`
+        def SetOptimizerPolicy(request)
+          body = send_request('SetOptimizerPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetOptimizerPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于控制挂起或启动数据引擎
 
         # @param request: Request instance for SuspendResumeDataEngine.

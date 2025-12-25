@@ -1174,15 +1174,27 @@ module TencentCloud
         # @param Switch: 流量防盗刷配置开关，取值有： on：开启 off：关闭
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Switch: String
+        # @param FilterRules: 流量防盗刷配置规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterRules: Array
 
-        attr_accessor :Switch
+        attr_accessor :Switch, :FilterRules
 
-        def initialize(switch=nil)
+        def initialize(switch=nil, filterrules=nil)
           @Switch = switch
+          @FilterRules = filterrules
         end
 
         def deserialize(params)
           @Switch = params['Switch']
+          unless params['FilterRules'].nil?
+            @FilterRules = []
+            params['FilterRules'].each do |i|
+              filterrules_tmp = FilterRules.new
+              filterrules_tmp.deserialize(i)
+              @FilterRules << filterrules_tmp
+            end
+          end
         end
       end
 
@@ -5546,6 +5558,33 @@ module TencentCloud
               @Topics << topicinfo_tmp
             end
           end
+        end
+      end
+
+      # 防盗刷配置规则
+      class FilterRules < TencentCloud::Common::AbstractModel
+        # @param FilterType: 封禁类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FilterType: String
+        # @param RuleType: 封禁规则类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleType: String
+        # @param RulePaths: 封禁规则路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePaths: Array
+
+        attr_accessor :FilterType, :RuleType, :RulePaths
+
+        def initialize(filtertype=nil, ruletype=nil, rulepaths=nil)
+          @FilterType = filtertype
+          @RuleType = ruletype
+          @RulePaths = rulepaths
+        end
+
+        def deserialize(params)
+          @FilterType = params['FilterType']
+          @RuleType = params['RuleType']
+          @RulePaths = params['RulePaths']
         end
       end
 

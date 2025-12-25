@@ -243,11 +243,11 @@ module TencentCloud
 
       # AttachLoadBalancers请求参数结构体
       class AttachLoadBalancersRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 或调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。
+        # @param AutoScalingGroupId: <p>伸缩组ID。可通过登录 <a href="https://console.cloud.tencent.com/autoscaling/group">控制台</a> 或调用接口 <a href="https://cloud.tencent.com/document/api/377/20438">DescribeAutoScalingGroups</a> ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</p>
         # @type AutoScalingGroupId: String
-        # @param LoadBalancerIds: 传统型负载均衡器ID列表，每个伸缩组绑定传统型负载均衡器数量上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个。可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取。
+        # @param LoadBalancerIds: <p>传统型负载均衡器ID列表，每个伸缩组绑定传统型负载均衡器数量上限为20，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个。可以通过 <a href="https://cloud.tencent.com/document/product/214/30685">DescribeLoadBalancers</a> 接口获取。</p>
         # @type LoadBalancerIds: Array
-        # @param ForwardLoadBalancers: 负载均衡器列表，每个伸缩组绑定应用型负载均衡器数量上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个。可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取。
+        # @param ForwardLoadBalancers: <p>负载均衡器列表，每个伸缩组绑定应用型负载均衡器数量上限为100，LoadBalancerIds 和 ForwardLoadBalancers 二者同时最多只能指定一个。可以通过 <a href="https://cloud.tencent.com/document/product/214/30685">DescribeLoadBalancers</a> 接口获取。</p>
         # @type ForwardLoadBalancers: Array
 
         attr_accessor :AutoScalingGroupId, :LoadBalancerIds, :ForwardLoadBalancers
@@ -274,7 +274,7 @@ module TencentCloud
 
       # AttachLoadBalancers返回参数结构体
       class AttachLoadBalancersResponse < TencentCloud::Common::AbstractModel
-        # @param ActivityId: 伸缩活动ID
+        # @param ActivityId: <p>伸缩活动ID</p>
         # @type ActivityId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -994,82 +994,61 @@ module TencentCloud
 
       # CreateLaunchConfiguration请求参数结构体
       class CreateLaunchConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationName: 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
+        # @param LaunchConfigurationName: <p>启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。</p>
         # @type LaunchConfigurationName: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像Id与镜像族名称，二者必填一个且只能填写一个。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
+        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-8toqc6s3</code>。镜像Id与镜像族名称，二者必填一个且只能填写一个。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li></p>
         # @type ImageId: String
-        # @param ProjectId: 启动配置所属项目ID。默认值为0，表示使用默认项目。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。
-        # 注意：伸缩组内实例所属项目ID取伸缩组项目ID，与这里取值无关。
+        # @param ProjectId: <p>启动配置所属项目ID。默认值为0，表示使用默认项目。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/651/78725">DescribeProject</a> 的返回值中的 projectId 字段来获取。注意：伸缩组内实例所属项目ID取伸缩组项目ID，与这里取值无关。</p>
         # @type ProjectId: Integer
-        # @param InstanceType: 实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口 [DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749) 来获得最新的规格表或参见[实例类型](https://cloud.tencent.com/document/product/213/11518)描述。
-        # `InstanceType`和`InstanceTypes`参数互斥，二者必填一个且只能填写一个。
+        # @param InstanceType: <p>实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a> 来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例类型</a>描述。<code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。</p>
         # @type InstanceType: String
-        # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
+        # @param SystemDisk: <p>实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。</p>
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
-        # @param DataDisks: 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘，最多支持指定11块数据盘。
+        # @param DataDisks: <p>实例数据盘配置信息。若不指定该参数，则默认不购买数据盘，最多支持指定11块数据盘。</p>
         # @type DataDisks: Array
-        # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
+        # @param InternetAccessible: <p>公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。</p>
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
-        # @param LoginSettings: 实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。
+        # @param LoginSettings: <p>实例登录设置。通过该参数可以设置实例的登录方式密码、密钥或保持镜像的原始登录设置。默认情况下会随机生成密码，并以站内信方式知会到用户。</p>
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LoginSettings`
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。若不指定该参数，则默认不绑定安全组。
+        # @param SecurityGroupIds: <p>实例所属安全组。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的<code>SecurityGroupId</code>字段来获取。若不指定该参数，则默认不绑定安全组。</p>
         # @type SecurityGroupIds: Array
-        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
+        # @param EnhancedService: <p>增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。</p>
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
-        # @param UserData: 经过 Base64 编码后的自定义数据，最大长度不超过16KB。
+        # @param UserData: <p>经过 Base64 编码后的自定义数据，最大长度不超过16KB。</p>
         # @type UserData: String
-        # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
-        # <li>POSTPAID_BY_HOUR：按小时后付费</li>
-        # <li>SPOTPAID：竞价付费</li>
-        # <li>PREPAID：预付费，即包年包月</li>
-        # <li>CDCPAID：专用集群付费</li>
+        # @param InstanceChargeType: <p>实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。<li>POSTPAID_BY_HOUR：按小时后付费</li><li>SPOTPAID：竞价付费</li><li>PREPAID：预付费，即包年包月</li><li>CDCPAID：专用集群付费</li></p>
         # @type InstanceChargeType: String
-        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
+        # @param InstanceMarketOptions: <p>实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。</p>
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
-        # @param InstanceTypes: 实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。
-        # `InstanceType`和`InstanceTypes`参数互斥，二者必填一个且只能填写一个。具体取值可通过调用接口[DescribeInstanceTypeConfigs](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例规格描述](https://cloud.tencent.com/document/product/213/11518)。
+        # @param InstanceTypes: <p>实例机型列表，不同实例机型指定了不同的资源规格，最多支持10种实例机型。<code>InstanceType</code>和<code>InstanceTypes</code>参数互斥，二者必填一个且只能填写一个。具体取值可通过调用接口<a href="https://cloud.tencent.com/document/api/213/15749">DescribeInstanceTypeConfigs</a>来获得最新的规格表或参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格描述</a>。</p>
         # @type InstanceTypes: Array
-        # @param CamRoleName: CAM角色名称。可通过[DescribeRoleList](https://cloud.tencent.com/document/product/598/36223)接口返回值中的roleName获取。
+        # @param CamRoleName: <p>CAM角色名称。可通过<a href="https://cloud.tencent.com/document/product/598/36223">DescribeRoleList</a>接口返回值中的roleName获取。</p>
         # @type CamRoleName: String
-        # @param InstanceTypesCheckPolicy: 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。该参数仅在 InstanceTypes 入参包含多个机型时生效。
-        # <li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li>
-        # <li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li>
-
-        # 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
-        # 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
+        # @param InstanceTypesCheckPolicy: <p>实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。该参数仅在 InstanceTypes 入参包含多个机型时生效。<li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。</li><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</li></p><p>实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。</p>
         # @type InstanceTypesCheckPolicy: String
-        # @param InstanceTags: 标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
+        # @param InstanceTags: <p>标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。</p>
         # @type InstanceTags: Array
-        # @param Tags: 标签描述列表。通过指定该参数可以支持绑定标签到启动配置。每个启动配置最多支持30个标签。
+        # @param Tags: <p>标签描述列表。通过指定该参数可以支持绑定标签到启动配置。每个启动配置最多支持30个标签。</p>
         # @type Tags: Array
-        # @param HostNameSettings: 云服务器主机名（HostName）的相关设置。
-        # 不支持windows实例设置主机名。
-        # 新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。
-        # 会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。
+        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。不支持windows实例设置主机名。 新增该属性时，必须传递云服务器的主机名，其它未传递字段会设置为默认值。会校验主机名(如果存在后缀则加上后缀)是否超过最大位数46。</p>
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
-        # @param InstanceNameSettings: 云服务器实例名（InstanceName）的相关设置。
-        # 如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。
-        # 新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。
-        # 会校验实例名称(如果存在后缀则加上后缀)是否超过最大位数108。
+        # @param InstanceNameSettings: <p>云服务器实例名（InstanceName）的相关设置。如果用户在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 参照此字段进行设置，并传递给 CVM；如果用户未在启动配置中设置此字段，则伸缩组创建出的实例 InstanceName 按照“as-{{ 伸缩组AutoScalingGroupName }}”进行设置，并传递给 CVM。新增该属性时，必须传递云服务器的实例名称，其它未传递字段会设置为默认值。会校验实例名称(如果存在后缀则加上后缀)是否超过最大位数108。</p>
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param DiskTypePolicy: 云盘类型选择策略，默认取值 ORIGINAL，取值范围：
-        # <li>ORIGINAL：使用设置的云盘类型</li>
-        # <li>AUTOMATIC：自动选择当前可用的云盘类型</li>
+        # @param DiskTypePolicy: <p>云盘类型选择策略，默认取值 ORIGINAL，取值范围：<li>ORIGINAL：使用设置的云盘类型</li><li>AUTOMATIC：自动选择当前可用的云盘类型</li></p>
         # @type DiskTypePolicy: String
-        # @param HpcClusterId: 高性能计算集群ID。可通过调用[DescribeHpcClusters](https://cloud.tencent.com/document/product/213/83220)接口获取该参数。
-        # 注意：此字段默认为空。
+        # @param HpcClusterId: <p>高性能计算集群ID。可通过调用<a href="https://cloud.tencent.com/document/product/213/83220">DescribeHpcClusters</a>接口获取该参数。注意：此字段默认为空。</p>
         # @type HpcClusterId: String
-        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @param IPv6InternetAccessible: <p>IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。</p>
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
-        # @param DisasterRecoverGroupIds: 置放群组id，仅支持指定一个。
+        # @param DisasterRecoverGroupIds: <p>置放群组id，仅支持指定一个。</p>
         # @type DisasterRecoverGroupIds: Array
-        # @param ImageFamily: 镜像族名称。镜像Id与镜像族名称，二者必填一个且只能填写一个。可通过调用[DescribeImages](https://cloud.tencent.com/document/product/213/15715)接口获取该参数。
+        # @param ImageFamily: <p>镜像族名称。镜像Id与镜像族名称，二者必填一个且只能填写一个。可通过调用<a href="https://cloud.tencent.com/document/product/213/15715">DescribeImages</a>接口获取该参数。</p>
         # @type ImageFamily: String
-        # @param DedicatedClusterId: 本地专用集群ID。可通过 [DescribeDedicatedClusters](https://cloud.tencent.com/document/product/1346/73758) 接口获取该参数。
+        # @param DedicatedClusterId: <p>本地专用集群ID。可通过 <a href="https://cloud.tencent.com/document/product/1346/73758">DescribeDedicatedClusters</a> 接口获取该参数。</p>
         # @type DedicatedClusterId: String
-        # @param Metadata: 自定义metadata。
+        # @param Metadata: <p>自定义metadata。</p>
         # @type Metadata: :class:`Tencentcloud::As.v20180419.models.Metadata`
 
         attr_accessor :LaunchConfigurationName, :ImageId, :ProjectId, :InstanceType, :SystemDisk, :DataDisks, :InternetAccessible, :LoginSettings, :SecurityGroupIds, :EnhancedService, :UserData, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypes, :CamRoleName, :InstanceTypesCheckPolicy, :InstanceTags, :Tags, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :HpcClusterId, :IPv6InternetAccessible, :DisasterRecoverGroupIds, :ImageFamily, :DedicatedClusterId, :Metadata
@@ -1190,7 +1169,7 @@ module TencentCloud
 
       # CreateLaunchConfiguration返回参数结构体
       class CreateLaunchConfigurationResponse < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationId: 当通过本接口来创建启动配置时会返回该参数，表示启动配置ID。
+        # @param LaunchConfigurationId: <p>当通过本接口来创建启动配置时会返回该参数，表示启动配置ID。</p>
         # @type LaunchConfigurationId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2863,11 +2842,11 @@ module TencentCloud
 
       # ExecuteScalingPolicy请求参数结构体
       class ExecuteScalingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingPolicyId: 告警伸缩策略ID，不支持目标追踪策略。可通过 [DescribeScalingPolicies](https://cloud.tencent.com/document/api/377/33178) 接口返回的 `ScalingPolicyType ` 参数获取告警策略类型。
+        # @param AutoScalingPolicyId: <p>告警伸缩策略ID，不支持目标追踪策略。可通过 <a href="https://cloud.tencent.com/document/api/377/33178">DescribeScalingPolicies</a> 接口返回的 <code>ScalingPolicyType</code> 参数获取告警策略类型。</p>
         # @type AutoScalingPolicyId: String
-        # @param HonorCooldown: 是否检查伸缩组活动处于冷却时间内，默认值为false
+        # @param HonorCooldown: <p>是否检查伸缩组活动处于冷却时间内，默认值为false</p>
         # @type HonorCooldown: Boolean
-        # @param TriggerSource: 执行伸缩策略的触发来源，取值包括 API 和 CLOUD_MONITOR，默认值为 API。CLOUD_MONITOR 专门供云监控触发调用。
+        # @param TriggerSource: <p>执行伸缩策略的触发来源，取值包括 API 和 CLOUD_MONITOR，默认值为 API。CLOUD_MONITOR 专门供云监控触发调用。</p>
         # @type TriggerSource: String
 
         attr_accessor :AutoScalingPolicyId, :HonorCooldown, :TriggerSource
@@ -2887,7 +2866,7 @@ module TencentCloud
 
       # ExecuteScalingPolicy返回参数结构体
       class ExecuteScalingPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param ActivityId: 伸缩活动ID
+        # @param ActivityId: <p>伸缩活动ID</p>
         # @type ActivityId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4598,28 +4577,27 @@ module TencentCloud
 
       # ModifyScalingPolicy请求参数结构体
       class ModifyScalingPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingPolicyId: 告警策略ID。可通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 或调用接口 [DescribeScalingPolicies](https://cloud.tencent.com/document/api/377/33178) ，取返回信息中的 AutoScalingPolicyId 获取告警策略ID。
+        # @param AutoScalingPolicyId: <p>告警策略ID。可通过登录 <a href="https://console.cloud.tencent.com/autoscaling/group">控制台</a> 或调用接口 <a href="https://cloud.tencent.com/document/api/377/33178">DescribeScalingPolicies</a> ，取返回信息中的 AutoScalingPolicyId 获取告警策略ID。</p>
         # @type AutoScalingPolicyId: String
-        # @param ScalingPolicyName: 告警策略名称，在您账号中必须唯一。名称长度不能超过60，名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点。
+        # @param ScalingPolicyName: <p>告警策略名称，在您账号中必须唯一。名称长度不能超过60，名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点。</p>
         # @type ScalingPolicyName: String
-        # @param AdjustmentType: 告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li>
+        # @param AdjustmentType: <p>告警触发后，期望实例数修改方式，仅适用于简单策略。取值范围：<br><li>CHANGE_IN_CAPACITY：增加或减少若干期望实例数</li><li>EXACT_CAPACITY：调整至指定期望实例数</li> <li>PERCENT_CHANGE_IN_CAPACITY：按百分比调整期望实例数</li></p>
         # @type AdjustmentType: String
-        # @param AdjustmentValue: 告警触发后，期望实例数的调整值，仅适用于简单策略。<li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。</li>
+        # @param AdjustmentValue: <p>告警触发后，期望实例数的调整值，仅适用于简单策略。<li>当 AdjustmentType 为 CHANGE_IN_CAPACITY 时，AdjustmentValue 为正数表示告警触发后增加实例，为负数表示告警触发后减少实例 </li> <li> 当 AdjustmentType 为 EXACT_CAPACITY 时，AdjustmentValue 的值即为告警触发后新的期望实例数，需要大于或等于0 </li> <li> 当 AdjustmentType 为 PERCENT_CHANGE_IN_CAPACITY 时，AdjusmentValue 为正数表示告警触发后按百分比增加实例，为负数表示告警触发后按百分比减少实例，单位是：%。</li></p>
         # @type AdjustmentValue: Integer
-        # @param Cooldown: 冷却时间，仅适用于简单策略，单位为秒。
+        # @param Cooldown: <p>冷却时间，仅适用于简单策略，单位为秒。</p>
         # @type Cooldown: Integer
-        # @param MetricAlarm: 告警监控指标，仅适用于简单策略。
+        # @param MetricAlarm: <p>告警监控指标，仅适用于简单策略。</p>
         # @type MetricAlarm: :class:`Tencentcloud::As.v20180419.models.MetricAlarm`
-        # @param PredefinedMetricType: 预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li>
+        # @param PredefinedMetricType: <p>预定义监控项，仅适用于目标追踪策略。取值范围：<br><li>ASG_AVG_CPU_UTILIZATION：平均CPU使用率</li><li>ASG_AVG_LAN_TRAFFIC_OUT：平均内网出带宽</li><li>ASG_AVG_LAN_TRAFFIC_IN：平均内网入带宽</li><li>ASG_AVG_WAN_TRAFFIC_OUT：平均外网出带宽</li><li>ASG_AVG_WAN_TRAFFIC_IN：平均外网出带宽</li></p>
         # @type PredefinedMetricType: String
-        # @param TargetValue: 目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：>0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：>0，单位：Mbps</li>
+        # @param TargetValue: <p>目标值，仅适用于目标追踪策略。<br><li>ASG_AVG_CPU_UTILIZATION：[1, 100)，单位：%</li><li>ASG_AVG_LAN_TRAFFIC_OUT：&gt;0，单位：Mbps</li><li>ASG_AVG_LAN_TRAFFIC_IN：&gt;0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_OUT：&gt;0，单位：Mbps</li><li>ASG_AVG_WAN_TRAFFIC_IN：&gt;0，单位：Mbps</li></p>
         # @type TargetValue: Integer
-        # @param EstimatedInstanceWarmup: 实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600。
+        # @param EstimatedInstanceWarmup: <p>实例预热时间，单位为秒，仅适用于目标追踪策略。取值范围为0-3600。</p>
         # @type EstimatedInstanceWarmup: Integer
-        # @param DisableScaleIn: 是否禁用缩容，仅适用于目标追踪策略。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li>
+        # @param DisableScaleIn: <p>是否禁用缩容，仅适用于目标追踪策略。取值范围：<br><li>true：目标追踪策略仅触发扩容</li><li>false：目标追踪策略触发扩容和缩容</li></p>
         # @type DisableScaleIn: Boolean
-        # @param NotificationUserGroupIds: 此参数已不再生效，请使用[创建通知](https://cloud.tencent.com/document/api/377/33185)。
-        # 通知组ID，即为用户组ID集合。
+        # @param NotificationUserGroupIds: <p>此参数已不再生效，请使用<a href="https://cloud.tencent.com/document/api/377/33185">创建通知</a>。通知组ID，即为用户组ID集合。</p>
         # @type NotificationUserGroupIds: Array
 
         attr_accessor :AutoScalingPolicyId, :ScalingPolicyName, :AdjustmentType, :AdjustmentValue, :Cooldown, :MetricAlarm, :PredefinedMetricType, :TargetValue, :EstimatedInstanceWarmup, :DisableScaleIn, :NotificationUserGroupIds
@@ -5491,15 +5469,11 @@ module TencentCloud
 
       # SetInstancesProtection请求参数结构体
       class SetInstancesProtectionRequest < TencentCloud::Common::AbstractModel
-        # @param AutoScalingGroupId: 伸缩组ID。可以通过如下方式获取可用的伸缩组ID:
-        # <li>通过登录 [控制台](https://console.cloud.tencent.com/autoscaling/group) 查询伸缩组ID。</li>
-        # <li>通过调用接口 [DescribeAutoScalingGroups](https://cloud.tencent.com/document/api/377/20438) ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li>
+        # @param AutoScalingGroupId: <p>伸缩组ID。可以通过如下方式获取可用的伸缩组ID:<li>通过登录 <a href="https://console.cloud.tencent.com/autoscaling/group">控制台</a> 查询伸缩组ID。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/377/20438">DescribeAutoScalingGroups</a> ，取返回信息中的 AutoScalingGroupId 获取伸缩组ID。</li></p>
         # @type AutoScalingGroupId: String
-        # @param InstanceIds: 实例ID。可以通过以下方式获取可用的实例ID：
-        # <li>通过登录[控制台](https://console.cloud.tencent.com/cvm/index)查询实例ID。</li>
-        # <li>通过调用接口 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728) ，取返回信息中的 `InstanceId` 获取实例ID。</li>
+        # @param InstanceIds: <p>实例ID。可以通过以下方式获取可用的实例ID：<li>通过登录<a href="https://console.cloud.tencent.com/cvm/index">控制台</a>查询实例ID。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15728">DescribeInstances</a> ，取返回信息中的 <code>InstanceId</code> 获取实例ID。</li></p>
         # @type InstanceIds: Array
-        # @param ProtectedFromScaleIn: 实例是否需要设置保护。
+        # @param ProtectedFromScaleIn: <p>实例是否需要设置保护。</p>
         # @type ProtectedFromScaleIn: Boolean
 
         attr_accessor :AutoScalingGroupId, :InstanceIds, :ProtectedFromScaleIn
@@ -5849,59 +5823,49 @@ module TencentCloud
 
       # UpgradeLaunchConfiguration请求参数结构体
       class UpgradeLaunchConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param LaunchConfigurationId: 启动配置ID。
+        # @param LaunchConfigurationId: <p>启动配置ID。</p>
         # @type LaunchConfigurationId: String
-        # @param ImageId: 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-8toqc6s3`。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li>`公共镜像`、`自定义镜像`、`共享镜像`的镜像ID可通过登录[控制台](https://console.cloud.tencent.com/cvm/image?rid=1&imageType=PUBLIC_IMAGE)查询；`服务镜像市场`的镜像ID可通过[云市场](https://market.cloud.tencent.com/list)查询。</li><li>通过调用接口 [DescribeImages](https://cloud.tencent.com/document/api/213/15715) ，取返回信息中的`ImageId`字段。</li>
+        # @param ImageId: <p>指定有效的<a href="https://cloud.tencent.com/document/product/213/4940">镜像</a>ID，格式形如<code>img-8toqc6s3</code>。镜像类型分为四种：<br/><li>公共镜像</li><li>自定义镜像</li><li>共享镜像</li><li>服务市场镜像</li><br/>可通过以下方式获取可用的镜像ID：<br/><li><code>公共镜像</code>、<code>自定义镜像</code>、<code>共享镜像</code>的镜像ID可通过登录<a href="https://console.cloud.tencent.com/cvm/image?rid=1&amp;imageType=PUBLIC_IMAGE">控制台</a>查询；<code>服务镜像市场</code>的镜像ID可通过<a href="https://market.cloud.tencent.com/list">云市场</a>查询。</li><li>通过调用接口 <a href="https://cloud.tencent.com/document/api/213/15715">DescribeImages</a> ，取返回信息中的<code>ImageId</code>字段。</li></p>
         # @type ImageId: String
-        # @param InstanceTypes: 实例机型列表，不同实例机型指定了不同的资源规格，最多支持5种实例机型。
+        # @param InstanceTypes: <p>实例机型列表，不同实例机型指定了不同的资源规格，最多支持5种实例机型。</p>
         # @type InstanceTypes: Array
-        # @param LaunchConfigurationName: 启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
+        # @param LaunchConfigurationName: <p>启动配置显示名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。</p>
         # @type LaunchConfigurationName: String
-        # @param DataDisks: 实例数据盘配置信息。若不指定该参数，则默认不购买数据盘，最多支持指定11块数据盘。
+        # @param DataDisks: <p>实例数据盘配置信息。若不指定该参数，则默认不购买数据盘，最多支持指定11块数据盘。</p>
         # @type DataDisks: Array
-        # @param EnhancedService: 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
+        # @param EnhancedService: <p>增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。</p>
         # @type EnhancedService: :class:`Tencentcloud::As.v20180419.models.EnhancedService`
-        # @param InstanceChargeType: 实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。
-        # <br><li>POSTPAID_BY_HOUR：按小时后付费
-        # <br><li>SPOTPAID：竞价付费
-        # <br><li>PREPAID：预付费，即包年包月
+        # @param InstanceChargeType: <p>实例计费类型，CVM默认值按照POSTPAID_BY_HOUR处理。<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br><li>PREPAID：预付费，即包年包月</p>
         # @type InstanceChargeType: String
-        # @param InstanceMarketOptions: 实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。
+        # @param InstanceMarketOptions: <p>实例的市场相关选项，如竞价实例相关参数，若指定实例的付费模式为竞价付费则该参数必传。</p>
         # @type InstanceMarketOptions: :class:`Tencentcloud::As.v20180419.models.InstanceMarketOptionsRequest`
-        # @param InstanceTypesCheckPolicy: 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
-        # <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
-        # <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
-
-        # 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
-        # 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
+        # @param InstanceTypesCheckPolicy: <p>实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。<br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。<br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。</p><p>实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。</p>
         # @type InstanceTypesCheckPolicy: String
-        # @param InternetAccessible: 公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。
+        # @param InternetAccessible: <p>公网带宽相关信息设置。若不指定该参数，则默认公网带宽为0Mbps。</p>
         # @type InternetAccessible: :class:`Tencentcloud::As.v20180419.models.InternetAccessible`
-        # @param LoginSettings: 该参数已失效，请勿使用。升级启动配置接口无法修改或覆盖 LoginSettings 参数，升级后 LoginSettings 不会发生变化。
+        # @param LoginSettings: <p>该参数已失效，请勿使用。升级启动配置接口无法修改或覆盖 LoginSettings 参数，升级后 LoginSettings 不会发生变化。</p>
         # @type LoginSettings: :class:`Tencentcloud::As.v20180419.models.LoginSettings`
-        # @param ProjectId: 实例所属项目ID。不填为默认项目。
+        # @param ProjectId: <p>实例所属项目ID。不填为默认项目。</p>
         # @type ProjectId: Integer
-        # @param SecurityGroupIds: 实例所属安全组。该参数可以通过调用 [DescribeSecurityGroups](https://cloud.tencent.com/document/api/215/15808) 的返回值中的`SecurityGroupId`字段来获取。若不指定该参数，则默认不绑定安全组。
+        # @param SecurityGroupIds: <p>实例所属安全组。该参数可以通过调用 <a href="https://cloud.tencent.com/document/api/215/15808">DescribeSecurityGroups</a> 的返回值中的<code>SecurityGroupId</code>字段来获取。若不指定该参数，则默认不绑定安全组。</p>
         # @type SecurityGroupIds: Array
-        # @param SystemDisk: 实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。
+        # @param SystemDisk: <p>实例系统盘配置信息。若不指定该参数，则按照系统默认值进行分配。</p>
         # @type SystemDisk: :class:`Tencentcloud::As.v20180419.models.SystemDisk`
-        # @param UserData: 经过 Base64 编码后的自定义数据，最大长度不超过16KB。
+        # @param UserData: <p>经过 Base64 编码后的自定义数据，最大长度不超过16KB。</p>
         # @type UserData: String
-        # @param InstanceTags: 标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。
+        # @param InstanceTags: <p>标签列表。通过指定该参数，可以为扩容的实例绑定标签。最多支持指定10个标签。</p>
         # @type InstanceTags: Array
-        # @param CamRoleName: CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。
+        # @param CamRoleName: <p>CAM角色名称。可通过DescribeRoleList接口返回值中的roleName获取。</p>
         # @type CamRoleName: String
-        # @param HostNameSettings: 云服务器主机名（HostName）的相关设置。
+        # @param HostNameSettings: <p>云服务器主机名（HostName）的相关设置。</p>
         # @type HostNameSettings: :class:`Tencentcloud::As.v20180419.models.HostNameSettings`
-        # @param InstanceNameSettings: 云服务器实例名（InstanceName）的相关设置。
+        # @param InstanceNameSettings: <p>云服务器实例名（InstanceName）的相关设置。</p>
         # @type InstanceNameSettings: :class:`Tencentcloud::As.v20180419.models.InstanceNameSettings`
-        # @param InstanceChargePrepaid: 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
+        # @param InstanceChargePrepaid: <p>预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。</p>
         # @type InstanceChargePrepaid: :class:`Tencentcloud::As.v20180419.models.InstanceChargePrepaid`
-        # @param DiskTypePolicy: 云盘类型选择策略，取值范围：
-        # <br><li>ORIGINAL：使用设置的云盘类型
-        # <br><li>AUTOMATIC：自动选择当前可用的云盘类型
+        # @param DiskTypePolicy: <p>云盘类型选择策略，取值范围：<br><li>ORIGINAL：使用设置的云盘类型<br><li>AUTOMATIC：自动选择当前可用的云盘类型</p>
         # @type DiskTypePolicy: String
-        # @param IPv6InternetAccessible: IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。
+        # @param IPv6InternetAccessible: <p>IPv6公网带宽相关信息设置。若新建实例包含IPv6地址，该参数可为新建实例的IPv6地址分配公网带宽。关联启动配置的伸缩组Ipv6AddressCount参数为0时，该参数不会生效。</p>
         # @type IPv6InternetAccessible: :class:`Tencentcloud::As.v20180419.models.IPv6InternetAccessible`
 
         attr_accessor :LaunchConfigurationId, :ImageId, :InstanceTypes, :LaunchConfigurationName, :DataDisks, :EnhancedService, :InstanceChargeType, :InstanceMarketOptions, :InstanceTypesCheckPolicy, :InternetAccessible, :LoginSettings, :ProjectId, :SecurityGroupIds, :SystemDisk, :UserData, :InstanceTags, :CamRoleName, :HostNameSettings, :InstanceNameSettings, :InstanceChargePrepaid, :DiskTypePolicy, :IPv6InternetAccessible
@@ -6016,27 +5980,23 @@ module TencentCloud
 
       # UpgradeLifecycleHook请求参数结构体
       class UpgradeLifecycleHookRequest < TencentCloud::Common::AbstractModel
-        # @param LifecycleHookId: 生命周期挂钩ID。可以通过调用接口 [DescribeLifecycleHooks](https://cloud.tencent.com/document/api/377/34452) ，取返回信息中的 LifecycleHookId 获取生命周期挂钩ID。
+        # @param LifecycleHookId: <p>生命周期挂钩ID。可以通过调用接口 <a href="https://cloud.tencent.com/document/api/377/34452">DescribeLifecycleHooks</a> ，取返回信息中的 LifecycleHookId 获取生命周期挂钩ID。</p>
         # @type LifecycleHookId: String
-        # @param LifecycleHookName: 生命周期挂钩名称。名称仅支持中文、英文、数字、下划线（_）、短横线（-）、小数点（.），最大长度不能超128个字符。
+        # @param LifecycleHookName: <p>生命周期挂钩名称。名称仅支持中文、英文、数字、下划线（_）、短横线（-）、小数点（.），最大长度不能超128个字符。</p>
         # @type LifecycleHookName: String
-        # @param LifecycleTransition: 进行生命周期挂钩的场景，取值范围如下:
-        # * INSTANCE_LAUNCHING: 扩容生命周期挂钩
-        # * INSTANCE_TERMINATING: 缩容生命周期挂钩
+        # @param LifecycleTransition: <p>进行生命周期挂钩的场景，取值范围如下:<em> INSTANCE_LAUNCHING: 扩容生命周期挂钩</em> INSTANCE_TERMINATING: 缩容生命周期挂钩</p>
         # @type LifecycleTransition: String
-        # @param DefaultResult: 定义伸缩组在生命周期挂钩超时或 LifecycleCommand 执行失败时应采取的操作，取值范围是如下：
-        # * CONTINUE: 默认值，表示继续执行扩缩容活动
-        # * ABANDON: 针对扩容挂钩，挂钩超时或 LifecycleCommand 执行失败的 CVM 实例会直接释放或移出；而针对缩容挂钩，会继续执行缩容活动。
+        # @param DefaultResult: <p>定义伸缩组在生命周期挂钩超时或 LifecycleCommand 执行失败时应采取的操作，取值范围是如下：<em> CONTINUE: 默认值，表示继续执行扩缩容活动</em> ABANDON: 针对扩容挂钩，挂钩超时或 LifecycleCommand 执行失败的 CVM 实例会直接释放或移出；而针对缩容挂钩，会继续执行缩容活动。</p>
         # @type DefaultResult: String
-        # @param HeartbeatTimeout: 生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到7200秒，默认值为300秒
+        # @param HeartbeatTimeout: <p>生命周期挂钩超时之前可以经过的最长时间（以秒为单位），范围从30到7200秒，默认值为300秒</p>
         # @type HeartbeatTimeout: Integer
-        # @param NotificationMetadata: 弹性伸缩向通知目标发送的附加信息，配置通知时使用，默认值为空字符串。NotificationMetadata 和 LifecycleCommand参数互斥，二者不可同时指定。
+        # @param NotificationMetadata: <p>弹性伸缩向通知目标发送的附加信息，配置通知时使用，默认值为空字符串。NotificationMetadata 和 LifecycleCommand参数互斥，二者不可同时指定。</p>
         # @type NotificationMetadata: String
-        # @param NotificationTarget: 通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。
+        # @param NotificationTarget: <p>通知目标。NotificationTarget和LifecycleCommand参数互斥，二者不可同时指定。</p>
         # @type NotificationTarget: :class:`Tencentcloud::As.v20180419.models.NotificationTarget`
-        # @param LifecycleTransitionType: 进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。
+        # @param LifecycleTransitionType: <p>进行生命周期挂钩的场景类型，取值范围包括NORMAL 和 EXTENSION。说明：设置为EXTENSION值，在AttachInstances、DetachInstances、RemoveInstaces接口时会触发生命周期挂钩操作，值为NORMAL则不会在这些接口中触发生命周期挂钩。</p>
         # @type LifecycleTransitionType: String
-        # @param LifecycleCommand: 远程命令执行对象。通知参数 NotificationMetadata、NotificationTarget 与 LifecycleCommand 互斥，不可同时指定。
+        # @param LifecycleCommand: <p>远程命令执行对象。通知参数 NotificationMetadata、NotificationTarget 与 LifecycleCommand 互斥，不可同时指定。</p>
         # @type LifecycleCommand: :class:`Tencentcloud::As.v20180419.models.LifecycleCommand`
 
         attr_accessor :LifecycleHookId, :LifecycleHookName, :LifecycleTransition, :DefaultResult, :HeartbeatTimeout, :NotificationMetadata, :NotificationTarget, :LifecycleTransitionType, :LifecycleCommand

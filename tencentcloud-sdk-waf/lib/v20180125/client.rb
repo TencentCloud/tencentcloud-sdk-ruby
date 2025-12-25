@@ -3968,6 +3968,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量修改防护对象
+
+        # @param request: Request instance for ModifyObjects.
+        # @type request: :class:`Tencentcloud::waf::V20180125::ModifyObjectsRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::ModifyObjectsResponse`
+        def ModifyObjects(request)
+          body = send_request('ModifyObjects', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyObjectsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新规则的开关
 
         # @param request: Request instance for ModifyOwaspRuleStatus.

@@ -15930,6 +15930,57 @@ module TencentCloud
         end
       end
 
+      # ModifyObjects请求参数结构体
+      class ModifyObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param ObjectId: 修改对象标识
+        # @type ObjectId: Array
+        # @param OpType: 改动作类型:InstanceId绑定实例；UnbindInstance解绑实例。
+        # @type OpType: String
+        # @param InstanceId: 新的实例ID，如果和已绑定的实例相同认为修改成功
+        # @type InstanceId: String
+        # @param Objects: 对象列表，仅跨账号接入使用
+        # @type Objects: Array
+
+        attr_accessor :ObjectId, :OpType, :InstanceId, :Objects
+
+        def initialize(objectid=nil, optype=nil, instanceid=nil, objects=nil)
+          @ObjectId = objectid
+          @OpType = optype
+          @InstanceId = instanceid
+          @Objects = objects
+        end
+
+        def deserialize(params)
+          @ObjectId = params['ObjectId']
+          @OpType = params['OpType']
+          @InstanceId = params['InstanceId']
+          unless params['Objects'].nil?
+            @Objects = []
+            params['Objects'].each do |i|
+              object_tmp = Object.new
+              object_tmp.deserialize(i)
+              @Objects << object_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyObjects返回参数结构体
+      class ModifyObjectsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyOwaspRuleStatus请求参数结构体
       class ModifyOwaspRuleStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
@@ -16909,6 +16960,34 @@ module TencentCloud
           @AntiDDosEip = params['AntiDDosEip']
           @AntiDDosEipStatus = params['AntiDDosEipStatus']
           @VipStatus = params['VipStatus']
+        end
+      end
+
+      # 对象
+      class Object < TencentCloud::Common::AbstractModel
+        # @param ObjectId: 对象id
+        # @type ObjectId: String
+        # @param MemberAppId: 成员appid
+        # @type MemberAppId: Integer
+        # @param MemberUin: 成员uin
+        # @type MemberUin: String
+        # @param MemberNickName: 成员昵称
+        # @type MemberNickName: String
+
+        attr_accessor :ObjectId, :MemberAppId, :MemberUin, :MemberNickName
+
+        def initialize(objectid=nil, memberappid=nil, memberuin=nil, membernickname=nil)
+          @ObjectId = objectid
+          @MemberAppId = memberappid
+          @MemberUin = memberuin
+          @MemberNickName = membernickname
+        end
+
+        def deserialize(params)
+          @ObjectId = params['ObjectId']
+          @MemberAppId = params['MemberAppId']
+          @MemberUin = params['MemberUin']
+          @MemberNickName = params['MemberNickName']
         end
       end
 

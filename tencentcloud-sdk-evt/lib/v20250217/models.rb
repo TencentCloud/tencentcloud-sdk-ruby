@@ -168,6 +168,50 @@ module TencentCloud
         end
       end
 
+      # PutMessage请求参数结构体
+      class PutMessageRequest < TencentCloud::Common::AbstractModel
+        # @param EventId: <p>事件ID</p>
+        # @type EventId: String
+        # @param Data: <p>需要推送的事件数据内容，格式为json，字段定义需要与事件中的定义一致</p>
+        # @type Data: String
+        # @param Source: <p>数据推送来源，会在生成的单据中展示数据来源</p>
+        # @type Source: String
+
+        attr_accessor :EventId, :Data, :Source
+
+        def initialize(eventid=nil, data=nil, source=nil)
+          @EventId = eventid
+          @Data = data
+          @Source = source
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @Data = params['Data']
+          @Source = params['Source']
+        end
+      end
+
+      # PutMessage返回参数结构体
+      class PutMessageResponse < TencentCloud::Common::AbstractModel
+        # @param TicketId: <p>满足条件时生成的事件单id，不满足条件时为空</p>
+        # @type TicketId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TicketId, :RequestId
+
+        def initialize(ticketid=nil, requestid=nil)
+          @TicketId = ticketid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TicketId = params['TicketId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 人员属性
       class UserAttribute < TencentCloud::Common::AbstractModel
         # @param Key: <p>自定义角色体系中用户属性的ID</p><p>属性键名</p>

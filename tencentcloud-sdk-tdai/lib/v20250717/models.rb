@@ -563,21 +563,52 @@ module TencentCloud
 
       # DescribeAgentDutyTasks请求参数结构体
       class DescribeAgentDutyTasksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: agent实例ID
+        # @type InstanceId: String
+        # @param ChatId: 会话ID
+        # @type ChatId: String
         # @param Offset: 查询开始位置
         # @type Offset: Integer
         # @param Limit: 列表查询数量
         # @type Limit: Integer
+        # @param StartTime: 任务启动时间
+        # @type StartTime: String
+        # @param EndTime: 任务结束时间
+        # @type EndTime: String
+        # @param AgentTaskType: 任务类型
+        # @type AgentTaskType: String
+        # @param Parameters: 业务参数
+        # @type Parameters: Array
 
-        attr_accessor :Offset, :Limit
+        attr_accessor :InstanceId, :ChatId, :Offset, :Limit, :StartTime, :EndTime, :AgentTaskType, :Parameters
 
-        def initialize(offset=nil, limit=nil)
+        def initialize(instanceid=nil, chatid=nil, offset=nil, limit=nil, starttime=nil, endtime=nil, agenttasktype=nil, parameters=nil)
+          @InstanceId = instanceid
+          @ChatId = chatid
           @Offset = offset
           @Limit = limit
+          @StartTime = starttime
+          @EndTime = endtime
+          @AgentTaskType = agenttasktype
+          @Parameters = parameters
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ChatId = params['ChatId']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AgentTaskType = params['AgentTaskType']
+          unless params['Parameters'].nil?
+            @Parameters = []
+            params['Parameters'].each do |i|
+              parameter_tmp = Parameter.new
+              parameter_tmp.deserialize(i)
+              @Parameters << parameter_tmp
+            end
+          end
         end
       end
 
@@ -585,18 +616,29 @@ module TencentCloud
       class DescribeAgentDutyTasksResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询结果总数量
         # @type TotalCount: Integer
+        # @param DutyTasks: 任务详细信息
+        # @type DutyTasks: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :DutyTasks, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, dutytasks=nil, requestid=nil)
           @TotalCount = totalcount
+          @DutyTasks = dutytasks
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['DutyTasks'].nil?
+            @DutyTasks = []
+            params['DutyTasks'].each do |i|
+              agentdutytask_tmp = AgentDutyTask.new
+              agentdutytask_tmp.deserialize(i)
+              @DutyTasks << agentdutytask_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

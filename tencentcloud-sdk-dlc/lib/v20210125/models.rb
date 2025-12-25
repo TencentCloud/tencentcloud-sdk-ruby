@@ -14117,6 +14117,41 @@ module TencentCloud
         end
       end
 
+      # SetOptimizerPolicy请求参数结构体
+      class SetOptimizerPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param SmartPolicy: 优化策略
+        # @type SmartPolicy: :class:`Tencentcloud::Dlc.v20210125.models.SmartPolicy`
+
+        attr_accessor :SmartPolicy
+
+        def initialize(smartpolicy=nil)
+          @SmartPolicy = smartpolicy
+        end
+
+        def deserialize(params)
+          unless params['SmartPolicy'].nil?
+            @SmartPolicy = SmartPolicy.new
+            @SmartPolicy.deserialize(params['SmartPolicy'])
+          end
+        end
+      end
+
+      # SetOptimizerPolicy返回参数结构体
+      class SetOptimizerPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 混合表中，change表的数据保存时间，单位为天
       class SmartOptimizerChangeTablePolicy < TencentCloud::Common::AbstractModel
         # @param DataRetentionTime: change表的数据保存时间，单位为天

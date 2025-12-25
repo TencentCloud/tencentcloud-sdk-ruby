@@ -999,13 +999,13 @@ module TencentCloud
 
       # DescribeVersionDetail请求参数结构体
       class DescribeVersionDetailRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境Id
+        # @param EnvId: <p>环境Id</p>
         # @type EnvId: String
-        # @param ServerName: 服务名
+        # @param ServerName: <p>服务名</p>
         # @type ServerName: String
-        # @param VersionName: 版本名
+        # @param VersionName: <p>版本名</p>
         # @type VersionName: String
-        # @param Channel: channel
+        # @param Channel: <p>channel</p>
         # @type Channel: String
 
         attr_accessor :EnvId, :ServerName, :VersionName, :Channel
@@ -1027,52 +1027,55 @@ module TencentCloud
 
       # DescribeVersionDetail返回参数结构体
       class DescribeVersionDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 版本名
+        # @param Name: <p>版本名</p>
         # @type Name: String
-        # @param Port: 端口号
+        # @param Port: <p>端口号</p>
         # @type Port: Integer
-        # @param Cpu: cpu 规格
+        # @param Cpu: <p>cpu 规格</p>
         # @type Cpu: Float
-        # @param Mem: mem 规格
+        # @param Mem: <p>mem 规格</p>
         # @type Mem: Float
-        # @param MinNum: 最小副本数
+        # @param MinNum: <p>最小副本数</p>
         # @type MinNum: Integer
-        # @param MaxNum: 最大副本数
+        # @param MaxNum: <p>最大副本数</p>
         # @type MaxNum: Integer
-        # @param PolicyDetails: 扩缩容策略
+        # @param PolicyDetails: <p>扩缩容策略</p>
         # @type PolicyDetails: Array
-        # @param Dockerfile: Dockerfile path
+        # @param Dockerfile: <p>Dockerfile path</p>
         # @type Dockerfile: String
-        # @param BuildDir: 目标目录
+        # @param BuildDir: <p>目标目录</p>
         # @type BuildDir: String
-        # @param EnvParams: 环境变量
+        # @param EnvParams: <p>环境变量</p>
         # @type EnvParams: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param UpdatedTime: 更新时间
+        # @param UpdatedTime: <p>更新时间</p>
         # @type UpdatedTime: String
-        # @param LogPath: 日志采集路径
+        # @param LogPath: <p>日志采集路径</p>
         # @type LogPath: String
-        # @param EntryPoint: entryPoint
+        # @param EntryPoint: <p>entryPoint</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EntryPoint: String
-        # @param Cmd: Cmd
+        # @param Cmd: <p>Cmd</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Cmd: String
-        # @param VpcConf: vpc conf
+        # @param VpcConf: <p>vpc conf</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcConf: :class:`Tencentcloud::Tcbr.v20220217.models.VpcConf`
-        # @param VolumesConf: volume conf
+        # @param VolumesConf: <p>volume conf</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VolumesConf: Array
+        # @param BuildPacks: <p>buildpack 信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BuildPacks: :class:`Tencentcloud::Tcbr.v20220217.models.BuildPacksInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Name, :Port, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :Dockerfile, :BuildDir, :EnvParams, :Status, :CreatedTime, :UpdatedTime, :LogPath, :EntryPoint, :Cmd, :VpcConf, :VolumesConf, :RequestId
+        attr_accessor :Name, :Port, :Cpu, :Mem, :MinNum, :MaxNum, :PolicyDetails, :Dockerfile, :BuildDir, :EnvParams, :Status, :CreatedTime, :UpdatedTime, :LogPath, :EntryPoint, :Cmd, :VpcConf, :VolumesConf, :BuildPacks, :RequestId
 
-        def initialize(name=nil, port=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, dockerfile=nil, builddir=nil, envparams=nil, status=nil, createdtime=nil, updatedtime=nil, logpath=nil, entrypoint=nil, cmd=nil, vpcconf=nil, volumesconf=nil, requestid=nil)
+        def initialize(name=nil, port=nil, cpu=nil, mem=nil, minnum=nil, maxnum=nil, policydetails=nil, dockerfile=nil, builddir=nil, envparams=nil, status=nil, createdtime=nil, updatedtime=nil, logpath=nil, entrypoint=nil, cmd=nil, vpcconf=nil, volumesconf=nil, buildpacks=nil, requestid=nil)
           @Name = name
           @Port = port
           @Cpu = cpu
@@ -1091,6 +1094,7 @@ module TencentCloud
           @Cmd = cmd
           @VpcConf = vpcconf
           @VolumesConf = volumesconf
+          @BuildPacks = buildpacks
           @RequestId = requestid
         end
 
@@ -1129,6 +1133,10 @@ module TencentCloud
               volumeconf_tmp.deserialize(i)
               @VolumesConf << volumeconf_tmp
             end
+          end
+          unless params['BuildPacks'].nil?
+            @BuildPacks = BuildPacksInfo.new
+            @BuildPacks.deserialize(params['BuildPacks'])
           end
           @RequestId = params['RequestId']
         end
