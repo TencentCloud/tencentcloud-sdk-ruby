@@ -1982,54 +1982,6 @@ module TencentCloud
         end
       end
 
-      # DeleteAllAccessControlRule请求参数结构体
-      class DeleteAllAccessControlRuleRequest < TencentCloud::Common::AbstractModel
-        # @param Direction: 方向，0：出站，1：入站  默认值是 0
-        # @type Direction: Integer
-        # @param EdgeId: VPC间防火墙开关ID  全部删除 EdgeId和Area只填写一个，不填写则不删除vpc间防火墙开关 ，默认值为‘’
-        # @type EdgeId: String
-        # @param Area: nat地域 全部删除 EdgeId和Area只填写一个，不填写则不删除nat防火墙开关 默认值为‘’
-        # @type Area: String
-
-        attr_accessor :Direction, :EdgeId, :Area
-
-        def initialize(direction=nil, edgeid=nil, area=nil)
-          @Direction = direction
-          @EdgeId = edgeid
-          @Area = area
-        end
-
-        def deserialize(params)
-          @Direction = params['Direction']
-          @EdgeId = params['EdgeId']
-          @Area = params['Area']
-        end
-      end
-
-      # DeleteAllAccessControlRule返回参数结构体
-      class DeleteAllAccessControlRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态值 0: 修改成功, 非0: 修改失败
-        # @type Status: Integer
-        # @param Info: 删除了几条访问控制规则
-        # @type Info: Integer
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :Info, :RequestId
-
-        def initialize(status=nil, info=nil, requestid=nil)
-          @Status = status
-          @Info = info
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @Info = params['Info']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DeleteBlockIgnoreRuleList请求参数结构体
       class DeleteBlockIgnoreRuleListRequest < TencentCloud::Common::AbstractModel
         # @param Rules: 规则列表

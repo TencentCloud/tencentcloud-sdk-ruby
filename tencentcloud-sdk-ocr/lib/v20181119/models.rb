@@ -5948,14 +5948,17 @@ module TencentCloud
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
         # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”、“喷漆”、“其它”。
         # @type Color: String
+        # @param LicensePlateCategory: 车牌类别， 如： 实体车牌、非实体车牌
+        # @type LicensePlateCategory: String
 
-        attr_accessor :Number, :Confidence, :Rect, :Color
+        attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateCategory
 
-        def initialize(number=nil, confidence=nil, rect=nil, color=nil)
+        def initialize(number=nil, confidence=nil, rect=nil, color=nil, licenseplatecategory=nil)
           @Number = number
           @Confidence = confidence
           @Rect = rect
           @Color = color
+          @LicensePlateCategory = licenseplatecategory
         end
 
         def deserialize(params)
@@ -5966,6 +5969,7 @@ module TencentCloud
             @Rect.deserialize(params['Rect'])
           end
           @Color = params['Color']
+          @LicensePlateCategory = params['LicensePlateCategory']
         end
       end
 
@@ -5997,21 +6001,24 @@ module TencentCloud
         # @type Confidence: Integer
         # @param Rect: 文本行在原图片中的像素坐标框。
         # @type Rect: :class:`Tencentcloud::Ocr.v20181119.models.Rect`
-        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿“、“黄”、“黄绿”、“临牌”、“喷漆”、“其它”。
+        # @param Color: 识别出的车牌颜色，目前支持颜色包括 “白”、“黑”、“蓝”、“绿”、“黄”、“黄绿”、“临牌”、“喷漆”、“其它”。
         # @type Color: String
         # @param LicensePlateInfos: 全部车牌信息。
         # @type LicensePlateInfos: Array
+        # @param LicensePlateCategory: 车牌类别， 如： 实体车牌、非实体车牌 示例值：实体车牌
+        # @type LicensePlateCategory: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateInfos, :RequestId
+        attr_accessor :Number, :Confidence, :Rect, :Color, :LicensePlateInfos, :LicensePlateCategory, :RequestId
 
-        def initialize(number=nil, confidence=nil, rect=nil, color=nil, licenseplateinfos=nil, requestid=nil)
+        def initialize(number=nil, confidence=nil, rect=nil, color=nil, licenseplateinfos=nil, licenseplatecategory=nil, requestid=nil)
           @Number = number
           @Confidence = confidence
           @Rect = rect
           @Color = color
           @LicensePlateInfos = licenseplateinfos
+          @LicensePlateCategory = licenseplatecategory
           @RequestId = requestid
         end
 
@@ -6031,6 +6038,7 @@ module TencentCloud
               @LicensePlateInfos << licenseplateinfo_tmp
             end
           end
+          @LicensePlateCategory = params['LicensePlateCategory']
           @RequestId = params['RequestId']
         end
       end

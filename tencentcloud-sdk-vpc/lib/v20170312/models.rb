@@ -23980,6 +23980,8 @@ module TencentCloud
         # @type RestrictState: String
         # @param NatProductVersion: NAT网关类型，1表示传统型NAT网关，2表示标准型NAT网关
         # @type NatProductVersion: Integer
+        # @param StrictSnatMode: true代表仅允许匹配SNAT规则的内网IP的流量进行转发，false代表所有内网IP发起的流量都进行转发。默认为false。
+        # @type StrictSnatMode: Boolean
         # @param SmartScheduleMode: 是否启用根据目的网段选择SNAT使用的EIP功能
         # @type SmartScheduleMode: Boolean
         # @param DedicatedClusterId: NAT实例归属的专属集群id
@@ -23990,10 +23992,16 @@ module TencentCloud
         # @type ConnectionStateTimeouts: :class:`Tencentcloud::Vpc.v20170312.models.ConnectionStateTimeouts`
         # @param ExclusiveType: 独享实例规格。取值范围：ExclusiveSmall/ExclusiveMedium1/ExclusiveLarge1
         # @type ExclusiveType: String
+        # @param AutoScaling: 标准型NAT网关自动扩容
+        # @type AutoScaling: Boolean
+        # @param ICMPProxy: 是否代答公网发给NAT网关上弹性公网IP的ICMP echo请求报文，当前适用于标准型NAT网关
+        # @type ICMPProxy: Boolean
+        # @param PublicAddressAffinity: true代表同一个私网IP访问同一个公网目的IP时，固定使用同一个NAT网关上的弹性公网IP；false代表这种情况下使用的弹性公网IP不固定。默认为true。
+        # @type PublicAddressAffinity: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled, :ConnectionStateTimeouts, :ExclusiveType
+        attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :StrictSnatMode, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled, :ConnectionStateTimeouts, :ExclusiveType, :AutoScaling, :ICMPProxy, :PublicAddressAffinity
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, smartschedulemode=nil, dedicatedclusterid=nil, deletionprotectionenabled=nil, connectionstatetimeouts=nil, exclusivetype=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, createdtime=nil, state=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, publicipaddressset=nil, networkstate=nil, destinationipporttranslationnatruleset=nil, vpcid=nil, zone=nil, directconnectgatewayids=nil, subnetid=nil, tagset=nil, securitygroupset=nil, sourceiptranslationnatruleset=nil, isexclusive=nil, exclusivegatewaybandwidth=nil, restrictstate=nil, natproductversion=nil, strictsnatmode=nil, smartschedulemode=nil, dedicatedclusterid=nil, deletionprotectionenabled=nil, connectionstatetimeouts=nil, exclusivetype=nil, autoscaling=nil, icmpproxy=nil, publicaddressaffinity=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @CreatedTime = createdtime
@@ -24014,11 +24022,15 @@ module TencentCloud
           @ExclusiveGatewayBandwidth = exclusivegatewaybandwidth
           @RestrictState = restrictstate
           @NatProductVersion = natproductversion
+          @StrictSnatMode = strictsnatmode
           @SmartScheduleMode = smartschedulemode
           @DedicatedClusterId = dedicatedclusterid
           @DeletionProtectionEnabled = deletionprotectionenabled
           @ConnectionStateTimeouts = connectionstatetimeouts
           @ExclusiveType = exclusivetype
+          @AutoScaling = autoscaling
+          @ICMPProxy = icmpproxy
+          @PublicAddressAffinity = publicaddressaffinity
         end
 
         def deserialize(params)
@@ -24070,6 +24082,7 @@ module TencentCloud
           @ExclusiveGatewayBandwidth = params['ExclusiveGatewayBandwidth']
           @RestrictState = params['RestrictState']
           @NatProductVersion = params['NatProductVersion']
+          @StrictSnatMode = params['StrictSnatMode']
           @SmartScheduleMode = params['SmartScheduleMode']
           @DedicatedClusterId = params['DedicatedClusterId']
           @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
@@ -24078,6 +24091,9 @@ module TencentCloud
             @ConnectionStateTimeouts.deserialize(params['ConnectionStateTimeouts'])
           end
           @ExclusiveType = params['ExclusiveType']
+          @AutoScaling = params['AutoScaling']
+          @ICMPProxy = params['ICMPProxy']
+          @PublicAddressAffinity = params['PublicAddressAffinity']
         end
       end
 

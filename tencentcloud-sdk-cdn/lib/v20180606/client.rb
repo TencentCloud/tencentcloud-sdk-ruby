@@ -101,33 +101,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 以上诊断报告, 域名版本管理相关接口功能均废弃,  已确认现网0调用, 申请预下线,(预下线不会影响调用, 只会在接口中添加提示信息, 正式下线仍需人工确认)
-
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # CreateDiagnoseUrl 用于添加域名诊断任务URL。
-
-        # @param request: Request instance for CreateDiagnoseUrl.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::CreateDiagnoseUrlRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::CreateDiagnoseUrlResponse`
-        def CreateDiagnoseUrl(request)
-          body = send_request('CreateDiagnoseUrl', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateDiagnoseUrlResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 动态打包任务提交接口
 
         # @param request: Request instance for CreateEdgePackTask.
@@ -373,33 +346,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCertDomainsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 以上诊断报告, 域名版本管理相关接口功能均废弃,  已确认现网0调用, 申请预下线,(预下线不会影响调用, 只会在接口中添加提示信息, 正式下线仍需人工确认)
-
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # DescribeDiagnoseReport 用于获取指定报告id的内容。
-
-        # @param request: Request instance for DescribeDiagnoseReport.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::DescribeDiagnoseReportRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::DescribeDiagnoseReportResponse`
-        def DescribeDiagnoseReport(request)
-          body = send_request('DescribeDiagnoseReport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDiagnoseReportResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1002,33 +948,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListClsTopicDomainsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 以上诊断报告, 域名版本管理相关接口功能均废弃,  已确认现网0调用, 申请预下线,(预下线不会影响调用, 只会在接口中添加提示信息, 正式下线仍需人工确认)
-
-        # ### <font color=red>**该接口已废弃** </font><br>
-        # ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
-
-        # @param request: Request instance for ListDiagnoseReport.
-        # @type request: :class:`Tencentcloud::cdn::V20180606::ListDiagnoseReportRequest`
-        # @rtype: :class:`Tencentcloud::cdn::V20180606::ListDiagnoseReportResponse`
-        def ListDiagnoseReport(request)
-          body = send_request('ListDiagnoseReport', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ListDiagnoseReportResponse.new
             model.deserialize(response['Response'])
             model
           else

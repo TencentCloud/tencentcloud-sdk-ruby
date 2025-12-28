@@ -957,6 +957,8 @@ module TencentCloud
         # <li>Dubbing：智能译制</li>
         # <li>VideoRemake: 视频去重</li>
         # <li>VideoComprehension: 视频（音频）理解</li>
+        # <li>Cutout：视频抠图</li>
+        # <li>Reel：智能成片</li>
         # @type Type: String
         # @param ClassificationTask: 视频内容分析智能分类任务的查询结果，当任务类型为 Classification 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -997,10 +999,16 @@ module TencentCloud
         # @param VideoComprehensionTask: 视频（音频）理解任务的查询结果，当任务类型为 VideoComprehension 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoComprehensionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionResult`
+        # @param CutoutTask: 视频内容分析抠图任务的查询结果，当任务类型为Cutout时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CutoutTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCutoutResult`
+        # @param ReelTask: 视频内容分析成片任务的查询结果，当任务类型为Reel时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReelTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelResult`
 
-        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask, :VideoComprehensionTask
+        attr_accessor :Type, :ClassificationTask, :CoverTask, :TagTask, :FrameTagTask, :HighlightTask, :DeLogoTask, :SegmentTask, :HeadTailTask, :DescriptionTask, :HorizontalToVerticalTask, :DubbingTask, :VideoRemakeTask, :VideoComprehensionTask, :CutoutTask, :ReelTask
 
-        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil, videocomprehensiontask=nil)
+        def initialize(type=nil, classificationtask=nil, covertask=nil, tagtask=nil, frametagtask=nil, highlighttask=nil, delogotask=nil, segmenttask=nil, headtailtask=nil, descriptiontask=nil, horizontaltoverticaltask=nil, dubbingtask=nil, videoremaketask=nil, videocomprehensiontask=nil, cutouttask=nil, reeltask=nil)
           @Type = type
           @ClassificationTask = classificationtask
           @CoverTask = covertask
@@ -1015,6 +1023,8 @@ module TencentCloud
           @DubbingTask = dubbingtask
           @VideoRemakeTask = videoremaketask
           @VideoComprehensionTask = videocomprehensiontask
+          @CutoutTask = cutouttask
+          @ReelTask = reeltask
         end
 
         def deserialize(params)
@@ -1070,6 +1080,14 @@ module TencentCloud
           unless params['VideoComprehensionTask'].nil?
             @VideoComprehensionTask = AiAnalysisTaskVideoComprehensionResult.new
             @VideoComprehensionTask.deserialize(params['VideoComprehensionTask'])
+          end
+          unless params['CutoutTask'].nil?
+            @CutoutTask = AiAnalysisTaskCutoutResult.new
+            @CutoutTask.deserialize(params['CutoutTask'])
+          end
+          unless params['ReelTask'].nil?
+            @ReelTask = AiAnalysisTaskReelResult.new
+            @ReelTask.deserialize(params['ReelTask'])
           end
         end
       end
@@ -1242,6 +1260,96 @@ module TencentCloud
             @Output = AiAnalysisTaskCoverOutput.new
             @Output.deserialize(params['Output'])
           end
+        end
+      end
+
+      # 智能抠图任务输入类型
+      class AiAnalysisTaskCutoutInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 视频智能抠图模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 视频抠图结果信息
+      class AiAnalysisTaskCutoutOutput < TencentCloud::Common::AbstractModel
+        # @param Path: 视频智能抠图文件路径。
+        # @type Path: String
+        # @param OutputStorage: 视频智能抠图的存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :Path, :OutputStorage
+
+        def initialize(path=nil, outputstorage=nil)
+          @Path = path
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 视频抠图结果数据结构
+      class AiAnalysisTaskCutoutResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 `PROCESSING`，`SUCCESS` 和 `FAIL` 三种
+        # @type Status: String
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 [媒体处理类错误码](https://cloud.tencent.com/document/product/862/50369#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
+        # @type ErrCodeExt: String
+        # @param Message: 错误信息
+        # @type Message: String
+        # @param Input: 抠图任务输入
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCutoutInput`
+        # @param Output: 抠图任务输出
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCutoutOutput`
+        # @param Progress: 任务进度
+        # @type Progress: Integer
+        # @param BeginProcessTime: 任务开始执行的时间，采用 ISO 日期格式。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务结束执行的时间，采用 ISO 日期格式。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCodeExt, :Message, :Input, :Output, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcodeext=nil, message=nil, input=nil, output=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCodeExt = errcodeext
+          @Message = message
+          @Input = input
+          @Output = output
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCodeExt = params['ErrCodeExt']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskCutoutInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskCutoutOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -1867,6 +1975,108 @@ module TencentCloud
         def deserialize(params)
           @Definition = params['Definition']
           @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
+      # 智能成片任务输入类型
+      class AiAnalysisTaskReelInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能成片模板 ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 智能成片结果信息
+      class AiAnalysisTaskReelOutput < TencentCloud::Common::AbstractModel
+        # @param VideoPath: 成片视频路径。
+        # @type VideoPath: String
+        # @param ScriptPath: 脚本文件路径
+        # @type ScriptPath: String
+        # @param OutputStorage: 成片视频存储位置。
+        # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+
+        attr_accessor :VideoPath, :ScriptPath, :OutputStorage
+
+        def initialize(videopath=nil, scriptpath=nil, outputstorage=nil)
+          @VideoPath = videopath
+          @ScriptPath = scriptpath
+          @OutputStorage = outputstorage
+        end
+
+        def deserialize(params)
+          @VideoPath = params['VideoPath']
+          @ScriptPath = params['ScriptPath']
+          unless params['OutputStorage'].nil?
+            @OutputStorage = TaskOutputStorage.new
+            @OutputStorage.deserialize(params['OutputStorage'])
+          end
+        end
+      end
+
+      # 智能成片结果类型
+      class AiAnalysisTaskReelResult < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
+        # @type Status: String
+        # @param ErrCode: 错误码，0：成功，其他值：失败。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Input: 智能成片任务输入。
+        # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelInput`
+        # @param Output: 智能成片任务输出。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelOutput`
+        # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 媒体处理类错误码 列表。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrCodeExt: String
+        # @param Progress: 任务进度。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Progress: Integer
+        # @param BeginProcessTime: 任务开始执行的时间，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BeginProcessTime: String
+        # @param FinishTime: 任务执行完毕的时间，采用 ISO 日期格式。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FinishTime: String
+
+        attr_accessor :Status, :ErrCode, :Message, :Input, :Output, :ErrCodeExt, :Progress, :BeginProcessTime, :FinishTime
+
+        def initialize(status=nil, errcode=nil, message=nil, input=nil, output=nil, errcodeext=nil, progress=nil, beginprocesstime=nil, finishtime=nil)
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Input = input
+          @Output = output
+          @ErrCodeExt = errcodeext
+          @Progress = progress
+          @BeginProcessTime = beginprocesstime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          unless params['Input'].nil?
+            @Input = AiAnalysisTaskReelInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = AiAnalysisTaskReelOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @ErrCodeExt = params['ErrCodeExt']
+          @Progress = params['Progress']
+          @BeginProcessTime = params['BeginProcessTime']
+          @FinishTime = params['FinishTime']
         end
       end
 
@@ -25077,7 +25287,6 @@ module TencentCloud
         # `iw`：希伯来语
         # `ja`：日语
         # `jv`：爪哇语
-        # `jw`：爪哇语
         # `ka`：格鲁吉亚语
         # `kk`：哈萨克语
         # `km`：高棉语
@@ -25164,7 +25373,6 @@ module TencentCloud
         # `th`：泰语
         # `ti`：提格里尼亚语
         # `tk`：土库曼语
-        # `tl`：菲律宾语（塔加拉语）
         # `tn`：茨瓦纳语
         # `tr`：土耳其语
         # `ts`：聪加语
@@ -25198,10 +25406,13 @@ module TencentCloud
 
         # **注意**：不传的情况下默认类型为 ASR识别字幕
         # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: 字幕OCR提取框选区域配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
 
-        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo, :ProcessType
+        attr_accessor :SubtitleType, :VideoSrcLanguage, :SubtitleFormat, :TranslateSwitch, :TranslateDstLanguage, :AsrHotWordsConfigure, :ExtInfo, :ProcessType, :SelectingSubtitleAreasConfig
 
-        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil, processtype=nil)
+        def initialize(subtitletype=nil, videosrclanguage=nil, subtitleformat=nil, translateswitch=nil, translatedstlanguage=nil, asrhotwordsconfigure=nil, extinfo=nil, processtype=nil, selectingsubtitleareasconfig=nil)
           @SubtitleType = subtitletype
           @VideoSrcLanguage = videosrclanguage
           @SubtitleFormat = subtitleformat
@@ -25210,6 +25421,7 @@ module TencentCloud
           @AsrHotWordsConfigure = asrhotwordsconfigure
           @ExtInfo = extinfo
           @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
         end
 
         def deserialize(params)
@@ -25224,6 +25436,10 @@ module TencentCloud
           end
           @ExtInfo = params['ExtInfo']
           @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
         end
       end
 
@@ -26771,6 +26987,38 @@ module TencentCloud
         end
       end
 
+      # 字幕OCR提取框选区域配置
+      class SelectingSubtitleAreasConfig < TencentCloud::Common::AbstractModel
+        # @param AutoAreas: 自动选择自定义区域。
+        # 对选定区域，利用AI模型自动检测其中存在的选择目标并提取。
+        # @type AutoAreas: Array
+        # @param SampleWidth: 示例视频或图片的宽，单位像素值
+        # @type SampleWidth: Integer
+        # @param SampleHeight: 示例视频或图片的高，单位像素值
+        # @type SampleHeight: Integer
+
+        attr_accessor :AutoAreas, :SampleWidth, :SampleHeight
+
+        def initialize(autoareas=nil, samplewidth=nil, sampleheight=nil)
+          @AutoAreas = autoareas
+          @SampleWidth = samplewidth
+          @SampleHeight = sampleheight
+        end
+
+        def deserialize(params)
+          unless params['AutoAreas'].nil?
+            @AutoAreas = []
+            params['AutoAreas'].each do |i|
+              erasearea_tmp = EraseArea.new
+              erasearea_tmp.deserialize(i)
+              @AutoAreas << erasearea_tmp
+            end
+          end
+          @SampleWidth = params['SampleWidth']
+          @SampleHeight = params['SampleHeight']
+        end
+      end
+
       # 细节增强配置
       class SharpEnhanceConfig < TencentCloud::Common::AbstractModel
         # @param Switch: 能力配置开关，可选值：
@@ -27672,7 +27920,7 @@ module TencentCloud
         # @param SubtitleFormat: 智能字幕文件格式
         # - vtt: WebVTT 格式
         # - srt: SRT格式
-        # - original：与源字幕文件一致（用于纯字幕翻译模版）
+        # - original：与源字幕文件一致（用于纯字幕翻译模板）
         # - 不填或填空：不生成字幕文件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFormat: String
@@ -27726,11 +27974,15 @@ module TencentCloud
         # @param ProcessType: 字幕处理类型：
         # - 0：ASR识别字幕
         # - 1：纯字幕翻译
+        # - 2:  OCR识别字幕
         # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: 字幕OCR提取框选区域配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
 
-        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName, :ProcessType
+        attr_accessor :Definition, :Name, :Comment, :Type, :AsrHotWordsConfigure, :AsrHotWordsLibraryName, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :TranslateSwitch, :TranslateDstLanguage, :CreateTime, :UpdateTime, :AliasName, :ProcessType, :SelectingSubtitleAreasConfig
 
-        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil, processtype=nil)
+        def initialize(definition=nil, name=nil, comment=nil, type=nil, asrhotwordsconfigure=nil, asrhotwordslibraryname=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, translateswitch=nil, translatedstlanguage=nil, createtime=nil, updatetime=nil, aliasname=nil, processtype=nil, selectingsubtitleareasconfig=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
@@ -27746,6 +27998,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @AliasName = aliasname
           @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
         end
 
         def deserialize(params)
@@ -27767,6 +28020,10 @@ module TencentCloud
           @UpdateTime = params['UpdateTime']
           @AliasName = params['AliasName']
           @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
         end
       end
 

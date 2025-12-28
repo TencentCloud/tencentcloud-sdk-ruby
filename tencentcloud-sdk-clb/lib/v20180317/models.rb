@@ -7441,6 +7441,49 @@ module TencentCloud
         end
       end
 
+      # RenewLoadBalancers请求参数结构体
+      class RenewLoadBalancersRequest < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerIds: 负载均衡实例唯一ID数组，最多支持20个。
+        # @type LoadBalancerIds: Array
+        # @param LBChargePrepaid: 负载均衡实例的预付费相关属性。
+        # @type LBChargePrepaid: :class:`Tencentcloud::Clb.v20180317.models.LBChargePrepaid`
+
+        attr_accessor :LoadBalancerIds, :LBChargePrepaid
+
+        def initialize(loadbalancerids=nil, lbchargeprepaid=nil)
+          @LoadBalancerIds = loadbalancerids
+          @LBChargePrepaid = lbchargeprepaid
+        end
+
+        def deserialize(params)
+          @LoadBalancerIds = params['LoadBalancerIds']
+          unless params['LBChargePrepaid'].nil?
+            @LBChargePrepaid = LBChargePrepaid.new
+            @LBChargePrepaid.deserialize(params['LBChargePrepaid'])
+          end
+        end
+      end
+
+      # RenewLoadBalancers返回参数结构体
+      class RenewLoadBalancersResponse < TencentCloud::Common::AbstractModel
+        # @param DealName: 订单号。
+        # @type DealName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DealName, :RequestId
+
+        def initialize(dealname=nil, requestid=nil)
+          @DealName = dealname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplaceCertForLoadBalancers请求参数结构体
       class ReplaceCertForLoadBalancersRequest < TencentCloud::Common::AbstractModel
         # @param OldCertificateId: 需要被替换的证书的ID，可以是服务端证书或客户端证书

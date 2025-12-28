@@ -4538,19 +4538,37 @@ module TencentCloud
         # 1. 推荐使用小于10M的图片；
         # 2. 图片格式的取值为：jpeg，jpg, png。
         # @type Url: String
+        # @param ReferenceType: 参考类型，GV模型适用。
+        # 注意：
 
-        attr_accessor :Type, :FileId, :Url
+        # 当使用GV模型时，可作为参考方式,可选asset(素材)、style(风格)。
+        # @type ReferenceType: String
+        # @param ObjectId: 主体id.
+        # 适用模型：Vidu-q2.
+        # 当需要对图片标识主体时，需要每个图片都带主体id，后续生成时可以通过@主体id的方式使用。
+        # @type ObjectId: String
+        # @param VoiceId: 适用于Vidu-q2模型。
+        # 当全部图片携带主体id时，可针对主体设置音色id。 音色列表：https://shengshu.feishu.cn/sheets/EgFvs6DShhiEBStmjzccr5gonOg
+        # @type VoiceId: String
 
-        def initialize(type=nil, fileid=nil, url=nil)
+        attr_accessor :Type, :FileId, :Url, :ReferenceType, :ObjectId, :VoiceId
+
+        def initialize(type=nil, fileid=nil, url=nil, referencetype=nil, objectid=nil, voiceid=nil)
           @Type = type
           @FileId = fileid
           @Url = url
+          @ReferenceType = referencetype
+          @ObjectId = objectid
+          @VoiceId = voiceid
         end
 
         def deserialize(params)
           @Type = params['Type']
           @FileId = params['FileId']
           @Url = params['Url']
+          @ReferenceType = params['ReferenceType']
+          @ObjectId = params['ObjectId']
+          @VoiceId = params['VoiceId']
         end
       end
 
@@ -7236,9 +7254,15 @@ module TencentCloud
         # @type ModelName: String
         # @param ModelVersion: 模型版本。取值：<li>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；</li><li>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、O1；</li><li>当 ModelName 是 Jimeng，可选值为 3.0pro；</li><li>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo；</li><li>当 ModelName 是 GV，可选值为 3.1、3.1-Fast；</li><li>当 ModelName 是 OS，可选值为 2.0；</li><li>当 ModelName 是 Hunyuan，可选值为 1.5；</li><li>当 ModelName 是 Mingmou，可选值为 1.0；</li>
         # @type ModelVersion: String
-        # @param FileInfos: AIGC 生视频任务的输入图片的文件信息。说明
-        # 1. 当 ModelName 是 GV 时，最大长度为 3；其他情况下最大长度为1。
-        # 2. 当 ModelName 是 GV 时，并且长度大于1时，则不能再指定 LastFrameFileId 参数。
+        # @param FileInfos: 最多包含三张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。
+
+        # 支持多图输入的模型：
+        # 1. GV，使用多图输入时，不可使用LastFrameFileId和LastFrameUrl。
+        # 2. Vidu，支持多图参考生视频。q2模型1-7张图片，可通过FileInfos里面的ObjectId作为主体id来传入。
+
+        # 注意：
+        # 1. 图片大小不超过10M。
+        # 2. 支持的图片格式：jpeg、png。
         # @type FileInfos: Array
         # @param LastFrameFileId: 用于作为尾帧画面来生成视频的媒体文件 ID。该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。说明：
         # 1. 只支持模型 GV 、Kling、Vidu，其他模型暂不支持。当 ModelName 为 GV 时，如果指定该参数，则需同时指定 FileInfos 作为待生成视频的首帧。当 ModelName 为 Kling 、ModelVersion 为 2.1 并且指定输出分辨率 Resolution 为 1080P 时，才能指定该参数。当 ModelName 为 Vidu、ModelVersion 为 q2-pro、q2-turbo 时，才能指定该参数。
@@ -7250,9 +7274,10 @@ module TencentCloud
         # 2. 图片大小需小于5M。
         # 3. 3. 图片格式的取值为：jpeg，jpg, png, webp。
         # @type LastFrameUrl: String
-        # @param Prompt: 生成图片的提示词。当 FileInfos 为空时，此参数必填。
+        # @param Prompt: 生成视频的提示词。当 FileInfos 为空时，此参数必填。
+        # 示例值：move the picture
         # @type Prompt: String
-        # @param NegativePrompt: 要阻止模型生成图片的提示词。
+        # @param NegativePrompt: 要阻止模型生成视频的提示词。
         # @type NegativePrompt: String
         # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的 Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
         # @type EnhancePrompt: String
@@ -7266,10 +7291,12 @@ module TencentCloud
         # @type TasksPriority: Integer
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
+        # @param InputRegion: 输入图片的区域信息。当图片url是国外地址时候，可选Oversea。默认Mainland。
+        # @type InputRegion: String
 
-        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :LastFrameFileId, :LastFrameUrl, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo, :InputRegion
 
-        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, lastframefileid=nil, lastframeurl=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil, inputregion=nil)
           @SubAppId = subappid
           @ModelName = modelname
           @ModelVersion = modelversion
@@ -7284,6 +7311,7 @@ module TencentCloud
           @SessionContext = sessioncontext
           @TasksPriority = taskspriority
           @ExtInfo = extinfo
+          @InputRegion = inputregion
         end
 
         def deserialize(params)
@@ -7311,6 +7339,7 @@ module TencentCloud
           @SessionContext = params['SessionContext']
           @TasksPriority = params['TasksPriority']
           @ExtInfo = params['ExtInfo']
+          @InputRegion = params['InputRegion']
         end
       end
 

@@ -485,32 +485,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 业务废弃
-
-        # 全部删除规则
-
-        # @param request: Request instance for DeleteAllAccessControlRule.
-        # @type request: :class:`Tencentcloud::cfw::V20190904::DeleteAllAccessControlRuleRequest`
-        # @rtype: :class:`Tencentcloud::cfw::V20190904::DeleteAllAccessControlRuleResponse`
-        def DeleteAllAccessControlRule(request)
-          body = send_request('DeleteAllAccessControlRule', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteAllAccessControlRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 批量删除入侵防御封禁列表、放通列表规则
 
         # @param request: Request instance for DeleteBlockIgnoreRuleList.

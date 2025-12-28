@@ -253,10 +253,14 @@ module TencentCloud
         # @type DbStatementParametersEnabled: Boolean
         # @param SlowSQLThresholds: 慢SQL阈值
         # @type SlowSQLThresholds: Array
+        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @type EnableDesensitizationRule: Integer
+        # @param DesensitizationRule: 脱敏规则
+        # @type DesensitizationRule: String
 
-        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds
+        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule
 
-        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil)
+        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -311,6 +315,8 @@ module TencentCloud
           @DisableCpuUsed = disablecpuused
           @DbStatementParametersEnabled = dbstatementparametersenabled
           @SlowSQLThresholds = slowsqlthresholds
+          @EnableDesensitizationRule = enabledesensitizationrule
+          @DesensitizationRule = desensitizationrule
         end
 
         def deserialize(params)
@@ -385,6 +391,8 @@ module TencentCloud
               @SlowSQLThresholds << apmtag_tmp
             end
           end
+          @EnableDesensitizationRule = params['EnableDesensitizationRule']
+          @DesensitizationRule = params['DesensitizationRule']
         end
       end
 
@@ -436,10 +444,14 @@ module TencentCloud
         # @type DbStatementParametersEnabled: Boolean
         # @param SlowSQLThresholds: 慢SQL阈值
         # @type SlowSQLThresholds: Array
+        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @type EnableDesensitizationRule: Integer
+        # @param DesensitizationRule: 脱敏规则
+        # @type DesensitizationRule: String
 
-        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds
+        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule
 
-        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil)
+        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @OperationNameFilter = operationnamefilter
@@ -463,6 +475,8 @@ module TencentCloud
           @DisableCpuUsed = disablecpuused
           @DbStatementParametersEnabled = dbstatementparametersenabled
           @SlowSQLThresholds = slowsqlthresholds
+          @EnableDesensitizationRule = enabledesensitizationrule
+          @DesensitizationRule = desensitizationrule
         end
 
         def deserialize(params)
@@ -503,6 +517,8 @@ module TencentCloud
               @SlowSQLThresholds << apmtag_tmp
             end
           end
+          @EnableDesensitizationRule = params['EnableDesensitizationRule']
+          @DesensitizationRule = params['DesensitizationRule']
         end
       end
 
@@ -2807,10 +2823,14 @@ module TencentCloud
         # @type DbStatementParametersEnabled: Boolean
         # @param SlowSQLThresholds: 慢SQL阈值
         # @type SlowSQLThresholds: Array
+        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @type EnableDesensitizationRule: Integer
+        # @param DesensitizationRule: 脱敏规则
+        # @type DesensitizationRule: String
 
-        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds
+        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule
 
-        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil)
+        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil)
           @InstanceId = instanceid
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -2862,6 +2882,8 @@ module TencentCloud
           @DisableCpuUsed = disablecpuused
           @DbStatementParametersEnabled = dbstatementparametersenabled
           @SlowSQLThresholds = slowsqlthresholds
+          @EnableDesensitizationRule = enabledesensitizationrule
+          @DesensitizationRule = desensitizationrule
         end
 
         def deserialize(params)
@@ -2933,6 +2955,8 @@ module TencentCloud
               @SlowSQLThresholds << apmtag_tmp
             end
           end
+          @EnableDesensitizationRule = params['EnableDesensitizationRule']
+          @DesensitizationRule = params['DesensitizationRule']
         end
       end
 
