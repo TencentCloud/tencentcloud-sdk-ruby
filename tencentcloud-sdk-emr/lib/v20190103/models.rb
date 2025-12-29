@@ -889,10 +889,13 @@ module TencentCloud
         # @param Disks: 所选数据盘信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Disks: Array
+        # @param Tolerations: 容忍
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tolerations: Array
 
-        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks
+        attr_accessor :ComponentName, :PodNumber, :LimitCpu, :LimitMemory, :Service, :VolumeDir, :ExternalAccess, :Affinity, :Disks, :Tolerations
 
-        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil)
+        def initialize(componentname=nil, podnumber=nil, limitcpu=nil, limitmemory=nil, service=nil, volumedir=nil, externalaccess=nil, affinity=nil, disks=nil, tolerations=nil)
           @ComponentName = componentname
           @PodNumber = podnumber
           @LimitCpu = limitcpu
@@ -902,6 +905,7 @@ module TencentCloud
           @ExternalAccess = externalaccess
           @Affinity = affinity
           @Disks = disks
+          @Tolerations = tolerations
         end
 
         def deserialize(params)
@@ -928,6 +932,14 @@ module TencentCloud
               disk_tmp = Disk.new
               disk_tmp.deserialize(i)
               @Disks << disk_tmp
+            end
+          end
+          unless params['Tolerations'].nil?
+            @Tolerations = []
+            params['Tolerations'].each do |i|
+              toleration_tmp = Toleration.new
+              toleration_tmp.deserialize(i)
+              @Tolerations << toleration_tmp
             end
           end
         end
@@ -5379,7 +5391,7 @@ module TencentCloud
         # "-3"代表存在隐患
         # "-4"代表未探测
         # @type HealthStateId: String
-        # @param ServiceName: 服务组件名称，都是大写例如YARN
+        # @param ServiceName: 服务组件名称应采用全大写形式（例如：YARN），api调用时须与 ServiceGroupType 在两者之中任选其一并保证必填。
         # @type ServiceName: String
         # @param NodeTypeName: 节点名称master,core,task,common,router
         # @type NodeTypeName: String
@@ -10669,6 +10681,28 @@ module TencentCloud
         end
       end
 
+      # 其他账号信息
+      class OtherAccountInfo < TencentCloud::Common::AbstractModel
+        # @param OtherUin: 其他账号UIN
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type OtherUin: String
+        # @param RoleName: 其他账号授权角色名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+
+        attr_accessor :OtherUin, :RoleName
+
+        def initialize(otheruin=nil, rolename=nil)
+          @OtherUin = otheruin
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @OtherUin = params['OtherUin']
+          @RoleName = params['RoleName']
+        end
+      end
+
       # 资源详情
       class OutterResource < TencentCloud::Common::AbstractModel
         # @param Spec: 规格
@@ -11072,10 +11106,12 @@ module TencentCloud
         # @type SubnetId: String
         # @param PodName: pod name
         # @type PodName: String
+        # @param OtherAccountInfo: 其他账号授权信息
+        # @type OtherAccountInfo: :class:`Tencentcloud::Emr.v20190103.models.OtherAccountInfo`
 
-        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeFlag, :Cpu, :Memory, :CpuType, :PodVolumes, :EnableDynamicSpecFlag, :DynamicPodSpec, :VpcId, :SubnetId, :PodName
+        attr_accessor :ResourceProviderIdentifier, :ResourceProviderType, :NodeFlag, :Cpu, :Memory, :CpuType, :PodVolumes, :EnableDynamicSpecFlag, :DynamicPodSpec, :VpcId, :SubnetId, :PodName, :OtherAccountInfo
 
-        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodeflag=nil, cpu=nil, memory=nil, cputype=nil, podvolumes=nil, enabledynamicspecflag=nil, dynamicpodspec=nil, vpcid=nil, subnetid=nil, podname=nil)
+        def initialize(resourceprovideridentifier=nil, resourceprovidertype=nil, nodeflag=nil, cpu=nil, memory=nil, cputype=nil, podvolumes=nil, enabledynamicspecflag=nil, dynamicpodspec=nil, vpcid=nil, subnetid=nil, podname=nil, otheraccountinfo=nil)
           @ResourceProviderIdentifier = resourceprovideridentifier
           @ResourceProviderType = resourceprovidertype
           @NodeFlag = nodeflag
@@ -11088,6 +11124,7 @@ module TencentCloud
           @VpcId = vpcid
           @SubnetId = subnetid
           @PodName = podname
+          @OtherAccountInfo = otheraccountinfo
         end
 
         def deserialize(params)
@@ -11113,6 +11150,10 @@ module TencentCloud
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @PodName = params['PodName']
+          unless params['OtherAccountInfo'].nil?
+            @OtherAccountInfo = OtherAccountInfo.new
+            @OtherAccountInfo.deserialize(params['OtherAccountInfo'])
+          end
         end
       end
 
@@ -14373,6 +14414,38 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Value = params['Value']
+        end
+      end
+
+      # Tolerations
+      class Toleration < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+        # @param Operator: 操作符
+        # @type Operator: String
+        # @param Effect: 污点排斥效果
+        # @type Effect: String
+        # @param TolerationSeconds: 驱逐等待时间
+        # @type TolerationSeconds: Integer
+
+        attr_accessor :Key, :Value, :Operator, :Effect, :TolerationSeconds
+
+        def initialize(key=nil, value=nil, operator=nil, effect=nil, tolerationseconds=nil)
+          @Key = key
+          @Value = value
+          @Operator = operator
+          @Effect = effect
+          @TolerationSeconds = tolerationseconds
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Operator = params['Operator']
+          @Effect = params['Effect']
+          @TolerationSeconds = params['TolerationSeconds']
         end
       end
 

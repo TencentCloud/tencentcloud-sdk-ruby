@@ -4045,6 +4045,31 @@ module TencentCloud
         end
       end
 
+      # 场景化 AIGC 生图配置。
+      class AigcImageSceneInfo < TencentCloud::Common::AbstractModel
+        # @param Type: AI生图场景类型，可选值：
+        # - change_clothes：AI换衣。
+        # @type Type: String
+        # @param ChangeClothesConfig: 当 Type 为 change_clothes 时有效，则该项为必填，表示AI 换衣生图配置参数。
+
+        # @type ChangeClothesConfig: :class:`Tencentcloud::Vod.v20180717.models.ChangeClothesConfig`
+
+        attr_accessor :Type, :ChangeClothesConfig
+
+        def initialize(type=nil, changeclothesconfig=nil)
+          @Type = type
+          @ChangeClothesConfig = changeclothesconfig
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['ChangeClothesConfig'].nil?
+            @ChangeClothesConfig = ChangeClothesConfig.new
+            @ChangeClothesConfig.deserialize(params['ChangeClothesConfig'])
+          end
+        end
+      end
+
       # AIGC 生图任务信息
       class AigcImageTask < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务 ID。
@@ -5782,6 +5807,29 @@ module TencentCloud
           @Url = params['Url']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+        end
+      end
+
+      # AI 换衣参数配置
+      class ChangeClothesConfig < TencentCloud::Common::AbstractModel
+        # @param ClothesFileInfos: 输入需要更换的**衣物**图片列表。目前最大支持4张图片。
+        # @type ClothesFileInfos: Array
+
+        attr_accessor :ClothesFileInfos
+
+        def initialize(clothesfileinfos=nil)
+          @ClothesFileInfos = clothesfileinfos
+        end
+
+        def deserialize(params)
+          unless params['ClothesFileInfos'].nil?
+            @ClothesFileInfos = []
+            params['ClothesFileInfos'].each do |i|
+              sceneaigcimagetaskinputfileinfo_tmp = SceneAigcImageTaskInputFileInfo.new
+              sceneaigcimagetaskinputfileinfo_tmp.deserialize(i)
+              @ClothesFileInfos << sceneaigcimagetaskinputfileinfo_tmp
+            end
+          end
         end
       end
 
@@ -8861,6 +8909,85 @@ module TencentCloud
 
         def deserialize(params)
           @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateSceneAigcImageTask请求参数结构体
+      class CreateSceneAigcImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: **点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。**
+        # @type SubAppId: Integer
+        # @param SceneInfo: 场景化生图参数配置。
+        # @type SceneInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcImageSceneInfo`
+        # @param FileInfos: 输入图片列表，支持的图片格式：jpg、jpeg、png、webp。不同的场景需要不同的输入数据：
+
+        # - change_clothes：只能输入1张**模特**图片。
+        # @type FileInfos: Array
+        # @param OutputConfig: 场景化生图任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :SceneInfo, :FileInfos, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, sceneinfo=nil, fileinfos=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @SceneInfo = sceneinfo
+          @FileInfos = fileinfos
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          unless params['SceneInfo'].nil?
+            @SceneInfo = AigcImageSceneInfo.new
+            @SceneInfo.deserialize(params['SceneInfo'])
+          end
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              sceneaigcimagetaskinputfileinfo_tmp = SceneAigcImageTaskInputFileInfo.new
+              sceneaigcimagetaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << sceneaigcimagetaskinputfileinfo_tmp
+            end
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = SceneAigcImageOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # CreateSceneAigcImageTask返回参数结构体
+      class CreateSceneAigcImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -27317,6 +27444,66 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @FillType = params['FillType']
+        end
+      end
+
+      # AIGC 场景化生图任务的输出媒体文件配置。
+      class SceneAigcImageOutputConfig < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储，生成的图片文件将存储到云点播，可在事件通知中获取到 FileId；</li> <li>Temporary：临时存储，生成的图片文件不会存储到云点播，可在事件通知中获取到临时访问的 URL；</li>
+        # 默认值：Temporary
+        # @type StorageMode: String
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # AIGC场景化生图任务输入文件信息
+      class SceneAigcImageTaskInputFileInfo < TencentCloud::Common::AbstractModel
+        # @param Type: 输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 URL；</li>
+        # @type Type: String
+        # @param FileId: 图片文件的媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。当 Type 取值为 File 时，本参数有效。
+        # 说明：
+        # 1. 推荐使用小于7M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @type FileId: String
+        # @param Url: 可访问的文件 URL。当 Type 取值为 Url 时，本参数有效。
+        # 说明：
+        # 1. 推荐使用小于7M的图片；
+        # 2. 图片格式的取值为：jpeg，jpg, png, webp。
+        # @type Url: String
+
+        attr_accessor :Type, :FileId, :Url
+
+        def initialize(type=nil, fileid=nil, url=nil)
+          @Type = type
+          @FileId = fileid
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @FileId = params['FileId']
+          @Url = params['Url']
         end
       end
 

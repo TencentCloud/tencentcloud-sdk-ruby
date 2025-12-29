@@ -198,6 +198,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口用于创建AIGC生图片任务。
+
+        # @param request: Request instance for CreateAigcImageTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAigcImageTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAigcImageTaskResponse`
+        def CreateAigcImageTask(request)
+          body = send_request('CreateAigcImageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcImageTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于创建AI生视频任务。
+
+        # @param request: Request instance for CreateAigcVideoTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateAigcVideoTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateAigcVideoTaskResponse`
+        def CreateAigcVideoTask(request)
+          body = send_request('CreateAigcVideoTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcVideoTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义转动图模板，数量上限：16。
 
         # @param request: Request instance for CreateAnimatedGraphicsTemplate.
@@ -1511,6 +1559,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAdaptiveDynamicStreamingTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，查询AIGC生图片任务进度以及获取生成结果。
+
+        # @param request: Request instance for DescribeAigcImageTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAigcImageTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAigcImageTaskResponse`
+        def DescribeAigcImageTask(request)
+          body = send_request('DescribeAigcImageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcImageTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于查询AIGC生视频任务的进度以及获取生成结果。
+
+        # @param request: Request instance for DescribeAigcVideoTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeAigcVideoTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeAigcVideoTaskResponse`
+        def DescribeAigcVideoTask(request)
+          body = send_request('DescribeAigcVideoTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcVideoTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -155,7 +155,9 @@ module TencentCloud
         # @type Remark: String
         # @param DataKey: 新建设备的base64密钥字符串，非必选，如果不填写则由系统自动生成
         # @type DataKey: String
-        # @param Encrypted: 是否设置预置密钥
+        # @param Encrypted: 是否设置预置密钥。
+        # true：设置预置密钥；
+        # false：不设置预置密钥。
         # @type Encrypted: Boolean
         # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。
         # 具体含义：
@@ -1463,8 +1465,10 @@ module TencentCloud
         # @param GroupId: 分组ID
         # @type GroupId: String
         # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # 示例值：1
         # @type PageSize: Integer
         # @param PageNumber: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # 示例值：10
         # @type PageNumber: Integer
         # @param KeyWord: 搜索关键字
         # @type KeyWord: String
@@ -1531,8 +1535,10 @@ module TencentCloud
       # GetGroupList请求参数结构体
       class GetGroupListRequest < TencentCloud::Common::AbstractModel
         # @param PageSize: 每页显示记录数，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # 示例值：10
         # @type PageSize: Integer
         # @param PageNumber: 当前查看页码，PageSize、PageNumber值均为-1 时，按照1页无限制条数匹配所有设备
+        # 示例值：1
         # @type PageNumber: Integer
         # @param Keyword: 搜索分组的关键字，为空时匹配所有分组
         # @type Keyword: String

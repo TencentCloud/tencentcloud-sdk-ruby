@@ -6256,9 +6256,7 @@ module TencentCloud
 
         # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
         # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
-        # @param FlowIds: 请指定需执行批量签署的流程ID，数量范围为1-100。
-        # 您可登录腾讯电子签控制台，浏览 "合同"->"合同中心" 以查阅某一合同的FlowId（在页面中显示为合同ID）。
-        # 用户将利用链接对这些合同实施批量操作。
+        # @param FlowIds: 请指定需执行批量签署的流程ID，数量范围为1-100。您可登录腾讯电子签控制台，浏览 "合同"->"合同中心" 以查阅某一合同的FlowId（在页面中显示为合同ID）。用户将利用链接对这些合同实施批量操作。  注：生成动态签署方领取时此参数必传。
         # @type FlowIds: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
@@ -6278,18 +6276,18 @@ module TencentCloud
         # @param Mobile: 员工手机号，必须与姓名一起使用。
         #  如果UserId为空，则此字段不能为空。同时，姓名和手机号码必须与传入合同（FlowId）中的签署人信息一致。
         # @type Mobile: String
-        # @param RecipientIds: 为签署方经办人在签署合同中的参与方ID，必须与参数FlowIds数组一一对应。
-        # 您可以通过查询合同接口（DescribeFlowInfo）查询此参数。
-        # 若传了此参数，则可以不传 UserId, Name, Mobile等参数
+        # @param RecipientIds: 为签署方经办人在签署合同中的参与方ID，必须与参数FlowIds数组一一对应。您可以通过查询合同接口（DescribeFlowInfo）查询此参数。若传了此参数，则可以不传 UserId, Name, Mobile等参数  注：生成动态签署方领取时此参数必传。
         # @type RecipientIds: Array
         # @param FlowGroupId: 合同组Id，传入此参数则可以不传FlowIds
         # @type FlowGroupId: String
         # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>注：`当前合同组不支持批量拒签功能。请对合同组中的每个子合同逐一执行拒签操作，以达到拒签整个合同组的效果。`
         # @type CanBatchReject: Boolean
+        # @param DynamicSignOption: 动态签署方领取链接配置。
+        # @type DynamicSignOption: :class:`Tencentcloud::Ess.v20201111.models.DynamicSignOption`
 
-        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds, :FlowGroupId, :CanBatchReject
+        attr_accessor :Operator, :FlowIds, :Agent, :UserId, :Name, :Mobile, :RecipientIds, :FlowGroupId, :CanBatchReject, :DynamicSignOption
 
-        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil, flowgroupid=nil, canbatchreject=nil)
+        def initialize(operator=nil, flowids=nil, agent=nil, userid=nil, name=nil, mobile=nil, recipientids=nil, flowgroupid=nil, canbatchreject=nil, dynamicsignoption=nil)
           @Operator = operator
           @FlowIds = flowids
           @Agent = agent
@@ -6299,6 +6297,7 @@ module TencentCloud
           @RecipientIds = recipientids
           @FlowGroupId = flowgroupid
           @CanBatchReject = canbatchreject
+          @DynamicSignOption = dynamicsignoption
         end
 
         def deserialize(params)
@@ -6317,6 +6316,10 @@ module TencentCloud
           @RecipientIds = params['RecipientIds']
           @FlowGroupId = params['FlowGroupId']
           @CanBatchReject = params['CanBatchReject']
+          unless params['DynamicSignOption'].nil?
+            @DynamicSignOption = DynamicSignOption.new
+            @DynamicSignOption.deserialize(params['DynamicSignOption'])
+          end
         end
       end
 
@@ -11484,6 +11487,26 @@ module TencentCloud
         end
       end
 
+      # 动态签署领取链接配置，当全部签署方均为动态签署方时生效。
+      class DynamicSignOption < TencentCloud::Common::AbstractModel
+        # @param DynamicReceiveType: 多份合同批量签署时，动态签署领取要求：<ul><li><b>0（默认值）</b>: 可以领取部分合同进入签署。</li><li><b>1 </b>: 必须全部领取进入签署，生成链接的所有合同必须相同经办人完成合同的领取签署。</li></ul>
+        # @type DynamicReceiveType: Integer
+        # @param OrganizationName: 动态签署方时，预设的企业名称，预设企业名称后，只允许对应的企业员工进行领取签署。
+        # @type OrganizationName: String
+
+        attr_accessor :DynamicReceiveType, :OrganizationName
+
+        def initialize(dynamicreceivetype=nil, organizationname=nil)
+          @DynamicReceiveType = dynamicreceivetype
+          @OrganizationName = organizationname
+        end
+
+        def deserialize(params)
+          @DynamicReceiveType = params['DynamicReceiveType']
+          @OrganizationName = params['OrganizationName']
+        end
+      end
+
       # 个性化参数
       class EmbedUrlOption < TencentCloud::Common::AbstractModel
         # @param ShowFlowDetailComponent: 合同详情预览，允许展示控件信息
@@ -13964,7 +13987,7 @@ module TencentCloud
 
       # 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
       class IntentionQuestion < TencentCloud::Common::AbstractModel
-        # @param Question: 当选择语音问答模式时，系统自动播报的问题文本，最大长度为150个字符。
+        # @param Question: 当选择语音问答模式时，系统自动播报的问题文本，最大长度为250个字符。
         # @type Question: String
         # @param Answers:  当选择语音问答模式时，用于判断用户回答是否通过的标准答案列表，传入后可自动判断用户回答文本是否在标准文本列表中。
         # @type Answers: Array

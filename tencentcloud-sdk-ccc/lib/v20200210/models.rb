@@ -5996,6 +5996,50 @@ module TencentCloud
         end
       end
 
+      # PlaySoundCall请求参数结构体
+      class PlaySoundCallRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @type SdkAppId: Integer
+        # @param SessionId: 会话ID
+        # @type SessionId: String
+        # @param FileId: 音频文件 ID，参见管理端-电话客服-放音文件管理
+        # @type FileId: Integer
+        # @param PlayTimes: 放音次数，默认 1 次
+        # @type PlayTimes: Integer
+
+        attr_accessor :SdkAppId, :SessionId, :FileId, :PlayTimes
+
+        def initialize(sdkappid=nil, sessionid=nil, fileid=nil, playtimes=nil)
+          @SdkAppId = sdkappid
+          @SessionId = sessionid
+          @FileId = fileid
+          @PlayTimes = playtimes
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @SessionId = params['SessionId']
+          @FileId = params['FileId']
+          @PlayTimes = params['PlayTimes']
+        end
+      end
+
+      # PlaySoundCall返回参数结构体
+      class PlaySoundCallResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ResetExtensionPassword请求参数结构体
       class ResetExtensionPasswordRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
@@ -7075,13 +7119,17 @@ module TencentCloud
         # @type VoicemailRecordURL: Array
         # @param VoicemailAsrURL: 通话中语音留言ASR文本信息地址
         # @type VoicemailAsrURL: Array
+        # @param AIAgentId: 如果是智能体相关通话，这里是智能体 ID
+        # @type AIAgentId: Integer
+        # @param AIAgentName: 如果是智能体相关通话，这里是智能体名称
+        # @type AIAgentName: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL
+        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName
         extend Gem::Deprecate
         deprecate :Uui, :none, 2025, 12
         deprecate :Uui=, :none, 2025, 12
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -7119,6 +7167,8 @@ module TencentCloud
           @QueuedSkillGroupName = queuedskillgroupname
           @VoicemailRecordURL = voicemailrecordurl
           @VoicemailAsrURL = voicemailasrurl
+          @AIAgentId = aiagentid
+          @AIAgentName = aiagentname
         end
 
         def deserialize(params)
@@ -7183,6 +7233,8 @@ module TencentCloud
           @QueuedSkillGroupName = params['QueuedSkillGroupName']
           @VoicemailRecordURL = params['VoicemailRecordURL']
           @VoicemailAsrURL = params['VoicemailAsrURL']
+          @AIAgentId = params['AIAgentId']
+          @AIAgentName = params['AIAgentName']
         end
       end
 

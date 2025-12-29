@@ -2081,7 +2081,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # API接口续费包年包月实例还在灰度中，如您需要体验该功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)
+        # 本接口 (RenewLoadBalancers) 用于续费包年包月实例。
 
         # @param request: Request instance for RenewLoadBalancers.
         # @type request: :class:`Tencentcloud::clb::V20180317::RenewLoadBalancersRequest`

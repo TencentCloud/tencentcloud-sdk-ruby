@@ -1702,6 +1702,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 对与座席通话中的会话，进行放音
+
+        # @param request: Request instance for PlaySoundCall.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::PlaySoundCallRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::PlaySoundCallResponse`
+        def PlaySoundCall(request)
+          body = send_request('PlaySoundCall', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PlaySoundCallResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 重置话机注册密码
 
         # @param request: Request instance for ResetExtensionPassword.

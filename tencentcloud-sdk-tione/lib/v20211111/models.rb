@@ -783,10 +783,12 @@ module TencentCloud
         # @type Sidecar: :class:`Tencentcloud::Tione.v20211111.models.SidecarSpec`
         # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。
         # @type VolumeMounts: Array
+        # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
+        # @type SchedulingStrategy: String
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -829,6 +831,7 @@ module TencentCloud
           @RollingUpdate = rollingupdate
           @Sidecar = sidecar
           @VolumeMounts = volumemounts
+          @SchedulingStrategy = schedulingstrategy
         end
 
         def deserialize(params)
@@ -938,6 +941,7 @@ module TencentCloud
               @VolumeMounts << volumemount_tmp
             end
           end
+          @SchedulingStrategy = params['SchedulingStrategy']
         end
       end
 
@@ -4300,12 +4304,33 @@ module TencentCloud
 
       # 暴露端口信息
       class ExposePortConfig < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启暴露容器服务端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param VpcId: vpc id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param ClbId: clb id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClbId: String
+        # @param ClbHost: clb domain
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClbHost: String
 
+        attr_accessor :Enable, :VpcId, :ClbId, :ClbHost
 
-        def initialize()
+        def initialize(enable=nil, vpcid=nil, clbid=nil, clbhost=nil)
+          @Enable = enable
+          @VpcId = vpcid
+          @ClbId = clbid
+          @ClbHost = clbhost
         end
 
         def deserialize(params)
+          @Enable = params['Enable']
+          @VpcId = params['VpcId']
+          @ClbId = params['ClbId']
+          @ClbHost = params['ClbHost']
         end
       end
 
@@ -5839,10 +5864,12 @@ module TencentCloud
         # @type ResourceGroupId: String
         # @param VolumeMounts: 数据盘批量挂载配置，当前仅支持CFS，仅针对“模型来源-腾讯云存储、模型来源-腾讯云容器镜像、模型来源-资源组、模型来源-数据源”。
         # @type VolumeMounts: Array
+        # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
+        # @type SchedulingStrategy: String
 
-        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts
+        attr_accessor :ServiceId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :ServiceAction, :ServiceDescription, :ScaleStrategy, :CronScaleJobs, :HybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :ScheduledAction, :ServiceLimit, :VolumeMount, :ModelTurboEnable, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :ResourceGroupId, :VolumeMounts, :SchedulingStrategy
 
-        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil)
+        def initialize(serviceid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, serviceaction=nil, servicedescription=nil, scalestrategy=nil, cronscalejobs=nil, hybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, scheduledaction=nil, servicelimit=nil, volumemount=nil, modelturboenable=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, resourcegroupid=nil, volumemounts=nil, schedulingstrategy=nil)
           @ServiceId = serviceid
           @ModelInfo = modelinfo
           @ImageInfo = imageinfo
@@ -5877,6 +5904,7 @@ module TencentCloud
           @Sidecar = sidecar
           @ResourceGroupId = resourcegroupid
           @VolumeMounts = volumemounts
+          @SchedulingStrategy = schedulingstrategy
         end
 
         def deserialize(params)
@@ -5971,6 +5999,7 @@ module TencentCloud
               @VolumeMounts << volumemount_tmp
             end
           end
+          @SchedulingStrategy = params['SchedulingStrategy']
         end
       end
 
@@ -7260,10 +7289,14 @@ module TencentCloud
         # @param EnableRDMA: 是否开启rdma
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableRDMA: Boolean
+        # @param RootDisk: root disk size(GB)
+        # @type RootDisk: Integer
+        # @param DataDisk: data disk size(GB)
+        # @type DataDisk: Integer
 
-        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet, :EnableRDMA
+        attr_accessor :Cpu, :Memory, :Gpu, :GpuType, :RealGpu, :RealGpuDetailSet, :EnableRDMA, :RootDisk, :DataDisk
 
-        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil, enablerdma=nil)
+        def initialize(cpu=nil, memory=nil, gpu=nil, gputype=nil, realgpu=nil, realgpudetailset=nil, enablerdma=nil, rootdisk=nil, datadisk=nil)
           @Cpu = cpu
           @Memory = memory
           @Gpu = gpu
@@ -7271,6 +7304,8 @@ module TencentCloud
           @RealGpu = realgpu
           @RealGpuDetailSet = realgpudetailset
           @EnableRDMA = enablerdma
+          @RootDisk = rootdisk
+          @DataDisk = datadisk
         end
 
         def deserialize(params)
@@ -7288,6 +7323,8 @@ module TencentCloud
             end
           end
           @EnableRDMA = params['EnableRDMA']
+          @RootDisk = params['RootDisk']
+          @DataDisk = params['DataDisk']
         end
       end
 
@@ -7510,10 +7547,8 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessStatus: String
         # @param ServiceLimit: 已废弃,以ServiceInfo中的对应为准
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceLimit: :class:`Tencentcloud::Tione.v20211111.models.ServiceLimit`
         # @param ScheduledAction: 已废弃,以ServiceInfo中的对应为准
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledAction: :class:`Tencentcloud::Tione.v20211111.models.ScheduledAction`
         # @param CreateFailedReason: 服务创建失败的原因，创建成功后该字段为默认值 CREATE_SUCCEED
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8019,22 +8054,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: :class:`Tencentcloud::Tione.v20211111.models.ResourceInfo`
         # @param InstanceType: 后付费实例对应的机型规格
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceType: String
         # @param ModelInfo: 模型信息
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelInfo: :class:`Tencentcloud::Tione.v20211111.models.ModelInfo`
         # @param LogEnable: 是否启用日志
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogEnable: Boolean
         # @param LogConfig: 日志配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
         # @param AuthorizationEnable: 是否开启鉴权
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AuthorizationEnable: Boolean
         # @param HorizontalPodAutoscaler: hpa配置
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HorizontalPodAutoscaler: :class:`Tencentcloud::Tione.v20211111.models.HorizontalPodAutoscaler`
         # @param Status: 服务的状态描述
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8116,15 +8145,19 @@ module TencentCloud
         # @type InstancePerReplicas: Integer
         # @param VolumeMounts: 批量数据盘挂载配置
         # @type VolumeMounts: Array
+        # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
+        # @type SchedulingStrategy: String
+        # @param NodeCount: 服务实际运行的节点数
+        # @type NodeCount: Integer
 
-        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts
+        attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount
         extend Gem::Deprecate
         deprecate :PodList, :none, 2025, 12
         deprecate :PodList=, :none, 2025, 12
         deprecate :Pods, :none, 2025, 12
         deprecate :Pods=, :none, 2025, 12
 
-        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil)
+        def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil)
           @Replicas = replicas
           @ImageInfo = imageinfo
           @Env = env
@@ -8164,6 +8197,8 @@ module TencentCloud
           @RollingUpdate = rollingupdate
           @InstancePerReplicas = instanceperreplicas
           @VolumeMounts = volumemounts
+          @SchedulingStrategy = schedulingstrategy
+          @NodeCount = nodecount
         end
 
         def deserialize(params)
@@ -8279,6 +8314,8 @@ module TencentCloud
               @VolumeMounts << volumemount_tmp
             end
           end
+          @SchedulingStrategy = params['SchedulingStrategy']
+          @NodeCount = params['NodeCount']
         end
       end
 

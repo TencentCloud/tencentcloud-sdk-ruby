@@ -792,6 +792,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用于生成场景化 AIGC 图片。<b>接口处于内测阶段，如需使用请[联系我们](https://cloud.tencent.com/online-service?from=sales_sales&source=PRESALE)，接口调用会产生实际费用。</b>
+
+        # @param request: Request instance for CreateSceneAigcImageTask.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateSceneAigcImageTaskRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateSceneAigcImageTaskResponse`
+        def CreateSceneAigcImageTask(request)
+          body = send_request('CreateSceneAigcImageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateSceneAigcImageTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建用户自定义指定时间点截图模板，数量上限：16。
 
         # @param request: Request instance for CreateSnapshotByTimeOffsetTemplate.

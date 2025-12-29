@@ -177,6 +177,9 @@ module TencentCloud
         end
 
         # 创建QA分类
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for CreateQACate.
         # @type request: :class:`Tencentcloud::lke::V20231130::CreateQACateRequest`
@@ -1138,6 +1141,9 @@ module TencentCloud
         end
 
         # 导出QA列表
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for ExportQAList.
         # @type request: :class:`Tencentcloud::lke::V20231130::ExportQAListRequest`
@@ -1162,6 +1168,9 @@ module TencentCloud
         end
 
         # 导出不满意回复
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for ExportUnsatisfiedReply.
         # @type request: :class:`Tencentcloud::lke::V20231130::ExportUnsatisfiedReplyRequest`
@@ -1450,7 +1459,10 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # QA分组
+        # 用户将多个问答批量的分类到知识库的具体分类
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for GroupQA.
         # @type request: :class:`Tencentcloud::lke::V20231130::GroupQARequest`
@@ -1718,6 +1730,9 @@ module TencentCloud
         end
 
         # 获取QA分类
+        # 知识库相关背景知识介绍
+        # “知识库检索范围”文档：https://cloud.tencent.com/document/product/1759/112704
+        # “标签”文档：https://cloud.tencent.com/document/product/1759/112956
 
         # @param request: Request instance for ListQACate.
         # @type request: :class:`Tencentcloud::lke::V20231130::ListQACateRequest`

@@ -4870,6 +4870,160 @@ module TencentCloud
         end
       end
 
+      # 用于AIGC创作图片时用到的扩展参数信息。
+      class AigcImageExtraParam < TencentCloud::Common::AbstractModel
+        # @param AspectRatio: 指定所生成视频的宽高比。
+
+        # 不同模型支持的宽高比:
+        # 1. GEM支持：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9。
+        # 2. Jimeng：合用户prompt意图、参考图尺寸，由模型智能判断生图宽高比。
+
+        # 注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。
+        # @type AspectRatio: String
+        # @param Resolution: 指定图片输出分辨率。
+
+        # 支持该参数的模型：
+        # 支持选择: 720P, 1080P, 2K, 4K。
+
+        # 1. Jimeng推荐通过prompt指定图片分辨率和宽高比。
+        #     2K
+        #     2048x2048 （1:1）
+        #     2304x1728（4:3）
+        #     2496x1664 （3:2）
+        #     2560x1440 （16:9）
+        #     3024x1296 （21:9）
+        #     4K
+        #     4096x4096 （1:1）
+        #     4694x3520（4:3）
+        #     4992x3328 （3:2）
+        #     5404x3040 （16:9）
+        #     6198x2656 （21:9）
+        # @type Resolution: String
+
+        attr_accessor :AspectRatio, :Resolution
+
+        def initialize(aspectratio=nil, resolution=nil)
+          @AspectRatio = aspectratio
+          @Resolution = resolution
+        end
+
+        def deserialize(params)
+          @AspectRatio = params['AspectRatio']
+          @Resolution = params['Resolution']
+        end
+      end
+
+      # 用于AIGC创作的图片信息。
+      class AigcImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 用于指导视频生成的图片 URL。该URL需外网可访问。同时允许爬虫拉取。
+        # @type ImageUrl: String
+        # @param ReferenceType: 参考类型。
+        # 注意：
+        # 1. 当模型使用Vidu的q2多参考生图时，也可用于指定主体id。
+        # 2. 当使用GV模型时，可作为参考方式,可选asset(素材)、style(风格)。
+        # @type ReferenceType: String
+
+        attr_accessor :ImageUrl, :ReferenceType
+
+        def initialize(imageurl=nil, referencetype=nil)
+          @ImageUrl = imageurl
+          @ReferenceType = referencetype
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ReferenceType = params['ReferenceType']
+        end
+      end
+
+      # Aigc结果文件上传COS时，需传入的信息。 需创建并授权LVB_QCSRole角色。
+      class AigcStoreCosParam < TencentCloud::Common::AbstractModel
+        # @param CosBucketName: 存储至 cos 的 bucket 桶名称。需要cos存储时，该值必填。 示例值：bucket。
+        # @type CosBucketName: String
+        # @param CosBucketRegion: 存储至 cos 的 bucket 区域。与bucket所属区域相同，上传cos时必填。 示例值：ap-guangzhou
+        # @type CosBucketRegion: String
+        # @param CosBucketPath: 存储至 cos 的 bucket 路径。
+        # 可选。
+        # 示例值：my_file
+        # @type CosBucketPath: String
+
+        attr_accessor :CosBucketName, :CosBucketRegion, :CosBucketPath
+
+        def initialize(cosbucketname=nil, cosbucketregion=nil, cosbucketpath=nil)
+          @CosBucketName = cosbucketname
+          @CosBucketRegion = cosbucketregion
+          @CosBucketPath = cosbucketpath
+        end
+
+        def deserialize(params)
+          @CosBucketName = params['CosBucketName']
+          @CosBucketRegion = params['CosBucketRegion']
+          @CosBucketPath = params['CosBucketPath']
+        end
+      end
+
+      # 用于AIGC创作视频时用到的扩展参数信息。
+      class AigcVideoExtraParam < TencentCloud::Common::AbstractModel
+        # @param Resolution: 生成视频的分辨率，分辨率与选择模型及设置的视频时长相关。
+
+        # 不同模型支持的分辨率选项:
+        # 1. Kling 720P(默认), 1080P。
+        # 2. Hailuo 768P(默认), 1080P。
+        # 3. Jimeng 1080P(默认)。
+        # 4. Vidu 720P(默认)，1080P。
+        # 5. GV 720P(默认),1080P。
+        # 6. OS 720P, 图片仅支持1280x720、720x1280，暂不支持指定。
+
+        # 注意：除模型可支持的分辨率外，还可以生成 2K、4K分辨率。
+        # @type Resolution: String
+        # @param AspectRatio: 指定所生成视频的宽高比。
+
+        # 不同模型对于此参数的支持：
+        # 1. Kling 仅文生视频支持, 16:9(默认值)、9:16、 1:1。
+        # 2. Hailuo 暂不支持。
+        # 3. Jimeng ["16:9"、"4:3"、"1:1"、"3:4"、"9:16"、"21:9"]
+        # 4. Vidu 仅文生和参考图生视频 支持[16:9、9:16、4:3、3:4、1:1]，其中仅q2支持4:3、3:4。
+        # 5. GV 16:9(默认值)、9:16。
+        # 6. OS 仅文生视频支持, 16:9(默认), 9:16。
+
+        # 注：关于具体模型支持的宽高比例，可查看具体模型官网介绍获取更完整描述。
+        # @type AspectRatio: String
+
+        attr_accessor :Resolution, :AspectRatio
+
+        def initialize(resolution=nil, aspectratio=nil)
+          @Resolution = resolution
+          @AspectRatio = aspectratio
+        end
+
+        def deserialize(params)
+          @Resolution = params['Resolution']
+          @AspectRatio = params['AspectRatio']
+        end
+      end
+
+      # 用于AIGC生视频创作的参考图片信息。
+      class AigcVideoReferenceImageInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUrl: 用于指导视频生成的图片 URL。该URL需外网可访问。同时允许爬虫拉取。
+        # @type ImageUrl: String
+        # @param ReferenceType: 参考类型。
+        # 注意：
+        # 1. 当使用GV模型时，可作为参考方式,可选asset(素材)、style(风格)。
+        # @type ReferenceType: String
+
+        attr_accessor :ImageUrl, :ReferenceType
+
+        def initialize(imageurl=nil, referencetype=nil)
+          @ImageUrl = imageurl
+          @ReferenceType = referencetype
+        end
+
+        def deserialize(params)
+          @ImageUrl = params['ImageUrl']
+          @ReferenceType = params['ReferenceType']
+        end
+      end
+
       # 转动图任务类型。
       class AnimatedGraphicTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频转动图模板 ID。
@@ -7537,6 +7691,240 @@ module TencentCloud
         end
       end
 
+      # CreateAigcImageTask请求参数结构体
+      class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称。
+        # 当前支持的模型列表：
+        # GEM，
+        # Jimeng，
+        # Qwen。
+        # @type ModelName: String
+        # @param ModelVersion: 指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。
+
+        # 1. GEM， 可选[2.5,3.0]。
+        # 2. Jimeng，可选[4.0]。
+        # @type ModelVersion: String
+        # @param Prompt: 生成图片的描述。(注：最大支持1000字符)。当未传入参考图片时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 用于描述您想要阻止模型生成的内容。 注意：部分模型支持。 例如： 顶部照明、明亮的色彩 人物、动物 多辆汽车、风。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 默认取值为False，模型会严格地遵循指令。如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。
+        # @type EnhancePrompt: Boolean
+        # @param ImageInfos: 用于传入参考的资源图片信息，默认支持传入一张图片。
+
+        # 支持多图输入的模型：
+        # 1. GEM，可支持最多3张图片输入作为资源图。
+
+        # 注意：
+        # 1. 推荐图片小于7M，各模型限制不同。
+        # 2. 图片格式支持：jpeg, png, webp。
+        # @type ImageInfos: Array
+        # @param ExtraParameters: 用于传入模型要求的额外参数。
+        # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcImageExtraParam`
+        # @param StoreCosParam: 文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。
+        # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
+        # @param Operator: 接口操作者名称。
+        # @type Operator: String
+
+        attr_accessor :ModelName, :ModelVersion, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageInfos, :ExtraParameters, :StoreCosParam, :Operator
+
+        def initialize(modelname=nil, modelversion=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageinfos=nil, extraparameters=nil, storecosparam=nil, operator=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @ImageInfos = imageinfos
+          @ExtraParameters = extraparameters
+          @StoreCosParam = storecosparam
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              aigcimageinfo_tmp = AigcImageInfo.new
+              aigcimageinfo_tmp.deserialize(i)
+              @ImageInfos << aigcimageinfo_tmp
+            end
+          end
+          unless params['ExtraParameters'].nil?
+            @ExtraParameters = AigcImageExtraParam.new
+            @ExtraParameters.deserialize(params['ExtraParameters'])
+          end
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = AigcStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # CreateAigcImageTask返回参数结构体
+      class CreateAigcImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 返回的任务ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAigcVideoTask请求参数结构体
+      class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ModelName: 模型名称。
+        # 当前支持的模型列表:
+        # Hailuo，
+        # Kling，
+        # Jimeng，
+        # Vidu，
+        # OS，
+        # GV。
+        # @type ModelName: String
+        # @param ModelVersion: 指定模型特定版本号。默认使用系统当前所支持的模型稳定版本。
+        # 1. Hailuo， 可选[02、2.3]。
+        # 2. Kling，可选[2.0、2.1、2.5]。
+        # 3. Jimeng, 可选[3.0pro]。
+        # 4. Vidu,可选[q2、q2-pro、q2-turbo]。
+        # 4. GV, 可选[3.1]。
+        # 5. OS，可选[2.0]。
+        # @type ModelVersion: String
+        # @param Prompt: 生成视频的描述。(注：最大支持2000字符)。当未传入图片时，此参数必填。
+        # @type Prompt: String
+        # @param NegativePrompt: 用于描述您想要阻止模型生成的内容。
+        # 注意：部分模型支持。
+        # 例如：
+        # 顶部照明、明亮的色彩
+        # 人物、动物
+        # 多辆汽车、风。
+        # @type NegativePrompt: String
+        # @param EnhancePrompt: 默认取值为False，模型会严格地遵循指令。如果需要更精细的prompt获得最佳效果，可将此参数设置为True，将自动优化传入的prompt，以提升生成质量。
+        # @type EnhancePrompt: Boolean
+        # @param ImageUrl: 用于指导视频生成的图片 URL。该URL需外网可访问。
+        # 注意：
+        # 1. 推荐图片大小不超过10M，不同模型大小限制不相同。
+        # 2. 支持的图片格式：jpeg、png。
+        # 3. 使用OS模型时，需输入图片尺寸为: 1280x720、720x1280。
+        # @type ImageUrl: String
+        # @param LastImageUrl: 模型将以此参数传入的图片作为尾帧画面来生成视频。
+        # 支持此参数的模型：
+        # 1. GV，传入尾帧图片时，必须同时传入ImageUrl作为首帧。
+        # 2. Kling， 在Resolution:1080P的情况下 2.1版本支持首位帧。
+        # 3. Vidu, q2-pro, q2-turbo 支持首尾帧。
+
+        # 注意：
+        # 1. 推荐图片大小不超过10M，各模型限制不同。
+        # 2. 支持的图片格式：jpeg、png。
+        # @type LastImageUrl: String
+        # @param ImageInfos: 最多包含三张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。
+
+        # 支持多图输入的模型：
+        # 1. GV，使用多图输入时，不可使用ImageUrl和LastImageUrl。
+        # 2. Vidu，支持多图参考生视频。q2模型1-7张图片，可通过ImageInfos里面的ReferenceType作为主体id来传入。
+
+        # 注意：
+        # 1. 图片大小不超过10M。
+        # 2. 支持的图片格式：jpeg、png。
+        # @type ImageInfos: Array
+        # @param Duration: 生成视频的时长。
+        # 注意：
+        # 1. Kling支持 5、10秒。默认: 5秒。
+        # 2. Jimeng支持5、10秒。 默认: 5秒。
+        # 3. Hailuo的std模式可支持6、10秒，其他仅6秒。默认：6秒。
+        # 4. Vidu支持1-10秒。
+        # 4. GV支持 8秒。 默认：8秒。
+        # 5. OS支持4、8、12秒。 默认：8秒。
+        # @type Duration: Integer
+        # @param ExtraParameters: 用于传入模型要求的额外参数。
+        # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcVideoExtraParam`
+        # @param StoreCosParam: 文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。
+        # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
+        # @param Operator: 接口操作者名称。
+        # @type Operator: String
+
+        attr_accessor :ModelName, :ModelVersion, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :Duration, :ExtraParameters, :StoreCosParam, :Operator
+
+        def initialize(modelname=nil, modelversion=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, operator=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @Prompt = prompt
+          @NegativePrompt = negativeprompt
+          @EnhancePrompt = enhanceprompt
+          @ImageUrl = imageurl
+          @LastImageUrl = lastimageurl
+          @ImageInfos = imageinfos
+          @Duration = duration
+          @ExtraParameters = extraparameters
+          @StoreCosParam = storecosparam
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @Prompt = params['Prompt']
+          @NegativePrompt = params['NegativePrompt']
+          @EnhancePrompt = params['EnhancePrompt']
+          @ImageUrl = params['ImageUrl']
+          @LastImageUrl = params['LastImageUrl']
+          unless params['ImageInfos'].nil?
+            @ImageInfos = []
+            params['ImageInfos'].each do |i|
+              aigcvideoreferenceimageinfo_tmp = AigcVideoReferenceImageInfo.new
+              aigcvideoreferenceimageinfo_tmp.deserialize(i)
+              @ImageInfos << aigcvideoreferenceimageinfo_tmp
+            end
+          end
+          @Duration = params['Duration']
+          unless params['ExtraParameters'].nil?
+            @ExtraParameters = AigcVideoExtraParam.new
+            @ExtraParameters.deserialize(params['ExtraParameters'])
+          end
+          unless params['StoreCosParam'].nil?
+            @StoreCosParam = AigcStoreCosParam.new
+            @StoreCosParam.deserialize(params['StoreCosParam'])
+          end
+          @Operator = params['Operator']
+        end
+      end
+
+      # CreateAigcVideoTask返回参数结构体
+      class CreateAigcVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务创建成功后，返回的任务ID。
+        # 调用查询接口，轮询获取任务进度及生成结果。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAnimatedGraphicsTemplate请求参数结构体
       class CreateAnimatedGraphicsTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Fps: 帧率，取值范围：[1, 30]，单位：Hz。
@@ -9314,7 +9702,6 @@ module TencentCloud
         # `iw`：希伯来语
         # `ja`：日语
         # `jv`：爪哇语
-        # `jw`：爪哇语
         # `ka`：格鲁吉亚语
         # `kk`：哈萨克语
         # `km`：高棉语
@@ -9401,7 +9788,6 @@ module TencentCloud
         # `th`：泰语
         # `ti`：提格里尼亚语
         # `tk`：土库曼语
-        # `tl`：菲律宾语（塔加拉语）
         # `tn`：茨瓦纳语
         # `tr`：土耳其语
         # `ts`：聪加语
@@ -9429,10 +9815,12 @@ module TencentCloud
 
         # **注意**：不传的情况下默认类型为 ASR识别字幕
         # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: 字幕OCR提取框选区域配置
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
 
-        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage, :ProcessType
+        attr_accessor :Name, :VideoSrcLanguage, :SubtitleType, :Comment, :SubtitleFormat, :AsrHotWordsConfigure, :TranslateSwitch, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig
 
-        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil)
+        def initialize(name=nil, videosrclanguage=nil, subtitletype=nil, comment=nil, subtitleformat=nil, asrhotwordsconfigure=nil, translateswitch=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil)
           @Name = name
           @VideoSrcLanguage = videosrclanguage
           @SubtitleType = subtitletype
@@ -9442,6 +9830,7 @@ module TencentCloud
           @TranslateSwitch = translateswitch
           @TranslateDstLanguage = translatedstlanguage
           @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
         end
 
         def deserialize(params)
@@ -9457,6 +9846,10 @@ module TencentCloud
           @TranslateSwitch = params['TranslateSwitch']
           @TranslateDstLanguage = params['TranslateDstLanguage']
           @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
         end
       end
 
@@ -11234,6 +11627,98 @@ module TencentCloud
               @AdaptiveDynamicStreamingTemplateSet << adaptivedynamicstreamingtemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcImageTask请求参数结构体
+      class DescribeAigcImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建的AIGC生图片任务ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAigcImageTask返回参数结构体
+      class DescribeAigcImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务当前状态。 WAIT：等待中， RUN：执行中， FAIL：任务失败， DONE：任务成功。
+        # @type Status: String
+        # @param ImageUrls: 当任务状态为 DONE时，返回的图片Url列表，图片存储12小时，请尽快取走使用。
+        # @type ImageUrls: Array
+        # @param Message: 当任务状态为 FAIL时，返回失败信息。
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ImageUrls, :Message, :RequestId
+
+        def initialize(status=nil, imageurls=nil, message=nil, requestid=nil)
+          @Status = status
+          @ImageUrls = imageurls
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ImageUrls = params['ImageUrls']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcVideoTask请求参数结构体
+      class DescribeAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: 创建AIGC生视频任务时，返回的任务ID。
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeAigcVideoTask返回参数结构体
+      class DescribeAigcVideoTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务当前状态。 WAIT：等待中， RUN：执行中， FAIL：任务失败， DONE：任务成功。
+        # @type Status: String
+        # @param VideoUrls: 当任务状态为 DONE时，返回视频Url列表，视频存储12小时，请尽快取走使用。
+        # @type VideoUrls: Array
+        # @param Resolution: 输出视频的分辨率。示例：1080*720；
+        # @type Resolution: String
+        # @param Message: 当任务状态为 FAIL时，返回失败信息。
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :VideoUrls, :Resolution, :Message, :RequestId
+
+        def initialize(status=nil, videourls=nil, resolution=nil, message=nil, requestid=nil)
+          @Status = status
+          @VideoUrls = videourls
+          @Resolution = resolution
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @VideoUrls = params['VideoUrls']
+          @Resolution = params['Resolution']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -22149,7 +22634,6 @@ module TencentCloud
         # `iw`：希伯来语
         # `ja`：日语
         # `jv`：爪哇语
-        # `jw`：爪哇语
         # `ka`：格鲁吉亚语
         # `kk`：哈萨克语
         # `km`：高棉语
@@ -22236,7 +22720,6 @@ module TencentCloud
         # `th`：泰语
         # `ti`：提格里尼亚语
         # `tk`：土库曼语
-        # `tl`：菲律宾语（塔加拉语）
         # `tn`：茨瓦纳语
         # `tr`：土耳其语
         # `ts`：聪加语
@@ -22264,10 +22747,12 @@ module TencentCloud
 
         # **注意**：不传的情况下，默认是ASR方式
         # @type ProcessType: Integer
+        # @param SelectingSubtitleAreasConfig: 字幕OCR提取框选区域配置
+        # @type SelectingSubtitleAreasConfig: :class:`Tencentcloud::Mps.v20190612.models.SelectingSubtitleAreasConfig`
 
-        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage, :ProcessType
+        attr_accessor :Definition, :TranslateSwitch, :Name, :Comment, :VideoSrcLanguage, :SubtitleFormat, :SubtitleType, :AsrHotWordsConfigure, :TranslateDstLanguage, :ProcessType, :SelectingSubtitleAreasConfig
 
-        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil, processtype=nil)
+        def initialize(definition=nil, translateswitch=nil, name=nil, comment=nil, videosrclanguage=nil, subtitleformat=nil, subtitletype=nil, asrhotwordsconfigure=nil, translatedstlanguage=nil, processtype=nil, selectingsubtitleareasconfig=nil)
           @Definition = definition
           @TranslateSwitch = translateswitch
           @Name = name
@@ -22278,6 +22763,7 @@ module TencentCloud
           @AsrHotWordsConfigure = asrhotwordsconfigure
           @TranslateDstLanguage = translatedstlanguage
           @ProcessType = processtype
+          @SelectingSubtitleAreasConfig = selectingsubtitleareasconfig
         end
 
         def deserialize(params)
@@ -22294,6 +22780,10 @@ module TencentCloud
           end
           @TranslateDstLanguage = params['TranslateDstLanguage']
           @ProcessType = params['ProcessType']
+          unless params['SelectingSubtitleAreasConfig'].nil?
+            @SelectingSubtitleAreasConfig = SelectingSubtitleAreasConfig.new
+            @SelectingSubtitleAreasConfig.deserialize(params['SelectingSubtitleAreasConfig'])
+          end
         end
       end
 

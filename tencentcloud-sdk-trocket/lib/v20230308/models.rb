@@ -3121,11 +3121,11 @@ module TencentCloud
 
       # DescribeMigrationTaskList请求参数结构体
       class DescribeMigrationTaskListRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 查询条件列表
+        # @param Filters: 过滤查询条件列表，请在引用此参数的API说明中了解使用方法。
         # @type Filters: Array
-        # @param Offset: 查询起始位置
+        # @param Offset: 查询起始位置，默认为0。
         # @type Offset: Integer
-        # @param Limit: 查询结果限制数量
+        # @param Limit: 查询结果限制数量，默认20。
         # @type Limit: Integer
 
         attr_accessor :Filters, :Offset, :Limit

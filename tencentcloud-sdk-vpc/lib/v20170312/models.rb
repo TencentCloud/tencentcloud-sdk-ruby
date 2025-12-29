@@ -5494,16 +5494,27 @@ module TencentCloud
 
       # CreatePrivateNatGatewayTranslationAclRule返回参数结构体
       class CreatePrivateNatGatewayTranslationAclRuleResponse < TencentCloud::Common::AbstractModel
+        # @param TranslationAclRuleSet: 创建成功的访问控制列表。
+        # @type TranslationAclRuleSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TranslationAclRuleSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(translationaclruleset=nil, requestid=nil)
+          @TranslationAclRuleSet = translationaclruleset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['TranslationAclRuleSet'].nil?
+            @TranslationAclRuleSet = []
+            params['TranslationAclRuleSet'].each do |i|
+              translationaclrule_tmp = TranslationAclRule.new
+              translationaclrule_tmp.deserialize(i)
+              @TranslationAclRuleSet << translationaclrule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -13668,10 +13679,12 @@ module TencentCloud
         # @type Limit: Integer
         # @param Description: ACL规则描述
         # @type Description: String
+        # @param Filters: 过滤条件。<li>AclRuleId - Integer - ACL规则ID。</li>
+        # @type Filters: Array
 
-        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :OriginalIp, :Offset, :Limit, :Description
+        attr_accessor :NatGatewayId, :TranslationDirection, :TranslationType, :TranslationIp, :OriginalIp, :Offset, :Limit, :Description, :Filters
 
-        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, originalip=nil, offset=nil, limit=nil, description=nil)
+        def initialize(natgatewayid=nil, translationdirection=nil, translationtype=nil, translationip=nil, originalip=nil, offset=nil, limit=nil, description=nil, filters=nil)
           @NatGatewayId = natgatewayid
           @TranslationDirection = translationdirection
           @TranslationType = translationtype
@@ -13680,6 +13693,7 @@ module TencentCloud
           @Offset = offset
           @Limit = limit
           @Description = description
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -13691,6 +13705,14 @@ module TencentCloud
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Description = params['Description']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 

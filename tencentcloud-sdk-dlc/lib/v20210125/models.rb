@@ -4603,10 +4603,24 @@ module TencentCloud
         # @type IsAIEngine: Integer
         # @param ScheduleElasticityConf: 引擎资源弹性伸缩策略
         # @type ScheduleElasticityConf: :class:`Tencentcloud::Dlc.v20210125.models.ScheduleElasticityConf`
+        # @param GPUInfo: GPU 信息
+        # @type GPUInfo: :class:`Tencentcloud::Dlc.v20210125.models.GPUInfo`
+        # @param EngineResourceUsedGPU: GPU 使用量
+        # @type EngineResourceUsedGPU: Integer
+        # @param GPUTotalSize: GPU 总规格
+        # @type GPUTotalSize: Integer
+        # @param InstanceModel: GPU 机型
+        # @type InstanceModel: String
+        # @param NodeNum: 节点数量
+        # @type NodeNum: Integer
+        # @param SizeWithElastic: 引擎规格，包含负载弹性或分时弹性
+        # @type SizeWithElastic: Integer
+        # @param MaxElasticSize: 最大弹性值，包含负载弹性或分时弹性
+        # @type MaxElasticSize: Integer
 
-        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode, :IsSupportAI, :GatewayId, :GatewayState, :IsAIGateway, :IsAIEngine, :ScheduleElasticityConf
+        attr_accessor :DataEngineName, :EngineType, :ClusterType, :QuotaId, :State, :CreateTime, :UpdateTime, :Size, :Mode, :MinClusters, :MaxClusters, :AutoResume, :SpendAfter, :CidrBlock, :DefaultDataEngine, :Message, :DataEngineId, :SubAccountUin, :ExpireTime, :IsolatedTime, :ReversalTime, :UserAlias, :TagList, :Permissions, :AutoSuspend, :CrontabResumeSuspend, :CrontabResumeSuspendStrategy, :EngineExecType, :RenewFlag, :AutoSuspendTime, :NetworkConnectionSet, :UiURL, :ResourceType, :ImageVersionId, :ChildImageVersionId, :ImageVersionName, :StartStandbyCluster, :ElasticSwitch, :ElasticLimit, :DefaultHouse, :MaxConcurrency, :TolerableQueueTime, :UserAppId, :UserUin, :SessionResourceTemplate, :AutoAuthorization, :EngineGeneration, :EngineTypeDetail, :EngineNetworkId, :EngineResourceGroupCount, :EngineResourceUsedCU, :AccessInfos, :EngineNetworkName, :IsPoolMode, :IsSupportAI, :GatewayId, :GatewayState, :IsAIGateway, :IsAIEngine, :ScheduleElasticityConf, :GPUInfo, :EngineResourceUsedGPU, :GPUTotalSize, :InstanceModel, :NodeNum, :SizeWithElastic, :MaxElasticSize
 
-        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil, issupportai=nil, gatewayid=nil, gatewaystate=nil, isaigateway=nil, isaiengine=nil, scheduleelasticityconf=nil)
+        def initialize(dataenginename=nil, enginetype=nil, clustertype=nil, quotaid=nil, state=nil, createtime=nil, updatetime=nil, size=nil, mode=nil, minclusters=nil, maxclusters=nil, autoresume=nil, spendafter=nil, cidrblock=nil, defaultdataengine=nil, message=nil, dataengineid=nil, subaccountuin=nil, expiretime=nil, isolatedtime=nil, reversaltime=nil, useralias=nil, taglist=nil, permissions=nil, autosuspend=nil, crontabresumesuspend=nil, crontabresumesuspendstrategy=nil, engineexectype=nil, renewflag=nil, autosuspendtime=nil, networkconnectionset=nil, uiurl=nil, resourcetype=nil, imageversionid=nil, childimageversionid=nil, imageversionname=nil, startstandbycluster=nil, elasticswitch=nil, elasticlimit=nil, defaulthouse=nil, maxconcurrency=nil, tolerablequeuetime=nil, userappid=nil, useruin=nil, sessionresourcetemplate=nil, autoauthorization=nil, enginegeneration=nil, enginetypedetail=nil, enginenetworkid=nil, engineresourcegroupcount=nil, engineresourceusedcu=nil, accessinfos=nil, enginenetworkname=nil, ispoolmode=nil, issupportai=nil, gatewayid=nil, gatewaystate=nil, isaigateway=nil, isaiengine=nil, scheduleelasticityconf=nil, gpuinfo=nil, engineresourceusedgpu=nil, gputotalsize=nil, instancemodel=nil, nodenum=nil, sizewithelastic=nil, maxelasticsize=nil)
           @DataEngineName = dataenginename
           @EngineType = enginetype
           @ClusterType = clustertype
@@ -4667,6 +4681,13 @@ module TencentCloud
           @IsAIGateway = isaigateway
           @IsAIEngine = isaiengine
           @ScheduleElasticityConf = scheduleelasticityconf
+          @GPUInfo = gpuinfo
+          @EngineResourceUsedGPU = engineresourceusedgpu
+          @GPUTotalSize = gputotalsize
+          @InstanceModel = instancemodel
+          @NodeNum = nodenum
+          @SizeWithElastic = sizewithelastic
+          @MaxElasticSize = maxelasticsize
         end
 
         def deserialize(params)
@@ -4760,6 +4781,16 @@ module TencentCloud
             @ScheduleElasticityConf = ScheduleElasticityConf.new
             @ScheduleElasticityConf.deserialize(params['ScheduleElasticityConf'])
           end
+          unless params['GPUInfo'].nil?
+            @GPUInfo = GPUInfo.new
+            @GPUInfo.deserialize(params['GPUInfo'])
+          end
+          @EngineResourceUsedGPU = params['EngineResourceUsedGPU']
+          @GPUTotalSize = params['GPUTotalSize']
+          @InstanceModel = params['InstanceModel']
+          @NodeNum = params['NodeNum']
+          @SizeWithElastic = params['SizeWithElastic']
+          @MaxElasticSize = params['MaxElasticSize']
         end
       end
 
@@ -10877,15 +10908,18 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间，Once格式：yyyy-MM-dd HH:mm:ss; 非Once格式： HH:mm:ss
         # @type EndTime: String
+        # @param ElasticLimit: 分时弹性上限
+        # @type ElasticLimit: Integer
 
-        attr_accessor :MinElasticClusters, :MaxElasticClusters, :TolerableQueueTime, :StartTime, :EndTime
+        attr_accessor :MinElasticClusters, :MaxElasticClusters, :TolerableQueueTime, :StartTime, :EndTime, :ElasticLimit
 
-        def initialize(minelasticclusters=nil, maxelasticclusters=nil, tolerablequeuetime=nil, starttime=nil, endtime=nil)
+        def initialize(minelasticclusters=nil, maxelasticclusters=nil, tolerablequeuetime=nil, starttime=nil, endtime=nil, elasticlimit=nil)
           @MinElasticClusters = minelasticclusters
           @MaxElasticClusters = maxelasticclusters
           @TolerableQueueTime = tolerablequeuetime
           @StartTime = starttime
           @EndTime = endtime
+          @ElasticLimit = elasticlimit
         end
 
         def deserialize(params)
@@ -10894,6 +10928,7 @@ module TencentCloud
           @TolerableQueueTime = params['TolerableQueueTime']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @ElasticLimit = params['ElasticLimit']
         end
       end
 
@@ -11134,6 +11169,50 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # GPU 机型
+      class GPUInfo < TencentCloud::Common::AbstractModel
+        # @param BillingItem: 计费项
+        # @type BillingItem: String
+        # @param Model: 机型
+        # @type Model: String
+        # @param CU: cu
+        # @type CU: Integer
+        # @param Type: gpu 机型
+        # @type Type: String
+        # @param Num: 数量
+        # @type Num: Integer
+        # @param GPUMemory: 显存
+        # @type GPUMemory: Integer
+        # @param InstanceType: 机型
+        # @type InstanceType: String
+        # @param SaleStatus: 售卖情况（1-缺货，2-低库存，3-充足）
+        # @type SaleStatus: Integer
+
+        attr_accessor :BillingItem, :Model, :CU, :Type, :Num, :GPUMemory, :InstanceType, :SaleStatus
+
+        def initialize(billingitem=nil, model=nil, cu=nil, type=nil, num=nil, gpumemory=nil, instancetype=nil, salestatus=nil)
+          @BillingItem = billingitem
+          @Model = model
+          @CU = cu
+          @Type = type
+          @Num = num
+          @GPUMemory = gpumemory
+          @InstanceType = instancetype
+          @SaleStatus = salestatus
+        end
+
+        def deserialize(params)
+          @BillingItem = params['BillingItem']
+          @Model = params['Model']
+          @CU = params['CU']
+          @Type = params['Type']
+          @Num = params['Num']
+          @GPUMemory = params['GPUMemory']
+          @InstanceType = params['InstanceType']
+          @SaleStatus = params['SaleStatus']
         end
       end
 
@@ -14280,15 +14359,23 @@ module TencentCloud
       class SmartOptimizerWrittenPolicy < TencentCloud::Common::AbstractModel
         # @param WrittenEnable: none/enable/disable/default
         # @type WrittenEnable: String
+        # @param AdvancePolicy: 用户自定义高级参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancePolicy: :class:`Tencentcloud::Dlc.v20210125.models.WrittenAdvancePolicy`
 
-        attr_accessor :WrittenEnable
+        attr_accessor :WrittenEnable, :AdvancePolicy
 
-        def initialize(writtenenable=nil)
+        def initialize(writtenenable=nil, advancepolicy=nil)
           @WrittenEnable = writtenenable
+          @AdvancePolicy = advancepolicy
         end
 
         def deserialize(params)
           @WrittenEnable = params['WrittenEnable']
+          unless params['AdvancePolicy'].nil?
+            @AdvancePolicy = WrittenAdvancePolicy.new
+            @AdvancePolicy.deserialize(params['AdvancePolicy'])
+          end
         end
       end
 
@@ -14373,6 +14460,30 @@ module TencentCloud
         def deserialize(params)
           @Field = params['Field']
           @Asc = params['Asc']
+        end
+      end
+
+      # 合并策略sort类型的规则定义
+      class SortOrder < TencentCloud::Common::AbstractModel
+        # @param Column: sort的数据表列名称
+        # @type Column: String
+        # @param SortDirection: 按照升序或者降序进行排序
+        # @type SortDirection: String
+        # @param NullOrder: null值放在开头或者末尾
+        # @type NullOrder: String
+
+        attr_accessor :Column, :SortDirection, :NullOrder
+
+        def initialize(column=nil, sortdirection=nil, nullorder=nil)
+          @Column = column
+          @SortDirection = sortdirection
+          @NullOrder = nullorder
+        end
+
+        def deserialize(params)
+          @Column = params['Column']
+          @SortDirection = params['SortDirection']
+          @NullOrder = params['NullOrder']
         end
       end
 
@@ -17920,6 +18031,70 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+        end
+      end
+
+      # Smart Optimizer高级参数配置数据结构
+      class WrittenAdvancePolicy < TencentCloud::Common::AbstractModel
+        # @param CompactEnable: 是否启用合并
+        # @type CompactEnable: String
+        # @param DeleteEnable: 是否启用历史数据清理
+        # @type DeleteEnable: String
+        # @param MinInputFiles: 合并最新文件数量
+        # @type MinInputFiles: Integer
+        # @param TargetFileSizeBytes: 合并文件目录文件大小
+        # @type TargetFileSizeBytes: Integer
+        # @param RetainLast: 保留过期时间的快照数量
+        # @type RetainLast: Integer
+        # @param BeforeDays: 快照过期时间
+        # @type BeforeDays: Integer
+        # @param ExpiredSnapshotsIntervalMin: 快照过期执行周期
+        # @type ExpiredSnapshotsIntervalMin: Integer
+        # @param RemoveOrphanIntervalMin: 移除孤立文件执行周期
+        # @type RemoveOrphanIntervalMin: Integer
+        # @param CowCompactEnable: 是否开启COW表合并
+        # @type CowCompactEnable: String
+        # @param CompactStrategy: 文件合并策略
+        # @type CompactStrategy: String
+        # @param SortOrders: sort合并策略的规则定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SortOrders: Array
+
+        attr_accessor :CompactEnable, :DeleteEnable, :MinInputFiles, :TargetFileSizeBytes, :RetainLast, :BeforeDays, :ExpiredSnapshotsIntervalMin, :RemoveOrphanIntervalMin, :CowCompactEnable, :CompactStrategy, :SortOrders
+
+        def initialize(compactenable=nil, deleteenable=nil, mininputfiles=nil, targetfilesizebytes=nil, retainlast=nil, beforedays=nil, expiredsnapshotsintervalmin=nil, removeorphanintervalmin=nil, cowcompactenable=nil, compactstrategy=nil, sortorders=nil)
+          @CompactEnable = compactenable
+          @DeleteEnable = deleteenable
+          @MinInputFiles = mininputfiles
+          @TargetFileSizeBytes = targetfilesizebytes
+          @RetainLast = retainlast
+          @BeforeDays = beforedays
+          @ExpiredSnapshotsIntervalMin = expiredsnapshotsintervalmin
+          @RemoveOrphanIntervalMin = removeorphanintervalmin
+          @CowCompactEnable = cowcompactenable
+          @CompactStrategy = compactstrategy
+          @SortOrders = sortorders
+        end
+
+        def deserialize(params)
+          @CompactEnable = params['CompactEnable']
+          @DeleteEnable = params['DeleteEnable']
+          @MinInputFiles = params['MinInputFiles']
+          @TargetFileSizeBytes = params['TargetFileSizeBytes']
+          @RetainLast = params['RetainLast']
+          @BeforeDays = params['BeforeDays']
+          @ExpiredSnapshotsIntervalMin = params['ExpiredSnapshotsIntervalMin']
+          @RemoveOrphanIntervalMin = params['RemoveOrphanIntervalMin']
+          @CowCompactEnable = params['CowCompactEnable']
+          @CompactStrategy = params['CompactStrategy']
+          unless params['SortOrders'].nil?
+            @SortOrders = []
+            params['SortOrders'].each do |i|
+              sortorder_tmp = SortOrder.new
+              sortorder_tmp.deserialize(i)
+              @SortOrders << sortorder_tmp
+            end
+          end
         end
       end
 

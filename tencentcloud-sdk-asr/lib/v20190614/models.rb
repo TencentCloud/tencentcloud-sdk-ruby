@@ -1653,8 +1653,10 @@ module TencentCloud
         # @type HotwordList: String
         # @param InputSampleRate: 支持pcm格式的8k音频在与引擎采样率不匹配的情况下升采样到16k后识别，能有效提升识别准确率。仅支持：8000。如：传入 8000 ，则pcm音频采样率为8k，当引擎选用16k_zh， 那么该8k采样率的pcm音频可以在16k_zh引擎下正常识别。 注：此参数仅适用于pcm格式音频，不传入值将维持默认状态，即默认调用的引擎采样率等于pcm音频采样率。
         # @type InputSampleRate: Integer
+        # @param ReplaceTextId: 替换词id。用于调用对应的替换词表。
+        # @type ReplaceTextId: String
 
-        attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate
+        attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
         deprecate :ProjectId, :none, 2025, 12
         deprecate :ProjectId=, :none, 2025, 12
@@ -1665,7 +1667,7 @@ module TencentCloud
         deprecate :ReinforceHotword, :none, 2025, 12
         deprecate :ReinforceHotword=, :none, 2025, 12
 
-        def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil)
+        def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype
           @SourceType = sourcetype
           @VoiceFormat = voiceformat
@@ -1685,6 +1687,7 @@ module TencentCloud
           @ReinforceHotword = reinforcehotword
           @HotwordList = hotwordlist
           @InputSampleRate = inputsamplerate
+          @ReplaceTextId = replacetextid
         end
 
         def deserialize(params)
@@ -1707,6 +1710,7 @@ module TencentCloud
           @ReinforceHotword = params['ReinforceHotword']
           @HotwordList = params['HotwordList']
           @InputSampleRate = params['InputSampleRate']
+          @ReplaceTextId = params['ReplaceTextId']
         end
       end
 

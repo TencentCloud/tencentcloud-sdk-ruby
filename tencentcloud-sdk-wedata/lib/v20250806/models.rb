@@ -303,10 +303,22 @@ module TencentCloud
         # @type ReconciliationExtInfo: Array
         # @param MonitorWhiteTasks: 监控对象的白名单配置
         # @type MonitorWhiteTasks: Array
+        # @param WorkflowCompletionTimeCycleExtInfo: 3.0 Workflow 完成时间（周期）告警策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowCompletionTimeCycleExtInfo: Array
+        # @param WorkflowExecutionTrigger: 工作流执行触发告警条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowExecutionTrigger: Integer
+        # @param WorkflowExecutionFailureTrigger: 工作流执行失败告警条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowExecutionFailureTrigger: Integer
+        # @param WorkflowExecutionSuccessTrigger: 工作流执行成功告警条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowExecutionSuccessTrigger: Integer
 
-        attr_accessor :Trigger, :DataBackfillOrRerunTrigger, :TimeOutExtInfo, :DataBackfillOrRerunTimeOutExtInfo, :ProjectInstanceStatisticsAlarmInfoList, :ReconciliationExtInfo, :MonitorWhiteTasks
+        attr_accessor :Trigger, :DataBackfillOrRerunTrigger, :TimeOutExtInfo, :DataBackfillOrRerunTimeOutExtInfo, :ProjectInstanceStatisticsAlarmInfoList, :ReconciliationExtInfo, :MonitorWhiteTasks, :WorkflowCompletionTimeCycleExtInfo, :WorkflowExecutionTrigger, :WorkflowExecutionFailureTrigger, :WorkflowExecutionSuccessTrigger
 
-        def initialize(trigger=nil, databackfillorreruntrigger=nil, timeoutextinfo=nil, databackfillorreruntimeoutextinfo=nil, projectinstancestatisticsalarminfolist=nil, reconciliationextinfo=nil, monitorwhitetasks=nil)
+        def initialize(trigger=nil, databackfillorreruntrigger=nil, timeoutextinfo=nil, databackfillorreruntimeoutextinfo=nil, projectinstancestatisticsalarminfolist=nil, reconciliationextinfo=nil, monitorwhitetasks=nil, workflowcompletiontimecycleextinfo=nil, workflowexecutiontrigger=nil, workflowexecutionfailuretrigger=nil, workflowexecutionsuccesstrigger=nil)
           @Trigger = trigger
           @DataBackfillOrRerunTrigger = databackfillorreruntrigger
           @TimeOutExtInfo = timeoutextinfo
@@ -314,6 +326,10 @@ module TencentCloud
           @ProjectInstanceStatisticsAlarmInfoList = projectinstancestatisticsalarminfolist
           @ReconciliationExtInfo = reconciliationextinfo
           @MonitorWhiteTasks = monitorwhitetasks
+          @WorkflowCompletionTimeCycleExtInfo = workflowcompletiontimecycleextinfo
+          @WorkflowExecutionTrigger = workflowexecutiontrigger
+          @WorkflowExecutionFailureTrigger = workflowexecutionfailuretrigger
+          @WorkflowExecutionSuccessTrigger = workflowexecutionsuccesstrigger
         end
 
         def deserialize(params)
@@ -359,6 +375,17 @@ module TencentCloud
               @MonitorWhiteTasks << monitorwhitetask_tmp
             end
           end
+          unless params['WorkflowCompletionTimeCycleExtInfo'].nil?
+            @WorkflowCompletionTimeCycleExtInfo = []
+            params['WorkflowCompletionTimeCycleExtInfo'].each do |i|
+              timeoutstrategyinfo_tmp = TimeOutStrategyInfo.new
+              timeoutstrategyinfo_tmp.deserialize(i)
+              @WorkflowCompletionTimeCycleExtInfo << timeoutstrategyinfo_tmp
+            end
+          end
+          @WorkflowExecutionTrigger = params['WorkflowExecutionTrigger']
+          @WorkflowExecutionFailureTrigger = params['WorkflowExecutionFailureTrigger']
+          @WorkflowExecutionSuccessTrigger = params['WorkflowExecutionSuccessTrigger']
         end
       end
 
@@ -13035,15 +13062,29 @@ module TencentCloud
         # @param ScheduleTimeZone: 超时时间对应的时区配置， 如 UTC+7, 默认为UTC+8
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleTimeZone: String
+        # @param Second: 秒（用于 Spark Streaming 策略）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Second: Integer
+        # @param Times: 次数（用于 Spark Streaming 重试次数超限策略，ruleType=10）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Times: Integer
+        # @param AlarmTriggerFrequency: 告警触发频率（用于 Spark Streaming 策略 ruleType=8/9/10）
+        #          * 单位：分钟，范围：5-1440
+        #          * 告警触发后，在该时间内暂停检测，避免告警风暴
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmTriggerFrequency: Integer
 
-        attr_accessor :RuleType, :Type, :Hour, :Min, :ScheduleTimeZone
+        attr_accessor :RuleType, :Type, :Hour, :Min, :ScheduleTimeZone, :Second, :Times, :AlarmTriggerFrequency
 
-        def initialize(ruletype=nil, type=nil, hour=nil, min=nil, scheduletimezone=nil)
+        def initialize(ruletype=nil, type=nil, hour=nil, min=nil, scheduletimezone=nil, second=nil, times=nil, alarmtriggerfrequency=nil)
           @RuleType = ruletype
           @Type = type
           @Hour = hour
           @Min = min
           @ScheduleTimeZone = scheduletimezone
+          @Second = second
+          @Times = times
+          @AlarmTriggerFrequency = alarmtriggerfrequency
         end
 
         def deserialize(params)
@@ -13052,6 +13093,9 @@ module TencentCloud
           @Hour = params['Hour']
           @Min = params['Min']
           @ScheduleTimeZone = params['ScheduleTimeZone']
+          @Second = params['Second']
+          @Times = params['Times']
+          @AlarmTriggerFrequency = params['AlarmTriggerFrequency']
         end
       end
 

@@ -3107,14 +3107,18 @@ module TencentCloud
         # @type DataDisks: Array
         # @param KeyIds: ssh公钥id数组
         # @type KeyIds: Array
+        # @param DeletePolicy: 节点移出策略，有Random（随机）、Newest（优先移出最新实例）、Oldest（优先移出最旧实例）三种可选，默认是Newest
+        # @type DeletePolicy: String
         # @param GPUConfigs: 节点池 GPU 配置
         # @type GPUConfigs: Array
+        # @param AutomationService: 原生节点池安装自动化助手开关状态
+        # @type AutomationService: Boolean
         # @param Password: 原生节点池密码
         # @type Password: String
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :GPUConfigs, :Password
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, gpuconfigs=nil, password=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, deletepolicy=nil, gpuconfigs=nil, automationservice=nil, password=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -3135,7 +3139,9 @@ module TencentCloud
           @UpdateExistedNode = updateexistednode
           @DataDisks = datadisks
           @KeyIds = keyids
+          @DeletePolicy = deletepolicy
           @GPUConfigs = gpuconfigs
+          @AutomationService = automationservice
           @Password = password
         end
 
@@ -3185,6 +3191,7 @@ module TencentCloud
             end
           end
           @KeyIds = params['KeyIds']
+          @DeletePolicy = params['DeletePolicy']
           unless params['GPUConfigs'].nil?
             @GPUConfigs = []
             params['GPUConfigs'].each do |i|
@@ -3193,6 +3200,7 @@ module TencentCloud
               @GPUConfigs << gpuconfig_tmp
             end
           end
+          @AutomationService = params['AutomationService']
           @Password = params['Password']
         end
       end

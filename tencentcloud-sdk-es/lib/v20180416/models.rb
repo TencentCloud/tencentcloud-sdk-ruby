@@ -4184,14 +4184,26 @@ module TencentCloud
         # @type ModelNames: Array
         # @param TaskTypes: 模型使用的任务类型，包括：fill_mask, ner, question_answering, text_classification, text_embedding, text_expansion, text_similarity和zero_shot_classification，默认为text_embedding
         # @type TaskTypes: Array
+        # @param HuggingFaceModelNames: HuggingFace模型名称
+        # @type HuggingFaceModelNames: Array
+        # @param ModelDescription: 模型描述
+        # @type ModelDescription: String
+        # @param ModelSourceType: 模型来源：UserModel、HuggingFace和PlatformModel
+        # @type ModelSourceType: String
+        # @param UploadedCosPaths: 已上传的模型路径
+        # @type UploadedCosPaths: Array
 
-        attr_accessor :InstanceId, :UsrCosModelUrlList, :ModelNames, :TaskTypes
+        attr_accessor :InstanceId, :UsrCosModelUrlList, :ModelNames, :TaskTypes, :HuggingFaceModelNames, :ModelDescription, :ModelSourceType, :UploadedCosPaths
 
-        def initialize(instanceid=nil, usrcosmodelurllist=nil, modelnames=nil, tasktypes=nil)
+        def initialize(instanceid=nil, usrcosmodelurllist=nil, modelnames=nil, tasktypes=nil, huggingfacemodelnames=nil, modeldescription=nil, modelsourcetype=nil, uploadedcospaths=nil)
           @InstanceId = instanceid
           @UsrCosModelUrlList = usrcosmodelurllist
           @ModelNames = modelnames
           @TaskTypes = tasktypes
+          @HuggingFaceModelNames = huggingfacemodelnames
+          @ModelDescription = modeldescription
+          @ModelSourceType = modelsourcetype
+          @UploadedCosPaths = uploadedcospaths
         end
 
         def deserialize(params)
@@ -4199,6 +4211,10 @@ module TencentCloud
           @UsrCosModelUrlList = params['UsrCosModelUrlList']
           @ModelNames = params['ModelNames']
           @TaskTypes = params['TaskTypes']
+          @HuggingFaceModelNames = params['HuggingFaceModelNames']
+          @ModelDescription = params['ModelDescription']
+          @ModelSourceType = params['ModelSourceType']
+          @UploadedCosPaths = params['UploadedCosPaths']
         end
       end
 
