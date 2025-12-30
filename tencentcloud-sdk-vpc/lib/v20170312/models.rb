@@ -30081,10 +30081,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 更新时间。
         # @type UpdateTime: String
+        # @param Description: 路由备注
+        # @type Description: String
 
-        attr_accessor :DestinationCidrBlock, :InstanceType, :InstanceId, :Priority, :Status, :RouteId, :Type, :CreateTime, :UpdateTime
+        attr_accessor :DestinationCidrBlock, :InstanceType, :InstanceId, :Priority, :Status, :RouteId, :Type, :CreateTime, :UpdateTime, :Description
 
-        def initialize(destinationcidrblock=nil, instancetype=nil, instanceid=nil, priority=nil, status=nil, routeid=nil, type=nil, createtime=nil, updatetime=nil)
+        def initialize(destinationcidrblock=nil, instancetype=nil, instanceid=nil, priority=nil, status=nil, routeid=nil, type=nil, createtime=nil, updatetime=nil, description=nil)
           @DestinationCidrBlock = destinationcidrblock
           @InstanceType = instancetype
           @InstanceId = instanceid
@@ -30094,6 +30096,7 @@ module TencentCloud
           @Type = type
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Description = description
         end
 
         def deserialize(params)
@@ -30106,6 +30109,7 @@ module TencentCloud
           @Type = params['Type']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Description = params['Description']
         end
       end
 
@@ -30115,17 +30119,21 @@ module TencentCloud
         # @type RouteId: String
         # @param Status: VPN网关状态, ENABLE 启用, DISABLE禁用。
         # @type Status: String
+        # @param Description: VPN路由备注
+        # @type Description: String
 
-        attr_accessor :RouteId, :Status
+        attr_accessor :RouteId, :Status, :Description
 
-        def initialize(routeid=nil, status=nil)
+        def initialize(routeid=nil, status=nil, description=nil)
           @RouteId = routeid
           @Status = status
+          @Description = description
         end
 
         def deserialize(params)
           @RouteId = params['RouteId']
           @Status = params['Status']
+          @Description = params['Description']
         end
       end
 

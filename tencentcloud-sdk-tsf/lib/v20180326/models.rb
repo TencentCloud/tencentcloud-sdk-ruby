@@ -20662,10 +20662,8 @@ module TencentCloud
         # @param Content: 业务日志列表
         # @type Content: Array
         # @param ScrollId: 游标ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScrollId: String
         # @param Status: 查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SearchAfter: 查询es时，使用searchAfter返回的游标
         # @type SearchAfter: Array
@@ -21194,10 +21192,8 @@ module TencentCloud
         # @param Content: 标准输出日志列表
         # @type Content: Array
         # @param ScrollId: 游标ID
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScrollId: String
         # @param Status: 查询状态，SUCCESS：查询成功完成，ERROR_RANGE_EXCEED：查询范围过大异常，ERROR_COMPLEX_CONDITION：查询条件复杂异常，ERROR_OTHER_CAUSE：其他异常
-        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
         # @param SearchAfter: 查询es使用searchAfter时，游标
         # @type SearchAfter: Array

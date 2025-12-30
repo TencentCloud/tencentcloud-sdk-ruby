@@ -3394,16 +3394,20 @@ module TencentCloud
 
       # CreateGlobalMaintenanceWindowAndExclusions返回参数结构体
       class CreateGlobalMaintenanceWindowAndExclusionsResponse < TencentCloud::Common::AbstractModel
+        # @param ID: 维护窗口ID
+        # @type ID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ID, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(id=nil, requestid=nil)
+          @ID = id
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ID = params['ID']
           @RequestId = params['RequestId']
         end
       end
@@ -8512,7 +8516,8 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 最大输出条目数，默认为20
         # @type Limit: Integer
-        # @param Filters: 筛选项
+        # @param Filters: 筛选项，支持按照以下字段过滤：
+        # - "ID"：维护窗口ID，如：10
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :Filters

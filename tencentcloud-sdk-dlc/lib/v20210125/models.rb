@@ -8090,6 +8090,50 @@ module TencentCloud
         end
       end
 
+      # DescribeResourceGroupUsageInfo请求参数结构体
+      class DescribeResourceGroupUsageInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: 资源组ID
+        # @type SessionId: String
+
+        attr_accessor :SessionId
+
+        def initialize(sessionid=nil)
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # DescribeResourceGroupUsageInfo返回参数结构体
+      class DescribeResourceGroupUsageInfoResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 资源上限
+        # @type Total: Integer
+        # @param Used: 已占用资源
+        # @type Used: Integer
+        # @param Available: 剩余可用资源
+        # @type Available: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Used, :Available, :RequestId
+
+        def initialize(total=nil, used=nil, available=nil, requestid=nil)
+          @Total = total
+          @Used = used
+          @Available = available
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Used = params['Used']
+          @Available = params['Available']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResultDownload请求参数结构体
       class DescribeResultDownloadRequest < TencentCloud::Common::AbstractModel
         # @param DownloadId: 查询任务Id

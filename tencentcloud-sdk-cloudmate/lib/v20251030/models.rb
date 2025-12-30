@@ -112,7 +112,7 @@ module TencentCloud
       class CloudMateAgentResponse < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID，用于后续继续对话
         # @type SessionId: String
-        # @param Timestamp: unix时间戳
+        # @param Timestamp: Unix 时间戳
         # @type Timestamp: Integer
         # @param Content: 诊断内容
         # @type Content: :class:`Tencentcloud::Cloudmate.v20251030.models.ChatContent`

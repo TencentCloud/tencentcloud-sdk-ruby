@@ -240,59 +240,51 @@ module TencentCloud
 
       # CreateSite请求参数结构体
       class CreateSiteRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 站点名称
+        # @param Name: <p>站点名称</p>
         # @type Name: String
-        # @param Country: 站点所在国家
+        # @param Country: <p>站点所在国家</p>
         # @type Country: String
-        # @param Province: 站点所在省份
+        # @param Province: <p>站点所在省份</p>
         # @type Province: String
-        # @param City: 站点所在城市
+        # @param City: <p>站点所在城市</p>
         # @type City: String
-        # @param AddressLine: 站点所在地区的详细地址信息
+        # @param AddressLine: <p>站点所在地区的详细地址信息</p>
         # @type AddressLine: String
-        # @param Description: 站点描述
+        # @param Description: <p>站点描述</p>
         # @type Description: String
-        # @param Note: 注意事项
+        # @param Note: <p>注意事项</p>
         # @type Note: String
-        # @param FiberType: 您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。取值范围："MM","SM"
+        # @param FiberType: <p>您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。取值范围："MM","SM"</p>
         # @type FiberType: String
-        # @param OpticalStandard: 您将CDC连接到网络时采用的光学标准。此字段取决于上行链路速度、光纤类型和到上游设备的距离。
+        # @param OpticalStandard: <p>您将CDC连接到网络时采用的光学标准。此字段取决于上行链路速度、光纤类型和到上游设备的距离。</p>
         # @type OpticalStandard: String
-        # @param PowerConnectors: 电源连接器类型
+        # @param PowerConnectors: <p>电源连接器类型</p>
         # @type PowerConnectors: String
-        # @param PowerFeedDrop: 从机架上方还是下方供电。取值范围：["UP","DOWN"]
+        # @param PowerFeedDrop: <p>从机架上方还是下方供电。取值范围：["UP","DOWN"]</p>
         # @type PowerFeedDrop: String
-        # @param MaxWeight: 最大承重(KG)
+        # @param MaxWeight: <p>最大承重(KG)</p>
         # @type MaxWeight: Integer
-        # @param PowerDrawKva: 功耗(KW)
+        # @param PowerDrawKva: <p>功耗(KW)</p>
         # @type PowerDrawKva: Integer
-        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度(Gbps)
+        # @param UplinkSpeedGbps: <p>网络到腾讯云Region区域的上行链路速度(Gbps)</p>
         # @type UplinkSpeedGbps: Integer
-        # @param UplinkCount: 将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。
+        # @param UplinkCount: <p>将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。</p>
         # @type UplinkCount: Integer
-        # @param ConditionRequirement: 是否满足下面环境条件：
-        # 1、场地没有材料要求或验收标准会影响 CDC 设备配送和安装。
-        # 2、确定的机架位置包含:
-        # 温度范围为 41 到 104°F (5 到 40°C)。
-        # 湿度范围为 10°F (-12°C)和 8% RH (相对湿度)到 70°F(21°C)和 80% RH。
-        # 机架位置的气流方向为从前向后，且应具有足够的 CFM (每分钟立方英尺)。CFM 必须是 CDC 配置的 kVA 功耗值的 145.8 倍。
+        # @param ConditionRequirement: <p>是否满足下面环境条件：1、场地没有材料要求或验收标准会影响 CDC 设备配送和安装。2、确定的机架位置包含:温度范围为 41 到 104°F (5 到 40°C)。湿度范围为 10°F (-12°C)和 8% RH (相对湿度)到 70°F(21°C)和 80% RH。机架位置的气流方向为从前向后，且应具有足够的 CFM (每分钟立方英尺)。CFM 必须是 CDC 配置的 kVA 功耗值的 145.8 倍。</p>
         # @type ConditionRequirement: Boolean
-        # @param DimensionRequirement: 是否满足下面的尺寸条件：
-        # 您的装货站台可以容纳一个机架箱(高 x 宽 x 深 = 94" x 54" x 48")。
-        # 您可以提供从机架(高 x 宽 x 深 = 80" x 24" x 48")交货地点到机架最终安置位置的明确通道。测量深度时，应包括站台、走廊通道、门、转弯、坡道、货梯，并将其他通道限制考虑在内。
-        # 在最终的 CDC安置位置，前部间隙可以为 48" 或更大，后部间隙可以为 24" 或更大。
+        # @param DimensionRequirement: <p>是否满足下面的尺寸条件：您的装货站台可以容纳一个机架箱(高 x 宽 x 深 = 94" x 54" x 48")。您可以提供从机架(高 x 宽 x 深 = 80" x 24" x 48")交货地点到机架最终安置位置的明确通道。测量深度时，应包括站台、走廊通道、门、转弯、坡道、货梯，并将其他通道限制考虑在内。在最终的 CDC安置位置，前部间隙可以为 48" 或更大，后部间隙可以为 24" 或更大。</p>
         # @type DimensionRequirement: Boolean
-        # @param RedundantNetworking: 是否提供冗余的上游设备(交换机或路由器)，以便两台  网络设备都能连接到网络设备。
+        # @param RedundantNetworking: <p>是否提供冗余的上游设备(交换机或路由器)，以便两台  网络设备都能连接到网络设备。</p>
         # @type RedundantNetworking: Boolean
-        # @param PostalCode: 站点所在地区的邮编
+        # @param PostalCode: <p>站点所在地区的邮编</p>
         # @type PostalCode: Integer
-        # @param OptionalAddressLine: 站点所在地区的详细地址信息（补充）
+        # @param OptionalAddressLine: <p>站点所在地区的详细地址信息（补充）</p>
         # @type OptionalAddressLine: String
-        # @param NeedHelp: 是否需要腾讯云团队协助完成机架支撑工作
+        # @param NeedHelp: <p>是否需要腾讯云团队协助完成机架支撑工作</p>
         # @type NeedHelp: Boolean
-        # @param RedundantPower: 是否电源冗余
+        # @param RedundantPower: <p>是否电源冗余</p>
         # @type RedundantPower: Boolean
-        # @param BreakerRequirement: 上游断路器是否具备
+        # @param BreakerRequirement: <p>上游断路器是否具备</p>
         # @type BreakerRequirement: Boolean
 
         attr_accessor :Name, :Country, :Province, :City, :AddressLine, :Description, :Note, :FiberType, :OpticalStandard, :PowerConnectors, :PowerFeedDrop, :MaxWeight, :PowerDrawKva, :UplinkSpeedGbps, :UplinkCount, :ConditionRequirement, :DimensionRequirement, :RedundantNetworking, :PostalCode, :OptionalAddressLine, :NeedHelp, :RedundantPower, :BreakerRequirement
@@ -352,7 +344,7 @@ module TencentCloud
 
       # CreateSite返回参数结构体
       class CreateSiteResponse < TencentCloud::Common::AbstractModel
-        # @param SiteId: 创建Site生成的id
+        # @param SiteId: <p>创建Site生成的id</p>
         # @type SiteId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1321,15 +1313,15 @@ module TencentCloud
 
       # DescribeDedicatedClusterTypes请求参数结构体
       class DescribeDedicatedClusterTypesRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 模糊匹配专用集群配置名称
+        # @param Name: <p>模糊匹配专用集群配置名称</p>
         # @type Name: String
-        # @param DedicatedClusterTypeIds: 待查询的专用集群配置id列表
+        # @param DedicatedClusterTypeIds: <p>待查询的专用集群配置id列表</p>
         # @type DedicatedClusterTypeIds: Array
-        # @param Offset: 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @param Offset: <p>偏移量，默认为0。关于<code>Offset</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688">简介</a>中的相关小节。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。关于<code>Limit</code>的更进一步介绍请参考 API <a href="https://cloud.tencent.com/document/api/213/15688">简介</a>中的相关小节。</p>
         # @type Limit: Integer
-        # @param IsCompute: 是否只查询计算规格类型
+        # @param IsCompute: <p>是否只查询计算规格类型</p>
         # @type IsCompute: Boolean
 
         attr_accessor :Name, :DedicatedClusterTypeIds, :Offset, :Limit, :IsCompute
@@ -1353,9 +1345,9 @@ module TencentCloud
 
       # DescribeDedicatedClusterTypes返回参数结构体
       class DescribeDedicatedClusterTypesResponse < TencentCloud::Common::AbstractModel
-        # @param DedicatedClusterTypeSet: 专用集群配置列表
+        # @param DedicatedClusterTypeSet: <p>专用集群配置列表</p>
         # @type DedicatedClusterTypeSet: Array
-        # @param TotalCount: 符合条件的个数
+        # @param TotalCount: <p>符合条件的个数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1935,43 +1927,35 @@ module TencentCloud
 
       # ModifySiteDeviceInfo请求参数结构体
       class ModifySiteDeviceInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SiteId: 机房ID
+        # @param SiteId: <p>机房ID</p>
         # @type SiteId: String
-        # @param FiberType: 您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。
+        # @param FiberType: <p>您将使用光纤类型将CDC设备连接到网络。有单模和多模两种选项。</p>
         # @type FiberType: String
-        # @param OpticalStandard: 您将CDC连接到网络时采用的光学标准。此字段取决于上行链路速度、光纤类型和到上游设备的距离。
+        # @param OpticalStandard: <p>您将CDC连接到网络时采用的光学标准。此字段取决于上行链路速度、光纤类型和到上游设备的距离。</p>
         # @type OpticalStandard: String
-        # @param PowerConnectors: 电源连接器类型
+        # @param PowerConnectors: <p>电源连接器类型</p>
         # @type PowerConnectors: String
-        # @param PowerFeedDrop: 从机架上方还是下方供电。取值范围：["UP","DOWN"]
+        # @param PowerFeedDrop: <p>从机架上方还是下方供电。取值范围：["UP","DOWN"]</p>
         # @type PowerFeedDrop: String
-        # @param MaxWeight: 最大承重(KG)
+        # @param MaxWeight: <p>最大承重(KG)</p>
         # @type MaxWeight: Integer
-        # @param PowerDrawKva: 功耗(KW)
+        # @param PowerDrawKva: <p>功耗(KW)</p>
         # @type PowerDrawKva: Integer
-        # @param UplinkSpeedGbps: 网络到腾讯云Region区域的上行链路速度(Gbps)
+        # @param UplinkSpeedGbps: <p>网络到腾讯云Region区域的上行链路速度(Gbps)</p>
         # @type UplinkSpeedGbps: Integer
-        # @param UplinkCount: 将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。
+        # @param UplinkCount: <p>将CDC连接到网络时，每台CDC网络设备(每个机架 2 台设备)使用的上行链路数量。</p>
         # @type UplinkCount: Integer
-        # @param ConditionRequirement: 是否满足下面环境条件：
-        # 1、场地没有材料要求或验收标准会影响 CDC 设备配送和安装。
-        # 2、确定的机架位置包含:
-        # 温度范围为 41 到 104°F (5 到 40°C)。
-        # 湿度范围为 10°F (-12°C)和 8% RH (相对湿度)到 70°F(21°C)和 80% RH。
-        # 机架位置的气流方向为从前向后，且应具有足够的 CFM (每分钟立方英尺)，散热功率须达到CDC运行功率值的 145.8 倍以上。
+        # @param ConditionRequirement: <p>是否满足下面环境条件：1、场地没有材料要求或验收标准会影响 CDC 设备配送和安装。2、确定的机架位置包含:温度范围为 41 到 104°F (5 到 40°C)。湿度范围为 10°F (-12°C)和 8% RH (相对湿度)到 70°F(21°C)和 80% RH。机架位置的气流方向为从前向后，且应具有足够的 CFM (每分钟立方英尺)，散热功率须达到CDC运行功率值的 145.8 倍以上。</p>
         # @type ConditionRequirement: Boolean
-        # @param DimensionRequirement: 是否满足下面的尺寸条件：
-        # 您的装货站台可以容纳一个机架箱(高 x 宽 x 深 = 94" x 54" x 48")。
-        # 您可以提供从机架(高 x 宽 x 深 = 80" x 24" x 48")交货地点到机架最终安置位置的明确通道。测量深度时，应包括站台、走廊通道、门、转弯、坡道、货梯，并将其他通道限制考虑在内。
-        # 在最终的 CDC安置位置，前部间隙可以为 48" 或更大，后部间隙可以为 24" 或更大。
+        # @param DimensionRequirement: <p>是否满足下面的尺寸条件：您的装货站台可以容纳一个机架箱(高 x 宽 x 深 = 94" x 54" x 48")。您可以提供从机架(高 x 宽 x 深 = 80" x 24" x 48")交货地点到机架最终安置位置的明确通道。测量深度时，应包括站台、走廊通道、门、转弯、坡道、货梯，并将其他通道限制考虑在内。在最终的 CDC安置位置，前部间隙可以为 48" 或更大，后部间隙可以为 24" 或更大。</p>
         # @type DimensionRequirement: Boolean
-        # @param RedundantNetworking: 是否提供冗余的上游设备(交换机或路由器)，以便实现网络出口的高可用。
+        # @param RedundantNetworking: <p>是否提供冗余的上游设备(交换机或路由器)，以便实现网络出口的高可用。</p>
         # @type RedundantNetworking: Boolean
-        # @param NeedHelp: 是否需要腾讯云团队协助完成机架支撑工作
+        # @param NeedHelp: <p>是否需要腾讯云团队协助完成机架支撑工作</p>
         # @type NeedHelp: Boolean
-        # @param RedundantPower: 是否电源冗余
+        # @param RedundantPower: <p>是否电源冗余</p>
         # @type RedundantPower: Boolean
-        # @param BreakerRequirement: 上游断路器是否具备
+        # @param BreakerRequirement: <p>上游断路器是否具备</p>
         # @type BreakerRequirement: Boolean
 
         attr_accessor :SiteId, :FiberType, :OpticalStandard, :PowerConnectors, :PowerFeedDrop, :MaxWeight, :PowerDrawKva, :UplinkSpeedGbps, :UplinkCount, :ConditionRequirement, :DimensionRequirement, :RedundantNetworking, :NeedHelp, :RedundantPower, :BreakerRequirement

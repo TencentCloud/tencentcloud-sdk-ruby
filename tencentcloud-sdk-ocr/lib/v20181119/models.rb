@@ -9711,15 +9711,17 @@ module TencentCloud
         # @type AdvancedInfo: String
         # @param CardCount: 卡证正面图片中，证件主体的数量（仅请求曼谷地域[ap-bangkok]返回）
         # @type CardCount: Integer
+        # @param IsComplete: 卡证字段是否完整，true：完整；false：不完整
+        # @type IsComplete: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
+        attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :IsComplete, :RequestId
         extend Gem::Deprecate
         deprecate :AdvancedInfo, :none, 2025, 12
         deprecate :AdvancedInfo=, :none, 2025, 12
 
-        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
+        def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, iscomplete=nil, requestid=nil)
           @ID = id
           @ThaiName = thainame
           @EnFirstName = enfirstname
@@ -9738,6 +9740,7 @@ module TencentCloud
           @WarnCardInfos = warncardinfos
           @AdvancedInfo = advancedinfo
           @CardCount = cardcount
+          @IsComplete = iscomplete
           @RequestId = requestid
         end
 
@@ -9760,6 +9763,7 @@ module TencentCloud
           @WarnCardInfos = params['WarnCardInfos']
           @AdvancedInfo = params['AdvancedInfo']
           @CardCount = params['CardCount']
+          @IsComplete = params['IsComplete']
           @RequestId = params['RequestId']
         end
       end

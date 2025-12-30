@@ -1926,6 +1926,62 @@ module TencentCloud
         end
       end
 
+      # CallbackWorkflowToolNode请求参数结构体
+      class CallbackWorkflowToolNodeRequest < TencentCloud::Common::AbstractModel
+        # @param CallbackToken: ADP调用外部API时,通过HTTP Header(X-ADP-Callback-Token)传递回调CallbackToken
+        # @type CallbackToken: String
+        # @param Result: 回调结果,可选,为JSON字符串
+        # @type Result: String
+        # @param LoginUin: 登录用户主账号(集成商模式必填)
+        # @type LoginUin: String
+        # @param LoginSubAccountUin: 登录用户子账号(集成商模式必填)
+        # @type LoginSubAccountUin: String
+        # @param AppBizId: 应用ID
+        # @type AppBizId: String
+
+        attr_accessor :CallbackToken, :Result, :LoginUin, :LoginSubAccountUin, :AppBizId
+
+        def initialize(callbacktoken=nil, result=nil, loginuin=nil, loginsubaccountuin=nil, appbizid=nil)
+          @CallbackToken = callbacktoken
+          @Result = result
+          @LoginUin = loginuin
+          @LoginSubAccountUin = loginsubaccountuin
+          @AppBizId = appbizid
+        end
+
+        def deserialize(params)
+          @CallbackToken = params['CallbackToken']
+          @Result = params['Result']
+          @LoginUin = params['LoginUin']
+          @LoginSubAccountUin = params['LoginSubAccountUin']
+          @AppBizId = params['AppBizId']
+        end
+      end
+
+      # CallbackWorkflowToolNode返回参数结构体
+      class CallbackWorkflowToolNodeResponse < TencentCloud::Common::AbstractModel
+        # @param Code: 状态码
+        # @type Code: Integer
+        # @param Msg: 状态详情
+        # @type Msg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Code, :Msg, :RequestId
+
+        def initialize(code=nil, msg=nil, requestid=nil)
+          @Code = code
+          @Msg = msg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Msg = params['Msg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 分类信息
       class CateInfo < TencentCloud::Common::AbstractModel
         # @param CateBizId: 分类ID

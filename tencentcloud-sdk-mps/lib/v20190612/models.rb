@@ -7695,6 +7695,7 @@ module TencentCloud
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型名称。
         # 当前支持的模型列表：
+        # Hunyuan,
         # GEM，
         # Jimeng，
         # Qwen。
@@ -7790,6 +7791,7 @@ module TencentCloud
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
         # @param ModelName: 模型名称。
         # 当前支持的模型列表:
+        # Hunyuan,
         # Hailuo，
         # Kling，
         # Jimeng，

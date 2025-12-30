@@ -1748,6 +1748,64 @@ module TencentCloud
         end
       end
 
+      # 合同摘要
+      class ContractSummary < TencentCloud::Common::AbstractModel
+        # @param Name: 提取内容分类：
+        # Base 合同信息
+        # Identity 主体信息
+        # Performance 履约条款
+        # @type Name: String
+        # @param Infos: 详细信息
+        # @type Infos: Array
+
+        attr_accessor :Name, :Infos
+
+        def initialize(name=nil, infos=nil)
+          @Name = name
+          @Infos = infos
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              contractsummaryinfo_tmp = ContractSummaryInfo.new
+              contractsummaryinfo_tmp.deserialize(i)
+              @Infos << contractsummaryinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 合同摘要信息
+      class ContractSummaryInfo < TencentCloud::Common::AbstractModel
+        # @param Key: 字段 key
+        # @type Key: String
+        # @param Value: 字段值
+        # @type Value: String
+        # @param Identity: 主体信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Identity: :class:`Tencentcloud::Ess.v20201111.models.Identity`
+
+        attr_accessor :Key, :Value, :Identity
+
+        def initialize(key=nil, value=nil, identity=nil)
+          @Key = key
+          @Value = value
+          @Identity = identity
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          unless params['Identity'].nil?
+            @Identity = Identity.new
+            @Identity.deserialize(params['Identity'])
+          end
+        end
+      end
+
       # CreateBatchAdminChangeInvitations请求参数结构体
       class CreateBatchAdminChangeInvitationsRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -9342,12 +9400,14 @@ module TencentCloud
         # @param ApprovedLists: 通过项信息(详细引文信息)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ApprovedLists: Array
+        # @param Summaries: 摘要信息
+        # @type Summaries: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :ApprovedLists, :RequestId
+        attr_accessor :ChecklistId, :CreatedOn, :FinishedOn, :PolicyType, :ResourceId, :Risks, :Role, :Status, :TaskId, :Comment, :UserData, :HighRiskCount, :TotalRiskCount, :ApprovedLists, :Summaries, :RequestId
 
-        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, approvedlists=nil, requestid=nil)
+        def initialize(checklistid=nil, createdon=nil, finishedon=nil, policytype=nil, resourceid=nil, risks=nil, role=nil, status=nil, taskid=nil, comment=nil, userdata=nil, highriskcount=nil, totalriskcount=nil, approvedlists=nil, summaries=nil, requestid=nil)
           @ChecklistId = checklistid
           @CreatedOn = createdon
           @FinishedOn = finishedon
@@ -9362,6 +9422,7 @@ module TencentCloud
           @HighRiskCount = highriskcount
           @TotalRiskCount = totalriskcount
           @ApprovedLists = approvedlists
+          @Summaries = summaries
           @RequestId = requestid
         end
 
@@ -9395,6 +9456,14 @@ module TencentCloud
               outputreference_tmp = OutputReference.new
               outputreference_tmp.deserialize(i)
               @ApprovedLists << outputreference_tmp
+            end
+          end
+          unless params['Summaries'].nil?
+            @Summaries = []
+            params['Summaries'].each do |i|
+              contractsummary_tmp = ContractSummary.new
+              contractsummary_tmp.deserialize(i)
+              @Summaries << contractsummary_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -13800,6 +13869,133 @@ module TencentCloud
         end
       end
 
+      # 主体信息
+      class Identity < TencentCloud::Common::AbstractModel
+        # @param CreditCode: 统一社会信用代码
+        # @type CreditCode: String
+        # @param OrgCode: 组织机构代码
+        # @type OrgCode: String
+        # @param RegNo: 营业执照注册编号
+        # @type RegNo: String
+        # @param EntName: 企业名称
+        # @type EntName: String
+        # @param LegalRepName: 修改人法人代表姓名
+        # @type LegalRepName: String
+        # @param OpState: 渠道经营状态
+        # @type OpState: String
+        # @param OpFromDate: 经营期限自(格式YYYY-MM-DD)
+        # @type OpFromDate: String
+        # @param OpToDate: 经营期限至
+        # @type OpToDate: String
+        # @param EstabDate: 成立日期(格式YYYY-MM-DD)
+        # @type EstabDate: String
+        # @param ApprDate: 核准日期(格式YYYY-MM-DD)
+        # @type ApprDate: String
+        # @param RevoDate: 吊销日期(格式YYYY-MM-DD)
+        # @type RevoDate: String
+        # @param CancelDate: 注销日期(格式YYYY-MM-DD)
+        # @type CancelDate: String
+        # @param RegOrg: 登记机关
+        # @type RegOrg: String
+        # @param EntTypeCode: 企业类型编码
+        # @type EntTypeCode: String
+        # @param EntType: 企业类型
+        # @type EntType: String
+        # @param BizScope: 经营业务范围
+        # @type BizScope: String
+        # @param LicenseBizItem: 许可经营项目
+        # @type LicenseBizItem: String
+        # @param RegAreaCode: 注册地址行政编号
+        # @type RegAreaCode: String
+        # @param RegAddress: 注册地址
+        # @type RegAddress: String
+        # @param RegCapitalCurtype: 注册资本币种
+        # @type RegCapitalCurtype: String
+        # @param RegCapital: 注册资本（万元）
+        # @type RegCapital: String
+        # @param PaidCapital: 实收资本（万元）
+        # @type PaidCapital: String
+        # @param OriRegNo: 原注册号
+        # @type OriRegNo: String
+        # @param EntNameEng: 企业英文名称
+        # @type EntNameEng: String
+        # @param OriEntName: 曾用名
+        # @type OriEntName: String
+        # @param OpStateCode: 企业经营状态枚举。常见值如下：
+        # 未定义的状态 = 0
+        # 正常  = 1
+        # 注销 = 2
+        # 吊销 = 3
+        # 吊销后注销 = 4
+        # 撤销 = 5
+        # 其他 = 99
+        # @type OpStateCode: Integer
+        # @param SearchDate: 查询日期(格式YYYY-MM-DD)
+        # @type SearchDate: String
+
+        attr_accessor :CreditCode, :OrgCode, :RegNo, :EntName, :LegalRepName, :OpState, :OpFromDate, :OpToDate, :EstabDate, :ApprDate, :RevoDate, :CancelDate, :RegOrg, :EntTypeCode, :EntType, :BizScope, :LicenseBizItem, :RegAreaCode, :RegAddress, :RegCapitalCurtype, :RegCapital, :PaidCapital, :OriRegNo, :EntNameEng, :OriEntName, :OpStateCode, :SearchDate
+
+        def initialize(creditcode=nil, orgcode=nil, regno=nil, entname=nil, legalrepname=nil, opstate=nil, opfromdate=nil, optodate=nil, estabdate=nil, apprdate=nil, revodate=nil, canceldate=nil, regorg=nil, enttypecode=nil, enttype=nil, bizscope=nil, licensebizitem=nil, regareacode=nil, regaddress=nil, regcapitalcurtype=nil, regcapital=nil, paidcapital=nil, oriregno=nil, entnameeng=nil, orientname=nil, opstatecode=nil, searchdate=nil)
+          @CreditCode = creditcode
+          @OrgCode = orgcode
+          @RegNo = regno
+          @EntName = entname
+          @LegalRepName = legalrepname
+          @OpState = opstate
+          @OpFromDate = opfromdate
+          @OpToDate = optodate
+          @EstabDate = estabdate
+          @ApprDate = apprdate
+          @RevoDate = revodate
+          @CancelDate = canceldate
+          @RegOrg = regorg
+          @EntTypeCode = enttypecode
+          @EntType = enttype
+          @BizScope = bizscope
+          @LicenseBizItem = licensebizitem
+          @RegAreaCode = regareacode
+          @RegAddress = regaddress
+          @RegCapitalCurtype = regcapitalcurtype
+          @RegCapital = regcapital
+          @PaidCapital = paidcapital
+          @OriRegNo = oriregno
+          @EntNameEng = entnameeng
+          @OriEntName = orientname
+          @OpStateCode = opstatecode
+          @SearchDate = searchdate
+        end
+
+        def deserialize(params)
+          @CreditCode = params['CreditCode']
+          @OrgCode = params['OrgCode']
+          @RegNo = params['RegNo']
+          @EntName = params['EntName']
+          @LegalRepName = params['LegalRepName']
+          @OpState = params['OpState']
+          @OpFromDate = params['OpFromDate']
+          @OpToDate = params['OpToDate']
+          @EstabDate = params['EstabDate']
+          @ApprDate = params['ApprDate']
+          @RevoDate = params['RevoDate']
+          @CancelDate = params['CancelDate']
+          @RegOrg = params['RegOrg']
+          @EntTypeCode = params['EntTypeCode']
+          @EntType = params['EntType']
+          @BizScope = params['BizScope']
+          @LicenseBizItem = params['LicenseBizItem']
+          @RegAreaCode = params['RegAreaCode']
+          @RegAddress = params['RegAddress']
+          @RegCapitalCurtype = params['RegCapitalCurtype']
+          @RegCapital = params['RegCapital']
+          @PaidCapital = params['PaidCapital']
+          @OriRegNo = params['OriRegNo']
+          @EntNameEng = params['EntNameEng']
+          @OriEntName = params['OriEntName']
+          @OpStateCode = params['OpStateCode']
+          @SearchDate = params['SearchDate']
+        end
+      end
+
       # 企业角色数据信息
       class IntegrateRole < TencentCloud::Common::AbstractModel
         # @param RoleId: 角色id
@@ -15220,10 +15416,20 @@ module TencentCloud
         # @type RiskBasis: String
         # @param RiskLevelId: 风险等级id。1 为最高风险等级，0 为最低风险等级，从[2,n]数字越大风险等级逐渐降低。
         # @type RiskLevelId: Integer
+        # @param RiskLabels: 风险标签
+        # @type RiskLabels: Array
+        # @param RiskOrigin: 风险来源 0:模型标注的风险 1:人工标注的风险
+        # @type RiskOrigin: Integer
+        # @param Creator: 创建人
+        # @type Creator: String
+        # @param CreatorId: 创建人ID
+        # @type CreatorId: String
+        # @param CreatedOn: 创建时间
+        # @type CreatedOn: Integer
 
-        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis, :RiskLevelId
+        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis, :RiskLevelId, :RiskLabels, :RiskOrigin, :Creator, :CreatorId, :CreatedOn
 
-        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil, risklevelid=nil)
+        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil, risklevelid=nil, risklabels=nil, riskorigin=nil, creator=nil, creatorid=nil, createdon=nil)
           @RiskId = riskid
           @RiskName = riskname
           @RiskDescription = riskdescription
@@ -15234,6 +15440,11 @@ module TencentCloud
           @Positions = positions
           @RiskBasis = riskbasis
           @RiskLevelId = risklevelid
+          @RiskLabels = risklabels
+          @RiskOrigin = riskorigin
+          @Creator = creator
+          @CreatorId = creatorid
+          @CreatedOn = createdon
         end
 
         def deserialize(params)
@@ -15254,6 +15465,11 @@ module TencentCloud
           end
           @RiskBasis = params['RiskBasis']
           @RiskLevelId = params['RiskLevelId']
+          @RiskLabels = params['RiskLabels']
+          @RiskOrigin = params['RiskOrigin']
+          @Creator = params['Creator']
+          @CreatorId = params['CreatorId']
+          @CreatedOn = params['CreatedOn']
         end
       end
 
@@ -15441,16 +15657,25 @@ module TencentCloud
         # @type PageIndex: Integer
         # @param Id: 系统生成的唯一ID值
         # @type Id: String
+        # @param Begin: 开始位置
+        # @type Begin: Integer
+        # @param End: 结束位置
+        # @type End: Integer
+        # @param DocType: 文档类型，1：pdf，2：doc 文档
+        # @type DocType: Integer
 
-        attr_accessor :X, :Y, :Width, :Height, :PageIndex, :Id
+        attr_accessor :X, :Y, :Width, :Height, :PageIndex, :Id, :Begin, :End, :DocType
 
-        def initialize(x=nil, y=nil, width=nil, height=nil, pageindex=nil, id=nil)
+        def initialize(x=nil, y=nil, width=nil, height=nil, pageindex=nil, id=nil, _begin=nil, _end=nil, doctype=nil)
           @X = x
           @Y = y
           @Width = width
           @Height = height
           @PageIndex = pageindex
           @Id = id
+          @Begin = _begin
+          @End = _end
+          @DocType = doctype
         end
 
         def deserialize(params)
@@ -15460,6 +15685,9 @@ module TencentCloud
           @Height = params['Height']
           @PageIndex = params['PageIndex']
           @Id = params['Id']
+          @Begin = params['Begin']
+          @End = params['End']
+          @DocType = params['DocType']
         end
       end
 

@@ -8667,21 +8667,13 @@ module TencentCloud
 
       # DescribeLiveTranscodeTotalInfo请求参数结构体
       class DescribeLiveTranscodeTotalInfoRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间，支持最近三个月的数据查询，起始时间和结束时间跨度不能超过三个月。接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)
-        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        # @param StartTime: <p>开始时间，支持最近三个月的数据查询，起始时间和结束时间跨度不能超过三个月。接口查询支持两种时间格式：1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 <a href="https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F">ISO 日期格式说明</a>2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间，支持最近三个月的数据查询，起始时间和结束时间跨度不能超过三个月。接口查询支持两种时间格式：
-        # 1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F)
-        # 2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。
+        # @param EndTime: <p>结束时间，支持最近三个月的数据查询，起始时间和结束时间跨度不能超过三个月。接口查询支持两种时间格式：1）YYYY-MM-DDThh:mm:ssZ：UTC时间格式，详见 <a href="https://cloud.tencent.com/document/product/267/38543#:~:text=I-,ISO,-%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F">ISO 日期格式说明</a>2）YYYY-MM-DD hh:mm:ss：使用此格式时，默认代表北京时间。</p>
         # @type EndTime: String
-        # @param PushDomains: 推流域名列表，若不填，表示查询所有域名总体数据。
-        # 指定域名时返回1小时粒度数据。
+        # @param PushDomains: <p>推流域名列表，若不填，表示查询所有域名总体数据。指定域名时返回1小时粒度数据。</p>
         # @type PushDomains: Array
-        # @param MainlandOrOversea: 可选值：
-        # Mainland：查询中国大陆（境内）数据，
-        # Oversea：则查询国际/港澳台（境外）数据，
-        # 默认：查询全球地区（境内+境外）的数据。
+        # @param MainlandOrOversea: <p>可选值：Mainland：查询中国大陆（境内）数据，Oversea：则查询国际/港澳台（境外）数据，默认：查询全球地区（境内+境外）的数据。</p>
         # @type MainlandOrOversea: String
 
         attr_accessor :StartTime, :EndTime, :PushDomains, :MainlandOrOversea
@@ -8703,7 +8695,7 @@ module TencentCloud
 
       # DescribeLiveTranscodeTotalInfo返回参数结构体
       class DescribeLiveTranscodeTotalInfoResponse < TencentCloud::Common::AbstractModel
-        # @param DataInfoList: 统计数据列表。
+        # @param DataInfoList: <p>统计数据列表。</p>
         # @type DataInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

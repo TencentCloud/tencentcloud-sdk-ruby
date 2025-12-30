@@ -2729,10 +2729,14 @@ module TencentCloud
         # @type FlowGroupId: String
         # @param CanBatchReject: 是否允许此链接中签署方批量拒签。 <ul><li>false (默认): 不允许批量拒签</li> <li>true : 允许批量拒签。</li></ul>注：`当前合同组不支持批量拒签功能。请对合同组中的每个子合同逐一执行拒签操作，以达到拒签整个合同组的效果。`
         # @type CanBatchReject: Boolean
+        # @param DynamicSignOption: 动态签署方领取链接配置。
+        # @type DynamicSignOption: :class:`Tencentcloud::Essbasic.v20210526.models.DynamicSignOption`
+        # @param RecipientIds: 为签署方经办人在签署合同中的参与方ID，必须与参数FlowIds数组一一对应。 注：生成动态签署方领取时此参数必传。
+        # @type RecipientIds: Array
 
-        attr_accessor :Agent, :FlowIds, :OpenId, :Name, :Mobile, :FlowGroupId, :CanBatchReject
+        attr_accessor :Agent, :FlowIds, :OpenId, :Name, :Mobile, :FlowGroupId, :CanBatchReject, :DynamicSignOption, :RecipientIds
 
-        def initialize(agent=nil, flowids=nil, openid=nil, name=nil, mobile=nil, flowgroupid=nil, canbatchreject=nil)
+        def initialize(agent=nil, flowids=nil, openid=nil, name=nil, mobile=nil, flowgroupid=nil, canbatchreject=nil, dynamicsignoption=nil, recipientids=nil)
           @Agent = agent
           @FlowIds = flowids
           @OpenId = openid
@@ -2740,6 +2744,8 @@ module TencentCloud
           @Mobile = mobile
           @FlowGroupId = flowgroupid
           @CanBatchReject = canbatchreject
+          @DynamicSignOption = dynamicsignoption
+          @RecipientIds = recipientids
         end
 
         def deserialize(params)
@@ -2753,6 +2759,11 @@ module TencentCloud
           @Mobile = params['Mobile']
           @FlowGroupId = params['FlowGroupId']
           @CanBatchReject = params['CanBatchReject']
+          unless params['DynamicSignOption'].nil?
+            @DynamicSignOption = DynamicSignOption.new
+            @DynamicSignOption.deserialize(params['DynamicSignOption'])
+          end
+          @RecipientIds = params['RecipientIds']
         end
       end
 
@@ -9078,6 +9089,26 @@ module TencentCloud
               @DynamicFlowApproverList << dynamicflowapproverresult_tmp
             end
           end
+        end
+      end
+
+      # 动态签署领取链接配置，当全部签署方均为动态签署方时生效。
+      class DynamicSignOption < TencentCloud::Common::AbstractModel
+        # @param DynamicReceiveType: 多份合同批量签署时，动态签署领取要求：<ul><li><b>0（默认值）</b>: 可以领取部分合同进入签署。</li><li><b>1 </b>: 必须全部领取进入签署，生成链接的所有合同必须相同经办人完成合同的领取签署。</li></ul>
+        # @type DynamicReceiveType: Integer
+        # @param OrganizationOpenId: 动态签署方时，预设的企业OpenId，预设企业OpenId后，只允许对应的企业员工进行领取签署。
+        # @type OrganizationOpenId: String
+
+        attr_accessor :DynamicReceiveType, :OrganizationOpenId
+
+        def initialize(dynamicreceivetype=nil, organizationopenid=nil)
+          @DynamicReceiveType = dynamicreceivetype
+          @OrganizationOpenId = organizationopenid
+        end
+
+        def deserialize(params)
+          @DynamicReceiveType = params['DynamicReceiveType']
+          @OrganizationOpenId = params['OrganizationOpenId']
         end
       end
 

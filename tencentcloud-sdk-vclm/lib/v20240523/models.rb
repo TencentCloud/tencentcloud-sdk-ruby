@@ -592,15 +592,28 @@ module TencentCloud
       class ExtraParam < TencentCloud::Common::AbstractModel
         # @param UserDesignatedUrl: 预签名的上传url，支持把视频直接传到客户指定的地址。
         # @type UserDesignatedUrl: String
+        # @param CallbackUrl: 回调地址
+        # 需要您在创建任务时主动设置 CallbackUrl，请求方法为 POST，当视频生成结束时，我们将向此地址发送生成结果。
+        # 数据格式如下：
+        # {
+        #     "JobId": "1397428070633955328",
+        #     "Status": "DONE",
+        #     "ErrorCode": "",
+        #     "ErrorMessage": "",
+        #     "ResultVideoUrl": "https://vcg.cos.tencentcos.cn/template_to_video/fa80b846-b933-4981-afad-8a39b46ef2ca.mp4"
+        # }
+        # @type CallbackUrl: String
 
-        attr_accessor :UserDesignatedUrl
+        attr_accessor :UserDesignatedUrl, :CallbackUrl
 
-        def initialize(userdesignatedurl=nil)
+        def initialize(userdesignatedurl=nil, callbackurl=nil)
           @UserDesignatedUrl = userdesignatedurl
+          @CallbackUrl = callbackurl
         end
 
         def deserialize(params)
           @UserDesignatedUrl = params['UserDesignatedUrl']
+          @CallbackUrl = params['CallbackUrl']
         end
       end
 
@@ -1241,6 +1254,8 @@ module TencentCloud
         # @param Prompt: 视频内容的描述，中文正向提示词。最多支持200个 utf-8 字符（首尾空格不计入字符数）。
         # 支持风格迁移、替换、元素增加、删除控制
         # @type Prompt: String
+        # @param Images: 图片数组
+        # @type Images: Array
         # @param Image: 图片base64或者图片url
 
         # - Base64 和 Url 必须提供一个，如果都提供以Url为准。
@@ -1253,11 +1268,12 @@ module TencentCloud
         # @param LogoParam: 标识内容设置。 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :VideoUrl, :Prompt, :Image, :LogoAdd, :LogoParam
+        attr_accessor :VideoUrl, :Prompt, :Images, :Image, :LogoAdd, :LogoParam
 
-        def initialize(videourl=nil, prompt=nil, image=nil, logoadd=nil, logoparam=nil)
+        def initialize(videourl=nil, prompt=nil, images=nil, image=nil, logoadd=nil, logoparam=nil)
           @VideoUrl = videourl
           @Prompt = prompt
+          @Images = images
           @Image = image
           @LogoAdd = logoadd
           @LogoParam = logoparam
@@ -1266,6 +1282,14 @@ module TencentCloud
         def deserialize(params)
           @VideoUrl = params['VideoUrl']
           @Prompt = params['Prompt']
+          unless params['Images'].nil?
+            @Images = []
+            params['Images'].each do |i|
+              image_tmp = Image.new
+              image_tmp.deserialize(i)
+              @Images << image_tmp
+            end
+          end
           unless params['Image'].nil?
             @Image = Image.new
             @Image.deserialize(params['Image'])

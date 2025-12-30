@@ -146,43 +146,37 @@ module TencentCloud
 
       # CreateTargetGroup请求参数结构体
       class CreateTargetGroupRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupName: 目标组名称，限定60个字符。
+        # @param TargetGroupName: <p>目标组名称，限定60个字符。</p>
         # @type TargetGroupName: String
-        # @param VpcId: 网关负载均衡后端目标组所属的网络 ID，如vpc-12345678，可以通过 [DescribeVpcs](https://cloud.tencent.com/document/product/215/15778)  接口获取。 不填此参数则默认为DefaultVPC。
+        # @param VpcId: <p>网关负载均衡后端目标组所属的网络 ID，如vpc-12345678，可以通过 <a href="https://cloud.tencent.com/document/product/215/15778">DescribeVpcs</a>  接口获取。 不填此参数则默认为DefaultVPC。</p>
         # @type VpcId: String
-        # @param Port: 目标组的默认端口， 后续添加服务器时可使用该默认端口。Port和TargetGroupInstances.N中的port二者必填其一。仅支持6081。
+        # @param Port: <p>目标组的默认端口， 后续添加服务器时可使用该默认端口。Port和TargetGroupInstances.N中的port二者必填其一。仅支持6081。</p>
         # @type Port: Integer
-        # @param TargetGroupInstances: 目标组绑定的后端服务器
+        # @param TargetGroupInstances: <p>目标组绑定的后端服务器</p>
         # @type TargetGroupInstances: Array
-        # @param Protocol: 网关负载均衡目标组协议。
-        # - TENCENT_GENEVE ：GENEVE 标准协议
-        # - AWS_GENEVE：GENEVE 兼容协议
+        # @param Protocol: <p>网关负载均衡目标组协议。- TENCENT_GENEVE ：GENEVE 标准协议- AWS_GENEVE：GENEVE 兼容协议</p>
         # @type Protocol: String
-        # @param HealthCheck: 健康检查设置。
+        # @param HealthCheck: <p>健康检查设置。</p>
         # @type HealthCheck: :class:`Tencentcloud::Gwlb.v20240906.models.TargetGroupHealthCheck`
-        # @param ScheduleAlgorithm: 均衡算法。
-        # - IP_HASH_3_ELASTIC：弹性哈希
+        # @param ScheduleAlgorithm: <p>均衡算法。</p><ul><li>IP_HASH_2_CONSISTENT：二元组一致性哈希</li><li>IP_HASH_3_CONSISTENT：三元组一致性哈希</li><li>IP_HASH_5_CONSISTENT：五元组一致性哈希</li></ul>
         # @type ScheduleAlgorithm: String
-        # @param AllDeadToAlive: 是否支持全死全活。默认支持。
+        # @param AllDeadToAlive: <p>是否支持全死全活。默认支持。</p>
         # @type AllDeadToAlive: Boolean
-        # @param Tags: 标签。
+        # @param Tags: <p>标签。</p>
         # @type Tags: Array
-        # @param ForwardingMode: 流量分发方式
-
-        # - STATELESS：无状态
-        # - STATEFUL： 有状态
+        # @param ForwardingMode: <p>流量分发方式</p><ul><li>STATELESS：无状态</li><li>STATEFUL： 有状态</li></ul>
         # @type ForwardingMode: String
-        # @param TcpIdleConnectTimeout: TCP协议连接空闲超时时间，可配置60s-6000s，默认350s。
+        # @param TcpIdleConnectTimeout: <p>TCP协议连接空闲超时时间，可配置60s-6000s，默认350s。</p>
         # @type TcpIdleConnectTimeout: Integer
-        # @param OthersIdleConnectTimeout: 其他协议连接空闲超时时间，可配置5s-180s，默认120s
+        # @param OthersIdleConnectTimeout: <p>其他协议连接空闲超时时间，可配置5s-180s，默认120s</p>
         # @type OthersIdleConnectTimeout: Integer
-        # @param RescheduleUnbindRs: 重新调度功能内的解绑后端服务开关，开关打开后解绑后端服务会触发重新调度。
+        # @param RescheduleUnbindRs: <p>重新调度功能内的解绑后端服务开关，开关打开后解绑后端服务会触发重新调度。</p>
         # @type RescheduleUnbindRs: Boolean
-        # @param RescheduleUnbindRsStartTime: 解绑RS后开启重调度的时间，可配置0s-3600s，默认0s
+        # @param RescheduleUnbindRsStartTime: <p>解绑RS后开启重调度的时间，可配置0s-3600s，默认0s</p>
         # @type RescheduleUnbindRsStartTime: Integer
-        # @param RescheduleUnhealthy: 重新调度功能内的后端服务健康探测异常开关，开关打开后后端服务健康检查异常会触发重新调度。
+        # @param RescheduleUnhealthy: <p>重新调度功能内的后端服务健康探测异常开关，开关打开后后端服务健康检查异常会触发重新调度。</p>
         # @type RescheduleUnhealthy: Boolean
-        # @param RescheduleUnhealthyStartTime: 后端服务健康探测异常后开启重调度的时间，可配置0s-3600s，默认0s
+        # @param RescheduleUnhealthyStartTime: <p>后端服务健康探测异常后开启重调度的时间，可配置0s-3600s，默认0s</p>
         # @type RescheduleUnhealthyStartTime: Integer
 
         attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Protocol, :HealthCheck, :ScheduleAlgorithm, :AllDeadToAlive, :Tags, :ForwardingMode, :TcpIdleConnectTimeout, :OthersIdleConnectTimeout, :RescheduleUnbindRs, :RescheduleUnbindRsStartTime, :RescheduleUnhealthy, :RescheduleUnhealthyStartTime
@@ -245,7 +239,7 @@ module TencentCloud
 
       # CreateTargetGroup返回参数结构体
       class CreateTargetGroupResponse < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 创建目标组后生成的id
+        # @param TargetGroupId: <p>创建目标组后生成的id</p>
         # @type TargetGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

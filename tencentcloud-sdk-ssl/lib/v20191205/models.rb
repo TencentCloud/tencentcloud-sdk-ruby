@@ -2309,13 +2309,15 @@ module TencentCloud
         # - live：Domain，例：["live1.tencent.com", "live2.tencent.com"]
         # - vod：Domain， 例：["vod1.tencent.com", "vod2.tencent.com"]
         # - waf：Domain， 例：["waf1.tencent.com", "waf2.tencent.com"]
-        # - apigateway：ServiceId|Domain， 例：["service-8sk7cqmd|apigw1.tencent.com", "service-8sk7cqmd|apigw2.ninghhuang.online"]
+        # - apigateway：ServiceId|Domain， 例：["service-8sk7cqmd|apigw1.tencent.com", "service-8sk7cqmd|apigw2.minghuang.online"]
         # - teo：Domain， 例：["edgeone1.tencent.com", "edgeone2.tencent.com"]
         # - tke：ClusterId|NameSpace|SecretName， 例：["cls-42sa0ae0|default|test-tencent"]
         # - cos：Region|Bucket|Domain， 例：["ap-hongkong|ssl-server-1251810746|tencent.com"]
         # - lighthouse：Region|InstanceId|Domain， 例：["ap-shanghai|lhins-nh7lql34|tencent.com"]
         # - tse：GatewayId|CertificateId， 例：["gateway-s1da9151|fa61bc05-cc54-4eea-c932-24de52577372"]
         # - tcb：Type|Region|EnvId|Domain， 例：["AccessService|ap-shanghai|ceshi-4s5h0ymg11c839c7|tencent.com"]
+        # - mqtt: InstanceId|CertId, 例：["mqtt-rdnwp7kb|gehs6jsx"]
+        # - gaap: InstanceId|ListenerId 例：["ga-a3e4z3ae|lsr-a73amjob"]
         # @type InstanceIdList: Array
         # @param ResourceType: 证书部署云资源支持的云资源类型， 不传则默认部署clb：
         # - clb
@@ -2331,7 +2333,8 @@ module TencentCloud
         # - lighthouse
         # - tse
         # - tcb
-        # <dx-alert infotype="explain" title="">当云资源类型传入clb、waf、apigateway、cos、lighthouse、tke、tse、tcb 时，公共参数Region必传。</dx-alert>
+        # - mqtt
+        # <dx-alert infotype="explain" title="">当云资源类型传入clb、waf、apigateway、cos、lighthouse、tke、tse、tcb、mqtt 时，公共参数Region必传。</dx-alert>
         # @type ResourceType: String
         # @param Status: 部署云资源状态：
         # 云直播：
@@ -2564,10 +2567,12 @@ module TencentCloud
         # @type OldAlgorithm: String
         # @param InstanceStatus: 实例状态，不同云产品状态不一样
         # @type InstanceStatus: String
+        # @param ListenerStatus: 监听器状态
+        # @type ListenerStatus: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url, :Algorithm, :OldAlgorithm, :InstanceStatus
+        attr_accessor :Id, :CertId, :OldCertId, :InstanceId, :InstanceName, :ListenerId, :Domains, :Protocol, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :ListenerName, :SniSwitch, :Bucket, :Namespace, :SecretName, :Port, :EnvId, :TCBType, :Region, :Url, :Algorithm, :OldAlgorithm, :InstanceStatus, :ListenerStatus
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil, algorithm=nil, oldalgorithm=nil, instancestatus=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, instanceid=nil, instancename=nil, listenerid=nil, domains=nil, protocol=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, listenername=nil, sniswitch=nil, bucket=nil, namespace=nil, secretname=nil, port=nil, envid=nil, tcbtype=nil, region=nil, url=nil, algorithm=nil, oldalgorithm=nil, instancestatus=nil, listenerstatus=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -2593,6 +2598,7 @@ module TencentCloud
           @Algorithm = algorithm
           @OldAlgorithm = oldalgorithm
           @InstanceStatus = instancestatus
+          @ListenerStatus = listenerstatus
         end
 
         def deserialize(params)
@@ -2621,6 +2627,7 @@ module TencentCloud
           @Algorithm = params['Algorithm']
           @OldAlgorithm = params['OldAlgorithm']
           @InstanceStatus = params['InstanceStatus']
+          @ListenerStatus = params['ListenerStatus']
         end
       end
 
@@ -2826,27 +2833,15 @@ module TencentCloud
 
       # DescribeCertificateBindResourceTaskDetail请求参数结构体
       class DescribeCertificateBindResourceTaskDetailRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID，根据CreateCertificateBindResourceSyncTask得到的任务ID查询绑定云资源结果
+        # @param TaskId: <p>任务ID，根据CreateCertificateBindResourceSyncTask得到的任务ID查询绑定云资源结果</p>
         # @type TaskId: String
-        # @param Limit: 每页展示数量， 默认10，最大值100; 分页总数为云资源地域下实例总数， 即第一页会拉群每个云资源的地域下面Limit数量实例
+        # @param Limit: <p>每页展示数量， 默认10，最大值100; 分页总数为云资源地域下实例总数， 即第一页会拉群每个云资源的地域下面Limit数量实例</p>
         # @type Limit: String
-        # @param Offset: 当前偏移量，默认为0
+        # @param Offset: <p>当前偏移量，默认为0</p>
         # @type Offset: String
-        # @param ResourceTypes: 查询资源类型的结果详情， 不传则查询所有，取值支持：
-        # - clb
-        # - cdn
-        # - ddos
-        # - live
-        # - vod
-        # - waf
-        # - apigateway
-        # - teo
-        # - tke
-        # - cos
-        # - tse
-        # - tcb
+        # @param ResourceTypes: <p>查询资源类型的结果详情， 不传则查询所有，取值支持：- clb- cdn- ddos- live- vod- waf- apigateway- teo- tke- cos- tse- tcb</p>
         # @type ResourceTypes: Array
-        # @param Regions: 查询地域列表的数据，clb、tke、waf、apigateway、tcb、cos、tse支持地域查询， 其他资源类型不支持
+        # @param Regions: <p>查询地域列表的数据，clb、tke、waf、apigateway、tcb、cos、tse支持地域查询， 其他资源类型不支持</p>
         # @type Regions: Array
 
         attr_accessor :TaskId, :Limit, :Offset, :ResourceTypes, :Regions
@@ -2870,40 +2865,48 @@ module TencentCloud
 
       # DescribeCertificateBindResourceTaskDetail返回参数结构体
       class DescribeCertificateBindResourceTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param CLB: 关联clb资源详情
+        # @param CLB: <p>关联clb资源详情   </p>
         # @type CLB: Array
-        # @param CDN: 关联cdn资源详情
+        # @param CDN: <p>关联cdn资源详情   </p>
         # @type CDN: Array
-        # @param WAF: 关联waf资源详情
+        # @param WAF: <p>关联waf资源详情   </p>
         # @type WAF: Array
-        # @param DDOS: 关联ddos资源详情
+        # @param DDOS: <p>关联ddos资源详情  </p>
         # @type DDOS: Array
-        # @param LIVE: 关联live资源详情
+        # @param LIVE: <p>关联live资源详情  </p>
         # @type LIVE: Array
-        # @param VOD: 关联vod资源详情
+        # @param VOD: <p>关联vod资源详情   </p>
         # @type VOD: Array
-        # @param TKE: 关联tke资源详情
+        # @param TKE: <p>关联tke资源详情   </p>
         # @type TKE: Array
-        # @param APIGATEWAY: 关联apigateway资源详情
+        # @param APIGATEWAY: <p>关联apigateway资源详情    </p>
         # @type APIGATEWAY: Array
-        # @param TCB: 关联tcb资源详情
+        # @param TCB: <p>关联tcb资源详情   </p>
         # @type TCB: Array
-        # @param TEO: 关联teo资源详情
+        # @param TEO: <p>关联teo资源详情   </p>
         # @type TEO: Array
-        # @param Status: 关联云资源异步查询结果： 0表示查询中， 1表示查询成功。 2表示查询异常； 若状态为1，则查看BindResourceResult结果；若状态为2，则查看Error原因
+        # @param Status: <p>关联云资源异步查询结果： 0表示查询中， 1表示查询成功。 2表示查询异常； 若状态为1，则查看BindResourceResult结果；若状态为2，则查看Error原因</p>
         # @type Status: Integer
-        # @param CacheTime: 当前结果缓存时间
+        # @param CacheTime: <p>当前结果缓存时间</p>
         # @type CacheTime: String
-        # @param TSE: 关联tse资源详情
+        # @param TSE: <p>关联tse资源详情   </p>
         # @type TSE: Array
-        # @param COS: 关联的COS资源详情
+        # @param COS: <p>关联的COS资源详情</p>
         # @type COS: Array
+        # @param TDMQ: <p>关联的TDMQ - Rabbit资源详情</p>
+        # @type TDMQ: Array
+        # @param MQTT: <p>关联的MQTT资源详情</p>
+        # @type MQTT: Array
+        # @param GAAP: <p>关联的GAAP资源详情</p>
+        # @type GAAP: Array
+        # @param SCF: <p>关联的SCF资源详情</p>
+        # @type SCF: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :TSE, :COS, :RequestId
+        attr_accessor :CLB, :CDN, :WAF, :DDOS, :LIVE, :VOD, :TKE, :APIGATEWAY, :TCB, :TEO, :Status, :CacheTime, :TSE, :COS, :TDMQ, :MQTT, :GAAP, :SCF, :RequestId
 
-        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, tse=nil, cos=nil, requestid=nil)
+        def initialize(clb=nil, cdn=nil, waf=nil, ddos=nil, live=nil, vod=nil, tke=nil, apigateway=nil, tcb=nil, teo=nil, status=nil, cachetime=nil, tse=nil, cos=nil, tdmq=nil, mqtt=nil, gaap=nil, scf=nil, requestid=nil)
           @CLB = clb
           @CDN = cdn
           @WAF = waf
@@ -2918,6 +2921,10 @@ module TencentCloud
           @CacheTime = cachetime
           @TSE = tse
           @COS = cos
+          @TDMQ = tdmq
+          @MQTT = mqtt
+          @GAAP = gaap
+          @SCF = scf
           @RequestId = requestid
         end
 
@@ -3018,6 +3025,38 @@ module TencentCloud
               cosinstancelist_tmp = COSInstanceList.new
               cosinstancelist_tmp.deserialize(i)
               @COS << cosinstancelist_tmp
+            end
+          end
+          unless params['TDMQ'].nil?
+            @TDMQ = []
+            params['TDMQ'].each do |i|
+              tdmqinstancelist_tmp = TDMQInstanceList.new
+              tdmqinstancelist_tmp.deserialize(i)
+              @TDMQ << tdmqinstancelist_tmp
+            end
+          end
+          unless params['MQTT'].nil?
+            @MQTT = []
+            params['MQTT'].each do |i|
+              mqttinstancelist_tmp = MQTTInstanceList.new
+              mqttinstancelist_tmp.deserialize(i)
+              @MQTT << mqttinstancelist_tmp
+            end
+          end
+          unless params['GAAP'].nil?
+            @GAAP = []
+            params['GAAP'].each do |i|
+              gaapinstancelist_tmp = GAAPInstanceList.new
+              gaapinstancelist_tmp.deserialize(i)
+              @GAAP << gaapinstancelist_tmp
+            end
+          end
+          unless params['SCF'].nil?
+            @SCF = []
+            params['SCF'].each do |i|
+              scfinstancelist_tmp = SCFInstanceList.new
+              scfinstancelist_tmp.deserialize(i)
+              @SCF << scfinstancelist_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -5913,6 +5952,104 @@ module TencentCloud
         end
       end
 
+      # GAAP实例详情
+      class GAAPInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ListenerList: 监听器列表
+        # @type ListenerList: Array
+        # @param InstanceName: 加速实例名称
+        # @type InstanceName: String
+
+        attr_accessor :InstanceId, :ListenerList, :InstanceName
+
+        def initialize(instanceid=nil, listenerlist=nil, instancename=nil)
+          @InstanceId = instanceid
+          @ListenerList = listenerlist
+          @InstanceName = instancename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['ListenerList'].nil?
+            @ListenerList = []
+            params['ListenerList'].each do |i|
+              gaaplistenerdetail_tmp = GAAPListenerDetail.new
+              gaaplistenerdetail_tmp.deserialize(i)
+              @ListenerList << gaaplistenerdetail_tmp
+            end
+          end
+          @InstanceName = params['InstanceName']
+        end
+      end
+
+      # GAAP实例详情 - 异步关联云资源数据结构
+      class GAAPInstanceList < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 实例详情
+        # @type InstanceList: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param Error: 错误信息
+        # @type Error: String
+
+        attr_accessor :InstanceList, :TotalCount, :Error
+
+        def initialize(instancelist=nil, totalcount=nil, error=nil)
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+          @Error = error
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              gaapinstancedetail_tmp = GAAPInstanceDetail.new
+              gaapinstancedetail_tmp.deserialize(i)
+              @InstanceList << gaapinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Error = params['Error']
+        end
+      end
+
+      # GAAP监听器详情
+      class GAAPListenerDetail < TencentCloud::Common::AbstractModel
+        # @param ListenerStatus: 监听器状态
+        # @type ListenerStatus: String
+        # @param ListenerId: 监听器ID
+        # @type ListenerId: String
+        # @param ListenerName: 监听器名称
+        # @type ListenerName: String
+        # @param NoMatchDomains: 不匹配的域名列表
+        # @type NoMatchDomains: Array
+        # @param CertIdList: 实例绑定的证书列表
+        # @type CertIdList: Array
+        # @param Protocol: 监听器协议
+        # @type Protocol: String
+
+        attr_accessor :ListenerStatus, :ListenerId, :ListenerName, :NoMatchDomains, :CertIdList, :Protocol
+
+        def initialize(listenerstatus=nil, listenerid=nil, listenername=nil, nomatchdomains=nil, certidlist=nil, protocol=nil)
+          @ListenerStatus = listenerstatus
+          @ListenerId = listenerid
+          @ListenerName = listenername
+          @NoMatchDomains = nomatchdomains
+          @CertIdList = certidlist
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @ListenerStatus = params['ListenerStatus']
+          @ListenerId = params['ListenerId']
+          @ListenerName = params['ListenerName']
+          @NoMatchDomains = params['NoMatchDomains']
+          @CertIdList = params['CertIdList']
+          @Protocol = params['Protocol']
+        end
+      end
+
       # 云原生网关证书信息
       class GatewayCertificate < TencentCloud::Common::AbstractModel
         # @param Id: 网关证书ID
@@ -6057,6 +6194,77 @@ module TencentCloud
               @InstanceList << liveinstancedetail_tmp
             end
           end
+          @Error = params['Error']
+        end
+      end
+
+      # MQTT实例详情
+      class MQTTInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param NoMatchDomains: 不匹配的域名列表
+        # @type NoMatchDomains: Array
+        # @param ServerCertIdList: 服务端证书列表
+        # @type ServerCertIdList: Array
+        # @param CaCertIdList: ca证书列表
+        # @type CaCertIdList: Array
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceStatus, :NoMatchDomains, :ServerCertIdList, :CaCertIdList
+
+        def initialize(instanceid=nil, instancename=nil, instancestatus=nil, nomatchdomains=nil, servercertidlist=nil, cacertidlist=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceStatus = instancestatus
+          @NoMatchDomains = nomatchdomains
+          @ServerCertIdList = servercertidlist
+          @CaCertIdList = cacertidlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceStatus = params['InstanceStatus']
+          @NoMatchDomains = params['NoMatchDomains']
+          @ServerCertIdList = params['ServerCertIdList']
+          @CaCertIdList = params['CaCertIdList']
+        end
+      end
+
+      # MQTT实例详情 - 异步关联云资源数据结构
+      class MQTTInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: 实例详情
+        # @type InstanceList: Array
+        # @param TotalCount: 地域下总数
+        # @type TotalCount: Integer
+        # @param Error: 错误信息
+        # @type Error: String
+
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              mqttinstancedetail_tmp = MQTTInstanceDetail.new
+              mqttinstancedetail_tmp.deserialize(i)
+              @InstanceList << mqttinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @Error = params['Error']
         end
       end
@@ -6813,6 +7021,69 @@ module TencentCloud
         end
       end
 
+      # SCF实例详情
+      class SCFInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param CertificateId: 证书ID
+        # @type CertificateId: String
+        # @param Protocol: 协议
+        # @type Protocol: String
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param Region: 地域
+        # @type Region: String
+
+        attr_accessor :CertificateId, :Protocol, :Domain, :Region
+
+        def initialize(certificateid=nil, protocol=nil, domain=nil, region=nil)
+          @CertificateId = certificateid
+          @Protocol = protocol
+          @Domain = domain
+          @Region = region
+        end
+
+        def deserialize(params)
+          @CertificateId = params['CertificateId']
+          @Protocol = params['Protocol']
+          @Domain = params['Domain']
+          @Region = params['Region']
+        end
+      end
+
+      # SCF实例详情 - 异步关联云资源数据结构
+      class SCFInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param InstanceList: <p>SCF实例详情</p>
+        # @type InstanceList: Array
+        # @param Error: <p>错误信息</p>
+        # @type Error: String
+        # @param TotalCount: <p>地域下总数</p>
+        # @type TotalCount: Integer
+
+        attr_accessor :Region, :InstanceList, :Error, :TotalCount
+
+        def initialize(region=nil, instancelist=nil, error=nil, totalcount=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @Error = error
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              scfinstancedetail_tmp = SCFInstanceDetail.new
+              scfinstancedetail_tmp.deserialize(i)
+              @InstanceList << scfinstancedetail_tmp
+            end
+          end
+          @Error = params['Error']
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # SubmitAuditManager请求参数结构体
       class SubmitAuditManagerRequest < TencentCloud::Common::AbstractModel
         # @param ManagerId: 管理人ID
@@ -7427,6 +7698,77 @@ module TencentCloud
         end
       end
 
+      # TDMQ - Rabbit实例详情
+      class TDMQInstanceDetail < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param CertId: 服务端证书ID
+        # @type CertId: String
+        # @param CaCertId: CA证书ID
+        # @type CaCertId: String
+        # @param NoMatchDomains: 不匹配的域名列表
+        # @type NoMatchDomains: Array
+
+        attr_accessor :InstanceId, :InstanceName, :InstanceStatus, :CertId, :CaCertId, :NoMatchDomains
+
+        def initialize(instanceid=nil, instancename=nil, instancestatus=nil, certid=nil, cacertid=nil, nomatchdomains=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InstanceStatus = instancestatus
+          @CertId = certid
+          @CaCertId = cacertid
+          @NoMatchDomains = nomatchdomains
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InstanceStatus = params['InstanceStatus']
+          @CertId = params['CertId']
+          @CaCertId = params['CaCertId']
+          @NoMatchDomains = params['NoMatchDomains']
+        end
+      end
+
+      # TDMQ - Rabbit实例详情 - 异步关联云资源数据结构
+      class TDMQInstanceList < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param InstanceList: 实例详情
+        # @type InstanceList: Array
+        # @param TotalCount: 地域下总数
+        # @type TotalCount: Integer
+        # @param Error: 错误信息
+        # @type Error: String
+
+        attr_accessor :Region, :InstanceList, :TotalCount, :Error
+
+        def initialize(region=nil, instancelist=nil, totalcount=nil, error=nil)
+          @Region = region
+          @InstanceList = instancelist
+          @TotalCount = totalcount
+          @Error = error
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              tdmqinstancedetail_tmp = TDMQInstanceDetail.new
+              tdmqinstancedetail_tmp.deserialize(i)
+              @InstanceList << tdmqinstancedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @Error = params['Error']
+        end
+      end
+
       # tse实例详情
       class TSEInstanceDetail < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关ID
@@ -7759,7 +8101,7 @@ module TencentCloud
         # @type CertificateId: String
         # @param Regions: 需要部署的地域列表（废弃）
         # @type Regions: Array
-        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb、tke、apigateway、waf、tcb、tse、cos
+        # @param ResourceTypesRegions: 云资源需要部署的地域列表，支持地域的云资源类型必传，取值：clb、tke、apigateway、waf、tcb、tse、cos、mqtt
         # @type ResourceTypesRegions: Array
         # @param CertificatePublicKey: 公钥证书， 若上传公钥证书，那么私钥证书必传。  则CertificateId不用传
         # @type CertificatePublicKey: String
@@ -8018,10 +8360,14 @@ module TencentCloud
         # @type Algorithm: String
         # @param OldAlgorithm: 旧证书加密算法
         # @type OldAlgorithm: String
+        # @param InstanceStatus: 实例状态，不同云产品状态不一样
+        # @type InstanceStatus: String
+        # @param ListenerStatus: 监听器状态
+        # @type ListenerStatus: String
 
-        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType, :Url, :Algorithm, :OldAlgorithm
+        attr_accessor :Id, :CertId, :OldCertId, :Domains, :ResourceType, :Region, :Status, :ErrorMsg, :CreateTime, :UpdateTime, :InstanceId, :InstanceName, :ListenerId, :ListenerName, :Protocol, :SniSwitch, :Bucket, :Port, :Namespace, :SecretName, :EnvId, :TCBType, :Url, :Algorithm, :OldAlgorithm, :InstanceStatus, :ListenerStatus
 
-        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil, url=nil, algorithm=nil, oldalgorithm=nil)
+        def initialize(id=nil, certid=nil, oldcertid=nil, domains=nil, resourcetype=nil, region=nil, status=nil, errormsg=nil, createtime=nil, updatetime=nil, instanceid=nil, instancename=nil, listenerid=nil, listenername=nil, protocol=nil, sniswitch=nil, bucket=nil, port=nil, namespace=nil, secretname=nil, envid=nil, tcbtype=nil, url=nil, algorithm=nil, oldalgorithm=nil, instancestatus=nil, listenerstatus=nil)
           @Id = id
           @CertId = certid
           @OldCertId = oldcertid
@@ -8047,6 +8393,8 @@ module TencentCloud
           @Url = url
           @Algorithm = algorithm
           @OldAlgorithm = oldalgorithm
+          @InstanceStatus = instancestatus
+          @ListenerStatus = listenerstatus
         end
 
         def deserialize(params)
@@ -8075,6 +8423,8 @@ module TencentCloud
           @Url = params['Url']
           @Algorithm = params['Algorithm']
           @OldAlgorithm = params['OldAlgorithm']
+          @InstanceStatus = params['InstanceStatus']
+          @ListenerStatus = params['ListenerStatus']
         end
       end
 

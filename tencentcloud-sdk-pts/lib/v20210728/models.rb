@@ -583,27 +583,55 @@ module TencentCloud
 
       # CreateEnvironment请求参数结构体
       class CreateEnvironmentRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param Name: 环境名
+        # @type Name: String
+        # @param EnvVars: 环境变量
+        # @type EnvVars: Array
+        # @param Description: 环境描述
+        # @type Description: String
 
+        attr_accessor :ProjectId, :Name, :EnvVars, :Description
 
-        def initialize()
+        def initialize(projectid=nil, name=nil, envvars=nil, description=nil)
+          @ProjectId = projectid
+          @Name = name
+          @EnvVars = envvars
+          @Description = description
         end
 
         def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @Name = params['Name']
+          unless params['EnvVars'].nil?
+            @EnvVars = []
+            params['EnvVars'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @EnvVars << envvar_tmp
+            end
+          end
+          @Description = params['Description']
         end
       end
 
       # CreateEnvironment返回参数结构体
       class CreateEnvironmentResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :EnvId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(envid=nil, requestid=nil)
+          @EnvId = envid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
           @RequestId = params['RequestId']
         end
       end
@@ -2886,6 +2914,34 @@ module TencentCloud
             @DNSConfig = DNSConfig.new
             @DNSConfig.deserialize(params['DNSConfig'])
           end
+        end
+      end
+
+      # 环境变量
+      class EnvVar < TencentCloud::Common::AbstractModel
+        # @param Name: 变量引用键，建议为 C_IDENTIFIER 全大写风格
+        # @type Name: String
+        # @param Type: 默认 NORMAL，支持 NORMAL、PASSWORD 类型
+        # @type Type: String
+        # @param Value: 变量引用值
+        # @type Value: String
+        # @param Description: 描述内容
+        # @type Description: String
+
+        attr_accessor :Name, :Type, :Value, :Description
+
+        def initialize(name=nil, type=nil, value=nil, description=nil)
+          @Name = name
+          @Type = type
+          @Value = value
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @Value = params['Value']
+          @Description = params['Description']
         end
       end
 
