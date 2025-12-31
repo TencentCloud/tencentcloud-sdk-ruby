@@ -161,7 +161,7 @@ module TencentCloud
       class CreateSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolName: 沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一
         # @type ToolName: String
-        # @param ToolType: 沙箱工具类型，目前支持：browser、code-interpreter
+        # @param ToolType: 沙箱工具类型，目前支持：browser、code-interpreter、custom
         # @type ToolType: String
         # @param NetworkConfiguration: 网络配置
         # @type NetworkConfiguration: :class:`Tencentcloud::Ags.v20250920.models.NetworkConfiguration`
@@ -177,10 +177,12 @@ module TencentCloud
         # @type RoleArn: String
         # @param StorageMounts: 沙箱工具存储配置
         # @type StorageMounts: Array
+        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
 
-        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts
+        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration
 
-        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil)
+        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil)
           @ToolName = toolname
           @ToolType = tooltype
           @NetworkConfiguration = networkconfiguration
@@ -190,6 +192,7 @@ module TencentCloud
           @ClientToken = clienttoken
           @RoleArn = rolearn
           @StorageMounts = storagemounts
+          @CustomConfiguration = customconfiguration
         end
 
         def deserialize(params)
@@ -219,6 +222,10 @@ module TencentCloud
               @StorageMounts << storagemount_tmp
             end
           end
+          unless params['CustomConfiguration'].nil?
+            @CustomConfiguration = CustomConfiguration.new
+            @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
         end
       end
 
@@ -239,6 +246,138 @@ module TencentCloud
         def deserialize(params)
           @ToolId = params['ToolId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 沙箱自定义配置
+      class CustomConfiguration < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+        # @param Command: 启动命令
+        # @type Command: Array
+        # @param Args: 启动参数
+        # @type Args: Array
+        # @param Env: 环境变量
+        # @type Env: Array
+        # @param Ports: 端口配置
+        # @type Ports: Array
+        # @param Resources: 资源配置
+        # @type Resources: :class:`Tencentcloud::Ags.v20250920.models.ResourceConfiguration`
+        # @param Probe: 探针配置
+        # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
+
+        attr_accessor :Image, :ImageRegistryType, :Command, :Args, :Env, :Ports, :Resources, :Probe
+
+        def initialize(image=nil, imageregistrytype=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil)
+          @Image = image
+          @ImageRegistryType = imageregistrytype
+          @Command = command
+          @Args = args
+          @Env = env
+          @Ports = ports
+          @Resources = resources
+          @Probe = probe
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageRegistryType = params['ImageRegistryType']
+          @Command = params['Command']
+          @Args = params['Args']
+          unless params['Env'].nil?
+            @Env = []
+            params['Env'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Env << envvar_tmp
+            end
+          end
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portconfiguration_tmp = PortConfiguration.new
+              portconfiguration_tmp.deserialize(i)
+              @Ports << portconfiguration_tmp
+            end
+          end
+          unless params['Resources'].nil?
+            @Resources = ResourceConfiguration.new
+            @Resources.deserialize(params['Resources'])
+          end
+          unless params['Probe'].nil?
+            @Probe = ProbeConfiguration.new
+            @Probe.deserialize(params['Probe'])
+          end
+        end
+      end
+
+      # 沙箱自定义配置详细信息
+      class CustomConfigurationDetail < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageRegistryType: 镜像仓库类型：`TCR`、`CCR`。
+        # @type ImageRegistryType: String
+        # @param ImageDigest: 镜像 Digest
+        # @type ImageDigest: String
+        # @param Command: 启动命令
+        # @type Command: Array
+        # @param Args: 启动参数
+        # @type Args: Array
+        # @param Env: 环境变量
+        # @type Env: Array
+        # @param Ports: 端口配置
+        # @type Ports: Array
+        # @param Resources: 资源配置
+        # @type Resources: :class:`Tencentcloud::Ags.v20250920.models.ResourceConfiguration`
+        # @param Probe: 探针配置
+        # @type Probe: :class:`Tencentcloud::Ags.v20250920.models.ProbeConfiguration`
+
+        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :Command, :Args, :Env, :Ports, :Resources, :Probe
+
+        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, command=nil, args=nil, env=nil, ports=nil, resources=nil, probe=nil)
+          @Image = image
+          @ImageRegistryType = imageregistrytype
+          @ImageDigest = imagedigest
+          @Command = command
+          @Args = args
+          @Env = env
+          @Ports = ports
+          @Resources = resources
+          @Probe = probe
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageRegistryType = params['ImageRegistryType']
+          @ImageDigest = params['ImageDigest']
+          @Command = params['Command']
+          @Args = params['Args']
+          unless params['Env'].nil?
+            @Env = []
+            params['Env'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Env << envvar_tmp
+            end
+          end
+          unless params['Ports'].nil?
+            @Ports = []
+            params['Ports'].each do |i|
+              portconfiguration_tmp = PortConfiguration.new
+              portconfiguration_tmp.deserialize(i)
+              @Ports << portconfiguration_tmp
+            end
+          end
+          unless params['Resources'].nil?
+            @Resources = ResourceConfiguration.new
+            @Resources.deserialize(params['Resources'])
+          end
+          unless params['Probe'].nil?
+            @Probe = ProbeConfiguration.new
+            @Probe.deserialize(params['Probe'])
+          end
         end
       end
 
@@ -484,6 +623,26 @@ module TencentCloud
         end
       end
 
+      # 环境变量
+      class EnvVar < TencentCloud::Common::AbstractModel
+        # @param Name: 环境变量名
+        # @type Name: String
+        # @param Value: 环境变量值
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 过滤列表规则
       class Filter < TencentCloud::Common::AbstractModel
         # @param Name: 属性名称, 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
@@ -501,6 +660,58 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # HTTP GET 探测动作配置
+      class HttpGetAction < TencentCloud::Common::AbstractModel
+        # @param Path: 路径
+        # @type Path: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Scheme: 协议
+        # @type Scheme: String
+
+        attr_accessor :Path, :Port, :Scheme
+
+        def initialize(path=nil, port=nil, scheme=nil)
+          @Path = path
+          @Port = port
+          @Scheme = scheme
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Port = params['Port']
+          @Scheme = params['Scheme']
+        end
+      end
+
+      # 镜像卷挂载源配置
+      class ImageStorageSource < TencentCloud::Common::AbstractModel
+        # @param Reference: 镜像地址
+        # @type Reference: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+        # @param SubPath: 镜像内部的路径
+        # @type SubPath: String
+        # @param Digest: 镜像 Digest，请求时无需传入
+        # @type Digest: String
+
+        attr_accessor :Reference, :ImageRegistryType, :SubPath, :Digest
+
+        def initialize(reference=nil, imageregistrytype=nil, subpath=nil, digest=nil)
+          @Reference = reference
+          @ImageRegistryType = imageregistrytype
+          @SubPath = subpath
+          @Digest = digest
+        end
+
+        def deserialize(params)
+          @Reference = params['Reference']
+          @ImageRegistryType = params['ImageRegistryType']
+          @SubPath = params['SubPath']
+          @Digest = params['Digest']
         end
       end
 
@@ -555,6 +766,89 @@ module TencentCloud
         end
       end
 
+      # 端口配置
+      class PortConfiguration < TencentCloud::Common::AbstractModel
+        # @param Name: 端口名
+        # @type Name: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param Protocol: 协议
+        # @type Protocol: String
+
+        attr_accessor :Name, :Port, :Protocol
+
+        def initialize(name=nil, port=nil, protocol=nil)
+          @Name = name
+          @Port = port
+          @Protocol = protocol
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Port = params['Port']
+          @Protocol = params['Protocol']
+        end
+      end
+
+      # 健康检查探针配置
+      class ProbeConfiguration < TencentCloud::Common::AbstractModel
+        # @param HttpGet: HTTP GET 探测配置
+        # @type HttpGet: :class:`Tencentcloud::Ags.v20250920.models.HttpGetAction`
+        # @param ReadyTimeoutMs: 健康检查就绪超时
+        # @type ReadyTimeoutMs: Integer
+        # @param ProbeTimeoutMs: 健康检查单次探测超时
+        # @type ProbeTimeoutMs: Integer
+        # @param ProbePeriodMs: 健康检查间隔
+        # @type ProbePeriodMs: Integer
+        # @param SuccessThreshold: 健康检查成功阈值
+        # @type SuccessThreshold: Integer
+        # @param FailureThreshold: 健康检查失败阈值
+        # @type FailureThreshold: Integer
+
+        attr_accessor :HttpGet, :ReadyTimeoutMs, :ProbeTimeoutMs, :ProbePeriodMs, :SuccessThreshold, :FailureThreshold
+
+        def initialize(httpget=nil, readytimeoutms=nil, probetimeoutms=nil, probeperiodms=nil, successthreshold=nil, failurethreshold=nil)
+          @HttpGet = httpget
+          @ReadyTimeoutMs = readytimeoutms
+          @ProbeTimeoutMs = probetimeoutms
+          @ProbePeriodMs = probeperiodms
+          @SuccessThreshold = successthreshold
+          @FailureThreshold = failurethreshold
+        end
+
+        def deserialize(params)
+          unless params['HttpGet'].nil?
+            @HttpGet = HttpGetAction.new
+            @HttpGet.deserialize(params['HttpGet'])
+          end
+          @ReadyTimeoutMs = params['ReadyTimeoutMs']
+          @ProbeTimeoutMs = params['ProbeTimeoutMs']
+          @ProbePeriodMs = params['ProbePeriodMs']
+          @SuccessThreshold = params['SuccessThreshold']
+          @FailureThreshold = params['FailureThreshold']
+        end
+      end
+
+      # 资源配置
+      class ResourceConfiguration < TencentCloud::Common::AbstractModel
+        # @param CPU: cpu 资源量
+        # @type CPU: String
+        # @param Memory: 内存资源量
+        # @type Memory: String
+
+        attr_accessor :CPU, :Memory
+
+        def initialize(cpu=nil, memory=nil)
+          @CPU = cpu
+          @Memory = memory
+        end
+
+        def deserialize(params)
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+        end
+      end
+
       # 沙箱实例结构体
       class SandboxInstance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 沙箱实例唯一标识符
@@ -577,10 +871,12 @@ module TencentCloud
         # @type UpdateTime: String
         # @param MountOptions: 存储挂载选项
         # @type MountOptions: Array
+        # @param CustomConfiguration: 沙箱实例自定义配置
+        # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -591,6 +887,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @MountOptions = mountoptions
+          @CustomConfiguration = customconfiguration
         end
 
         def deserialize(params)
@@ -610,6 +907,10 @@ module TencentCloud
               mountoption_tmp.deserialize(i)
               @MountOptions << mountoption_tmp
             end
+          end
+          unless params['CustomConfiguration'].nil?
+            @CustomConfiguration = CustomConfigurationDetail.new
+            @CustomConfiguration.deserialize(params['CustomConfiguration'])
           end
         end
       end
@@ -640,10 +941,12 @@ module TencentCloud
         # @type RoleArn: String
         # @param StorageMounts: 沙箱工具中实例存储挂载配置
         # @type StorageMounts: Array
+        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
 
-        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts
+        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration
 
-        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil)
+        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil)
           @ToolId = toolid
           @ToolName = toolname
           @ToolType = tooltype
@@ -656,6 +959,7 @@ module TencentCloud
           @UpdateTime = updatetime
           @RoleArn = rolearn
           @StorageMounts = storagemounts
+          @CustomConfiguration = customconfiguration
         end
 
         def deserialize(params)
@@ -688,6 +992,10 @@ module TencentCloud
               @StorageMounts << storagemount_tmp
             end
           end
+          unless params['CustomConfiguration'].nil?
+            @CustomConfiguration = CustomConfigurationDetail.new
+            @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
         end
       end
 
@@ -703,15 +1011,18 @@ module TencentCloud
         # @type ClientToken: String
         # @param MountOptions: 沙箱实例存储挂载配置
         # @type MountOptions: Array
+        # @param CustomConfiguration: 沙箱实例自定义配置
+        # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
 
-        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions
+        attr_accessor :ToolId, :ToolName, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration
 
-        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil)
+        def initialize(toolid=nil, toolname=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil)
           @ToolId = toolid
           @ToolName = toolname
           @Timeout = timeout
           @ClientToken = clienttoken
           @MountOptions = mountoptions
+          @CustomConfiguration = customconfiguration
         end
 
         def deserialize(params)
@@ -726,6 +1037,10 @@ module TencentCloud
               mountoption_tmp.deserialize(i)
               @MountOptions << mountoption_tmp
             end
+          end
+          unless params['CustomConfiguration'].nil?
+            @CustomConfiguration = CustomConfiguration.new
+            @CustomConfiguration.deserialize(params['CustomConfiguration'])
           end
         end
       end
@@ -820,17 +1135,24 @@ module TencentCloud
       class StorageSource < TencentCloud::Common::AbstractModel
         # @param Cos: 对象存储桶配置
         # @type Cos: :class:`Tencentcloud::Ags.v20250920.models.CosStorageSource`
+        # @param Image: 镜像卷配置
+        # @type Image: :class:`Tencentcloud::Ags.v20250920.models.ImageStorageSource`
 
-        attr_accessor :Cos
+        attr_accessor :Cos, :Image
 
-        def initialize(cos=nil)
+        def initialize(cos=nil, image=nil)
           @Cos = cos
+          @Image = image
         end
 
         def deserialize(params)
           unless params['Cos'].nil?
             @Cos = CosStorageSource.new
             @Cos.deserialize(params['Cos'])
+          end
+          unless params['Image'].nil?
+            @Image = ImageStorageSource.new
+            @Image.deserialize(params['Image'])
           end
         end
       end
@@ -901,14 +1223,17 @@ module TencentCloud
         # @type NetworkConfiguration: :class:`Tencentcloud::Ags.v20250920.models.NetworkConfiguration`
         # @param Tags: 标签
         # @type Tags: Array
+        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
 
-        attr_accessor :ToolId, :Description, :NetworkConfiguration, :Tags
+        attr_accessor :ToolId, :Description, :NetworkConfiguration, :Tags, :CustomConfiguration
 
-        def initialize(toolid=nil, description=nil, networkconfiguration=nil, tags=nil)
+        def initialize(toolid=nil, description=nil, networkconfiguration=nil, tags=nil, customconfiguration=nil)
           @ToolId = toolid
           @Description = description
           @NetworkConfiguration = networkconfiguration
           @Tags = tags
+          @CustomConfiguration = customconfiguration
         end
 
         def deserialize(params)
@@ -925,6 +1250,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['CustomConfiguration'].nil?
+            @CustomConfiguration = CustomConfiguration.new
+            @CustomConfiguration.deserialize(params['CustomConfiguration'])
           end
         end
       end

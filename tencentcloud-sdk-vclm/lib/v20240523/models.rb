@@ -1245,16 +1245,21 @@ module TencentCloud
 
       # SubmitVideoEditJob请求参数结构体
       class SubmitVideoEditJobRequest < TencentCloud::Common::AbstractModel
-        # @param VideoUrl: 输入视频
-
-        # - 视频格式：MP4
-        # - 视频时长：5s以内
-        # - 视频分辨率：无限制（待验证是否可以无损输出）
+        # @param VideoUrl: 参考视频URL。默认为待编辑视频。
+        # - 视频格式：支持MP4
+        # - 视频时长：输入视频时长≤5秒
+        # - 视频大小：不超过200M
+        # - 视频文件：输入的视频帧率及分辨率不做限制（建议输入16：9或9：16的视频；分辨率建议在2160px内，帧率建议在60fps内）；输出视频是帧率会≥16fps，分辨率为720p
         # @type VideoUrl: String
-        # @param Prompt: 视频内容的描述，中文正向提示词。最多支持200个 utf-8 字符（首尾空格不计入字符数）。
-        # 支持风格迁移、替换、元素增加、删除控制
+        # @param Prompt: 视频内容的描述，中文正向提示词。支持视频内容增加、删除、修改等能力
+        # - 最多支持200个 utf-8 字符（首尾空格不计入字符数）
+        # - 不传prompt的时候，Images.N参考图列表必须要传图，且传的图片是经过图片编辑之后的结果图
         # @type Prompt: String
-        # @param Images: 图片数组
+        # @param Images: 参考图列表。用于对视频内容做风格迁移、内容替换、内容删减、内容增加做参考。
+        # - 支持传入图片Base64编码或图片URL
+        # - 图片格式：支持jpg，png，jpeg，webp，bmp，tiff 格式
+        # - 图片文件：大小不能超过10MB（base64后）。单边分辨率不超过5000px，不小于50px，图片长宽限制1:4 ~ 4:1。
+        # 示例值：[{ "Url": "https://console.cloud.tencent.com/cos/image.png"}]
         # @type Images: Array
         # @param Image: 图片base64或者图片url
 
@@ -1263,12 +1268,20 @@ module TencentCloud
         # - 支持jpg，png，jpeg，webp，bmp，tiff 格式
         # - 单边分辨率不超过5000，不小于50，长宽限制1:4 ~ 4:1
         # @type Image: :class:`Tencentcloud::Vclm.v20240523.models.Image`
-        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。 1：添加标识。 0：不添加标识。 其他数值：默认按1处理。 建议您使用显著标识来提示，该视频是 AI 生成的视频。
+        # @param LogoAdd: 为生成视频添加标识的开关，默认为1。传0 需前往  [控制台](https://console.cloud.tencent.com/vtc/setting)  申请开启显式标识自主完成后方可生效。
+        # 1：添加标识；
+        # 0：不添加标识；
+        # 其他数值：默认按1处理。
+        # 建议您使用显著标识来提示，该视频是 AI 生成的视频。
         # @type LogoAdd: Integer
-        # @param LogoParam: 标识内容设置。 默认在生成视频的右下角添加“视频由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
+        # @param LogoParam: 标识内容设置。
+        # 默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往   [控制台](https://console.cloud.tencent.com/vtc/setting)  申请开启显式标识自主完成。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
         attr_accessor :VideoUrl, :Prompt, :Images, :Image, :LogoAdd, :LogoParam
+        extend Gem::Deprecate
+        deprecate :Image, :none, 2026, 1
+        deprecate :Image=, :none, 2026, 1
 
         def initialize(videourl=nil, prompt=nil, images=nil, image=nil, logoadd=nil, logoparam=nil)
           @VideoUrl = videourl

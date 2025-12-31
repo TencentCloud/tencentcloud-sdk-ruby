@@ -845,6 +845,80 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云联网关联的实例信息
+
+        # @param request: Request instance for DescribeCcnAssociatedInstances.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCcnAssociatedInstancesRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCcnAssociatedInstancesResponse`
+        def DescribeCcnAssociatedInstances(request)
+          body = send_request('DescribeCcnAssociatedInstances', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCcnAssociatedInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CCN关联实例的地域防火墙引流网络部署状态
+        # 1.根据CCN ID和实例ID列表，返回实例对应地域的防火墙引流网络部署状态
+        # 2.如果传入实例ID列表为空，则返回CCN关联的所有实例的地域防火墙引流网络部署状态
+
+        # @param request: Request instance for DescribeCcnInstanceRegionStatus.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCcnInstanceRegionStatusRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCcnInstanceRegionStatusResponse`
+        def DescribeCcnInstanceRegionStatus(request)
+          body = send_request('DescribeCcnInstanceRegionStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCcnInstanceRegionStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询CCN VPC防火墙开关配置
+
+        # @param request: Request instance for DescribeCcnVpcFwSwitch.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeCcnVpcFwSwitchRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeCcnVpcFwSwitchResponse`
+        def DescribeCcnVpcFwSwitch(request)
+          body = send_request('DescribeCcnVpcFwSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCcnVpcFwSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询防火墙弹性公网IP
 
         # @param request: Request instance for DescribeCfwEips.
@@ -1469,6 +1543,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 互联网边界防火墙开关横幅错误信息
+
+        # @param request: Request instance for DescribeSwitchError.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeSwitchErrorRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeSwitchErrorResponse`
+        def DescribeSwitchError(request)
+          body = send_request('DescribeSwitchError', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSwitchErrorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 防火墙开关列表，请换用DescribeFwEdgeIps
 
         # @param request: Request instance for DescribeSwitchLists.
@@ -1599,6 +1697,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVpcAcRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询VPC防火墙策略路由功能开白的CCN列表
+
+        # @param request: Request instance for DescribeVpcFwCcnPolicyWhiteList.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeVpcFwCcnPolicyWhiteListRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeVpcFwCcnPolicyWhiteListResponse`
+        def DescribeVpcFwCcnPolicyWhiteList(request)
+          body = send_request('DescribeVpcFwCcnPolicyWhiteList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeVpcFwCcnPolicyWhiteListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1914,6 +2036,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyBlockTopResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群模式VPC防火墙开关
+
+        # @param request: Request instance for ModifyClusterVpcFwSwitch.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyClusterVpcFwSwitchRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyClusterVpcFwSwitchResponse`
+        def ModifyClusterVpcFwSwitch(request)
+          body = send_request('ModifyClusterVpcFwSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterVpcFwSwitchResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2710,6 +2856,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncFwOperateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 重新检测CCN中接入VPC防火墙的VPC实例非同城直通标记
+
+        # @param request: Request instance for UpdateCheckCcnNonDirectFlag.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::UpdateCheckCcnNonDirectFlagRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::UpdateCheckCcnNonDirectFlagResponse`
+        def UpdateCheckCcnNonDirectFlag(request)
+          body = send_request('UpdateCheckCcnNonDirectFlag', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateCheckCcnNonDirectFlagResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改更新CCN中VPC防火墙策略配置
+
+        # @param request: Request instance for UpdateClusterVpcFw.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::UpdateClusterVpcFwRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::UpdateClusterVpcFwResponse`
+        def UpdateClusterVpcFw(request)
+          body = send_request('UpdateClusterVpcFw', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateClusterVpcFwResponse.new
             model.deserialize(response['Response'])
             model
           else

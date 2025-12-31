@@ -127,6 +127,38 @@ module TencentCloud
         end
       end
 
+      # 接入防火墙实例信息
+      class AccessInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceType: 实例类型VPC or DIRECTCONNECT等类型
+        # @type InstanceType: String
+        # @param InstanceRegion: 实例所在地域
+        # @type InstanceRegion: String
+        # @param AccessCidrMode: 接入防火墙的网段模式：0-不接入，1-接入实例关联的所有网段，2-接入用户自定义的网段
+        # @type AccessCidrMode: Integer
+        # @param AccessCidrList: 接入防火墙的网段列表
+        # @type AccessCidrList: Array
+
+        attr_accessor :InstanceId, :InstanceType, :InstanceRegion, :AccessCidrMode, :AccessCidrList
+
+        def initialize(instanceid=nil, instancetype=nil, instanceregion=nil, accesscidrmode=nil, accesscidrlist=nil)
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @InstanceRegion = instanceregion
+          @AccessCidrMode = accesscidrmode
+          @AccessCidrList = accesscidrlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          @InstanceRegion = params['InstanceRegion']
+          @AccessCidrMode = params['AccessCidrMode']
+          @AccessCidrList = params['AccessCidrList']
+        end
+      end
+
       # AddAclRule请求参数结构体
       class AddAclRuleRequest < TencentCloud::Common::AbstractModel
         # @param Rules: 需要添加的访问控制规则列表
@@ -610,6 +642,92 @@ module TencentCloud
             @CustomRule.deserialize(params['CustomRule'])
           end
           @FwType = params['FwType']
+        end
+      end
+
+      # CCN关联的实例信息
+      class CcnAssociatedInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InsType: 实例类型
+        # @type InsType: String
+        # @param CidrLst: 实例的网段列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrLst: Array
+        # @param InstanceRegion: 实例所属地域
+        # @type InstanceRegion: String
+
+        attr_accessor :InstanceId, :InstanceName, :InsType, :CidrLst, :InstanceRegion
+
+        def initialize(instanceid=nil, instancename=nil, instype=nil, cidrlst=nil, instanceregion=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @InsType = instype
+          @CidrLst = cidrlst
+          @InstanceRegion = instanceregion
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @InsType = params['InsType']
+          @CidrLst = params['CidrLst']
+          @InstanceRegion = params['InstanceRegion']
+        end
+      end
+
+      # ccn实例开关信息
+      class CcnSwitchInfo < TencentCloud::Common::AbstractModel
+        # @param CcnId: ccn的id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CcnId: String
+        # @param SwitchMode: 开关接入模式，1:自动接入,2:手动接入
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SwitchMode: Integer
+        # @param RoutingMode: 引流路由方法 0:多路由表, 1:策略路由
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoutingMode: Integer
+        # @param RegionCidrConfigs: 地域级别CIDR配置
+        # @type RegionCidrConfigs: Array
+        # @param InterconnectPairs: 互联集合对列表
+        # @type InterconnectPairs: Array
+        # @param FwVpcCidr: 引流通用CIDR(废弃)
+        # @type FwVpcCidr: String
+
+        attr_accessor :CcnId, :SwitchMode, :RoutingMode, :RegionCidrConfigs, :InterconnectPairs, :FwVpcCidr
+
+        def initialize(ccnid=nil, switchmode=nil, routingmode=nil, regioncidrconfigs=nil, interconnectpairs=nil, fwvpccidr=nil)
+          @CcnId = ccnid
+          @SwitchMode = switchmode
+          @RoutingMode = routingmode
+          @RegionCidrConfigs = regioncidrconfigs
+          @InterconnectPairs = interconnectpairs
+          @FwVpcCidr = fwvpccidr
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @SwitchMode = params['SwitchMode']
+          @RoutingMode = params['RoutingMode']
+          unless params['RegionCidrConfigs'].nil?
+            @RegionCidrConfigs = []
+            params['RegionCidrConfigs'].each do |i|
+              regioncidrconfig_tmp = RegionCidrConfig.new
+              regioncidrconfig_tmp.deserialize(i)
+              @RegionCidrConfigs << regioncidrconfig_tmp
+            end
+          end
+          unless params['InterconnectPairs'].nil?
+            @InterconnectPairs = []
+            params['InterconnectPairs'].each do |i|
+              interconnectpair_tmp = InterconnectPair.new
+              interconnectpair_tmp.deserialize(i)
+              @InterconnectPairs << interconnectpair_tmp
+            end
+          end
+          @FwVpcCidr = params['FwVpcCidr']
         end
       end
 
@@ -3113,6 +3231,152 @@ module TencentCloud
         end
       end
 
+      # DescribeCcnAssociatedInstances请求参数结构体
+      class DescribeCcnAssociatedInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # DescribeCcnAssociatedInstances返回参数结构体
+      class DescribeCcnAssociatedInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 实例总数
+        # @type Total: Integer
+        # @param CcnAssociatedInstances: 云联网关联的实例信息
+        # @type CcnAssociatedInstances: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :CcnAssociatedInstances, :RequestId
+
+        def initialize(total=nil, ccnassociatedinstances=nil, requestid=nil)
+          @Total = total
+          @CcnAssociatedInstances = ccnassociatedinstances
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['CcnAssociatedInstances'].nil?
+            @CcnAssociatedInstances = []
+            params['CcnAssociatedInstances'].each do |i|
+              ccnassociatedinstance_tmp = CcnAssociatedInstance.new
+              ccnassociatedinstance_tmp.deserialize(i)
+              @CcnAssociatedInstances << ccnassociatedinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnInstanceRegionStatus请求参数结构体
+      class DescribeCcnInstanceRegionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param InstanceIds: 要查询引流网络部署状态的云联网关联的实例ID列表
+        # @type InstanceIds: Array
+        # @param RoutingMode: 引流路由方法 0:多路由表, 1:策略路由
+        # @type RoutingMode: Integer
+
+        attr_accessor :CcnId, :InstanceIds, :RoutingMode
+
+        def initialize(ccnid=nil, instanceids=nil, routingmode=nil)
+          @CcnId = ccnid
+          @InstanceIds = instanceids
+          @RoutingMode = routingmode
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @InstanceIds = params['InstanceIds']
+          @RoutingMode = params['RoutingMode']
+        end
+      end
+
+      # DescribeCcnInstanceRegionStatus返回参数结构体
+      class DescribeCcnInstanceRegionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 地域总数量
+        # @type Total: Integer
+        # @param RegionFwStatus: 地域防火墙引流网络状态列表
+        # @type RegionFwStatus: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RegionFwStatus, :RequestId
+
+        def initialize(total=nil, regionfwstatus=nil, requestid=nil)
+          @Total = total
+          @RegionFwStatus = regionfwstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['RegionFwStatus'].nil?
+            @RegionFwStatus = []
+            params['RegionFwStatus'].each do |i|
+              regionfwstatus_tmp = RegionFwStatus.new
+              regionfwstatus_tmp.deserialize(i)
+              @RegionFwStatus << regionfwstatus_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnVpcFwSwitch请求参数结构体
+      class DescribeCcnVpcFwSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # DescribeCcnVpcFwSwitch返回参数结构体
+      class DescribeCcnVpcFwSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param InterconnectPairs: 互联对配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InterconnectPairs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InterconnectPairs, :RequestId
+
+        def initialize(interconnectpairs=nil, requestid=nil)
+          @InterconnectPairs = interconnectpairs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InterconnectPairs'].nil?
+            @InterconnectPairs = []
+            params['InterconnectPairs'].each do |i|
+              interconnectpair_tmp = InterconnectPair.new
+              interconnectpair_tmp.deserialize(i)
+              @InterconnectPairs << interconnectpair_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCfwEips请求参数结构体
       class DescribeCfwEipsRequest < TencentCloud::Common::AbstractModel
         # @param Mode: 1：cfw接入模式，目前仅支持接入模式实例
@@ -4833,6 +5097,50 @@ module TencentCloud
         end
       end
 
+      # DescribeSwitchError请求参数结构体
+      class DescribeSwitchErrorRequest < TencentCloud::Common::AbstractModel
+        # @param FwType: EDGE_FW : 互联网边界防火墙 , NDR: 流量分析，VPC_FW：VPC边界防火墙
+        # @type FwType: String
+
+        attr_accessor :FwType
+
+        def initialize(fwtype=nil)
+          @FwType = fwtype
+        end
+
+        def deserialize(params)
+          @FwType = params['FwType']
+        end
+      end
+
+      # DescribeSwitchError返回参数结构体
+      class DescribeSwitchErrorResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 错误信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              switcherror_tmp = SwitchError.new
+              switcherror_tmp.deserialize(i)
+              @Data << switcherror_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSwitchLists请求参数结构体
       class DescribeSwitchListsRequest < TencentCloud::Common::AbstractModel
         # @param Status: 防火墙状态  0: 关闭，1：开启
@@ -5216,6 +5524,43 @@ module TencentCloud
               @Data << vpcruleitem_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVpcFwCcnPolicyWhiteList请求参数结构体
+      class DescribeVpcFwCcnPolicyWhiteListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeVpcFwCcnPolicyWhiteList返回参数结构体
+      class DescribeVpcFwCcnPolicyWhiteListResponse < TencentCloud::Common::AbstractModel
+        # @param SupportCcnPolicy: 支持自动接入和策略路由的CCN列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportCcnPolicy: Array
+        # @param SupportCcnPolicyCidr: 自动接入中支持自定义cidr的CCN列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SupportCcnPolicyCidr: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SupportCcnPolicy, :SupportCcnPolicyCidr, :RequestId
+
+        def initialize(supportccnpolicy=nil, supportccnpolicycidr=nil, requestid=nil)
+          @SupportCcnPolicy = supportccnpolicy
+          @SupportCcnPolicyCidr = supportccnpolicycidr
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SupportCcnPolicy = params['SupportCcnPolicy']
+          @SupportCcnPolicyCidr = params['SupportCcnPolicyCidr']
           @RequestId = params['RequestId']
         end
       end
@@ -6099,6 +6444,44 @@ module TencentCloud
         end
       end
 
+      # 接入防火墙的互联集合对
+      class InterconnectPair < TencentCloud::Common::AbstractModel
+        # @param GroupA: 集合A
+        # @type GroupA: Array
+        # @param GroupB: 集合B
+        # @type GroupB: Array
+        # @param InterconnectMode: 互联模式："CrossConnect": 交叉互联（组A内每个实例和组B内每个实例互联），"FullMesh": 全互联（组A实际和组B内容一致，相当于组内两两互联）
+        # @type InterconnectMode: String
+
+        attr_accessor :GroupA, :GroupB, :InterconnectMode
+
+        def initialize(groupa=nil, groupb=nil, interconnectmode=nil)
+          @GroupA = groupa
+          @GroupB = groupb
+          @InterconnectMode = interconnectmode
+        end
+
+        def deserialize(params)
+          unless params['GroupA'].nil?
+            @GroupA = []
+            params['GroupA'].each do |i|
+              accessinstanceinfo_tmp = AccessInstanceInfo.new
+              accessinstanceinfo_tmp.deserialize(i)
+              @GroupA << accessinstanceinfo_tmp
+            end
+          end
+          unless params['GroupB'].nil?
+            @GroupB = []
+            params['GroupB'].each do |i|
+              accessinstanceinfo_tmp = AccessInstanceInfo.new
+              accessinstanceinfo_tmp.deserialize(i)
+              @GroupB << accessinstanceinfo_tmp
+            end
+          end
+          @InterconnectMode = params['InterconnectMode']
+        end
+      end
+
       # 入侵防御封禁列表、放通列表添加规则入参
       class IntrusionDefenseRule < TencentCloud::Common::AbstractModel
         # @param Direction: 规则方向，0出站，1入站，3内网间
@@ -6816,6 +7199,49 @@ module TencentCloud
 
       # ModifyBlockTop返回参数结构体
       class ModifyBlockTopResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyClusterVpcFwSwitch请求参数结构体
+      class ModifyClusterVpcFwSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param Enable: 开关，0：关闭，1：开启
+        # @type Enable: Integer
+        # @param CcnSwitch: 集群模式vpc间防火墙ccn开关信息
+        # @type CcnSwitch: Array
+
+        attr_accessor :Enable, :CcnSwitch
+
+        def initialize(enable=nil, ccnswitch=nil)
+          @Enable = enable
+          @CcnSwitch = ccnswitch
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          unless params['CcnSwitch'].nil?
+            @CcnSwitch = []
+            params['CcnSwitch'].each do |i|
+              ccnswitchinfo_tmp = CcnSwitchInfo.new
+              ccnswitchinfo_tmp.deserialize(i)
+              @CcnSwitch << ccnswitchinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyClusterVpcFwSwitch返回参数结构体
+      class ModifyClusterVpcFwSwitchResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -8289,6 +8715,61 @@ module TencentCloud
         end
       end
 
+      # 引流地域CIDR配置
+      class RegionCidrConfig < TencentCloud::Common::AbstractModel
+        # @param Region: 引流地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param CidrMode: CIDR模式：0-跳过，1-自动，2-自定义
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CidrMode: Integer
+        # @param CustomCidr: 自定义CIDR（CidrMode=2时必填），其它时候为空字符串
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomCidr: String
+
+        attr_accessor :Region, :CidrMode, :CustomCidr
+
+        def initialize(region=nil, cidrmode=nil, customcidr=nil)
+          @Region = region
+          @CidrMode = cidrmode
+          @CustomCidr = customcidr
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @CidrMode = params['CidrMode']
+          @CustomCidr = params['CustomCidr']
+        end
+      end
+
+      # 地域的防火墙引流网络状态
+      class RegionFwStatus < TencentCloud::Common::AbstractModel
+        # @param Region: 地域
+        # @type Region: String
+        # @param Status: 引流网络部署状态
+        # 1. "NotDeployed"  防火墙集群未部署
+        # 2. "Deployed"        防火墙集群已部署，但未创建引流网络
+        # 3. "Auto"                防火墙集群已部署，并自动选择网段创建了引流网络
+        # 4. "Custom"            防火墙集群已部署，并根据用户自定义网段创建了引流网络
+        # @type Status: String
+        # @param Cidr: 引流网络的cidr，如果没有部署引流网络则为空
+        # @type Cidr: String
+
+        attr_accessor :Region, :Status, :Cidr
+
+        def initialize(region=nil, status=nil, cidr=nil)
+          @Region = region
+          @Status = status
+          @Cidr = cidr
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @Status = params['Status']
+          @Cidr = params['Cidr']
+        end
+      end
+
       # RemoveAcRule请求参数结构体
       class RemoveAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param RuleUuid: 规则的uuid，可通过查询规则列表获取
@@ -9662,6 +10143,38 @@ module TencentCloud
         end
       end
 
+      # 开关切换错误
+      class SwitchError < TencentCloud::Common::AbstractModel
+        # @param ErrIns: 开关唯一标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrIns: String
+        # @param ErrMsg: 错误信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param ErrKey: 错误类型区分
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrKey: String
+        # @param InsertTime: 错误时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InsertTime: String
+
+        attr_accessor :ErrIns, :ErrMsg, :ErrKey, :InsertTime
+
+        def initialize(errins=nil, errmsg=nil, errkey=nil, inserttime=nil)
+          @ErrIns = errins
+          @ErrMsg = errmsg
+          @ErrKey = errkey
+          @InsertTime = inserttime
+        end
+
+        def deserialize(params)
+          @ErrIns = params['ErrIns']
+          @ErrMsg = params['ErrMsg']
+          @ErrKey = params['ErrKey']
+          @InsertTime = params['InsertTime']
+        end
+      end
+
       # 防火墙开关列表对象
       class SwitchListsData < TencentCloud::Common::AbstractModel
         # @param PublicIp: 公网IP
@@ -9934,6 +10447,79 @@ module TencentCloud
         def deserialize(params)
           @EventName = params['EventName']
           @Total = params['Total']
+        end
+      end
+
+      # UpdateCheckCcnNonDirectFlag请求参数结构体
+      class UpdateCheckCcnNonDirectFlagRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+
+        attr_accessor :CcnId
+
+        def initialize(ccnid=nil)
+          @CcnId = ccnid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+        end
+      end
+
+      # UpdateCheckCcnNonDirectFlag返回参数结构体
+      class UpdateCheckCcnNonDirectFlagResponse < TencentCloud::Common::AbstractModel
+        # @param Message: 检测更新状态
+        # "Checked"：重新检测完成
+        # "Checking": 正在重新检测中，请稍后刷新状态查看
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateClusterVpcFw请求参数结构体
+      class UpdateClusterVpcFwRequest < TencentCloud::Common::AbstractModel
+        # @param CcnSwitch: ccn防火墙开关配置信息
+        # @type CcnSwitch: :class:`Tencentcloud::Cfw.v20190904.models.CcnSwitchInfo`
+
+        attr_accessor :CcnSwitch
+
+        def initialize(ccnswitch=nil)
+          @CcnSwitch = ccnswitch
+        end
+
+        def deserialize(params)
+          unless params['CcnSwitch'].nil?
+            @CcnSwitch = CcnSwitchInfo.new
+            @CcnSwitch.deserialize(params['CcnSwitch'])
+          end
+        end
+      end
+
+      # UpdateClusterVpcFw返回参数结构体
+      class UpdateClusterVpcFwResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

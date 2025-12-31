@@ -2144,8 +2144,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2025, 12
-        deprecate :SegmentSet=, :none, 2025, 12
+        deprecate :SegmentSet, :none, 2026, 1
+        deprecate :SegmentSet=, :none, 2026, 1
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4396,8 +4396,8 @@ module TencentCloud
         # <li>当 ModelName 是 OS，当文生视频时，则可选值为 16:9、9:16，默认为 16:9；</li>
         # <li>当 ModelName 是 Hailuo，则暂不支持。</li>
         # @type AspectRatio: String
-        # @param AudioGeneration: 是否生成音频。支持的模型包括 GV、OS。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
-        # 默认值：Enabled
+        # @param AudioGeneration: 是否生成音频。支持的模型包括 GV、OS、Vidu。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # 默认值：Disabled
         # @type AudioGeneration: String
         # @param PersonGeneration: 是否允许人物或人脸生成。取值有： <li>AllowAdult：允许生成成人；</li> <li>Disallowed：禁止在图片中包含人物或人脸；</li>
         # @type PersonGeneration: String
@@ -4970,8 +4970,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2025, 12
-        deprecate :SubtitleFormat=, :none, 2025, 12
+        deprecate :SubtitleFormat, :none, 2026, 1
+        deprecate :SubtitleFormat=, :none, 2026, 1
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -5014,8 +5014,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2025, 12
-        deprecate :SubtitleFormat=, :none, 2025, 12
+        deprecate :SubtitleFormat, :none, 2026, 1
+        deprecate :SubtitleFormat=, :none, 2026, 1
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -7304,11 +7304,13 @@ module TencentCloud
       class CreateAigcVideoTaskRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
-        # @param ModelName: 模型名称。取值：<li>Hailuo：海螺；</li><li>Kling：可灵；</li><li> Jimeng：即梦；</li><li>Vidu；</li><li>GV：Google Veo；</li><li>OS：OpenAI Sora；</li><li>Hunyuan：混元；</li><li>Mingmou：明眸；</li>
+        # @param ModelName: 模型名称。取值：<li>Hailuo：海螺；</li><li>Kling：可灵；</li><li> Jimeng：即梦；</li><li>Vidu；</li><li>GV：Google Veo；</li><li>OS：OpenAI Sora；</li><li>Hunyuan：混元；</li><li>Mingmou：明眸；</li><li> Seedance；</li>
         # @type ModelName: String
-        # @param ModelVersion: 模型版本。取值：<li>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；</li><li>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、O1；</li><li>当 ModelName 是 Jimeng，可选值为 3.0pro；</li><li>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo；</li><li>当 ModelName 是 GV，可选值为 3.1、3.1-Fast；</li><li>当 ModelName 是 OS，可选值为 2.0；</li><li>当 ModelName 是 Hunyuan，可选值为 1.5；</li><li>当 ModelName 是 Mingmou，可选值为 1.0；</li>
+        # @param ModelVersion: 模型版本。取值：<li>当 ModelName 是 Hailuo，可选值为 02、2.3、2.3-fast；</li><li>当 ModelName 是 Kling，可选值为 1.6、2.0、2.1、2.5、O1；</li><li>当 ModelName 是 Jimeng，可选值为 3.0pro；</li><li>当 ModelName 是 Vidu，可选值为 q2、q2-pro、q2-turbo；</li><li>当 ModelName 是 GV，可选值为 3.1、3.1-Fast；</li><li>当 ModelName 是 OS，可选值为 2.0；</li><li>当 ModelName 是 Hunyuan，可选值为 1.5；</li><li>当 ModelName 是 Mingmou，可选值为 1.0；</li><li>当 ModelName 是 Seedance，可选值为 1.5-pro，1.0-pro，1.0-lite-i2v，1.0-pro-fast，其中1.5-pro区分有声、无声，声音参数字段：OutputConfig.AudioGeneration，开启Enabled，关闭Disabled； </li>
         # @type ModelVersion: String
         # @param FileInfos: 最多包含三张素材资源图片的列表，用于描述模型在生成视频时要使用的资源图片。
+
+        # 首尾帧视频生成：用FileInfos第一张表示首帧（此时FileInfos最多包含一张图片），LastFrameFileId或者LastFrameUrl表示尾帧。
 
         # 支持多图输入的模型：
         # 1. GV，使用多图输入时，不可使用LastFrameFileId和LastFrameUrl。
@@ -8417,8 +8419,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 12
-        deprecate :AiRecognitionTask=, :none, 2025, 12
+        deprecate :AiRecognitionTask, :none, 2026, 1
+        deprecate :AiRecognitionTask=, :none, 2026, 1
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -11761,8 +11763,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2025, 12
-        deprecate :DomainName=, :none, 2025, 12
+        deprecate :DomainName, :none, 2026, 1
+        deprecate :DomainName=, :none, 2026, 1
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -13235,8 +13237,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2025, 12
-        deprecate :Offset=, :none, 2025, 12
+        deprecate :Offset, :none, 2026, 1
+        deprecate :Offset=, :none, 2026, 1
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -13280,8 +13282,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2025, 12
-        deprecate :TotalCount=, :none, 2025, 12
+        deprecate :TotalCount, :none, 2026, 1
+        deprecate :TotalCount=, :none, 2026, 1
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -13782,7 +13784,7 @@ module TencentCloud
 
       # DescribeTaskDetail返回参数结构体
       class DescribeTaskDetailResponse < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务。</li>
+        # @param TaskType: 任务类型，取值：<li>Procedure：视频处理任务；</li><li>EditMedia：视频编辑任务；</li><li>SplitMedia：视频拆条任务；</li><li>ComposeMedia：制作媒体文件任务；</li><li>WechatPublish：微信发布任务；</li><li>WechatMiniProgramPublish：微信小程序视频发布任务；</li><li>PullUpload：拉取上传媒体文件任务；</li><li>FastClipMedia：快速剪辑任务；</li><li>RemoveWatermarkTask：智能去除水印任务；</li><li>DescribeFileAttributesTask：获取文件属性任务；</li><li>RebuildMedia：音画质重生任务（不推荐使用）；</li><li>ReviewAudioVideo：音视频审核任务；</li><li>ExtractTraceWatermark：提取溯源水印任务；</li><li>ExtractCopyRightWatermark：提取版权水印任务；</li><li>QualityInspect：音画质检测任务；</li><li>QualityEnhance：音画质重生任务；</li><li>ComplexAdaptiveDynamicStreaming：复杂自适应码流任务；</li><li>ProcessMediaByMPS：MPS 视频处理任务；</li><li>AigcImageTask：AIGC 生图任务；</li><li>SceneAigcImageTask：场景化 AIGC 生图任务；</li><li>AigcVideoTask：AIGC 生视频任务；</li><li>ImportMediaKnowledge：导入媒体知识任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态，取值：
         # <li>WAITING：等待中；</li>
@@ -13868,12 +13870,16 @@ module TencentCloud
         # @type AigcImageTask: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTask`
         # @param AigcVideoTask: AIGC 生视频任务信息，仅当 TaskType 为 AigcVideoTask，该字段有值。
         # @type AigcVideoTask: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTask`
+        # @param ImportMediaKnowledge: 媒体导入知识库任务信息，仅当 TaskType 为 ImportMediaKnowledge，该字段有值。
+        # @type ImportMediaKnowledge: :class:`Tencentcloud::Vod.v20180717.models.ImportMediaKnowledgeTask`
+        # @param SceneAigcImageTask: 场景化 AIGC 生图任务信息，仅当 TaskType 为 SceneAigcImageTask，该字段有值。
+        # @type SceneAigcImageTask: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageTask`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -13904,6 +13910,8 @@ module TencentCloud
           @ProcessMediaByMPSTask = processmediabympstask
           @AigcImageTask = aigcimagetask
           @AigcVideoTask = aigcvideotask
+          @ImportMediaKnowledge = importmediaknowledge
+          @SceneAigcImageTask = sceneaigcimagetask
           @RequestId = requestid
         end
 
@@ -14012,6 +14020,14 @@ module TencentCloud
           unless params['AigcVideoTask'].nil?
             @AigcVideoTask = AigcVideoTask.new
             @AigcVideoTask.deserialize(params['AigcVideoTask'])
+          end
+          unless params['ImportMediaKnowledge'].nil?
+            @ImportMediaKnowledge = ImportMediaKnowledgeTask.new
+            @ImportMediaKnowledge.deserialize(params['ImportMediaKnowledge'])
+          end
+          unless params['SceneAigcImageTask'].nil?
+            @SceneAigcImageTask = SceneAigcImageTask.new
+            @SceneAigcImageTask.deserialize(params['SceneAigcImageTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -15835,8 +15851,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2025, 12
-        deprecate :Uid=, :none, 2025, 12
+        deprecate :Uid, :none, 2026, 1
+        deprecate :Uid=, :none, 2026, 1
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -17091,6 +17107,34 @@ module TencentCloud
         end
       end
 
+      # 媒体导入知识库任务
+      class ImportMediaKnowledgeTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码，0 表示成功，其他值表示失败
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+        end
+      end
+
       # InspectMediaQuality请求参数结构体
       class InspectMediaQualityRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
@@ -17543,6 +17587,10 @@ module TencentCloud
       class MPSOutputFile < TencentCloud::Common::AbstractModel
         # @param FileType: 文件类型。用于标识 MPS 视频处理任务执行结果中的特定返回文件。
         # 取值：<li>AiAnalysis.DeLogo.Video: 智能擦除任务中产生的擦除后视频文件，默认以原文件类型存储；</li><li>AiAnalysis.DeLogo.OriginSubtitle: 智能擦除任务中基于画面提取的字幕文件；</li><li>AiAnalysis.DeLogo.TranslateSubtitle: 智能擦除任务中基于画面提取的字幕翻译文件。</li><li>MediaProcess.Transcode.Video: 音视频增强任务中增强后的音视频文件，默认以转码文件类型存储。</li>
+        # <li>AiAnalysis.HorizontalToVerticalTask.Video: 横转竖任务中生成的视频文件，默认以智能媒体文件类型存储。</li>
+        # <li>AiAnalysis.VideoRemakeTaskk.Video: 智能去重任务中生成的视频文件，默认以智能媒体文件类型存储。</li>
+        # <li>AiAnalysis.SegmentTask.Video: 智能拆条任务中生成的视频文件，默认以智能媒体文件类型存储。</li>
+        # <li>SmartErase.Video: 智能擦除任务中生成的视频文件，默认以智能媒体文件类型存储。</li>
         # @type FileType: String
         # @param StorageMode: 存储形式。用于表示该结果文件的存储形式，取值有：<li> Permanent：永久存储；</li><li> Temporary：临时存储。</li>
         # @type StorageMode: String
@@ -17578,7 +17626,28 @@ module TencentCloud
 
       # MPS输出文件信息
       class MPSOutputFileInfo < TencentCloud::Common::AbstractModel
-        # @param FileType: MPS输出文件类型
+        # @param FileType: MPS输出文件类型，可取值：
+        # <li>Video：任务生成的视频文件。</li>
+        # <li>Cover：任务生成的封面文件。</li>
+        # <li>Audio：任务生成的音频文件。</li>
+        # <li>Output：任务生成的结果输出，文件对应 MPS 任务返回中的Output结果，以 JSON 格式生成文件。</li>
+
+        # Output类型文件，不同MPS任务对应输出结果不同，具体返回内容参考MPS任务输出结构体，结构体经过JSON序列化后生成Output类型文件
+        # [智能分类结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskClassificationOutput)
+        # [智能封面结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskCoverOutput)
+        # [智能标签结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskTagOutput)
+        # [智能按帧标签分类结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskFrameTagOutput)
+        # [智能高光结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHighlightOutput)
+        # [智能拆条结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskSegmentOutput)
+        # [智能片头片尾结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHeadTailOutput)
+        # [智能摘要结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskDescriptionOutput)
+        # [智能横转竖结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHorizontalToVerticalOutput)
+        # [智能译制结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskDubbingOutput)
+        # [智能视频理解结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskVideoComprehensionOutput)
+        # [智能字幕语音全文识别结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskAsrFullTextResultOutput)
+        # [智能字幕翻译结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskTransTextResultOutput)
+        # [智能字幕纯字幕文件翻译结果](https://cloud.tencent.com/document/product/862/37615#PureSubtitleTransResultOutput)
+        # [智能字幕文字提取字幕结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskTextResultOutput)
         # @type FileType: String
         # @param Url: MPS输出文件的URL
         # @type Url: String
@@ -17598,7 +17667,26 @@ module TencentCloud
 
       # MPS 具体子任务查询结果类型。
       class MPSSubTaskResult < TencentCloud::Common::AbstractModel
-        # @param TaskType: 任务类型。MPS 的 WorkflowTask 结构中的具体子任务类型。取值：<li>AiAnalysis.DeLogo：智能擦除任务。</li><li>MediaProcess.Transcode：音视频增强任务。</li>
+        # @param TaskType: 任务类型。MPS 的 WorkflowTask 结构中的具体子任务类型。取值：
+        # <li>MediaProcess.Transcode：音视频转码任务。</li>
+        # <li>AiAnalysis.DeLogo：智能擦除任务。</li>
+        # <li>AiAnalysis.ClassificationTask：智能分类任务。</li>
+        # <li>AiAnalysis.CoverTask：智能封面任务。</li>
+        # <li>AiAnalysis.TagTask：智能标签任务。</li>
+        # <li>AiAnalysis.FrameTagTask：智能按帧标签任务。</li>
+        # <li>AiAnalysis.HighlightTask：智能高光任务。</li>
+        # <li>AiAnalysis.SegmentTask：智能拆条任务。</li>
+        # <li>AiAnalysis.HeadTailTask：智能片头片尾任务。</li>
+        # <li>AiAnalysis.DescriptionTask：智能摘要任务。</li>
+        # <li>AiAnalysis.HorizontalToVerticalTask：智能横转竖任务。</li>
+        # <li>AiAnalysis.DubbingTask：智能译制任务。</li>
+        # <li>AiAnalysis.VideoRemakeTask：智能去重任务。</li>
+        # <li>AiAnalysis.VideoComprehensionTask：视频理解任务。</li>
+        # <li>SmartSubtitle.AsrFullTextTask：智能语音全文识别任务。</li>
+        # <li>SmartSubtitle.TransTextTask：	翻译结果。</li>
+        # <li>SmartSubtitle.PureSubtitleTransTask：返回纯字幕文件翻译结果。</li>
+        # <li>SmartSubtitle.OcrFullTextTask：智能文字提取字幕任务。</li>
+        # <li>SmartErase：智能擦除任务。</li>
         # @type TaskType: String
         # @param Status: 任务状态。有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -17639,7 +17727,24 @@ module TencentCloud
       class MPSTaskOutput < TencentCloud::Common::AbstractModel
         # @param OutputFiles: 任务返回结果中的文件类型结果。如智能擦除中，擦除后的视频文件将被存入媒资，并在此字段中给出 FileId；基于画面提取的字幕文件 Url 将在此字段中给出。
         # @type OutputFiles: Array
-        # @param OutputText: 任务返回的结果JSON
+        # @param OutputText: 任务返回的结果，该字段对应 MPS 任务返回中的Output结果，以 JSON 格式返回
+        # 不同MPS任务输出结果结构不同，具体返回内容参考MPS任务输出结构体
+        # [智能分类结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskClassificationOutput)
+        # [智能封面结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskCoverOutput)
+        # [智能标签结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskTagOutput)
+        # [智能按帧标签分类结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskFrameTagOutput)
+        # [智能高光结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHighlightOutput)
+        # [智能拆条结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskSegmentOutput)
+        # [智能片头片尾结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHeadTailOutput)
+        # [智能摘要结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskDescriptionOutput)
+        # [智能横转竖结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskHorizontalToVerticalOutput)
+        # [智能译制结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskDubbingOutput)
+        # [智能视频理解结果](https://cloud.tencent.com/document/product/862/37615#AiAnalysisTaskVideoComprehensionOutput)
+        # [智能字幕语音全文识别结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskAsrFullTextResultOutput)
+        # [智能字幕翻译结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskTransTextResultOutput)
+        # [智能字幕纯字幕文件翻译结果](https://cloud.tencent.com/document/product/862/37615#PureSubtitleTransResultOutput)
+        # [智能字幕文字提取字幕结果](https://cloud.tencent.com/document/product/862/37615#SmartSubtitleTaskTextResultOutput)
+
         # @type OutputText: String
 
         attr_accessor :OutputFiles, :OutputText
@@ -18291,8 +18396,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2025, 12
-        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 12
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 1
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 1
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -18346,8 +18451,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2025, 12
-        deprecate :PicUrlExpireTimeStamp=, :none, 2025, 12
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 1
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 1
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -19944,8 +20049,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2025, 12
-        deprecate :Transitions=, :none, 2025, 12
+        deprecate :Transitions, :none, 2026, 1
+        deprecate :Transitions=, :none, 2026, 1
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -23406,10 +23511,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2025, 12
-        deprecate :ErrCode=, :none, 2025, 12
-        deprecate :Message, :none, 2025, 12
-        deprecate :Message=, :none, 2025, 12
+        deprecate :ErrCode, :none, 2026, 1
+        deprecate :ErrCode=, :none, 2026, 1
+        deprecate :Message, :none, 2026, 1
+        deprecate :Message=, :none, 2026, 1
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -23523,8 +23628,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 12
-        deprecate :AiRecognitionTask=, :none, 2025, 12
+        deprecate :AiRecognitionTask, :none, 2026, 1
+        deprecate :AiRecognitionTask=, :none, 2026, 1
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -24016,8 +24121,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2025, 12
-        deprecate :ProductInstanceResourceSet=, :none, 2025, 12
+        deprecate :ProductInstanceResourceSet, :none, 2026, 1
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 1
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -26433,8 +26538,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2025, 12
-        deprecate :AiRecognitionTask=, :none, 2025, 12
+        deprecate :AiRecognitionTask, :none, 2026, 1
+        deprecate :AiRecognitionTask=, :none, 2026, 1
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -26611,10 +26716,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 12
-        deprecate :Status=, :none, 2025, 12
-        deprecate :Message, :none, 2025, 12
-        deprecate :Message=, :none, 2025, 12
+        deprecate :Status, :none, 2026, 1
+        deprecate :Status=, :none, 2026, 1
+        deprecate :Message, :none, 2026, 1
+        deprecate :Message=, :none, 2026, 1
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -26961,8 +27066,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2025, 12
-        deprecate :ReviewResultSet=, :none, 2025, 12
+        deprecate :ReviewResultSet, :none, 2026, 1
+        deprecate :ReviewResultSet=, :none, 2026, 1
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -27483,6 +27588,97 @@ module TencentCloud
         end
       end
 
+      # 场景化 AIGC 生图任务信息
+      class SceneAigcImageTask < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param Input: AIGC 生图任务的输入信息。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageTaskInput`
+        # @param Output: AIGC 生图任务的输出信息。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageTaskOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = SceneAigcImageTaskInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = SceneAigcImageTaskOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # 场景化 AIGC 生图任务信息
+      class SceneAigcImageTaskInput < TencentCloud::Common::AbstractModel
+        # @param SceneInfo: 场景化生图参数配置。
+        # @type SceneInfo: :class:`Tencentcloud::Vod.v20180717.models.AigcImageSceneInfo`
+        # @param FileInfos: 输入图片列表。
+        # @type FileInfos: Array
+        # @param OutputConfig: 场景化生图任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageOutputConfig`
+
+        attr_accessor :SceneInfo, :FileInfos, :OutputConfig
+
+        def initialize(sceneinfo=nil, fileinfos=nil, outputconfig=nil)
+          @SceneInfo = sceneinfo
+          @FileInfos = fileinfos
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          unless params['SceneInfo'].nil?
+            @SceneInfo = AigcImageSceneInfo.new
+            @SceneInfo.deserialize(params['SceneInfo'])
+          end
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              sceneaigcimagetaskinputfileinfo_tmp = SceneAigcImageTaskInputFileInfo.new
+              sceneaigcimagetaskinputfileinfo_tmp.deserialize(i)
+              @FileInfos << sceneaigcimagetaskinputfileinfo_tmp
+            end
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = SceneAigcImageOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
       # AIGC场景化生图任务输入文件信息
       class SceneAigcImageTaskInputFileInfo < TencentCloud::Common::AbstractModel
         # @param Type: 输入的视频文件类型。取值有： <li>File：点播媒体文件；</li> <li>Url：可访问的 URL；</li>
@@ -27510,6 +27706,76 @@ module TencentCloud
           @Type = params['Type']
           @FileId = params['FileId']
           @Url = params['Url']
+        end
+      end
+
+      # 场景化 AIGC 生图任务的输出。
+      class SceneAigcImageTaskOutput < TencentCloud::Common::AbstractModel
+        # @param FileInfos: AIGC 生图任务的输出文件信息。
+        # @type FileInfos: Array
+
+        attr_accessor :FileInfos
+
+        def initialize(fileinfos=nil)
+          @FileInfos = fileinfos
+        end
+
+        def deserialize(params)
+          unless params['FileInfos'].nil?
+            @FileInfos = []
+            params['FileInfos'].each do |i|
+              sceneaigcimagetaskoutputfileinfo_tmp = SceneAigcImageTaskOutputFileInfo.new
+              sceneaigcimagetaskoutputfileinfo_tmp.deserialize(i)
+              @FileInfos << sceneaigcimagetaskoutputfileinfo_tmp
+            end
+          end
+        end
+      end
+
+      # 场景化 AIGC 生图任务的输出文件信息。
+      class SceneAigcImageTaskOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param StorageMode: 存储模式。取值有： <li>Permanent：永久存储；</li> <li>Temporary：临时存储；</li>
+        # @type StorageMode: String
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。当 StorageMode 为 Permanent 时有效。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param FileType: 文件类型，例如 mp4、flv 等。
+        # @type FileType: String
+        # @param FileUrl: 媒体文件播放地址。
+        # @type FileUrl: String
+        # @param FileId: 媒体文件 ID。当 StorageMode 为 Permanent 时有效。
+        # @type FileId: String
+        # @param MetaData: 输出视频的元信息。当 StorageMode 为 Permanent 时有效。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileId, :MetaData
+
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, fileid=nil, metadata=nil)
+          @StorageMode = storagemode
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileId = fileid
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @StorageMode = params['StorageMode']
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileId = params['FileId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
         end
       end
 
@@ -28114,6 +28380,9 @@ module TencentCloud
         # @type ExtInfo: String
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
+        extend Gem::Deprecate
+        deprecate :Precision, :none, 2026, 1
+        deprecate :Precision=, :none, 2026, 1
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -29009,8 +29278,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2025, 12
-        deprecate :CycleConfig=, :none, 2025, 12
+        deprecate :CycleConfig, :none, 2026, 1
+        deprecate :CycleConfig=, :none, 2026, 1
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -29671,8 +29940,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2025, 12
-        deprecate :Definition=, :none, 2025, 12
+        deprecate :Definition, :none, 2026, 1
+        deprecate :Definition=, :none, 2026, 1
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

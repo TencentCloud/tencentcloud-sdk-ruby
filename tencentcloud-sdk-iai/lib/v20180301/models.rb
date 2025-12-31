@@ -1175,9 +1175,9 @@ module TencentCloud
 
       # DetectFace返回参数结构体
       class DetectFaceResponse < TencentCloud::Common::AbstractModel
-        # @param ImageWidth: 请求的图片宽度。
+        # @param ImageWidth: 请求的图片宽度，单位为：像素（px）。
         # @type ImageWidth: Integer
-        # @param ImageHeight: 请求的图片高度。
+        # @param ImageHeight: 请求的图片高度，单位为：像素（px）。
         # @type ImageHeight: Integer
         # @param FaceInfos: 人脸信息列表。包含人脸坐标信息、属性信息（若需要）、质量分信息（若需要）。
         # @type FaceInfos: Array

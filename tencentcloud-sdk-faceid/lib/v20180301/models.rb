@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2025, 12
-        deprecate :Idcard=, :none, 2025, 12
+        deprecate :Idcard, :none, 2026, 1
+        deprecate :Idcard=, :none, 2026, 1
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -3209,8 +3209,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2025, 12
-        deprecate :AsrResultSimilarity=, :none, 2025, 12
+        deprecate :AsrResultSimilarity, :none, 2026, 1
+        deprecate :AsrResultSimilarity=, :none, 2026, 1
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo
