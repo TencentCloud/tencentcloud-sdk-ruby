@@ -446,6 +446,30 @@ module TencentCloud
         end
       end
 
+      # 关联实例信息
+      class AttachInsInfo < TencentCloud::Common::AbstractModel
+        # @param InsId: 实例对象可以是cvm类型:ins-ad21xuds1形式;路由表类型:rtb-da12daxd形式;vpc类型:vpc-1dxdad2d形式
+        # @type InsId: String
+        # @param InsName: 实例对象名称
+        # @type InsName: String
+        # @param Cidr: 实例的cidr
+        # @type Cidr: String
+
+        attr_accessor :InsId, :InsName, :Cidr
+
+        def initialize(insid=nil, insname=nil, cidr=nil)
+          @InsId = insid
+          @InsName = insname
+          @Cidr = cidr
+        end
+
+        def deserialize(params)
+          @InsId = params['InsId']
+          @InsName = params['InsName']
+          @Cidr = params['Cidr']
+        end
+      end
+
       # 封禁列表和放通列表结构体
       class BanAndAllowRule < TencentCloud::Common::AbstractModel
         # @param Comment: 规则评论
@@ -809,6 +833,111 @@ module TencentCloud
           @PrivateIpAddress = params['PrivateIpAddress']
           @PrivatePort = params['PrivatePort']
           @Description = params['Description']
+        end
+      end
+
+      # 集群模式防火墙开关数据详情
+      class ClusterSwitchDetail < TencentCloud::Common::AbstractModel
+        # @param InsObj: 实例对象可以是ccnid类型:ccn-ad21xuds形式;nat网关类型:nat-da12daxd形式;ip类型:1.1.1.1形式等
+        # @type InsObj: String
+        # @param ObjName: 实例对象名称
+        # @type ObjName: String
+        # @param FwType: 防火墙类型，ew：vpc间防火墙；nat：nat防火墙；border：互联网边界防火墙
+        # @type FwType: String
+        # @param AssetType: 资产类型，ccn：ccn实例类型；nat：nat网关类型
+        # @type AssetType: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param Status: 开关状态
+        # 0 : 关闭
+        # 1 : 开启
+        # 2 : 开启中
+        # 3 : 关闭中
+        # 4 : 异常
+        # @type Status: Integer
+        # @param SwitchMode: 开关接入模式，1：自动接入；2，手动接入，0：未选择
+        # @type SwitchMode: Integer
+        # @param NonCluster: 实例对象是否处于非集群接入场景（主备模式）
+        # @type NonCluster: Integer
+        # @param IpVersion: ip版本，0：ipv4；1：ipv6
+        # @type IpVersion: Integer
+        # @param AttachIns: 关联实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AttachIns: Array
+        # @param Endpoints: 引流私有网络端点信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Endpoints: Array
+        # @param Idpsaction: 入侵防护模式,0:观察;1:拦截;2:严格;3:关闭
+        # @type Idpsaction: Integer
+        # @param TransEnable: //透明模式开关,0:未开启,1:已开启
+        # @type TransEnable: Integer
+        # @param Enable: 开关状态 0关闭 1开启
+        # @type Enable: Integer
+        # @param RoutingMode: 路由模式：0：多路由表，1：策略路由
+        # @type RoutingMode: Integer
+        # @param IsPeer: 是否跨租户开关 1是 0不是
+        # @type IsPeer: Integer
+        # @param PeerAppid: 跨租户appid
+        # @type PeerAppid: String
+        # @param PeerStatus: 跨租户操作状态 1不允许操作 0可以
+        # @type PeerStatus: Integer
+
+        attr_accessor :InsObj, :ObjName, :FwType, :AssetType, :Region, :Status, :SwitchMode, :NonCluster, :IpVersion, :AttachIns, :Endpoints, :Idpsaction, :TransEnable, :Enable, :RoutingMode, :IsPeer, :PeerAppid, :PeerStatus
+
+        def initialize(insobj=nil, objname=nil, fwtype=nil, assettype=nil, region=nil, status=nil, switchmode=nil, noncluster=nil, ipversion=nil, attachins=nil, endpoints=nil, idpsaction=nil, transenable=nil, enable=nil, routingmode=nil, ispeer=nil, peerappid=nil, peerstatus=nil)
+          @InsObj = insobj
+          @ObjName = objname
+          @FwType = fwtype
+          @AssetType = assettype
+          @Region = region
+          @Status = status
+          @SwitchMode = switchmode
+          @NonCluster = noncluster
+          @IpVersion = ipversion
+          @AttachIns = attachins
+          @Endpoints = endpoints
+          @Idpsaction = idpsaction
+          @TransEnable = transenable
+          @Enable = enable
+          @RoutingMode = routingmode
+          @IsPeer = ispeer
+          @PeerAppid = peerappid
+          @PeerStatus = peerstatus
+        end
+
+        def deserialize(params)
+          @InsObj = params['InsObj']
+          @ObjName = params['ObjName']
+          @FwType = params['FwType']
+          @AssetType = params['AssetType']
+          @Region = params['Region']
+          @Status = params['Status']
+          @SwitchMode = params['SwitchMode']
+          @NonCluster = params['NonCluster']
+          @IpVersion = params['IpVersion']
+          unless params['AttachIns'].nil?
+            @AttachIns = []
+            params['AttachIns'].each do |i|
+              attachinsinfo_tmp = AttachInsInfo.new
+              attachinsinfo_tmp.deserialize(i)
+              @AttachIns << attachinsinfo_tmp
+            end
+          end
+          unless params['Endpoints'].nil?
+            @Endpoints = []
+            params['Endpoints'].each do |i|
+              endpointinfo_tmp = EndpointInfo.new
+              endpointinfo_tmp.deserialize(i)
+              @Endpoints << endpointinfo_tmp
+            end
+          end
+          @Idpsaction = params['Idpsaction']
+          @TransEnable = params['TransEnable']
+          @Enable = params['Enable']
+          @RoutingMode = params['RoutingMode']
+          @IsPeer = params['IsPeer']
+          @PeerAppid = params['PeerAppid']
+          @PeerStatus = params['PeerStatus']
         end
       end
 
@@ -3333,6 +3462,45 @@ module TencentCloud
         end
       end
 
+      # DescribeCcnVpcFwPolicyLimit请求参数结构体
+      class DescribeCcnVpcFwPolicyLimitRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeCcnVpcFwPolicyLimit返回参数结构体
+      class DescribeCcnVpcFwPolicyLimitResponse < TencentCloud::Common::AbstractModel
+        # @param CcnPolicyInterconnectPairLenLimit: 支持的引流策略数量（最外层总条数）
+        # @type CcnPolicyInterconnectPairLenLimit: Integer
+        # @param CcnPolicyGroupLenLimit: 单条引流策略中单组的最大配置数量（内层单组总条数）
+        # @type CcnPolicyGroupLenLimit: Integer
+        # @param CcnPolicyCidrLenLimit: 接入的实例网段长度（网段数量）限制
+        # @type CcnPolicyCidrLenLimit: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnPolicyInterconnectPairLenLimit, :CcnPolicyGroupLenLimit, :CcnPolicyCidrLenLimit, :RequestId
+
+        def initialize(ccnpolicyinterconnectpairlenlimit=nil, ccnpolicygrouplenlimit=nil, ccnpolicycidrlenlimit=nil, requestid=nil)
+          @CcnPolicyInterconnectPairLenLimit = ccnpolicyinterconnectpairlenlimit
+          @CcnPolicyGroupLenLimit = ccnpolicygrouplenlimit
+          @CcnPolicyCidrLenLimit = ccnpolicycidrlenlimit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CcnPolicyInterconnectPairLenLimit = params['CcnPolicyInterconnectPairLenLimit']
+          @CcnPolicyGroupLenLimit = params['CcnPolicyGroupLenLimit']
+          @CcnPolicyCidrLenLimit = params['CcnPolicyCidrLenLimit']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCcnVpcFwSwitch请求参数结构体
       class DescribeCcnVpcFwSwitchRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: 云联网ID
@@ -3467,6 +3635,89 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeClusterVpcFwSwitchs请求参数结构体
+      class DescribeClusterVpcFwSwitchsRequest < TencentCloud::Common::AbstractModel
+        # @param Index: 需要查询的索引，特定场景使用，可不填
+        # @type Index: String
+        # @param Filters: 过滤条件组合
+        # @type Filters: Array
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param StartTime: 检索的起始时间，可不传
+        # @type StartTime: String
+        # @param EndTime: 检索的截止时间，可不传
+        # @type EndTime: String
+        # @param Order: desc：降序；asc：升序。根据By字段的值进行排序，这里传参的话则By也必须有值
+        # @type Order: String
+        # @param By: 排序所用到的字段
+        # @type By: String
+
+        attr_accessor :Index, :Filters, :Limit, :Offset, :StartTime, :EndTime, :Order, :By
+
+        def initialize(index=nil, filters=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, order=nil, by=nil)
+          @Index = index
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              commonfilter_tmp = CommonFilter.new
+              commonfilter_tmp.deserialize(i)
+              @Filters << commonfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeClusterVpcFwSwitchs返回参数结构体
+      class DescribeClusterVpcFwSwitchsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总条数
+        # @type Total: Integer
+        # @param Data: 防火墙开关列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Data, :RequestId
+
+        def initialize(total=nil, data=nil, requestid=nil)
+          @Total = total
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              clusterswitchdetail_tmp = ClusterSwitchDetail.new
+              clusterswitchdetail_tmp.deserialize(i)
+              @Data << clusterswitchdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5806,6 +6057,34 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @EndpointIp = params['EndpointIp']
           @SwitchMode = params['SwitchMode']
+        end
+      end
+
+      # 私有连接端点信息
+      class EndpointInfo < TencentCloud::Common::AbstractModel
+        # @param EndpointId: 引流私有连接端点id
+        # @type EndpointId: String
+        # @param VpcId: 引流VpcId
+        # @type VpcId: String
+        # @param Region: 所属地域
+        # @type Region: String
+        # @param VpcCidr: 引流Vpc的Cidr
+        # @type VpcCidr: String
+
+        attr_accessor :EndpointId, :VpcId, :Region, :VpcCidr
+
+        def initialize(endpointid=nil, vpcid=nil, region=nil, vpccidr=nil)
+          @EndpointId = endpointid
+          @VpcId = vpcid
+          @Region = region
+          @VpcCidr = vpccidr
+        end
+
+        def deserialize(params)
+          @EndpointId = params['EndpointId']
+          @VpcId = params['VpcId']
+          @Region = params['Region']
+          @VpcCidr = params['VpcCidr']
         end
       end
 

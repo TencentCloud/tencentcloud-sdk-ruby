@@ -162,19 +162,31 @@ module TencentCloud
         # @type AccessKey: String
         # @param AlarmCount: 告警数量
         # @type AlarmCount: Integer
+        # @param AccessKeyStatus: 访问密钥状态 0 禁用 1 已启用 2 已删除
+        # @type AccessKeyStatus: Integer
+        # @param AccessKeyCreateTime: AK创建时间
+        # @type AccessKeyCreateTime: String
+        # @param LastAccessTime: AK最后使用时间，从未使用过则返回“-”
+        # @type LastAccessTime: String
 
-        attr_accessor :ID, :AccessKey, :AlarmCount
+        attr_accessor :ID, :AccessKey, :AlarmCount, :AccessKeyStatus, :AccessKeyCreateTime, :LastAccessTime
 
-        def initialize(id=nil, accesskey=nil, alarmcount=nil)
+        def initialize(id=nil, accesskey=nil, alarmcount=nil, accesskeystatus=nil, accesskeycreatetime=nil, lastaccesstime=nil)
           @ID = id
           @AccessKey = accesskey
           @AlarmCount = alarmcount
+          @AccessKeyStatus = accesskeystatus
+          @AccessKeyCreateTime = accesskeycreatetime
+          @LastAccessTime = lastaccesstime
         end
 
         def deserialize(params)
           @ID = params['ID']
           @AccessKey = params['AccessKey']
           @AlarmCount = params['AlarmCount']
+          @AccessKeyStatus = params['AccessKeyStatus']
+          @AccessKeyCreateTime = params['AccessKeyCreateTime']
+          @LastAccessTime = params['LastAccessTime']
         end
       end
 
@@ -364,10 +376,14 @@ module TencentCloud
         # @type AppID: Integer
         # @param QueryParam: 对应风险的查询参数
         # @type QueryParam: String
+        # @param CloudType: 云类型 0-腾讯云 4-阿里云
+        # @type CloudType: Integer
+        # @param RelatedAK: 相关的AK列表，包含AK名和AK备注
+        # @type RelatedAK: Array
 
-        attr_accessor :Name, :Level, :ID, :RiskRuleID, :RiskType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :RiskTime, :Status, :Tag, :Evidence, :Description, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :CheckStatus, :AppID, :QueryParam
+        attr_accessor :Name, :Level, :ID, :RiskRuleID, :RiskType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :RiskTime, :Status, :Tag, :Evidence, :Description, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :CheckStatus, :AppID, :QueryParam, :CloudType, :RelatedAK
 
-        def initialize(name=nil, level=nil, id=nil, riskruleid=nil, risktype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, risktime=nil, status=nil, tag=nil, evidence=nil, description=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, checkstatus=nil, appid=nil, queryparam=nil)
+        def initialize(name=nil, level=nil, id=nil, riskruleid=nil, risktype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, risktime=nil, status=nil, tag=nil, evidence=nil, description=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, checkstatus=nil, appid=nil, queryparam=nil, cloudtype=nil, relatedak=nil)
           @Name = name
           @Level = level
           @ID = id
@@ -389,6 +405,8 @@ module TencentCloud
           @CheckStatus = checkstatus
           @AppID = appid
           @QueryParam = queryparam
+          @CloudType = cloudtype
+          @RelatedAK = relatedak
         end
 
         def deserialize(params)
@@ -413,6 +431,15 @@ module TencentCloud
           @CheckStatus = params['CheckStatus']
           @AppID = params['AppID']
           @QueryParam = params['QueryParam']
+          @CloudType = params['CloudType']
+          unless params['RelatedAK'].nil?
+            @RelatedAK = []
+            params['RelatedAK'].each do |i|
+              akinfo_tmp = AKInfo.new
+              akinfo_tmp.deserialize(i)
+              @RelatedAK << akinfo_tmp
+            end
+          end
         end
       end
 

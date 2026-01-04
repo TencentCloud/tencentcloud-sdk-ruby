@@ -293,17 +293,21 @@ module TencentCloud
         # - 16000
         # - 24000
         # @type SampleRate: Integer
+        # @param Bitrate:  MP3 比特率 (kbps)，仅对 MP3 格式生效, 可以选： `64`, `128`, `192`, `256` ,  默认： `128`
+        # @type Bitrate: Integer
 
-        attr_accessor :Format, :SampleRate
+        attr_accessor :Format, :SampleRate, :Bitrate
 
-        def initialize(format=nil, samplerate=nil)
+        def initialize(format=nil, samplerate=nil, bitrate=nil)
           @Format = format
           @SampleRate = samplerate
+          @Bitrate = bitrate
         end
 
         def deserialize(params)
           @Format = params['Format']
           @SampleRate = params['SampleRate']
+          @Bitrate = params['Bitrate']
         end
       end
 
@@ -4786,10 +4790,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2025, 12
-        deprecate :Model=, :none, 2025, 12
-        deprecate :TranslationLanguage, :none, 2025, 12
-        deprecate :TranslationLanguage=, :none, 2025, 12
+        deprecate :Model, :none, 2026, 1
+        deprecate :Model=, :none, 2026, 1
+        deprecate :TranslationLanguage, :none, 2026, 1
+        deprecate :TranslationLanguage=, :none, 2026, 1
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5499,10 +5503,9 @@ module TencentCloud
         # @type RoomIdType: Integer
         # @param STTConfig: 语音识别配置。
         # @type STTConfig: :class:`Tencentcloud::Trtc.v20190722.models.STTConfig`
-        # @param LLMConfig: LLM配置。需符合openai规范，为JSON字符串，示例如下：
-        # <pre> { <br> &emsp;  "LLMType": "大模型类型",  // String 必填，如："openai" <br> &emsp;  "Model": "您的模型名称", // String 必填，指定使用的模型<br>    "APIKey": "您的LLM API密钥", // String 必填 <br> &emsp;  "APIUrl": "https://api.xxx.com/chat/completions", // String 必填，LLM API访问的URL<br> &emsp;  "History": 10, // Integer 选填，设置 LLM 的上下文轮次，默认值为0，最大值50<br> &emsp;  "HistoryMode": 1, // Integer 选填，1表示LLM上下文中的内容会和播放音频做同步，没有播放的音频对应的文本不会出现在上下文中。0表示不会做同步，默认值为0<br> &emsp;  "Streaming": true // Boolean 非必填，指定是否使用流式传输<br> &emsp;} </pre>
+        # @param LLMConfig: 必填参数，LLM配置。需符合openai规范，为JSON字符串，示例如下：<pre> { <br> &emsp;  "LLMType": "大模型类型",  // String 必填，如："openai" <br> &emsp;  "Model": "您的模型名称", // String 必填，指定使用的模型<br>    "APIKey": "您的LLM API密钥", // String 必填 <br> &emsp;  "APIUrl": "https://api.xxx.com/chat/completions", // String 必填，LLM API访问的URL<br> &emsp;  "History": 10, // Integer 选填，设置 LLM 的上下文轮次，默认值为0，最大值50<br> &emsp;  "HistoryMode": 1, // Integer 选填，1表示LLM上下文中的内容会和播放音频做同步，没有播放的音频对应的文本不会出现在上下文中。0表示不会做同步，默认值为0<br> &emsp;  "Streaming": true // Boolean 非必填，指定是否使用流式传输<br> &emsp;} </pre>
         # @type LLMConfig: String
-        # @param TTSConfig: TTS配置，为JSON字符串，腾讯云TTS示例如下： <pre>{ <br> &emsp; "AppId": 您的应用ID, // Integer 必填<br> &emsp; "TTSType": "TTS类型", // String TTS类型, 固定为"tencent"<br> &emsp; "SecretId": "您的密钥ID", // String 必填<br> &emsp; "SecretKey":  "您的密钥Key", // String 必填<br> &emsp; "VoiceType": 101001, // Integer  必填，音色 ID，包括标准音色与精品音色，精品音色拟真度更高，价格不同于标准音色，请参见<a href="https://cloud.tencent.com/document/product/1073/34112">语音合成计费概述</a>。完整的音色 ID 列表请参见<a href="https://cloud.tencent.com/document/product/1073/92668#55924b56-1a73-4663-a7a1-a8dd82d6e823">语音合成音色列表</a>。<br> &emsp; "Speed": 1.25, // Integer 非必填，语速，范围：[-2，6]，分别对应不同语速： -2: 代表0.6倍 -1: 代表0.8倍 0: 代表1.0倍（默认） 1: 代表1.2倍 2: 代表1.5倍  6: 代表2.5倍  如果需要更细化的语速，可以保留小数点后 2 位，例如0.5/1.25/2.81等。 参数值与实际语速转换，可参考 <a href="https://sdk-1300466766.cos.ap-shanghai.myqcloud.com/sample/speed_sample.tar.gz">语速转换</a><br> &emsp; "Volume": 5, // Integer 非必填，音量大小，范围：[0，10]，分别对应11个等级的音量，默认值为0，代表正常音量。<br> &emsp; "EmotionCategory":  "angry", // String 非必填 控制合成音频的情感，仅支持多情感音色使用。取值: neutral(中性)、sad(悲伤)、happy(高兴)、angry(生气)、fear(恐惧)、news(新闻)、story(故事)、radio(广播)、poetry(诗歌)、call(客服)、sajiao(撒娇)、disgusted(厌恶)、amaze(震惊)、peaceful(平静)、exciting(兴奋)、aojiao(傲娇)、jieshuo(解说)。<br> &emsp; "EmotionIntensity":  150 // Integer 非必填 控制合成音频情感程度，取值范围为 [50,200]，默认为 100；只有 EmotionCategory 不为空时生效。<br> &emsp; }</pre>
+        # @param TTSConfig: 必填参数，TTS配置，详见 [TTS配置说明](https://cloud.tencent.com/document/product/647/115414 )， 为JSON字符串: TRTC TTS的配置如下：```{  "TTSType": "flow",  // 【必填】固定为此值  "VoiceId": "v-female-R2s4N9qJ", // 【必填】精品音色 ID /克隆音色 ID, 可选择不同音色, ID 库参考下方音色列表  "Model": "flow_01_turbo", // 【必填】当前默认的 TTS 模型版本（对应 Flash 版本）  "Speed": 1.0,    //【可选】调节语速 范围 [0.5-2.0],默认 1.0; 取值越大，语速越快  "Volume": 1.0,   // 【可选】调节音量 [0, 10] 默认值 1.0; 取值越大，音量越高  "Pitch": 0,   // 【可选】调节语调 [-12,12],默认值为 0,其中 0 为原音色输出。  "Language": "zh" //【可选】建议填写，目前支持填写中文：zh 英文：en 粤语方言：yue; 参数参考：(ISO 639-1) }```
         # @type TTSConfig: String
         # @param AvatarConfig: 数字人配置，为JSON字符串。**数字人配置需要提工单加白后才能使用**
         # @type AvatarConfig: String
@@ -5920,12 +5923,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2025, 12
-        deprecate :VideoEncodeParams=, :none, 2025, 12
-        deprecate :AudioEncodeParams, :none, 2025, 12
-        deprecate :AudioEncodeParams=, :none, 2025, 12
-        deprecate :SourceUrl, :none, 2025, 12
-        deprecate :SourceUrl=, :none, 2025, 12
+        deprecate :VideoEncodeParams, :none, 2026, 1
+        deprecate :VideoEncodeParams=, :none, 2026, 1
+        deprecate :AudioEncodeParams, :none, 2026, 1
+        deprecate :AudioEncodeParams=, :none, 2026, 1
+        deprecate :SourceUrl, :none, 2026, 1
+        deprecate :SourceUrl=, :none, 2026, 1
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
@@ -6633,8 +6636,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2025, 12
-        deprecate :APIKey=, :none, 2025, 12
+        deprecate :APIKey, :none, 2026, 1
+        deprecate :APIKey=, :none, 2026, 1
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6702,8 +6705,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2025, 12
-        deprecate :APIKey=, :none, 2025, 12
+        deprecate :APIKey, :none, 2026, 1
+        deprecate :APIKey=, :none, 2026, 1
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6795,10 +6798,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2025, 12
-        deprecate :IMAdminUserId=, :none, 2025, 12
-        deprecate :IMAdminUserSig, :none, 2025, 12
-        deprecate :IMAdminUserSig=, :none, 2025, 12
+        deprecate :IMAdminUserId, :none, 2026, 1
+        deprecate :IMAdminUserId=, :none, 2026, 1
+        deprecate :IMAdminUserSig, :none, 2026, 1
+        deprecate :IMAdminUserSig=, :none, 2026, 1
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid

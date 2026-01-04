@@ -6338,6 +6338,44 @@ module TencentCloud
         end
       end
 
+      # DescribeRocketMQGeneralSKUs请求参数结构体
+      class DescribeRocketMQGeneralSKUsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeRocketMQGeneralSKUs返回参数结构体
+      class DescribeRocketMQGeneralSKUsResponse < TencentCloud::Common::AbstractModel
+        # @param Skus: 商品配置信息
+        # @type Skus: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Skus, :RequestId
+
+        def initialize(skus=nil, requestid=nil)
+          @Skus = skus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Skus'].nil?
+            @Skus = []
+            params['Skus'].each do |i|
+              generalsku_tmp = GeneralSKU.new
+              generalsku_tmp.deserialize(i)
+              @Skus << generalsku_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeRocketMQGroups请求参数结构体
       class DescribeRocketMQGroupsRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -6523,8 +6561,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :PulsarMsgId, :QueryDlqMsg, :QueryDeadLetterMessage, :Offset, :Limit, :FilterTrackGroup
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 12
-        deprecate :QueryDlqMsg=, :none, 2025, 12
+        deprecate :QueryDlqMsg, :none, 2026, 1
+        deprecate :QueryDlqMsg=, :none, 2026, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, pulsarmsgid=nil, querydlqmsg=nil, querydeadlettermessage=nil, offset=nil, limit=nil, filtertrackgroup=nil)
           @ClusterId = clusterid
@@ -6629,8 +6667,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :MsgId, :GroupName, :QueryDLQMsg, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDLQMsg, :none, 2025, 12
-        deprecate :QueryDLQMsg=, :none, 2025, 12
+        deprecate :QueryDLQMsg, :none, 2026, 1
+        deprecate :QueryDLQMsg=, :none, 2026, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, msgid=nil, groupname=nil, querydlqmsg=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -7349,8 +7387,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :EnvironmentId, :TopicName, :StartTime, :EndTime, :MsgId, :MsgKey, :Offset, :Limit, :TaskRequestId, :QueryDlqMsg, :NumOfLatestMsg, :Tag, :QueryDeadLetterMessage
         extend Gem::Deprecate
-        deprecate :QueryDlqMsg, :none, 2025, 12
-        deprecate :QueryDlqMsg=, :none, 2025, 12
+        deprecate :QueryDlqMsg, :none, 2026, 1
+        deprecate :QueryDlqMsg=, :none, 2026, 1
 
         def initialize(clusterid=nil, environmentid=nil, topicname=nil, starttime=nil, endtime=nil, msgid=nil, msgkey=nil, offset=nil, limit=nil, taskrequestid=nil, querydlqmsg=nil, numoflatestmsg=nil, tag=nil, querydeadlettermessage=nil)
           @ClusterId = clusterid
@@ -8504,6 +8542,53 @@ module TencentCloud
           @ConsumerHasBacklog = params['ConsumerHasBacklog']
           @ConsumerHasExpired = params['ConsumerHasExpired']
           @SubscriptionNames = params['SubscriptionNames']
+        end
+      end
+
+      # 通用集群售卖信息
+      class GeneralSKU < TencentCloud::Common::AbstractModel
+        # @param SkuCode: 规格标识
+        # @type SkuCode: String
+        # @param OnSale: 是否可售卖
+        # @type OnSale: Boolean
+        # @param TpsLimit: TPS上限
+        # @type TpsLimit: Integer
+        # @param TopicNumLimit: 主题数免费额度
+        # @type TopicNumLimit: Integer
+        # @param TopicNumUpperLimit: 主题数上限
+        # @type TopicNumUpperLimit: Integer
+        # @param PriceTags: 计费项信息
+        # @type PriceTags: Array
+        # @param NodeCount: 存储节点个数
+        # @type NodeCount: Integer
+
+        attr_accessor :SkuCode, :OnSale, :TpsLimit, :TopicNumLimit, :TopicNumUpperLimit, :PriceTags, :NodeCount
+
+        def initialize(skucode=nil, onsale=nil, tpslimit=nil, topicnumlimit=nil, topicnumupperlimit=nil, pricetags=nil, nodecount=nil)
+          @SkuCode = skucode
+          @OnSale = onsale
+          @TpsLimit = tpslimit
+          @TopicNumLimit = topicnumlimit
+          @TopicNumUpperLimit = topicnumupperlimit
+          @PriceTags = pricetags
+          @NodeCount = nodecount
+        end
+
+        def deserialize(params)
+          @SkuCode = params['SkuCode']
+          @OnSale = params['OnSale']
+          @TpsLimit = params['TpsLimit']
+          @TopicNumLimit = params['TopicNumLimit']
+          @TopicNumUpperLimit = params['TopicNumUpperLimit']
+          unless params['PriceTags'].nil?
+            @PriceTags = []
+            params['PriceTags'].each do |i|
+              pricetag_tmp = PriceTag.new
+              pricetag_tmp.deserialize(i)
+              @PriceTags << pricetag_tmp
+            end
+          end
+          @NodeCount = params['NodeCount']
         end
       end
 
@@ -10137,6 +10222,37 @@ module TencentCloud
           @ProducerCount = params['ProducerCount']
           @TotalSize = params['TotalSize']
           @TopicType = params['TopicType']
+        end
+      end
+
+      # 价格标签信息，一个完整的价格标签包含计价类别和计费项标签。
+      class PriceTag < TencentCloud::Common::AbstractModel
+        # @param Name: 计价名称。枚举值如下：
+
+        # - tps：TPS基础价
+        # - stepTps：TPS步长
+        # @type Name: String
+        # @param Category: 计价类别
+        # @type Category: String
+        # @param Code: 计费项标签
+        # @type Code: String
+        # @param Step: 计费项对应的步长数
+        # @type Step: Integer
+
+        attr_accessor :Name, :Category, :Code, :Step
+
+        def initialize(name=nil, category=nil, code=nil, step=nil)
+          @Name = name
+          @Category = category
+          @Code = code
+          @Step = step
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Category = params['Category']
+          @Code = params['Code']
+          @Step = params['Step']
         end
       end
 
@@ -12040,8 +12156,8 @@ module TencentCloud
 
         attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :MaxRetentionTime, :MaxLatencyTime, :MaxQueuesPerTopic, :TopicDistribution, :MaxRoleNum, :MaxTpsLimit
         extend Gem::Deprecate
-        deprecate :MaxTpsPerNamespace, :none, 2025, 12
-        deprecate :MaxTpsPerNamespace=, :none, 2025, 12
+        deprecate :MaxTpsPerNamespace, :none, 2026, 1
+        deprecate :MaxTpsPerNamespace=, :none, 2026, 1
 
         def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, maxretentiontime=nil, maxlatencytime=nil, maxqueuespertopic=nil, topicdistribution=nil, maxrolenum=nil, maxtpslimit=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
@@ -12447,10 +12563,10 @@ module TencentCloud
 
         attr_accessor :Name, :ConsumerNum, :TPS, :TotalAccumulative, :ConsumptionMode, :ReadEnabled, :RetryPartitionNum, :CreateTime, :UpdateTime, :ClientProtocol, :Remark, :ConsumerType, :BroadcastEnabled, :GroupType, :RetryMaxTimes, :InstanceId, :Namespace, :SubscribeTopicNum, :TagList
         extend Gem::Deprecate
-        deprecate :TPS, :none, 2025, 12
-        deprecate :TPS=, :none, 2025, 12
-        deprecate :TotalAccumulative, :none, 2025, 12
-        deprecate :TotalAccumulative=, :none, 2025, 12
+        deprecate :TPS, :none, 2026, 1
+        deprecate :TPS=, :none, 2026, 1
+        deprecate :TotalAccumulative, :none, 2026, 1
+        deprecate :TotalAccumulative=, :none, 2026, 1
 
         def initialize(name=nil, consumernum=nil, tps=nil, totalaccumulative=nil, consumptionmode=nil, readenabled=nil, retrypartitionnum=nil, createtime=nil, updatetime=nil, clientprotocol=nil, remark=nil, consumertype=nil, broadcastenabled=nil, grouptype=nil, retrymaxtimes=nil, instanceid=nil, namespace=nil, subscribetopicnum=nil, taglist=nil)
           @Name = name

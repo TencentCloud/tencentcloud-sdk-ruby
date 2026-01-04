@@ -3810,10 +3810,10 @@ module TencentCloud
       class DescribeRedisTopBigKeysRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
         # @type InstanceId: String
-        # @param Date: 查询日期，如2021-05-27，最早可为前30天的日期。
-        # @type Date: String
         # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
         # @type Product: String
+        # @param Date: 查询某个日期最新的任务，如2021-05-27，最早可为前30天的日期。该参数与AsyncRequestId参数不可同时为空。
+        # @type Date: String
         # @param SortBy: 排序字段，取值包括Capacity - 内存，ItemCount - 元素数量，默认为Capacity。
         # @type SortBy: String
         # @param KeyType: key类型筛选条件，默认为不进行筛选，取值包括string, list, set, hash, sortedset, stream。
@@ -3824,29 +3824,34 @@ module TencentCloud
         # @type AsyncRequestId: Integer
         # @param ShardIds: 分片节点序号列表。当列表为空时，选择所有分片节点。
         # @type ShardIds: Array
+        # @param UnExpireKey: 是否仅查询未设置过期时间的大Key。
+        # 当为true时，仅查询未设置过期时间的大Key，默认为false。
+        # @type UnExpireKey: Boolean
 
-        attr_accessor :InstanceId, :Date, :Product, :SortBy, :KeyType, :Limit, :AsyncRequestId, :ShardIds
+        attr_accessor :InstanceId, :Product, :Date, :SortBy, :KeyType, :Limit, :AsyncRequestId, :ShardIds, :UnExpireKey
 
-        def initialize(instanceid=nil, date=nil, product=nil, sortby=nil, keytype=nil, limit=nil, asyncrequestid=nil, shardids=nil)
+        def initialize(instanceid=nil, product=nil, date=nil, sortby=nil, keytype=nil, limit=nil, asyncrequestid=nil, shardids=nil, unexpirekey=nil)
           @InstanceId = instanceid
-          @Date = date
           @Product = product
+          @Date = date
           @SortBy = sortby
           @KeyType = keytype
           @Limit = limit
           @AsyncRequestId = asyncrequestid
           @ShardIds = shardids
+          @UnExpireKey = unexpirekey
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
-          @Date = params['Date']
           @Product = params['Product']
+          @Date = params['Date']
           @SortBy = params['SortBy']
           @KeyType = params['KeyType']
           @Limit = params['Limit']
           @AsyncRequestId = params['AsyncRequestId']
           @ShardIds = params['ShardIds']
+          @UnExpireKey = params['UnExpireKey']
         end
       end
 
@@ -4066,6 +4071,65 @@ module TencentCloud
             end
           end
           @Timestamp = params['Timestamp']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRedisUnExpiredKeyStatistics请求参数结构体
+      class DescribeRedisUnExpiredKeyStatisticsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。可通过接口获取。
+        # @type InstanceId: String
+        # @param Product: 服务产品类型，支持值包括 "redis" - 云数据库 Redis。
+        # @type Product: String
+        # @param Date: 查询某个日期最新的任务，如2021-05-27，最早可为前30天的日期。该参数与AsyncRequestId参数不可同时为空。
+        # @type Date: String
+        # @param AsyncRequestId: 异步任务ID。当为空时，选择最近任务的ID。
+        # @type AsyncRequestId: Integer
+        # @param ShardIds: 分片节点序号列表。当列表为空时，选择所有分片节点。
+        # @type ShardIds: Array
+
+        attr_accessor :InstanceId, :Product, :Date, :AsyncRequestId, :ShardIds
+
+        def initialize(instanceid=nil, product=nil, date=nil, asyncrequestid=nil, shardids=nil)
+          @InstanceId = instanceid
+          @Product = product
+          @Date = date
+          @AsyncRequestId = asyncrequestid
+          @ShardIds = shardids
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Product = params['Product']
+          @Date = params['Date']
+          @AsyncRequestId = params['AsyncRequestId']
+          @ShardIds = params['ShardIds']
+        end
+      end
+
+      # DescribeRedisUnExpiredKeyStatistics返回参数结构体
+      class DescribeRedisUnExpiredKeyStatisticsResponse < TencentCloud::Common::AbstractModel
+        # @param SeriesData: 全量Key的聚合分布信息列表。
+        # @type SeriesData: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SeriesData, :RequestId
+
+        def initialize(seriesdata=nil, requestid=nil)
+          @SeriesData = seriesdata
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SeriesData'].nil?
+            @SeriesData = []
+            params['SeriesData'].each do |i|
+              redisglobalkeyinfo_tmp = RedisGlobalKeyInfo.new
+              redisglobalkeyinfo_tmp.deserialize(i)
+              @SeriesData << redisglobalkeyinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6784,6 +6848,36 @@ module TencentCloud
         def deserialize(params)
           @Cmd = params['Cmd']
           @MaxCost = params['MaxCost']
+        end
+      end
+
+      # Redis全量Key的聚合信息。
+      class RedisGlobalKeyInfo < TencentCloud::Common::AbstractModel
+        # @param Capacity: 占用内存大小，单位Byte。
+        # @type Capacity: Integer
+        # @param Count: Key个数。
+        # @type Count: Integer
+        # @param RangeMax: 剩余过期时间范围的结束时间，当小于0时，代表已过期时间，单位：小时。当RangeMin与RangeMax同时为空时，代表未设置过期时间。当RangeMax为空时，代表剩余过期时间大于等于RangeMin小时。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangeMax: Integer
+        # @param RangeMin: 剩余过期时间范围的起始时间，当小于0时，代表已过期时间，单位：小时。当RangeMin与RangeMax同时为空时，代表未设置过期时间。当RangeMin为空时，代表已过期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RangeMin: Integer
+
+        attr_accessor :Capacity, :Count, :RangeMax, :RangeMin
+
+        def initialize(capacity=nil, count=nil, rangemax=nil, rangemin=nil)
+          @Capacity = capacity
+          @Count = count
+          @RangeMax = rangemax
+          @RangeMin = rangemin
+        end
+
+        def deserialize(params)
+          @Capacity = params['Capacity']
+          @Count = params['Count']
+          @RangeMax = params['RangeMax']
+          @RangeMin = params['RangeMin']
         end
       end
 

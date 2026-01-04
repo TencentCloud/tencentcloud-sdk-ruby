@@ -19892,10 +19892,12 @@ module TencentCloud
         # @type ResourceType: String
         # @param DisasterRecoverGroupId: 置放群组 ID，QuotaType为 exact 时有效，表示购买的精确配额需满足置放群组。可通过 [DescribeDisasterRecoverGroups](https://cloud.tencent.com/document/product/213/17810) 接口返回值中的DisasterRecoverGroupId获取。
         # @type DisasterRecoverGroupId: String
+        # @param PriceType: 定价类型
+        # @type PriceType: String
 
-        attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu, :QuotaType, :ChargeType, :ResourceType, :DisasterRecoverGroupId
+        attr_accessor :NodeName, :Num, :Cpu, :Memory, :Gpu, :QuotaType, :ChargeType, :ResourceType, :DisasterRecoverGroupId, :PriceType
 
-        def initialize(nodename=nil, num=nil, cpu=nil, memory=nil, gpu=nil, quotatype=nil, chargetype=nil, resourcetype=nil, disasterrecovergroupid=nil)
+        def initialize(nodename=nil, num=nil, cpu=nil, memory=nil, gpu=nil, quotatype=nil, chargetype=nil, resourcetype=nil, disasterrecovergroupid=nil, pricetype=nil)
           @NodeName = nodename
           @Num = num
           @Cpu = cpu
@@ -19905,6 +19907,7 @@ module TencentCloud
           @ChargeType = chargetype
           @ResourceType = resourcetype
           @DisasterRecoverGroupId = disasterrecovergroupid
+          @PriceType = pricetype
         end
 
         def deserialize(params)
@@ -19917,6 +19920,7 @@ module TencentCloud
           @ChargeType = params['ChargeType']
           @ResourceType = params['ResourceType']
           @DisasterRecoverGroupId = params['DisasterRecoverGroupId']
+          @PriceType = params['PriceType']
         end
       end
 
