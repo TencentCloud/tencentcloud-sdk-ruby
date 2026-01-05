@@ -136,32 +136,32 @@ module TencentCloud
 
         attr_accessor :VpcId, :SubnetId, :PayMode, :InstanceName, :SecurityGroupIds, :PayPeriod, :AutoRenew, :Params, :ResourceTags, :Project, :ProductType, :InstanceType, :Mode, :GoodsNum, :NetworkType, :TemplateId, :Components, :Zone, :SlaveZones, :IsNoExpired, :EngineName, :EngineVersion, :Brief, :Chief, :DBA, :NodeType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
         extend Gem::Deprecate
-        deprecate :Project, :none, 2025, 12
-        deprecate :Project=, :none, 2025, 12
-        deprecate :NetworkType, :none, 2025, 12
-        deprecate :NetworkType=, :none, 2025, 12
-        deprecate :TemplateId, :none, 2025, 12
-        deprecate :TemplateId=, :none, 2025, 12
-        deprecate :Components, :none, 2025, 12
-        deprecate :Components=, :none, 2025, 12
-        deprecate :Zone, :none, 2025, 12
-        deprecate :Zone=, :none, 2025, 12
-        deprecate :SlaveZones, :none, 2025, 12
-        deprecate :SlaveZones=, :none, 2025, 12
-        deprecate :IsNoExpired, :none, 2025, 12
-        deprecate :IsNoExpired=, :none, 2025, 12
-        deprecate :EngineName, :none, 2025, 12
-        deprecate :EngineName=, :none, 2025, 12
-        deprecate :EngineVersion, :none, 2025, 12
-        deprecate :EngineVersion=, :none, 2025, 12
-        deprecate :Brief, :none, 2025, 12
-        deprecate :Brief=, :none, 2025, 12
-        deprecate :Chief, :none, 2025, 12
-        deprecate :Chief=, :none, 2025, 12
-        deprecate :DBA, :none, 2025, 12
-        deprecate :DBA=, :none, 2025, 12
-        deprecate :NodeType, :none, 2025, 12
-        deprecate :NodeType=, :none, 2025, 12
+        deprecate :Project, :none, 2026, 1
+        deprecate :Project=, :none, 2026, 1
+        deprecate :NetworkType, :none, 2026, 1
+        deprecate :NetworkType=, :none, 2026, 1
+        deprecate :TemplateId, :none, 2026, 1
+        deprecate :TemplateId=, :none, 2026, 1
+        deprecate :Components, :none, 2026, 1
+        deprecate :Components=, :none, 2026, 1
+        deprecate :Zone, :none, 2026, 1
+        deprecate :Zone=, :none, 2026, 1
+        deprecate :SlaveZones, :none, 2026, 1
+        deprecate :SlaveZones=, :none, 2026, 1
+        deprecate :IsNoExpired, :none, 2026, 1
+        deprecate :IsNoExpired=, :none, 2026, 1
+        deprecate :EngineName, :none, 2026, 1
+        deprecate :EngineName=, :none, 2026, 1
+        deprecate :EngineVersion, :none, 2026, 1
+        deprecate :EngineVersion=, :none, 2026, 1
+        deprecate :Brief, :none, 2026, 1
+        deprecate :Brief=, :none, 2026, 1
+        deprecate :Chief, :none, 2026, 1
+        deprecate :Chief=, :none, 2026, 1
+        deprecate :DBA, :none, 2026, 1
+        deprecate :DBA=, :none, 2026, 1
+        deprecate :NodeType, :none, 2026, 1
+        deprecate :NodeType=, :none, 2026, 1
 
         def initialize(vpcid=nil, subnetid=nil, paymode=nil, instancename=nil, securitygroupids=nil, payperiod=nil, autorenew=nil, params=nil, resourcetags=nil, project=nil, producttype=nil, instancetype=nil, mode=nil, goodsnum=nil, networktype=nil, templateid=nil, components=nil, zone=nil, slavezones=nil, isnoexpired=nil, enginename=nil, engineversion=nil, brief=nil, chief=nil, dba=nil, nodetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
           @VpcId = vpcid
@@ -496,10 +496,10 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :InstanceNames, :InstanceKeys, :Status, :EngineNames, :EngineVersions, :ApiVersions, :CreateAt, :Zones, :OrderBy, :OrderDirection, :Offset, :Limit, :ResourceTags, :TaskStatus, :Networks
         extend Gem::Deprecate
-        deprecate :EngineNames, :none, 2025, 12
-        deprecate :EngineNames=, :none, 2025, 12
-        deprecate :Zones, :none, 2025, 12
-        deprecate :Zones=, :none, 2025, 12
+        deprecate :EngineNames, :none, 2026, 1
+        deprecate :EngineNames=, :none, 2026, 1
+        deprecate :Zones, :none, 2026, 1
+        deprecate :Zones=, :none, 2026, 1
 
         def initialize(instanceids=nil, instancenames=nil, instancekeys=nil, status=nil, enginenames=nil, engineversions=nil, apiversions=nil, createat=nil, zones=nil, orderby=nil, orderdirection=nil, offset=nil, limit=nil, resourcetags=nil, taskstatus=nil, networks=nil)
           @InstanceIds = instanceids
@@ -574,6 +574,209 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePriceCreateInstance请求参数结构体
+      class DescribePriceCreateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceType: 实例类型。
+        # - base：免费测试版。
+        # - single：单机版。
+        # - cluster：高可用版。
+        # @type InstanceType: String
+        # @param Cpu: 指定实例所需的 CPU 核数。实例类型不同，支持的 CPU 核数存在差异。
+        # - 计算型： 1、2、4、8、16、24、32。
+        # - 标准型： 1、2、4、8、12、16。
+        # - 存储型： 1、2、4、6、8。
+        # @type Cpu: Integer
+        # @param Memory: 指定实例所需的内存大小。单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type Memory: Integer
+        # @param DiskSize: 指定实例所需的磁盘大小，单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type DiskSize: Integer
+        # @param WorkerNodeNum: 指定实例所需配置的节点数量。选择方法，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type WorkerNodeNum: Integer
+        # @param PayMode: 指定实例计费方式。
+        # - 0：按量付费。
+        # - 1：包年包月。
+        # @type PayMode: Integer
+        # @param GoodsNum: 购买实例数量。
+        # @type GoodsNum: Integer
+        # @param ProductType: 产品版本，0-标准版，1-容量增强版
+        # @type ProductType: Integer
+        # @param Mode: 实例类型为高可用版，需指定可用区选项。
+        # - two：两可用区。
+        # - three：三可用区。
+        # @type Mode: String
+        # @param PayPeriod: 若计费方式为包年包月，指定包年包月续费的时长。
+        # - 单位：月。
+        # - 取值范围：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36。默认为1。
+        # @type PayPeriod: Integer
+
+        attr_accessor :InstanceType, :Cpu, :Memory, :DiskSize, :WorkerNodeNum, :PayMode, :GoodsNum, :ProductType, :Mode, :PayPeriod
+
+        def initialize(instancetype=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil, paymode=nil, goodsnum=nil, producttype=nil, mode=nil, payperiod=nil)
+          @InstanceType = instancetype
+          @Cpu = cpu
+          @Memory = memory
+          @DiskSize = disksize
+          @WorkerNodeNum = workernodenum
+          @PayMode = paymode
+          @GoodsNum = goodsnum
+          @ProductType = producttype
+          @Mode = mode
+          @PayPeriod = payperiod
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @DiskSize = params['DiskSize']
+          @WorkerNodeNum = params['WorkerNodeNum']
+          @PayMode = params['PayMode']
+          @GoodsNum = params['GoodsNum']
+          @ProductType = params['ProductType']
+          @Mode = params['Mode']
+          @PayPeriod = params['PayPeriod']
+        end
+      end
+
+      # DescribePriceCreateInstance返回参数结构体
+      class DescribePriceCreateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 优惠后价格，单位：分
+        # @type Price: Float
+        # @param OriginalPrice: 原价格，单位：分
+        # @type OriginalPrice: Float
+        # @param Currency: 币种。CNY-人民币，USD-美元
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :OriginalPrice, :Currency, :RequestId
+
+        def initialize(price=nil, originalprice=nil, currency=nil, requestid=nil)
+          @Price = price
+          @OriginalPrice = originalprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Price = params['Price']
+          @OriginalPrice = params['OriginalPrice']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePriceRenewInstance请求参数结构体
+      class DescribePriceRenewInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param PayPeriod: 包年包月的时长，单位：月
+        # @type PayPeriod: Integer
+
+        attr_accessor :InstanceId, :PayPeriod
+
+        def initialize(instanceid=nil, payperiod=nil)
+          @InstanceId = instanceid
+          @PayPeriod = payperiod
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @PayPeriod = params['PayPeriod']
+        end
+      end
+
+      # DescribePriceRenewInstance返回参数结构体
+      class DescribePriceRenewInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 优惠后价格，单位：分
+        # @type Price: Float
+        # @param OriginalPrice: 原价格，单位：分
+        # @type OriginalPrice: Float
+        # @param Currency: 币种。CNY-人民币，USD-美元
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :OriginalPrice, :Currency, :RequestId
+
+        def initialize(price=nil, originalprice=nil, currency=nil, requestid=nil)
+          @Price = price
+          @OriginalPrice = originalprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Price = params['Price']
+          @OriginalPrice = params['OriginalPrice']
+          @Currency = params['Currency']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePriceResizeInstance请求参数结构体
+      class DescribePriceResizeInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Cpu: 指定实例所需的 CPU 核数。实例类型不同，支持的 CPU 核数存在差异。
+        # - 计算型： 1、2、4、8、16、24、32。
+        # - 标准型： 1、2、4、8、12、16。
+        # - 存储型： 1、2、4、6、8。
+        # @type Cpu: Integer
+        # @param Memory: 指定实例所需的内存大小。单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type Memory: Integer
+        # @param DiskSize: 指定实例所需的磁盘大小，单位：GB。选择具体规格，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type DiskSize: Integer
+        # @param WorkerNodeNum: 指定实例所需配置的节点数量。选择方法，请参见[配置规格（选型）](https://cloud.tencent.com/document/product/1709/113399)。
+        # @type WorkerNodeNum: Integer
+
+        attr_accessor :InstanceId, :Cpu, :Memory, :DiskSize, :WorkerNodeNum
+
+        def initialize(instanceid=nil, cpu=nil, memory=nil, disksize=nil, workernodenum=nil)
+          @InstanceId = instanceid
+          @Cpu = cpu
+          @Memory = memory
+          @DiskSize = disksize
+          @WorkerNodeNum = workernodenum
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @DiskSize = params['DiskSize']
+          @WorkerNodeNum = params['WorkerNodeNum']
+        end
+      end
+
+      # DescribePriceResizeInstance返回参数结构体
+      class DescribePriceResizeInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 优惠后价格，单位：分
+        # @type Price: Float
+        # @param OriginalPrice: 原价格，单位：分
+        # @type OriginalPrice: Float
+        # @param Currency: 币种。CNY-人民币，USD-美元
+        # @type Currency: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :OriginalPrice, :Currency, :RequestId
+
+        def initialize(price=nil, originalprice=nil, currency=nil, requestid=nil)
+          @Price = price
+          @OriginalPrice = originalprice
+          @Currency = currency
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Price = params['Price']
+          @OriginalPrice = params['OriginalPrice']
+          @Currency = params['Currency']
           @RequestId = params['RequestId']
         end
       end
@@ -764,12 +967,12 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :AppId, :Region, :Zone, :Product, :Networks, :ShardNum, :ReplicaNum, :Cpu, :Memory, :Disk, :HealthScore, :Warning, :Project, :ResourceTags, :CreatedAt, :Status, :EngineName, :EngineVersion, :ApiVersion, :PayMode, :Extend, :ExpiredAt, :IsNoExpired, :ProductType, :InstanceType, :NodeType, :WanAddress, :IsolateAt, :AutoRenew, :TaskStatus, :SecurityGroupIds
         extend Gem::Deprecate
-        deprecate :HealthScore, :none, 2025, 12
-        deprecate :HealthScore=, :none, 2025, 12
-        deprecate :Warning, :none, 2025, 12
-        deprecate :Warning=, :none, 2025, 12
-        deprecate :Project, :none, 2025, 12
-        deprecate :Project=, :none, 2025, 12
+        deprecate :HealthScore, :none, 2026, 1
+        deprecate :HealthScore=, :none, 2026, 1
+        deprecate :Warning, :none, 2026, 1
+        deprecate :Warning=, :none, 2026, 1
+        deprecate :Project, :none, 2026, 1
+        deprecate :Project=, :none, 2026, 1
 
         def initialize(instanceid=nil, name=nil, appid=nil, region=nil, zone=nil, product=nil, networks=nil, shardnum=nil, replicanum=nil, cpu=nil, memory=nil, disk=nil, healthscore=nil, warning=nil, project=nil, resourcetags=nil, createdat=nil, status=nil, enginename=nil, engineversion=nil, apiversion=nil, paymode=nil, extend=nil, expiredat=nil, isnoexpired=nil, producttype=nil, instancetype=nil, nodetype=nil, wanaddress=nil, isolateat=nil, autorenew=nil, taskstatus=nil, securitygroupids=nil)
           @InstanceId = instanceid

@@ -98,10 +98,21 @@ module TencentCloud
         # @type RuleKey: String
         # @param CloudType: 云厂商类型 0:腾讯云 1:亚马逊云 2:微软云 3:谷歌云 4:阿里云 5:华为云
         # @type CloudType: Integer
+        # @param AIStatus: 告警AI分析状态
+        # -1 分析失败
+        # 0 未分析
+        # 1 分析中
+        # 2 分析成功，真实告警
+        # 3 分析成功，可疑告警
+        # @type AIStatus: Integer
+        # @param FirstAlarmTimestamp: 首次告警时间戳（秒级）
+        # @type FirstAlarmTimestamp: Integer
+        # @param LastAlarmTimestamp: 最后告警时间戳（秒级）
+        # @type LastAlarmTimestamp: Integer
 
-        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence, :IsSupportEditWhiteAccount, :Evidence, :RuleKey, :CloudType
+        attr_accessor :Name, :Level, :ID, :AlarmRuleID, :AlarmType, :AccessKey, :AccessKeyID, :AccessKeyRemark, :LastAlarmTime, :Status, :Date, :Tag, :Uin, :Nickname, :SubUin, :SubNickname, :Type, :AppID, :LeakEvidence, :IsSupportEditWhiteAccount, :Evidence, :RuleKey, :CloudType, :AIStatus, :FirstAlarmTimestamp, :LastAlarmTimestamp
 
-        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil, issupporteditwhiteaccount=nil, evidence=nil, rulekey=nil, cloudtype=nil)
+        def initialize(name=nil, level=nil, id=nil, alarmruleid=nil, alarmtype=nil, accesskey=nil, accesskeyid=nil, accesskeyremark=nil, lastalarmtime=nil, status=nil, date=nil, tag=nil, uin=nil, nickname=nil, subuin=nil, subnickname=nil, type=nil, appid=nil, leakevidence=nil, issupporteditwhiteaccount=nil, evidence=nil, rulekey=nil, cloudtype=nil, aistatus=nil, firstalarmtimestamp=nil, lastalarmtimestamp=nil)
           @Name = name
           @Level = level
           @ID = id
@@ -125,6 +136,9 @@ module TencentCloud
           @Evidence = evidence
           @RuleKey = rulekey
           @CloudType = cloudtype
+          @AIStatus = aistatus
+          @FirstAlarmTimestamp = firstalarmtimestamp
+          @LastAlarmTimestamp = lastalarmtimestamp
         end
 
         def deserialize(params)
@@ -151,6 +165,9 @@ module TencentCloud
           @Evidence = params['Evidence']
           @RuleKey = params['RuleKey']
           @CloudType = params['CloudType']
+          @AIStatus = params['AIStatus']
+          @FirstAlarmTimestamp = params['FirstAlarmTimestamp']
+          @LastAlarmTimestamp = params['LastAlarmTimestamp']
         end
       end
 

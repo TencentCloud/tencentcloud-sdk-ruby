@@ -1317,8 +1317,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2025, 12
-        deprecate :Period=, :none, 2025, 12
+        deprecate :Period, :none, 2026, 1
+        deprecate :Period=, :none, 2026, 1
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5597,8 +5597,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2025, 12
-        deprecate :Log=, :none, 2025, 12
+        deprecate :Log, :none, 2026, 1
+        deprecate :Log=, :none, 2026, 1
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -6838,27 +6838,28 @@ module TencentCloud
 
       # ModifyTargetGroupAttribute请求参数结构体
       class ModifyTargetGroupAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组的ID。
+        # @param TargetGroupId: <p>目标组的ID。</p>
         # @type TargetGroupId: String
-        # @param TargetGroupName: 目标组的新名称。
+        # @param TargetGroupName: <p>目标组的新名称。</p>
         # @type TargetGroupName: String
-        # @param Port: 目标组的新默认端口。全监听目标组不支持此参数。
+        # @param Port: <p>目标组的新默认端口。全监听目标组不支持此参数。</p>
         # @type Port: Integer
-        # @param ScheduleAlgorithm: 调度算法，仅V2新版目标组，且后端转发协议为(HTTP|HTTPS|GRPC)时该参数有效。可选值：
-        # <ur><li>WRR:按权重轮询。</li><li>LEAST_CONN:最小连接数。</li><li>IP_HASH:按IP哈希。</li><li>默认为 WRR。</li><ur>
+        # @param ScheduleAlgorithm: <p>调度算法，仅V2新版目标组，且后端转发协议为(HTTP|HTTPS|GRPC)时该参数有效。可选值：<ur><li>WRR:按权重轮询。</li><li>LEAST_CONN:最小连接数。</li><li>IP_HASH:按IP哈希。</li><li>默认为 WRR。</li><ur></p>
         # @type ScheduleAlgorithm: String
-        # @param HealthCheck: 健康检查详情。
+        # @param HealthCheck: <p>健康检查详情。</p>
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.TargetGroupHealthCheck`
-        # @param Weight: 后端服务默认权重, 其中：<ul><li>取值范围[0, 100]</li><li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li><li>v1目标组类型不支持设置Weight参数。</li> </ul>
+        # @param Weight: <p>后端服务默认权重, 其中：<ul><li>取值范围[0, 100]</li><li>设置该值后，添加后端服务到目标组时， 若后端服务不单独设置权重， 则使用这里的默认权重。 </li><li>v1目标组类型不支持设置Weight参数。</li> </ul></p>
         # @type Weight: Integer
-        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，true:关闭；false:开启， 默认关闭。
+        # @param KeepaliveEnable: <p>是否开启长连接，此参数仅适用于HTTP/HTTPS目标组，true:关闭；false:开启， 默认关闭。</p>
         # @type KeepaliveEnable: Boolean
-        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。
+        # @param SessionExpireTime: <p>会话保持时间，单位：秒。可选值：30~3600，默认 0，表示不开启。TCP/UDP目标组不支持该参数。</p>
         # @type SessionExpireTime: Integer
+        # @param SnatEnable: <p>是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时<code>透传客户端源IP</code>选项关闭，反之亦然。</p>
+        # @type SnatEnable: Boolean
 
-        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :ScheduleAlgorithm, :HealthCheck, :Weight, :KeepaliveEnable, :SessionExpireTime
+        attr_accessor :TargetGroupId, :TargetGroupName, :Port, :ScheduleAlgorithm, :HealthCheck, :Weight, :KeepaliveEnable, :SessionExpireTime, :SnatEnable
 
-        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, schedulealgorithm=nil, healthcheck=nil, weight=nil, keepaliveenable=nil, sessionexpiretime=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, port=nil, schedulealgorithm=nil, healthcheck=nil, weight=nil, keepaliveenable=nil, sessionexpiretime=nil, snatenable=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
           @Port = port
@@ -6867,6 +6868,7 @@ module TencentCloud
           @Weight = weight
           @KeepaliveEnable = keepaliveenable
           @SessionExpireTime = sessionexpiretime
+          @SnatEnable = snatenable
         end
 
         def deserialize(params)
@@ -6881,6 +6883,7 @@ module TencentCloud
           @Weight = params['Weight']
           @KeepaliveEnable = params['KeepaliveEnable']
           @SessionExpireTime = params['SessionExpireTime']
+          @SnatEnable = params['SnatEnable']
         end
       end
 
@@ -7703,10 +7706,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2025, 12
-        deprecate :Domain=, :none, 2025, 12
-        deprecate :Url, :none, 2025, 12
-        deprecate :Url=, :none, 2025, 12
+        deprecate :Domain, :none, 2026, 1
+        deprecate :Domain=, :none, 2026, 1
+        deprecate :Url, :none, 2026, 1
+        deprecate :Url=, :none, 2026, 1
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8822,8 +8825,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2025, 12
-        deprecate :HealthStatusDetial=, :none, 2025, 12
+        deprecate :HealthStatusDetial, :none, 2026, 1
+        deprecate :HealthStatusDetial=, :none, 2026, 1
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

@@ -173,6 +173,78 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询新购实例价格
+
+        # @param request: Request instance for DescribePriceCreateInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::DescribePriceCreateInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::DescribePriceCreateInstanceResponse`
+        def DescribePriceCreateInstance(request)
+          body = send_request('DescribePriceCreateInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePriceCreateInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例续费价格（包年包月）
+
+        # @param request: Request instance for DescribePriceRenewInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::DescribePriceRenewInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::DescribePriceRenewInstanceResponse`
+        def DescribePriceRenewInstance(request)
+          body = send_request('DescribePriceRenewInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePriceRenewInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询实例变配价格
+
+        # @param request: Request instance for DescribePriceResizeInstance.
+        # @type request: :class:`Tencentcloud::vdb::V20230616::DescribePriceResizeInstanceRequest`
+        # @rtype: :class:`Tencentcloud::vdb::V20230616::DescribePriceResizeInstanceResponse`
+        def DescribePriceResizeInstance(request)
+          body = send_request('DescribePriceResizeInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePriceResizeInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DestroyInstances）用于销毁实例。
 
         # @param request: Request instance for DestroyInstances.

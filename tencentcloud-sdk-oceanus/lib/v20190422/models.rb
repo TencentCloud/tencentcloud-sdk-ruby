@@ -665,10 +665,12 @@ module TencentCloud
         # @type TaskManagerCpu: Float
         # @param TaskManagerMem: TaskManagerMem
         # @type TaskManagerMem: Float
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
 
-        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :ResourceRefs, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem
+        attr_accessor :ClusterGroupSerialId, :AppId, :OwnerUin, :CreatorUin, :Region, :Zone, :Status, :CuNum, :FlinkVersion, :WebUIUrl, :Properties, :ResourceRefs, :JobManagerCuSpec, :TaskManagerCuSpec, :TaskManagerNum, :CreateTime, :UpdateTime, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JdkVersion
 
-        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, resourcerefs=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil)
+        def initialize(clustergroupserialid=nil, appid=nil, owneruin=nil, creatoruin=nil, region=nil, zone=nil, status=nil, cunum=nil, flinkversion=nil, webuiurl=nil, properties=nil, resourcerefs=nil, jobmanagercuspec=nil, taskmanagercuspec=nil, taskmanagernum=nil, createtime=nil, updatetime=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jdkversion=nil)
           @ClusterGroupSerialId = clustergroupserialid
           @AppId = appid
           @OwnerUin = owneruin
@@ -690,6 +692,7 @@ module TencentCloud
           @JobManagerMem = jobmanagermem
           @TaskManagerCpu = taskmanagercpu
           @TaskManagerMem = taskmanagermem
+          @JdkVersion = jdkversion
         end
 
         def deserialize(params)
@@ -728,6 +731,7 @@ module TencentCloud
           @JobManagerMem = params['JobManagerMem']
           @TaskManagerCpu = params['TaskManagerCpu']
           @TaskManagerMem = params['TaskManagerMem']
+          @JdkVersion = params['JdkVersion']
         end
       end
 
@@ -739,17 +743,28 @@ module TencentCloud
         # @param SupportedFlink: 集群支持的Flink版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SupportedFlink: Array
+        # @param JdkSupportVersion: jdk支持版本
+        # @type JdkSupportVersion: Array
 
-        attr_accessor :Flink, :SupportedFlink
+        attr_accessor :Flink, :SupportedFlink, :JdkSupportVersion
 
-        def initialize(flink=nil, supportedflink=nil)
+        def initialize(flink=nil, supportedflink=nil, jdksupportversion=nil)
           @Flink = flink
           @SupportedFlink = supportedflink
+          @JdkSupportVersion = jdksupportversion
         end
 
         def deserialize(params)
           @Flink = params['Flink']
           @SupportedFlink = params['SupportedFlink']
+          unless params['JdkSupportVersion'].nil?
+            @JdkSupportVersion = []
+            params['JdkSupportVersion'].each do |i|
+              flinkjdkversion_tmp = FlinkJdkVersion.new
+              flinkjdkversion_tmp.deserialize(i)
+              @JdkSupportVersion << flinkjdkversion_tmp
+            end
+          end
         end
       end
 
@@ -1099,6 +1114,8 @@ module TencentCloud
         # @type JobManagerCpu: Float
         # @param JobManagerMem: JobManager 内存
         # @type JobManagerMem: Float
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
         # @param TaskManagerCpu: TaskManager cpu
         # @type TaskManagerCpu: Float
         # @param TaskManagerMem: TaskManager 内存
@@ -1112,9 +1129,9 @@ module TencentCloud
         # @param CheckpointIntervalSecond: checkpoint 间隔时间
         # @type CheckpointIntervalSecond: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :ResourceRefs, :DefaultParallelism, :Properties, :AutoDelete, :COSBucket, :LogCollect, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :LogCollectType, :PythonVersion, :WorkSpaceId, :LogLevel, :AutoRecover, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :JdkVersion, :TaskManagerCpu, :TaskManagerMem, :UseOldSystemConnector, :ProgramArgsAfterGzip, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, resourcerefs=nil, defaultparallelism=nil, properties=nil, autodelete=nil, cosbucket=nil, logcollect=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, logcollecttype=nil, pythonversion=nil, workspaceid=nil, loglevel=nil, autorecover=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, jdkversion=nil, taskmanagercpu=nil, taskmanagermem=nil, useoldsystemconnector=nil, programargsaftergzip=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -1146,6 +1163,7 @@ module TencentCloud
           @FlinkVersion = flinkversion
           @JobManagerCpu = jobmanagercpu
           @JobManagerMem = jobmanagermem
+          @JdkVersion = jdkversion
           @TaskManagerCpu = taskmanagercpu
           @TaskManagerMem = taskmanagermem
           @UseOldSystemConnector = useoldsystemconnector
@@ -1216,6 +1234,7 @@ module TencentCloud
           @FlinkVersion = params['FlinkVersion']
           @JobManagerCpu = params['JobManagerCpu']
           @JobManagerMem = params['JobManagerMem']
+          @JdkVersion = params['JdkVersion']
           @TaskManagerCpu = params['TaskManagerCpu']
           @TaskManagerMem = params['TaskManagerMem']
           @UseOldSystemConnector = params['UseOldSystemConnector']
@@ -1271,10 +1290,14 @@ module TencentCloud
         # @type Description: String
         # @param OpenJobDefaultAlarm: 开启默认告警
         # @type OpenJobDefaultAlarm: Integer
+        # @param Uid: 用户Uid
+        # @type Uid: Integer
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
 
-        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags, :Description, :OpenJobDefaultAlarm
+        attr_accessor :Name, :JobType, :ClusterType, :ClusterId, :CuMem, :Remark, :FolderId, :FlinkVersion, :WorkSpaceId, :Tags, :Description, :OpenJobDefaultAlarm, :Uid, :JdkVersion
 
-        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil, description=nil, openjobdefaultalarm=nil)
+        def initialize(name=nil, jobtype=nil, clustertype=nil, clusterid=nil, cumem=nil, remark=nil, folderid=nil, flinkversion=nil, workspaceid=nil, tags=nil, description=nil, openjobdefaultalarm=nil, uid=nil, jdkversion=nil)
           @Name = name
           @JobType = jobtype
           @ClusterType = clustertype
@@ -1287,6 +1310,8 @@ module TencentCloud
           @Tags = tags
           @Description = description
           @OpenJobDefaultAlarm = openjobdefaultalarm
+          @Uid = uid
+          @JdkVersion = jdkversion
         end
 
         def deserialize(params)
@@ -1309,6 +1334,8 @@ module TencentCloud
           end
           @Description = params['Description']
           @OpenJobDefaultAlarm = params['OpenJobDefaultAlarm']
+          @Uid = params['Uid']
+          @JdkVersion = params['JdkVersion']
         end
       end
 
@@ -3274,6 +3301,26 @@ module TencentCloud
         end
       end
 
+      # flink jdk版本
+      class FlinkJdkVersion < TencentCloud::Common::AbstractModel
+        # @param FlinkVersion: flink版本
+        # @type FlinkVersion: String
+        # @param JdkVersions: jdk版本
+        # @type JdkVersions: Array
+
+        attr_accessor :FlinkVersion, :JdkVersions
+
+        def initialize(flinkversion=nil, jdkversions=nil)
+          @FlinkVersion = flinkversion
+          @JdkVersions = jdkversions
+        end
+
+        def deserialize(params)
+          @FlinkVersion = params['FlinkVersion']
+          @JdkVersions = params['JdkVersions']
+        end
+      end
+
       # Gateway引用资源信息
       class GatewayRefItem < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: 空间唯一标识
@@ -3457,7 +3504,7 @@ module TencentCloud
         # @param COSBucket: 作业绑定的存储桶
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSBucket: String
-        # @param LogCollect: 是否启用日志收集，0-未启用，1-已启用，2-历史集群未设置日志集，3-历史集群已开启
+        # @param LogCollect: 是否启用日志收集，0-未启用，1-采集到cls，4-采集到cos，5-采集到es
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogCollect: Integer
         # @param MaxParallelism: 作业的最大并行度
@@ -3520,6 +3567,8 @@ module TencentCloud
         # @param FlinkVersion: flink 版本
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlinkVersion: String
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
         # @param JobManagerCpu: jm使用cpu数目
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobManagerCpu: Float
@@ -3540,9 +3589,9 @@ module TencentCloud
         # @param CheckpointIntervalSecond: checkpoint 间隔时间
         # @type CheckpointIntervalSecond: Integer
 
-        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
+        attr_accessor :JobId, :EntrypointClass, :ProgramArgs, :Remark, :CreateTime, :Version, :DefaultParallelism, :Properties, :ResourceRefDetails, :CreatorUin, :UpdateTime, :COSBucket, :LogCollect, :MaxParallelism, :JobManagerSpec, :TaskManagerSpec, :ClsLogsetId, :ClsTopicId, :PythonVersion, :AutoRecover, :LogLevel, :ClazzLevels, :ExpertModeOn, :ExpertModeConfiguration, :TraceModeOn, :TraceModeConfiguration, :CheckpointRetainedNum, :JobGraph, :EsServerlessIndex, :EsServerlessSpace, :IndexName, :WorkspaceName, :FlinkVersion, :JdkVersion, :JobManagerCpu, :JobManagerMem, :TaskManagerCpu, :TaskManagerMem, :JobConfigItem, :CheckpointTimeoutSecond, :CheckpointIntervalSecond
 
-        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
+        def initialize(jobid=nil, entrypointclass=nil, programargs=nil, remark=nil, createtime=nil, version=nil, defaultparallelism=nil, properties=nil, resourcerefdetails=nil, creatoruin=nil, updatetime=nil, cosbucket=nil, logcollect=nil, maxparallelism=nil, jobmanagerspec=nil, taskmanagerspec=nil, clslogsetid=nil, clstopicid=nil, pythonversion=nil, autorecover=nil, loglevel=nil, clazzlevels=nil, expertmodeon=nil, expertmodeconfiguration=nil, tracemodeon=nil, tracemodeconfiguration=nil, checkpointretainednum=nil, jobgraph=nil, esserverlessindex=nil, esserverlessspace=nil, indexname=nil, workspacename=nil, flinkversion=nil, jdkversion=nil, jobmanagercpu=nil, jobmanagermem=nil, taskmanagercpu=nil, taskmanagermem=nil, jobconfigitem=nil, checkpointtimeoutsecond=nil, checkpointintervalsecond=nil)
           @JobId = jobid
           @EntrypointClass = entrypointclass
           @ProgramArgs = programargs
@@ -3576,6 +3625,7 @@ module TencentCloud
           @IndexName = indexname
           @WorkspaceName = workspacename
           @FlinkVersion = flinkversion
+          @JdkVersion = jdkversion
           @JobManagerCpu = jobmanagercpu
           @JobManagerMem = jobmanagermem
           @TaskManagerCpu = taskmanagercpu
@@ -3649,6 +3699,7 @@ module TencentCloud
           @IndexName = params['IndexName']
           @WorkspaceName = params['WorkspaceName']
           @FlinkVersion = params['FlinkVersion']
+          @JdkVersion = params['JdkVersion']
           @JobManagerCpu = params['JobManagerCpu']
           @JobManagerMem = params['JobManagerMem']
           @TaskManagerCpu = params['TaskManagerCpu']
@@ -3980,10 +4031,14 @@ module TencentCloud
         # @type ContinueAlarm: Integer
         # @param RestartCount: 作业重启次数
         # @type RestartCount: Integer
+        # @param ExpectJobDefaultAlarmStatus: 期望是开启默认告警
+        # @type ExpectJobDefaultAlarmStatus: Integer
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
 
-        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount
+        attr_accessor :JobId, :Region, :Zone, :AppId, :OwnerUin, :CreatorUin, :Name, :JobType, :Status, :CreateTime, :StartTime, :StopTime, :UpdateTime, :TotalRunMillis, :Remark, :LastOpResult, :ClusterName, :LatestJobConfigVersion, :LatestValidJobConfigVersion, :PublishedJobConfigVersion, :RunningCuNum, :CuMem, :StatusDesc, :CurrentRunMillis, :ClusterId, :WebUIUrl, :SchedulerType, :ClusterStatus, :RunningCu, :FlinkVersion, :WorkSpaceId, :WorkSpaceName, :Tags, :EventInfo, :Description, :ScalingType, :RunningCpu, :RunningMem, :OpenJobDefaultAlarm, :ProgressDesc, :ContinueAlarm, :RestartCount, :ExpectJobDefaultAlarmStatus, :JdkVersion
 
-        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil)
+        def initialize(jobid=nil, region=nil, zone=nil, appid=nil, owneruin=nil, creatoruin=nil, name=nil, jobtype=nil, status=nil, createtime=nil, starttime=nil, stoptime=nil, updatetime=nil, totalrunmillis=nil, remark=nil, lastopresult=nil, clustername=nil, latestjobconfigversion=nil, latestvalidjobconfigversion=nil, publishedjobconfigversion=nil, runningcunum=nil, cumem=nil, statusdesc=nil, currentrunmillis=nil, clusterid=nil, webuiurl=nil, schedulertype=nil, clusterstatus=nil, runningcu=nil, flinkversion=nil, workspaceid=nil, workspacename=nil, tags=nil, eventinfo=nil, description=nil, scalingtype=nil, runningcpu=nil, runningmem=nil, openjobdefaultalarm=nil, progressdesc=nil, continuealarm=nil, restartcount=nil, expectjobdefaultalarmstatus=nil, jdkversion=nil)
           @JobId = jobid
           @Region = region
           @Zone = zone
@@ -4026,6 +4081,8 @@ module TencentCloud
           @ProgressDesc = progressdesc
           @ContinueAlarm = continuealarm
           @RestartCount = restartcount
+          @ExpectJobDefaultAlarmStatus = expectjobdefaultalarmstatus
+          @JdkVersion = jdkversion
         end
 
         def deserialize(params)
@@ -4081,6 +4138,8 @@ module TencentCloud
           @ProgressDesc = params['ProgressDesc']
           @ContinueAlarm = params['ContinueAlarm']
           @RestartCount = params['RestartCount']
+          @ExpectJobDefaultAlarmStatus = params['ExpectJobDefaultAlarmStatus']
+          @JdkVersion = params['JdkVersion']
         end
       end
 
@@ -4201,7 +4260,7 @@ module TencentCloud
 
       # ModifyFolder请求参数结构体
       class ModifyFolderRequest < TencentCloud::Common::AbstractModel
-        # @param SourceFolderId: 文件夹ID（必填）
+        # @param SourceFolderId: 只有移动文件夹的场景必填，如果是批量移动作业的场景，非必填。
         # @type SourceFolderId: String
         # @param TargetFolderId: 如需拖拽文件夹，需传入目标文件夹ID
         # @type TargetFolderId: String
@@ -4812,16 +4871,19 @@ module TencentCloud
         # @type SystemProvide: Integer
         # @param Connector: Connector
         # @type Connector: String
+        # @param ConnectorVersion: Connector版本
+        # @type ConnectorVersion: String
 
-        attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide, :Connector
+        attr_accessor :ResourceId, :Version, :Name, :Type, :SystemProvide, :Connector, :ConnectorVersion
 
-        def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil, connector=nil)
+        def initialize(resourceid=nil, version=nil, name=nil, type=nil, systemprovide=nil, connector=nil, connectorversion=nil)
           @ResourceId = resourceid
           @Version = version
           @Name = name
           @Type = type
           @SystemProvide = systemprovide
           @Connector = connector
+          @ConnectorVersion = connectorversion
         end
 
         def deserialize(params)
@@ -4831,6 +4893,7 @@ module TencentCloud
           @Type = params['Type']
           @SystemProvide = params['SystemProvide']
           @Connector = params['Connector']
+          @ConnectorVersion = params['ConnectorVersion']
         end
       end
 
@@ -5565,10 +5628,12 @@ module TencentCloud
         # @type Cpu: Float
         # @param Mem: Mem
         # @type Mem: Float
+        # @param JdkVersion: jdk版本
+        # @type JdkVersion: String
 
-        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties, :Cpu, :Mem
+        attr_accessor :SerialId, :FlinkVersion, :Status, :CreatorUin, :ResourceRefs, :CuSpec, :CreateTime, :UpdateTime, :Properties, :Cpu, :Mem, :JdkVersion
 
-        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil, cpu=nil, mem=nil)
+        def initialize(serialid=nil, flinkversion=nil, status=nil, creatoruin=nil, resourcerefs=nil, cuspec=nil, createtime=nil, updatetime=nil, properties=nil, cpu=nil, mem=nil, jdkversion=nil)
           @SerialId = serialid
           @FlinkVersion = flinkversion
           @Status = status
@@ -5580,6 +5645,7 @@ module TencentCloud
           @Properties = properties
           @Cpu = cpu
           @Mem = mem
+          @JdkVersion = jdkversion
         end
 
         def deserialize(params)
@@ -5608,6 +5674,7 @@ module TencentCloud
           end
           @Cpu = params['Cpu']
           @Mem = params['Mem']
+          @JdkVersion = params['JdkVersion']
         end
       end
 

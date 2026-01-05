@@ -619,30 +619,33 @@ module TencentCloud
 
       # 节省计划使用率数据
       class SavingPlanUsageDetail < TencentCloud::Common::AbstractModel
-        # @param SpType: 节省计划类型
+        # @param SpId: <p>节省计划资源id</p>
+        # @type SpId: String
+        # @param SpType: <p>节省计划类型</p>
         # @type SpType: String
-        # @param Status: 节省计划状态
+        # @param Status: <p>节省计划状态</p>枚举值：<ul><li> 1：  生效</li><li> 2： 失效 </li><li> 3： 作废</li></ul>
         # @type Status: Integer
-        # @param DeductAmount: 累计抵扣的金额（单位：元）
+        # @param DeductAmount: <p>累计抵扣的金额（单位：元）</p>
         # @type DeductAmount: String
-        # @param PromiseAmount: 累计承诺消费金额（单位：元）
+        # @param PromiseAmount: <p>累计承诺消费金额（单位：元）</p>
         # @type PromiseAmount: String
-        # @param NetSavings: 累计净节省金额（单位：元）
+        # @param NetSavings: <p>累计净节省金额（单位：元）</p>
         # @type NetSavings: String
-        # @param UtilizationRate: 使用率
+        # @param UtilizationRate: <p>使用率</p>
         # @type UtilizationRate: Float
-        # @param LossAmount: 累计流失金额（单位：元）
+        # @param LossAmount: <p>累计流失金额（单位：元）</p>
         # @type LossAmount: String
-        # @param DosageAmount: 累计按量计费预期金额（单位：元）
+        # @param DosageAmount: <p>累计按量计费预期金额（单位：元）</p>
         # @type DosageAmount: String
-        # @param CostAmount: 累计成本金额（单位：元）
+        # @param CostAmount: <p>累计成本金额（单位：元）</p>
         # @type CostAmount: String
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # @type Region: Array
 
-        attr_accessor :SpType, :Status, :DeductAmount, :PromiseAmount, :NetSavings, :UtilizationRate, :LossAmount, :DosageAmount, :CostAmount, :Region
+        attr_accessor :SpId, :SpType, :Status, :DeductAmount, :PromiseAmount, :NetSavings, :UtilizationRate, :LossAmount, :DosageAmount, :CostAmount, :Region
 
-        def initialize(sptype=nil, status=nil, deductamount=nil, promiseamount=nil, netsavings=nil, utilizationrate=nil, lossamount=nil, dosageamount=nil, costamount=nil, region=nil)
+        def initialize(spid=nil, sptype=nil, status=nil, deductamount=nil, promiseamount=nil, netsavings=nil, utilizationrate=nil, lossamount=nil, dosageamount=nil, costamount=nil, region=nil)
+          @SpId = spid
           @SpType = sptype
           @Status = status
           @DeductAmount = deductamount
@@ -656,6 +659,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @SpId = params['SpId']
           @SpType = params['SpType']
           @Status = params['Status']
           @DeductAmount = params['DeductAmount']

@@ -533,10 +533,12 @@ module TencentCloud
         # triangle: 三角形面。
         # quadrilateral: 四边形面与三角形面混合生成。
         # @type PolygonType: String
+        # @param ResultFormat: 生成模型的格式，仅限制生成一种格式； 生成模型文件组默认返回obj、glb格式（开启时Geometry参数时，默认为glb格式）； 可选值：STL，USDZ，FBX；
+        # @type ResultFormat: String
 
-        attr_accessor :Prompt, :ImageBase64, :ImageUrl, :MultiViewImages, :EnablePBR, :FaceCount, :GenerateType, :PolygonType
+        attr_accessor :Prompt, :ImageBase64, :ImageUrl, :MultiViewImages, :EnablePBR, :FaceCount, :GenerateType, :PolygonType, :ResultFormat
 
-        def initialize(prompt=nil, imagebase64=nil, imageurl=nil, multiviewimages=nil, enablepbr=nil, facecount=nil, generatetype=nil, polygontype=nil)
+        def initialize(prompt=nil, imagebase64=nil, imageurl=nil, multiviewimages=nil, enablepbr=nil, facecount=nil, generatetype=nil, polygontype=nil, resultformat=nil)
           @Prompt = prompt
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -545,6 +547,7 @@ module TencentCloud
           @FaceCount = facecount
           @GenerateType = generatetype
           @PolygonType = polygontype
+          @ResultFormat = resultformat
         end
 
         def deserialize(params)
@@ -563,6 +566,7 @@ module TencentCloud
           @FaceCount = params['FaceCount']
           @GenerateType = params['GenerateType']
           @PolygonType = params['PolygonType']
+          @ResultFormat = params['ResultFormat']
         end
       end
 
