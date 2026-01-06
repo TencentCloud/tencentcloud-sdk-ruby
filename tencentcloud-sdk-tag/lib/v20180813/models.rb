@@ -1409,13 +1409,11 @@ module TencentCloud
 
       # GetTagKeys请求参数结构体
       class GetTagKeysRequest < TencentCloud::Common::AbstractModel
-        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
-        # 如果是第一次请求，设置为空。
+        # @param PaginationToken: <p>从上一页的响应中获取的下一页的Token值。如果是第一次请求，设置为空。</p>
         # @type PaginationToken: String
-        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
-        # 缺省值：50。
+        # @param MaxResults: <p>每一页返回的数据最大条数，最大1000。缺省值：50。</p>
         # @type MaxResults: Integer
-        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @param Category: <p>标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。</p>
         # @type Category: String
 
         attr_accessor :PaginationToken, :MaxResults, :Category
@@ -1435,9 +1433,9 @@ module TencentCloud
 
       # GetTagKeys返回参数结构体
       class GetTagKeysResponse < TencentCloud::Common::AbstractModel
-        # @param PaginationToken: 获取的下一页的Token值，如果当前是最后一页，返回为空
+        # @param PaginationToken: <p>获取的下一页的Token值，如果当前是最后一页，返回为空</p>
         # @type PaginationToken: String
-        # @param TagKeys: 标签键信息。
+        # @param TagKeys: <p>标签键信息。</p>
         # @type TagKeys: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1459,17 +1457,13 @@ module TencentCloud
 
       # GetTagValues请求参数结构体
       class GetTagValuesRequest < TencentCloud::Common::AbstractModel
-        # @param TagKeys: 标签键。
-        # 返回所有标签键列表对应的标签值。
-        # 最大长度：20
+        # @param TagKeys: <p>标签键。返回所有标签键列表对应的标签值。最大长度：20</p>
         # @type TagKeys: Array
-        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
-        # 如果是第一次请求，设置为空。
+        # @param PaginationToken: <p>从上一页的响应中获取的下一页的Token值。如果是第一次请求，设置为空。</p>
         # @type PaginationToken: String
-        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
-        # 缺省值：50。
+        # @param MaxResults: <p>每一页返回的数据最大条数，最大1000。缺省值：50。</p>
         # @type MaxResults: Integer
-        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @param Category: <p>标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。</p>
         # @type Category: String
 
         attr_accessor :TagKeys, :PaginationToken, :MaxResults, :Category
@@ -1491,9 +1485,9 @@ module TencentCloud
 
       # GetTagValues返回参数结构体
       class GetTagValuesResponse < TencentCloud::Common::AbstractModel
-        # @param PaginationToken: 获取的下一页的Token值，如果当前是最后一页，返回为空
+        # @param PaginationToken: <p>获取的下一页的Token值，如果当前是最后一页，返回为空</p>
         # @type PaginationToken: String
-        # @param Tags: 标签列表。
+        # @param Tags: <p>标签列表。</p>
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1522,17 +1516,13 @@ module TencentCloud
 
       # GetTags请求参数结构体
       class GetTagsRequest < TencentCloud::Common::AbstractModel
-        # @param PaginationToken: 从上一页的响应中获取的下一页的Token值。
-        # 如果是第一次请求，设置为空。
+        # @param PaginationToken: <p>从上一页的响应中获取的下一页的Token值。如果是第一次请求，设置为空。</p>
         # @type PaginationToken: String
-        # @param MaxResults: 每一页返回的数据最大条数，最大1000。
-        # 缺省值：50。
+        # @param MaxResults: <p>每一页返回的数据最大条数，最大1000。缺省值：50。</p>
         # @type MaxResults: Integer
-        # @param TagKeys: 标签键。
-        # 返回所有标签键列表对应的标签。
-        # 最大长度：20
+        # @param TagKeys: <p>标签键。返回所有标签键列表对应的标签。最大长度：20</p>
         # @type TagKeys: Array
-        # @param Category: 标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。
+        # @param Category: <p>标签类型。取值： Custom：自定义标签。 System：系统标签。 All：全部标签。 默认值：All。</p>
         # @type Category: String
 
         attr_accessor :PaginationToken, :MaxResults, :TagKeys, :Category
@@ -1554,9 +1544,9 @@ module TencentCloud
 
       # GetTags返回参数结构体
       class GetTagsResponse < TencentCloud::Common::AbstractModel
-        # @param PaginationToken: 获取的下一页的Token值，如果当前是最后一页，返回为空
+        # @param PaginationToken: <p>获取的下一页的Token值，如果当前是最后一页，返回为空</p>
         # @type PaginationToken: String
-        # @param Tags: 标签列表。
+        # @param Tags: <p>标签列表。</p>
         # @type Tags: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

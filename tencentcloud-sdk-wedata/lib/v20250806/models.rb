@@ -4370,6 +4370,45 @@ module TencentCloud
         end
       end
 
+      # DeleteProject请求参数结构体
+      class DeleteProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 删除的项目ID
+        # @type ProjectId: String
+
+        attr_accessor :ProjectId
+
+        def initialize(projectid=nil)
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # DeleteProject返回参数结构体
+      class DeleteProjectResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.ProjectResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ProjectResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteQualityRuleGroup请求参数结构体
       class DeleteQualityRuleGroupRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id

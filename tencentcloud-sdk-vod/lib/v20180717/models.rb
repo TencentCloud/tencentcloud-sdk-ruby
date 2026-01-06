@@ -4400,10 +4400,12 @@ module TencentCloud
         # 1. 对于选择的分辨率超过模型可生成分辨率时，默认会启用增强。
         # 2. 对于模型可以直出的分辨率，也可以主动选择模型直出低分辨率，使用增强获得指定分辨率。
         # @type EnhanceSwitch: String
+        # @param FrameInterpolate: 是否开启vidu智能插帧。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @type FrameInterpolate: String
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Duration, :Resolution, :AspectRatio, :AudioGeneration, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :EnhanceSwitch
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :Duration, :Resolution, :AspectRatio, :AudioGeneration, :PersonGeneration, :InputComplianceCheck, :OutputComplianceCheck, :EnhanceSwitch, :FrameInterpolate
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, duration=nil, resolution=nil, aspectratio=nil, audiogeneration=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, enhanceswitch=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, duration=nil, resolution=nil, aspectratio=nil, audiogeneration=nil, persongeneration=nil, inputcompliancecheck=nil, outputcompliancecheck=nil, enhanceswitch=nil, frameinterpolate=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
@@ -4416,6 +4418,7 @@ module TencentCloud
           @InputComplianceCheck = inputcompliancecheck
           @OutputComplianceCheck = outputcompliancecheck
           @EnhanceSwitch = enhanceswitch
+          @FrameInterpolate = frameinterpolate
         end
 
         def deserialize(params)
@@ -4431,6 +4434,7 @@ module TencentCloud
           @InputComplianceCheck = params['InputComplianceCheck']
           @OutputComplianceCheck = params['OutputComplianceCheck']
           @EnhanceSwitch = params['EnhanceSwitch']
+          @FrameInterpolate = params['FrameInterpolate']
         end
       end
 
@@ -7198,13 +7202,11 @@ module TencentCloud
         # <li>GEM：Gemini；</li>
         # <li>Qwen：千问。</li>
         # <li>Hunyuan：混元。</li>
-        # <li>Mingmou：明眸。</li>
         # @type ModelName: String
         # @param ModelVersion: 模型版本。取值：
         # <li>当 ModelName 是 GEM，可选值为 2.5、3.0；</li>
         # <li>当 ModelName 是 Qwen，可选值为 0925；</li>
         # <li>当 ModelName 是 Hunyuan，可选值为 3.0；</li>
-        # <li>当 ModelName 是 Mingmou，可选值为 1.0；</li>
         # @type ModelVersion: String
         # @param FileInfos: AIGC 生图任务的输入图片的文件信息。默认只支持指定1个，使用模型 GEM 时，版本2.5最多指定3个，版本3.0最多指定14个。
         # @type FileInfos: Array

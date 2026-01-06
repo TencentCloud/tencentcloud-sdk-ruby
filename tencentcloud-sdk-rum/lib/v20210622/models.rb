@@ -2769,8 +2769,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 11
-        deprecate :IsDemo=, :none, 2025, 11
+        deprecate :IsDemo, :none, 2026, 1
+        deprecate :IsDemo=, :none, 2026, 1
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -3281,17 +3281,20 @@ module TencentCloud
         # @type ID: Integer
         # @param IsDemo: 该参数已废弃
         # @type IsDemo: Integer
+        # @param IDList: 项目 ID 列表
+        # @type IDList: Array
 
-        attr_accessor :EndTime, :StartTime, :ID, :IsDemo
+        attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2025, 11
-        deprecate :IsDemo=, :none, 2025, 11
+        deprecate :IsDemo, :none, 2026, 1
+        deprecate :IsDemo=, :none, 2026, 1
 
-        def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil)
+        def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
           @StartTime = starttime
           @ID = id
           @IsDemo = isdemo
+          @IDList = idlist
         end
 
         def deserialize(params)
@@ -3299,6 +3302,7 @@ module TencentCloud
           @StartTime = params['StartTime']
           @ID = params['ID']
           @IsDemo = params['IsDemo']
+          @IDList = params['IDList']
         end
       end
 
@@ -3415,12 +3419,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2025, 11
-        deprecate :InstanceStatuses=, :none, 2025, 11
-        deprecate :InstanceIds, :none, 2025, 11
-        deprecate :InstanceIds=, :none, 2025, 11
-        deprecate :IsDemo, :none, 2025, 11
-        deprecate :IsDemo=, :none, 2025, 11
+        deprecate :InstanceStatuses, :none, 2026, 1
+        deprecate :InstanceStatuses=, :none, 2026, 1
+        deprecate :InstanceIds, :none, 2026, 1
+        deprecate :InstanceIds=, :none, 2026, 1
+        deprecate :IsDemo, :none, 2026, 1
+        deprecate :IsDemo=, :none, 2026, 1
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses

@@ -863,8 +863,9 @@ module TencentCloud
         # - 是否必传基于[控制台](https://console.cloud.tencent.com/faceid/access)申请业务流程时配置的提示。
         # - 最长长度32位。中文请使用UTF-8编码。
         # @type Name: String
-        # @param RedirectUrl: 认证结束后重定向的回调链接地址。
+        # @param RedirectUrl: 认证结束后重定向的回调链接地址，仅微信H5场景使用。
         # - 最长长度1024位。
+        # - 默认值：[腾讯云人脸核身产品介绍页](URL Here)https://cloud.tencent.com/product/faceid?Is=sdk-topnav
         # @type RedirectUrl: String
         # @param Extra: 透传字段，在获取验证结果时返回。
         # - 最长长度1024位。
@@ -1609,7 +1610,7 @@ module TencentCloud
         # @param RuleId: 用于细分客户使用场景，由腾讯侧在线下对接时分配。
         # @type RuleId: String
         # @param InfoType: 指定拉取的结果信息。
-        # - 取值（0：全部；1：文本类；2：身份证信息；3：视频最佳截图信息）。
+        # - 取值（0：全部；1：文本类；2：身份证信息；3：视频最佳截图信息；4：视频信息；5：意愿核身朗读模式相关结果；6：意愿核身问答/点头模式相关结果）。
         # - 例如 13 表示拉取文本类、视频最佳截图信息。
         # - 默认值：0
         # @type InfoType: String

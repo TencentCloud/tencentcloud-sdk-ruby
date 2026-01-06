@@ -1496,6 +1496,8 @@ module TencentCloud
         # @type Image: :class:`Tencentcloud::Aiart.v20221229.models.Image`
         # @param Style: 绘画风格当前仅支持美术馆风格（gallerying）。
         # @type Style: String
+        # @param Mode: 特效模式，默认使用人像模式。 Person：人像模式，仅支持上传人像图片，人像生成效果更好【这里需要加非人脸的拦截】。 Pet：宠物模式，支持宠物等非人像图片。 示例值：Person
+        # @type Mode: String
         # @param LogoAdd: 为生成结果图添加显式水印标识的开关，默认为1。
         # 1：添加。
         # 0：不添加。
@@ -1506,11 +1508,12 @@ module TencentCloud
         # 默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。
         # @type LogoParam: :class:`Tencentcloud::Aiart.v20221229.models.LogoParam`
 
-        attr_accessor :Image, :Style, :LogoAdd, :LogoParam
+        attr_accessor :Image, :Style, :Mode, :LogoAdd, :LogoParam
 
-        def initialize(image=nil, style=nil, logoadd=nil, logoparam=nil)
+        def initialize(image=nil, style=nil, mode=nil, logoadd=nil, logoparam=nil)
           @Image = image
           @Style = style
+          @Mode = mode
           @LogoAdd = logoadd
           @LogoParam = logoparam
         end
@@ -1521,6 +1524,7 @@ module TencentCloud
             @Image.deserialize(params['Image'])
           end
           @Style = params['Style']
+          @Mode = params['Mode']
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?
             @LogoParam = LogoParam.new

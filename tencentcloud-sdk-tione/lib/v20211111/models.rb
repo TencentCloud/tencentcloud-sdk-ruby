@@ -2291,8 +2291,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2025, 12
-        deprecate :ServiceCategory=, :none, 2025, 12
+        deprecate :ServiceCategory, :none, 2026, 1
+        deprecate :ServiceCategory=, :none, 2026, 1
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -3329,7 +3329,7 @@ module TencentCloud
         # @type OrderField: String
         # @param Order: 排序方向; 枚举值: ASC | DESC；默认DESC
         # @type Order: String
-        # @param Offset: 分页查询起始位置，如：Limit为100，第一页Offset为0，第二页Offset为100....即每页左边为闭区间; 默认0
+        # @param Offset: 分页查询起始位置，如：Limit为100，第一页Offset为0，第二页Offset为100...即每页左边为闭区间; 默认0
         # @type Offset: Integer
         # @param Limit: 分页查询每页大小，最大20000; 默认10
         # @type Limit: Integer
@@ -3407,8 +3407,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2025, 12
-        deprecate :ServiceCategory=, :none, 2025, 12
+        deprecate :ServiceCategory, :none, 2026, 1
+        deprecate :ServiceCategory=, :none, 2026, 1
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -3494,8 +3494,8 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2025, 12
-        deprecate :ServiceCategory=, :none, 2025, 12
+        deprecate :ServiceCategory, :none, 2026, 1
+        deprecate :ServiceCategory=, :none, 2026, 1
 
         def initialize(servicegroupid=nil, servicecategory=nil)
           @ServiceGroupId = servicegroupid
@@ -3552,8 +3552,8 @@ module TencentCloud
 
         attr_accessor :Offset, :Limit, :Order, :OrderField, :Filters, :TagFilters, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2025, 12
-        deprecate :ServiceCategory=, :none, 2025, 12
+        deprecate :ServiceCategory, :none, 2026, 1
+        deprecate :ServiceCategory=, :none, 2026, 1
 
         def initialize(offset=nil, limit=nil, order=nil, orderfield=nil, filters=nil, tagfilters=nil, servicecategory=nil)
           @Offset = offset
@@ -3685,8 +3685,8 @@ module TencentCloud
 
         attr_accessor :ServiceId, :ServiceCategory
         extend Gem::Deprecate
-        deprecate :ServiceCategory, :none, 2025, 12
-        deprecate :ServiceCategory=, :none, 2025, 12
+        deprecate :ServiceCategory, :none, 2026, 1
+        deprecate :ServiceCategory=, :none, 2026, 1
 
         def initialize(serviceid=nil, servicecategory=nil)
           @ServiceId = serviceid
@@ -6709,8 +6709,8 @@ module TencentCloud
 
         attr_accessor :Name, :Uid, :ChargeType, :Phase, :IP, :CreateTime, :Containers, :ContainerInfos, :CrossTenantENIInfo, :Status, :StartScheduleTime, :Message, :NodeIP, :NodeId, :ResourceGroupId, :ResourceGroupName, :ResourceInfo
         extend Gem::Deprecate
-        deprecate :Containers, :none, 2025, 12
-        deprecate :Containers=, :none, 2025, 12
+        deprecate :Containers, :none, 2026, 1
+        deprecate :Containers=, :none, 2026, 1
 
         def initialize(name=nil, uid=nil, chargetype=nil, phase=nil, ip=nil, createtime=nil, containers=nil, containerinfos=nil, crosstenanteniinfo=nil, status=nil, startscheduletime=nil, message=nil, nodeip=nil, nodeid=nil, resourcegroupid=nil, resourcegroupname=nil, resourceinfo=nil)
           @Name = name
@@ -7605,10 +7605,10 @@ module TencentCloud
 
         attr_accessor :ServiceGroupId, :ServiceId, :ServiceGroupName, :ServiceDescription, :ServiceInfo, :ClusterId, :Region, :Namespace, :ChargeType, :ResourceGroupId, :ResourceGroupName, :Tags, :IngressName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :SubUin, :AppId, :BusinessStatus, :ServiceLimit, :ScheduledAction, :CreateFailedReason, :Status, :BillingInfo, :Weight, :CreateSource, :Version, :LatestVersion, :ResourceGroupSWType, :ArchiveStatus, :DeployType, :InstancePerReplicas, :MonitorSource, :SubUinName, :SchedulingPolicy, :ExternalResourceGroups
         extend Gem::Deprecate
-        deprecate :ServiceLimit, :none, 2025, 12
-        deprecate :ServiceLimit=, :none, 2025, 12
-        deprecate :ScheduledAction, :none, 2025, 12
-        deprecate :ScheduledAction=, :none, 2025, 12
+        deprecate :ServiceLimit, :none, 2026, 1
+        deprecate :ServiceLimit=, :none, 2026, 1
+        deprecate :ScheduledAction, :none, 2026, 1
+        deprecate :ScheduledAction=, :none, 2026, 1
 
         def initialize(servicegroupid=nil, serviceid=nil, servicegroupname=nil, servicedescription=nil, serviceinfo=nil, clusterid=nil, region=nil, namespace=nil, chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, tags=nil, ingressname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, subuin=nil, appid=nil, businessstatus=nil, servicelimit=nil, scheduledaction=nil, createfailedreason=nil, status=nil, billinginfo=nil, weight=nil, createsource=nil, version=nil, latestversion=nil, resourcegroupswtype=nil, archivestatus=nil, deploytype=nil, instanceperreplicas=nil, monitorsource=nil, subuinname=nil, schedulingpolicy=nil, externalresourcegroups=nil)
           @ServiceGroupId = servicegroupid
@@ -8152,10 +8152,10 @@ module TencentCloud
 
         attr_accessor :Replicas, :ImageInfo, :Env, :Resources, :InstanceType, :ModelInfo, :LogEnable, :LogConfig, :AuthorizationEnable, :HorizontalPodAutoscaler, :Status, :Weight, :ResourceTotal, :OldReplicas, :HybridBillingPrepaidReplicas, :OldHybridBillingPrepaidReplicas, :ModelHotUpdateEnable, :InstanceAlias, :ScaleMode, :CronScaleJobs, :ScaleStrategy, :ScheduledAction, :PodList, :Pods, :PodInfos, :ServiceLimit, :ModelTurboEnable, :VolumeMount, :InferCodeInfo, :Command, :ServiceEIP, :ServicePort, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :InstancePerReplicas, :VolumeMounts, :SchedulingStrategy, :NodeCount
         extend Gem::Deprecate
-        deprecate :PodList, :none, 2025, 12
-        deprecate :PodList=, :none, 2025, 12
-        deprecate :Pods, :none, 2025, 12
-        deprecate :Pods=, :none, 2025, 12
+        deprecate :PodList, :none, 2026, 1
+        deprecate :PodList=, :none, 2026, 1
+        deprecate :Pods, :none, 2026, 1
+        deprecate :Pods=, :none, 2026, 1
 
         def initialize(replicas=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, modelinfo=nil, logenable=nil, logconfig=nil, authorizationenable=nil, horizontalpodautoscaler=nil, status=nil, weight=nil, resourcetotal=nil, oldreplicas=nil, hybridbillingprepaidreplicas=nil, oldhybridbillingprepaidreplicas=nil, modelhotupdateenable=nil, instancealias=nil, scalemode=nil, cronscalejobs=nil, scalestrategy=nil, scheduledaction=nil, podlist=nil, pods=nil, podinfos=nil, servicelimit=nil, modelturboenable=nil, volumemount=nil, infercodeinfo=nil, command=nil, serviceeip=nil, serviceport=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, instanceperreplicas=nil, volumemounts=nil, schedulingstrategy=nil, nodecount=nil)
           @Replicas = replicas
@@ -9429,8 +9429,8 @@ module TencentCloud
 
         attr_accessor :Replicas, :UpdatedReplicas, :ReadyReplicas, :AvailableReplicas, :UnavailableReplicas, :Status, :StatefulSetCondition, :Conditions, :Reason
         extend Gem::Deprecate
-        deprecate :StatefulSetCondition, :none, 2025, 12
-        deprecate :StatefulSetCondition=, :none, 2025, 12
+        deprecate :StatefulSetCondition, :none, 2026, 1
+        deprecate :StatefulSetCondition=, :none, 2026, 1
 
         def initialize(replicas=nil, updatedreplicas=nil, readyreplicas=nil, availablereplicas=nil, unavailablereplicas=nil, status=nil, statefulsetcondition=nil, conditions=nil, reason=nil)
           @Replicas = replicas

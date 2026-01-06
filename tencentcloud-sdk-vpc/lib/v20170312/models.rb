@@ -625,12 +625,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2025, 12
-        deprecate :AddressTemplateName=, :none, 2025, 12
-        deprecate :From, :none, 2025, 12
-        deprecate :From=, :none, 2025, 12
-        deprecate :To, :none, 2025, 12
-        deprecate :To=, :none, 2025, 12
+        deprecate :AddressTemplateName, :none, 2026, 1
+        deprecate :AddressTemplateName=, :none, 2026, 1
+        deprecate :From, :none, 2026, 1
+        deprecate :From=, :none, 2026, 1
+        deprecate :To, :none, 2026, 1
+        deprecate :To=, :none, 2026, 1
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -805,8 +805,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2025, 12
-        deprecate :ApplicableForCLB=, :none, 2025, 12
+        deprecate :ApplicableForCLB, :none, 2026, 1
+        deprecate :ApplicableForCLB=, :none, 2026, 1
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3429,8 +3429,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2025, 12
-        deprecate :ConfilctId=, :none, 2025, 12
+        deprecate :ConfilctId, :none, 2026, 1
+        deprecate :ConfilctId=, :none, 2026, 1
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -4885,8 +4885,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2025, 12
-        deprecate :SubnetId=, :none, 2025, 12
+        deprecate :SubnetId, :none, 2026, 1
+        deprecate :SubnetId=, :none, 2026, 1
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -6627,8 +6627,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2025, 12
-        deprecate :IsPassService=, :none, 2025, 12
+        deprecate :IsPassService, :none, 2026, 1
+        deprecate :IsPassService=, :none, 2026, 1
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -16284,8 +16284,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2025, 12
-        deprecate :VpcEndpointServiceUserSet=, :none, 2025, 12
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 1
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 1
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -18952,18 +18952,21 @@ module TencentCloud
         # @type VpcId: String
         # @param IpAddress: 云服务器内网IP。
         # @type IpAddress: String
-        # @param Bandwidth: 流控带宽值。
+        # @param Bandwidth: 网关流控出方向带宽值，当值为-1时，代表未限速；当值大于等于0时，限速带宽上限为返回值。
         # @type Bandwidth: Integer
         # @param CreateTime: 创建时间。
         # @type CreateTime: String
+        # @param InBandwidth: 网关流控入方向带宽值，当值为-1时，代表未限速；当值大于等于0时，限速带宽上限为返回值。
+        # @type InBandwidth: Integer
 
-        attr_accessor :VpcId, :IpAddress, :Bandwidth, :CreateTime
+        attr_accessor :VpcId, :IpAddress, :Bandwidth, :CreateTime, :InBandwidth
 
-        def initialize(vpcid=nil, ipaddress=nil, bandwidth=nil, createtime=nil)
+        def initialize(vpcid=nil, ipaddress=nil, bandwidth=nil, createtime=nil, inbandwidth=nil)
           @VpcId = vpcid
           @IpAddress = ipaddress
           @Bandwidth = bandwidth
           @CreateTime = createtime
+          @InBandwidth = inbandwidth
         end
 
         def deserialize(params)
@@ -18971,6 +18974,7 @@ module TencentCloud
           @IpAddress = params['IpAddress']
           @Bandwidth = params['Bandwidth']
           @CreateTime = params['CreateTime']
+          @InBandwidth = params['InBandwidth']
         end
       end
 
@@ -19544,8 +19548,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2025, 12
-        deprecate :IntegrityAlgorith=, :none, 2025, 12
+        deprecate :IntegrityAlgorith, :none, 2026, 1
+        deprecate :IntegrityAlgorith=, :none, 2026, 1
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -20956,10 +20960,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2025, 12
-        deprecate :StartTime=, :none, 2025, 12
-        deprecate :EndTime, :none, 2025, 12
-        deprecate :EndTime=, :none, 2025, 12
+        deprecate :StartTime, :none, 2026, 1
+        deprecate :StartTime=, :none, 2026, 1
+        deprecate :EndTime, :none, 2026, 1
+        deprecate :EndTime=, :none, 2026, 1
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids

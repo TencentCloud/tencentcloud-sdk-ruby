@@ -4876,7 +4876,6 @@ module TencentCloud
 
         # 不同模型支持的宽高比:
         # 1. GEM支持：1:1、3:2、2:3、3:4、4:3、4:5、5:4、9:16、16:9 和 21:9。
-        # 2. Jimeng：合用户prompt意图、参考图尺寸，由模型智能判断生图宽高比。
 
         # 注：具体模型的宽高比参数，可查看相应模型官网获取更完整描述。
         # @type AspectRatio: String
@@ -4884,20 +4883,6 @@ module TencentCloud
 
         # 支持该参数的模型：
         # 支持选择: 720P, 1080P, 2K, 4K。
-
-        # 1. Jimeng推荐通过prompt指定图片分辨率和宽高比。
-        #     2K
-        #     2048x2048 （1:1）
-        #     2304x1728（4:3）
-        #     2496x1664 （3:2）
-        #     2560x1440 （16:9）
-        #     3024x1296 （21:9）
-        #     4K
-        #     4096x4096 （1:1）
-        #     4694x3520（4:3）
-        #     4992x3328 （3:2）
-        #     5404x3040 （16:9）
-        #     6198x2656 （21:9）
         # @type Resolution: String
 
         attr_accessor :AspectRatio, :Resolution
@@ -17778,19 +17763,23 @@ module TencentCloud
         # @type ImageHeight: Integer
         # @param ImageWidth: 图片输出宽度，单位：像素。
         # @type ImageWidth: Integer
+        # @param ImageSize: 图片输出分辨率，取值：1K/2K/4K。
+        # @type ImageSize: String
 
-        attr_accessor :AspectRatio, :ImageHeight, :ImageWidth
+        attr_accessor :AspectRatio, :ImageHeight, :ImageWidth, :ImageSize
 
-        def initialize(aspectratio=nil, imageheight=nil, imagewidth=nil)
+        def initialize(aspectratio=nil, imageheight=nil, imagewidth=nil, imagesize=nil)
           @AspectRatio = aspectratio
           @ImageHeight = imageheight
           @ImageWidth = imagewidth
+          @ImageSize = imagesize
         end
 
         def deserialize(params)
           @AspectRatio = params['AspectRatio']
           @ImageHeight = params['ImageHeight']
           @ImageWidth = params['ImageWidth']
+          @ImageSize = params['ImageSize']
         end
       end
 
@@ -17804,13 +17793,16 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param SignedUrl: 输出文件的URL。
         # @type SignedUrl: String
+        # @param Content: 图生文任务的处理结果。
+        # @type Content: String
 
-        attr_accessor :Path, :OutputStorage, :SignedUrl
+        attr_accessor :Path, :OutputStorage, :SignedUrl, :Content
 
-        def initialize(path=nil, outputstorage=nil, signedurl=nil)
+        def initialize(path=nil, outputstorage=nil, signedurl=nil, content=nil)
           @Path = path
           @OutputStorage = outputstorage
           @SignedUrl = signedurl
+          @Content = content
         end
 
         def deserialize(params)
@@ -17820,6 +17812,7 @@ module TencentCloud
             @OutputStorage.deserialize(params['OutputStorage'])
           end
           @SignedUrl = params['SignedUrl']
+          @Content = params['Content']
         end
       end
 

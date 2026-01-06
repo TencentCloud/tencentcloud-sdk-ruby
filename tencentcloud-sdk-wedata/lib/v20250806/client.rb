@@ -773,6 +773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除项目
+
+        # @param request: Request instance for DeleteProject.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::DeleteProjectRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::DeleteProjectResponse`
+        def DeleteProject(request)
+          body = send_request('DeleteProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除项目用户
 
         # @param request: Request instance for DeleteProjectMember.
