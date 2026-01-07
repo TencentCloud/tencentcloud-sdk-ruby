@@ -1550,10 +1550,10 @@ module TencentCloud
 
         attr_accessor :FunctionName, :RetMsg, :RequestId, :StartTime, :RetCode, :InvokeFinished, :Duration, :BillDuration, :MemUsage, :Log, :Level, :Source, :RetryNum
         extend Gem::Deprecate
-        deprecate :Level, :none, 2025, 11
-        deprecate :Level=, :none, 2025, 11
-        deprecate :Source, :none, 2025, 11
-        deprecate :Source=, :none, 2025, 11
+        deprecate :Level, :none, 2026, 1
+        deprecate :Level=, :none, 2026, 1
+        deprecate :Source, :none, 2026, 1
+        deprecate :Source=, :none, 2026, 1
 
         def initialize(functionname=nil, retmsg=nil, requestid=nil, starttime=nil, retcode=nil, invokefinished=nil, duration=nil, billduration=nil, memusage=nil, log=nil, level=nil, source=nil, retrynum=nil)
           @FunctionName = functionname
@@ -3262,7 +3262,20 @@ module TencentCloud
         # @type Namespace: String
         # @param Description: 函数描述，支持模糊搜索
         # @type Description: String
-        # @param Filters: `过滤特定属性或者有特定标签的函数。`- 传值方式key-value 进行传值  例如："Filters": [{ "Name": "Status", "Values": ["CreateFailed","Creating"]}, {"Name": "Type","Values": ["HTTP"]}]上述条件的函数是，函数状态为创建失败或者创建中，且函数类型为 HTTP 函数`如果通过标签进行过滤：`- tag:tag-key - String - 是否必填：否 - （过滤条件）按照标签键值对进行过滤。 tag-key使用具体的标签键进行替换。示例值："Filters": [{"Name":"tag-dmtest","Values":["dmtest"]}]`入参限制：`1.每次请求的Filters的上限为10，Filter.Values的上限为5。2.[VpcId', 'SubnetId', 'ClsTopicId', 'ClsLogsetId', 'Role', 'CfsId', 'CfsMountInsId', 'Eip'] 过滤的Name 为这些属性时， values 只能传一个值3.['Status', 'Runtime', 'Type', 'PublicNetStatus', 'AsyncRunEnable', 'TraceEnable', 'Stamp'] 过滤的Name 为这些属性时 ，values 可以传多个值
+        # @param Filters: `过滤特定属性或者有特定标签的函数。`
+        # - 传值方式
+        #    key-value 进行传值
+        #     例如："Filters": [{ "Name": "Status", "Values": ["CreateFailed","Creating"]}, {"Name": "Type","Values": ["HTTP"]}]上述条件的函数是，函数状态为创建失败或者创建中，且函数类型为 HTTP 函数
+        # - `如果通过标签进行过滤：`Filter 中  Name 字段需要以 `tag-` 起始，`-` 后跟着标签名称，`Values` 指定对应的标签值
+        #    示例值："Filters": [{"Name":"tag-dmtest","Values":["dmtest"]}]
+        # - `入参限制：`
+        # `Filter`:对应的`Name`支持的字段有：
+        # `单 Value Filter`支持的 `Name` 字段入参：['VpcId', 'SubnetId', 'ClsTopicId', 'ClsLogsetId', 'Role', 'CfsId', 'CfsMountInsId', 'Eip']
+        # `多 Value Filter`支持的 `Name` 字段入参：['Status', 'Runtime', 'Type', 'PublicNetStatus', 'AsyncRunEnable', 'TraceEnable', 'Stamp']
+
+        # 单次 API 请求的`Filters` 的上限为`10`, 即Filters 最多有 10个 {"Name":"","Values":[]} `Name -Values` 的键值对。`Filter.Values`的上限，由 `Filter` 的 `Name` 决定。
+        # 1.[ VpcId', 'SubnetId', 'ClsTopicId', 'ClsLogsetId', 'Role', 'CfsId', 'CfsMountInsId', 'Eip' ] 过滤的 Name 为这些属性时， Values `只能传一个值`
+        #  2.['Status', 'Runtime', 'Type', 'PublicNetStatus', 'AsyncRunEnable', 'TraceEnable', 'Stamp'] 过滤的Name 为这些属性时 ，Values `至多可以传20个值`
         # @type Filters: Array
 
         attr_accessor :Order, :Orderby, :Offset, :Limit, :SearchKey, :Namespace, :Description, :Filters
@@ -4654,12 +4667,12 @@ module TencentCloud
 
         attr_accessor :ModTime, :Type, :TriggerDesc, :TriggerName, :AddTime, :Enable, :CustomArgument, :AvailableStatus, :ResourceId, :BindStatus, :TriggerAttribute, :Qualifier, :Description
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 11
-        deprecate :ResourceId=, :none, 2025, 11
-        deprecate :BindStatus, :none, 2025, 11
-        deprecate :BindStatus=, :none, 2025, 11
-        deprecate :TriggerAttribute, :none, 2025, 11
-        deprecate :TriggerAttribute=, :none, 2025, 11
+        deprecate :ResourceId, :none, 2026, 1
+        deprecate :ResourceId=, :none, 2026, 1
+        deprecate :BindStatus, :none, 2026, 1
+        deprecate :BindStatus=, :none, 2026, 1
+        deprecate :TriggerAttribute, :none, 2026, 1
+        deprecate :TriggerAttribute=, :none, 2026, 1
 
         def initialize(modtime=nil, type=nil, triggerdesc=nil, triggername=nil, addtime=nil, enable=nil, customargument=nil, availablestatus=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, qualifier=nil, description=nil)
           @ModTime = modtime
@@ -4818,12 +4831,12 @@ module TencentCloud
 
         attr_accessor :Enable, :Qualifier, :TriggerName, :Type, :TriggerDesc, :AvailableStatus, :CustomArgument, :AddTime, :ModTime, :ResourceId, :BindStatus, :TriggerAttribute, :Description, :BoundResources
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2025, 11
-        deprecate :ResourceId=, :none, 2025, 11
-        deprecate :BindStatus, :none, 2025, 11
-        deprecate :BindStatus=, :none, 2025, 11
-        deprecate :TriggerAttribute, :none, 2025, 11
-        deprecate :TriggerAttribute=, :none, 2025, 11
+        deprecate :ResourceId, :none, 2026, 1
+        deprecate :ResourceId=, :none, 2026, 1
+        deprecate :BindStatus, :none, 2026, 1
+        deprecate :BindStatus=, :none, 2026, 1
+        deprecate :TriggerAttribute, :none, 2026, 1
+        deprecate :TriggerAttribute=, :none, 2026, 1
 
         def initialize(enable=nil, qualifier=nil, triggername=nil, type=nil, triggerdesc=nil, availablestatus=nil, customargument=nil, addtime=nil, modtime=nil, resourceid=nil, bindstatus=nil, triggerattribute=nil, description=nil, boundresources=nil)
           @Enable = enable

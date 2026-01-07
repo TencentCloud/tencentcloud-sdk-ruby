@@ -1126,10 +1126,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2025, 12
-        deprecate :Ftitle=, :none, 2025, 12
-        deprecate :Config, :none, 2025, 12
-        deprecate :Config=, :none, 2025, 12
+        deprecate :Ftitle, :none, 2026, 1
+        deprecate :Ftitle=, :none, 2026, 1
+        deprecate :Config, :none, 2026, 1
+        deprecate :Config=, :none, 2026, 1
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -13310,12 +13310,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2025, 12
-        deprecate :DetetcFunctionKey=, :none, 2025, 12
-        deprecate :DetetcFunctionValue, :none, 2025, 12
-        deprecate :DetetcFunctionValue=, :none, 2025, 12
-        deprecate :DetetcTime, :none, 2025, 12
-        deprecate :DetetcTime=, :none, 2025, 12
+        deprecate :DetetcFunctionKey, :none, 2026, 1
+        deprecate :DetetcFunctionKey=, :none, 2026, 1
+        deprecate :DetetcFunctionValue, :none, 2026, 1
+        deprecate :DetetcFunctionValue=, :none, 2026, 1
+        deprecate :DetetcTime, :none, 2026, 1
+        deprecate :DetetcTime=, :none, 2026, 1
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

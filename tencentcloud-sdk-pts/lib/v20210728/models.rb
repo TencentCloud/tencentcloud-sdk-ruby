@@ -402,15 +402,18 @@ module TencentCloud
         # @type GracefulStopSeconds: Integer
         # @param Resources: 资源数
         # @type Resources: Integer
+        # @param Mode: 压力模型
+        # @type Mode: String
 
-        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds, :Resources
+        attr_accessor :Stages, :IterationCount, :MaxRequestsPerSecond, :GracefulStopSeconds, :Resources, :Mode
 
-        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil, gracefulstopseconds=nil, resources=nil)
+        def initialize(stages=nil, iterationcount=nil, maxrequestspersecond=nil, gracefulstopseconds=nil, resources=nil, mode=nil)
           @Stages = stages
           @IterationCount = iterationcount
           @MaxRequestsPerSecond = maxrequestspersecond
           @GracefulStopSeconds = gracefulstopseconds
           @Resources = resources
+          @Mode = mode
         end
 
         def deserialize(params)
@@ -426,6 +429,7 @@ module TencentCloud
           @MaxRequestsPerSecond = params['MaxRequestsPerSecond']
           @GracefulStopSeconds = params['GracefulStopSeconds']
           @Resources = params['Resources']
+          @Mode = params['Mode']
         end
       end
 
@@ -4086,10 +4090,12 @@ module TencentCloud
         # @type TargetRequestsPerSecond: Integer
         # @param GracefulStopSeconds: 优雅关停的等待时间
         # @type GracefulStopSeconds: Integer
+        # @param IterationCount: 场景最大执行次数
+        # @type IterationCount: Integer
 
-        attr_accessor :MaxRequestsPerSecond, :DurationSeconds, :TargetVirtualUsers, :Resources, :StartRequestsPerSecond, :TargetRequestsPerSecond, :GracefulStopSeconds
+        attr_accessor :MaxRequestsPerSecond, :DurationSeconds, :TargetVirtualUsers, :Resources, :StartRequestsPerSecond, :TargetRequestsPerSecond, :GracefulStopSeconds, :IterationCount
 
-        def initialize(maxrequestspersecond=nil, durationseconds=nil, targetvirtualusers=nil, resources=nil, startrequestspersecond=nil, targetrequestspersecond=nil, gracefulstopseconds=nil)
+        def initialize(maxrequestspersecond=nil, durationseconds=nil, targetvirtualusers=nil, resources=nil, startrequestspersecond=nil, targetrequestspersecond=nil, gracefulstopseconds=nil, iterationcount=nil)
           @MaxRequestsPerSecond = maxrequestspersecond
           @DurationSeconds = durationseconds
           @TargetVirtualUsers = targetvirtualusers
@@ -4097,6 +4103,7 @@ module TencentCloud
           @StartRequestsPerSecond = startrequestspersecond
           @TargetRequestsPerSecond = targetrequestspersecond
           @GracefulStopSeconds = gracefulstopseconds
+          @IterationCount = iterationcount
         end
 
         def deserialize(params)
@@ -4107,6 +4114,7 @@ module TencentCloud
           @StartRequestsPerSecond = params['StartRequestsPerSecond']
           @TargetRequestsPerSecond = params['TargetRequestsPerSecond']
           @GracefulStopSeconds = params['GracefulStopSeconds']
+          @IterationCount = params['IterationCount']
         end
       end
 

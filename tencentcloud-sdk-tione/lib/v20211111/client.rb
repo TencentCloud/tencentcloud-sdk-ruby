@@ -1162,6 +1162,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改Notebook
+
+        # @param request: Request instance for ModifyNotebook.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyNotebookRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyNotebookResponse`
+        def ModifyNotebook(request)
+          body = send_request('ModifyNotebook', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNotebookResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改Notebook标签
 
         # @param request: Request instance for ModifyNotebookTags.

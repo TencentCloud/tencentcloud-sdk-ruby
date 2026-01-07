@@ -34687,10 +34687,12 @@ module TencentCloud
         # @type HostOpProcessTree: String
         # @param IPAnalyse: IP分析
         # @type IPAnalyse: :class:`Tencentcloud::Cwp.v20180228.models.IPAnalyse`
+        # @param NetResponsePayload: 响应数据包 base64编码
+        # @type NetResponsePayload: String
 
-        attr_accessor :Status, :SrcIP, :Location, :VulName, :VulId, :CVEId, :AttackLevel, :VulDefenceStatus, :VulSupportDefense, :SvcPs, :NetPayload, :AbnormalAction, :Uuid, :Id, :MachineExtraInfo, :DstPort, :Count, :PayVersion, :Quuid, :MergeTime, :Type, :HostOpType, :HostOpProcessTree, :IPAnalyse
+        attr_accessor :Status, :SrcIP, :Location, :VulName, :VulId, :CVEId, :AttackLevel, :VulDefenceStatus, :VulSupportDefense, :SvcPs, :NetPayload, :AbnormalAction, :Uuid, :Id, :MachineExtraInfo, :DstPort, :Count, :PayVersion, :Quuid, :MergeTime, :Type, :HostOpType, :HostOpProcessTree, :IPAnalyse, :NetResponsePayload
 
-        def initialize(status=nil, srcip=nil, location=nil, vulname=nil, vulid=nil, cveid=nil, attacklevel=nil, vuldefencestatus=nil, vulsupportdefense=nil, svcps=nil, netpayload=nil, abnormalaction=nil, uuid=nil, id=nil, machineextrainfo=nil, dstport=nil, count=nil, payversion=nil, quuid=nil, mergetime=nil, type=nil, hostoptype=nil, hostopprocesstree=nil, ipanalyse=nil)
+        def initialize(status=nil, srcip=nil, location=nil, vulname=nil, vulid=nil, cveid=nil, attacklevel=nil, vuldefencestatus=nil, vulsupportdefense=nil, svcps=nil, netpayload=nil, abnormalaction=nil, uuid=nil, id=nil, machineextrainfo=nil, dstport=nil, count=nil, payversion=nil, quuid=nil, mergetime=nil, type=nil, hostoptype=nil, hostopprocesstree=nil, ipanalyse=nil, netresponsepayload=nil)
           @Status = status
           @SrcIP = srcip
           @Location = location
@@ -34715,6 +34717,7 @@ module TencentCloud
           @HostOpType = hostoptype
           @HostOpProcessTree = hostopprocesstree
           @IPAnalyse = ipanalyse
+          @NetResponsePayload = netresponsepayload
         end
 
         def deserialize(params)
@@ -34748,6 +34751,7 @@ module TencentCloud
             @IPAnalyse = IPAnalyse.new
             @IPAnalyse.deserialize(params['IPAnalyse'])
           end
+          @NetResponsePayload = params['NetResponsePayload']
         end
       end
 

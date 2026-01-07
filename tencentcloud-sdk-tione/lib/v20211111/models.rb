@@ -2473,7 +2473,7 @@ module TencentCloud
         # 2. Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询
         # 3. 每次请求的Filters的上限为10，Filter.Values的上限为100
         # @type Filters: Array
-        # @param Offset: 分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10....即每页左边为闭区间; 默认0
+        # @param Offset: 分页查询起始位置，如：Limit为10，第一页Offset为0，第二页Offset为10...即每页左边为闭区间; 默认0
         # @type Offset: Integer
         # @param Limit: 分页查询每页大小，默认20
         # @type Limit: Integer
@@ -6023,6 +6023,176 @@ module TencentCloud
             @Service = Service.new
             @Service.deserialize(params['Service'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyNotebook请求参数结构体
+      class ModifyNotebookRequest < TencentCloud::Common::AbstractModel
+        # @param Id: notebook id
+        # @type Id: String
+        # @param Name: 名称。不超过60个字符，仅支持中英文、数字、下划线"_"、短横"-"，只能以中英文、数字开头
+        # @type Name: String
+        # @param ChargeType: （不允许修改）计算资源付费模式 ，可选值为：
+        # PREPAID：预付费，即包年包月
+        # POSTPAID_BY_HOUR：按小时后付费
+        # @type ChargeType: String
+        # @param ResourceConf: 计算资源配置
+        # @type ResourceConf: :class:`Tencentcloud::Tione.v20211111.models.ResourceConf`
+        # @param AutoStopping: 是否自动停止
+        # @type AutoStopping: Boolean
+        # @param DirectInternetAccess: 是否访问公网
+        # @type DirectInternetAccess: Boolean
+        # @param RootAccess: 是否ROOT权限
+        # @type RootAccess: Boolean
+        # @param LogEnable: 是否上报日志
+        # @type LogEnable: Boolean
+        # @param ResourceGroupId: 资源组ID(for预付费)
+        # @type ResourceGroupId: String
+        # @param VpcId: （不允许修改）Vpc-Id
+        # @type VpcId: String
+        # @param SubnetId: （不允许修改）子网Id
+        # @type SubnetId: String
+        # @param VolumeSizeInGB: 存储卷大小，单位GB
+        # @type VolumeSizeInGB: Integer
+        # @param VolumeSourceType: （不允许修改）存储的类型。取值包含：
+        #     FREE:    预付费的免费存储
+        #     CLOUD_PREMIUM： 高性能云硬盘
+        #     CLOUD_SSD： SSD云硬盘
+        #     CFS:     CFS存储，包含NFS和turbo
+        # @type VolumeSourceType: String
+        # @param VolumeSourceCFS: （不允许修改）CFS存储的配置
+        # @type VolumeSourceCFS: :class:`Tencentcloud::Tione.v20211111.models.CFSConfig`
+        # @param LogConfig: 日志配置
+        # @type LogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
+        # @param LifecycleScriptId: 生命周期脚本的ID
+        # @type LifecycleScriptId: String
+        # @param DefaultCodeRepoId: 默认GIT存储库的ID
+        # @type DefaultCodeRepoId: String
+        # @param AdditionalCodeRepoIds: 其他GIT存储库的ID，最多3个
+        # @type AdditionalCodeRepoIds: Array
+        # @param AutomaticStopTime: 自动停止时间，单位小时
+        # @type AutomaticStopTime: Integer
+        # @param Tags: 标签配置
+        # @type Tags: Array
+        # @param DataConfigs: 数据配置，只支持WEDATA_HDFS
+        # @type DataConfigs: Array
+        # @param ImageInfo: 镜像信息
+        # @type ImageInfo: :class:`Tencentcloud::Tione.v20211111.models.ImageInfo`
+        # @param ImageType: 镜像类型，包括SYSTEM、TCR、CCR
+        # @type ImageType: String
+        # @param SSHConfig: SSH配置
+        # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
+        # @param Envs: 自定义环境变量
+        # @type Envs: Array
+
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :AutoStopping, :DirectInternetAccess, :RootAccess, :LogEnable, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :Envs
+
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, logenable=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, envs=nil)
+          @Id = id
+          @Name = name
+          @ChargeType = chargetype
+          @ResourceConf = resourceconf
+          @AutoStopping = autostopping
+          @DirectInternetAccess = directinternetaccess
+          @RootAccess = rootaccess
+          @LogEnable = logenable
+          @ResourceGroupId = resourcegroupid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @VolumeSizeInGB = volumesizeingb
+          @VolumeSourceType = volumesourcetype
+          @VolumeSourceCFS = volumesourcecfs
+          @LogConfig = logconfig
+          @LifecycleScriptId = lifecyclescriptid
+          @DefaultCodeRepoId = defaultcoderepoid
+          @AdditionalCodeRepoIds = additionalcoderepoids
+          @AutomaticStopTime = automaticstoptime
+          @Tags = tags
+          @DataConfigs = dataconfigs
+          @ImageInfo = imageinfo
+          @ImageType = imagetype
+          @SSHConfig = sshconfig
+          @Envs = envs
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @ChargeType = params['ChargeType']
+          unless params['ResourceConf'].nil?
+            @ResourceConf = ResourceConf.new
+            @ResourceConf.deserialize(params['ResourceConf'])
+          end
+          @AutoStopping = params['AutoStopping']
+          @DirectInternetAccess = params['DirectInternetAccess']
+          @RootAccess = params['RootAccess']
+          @LogEnable = params['LogEnable']
+          @ResourceGroupId = params['ResourceGroupId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @VolumeSizeInGB = params['VolumeSizeInGB']
+          @VolumeSourceType = params['VolumeSourceType']
+          unless params['VolumeSourceCFS'].nil?
+            @VolumeSourceCFS = CFSConfig.new
+            @VolumeSourceCFS.deserialize(params['VolumeSourceCFS'])
+          end
+          unless params['LogConfig'].nil?
+            @LogConfig = LogConfig.new
+            @LogConfig.deserialize(params['LogConfig'])
+          end
+          @LifecycleScriptId = params['LifecycleScriptId']
+          @DefaultCodeRepoId = params['DefaultCodeRepoId']
+          @AdditionalCodeRepoIds = params['AdditionalCodeRepoIds']
+          @AutomaticStopTime = params['AutomaticStopTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          unless params['DataConfigs'].nil?
+            @DataConfigs = []
+            params['DataConfigs'].each do |i|
+              dataconfig_tmp = DataConfig.new
+              dataconfig_tmp.deserialize(i)
+              @DataConfigs << dataconfig_tmp
+            end
+          end
+          unless params['ImageInfo'].nil?
+            @ImageInfo = ImageInfo.new
+            @ImageInfo.deserialize(params['ImageInfo'])
+          end
+          @ImageType = params['ImageType']
+          unless params['SSHConfig'].nil?
+            @SSHConfig = SSHConfig.new
+            @SSHConfig.deserialize(params['SSHConfig'])
+          end
+          unless params['Envs'].nil?
+            @Envs = []
+            params['Envs'].each do |i|
+              envvar_tmp = EnvVar.new
+              envvar_tmp.deserialize(i)
+              @Envs << envvar_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyNotebook返回参数结构体
+      class ModifyNotebookResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

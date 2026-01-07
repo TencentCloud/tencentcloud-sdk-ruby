@@ -1355,72 +1355,63 @@ module TencentCloud
 
       # CreateListener请求参数结构体
       class CreateListenerRequest < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡实例 ID，可以通过 [DescribeLoadBalancers](https://cloud.tencent.com/document/product/214/30685) 接口获取。
+        # @param LoadBalancerId: <p>负载均衡实例 ID，可以通过 <a href="https://cloud.tencent.com/document/product/214/30685">DescribeLoadBalancers</a> 接口获取。</p>
         # @type LoadBalancerId: String
-        # @param Ports: 要将监听器创建到哪些端口，每个端口对应一个新的监听器。
-        # 端口范围：1~65535
+        # @param Ports: <p>要将监听器创建到哪些端口，每个端口对应一个新的监听器。端口范围：1~65535</p>
         # @type Ports: Array
-        # @param Protocol: 监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL | QUIC。
+        # @param Protocol: <p>监听器协议： TCP | UDP | HTTP | HTTPS | TCP_SSL | QUIC。</p>
         # @type Protocol: String
-        # @param ListenerNames: 要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数。
+        # @param ListenerNames: <p>要创建的监听器名称列表，名称与Ports数组按序一一对应，如不需立即命名，则无需提供此参数。</p>
         # @type ListenerNames: Array
-        # @param HealthCheck: 健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
+        # @param HealthCheck: <p>健康检查相关参数，此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。</p>
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Certificate: 证书相关信息。参数限制如下：
-        # <li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li>
-        # <li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数MultiCertInfo至少需要传一个， 但不能同时传入。</li>
+        # @param Certificate: <p>证书相关信息。参数限制如下：<li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li><li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数MultiCertInfo至少需要传一个， 但不能同时传入。</li></p>
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateInput`
-        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认为0，默认不开启。此参数仅适用于TCP/UDP监听器。
+        # @param SessionExpireTime: <p>会话保持时间，单位：秒。可选值：30~3600，默认为0，默认不开启。此参数仅适用于TCP/UDP监听器。</p>
         # @type SessionExpireTime: Integer
-        # @param Scheduler: 监听器转发的方式。可选值：WRR（按权重轮询）、LEAST_CONN（按最小连接数）
-        # 默认为 WRR。此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。
+        # @param Scheduler: <p>监听器转发的方式。可选值：WRR（按权重轮询）、LEAST_CONN（按最小连接数）默认为 WRR。此参数仅适用于TCP/UDP/TCP_SSL/QUIC监听器。</p>
         # @type Scheduler: String
-        # @param SniSwitch: 是否开启SNI特性，此参数仅适用于HTTPS监听器。0表示未开启，1表示开启。
+        # @param SniSwitch: <p>是否开启SNI特性，此参数仅适用于HTTPS监听器。0表示未开启，1表示开启。</p>
         # @type SniSwitch: Integer
-        # @param TargetType: 后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组。此参数仅适用于TCP/UDP监听器。七层监听器应在转发规则中设置。
+        # @param TargetType: <p>后端目标类型，NODE表示绑定普通节点，TARGETGROUP表示绑定目标组。此参数仅适用于TCP/UDP监听器。七层监听器应在转发规则中设置。</p>
         # @type TargetType: String
-        # @param SessionType: 会话保持类型。不传或传NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。此参数仅适用于TCP/UDP监听器。七层监听器应在转发规则中设置。（若选择QUIC_CID，则Protocol必须为UDP，Scheduler必须为WRR，同时只支持ipv4）
+        # @param SessionType: <p>会话保持类型。不传或传NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。QUIC_CID只支持UDP协议。此参数仅适用于TCP/UDP监听器。七层监听器应在转发规则中设置。（若选择QUIC_CID，则Protocol必须为UDP，Scheduler必须为WRR，同时只支持ipv4）</p>
         # @type SessionType: String
-        # @param KeepaliveEnable: 是否开启长连接，此参数仅适用于HTTP/HTTPS监听器，0:关闭；1:开启， 默认关闭。
-        # 若后端服务对连接数上限有限制，则建议谨慎开启。此功能目前处于内测中，如需使用，请提交 [内测申请](https://cloud.tencent.com/apply/p/tsodp6qm21)。
+        # @param KeepaliveEnable: <p>是否开启长连接，此参数仅适用于HTTP/HTTPS监听器，0:关闭；1:开启， 默认关闭。若后端服务对连接数上限有限制，则建议谨慎开启。此功能目前处于内测中，如需使用，请提交 <a href="https://cloud.tencent.com/apply/p/tsodp6qm21">内测申请</a>。</p>
         # @type KeepaliveEnable: Integer
-        # @param EndPort: 创建端口段监听器时必须传入此参数，用以标识结束端口。同时，入参Ports只允许传入一个成员，用以标识开始端口。【如果您需要体验端口段功能，请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)】。
+        # @param EndPort: <p>创建端口段监听器时必须传入此参数，用以标识结束端口。同时，入参Ports只允许传入一个成员，用以标识开始端口。【如果您需要体验端口段功能，请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>】。</p>
         # @type EndPort: Integer
-        # @param DeregisterTargetRst: 重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。
+        # @param DeregisterTargetRst: <p>重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type DeregisterTargetRst: Boolean
-        # @param MultiCertInfo: 证书信息，支持同时传入不同算法类型的多本服务端证书，参数限制如下：
-        # <li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li>
-        # <li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数Certificate至少需要传一个， 但不能同时传入。</li>
+        # @param MultiCertInfo: <p>证书信息，支持同时传入不同算法类型的多本服务端证书，参数限制如下：<li>此参数仅适用于TCP_SSL监听器和未开启SNI特性的HTTPS监听器。</li><li>创建TCP_SSL监听器和未开启SNI特性的HTTPS监听器时，此参数和参数Certificate至少需要传一个， 但不能同时传入。</li></p>
         # @type MultiCertInfo: :class:`Tencentcloud::Clb.v20180317.models.MultiCertInfo`
-        # @param MaxConn: 监听器最大连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。
+        # @param MaxConn: <p>监听器最大连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。</p>
         # @type MaxConn: Integer
-        # @param MaxCps: 监听器最大新增连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。
+        # @param MaxCps: <p>监听器最大新增连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。</p>
         # @type MaxCps: Integer
-        # @param IdleConnectTimeout: 空闲连接超时时间，此参数仅适用于TCP/UDP监听器，单位：秒。默认值：TCP监听器默认值为900s，UDP监听器默认值为300s。取值范围：共享型实例和独占型实例支持：10-900，性能容量型实例支持：10-1980。如需设置超过取值范围的值请通过 [工单申请](https://console.cloud.tencent.com/workorder/category)。
+        # @param IdleConnectTimeout: <p>空闲连接超时时间，此参数仅适用于TCP/UDP监听器，单位：秒。默认值：TCP监听器默认值为900s，UDP监听器默认值为300s。取值范围：共享型实例和独占型实例支持：10-900，性能容量型实例支持：10-1980。如需设置超过取值范围的值请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>。</p>
         # @type IdleConnectTimeout: Integer
-        # @param ProxyProtocol: TCP_SSL和QUIC是否支持PP
+        # @param ProxyProtocol: <p>TCP_SSL和QUIC是否支持PP</p>
         # @type ProxyProtocol: Boolean
-        # @param SnatEnable: 是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时`透传客户端源IP`选项关闭，反之亦然。
+        # @param SnatEnable: <p>是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时<code>透传客户端源IP</code>选项关闭，反之亦然。</p>
         # @type SnatEnable: Boolean
-        # @param FullEndPorts: 全端口段监听器的结束端口，端口范围：2 - 65535
+        # @param FullEndPorts: <p>全端口段监听器的结束端口，端口范围：2 - 65535</p>
         # @type FullEndPorts: Array
-        # @param H2cSwitch: 内网http监听器开启h2c开关，True（开启）、False（关闭）。
-        # 默认为关闭。
+        # @param H2cSwitch: <p>内网http监听器开启h2c开关，True（开启）、False（关闭）。默认为关闭。</p>
         # @type H2cSwitch: Boolean
-        # @param SslCloseSwitch: TCP_SSL监听器支持关闭SSL后仍然支持混绑，此参数为关闭开关。True（关闭）、False（开启）.
-        # 默认为关闭。
+        # @param SslCloseSwitch: <p>控制 TCP_SSL 类型的监听器是否移除 SSL 加密层。开启后，监听器将作为普通 TCP 协议运行。 可选值：- True： 关闭 SSL 功能（协议降级为纯文本 TCP）。- False（默认）： 保持 SSL 功能开启。</p>
         # @type SslCloseSwitch: Boolean
-        # @param DataCompressMode: 数据压缩模式。可选值：transparent（透传模式）、compatibility（兼容模式）
+        # @param DataCompressMode: <p>数据压缩模式。可选值：transparent（透传模式）、compatibility（兼容模式）</p>
         # @type DataCompressMode: String
-        # @param RescheduleTargetZeroWeight: 重新调度功能，权重调为0开关，打开此开关，后端服务器权重调为0时触发重新调度。仅TCP/UDP监听器支持。
+        # @param RescheduleTargetZeroWeight: <p>重新调度功能，权重调为0开关，打开此开关，后端服务器权重调为0时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type RescheduleTargetZeroWeight: Boolean
-        # @param RescheduleUnhealthy: 重新调度功能，健康检查异常开关，打开此开关，后端服务器健康检查异常时触发重新调度。仅TCP/UDP监听器支持。
+        # @param RescheduleUnhealthy: <p>重新调度功能，健康检查异常开关，打开此开关，后端服务器健康检查异常时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type RescheduleUnhealthy: Boolean
-        # @param RescheduleExpandTarget: 重新调度功能，扩容后端服务开关，打开此开关，后端服务器增加或者减少时触发重新调度。仅TCP/UDP监听器支持。
+        # @param RescheduleExpandTarget: <p>重新调度功能，扩容后端服务开关，打开此开关，后端服务器增加或者减少时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type RescheduleExpandTarget: Boolean
-        # @param RescheduleStartTime: 重新调度触发开始时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @param RescheduleStartTime: <p>重新调度触发开始时间，取值0~3600s。仅TCP/UDP监听器支持。</p>
         # @type RescheduleStartTime: Integer
-        # @param RescheduleInterval: 重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。
+        # @param RescheduleInterval: <p>重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。</p>
         # @type RescheduleInterval: Integer
 
         attr_accessor :LoadBalancerId, :Ports, :Protocol, :ListenerNames, :HealthCheck, :Certificate, :SessionExpireTime, :Scheduler, :SniSwitch, :TargetType, :SessionType, :KeepaliveEnable, :EndPort, :DeregisterTargetRst, :MultiCertInfo, :MaxConn, :MaxCps, :IdleConnectTimeout, :ProxyProtocol, :SnatEnable, :FullEndPorts, :H2cSwitch, :SslCloseSwitch, :DataCompressMode, :RescheduleTargetZeroWeight, :RescheduleUnhealthy, :RescheduleExpandTarget, :RescheduleStartTime, :RescheduleInterval
@@ -1501,7 +1492,7 @@ module TencentCloud
 
       # CreateListener返回参数结构体
       class CreateListenerResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerIds: 创建的监听器的唯一标识数组。
+        # @param ListenerIds: <p>创建的监听器的唯一标识数组。</p>
         # @type ListenerIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7656,13 +7647,13 @@ module TencentCloud
 
       # 修改节点标签的数据类型
       class RsTagRule < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 负载均衡监听器 ID。
+        # @param ListenerId: <p>负载均衡监听器 ID。</p>
         # @type ListenerId: String
-        # @param Targets: 要修改标签的后端机器列表。
+        # @param Targets: <p>要修改标签的后端机器列表。</p>
         # @type Targets: Array
-        # @param LocationId: 转发规则的ID，七层规则时需要此参数，4层规则不需要。
+        # @param LocationId: <p>转发规则的ID，七层规则时需要此参数，4层规则不需要。</p>
         # @type LocationId: String
-        # @param Tag: 后端服务修改后的标签。此参数的优先级低于前述[Target](https://cloud.tencent.com/document/api/214/30694#Target)中的Tag参数，即最终的标签以Target中的Tag参数值为准，仅当Target中的Tag参数为空时，才以RsTagRule中的Tag参数为准。
+        # @param Tag: <p>后端服务修改后的标签。此参数的优先级低于前述<a href="https://cloud.tencent.com/document/api/214/30694#Target">Target</a>中的Tag参数，即最终的标签以Target中的Tag参数值为准，仅当Target中的Tag参数为空时，才以RsTagRule中的Tag参数为准。</p>
         # @type Tag: String
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Tag

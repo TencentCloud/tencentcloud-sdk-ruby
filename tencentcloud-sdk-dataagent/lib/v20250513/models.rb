@@ -31,16 +31,19 @@ module TencentCloud
         # @type Content: String
         # @param AfterChunkId: 新 Chunk 插入到目标 Chunk ​之后的位置。插入位置的上一个 chunkId
         # @type AfterChunkId: String
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
 
-        attr_accessor :InstanceId, :FileId, :BeforeChunkId, :InsertPos, :Content, :AfterChunkId
+        attr_accessor :InstanceId, :FileId, :BeforeChunkId, :InsertPos, :Content, :AfterChunkId, :KnowledgeBaseId
 
-        def initialize(instanceid=nil, fileid=nil, beforechunkid=nil, insertpos=nil, content=nil, afterchunkid=nil)
+        def initialize(instanceid=nil, fileid=nil, beforechunkid=nil, insertpos=nil, content=nil, afterchunkid=nil, knowledgebaseid=nil)
           @InstanceId = instanceid
           @FileId = fileid
           @BeforeChunkId = beforechunkid
           @InsertPos = insertpos
           @Content = content
           @AfterChunkId = afterchunkid
+          @KnowledgeBaseId = knowledgebaseid
         end
 
         def deserialize(params)
@@ -50,6 +53,7 @@ module TencentCloud
           @InsertPos = params['InsertPos']
           @Content = params['Content']
           @AfterChunkId = params['AfterChunkId']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
         end
       end
 
@@ -269,19 +273,23 @@ module TencentCloud
         # @type FileId: String
         # @param ChunkIds: 切片ID
         # @type ChunkIds: Array
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
 
-        attr_accessor :InstanceId, :FileId, :ChunkIds
+        attr_accessor :InstanceId, :FileId, :ChunkIds, :KnowledgeBaseId
 
-        def initialize(instanceid=nil, fileid=nil, chunkids=nil)
+        def initialize(instanceid=nil, fileid=nil, chunkids=nil, knowledgebaseid=nil)
           @InstanceId = instanceid
           @FileId = fileid
           @ChunkIds = chunkids
+          @KnowledgeBaseId = knowledgebaseid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @FileId = params['FileId']
           @ChunkIds = params['ChunkIds']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
         end
       end
 
@@ -753,14 +761,17 @@ module TencentCloud
         # @type ChunkId: String
         # @param Content: 编辑后的文本
         # @type Content: String
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
 
-        attr_accessor :InstanceId, :FileId, :ChunkId, :Content
+        attr_accessor :InstanceId, :FileId, :ChunkId, :Content, :KnowledgeBaseId
 
-        def initialize(instanceid=nil, fileid=nil, chunkid=nil, content=nil)
+        def initialize(instanceid=nil, fileid=nil, chunkid=nil, content=nil, knowledgebaseid=nil)
           @InstanceId = instanceid
           @FileId = fileid
           @ChunkId = chunkid
           @Content = content
+          @KnowledgeBaseId = knowledgebaseid
         end
 
         def deserialize(params)
@@ -768,6 +779,7 @@ module TencentCloud
           @FileId = params['FileId']
           @ChunkId = params['ChunkId']
           @Content = params['Content']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
         end
       end
 
@@ -799,15 +811,21 @@ module TencentCloud
         # @type KnowledgeBaseName: String
         # @param KnowledgeBaseDesc: 知识库描述，create和update时必填
         # @type KnowledgeBaseDesc: String
+        # @param UseScope: 1仅自己使用，2指定用户，0全员
+        # @type UseScope: Integer
+        # @param AuthorityUins: 可使用用户列表
+        # @type AuthorityUins: Array
 
-        attr_accessor :InstanceId, :OperateType, :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc
+        attr_accessor :InstanceId, :OperateType, :KnowledgeBaseId, :KnowledgeBaseName, :KnowledgeBaseDesc, :UseScope, :AuthorityUins
 
-        def initialize(instanceid=nil, operatetype=nil, knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil)
+        def initialize(instanceid=nil, operatetype=nil, knowledgebaseid=nil, knowledgebasename=nil, knowledgebasedesc=nil, usescope=nil, authorityuins=nil)
           @InstanceId = instanceid
           @OperateType = operatetype
           @KnowledgeBaseId = knowledgebaseid
           @KnowledgeBaseName = knowledgebasename
           @KnowledgeBaseDesc = knowledgebasedesc
+          @UseScope = usescope
+          @AuthorityUins = authorityuins
         end
 
         def deserialize(params)
@@ -816,6 +834,8 @@ module TencentCloud
           @KnowledgeBaseId = params['KnowledgeBaseId']
           @KnowledgeBaseName = params['KnowledgeBaseName']
           @KnowledgeBaseDesc = params['KnowledgeBaseDesc']
+          @UseScope = params['UseScope']
+          @AuthorityUins = params['AuthorityUins']
         end
       end
 
@@ -845,17 +865,21 @@ module TencentCloud
         # @type Page: Integer
         # @param PageSize: 默认一页展示 10 条
         # @type PageSize: Integer
+        # @param KnowledgeBaseId: 知识库id
+        # @type KnowledgeBaseId: String
 
-        attr_accessor :Page, :PageSize
+        attr_accessor :Page, :PageSize, :KnowledgeBaseId
 
-        def initialize(page=nil, pagesize=nil)
+        def initialize(page=nil, pagesize=nil, knowledgebaseid=nil)
           @Page = page
           @PageSize = pagesize
+          @KnowledgeBaseId = knowledgebaseid
         end
 
         def deserialize(params)
           @Page = params['Page']
           @PageSize = params['PageSize']
+          @KnowledgeBaseId = params['KnowledgeBaseId']
         end
       end
 

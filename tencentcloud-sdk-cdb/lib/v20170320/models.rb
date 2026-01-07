@@ -1136,7 +1136,7 @@ module TencentCloud
       class BackupConfig < TencentCloud::Common::AbstractModel
         # @param ReplicationMode: 第二个从库复制方式，可能的返回值：async-异步，semisync-半同步
         # @type ReplicationMode: String
-        # @param Zone: 第二个从库可用区的正式名称，如ap-shanghai-1
+        # @param Zone: 第二个从库可用区的正式名称，如 ap-shanghai-2
         # @type Zone: String
         # @param Vip: 第二个从库内网IP地址
         # @type Vip: String
@@ -6160,7 +6160,7 @@ module TencentCloud
         # @type ProtectMode: Integer
         # @param DeployMode: 主实例部署方式，可能的返回值：0 - 单可用部署，1 - 多可用区部署。
         # @type DeployMode: Integer
-        # @param Zone: 实例可用区信息，格式如 "ap-shanghai-1"。
+        # @param Zone: 实例可用区信息，格式如 "ap-shanghai-2"。
         # @type Zone: String
         # @param SlaveConfig: 备库的配置信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13218,7 +13218,7 @@ module TencentCloud
         # @type Weight: Integer
         # @param Region: RO实例所在区域名称，如ap-shanghai
         # @type Region: String
-        # @param Zone: RO可用区的正式名称，如ap-shanghai-1
+        # @param Zone: RO可用区的正式名称，如 ap-shanghai-2
         # @type Zone: String
         # @param InstanceId: RO实例ID，格式如：cdbro-c1nl9rpv
         # @type InstanceId: String
@@ -13729,7 +13729,7 @@ module TencentCloud
       class SlaveConfig < TencentCloud::Common::AbstractModel
         # @param ReplicationMode: 从库复制方式，可能的返回值：aysnc-异步，semisync-半同步
         # @type ReplicationMode: String
-        # @param Zone: 从库可用区的正式名称，如ap-shanghai-1
+        # @param Zone: 从库可用区的正式名称，如 ap-shanghai-2
         # @type Zone: String
 
         attr_accessor :ReplicationMode, :Zone

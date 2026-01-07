@@ -4061,6 +4061,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 可通过调用该接口，对点播源的直播拉流任务进行插播操作。
+        # 注意：
+        # 1. 仅支持对有效且运行中的点播源任务进行插播操作。
+        # 2. 拉转推插播文件时，事件及回调中的索引均保持为插播前的值。
+
+        # @param request: Request instance for InsertTaskTemporaryFiles.
+        # @type request: :class:`Tencentcloud::live::V20180801::InsertTaskTemporaryFilesRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::InsertTaskTemporaryFilesResponse`
+        def InsertTaskTemporaryFiles(request)
+          body = send_request('InsertTaskTemporaryFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InsertTaskTemporaryFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来设置导播台的描述、名称、录制模板id等参数。
 
         # @param request: Request instance for ModifyCaster.
