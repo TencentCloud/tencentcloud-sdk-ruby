@@ -137,6 +137,50 @@ module TencentCloud
         end
       end
 
+      # DescribeConcurrentCount请求参数结构体
+      class DescribeConcurrentCountRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目ID
+        # @type ProjectId: String
+        # @param ApplicationCategory: 应用类别（DESKTOP: 桌面端，MOBILE：移动端）
+        # @type ApplicationCategory: String
+
+        attr_accessor :ProjectId, :ApplicationCategory
+
+        def initialize(projectid=nil, applicationcategory=nil)
+          @ProjectId = projectid
+          @ApplicationCategory = applicationcategory
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @ApplicationCategory = params['ApplicationCategory']
+        end
+      end
+
+      # DescribeConcurrentCount返回参数结构体
+      class DescribeConcurrentCountResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 并发总数
+        # @type Total: Integer
+        # @param Running: 并发运行数，包括预启动中的、已连接的、等待重连、清理恢复等所有非空闲的并发数，所以刷新项目或断开并发包的用户连接，都会影响到该值
+        # @type Running: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Running, :RequestId
+
+        def initialize(total=nil, running=nil, requestid=nil)
+          @Total = total
+          @Running = running
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @Running = params['Running']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroySession请求参数结构体
       class DestroySessionRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 唯一用户身份标识，由业务方自定义，平台不予理解。（可根据业务需要决定使用用户的唯一身份标识或是使用时间戳随机生成；在用户重连时应保持UserId不变）

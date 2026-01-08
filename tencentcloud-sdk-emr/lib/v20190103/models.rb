@@ -13677,10 +13677,12 @@ module TencentCloud
         # @type ExecutionStatement: String
         # @param User: 用户
         # @type User: String
+        # @param ErrorCode: 错误码
+        # @type ErrorCode: String
 
-        attr_accessor :ClientIP, :CPUCost, :DefaultDB, :EndTime, :ExecutionIP, :QueryID, :QueryType, :MemCost, :PlanCpuCosts, :PlanMemCosts, :QueryTime, :ResourceGroup, :ReturnRows, :ScanBytes, :ScanRows, :BeginTime, :ExecutionState, :ExecutionStatement, :User
+        attr_accessor :ClientIP, :CPUCost, :DefaultDB, :EndTime, :ExecutionIP, :QueryID, :QueryType, :MemCost, :PlanCpuCosts, :PlanMemCosts, :QueryTime, :ResourceGroup, :ReturnRows, :ScanBytes, :ScanRows, :BeginTime, :ExecutionState, :ExecutionStatement, :User, :ErrorCode
 
-        def initialize(clientip=nil, cpucost=nil, defaultdb=nil, endtime=nil, executionip=nil, queryid=nil, querytype=nil, memcost=nil, plancpucosts=nil, planmemcosts=nil, querytime=nil, resourcegroup=nil, returnrows=nil, scanbytes=nil, scanrows=nil, begintime=nil, executionstate=nil, executionstatement=nil, user=nil)
+        def initialize(clientip=nil, cpucost=nil, defaultdb=nil, endtime=nil, executionip=nil, queryid=nil, querytype=nil, memcost=nil, plancpucosts=nil, planmemcosts=nil, querytime=nil, resourcegroup=nil, returnrows=nil, scanbytes=nil, scanrows=nil, begintime=nil, executionstate=nil, executionstatement=nil, user=nil, errorcode=nil)
           @ClientIP = clientip
           @CPUCost = cpucost
           @DefaultDB = defaultdb
@@ -13700,6 +13702,7 @@ module TencentCloud
           @ExecutionState = executionstate
           @ExecutionStatement = executionstatement
           @User = user
+          @ErrorCode = errorcode
         end
 
         def deserialize(params)
@@ -13722,6 +13725,7 @@ module TencentCloud
           @ExecutionState = params['ExecutionState']
           @ExecutionStatement = params['ExecutionStatement']
           @User = params['User']
+          @ErrorCode = params['ErrorCode']
         end
       end
 
@@ -14553,10 +14557,12 @@ module TencentCloud
         # @type User: String
         # @param WrittenBytes: 写入字节数
         # @type WrittenBytes: Integer
+        # @param ErrorMessage: Error日志
+        # @type ErrorMessage: String
 
-        attr_accessor :Catalog, :ClientIpAddr, :CompletedSplits, :CpuTime, :CumulativeMemory, :DurationMillis, :EndTime, :Id, :InternalNetworkBytes, :OutputBytes, :PeakUserMemoryBytes, :PhysicalInputBytes, :ProcessedInputBytes, :SqlCompileTime, :StartTime, :State, :Statement, :User, :WrittenBytes
+        attr_accessor :Catalog, :ClientIpAddr, :CompletedSplits, :CpuTime, :CumulativeMemory, :DurationMillis, :EndTime, :Id, :InternalNetworkBytes, :OutputBytes, :PeakUserMemoryBytes, :PhysicalInputBytes, :ProcessedInputBytes, :SqlCompileTime, :StartTime, :State, :Statement, :User, :WrittenBytes, :ErrorMessage
 
-        def initialize(catalog=nil, clientipaddr=nil, completedsplits=nil, cputime=nil, cumulativememory=nil, durationmillis=nil, endtime=nil, id=nil, internalnetworkbytes=nil, outputbytes=nil, peakusermemorybytes=nil, physicalinputbytes=nil, processedinputbytes=nil, sqlcompiletime=nil, starttime=nil, state=nil, statement=nil, user=nil, writtenbytes=nil)
+        def initialize(catalog=nil, clientipaddr=nil, completedsplits=nil, cputime=nil, cumulativememory=nil, durationmillis=nil, endtime=nil, id=nil, internalnetworkbytes=nil, outputbytes=nil, peakusermemorybytes=nil, physicalinputbytes=nil, processedinputbytes=nil, sqlcompiletime=nil, starttime=nil, state=nil, statement=nil, user=nil, writtenbytes=nil, errormessage=nil)
           @Catalog = catalog
           @ClientIpAddr = clientipaddr
           @CompletedSplits = completedsplits
@@ -14576,6 +14582,7 @@ module TencentCloud
           @Statement = statement
           @User = user
           @WrittenBytes = writtenbytes
+          @ErrorMessage = errormessage
         end
 
         def deserialize(params)
@@ -14598,6 +14605,7 @@ module TencentCloud
           @Statement = params['Statement']
           @User = params['User']
           @WrittenBytes = params['WrittenBytes']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 

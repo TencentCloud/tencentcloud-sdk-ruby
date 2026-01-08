@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建质量规则接口
+
+        # @param request: Request instance for CreateQualityRule.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::CreateQualityRuleRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::CreateQualityRuleResponse`
+        def CreateQualityRule(request)
+          body = send_request('CreateQualityRule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateQualityRuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建监控任务
 
         # @param request: Request instance for CreateQualityRuleGroup.
@@ -2703,6 +2727,33 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListQualityRuleGroupExecResultsByPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 【过滤条件】
+        # {表idTableId,支持匹配}       {任务负责人Operator,支持匹配}
+        # 【必要字段】
+        # {数据来源TableId}
+
+        # @param request: Request instance for ListQualityRuleGroups.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListQualityRuleGroupsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListQualityRuleGroupsResponse`
+        def ListQualityRuleGroups(request)
+          body = send_request('ListQualityRuleGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListQualityRuleGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

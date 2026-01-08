@@ -35118,10 +35118,12 @@ module TencentCloud
         # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
         # @param Pid: 进程id
         # @type Pid: Integer
+        # @param Count: 告警数量
+        # @type Count: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName, :MachineExtraInfo, :Pid
+        attr_accessor :Id, :Uuid, :Quuid, :Hostip, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :ProcTree, :Status, :CreateTime, :MachineName, :MachineExtraInfo, :Pid, :Count
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil, machineextrainfo=nil, pid=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, proctree=nil, status=nil, createtime=nil, machinename=nil, machineextrainfo=nil, pid=nil, count=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -35142,6 +35144,7 @@ module TencentCloud
           @MachineName = machinename
           @MachineExtraInfo = machineextrainfo
           @Pid = pid
+          @Count = count
         end
 
         def deserialize(params)
@@ -35168,6 +35171,7 @@ module TencentCloud
             @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
           end
           @Pid = params['Pid']
+          @Count = params['Count']
         end
       end
 
@@ -35225,10 +35229,12 @@ module TencentCloud
         # @type MachineStatus: String
         # @param ModifyTime: 处理时间
         # @type ModifyTime: String
+        # @param Count: 告警数量
+        # @type Count: Integer
 
-        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :PsTree, :Status, :CreateTime, :MachineName, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :NewCaps, :MachineStatus, :ModifyTime
+        attr_accessor :Id, :Uuid, :Quuid, :HostIp, :ProcessName, :FullPath, :CmdLine, :UserName, :UserGroup, :ProcFilePrivilege, :ParentProcName, :ParentProcUser, :ParentProcGroup, :ParentProcPath, :PsTree, :Status, :CreateTime, :MachineName, :SuggestScheme, :HarmDescribe, :Tags, :References, :MachineWanIp, :NewCaps, :MachineStatus, :ModifyTime, :Count
 
-        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, pstree=nil, status=nil, createtime=nil, machinename=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, newcaps=nil, machinestatus=nil, modifytime=nil)
+        def initialize(id=nil, uuid=nil, quuid=nil, hostip=nil, processname=nil, fullpath=nil, cmdline=nil, username=nil, usergroup=nil, procfileprivilege=nil, parentprocname=nil, parentprocuser=nil, parentprocgroup=nil, parentprocpath=nil, pstree=nil, status=nil, createtime=nil, machinename=nil, suggestscheme=nil, harmdescribe=nil, tags=nil, references=nil, machinewanip=nil, newcaps=nil, machinestatus=nil, modifytime=nil, count=nil)
           @Id = id
           @Uuid = uuid
           @Quuid = quuid
@@ -35255,6 +35261,7 @@ module TencentCloud
           @NewCaps = newcaps
           @MachineStatus = machinestatus
           @ModifyTime = modifytime
+          @Count = count
         end
 
         def deserialize(params)
@@ -35284,6 +35291,7 @@ module TencentCloud
           @NewCaps = params['NewCaps']
           @MachineStatus = params['MachineStatus']
           @ModifyTime = params['ModifyTime']
+          @Count = params['Count']
         end
       end
 

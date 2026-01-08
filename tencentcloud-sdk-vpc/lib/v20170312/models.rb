@@ -24639,10 +24639,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param NetworkAclDirection: 方向，INGRESS或EGRESS，用于DescribeNetworkAclQuintupleEntries的出参。
         # @type NetworkAclDirection: String
+        # @param SourceIPv6Cidr: IPv6源CIDR。
+        # @type SourceIPv6Cidr: String
+        # @param DestinationIPv6Cidr: IPv6目的CIDR。
+        # @type DestinationIPv6Cidr: String
 
-        attr_accessor :Protocol, :Description, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :Action, :NetworkAclQuintupleEntryId, :Priority, :CreateTime, :NetworkAclDirection
+        attr_accessor :Protocol, :Description, :SourcePort, :SourceCidr, :DestinationPort, :DestinationCidr, :Action, :NetworkAclQuintupleEntryId, :Priority, :CreateTime, :NetworkAclDirection, :SourceIPv6Cidr, :DestinationIPv6Cidr
 
-        def initialize(protocol=nil, description=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, action=nil, networkaclquintupleentryid=nil, priority=nil, createtime=nil, networkacldirection=nil)
+        def initialize(protocol=nil, description=nil, sourceport=nil, sourcecidr=nil, destinationport=nil, destinationcidr=nil, action=nil, networkaclquintupleentryid=nil, priority=nil, createtime=nil, networkacldirection=nil, sourceipv6cidr=nil, destinationipv6cidr=nil)
           @Protocol = protocol
           @Description = description
           @SourcePort = sourceport
@@ -24654,6 +24658,8 @@ module TencentCloud
           @Priority = priority
           @CreateTime = createtime
           @NetworkAclDirection = networkacldirection
+          @SourceIPv6Cidr = sourceipv6cidr
+          @DestinationIPv6Cidr = destinationipv6cidr
         end
 
         def deserialize(params)
@@ -24668,6 +24674,8 @@ module TencentCloud
           @Priority = params['Priority']
           @CreateTime = params['CreateTime']
           @NetworkAclDirection = params['NetworkAclDirection']
+          @SourceIPv6Cidr = params['SourceIPv6Cidr']
+          @DestinationIPv6Cidr = params['DestinationIPv6Cidr']
         end
       end
 
@@ -26144,6 +26152,69 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ReplaceRoutesWithRoutePolicy请求参数结构体
+      class ReplaceRoutesWithRoutePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param RouteTableId: 路由表实例ID。
+        # @type RouteTableId: String
+        # @param Routes: 路由策略对象。需要指定路由策略唯一ID（RouteItemId）。
+        # @type Routes: Array
+
+        attr_accessor :RouteTableId, :Routes
+
+        def initialize(routetableid=nil, routes=nil)
+          @RouteTableId = routetableid
+          @Routes = routes
+        end
+
+        def deserialize(params)
+          @RouteTableId = params['RouteTableId']
+          unless params['Routes'].nil?
+            @Routes = []
+            params['Routes'].each do |i|
+              replacerouteswithroutepolicyroute_tmp = ReplaceRoutesWithRoutePolicyRoute.new
+              replacerouteswithroutepolicyroute_tmp.deserialize(i)
+              @Routes << replacerouteswithroutepolicyroute_tmp
+            end
+          end
+        end
+      end
+
+      # ReplaceRoutesWithRoutePolicy返回参数结构体
+      class ReplaceRoutesWithRoutePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 匹配路由接收策略对象
+      class ReplaceRoutesWithRoutePolicyRoute < TencentCloud::Common::AbstractModel
+        # @param RouteItemId: 路由唯一策略ID。
+        # @type RouteItemId: String
+        # @param ForceMatchPolicy: 匹配路由接收策略标记。
+        # @type ForceMatchPolicy: Boolean
+
+        attr_accessor :RouteItemId, :ForceMatchPolicy
+
+        def initialize(routeitemid=nil, forcematchpolicy=nil)
+          @RouteItemId = routeitemid
+          @ForceMatchPolicy = forcematchpolicy
+        end
+
+        def deserialize(params)
+          @RouteItemId = params['RouteItemId']
+          @ForceMatchPolicy = params['ForceMatchPolicy']
         end
       end
 

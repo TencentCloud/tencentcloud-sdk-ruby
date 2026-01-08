@@ -5943,12 +5943,13 @@ module TencentCloud
         # @param IsSerialRegion: 0: 该地域暂未支持串行
         # 1: 该用户未在该地域配置串行带宽
         # 2: 该用户已在该地域配置串行带宽，可以开启串行开关
+        # 3. 该地域可以支持串行，但是未部署公共集群
         # @type IsSerialRegion: Integer
         # @param IsPublicClb: 0: 不是公网CLB 可以开启串行开关
         # 1: 是公网CLB 不可以开启串行开关
         # @type IsPublicClb: Integer
         # @param EndpointBindEipNum: 0: 开启开关时提示要创建私有连接。
-        # 1: 关闭该开关是提示删除私有连接。
+        # 1: 关闭该开关时提示删除私有连接。
         # 如果大于 1: 关闭开关 、开启开关不需提示创建删除私有连接。
         # @type EndpointBindEipNum: Integer
         # @param ScanMode: 扫描深度
@@ -5976,10 +5977,15 @@ module TencentCloud
         # @type Domain: String
         # @param OverUsedStatus: IP超量状态
         # @type OverUsedStatus: Integer
+        # @param SwitchSupportType: 0 都不支持
+        # 1 支持旁路
+        # 2 支持串行
+        # 3 旁路串行都支持
+        # @type SwitchSupportType: Integer
 
-        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain, :OverUsedStatus
+        attr_accessor :PublicIp, :PublicIpType, :InstanceId, :InstanceName, :IntranetIp, :AssetType, :Region, :PortRiskCount, :LastScanTime, :IsRegionEip, :VpcId, :IsSerialRegion, :IsPublicClb, :EndpointBindEipNum, :ScanMode, :ScanStatus, :Status, :EndpointId, :EndpointIp, :SwitchMode, :SwitchWeight, :Domain, :OverUsedStatus, :SwitchSupportType
 
-        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil, domain=nil, overusedstatus=nil)
+        def initialize(publicip=nil, publiciptype=nil, instanceid=nil, instancename=nil, intranetip=nil, assettype=nil, region=nil, portriskcount=nil, lastscantime=nil, isregioneip=nil, vpcid=nil, isserialregion=nil, ispublicclb=nil, endpointbindeipnum=nil, scanmode=nil, scanstatus=nil, status=nil, endpointid=nil, endpointip=nil, switchmode=nil, switchweight=nil, domain=nil, overusedstatus=nil, switchsupporttype=nil)
           @PublicIp = publicip
           @PublicIpType = publiciptype
           @InstanceId = instanceid
@@ -6003,6 +6009,7 @@ module TencentCloud
           @SwitchWeight = switchweight
           @Domain = domain
           @OverUsedStatus = overusedstatus
+          @SwitchSupportType = switchsupporttype
         end
 
         def deserialize(params)
@@ -6029,6 +6036,7 @@ module TencentCloud
           @SwitchWeight = params['SwitchWeight']
           @Domain = params['Domain']
           @OverUsedStatus = params['OverUsedStatus']
+          @SwitchSupportType = params['SwitchSupportType']
         end
       end
 

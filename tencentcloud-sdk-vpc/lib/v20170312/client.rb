@@ -10038,6 +10038,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
+
+        # @param request: Request instance for ReplaceRoutesWithRoutePolicy.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutesWithRoutePolicyRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::ReplaceRoutesWithRoutePolicyResponse`
+        def ReplaceRoutesWithRoutePolicy(request)
+          body = send_request('ReplaceRoutesWithRoutePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReplaceRoutesWithRoutePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ReplaceSecurityGroupPolicies）用于批量修改安全组规则（SecurityGroupPolicy）。
         # 单个请求中只能替换单个方向的一条或多条规则, 必须要指定索引（PolicyIndex）。
 

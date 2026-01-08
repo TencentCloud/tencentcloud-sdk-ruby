@@ -1851,6 +1851,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 该接口用查询导播台的备播状态
+
+        # @param request: Request instance for DescribeCasterEmergencyStatus.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeCasterEmergencyStatusRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeCasterEmergencyStatusResponse`
+        def DescribeCasterEmergencyStatus(request)
+          body = send_request('DescribeCasterEmergencyStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCasterEmergencyStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来查询导播台的输入源信息列表。
 
         # @param request: Request instance for DescribeCasterInputInfos.
@@ -4950,6 +4974,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchBackupStreamResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用来将导播台切换到备播状态。
+        # 该接口使用时，主监任务需处于运行状态。
+
+        # @param request: Request instance for SwitchCasterToEmergency.
+        # @type request: :class:`Tencentcloud::live::V20180801::SwitchCasterToEmergencyRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::SwitchCasterToEmergencyResponse`
+        def SwitchCasterToEmergency(request)
+          body = send_request('SwitchCasterToEmergency', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchCasterToEmergencyResponse.new
             model.deserialize(response['Response'])
             model
           else

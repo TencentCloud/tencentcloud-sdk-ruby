@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取并发计数
+
+        # @param request: Request instance for DescribeConcurrentCount.
+        # @type request: :class:`Tencentcloud::car::V20220110::DescribeConcurrentCountRequest`
+        # @rtype: :class:`Tencentcloud::car::V20220110::DescribeConcurrentCountResponse`
+        def DescribeConcurrentCount(request)
+          body = send_request('DescribeConcurrentCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeConcurrentCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 销毁会话。如果该会话开启了云端推流，那么销毁会话时会结束云端推流。
 
         # @param request: Request instance for DestroySession.

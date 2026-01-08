@@ -3635,12 +3635,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2025, 12
-        deprecate :DeadLetterResendTimes=, :none, 2025, 12
-        deprecate :DeadLetterResendSuccessTimes, :none, 2025, 12
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2025, 12
-        deprecate :SubTopic, :none, 2025, 12
-        deprecate :SubTopic=, :none, 2025, 12
+        deprecate :DeadLetterResendTimes, :none, 2026, 1
+        deprecate :DeadLetterResendTimes=, :none, 2026, 1
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 1
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 1
+        deprecate :SubTopic, :none, 2026, 1
+        deprecate :SubTopic=, :none, 2026, 1
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -4172,10 +4172,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Name, :Remark, :SkuCode, :DeviceCertificateProvisionType, :AutomaticActivation, :AuthorizationPolicy, :UseDefaultServerCert, :X509Mode, :MessageRate
         extend Gem::Deprecate
-        deprecate :DeviceCertificateProvisionType, :none, 2025, 12
-        deprecate :DeviceCertificateProvisionType=, :none, 2025, 12
-        deprecate :AutomaticActivation, :none, 2025, 12
-        deprecate :AutomaticActivation=, :none, 2025, 12
+        deprecate :DeviceCertificateProvisionType, :none, 2026, 1
+        deprecate :DeviceCertificateProvisionType=, :none, 2026, 1
+        deprecate :AutomaticActivation, :none, 2026, 1
+        deprecate :AutomaticActivation=, :none, 2026, 1
 
         def initialize(instanceid=nil, name=nil, remark=nil, skucode=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, authorizationpolicy=nil, usedefaultservercert=nil, x509mode=nil, messagerate=nil)
           @InstanceId = instanceid
@@ -4301,8 +4301,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2025, 12
-        deprecate :Text=, :none, 2025, 12
+        deprecate :Text, :none, 2026, 1
+        deprecate :Text=, :none, 2026, 1
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid

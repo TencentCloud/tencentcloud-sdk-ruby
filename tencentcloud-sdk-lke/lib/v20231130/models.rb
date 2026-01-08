@@ -8198,13 +8198,15 @@ module TencentCloud
         # @type IsDisabled: Boolean
         # @param StaffName: 员工名称
         # @type StaffName: String
-        # @param EnableScope: 文档生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @param EnableScope: 文档生效域: 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableScope: Integer
+        # @param DocSize: 文档大小，单位：字节
+        # @type DocSize: String
 
-        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :IsDisabled, :StaffName, :EnableScope
+        attr_accessor :DocBizId, :FileName, :NewName, :FileType, :CosUrl, :UpdateTime, :Status, :StatusDesc, :Reason, :IsRefer, :QaNum, :IsDeleted, :Source, :SourceDesc, :IsAllowRestart, :IsDeletedQa, :IsCreatingQa, :IsAllowDelete, :IsAllowRefer, :IsCreatedQa, :DocCharSize, :AttrRange, :AttrLabels, :IsAllowEdit, :ReferUrlType, :WebUrl, :ExpireStart, :ExpireEnd, :IsAllowRetry, :Processing, :CreateTime, :CateBizId, :CustomerKnowledgeId, :AttributeFlags, :IsDisabled, :StaffName, :EnableScope, :DocSize
 
-        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, isdisabled=nil, staffname=nil, enablescope=nil)
+        def initialize(docbizid=nil, filename=nil, newname=nil, filetype=nil, cosurl=nil, updatetime=nil, status=nil, statusdesc=nil, reason=nil, isrefer=nil, qanum=nil, isdeleted=nil, source=nil, sourcedesc=nil, isallowrestart=nil, isdeletedqa=nil, iscreatingqa=nil, isallowdelete=nil, isallowrefer=nil, iscreatedqa=nil, doccharsize=nil, attrrange=nil, attrlabels=nil, isallowedit=nil, referurltype=nil, weburl=nil, expirestart=nil, expireend=nil, isallowretry=nil, processing=nil, createtime=nil, catebizid=nil, customerknowledgeid=nil, attributeflags=nil, isdisabled=nil, staffname=nil, enablescope=nil, docsize=nil)
           @DocBizId = docbizid
           @FileName = filename
           @NewName = newname
@@ -8242,6 +8244,7 @@ module TencentCloud
           @IsDisabled = isdisabled
           @StaffName = staffname
           @EnableScope = enablescope
+          @DocSize = docsize
         end
 
         def deserialize(params)
@@ -8289,6 +8292,7 @@ module TencentCloud
           @IsDisabled = params['IsDisabled']
           @StaffName = params['StaffName']
           @EnableScope = params['EnableScope']
+          @DocSize = params['DocSize']
         end
       end
 
@@ -8683,15 +8687,18 @@ module TencentCloud
         # @type IsDisabled: Boolean
         # @param StaffName: 员工名称
         # @type StaffName: String
-        # @param EnableScope: 问答生效域: 1-停用；2-仅开发域；3-仅发布域；4-全域
+        # @param EnableScope: 问答生效域: 1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableScope: Integer
-        # @param DocEnableScope: 问答关联的文档生效域
+        # @param DocEnableScope: 问答关联的文档生效域：1-不生效；2-仅开发域生效；3-仅发布域生效；4-开发域和发布域均生效。
+        # 若问答未关联文档，则该字段值同问答生效域。
         # @type DocEnableScope: Integer
+        # @param QaSize: 问答大小（含相似问），单位：字节
+        # @type QaSize: String
 
-        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips, :IsDisabled, :StaffName, :EnableScope, :DocEnableScope
+        attr_accessor :QaBizId, :Question, :Answer, :Source, :SourceDesc, :UpdateTime, :Status, :StatusDesc, :DocBizId, :CreateTime, :IsAllowEdit, :IsAllowDelete, :IsAllowAccept, :FileName, :FileType, :QaCharSize, :ExpireStart, :ExpireEnd, :AttrRange, :AttrLabels, :SimilarQuestionNum, :SimilarQuestionTips, :IsDisabled, :StaffName, :EnableScope, :DocEnableScope, :QaSize
 
-        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil, isdisabled=nil, staffname=nil, enablescope=nil, docenablescope=nil)
+        def initialize(qabizid=nil, question=nil, answer=nil, source=nil, sourcedesc=nil, updatetime=nil, status=nil, statusdesc=nil, docbizid=nil, createtime=nil, isallowedit=nil, isallowdelete=nil, isallowaccept=nil, filename=nil, filetype=nil, qacharsize=nil, expirestart=nil, expireend=nil, attrrange=nil, attrlabels=nil, similarquestionnum=nil, similarquestiontips=nil, isdisabled=nil, staffname=nil, enablescope=nil, docenablescope=nil, qasize=nil)
           @QaBizId = qabizid
           @Question = question
           @Answer = answer
@@ -8718,6 +8725,7 @@ module TencentCloud
           @StaffName = staffname
           @EnableScope = enablescope
           @DocEnableScope = docenablescope
+          @QaSize = qasize
         end
 
         def deserialize(params)
@@ -8754,6 +8762,7 @@ module TencentCloud
           @StaffName = params['StaffName']
           @EnableScope = params['EnableScope']
           @DocEnableScope = params['DocEnableScope']
+          @QaSize = params['QaSize']
         end
       end
 

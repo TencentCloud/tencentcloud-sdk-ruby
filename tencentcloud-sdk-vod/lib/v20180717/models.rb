@@ -28179,7 +28179,7 @@ module TencentCloud
         # @type Score: Float
         # @param StartTimeOffset: 视频片段的开始时间，单位：秒
         # @type StartTimeOffset: Float
-        # @param EndTimeOffset: 视频片段的开始时间，单位：秒
+        # @param EndTimeOffset: 视频片段的结束时间，单位：秒
         # @type EndTimeOffset: Float
 
         attr_accessor :FileId, :Score, :StartTimeOffset, :EndTimeOffset

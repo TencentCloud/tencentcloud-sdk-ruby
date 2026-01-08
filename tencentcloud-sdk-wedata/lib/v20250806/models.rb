@@ -2089,6 +2089,113 @@ module TencentCloud
         end
       end
 
+      # CreateQualityRule请求参数结构体
+      class CreateQualityRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param CreateRuleScene: 规则创建场景
+        # 1：单表多规则
+        # 2：多表单规则
+        # 3：克隆创建规则
+        # @type CreateRuleScene: Integer
+        # @param RuleBOList: 单条规则信息集合
+        # @type RuleBOList: Array
+
+        attr_accessor :ProjectId, :CreateRuleScene, :RuleBOList
+
+        def initialize(projectid=nil, createrulescene=nil, rulebolist=nil)
+          @ProjectId = projectid
+          @CreateRuleScene = createrulescene
+          @RuleBOList = rulebolist
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @CreateRuleScene = params['CreateRuleScene']
+          unless params['RuleBOList'].nil?
+            @RuleBOList = []
+            params['RuleBOList'].each do |i|
+              qualityruleinfo_tmp = QualityRuleInfo.new
+              qualityruleinfo_tmp.deserialize(i)
+              @RuleBOList << qualityruleinfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateQualityRule返回参数结构体
+      class CreateQualityRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 规则创建结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.CreateQualityRuleVO`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateQualityRuleVO.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据质量规则批量创建结果
+      class CreateQualityRuleVO < TencentCloud::Common::AbstractModel
+        # @param Msg: 操作结果文案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Results: 单条数据新增结果对象
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Results: Array
+        # @param SumCount: 总新增条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SumCount: Integer
+        # @param SuccessCount: 新增成功条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessCount: Integer
+        # @param FailedCount: 新增失败条数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailedCount: Integer
+        # @param SuccessRuleIds: 新增成功的 ruleId集合
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuccessRuleIds: Array
+
+        attr_accessor :Msg, :Results, :SumCount, :SuccessCount, :FailedCount, :SuccessRuleIds
+
+        def initialize(msg=nil, results=nil, sumcount=nil, successcount=nil, failedcount=nil, successruleids=nil)
+          @Msg = msg
+          @Results = results
+          @SumCount = sumcount
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+          @SuccessRuleIds = successruleids
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              qualityrulecreateresult_tmp = QualityRuleCreateResult.new
+              qualityrulecreateresult_tmp.deserialize(i)
+              @Results << qualityrulecreateresult_tmp
+            end
+          end
+          @SumCount = params['SumCount']
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+          @SuccessRuleIds = params['SuccessRuleIds']
+        end
+      end
+
       # CreateResourceFile请求参数结构体
       class CreateResourceFileRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -10719,6 +10826,123 @@ module TencentCloud
         end
       end
 
+      # ListQualityRuleGroups请求参数结构体
+      class ListQualityRuleGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ProjectId: 项目Id
+        # @type ProjectId: String
+        # @param PageNumber: 分页序号，默认1
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小，默认10
+        # @type PageSize: Integer
+        # @param Filters: 过滤条件,每次请求的Filters的上限为10，Filter.Values的上限为5，可选过滤条件如下：
+
+        # 1. RuleGroupId
+        # 描述：规则组ID。
+        # 取值：整数
+
+        # 2. RuleGroupName
+        # 描述：规则组名称。
+        # 取值：字符串
+
+        # 3. TableId
+        # 描述：数据源表id
+        # 取值：字符串
+
+        # 4. TableName
+        # 描述：数据源表名称，支持模糊匹配。
+        # 取值：字符串
+
+        # 5. TableOwnerName
+        # 描述：表负责人名称，支持模糊匹配。
+        # 取值：字符串
+
+
+        # 6. DatasourceType
+        # 描述：数据源类型。
+        # 取值：1 - MYSQL；2 - HIVE；3 - DLC；4 - GBASE；5 - TCHouse-P/CDW；6 - ICEBERG；7 - DORIS；8 - TCHouse-D；9 - EMR_STARROCKS；10 - TBDS_STARROCKS；11 - TCHouse-X
+
+        # 7. DatasourceId
+        # 描述：数据源ID。
+        # 取值：字符串
+
+        # 8. DatabaseName
+        # 描述：数据库名称。
+        # 取值：字符串
+
+        # 9. SchemaName
+        # 描述：Schema名称。
+        # 取值：字符串
+
+        # 10. CatalogName
+        # 描述：数据目录名称。
+        # 取值：字符串
+
+        # @type Filters: Array
+        # @param OrderFields: 通用排序，支持的排序字段：
+        # CreateTime - 按创建时间排序
+        # UpdateTime - 按更新时间排序（默认）
+        # 排序方向：
+        # 1 - 升序（ASC）
+        # 2 - 降序（DESC）
+        # @type OrderFields: Array
+
+        attr_accessor :ProjectId, :PageNumber, :PageSize, :Filters, :OrderFields
+
+        def initialize(projectid=nil, pagenumber=nil, pagesize=nil, filters=nil, orderfields=nil)
+          @ProjectId = projectid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Filters = filters
+          @OrderFields = orderfields
+        end
+
+        def deserialize(params)
+          @ProjectId = params['ProjectId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+        end
+      end
+
+      # ListQualityRuleGroups返回参数结构体
+      class ListQualityRuleGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.QualityRuleGroupPage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = QualityRuleGroupPage.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListQualityRuleGroupsTable请求参数结构体
       class ListQualityRuleGroupsTableRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -14497,10 +14721,10 @@ module TencentCloud
 
       # 比较条件
       class QualityCompareRuleItem < TencentCloud::Common::AbstractModel
-        # @param CompareType: 比较类型 1.固定值  2.波动值  3.数值范围比较  4.枚举范围比较  5.不用比较
+        # @param CompareType: 比较类型【入参必填】，1.固定值  2.波动值  3.数值范围比较  4.枚举范围比较  5.不用比较   6.字段数据相关性  7.公平性
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareType: Integer
-        # @param Operator: 比较操作类型
+        # @param Operator: 比较操作类型【入参条件必填】，CompareType ∈ {1,2,6,7} 时必填
         # <  <=  ==  =>  > !=
         # IRLCRO:在区间内(左闭右开)
         # IRLORC:在区间内(左开右闭)
@@ -14512,10 +14736,23 @@ module TencentCloud
         # NRLORO:不在区间内(左开右开)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Operator: String
-        # @param ValueComputeType: 质量统计值类型 1.绝对值  2.上升 3. 下降  4._C包含   5. N_C不包含
+        # @param ValueComputeType: 质量统计值类型【入参条件必填】，当 CompareType ∈ {2,3,7} 时必填
+        # 可选值：
+        # 当 compareType = 2(波动值) 时：
+        #   - 1 = 绝对值(ABS)
+        #   - 2 = 上升(ASCEND)
+        #   - 3 = 下降(DESCEND)
+
+        # 当 compareType = 3(数值范围) 时：
+        #   - 4 = 范围内(WITH_IN_RANGE)
+        #   - 5 = 范围外(OUT_OF_RANGE)
+
+        # 当 compareType = 7(公平性) 时：
+        #   - 6 = 公平率(FAIRNESS_RATE)
+        #   - 7 = 公平差(FAIRNESS_GAP)
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueComputeType: Integer
-        # @param ValueList: 比较阈值列表
+        # @param ValueList: 比较阈值列表【入参必填】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueList: Array
 
@@ -14944,6 +15181,48 @@ module TencentCloud
         end
       end
 
+      # 批量创建规则时的单条数据创建结果
+      class QualityRuleCreateResult < TencentCloud::Common::AbstractModel
+        # @param Msg: 操作结果文案
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Msg: String
+        # @param Success: 操作结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Success: Boolean
+        # @param Name: 规则名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param RuleGroupId: 规则组id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupId: Integer
+        # @param RuleGroupTableId: 本地表id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupTableId: Integer
+        # @param RuleId: 规则id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleId: Integer
+
+        attr_accessor :Msg, :Success, :Name, :RuleGroupId, :RuleGroupTableId, :RuleId
+
+        def initialize(msg=nil, success=nil, name=nil, rulegroupid=nil, rulegrouptableid=nil, ruleid=nil)
+          @Msg = msg
+          @Success = success
+          @Name = name
+          @RuleGroupId = rulegroupid
+          @RuleGroupTableId = rulegrouptableid
+          @RuleId = ruleid
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
+          @Success = params['Success']
+          @Name = params['Name']
+          @RuleGroupId = params['RuleGroupId']
+          @RuleGroupTableId = params['RuleGroupTableId']
+          @RuleId = params['RuleId']
+        end
+      end
+
       # 规则执行结果
       class QualityRuleExecResult < TencentCloud::Common::AbstractModel
         # @param RuleExecId: 规则执行ID
@@ -15178,6 +15457,189 @@ module TencentCloud
         end
       end
 
+      # 数据质量监控任务
+      class QualityRuleGroup < TencentCloud::Common::AbstractModel
+        # @param RuleGroupId: 规则组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupId: Integer
+        # @param DatasourceId: 数据源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatasourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param DatasourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: Integer
+        # @param MonitorType: 监控类型 1.未配置, 2.关联生产调度, 3.离线周期检测
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorType: Integer
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param TableName: 关联数据表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param TableId: 关联数据表Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param TableOwnerName: 关联数据表负责人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerName: String
+        # @param ExecStrategy: 执行策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecStrategy: :class:`Tencentcloud::Wedata.v20250806.models.QualityRuleGroupExecStrategy`
+        # @param Subscription: 订阅信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Subscription: :class:`Tencentcloud::Wedata.v20250806.models.QualityRuleGroupSubscribe`
+        # @param DatabaseId: 数据库id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param SchemaName: 模式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param Permission: 是否有权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permission: Boolean
+        # @param RuleCount: 已经配置的规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleCount: Integer
+        # @param MonitorStatus: 监控状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MonitorStatus: Boolean
+        # @param TableOwnerUserId: 表负责人UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableOwnerUserId: Integer
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param StrategyConfig: 是否已配置执行策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StrategyConfig: Boolean
+        # @param SubscribeConfig: 是否已配置执行策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubscribeConfig: Boolean
+        # @param DsEnvType: 数据源环境：0或者未返回.未定义，1.生产 2.开发
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DsEnvType: Integer
+        # @param ClusterDeployType: EMR集群部署方式：CVM/TKE
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterDeployType: String
+        # @param Name: 任务名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ExecDetail: 执行详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExecDetail: String
+        # @param PipelineTaskCount: 事中关联任务数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PipelineTaskCount: Integer
+        # @param EnableRuleCount: 有效规则数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRuleCount: Integer
+        # @param Description: 任务描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param CreateUserName: 监控创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateUserName: String
+        # @param GroupType: 任务类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GroupType: String
+        # @param AspectTaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AspectTaskId: String
+        # @param CatalogName: 数据目录名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+
+        attr_accessor :RuleGroupId, :DatasourceId, :DatasourceName, :DatasourceType, :MonitorType, :UpdateTime, :TableName, :TableId, :TableOwnerName, :ExecStrategy, :Subscription, :DatabaseId, :DatabaseName, :SchemaName, :Permission, :RuleCount, :MonitorStatus, :TableOwnerUserId, :InstanceId, :CreateTime, :StrategyConfig, :SubscribeConfig, :DsEnvType, :ClusterDeployType, :Name, :ExecDetail, :PipelineTaskCount, :EnableRuleCount, :Description, :CreateUserName, :GroupType, :AspectTaskId, :CatalogName
+
+        def initialize(rulegroupid=nil, datasourceid=nil, datasourcename=nil, datasourcetype=nil, monitortype=nil, updatetime=nil, tablename=nil, tableid=nil, tableownername=nil, execstrategy=nil, subscription=nil, databaseid=nil, databasename=nil, schemaname=nil, permission=nil, rulecount=nil, monitorstatus=nil, tableowneruserid=nil, instanceid=nil, createtime=nil, strategyconfig=nil, subscribeconfig=nil, dsenvtype=nil, clusterdeploytype=nil, name=nil, execdetail=nil, pipelinetaskcount=nil, enablerulecount=nil, description=nil, createusername=nil, grouptype=nil, aspecttaskid=nil, catalogname=nil)
+          @RuleGroupId = rulegroupid
+          @DatasourceId = datasourceid
+          @DatasourceName = datasourcename
+          @DatasourceType = datasourcetype
+          @MonitorType = monitortype
+          @UpdateTime = updatetime
+          @TableName = tablename
+          @TableId = tableid
+          @TableOwnerName = tableownername
+          @ExecStrategy = execstrategy
+          @Subscription = subscription
+          @DatabaseId = databaseid
+          @DatabaseName = databasename
+          @SchemaName = schemaname
+          @Permission = permission
+          @RuleCount = rulecount
+          @MonitorStatus = monitorstatus
+          @TableOwnerUserId = tableowneruserid
+          @InstanceId = instanceid
+          @CreateTime = createtime
+          @StrategyConfig = strategyconfig
+          @SubscribeConfig = subscribeconfig
+          @DsEnvType = dsenvtype
+          @ClusterDeployType = clusterdeploytype
+          @Name = name
+          @ExecDetail = execdetail
+          @PipelineTaskCount = pipelinetaskcount
+          @EnableRuleCount = enablerulecount
+          @Description = description
+          @CreateUserName = createusername
+          @GroupType = grouptype
+          @AspectTaskId = aspecttaskid
+          @CatalogName = catalogname
+        end
+
+        def deserialize(params)
+          @RuleGroupId = params['RuleGroupId']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceName = params['DatasourceName']
+          @DatasourceType = params['DatasourceType']
+          @MonitorType = params['MonitorType']
+          @UpdateTime = params['UpdateTime']
+          @TableName = params['TableName']
+          @TableId = params['TableId']
+          @TableOwnerName = params['TableOwnerName']
+          unless params['ExecStrategy'].nil?
+            @ExecStrategy = QualityRuleGroupExecStrategy.new
+            @ExecStrategy.deserialize(params['ExecStrategy'])
+          end
+          unless params['Subscription'].nil?
+            @Subscription = QualityRuleGroupSubscribe.new
+            @Subscription.deserialize(params['Subscription'])
+          end
+          @DatabaseId = params['DatabaseId']
+          @DatabaseName = params['DatabaseName']
+          @SchemaName = params['SchemaName']
+          @Permission = params['Permission']
+          @RuleCount = params['RuleCount']
+          @MonitorStatus = params['MonitorStatus']
+          @TableOwnerUserId = params['TableOwnerUserId']
+          @InstanceId = params['InstanceId']
+          @CreateTime = params['CreateTime']
+          @StrategyConfig = params['StrategyConfig']
+          @SubscribeConfig = params['SubscribeConfig']
+          @DsEnvType = params['DsEnvType']
+          @ClusterDeployType = params['ClusterDeployType']
+          @Name = params['Name']
+          @ExecDetail = params['ExecDetail']
+          @PipelineTaskCount = params['PipelineTaskCount']
+          @EnableRuleCount = params['EnableRuleCount']
+          @Description = params['Description']
+          @CreateUserName = params['CreateUserName']
+          @GroupType = params['GroupType']
+          @AspectTaskId = params['AspectTaskId']
+          @CatalogName = params['CatalogName']
+        end
+      end
+
       # 任务配置
       class QualityRuleGroupConfig < TencentCloud::Common::AbstractModel
         # @param AnalysisType: 分析类型，可选值：
@@ -15391,7 +15853,7 @@ module TencentCloud
         # @param EngineParam: 引擎参数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineParam: String
-        # @param CatalogName: 数据目录名称，不填默认为DataLakeCatalog
+        # @param CatalogName: 数据目录名称，不填默认为DataLakeCatalog（更新质量监控时该参数无效）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogName: String
 
@@ -15467,6 +15929,35 @@ module TencentCloud
           end
           @EngineParam = params['EngineParam']
           @CatalogName = params['CatalogName']
+        end
+      end
+
+      # 质量监控分页
+      class QualityRuleGroupPage < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: 质量监控列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+
+        attr_accessor :TotalCount, :Items
+
+        def initialize(totalcount=nil, items=nil)
+          @TotalCount = totalcount
+          @Items = items
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              qualityrulegroup_tmp = QualityRuleGroup.new
+              qualityrulegroup_tmp.deserialize(i)
+              @Items << qualityrulegroup_tmp
+            end
+          end
         end
       end
 
@@ -15731,6 +16222,213 @@ module TencentCloud
               @Items << qualityrulegrouptablev2_tmp
             end
           end
+        end
+      end
+
+      # 数据质量规则
+      class QualityRuleInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 规则名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: 规则类型
+        # 1：系统模版
+        # 2：自定义模版
+        # 3：自定义SQL
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: Integer
+        # @param DatasourceId: 数据源Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: String
+        # @param DatabaseName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseName: String
+        # @param CompareRule: 报警触发条件
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompareRule: :class:`Tencentcloud::Wedata.v20250806.models.QualityCompareRule`
+        # @param AlarmLevel: 报警触发级别 1.低, 2.中, 3.高
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AlarmLevel: Integer
+        # @param SourceEngineTypes: 该规则支持的执行引擎列表，可选值如下：
+        # 1 - MYSQL
+        # 2 - HIVE
+        # 4 - SPARK
+        # 8 - LIVY
+        # 16 - DLC
+        # 32 - GBASE
+        # 64 - TCHouse-P
+        # 128 - DORIS
+        # 256 - TCHouse-D
+        # 512 - EMR_STARROCKS
+        # 1024 - TCHouse-X
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceEngineTypes: Array
+        # @param TableName: 表名称，TableId和TableName至少填一个
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param RuleTemplateId: 规则模板id，【条件必填】当Type≠3（自定义SQL）时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleTemplateId: Integer
+        # @param QualityDim: 规则所属质量维度，Type=3（自定义SQL）时必填（1：准确性，2：唯一性，3：完整性，4：一致性，5：及时性，6：有效性）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualityDim: Integer
+        # @param ProjectId: 项目id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: String
+        # @param RuleGroupId: 规则组Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleGroupId: Integer
+        # @param TableId: 数据表ID，TableId和TableName至少要有一个
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableId: String
+        # @param SourceObjectDataTypeName: 源数据对象（表、字段等）详细类型，【条件必填】当Type=1（系统模板）时必填
+        # 表对应固定值“table”（模板是表级的）
+        # 字段则是对应字段类型：int、string等（模板是字段级的）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceObjectDataTypeName: String
+        # @param SourceObjectValue: 源数据对象（表、字段等）名称，【条件必填】当Type=1（系统模板）时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceObjectValue: String
+        # @param ConditionType: 检测范围，【条件必填】当Type=1（系统模板）或2（自定义模板）时必填。
+        # 1.全表
+        # 2.条件扫描
+        # 注意：CompareType为2（波动值）或 使用用户自定义模板时包含过滤条件${FILTER}时，检测范围必须为2条件扫描
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionType: Integer
+        # @param ConditionExpression: 条件扫描WHERE条件表达式，【条件必填】ConditionType=2(条件扫描)时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConditionExpression: String
+        # @param CustomSql: 自定义SQL（Base64编码），【条件必填】Type=3（自定义SQL）时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomSql: String
+        # @param Description: 规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param DatabaseId: 数据库Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabaseId: String
+        # @param TargetDatabaseId: 目标库Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetDatabaseId: String
+        # @param TargetTableId: 目标表Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetTableId: String
+        # @param TargetConditionExpr: 目标过滤条件表达式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetConditionExpr: String
+        # @param RelConditionExpr: 源字段与目标字段关联条件on表达式，【条件必填】仅在字段数据相关性规则时必填（ruleTemplate中qualityDim=4(一致性) 且 subQualityDim=3(字段数据相关性)），例如sourceTable.model_id=targetTable.model_id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelConditionExpr: String
+        # @param FieldConfig: 自定义模版sql表达式字段替换参数，【条件必填】Type=2（自定义模板）时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldConfig: :class:`Tencentcloud::Wedata.v20250806.models.QualityRuleFieldConfig`
+        # @param TargetObjectValue: 目标字段名称  CITY
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetObjectValue: String
+        # @param Index: 下标，新增时区分不同数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Index: String
+        # @param SchemaName: 模式名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SchemaName: String
+        # @param TargetSchemaName: 目标schema名称，【条件必填】仅在系统模板的“字段数据相关性”规则以及数据源为TCHouse-P时必填（ruleTemplate的qualityDim=4 且 subQualityDim=3）。用于校验和关联跨表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetSchemaName: String
+        # @param TargetDatabaseName: 目标库名称，【条件必填】仅在系统模板的“字段数据相关性”规则时必填（ruleTemplate的qualityDim=4 且 subQualityDim=3）。用于校验和关联跨表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetDatabaseName: String
+        # @param TargetTableName: 目标表名称，【条件必填】仅在系统模板的“字段数据相关性”规则时必填（ruleTemplate的qualityDim=4 且 subQualityDim=3）。用于校验和关联跨表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetTableName: String
+        # @param TaskId: 任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TaskId: String
+        # @param CatalogName: 数据目录名称，主要用于dlc数据源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param TargetCatalogName: 目标数据目录名称，【条件必填】仅在系统模板的“字段数据相关性”规则以及数据源为DLC时必填（ruleTemplate的qualityDim=4 且 subQualityDim=3）。用于校验和关联跨表数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetCatalogName: String
+
+        attr_accessor :Name, :Type, :DatasourceId, :DatabaseName, :CompareRule, :AlarmLevel, :SourceEngineTypes, :TableName, :RuleTemplateId, :QualityDim, :ProjectId, :RuleGroupId, :TableId, :SourceObjectDataTypeName, :SourceObjectValue, :ConditionType, :ConditionExpression, :CustomSql, :Description, :DatabaseId, :TargetDatabaseId, :TargetTableId, :TargetConditionExpr, :RelConditionExpr, :FieldConfig, :TargetObjectValue, :Index, :SchemaName, :TargetSchemaName, :TargetDatabaseName, :TargetTableName, :TaskId, :CatalogName, :TargetCatalogName
+
+        def initialize(name=nil, type=nil, datasourceid=nil, databasename=nil, comparerule=nil, alarmlevel=nil, sourceenginetypes=nil, tablename=nil, ruletemplateid=nil, qualitydim=nil, projectid=nil, rulegroupid=nil, tableid=nil, sourceobjectdatatypename=nil, sourceobjectvalue=nil, conditiontype=nil, conditionexpression=nil, customsql=nil, description=nil, databaseid=nil, targetdatabaseid=nil, targettableid=nil, targetconditionexpr=nil, relconditionexpr=nil, fieldconfig=nil, targetobjectvalue=nil, index=nil, schemaname=nil, targetschemaname=nil, targetdatabasename=nil, targettablename=nil, taskid=nil, catalogname=nil, targetcatalogname=nil)
+          @Name = name
+          @Type = type
+          @DatasourceId = datasourceid
+          @DatabaseName = databasename
+          @CompareRule = comparerule
+          @AlarmLevel = alarmlevel
+          @SourceEngineTypes = sourceenginetypes
+          @TableName = tablename
+          @RuleTemplateId = ruletemplateid
+          @QualityDim = qualitydim
+          @ProjectId = projectid
+          @RuleGroupId = rulegroupid
+          @TableId = tableid
+          @SourceObjectDataTypeName = sourceobjectdatatypename
+          @SourceObjectValue = sourceobjectvalue
+          @ConditionType = conditiontype
+          @ConditionExpression = conditionexpression
+          @CustomSql = customsql
+          @Description = description
+          @DatabaseId = databaseid
+          @TargetDatabaseId = targetdatabaseid
+          @TargetTableId = targettableid
+          @TargetConditionExpr = targetconditionexpr
+          @RelConditionExpr = relconditionexpr
+          @FieldConfig = fieldconfig
+          @TargetObjectValue = targetobjectvalue
+          @Index = index
+          @SchemaName = schemaname
+          @TargetSchemaName = targetschemaname
+          @TargetDatabaseName = targetdatabasename
+          @TargetTableName = targettablename
+          @TaskId = taskid
+          @CatalogName = catalogname
+          @TargetCatalogName = targetcatalogname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Type = params['Type']
+          @DatasourceId = params['DatasourceId']
+          @DatabaseName = params['DatabaseName']
+          unless params['CompareRule'].nil?
+            @CompareRule = QualityCompareRule.new
+            @CompareRule.deserialize(params['CompareRule'])
+          end
+          @AlarmLevel = params['AlarmLevel']
+          @SourceEngineTypes = params['SourceEngineTypes']
+          @TableName = params['TableName']
+          @RuleTemplateId = params['RuleTemplateId']
+          @QualityDim = params['QualityDim']
+          @ProjectId = params['ProjectId']
+          @RuleGroupId = params['RuleGroupId']
+          @TableId = params['TableId']
+          @SourceObjectDataTypeName = params['SourceObjectDataTypeName']
+          @SourceObjectValue = params['SourceObjectValue']
+          @ConditionType = params['ConditionType']
+          @ConditionExpression = params['ConditionExpression']
+          @CustomSql = params['CustomSql']
+          @Description = params['Description']
+          @DatabaseId = params['DatabaseId']
+          @TargetDatabaseId = params['TargetDatabaseId']
+          @TargetTableId = params['TargetTableId']
+          @TargetConditionExpr = params['TargetConditionExpr']
+          @RelConditionExpr = params['RelConditionExpr']
+          unless params['FieldConfig'].nil?
+            @FieldConfig = QualityRuleFieldConfig.new
+            @FieldConfig.deserialize(params['FieldConfig'])
+          end
+          @TargetObjectValue = params['TargetObjectValue']
+          @Index = params['Index']
+          @SchemaName = params['SchemaName']
+          @TargetSchemaName = params['TargetSchemaName']
+          @TargetDatabaseName = params['TargetDatabaseName']
+          @TargetTableName = params['TargetTableName']
+          @TaskId = params['TaskId']
+          @CatalogName = params['CatalogName']
+          @TargetCatalogName = params['TargetCatalogName']
         end
       end
 
@@ -16060,10 +16758,10 @@ module TencentCloud
 
       # 数据质量阈值
       class QualityThresholdValue < TencentCloud::Common::AbstractModel
-        # @param ValueType: 阈值类型  1.低阈值  2.高阈值   3.普通阈值  4.枚举值
+        # @param ValueType: 阈值类型【入参必填】  1.低阈值  2.高阈值   3.普通阈值  4.枚举值
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ValueType: Integer
-        # @param Value: 阈值
+        # @param Value: 阈值【入参必填】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Value: String
 
