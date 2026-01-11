@@ -475,15 +475,19 @@ module TencentCloud
         # @param TEHDConfig: 极速高清转码参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
+        # @param EnhanceConfig: 音视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
 
-        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo, :TEHDConfig
+        attr_accessor :Video, :Audio, :RemoveAudio, :RemoveVideo, :TEHDConfig, :EnhanceConfig
 
-        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil, tehdconfig=nil)
+        def initialize(video=nil, audio=nil, removeaudio=nil, removevideo=nil, tehdconfig=nil, enhanceconfig=nil)
           @Video = video
           @Audio = audio
           @RemoveAudio = removeaudio
           @RemoveVideo = removevideo
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
         end
 
         def deserialize(params)
@@ -500,6 +504,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
         end
       end
@@ -5397,6 +5405,31 @@ module TencentCloud
         end
       end
 
+      # 音频美化配置。
+      class AudioBeautifyInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 音频美化控制开关，可选值：
+        # <li>ON：开启音频美化；</li>
+        # <li>OFF：关闭音频美化。</li>
+        # @type Switch: String
+        # @param Types: 类型，可多选，可选值：
+        # <li>declick：杂音去除</li>
+        # <li>deesser：齿音压制</li>
+        # 默认值：declick。
+        # @type Types: Array
+
+        attr_accessor :Switch, :Types
+
+        def initialize(switch=nil, types=nil)
+          @Switch = switch
+          @Types = types
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Types = params['Types']
+        end
+      end
+
       # 音频降噪控制信息
       class AudioDenoiseInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 音频降噪控制开关，可选值：
@@ -5404,10 +5437,8 @@ module TencentCloud
         # <li>OFF：关闭音频降噪。</li>
         # @type Switch: String
         # @param Type: 音频降噪类型，仅当音频降噪控制开关为 ON 时有效，可选值：
-        # <li>weak：轻音频降噪；</li>
         # <li>normal：正常音频降噪；</li>
-        # <li>strong：强音频降噪。</li>
-        # 默认值：weak。
+        # 默认值：normal。
         # @type Type: String
 
         attr_accessor :Switch, :Type
@@ -5420,6 +5451,82 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 音频增强配置。
+      class AudioEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param Denoise: 音频降噪配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Vod.v20180717.models.AudioDenoiseInfo`
+        # @param Separate: 音频分离配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Separate: :class:`Tencentcloud::Vod.v20180717.models.AudioSeparateInfo`
+        # @param VolumeBalance: 音量均衡配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VolumeBalance: :class:`Tencentcloud::Vod.v20180717.models.AudioVolumeBalanceInfo`
+        # @param Beautify: 音量美化配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Beautify: :class:`Tencentcloud::Vod.v20180717.models.AudioBeautifyInfo`
+
+        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify
+
+        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil)
+          @Denoise = denoise
+          @Separate = separate
+          @VolumeBalance = volumebalance
+          @Beautify = beautify
+        end
+
+        def deserialize(params)
+          unless params['Denoise'].nil?
+            @Denoise = AudioDenoiseInfo.new
+            @Denoise.deserialize(params['Denoise'])
+          end
+          unless params['Separate'].nil?
+            @Separate = AudioSeparateInfo.new
+            @Separate.deserialize(params['Separate'])
+          end
+          unless params['VolumeBalance'].nil?
+            @VolumeBalance = AudioVolumeBalanceInfo.new
+            @VolumeBalance.deserialize(params['VolumeBalance'])
+          end
+          unless params['Beautify'].nil?
+            @Beautify = AudioBeautifyInfo.new
+            @Beautify.deserialize(params['Beautify'])
+          end
+        end
+      end
+
+      # 音频分离配置。
+      class AudioSeparateInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 音频分离控制开关，可选值：
+        # <li>ON：开启音频分离；</li>
+        # <li>OFF：关闭音频分离。</li>
+        # @type Switch: String
+        # @param Type: 场景类型，可选值：
+        # <li>normal：人声背景声场景</li>
+        # <li>music：演唱伴奏场景</li>
+        # 默认值：normal。
+        # @type Type: String
+        # @param Track: 输出音轨，可选值：
+        # <li>vocal：输出人声</li>
+        # <li>background：应用场景为normal时输出背景声，应用场景为music时输出伴奏</li>
+        # 默认值：vocal。
+        # @type Track: String
+
+        attr_accessor :Switch, :Type, :Track
+
+        def initialize(switch=nil, type=nil, track=nil)
+          @Switch = switch
+          @Type = type
+          @Track = track
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Track = params['Track']
         end
       end
 
@@ -5602,6 +5709,31 @@ module TencentCloud
             @VolumeParam = AudioVolumeParam.new
             @VolumeParam.deserialize(params['VolumeParam'])
           end
+        end
+      end
+
+      # 音量均衡配置。
+      class AudioVolumeBalanceInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 音量均衡控制开关，可选值：
+        # <li>ON：开启音量均衡；</li>
+        # <li>OFF：关闭音量均衡。</li>
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>loudNorm：响度标准化</li>
+        # <li>gainControl：减小突变</li>
+        # 默认值：loudNorm。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -9288,15 +9420,17 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfo`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
+        # @param EnhanceConfig: 音视频增强配置。
+        # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
         # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
         # <li>ts：ts 切片；</li>
         # <li>fmp4：fmp4 切片。</li>
         # 默认值：ts。
         # @type SegmentType: String
 
-        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SegmentType
+        attr_accessor :Container, :SubAppId, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType
 
-        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, segmenttype=nil)
+        def initialize(container=nil, subappid=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil)
           @Container = container
           @SubAppId = subappid
           @Name = name
@@ -9306,6 +9440,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
           @SegmentType = segmenttype
         end
 
@@ -9327,6 +9462,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
           @SegmentType = params['SegmentType']
         end
@@ -14132,10 +14271,19 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回记录条数，默认值：10，最大值：100。
         # @type Limit: Integer
+        # @param EnhanceType: 增强类型，可选值：
+        # <li>VideoEnhance（仅视频增强）</li>
+        # <li>AudioEnhance（仅音频增强）</li>
+        # <li>AudioVideoEnhance（音视频增强）</li>
+        # <li>AnyEnhance（包括仅视频增强、仅音频增强、音视频增强）</li>
+        # <li>None（非增强）</li>
+        # @type EnhanceType: String
+        # @param EnhanceScenarioType: 增强场景配置，可选值： <li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li> <li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li> <li>short_play（短剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li> <li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li> <li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li> <li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li> <li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li> <li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li>
+        # @type EnhanceScenarioType: String
 
-        attr_accessor :SubAppId, :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit
+        attr_accessor :SubAppId, :Definitions, :Type, :ContainerType, :TEHDType, :Offset, :Limit, :EnhanceType, :EnhanceScenarioType
 
-        def initialize(subappid=nil, definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil)
+        def initialize(subappid=nil, definitions=nil, type=nil, containertype=nil, tehdtype=nil, offset=nil, limit=nil, enhancetype=nil, enhancescenariotype=nil)
           @SubAppId = subappid
           @Definitions = definitions
           @Type = type
@@ -14143,6 +14291,8 @@ module TencentCloud
           @TEHDType = tehdtype
           @Offset = offset
           @Limit = limit
+          @EnhanceType = enhancetype
+          @EnhanceScenarioType = enhancescenariotype
         end
 
         def deserialize(params)
@@ -14153,6 +14303,8 @@ module TencentCloud
           @TEHDType = params['TEHDType']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @EnhanceType = params['EnhanceType']
+          @EnhanceScenarioType = params['EnhanceScenarioType']
         end
       end
 
@@ -14387,6 +14539,32 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 大模型增强配置。
+      class DiffusionEnhanceInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 大模型增强开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # @type Switch: String
+        # @param Type: 强度类型，仅当大模型增强控制开关为 ON 时有效，可选值：
+        # <li>weak：弱；</li>
+        # <li>normal：正常；</li>
+        # <li>strong：强。</li>
+        # 默认值：normal。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -15038,6 +15216,62 @@ module TencentCloud
 
         def deserialize(params)
           @Duration = params['Duration']
+        end
+      end
+
+      # 音视频增强配置
+      class EnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param VideoEnhance: 视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoEnhance: :class:`Tencentcloud::Vod.v20180717.models.VideoEnhanceConfig`
+        # @param AudioEnhance: 音频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioEnhance: :class:`Tencentcloud::Vod.v20180717.models.AudioEnhanceConfig`
+
+        attr_accessor :VideoEnhance, :AudioEnhance
+
+        def initialize(videoenhance=nil, audioenhance=nil)
+          @VideoEnhance = videoenhance
+          @AudioEnhance = audioenhance
+        end
+
+        def deserialize(params)
+          unless params['VideoEnhance'].nil?
+            @VideoEnhance = VideoEnhanceConfig.new
+            @VideoEnhance.deserialize(params['VideoEnhance'])
+          end
+          unless params['AudioEnhance'].nil?
+            @AudioEnhance = AudioEnhanceConfig.new
+            @AudioEnhance.deserialize(params['AudioEnhance'])
+          end
+        end
+      end
+
+      # 音视频增强配置
+      class EnhanceConfigForUpdate < TencentCloud::Common::AbstractModel
+        # @param VideoEnhance: 视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VideoEnhance: :class:`Tencentcloud::Vod.v20180717.models.VideoEnhanceConfig`
+        # @param AudioEnhance: 音频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioEnhance: :class:`Tencentcloud::Vod.v20180717.models.AudioEnhanceConfig`
+
+        attr_accessor :VideoEnhance, :AudioEnhance
+
+        def initialize(videoenhance=nil, audioenhance=nil)
+          @VideoEnhance = videoenhance
+          @AudioEnhance = audioenhance
+        end
+
+        def deserialize(params)
+          unless params['VideoEnhance'].nil?
+            @VideoEnhance = VideoEnhanceConfig.new
+            @VideoEnhance.deserialize(params['VideoEnhance'])
+          end
+          unless params['AudioEnhance'].nil?
+            @AudioEnhance = AudioEnhanceConfig.new
+            @AudioEnhance.deserialize(params['AudioEnhance'])
+          end
         end
       end
 
@@ -16245,6 +16479,32 @@ module TencentCloud
         end
       end
 
+      # 插帧帧率配置。
+      class FrameRateWithDenInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 插帧帧率配置控制开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # @type Switch: String
+        # @param FpsNum: 帧率分子，取值范围：非负数，除以分母后小于100，单位：Hz。 默认值 0。 注意：对于转码，该参数会覆盖 VideoTemplate 内部的 Fps。
+        # @type FpsNum: Integer
+        # @param FpsDen: 帧率分母，取值范围：大于等于1。 默认值 1。
+        # @type FpsDen: Integer
+
+        attr_accessor :Switch, :FpsNum, :FpsDen
+
+        def initialize(switch=nil, fpsnum=nil, fpsden=nil)
+          @Switch = switch
+          @FpsNum = fpsnum
+          @FpsDen = fpsden
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @FpsNum = params['FpsNum']
+          @FpsDen = params['FpsDen']
+        end
+      end
+
       # 智能按帧标签任务控制参数
       class FrameTagConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 智能按帧标签任务开关，可选值：
@@ -16301,7 +16561,7 @@ module TencentCloud
 
         # 注意：
         # <li> 仅当高动态范围类型控制开关为 ON 时有效；</li>
-        # <li>当画质重生目标参数中指定视频输出参数的视频流编码格式 Codec 为 libx265 时有效。</li>
+        # <li>当目标参数中指定视频输出参数的视频流编码格式 Codec 为 libx264、libx265 时有效。</li>
         # @type Type: String
 
         attr_accessor :Switch, :Type
@@ -16730,6 +16990,32 @@ module TencentCloud
             end
           end
           @CreateTime = params['CreateTime']
+        end
+      end
+
+      # 综合增强控制
+      class ImageQualityEnhanceInfo < TencentCloud::Common::AbstractModel
+        # @param Switch: 综合增强控制开关，可选值：
+        # <li>ON：开启综合增强；</li>
+        # <li>OFF：关闭综合增强。</li>
+        # @type Switch: String
+        # @param Type: 综合增强类型，仅当综合增强控制开关为 ON 时有效，可选值：
+        # <li>weak：轻综合增强；</li>
+        # <li>normal：正常综合增强；</li>
+        # <li>strong：强综合增强。</li>
+        # 默认值：weak。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 
@@ -22017,14 +22303,16 @@ module TencentCloud
         # @type AudioTemplate: :class:`Tencentcloud::Vod.v20180717.models.AudioTemplateInfoForUpdate`
         # @param TEHDConfig: 极速高清转码参数。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfigForUpdate`
+        # @param EnhanceConfig: 音视频增强配置。
+        # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfigForUpdate`
         # @param SegmentType: 切片类型，当 Container 为 hls 时有效，可选值：
         # <li>ts：ts 切片；</li>
         # <li>fmp4：fmp4 切片。</li>
         # @type SegmentType: String
 
-        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :SegmentType
+        attr_accessor :Definition, :SubAppId, :Container, :Name, :Comment, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :SegmentType
 
-        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, segmenttype=nil)
+        def initialize(definition=nil, subappid=nil, container=nil, name=nil, comment=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, segmenttype=nil)
           @Definition = definition
           @SubAppId = subappid
           @Container = container
@@ -22035,6 +22323,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
           @SegmentType = segmenttype
         end
 
@@ -22057,6 +22346,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfigForUpdate.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfigForUpdate.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
           @SegmentType = params['SegmentType']
         end
@@ -29212,7 +29505,6 @@ module TencentCloud
         # @param Switch: 画面超分控制开关，可选值：
         # <li>ON：开启画面超分；</li>
         # <li>OFF：关闭画面超分。</li>
-        # 当开启画面超分时，默认2倍超分。
         # @type Switch: String
         # @param Type: 画面超分类型，仅当画面超分控制开关为 ON 时有效，可选值：
         # <li>lq：针对低清晰度有较多噪声视频的超分；</li>
@@ -30174,6 +30466,9 @@ module TencentCloud
         # @param TEHDConfig: 极速高清转码参数。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TEHDConfig: :class:`Tencentcloud::Vod.v20180717.models.TEHDConfig`
+        # @param EnhanceConfig: 音视频增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.EnhanceConfig`
         # @param ContainerType: 封装格式过滤条件，可选值：
         # <li>Video：视频格式，可以同时包含视频流和音频流的封装格式；</li>
         # <li>PureAudio：纯音频格式，只能包含音频流的封装格式板。</li>
@@ -30185,9 +30480,9 @@ module TencentCloud
         # @param SegmentType: 切片类型，仅当 Container 为 hls 时有效。
         # @type SegmentType: String
 
-        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :ContainerType, :CreateTime, :UpdateTime, :SegmentType
+        attr_accessor :Definition, :Container, :Name, :Comment, :Type, :RemoveVideo, :RemoveAudio, :VideoTemplate, :AudioTemplate, :TEHDConfig, :EnhanceConfig, :ContainerType, :CreateTime, :UpdateTime, :SegmentType
 
-        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, containertype=nil, createtime=nil, updatetime=nil, segmenttype=nil)
+        def initialize(definition=nil, container=nil, name=nil, comment=nil, type=nil, removevideo=nil, removeaudio=nil, videotemplate=nil, audiotemplate=nil, tehdconfig=nil, enhanceconfig=nil, containertype=nil, createtime=nil, updatetime=nil, segmenttype=nil)
           @Definition = definition
           @Container = container
           @Name = name
@@ -30198,6 +30493,7 @@ module TencentCloud
           @VideoTemplate = videotemplate
           @AudioTemplate = audiotemplate
           @TEHDConfig = tehdconfig
+          @EnhanceConfig = enhanceconfig
           @ContainerType = containertype
           @CreateTime = createtime
           @UpdateTime = updatetime
@@ -30223,6 +30519,10 @@ module TencentCloud
           unless params['TEHDConfig'].nil?
             @TEHDConfig = TEHDConfig.new
             @TEHDConfig.deserialize(params['TEHDConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = EnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
           end
           @ContainerType = params['ContainerType']
           @CreateTime = params['CreateTime']
@@ -30818,6 +31118,111 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 视频增强配置。
+      class VideoEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param EnhanceScenarioType: 增强场景配置，可选值：
+        # <li>common（通用），通用增强参数，适用于各种视频类型的基础优化参数，提升整体画质。</li>
+        # <li>AIGC，整体分辨率提升，利用AI技术提升视频整体分辨率，增强画面清晰度。</li>
+        # <li>short_play（短剧），增强面部与字幕细节，突出人物面部表情细节和字幕清晰度，提升观剧体验。</li>
+        # <li>short_video（短视频），优化复杂多样的画质问题，针对短视频的复杂场景，优化画质，解决多种视觉问题。</li>
+        # <li>game（游戏视频），修复运动模糊，提升细节，重点提升游戏细节清晰度，恢复运动模糊区域，使游戏画面内容更清晰，更丰富。</li>
+        # <li>HD_movie_series（超高清影视剧），获得超高清流畅效果，针对广电/OTT超高清视频的诉求，生成4K 60fps HDR的超高清标准视频。支持广电场景格式标准要求。</li>
+        # <li>LQ_material（低清素材/老片修复），整体分辨率提升，针对老旧视频由于拍摄年代较久存在的分辨率不足、模糊失真、划痕损伤和色温等问题进行专门优化。</li>
+        # <li>lecture（秀场/电商/大会/讲座），美化提升面部效果，针对秀场/电商/大会/讲座等存在人物进行讲解的场景，进行人脸区域、噪声消除、毛刺处理的专门优化。</li>
+        # <li>填空字符串代表不使用增强场景</li>
+        # @type EnhanceScenarioType: String
+        # @param SuperResolution: 超分配置。源分辨率高于目标分辨率时不对视频做处理。注意与大模型增强不可同时开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperResolution: :class:`Tencentcloud::Vod.v20180717.models.SuperResolutionInfo`
+        # @param Hdr: HDR配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Hdr: :class:`Tencentcloud::Vod.v20180717.models.HDRInfo`
+        # @param Denoise: 视频降噪配置。注意与大模型增强不可同时开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Vod.v20180717.models.VideoDenoiseInfo`
+        # @param ImageQualityEnhance: 综合增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageQualityEnhance: :class:`Tencentcloud::Vod.v20180717.models.ImageQualityEnhanceInfo`
+        # @param ColorEnhance: 色彩增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorEnhance: :class:`Tencentcloud::Vod.v20180717.models.ColorEnhanceInfo`
+        # @param LowLightEnhance: 低光照增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLightEnhance: :class:`Tencentcloud::Vod.v20180717.models.LowLightEnhanceInfo`
+        # @param ScratchRepair: 去划痕配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScratchRepair: :class:`Tencentcloud::Vod.v20180717.models.ScratchRepairInfo`
+        # @param ArtifactRepair: 去伪影（毛刺）配置。注意大模型、综合增强、去毛刺三项里最多配置一项。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ArtifactRepair: :class:`Tencentcloud::Vod.v20180717.models.ArtifactRepairInfo`
+        # @param DiffusionEnhance: 大模型增强配置。注意大模型、综合增强、去毛刺三项里最多配置一项。且不可与超分、降噪同时开启。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DiffusionEnhance: :class:`Tencentcloud::Vod.v20180717.models.DiffusionEnhanceInfo`
+        # @param FrameRateWithDen: 插帧帧率配置，支持分数。注意与FrameRate二选一。源帧率大于等于目标帧率时能力不会生效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FrameRateWithDen: :class:`Tencentcloud::Vod.v20180717.models.FrameRateWithDenInfo`
+
+        attr_accessor :EnhanceScenarioType, :SuperResolution, :Hdr, :Denoise, :ImageQualityEnhance, :ColorEnhance, :LowLightEnhance, :ScratchRepair, :ArtifactRepair, :DiffusionEnhance, :FrameRateWithDen
+
+        def initialize(enhancescenariotype=nil, superresolution=nil, hdr=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, lowlightenhance=nil, scratchrepair=nil, artifactrepair=nil, diffusionenhance=nil, frameratewithden=nil)
+          @EnhanceScenarioType = enhancescenariotype
+          @SuperResolution = superresolution
+          @Hdr = hdr
+          @Denoise = denoise
+          @ImageQualityEnhance = imagequalityenhance
+          @ColorEnhance = colorenhance
+          @LowLightEnhance = lowlightenhance
+          @ScratchRepair = scratchrepair
+          @ArtifactRepair = artifactrepair
+          @DiffusionEnhance = diffusionenhance
+          @FrameRateWithDen = frameratewithden
+        end
+
+        def deserialize(params)
+          @EnhanceScenarioType = params['EnhanceScenarioType']
+          unless params['SuperResolution'].nil?
+            @SuperResolution = SuperResolutionInfo.new
+            @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['Hdr'].nil?
+            @Hdr = HDRInfo.new
+            @Hdr.deserialize(params['Hdr'])
+          end
+          unless params['Denoise'].nil?
+            @Denoise = VideoDenoiseInfo.new
+            @Denoise.deserialize(params['Denoise'])
+          end
+          unless params['ImageQualityEnhance'].nil?
+            @ImageQualityEnhance = ImageQualityEnhanceInfo.new
+            @ImageQualityEnhance.deserialize(params['ImageQualityEnhance'])
+          end
+          unless params['ColorEnhance'].nil?
+            @ColorEnhance = ColorEnhanceInfo.new
+            @ColorEnhance.deserialize(params['ColorEnhance'])
+          end
+          unless params['LowLightEnhance'].nil?
+            @LowLightEnhance = LowLightEnhanceInfo.new
+            @LowLightEnhance.deserialize(params['LowLightEnhance'])
+          end
+          unless params['ScratchRepair'].nil?
+            @ScratchRepair = ScratchRepairInfo.new
+            @ScratchRepair.deserialize(params['ScratchRepair'])
+          end
+          unless params['ArtifactRepair'].nil?
+            @ArtifactRepair = ArtifactRepairInfo.new
+            @ArtifactRepair.deserialize(params['ArtifactRepair'])
+          end
+          unless params['DiffusionEnhance'].nil?
+            @DiffusionEnhance = DiffusionEnhanceInfo.new
+            @DiffusionEnhance.deserialize(params['DiffusionEnhance'])
+          end
+          unless params['FrameRateWithDen'].nil?
+            @FrameRateWithDen = FrameRateWithDenInfo.new
+            @FrameRateWithDen.deserialize(params['FrameRateWithDen'])
+          end
         end
       end
 

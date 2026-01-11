@@ -751,6 +751,50 @@ module TencentCloud
         end
       end
 
+      # 用户对象的权限
+      class ModelUserAuthority < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Module: 模块，分为知识库knowledge、数据源datasource、自定义场景scene
+        # @type Module: String
+        # @param CreatorUin: 对象创建者
+        # @type CreatorUin: String
+        # @param ObjectId: 对象id,分为知识库id、数据源id、场景id
+        # @type ObjectId: String
+        # @param UseScope: 作用范围：1仅自己使用，2指定用户，0全员
+        # @type UseScope: Integer
+        # @param AuthorityUins: 可使用的用户列表
+        # @type AuthorityUins: Array
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :InstanceId, :Module, :CreatorUin, :ObjectId, :UseScope, :AuthorityUins, :CreateTime, :UpdateTime
+
+        def initialize(instanceid=nil, _module=nil, creatoruin=nil, objectid=nil, usescope=nil, authorityuins=nil, createtime=nil, updatetime=nil)
+          @InstanceId = instanceid
+          @Module = _module
+          @CreatorUin = creatoruin
+          @ObjectId = objectid
+          @UseScope = usescope
+          @AuthorityUins = authorityuins
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Module = params['Module']
+          @CreatorUin = params['CreatorUin']
+          @ObjectId = params['ObjectId']
+          @UseScope = params['UseScope']
+          @AuthorityUins = params['AuthorityUins']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # ModifyChunk请求参数结构体
       class ModifyChunkRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -859,6 +903,42 @@ module TencentCloud
         end
       end
 
+      # ModifyUserAuthority请求参数结构体
+      class ModifyUserAuthorityRequest < TencentCloud::Common::AbstractModel
+        # @param UseScope: 作用范围：1仅自己使用，2指定用户，0全员
+        # @type UseScope: Integer
+        # @param AuthorityUins: 可使用的用户列表，UseScope=0/1,取值为[]
+        # @type AuthorityUins: Array
+
+        attr_accessor :UseScope, :AuthorityUins
+
+        def initialize(usescope=nil, authorityuins=nil)
+          @UseScope = usescope
+          @AuthorityUins = authorityuins
+        end
+
+        def deserialize(params)
+          @UseScope = params['UseScope']
+          @AuthorityUins = params['AuthorityUins']
+        end
+      end
+
+      # ModifyUserAuthority返回参数结构体
+      class ModifyUserAuthorityResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # QueryChunkList请求参数结构体
       class QueryChunkListRequest < TencentCloud::Common::AbstractModel
         # @param Page: 表示第一页
@@ -909,6 +989,40 @@ module TencentCloud
               chunk_tmp.deserialize(i)
               @Chunks << chunk_tmp
             end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryUserAuthority请求参数结构体
+      class QueryUserAuthorityRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # QueryUserAuthority返回参数结构体
+      class QueryUserAuthorityResponse < TencentCloud::Common::AbstractModel
+        # @param ModelUserAuthority: 对象权限信息
+        # @type ModelUserAuthority: :class:`Tencentcloud::Dataagent.v20250513.models.ModelUserAuthority`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ModelUserAuthority, :RequestId
+
+        def initialize(modeluserauthority=nil, requestid=nil)
+          @ModelUserAuthority = modeluserauthority
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ModelUserAuthority'].nil?
+            @ModelUserAuthority = ModelUserAuthority.new
+            @ModelUserAuthority.deserialize(params['ModelUserAuthority'])
           end
           @RequestId = params['RequestId']
         end

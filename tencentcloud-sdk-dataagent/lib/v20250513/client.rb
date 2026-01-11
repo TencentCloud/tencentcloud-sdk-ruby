@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改对象权限
+
+        # @param request: Request instance for ModifyUserAuthority.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::ModifyUserAuthorityRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::ModifyUserAuthorityResponse`
+        def ModifyUserAuthority(request)
+          body = send_request('ModifyUserAuthority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserAuthorityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 文档切片查询
 
         # @param request: Request instance for QueryChunkList.
@@ -327,6 +351,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = QueryChunkListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询对象权限
+
+        # @param request: Request instance for QueryUserAuthority.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::QueryUserAuthorityRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::QueryUserAuthorityResponse`
+        def QueryUserAuthority(request)
+          body = send_request('QueryUserAuthority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryUserAuthorityResponse.new
             model.deserialize(response['Response'])
             model
           else

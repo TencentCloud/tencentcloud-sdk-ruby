@@ -288,59 +288,51 @@ module TencentCloud
 
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param TypeId: 产品版本。
-        # 14：当前仅支持混合存储版。
+        # @param TypeId: <p>产品版本。14：极速版。</p>
         # @type TypeId: Integer
-        # @param UniqVpcId: 私有网络唯一ID。
-        # 请登录控制台在私有网络列表查询，如：vpc-azlk3***。
+        # @param UniqVpcId: <p>私有网络唯一ID。请登录控制台在私有网络列表查询，如：vpc-azlk3***。</p>
         # @type UniqVpcId: String
-        # @param UniqSubnetId: 私有网络所属子网唯一ID。
-        # 请登录控制台在私有网络列表查询，如：subnet-8abje***。
+        # @param UniqSubnetId: <p>私有网络所属子网唯一ID。请登录控制台在私有网络列表查询，如：subnet-8abje***。</p>
         # @type UniqSubnetId: String
-        # @param BillingMode: 计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul>
+        # @param BillingMode: <p>计费模式。<ul><li>0：按量计费。</li><li>1：包年包月。</li></ul></p>
         # @type BillingMode: Integer
-        # @param GoodsNum: 实例数量，单次最大购买数量以查询产品售卖规格返回的数量为准。
+        # @param GoodsNum: <p>实例数量，单次最大购买数量以查询产品售卖规格返回的数量为准。</p>
         # @type GoodsNum: Integer
-        # @param Period: 选择包年包月计费模式（BillingMode 设置为1）时，您需要选择购买实例的时长。单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。按量计费（BillingMode 设置为0）实例该参数设置为1即可。
+        # @param Period: <p>选择包年包月计费模式（BillingMode 设置为1）时，您需要选择购买实例的时长。单位：月，取值范围 [1,2,3,4,5,6,7,8,9,10,11,12,24,36]。按量计费（BillingMode 设置为0）实例该参数设置为1即可。</p>
         # @type Period: Integer
-        # @param ShardNum: 分片数量，支持选择3、5、6、8、9、10、12、15、16、18、20、21、24、25、27、30、32、33、35、36、39、40、42、45、48、50、51、54、55、56、57、60、63、64分片。
+        # @param ShardNum: <p>分片数量，支持选择3、5、6、8、9、10、12、15、16、18、20、21、24、25、27、30、32、33、35、36、39、40、42、45、48、50、51、54、55、56、57、60、63、64分片。</p>
         # @type ShardNum: Integer
-        # @param ReplicasNum: 副本数。当前仅支持设置1个副本节点，即每一个分片仅包含1个主节点与1个副本节点，数据主从实时热备。
+        # @param ReplicasNum: <p>副本数。当前仅支持设置1个副本节点，即每一个分片仅包含1个主节点与1个副本节点，数据主从实时热备。</p>
         # @type ReplicasNum: Integer
-        # @param MachineMemory: 实例内存容量，单位：GB。
-        # KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        # @param MachineMemory: <p>实例内存容量，单位：GB。KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type MachineMemory: Integer
-        # @param ZoneId: 实例所属的可用区ID。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul>
+        # @param ZoneId: <p>实例所属的可用区ID。<ul><li>具体取值，请参见<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul></p>
         # @type ZoneId: Integer
-        # @param ZoneName: 实例所属的可用区名称。<ul><li>具体取值，请参见[地域和可用区](https://cloud.tencent.com/document/product/239/4106)获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul>
+        # @param ZoneName: <p>实例所属的可用区名称。<ul><li>具体取值，请参见<a href="https://cloud.tencent.com/document/product/239/4106">地域和可用区</a>获取。</li><li>参数<b>ZoneId</b>和<b>ZoneName</b>至少配置其中一个。</li></ul></p>
         # @type ZoneName: String
-        # @param InstanceName: 创建实例的名称。
-        # 仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。
+        # @param InstanceName: <p>创建实例的名称。仅支持长度小于60的中文、英文或者数字，短划线"-"、下划线"_"。</p>
         # @type InstanceName: String
-        # @param NoAuth: 指明创建的实例是否需要支持免密访问。<ul><li>true：免密实例。</li><li>false：非免密实例，默认为非免密实例。此时，需要设置访问密码。</li></ul>
+        # @param NoAuth: <p>指明创建的实例是否需要支持免密访问。<ul><li>true：免密实例。</li><li>false：非免密实例，默认为非免密实例。此时，需要设置访问密码。</li></ul></p>
         # @type NoAuth: Boolean
-        # @param Password: 实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li>
-        # <li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&*-+=_|{}[]:;<>,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul>
+        # @param Password: <p>实例访问密码。<ul><li>当参数<b>NoAuth</b>为<b>true</b>时，Password为无需设置，否则Password为必填参数。</li><li>密码复杂度要求：<ul><li>8-30个字符。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的2种。</li><li>不能以"/"开头。</li></ul></li></ul></p>
         # @type Password: String
-        # @param VPort: 自定义端口。默认为6379，范围[1024,65535]。
+        # @param VPort: <p>自定义端口。默认为6379，范围[1024,65535]。</p>
         # @type VPort: Integer
-        # @param AutoRenew: 包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</li></ul>
+        # @param AutoRenew: <p>包年包月计费的续费模式。<ul><li>0：默认状态，指手动续费。</li><li>1：自动续费。</li><li>2：到期不再续费。</li></ul></p>
         # @type AutoRenew: Integer
-        # @param SecurityGroupIdList: 给实例设置安全组 ID 数组。
+        # @param SecurityGroupIdList: <p>给实例设置安全组 ID 数组。</p>
         # @type SecurityGroupIdList: Array
-        # @param ResourceTags: 给实例绑定标签。
+        # @param ResourceTags: <p>给实例绑定标签。</p>
         # @type ResourceTags: Array
-        # @param MemSize: 混合存储版，单分片持久化内存容量，单位：GB。
-        # KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        # @param MemSize: <p>混合存储版，单分片持久化内存容量，单位：GB。KeeWiDB 内存容量<b>MachineMemory</b>与持久内存容量<b>MemSize</b>为固定搭配，即2GB内存，固定分配8GB的持久内存，不可选择。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type MemSize: Integer
-        # @param DiskSize: 每个分片硬盘的容量。单位：GB。
-        # 每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        # @param DiskSize: <p>每个分片硬盘的容量。单位：GB。每一缓存分片容量，对应的磁盘容量范围不同。具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type DiskSize: Integer
-        # @param MachineCpu: 计算 CPU 核数，可忽略不传。CPU 核数与内存为固定搭配，具体信息，请参见[产品规格](https://cloud.tencent.com/document/product/1520/80808)。
+        # @param MachineCpu: <p>计算 CPU 核数，可忽略不传。CPU 核数与内存为固定搭配，具体信息，请参见<a href="https://cloud.tencent.com/document/product/1520/80808">产品规格</a>。</p>
         # @type MachineCpu: Integer
-        # @param ProjectId: 项目id，取值以用户账户>用户账户相关接口查询>项目列表返回的projectId为准。
+        # @param ProjectId: <p>项目id，取值以用户账户&gt;用户账户相关接口查询&gt;项目列表返回的projectId为准。</p>
         # @type ProjectId: Integer
-        # @param Compression: 数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li></ul>
+        # @param Compression: <p>数据压缩开关。<ul><li>ON：开启，默认开启压缩。</li><li>OFF：关闭。</li></ul></p>
         # @type Compression: String
 
         attr_accessor :TypeId, :UniqVpcId, :UniqSubnetId, :BillingMode, :GoodsNum, :Period, :ShardNum, :ReplicasNum, :MachineMemory, :ZoneId, :ZoneName, :InstanceName, :NoAuth, :Password, :VPort, :AutoRenew, :SecurityGroupIdList, :ResourceTags, :MemSize, :DiskSize, :MachineCpu, :ProjectId, :Compression
@@ -407,19 +399,19 @@ module TencentCloud
 
       # CreateInstances返回参数结构体
       class CreateInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param DealId: 交易 ID。
+        # @param DealId: <p>交易 ID。</p>
         # @type DealId: String
-        # @param InstanceIds: 实例 ID 。
+        # @param InstanceIds: <p>实例 ID 。</p>
         # @type InstanceIds: Array
-        # @param DealName: 订单号。
+        # @param DealName: <p>订单号。    </p>
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2025, 11
-        deprecate :DealId=, :none, 2025, 11
+        deprecate :DealId, :none, 2026, 1
+        deprecate :DealId=, :none, 2026, 1
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -641,8 +633,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
         extend Gem::Deprecate
-        deprecate :BackupSet, :none, 2025, 11
-        deprecate :BackupSet=, :none, 2025, 11
+        deprecate :BackupSet, :none, 2026, 1
+        deprecate :BackupSet=, :none, 2026, 1
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount
@@ -745,8 +737,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2025, 11
-        deprecate :DealIds=, :none, 2025, 11
+        deprecate :DealIds, :none, 2026, 1
+        deprecate :DealIds=, :none, 2026, 1
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -1118,8 +1110,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceTags, :none, 2025, 11
-        deprecate :InstanceTags=, :none, 2025, 11
+        deprecate :InstanceTags, :none, 2026, 1
+        deprecate :InstanceTags=, :none, 2026, 1
 
         def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
@@ -1683,8 +1675,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2025, 11
-        deprecate :DealId=, :none, 2025, 11
+        deprecate :DealId, :none, 2026, 1
+        deprecate :DealId=, :none, 2026, 1
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -2946,8 +2938,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2025, 11
-        deprecate :DealId=, :none, 2025, 11
+        deprecate :DealId, :none, 2026, 1
+        deprecate :DealId=, :none, 2026, 1
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -3348,8 +3340,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2025, 11
-        deprecate :DealId=, :none, 2025, 11
+        deprecate :DealId, :none, 2026, 1
+        deprecate :DealId=, :none, 2026, 1
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
