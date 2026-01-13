@@ -3179,8 +3179,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2025, 12
-        deprecate :TaskId=, :none, 2025, 12
+        deprecate :TaskId, :none, 2026, 1
+        deprecate :TaskId=, :none, 2026, 1
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -10838,12 +10838,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 12
-        deprecate :EventType=, :none, 2025, 12
-        deprecate :EventBroadcastType, :none, 2025, 12
-        deprecate :EventBroadcastType=, :none, 2025, 12
-        deprecate :Status, :none, 2025, 12
-        deprecate :Status=, :none, 2025, 12
+        deprecate :EventType, :none, 2026, 1
+        deprecate :EventType=, :none, 2026, 1
+        deprecate :EventBroadcastType, :none, 2026, 1
+        deprecate :EventBroadcastType=, :none, 2026, 1
+        deprecate :Status, :none, 2026, 1
+        deprecate :Status=, :none, 2026, 1
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -17218,9 +17218,9 @@ module TencentCloud
 
       # DescribeTaskDetailDs请求参数结构体
       class DescribeTaskDetailDsRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务Id
+        # @param TaskId: 任务ID
         # @type TaskId: String
-        # @param ProjectId: 项目Id
+        # @param ProjectId: 项目ID （必填属性）
         # @type ProjectId: String
         # @param TaskAlarmStatus: 已废弃，无需填写
         # @type TaskAlarmStatus: Integer
@@ -18753,8 +18753,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2025, 12
-        deprecate :DimType=, :none, 2025, 12
+        deprecate :DimType, :none, 2026, 1
+        deprecate :DimType=, :none, 2026, 1
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -25327,7 +25327,7 @@ module TencentCloud
 
       # 表生命周期相关信息
       class LifecycleInfo < TencentCloud::Common::AbstractModel
-        # @param Lifecycle: 生命周期值
+        # @param Lifecycle: 生命周期值，如果PartitionLifeCycle=custom时，表示自定义生命周期
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lifecycle: Integer
         # @param Columns: 列名
@@ -28070,8 +28070,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2025, 12
-        deprecate :InCharge=, :none, 2025, 12
+        deprecate :InCharge, :none, 2026, 1
+        deprecate :InCharge=, :none, 2026, 1
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -30827,12 +30827,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2025, 12
-        deprecate :EventType=, :none, 2025, 12
-        deprecate :EventBroadcastType, :none, 2025, 12
-        deprecate :EventBroadcastType=, :none, 2025, 12
-        deprecate :DimensionFormat, :none, 2025, 12
-        deprecate :DimensionFormat=, :none, 2025, 12
+        deprecate :EventType, :none, 2026, 1
+        deprecate :EventType=, :none, 2026, 1
+        deprecate :EventBroadcastType, :none, 2026, 1
+        deprecate :EventBroadcastType=, :none, 2026, 1
+        deprecate :DimensionFormat, :none, 2026, 1
+        deprecate :DimensionFormat=, :none, 2026, 1
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid
@@ -37040,9 +37040,6 @@ module TencentCloud
         # @param HasFavorite: true已收藏/false表示未收藏状态
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HasFavorite: Boolean
-        # @param LifeCycleTime: 生命周期
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type LifeCycleTime: Integer
         # @param StorageSizeWithUnit: 存储量，已转为适合的单位展示
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageSizeWithUnit: String
@@ -37119,12 +37116,18 @@ module TencentCloud
         # @param Location: 存储位置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
+        # @param LifeCycleTime: 生命周期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LifeCycleTime: Integer
         # @param IsPartitionTable: 判断是否是分区表1 是 0否
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPartitionTable: Integer
         # @param PartitionColumns: 分区字段 key
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionColumns: Array
+        # @param DateFormat: 分区时间格式：yyyy-MM-dd
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DateFormat: String
         # @param PartitionExpireDays: 生命周期-分区保留天数【分区保留策略时有效】
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PartitionExpireDays: Integer
@@ -37210,9 +37213,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EngineCreator: String
 
-        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :LifeCycleTime, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :IsPartitionTable, :PartitionColumns, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL, :DataFromType, :EngineOwner, :DataLayerUuid, :DataLayerName, :ColumnCount, :TablePermissionFlag, :AssetStatus, :AssetLevel, :AssetCode, :AssetAuditStatus, :PublishedTime, :TagInfoList, :LabelValueSelections, :Namespace, :MetaFrom, :EngineCreator
+        attr_accessor :TableId, :TableName, :TableOwnerName, :DatasourceId, :ClusterName, :DatasourceName, :DatabaseName, :TablePath, :TableNameCn, :MetastoreId, :MetastoreType, :Description, :ColumnSeparator, :StorageFormat, :StorageSize, :TableType, :CreateTime, :ModifyTime, :DdlModifyTime, :LastAccessTime, :ProjectName, :BizCatalogIds, :BizCatalogNames, :HasFavorite, :StorageSizeWithUnit, :InstanceId, :TechnologyType, :TableNameEn, :ProjectId, :Partitions, :ReplicationFactor, :ProjectDisplayName, :DataModifyTime, :ClusterId, :HasAdminAuthority, :DatasourceDisplayName, :DatabaseId, :FavoriteCount, :LikeCount, :HasLike, :TablePropertyScore, :TableHeat, :OwnerProjectId, :TableOwnerId, :DataSourceCategory, :Columns, :MetaCrawlType, :IsView, :Location, :LifeCycleTime, :IsPartitionTable, :PartitionColumns, :DateFormat, :PartitionExpireDays, :TableProperties, :Environment, :Schema, :CollectDatasourceList, :CollectJobId, :CollectJobName, :Urn, :HasBizPermission, :OwnerByEngine, :ErrorTips, :IfSupportCreateAndDDL, :DataFromType, :EngineOwner, :DataLayerUuid, :DataLayerName, :ColumnCount, :TablePermissionFlag, :AssetStatus, :AssetLevel, :AssetCode, :AssetAuditStatus, :PublishedTime, :TagInfoList, :LabelValueSelections, :Namespace, :MetaFrom, :EngineCreator
 
-        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, lifecycletime=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, ispartitiontable=nil, partitioncolumns=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil, datafromtype=nil, engineowner=nil, datalayeruuid=nil, datalayername=nil, columncount=nil, tablepermissionflag=nil, assetstatus=nil, assetlevel=nil, assetcode=nil, assetauditstatus=nil, publishedtime=nil, taginfolist=nil, labelvalueselections=nil, namespace=nil, metafrom=nil, enginecreator=nil)
+        def initialize(tableid=nil, tablename=nil, tableownername=nil, datasourceid=nil, clustername=nil, datasourcename=nil, databasename=nil, tablepath=nil, tablenamecn=nil, metastoreid=nil, metastoretype=nil, description=nil, columnseparator=nil, storageformat=nil, storagesize=nil, tabletype=nil, createtime=nil, modifytime=nil, ddlmodifytime=nil, lastaccesstime=nil, projectname=nil, bizcatalogids=nil, bizcatalognames=nil, hasfavorite=nil, storagesizewithunit=nil, instanceid=nil, technologytype=nil, tablenameen=nil, projectid=nil, partitions=nil, replicationfactor=nil, projectdisplayname=nil, datamodifytime=nil, clusterid=nil, hasadminauthority=nil, datasourcedisplayname=nil, databaseid=nil, favoritecount=nil, likecount=nil, haslike=nil, tablepropertyscore=nil, tableheat=nil, ownerprojectid=nil, tableownerid=nil, datasourcecategory=nil, columns=nil, metacrawltype=nil, isview=nil, location=nil, lifecycletime=nil, ispartitiontable=nil, partitioncolumns=nil, dateformat=nil, partitionexpiredays=nil, tableproperties=nil, environment=nil, schema=nil, collectdatasourcelist=nil, collectjobid=nil, collectjobname=nil, urn=nil, hasbizpermission=nil, ownerbyengine=nil, errortips=nil, ifsupportcreateandddl=nil, datafromtype=nil, engineowner=nil, datalayeruuid=nil, datalayername=nil, columncount=nil, tablepermissionflag=nil, assetstatus=nil, assetlevel=nil, assetcode=nil, assetauditstatus=nil, publishedtime=nil, taginfolist=nil, labelvalueselections=nil, namespace=nil, metafrom=nil, enginecreator=nil)
           @TableId = tableid
           @TableName = tablename
           @TableOwnerName = tableownername
@@ -37237,7 +37240,6 @@ module TencentCloud
           @BizCatalogIds = bizcatalogids
           @BizCatalogNames = bizcatalognames
           @HasFavorite = hasfavorite
-          @LifeCycleTime = lifecycletime
           @StorageSizeWithUnit = storagesizewithunit
           @InstanceId = instanceid
           @TechnologyType = technologytype
@@ -37263,8 +37265,10 @@ module TencentCloud
           @MetaCrawlType = metacrawltype
           @IsView = isview
           @Location = location
+          @LifeCycleTime = lifecycletime
           @IsPartitionTable = ispartitiontable
           @PartitionColumns = partitioncolumns
+          @DateFormat = dateformat
           @PartitionExpireDays = partitionexpiredays
           @TableProperties = tableproperties
           @Environment = environment
@@ -37320,7 +37324,6 @@ module TencentCloud
           @BizCatalogIds = params['BizCatalogIds']
           @BizCatalogNames = params['BizCatalogNames']
           @HasFavorite = params['HasFavorite']
-          @LifeCycleTime = params['LifeCycleTime']
           @StorageSizeWithUnit = params['StorageSizeWithUnit']
           @InstanceId = params['InstanceId']
           @TechnologyType = params['TechnologyType']
@@ -37359,8 +37362,10 @@ module TencentCloud
           @MetaCrawlType = params['MetaCrawlType']
           @IsView = params['IsView']
           @Location = params['Location']
+          @LifeCycleTime = params['LifeCycleTime']
           @IsPartitionTable = params['IsPartitionTable']
           @PartitionColumns = params['PartitionColumns']
+          @DateFormat = params['DateFormat']
           @PartitionExpireDays = params['PartitionExpireDays']
           unless params['TableProperties'].nil?
             @TableProperties = []

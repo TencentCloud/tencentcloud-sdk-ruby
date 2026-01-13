@@ -77,6 +77,57 @@ module TencentCloud
         end
       end
 
+      # AddScene请求参数结构体
+      class AddSceneRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Scene: 场景
+        # @type Scene: :class:`Tencentcloud::Dataagent.v20250513.models.Scene`
+        # @param UseScope: 1仅自己使用，2指定用户，0全员
+        # @type UseScope: Integer
+        # @param AuthorityUins: 可使用用户列表
+        # @type AuthorityUins: Array
+
+        attr_accessor :InstanceId, :Scene, :UseScope, :AuthorityUins
+
+        def initialize(instanceid=nil, scene=nil, usescope=nil, authorityuins=nil)
+          @InstanceId = instanceid
+          @Scene = scene
+          @UseScope = usescope
+          @AuthorityUins = authorityuins
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Scene'].nil?
+            @Scene = Scene.new
+            @Scene.deserialize(params['Scene'])
+          end
+          @UseScope = params['UseScope']
+          @AuthorityUins = params['AuthorityUins']
+        end
+      end
+
+      # AddScene返回参数结构体
+      class AddSceneResponse < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景id
+        # @type SceneId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SceneId, :RequestId
+
+        def initialize(sceneid=nil, requestid=nil)
+          @SceneId = sceneid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ChatAI请求参数结构体
       class ChatAIRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID
@@ -346,6 +397,78 @@ module TencentCloud
         def deserialize(params)
           @SessionId = params['SessionId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteScene请求参数结构体
+      class DeleteSceneRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SceneId: 场景id
+        # @type SceneId: String
+
+        attr_accessor :InstanceId, :SceneId
+
+        def initialize(instanceid=nil, sceneid=nil)
+          @InstanceId = instanceid
+          @SceneId = sceneid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SceneId = params['SceneId']
+        end
+      end
+
+      # DeleteScene返回参数结构体
+      class DeleteSceneResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 问答数据
+      class ExampleQA < TencentCloud::Common::AbstractModel
+        # @param ExampleId: 示例记录的唯一业务 ID
+        # @type ExampleId: String
+        # @param Questions: 问题列表
+        # @type Questions: Array
+        # @param Answer: 对应的标准答案或回复
+        # @type Answer: String
+        # @param Type: 内容类型，类型包含 'text', 'sql', 'code'
+        # @type Type: String
+        # @param CreateTime: 记录的创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 记录的最后更新时间
+        # @type UpdateTime: String
+
+        attr_accessor :ExampleId, :Questions, :Answer, :Type, :CreateTime, :UpdateTime
+
+        def initialize(exampleid=nil, questions=nil, answer=nil, type=nil, createtime=nil, updatetime=nil)
+          @ExampleId = exampleid
+          @Questions = questions
+          @Answer = answer
+          @Type = type
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @ExampleId = params['ExampleId']
+          @Questions = params['Questions']
+          @Answer = params['Answer']
+          @Type = params['Type']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -905,19 +1028,31 @@ module TencentCloud
 
       # ModifyUserAuthority请求参数结构体
       class ModifyUserAuthorityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Module: 分为知识库knowledge、数据源datasource、自定义场景scene
+        # @type Module: String
+        # @param ObjectId: 对象id,分为知识库id、数据源id、场景id
+        # @type ObjectId: String
         # @param UseScope: 作用范围：1仅自己使用，2指定用户，0全员
         # @type UseScope: Integer
         # @param AuthorityUins: 可使用的用户列表，UseScope=0/1,取值为[]
         # @type AuthorityUins: Array
 
-        attr_accessor :UseScope, :AuthorityUins
+        attr_accessor :InstanceId, :Module, :ObjectId, :UseScope, :AuthorityUins
 
-        def initialize(usescope=nil, authorityuins=nil)
+        def initialize(instanceid=nil, _module=nil, objectid=nil, usescope=nil, authorityuins=nil)
+          @InstanceId = instanceid
+          @Module = _module
+          @ObjectId = objectid
           @UseScope = usescope
           @AuthorityUins = authorityuins
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Module = params['Module']
+          @ObjectId = params['ObjectId']
           @UseScope = params['UseScope']
           @AuthorityUins = params['AuthorityUins']
         end
@@ -994,14 +1129,79 @@ module TencentCloud
         end
       end
 
-      # QueryUserAuthority请求参数结构体
-      class QueryUserAuthorityRequest < TencentCloud::Common::AbstractModel
+      # QuerySceneList请求参数结构体
+      class QuerySceneListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SceneId: 场景id
+        # @type SceneId: String
+        # @param SceneName: 场景名称
+        # @type SceneName: String
+        # @param Page: 页数
+        # @type Page: Integer
+        # @param PageSize: 页的大小
+        # @type PageSize: Integer
 
+        attr_accessor :InstanceId, :SceneId, :SceneName, :Page, :PageSize
 
-        def initialize()
+        def initialize(instanceid=nil, sceneid=nil, scenename=nil, page=nil, pagesize=nil)
+          @InstanceId = instanceid
+          @SceneId = sceneid
+          @SceneName = scenename
+          @Page = page
+          @PageSize = pagesize
         end
 
         def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SceneId = params['SceneId']
+          @SceneName = params['SceneName']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # QuerySceneList返回参数结构体
+      class QuerySceneListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :RequestId
+
+        def initialize(total=nil, requestid=nil)
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # QueryUserAuthority请求参数结构体
+      class QueryUserAuthorityRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Module: 分为知识库knowledge、数据源datasource、自定义场景scene
+        # @type Module: String
+        # @param ObjectId: 对象id,分为知识库id、数据源id、场景id
+        # @type ObjectId: String
+
+        attr_accessor :InstanceId, :Module, :ObjectId
+
+        def initialize(instanceid=nil, _module=nil, objectid=nil)
+          @InstanceId = instanceid
+          @Module = _module
+          @ObjectId = objectid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Module = params['Module']
+          @ObjectId = params['ObjectId']
         end
       end
 
@@ -1104,6 +1304,108 @@ module TencentCloud
           @TaskListStr = params['TaskListStr']
           @KnowledgeBaseIds = params['KnowledgeBaseIds']
           @Context = params['Context']
+        end
+      end
+
+      # 场景
+      class Scene < TencentCloud::Common::AbstractModel
+        # @param SceneId: 场景ID
+        # @type SceneId: String
+        # @param SceneName: 场景名称
+        # @type SceneName: String
+        # @param Skills: 技能列表，包含：rag（知识检索）、data_analytics（数据分析）、data_prediction（数据预测）
+        # @type Skills: Array
+        # @param Prompt: 提示词文本
+        # @type Prompt: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param SearchConfig: 检索配置
+        # @type SearchConfig: :class:`Tencentcloud::Dataagent.v20250513.models.SearchConfig`
+        # @param ExampleQAList: 示例问答列表
+        # @type ExampleQAList: Array
+        # @param CreateTime: 记录的创建时间
+        # @type CreateTime: String
+        # @param UpdateTime: 记录的最后更新时间
+        # @type UpdateTime: String
+        # @param CreatorUin: 创建者Uin
+        # @type CreatorUin: String
+
+        attr_accessor :SceneId, :SceneName, :Skills, :Prompt, :Description, :SearchConfig, :ExampleQAList, :CreateTime, :UpdateTime, :CreatorUin
+
+        def initialize(sceneid=nil, scenename=nil, skills=nil, prompt=nil, description=nil, searchconfig=nil, exampleqalist=nil, createtime=nil, updatetime=nil, creatoruin=nil)
+          @SceneId = sceneid
+          @SceneName = scenename
+          @Skills = skills
+          @Prompt = prompt
+          @Description = description
+          @SearchConfig = searchconfig
+          @ExampleQAList = exampleqalist
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @CreatorUin = creatoruin
+        end
+
+        def deserialize(params)
+          @SceneId = params['SceneId']
+          @SceneName = params['SceneName']
+          @Skills = params['Skills']
+          @Prompt = params['Prompt']
+          @Description = params['Description']
+          unless params['SearchConfig'].nil?
+            @SearchConfig = SearchConfig.new
+            @SearchConfig.deserialize(params['SearchConfig'])
+          end
+          unless params['ExampleQAList'].nil?
+            @ExampleQAList = []
+            params['ExampleQAList'].each do |i|
+              exampleqa_tmp = ExampleQA.new
+              exampleqa_tmp.deserialize(i)
+              @ExampleQAList << exampleqa_tmp
+            end
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @CreatorUin = params['CreatorUin']
+        end
+      end
+
+      # 检索配置
+      class SearchConfig < TencentCloud::Common::AbstractModel
+        # @param Type: 检索类型：0:混合搜索 1：向量搜索 2：全文搜索
+        # @type Type: Integer
+        # @param Num: 召回数量最大值
+        # @type Num: Integer
+        # @param EmbeddingWeight: 权重配置
+        # @type EmbeddingWeight: Float
+        # @param Rerank: 0:关闭 1:开启，默认1
+        # @type Rerank: Integer
+        # @param AutoRag: 0:关闭 1:开启，默认0
+        # @type AutoRag: Integer
+        # @param KnowledgeBaseIds: AutoRag关联的知识库ID列表
+        # @type KnowledgeBaseIds: Array
+        # @param SearchStatus: AutoRag搜索状态：0-未完成，1-已完成。仅当AutoRag=1时，该字段有效
+        # @type SearchStatus: Integer
+
+        attr_accessor :Type, :Num, :EmbeddingWeight, :Rerank, :AutoRag, :KnowledgeBaseIds, :SearchStatus
+
+        def initialize(type=nil, num=nil, embeddingweight=nil, rerank=nil, autorag=nil, knowledgebaseids=nil, searchstatus=nil)
+          @Type = type
+          @Num = num
+          @EmbeddingWeight = embeddingweight
+          @Rerank = rerank
+          @AutoRag = autorag
+          @KnowledgeBaseIds = knowledgebaseids
+          @SearchStatus = searchstatus
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Num = params['Num']
+          @EmbeddingWeight = params['EmbeddingWeight']
+          @Rerank = params['Rerank']
+          @AutoRag = params['AutoRag']
+          @KnowledgeBaseIds = params['KnowledgeBaseIds']
+          @SearchStatus = params['SearchStatus']
         end
       end
 
@@ -1246,6 +1548,45 @@ module TencentCloud
               @StepInfoList << stepinfo_tmp
             end
           end
+        end
+      end
+
+      # UpdateScene请求参数结构体
+      class UpdateSceneRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Scene: 场景
+        # @type Scene: :class:`Tencentcloud::Dataagent.v20250513.models.Scene`
+
+        attr_accessor :InstanceId, :Scene
+
+        def initialize(instanceid=nil, scene=nil)
+          @InstanceId = instanceid
+          @Scene = scene
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['Scene'].nil?
+            @Scene = Scene.new
+            @Scene.deserialize(params['Scene'])
+          end
+        end
+      end
+
+      # UpdateScene返回参数结构体
+      class UpdateSceneResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

@@ -2457,8 +2457,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 12
-        deprecate :Enable=, :none, 2025, 12
+        deprecate :Enable, :none, 2026, 1
+        deprecate :Enable=, :none, 2026, 1
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2797,8 +2797,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 12
-        deprecate :LogFormat=, :none, 2025, 12
+        deprecate :LogFormat, :none, 2026, 1
+        deprecate :LogFormat=, :none, 2026, 1
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -3238,6 +3238,57 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDashboard请求参数结构体
+      class CreateDashboardRequest < TencentCloud::Common::AbstractModel
+        # @param DashboardName: 仪表盘名称
+        # @type DashboardName: String
+        # @param Data: 仪表盘配置数据
+        # @type Data: String
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
+        # @type Tags: Array
+
+        attr_accessor :DashboardName, :Data, :Tags
+
+        def initialize(dashboardname=nil, data=nil, tags=nil)
+          @DashboardName = dashboardname
+          @Data = data
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DashboardName = params['DashboardName']
+          @Data = params['Data']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDashboard返回参数结构体
+      class CreateDashboardResponse < TencentCloud::Common::AbstractModel
+        # @param DashboardId: 仪表盘id
+        # @type DashboardId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DashboardId, :RequestId
+
+        def initialize(dashboardid=nil, requestid=nil)
+          @DashboardId = dashboardid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DashboardId = params['DashboardId']
           @RequestId = params['RequestId']
         end
       end
@@ -5804,6 +5855,38 @@ module TencentCloud
 
       # DeleteCosRecharge返回参数结构体
       class DeleteCosRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteDashboard请求参数结构体
+      class DeleteDashboardRequest < TencentCloud::Common::AbstractModel
+        # @param DashboardId: 仪表盘id
+        # @type DashboardId: String
+
+        attr_accessor :DashboardId
+
+        def initialize(dashboardid=nil)
+          @DashboardId = dashboardid
+        end
+
+        def deserialize(params)
+          @DashboardId = params['DashboardId']
+        end
+      end
+
+      # DeleteDashboard返回参数结构体
+      class DeleteDashboardResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -12975,8 +13058,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2025, 12
-        deprecate :Enable=, :none, 2025, 12
+        deprecate :Enable, :none, 2026, 1
+        deprecate :Enable=, :none, 2026, 1
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -13274,8 +13357,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2025, 12
-        deprecate :LogFormat=, :none, 2025, 12
+        deprecate :LogFormat, :none, 2026, 1
+        deprecate :LogFormat=, :none, 2026, 1
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -13684,6 +13767,57 @@ module TencentCloud
 
       # ModifyCosRecharge返回参数结构体
       class ModifyCosRechargeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyDashboard请求参数结构体
+      class ModifyDashboardRequest < TencentCloud::Common::AbstractModel
+        # @param DashboardId: 仪表盘id。通过 [获取仪表盘](https://cloud.tencent.com/document/api/614/95636)接口获取DashboardId。
+        # @type DashboardId: String
+        # @param DashboardName: 仪表盘名称
+        # @type DashboardName: String
+        # @param Data: 仪表盘配置数据
+        # @type Data: String
+        # @param Tags: 标签描述列表，通过指定该参数可以同时绑定标签到相应的日志主题。最大支持10个标签键值对，同一个资源只能绑定到同一个标签键下。
+        # @type Tags: Array
+
+        attr_accessor :DashboardId, :DashboardName, :Data, :Tags
+
+        def initialize(dashboardid=nil, dashboardname=nil, data=nil, tags=nil)
+          @DashboardId = dashboardid
+          @DashboardName = dashboardname
+          @Data = data
+          @Tags = tags
+        end
+
+        def deserialize(params)
+          @DashboardId = params['DashboardId']
+          @DashboardName = params['DashboardName']
+          @Data = params['Data']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyDashboard返回参数结构体
+      class ModifyDashboardResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -15862,8 +15996,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2025, 12
-        deprecate :DstTopicName=, :none, 2025, 12
+        deprecate :DstTopicName, :none, 2026, 1
+        deprecate :DstTopicName=, :none, 2026, 1
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -17449,8 +17583,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2025, 12
-        deprecate :HashKey=, :none, 2025, 12
+        deprecate :HashKey, :none, 2026, 1
+        deprecate :HashKey=, :none, 2026, 1
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -17585,10 +17719,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2025, 12
-        deprecate :Headers=, :none, 2025, 12
-        deprecate :Body, :none, 2025, 12
-        deprecate :Body=, :none, 2025, 12
+        deprecate :Headers, :none, 2026, 1
+        deprecate :Headers=, :none, 2026, 1
+        deprecate :Body, :none, 2026, 1
+        deprecate :Body=, :none, 2026, 1
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

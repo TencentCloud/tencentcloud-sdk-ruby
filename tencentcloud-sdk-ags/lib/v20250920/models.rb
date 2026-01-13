@@ -157,6 +157,54 @@ module TencentCloud
         end
       end
 
+      # CreatePreCacheImageTask请求参数结构体
+      class CreatePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+
+        attr_accessor :Image, :ImageRegistryType
+
+        def initialize(image=nil, imageregistrytype=nil)
+          @Image = image
+          @ImageRegistryType = imageregistrytype
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageRegistryType = params['ImageRegistryType']
+        end
+      end
+
+      # CreatePreCacheImageTask返回参数结构体
+      class CreatePreCacheImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageDigest: 镜像 Digest
+        # @type ImageDigest: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :RequestId
+
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, requestid=nil)
+          @Image = image
+          @ImageDigest = imagedigest
+          @ImageRegistryType = imageregistrytype
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageDigest = params['ImageDigest']
+          @ImageRegistryType = params['ImageRegistryType']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateSandboxTool请求参数结构体
       class CreateSandboxToolRequest < TencentCloud::Common::AbstractModel
         # @param ToolName: 沙箱工具名称，长度 1-50 字符，支持英文、数字、下划线和连接线。同一 AppId 下沙箱工具名称必须唯一
@@ -483,6 +531,66 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePreCacheImageTask请求参数结构体
+      class DescribePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageDigest: 镜像 Digest
+        # @type ImageDigest: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType
+
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil)
+          @Image = image
+          @ImageDigest = imagedigest
+          @ImageRegistryType = imageregistrytype
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageDigest = params['ImageDigest']
+          @ImageRegistryType = params['ImageRegistryType']
+        end
+      end
+
+      # DescribePreCacheImageTask返回参数结构体
+      class DescribePreCacheImageTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Image: 镜像地址
+        # @type Image: String
+        # @param ImageDigest: 镜像 Digest
+        # @type ImageDigest: String
+        # @param ImageRegistryType: 镜像仓库类型：`enterprise`、`personal`。
+        # @type ImageRegistryType: String
+        # @param Status: 镜像预热状态
+        # @type Status: String
+        # @param Message: 镜像预热状态描述
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :Message, :RequestId
+
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, message=nil, requestid=nil)
+          @Image = image
+          @ImageDigest = imagedigest
+          @ImageRegistryType = imageregistrytype
+          @Status = status
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Image = params['Image']
+          @ImageDigest = params['ImageDigest']
+          @ImageRegistryType = params['ImageRegistryType']
+          @Status = params['Status']
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end

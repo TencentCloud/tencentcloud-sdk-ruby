@@ -434,6 +434,49 @@ module TencentCloud
         end
       end
 
+      # CreateAutoBackUpStrategy请求参数结构体
+      class CreateAutoBackUpStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param CosBackup: 策略信息
+        # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
+
+        attr_accessor :InstanceId, :CosBackup
+
+        def initialize(instanceid=nil, cosbackup=nil)
+          @InstanceId = instanceid
+          @CosBackup = cosbackup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['CosBackup'].nil?
+            @CosBackup = CosBackup.new
+            @CosBackup.deserialize(params['CosBackup'])
+          end
+        end
+      end
+
+      # CreateAutoBackUpStrategy返回参数结构体
+      class CreateAutoBackUpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Status: true 成功; false 失败
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateClusterSnapshot请求参数结构体
       class CreateClusterSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例名称
@@ -697,7 +740,7 @@ module TencentCloud
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDuration`
         # @param EnableHybridStorage: 是否开启存算分离
         # @type EnableHybridStorage: Boolean
-        # @param DiskEnhance: 是否开启essd 增强型云盘
+        # @param DiskEnhance: 硬盘额外性能
         # @type DiskEnhance: Integer
         # @param EnableDiagnose: 是否开启智能巡检
         # @type EnableDiagnose: Boolean
@@ -1189,6 +1232,46 @@ module TencentCloud
         end
       end
 
+      # DeleteAutoBackUpStrategy请求参数结构体
+      class DeleteAutoBackUpStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param StrategyName: 策略名称
+        # @type StrategyName: Array
+
+        attr_accessor :InstanceId, :StrategyName
+
+        def initialize(instanceid=nil, strategyname=nil)
+          @InstanceId = instanceid
+          @StrategyName = strategyname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StrategyName = params['StrategyName']
+        end
+      end
+
+      # DeleteAutoBackUpStrategy返回参数结构体
+      class DeleteAutoBackUpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Status: true 成功; false 失败
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteClusterSnapshot请求参数结构体
       class DeleteClusterSnapshotRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群实例Id，格式：es-xxxx
@@ -1449,6 +1532,49 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoBackUpStrategy请求参数结构体
+      class DescribeAutoBackUpStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAutoBackUpStrategy返回参数结构体
+      class DescribeAutoBackUpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param CosBackupList: 策略信息
+        # @type CosBackupList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CosBackupList, :RequestId
+
+        def initialize(cosbackuplist=nil, requestid=nil)
+          @CosBackupList = cosbackuplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CosBackupList'].nil?
+            @CosBackupList = []
+            params['CosBackupList'].each do |i|
+              cosbackup_tmp = CosBackup.new
+              cosbackup_tmp.deserialize(i)
+              @CosBackupList << cosbackup_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5646,6 +5772,80 @@ module TencentCloud
         end
       end
 
+      # ModifyAutoBackUpCommonInfo请求参数结构体
+      class ModifyAutoBackUpCommonInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyAutoBackUpCommonInfo返回参数结构体
+      class ModifyAutoBackUpCommonInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyAutoBackUpStrategy请求参数结构体
+      class ModifyAutoBackUpStrategyRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例名称
+        # @type InstanceId: String
+        # @param StrategyName: 当前策略名称
+        # @type StrategyName: String
+        # @param CosBackup: 策略信息
+        # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
+
+        attr_accessor :InstanceId, :StrategyName, :CosBackup
+
+        def initialize(instanceid=nil, strategyname=nil, cosbackup=nil)
+          @InstanceId = instanceid
+          @StrategyName = strategyname
+          @CosBackup = cosbackup
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StrategyName = params['StrategyName']
+          unless params['CosBackup'].nil?
+            @CosBackup = CosBackup.new
+            @CosBackup.deserialize(params['CosBackup'])
+          end
+        end
+      end
+
+      # ModifyAutoBackUpStrategy返回参数结构体
+      class ModifyAutoBackUpStrategyResponse < TencentCloud::Common::AbstractModel
+        # @param Status: true 成功; false 失败
+        # @type Status: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :RequestId
+
+        def initialize(status=nil, requestid=nil)
+          @Status = status
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEsVipSecurityGroup请求参数结构体
       class ModifyEsVipSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: es集群的实例id
@@ -5710,7 +5910,7 @@ module TencentCloud
         # @param MemSize: 内存大小，单位GB
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MemSize: Integer
-        # @param DiskEnhance: /
+        # @param DiskEnhance: 硬盘额外性能
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskEnhance: Integer
         # @param GpuInfo: 节点Gpu信息

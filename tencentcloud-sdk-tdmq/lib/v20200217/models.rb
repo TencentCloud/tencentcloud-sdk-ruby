@@ -9414,7 +9414,7 @@ module TencentCloud
       class ModifyRabbitMQUserRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，形如 amqp-xxxxxxxx。有效的 InstanceId 可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询。
         # @type InstanceId: String
-        # @param User: 用户名，形如 admin。有效的 User 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。
+        # @param User: 用户名，形如rabbitmq。有效的 User 名称可通过登录 [TDMQ RabbitMQ 控制台](https://console.cloud.tencent.com/trabbitmq/cluster?rid=1)查询，点击集群列表中的集群，进入集群详情，并在用户与权限页签中找到用户列表，从而找到用户名称。当前不支持修改admin的密码。
         # @type User: String
         # @param Password: 密码，登录时使用。规范：不能为空，8-64个字符，至少要包含小写字母、大写字母、数字、特殊字符【()`~!@#$%^&*_=|{}[]:;',.?/】中的两项
         # @type Password: String
@@ -9481,16 +9481,19 @@ module TencentCloud
         # @type RemoveAllTags: Boolean
         # @param Tags: 修改实例的标签信息，全量标签信息，非增量
         # @type Tags: Array
+        # @param EnableRiskWarning: 是否开启集群风险提示
+        # @type EnableRiskWarning: Boolean
 
-        attr_accessor :InstanceId, :ClusterName, :Remark, :EnableDeletionProtection, :RemoveAllTags, :Tags
+        attr_accessor :InstanceId, :ClusterName, :Remark, :EnableDeletionProtection, :RemoveAllTags, :Tags, :EnableRiskWarning
 
-        def initialize(instanceid=nil, clustername=nil, remark=nil, enabledeletionprotection=nil, removealltags=nil, tags=nil)
+        def initialize(instanceid=nil, clustername=nil, remark=nil, enabledeletionprotection=nil, removealltags=nil, tags=nil, enableriskwarning=nil)
           @InstanceId = instanceid
           @ClusterName = clustername
           @Remark = remark
           @EnableDeletionProtection = enabledeletionprotection
           @RemoveAllTags = removealltags
           @Tags = tags
+          @EnableRiskWarning = enableriskwarning
         end
 
         def deserialize(params)
@@ -9507,6 +9510,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @EnableRiskWarning = params['EnableRiskWarning']
         end
       end
 
@@ -10958,10 +10962,16 @@ module TencentCloud
         # @type PublicTlsAccessEndpoint: String
         # @param PublicIpReused: 公网IP是否复用
         # @type PublicIpReused: Boolean
+        # @param PublicWebConsoleErrorMessage: 公网控制台接入点操作的错误信息
+        # @type PublicWebConsoleErrorMessage: String
+        # @param VpcWebConsoleErrorMessage: 内网控制台接入点操作的错误信息
+        # @type VpcWebConsoleErrorMessage: String
+        # @param PublicDataStreamErrorMessage: 公网接入点操作的错误信息
+        # @type PublicDataStreamErrorMessage: String
 
-        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo, :PublicTlsAccessEndpoint, :PublicIpReused
+        attr_accessor :PublicAccessEndpoint, :WebConsoleEndpoint, :WebConsoleUsername, :WebConsolePassword, :PublicAccessEndpointStatus, :PublicControlConsoleSwitchStatus, :VpcControlConsoleSwitchStatus, :VpcWebConsoleEndpoint, :PublicWebConsoleSwitchStatus, :VpcWebConsoleSwitchStatus, :PublicDataStreamStatus, :PrometheusEndpointInfo, :WebConsoleDomainEndpoint, :ControlPlaneEndpointInfo, :PublicTlsAccessEndpoint, :PublicIpReused, :PublicWebConsoleErrorMessage, :VpcWebConsoleErrorMessage, :PublicDataStreamErrorMessage
 
-        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil, publictlsaccessendpoint=nil, publicipreused=nil)
+        def initialize(publicaccessendpoint=nil, webconsoleendpoint=nil, webconsoleusername=nil, webconsolepassword=nil, publicaccessendpointstatus=nil, publiccontrolconsoleswitchstatus=nil, vpccontrolconsoleswitchstatus=nil, vpcwebconsoleendpoint=nil, publicwebconsoleswitchstatus=nil, vpcwebconsoleswitchstatus=nil, publicdatastreamstatus=nil, prometheusendpointinfo=nil, webconsoledomainendpoint=nil, controlplaneendpointinfo=nil, publictlsaccessendpoint=nil, publicipreused=nil, publicwebconsoleerrormessage=nil, vpcwebconsoleerrormessage=nil, publicdatastreamerrormessage=nil)
           @PublicAccessEndpoint = publicaccessendpoint
           @WebConsoleEndpoint = webconsoleendpoint
           @WebConsoleUsername = webconsoleusername
@@ -10978,6 +10988,9 @@ module TencentCloud
           @ControlPlaneEndpointInfo = controlplaneendpointinfo
           @PublicTlsAccessEndpoint = publictlsaccessendpoint
           @PublicIpReused = publicipreused
+          @PublicWebConsoleErrorMessage = publicwebconsoleerrormessage
+          @VpcWebConsoleErrorMessage = vpcwebconsoleerrormessage
+          @PublicDataStreamErrorMessage = publicdatastreamerrormessage
         end
 
         def deserialize(params)
@@ -11003,6 +11016,9 @@ module TencentCloud
           end
           @PublicTlsAccessEndpoint = params['PublicTlsAccessEndpoint']
           @PublicIpReused = params['PublicIpReused']
+          @PublicWebConsoleErrorMessage = params['PublicWebConsoleErrorMessage']
+          @VpcWebConsoleErrorMessage = params['VpcWebConsoleErrorMessage']
+          @PublicDataStreamErrorMessage = params['PublicDataStreamErrorMessage']
         end
       end
 
@@ -11065,10 +11081,18 @@ module TencentCloud
         # @type Tags: Array
         # @param EnableDeletionProtection: 是否已开启删除保护
         # @type EnableDeletionProtection: Boolean
+        # @param MirroredQueueRisk: 是否有vhost未开启镜像队列风险
+        # @type MirroredQueueRisk: Boolean
+        # @param EnableRiskWarning: 是否提示风险
+        # @type EnableRiskWarning: Boolean
+        # @param ConsumeTimeout: 消费超时时间
+        # @type ConsumeTimeout: Integer
+        # @param ChannelMax: 最大Channel数
+        # @type ChannelMax: Integer
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container, :Tags, :EnableDeletionProtection
+        attr_accessor :ClusterId, :ClusterName, :Region, :CreateTime, :Remark, :Vpcs, :ZoneIds, :VirtualHostNumber, :QueueNumber, :MessagePublishRate, :MessageStackNumber, :ExpireTime, :ChannelNumber, :ConnectionNumber, :ConsumerNumber, :ExchangeNumber, :ExceptionInformation, :ClusterStatus, :AutoRenewFlag, :MirrorQueuePolicyFlag, :MessageConsumeRate, :ClusterVersion, :PayMode, :InstanceType, :IsolatedTime, :Container, :Tags, :EnableDeletionProtection, :MirroredQueueRisk, :EnableRiskWarning, :ConsumeTimeout, :ChannelMax
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil, tags=nil, enabledeletionprotection=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, createtime=nil, remark=nil, vpcs=nil, zoneids=nil, virtualhostnumber=nil, queuenumber=nil, messagepublishrate=nil, messagestacknumber=nil, expiretime=nil, channelnumber=nil, connectionnumber=nil, consumernumber=nil, exchangenumber=nil, exceptioninformation=nil, clusterstatus=nil, autorenewflag=nil, mirrorqueuepolicyflag=nil, messageconsumerate=nil, clusterversion=nil, paymode=nil, instancetype=nil, isolatedtime=nil, container=nil, tags=nil, enabledeletionprotection=nil, mirroredqueuerisk=nil, enableriskwarning=nil, consumetimeout=nil, channelmax=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -11097,6 +11121,10 @@ module TencentCloud
           @Container = container
           @Tags = tags
           @EnableDeletionProtection = enabledeletionprotection
+          @MirroredQueueRisk = mirroredqueuerisk
+          @EnableRiskWarning = enableriskwarning
+          @ConsumeTimeout = consumetimeout
+          @ChannelMax = channelmax
         end
 
         def deserialize(params)
@@ -11142,6 +11170,10 @@ module TencentCloud
             end
           end
           @EnableDeletionProtection = params['EnableDeletionProtection']
+          @MirroredQueueRisk = params['MirroredQueueRisk']
+          @EnableRiskWarning = params['EnableRiskWarning']
+          @ConsumeTimeout = params['ConsumeTimeout']
+          @ChannelMax = params['ChannelMax']
         end
       end
 
@@ -14353,15 +14385,18 @@ module TencentCloud
         # @type VpcDataStreamEndpointStatus: String
         # @param VpcTlsEndpoint: TLS加密的数据流接入点
         # @type VpcTlsEndpoint: String
+        # @param VpcErrorMessage: VPC 接入点操作失败的错误信息
+        # @type VpcErrorMessage: String
 
-        attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus, :VpcTlsEndpoint
+        attr_accessor :VpcId, :SubnetId, :VpcEndpoint, :VpcDataStreamEndpointStatus, :VpcTlsEndpoint, :VpcErrorMessage
 
-        def initialize(vpcid=nil, subnetid=nil, vpcendpoint=nil, vpcdatastreamendpointstatus=nil, vpctlsendpoint=nil)
+        def initialize(vpcid=nil, subnetid=nil, vpcendpoint=nil, vpcdatastreamendpointstatus=nil, vpctlsendpoint=nil, vpcerrormessage=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @VpcEndpoint = vpcendpoint
           @VpcDataStreamEndpointStatus = vpcdatastreamendpointstatus
           @VpcTlsEndpoint = vpctlsendpoint
+          @VpcErrorMessage = vpcerrormessage
         end
 
         def deserialize(params)
@@ -14370,6 +14405,7 @@ module TencentCloud
           @VpcEndpoint = params['VpcEndpoint']
           @VpcDataStreamEndpointStatus = params['VpcDataStreamEndpointStatus']
           @VpcTlsEndpoint = params['VpcTlsEndpoint']
+          @VpcErrorMessage = params['VpcErrorMessage']
         end
       end
 

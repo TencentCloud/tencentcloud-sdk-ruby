@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新增场景
+
+        # @param request: Request instance for AddScene.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::AddSceneRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::AddSceneResponse`
+        def AddScene(request)
+          body = send_request('AddScene', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddSceneResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 提供DataAgent 产品服务API
 
         # @param request: Request instance for ChatAI.
@@ -135,6 +159,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteDataAgentSessionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除场景
+
+        # @param request: Request instance for DeleteScene.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::DeleteSceneRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::DeleteSceneResponse`
+        def DeleteScene(request)
+          body = send_request('DeleteScene', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSceneResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询场景列表
+
+        # @param request: Request instance for QuerySceneList.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::QuerySceneListRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::QuerySceneListResponse`
+        def QuerySceneList(request)
+          body = send_request('QuerySceneList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QuerySceneListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询对象权限
 
         # @param request: Request instance for QueryUserAuthority.
@@ -399,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopChatAIResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新场景
+
+        # @param request: Request instance for UpdateScene.
+        # @type request: :class:`Tencentcloud::dataagent::V20250513::UpdateSceneRequest`
+        # @rtype: :class:`Tencentcloud::dataagent::V20250513::UpdateSceneResponse`
+        def UpdateScene(request)
+          body = send_request('UpdateScene', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSceneResponse.new
             model.deserialize(response['Response'])
             model
           else

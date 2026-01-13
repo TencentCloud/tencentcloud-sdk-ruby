@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建自动备份快照策略
+
+        # @param request: Request instance for CreateAutoBackUpStrategy.
+        # @type request: :class:`Tencentcloud::es::V20180416::CreateAutoBackUpStrategyRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::CreateAutoBackUpStrategyResponse`
+        def CreateAutoBackUpStrategy(request)
+          body = send_request('CreateAutoBackUpStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAutoBackUpStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 集群快照手动创建
 
         # @param request: Request instance for CreateClusterSnapshot.
@@ -221,6 +245,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除自动备份快照策略
+
+        # @param request: Request instance for DeleteAutoBackUpStrategy.
+        # @type request: :class:`Tencentcloud::es::V20180416::DeleteAutoBackUpStrategyRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DeleteAutoBackUpStrategyResponse`
+        def DeleteAutoBackUpStrategy(request)
+          body = send_request('DeleteAutoBackUpStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAutoBackUpStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除快照仓库里备份的快照
 
         # @param request: Request instance for DeleteClusterSnapshot.
@@ -375,6 +423,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteServerlessSpaceUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取自动备份快照策略信息
+
+        # @param request: Request instance for DescribeAutoBackUpStrategy.
+        # @type request: :class:`Tencentcloud::es::V20180416::DescribeAutoBackUpStrategyRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::DescribeAutoBackUpStrategyResponse`
+        def DescribeAutoBackUpStrategy(request)
+          body = send_request('DescribeAutoBackUpStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoBackUpStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1000,6 +1072,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = InstallInstanceModelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自动备份快照策略公共信息
+
+        # @param request: Request instance for ModifyAutoBackUpCommonInfo.
+        # @type request: :class:`Tencentcloud::es::V20180416::ModifyAutoBackUpCommonInfoRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::ModifyAutoBackUpCommonInfoResponse`
+        def ModifyAutoBackUpCommonInfo(request)
+          body = send_request('ModifyAutoBackUpCommonInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoBackUpCommonInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自动备份快照策略
+
+        # @param request: Request instance for ModifyAutoBackUpStrategy.
+        # @type request: :class:`Tencentcloud::es::V20180416::ModifyAutoBackUpStrategyRequest`
+        # @rtype: :class:`Tencentcloud::es::V20180416::ModifyAutoBackUpStrategyResponse`
+        def ModifyAutoBackUpStrategy(request)
+          body = send_request('ModifyAutoBackUpStrategy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoBackUpStrategyResponse.new
             model.deserialize(response['Response'])
             model
           else

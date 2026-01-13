@@ -1720,6 +1720,22 @@ module TencentCloud
         end
       end
 
+      # 合同审查清单个性化参数，用于控制页面的展示内容
+      class ContractReviewChecklistWebUrlOption < TencentCloud::Common::AbstractModel
+        # @param DisableCreateChecklist: 禁用新建清单功能。默认 false，设置为 true 会隐藏界面的新建按钮。
+        # @type DisableCreateChecklist: Boolean
+
+        attr_accessor :DisableCreateChecklist
+
+        def initialize(disablecreatechecklist=nil)
+          @DisableCreateChecklist = disablecreatechecklist
+        end
+
+        def deserialize(params)
+          @DisableCreateChecklist = params['DisableCreateChecklist']
+        end
+      end
+
       # 合同审查个性化参数，用于控制页面的展示内容
       class ContractReviewWebUrlOption < TencentCloud::Common::AbstractModel
         # @param DisableTemporaryStore: 禁用暂存。 默认 false，设置为 true 会隐藏界面上的临时保存按钮
@@ -2218,6 +2234,7 @@ module TencentCloud
         # <li>AUTH_JOIN_ORGANIZATION_GROUP : 加入集团企业</li>
         # <li>OPEN_AUTO_SIGN :开通企业自动签署</li>
         # <li>PARTNER_AUTO_SIGN_AUTH :合作方企业授权自动签</li>
+        # <li>CHANGE_SUB_ORGANIZATION_ADMIN_AUTH :变更子企业超管授权(**授权后，主企业可变更子企业超管，此功能需联系客户经理开通白名单使用**)</li>
         # </ul>
         # @type OperateTypes: Array
         # @param OrganizationIds: 批量操作的企业Id列表，最大支持50个
@@ -2230,15 +2247,18 @@ module TencentCloud
 
         # ![企业电子签账号](https://qcloudimg.tencent-cloud.cn/raw/4e6b30ee92f00671f7f1c5bd127c27db.png)
         # @type AuthorizedOrganizationId: String
+        # @param ChangeAdminAuthAutoSign: 初始化操作类型里含有CHANGE_SUB_ORGANIZATION_ADMIN_AUTH（变更子企业超管授权）操作类型时，授权协议中主企业的签署方是否使用自动签（需操作人有自动签授权）
+        # @type ChangeAdminAuthAutoSign: Boolean
 
-        attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent, :AuthorizedOrganizationId
+        attr_accessor :Operator, :OperateTypes, :OrganizationIds, :Agent, :AuthorizedOrganizationId, :ChangeAdminAuthAutoSign
 
-        def initialize(operator=nil, operatetypes=nil, organizationids=nil, agent=nil, authorizedorganizationid=nil)
+        def initialize(operator=nil, operatetypes=nil, organizationids=nil, agent=nil, authorizedorganizationid=nil, changeadminauthautosign=nil)
           @Operator = operator
           @OperateTypes = operatetypes
           @OrganizationIds = organizationids
           @Agent = agent
           @AuthorizedOrganizationId = authorizedorganizationid
+          @ChangeAdminAuthAutoSign = changeadminauthautosign
         end
 
         def deserialize(params)
@@ -2253,6 +2273,7 @@ module TencentCloud
             @Agent.deserialize(params['Agent'])
           end
           @AuthorizedOrganizationId = params['AuthorizedOrganizationId']
+          @ChangeAdminAuthAutoSign = params['ChangeAdminAuthAutoSign']
         end
       end
 
@@ -2953,6 +2974,47 @@ module TencentCloud
           @TaskId = params['TaskId']
           @WebUrl = params['WebUrl']
           @UserData = params['UserData']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateContractReviewChecklistWebUrl请求参数结构体
+      class CreateContractReviewChecklistWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :Operator
+
+        def initialize(operator=nil)
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # CreateContractReviewChecklistWebUrl返回参数结构体
+      class CreateContractReviewChecklistWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入式web页面链接。注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -9311,6 +9373,144 @@ module TencentCloud
         end
       end
 
+      # DescribeContractReviewChecklistWebUrl请求参数结构体
+      class DescribeContractReviewChecklistWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Id: 清单 id
+        # @type Id: String
+
+        attr_accessor :Operator, :Id
+
+        def initialize(operator=nil, id=nil)
+          @Operator = operator
+          @Id = id
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Id = params['Id']
+        end
+      end
+
+      # DescribeContractReviewChecklistWebUrl返回参数结构体
+      class DescribeContractReviewChecklistWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入式web页面链接。注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type WebUrl: String
+        # @param Id: 清单 id
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :Id, :RequestId
+
+        def initialize(weburl=nil, id=nil, requestid=nil)
+          @WebUrl = weburl
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeContractReviewChecklistsWebUrl请求参数结构体
+      class DescribeContractReviewChecklistsWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Option: 合同审查清单个性化参数
+        # @type Option: :class:`Tencentcloud::Ess.v20201111.models.ContractReviewChecklistWebUrlOption`
+
+        attr_accessor :Operator, :Option
+
+        def initialize(operator=nil, option=nil)
+          @Operator = operator
+          @Option = option
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          unless params['Option'].nil?
+            @Option = ContractReviewChecklistWebUrlOption.new
+            @Option.deserialize(params['Option'])
+          end
+        end
+      end
+
+      # DescribeContractReviewChecklistsWebUrl返回参数结构体
+      class DescribeContractReviewChecklistsWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入式web页面链接。注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeContractReviewTaskListWebUrl请求参数结构体
+      class DescribeContractReviewTaskListWebUrlRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。
+
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+
+        attr_accessor :Operator
+
+        def initialize(operator=nil)
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+        end
+      end
+
+      # DescribeContractReviewTaskListWebUrl返回参数结构体
+      class DescribeContractReviewTaskListWebUrlResponse < TencentCloud::Common::AbstractModel
+        # @param WebUrl: 嵌入式web页面链接。注意：`链接有效期为5分钟，且链接仅能使用一次。`
+        # @type WebUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :WebUrl, :RequestId
+
+        def initialize(weburl=nil, requestid=nil)
+          @WebUrl = weburl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @WebUrl = params['WebUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeContractReviewTask请求参数结构体
       class DescribeContractReviewTaskRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -11691,6 +11891,62 @@ module TencentCloud
         def deserialize(params)
           @ResourceUrl = params['ResourceUrl']
           @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExportContractReviewResult请求参数结构体
+      class ExportContractReviewResultRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行本接口操作的员工信息。
+        # 注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同审查任务ID
+        # @type TaskId: String
+        # @param FileType: 导出文件类型。1  = 带风险批注文件; 2 = 审查结果＆摘要（.xIsx）
+        # @type FileType: Integer
+        # @param Agent: 代理企业和员工的信息。
+        # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
+        # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`
+
+        attr_accessor :Operator, :TaskId, :FileType, :Agent
+
+        def initialize(operator=nil, taskid=nil, filetype=nil, agent=nil)
+          @Operator = operator
+          @TaskId = taskid
+          @FileType = filetype
+          @Agent = agent
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+          @FileType = params['FileType']
+          unless params['Agent'].nil?
+            @Agent = Agent.new
+            @Agent.deserialize(params['Agent'])
+          end
+        end
+      end
+
+      # ExportContractReviewResult返回参数结构体
+      class ExportContractReviewResultResponse < TencentCloud::Common::AbstractModel
+        # @param Url: 文件下载链接
+        # @type Url: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Url, :RequestId
+
+        def initialize(url=nil, requestid=nil)
+          @Url = url
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
           @RequestId = params['RequestId']
         end
       end

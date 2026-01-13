@@ -420,6 +420,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于创建仪表盘
+
+        # @param request: Request instance for CreateDashboard.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateDashboardRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateDashboardResponse`
+        def CreateDashboard(request)
+          body = send_request('CreateDashboard', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDashboardResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口用于创建仪表盘订阅
 
         # @param request: Request instance for CreateDashboardSubscribe.
@@ -1126,6 +1150,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCosRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于删除仪表盘
+
+        # @param request: Request instance for DeleteDashboard.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteDashboardRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteDashboardResponse`
+        def DeleteDashboard(request)
+          body = send_request('DeleteDashboard', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteDashboardResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3143,6 +3191,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCosRechargeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于修改仪表盘
+
+        # @param request: Request instance for ModifyDashboard.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyDashboardRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyDashboardResponse`
+        def ModifyDashboard(request)
+          body = send_request('ModifyDashboard', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyDashboardResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -78,6 +78,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建镜像预热任务
+
+        # @param request: Request instance for CreatePreCacheImageTask.
+        # @type request: :class:`Tencentcloud::ags::V20250920::CreatePreCacheImageTaskRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::CreatePreCacheImageTaskResponse`
+        def CreatePreCacheImageTask(request)
+          body = send_request('CreatePreCacheImageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePreCacheImageTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建沙箱工具
 
         # @param request: Request instance for CreateSandboxTool.
@@ -160,6 +184,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAPIKeyListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像预热任务信息
+
+        # @param request: Request instance for DescribePreCacheImageTask.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribePreCacheImageTaskRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribePreCacheImageTaskResponse`
+        def DescribePreCacheImageTask(request)
+          body = send_request('DescribePreCacheImageTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePreCacheImageTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

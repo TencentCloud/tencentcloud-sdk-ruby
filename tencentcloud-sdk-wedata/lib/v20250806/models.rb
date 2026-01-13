@@ -1624,9 +1624,9 @@ module TencentCloud
         # mysql: 自建实例
         # {
         #     "deployType": "CONNSTR_CVMDB",
-        #     "url": "jdbc:mysql://1.1.1.1:1111/database",
+        #     "url": "jdbc:mysql://1.1.1.1:1111/example#test#123456",
         #     "username": "root",
-        #     "password": "root",
+        #     "password": "example#test#123456",
         #     "region": "ap-shanghai",
         #     "vpcId": "vpc-kprq42yo",
         #     "type": "MYSQL"
@@ -1637,16 +1637,16 @@ module TencentCloud
         #     "db": "db",
         #     "region": "ap-shanghai",
         #     "username": "msyql",
-        #     "password": "mysql",
+        #     "password": "example#test#123456",
         #     "deployType": "INSTANCE",
         #     "type": "TENCENT_MYSQL"
         # }
         # sql_server:
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
-        #     "url": "jdbc:sqlserver://1.1.1.1:223;DatabaseName=database",
+        #     "url": "jdbc:sqlserver://1.1.1.1:223;example#test#123456",
         #     "username": "user_1",
-        #     "password": "pass_2",
+        #     "password": "example#test#123456",
         #     "type": "SQLSERVER"
         # }
         # redis:
@@ -1656,7 +1656,7 @@ module TencentCloud
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
         #     "username":""
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "ip": "1.1.1.1",
         #     "port": "6379",
         #     "redisType": "NO_ACCOUT",
@@ -1665,9 +1665,9 @@ module TencentCloud
         # oracle:
         # {
         #     "deployType": "CONNSTR_CVMDB",
-        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:prod",
+        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:example#test#123456",
         #     "username": "oracle",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "region": "ap-shanghai",
         #     "vpcId": "vpc-kprq42yo",
         #     "type": "ORACLE"
@@ -1684,16 +1684,16 @@ module TencentCloud
         #     "db": "admin",
         #     "deployType": "CONNSTR_PUBLICDB",
         #     "username": "user",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "type": "MONGODB",
         #     "host": "1.1.1.1:9200"
         # }
         # postgresql:
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
-        #     "url": "jdbc:postgresql://1.1.1.1:1921/database",
+        #     "url": "jdbc:postgresql://1.1.1.1:1921/example#test#123456",
         #     "username": "user",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "type": "POSTGRE"
         # }
         # kafka:
@@ -1721,7 +1721,7 @@ module TencentCloud
         #     "region": "ap-shanghai",
         #     "deployType": "INSTANCE",
         #     "secretId": "aaaaa",
-        #     "secretKey": "sssssss",
+        #     "secretKey": "example#test#123456",
         #     "bucket": "aaa",
         #     "type": "COS"
         # }
@@ -5017,10 +5017,7 @@ module TencentCloud
         # false：不通知
         # 不传默认false
         # @type OperateInform: Boolean
-        # @param DeleteMode: 任务删除方式
-        # true：不针对下游任务实例进行强制失败
-        # false：针对下游任务实例进行强制失败
-        # 不传默认false
+        # @param DeleteMode: (本参数暂不生效)当前删除上游任务时，不会针对下游任务实例进行强制失败
         # @type DeleteMode: Boolean
 
         attr_accessor :ProjectId, :TaskId, :OperateInform, :DeleteMode
@@ -21786,9 +21783,9 @@ module TencentCloud
         # mysql: 自建实例
         # {
         #     "deployType": "CONNSTR_CVMDB",
-        #     "url": "jdbc:mysql://1.1.1.1:1111/database",
+        #     "url": "jdbc:mysql://1.1.1.1:1111/example#test#123456",
         #     "username": "root",
-        #     "password": "root",
+        #     "password": "example#test#123456",
         #     "region": "ap-shanghai",
         #     "vpcId": "vpc-kprq42yo",
         #     "type": "MYSQL"
@@ -21799,16 +21796,16 @@ module TencentCloud
         #     "db": "db",
         #     "region": "ap-shanghai",
         #     "username": "msyql",
-        #     "password": "mysql",
+        #     "password": "example#test#123456",
         #     "deployType": "INSTANCE",
         #     "type": "TENCENT_MYSQL"
         # }
         # sql_server:
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
-        #     "url": "jdbc:sqlserver://1.1.1.1:223;DatabaseName=database",
+        #     "url": "jdbc:sqlserver://1.1.1.1:223;example#test#123456",
         #     "username": "user_1",
-        #     "password": "pass_2",
+        #     "password": "example#test#123456",
         #     "type": "SQLSERVER"
         # }
         # redis:
@@ -21818,7 +21815,7 @@ module TencentCloud
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
         #     "username":""
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "ip": "1.1.1.1",
         #     "port": "6379",
         #     "redisType": "NO_ACCOUT",
@@ -21827,9 +21824,9 @@ module TencentCloud
         # oracle:
         # {
         #     "deployType": "CONNSTR_CVMDB",
-        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:prod",
+        #     "url": "jdbc:oracle:thin:@1.1.1.1:1521:example#test#123456",
         #     "username": "oracle",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "region": "ap-shanghai",
         #     "vpcId": "vpc-kprq42yo",
         #     "type": "ORACLE"
@@ -21846,16 +21843,16 @@ module TencentCloud
         #     "db": "admin",
         #     "deployType": "CONNSTR_PUBLICDB",
         #     "username": "user",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "type": "MONGODB",
         #     "host": "1.1.1.1:9200"
         # }
         # postgresql:
         # {
         #     "deployType": "CONNSTR_PUBLICDB",
-        #     "url": "jdbc:postgresql://1.1.1.1:1921/database",
+        #     "url": "jdbc:postgresql://1.1.1.1:1921/example#test#123456",
         #     "username": "user",
-        #     "password": "pass",
+        #     "password": "example#test#123456",
         #     "type": "POSTGRE"
         # }
         # kafka:
@@ -21883,7 +21880,7 @@ module TencentCloud
         #     "region": "ap-shanghai",
         #     "deployType": "INSTANCE",
         #     "secretId": "aaaaa",
-        #     "secretKey": "sssssss",
+        #     "secretKey": "example#test#123456",
         #     "bucket": "aaa",
         #     "type": "COS"
         # }

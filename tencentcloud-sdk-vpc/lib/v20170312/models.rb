@@ -168,15 +168,18 @@ module TencentCloud
         # @type ResourceType: String
         # @param Protocol: 带宽包协议类型。当前支持'ipv4'和'ipv6'协议类型。
         # @type Protocol: String
+        # @param InternetMaxBandwidthOut: 用于带宽包内添加IP资源时指定IP带宽值。<p>说明：当前功能处于内测中，如需使用，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。</p>
+        # @type InternetMaxBandwidthOut: Integer
 
-        attr_accessor :ResourceIds, :BandwidthPackageId, :NetworkType, :ResourceType, :Protocol
+        attr_accessor :ResourceIds, :BandwidthPackageId, :NetworkType, :ResourceType, :Protocol, :InternetMaxBandwidthOut
 
-        def initialize(resourceids=nil, bandwidthpackageid=nil, networktype=nil, resourcetype=nil, protocol=nil)
+        def initialize(resourceids=nil, bandwidthpackageid=nil, networktype=nil, resourcetype=nil, protocol=nil, internetmaxbandwidthout=nil)
           @ResourceIds = resourceids
           @BandwidthPackageId = bandwidthpackageid
           @NetworkType = networktype
           @ResourceType = resourcetype
           @Protocol = protocol
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
         end
 
         def deserialize(params)
@@ -185,6 +188,7 @@ module TencentCloud
           @NetworkType = params['NetworkType']
           @ResourceType = params['ResourceType']
           @Protocol = params['Protocol']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
         end
       end
 
@@ -2186,6 +2190,8 @@ module TencentCloud
         # @type QosLevel: String
         # @param InstanceChargeType: 付费类型，PREPAID为预付费，POSTPAID为后付费。
         # @type InstanceChargeType: String
+        # @param InstanceMeteringType: 计量类型
+        # @type InstanceMeteringType: String
         # @param BandwidthLimitType: 限速类型，`INTER_REGION_LIMIT` 为地域间限速；`OUTER_REGION_LIMIT` 为地域出口限速。
         # @type BandwidthLimitType: String
         # @param TagSet: 标签键值对。
@@ -2221,9 +2227,9 @@ module TencentCloud
         # @param PolicyBasedRoutingFlag: 是否支持策略路由
         # @type PolicyBasedRoutingFlag: Boolean
 
-        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag, :RouteTablePolicyValueCommunityFlag, :PolicyBasedRoutingFlag
+        attr_accessor :CcnId, :CcnName, :CcnDescription, :InstanceCount, :CreateTime, :State, :QosLevel, :InstanceChargeType, :InstanceMeteringType, :BandwidthLimitType, :TagSet, :RoutePriorityFlag, :RouteTableCount, :RouteTableFlag, :IsSecurityLock, :RouteBroadcastPolicyFlag, :RouteECMPFlag, :RouteOverlapFlag, :TrafficMarkingPolicyFlag, :RouteSelectPolicyFlag, :DirectConnectAccelerateChannelFlag, :Ipv6Flag, :MrtbAggregatePolicyFlag, :MrtbPolicyValueFlag, :RouteTablePolicyValueCommunityFlag, :PolicyBasedRoutingFlag
 
-        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil, routetablepolicyvaluecommunityflag=nil, policybasedroutingflag=nil)
+        def initialize(ccnid=nil, ccnname=nil, ccndescription=nil, instancecount=nil, createtime=nil, state=nil, qoslevel=nil, instancechargetype=nil, instancemeteringtype=nil, bandwidthlimittype=nil, tagset=nil, routepriorityflag=nil, routetablecount=nil, routetableflag=nil, issecuritylock=nil, routebroadcastpolicyflag=nil, routeecmpflag=nil, routeoverlapflag=nil, trafficmarkingpolicyflag=nil, routeselectpolicyflag=nil, directconnectacceleratechannelflag=nil, ipv6flag=nil, mrtbaggregatepolicyflag=nil, mrtbpolicyvalueflag=nil, routetablepolicyvaluecommunityflag=nil, policybasedroutingflag=nil)
           @CcnId = ccnid
           @CcnName = ccnname
           @CcnDescription = ccndescription
@@ -2232,6 +2238,7 @@ module TencentCloud
           @State = state
           @QosLevel = qoslevel
           @InstanceChargeType = instancechargetype
+          @InstanceMeteringType = instancemeteringtype
           @BandwidthLimitType = bandwidthlimittype
           @TagSet = tagset
           @RoutePriorityFlag = routepriorityflag
@@ -2260,6 +2267,7 @@ module TencentCloud
           @State = params['State']
           @QosLevel = params['QosLevel']
           @InstanceChargeType = params['InstanceChargeType']
+          @InstanceMeteringType = params['InstanceMeteringType']
           @BandwidthLimitType = params['BandwidthLimitType']
           unless params['TagSet'].nil?
             @TagSet = []
@@ -25584,19 +25592,27 @@ module TencentCloud
         # <li>Address：弹性公网IP</li>
         # <li>LoadBalance：负载均衡</li>
         # @type ResourceType: String
+        # @param InternetMaxBandwidthOut: 用于移除带宽包内IP资源时指定IP的带宽值。<p>说明：当前功能处于内测中，如需使用，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。</p>
+        # @type InternetMaxBandwidthOut: Integer
+        # @param InternetChargeType: 用于移除带宽包内IP资源时指定资源移除后的计费模式。<li>小时流量：TRAFFIC_POSTPAID_BY_HOUR；</li><li>小时带宽：BANDWIDTH_POSTPAID_BY_HOUR</li><p>说明：当前功能处于内测中，如需使用，请提交[工单申请](https://console.cloud.tencent.com/workorder/category)。</p>
+        # @type InternetChargeType: String
 
-        attr_accessor :ResourceIds, :BandwidthPackageId, :ResourceType
+        attr_accessor :ResourceIds, :BandwidthPackageId, :ResourceType, :InternetMaxBandwidthOut, :InternetChargeType
 
-        def initialize(resourceids=nil, bandwidthpackageid=nil, resourcetype=nil)
+        def initialize(resourceids=nil, bandwidthpackageid=nil, resourcetype=nil, internetmaxbandwidthout=nil, internetchargetype=nil)
           @ResourceIds = resourceids
           @BandwidthPackageId = bandwidthpackageid
           @ResourceType = resourcetype
+          @InternetMaxBandwidthOut = internetmaxbandwidthout
+          @InternetChargeType = internetchargetype
         end
 
         def deserialize(params)
           @ResourceIds = params['ResourceIds']
           @BandwidthPackageId = params['BandwidthPackageId']
           @ResourceType = params['ResourceType']
+          @InternetMaxBandwidthOut = params['InternetMaxBandwidthOut']
+          @InternetChargeType = params['InternetChargeType']
         end
       end
 
