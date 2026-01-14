@@ -4309,6 +4309,48 @@ module TencentCloud
         end
       end
 
+      # DescribeIpsModeSwitch请求参数结构体
+      class DescribeIpsModeSwitchRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeIpsModeSwitch返回参数结构体
+      class DescribeIpsModeSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param Data: // Mode 取值校验：0-观察模式, 1-拦截模式, 2-严格模式
+        # @type Data: :class:`Tencentcloud::Cfw.v20190904.models.ModeInfo`
+        # @param ReturnCode: 0 成功 非0失败
+        # @type ReturnCode: Integer
+        # @param ReturnMsg: success 成功 其他失败
+        # @type ReturnMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :ReturnCode, :ReturnMsg, :RequestId
+
+        def initialize(data=nil, returncode=nil, returnmsg=nil, requestid=nil)
+          @Data = data
+          @ReturnCode = returncode
+          @ReturnMsg = returnmsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModeInfo.new
+            @Data.deserialize(params['Data'])
+          end
+          @ReturnCode = params['ReturnCode']
+          @ReturnMsg = params['ReturnMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogStorageStatistic请求参数结构体
       class DescribeLogStorageStatisticRequest < TencentCloud::Common::AbstractModel
 
@@ -6952,6 +6994,22 @@ module TencentCloud
         end
       end
 
+      # 入侵防御防护模式相关
+      class ModeInfo < TencentCloud::Common::AbstractModel
+        # @param Mode: 0-观察模式, 1-拦截模式, 2-严格模式
+        # @type Mode: Integer
+
+        attr_accessor :Mode
+
+        def initialize(mode=nil)
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+        end
+      end
+
       # ModifyAcRule请求参数结构体
       class ModifyAcRuleRequest < TencentCloud::Common::AbstractModel
         # @param Data: 规则数组
@@ -7785,6 +7843,38 @@ module TencentCloud
 
       # ModifyFwGroupSwitch返回参数结构体
       class ModifyFwGroupSwitchResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyIpsModeSwitch请求参数结构体
+      class ModifyIpsModeSwitchRequest < TencentCloud::Common::AbstractModel
+        # @param Mode: 防护模式：0-观察模式, 1-拦截模式, 2-严格模式
+        # @type Mode: Integer
+
+        attr_accessor :Mode
+
+        def initialize(mode=nil)
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+        end
+      end
+
+      # ModifyIpsModeSwitch返回参数结构体
+      class ModifyIpsModeSwitchResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

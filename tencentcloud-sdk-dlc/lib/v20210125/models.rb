@@ -17895,10 +17895,14 @@ module TencentCloud
         # @param CatalogPolicyInfo: 数据目录权限集
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policy`
+        # @param DataCatalogPolicyInfo: 数据目录权限
+        # @type DataCatalogPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
+        # @param ModelPolicyInfo: 模型权限
+        # @type ModelPolicyInfo: :class:`Tencentcloud::Dlc.v20210125.models.Policys`
 
-        attr_accessor :WorkGroupId, :WorkGroupName, :Type, :UserInfo, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupDescription, :RowFilterInfo, :CatalogPolicyInfo
+        attr_accessor :WorkGroupId, :WorkGroupName, :Type, :UserInfo, :DataPolicyInfo, :EnginePolicyInfo, :WorkGroupDescription, :RowFilterInfo, :CatalogPolicyInfo, :DataCatalogPolicyInfo, :ModelPolicyInfo
 
-        def initialize(workgroupid=nil, workgroupname=nil, type=nil, userinfo=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupdescription=nil, rowfilterinfo=nil, catalogpolicyinfo=nil)
+        def initialize(workgroupid=nil, workgroupname=nil, type=nil, userinfo=nil, datapolicyinfo=nil, enginepolicyinfo=nil, workgroupdescription=nil, rowfilterinfo=nil, catalogpolicyinfo=nil, datacatalogpolicyinfo=nil, modelpolicyinfo=nil)
           @WorkGroupId = workgroupid
           @WorkGroupName = workgroupname
           @Type = type
@@ -17908,6 +17912,8 @@ module TencentCloud
           @WorkGroupDescription = workgroupdescription
           @RowFilterInfo = rowfilterinfo
           @CatalogPolicyInfo = catalogpolicyinfo
+          @DataCatalogPolicyInfo = datacatalogpolicyinfo
+          @ModelPolicyInfo = modelpolicyinfo
         end
 
         def deserialize(params)
@@ -17934,6 +17940,14 @@ module TencentCloud
           unless params['CatalogPolicyInfo'].nil?
             @CatalogPolicyInfo = Policy.new
             @CatalogPolicyInfo.deserialize(params['CatalogPolicyInfo'])
+          end
+          unless params['DataCatalogPolicyInfo'].nil?
+            @DataCatalogPolicyInfo = Policys.new
+            @DataCatalogPolicyInfo.deserialize(params['DataCatalogPolicyInfo'])
+          end
+          unless params['ModelPolicyInfo'].nil?
+            @ModelPolicyInfo = Policys.new
+            @ModelPolicyInfo.deserialize(params['ModelPolicyInfo'])
           end
         end
       end

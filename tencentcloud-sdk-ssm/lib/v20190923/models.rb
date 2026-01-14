@@ -57,10 +57,12 @@ module TencentCloud
         # @type RotationFrequency: Integer
         # @param KmsHsmClusterId: KMS的独享集群的ID。当KmsKeyId为空,并且用户的KMS存在有效的HsmClusterId时有效。
         # @type KmsHsmClusterId: String
+        # @param AccountRemark: 账户备注
+        # @type AccountRemark: String
 
-        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId
+        attr_accessor :SecretName, :UserNamePrefix, :ProductName, :InstanceID, :Domains, :PrivilegesList, :Description, :KmsKeyId, :Tags, :RotationBeginTime, :EnableRotation, :RotationFrequency, :KmsHsmClusterId, :AccountRemark
 
-        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil)
+        def initialize(secretname=nil, usernameprefix=nil, productname=nil, instanceid=nil, domains=nil, privilegeslist=nil, description=nil, kmskeyid=nil, tags=nil, rotationbegintime=nil, enablerotation=nil, rotationfrequency=nil, kmshsmclusterid=nil, accountremark=nil)
           @SecretName = secretname
           @UserNamePrefix = usernameprefix
           @ProductName = productname
@@ -74,6 +76,7 @@ module TencentCloud
           @EnableRotation = enablerotation
           @RotationFrequency = rotationfrequency
           @KmsHsmClusterId = kmshsmclusterid
+          @AccountRemark = accountremark
         end
 
         def deserialize(params)
@@ -104,6 +107,7 @@ module TencentCloud
           @EnableRotation = params['EnableRotation']
           @RotationFrequency = params['RotationFrequency']
           @KmsHsmClusterId = params['KmsHsmClusterId']
+          @AccountRemark = params['AccountRemark']
         end
       end
 
@@ -1147,15 +1151,43 @@ module TencentCloud
         # Database - 显式指明所在的数据库实例。
         # TableName - 显式指明所在表
         # @type ColumnName: String
+        # @param SchemaName: 仅当PrivilegeName为SchemaPrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type SchemaName: String
+        # @param SequenceName: 仅当PrivilegeName为SequencePrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type SequenceName: String
+        # @param ProcedureName: 仅当PrivilegeName为ProcedurePrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type ProcedureName: String
+        # @param TypeName: 仅当PrivilegeName为TypePrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type TypeName: String
+        # @param FunctionName: 仅当PrivilegeName为FunctionPrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type FunctionName: String
+        # @param ViewName: 仅当PrivilegeName为ViewPrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type ViewName: String
+        # @param MatviewName: 仅当PrivilegeName为MatviewPrivileges时这个值才生效，并且此时必须填充：
+        # 目前仅postgresSQL需要
+        # @type MatviewName: String
 
-        attr_accessor :PrivilegeName, :Privileges, :Database, :TableName, :ColumnName
+        attr_accessor :PrivilegeName, :Privileges, :Database, :TableName, :ColumnName, :SchemaName, :SequenceName, :ProcedureName, :TypeName, :FunctionName, :ViewName, :MatviewName
 
-        def initialize(privilegename=nil, privileges=nil, database=nil, tablename=nil, columnname=nil)
+        def initialize(privilegename=nil, privileges=nil, database=nil, tablename=nil, columnname=nil, schemaname=nil, sequencename=nil, procedurename=nil, typename=nil, functionname=nil, viewname=nil, matviewname=nil)
           @PrivilegeName = privilegename
           @Privileges = privileges
           @Database = database
           @TableName = tablename
           @ColumnName = columnname
+          @SchemaName = schemaname
+          @SequenceName = sequencename
+          @ProcedureName = procedurename
+          @TypeName = typename
+          @FunctionName = functionname
+          @ViewName = viewname
+          @MatviewName = matviewname
         end
 
         def deserialize(params)
@@ -1164,6 +1196,13 @@ module TencentCloud
           @Database = params['Database']
           @TableName = params['TableName']
           @ColumnName = params['ColumnName']
+          @SchemaName = params['SchemaName']
+          @SequenceName = params['SequenceName']
+          @ProcedureName = params['ProcedureName']
+          @TypeName = params['TypeName']
+          @FunctionName = params['FunctionName']
+          @ViewName = params['ViewName']
+          @MatviewName = params['MatviewName']
         end
       end
 

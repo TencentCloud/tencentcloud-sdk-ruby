@@ -4097,10 +4097,12 @@ module TencentCloud
         # @type RenderMode: Integer
         # @param MaxResolutionUserAlign: 屏幕分享模板有效。设置为1时代表大画面居右，小画面居左布局。默认为0。
         # @type MaxResolutionUserAlign: Integer
+        # @param PureAudioDisableLayout: 控制房间内纯音频用户是否占据混流布局，只在混流录制，模板布局生效。true: 代表纯音频用户不占位，false: 代表纯音频用户占位（默认为false）。
+        # @type PureAudioDisableLayout: Boolean
 
-        attr_accessor :MixLayoutMode, :MixLayoutList, :BackGroundColor, :MaxResolutionUserId, :MediaId, :BackgroundImageUrl, :PlaceHolderMode, :BackgroundImageRenderMode, :DefaultSubBackgroundImage, :WaterMarkList, :RenderMode, :MaxResolutionUserAlign
+        attr_accessor :MixLayoutMode, :MixLayoutList, :BackGroundColor, :MaxResolutionUserId, :MediaId, :BackgroundImageUrl, :PlaceHolderMode, :BackgroundImageRenderMode, :DefaultSubBackgroundImage, :WaterMarkList, :RenderMode, :MaxResolutionUserAlign, :PureAudioDisableLayout
 
-        def initialize(mixlayoutmode=nil, mixlayoutlist=nil, backgroundcolor=nil, maxresolutionuserid=nil, mediaid=nil, backgroundimageurl=nil, placeholdermode=nil, backgroundimagerendermode=nil, defaultsubbackgroundimage=nil, watermarklist=nil, rendermode=nil, maxresolutionuseralign=nil)
+        def initialize(mixlayoutmode=nil, mixlayoutlist=nil, backgroundcolor=nil, maxresolutionuserid=nil, mediaid=nil, backgroundimageurl=nil, placeholdermode=nil, backgroundimagerendermode=nil, defaultsubbackgroundimage=nil, watermarklist=nil, rendermode=nil, maxresolutionuseralign=nil, pureaudiodisablelayout=nil)
           @MixLayoutMode = mixlayoutmode
           @MixLayoutList = mixlayoutlist
           @BackGroundColor = backgroundcolor
@@ -4113,6 +4115,7 @@ module TencentCloud
           @WaterMarkList = watermarklist
           @RenderMode = rendermode
           @MaxResolutionUserAlign = maxresolutionuseralign
+          @PureAudioDisableLayout = pureaudiodisablelayout
         end
 
         def deserialize(params)
@@ -4142,6 +4145,7 @@ module TencentCloud
           end
           @RenderMode = params['RenderMode']
           @MaxResolutionUserAlign = params['MaxResolutionUserAlign']
+          @PureAudioDisableLayout = params['PureAudioDisableLayout']
         end
       end
 
@@ -4842,10 +4846,12 @@ module TencentCloud
         # @type MediaId: Integer
         # @param FillType: 上行视频停止时，录制的补帧类型，0：补最后一帧 1：补黑帧
         # @type FillType: Integer
+        # @param SubscribeAbility: 控制录制任务是否订阅混流回推机器人，1是订阅，0是不订阅，默认是0。如果是混流录制任务，建议用订阅白名单控制订阅用户，防止同时订阅混流回推机器人和上行主播，以避免混音效果。
+        # @type SubscribeAbility: Integer
 
-        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId, :FillType
+        attr_accessor :RecordMode, :MaxIdleTime, :StreamType, :SubscribeStreamUserIds, :OutputFormat, :AvMerge, :MaxMediaFileDuration, :MediaId, :FillType, :SubscribeAbility
 
-        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil, mediaid=nil, filltype=nil)
+        def initialize(recordmode=nil, maxidletime=nil, streamtype=nil, subscribestreamuserids=nil, outputformat=nil, avmerge=nil, maxmediafileduration=nil, mediaid=nil, filltype=nil, subscribeability=nil)
           @RecordMode = recordmode
           @MaxIdleTime = maxidletime
           @StreamType = streamtype
@@ -4855,6 +4861,7 @@ module TencentCloud
           @MaxMediaFileDuration = maxmediafileduration
           @MediaId = mediaid
           @FillType = filltype
+          @SubscribeAbility = subscribeability
         end
 
         def deserialize(params)
@@ -4870,6 +4877,7 @@ module TencentCloud
           @MaxMediaFileDuration = params['MaxMediaFileDuration']
           @MediaId = params['MediaId']
           @FillType = params['FillType']
+          @SubscribeAbility = params['SubscribeAbility']
         end
       end
 

@@ -5513,6 +5513,49 @@ module TencentCloud
         end
       end
 
+      # DeleteUserPermissions请求参数结构体
+      class DeleteUserPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 要授权的用户的唯一标识符（支持子账号 UIN和角色UIN）
+        # @type TargetUin: String
+        # @param Permissions: 用户最终应拥有的完整权限列表。采用声明式语义，传入的列表代表用户最终应该拥有的全部权限，系统会自动计算差异并执行必要的创建/删除操作。为空或不提供时将清除该用户的所有权限。最大支持 100 个权限项。
+        # @type Permissions: Array
+
+        attr_accessor :TargetUin, :Permissions
+
+        def initialize(targetuin=nil, permissions=nil)
+          @TargetUin = targetuin
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permissionitem_tmp = PermissionItem.new
+              permissionitem_tmp.deserialize(i)
+              @Permissions << permissionitem_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteUserPermissions返回参数结构体
+      class DeleteUserPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAddon请求参数结构体
       class DescribeAddonRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID，请从容器服务控制台集群列表中获取（https://console.cloud.tencent.com/tke2/cluster）。
@@ -11387,6 +11430,54 @@ module TencentCloud
         end
       end
 
+      # DescribeUserPermissions请求参数结构体
+      class DescribeUserPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 要查询的用户的唯一标识符（支持子账号 UIN和角色UIN）
+        # @type TargetUin: String
+
+        attr_accessor :TargetUin
+
+        def initialize(targetuin=nil)
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # DescribeUserPermissions返回参数结构体
+      class DescribeUserPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param Permissions: 用户在当前地域下所有集群中的权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Permissions: Array
+        # @param TargetUin: 用户唯一标识符
+        # @type TargetUin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Permissions, :TargetUin, :RequestId
+
+        def initialize(permissions=nil, targetuin=nil, requestid=nil)
+          @Permissions = permissions
+          @TargetUin = targetuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permissionitem_tmp = PermissionItem.new
+              permissionitem_tmp.deserialize(i)
+              @Permissions << permissionitem_tmp
+            end
+          end
+          @TargetUin = params['TargetUin']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVersions请求参数结构体
       class DescribeVersionsRequest < TencentCloud::Common::AbstractModel
 
@@ -13421,6 +13512,49 @@ module TencentCloud
             end
           end
           @ID = params['ID']
+        end
+      end
+
+      # GrantUserPermissions请求参数结构体
+      class GrantUserPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param TargetUin: 要授权的用户的唯一标识符（支持子账号 UIN和角色UIN）
+        # @type TargetUin: String
+        # @param Permissions: 用户最终应拥有的完整权限列表。采用声明式语义，传入的列表代表用户最终应该拥有的全部权限，系统会自动计算差异并执行必要的创建/删除操作。为空或不提供时将清除该用户的所有权限。最大支持 100 个权限项。
+        # @type Permissions: Array
+
+        attr_accessor :TargetUin, :Permissions
+
+        def initialize(targetuin=nil, permissions=nil)
+          @TargetUin = targetuin
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          @TargetUin = params['TargetUin']
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              permissionitem_tmp = PermissionItem.new
+              permissionitem_tmp.deserialize(i)
+              @Permissions << permissionitem_tmp
+            end
+          end
+        end
+      end
+
+      # GrantUserPermissions返回参数结构体
+      class GrantUserPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -16940,6 +17074,39 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Status = params['Status']
           @UpdatedTime = params['UpdatedTime']
+        end
+      end
+
+      # 用户权限项，定义用户在集群中的 RBAC 权限绑定
+      class PermissionItem < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param RoleName: 角色名称。预置角色包括：tke:admin（集群管理员）、tke:ops（运维人员）、tke:dev（开发人员）、tke:ro（只读用户）、tke:ns:dev（命名空间开发人员）、tke:ns:ro（命名空间只读用户），其余为用户自定义角色
+        # @type RoleName: String
+        # @param RoleType: 授权类型。枚举值：cluster（集群级别权限，对应 ClusterRoleBinding）、namespace（命名空间级别权限，对应 RoleBinding）
+        # @type RoleType: String
+        # @param IsCustom: 是否为自定义角色，默认 false
+        # @type IsCustom: Boolean
+        # @param Namespace: 命名空间。当 RoleType 为 namespace 时必填
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+
+        attr_accessor :ClusterId, :RoleName, :RoleType, :IsCustom, :Namespace
+
+        def initialize(clusterid=nil, rolename=nil, roletype=nil, iscustom=nil, namespace=nil)
+          @ClusterId = clusterid
+          @RoleName = rolename
+          @RoleType = roletype
+          @IsCustom = iscustom
+          @Namespace = namespace
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @RoleName = params['RoleName']
+          @RoleType = params['RoleType']
+          @IsCustom = params['IsCustom']
+          @Namespace = params['Namespace']
         end
       end
 

@@ -1231,6 +1231,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取入侵防御防护模式
+
+        # @param request: Request instance for DescribeIpsModeSwitch.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::DescribeIpsModeSwitchRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::DescribeIpsModeSwitchResponse`
+        def DescribeIpsModeSwitch(request)
+          body = send_request('DescribeIpsModeSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeIpsModeSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 租户日志存储统计
 
         # @param request: Request instance for DescribeLogStorageStatistic.
@@ -2229,6 +2253,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyFwGroupSwitchResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改入侵防御防护模式
+
+        # @param request: Request instance for ModifyIpsModeSwitch.
+        # @type request: :class:`Tencentcloud::cfw::V20190904::ModifyIpsModeSwitchRequest`
+        # @rtype: :class:`Tencentcloud::cfw::V20190904::ModifyIpsModeSwitchResponse`
+        def ModifyIpsModeSwitch(request)
+          body = send_request('ModifyIpsModeSwitch', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyIpsModeSwitchResponse.new
             model.deserialize(response['Response'])
             model
           else

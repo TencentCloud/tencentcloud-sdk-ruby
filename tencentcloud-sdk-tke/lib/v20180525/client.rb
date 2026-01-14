@@ -1829,6 +1829,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用请求中提供的权限集合，删除用户对应的权限
+
+        # @param request: Request instance for DeleteUserPermissions.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DeleteUserPermissionsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DeleteUserPermissionsResponse`
+        def DeleteUserPermissions(request)
+          body = send_request('DeleteUserPermissions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUserPermissionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取addon列表
 
         # @param request: Request instance for DescribeAddon.
@@ -4277,6 +4301,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询一个指定用户在当前地域下所有 TKE 集群中的聚合权限信息。返回用户在各集群中的 ClusterRoleBinding 和 RoleBinding 信息。
+
+        # @param request: Request instance for DescribeUserPermissions.
+        # @type request: :class:`Tencentcloud::tke::V20180525::DescribeUserPermissionsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::DescribeUserPermissionsResponse`
+        def DescribeUserPermissions(request)
+          body = send_request('DescribeUserPermissions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserPermissionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取集群版本信息
 
         # @param request: Request instance for DescribeVersions.
@@ -4743,6 +4791,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetUpgradeInstanceProgressResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用请求中提供的权限集合，为用户授予对应的 RBAC 权限。
+
+        # @param request: Request instance for GrantUserPermissions.
+        # @type request: :class:`Tencentcloud::tke::V20180525::GrantUserPermissionsRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::GrantUserPermissionsResponse`
+        def GrantUserPermissions(request)
+          body = send_request('GrantUserPermissions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GrantUserPermissionsResponse.new
             model.deserialize(response['Response'])
             model
           else

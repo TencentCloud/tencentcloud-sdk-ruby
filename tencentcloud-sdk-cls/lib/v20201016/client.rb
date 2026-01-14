@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消重建索引任务
+
+        # @param request: Request instance for CancelRebuildIndexTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CancelRebuildIndexTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CancelRebuildIndexTaskResponse`
+        def CancelRebuildIndexTask(request)
+          body = send_request('CancelRebuildIndexTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelRebuildIndexTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于数据加工DSL函数的语法校验。
 
         # @param request: Request instance for CheckFunction.
@@ -766,6 +790,36 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateNoticeContentResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建重建索引任务
+        # 注意：
+        # - 单个日志主题同时仅允许运行一个重建索引任务，单个日志主题最多同时拥有10个重建索引任务记录，需删除不再需要的任务记录后才能新建索引任务。
+        # - 同一时间范围内的日志，仅允许重建一次索引，需删除之前的任务记录后才能再次重建。
+        # - 删除重建索引任务记录将恢复重建索引前的索引数据。
+        # - 所选时间范围对应日志写流量不能超出5TB。
+        # - 重建索引时间范围以日志时间为准，日志上传时间与重建索引时间范围有超过1小时的偏差时（例如16:00上传了一条02:00的日志到 CLS，重建00:00～12:00的日志索引）不会被重建且后续无法进行检索。新上报一条日志到已经被重建的日志时间范围时，也不会被重建且后续无法进行检索。
+
+        # @param request: Request instance for CreateRebuildIndexTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateRebuildIndexTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateRebuildIndexTaskResponse`
+        def CreateRebuildIndexTask(request)
+          body = send_request('CreateRebuildIndexTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRebuildIndexTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2677,6 +2731,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取重建索引任务列表
+
+        # @param request: Request instance for DescribeRebuildIndexTasks.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeRebuildIndexTasksRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeRebuildIndexTasksResponse`
+        def DescribeRebuildIndexTasks(request)
+          body = send_request('DescribeRebuildIndexTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRebuildIndexTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于获取定时SQL分析任务列表
 
         # @param request: Request instance for DescribeScheduledSqlInfo.
@@ -2879,6 +2957,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeWebCallbacksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 预估重建索引任务
+
+        # @param request: Request instance for EstimateRebuildIndexTask.
+        # @type request: :class:`Tencentcloud::cls::V20201016::EstimateRebuildIndexTaskRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::EstimateRebuildIndexTaskResponse`
+        def EstimateRebuildIndexTask(request)
+          body = send_request('EstimateRebuildIndexTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EstimateRebuildIndexTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -492,6 +492,9 @@ module TencentCloud
 
       # SubmitHunyuanTo3DProJob请求参数结构体
       class SubmitHunyuanTo3DProJobRequest < TencentCloud::Common::AbstractModel
+        # @param Model: 混元生3D生成模型版本，默认为3.0，可选项：3.0，3.1
+        # 选择3.1版本时，LowPoly参数不可用。
+        # @type Model: String
         # @param Prompt: 文生3D，3D内容的描述，中文正向提示词。
         # 最多支持1024个 utf-8 字符。
         # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
@@ -510,6 +513,10 @@ module TencentCloud
         # left：左视图；
         # right：右视图；
         # back：后视图；
+        # top：顶视图（仅3.1版本支持）；
+        # bottom：底视图（仅3.1版本支持）；
+        # left_front：左前45°视图（仅3.1版本支持）；
+        # right_front：右前45°视图（仅3.1版本支持）；
 
         # 每个视角仅限制一张图片。
         # ●图片大小限制：编码后所有图片大小总和不可超过8M。（base64编码下图片大小总和不超过6M，因base64编码后图片大小会大30%左右）
@@ -537,9 +544,10 @@ module TencentCloud
         # @param ResultFormat: 生成模型的格式，仅限制生成一种格式； 生成模型文件组默认返回obj、glb格式（开启时Geometry参数时，默认为glb格式）； 可选值：STL，USDZ，FBX；
         # @type ResultFormat: String
 
-        attr_accessor :Prompt, :ImageBase64, :ImageUrl, :MultiViewImages, :EnablePBR, :FaceCount, :GenerateType, :PolygonType, :ResultFormat
+        attr_accessor :Model, :Prompt, :ImageBase64, :ImageUrl, :MultiViewImages, :EnablePBR, :FaceCount, :GenerateType, :PolygonType, :ResultFormat
 
-        def initialize(prompt=nil, imagebase64=nil, imageurl=nil, multiviewimages=nil, enablepbr=nil, facecount=nil, generatetype=nil, polygontype=nil, resultformat=nil)
+        def initialize(model=nil, prompt=nil, imagebase64=nil, imageurl=nil, multiviewimages=nil, enablepbr=nil, facecount=nil, generatetype=nil, polygontype=nil, resultformat=nil)
+          @Model = model
           @Prompt = prompt
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
@@ -552,6 +560,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Model = params['Model']
           @Prompt = params['Prompt']
           @ImageBase64 = params['ImageBase64']
           @ImageUrl = params['ImageUrl']

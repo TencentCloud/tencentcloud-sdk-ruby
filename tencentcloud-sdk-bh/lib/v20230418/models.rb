@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2025, 12
-        deprecate :LoginAccount=, :none, 2025, 12
-        deprecate :LoginPassword, :none, 2025, 12
-        deprecate :LoginPassword=, :none, 2025, 12
+        deprecate :LoginAccount, :none, 2026, 1
+        deprecate :LoginAccount=, :none, 2026, 1
+        deprecate :LoginPassword, :none, 2026, 1
+        deprecate :LoginPassword=, :none, 2026, 1
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5825,8 +5825,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2025, 12
-        deprecate :Status=, :none, 2025, 12
+        deprecate :Status, :none, 2026, 1
+        deprecate :Status=, :none, 2026, 1
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -6635,16 +6635,22 @@ module TencentCloud
         # @type StartTime: String
         # @param EndTime: 结束时间
         # @type EndTime: String
+        # @param OperationSet: 操作类型
+        # @type OperationSet: Array
+        # @param ProtocolSet: 会话类型
+        # @type ProtocolSet: Array
         # @param Offset: 偏移量
         # @type Offset: Integer
         # @param Limit: 每页容量，默认为20，最大200
         # @type Limit: Integer
 
-        attr_accessor :StartTime, :EndTime, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :OperationSet, :ProtocolSet, :Offset, :Limit
 
-        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, operationset=nil, protocolset=nil, offset=nil, limit=nil)
           @StartTime = starttime
           @EndTime = endtime
+          @OperationSet = operationset
+          @ProtocolSet = protocolset
           @Offset = offset
           @Limit = limit
         end
@@ -6652,6 +6658,8 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @OperationSet = params['OperationSet']
+          @ProtocolSet = params['ProtocolSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
         end
@@ -7409,7 +7417,7 @@ module TencentCloud
         # @type RealName: String
         # @param DeviceName: 主机名，长度不超过64
         # @type DeviceName: String
-        # @param Status: 状态，1为活跃，2为结束，3为强制离线，4为其他错误
+        # @param Status: 状态，1为活跃，2为结束，3为强制离线，4为其他错误，5暂停会话
         # @type Status: Integer
         # @param StatusSet: 状态，1为活跃，2为结束，3为强制离线
         # @type StatusSet: Array
@@ -7721,10 +7729,18 @@ module TencentCloud
         # @type Workload: String
         # @param PodName: K8S集群容器名称
         # @type PodName: String
+        # @param Mode: 访问方式 1-直链 2-客户端 3-web 大部分情况下是2
+        # @type Mode: Integer
+        # @param DisableMonitor: 是否禁用会话监控。0-不禁用；1-禁用会话，仅展示中断；2-禁用会话，不展示中断
+        # @type DisableMonitor: Integer
+        # @param RealTimeBandwidthIn: 实时入带宽，单位Mbps
+        # @type RealTimeBandwidthIn: Float
+        # @param RealTimeBandwidthOut: 实时出带宽，单位Mbps
+        # @type RealTimeBandwidthOut: Float
 
-        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl, :ReplayType, :DeviceKind, :Namespace, :Workload, :PodName
+        attr_accessor :UserName, :RealName, :Account, :StartTime, :EndTime, :Size, :InstanceId, :DeviceName, :PrivateIp, :PublicIp, :FromIp, :Duration, :Count, :DangerCount, :Status, :Id, :ApCode, :Protocol, :AppAssetKind, :AppAssetUrl, :ReplayType, :DeviceKind, :Namespace, :Workload, :PodName, :Mode, :DisableMonitor, :RealTimeBandwidthIn, :RealTimeBandwidthOut
 
-        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil, replaytype=nil, devicekind=nil, namespace=nil, workload=nil, podname=nil)
+        def initialize(username=nil, realname=nil, account=nil, starttime=nil, endtime=nil, size=nil, instanceid=nil, devicename=nil, privateip=nil, publicip=nil, fromip=nil, duration=nil, count=nil, dangercount=nil, status=nil, id=nil, apcode=nil, protocol=nil, appassetkind=nil, appasseturl=nil, replaytype=nil, devicekind=nil, namespace=nil, workload=nil, podname=nil, mode=nil, disablemonitor=nil, realtimebandwidthin=nil, realtimebandwidthout=nil)
           @UserName = username
           @RealName = realname
           @Account = account
@@ -7750,6 +7766,10 @@ module TencentCloud
           @Namespace = namespace
           @Workload = workload
           @PodName = podname
+          @Mode = mode
+          @DisableMonitor = disablemonitor
+          @RealTimeBandwidthIn = realtimebandwidthin
+          @RealTimeBandwidthOut = realtimebandwidthout
         end
 
         def deserialize(params)
@@ -7778,6 +7798,10 @@ module TencentCloud
           @Namespace = params['Namespace']
           @Workload = params['Workload']
           @PodName = params['PodName']
+          @Mode = params['Mode']
+          @DisableMonitor = params['DisableMonitor']
+          @RealTimeBandwidthIn = params['RealTimeBandwidthIn']
+          @RealTimeBandwidthOut = params['RealTimeBandwidthOut']
         end
       end
 

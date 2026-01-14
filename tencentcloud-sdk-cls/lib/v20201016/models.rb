@@ -995,6 +995,42 @@ module TencentCloud
         end
       end
 
+      # CancelRebuildIndexTask请求参数结构体
+      class CancelRebuildIndexTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param TaskId: 索引重建任务ID
+        # @type TaskId: String
+
+        attr_accessor :TopicId, :TaskId
+
+        def initialize(topicid=nil, taskid=nil)
+          @TopicId = topicid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CancelRebuildIndexTask返回参数结构体
+      class CancelRebuildIndexTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CheckFunction请求参数结构体
       class CheckFunctionRequest < TencentCloud::Common::AbstractModel
         # @param EtlContent: 加工语句。 当FuncType为2时，EtlContent必须使用[log_auto_output](https://cloud.tencent.com/document/product/614/70733#b3c58797-4825-4807-bef4-68106e25024f)
@@ -4386,6 +4422,53 @@ module TencentCloud
 
         def deserialize(params)
           @NoticeContentId = params['NoticeContentId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateRebuildIndexTask请求参数结构体
+      class CreateRebuildIndexTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param StartTime: 重建起始时间戳，毫秒
+        # 起始时间不允许超过日志生命周期
+        # @type StartTime: Integer
+        # @param EndTime: 重建结束时间戳，毫秒
+        # 结束时间不晚于当前时间往前推15分钟
+        # 注意：建议提前使用“预估重建索引任务(EstimateRebuildIndexTask)”接口评估该时间范围重建索引涉及到的数据量及耗时，避免因数据量过大导致费用成本过高或耗时过长
+        # @type EndTime: Integer
+
+        attr_accessor :TopicId, :StartTime, :EndTime
+
+        def initialize(topicid=nil, starttime=nil, endtime=nil)
+          @TopicId = topicid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # CreateRebuildIndexTask返回参数结构体
+      class CreateRebuildIndexTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 索引重建任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -9563,6 +9646,65 @@ module TencentCloud
         end
       end
 
+      # DescribeRebuildIndexTasks请求参数结构体
+      class DescribeRebuildIndexTasksRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param TaskId: 索引重建任务ID
+        # @type TaskId: String
+        # @param Status: 索引重建任务状态，不填返回所有状态任务列表，多种状态之间用逗号分隔，0:索引重建任务已创建，1:已创建索引重建资源，2:重建中，3:重建完成，4:重建成功（可检索），5:任务取消，6:元数据和索引已删除
+        # @type Status: String
+        # @param Offset: 分页的偏移量，默认值为0。
+        # @type Offset: Integer
+        # @param Limit: 分页单页限制数目，默认值为10，最大值20。
+        # @type Limit: Integer
+
+        attr_accessor :TopicId, :TaskId, :Status, :Offset, :Limit
+
+        def initialize(topicid=nil, taskid=nil, status=nil, offset=nil, limit=nil)
+          @TopicId = topicid
+          @TaskId = taskid
+          @Status = status
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeRebuildIndexTasks返回参数结构体
+      class DescribeRebuildIndexTasksResponse < TencentCloud::Common::AbstractModel
+        # @param RebuildTasks: 索引重建任务列表
+        # @type RebuildTasks: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RebuildTasks, :RequestId
+
+        def initialize(rebuildtasks=nil, requestid=nil)
+          @RebuildTasks = rebuildtasks
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['RebuildTasks'].nil?
+            @RebuildTasks = []
+            params['RebuildTasks'].each do |i|
+              rebuildindextaskinfo_tmp = RebuildIndexTaskInfo.new
+              rebuildindextaskinfo_tmp.deserialize(i)
+              @RebuildTasks << rebuildindextaskinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeScheduledSqlInfo请求参数结构体
       class DescribeScheduledSqlInfoRequest < TencentCloud::Common::AbstractModel
         # @param Offset: 分页的偏移量，默认值为0。
@@ -10735,6 +10877,54 @@ module TencentCloud
             @EscalateNotice = EscalateNoticeInfo.new
             @EscalateNotice.deserialize(params['EscalateNotice'])
           end
+        end
+      end
+
+      # EstimateRebuildIndexTask请求参数结构体
+      class EstimateRebuildIndexTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志主题ID
+        # @type TopicId: String
+        # @param StartTime: 预估任务起始时间，毫秒
+        # @type StartTime: Integer
+        # @param EndTime: 预估任务结束时间，毫秒
+        # @type EndTime: Integer
+
+        attr_accessor :TopicId, :StartTime, :EndTime
+
+        def initialize(topicid=nil, starttime=nil, endtime=nil)
+          @TopicId = topicid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # EstimateRebuildIndexTask返回参数结构体
+      class EstimateRebuildIndexTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RemainTime: 预估索引重建需要时间，单位秒
+        # @type RemainTime: Integer
+        # @param WriteTraffic: 预估写流量大小，单位MB
+        # @type WriteTraffic: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RemainTime, :WriteTraffic, :RequestId
+
+        def initialize(remaintime=nil, writetraffic=nil, requestid=nil)
+          @RemainTime = remaintime
+          @WriteTraffic = writetraffic
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RemainTime = params['RemainTime']
+          @WriteTraffic = params['WriteTraffic']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -16134,6 +16324,54 @@ module TencentCloud
         end
       end
 
+      # 索引重建任务信息
+      class RebuildIndexTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: 索引重建任务ID
+        # @type TaskId: String
+        # @param Status: 索引重建任务当前状态，0:索引重建任务已创建，1:创建索引重建资源，2:索引重建资源创建完成，3:重建中，4:暂停，5:重建索引成功，6:重建成功（可检索），7:重建失败，8:撤销，9:删除元数据和索引
+        # @type Status: Integer
+        # @param StartTime: 重建任务开始时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 重建任务结束时间戳
+        # @type EndTime: Integer
+        # @param RemainTime: 重投预估剩余时间，单位秒
+        # @type RemainTime: Integer
+        # @param CreateTime: 重建任务创建时间戳
+        # @type CreateTime: Integer
+        # @param Progress: 重投完成度，百分比
+        # @type Progress: Float
+        # @param UpdateTime: 重建任务更新时间
+        # @type UpdateTime: Integer
+        # @param StatusMessage: 附加状态描述信息（目前仅描述失败时失败原因）
+        # @type StatusMessage: String
+
+        attr_accessor :TaskId, :Status, :StartTime, :EndTime, :RemainTime, :CreateTime, :Progress, :UpdateTime, :StatusMessage
+
+        def initialize(taskid=nil, status=nil, starttime=nil, endtime=nil, remaintime=nil, createtime=nil, progress=nil, updatetime=nil, statusmessage=nil)
+          @TaskId = taskid
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @RemainTime = remaintime
+          @CreateTime = createtime
+          @Progress = progress
+          @UpdateTime = updatetime
+          @StatusMessage = statusmessage
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RemainTime = params['RemainTime']
+          @CreateTime = params['CreateTime']
+          @Progress = params['Progress']
+          @UpdateTime = params['UpdateTime']
+          @StatusMessage = params['StatusMessage']
+        end
+      end
+
       # 标签重新标记配置。
       # 允许动态重写目标、警报、抓取样本和远程写入样本的标签集。
       class Relabeling < TencentCloud::Common::AbstractModel
@@ -17644,7 +17882,8 @@ module TencentCloud
 
       # 需要开启键值索引的字段的索引描述信息
       class ValueInfo < TencentCloud::Common::AbstractModel
-        # @param Type: 字段类型，目前支持的类型有：long、text、double
+        # @param Type: 字段类型，支持的类型有：long、text、double、json
+        # 注意：json 类型目前仅部分用户或日志主题支持，如需使用请联系我们开启功能白名单
         # @type Type: String
         # @param Tokenizer: 字段的分词符，其中的每个字符代表一个分词符；
         # 仅支持英文符号、\n\t\r及转义符\；
@@ -17657,15 +17896,23 @@ module TencentCloud
         # @type ContainZH: Boolean
         # @param Alias: 字段别名
         # @type Alias: String
+        # @param OpenIndexForChildOnly: 仅为子节点开启索引，本字段不开启。
+        # 注意：仅json类型字段可配置该参数
+        # @type OpenIndexForChildOnly: Boolean
+        # @param ChildNode: json子节点列表
+        # 注意：仅json类型字段可配置该参数
+        # @type ChildNode: Array
 
-        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH, :Alias
+        attr_accessor :Type, :Tokenizer, :SqlFlag, :ContainZH, :Alias, :OpenIndexForChildOnly, :ChildNode
 
-        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil, _alias=nil)
+        def initialize(type=nil, tokenizer=nil, sqlflag=nil, containzh=nil, _alias=nil, openindexforchildonly=nil, childnode=nil)
           @Type = type
           @Tokenizer = tokenizer
           @SqlFlag = sqlflag
           @ContainZH = containzh
           @Alias = _alias
+          @OpenIndexForChildOnly = openindexforchildonly
+          @ChildNode = childnode
         end
 
         def deserialize(params)
@@ -17674,6 +17921,15 @@ module TencentCloud
           @SqlFlag = params['SqlFlag']
           @ContainZH = params['ContainZH']
           @Alias = params['Alias']
+          @OpenIndexForChildOnly = params['OpenIndexForChildOnly']
+          unless params['ChildNode'].nil?
+            @ChildNode = []
+            params['ChildNode'].each do |i|
+              keyvalueinfo_tmp = KeyValueInfo.new
+              keyvalueinfo_tmp.deserialize(i)
+              @ChildNode << keyvalueinfo_tmp
+            end
+          end
         end
       end
 
