@@ -3915,6 +3915,44 @@ module TencentCloud
         end
       end
 
+      # DescribeSubAccountLinuxUserInfos请求参数结构体
+      class DescribeSubAccountLinuxUserInfosRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSubAccountLinuxUserInfos返回参数结构体
+      class DescribeSubAccountLinuxUserInfosResponse < TencentCloud::Common::AbstractModel
+        # @param SubAccountList: 子账号信息列表
+        # @type SubAccountList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubAccountList, :RequestId
+
+        def initialize(subaccountlist=nil, requestid=nil)
+          @SubAccountList = subaccountlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SubAccountList'].nil?
+            @SubAccountList = []
+            params['SubAccountList'].each do |i|
+              subaccountinfo_tmp = SubAccountInfo.new
+              subaccountinfo_tmp.deserialize(i)
+              @SubAccountList << subaccountinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTrainingModelVersion请求参数结构体
       class DescribeTrainingModelVersionRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelVersionId: 模型版本ID
@@ -8872,6 +8910,38 @@ module TencentCloud
         end
       end
 
+      # 子账号信息
+      class SubAccountInfo < TencentCloud::Common::AbstractModel
+        # @param Uin: 腾讯云主账号UIN
+        # @type Uin: String
+        # @param SubUin: 腾讯云子账号UIN
+        # @type SubUin: String
+        # @param SubUinName: 子账号名称
+        # @type SubUinName: String
+        # @param LinuxUid: 子账号在Linux下的UID
+        # @type LinuxUid: Integer
+        # @param LinuxGid: 子账号在Linux下的GID
+        # @type LinuxGid: Integer
+
+        attr_accessor :Uin, :SubUin, :SubUinName, :LinuxUid, :LinuxGid
+
+        def initialize(uin=nil, subuin=nil, subuinname=nil, linuxuid=nil, linuxgid=nil)
+          @Uin = uin
+          @SubUin = subuin
+          @SubUinName = subuinname
+          @LinuxUid = linuxuid
+          @LinuxGid = linuxgid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @SubUinName = params['SubUinName']
+          @LinuxUid = params['LinuxUid']
+          @LinuxGid = params['LinuxGid']
+        end
+      end
+
       # tcp socket 健康探针检查行为
       class TCPSocketAction < TencentCloud::Common::AbstractModel
         # @param Port: 调用端口
@@ -9515,6 +9585,45 @@ module TencentCloud
           @SubUin = params['SubUin']
           @SubUinName = params['SubUinName']
           @AppId = params['AppId']
+        end
+      end
+
+      # UpdateSubAccountLinuxUserInfo请求参数结构体
+      class UpdateSubAccountLinuxUserInfoRequest < TencentCloud::Common::AbstractModel
+        # @param SubAccountList: 子账号信息列表
+        # @type SubAccountList: Array
+
+        attr_accessor :SubAccountList
+
+        def initialize(subaccountlist=nil)
+          @SubAccountList = subaccountlist
+        end
+
+        def deserialize(params)
+          unless params['SubAccountList'].nil?
+            @SubAccountList = []
+            params['SubAccountList'].each do |i|
+              subaccountinfo_tmp = SubAccountInfo.new
+              subaccountinfo_tmp.deserialize(i)
+              @SubAccountList << subaccountinfo_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateSubAccountLinuxUserInfo返回参数结构体
+      class UpdateSubAccountLinuxUserInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

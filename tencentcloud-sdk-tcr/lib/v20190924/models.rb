@@ -5221,6 +5221,46 @@ module TencentCloud
         end
       end
 
+      # ModifyInstanceStorage请求参数结构体
+      class ModifyInstanceStorageRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>实例ID</p>
+        # @type RegistryId: String
+        # @param TargetRegion: <p>目标存储资源地域</p>
+        # @type TargetRegion: String
+        # @param TargetStorageName: <p>目标存储资源名称</p>
+        # @type TargetStorageName: String
+
+        attr_accessor :RegistryId, :TargetRegion, :TargetStorageName
+
+        def initialize(registryid=nil, targetregion=nil, targetstoragename=nil)
+          @RegistryId = registryid
+          @TargetRegion = targetregion
+          @TargetStorageName = targetstoragename
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          @TargetRegion = params['TargetRegion']
+          @TargetStorageName = params['TargetStorageName']
+        end
+      end
+
+      # ModifyInstanceStorage返回参数结构体
+      class ModifyInstanceStorageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyInstanceToken请求参数结构体
       class ModifyInstanceTokenRequest < TencentCloud::Common::AbstractModel
         # @param TokenId: 实例长期访问凭证 ID
@@ -7161,6 +7201,46 @@ module TencentCloud
           @Description = params['Description']
           @BriefDescription = params['BriefDescription']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # TerminateGCJob请求参数结构体
+      class TerminateGCJobRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: <p>实例ID</p>
+        # @type RegistryId: String
+
+        attr_accessor :RegistryId
+
+        def initialize(registryid=nil)
+          @RegistryId = registryid
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+        end
+      end
+
+      # TerminateGCJob返回参数结构体
+      class TerminateGCJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: <p>操作结果</p>枚举值：<ul><li> success： 操作成功</li><li> error： 操作失败</li></ul>
+        # @type Status: String
+        # @param Message: <p>操作结果详细信息</p>
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :Message, :RequestId
+
+        def initialize(status=nil, message=nil, requestid=nil)
+          @Status = status
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
         end
       end
 

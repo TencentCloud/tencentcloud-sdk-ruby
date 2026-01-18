@@ -2652,6 +2652,58 @@ module TencentCloud
         end
       end
 
+      # CreateLiveCloudEffect请求参数结构体
+      class CreateLiveCloudEffectRequest < TencentCloud::Common::AbstractModel
+        # @param Prompt: <p>用于生成云端特效的 Prompt。示例：飞鸟。Prompt 和 ImageUrl 二选一。</p>
+        # @type Prompt: String
+        # @param TemplateId: <p>模板生礼物的模板ID。目前支持的模板ID：queen_accession, wizard_of_oz，red_envelopes，fishermen，captain_america。</p>
+        # @type TemplateId: String
+        # @param ImageUrl: <p>输入我的图片地址，用于生成云端特效。ImageUrl 和 Prompt 二选一。</p>
+        # @type ImageUrl: String
+        # @param Type: <p>指定生成云端特效的方式。默认自动选取。标准方式：text2video，高品质方式：text2video_hq。</p>
+        # @type Type: String
+        # @param Operator: <p>操作者名称。</p>
+        # @type Operator: String
+
+        attr_accessor :Prompt, :TemplateId, :ImageUrl, :Type, :Operator
+
+        def initialize(prompt=nil, templateid=nil, imageurl=nil, type=nil, operator=nil)
+          @Prompt = prompt
+          @TemplateId = templateid
+          @ImageUrl = imageurl
+          @Type = type
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
+          @TemplateId = params['TemplateId']
+          @ImageUrl = params['ImageUrl']
+          @Type = params['Type']
+          @Operator = params['Operator']
+        end
+      end
+
+      # CreateLiveCloudEffect返回参数结构体
+      class CreateLiveCloudEffectResponse < TencentCloud::Common::AbstractModel
+        # @param Id: <p>云端特效 ID。</p>
+        # @type Id: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Id, :RequestId
+
+        def initialize(id=nil, requestid=nil)
+          @Id = id
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLivePadRule请求参数结构体
       class CreateLivePadRuleRequest < TencentCloud::Common::AbstractModel
         # @param DomainName: 推流域名。

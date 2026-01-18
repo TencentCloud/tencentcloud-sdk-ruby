@@ -264,8 +264,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2025, 12
-        deprecate :JobType=, :none, 2025, 12
+        deprecate :JobType, :none, 2026, 1
+        deprecate :JobType=, :none, 2026, 1
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands

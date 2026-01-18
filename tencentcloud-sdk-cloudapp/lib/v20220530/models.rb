@@ -60,6 +60,26 @@ module TencentCloud
         end
       end
 
+      # 元数据展示信息
+      class DisplayMetadata < TencentCloud::Common::AbstractModel
+        # @param Name: <p>展示的名称</p>
+        # @type Name: String
+        # @param Value: <p>展示的值</p>
+        # @type Value: String
+
+        attr_accessor :Name, :Value
+
+        def initialize(name=nil, value=nil)
+          @Name = name
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Value = params['Value']
+        end
+      end
+
       # 描述键值对过滤器，用于条件过滤查询。例如过滤 ID、名称、状态等
 
       # - 若存在多个 Filter 时，Filter间的关系为逻辑与（AND）关系。
@@ -123,10 +143,14 @@ module TencentCloud
         # @type LicenseType: String
         # @param LicenseLevel: <p>授权的层级：Master 主授权；Child 子授权/增强型授权</p>
         # @type LicenseLevel: String
+        # @param LicenseData: <p>License 内容信息</p>
+        # @type LicenseData: :class:`Tencentcloud::Cloudapp.v20220530.models.LicenseData`
+        # @param IssueURL: <p>License 颁发地址</p>
+        # @type IssueURL: String
 
-        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType, :LicenseLevel
+        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType, :LicenseLevel, :LicenseData, :IssueURL
 
-        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil, licenselevel=nil)
+        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil, licenselevel=nil, licensedata=nil, issueurl=nil)
           @LicenseId = licenseid
           @LicenseMode = licensemode
           @LicenseStatus = licensestatus
@@ -145,6 +169,8 @@ module TencentCloud
           @LifeSpanUnit = lifespanunit
           @LicenseType = licensetype
           @LicenseLevel = licenselevel
+          @LicenseData = licensedata
+          @IssueURL = issueurl
         end
 
         def deserialize(params)
@@ -173,6 +199,42 @@ module TencentCloud
           @LifeSpanUnit = params['LifeSpanUnit']
           @LicenseType = params['LicenseType']
           @LicenseLevel = params['LicenseLevel']
+          unless params['LicenseData'].nil?
+            @LicenseData = LicenseData.new
+            @LicenseData.deserialize(params['LicenseData'])
+          end
+          @IssueURL = params['IssueURL']
+        end
+      end
+
+      # License 内容信息
+      class LicenseData < TencentCloud::Common::AbstractModel
+        # @param Text: <p>License 文本内容。支持密钥、证书等文本形式，二进制的密钥需要伙伴进行 base64 转码</p>
+        # @type Text: String
+        # @param DeploymentOutput: <p>部署服务输出信息，基于部署签发 License 时需要该参数。</p>
+        # @type DeploymentOutput: String
+        # @param Metadata: <p>License 前端展示信息。key、value 形式，比如可传入，颁发机构：XXXX 有限公司</p>
+        # @type Metadata: Array
+
+        attr_accessor :Text, :DeploymentOutput, :Metadata
+
+        def initialize(text=nil, deploymentoutput=nil, metadata=nil)
+          @Text = text
+          @DeploymentOutput = deploymentoutput
+          @Metadata = metadata
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @DeploymentOutput = params['DeploymentOutput']
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              displaymetadata_tmp = DisplayMetadata.new
+              displaymetadata_tmp.deserialize(i)
+              @Metadata << displaymetadata_tmp
+            end
+          end
         end
       end
 

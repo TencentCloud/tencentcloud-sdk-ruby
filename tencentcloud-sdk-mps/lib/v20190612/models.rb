@@ -903,7 +903,8 @@ module TencentCloud
         # @type Switch: String
         # @param Type: 类型，可选值：
         # <li>standard：通用超分</li>
-        # <li>super：高级超分。</li>
+        # <li>super：高级超分super版。</li>
+        # <li>ultra：高级超分ultra版。</li>
         # 默认值：standard。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
@@ -914,24 +915,37 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Mode: String
         # @param Percent: 超分倍率，可以为小数。
+        # 注意：当Mode等于percent时使用。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Float
         # @param Width: 目标图片宽度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed时，优先使用此配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Width: Integer
         # @param Height: 目标图片高度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed时，优先使用此配置。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Height: Integer
+        # @param LongSide: 目标图片长边长度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed，且未配置Width和Height字段时使用此配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongSide: Integer
+        # @param ShortSide: 目标图片短边长度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed，且未配置Width和Height字段时使用此配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortSide: Integer
 
-        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height
+        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height, :LongSide, :ShortSide
 
-        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil)
+        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil, longside=nil, shortside=nil)
           @Switch = switch
           @Type = type
           @Mode = mode
           @Percent = percent
           @Width = width
           @Height = height
+          @LongSide = longside
+          @ShortSide = shortside
         end
 
         def deserialize(params)
@@ -941,6 +955,8 @@ module TencentCloud
           @Percent = params['Percent']
           @Width = params['Width']
           @Height = params['Height']
+          @LongSide = params['LongSide']
+          @ShortSide = params['ShortSide']
         end
       end
 
@@ -4971,21 +4987,36 @@ module TencentCloud
 
         # 注：关于具体模型支持的宽高比例，可查看具体模型官网介绍获取更完整描述。
         # @type AspectRatio: String
+        # @param LogoAdd: 是否添加图标水印。
+        # 1. Hailuo 支持此参数。
+        # 2. Kling 支持此参数。
+        # 3. Vidu 支持此参数。
+        # @type LogoAdd: Integer
+        # @param EnableAudio: 为视频生成音频。接受的值包括 true 或 false。
+
+        # 支持此参数的模型：
+        # 1. GV，默认true。
+        # 2. OS，默认true。
+        # @type EnableAudio: Boolean
         # @param OffPeak: 错峰模型，目前仅支持Vidu模型。
         # 错峰模式下提交的任务，会在48小时内生成，未能完成的任务会被自动取消。
         # @type OffPeak: Boolean
 
-        attr_accessor :Resolution, :AspectRatio, :OffPeak
+        attr_accessor :Resolution, :AspectRatio, :LogoAdd, :EnableAudio, :OffPeak
 
-        def initialize(resolution=nil, aspectratio=nil, offpeak=nil)
+        def initialize(resolution=nil, aspectratio=nil, logoadd=nil, enableaudio=nil, offpeak=nil)
           @Resolution = resolution
           @AspectRatio = aspectratio
+          @LogoAdd = logoadd
+          @EnableAudio = enableaudio
           @OffPeak = offpeak
         end
 
         def deserialize(params)
           @Resolution = params['Resolution']
           @AspectRatio = params['AspectRatio']
+          @LogoAdd = params['LogoAdd']
+          @EnableAudio = params['EnableAudio']
           @OffPeak = params['OffPeak']
         end
       end
@@ -7811,7 +7842,7 @@ module TencentCloud
         # @param LastImageUrl: 模型将以此参数传入的图片作为尾帧画面来生成视频。
         # 支持此参数的模型：
         # 1. GV，传入尾帧图片时，必须同时传入ImageUrl作为首帧。
-        # 2. Kling， 在Resolution:1080P的情况下 2.1版本支持首位帧。
+        # 2. Kling， 在Resolution:1080P的情况下 2.1版本支持首尾帧。
         # 3. Vidu, q2-pro, q2-turbo 支持首尾帧。
 
         # 注意：
@@ -17888,6 +17919,77 @@ module TencentCloud
         end
       end
 
+      # 图片缩放配置
+      class ImageResizeConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启</li>
+        # <li>OFF：关闭</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Mode: 输出图片模式，可选模式：
+        # <li>percent: 指定缩放倍率，可以为小数</li>
+        # <li>mfit: 缩放至指定宽高的较大矩形</li>
+        # <li>lfit: 缩放至指定宽高的较小矩形</li>
+        # <li>fill: 缩放至指定宽高的较大矩形，并居中裁剪指定宽高</li>
+        # <li>pad: 缩放至指定宽高的较小矩形，并填充到指定宽高</li>
+        # <li>fixed: 缩放至固定宽高，强制缩放</li>
+        # 默认值：percent。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Mode: String
+        # @param Percent: 缩放倍率，可以为小数，当Mode为percent时使用。
+
+        # 默认值：1.0。
+        # 取值范围：[0.1，10.0]
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Percent: Float
+        # @param Width: 目标图片宽度。
+
+        # 取值范围：[1，16384]。
+        # 注意：此字段在Mode非percent时优先使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Width: Integer
+        # @param Height: 目标图片高度。
+
+        # 取值范围：[1，16384]。
+        # 注意：此字段在Mode非percent时优先使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Height: Integer
+        # @param LongSide: 目标图片长边。
+
+        # 取值范围：[1，16384]。
+        # 注意：此字段在Mode非percent且未配置Width和Height时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LongSide: Integer
+        # @param ShortSide: 目标图片短边。
+
+        # 取值范围：[1，16384]。
+        # 注意：此字段在Mode非percent且未配置Width和Height时使用。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShortSide: Integer
+
+        attr_accessor :Switch, :Mode, :Percent, :Width, :Height, :LongSide, :ShortSide
+
+        def initialize(switch=nil, mode=nil, percent=nil, width=nil, height=nil, longside=nil, shortside=nil)
+          @Switch = switch
+          @Mode = mode
+          @Percent = percent
+          @Width = width
+          @Height = height
+          @LongSide = longside
+          @ShortSide = shortside
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Mode = params['Mode']
+          @Percent = params['Percent']
+          @Width = params['Width']
+          @Height = params['Height']
+          @LongSide = params['LongSide']
+          @ShortSide = params['ShortSide']
+        end
+      end
+
       # 对视频截雪碧图任务输入参数类型
       class ImageSpriteTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 雪碧图模板 ID。
@@ -18041,15 +18143,18 @@ module TencentCloud
         # @type BlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.BlindWatermarkConfig`
         # @param BeautyConfig: 美颜配置。
         # @type BeautyConfig: :class:`Tencentcloud::Mps.v20190612.models.BeautyConfig`
+        # @param TransformConfig: 图片基础转换能力。
+        # @type TransformConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageTransformConfig`
 
-        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig
+        attr_accessor :EncodeConfig, :EnhanceConfig, :EraseConfig, :BlindWatermarkConfig, :BeautyConfig, :TransformConfig
 
-        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil)
+        def initialize(encodeconfig=nil, enhanceconfig=nil, eraseconfig=nil, blindwatermarkconfig=nil, beautyconfig=nil, transformconfig=nil)
           @EncodeConfig = encodeconfig
           @EnhanceConfig = enhanceconfig
           @EraseConfig = eraseconfig
           @BlindWatermarkConfig = blindwatermarkconfig
           @BeautyConfig = beautyconfig
+          @TransformConfig = transformconfig
         end
 
         def deserialize(params)
@@ -18072,6 +18177,30 @@ module TencentCloud
           unless params['BeautyConfig'].nil?
             @BeautyConfig = BeautyConfig.new
             @BeautyConfig.deserialize(params['BeautyConfig'])
+          end
+          unless params['TransformConfig'].nil?
+            @TransformConfig = ImageTransformConfig.new
+            @TransformConfig.deserialize(params['TransformConfig'])
+          end
+        end
+      end
+
+      # 图片基础转换能力
+      class ImageTransformConfig < TencentCloud::Common::AbstractModel
+        # @param ImageResize: 图片缩放配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageResize: :class:`Tencentcloud::Mps.v20190612.models.ImageResizeConfig`
+
+        attr_accessor :ImageResize
+
+        def initialize(imageresize=nil)
+          @ImageResize = imageresize
+        end
+
+        def deserialize(params)
+          unless params['ImageResize'].nil?
+            @ImageResize = ImageResizeConfig.new
+            @ImageResize.deserialize(params['ImageResize'])
           end
         end
       end

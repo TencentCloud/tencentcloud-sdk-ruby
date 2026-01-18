@@ -5457,7 +5457,7 @@ module TencentCloud
         # @param PermissionGroups: 权限树
         # @type PermissionGroups: Array
         # @param SubOrganizationIds: 集团角色的话，需要传递集团子企业列表，如果是全选，则传1
-        # @type SubOrganizationIds: String
+        # @type SubOrganizationIds: Array
         # @param Agent: 代理企业和员工的信息。
         # 在集团企业代理子企业操作的场景中，需设置此参数。在此情境下，ProxyOrganizationId（子企业的组织ID）为必填项。
         # @type Agent: :class:`Tencentcloud::Ess.v20201111.models.Agent`

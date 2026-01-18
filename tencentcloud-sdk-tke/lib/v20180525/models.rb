@@ -2257,13 +2257,21 @@ module TencentCloud
 
       # CreateClusterMaintenanceWindowAndExclusions请求参数结构体
       class CreateClusterMaintenanceWindowAndExclusionsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群ID
+        # @param ClusterID: 集群ID，可以从容器服务集群控制台获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterID: String
         # @param MaintenanceTime: 维护开始时间
         # @type MaintenanceTime: String
         # @param Duration: 维护时长（小时）
         # @type Duration: Integer
-        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @param DayOfWeek: 维护周期（一周中的哪几天），支持的参数值如下：
+
+        # - MO：周一
+        # - TU：周二
+        # - WE：周三
+        # - TH：周四
+        # - FR：周五
+        # - SA：周六
+        # - SU：周日
         # @type DayOfWeek: Array
         # @param Exclusions: 维护排除项
         # @type Exclusions: Array
@@ -4499,7 +4507,7 @@ module TencentCloud
 
       # DeleteClusterMaintenanceWindowAndExclusion请求参数结构体
       class DeleteClusterMaintenanceWindowAndExclusionRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群ID
+        # @param ClusterID: 集群ID，可以从容器服务控制台计划升级功能集群维护窗口页面获取（https://console.cloud.tencent.com/tke2/upgrade-plan）。
         # @type ClusterID: String
 
         attr_accessor :ClusterID
@@ -15321,7 +15329,15 @@ module TencentCloud
         # @type MaintenanceTime: String
         # @param Duration: 维护时长（小时）
         # @type Duration: Integer
-        # @param DayOfWeek: 维护周期（一周中的哪几天）
+        # @param DayOfWeek: 维护周期（一周中的哪几天），支持的参数值如下：
+
+        # - MO：周一
+        # - TU：周二
+        # - WE：周三
+        # - TH：周四
+        # - FR：周五
+        # - SA：周六
+        # - SU：周日
         # @type DayOfWeek: Array
         # @param Exclusions: 维护排除项
         # @type Exclusions: Array
@@ -15512,9 +15528,11 @@ module TencentCloud
 
       # ModifyClusterRollOutSequenceTags请求参数结构体
       class ModifyClusterRollOutSequenceTagsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterID: 集群ID
+        # @param ClusterID: 集群ID，可以从容器服务集群控制台获取（https://console.cloud.tencent.com/tke2/cluster）。
         # @type ClusterID: String
-        # @param Tags: 集群发布序列标签（为空时表示移除集群标签）
+        # @param Tags: 集群发布序列标签（为空时表示移除集群标签）。支持以下集群标签：
+        # - 标签键："Env"，支持的标签值：["Test","Pre-Production","Production"]
+        # - 标签键："Protection-Level"，支持的标签值：["Low","Medium","High"]
         # @type Tags: Array
 
         attr_accessor :ClusterID, :Tags
@@ -21398,6 +21416,8 @@ module TencentCloud
         # @type ClusterID: String
         # @param ClusterName: 集群名称
         # @type ClusterName: String
+        # @param Region: 集群地域
+        # @type Region: String
         # @param PlanedStartAt: 预计开始时间
         # @type PlanedStartAt: String
         # @param UpgradeStartAt: 升级开始时间
@@ -21409,12 +21429,13 @@ module TencentCloud
         # @param Reason: 原因
         # @type Reason: String
 
-        attr_accessor :ID, :ClusterID, :ClusterName, :PlanedStartAt, :UpgradeStartAt, :UpgradeEndAt, :Status, :Reason
+        attr_accessor :ID, :ClusterID, :ClusterName, :Region, :PlanedStartAt, :UpgradeStartAt, :UpgradeEndAt, :Status, :Reason
 
-        def initialize(id=nil, clusterid=nil, clustername=nil, planedstartat=nil, upgradestartat=nil, upgradeendat=nil, status=nil, reason=nil)
+        def initialize(id=nil, clusterid=nil, clustername=nil, region=nil, planedstartat=nil, upgradestartat=nil, upgradeendat=nil, status=nil, reason=nil)
           @ID = id
           @ClusterID = clusterid
           @ClusterName = clustername
+          @Region = region
           @PlanedStartAt = planedstartat
           @UpgradeStartAt = upgradestartat
           @UpgradeEndAt = upgradeendat
@@ -21426,6 +21447,7 @@ module TencentCloud
           @ID = params['ID']
           @ClusterID = params['ClusterID']
           @ClusterName = params['ClusterName']
+          @Region = params['Region']
           @PlanedStartAt = params['PlanedStartAt']
           @UpgradeStartAt = params['UpgradeStartAt']
           @UpgradeEndAt = params['UpgradeEndAt']

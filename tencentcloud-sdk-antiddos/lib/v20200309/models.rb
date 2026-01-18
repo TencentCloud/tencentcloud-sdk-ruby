@@ -4303,7 +4303,7 @@ module TencentCloud
 
       # DescribeCcGeoIPBlockConfigList请求参数结构体
       class DescribeCcGeoIPBlockConfigListRequest < TencentCloud::Common::AbstractModel
-        # @param Business: DDoS防护子产品代号（bgpip-multip：表示高防包；bgpip：表示高防IP）
+        # @param Business: DDoS防护子产品代号（bgp-multip：表示高防包；bgpip：表示高防IP）
         # @type Business: String
         # @param Offset: 页起始偏移，取值为(页码-1)*一页条数
         # @type Offset: Integer

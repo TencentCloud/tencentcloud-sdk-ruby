@@ -1170,10 +1170,12 @@ module TencentCloud
         # @type CanBatchReject: Boolean
         # @param PresetApproverInfo: 预设的动态签署方的补充信息，仅匹配对应信息的签署方才能领取合同。暂时仅对个人参与方生效。
         # @type PresetApproverInfo: :class:`Tencentcloud::Essbasic.v20210526.models.PresetApproverInfo`
+        # @param CanSkipReadFlow: 是否允许此链接中签署方批量确认已读文件。 <ul><li>false (默认): 不允许批量确认已读文件。</li> <li>true : 允许批量确认已读文件。</li></ul>注：`1. 此功能为白名单功能，使用前请联系对应客户经理进行开通。2. 若批量签署的合同中第一份待签署合同所选择的印章或者签名无法完全覆盖后续合同要求，或者当前签署人没有指定印章使用权限，则无法使用此功能，会自动退化为逐份确认。`
+        # @type CanSkipReadFlow: Boolean
 
-        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo, :Intention, :VideoVerifyTimesLimit, :CacheApproverInfo, :CanBatchReject, :PresetApproverInfo
+        attr_accessor :FlowApproverInfo, :Agent, :FlowIds, :FlowGroupId, :JumpUrl, :SignatureTypes, :ApproverSignTypes, :SignTypeSelector, :FlowBatchUrlInfo, :Intention, :VideoVerifyTimesLimit, :CacheApproverInfo, :CanBatchReject, :PresetApproverInfo, :CanSkipReadFlow
 
-        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil, intention=nil, videoverifytimeslimit=nil, cacheapproverinfo=nil, canbatchreject=nil, presetapproverinfo=nil)
+        def initialize(flowapproverinfo=nil, agent=nil, flowids=nil, flowgroupid=nil, jumpurl=nil, signaturetypes=nil, approversigntypes=nil, signtypeselector=nil, flowbatchurlinfo=nil, intention=nil, videoverifytimeslimit=nil, cacheapproverinfo=nil, canbatchreject=nil, presetapproverinfo=nil, canskipreadflow=nil)
           @FlowApproverInfo = flowapproverinfo
           @Agent = agent
           @FlowIds = flowids
@@ -1188,6 +1190,7 @@ module TencentCloud
           @CacheApproverInfo = cacheapproverinfo
           @CanBatchReject = canbatchreject
           @PresetApproverInfo = presetapproverinfo
+          @CanSkipReadFlow = canskipreadflow
         end
 
         def deserialize(params)
@@ -1220,6 +1223,7 @@ module TencentCloud
             @PresetApproverInfo = PresetApproverInfo.new
             @PresetApproverInfo.deserialize(params['PresetApproverInfo'])
           end
+          @CanSkipReadFlow = params['CanSkipReadFlow']
         end
       end
 

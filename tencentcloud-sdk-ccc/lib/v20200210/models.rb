@@ -1329,7 +1329,7 @@ module TencentCloud
         #         &quot;APIUrl&quot;: &quot;https://api.minimax.chat/v1/t2a_v2&quot;,
         #         &quot;APIKey&quot;: &quot;eyxxxx&quot;,
         #         &quot;GroupId&quot;: &quot;181000000000000&quot;,
-        #         &quot;VoiceType&quot;:&quot;female-tianmei-jingpin&quot;,
+        #         &quot;VoiceType&quot;:&quot;female-tianmei&quot;,
         #         &quot;Speed&quot;: 1.2
         # }
         # </code></pre>
@@ -1411,13 +1411,15 @@ module TencentCloud
         # @type LLMExtraBody: String
         # @param MaxCallDurationMs: 最大通话时长， 默认不限制。单位毫秒(ms)
         # @type MaxCallDurationMs: Integer
+        # @param MaxRingTimeoutSecond: 最大振铃时长，达到时长阈值自动挂断。 **仅自携号码支持当前参数**
+        # @type MaxRingTimeoutSecond: Integer
 
-        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs
+        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs, :MaxRingTimeoutSecond
         extend Gem::Deprecate
         deprecate :PromptVariables, :none, 2026, 1
         deprecate :PromptVariables=, :none, 2026, 1
 
-        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil)
+        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil, maxringtimeoutsecond=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @LLMType = llmtype
@@ -1455,6 +1457,7 @@ module TencentCloud
           @VoicemailAction = voicemailaction
           @LLMExtraBody = llmextrabody
           @MaxCallDurationMs = maxcalldurationms
+          @MaxRingTimeoutSecond = maxringtimeoutsecond
         end
 
         def deserialize(params)
@@ -1526,6 +1529,7 @@ module TencentCloud
           @VoicemailAction = params['VoicemailAction']
           @LLMExtraBody = params['LLMExtraBody']
           @MaxCallDurationMs = params['MaxCallDurationMs']
+          @MaxRingTimeoutSecond = params['MaxRingTimeoutSecond']
         end
       end
 

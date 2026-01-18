@@ -2098,6 +2098,88 @@ module TencentCloud
         end
       end
 
+      # CreateDatasourceConnection请求参数结构体
+      class CreateDatasourceConnectionRequest < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionName: 数据连接名称
+        # @type DatasourceConnectionName: String
+        # @param DatasourceConnectionType: 数据连接类型
+        # @type DatasourceConnectionType: String
+        # @param DatasourceConnectionConfig: 数据连接属性
+        # @type DatasourceConnectionConfig: :class:`Tencentcloud::Dlc.v20210125.models.DatasourceConnectionConfig`
+        # @param ServiceType: 数据连接所属服务
+        # @type ServiceType: String
+        # @param DatasourceConnectionDesc: 数据连接描述
+        # @type DatasourceConnectionDesc: String
+        # @param DataEngineNames: 数据引擎名称数组
+        # @type DataEngineNames: Array
+        # @param NetworkConnectionName: 网络连接名称
+        # @type NetworkConnectionName: String
+        # @param NetworkConnectionDesc: 网络连接描述
+        # @type NetworkConnectionDesc: String
+        # @param NetworkConnectionType: 网络连接类型 （2-夸源型，4-增强型）
+        # @type NetworkConnectionType: Integer
+        # @param CustomConfig: 自定义配置
+        # @type CustomConfig: Array
+
+        attr_accessor :DatasourceConnectionName, :DatasourceConnectionType, :DatasourceConnectionConfig, :ServiceType, :DatasourceConnectionDesc, :DataEngineNames, :NetworkConnectionName, :NetworkConnectionDesc, :NetworkConnectionType, :CustomConfig
+
+        def initialize(datasourceconnectionname=nil, datasourceconnectiontype=nil, datasourceconnectionconfig=nil, servicetype=nil, datasourceconnectiondesc=nil, dataenginenames=nil, networkconnectionname=nil, networkconnectiondesc=nil, networkconnectiontype=nil, customconfig=nil)
+          @DatasourceConnectionName = datasourceconnectionname
+          @DatasourceConnectionType = datasourceconnectiontype
+          @DatasourceConnectionConfig = datasourceconnectionconfig
+          @ServiceType = servicetype
+          @DatasourceConnectionDesc = datasourceconnectiondesc
+          @DataEngineNames = dataenginenames
+          @NetworkConnectionName = networkconnectionname
+          @NetworkConnectionDesc = networkconnectiondesc
+          @NetworkConnectionType = networkconnectiontype
+          @CustomConfig = customconfig
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionName = params['DatasourceConnectionName']
+          @DatasourceConnectionType = params['DatasourceConnectionType']
+          unless params['DatasourceConnectionConfig'].nil?
+            @DatasourceConnectionConfig = DatasourceConnectionConfig.new
+            @DatasourceConnectionConfig.deserialize(params['DatasourceConnectionConfig'])
+          end
+          @ServiceType = params['ServiceType']
+          @DatasourceConnectionDesc = params['DatasourceConnectionDesc']
+          @DataEngineNames = params['DataEngineNames']
+          @NetworkConnectionName = params['NetworkConnectionName']
+          @NetworkConnectionDesc = params['NetworkConnectionDesc']
+          @NetworkConnectionType = params['NetworkConnectionType']
+          unless params['CustomConfig'].nil?
+            @CustomConfig = []
+            params['CustomConfig'].each do |i|
+              customconfig_tmp = CustomConfig.new
+              customconfig_tmp.deserialize(i)
+              @CustomConfig << customconfig_tmp
+            end
+          end
+        end
+      end
+
+      # CreateDatasourceConnection返回参数结构体
+      class CreateDatasourceConnectionResponse < TencentCloud::Common::AbstractModel
+        # @param DatasourceConnectionId: 数据连接Id
+        # @type DatasourceConnectionId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DatasourceConnectionId, :RequestId
+
+        def initialize(datasourceconnectionid=nil, requestid=nil)
+          @DatasourceConnectionId = datasourceconnectionid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DatasourceConnectionId = params['DatasourceConnectionId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateExportTask请求参数结构体
       class CreateExportTaskRequest < TencentCloud::Common::AbstractModel
         # @param InputType: 数据来源，lakefsStorage、taskResult

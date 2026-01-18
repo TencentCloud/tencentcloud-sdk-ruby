@@ -34,7 +34,7 @@ module TencentCloud
         # @type ToTime: Integer
         # @param Cnt: cnt=10/20/30/40/50，最多可支持返回50条搜索结果，**仅限尊享版使用**
         # @type Cnt: Integer
-        # @param Industry: Industry=gov/news/acad，对应党政机关、权威媒体、学术（英文），**仅限尊享版使用**
+        # @param Industry: Industry=gov/news/acad/finance，对应党政机关、权威媒体、学术（英文）、金融，**仅限尊享版使用**
         # @type Industry: String
 
         attr_accessor :Query, :Mode, :Site, :FromTime, :ToTime, :Cnt, :Industry
@@ -75,16 +75,19 @@ module TencentCloud
         # images：图片列表
         # favicon：网站图标链接，部分不知名站点结果可能为空
         # @type Pages: Array
+        # @param Version: 用户版本：standard/premium/lite
+        # @type Version: String
         # @param Msg: 提示信息
         # @type Msg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Query, :Pages, :Msg, :RequestId
+        attr_accessor :Query, :Pages, :Version, :Msg, :RequestId
 
-        def initialize(query=nil, pages=nil, msg=nil, requestid=nil)
+        def initialize(query=nil, pages=nil, version=nil, msg=nil, requestid=nil)
           @Query = query
           @Pages = pages
+          @Version = version
           @Msg = msg
           @RequestId = requestid
         end
@@ -92,6 +95,7 @@ module TencentCloud
         def deserialize(params)
           @Query = params['Query']
           @Pages = params['Pages']
+          @Version = params['Version']
           @Msg = params['Msg']
           @RequestId = params['RequestId']
         end

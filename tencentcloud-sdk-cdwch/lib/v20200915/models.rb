@@ -594,8 +594,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2025, 12
-        deprecate :Tags=, :none, 2025, 12
+        deprecate :Tags, :none, 2026, 1
+        deprecate :Tags=, :none, 2026, 1
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
           @Zone = zone
@@ -1181,6 +1181,89 @@ module TencentCloud
         end
       end
 
+      # DescribeEventTasks请求参数结构体
+      class DescribeEventTasksRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param EventTaskId: 过滤的事件任务id
+        # @type EventTaskId: Integer
+        # @param PageNumber: 页码，默认为1
+        # @type PageNumber: Integer
+        # @param PageSize: 每页数量（支持10、20、30、50、100、200），默认为100
+        # @type PageSize: Integer
+        # @param EventCode: 事件名称过滤
+        # @type EventCode: String
+        # @param Status: (1-待处理;2-已预约;3-处理中;4-已结束;5-处理中;-1-已忽略;-2-已删除)
+        # @type Status: Array
+        # @param StartTime: 创建时间范围开始 (格式: YYYY-MM-DD HH:MM:SS)，最大支持查询180天信息
+        # @type StartTime: String
+        # @param EndTime: 创建时间范围结束 (格式: YYYY-MM-DD HH:MM:SS)
+        # @type EndTime: String
+        # @param SortField: 排序字段（事件类型：event_code；触发时间：create_time；完成时间：end_time）
+        # @type SortField: String
+        # @param SortOrder: 排序顺序 (asc/desc)
+        # @type SortOrder: String
+
+        attr_accessor :InstanceId, :EventTaskId, :PageNumber, :PageSize, :EventCode, :Status, :StartTime, :EndTime, :SortField, :SortOrder
+
+        def initialize(instanceid=nil, eventtaskid=nil, pagenumber=nil, pagesize=nil, eventcode=nil, status=nil, starttime=nil, endtime=nil, sortfield=nil, sortorder=nil)
+          @InstanceId = instanceid
+          @EventTaskId = eventtaskid
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @EventCode = eventcode
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @SortField = sortfield
+          @SortOrder = sortorder
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EventTaskId = params['EventTaskId']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @EventCode = params['EventCode']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SortField = params['SortField']
+          @SortOrder = params['SortOrder']
+        end
+      end
+
+      # DescribeEventTasks返回参数结构体
+      class DescribeEventTasksResponse < TencentCloud::Common::AbstractModel
+        # @param EventTasks: 产生的事件任务
+        # @type EventTasks: Array
+        # @param TotalCount: 事件任务总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventTasks, :TotalCount, :RequestId
+
+        def initialize(eventtasks=nil, totalcount=nil, requestid=nil)
+          @EventTasks = eventtasks
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventTasks'].nil?
+            @EventTasks = []
+            params['EventTasks'].each do |i|
+              eventtask_tmp = EventTask.new
+              eventtask_tmp.deserialize(i)
+              @EventTasks << eventtask_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceClusters请求参数结构体
       class DescribeInstanceClustersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1741,6 +1824,82 @@ module TencentCloud
         end
       end
 
+      # 事件任务
+      class EventTask < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群id
+        # @type InstanceId: String
+        # @param EventTaskId: 事件任务的id
+        # @type EventTaskId: Integer
+        # @param HandleUser: 处理人uin
+        # @type HandleUser: String
+        # @param EventCode: 事件名称
+        # @type EventCode: String
+        # @param RepairId: CVM相关事件的维修id
+        # @type RepairId: String
+        # @param EventNameDescribe: 事件名称描述
+        # @type EventNameDescribe: String
+        # @param EventPriority: 事件等级（0-低；1-中；2-高；3-严重）
+        # @type EventPriority: Integer
+        # @param EventDetail: 事件详情
+        # @type EventDetail: String
+        # @param IP: 影响集群节点
+        # @type IP: String
+        # @param CreateTime: 事件触发时间
+        # @type CreateTime: String
+        # @param Status: 事件状态(1-待处理;2-已预约;3-处理中;4-已完成;5-处理中;6-自动处理中;-1-已忽略;-2-已删除)
+        # @type Status: Integer
+        # @param NeedAuthorization: 是否需要授权维修：1-不需要，2-需要
+        # @type NeedAuthorization: Integer
+        # @param OperationType: 该事件涉及到的操作类型（OnlineMigrationForInstance-实例在线迁移,OnlineMaintenanceForInstance-实例在线维修,等）
+        # @type OperationType: Array
+        # @param FinishTime: 完成时间
+        # @type FinishTime: String
+        # @param OperationGuide: 操作指引
+        # @type OperationGuide: String
+        # @param ResourceId: 资源id
+        # @type ResourceId: String
+
+        attr_accessor :InstanceId, :EventTaskId, :HandleUser, :EventCode, :RepairId, :EventNameDescribe, :EventPriority, :EventDetail, :IP, :CreateTime, :Status, :NeedAuthorization, :OperationType, :FinishTime, :OperationGuide, :ResourceId
+
+        def initialize(instanceid=nil, eventtaskid=nil, handleuser=nil, eventcode=nil, repairid=nil, eventnamedescribe=nil, eventpriority=nil, eventdetail=nil, ip=nil, createtime=nil, status=nil, needauthorization=nil, operationtype=nil, finishtime=nil, operationguide=nil, resourceid=nil)
+          @InstanceId = instanceid
+          @EventTaskId = eventtaskid
+          @HandleUser = handleuser
+          @EventCode = eventcode
+          @RepairId = repairid
+          @EventNameDescribe = eventnamedescribe
+          @EventPriority = eventpriority
+          @EventDetail = eventdetail
+          @IP = ip
+          @CreateTime = createtime
+          @Status = status
+          @NeedAuthorization = needauthorization
+          @OperationType = operationtype
+          @FinishTime = finishtime
+          @OperationGuide = operationguide
+          @ResourceId = resourceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EventTaskId = params['EventTaskId']
+          @HandleUser = params['HandleUser']
+          @EventCode = params['EventCode']
+          @RepairId = params['RepairId']
+          @EventNameDescribe = params['EventNameDescribe']
+          @EventPriority = params['EventPriority']
+          @EventDetail = params['EventDetail']
+          @IP = params['IP']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @NeedAuthorization = params['NeedAuthorization']
+          @OperationType = params['OperationType']
+          @FinishTime = params['FinishTime']
+          @OperationGuide = params['OperationGuide']
+          @ResourceId = params['ResourceId']
+        end
+      end
+
       # 集群分组信息描述
       class GroupInfo < TencentCloud::Common::AbstractModel
         # @param GroupName: 分组名称
@@ -1970,10 +2129,14 @@ module TencentCloud
         # @type HasPublicCloudClb: Boolean
         # @param UpgradeZkVersions: 可升级的zk版本
         # @type UpgradeZkVersions: String
+        # @param ShowRip: 是否显示rip
+        # @type ShowRip: String
+        # @param InstanceType: 实例类型：标准型 standard，无keeper节点类型noKeeper；
+        # @type InstanceType: String
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions
+        attr_accessor :InstanceId, :InstanceName, :Status, :Version, :Region, :Zone, :VpcId, :SubnetId, :PayMode, :CreateTime, :ExpireTime, :MasterSummary, :CommonSummary, :HA, :AccessInfo, :Id, :RegionId, :ZoneDesc, :FlowMsg, :StatusDesc, :RenewFlag, :Tags, :Monitor, :HasClsTopic, :ClsTopicId, :ClsLogSetId, :EnableXMLConfig, :RegionDesc, :Eip, :CosMoveFactor, :Kind, :IsElastic, :InstanceStateInfo, :HAZk, :MountDiskType, :CHProxyVip, :CosBucketName, :CanAttachCbs, :CanAttachCbsLvm, :CanAttachCos, :Components, :UpgradeVersions, :EsIndexId, :EsIndexUsername, :EsIndexPassword, :HasEsIndex, :IsSecondaryZone, :SecondaryZoneInfo, :ClickHouseKeeper, :Details, :IsWhiteSGs, :BindSGs, :HasPublicCloudClb, :UpgradeZkVersions, :ShowRip, :InstanceType
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, version=nil, region=nil, zone=nil, vpcid=nil, subnetid=nil, paymode=nil, createtime=nil, expiretime=nil, mastersummary=nil, commonsummary=nil, ha=nil, accessinfo=nil, id=nil, regionid=nil, zonedesc=nil, flowmsg=nil, statusdesc=nil, renewflag=nil, tags=nil, monitor=nil, hasclstopic=nil, clstopicid=nil, clslogsetid=nil, enablexmlconfig=nil, regiondesc=nil, eip=nil, cosmovefactor=nil, kind=nil, iselastic=nil, instancestateinfo=nil, hazk=nil, mountdisktype=nil, chproxyvip=nil, cosbucketname=nil, canattachcbs=nil, canattachcbslvm=nil, canattachcos=nil, components=nil, upgradeversions=nil, esindexid=nil, esindexusername=nil, esindexpassword=nil, hasesindex=nil, issecondaryzone=nil, secondaryzoneinfo=nil, clickhousekeeper=nil, details=nil, iswhitesgs=nil, bindsgs=nil, haspubliccloudclb=nil, upgradezkversions=nil, showrip=nil, instancetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -2028,6 +2191,8 @@ module TencentCloud
           @BindSGs = bindsgs
           @HasPublicCloudClb = haspubliccloudclb
           @UpgradeZkVersions = upgradezkversions
+          @ShowRip = showrip
+          @InstanceType = instancetype
         end
 
         def deserialize(params)
@@ -2111,6 +2276,8 @@ module TencentCloud
           @BindSGs = params['BindSGs']
           @HasPublicCloudClb = params['HasPublicCloudClb']
           @UpgradeZkVersions = params['UpgradeZkVersions']
+          @ShowRip = params['ShowRip']
+          @InstanceType = params['InstanceType']
         end
       end
 

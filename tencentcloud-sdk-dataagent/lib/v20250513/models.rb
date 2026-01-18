@@ -1163,19 +1163,30 @@ module TencentCloud
 
       # QuerySceneList返回参数结构体
       class QuerySceneListResponse < TencentCloud::Common::AbstractModel
+        # @param Datas: 场景列表
+        # @type Datas: Array
         # @param Total: 总数
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :RequestId
+        attr_accessor :Datas, :Total, :RequestId
 
-        def initialize(total=nil, requestid=nil)
+        def initialize(datas=nil, total=nil, requestid=nil)
+          @Datas = datas
           @Total = total
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Datas'].nil?
+            @Datas = []
+            params['Datas'].each do |i|
+              scene_tmp = Scene.new
+              scene_tmp.deserialize(i)
+              @Datas << scene_tmp
+            end
+          end
           @Total = params['Total']
           @RequestId = params['RequestId']
         end

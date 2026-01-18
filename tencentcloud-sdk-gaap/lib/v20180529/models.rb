@@ -121,13 +121,13 @@ module TencentCloud
 
       # AddRealServers请求参数结构体
       class AddRealServersRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 源站对应的项目ID
+        # @param ProjectId: <p>源站对应的项目ID</p>
         # @type ProjectId: Integer
-        # @param RealServerIP: 源站对应的IP或域名
+        # @param RealServerIP: <p>源站对应的IP或域名</p>
         # @type RealServerIP: Array
-        # @param RealServerName: 源站名称
+        # @param RealServerName: <p>源站名称</p>
         # @type RealServerName: String
-        # @param TagSet: 标签列表
+        # @param TagSet: <p>标签列表</p>
         # @type TagSet: Array
 
         attr_accessor :ProjectId, :RealServerIP, :RealServerName, :TagSet
@@ -156,7 +156,7 @@ module TencentCloud
 
       # AddRealServers返回参数结构体
       class AddRealServersResponse < TencentCloud::Common::AbstractModel
-        # @param RealServerSet: 源站信息列表
+        # @param RealServerSet: <p>源站信息列表</p>
         # @type RealServerSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -234,9 +234,9 @@ module TencentCloud
 
       # BindListenerRealServers请求参数结构体
       class BindListenerRealServersRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器ID
+        # @param ListenerId: <p>监听器ID</p>
         # @type ListenerId: String
-        # @param RealServerBindSet: 待绑定源站列表。如果该监听器的源站调度策略是加权轮询，需要填写源站权重 RealServerWeight, 不填或者其他调度类型默认源站权重为1。
+        # @param RealServerBindSet: <p>待绑定源站列表。如果该监听器的源站调度策略是加权轮询，需要填写源站权重 RealServerWeight, 不填或者其他调度类型默认源站权重为1。</p>
         # @type RealServerBindSet: Array
 
         attr_accessor :ListenerId, :RealServerBindSet
@@ -525,23 +525,23 @@ module TencentCloud
 
       # CheckProxyCreate请求参数结构体
       class CheckProxyCreateRequest < TencentCloud::Common::AbstractModel
-        # @param AccessRegion: 通道的接入(加速)区域。取值可通过接口DescribeAccessRegionsByDestRegion获取到
+        # @param AccessRegion: <p>通道的接入(加速)区域。取值可通过接口DescribeAccessRegionsByDestRegion获取到</p>
         # @type AccessRegion: String
-        # @param RealServerRegion: 通道的源站区域。取值可通过接口DescribeDestRegions获取到
+        # @param RealServerRegion: <p>通道的源站区域。取值可通过接口DescribeDestRegions获取到</p>
         # @type RealServerRegion: String
-        # @param Bandwidth: 通道带宽上限，单位：Mbps。
+        # @param Bandwidth: <p>通道带宽上限，单位：Mbps。</p>
         # @type Bandwidth: Integer
-        # @param Concurrent: 通道并发量上限，表示同时在线的连接数，单位：万。
+        # @param Concurrent: <p>通道并发量上限，表示同时在线的连接数，单位：万。</p>
         # @type Concurrent: Integer
-        # @param GroupId: 如果在通道组下创建通道，需要填写通道组的ID
+        # @param GroupId: <p>如果在通道组下创建通道，需要填写通道组的ID</p>
         # @type GroupId: String
-        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @param IPAddressVersion: <p>IP版本，可取值：IPv4、IPv6，默认值IPv4</p>
         # @type IPAddressVersion: String
-        # @param NetworkType: 网络类型，可取值：normal、cn2，默认值normal
+        # @param NetworkType: <p>网络类型，可取值：normal、cn2，默认值normal</p>
         # @type NetworkType: String
-        # @param PackageType: 通道套餐类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。
+        # @param PackageType: <p>通道套餐类型。Thunder表示标准通道组，Accelerator表示游戏加速器通道，CrossBorder表示跨境通道。</p>
         # @type PackageType: String
-        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。
+        # @param Http3Supported: <p>该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道默认支持Http3.0；当为IPv6，默认不支持Http3.0。</p>
         # @type Http3Supported: Integer
 
         attr_accessor :AccessRegion, :RealServerRegion, :Bandwidth, :Concurrent, :GroupId, :IPAddressVersion, :NetworkType, :PackageType, :Http3Supported
@@ -573,7 +573,7 @@ module TencentCloud
 
       # CheckProxyCreate返回参数结构体
       class CheckProxyCreateResponse < TencentCloud::Common::AbstractModel
-        # @param CheckFlag: 查询能否创建给定配置的通道，1可以创建，0不可创建。
+        # @param CheckFlag: <p>查询能否创建给定配置的通道，1可以创建，0不可创建。</p>
         # @type CheckFlag: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -762,20 +762,13 @@ module TencentCloud
 
       # CreateCertificate请求参数结构体
       class CreateCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param CertificateType: 证书类型。其中：
-        # 0，表示基础认证配置；
-        # 1，表示客户端CA证书；
-        # 2，服务器SSL证书；
-        # 3，表示源站CA证书；
-        # 4，表示通道SSL证书。
+        # @param CertificateType: <p>证书类型。其中：0，表示基础认证配置；1，表示客户端CA证书；2，服务器SSL证书；3，表示源站CA证书；4，表示通道SSL证书。</p>
         # @type CertificateType: Integer
-        # @param CertificateContent: 证书内容。采用url编码。其中：
-        # 当证书类型为基础认证配置时，该参数填写用户名/密码对。格式：“用户名：密码”，例如：root:FSGdT。其中密码使用htpasswd或者openssl，例如：openssl passwd -crypt 123456。
-        # 当证书类型为CA/SSL证书时，该参数填写证书内容，格式为pem。
+        # @param CertificateContent: <p>证书内容。采用url编码。其中：当证书类型为基础认证配置时，该参数填写用户名/密码对。格式：“用户名：密码”，例如：root:FSGdT。其中密码使用htpasswd或者openssl，例如：openssl passwd -crypt 123456。当证书类型为CA/SSL证书时，该参数填写证书内容，格式为pem。</p>
         # @type CertificateContent: String
-        # @param CertificateAlias: 证书名称
+        # @param CertificateAlias: <p>证书名称</p>
         # @type CertificateAlias: String
-        # @param CertificateKey: 密钥内容。采用url编码。仅当证书类型为SSL证书时，需要填写该参数。格式为pem。
+        # @param CertificateKey: <p>密钥内容。采用url编码。仅当证书类型为SSL证书时，需要填写该参数。格式为pem。</p>
         # @type CertificateKey: String
 
         attr_accessor :CertificateType, :CertificateContent, :CertificateAlias, :CertificateKey
@@ -797,7 +790,7 @@ module TencentCloud
 
       # CreateCertificate返回参数结构体
       class CreateCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param CertificateId: 证书ID
+        # @param CertificateId: <p>证书ID</p>
         # @type CertificateId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -860,19 +853,19 @@ module TencentCloud
 
       # CreateDomainErrorPageInfo请求参数结构体
       class CreateDomainErrorPageInfoRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器ID
+        # @param ListenerId: <p>监听器ID</p>
         # @type ListenerId: String
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param ErrorNos: 原始错误码
+        # @param ErrorNos: <p>原始错误码</p>
         # @type ErrorNos: Array
-        # @param Body: 新的响应包体
+        # @param Body: <p>新的响应包体</p>
         # @type Body: String
-        # @param NewErrorNo: 新错误码
+        # @param NewErrorNo: <p>新错误码</p>
         # @type NewErrorNo: Integer
-        # @param ClearHeaders: 需要删除的响应头
+        # @param ClearHeaders: <p>需要删除的响应头</p>
         # @type ClearHeaders: Array
-        # @param SetHeaders: 需要设置的响应头
+        # @param SetHeaders: <p>需要设置的响应头</p>
         # @type SetHeaders: Array
 
         attr_accessor :ListenerId, :Domain, :ErrorNos, :Body, :NewErrorNo, :ClearHeaders, :SetHeaders
@@ -907,7 +900,7 @@ module TencentCloud
 
       # CreateDomainErrorPageInfo返回参数结构体
       class CreateDomainErrorPageInfoResponse < TencentCloud::Common::AbstractModel
-        # @param ErrorPageId: 错误定制响应的配置ID
+        # @param ErrorPageId: <p>错误定制响应的配置ID</p>
         # @type ErrorPageId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1083,13 +1076,13 @@ module TencentCloud
 
       # CreateHTTPListener请求参数结构体
       class CreateHTTPListenerRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerName: 监听器名称
+        # @param ListenerName: <p>监听器名称</p>
         # @type ListenerName: String
-        # @param Port: 监听器端口，基于同种传输层协议（TCP 或 UDP）的监听器，端口不可重复
+        # @param Port: <p>监听器端口，基于同种传输层协议（TCP 或 UDP）的监听器，端口不可重复</p>
         # @type Port: Integer
-        # @param ProxyId: 通道ID，与GroupId不能同时设置，对应为通道创建监听器
+        # @param ProxyId: <p>通道ID，与GroupId不能同时设置，对应为通道创建监听器</p>
         # @type ProxyId: String
-        # @param GroupId: 通道组ID，与ProxyId不能同时设置，对应为通道组创建监听器
+        # @param GroupId: <p>通道组ID，与ProxyId不能同时设置，对应为通道组创建监听器</p>
         # @type GroupId: String
 
         attr_accessor :ListenerName, :Port, :ProxyId, :GroupId
@@ -1111,7 +1104,7 @@ module TencentCloud
 
       # CreateHTTPListener返回参数结构体
       class CreateHTTPListenerResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 创建的监听器ID
+        # @param ListenerId: <p>创建的监听器ID</p>
         # @type ListenerId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1131,32 +1124,25 @@ module TencentCloud
 
       # CreateHTTPSListener请求参数结构体
       class CreateHTTPSListenerRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerName: 监听器名称
+        # @param ListenerName: <p>监听器名称</p>
         # @type ListenerName: String
-        # @param Port: 监听器端口，基于同种传输层协议（TCP 或 UDP）的监听器，端口不可重复
+        # @param Port: <p>监听器端口，基于同种传输层协议（TCP 或 UDP）的监听器，端口不可重复</p>
         # @type Port: Integer
-        # @param CertificateId: 服务器证书ID
+        # @param CertificateId: <p>服务器证书ID</p>
         # @type CertificateId: String
-        # @param ForwardProtocol: 加速通道转发到源站的协议类型：HTTP | HTTPS
+        # @param ForwardProtocol: <p>加速通道转发到源站的协议类型：HTTP | HTTPS</p>
         # @type ForwardProtocol: String
-        # @param ProxyId: 通道ID，与GroupId之间只能设置一个。表示创建通道的监听器。
+        # @param ProxyId: <p>通道ID，与GroupId之间只能设置一个。表示创建通道的监听器。</p>
         # @type ProxyId: String
-        # @param AuthType: 认证类型，其中：
-        # 0，单向认证；
-        # 1，双向认证。
-        # 默认使用单向认证。
+        # @param AuthType: <p>认证类型，其中：0，单向认证；1，双向认证。默认使用单向认证。</p>
         # @type AuthType: Integer
-        # @param ClientCertificateId: 客户端CA单证书ID，仅当双向认证时设置该参数或PolyClientCertificateIds参数
+        # @param ClientCertificateId: <p>客户端CA单证书ID，仅当双向认证时设置该参数或PolyClientCertificateIds参数</p>
         # @type ClientCertificateId: String
-        # @param PolyClientCertificateIds: 新的客户端多CA证书ID，仅当双向认证时设置该参数或设置ClientCertificateId参数
+        # @param PolyClientCertificateIds: <p>新的客户端多CA证书ID，仅当双向认证时设置该参数或设置ClientCertificateId参数</p>
         # @type PolyClientCertificateIds: Array
-        # @param GroupId: 通道组ID，与ProxyId之间只能设置一个。表示创建通道组的监听器。
+        # @param GroupId: <p>通道组ID，与ProxyId之间只能设置一个。表示创建通道组的监听器。</p>
         # @type GroupId: String
-        # @param Http3Supported: 支持Http3的开关，其中：
-        # 0，表示不需要支持Http3接入；
-        # 1，表示需要支持Http3接入。
-        # 注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。
-        # 该功能的启停无法在监听器创建完毕后再修改。
+        # @param Http3Supported: <p>支持Http3的开关，其中：0，表示不需要支持Http3接入；1，表示需要支持Http3接入。注意：如果支持了Http3的功能，那么该监听器会占用对应的UDP接入端口，不可再创建相同端口的UDP监听器。该功能的启停无法在监听器创建完毕后再修改。</p>
         # @type Http3Supported: Integer
 
         attr_accessor :ListenerName, :Port, :CertificateId, :ForwardProtocol, :ProxyId, :AuthType, :ClientCertificateId, :PolyClientCertificateIds, :GroupId, :Http3Supported
@@ -1190,7 +1176,7 @@ module TencentCloud
 
       # CreateHTTPSListener返回参数结构体
       class CreateHTTPSListenerResponse < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 创建的监听器ID
+        # @param ListenerId: <p>创建的监听器ID</p>
         # @type ListenerId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1246,21 +1232,21 @@ module TencentCloud
 
       # CreateProxyGroup请求参数结构体
       class CreateProxyGroupRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 通道组所属项目ID
+        # @param ProjectId: <p>通道组所属项目ID</p>
         # @type ProjectId: Integer
-        # @param GroupName: 通道组别名
+        # @param GroupName: <p>通道组别名</p>
         # @type GroupName: String
-        # @param RealServerRegion: 源站地域，参考接口 [https://cloud.tencent.com/document/api/608/36964] 返回参数RegionDetail中的RegionId
+        # @param RealServerRegion: <p>源站地域，参考接口 [https://cloud.tencent.com/document/api/608/36964] 返回参数RegionDetail中的RegionId</p>
         # @type RealServerRegion: String
-        # @param TagSet: 标签列表
+        # @param TagSet: <p>标签列表</p>
         # @type TagSet: Array
-        # @param AccessRegionSet: 加速地域列表，包括加速地域名，及该地域对应的带宽和并发配置。
+        # @param AccessRegionSet: <p>加速地域列表，包括加速地域名，及该地域对应的带宽和并发配置。</p>
         # @type AccessRegionSet: Array
-        # @param IPAddressVersion: IP版本，可取值：IPv4、IPv6，默认值IPv4
+        # @param IPAddressVersion: <p>IP版本，可取值：IPv4、IPv6，默认值IPv4</p>
         # @type IPAddressVersion: String
-        # @param PackageType: 通道组套餐类型，可取值：Thunder、Accelerator，默认值Thunder
+        # @param PackageType: <p>通道组套餐类型，可取值：Thunder、Accelerator，默认值Thunder</p>
         # @type PackageType: String
-        # @param Http3Supported: 该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道组默认支持Http3.0；当为IPv6，默认不支持Http3.0。
+        # @param Http3Supported: <p>该字段已废弃，当IPAddressVersion为IPv4时，所创建的通道组默认支持Http3.0；当为IPv6，默认不支持Http3.0。</p>
         # @type Http3Supported: Integer
 
         attr_accessor :ProjectId, :GroupName, :RealServerRegion, :TagSet, :AccessRegionSet, :IPAddressVersion, :PackageType, :Http3Supported
@@ -1304,7 +1290,7 @@ module TencentCloud
 
       # CreateProxyGroup返回参数结构体
       class CreateProxyGroupResponse < TencentCloud::Common::AbstractModel
-        # @param GroupId: 通道组ID
+        # @param GroupId: <p>通道组ID</p>
         # @type GroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1425,30 +1411,29 @@ module TencentCloud
 
       # CreateRule请求参数结构体
       class CreateRuleRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 7层监听器ID
+        # @param ListenerId: <p>7层监听器ID</p>
         # @type ListenerId: String
-        # @param Domain: 转发规则的域名
+        # @param Domain: <p>转发规则的域名</p>
         # @type Domain: String
-        # @param Path: 转发规则的路径
+        # @param Path: <p>转发规则的路径</p>
         # @type Path: String
-        # @param RealServerType: 转发规则对应源站的类型，支持IP和DOMAIN类型。
+        # @param RealServerType: <p>转发规则对应源站的类型，支持IP和DOMAIN类型。</p>
         # @type RealServerType: String
-        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数。
+        # @param Scheduler: <p>监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数。</p>
         # @type Scheduler: String
-        # @param HealthCheck: 规则是否开启健康检查，1开启，0关闭。
+        # @param HealthCheck: <p>规则是否开启健康检查，1开启，0关闭。</p>
         # @type HealthCheck: Integer
-        # @param CheckParams: 源站健康检查相关参数
+        # @param CheckParams: <p>源站健康检查相关参数</p>
         # @type CheckParams: :class:`Tencentcloud::Gaap.v20180529.models.RuleCheckParams`
-        # @param ForwardProtocol: 加速通道转发到源站的协议类型：支持HTTP或HTTPS。
-        # 不传递该字段时表示使用对应监听器的ForwardProtocol。
+        # @param ForwardProtocol: <p>加速通道转发到源站的协议类型：支持HTTP或HTTPS。不传递该字段时表示使用对应监听器的ForwardProtocol。</p>
         # @type ForwardProtocol: String
-        # @param ForwardHost: 回源Host。加速通道转发到源站的host，不设置该参数时，使用默认的host设置，即客户端发起的http请求的host。
+        # @param ForwardHost: <p>回源Host。加速通道转发到源站的host，不设置该参数时，使用默认的host设置，即客户端发起的http请求的host。</p>
         # @type ForwardHost: String
-        # @param ServerNameIndicationSwitch: 服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。创建HTTP监听器转发规则时，SNI功能默认关闭。
+        # @param ServerNameIndicationSwitch: <p>服务器名称指示（ServerNameIndication，简称SNI）开关。ON表示开启，OFF表示关闭。创建HTTP监听器转发规则时，SNI功能默认关闭。</p>
         # @type ServerNameIndicationSwitch: String
-        # @param ServerNameIndication: 服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。
+        # @param ServerNameIndication: <p>服务器名称指示（ServerNameIndication，简称SNI），当SNI开关打开时，该字段必填。</p>
         # @type ServerNameIndication: String
-        # @param ForcedRedirect: HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。
+        # @param ForcedRedirect: <p>HTTP强制跳转HTTPS。输入当前规则对应的域名与地址。</p>
         # @type ForcedRedirect: String
 
         attr_accessor :ListenerId, :Domain, :Path, :RealServerType, :Scheduler, :HealthCheck, :CheckParams, :ForwardProtocol, :ForwardHost, :ServerNameIndicationSwitch, :ServerNameIndication, :ForcedRedirect
@@ -1489,7 +1474,7 @@ module TencentCloud
 
       # CreateRule返回参数结构体
       class CreateRuleResponse < TencentCloud::Common::AbstractModel
-        # @param RuleId: 创建转发规则成功返回规则ID
+        # @param RuleId: <p>创建转发规则成功返回规则ID</p>
         # @type RuleId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2790,7 +2775,7 @@ module TencentCloud
 
       # DescribeGroupAndStatisticsProxy请求参数结构体
       class DescribeGroupAndStatisticsProxyRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
 
         attr_accessor :ProjectId
@@ -2806,9 +2791,9 @@ module TencentCloud
 
       # DescribeGroupAndStatisticsProxy返回参数结构体
       class DescribeGroupAndStatisticsProxyResponse < TencentCloud::Common::AbstractModel
-        # @param GroupSet: 可以统计的通道组信息
+        # @param GroupSet: <p>可以统计的通道组信息</p>
         # @type GroupSet: Array
-        # @param TotalCount: 通道组数量
+        # @param TotalCount: <p>通道组数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2892,21 +2877,21 @@ module TencentCloud
 
       # DescribeHTTPListeners请求参数结构体
       class DescribeHTTPListenersRequest < TencentCloud::Common::AbstractModel
-        # @param ProxyId: 通道ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
+        # @param ProxyId: <p>通道ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。</p>
         # @type ProxyId: String
-        # @param GroupId: 通道组ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
+        # @param GroupId: <p>通道组ID。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。</p>
         # @type GroupId: String
-        # @param ListenerId: 过滤条件，按照监听器ID进行精确查询。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。
+        # @param ListenerId: <p>过滤条件，按照监听器ID进行精确查询。ListenerId、ProxyId、GroupId须至少填写一个，且ProxyId与GroupId至多只能填写其中一个。</p>
         # @type ListenerId: String
-        # @param ListenerName: 过滤条件，按照监听器名称进行精确查询
+        # @param ListenerName: <p>过滤条件，按照监听器名称进行精确查询</p>
         # @type ListenerName: String
-        # @param Port: 过滤条件，按照监听器端口进行精确查询
+        # @param Port: <p>过滤条件，按照监听器端口进行精确查询</p>
         # @type Port: Integer
-        # @param Offset: 偏移量，默认为0
+        # @param Offset: <p>偏移量，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 限制数量，默认为20个
+        # @param Limit: <p>限制数量，默认为20个</p>
         # @type Limit: Integer
-        # @param SearchValue: 过滤条件，支持按照端口或监听器名称进行模糊查询，该参数不能与ListenerName和Port同时使用
+        # @param SearchValue: <p>过滤条件，支持按照端口或监听器名称进行模糊查询，该参数不能与ListenerName和Port同时使用</p>
         # @type SearchValue: String
 
         attr_accessor :ProxyId, :GroupId, :ListenerId, :ListenerName, :Port, :Offset, :Limit, :SearchValue
@@ -2936,9 +2921,9 @@ module TencentCloud
 
       # DescribeHTTPListeners返回参数结构体
       class DescribeHTTPListenersResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 监听器数量
+        # @param TotalCount: <p>监听器数量</p>
         # @type TotalCount: Integer
-        # @param ListenerSet: HTTP监听器列表
+        # @param ListenerSet: <p>HTTP监听器列表</p>
         # @type ListenerSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3174,41 +3159,23 @@ module TencentCloud
 
       # DescribeProxies请求参数结构体
       class DescribeProxiesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceIds: （旧参数，请切换到ProxyIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
+        # @param InstanceIds: <p>（旧参数，请切换到ProxyIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。</p>
         # @type InstanceIds: Array
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Filters: 过滤条件。
-        # 每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定InstanceIds和Filters。
-        # ProjectId - String - 是否必填：否 -（过滤条件）按照项目ID过滤。
-        # AccessRegion - String - 是否必填：否 - （过滤条件）按照接入地域过滤。
-        # RealServerRegion - String - 是否必填：否 - （过滤条件）按照源站地域过滤。
-        # GroupId - String - 是否必填：否 - （过滤条件）按照通道组ID过滤。
-        # IPAddressVersion - String - 是否必填：否 - （过滤条件）按照IP版本过滤。
-        # PackageType - String - 是否必填：否 - （过滤条件）按照通道套餐类型过滤。
+        # @param Filters: <p>过滤条件。 <br />每次请求的Filters的上限为10，Filter.Values的上限为5。参数不支持同时指定InstanceIds和Filters。 ProjectId - String - 是否必填：否 -（过滤条件）按照项目ID过滤。 <br />AccessRegion - String - 是否必填：否 - （过滤条件）按照接入地域过滤。  <br />RealServerRegion - String - 是否必填：否 - （过滤条件）按照源站地域过滤。GroupId - String - 是否必填：否 - （过滤条件）按照通道组ID过滤。IPAddressVersion - String - 是否必填：否 - （过滤条件）按照IP版本过滤。PackageType - String - 是否必填：否 - （过滤条件）按照通道套餐类型过滤。</p>
         # @type Filters: Array
-        # @param ProxyIds: （新参数，替代InstanceIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。
+        # @param ProxyIds: <p>（新参数，替代InstanceIds）按照一个或者多个实例ID查询。每次请求的实例的上限为100。参数不支持同时指定InstanceIds和Filters。</p>
         # @type ProxyIds: Array
-        # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
-        # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，通道会被拉取出来。
+        # @param TagSet: <p>标签列表，当存在该字段时，拉取对应标签下的资源列表。最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，通道会被拉取出来。</p>
         # @type TagSet: Array
-        # @param Independent: 当该字段为1时，仅拉取非通道组的通道，
-        # 当该字段为0时，仅拉取通道组的通道，
-        # 不存在该字段时，拉取所有通道，包括独立通道和通道组通道。
+        # @param Independent: <p>当该字段为1时，仅拉取非通道组的通道，当该字段为0时，仅拉取通道组的通道，不存在该字段时，拉取所有通道，包括独立通道和通道组通道。</p>
         # @type Independent: Integer
-        # @param Order: 输出通道列表的排列顺序。取值范围：
-        # asc：升序排列；
-        # desc：降序排列。
-        # 默认为降序。
+        # @param Order: <p>输出通道列表的排列顺序。取值范围：asc：升序排列；desc：降序排列。默认为降序。</p>
         # @type Order: String
-        # @param OrderField: 通道列表排序的依据字段。取值范围：
-        # create_time：依据通道的创建时间排序；
-        # proxy_id：依据通道的ID排序；
-        # bandwidth：依据通道带宽上限排序；
-        # concurrent_connections：依据通道并发排序；
-        # 默认按通道创建时间排序。
+        # @param OrderField: <p>通道列表排序的依据字段。取值范围：create_time：依据通道的创建时间排序；proxy_id：依据通道的ID排序；bandwidth：依据通道带宽上限排序；concurrent_connections：依据通道并发排序；默认按通道创建时间排序。</p>
         # @type OrderField: String
 
         attr_accessor :InstanceIds, :Offset, :Limit, :Filters, :ProxyIds, :TagSet, :Independent, :Order, :OrderField
@@ -3254,11 +3221,11 @@ module TencentCloud
 
       # DescribeProxies返回参数结构体
       class DescribeProxiesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 通道个数。
+        # @param TotalCount: <p>通道个数。</p>
         # @type TotalCount: Integer
-        # @param InstanceSet: （旧参数，请切换到ProxySet）通道实例信息列表。
+        # @param InstanceSet: <p>（旧参数，请切换到ProxySet）通道实例信息列表。</p>
         # @type InstanceSet: Array
-        # @param ProxySet: （新参数）通道实例信息列表。
+        # @param ProxySet: <p>（新参数）通道实例信息列表。</p>
         # @type ProxySet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3343,7 +3310,7 @@ module TencentCloud
 
       # DescribeProxyAndStatisticsListeners请求参数结构体
       class DescribeProxyAndStatisticsListenersRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
 
         attr_accessor :ProjectId
@@ -3359,9 +3326,9 @@ module TencentCloud
 
       # DescribeProxyAndStatisticsListeners返回参数结构体
       class DescribeProxyAndStatisticsListenersResponse < TencentCloud::Common::AbstractModel
-        # @param ProxySet: 可以统计的通道信息
+        # @param ProxySet: <p>可以统计的通道信息</p>
         # @type ProxySet: Array
-        # @param TotalCount: 通道数量
+        # @param TotalCount: <p>通道数量</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3468,22 +3435,15 @@ module TencentCloud
 
       # DescribeProxyGroupList请求参数结构体
       class DescribeProxyGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认值为0。
+        # @param Offset: <p>偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认值为20，最大值为100。
+        # @param Limit: <p>返回数量，默认值为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param ProjectId: 项目ID。取值范围：
-        # -1，该用户下所有项目
-        # 0，默认项目
-        # 其他值，指定的项目
+        # @param ProjectId: <p>项目ID。取值范围：-1，该用户下所有项目0，默认项目其他值，指定的项目</p>
         # @type ProjectId: Integer
-        # @param Filters: 过滤条件。
-        # 每次请求的Filter.Values的上限为5。
-        # RealServerRegion - String - 是否必填：否 -（过滤条件）按照源站地域过滤，可参考DescribeDestRegions接口返回结果中的RegionId。
-        # PackageType - String - 是否必填：否 - （过滤条件）通道组类型，Thunder表示标准通道组，Accelerator表示银牌加速通道组。
+        # @param Filters: <p>过滤条件。 <br />每次请求的Filter.Values的上限为5。RealServerRegion - String - 是否必填：否 -（过滤条件）按照源站地域过滤，可参考DescribeDestRegions接口返回结果中的RegionId。PackageType - String - 是否必填：否 - （过滤条件）通道组类型，Thunder表示标准通道组，Accelerator表示银牌加速通道组。</p>
         # @type Filters: Array
-        # @param TagSet: 标签列表，当存在该字段时，拉取对应标签下的资源列表。
-        # 最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。
+        # @param TagSet: <p>标签列表，当存在该字段时，拉取对应标签下的资源列表。最多支持5个标签，当存在两个或两个以上的标签时，满足其中任意一个标签时，该通道组会被拉取出来。</p>
         # @type TagSet: Array
 
         attr_accessor :Offset, :Limit, :ProjectId, :Filters, :TagSet
@@ -3521,9 +3481,9 @@ module TencentCloud
 
       # DescribeProxyGroupList返回参数结构体
       class DescribeProxyGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 通道组总数。
+        # @param TotalCount: <p>通道组总数。</p>
         # @type TotalCount: Integer
-        # @param ProxyGroupList: 通道组列表。
+        # @param ProxyGroupList: <p>通道组列表。</p>
         # @type ProxyGroupList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3552,18 +3512,15 @@ module TencentCloud
 
       # DescribeProxyGroupStatistics请求参数结构体
       class DescribeProxyGroupStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupId: 通道组ID
+        # @param GroupId: <p>通道组ID</p>
         # @type GroupId: String
-        # @param StartTime: 起始时间
+        # @param StartTime: <p>起始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param MetricNames: 统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets
+        # @param MetricNames: <p>统计指标名称列表，支持: 入带宽:InBandwidth, 出带宽:OutBandwidth, 并发:Concurrent, 入包量:InPackets, 出包量:OutPackets</p>
         # @type MetricNames: Array
-        # @param Granularity: 监控粒度，目前支持60，300，3600，86400，单位：秒。
-        # 当时间范围不超过1天，支持最小粒度60秒；
-        # 当时间范围不超过7天，支持最小粒度3600秒；
-        # 当时间范围不超过30天，支持最小粒度86400秒。
+        # @param Granularity: <p>监控粒度，目前支持60，300，3600，86400，单位：秒。当时间范围不超过1天，支持最小粒度60秒；当时间范围不超过7天，支持最小粒度3600秒；当时间范围不超过30天，支持最小粒度86400秒。</p>
         # @type Granularity: Integer
 
         attr_accessor :GroupId, :StartTime, :EndTime, :MetricNames, :Granularity
@@ -3587,7 +3544,7 @@ module TencentCloud
 
       # DescribeProxyGroupStatistics返回参数结构体
       class DescribeProxyGroupStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param StatisticsData: 通道组统计数据
+        # @param StatisticsData: <p>通道组统计数据</p>
         # @type StatisticsData: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5584,13 +5541,13 @@ module TencentCloud
 
       # ModifyGlobalDomainDns请求参数结构体
       class ModifyGlobalDomainDnsRequest < TencentCloud::Common::AbstractModel
-        # @param DnsRecordId: 解析记录ID
+        # @param DnsRecordId: <p>解析记录ID</p>
         # @type DnsRecordId: Integer
-        # @param DomainId: 域名ID
+        # @param DomainId: <p>域名ID</p>
         # @type DomainId: String
-        # @param NationCountryInnerCodes: 国家ID列表
+        # @param NationCountryInnerCodes: <p>国家ID列表</p>
         # @type NationCountryInnerCodes: Array
-        # @param ProxyIdList: 通道ID列表
+        # @param ProxyIdList: <p>通道ID列表</p>
         # @type ProxyIdList: Array
 
         attr_accessor :DnsRecordId, :DomainId, :NationCountryInnerCodes, :ProxyIdList
@@ -5861,20 +5818,17 @@ module TencentCloud
 
       # ModifyProxyConfiguration请求参数结构体
       class ModifyProxyConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: （旧参数，请切换到ProxyId）通道的实例ID。
+        # @param InstanceId: <p>（旧参数，请切换到ProxyId）通道的实例ID。</p>
         # @type InstanceId: String
-        # @param Bandwidth: 需要调整到的目标带宽，单位：Mbps。
-        # Bandwidth与Concurrent必须至少设置一个。取值范围根据DescribeAccessRegionsByDestRegion接口获取得到
+        # @param Bandwidth: <p>需要调整到的目标带宽，单位：Mbps。Bandwidth与Concurrent必须至少设置一个。取值范围根据DescribeAccessRegionsByDestRegion接口获取得到</p>
         # @type Bandwidth: Integer
-        # @param Concurrent: 需要调整到的目标并发值，单位：万。
-        # Bandwidth与Concurrent必须至少设置一个。取值范围根据DescribeAccessRegionsByDestRegion接口获取得到
+        # @param Concurrent: <p>需要调整到的目标并发值，单位：万。Bandwidth与Concurrent必须至少设置一个。取值范围根据DescribeAccessRegionsByDestRegion接口获取得到</p>
         # @type Concurrent: Integer
-        # @param ClientToken: 用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。
-        # 更多详细信息请参阅：如何保证幂等性。
+        # @param ClientToken: <p>用于保证请求幂等性的字符串。该字符串由客户生成，需保证不同请求之间唯一，最大值不超过64个ASCII字符。若不指定该参数，则无法保证请求的幂等性。更多详细信息请参阅：如何保证幂等性。</p>
         # @type ClientToken: String
-        # @param ProxyId: （新参数）通道的实例ID。
+        # @param ProxyId: <p>（新参数）通道的实例ID。</p>
         # @type ProxyId: String
-        # @param BillingType: 计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）
+        # @param BillingType: <p>计费方式 (0:按带宽计费，1:按流量计费 默认按带宽计费）</p>
         # @type BillingType: Integer
 
         attr_accessor :InstanceId, :Bandwidth, :Concurrent, :ClientToken, :ProxyId, :BillingType
@@ -6131,27 +6085,27 @@ module TencentCloud
 
       # ModifyTCPListenerAttribute请求参数结构体
       class ModifyTCPListenerAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 监听器ID
+        # @param ListenerId: <p>监听器ID</p>
         # @type ListenerId: String
-        # @param GroupId: 通道组ID，ProxyId和GroupId必须设置一个，但不能同时设置。
+        # @param GroupId: <p>通道组ID，ProxyId和GroupId必须设置一个，但不能同时设置。</p>
         # @type GroupId: String
-        # @param ProxyId: 通道ID，ProxyId和GroupId必须设置一个，但不能同时设置。
+        # @param ProxyId: <p>通道ID，ProxyId和GroupId必须设置一个，但不能同时设置。</p>
         # @type ProxyId: String
-        # @param ListenerName: 监听器名称
+        # @param ListenerName: <p>监听器名称</p>
         # @type ListenerName: String
-        # @param Scheduler: 监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。注意：lrtt需要开通白名单；RealServerType 为 DOMAIN 不支持wrr 和 lrtt。
+        # @param Scheduler: <p>监听器源站访问策略，其中：rr表示轮询；wrr表示加权轮询；lc表示最小连接数；lrtt表示最小时延。注意：lrtt需要开通白名单；RealServerType 为 DOMAIN 不支持wrr 和 lrtt。</p>
         # @type Scheduler: String
-        # @param DelayLoop: 源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。
+        # @param DelayLoop: <p>源站健康检查时间间隔，单位：秒。时间间隔取值在[5，300]之间。</p>
         # @type DelayLoop: Integer
-        # @param ConnectTimeout: 源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。
+        # @param ConnectTimeout: <p>源站健康检查响应超时时间，单位：秒。超时时间取值在[2，60]之间。超时时间应小于健康检查时间间隔DelayLoop。</p>
         # @type ConnectTimeout: Integer
-        # @param HealthCheck: 是否开启健康检查，1开启，0关闭。
+        # @param HealthCheck: <p>是否开启健康检查，1开启，0关闭。</p>
         # @type HealthCheck: Integer
-        # @param FailoverSwitch: 源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启
+        # @param FailoverSwitch: <p>源站是否开启主备模式：1开启，0关闭，DOMAIN类型源站不支持开启</p>
         # @type FailoverSwitch: Integer
-        # @param HealthyThreshold: 健康阈值，表示连续检查成功多少次数后认定源站健康。范围为1到10
+        # @param HealthyThreshold: <p>健康阈值，表示连续检查成功多少次数后认定源站健康。范围为1到10</p>
         # @type HealthyThreshold: Integer
-        # @param UnhealthyThreshold: 不健康阈值，表示连续检查失败次数后认定源站不健康。范围为1到10
+        # @param UnhealthyThreshold: <p>不健康阈值，表示连续检查失败次数后认定源站不健康。范围为1到10</p>
         # @type UnhealthyThreshold: Integer
 
         attr_accessor :ListenerId, :GroupId, :ProxyId, :ListenerName, :Scheduler, :DelayLoop, :ConnectTimeout, :HealthCheck, :FailoverSwitch, :HealthyThreshold, :UnhealthyThreshold

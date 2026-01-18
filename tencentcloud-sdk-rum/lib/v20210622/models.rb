@@ -1957,6 +1957,164 @@ module TencentCloud
         end
       end
 
+      # DescribeDataPvUrlStatisticsV2请求参数结构体
+      class DescribeDataPvUrlStatisticsV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param Type: allcount：性能视图，day：14天数据，vp：性能，ckuv：uv，ckpv：pv，condition：条件列表，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @type Type: String
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ExtSecond: 自定义2
+        # @type ExtSecond: String
+        # @param Engine: 浏览器引擎
+        # @type Engine: String
+        # @param Isp: 运营商
+        # @type Isp: String
+        # @param From: 来源页面
+        # @type From: String
+        # @param Level: 日志等级
+        # @type Level: String
+        # @param Brand: 品牌
+        # @type Brand: String
+        # @param Area: 地区
+        # @type Area: String
+        # @param VersionNum: 版本
+        # @type VersionNum: String
+        # @param Platform: 平台
+        # @type Platform: String
+        # @param ExtThird: 自定义3
+        # @type ExtThird: String
+        # @param ExtFirst: 自定义1
+        # @type ExtFirst: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param Device: 机型
+        # @type Device: String
+        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @type IsAbroad: String
+        # @param Os: 操作系统
+        # @type Os: String
+        # @param Browser: 浏览器
+        # @type Browser: String
+        # @param Env: 环境
+        # @type Env: String
+        # @param GroupByType: group by 参数值枚举1:1m  2:5m  3:30m  4:1h
+        #  5:1d
+        # @type GroupByType: Integer
+        # @param IsNewData: 1: 查询智研
+        # 0: 走旧逻辑，已下线，勿使用
+        # @type IsNewData: Integer
+        # @param ExtFourth: 自定义4
+        # @type ExtFourth: String
+        # @param ExtFifth: 自定义5
+        # @type ExtFifth: String
+        # @param ExtSixth: 自定义6
+        # @type ExtSixth: String
+        # @param ExtSeventh: 自定义7
+        # @type ExtSeventh: String
+        # @param ExtEighth: 自定义8
+        # @type ExtEighth: String
+        # @param ExtNinth: 自定义9
+        # @type ExtNinth: String
+        # @param ExtTenth: 自定义10
+        # @type ExtTenth: String
+        # @param Granularity: 时间段
+        # @type Granularity: String
+
+        attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :Env, :GroupByType, :IsNewData, :ExtFourth, :ExtFifth, :ExtSixth, :ExtSeventh, :ExtEighth, :ExtNinth, :ExtTenth, :Granularity
+
+        def initialize(starttime=nil, type=nil, endtime=nil, id=nil, extsecond=nil, engine=nil, isp=nil, from=nil, level=nil, brand=nil, area=nil, versionnum=nil, platform=nil, extthird=nil, extfirst=nil, nettype=nil, device=nil, isabroad=nil, os=nil, browser=nil, env=nil, groupbytype=nil, isnewdata=nil, extfourth=nil, extfifth=nil, extsixth=nil, extseventh=nil, exteighth=nil, extninth=nil, exttenth=nil, granularity=nil)
+          @StartTime = starttime
+          @Type = type
+          @EndTime = endtime
+          @ID = id
+          @ExtSecond = extsecond
+          @Engine = engine
+          @Isp = isp
+          @From = from
+          @Level = level
+          @Brand = brand
+          @Area = area
+          @VersionNum = versionnum
+          @Platform = platform
+          @ExtThird = extthird
+          @ExtFirst = extfirst
+          @NetType = nettype
+          @Device = device
+          @IsAbroad = isabroad
+          @Os = os
+          @Browser = browser
+          @Env = env
+          @GroupByType = groupbytype
+          @IsNewData = isnewdata
+          @ExtFourth = extfourth
+          @ExtFifth = extfifth
+          @ExtSixth = extsixth
+          @ExtSeventh = extseventh
+          @ExtEighth = exteighth
+          @ExtNinth = extninth
+          @ExtTenth = exttenth
+          @Granularity = granularity
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Type = params['Type']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ExtSecond = params['ExtSecond']
+          @Engine = params['Engine']
+          @Isp = params['Isp']
+          @From = params['From']
+          @Level = params['Level']
+          @Brand = params['Brand']
+          @Area = params['Area']
+          @VersionNum = params['VersionNum']
+          @Platform = params['Platform']
+          @ExtThird = params['ExtThird']
+          @ExtFirst = params['ExtFirst']
+          @NetType = params['NetType']
+          @Device = params['Device']
+          @IsAbroad = params['IsAbroad']
+          @Os = params['Os']
+          @Browser = params['Browser']
+          @Env = params['Env']
+          @GroupByType = params['GroupByType']
+          @IsNewData = params['IsNewData']
+          @ExtFourth = params['ExtFourth']
+          @ExtFifth = params['ExtFifth']
+          @ExtSixth = params['ExtSixth']
+          @ExtSeventh = params['ExtSeventh']
+          @ExtEighth = params['ExtEighth']
+          @ExtNinth = params['ExtNinth']
+          @ExtTenth = params['ExtTenth']
+          @Granularity = params['Granularity']
+        end
+      end
+
+      # DescribeDataPvUrlStatisticsV2返回参数结构体
+      class DescribeDataPvUrlStatisticsV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDataReportCount请求参数结构体
       class DescribeDataReportCountRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间
