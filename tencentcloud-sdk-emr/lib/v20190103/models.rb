@@ -1895,10 +1895,12 @@ module TencentCloud
         # @type DefaultMetaVersion: String
         # @param NeedCdbAudit: 是否开通数据库审计
         # @type NeedCdbAudit: Integer
+        # @param SgIP: 安全指定来源ip
+        # @type SgIP: String
 
-        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit
+        attr_accessor :ProductVersion, :EnableSupportHAFlag, :InstanceName, :InstanceChargeType, :LoginSettings, :SceneSoftwareConfig, :InstanceChargePrepaid, :SecurityGroupIds, :ScriptBootstrapActionConfig, :ClientToken, :NeedMasterWan, :EnableRemoteLoginFlag, :EnableKerberosFlag, :CustomConf, :Tags, :DisasterRecoverGroupIds, :EnableCbsEncryptFlag, :MetaDBInfo, :DependService, :ZoneResourceConfiguration, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
 
-        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil)
+        def initialize(productversion=nil, enablesupporthaflag=nil, instancename=nil, instancechargetype=nil, loginsettings=nil, scenesoftwareconfig=nil, instancechargeprepaid=nil, securitygroupids=nil, scriptbootstrapactionconfig=nil, clienttoken=nil, needmasterwan=nil, enableremoteloginflag=nil, enablekerberosflag=nil, customconf=nil, tags=nil, disasterrecovergroupids=nil, enablecbsencryptflag=nil, metadbinfo=nil, dependservice=nil, zoneresourceconfiguration=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
           @ProductVersion = productversion
           @EnableSupportHAFlag = enablesupporthaflag
           @InstanceName = instancename
@@ -1924,6 +1926,7 @@ module TencentCloud
           @LoadBalancerId = loadbalancerid
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
+          @SgIP = sgip
         end
 
         def deserialize(params)
@@ -1999,6 +2002,7 @@ module TencentCloud
           @LoadBalancerId = params['LoadBalancerId']
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
+          @SgIP = params['SgIP']
         end
       end
 
@@ -2191,10 +2195,12 @@ module TencentCloud
         # @type DefaultMetaVersion: String
         # @param NeedCdbAudit: 是否开通审计：0:不开通,1:开通
         # @type NeedCdbAudit: Integer
+        # @param SgIP: 安全组指定来源ip
+        # @type SgIP: String
 
-        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit
+        attr_accessor :ProductId, :Software, :SupportHA, :InstanceName, :PayMode, :TimeSpan, :TimeUnit, :LoginSettings, :VPCSettings, :ResourceSpec, :COSSettings, :Placement, :SgId, :PreExecutedFileSettings, :AutoRenew, :ClientToken, :NeedMasterWan, :RemoteLoginAtCreate, :CheckSecurity, :ExtendFsField, :Tags, :DisasterRecoverGroupIds, :CbsEncrypt, :MetaType, :UnifyMetaInstanceId, :MetaDBInfo, :ApplicationRole, :SceneName, :ExternalService, :VersionID, :MultiZone, :MultiZoneSettings, :CosBucket, :NodeMarks, :LoadBalancerId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
 
-        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil)
+        def initialize(productid=nil, software=nil, supportha=nil, instancename=nil, paymode=nil, timespan=nil, timeunit=nil, loginsettings=nil, vpcsettings=nil, resourcespec=nil, cossettings=nil, placement=nil, sgid=nil, preexecutedfilesettings=nil, autorenew=nil, clienttoken=nil, needmasterwan=nil, remoteloginatcreate=nil, checksecurity=nil, extendfsfield=nil, tags=nil, disasterrecovergroupids=nil, cbsencrypt=nil, metatype=nil, unifymetainstanceid=nil, metadbinfo=nil, applicationrole=nil, scenename=nil, externalservice=nil, versionid=nil, multizone=nil, multizonesettings=nil, cosbucket=nil, nodemarks=nil, loadbalancerid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
           @ProductId = productid
           @Software = software
           @SupportHA = supportha
@@ -2232,6 +2238,7 @@ module TencentCloud
           @LoadBalancerId = loadbalancerid
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
+          @SgIP = sgip
         end
 
         def deserialize(params)
@@ -2325,6 +2332,7 @@ module TencentCloud
           @LoadBalancerId = params['LoadBalancerId']
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
+          @SgIP = params['SgIP']
         end
       end
 

@@ -7653,9 +7653,7 @@ module TencentCloud
         # 注意：
         # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
-        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
-
-        # 注：自适应码流的分片格式以此字段为准。DASH格式下SegmentType只能为mp4-byterange。
+        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：HLS+TS+Packed Audio 切片</li> <li>mp4-packed-audio：HLS+MP4+Packed Audio 切片</li> <li>ts-ts-segment：HLS+TS+TS 切片</li> <li>ts-ts-byterange：HLS+TS+TS byte range</li> <li>mp4-mp4-segment：HLS+MP4+MP4 切片</li> <li>mp4-mp4-byterange：HLS/DASH+MP4+MP4 byte range</li> <li>ts-packed-audio-byterange：HLS+TS+Packed Audio byte range</li> <li>mp4-packed-audio-byterange：HLS+MP4+Packed Audio byte range</li> 默认值：ts-segment 注：自适应码流的分片格式以此字段为准。DASH格式下SegmentType只能为mp4-byterange或mp4-mp4-byterange。
         # @type SegmentType: String
 
         attr_accessor :Format, :StreamInfos, :Name, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :Comment, :PureAudio, :SegmentType
@@ -15154,6 +15152,7 @@ module TencentCloud
         # <li>AddBlindWatermark: 添加基础版权数字水印</li>
         # <li>AddNagraWatermark: 添加NAGRA数字水印</li>
         # <li>ExtractBlindWatermark: 提取基础版权数字水印</li>
+        # <li>AIGC: AIGC</li>
         # @type Types: Array
         # @param ProcessRegions: 媒体处理园区，默认返回 ap-guangzhou 园区。
         # <li>ap-guangzhou：广州</li>
@@ -21377,8 +21376,7 @@ module TencentCloud
         # 注意：
         # 此值只是区分模板类型，任务使用RemoveAudio和RemoveVideo的值
         # @type PureAudio: Integer
-        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：TS+Packed Audio</li> <li>mp4-packed-audio：MP4+Packed Audio</li> 默认值：ts-segment
-        # 注：自适应码流的hls分片格式已此字段为准。DASH格式下SegmentType只能为mp4-byterange。
+        # @param SegmentType: 分片类型，可选值： <li>ts-segment：HLS+TS 切片</li> <li>ts-byterange：HLS+TS byte range</li> <li>mp4-segment：HLS+MP4 切片</li> <li>mp4-byterange：HLS/DASH+MP4 byte range</li> <li>ts-packed-audio：HLS+TS+Packed Audio 切片</li> <li>mp4-packed-audio：HLS+MP4+Packed Audio 切片</li> <li>ts-ts-segment：HLS+TS+TS 切片</li> <li>ts-ts-byterange：HLS+TS+TS byte range</li> <li>mp4-mp4-segment：HLS+MP4+MP4 切片</li> <li>mp4-mp4-byterange：HLS/DASH+MP4+MP4 byte range</li> <li>ts-packed-audio-byterange：HLS+TS+Packed Audio byte range</li> <li>mp4-packed-audio-byterange：HLS+MP4+Packed Audio byte range</li> 默认值：ts-segment 注：自适应码流的分片格式以此字段为准。DASH格式下SegmentType只能为mp4-byterange或mp4-mp4-byterange。
         # @type SegmentType: String
 
         attr_accessor :Definition, :Name, :Format, :DisableHigherVideoBitrate, :DisableHigherVideoResolution, :StreamInfos, :Comment, :PureAudio, :SegmentType
@@ -28153,15 +28151,18 @@ module TencentCloud
         # @param Wordlist: 字词时间戳信息。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Wordlist: Array
+        # @param SpeakerId: 说话人ID（如启用说话人识别）
+        # @type SpeakerId: String
 
-        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist
+        attr_accessor :Confidence, :StartTimeOffset, :EndTimeOffset, :Text, :Wordlist, :SpeakerId
 
-        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, wordlist=nil)
+        def initialize(confidence=nil, starttimeoffset=nil, endtimeoffset=nil, text=nil, wordlist=nil, speakerid=nil)
           @Confidence = confidence
           @StartTimeOffset = starttimeoffset
           @EndTimeOffset = endtimeoffset
           @Text = text
           @Wordlist = wordlist
+          @SpeakerId = speakerid
         end
 
         def deserialize(params)
@@ -28177,6 +28178,7 @@ module TencentCloud
               @Wordlist << wordresult_tmp
             end
           end
+          @SpeakerId = params['SpeakerId']
         end
       end
 

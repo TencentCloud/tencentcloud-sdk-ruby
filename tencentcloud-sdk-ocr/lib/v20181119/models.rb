@@ -6241,19 +6241,17 @@ module TencentCloud
         # @type WarnCardInfos: Array
         # @param CardCount: 输入图片中的卡证数量（仅请求曼谷地域[ap-bangkok]返回）
         # @type CardCount: Integer
-        # @param IsComplete: 是否完整
-        # @type IsComplete: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :IsComplete, :RequestId
+        attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
         deprecate :Warn, :none, 2026, 1
         deprecate :Warn=, :none, 2026, 1
         deprecate :AdvancedInfo, :none, 2026, 1
         deprecate :AdvancedInfo=, :none, 2026, 1
 
-        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, iscomplete=nil, requestid=nil)
+        def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
           @Name = name
           @DateOfBirth = dateofbirth
@@ -6272,7 +6270,6 @@ module TencentCloud
           @PassportRecognizeInfos = passportrecognizeinfos
           @WarnCardInfos = warncardinfos
           @CardCount = cardcount
-          @IsComplete = iscomplete
           @RequestId = requestid
         end
 
@@ -6298,7 +6295,6 @@ module TencentCloud
           end
           @WarnCardInfos = params['WarnCardInfos']
           @CardCount = params['CardCount']
-          @IsComplete = params['IsComplete']
           @RequestId = params['RequestId']
         end
       end

@@ -4688,37 +4688,32 @@ module TencentCloud
 
       # CreateSplunkDeliver请求参数结构体
       class CreateSplunkDeliverRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
         # @type TopicId: String
-        # @param Name: splunk投递任务名称；
-        # name有如下限制：
-        # - 不能为空
-        # - 长度不大于64
-        # - 只能包含aA-zZ、下划线、-、0-9
+        # @param Name: <p>splunk投递任务名称；name有如下限制：- 不能为空- 长度不大于64- 只能包含aA-zZ、下划线、-、0-9</p>
         # @type Name: String
-        # @param NetInfo: Splunk投递任务-目标配置-网络信息
+        # @param NetInfo: <p>Splunk投递任务-目标配置-网络信息</p>
         # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
-        # @param MetadataInfo: Splunk投递任务元信息
+        # @param MetadataInfo: <p>Splunk投递任务元信息</p>
         # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
-        # @param HasServiceLog: 是否开启服务日志 1:关闭；2:开启 ;默认开启
+        # @param HasServiceLog: <p>是否开启服务日志 1:关闭；2:开启 ;默认开启</p>
         # @type HasServiceLog: Integer
-        # @param IndexAck: 高级配置-是否启用索引器；1-不启用；2-启用；
-        # 默认：1
+        # @param IndexAck: <p>高级配置-是否启用索引器；1-不启用；2-启用；默认：1</p>
         # @type IndexAck: Integer
-        # @param Source: 高级配置-数据来源；不超过64个字符
+        # @param Source: <p>高级配置-数据来源；不超过64个字符</p>
         # @type Source: String
-        # @param SourceType: 高级配置-数据来源类型；不超过64个字符
+        # @param SourceType: <p>高级配置-数据来源类型；不超过64个字符</p>
         # @type SourceType: String
-        # @param Index: 高级配置-Splunk写入的索引；不超过64个字符
+        # @param Index: <p>高级配置-Splunk写入的索引；不超过64个字符</p>
         # @type Index: String
-        # @param Channel: 高级配置-通道
-        # 需满足限制：如果启用索引器，那么Channel必填
+        # @param Channel: <p>高级配置-通道需满足限制：如果启用索引器，那么Channel必填</p>
         # @type Channel: String
+        # @param DSLFilter: <p>日志预过滤-数据写入 Splunk 的原始数据进行预过滤处理</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TopicId, :Name, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel
+        attr_accessor :TopicId, :Name, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter
 
-        def initialize(topicid=nil, name=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil)
+        def initialize(topicid=nil, name=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil)
           @TopicId = topicid
           @Name = name
           @NetInfo = netinfo
@@ -4729,6 +4724,7 @@ module TencentCloud
           @SourceType = sourcetype
           @Index = index
           @Channel = channel
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -4748,12 +4744,13 @@ module TencentCloud
           @SourceType = params['SourceType']
           @Index = params['Index']
           @Channel = params['Channel']
+          @DSLFilter = params['DSLFilter']
         end
       end
 
       # CreateSplunkDeliver返回参数结构体
       class CreateSplunkDeliverResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: splunk投递任务id
+        # @param TaskId: <p>splunk投递任务id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9919,17 +9916,13 @@ module TencentCloud
 
       # DescribeSplunkDelivers请求参数结构体
       class DescribeSplunkDeliversRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题Id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题Id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
         # @type TopicId: String
-        # @param Filters: - taskId 按照【任务id】进行过滤。 类型：String 必选：否
-        # - name 按照【任务名称】进行过滤。 类型：String 必选：否
-        # - statusFlag 按照【状态】进行过滤。 类型：String 必选：否
-        #  每次请求的Filters的上限为10，Filter.Values的上限为10。
+        # @param Filters: <ul><li>taskId 按照【任务id】进行过滤。 类型：String 必选：否  </li><li>name 按照【任务名称】进行过滤。 类型：String 必选：否  </li><li>statusFlag 按照【状态】进行过滤。 类型：String 必选：否<br /> 每次请求的Filters的上限为10，Filter.Values的上限为10。</li></ul>
         # @type Filters: Array
-        # @param Offset: 分页的偏移量，默认值为0。
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
         # @type Offset: Integer
-        # @param Limit: 分页单页限制数目，默认值为20，最大值100。
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
         # @type Limit: Integer
 
         attr_accessor :TopicId, :Filters, :Offset, :Limit
@@ -9958,9 +9951,9 @@ module TencentCloud
 
       # DescribeSplunkDelivers返回参数结构体
       class DescribeSplunkDeliversResponse < TencentCloud::Common::AbstractModel
-        # @param Infos: Splunk投递任务信息列表
+        # @param Infos: <p>Splunk投递任务信息列表</p>
         # @type Infos: Array
-        # @param Total: 符合条件的任务总数。
+        # @param Total: <p>符合条件的任务总数。</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9989,17 +9982,19 @@ module TencentCloud
 
       # DescribeSplunkPreview请求参数结构体
       class DescribeSplunkPreviewRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题id。
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id。- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
         # @type TopicId: String
-        # @param MetadataInfo: splunk投递任务-元信息
+        # @param MetadataInfo: <p>splunk投递任务-元信息</p>
         # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
+        # @param DSLFilter: <p>splunk投递任务-投递 splunk过滤原始日志语句</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TopicId, :MetadataInfo
+        attr_accessor :TopicId, :MetadataInfo, :DSLFilter
 
-        def initialize(topicid=nil, metadatainfo=nil)
+        def initialize(topicid=nil, metadatainfo=nil, dslfilter=nil)
           @TopicId = topicid
           @MetadataInfo = metadatainfo
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -10008,25 +10003,33 @@ module TencentCloud
             @MetadataInfo = MetadataInfo.new
             @MetadataInfo.deserialize(params['MetadataInfo'])
           end
+          @DSLFilter = params['DSLFilter']
         end
       end
 
       # DescribeSplunkPreview返回参数结构体
       class DescribeSplunkPreviewResponse < TencentCloud::Common::AbstractModel
-        # @param PreviewInfos: 预览结果
+        # @param PreviewInfos: <p>预览结果</p>
         # @type PreviewInfos: Array
+        # @param FilterStats: <p>数据过滤结果</p>
+        # @type FilterStats: :class:`Tencentcloud::Cls.v20201016.models.FilterStatistics`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :PreviewInfos, :RequestId
+        attr_accessor :PreviewInfos, :FilterStats, :RequestId
 
-        def initialize(previewinfos=nil, requestid=nil)
+        def initialize(previewinfos=nil, filterstats=nil, requestid=nil)
           @PreviewInfos = previewinfos
+          @FilterStats = filterstats
           @RequestId = requestid
         end
 
         def deserialize(params)
           @PreviewInfos = params['PreviewInfos']
+          unless params['FilterStats'].nil?
+            @FilterStats = FilterStatistics.new
+            @FilterStats.deserialize(params['FilterStats'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -11286,6 +11289,30 @@ module TencentCloud
           @Key = params['Key']
           @Regex = params['Regex']
           @Value = params['Value']
+        end
+      end
+
+      # 投递类任务数据过滤统计信息
+      class FilterStatistics < TencentCloud::Common::AbstractModel
+        # @param OriginalCount: <p>原始日志数</p>
+        # @type OriginalCount: Integer
+        # @param FilteredCount: <p>过滤后日志数</p>
+        # @type FilteredCount: Integer
+        # @param FilteredResult: <p>过滤后结果</p>
+        # @type FilteredResult: Array
+
+        attr_accessor :OriginalCount, :FilteredCount, :FilteredResult
+
+        def initialize(originalcount=nil, filteredcount=nil, filteredresult=nil)
+          @OriginalCount = originalcount
+          @FilteredCount = filteredcount
+          @FilteredResult = filteredresult
+        end
+
+        def deserialize(params)
+          @OriginalCount = params['OriginalCount']
+          @FilteredCount = params['FilteredCount']
+          @FilteredResult = params['FilteredResult']
         end
       end
 
@@ -15197,41 +15224,36 @@ module TencentCloud
 
       # ModifySplunkDeliver请求参数结构体
       class ModifySplunkDeliverRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param TopicId: 日志主题id
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id- 通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</p>
         # @type TopicId: String
-        # @param Name: 投递任务名称
-        # name有以下限制：
-        # - 不能为空
-        # - 长度不大于64
-        # - 只能包含aA-zZ、下划线、-、0-9
+        # @param Name: <p>投递任务名称name有以下限制：- 不能为空- 长度不大于64- 只能包含aA-zZ、下划线、-、0-9</p>
         # @type Name: String
-        # @param Enable: 投递任务启用状态；0:禁用；1:启用
+        # @param Enable: <p>投递任务启用状态；0:禁用；1:启用</p>
         # @type Enable: Integer
-        # @param NetInfo: splunk投递任务-目标配置
+        # @param NetInfo: <p>splunk投递任务-目标配置</p>
         # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
-        # @param MetadataInfo: splunk投递任务元信息
+        # @param MetadataInfo: <p>splunk投递任务元信息</p>
         # @type MetadataInfo: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
-        # @param HasServiceLog: 是否启用服务日志；1:关闭；2:开启
+        # @param HasServiceLog: <p>是否启用服务日志；1:关闭；2:开启</p>
         # @type HasServiceLog: Integer
-        # @param IndexAck: 高级配置-是否启用索引器;
-        # 1-不开启；2-开启；默认为：1
+        # @param IndexAck: <p>高级配置-是否启用索引器;1-不开启；2-开启；默认为：1</p>
         # @type IndexAck: Integer
-        # @param Source: 高级配置-数据来源；不超过64个字符
+        # @param Source: <p>高级配置-数据来源；不超过64个字符</p>
         # @type Source: String
-        # @param SourceType: 高级配置-数据来源类型；不超过64个字符
+        # @param SourceType: <p>高级配置-数据来源类型；不超过64个字符</p>
         # @type SourceType: String
-        # @param Index: 高级配置-Splunk写入的索引；不超过64个字符
+        # @param Index: <p>高级配置-Splunk写入的索引；不超过64个字符</p>
         # @type Index: String
-        # @param Channel: 高级配置-通道。
-        # 需满足限制：如果启用索引器，该值不能为空
+        # @param Channel: <p>高级配置-通道。需满足限制：如果启用索引器，该值不能为空</p>
         # @type Channel: String
+        # @param DSLFilter: <p>预过滤处理-对写入 Splunk 原始数据进行预过滤处理</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TaskId, :TopicId, :Name, :Enable, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel
+        attr_accessor :TaskId, :TopicId, :Name, :Enable, :NetInfo, :MetadataInfo, :HasServiceLog, :IndexAck, :Source, :SourceType, :Index, :Channel, :DSLFilter
 
-        def initialize(taskid=nil, topicid=nil, name=nil, enable=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil)
+        def initialize(taskid=nil, topicid=nil, name=nil, enable=nil, netinfo=nil, metadatainfo=nil, hasservicelog=nil, indexack=nil, source=nil, sourcetype=nil, index=nil, channel=nil, dslfilter=nil)
           @TaskId = taskid
           @TopicId = topicid
           @Name = name
@@ -15244,6 +15266,7 @@ module TencentCloud
           @SourceType = sourcetype
           @Index = index
           @Channel = channel
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -15265,6 +15288,7 @@ module TencentCloud
           @SourceType = params['SourceType']
           @Index = params['Index']
           @Channel = params['Channel']
+          @DSLFilter = params['DSLFilter']
         end
       end
 
@@ -17454,42 +17478,44 @@ module TencentCloud
 
       # Splunk投递任务信息
       class SplunkDeliverInfo < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务id
+        # @param TaskId: <p>任务id</p>
         # @type TaskId: String
-        # @param Name: 任务名称
+        # @param Name: <p>任务名称</p>
         # @type Name: String
-        # @param Uin: 用户id
+        # @param Uin: <p>用户id</p>
         # @type Uin: Integer
-        # @param TopicId: 日志主题id
+        # @param TopicId: <p>日志主题id</p>
         # @type TopicId: String
-        # @param Status: 任务状态；1.运行中；2:暂停；3：异常
+        # @param Status: <p>任务状态；1.运行中；2:暂停；3：异常</p>
         # @type Status: Integer
-        # @param Enable: 启用状态；0:禁用；1:启用
+        # @param Enable: <p>启用状态；0:禁用；1:启用</p>
         # @type Enable: Integer
-        # @param CreateTime: 创建时间；单位：秒
+        # @param CreateTime: <p>创建时间；单位：秒</p>
         # @type CreateTime: Integer
-        # @param UpdateTime: 更新时间；单位：秒
+        # @param UpdateTime: <p>更新时间；单位：秒</p>
         # @type UpdateTime: Integer
-        # @param NetInfo: splunk投递任务-目标配置
+        # @param NetInfo: <p>splunk投递任务-目标配置</p>
         # @type NetInfo: :class:`Tencentcloud::Cls.v20201016.models.NetInfo`
-        # @param Metadata: splunk投递任务元信息
+        # @param Metadata: <p>splunk投递任务元信息</p>
         # @type Metadata: :class:`Tencentcloud::Cls.v20201016.models.MetadataInfo`
-        # @param HasServiceLog: 是否启用服务日志；1:关闭；2:开启
+        # @param HasServiceLog: <p>是否启用服务日志；1:关闭；2:开启</p>
         # @type HasServiceLog: Integer
-        # @param Source: 高级配置-数据来源；
+        # @param Source: <p>高级配置-数据来源；</p>
         # @type Source: String
-        # @param SourceType: 高级配置-数据来源类型；
+        # @param SourceType: <p>高级配置-数据来源类型；</p>
         # @type SourceType: String
-        # @param Index: 高级配置-Splunk写入的索引
+        # @param Index: <p>高级配置-Splunk写入的索引</p>
         # @type Index: String
-        # @param IndexAck: 高级配置-是否启用索引器；1-不开启；2-开启；
+        # @param IndexAck: <p>高级配置-是否启用索引器；1-不开启；2-开启；</p>
         # @type IndexAck: Integer
-        # @param Channel: 高级配置-通道
+        # @param Channel: <p>高级配置-通道</p>
         # @type Channel: String
+        # @param DSLFilter: <p>预过滤处理-对写入 Splunk 原始数据进行预过滤处理语句</p>
+        # @type DSLFilter: String
 
-        attr_accessor :TaskId, :Name, :Uin, :TopicId, :Status, :Enable, :CreateTime, :UpdateTime, :NetInfo, :Metadata, :HasServiceLog, :Source, :SourceType, :Index, :IndexAck, :Channel
+        attr_accessor :TaskId, :Name, :Uin, :TopicId, :Status, :Enable, :CreateTime, :UpdateTime, :NetInfo, :Metadata, :HasServiceLog, :Source, :SourceType, :Index, :IndexAck, :Channel, :DSLFilter
 
-        def initialize(taskid=nil, name=nil, uin=nil, topicid=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, netinfo=nil, metadata=nil, hasservicelog=nil, source=nil, sourcetype=nil, index=nil, indexack=nil, channel=nil)
+        def initialize(taskid=nil, name=nil, uin=nil, topicid=nil, status=nil, enable=nil, createtime=nil, updatetime=nil, netinfo=nil, metadata=nil, hasservicelog=nil, source=nil, sourcetype=nil, index=nil, indexack=nil, channel=nil, dslfilter=nil)
           @TaskId = taskid
           @Name = name
           @Uin = uin
@@ -17506,6 +17532,7 @@ module TencentCloud
           @Index = index
           @IndexAck = indexack
           @Channel = channel
+          @DSLFilter = dslfilter
         end
 
         def deserialize(params)
@@ -17531,6 +17558,7 @@ module TencentCloud
           @Index = params['Index']
           @IndexAck = params['IndexAck']
           @Channel = params['Channel']
+          @DSLFilter = params['DSLFilter']
         end
       end
 

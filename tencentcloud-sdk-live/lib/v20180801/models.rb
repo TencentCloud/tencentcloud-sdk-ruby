@@ -1755,6 +1755,38 @@ module TencentCloud
         end
       end
 
+      # 云端特效模板信息。
+      class CloudEffectTemplateInfo < TencentCloud::Common::AbstractModel
+        # @param TemplateId: <p>特效模板ID。</p>
+        # @type TemplateId: String
+        # @param TemplateName: <p>特效模板名称。</p>
+        # @type TemplateName: String
+        # @param VideoUrl: <p>模板预览URL。</p>
+        # @type VideoUrl: String
+        # @param CoverImageUrl: <p>模板封面图片URL。</p>
+        # @type CoverImageUrl: String
+        # @param VideoRatio: <p>模板视频宽高比。</p>
+        # @type VideoRatio: String
+
+        attr_accessor :TemplateId, :TemplateName, :VideoUrl, :CoverImageUrl, :VideoRatio
+
+        def initialize(templateid=nil, templatename=nil, videourl=nil, coverimageurl=nil, videoratio=nil)
+          @TemplateId = templateid
+          @TemplateName = templatename
+          @VideoUrl = videourl
+          @CoverImageUrl = coverimageurl
+          @VideoRatio = videoratio
+        end
+
+        def deserialize(params)
+          @TemplateId = params['TemplateId']
+          @TemplateName = params['TemplateName']
+          @VideoUrl = params['VideoUrl']
+          @CoverImageUrl = params['CoverImageUrl']
+          @VideoRatio = params['VideoRatio']
+        end
+      end
+
       # 通用混流控制参数
       class CommonMixControlParams < TencentCloud::Common::AbstractModel
         # @param UseMixCropCenter: 取值范围[0,1]。
@@ -6629,6 +6661,44 @@ module TencentCloud
               certinfo_tmp = CertInfo.new
               certinfo_tmp.deserialize(i)
               @CertInfoSet << certinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLiveCloudEffectConfig请求参数结构体
+      class DescribeLiveCloudEffectConfigRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLiveCloudEffectConfig返回参数结构体
+      class DescribeLiveCloudEffectConfigResponse < TencentCloud::Common::AbstractModel
+        # @param EffectTemplateList: <p>模板生礼物的模板信息列表。</p>
+        # @type EffectTemplateList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EffectTemplateList, :RequestId
+
+        def initialize(effecttemplatelist=nil, requestid=nil)
+          @EffectTemplateList = effecttemplatelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EffectTemplateList'].nil?
+            @EffectTemplateList = []
+            params['EffectTemplateList'].each do |i|
+              cloudeffecttemplateinfo_tmp = CloudEffectTemplateInfo.new
+              cloudeffecttemplateinfo_tmp.deserialize(i)
+              @EffectTemplateList << cloudeffecttemplateinfo_tmp
             end
           end
           @RequestId = params['RequestId']

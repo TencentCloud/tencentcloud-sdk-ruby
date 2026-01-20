@@ -1031,17 +1031,20 @@ module TencentCloud
         # @type Prompt: String
         # @param Resolution: 输出视频分辨率。可选择：480p、720p、1080p。
         # @type Resolution: String
+        # @param Fps: 生成视频的帧率，从16, 24, 30中选择。默认值：30
+        # @type Fps: Integer
         # @param LogoAdd: 为生成视频添加标识的开关，默认为1，0 需前往 控制台 申请开启显示标识自主完成方可生效。  1：添加标识；  0：不添加标识；  其他数值：默认按1处理。
         # @type LogoAdd: Integer
         # @param LogoParam: 默认在生成视频的右下角添加“ AI 生成”字样，如需替换为其他的标识图片，需前往 控制台 申请开启显示标识自主完成。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :Image, :Prompt, :Resolution, :LogoAdd, :LogoParam
+        attr_accessor :Image, :Prompt, :Resolution, :Fps, :LogoAdd, :LogoParam
 
-        def initialize(image=nil, prompt=nil, resolution=nil, logoadd=nil, logoparam=nil)
+        def initialize(image=nil, prompt=nil, resolution=nil, fps=nil, logoadd=nil, logoparam=nil)
           @Image = image
           @Prompt = prompt
           @Resolution = resolution
+          @Fps = fps
           @LogoAdd = logoadd
           @LogoParam = logoparam
         end
@@ -1053,6 +1056,7 @@ module TencentCloud
           end
           @Prompt = params['Prompt']
           @Resolution = params['Resolution']
+          @Fps = params['Fps']
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?
             @LogoParam = LogoParam.new

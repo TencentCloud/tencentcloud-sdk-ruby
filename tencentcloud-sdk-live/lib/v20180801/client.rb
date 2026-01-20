@@ -2383,6 +2383,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用该接口查询云端特效配置信息。
+
+        # @param request: Request instance for DescribeLiveCloudEffectConfig.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeLiveCloudEffectConfigRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeLiveCloudEffectConfigResponse`
+        def DescribeLiveCloudEffectConfig(request)
+          body = send_request('DescribeLiveCloudEffectConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLiveCloudEffectConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 使用该接口查询云端特效列表，特效列表中包含一部分官方精品特效，同时包含用户自定义生成的特效。
 
         # @param request: Request instance for DescribeLiveCloudEffectList.

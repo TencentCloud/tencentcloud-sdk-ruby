@@ -168,6 +168,50 @@ module TencentCloud
         end
       end
 
+      # PutEvent请求参数结构体
+      class PutEventRequest < TencentCloud::Common::AbstractModel
+        # @param PluginId: <p>插件ID</p>
+        # @type PluginId: String
+        # @param Data: <p>需要推送的事件数据内容，格式为json，字段定义需要与事件中的定义一致</p>
+        # @type Data: String
+        # @param Source: <p>数据推送来源，会在生成的单据中展示数据来源</p>
+        # @type Source: String
+        # @param TargetUin: <p>可以接受当前消息的Uin</p>
+        # @type TargetUin: Integer
+
+        attr_accessor :PluginId, :Data, :Source, :TargetUin
+
+        def initialize(pluginid=nil, data=nil, source=nil, targetuin=nil)
+          @PluginId = pluginid
+          @Data = data
+          @Source = source
+          @TargetUin = targetuin
+        end
+
+        def deserialize(params)
+          @PluginId = params['PluginId']
+          @Data = params['Data']
+          @Source = params['Source']
+          @TargetUin = params['TargetUin']
+        end
+      end
+
+      # PutEvent返回参数结构体
+      class PutEventResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # PutMessage请求参数结构体
       class PutMessageRequest < TencentCloud::Common::AbstractModel
         # @param EventId: <p>事件ID</p>
