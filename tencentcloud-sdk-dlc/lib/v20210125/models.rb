@@ -14395,7 +14395,7 @@ module TencentCloud
         # @type LifecycleEnable: String
         # @param Expiration: 过期时间
         # @type Expiration: Integer
-        # @param DropTable: 是否删表
+        # @param DropTable: 是否删表，该字段废弃已使用，用TableExpiration策略替代
         # @type DropTable: Boolean
         # @param ExpiredField: 过期字段
         # @type ExpiredField: String
@@ -14403,6 +14403,9 @@ module TencentCloud
         # @type ExpiredFieldFormat: String
 
         attr_accessor :LifecycleEnable, :Expiration, :DropTable, :ExpiredField, :ExpiredFieldFormat
+        extend Gem::Deprecate
+        deprecate :DropTable, :none, 2026, 1
+        deprecate :DropTable=, :none, 2026, 1
 
         def initialize(lifecycleenable=nil, expiration=nil, droptable=nil, expiredfield=nil, expiredfieldformat=nil)
           @LifecycleEnable = lifecycleenable
@@ -14425,13 +14428,13 @@ module TencentCloud
       class SmartOptimizerPolicy < TencentCloud::Common::AbstractModel
         # @param Inherit: 是否继承
         # @type Inherit: String
-        # @param Resources: ResourceInfo
+        # @param Resources: 数据治理资源
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resources: Array
-        # @param Written: SmartOptimizerWrittenPolicy
+        # @param Written: 数据重写策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Written: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerWrittenPolicy`
-        # @param Lifecycle: SmartOptimizerLifecyclePolicy
+        # @param Lifecycle: 数据过期策略
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Lifecycle: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerLifecyclePolicy`
         # @param Index: SmartOptimizerIndexPolicy

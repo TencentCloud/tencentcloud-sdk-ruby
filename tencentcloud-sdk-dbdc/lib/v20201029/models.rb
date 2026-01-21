@@ -61,10 +61,12 @@ module TencentCloud
         # @type DbEngine: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param Zones: 可用区列表
+        # @type Zones: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :DbVersion, :Vip, :Vport, :UniqueVpcId, :UniqueSubnetId, :Shard, :NodeNum, :Cpu, :Memory, :Disk, :ShardNum, :Region, :Zone, :DbHosts, :HostRole, :DbEngine, :CreateTime
+        attr_accessor :InstanceId, :InstanceName, :Status, :StatusDesc, :DbVersion, :Vip, :Vport, :UniqueVpcId, :UniqueSubnetId, :Shard, :NodeNum, :Cpu, :Memory, :Disk, :ShardNum, :Region, :Zone, :DbHosts, :HostRole, :DbEngine, :CreateTime, :Zones
 
-        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, dbversion=nil, vip=nil, vport=nil, uniquevpcid=nil, uniquesubnetid=nil, shard=nil, nodenum=nil, cpu=nil, memory=nil, disk=nil, shardnum=nil, region=nil, zone=nil, dbhosts=nil, hostrole=nil, dbengine=nil, createtime=nil)
+        def initialize(instanceid=nil, instancename=nil, status=nil, statusdesc=nil, dbversion=nil, vip=nil, vport=nil, uniquevpcid=nil, uniquesubnetid=nil, shard=nil, nodenum=nil, cpu=nil, memory=nil, disk=nil, shardnum=nil, region=nil, zone=nil, dbhosts=nil, hostrole=nil, dbengine=nil, createtime=nil, zones=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Status = status
@@ -86,6 +88,7 @@ module TencentCloud
           @HostRole = hostrole
           @DbEngine = dbengine
           @CreateTime = createtime
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -110,6 +113,7 @@ module TencentCloud
           @HostRole = params['HostRole']
           @DbEngine = params['DbEngine']
           @CreateTime = params['CreateTime']
+          @Zones = params['Zones']
         end
       end
 
@@ -293,10 +297,12 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param CpuType: CPU类型：Intel/AMD,Hygon
         # @type CpuType: String
+        # @param Zones: 可用区列表
+        # @type Zones: Array
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId, :ResourceTags, :CpuType
+        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId, :ResourceTags, :CpuType, :Zones
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil, resourcetags=nil, cputype=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil, resourcetags=nil, cputype=nil, zones=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -325,6 +331,7 @@ module TencentCloud
           @ClusterId = clusterid
           @ResourceTags = resourcetags
           @CpuType = cputype
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -363,6 +370,7 @@ module TencentCloud
             end
           end
           @CpuType = params['CpuType']
+          @Zones = params['Zones']
         end
       end
 
@@ -440,12 +448,14 @@ module TencentCloud
         # @type ResourceTags: Array
         # @param CpuType: CPU类型，Intel/AMD,Hygon
         # @type CpuType: String
+        # @param Zones: 可用区列表
+        # @type Zones: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId, :ResourceTags, :CpuType, :RequestId
+        attr_accessor :InstanceId, :InstanceName, :Region, :ProductId, :Type, :HostType, :AutoRenewFlag, :Status, :StatusDesc, :CreateTime, :PeriodEndTime, :HostNum, :DbNum, :AssignStrategy, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :Zone, :FenceId, :ClusterId, :ResourceTags, :CpuType, :Zones, :RequestId
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil, resourcetags=nil, cputype=nil, requestid=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, productid=nil, type=nil, hosttype=nil, autorenewflag=nil, status=nil, statusdesc=nil, createtime=nil, periodendtime=nil, hostnum=nil, dbnum=nil, assignstrategy=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, zone=nil, fenceid=nil, clusterid=nil, resourcetags=nil, cputype=nil, zones=nil, requestid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -474,6 +484,7 @@ module TencentCloud
           @ClusterId = clusterid
           @ResourceTags = resourcetags
           @CpuType = cputype
+          @Zones = zones
           @RequestId = requestid
         end
 
@@ -513,6 +524,7 @@ module TencentCloud
             end
           end
           @CpuType = params['CpuType']
+          @Zones = params['Zones']
           @RequestId = params['RequestId']
         end
       end
@@ -781,10 +793,12 @@ module TencentCloud
         # @type Pid: Integer
         # @param InstanceId: 独享集群实例Id
         # @type InstanceId: String
+        # @param Zones: 可用区列表
+        # @type Zones: Array
 
-        attr_accessor :HostId, :HostName, :Zone, :Status, :AssignStatus, :HostType, :DbNum, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :CpuRatio, :MemoryRatio, :DiskRatio, :MachineName, :MachineType, :PidTag, :Pid, :InstanceId
+        attr_accessor :HostId, :HostName, :Zone, :Status, :AssignStatus, :HostType, :DbNum, :CpuSpec, :CpuAssigned, :CpuAssignable, :MemorySpec, :MemoryAssigned, :MemoryAssignable, :DiskSpec, :DiskAssigned, :DiskAssignable, :CpuRatio, :MemoryRatio, :DiskRatio, :MachineName, :MachineType, :PidTag, :Pid, :InstanceId, :Zones
 
-        def initialize(hostid=nil, hostname=nil, zone=nil, status=nil, assignstatus=nil, hosttype=nil, dbnum=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, cpuratio=nil, memoryratio=nil, diskratio=nil, machinename=nil, machinetype=nil, pidtag=nil, pid=nil, instanceid=nil)
+        def initialize(hostid=nil, hostname=nil, zone=nil, status=nil, assignstatus=nil, hosttype=nil, dbnum=nil, cpuspec=nil, cpuassigned=nil, cpuassignable=nil, memoryspec=nil, memoryassigned=nil, memoryassignable=nil, diskspec=nil, diskassigned=nil, diskassignable=nil, cpuratio=nil, memoryratio=nil, diskratio=nil, machinename=nil, machinetype=nil, pidtag=nil, pid=nil, instanceid=nil, zones=nil)
           @HostId = hostid
           @HostName = hostname
           @Zone = zone
@@ -809,6 +823,7 @@ module TencentCloud
           @PidTag = pidtag
           @Pid = pid
           @InstanceId = instanceid
+          @Zones = zones
         end
 
         def deserialize(params)
@@ -836,6 +851,7 @@ module TencentCloud
           @PidTag = params['PidTag']
           @Pid = params['Pid']
           @InstanceId = params['InstanceId']
+          @Zones = params['Zones']
         end
       end
 

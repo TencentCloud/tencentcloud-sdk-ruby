@@ -22152,9 +22152,9 @@ module TencentCloud
       class ModifyNatGatewayAttributeRequest < TencentCloud::Common::AbstractModel
         # @param NatGatewayId: NAT网关的ID，形如：`nat-df45454`。
         # @type NatGatewayId: String
-        # @param NatGatewayName: NAT网关的名称，形如：`test_nat`。
+        # @param NatGatewayName: NAT网关的名称，形如：`test_nat`，边界值：[1,60] 字符。
         # @type NatGatewayName: String
-        # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位:Mbps)。
+        # @param InternetMaxBandwidthOut: NAT网关最大外网出带宽(单位:Mbps)，边界值：[0,50000]。
         # @type InternetMaxBandwidthOut: Integer
         # @param ModifySecurityGroup: 是否修改NAT网关绑定的安全组。
         # @type ModifySecurityGroup: Boolean
@@ -22162,16 +22162,19 @@ module TencentCloud
         # @type SecurityGroupIds: Array
         # @param DeletionProtectionEnabled: NAT实例是否开启删除保护
         # @type DeletionProtectionEnabled: Boolean
+        # @param PublicAddressAffinity: 同一个内网地址通过NAT网关访问同一个目的IP时，是否使用固定的弹性公网IP。默认为true，使用固定IP；false代表使用随机IP。当前适用于标准型NAT网关。
+        # @type PublicAddressAffinity: Boolean
 
-        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut, :ModifySecurityGroup, :SecurityGroupIds, :DeletionProtectionEnabled
+        attr_accessor :NatGatewayId, :NatGatewayName, :InternetMaxBandwidthOut, :ModifySecurityGroup, :SecurityGroupIds, :DeletionProtectionEnabled, :PublicAddressAffinity
 
-        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil, modifysecuritygroup=nil, securitygroupids=nil, deletionprotectionenabled=nil)
+        def initialize(natgatewayid=nil, natgatewayname=nil, internetmaxbandwidthout=nil, modifysecuritygroup=nil, securitygroupids=nil, deletionprotectionenabled=nil, publicaddressaffinity=nil)
           @NatGatewayId = natgatewayid
           @NatGatewayName = natgatewayname
           @InternetMaxBandwidthOut = internetmaxbandwidthout
           @ModifySecurityGroup = modifysecuritygroup
           @SecurityGroupIds = securitygroupids
           @DeletionProtectionEnabled = deletionprotectionenabled
+          @PublicAddressAffinity = publicaddressaffinity
         end
 
         def deserialize(params)
@@ -22181,6 +22184,7 @@ module TencentCloud
           @ModifySecurityGroup = params['ModifySecurityGroup']
           @SecurityGroupIds = params['SecurityGroupIds']
           @DeletionProtectionEnabled = params['DeletionProtectionEnabled']
+          @PublicAddressAffinity = params['PublicAddressAffinity']
         end
       end
 
@@ -29587,6 +29591,51 @@ module TencentCloud
 
       # UpdateTrafficMirrorDirection返回参数结构体
       class UpdateTrafficMirrorDirectionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpgradeNatGatewayProductVersion请求参数结构体
+      class UpgradeNatGatewayProductVersionRequest < TencentCloud::Common::AbstractModel
+        # @param VpcId: VPC实例ID。可通过DescribeVpcs接口返回值中的VpcId获取。
+        # @type VpcId: String
+        # @param NatGatewayId: NAT网关的ID，形如：`nat-ig8xpno8`。
+        # @type NatGatewayId: String
+        # @param Force: 是否热迁移。1表示冷迁移，0表示热迁移，默认值是0。
+        # @type Force: Integer
+        # @param CheckOnlyMode: 是否仅校验迁移可能性。true表示仅校验能否迁移，不做实际迁移。false表示正常迁移。默认值为false。
+        # 仅校验模式，不报错表示校验迁移成功。
+        # @type CheckOnlyMode: Boolean
+
+        attr_accessor :VpcId, :NatGatewayId, :Force, :CheckOnlyMode
+
+        def initialize(vpcid=nil, natgatewayid=nil, force=nil, checkonlymode=nil)
+          @VpcId = vpcid
+          @NatGatewayId = natgatewayid
+          @Force = force
+          @CheckOnlyMode = checkonlymode
+        end
+
+        def deserialize(params)
+          @VpcId = params['VpcId']
+          @NatGatewayId = params['NatGatewayId']
+          @Force = params['Force']
+          @CheckOnlyMode = params['CheckOnlyMode']
+        end
+      end
+
+      # UpgradeNatGatewayProductVersion返回参数结构体
+      class UpgradeNatGatewayProductVersionResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

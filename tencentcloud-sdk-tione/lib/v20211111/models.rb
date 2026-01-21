@@ -6278,6 +6278,57 @@ module TencentCloud
         end
       end
 
+      # ModifyServiceGroupWeights请求参数结构体
+      class ModifyServiceGroupWeightsRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceGroupId: 服务组id
+        # @type ServiceGroupId: String
+        # @param Weights: 权重设置
+        # @type Weights: Array
+
+        attr_accessor :ServiceGroupId, :Weights
+
+        def initialize(servicegroupid=nil, weights=nil)
+          @ServiceGroupId = servicegroupid
+          @Weights = weights
+        end
+
+        def deserialize(params)
+          @ServiceGroupId = params['ServiceGroupId']
+          unless params['Weights'].nil?
+            @Weights = []
+            params['Weights'].each do |i|
+              weightentry_tmp = WeightEntry.new
+              weightentry_tmp.deserialize(i)
+              @Weights << weightentry_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyServiceGroupWeights返回参数结构体
+      class ModifyServiceGroupWeightsResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceGroup: 更新权重后的服务组信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGroup: :class:`Tencentcloud::Tione.v20211111.models.ServiceGroup`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceGroup, :RequestId
+
+        def initialize(servicegroup=nil, requestid=nil)
+          @ServiceGroup = servicegroup
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceGroup'].nil?
+            @ServiceGroup = ServiceGroup.new
+            @ServiceGroup.deserialize(params['ServiceGroup'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多模态对话内容,支持图片与文字信息
       class MultiModalContent < TencentCloud::Common::AbstractModel
         # @param Type: 对话类型，text表示文本对话内容，image_url表示图片对话内容
@@ -9676,6 +9727,26 @@ module TencentCloud
           end
           @VolumeSourceType = params['VolumeSourceType']
           @MountPath = params['MountPath']
+        end
+      end
+
+      # 服务的权重
+      class WeightEntry < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务id
+        # @type ServiceId: String
+        # @param Weight: 流量权重值，同 ServiceGroup 下 总和应为 100
+        # @type Weight: Integer
+
+        attr_accessor :ServiceId, :Weight
+
+        def initialize(serviceid=nil, weight=nil)
+          @ServiceId = serviceid
+          @Weight = weight
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Weight = params['Weight']
         end
       end
 

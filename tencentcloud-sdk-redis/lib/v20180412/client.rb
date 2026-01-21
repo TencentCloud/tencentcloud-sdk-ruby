@@ -2647,7 +2647,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（UpgradeVersionToMultiAvailabilityZones）用于升级实例支持多AZ。
+        # 本接口已废弃。
 
         # @param request: Request instance for UpgradeVersionToMultiAvailabilityZones.
         # @type request: :class:`Tencentcloud::redis::V20180412::UpgradeVersionToMultiAvailabilityZonesRequest`

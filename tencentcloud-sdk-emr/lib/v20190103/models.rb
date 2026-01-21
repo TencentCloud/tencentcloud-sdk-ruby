@@ -1728,10 +1728,12 @@ module TencentCloud
         # @type DefaultMetaVersion: String
         # @param NeedCdbAudit: 是否开通审计
         # @type NeedCdbAudit: Integer
+        # @param SgIP: 安全组来源IP
+        # @type SgIP: String
 
-        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit
+        attr_accessor :InstanceName, :ClusterClass, :Software, :PlatFormType, :CosBucket, :EksClusterId, :ProductId, :ClientToken, :VPCSettings, :CloudResources, :SgId, :MetaDBInfo, :Tags, :LoginSettings, :ExternalService, :ZoneId, :DefaultMetaVersion, :NeedCdbAudit, :SgIP
 
-        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil)
+        def initialize(instancename=nil, clusterclass=nil, software=nil, platformtype=nil, cosbucket=nil, eksclusterid=nil, productid=nil, clienttoken=nil, vpcsettings=nil, cloudresources=nil, sgid=nil, metadbinfo=nil, tags=nil, loginsettings=nil, externalservice=nil, zoneid=nil, defaultmetaversion=nil, needcdbaudit=nil, sgip=nil)
           @InstanceName = instancename
           @ClusterClass = clusterclass
           @Software = software
@@ -1750,6 +1752,7 @@ module TencentCloud
           @ZoneId = zoneid
           @DefaultMetaVersion = defaultmetaversion
           @NeedCdbAudit = needcdbaudit
+          @SgIP = sgip
         end
 
         def deserialize(params)
@@ -1801,6 +1804,7 @@ module TencentCloud
           @ZoneId = params['ZoneId']
           @DefaultMetaVersion = params['DefaultMetaVersion']
           @NeedCdbAudit = params['NeedCdbAudit']
+          @SgIP = params['SgIP']
         end
       end
 

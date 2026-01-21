@@ -3438,6 +3438,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于列出子应用下存储的文件条目。
+
+        # **此API只在“FileID+Path模式”下可用**
+
+        # @param request: Request instance for ListFiles.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ListFilesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ListFilesResponse`
+        def ListFiles(request)
+          body = send_request('ListFiles', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListFilesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 直播即时剪辑，是指在直播过程中（即直播尚未结束时），客户可以在过往直播内容中选择一段，实时生成一个新的视频（HLS 格式），开发者可以将其立即分享出去，或者长久保存起来。
 
         # 腾讯云点播支持两种即时剪辑模式：

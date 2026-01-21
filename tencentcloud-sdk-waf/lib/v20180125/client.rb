@@ -3079,6 +3079,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取集团账号角色
+
+        # @param request: Request instance for GetOrganizationRole.
+        # @type request: :class:`Tencentcloud::waf::V20180125::GetOrganizationRoleRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::GetOrganizationRoleResponse`
+        def GetOrganizationRole(request)
+          body = send_request('GetOrganizationRole', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetOrganizationRoleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 导入IP黑白名单
 
         # @param request: Request instance for ImportIpAccessControl.

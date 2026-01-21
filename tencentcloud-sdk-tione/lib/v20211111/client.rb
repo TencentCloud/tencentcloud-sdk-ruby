@@ -1234,6 +1234,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新推理服务组流量分配
+
+        # @param request: Request instance for ModifyServiceGroupWeights.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyServiceGroupWeightsRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyServiceGroupWeightsResponse`
+        def ModifyServiceGroupWeights(request)
+          body = send_request('ModifyServiceGroupWeights', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyServiceGroupWeightsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 上报训练自定义指标
 
         # @param request: Request instance for PushTrainingMetrics.

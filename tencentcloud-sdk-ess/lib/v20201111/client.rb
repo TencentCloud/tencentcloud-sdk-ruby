@@ -2975,6 +2975,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeEnterpriseContractReviewChecklists）用于获取企业全部审查要点清单。
+
+        # @param request: Request instance for DescribeEnterpriseContractReviewChecklists.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeEnterpriseContractReviewChecklistsRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeEnterpriseContractReviewChecklistsResponse`
+        def DescribeEnterpriseContractReviewChecklists(request)
+          body = send_request('DescribeEnterpriseContractReviewChecklists', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnterpriseContractReviewChecklistsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业扩展服务的授权详情（列表），当前支持查询以下内容：
         # 1. 企业自动签（本企业授权、集团企业授权、合作企业授权）
         # 2. 批量签署能力

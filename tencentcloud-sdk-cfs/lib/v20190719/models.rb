@@ -955,15 +955,18 @@ module TencentCloud
         # @type TaskName: String
         # @param DataFlowId: 数据流动 ID ，该接口可以通过 DescribeDataFlow 查询
         # @type DataFlowId: String
+        # @param IsOverwrite: 	 当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。  ture：覆盖  false：不覆盖（同时也不会释放热存数据）  为空时，默认为false
+        # @type IsOverwrite: Boolean
 
-        attr_accessor :FileSystemId, :Type, :TaskPath, :TaskName, :DataFlowId
+        attr_accessor :FileSystemId, :Type, :TaskPath, :TaskName, :DataFlowId, :IsOverwrite
 
-        def initialize(filesystemid=nil, type=nil, taskpath=nil, taskname=nil, dataflowid=nil)
+        def initialize(filesystemid=nil, type=nil, taskpath=nil, taskname=nil, dataflowid=nil, isoverwrite=nil)
           @FileSystemId = filesystemid
           @Type = type
           @TaskPath = taskpath
           @TaskName = taskname
           @DataFlowId = dataflowid
+          @IsOverwrite = isoverwrite
         end
 
         def deserialize(params)
@@ -972,6 +975,7 @@ module TencentCloud
           @TaskPath = params['TaskPath']
           @TaskName = params['TaskName']
           @DataFlowId = params['DataFlowId']
+          @IsOverwrite = params['IsOverwrite']
         end
       end
 
@@ -2938,10 +2942,17 @@ module TencentCloud
         # @type Type: String
         # @param DataFlowId: 数据流动Id
         # @type DataFlowId: String
+        # @param IsOverwrite: 当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。
 
-        attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId
+        # ture：覆盖
 
-        def initialize(taskid=nil, taskstatus=nil, creationtime=nil, finishtime=nil, filetotalcount=nil, filesuccessedcount=nil, filefailedcount=nil, filetotalsize=nil, filesuccessedsize=nil, filefailedsize=nil, filetotallist=nil, filesuccessedlist=nil, filefailedlist=nil, filesystemid=nil, taskname=nil, taskpath=nil, type=nil, dataflowid=nil)
+        # false：不覆盖（同时也不会释放热存数据）
+        # 为空时，默认为false
+        # @type IsOverwrite: Boolean
+
+        attr_accessor :TaskId, :TaskStatus, :CreationTime, :FinishTime, :FileTotalCount, :FileSuccessedCount, :FileFailedCount, :FileTotalSize, :FileSuccessedSize, :FileFailedSize, :FileTotalList, :FileSuccessedList, :FileFailedList, :FileSystemId, :TaskName, :TaskPath, :Type, :DataFlowId, :IsOverwrite
+
+        def initialize(taskid=nil, taskstatus=nil, creationtime=nil, finishtime=nil, filetotalcount=nil, filesuccessedcount=nil, filefailedcount=nil, filetotalsize=nil, filesuccessedsize=nil, filefailedsize=nil, filetotallist=nil, filesuccessedlist=nil, filefailedlist=nil, filesystemid=nil, taskname=nil, taskpath=nil, type=nil, dataflowid=nil, isoverwrite=nil)
           @TaskId = taskid
           @TaskStatus = taskstatus
           @CreationTime = creationtime
@@ -2960,6 +2971,7 @@ module TencentCloud
           @TaskPath = taskpath
           @Type = type
           @DataFlowId = dataflowid
+          @IsOverwrite = isoverwrite
         end
 
         def deserialize(params)
@@ -2981,6 +2993,7 @@ module TencentCloud
           @TaskPath = params['TaskPath']
           @Type = params['Type']
           @DataFlowId = params['DataFlowId']
+          @IsOverwrite = params['IsOverwrite']
         end
       end
 
@@ -3050,16 +3063,34 @@ module TencentCloud
         # @param FileMinSize: 数据转储文件最小规格。其数值需使用“数字+单位”格式进行表示，单位支持K（KiB）、M（MiB）、G（GiB）。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileMinSize: String
+        # @param PolicyType: 策略类型
+        # @type PolicyType: String
+        # @param ExpireThreshold: 阈值范围[10-90]
+        # @type ExpireThreshold: Integer
+        # @param TargetThreshold: 阈值范围[10-90]
+        # @type TargetThreshold: Integer
+        # @param IsOverwrite: 当CFSTurbo内的文件和外置存储存在同名情况时，是否覆盖。
 
-        attr_accessor :StorageType, :FileType, :Action, :Interval, :FileMaxSize, :FileMinSize
+        # ture：覆盖
 
-        def initialize(storagetype=nil, filetype=nil, action=nil, interval=nil, filemaxsize=nil, fileminsize=nil)
+        # false：不覆盖（同时也不会释放热存数据）
+
+        # 为空时，默认为false
+        # @type IsOverwrite: Boolean
+
+        attr_accessor :StorageType, :FileType, :Action, :Interval, :FileMaxSize, :FileMinSize, :PolicyType, :ExpireThreshold, :TargetThreshold, :IsOverwrite
+
+        def initialize(storagetype=nil, filetype=nil, action=nil, interval=nil, filemaxsize=nil, fileminsize=nil, policytype=nil, expirethreshold=nil, targetthreshold=nil, isoverwrite=nil)
           @StorageType = storagetype
           @FileType = filetype
           @Action = action
           @Interval = interval
           @FileMaxSize = filemaxsize
           @FileMinSize = fileminsize
+          @PolicyType = policytype
+          @ExpireThreshold = expirethreshold
+          @TargetThreshold = targetthreshold
+          @IsOverwrite = isoverwrite
         end
 
         def deserialize(params)
@@ -3069,6 +3100,10 @@ module TencentCloud
           @Interval = params['Interval']
           @FileMaxSize = params['FileMaxSize']
           @FileMinSize = params['FileMinSize']
+          @PolicyType = params['PolicyType']
+          @ExpireThreshold = params['ExpireThreshold']
+          @TargetThreshold = params['TargetThreshold']
+          @IsOverwrite = params['IsOverwrite']
         end
       end
 
@@ -3526,17 +3561,21 @@ module TencentCloud
         # @type FileSystemId: String
         # @param Path: 目录绝对路径
         # @type Path: String
+        # @param DataFlowId: 数据流动Id
+        # @type DataFlowId: String
 
-        attr_accessor :FileSystemId, :Path
+        attr_accessor :FileSystemId, :Path, :DataFlowId
 
-        def initialize(filesystemid=nil, path=nil)
+        def initialize(filesystemid=nil, path=nil, dataflowid=nil)
           @FileSystemId = filesystemid
           @Path = path
+          @DataFlowId = dataflowid
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @Path = params['Path']
+          @DataFlowId = params['DataFlowId']
         end
       end
 

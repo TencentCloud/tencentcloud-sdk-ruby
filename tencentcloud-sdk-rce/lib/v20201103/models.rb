@@ -749,6 +749,7 @@ module TencentCloud
         # 4：小程序
         # @type Platform: String
         # @param DataAuthorization: 数据授权信息。
+        # 注意：新接入通用业务欺诈保护（RCE）服务的客户该字段【必传】。
         # @type DataAuthorization: :class:`Tencentcloud::Rce.v20201103.models.DataAuthorizationInfo`
 
         attr_accessor :Account, :SceneCode, :UserIp, :PostTime, :UserId, :DeviceToken, :DeviceBusinessId, :BusinessId, :Nickname, :EmailAddress, :CheckDevice, :CookieHash, :Referer, :UserAgent, :XForwardedFor, :MacAddress, :VendorId, :DeviceType, :Details, :Sponsor, :OnlineScam, :Platform, :DataAuthorization

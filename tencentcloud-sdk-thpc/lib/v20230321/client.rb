@@ -636,6 +636,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于修改节点属性
+
+        # @param request: Request instance for ModifyNodeAttribute.
+        # @type request: :class:`Tencentcloud::thpc::V20230321::ModifyNodeAttributeRequest`
+        # @rtype: :class:`Tencentcloud::thpc::V20230321::ModifyNodeAttributeResponse`
+        def ModifyNodeAttribute(request)
+          body = send_request('ModifyNodeAttribute', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNodeAttributeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ModifyWorkspacesAttribute) 用于修改工作空间的属性（目前只支持修改工作空间的名称）。
 
         # @param request: Request instance for ModifyWorkspacesAttribute.

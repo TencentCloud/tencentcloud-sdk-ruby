@@ -752,6 +752,50 @@ module TencentCloud
         end
       end
 
+      # CreateGroupLiveCodes请求参数结构体
+      class CreateGroupLiveCodesRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID。</p>
+        # @type RoomId: Integer
+        # @param Number: <p>分组数量。注：最大数量限制为30</p>
+        # @type Number: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :Number
+
+        def initialize(sdkappid=nil, roomid=nil, number=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @Number = number
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @Number = params['Number']
+        end
+      end
+
+      # CreateGroupLiveCodes返回参数结构体
+      class CreateGroupLiveCodesResponse < TencentCloud::Common::AbstractModel
+        # @param GroupLiveCodes: <p>分组直播参加码</p>
+        # @type GroupLiveCodes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupLiveCodes, :RequestId
+
+        def initialize(grouplivecodes=nil, requestid=nil)
+          @GroupLiveCodes = grouplivecodes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupLiveCodes = params['GroupLiveCodes']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateGroupWithMembers请求参数结构体
       class CreateGroupWithMembersRequest < TencentCloud::Common::AbstractModel
         # @param GroupName: 待创建群组名称
@@ -850,97 +894,73 @@ module TencentCloud
 
       # CreateRoom请求参数结构体
       class CreateRoomRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 课堂名称。
-        # 字符数不超过256
+        # @param Name: <p>课堂名称。<br>字符数不超过256</p>
         # @type Name: String
-        # @param StartTime: 预定的课堂开始时间，unix时间戳（秒）。
+        # @param StartTime: <p>预定的课堂开始时间，unix时间戳（秒）。</p>
         # @type StartTime: Integer
-        # @param EndTime: 预定的课堂结束时间，unix时间戳（秒）。
+        # @param EndTime: <p>预定的课堂结束时间，unix时间戳（秒）。</p>
         # @type EndTime: Integer
-        # @param SdkAppId: 低代码互动课堂的SdkAppId。
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId。</p>
         # @type SdkAppId: Integer
-        # @param Resolution: 头像区域，摄像头视频画面的分辨率。可以有如下取值：
-        # 1 标清
-        # 2 高清
-        # 3 全高清
-        # 注意：连麦人数（MaxMicNumber）>6时，仅可使用标清
+        # @param Resolution: <p>头像区域，摄像头视频画面的分辨率。可以有如下取值：<br>1 标清<br>2 高清<br>3 全高清<br>注意：连麦人数（MaxMicNumber）&gt;6时，仅可使用标清</p>
         # @type Resolution: Integer
-        # @param MaxMicNumber: 设置课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。该取值影响计费，请根据业务实际情况设置。计费规则见“购买指南”下“计费概述”。
+        # @param MaxMicNumber: <p>设置课堂同时最大可与老师进行连麦互动的人数，该参数支持正式上课/开播前调用修改房间修改。小班课取值范围[0,16]，大班课取值范围[0,1]，当取值为0时表示当前课堂/直播，不支持连麦互动。该取值影响计费，请根据业务实际情况设置。计费规则见“购买指南”下“计费概述”。</p>
         # @type MaxMicNumber: Integer
-        # @param SubType: 课堂子类型，可以有以下取值：videodoc 文档+视频video 纯视频
+        # @param SubType: <p>课堂子类型，可以有以下取值：videodoc 文档+视频video 纯视频</p>
         # @type SubType: String
-        # @param TeacherId: 老师ID。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有老师权限。
+        # @param TeacherId: <p>老师ID。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有老师权限。</p>
         # @type TeacherId: String
-        # @param AutoMic: 进入课堂时是否自动连麦。可以有以下取值：
-        # 0 不自动连麦（需要手动申请上麦，默认值）
-        # 1 自动连麦
+        # @param AutoMic: <p>进入课堂时是否自动连麦。可以有以下取值：<br>0 不自动连麦（需要手动申请上麦，默认值）<br>1 自动连麦</p>
         # @type AutoMic: Integer
-        # @param TurnOffMic: 释放音视频权限后是否自动取消连麦。可以有以下取值：
-        # 0 自动取消连麦（默认值）
-        # 1 保持连麦状态
+        # @param TurnOffMic: <p>释放音视频权限后是否自动取消连麦。可以有以下取值：<br>0 自动取消连麦（默认值）<br>1 保持连麦状态</p>
         # @type TurnOffMic: Integer
-        # @param AudioQuality: 声音音质。可以有以下取值：
-        # 0：流畅模式（默认值），占用更小的带宽、拥有更好的降噪效果，适用于1对1、小班教学、多人音视频会议等场景。
-        # 1：高音质模式，适合需要高保真传输音乐的场景，但降噪效果会被削弱，适用于音乐教学场景。
+        # @param AudioQuality: <p>声音音质。可以有以下取值：<br>0：流畅模式（默认值），占用更小的带宽、拥有更好的降噪效果，适用于1对1、小班教学、多人音视频会议等场景。<br>1：高音质模式，适合需要高保真传输音乐的场景，但降噪效果会被削弱，适用于音乐教学场景。</p>
         # @type AudioQuality: Integer
-        # @param DisableRecord: 录制方式，可以有以下取值：0 开启自动录制（默认值）1  禁止录制2 开启手动录制 注： - 如果该配置取值为0，录制将从上课后开始，课堂结束后停止。 - 如果该配置取值为2，需通过startRecord、stopRecord接口控制录制的开始和结束。
+        # @param DisableRecord: <p>录制方式，可以有以下取值：0 开启自动录制（默认值）1  禁止录制2 开启手动录制 注： - 如果该配置取值为0，录制将从上课后开始，课堂结束后停止。 - 如果该配置取值为2，需通过startRecord、stopRecord接口控制录制的开始和结束。</p>
         # @type DisableRecord: Integer
-        # @param Assistants: 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
+        # @param Assistants: <p>助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。</p>
         # @type Assistants: Array
-        # @param RTCAudienceNumber: rtc人数。
+        # @param RTCAudienceNumber: <p>rtc人数。</p>
         # @type RTCAudienceNumber: Integer
-        # @param AudienceType: 观看类型。互动观看 （默认）
+        # @param AudienceType: <p>观看类型。互动观看 （默认）</p>
         # @type AudienceType: Integer
-        # @param RecordLayout: 录制模板。未配置时默认取值0。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744
+        # @param RecordLayout: <p>录制模板。未配置时默认取值0。录制模板枚举值参考：https://cloud.tencent.com/document/product/1639/89744</p>
         # @type RecordLayout: Integer
-        # @param GroupId: 课堂绑定的群组ID,非空时限制组成员进入
+        # @param GroupId: <p>课堂绑定的群组ID,非空时限制组成员进入</p>
         # @type GroupId: String
-        # @param EnableDirectControl: 是否允许老师/助教直接控制学生的摄像头/麦克风。可以有以下取值：
-        # 0 不允许直接控制（需同意，默认值）
-        # 1 允许直接控制（无需同意）
+        # @param EnableDirectControl: <p>是否允许老师/助教直接控制学生的摄像头/麦克风。可以有以下取值：<br>0 不允许直接控制（需同意，默认值）<br>1 允许直接控制（无需同意）</p>
         # @type EnableDirectControl: Integer
-        # @param InteractionMode: 开启专注模式。
-        # 0 收看全部角色音视频(默认)
-        # 1 只看老师和助教
+        # @param InteractionMode: <p>开启专注模式。<br>0 收看全部角色音视频(默认)<br>1 只看老师和助教</p>
         # @type InteractionMode: Integer
-        # @param VideoOrientation: 横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型
+        # @param VideoOrientation: <p>横竖屏。0：横屏开播（默认值）; 1：竖屏开播，当前仅支持移动端的纯视频类型</p>
         # @type VideoOrientation: Integer
-        # @param IsGradingRequiredPostClass: 开启课后评分。 0：不开启(默认)  1：开启
+        # @param IsGradingRequiredPostClass: <p>开启课后评分。 0：不开启(默认)  1：开启</p>
         # @type IsGradingRequiredPostClass: Integer
-        # @param RoomType: 课堂类型: 0 小班课（默认值）; 1 大班课; 2 1V1 (预留参数，暂未开放); 3 圆桌会议 注：大班课的布局(layout)只有三分屏
+        # @param RoomType: <p>课堂类型。  注：大班课的布局(layout)只有三分屏</p><p>枚举值：</p><ul><li>0： 小班课（默认值）</li><li>1： 大班课</li><li>2： 1V1 (预留参数，暂未开放);</li><li>3： 圆桌会议</li><li>4： 分组直播 </li></ul><p>默认值：0</p>
         # @type RoomType: Integer
-        # @param Guests: 嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效
+        # @param Guests: <p>嘉宾Id列表。当圆桌会议模式（RoomType==3）时生效</p>
         # @type Guests: Array
-        # @param EndDelayTime: 拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟
+        # @param EndDelayTime: <p>拖堂时间：单位分钟，0为不限制(默认值), -1为不能拖堂，大于0为拖堂的时间，最大值120分钟</p>
         # @type EndDelayTime: Integer
-        # @param LiveType: 直播类型：0 常规（默认）1 伪直播 2 RTMP推流直播
+        # @param LiveType: <p>直播类型：0 常规（默认）1 伪直播 2 RTMP推流直播</p>
         # @type LiveType: Integer
-        # @param RecordLiveUrl: 伪直播链接。 支持的协议以及格式： 协议：HTTP、HTTPS、RTMP、HLS 。格式：FLV、MP3、MP4、MPEG-TS、MOV、MKV、M4A。视频编码：H.264、VP8。音频编码：AAC、OPUS。
+        # @param RecordLiveUrl: <p>伪直播链接。 支持的协议以及格式： 协议：HTTP、HTTPS、RTMP、HLS 。格式：FLV、MP3、MP4、MPEG-TS、MOV、MKV、M4A。视频编码：H.264、VP8。音频编码：AAC、OPUS。</p>
         # @type RecordLiveUrl: String
-        # @param EnableAutoStart: 是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1或2的时候有效
+        # @param EnableAutoStart: <p>是否自动开始上课：0 不自动上课（默认） 1 自动上课 live_type=1或2的时候有效</p>
         # @type EnableAutoStart: Integer
-        # @param RecordBackground: 录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道
+        # @param RecordBackground: <p>录制文件背景图片，支持png、jpg、jpeg、bmp格式，暂不支持透明通道</p>
         # @type RecordBackground: String
-        # @param RecordScene: 录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。
-
-        # 自定义场景参数的含义。如下：
-        #      scene：自定义js/css对应的场景值。如scene=recordScene，会加载 recordScene 场景对应的 js/css，这样就可以自定义录制页面的元素。
-        #     lng：录制页面对应的语种。如lng=en，则录制界面为en。（枚举值：en,zh，zh-TW，jp，ar，kr，vi）
-        #      customToken：录制页面中涉及客户自己的服务需要鉴权时进行配置。一般情况下，无需配置。
+        # @param RecordScene: <p>录制自定义场景。注意：仅recordlayout=9的时候此参数有效。需注意各类参数配置正确能够生效。不然会造成录制失败，失败后无法补救。数据内容为用户自定义场景参数，数据格式为json键值对方式，其中键值对的value为string类型。</p><p>自定义场景参数的含义。如下：<br>     scene：自定义js/css对应的场景值。如scene=recordScene，会加载 recordScene 场景对应的 js/css，这样就可以自定义录制页面的元素。<br>    lng：录制页面对应的语种。如lng=en，则录制界面为en。（枚举值：en,zh，zh-TW，jp，ar，kr，vi）<br>     customToken：录制页面中涉及客户自己的服务需要鉴权时进行配置。一般情况下，无需配置。</p>
         # @type RecordScene: String
-        # @param RecordLang: 录制自定义语言，仅recordlayout=9的时候此参数有效
+        # @param RecordLang: <p>录制自定义语言，仅recordlayout=9的时候此参数有效</p>
         # @type RecordLang: String
-        # @param RecordStream: 录制类型 0 仅录制混流（默认） ;1 录制混流+单流，该模式下除混流录制基础上，分别录制老师、台上学生的音视频流，每路录制都会产生相应的录制费用 。示例：0
+        # @param RecordStream: <p>录制类型 0 仅录制混流（默认） ;1 录制混流+单流，该模式下除混流录制基础上，分别录制老师、台上学生的音视频流，每路录制都会产生相应的录制费用 。示例：0</p>
         # @type RecordStream: Integer
-        # @param WhiteBoardSnapshotMode: 板书截图生成类型。0 不生成板书（默认）；1 全量模式；2 单页去重模式
+        # @param WhiteBoardSnapshotMode: <p>板书截图生成类型。0 不生成板书（默认）；1 全量模式；2 单页去重模式</p>
         # @type WhiteBoardSnapshotMode: Integer
-        # @param SubtitlesTranscription: 字幕转写功能开关。可以有以下取值：
-        # 0 不开启字幕转写功能（默认值）
-        # 1 自动转写模式：上课自动开启，下课自动停止
-        # 2 手动转写模式：支持老师或者助教通过客户端API手动开启/关闭字幕转写
-        # 设置0和1时客户端均不展示手动开关，设置2时老师或者助教端展示字幕转写开关
+        # @param SubtitlesTranscription: <p>字幕转写功能开关。可以有以下取值：<br>0 不开启字幕转写功能（默认值）<br>1 自动转写模式：上课自动开启，下课自动停止<br>2 手动转写模式：支持老师或者助教通过客户端API手动开启/关闭字幕转写<br>设置0和1时客户端均不展示手动开关，设置2时老师或者助教端展示字幕转写开关</p>
         # @type SubtitlesTranscription: Integer
-        # @param RecordMerge: 录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效
+        # @param RecordMerge: <p>录制文件合并开关。0 关闭 1 开启 注：只有在一节课多次启用手动录制时，此功能才有效</p>
         # @type RecordMerge: Integer
 
         attr_accessor :Name, :StartTime, :EndTime, :SdkAppId, :Resolution, :MaxMicNumber, :SubType, :TeacherId, :AutoMic, :TurnOffMic, :AudioQuality, :DisableRecord, :Assistants, :RTCAudienceNumber, :AudienceType, :RecordLayout, :GroupId, :EnableDirectControl, :InteractionMode, :VideoOrientation, :IsGradingRequiredPostClass, :RoomType, :Guests, :EndDelayTime, :LiveType, :RecordLiveUrl, :EnableAutoStart, :RecordBackground, :RecordScene, :RecordLang, :RecordStream, :WhiteBoardSnapshotMode, :SubtitlesTranscription, :RecordMerge
@@ -1027,7 +1047,7 @@ module TencentCloud
 
       # CreateRoom返回参数结构体
       class CreateRoomResponse < TencentCloud::Common::AbstractModel
-        # @param RoomId: 房间ID。
+        # @param RoomId: <p>房间ID。</p>
         # @type RoomId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1977,6 +1997,46 @@ module TencentCloud
               @GroupInfos << groupinfo_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGroupLiveCodes请求参数结构体
+      class DescribeGroupLiveCodesRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>学校ID</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID</p>
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DescribeGroupLiveCodes返回参数结构体
+      class DescribeGroupLiveCodesResponse < TencentCloud::Common::AbstractModel
+        # @param GroupLiveCodes: <p>分组直播参加码</p>
+        # @type GroupLiveCodes: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupLiveCodes, :RequestId
+
+        def initialize(grouplivecodes=nil, requestid=nil)
+          @GroupLiveCodes = grouplivecodes
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupLiveCodes = params['GroupLiveCodes']
           @RequestId = params['RequestId']
         end
       end

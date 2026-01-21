@@ -4851,10 +4851,12 @@ module TencentCloud
         # @type SessionContext: String
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
+        # @param MediaStoragePath: 媒体存储路径，以/开头。
+        # @type MediaStoragePath: String
 
-        attr_accessor :MediaType, :SubAppId, :MediaName, :CoverType, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SourceContext, :SessionContext, :ExtInfo
+        attr_accessor :MediaType, :SubAppId, :MediaName, :CoverType, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :SourceContext, :SessionContext, :ExtInfo, :MediaStoragePath
 
-        def initialize(mediatype=nil, subappid=nil, medianame=nil, covertype=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, extinfo=nil)
+        def initialize(mediatype=nil, subappid=nil, medianame=nil, covertype=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, extinfo=nil, mediastoragepath=nil)
           @MediaType = mediatype
           @SubAppId = subappid
           @MediaName = medianame
@@ -4866,6 +4868,7 @@ module TencentCloud
           @SourceContext = sourcecontext
           @SessionContext = sessioncontext
           @ExtInfo = extinfo
+          @MediaStoragePath = mediastoragepath
         end
 
         def deserialize(params)
@@ -4880,6 +4883,7 @@ module TencentCloud
           @SourceContext = params['SourceContext']
           @SessionContext = params['SessionContext']
           @ExtInfo = params['ExtInfo']
+          @MediaStoragePath = params['MediaStoragePath']
         end
       end
 
@@ -9427,19 +9431,41 @@ module TencentCloud
         # @type Description: String
         # @param Type: 应用类型， 取值有：<li>AllInOne：一体化；</li><li>Professional：专业版。</li>默认值为 AllInOne。
         # @type Type: String
+        # @param Mode: 此应用的模式，可选值为：
+        # - fileid：仅FileID模式
+        # - fileid+path：FileID & Path模式
+        # 留空时默认选择仅FileID模式
+        # @type Mode: String
+        # @param StorageRegion: 存储地域
+        # @type StorageRegion: String
+        # @param Tags: 此应用需要绑定的tag
+        # @type Tags: Array
 
-        attr_accessor :Name, :Description, :Type
+        attr_accessor :Name, :Description, :Type, :Mode, :StorageRegion, :Tags
 
-        def initialize(name=nil, description=nil, type=nil)
+        def initialize(name=nil, description=nil, type=nil, mode=nil, storageregion=nil, tags=nil)
           @Name = name
           @Description = description
           @Type = type
+          @Mode = mode
+          @StorageRegion = storageregion
+          @Tags = tags
         end
 
         def deserialize(params)
           @Name = params['Name']
           @Description = params['Description']
           @Type = params['Type']
+          @Mode = params['Mode']
+          @StorageRegion = params['StorageRegion']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
+          end
         end
       end
 
@@ -15580,11 +15606,14 @@ module TencentCloud
 
       # EnhanceMediaQuality请求参数结构体
       class EnhanceMediaQualityRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
-        # @type FileId: String
         # @param Definition: 音画质重生模板 ID。
         # 针对典型的使用场景，云点播提供了多个[预置模板](https://cloud.tencent.com/document/product/266/102586#50604b3f-0286-4a10-a3f7-18218116aff7)。
         # @type Definition: Integer
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # @type FileId: String
+        # @param MediaStoragePath: 媒体的存储路径。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type MediaStoragePath: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param OutputConfig: 音画质重生后的媒体文件配置。
@@ -15596,11 +15625,12 @@ module TencentCloud
         # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
         # @type TasksPriority: Integer
 
-        attr_accessor :FileId, :Definition, :SubAppId, :OutputConfig, :SessionId, :SessionContext, :TasksPriority
+        attr_accessor :Definition, :FileId, :MediaStoragePath, :SubAppId, :OutputConfig, :SessionId, :SessionContext, :TasksPriority
 
-        def initialize(fileid=nil, definition=nil, subappid=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
-          @FileId = fileid
+        def initialize(definition=nil, fileid=nil, mediastoragepath=nil, subappid=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil)
           @Definition = definition
+          @FileId = fileid
+          @MediaStoragePath = mediastoragepath
           @SubAppId = subappid
           @OutputConfig = outputconfig
           @SessionId = sessionid
@@ -15609,8 +15639,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FileId = params['FileId']
           @Definition = params['Definition']
+          @FileId = params['FileId']
+          @MediaStoragePath = params['MediaStoragePath']
           @SubAppId = params['SubAppId']
           unless params['OutputConfig'].nil?
             @OutputConfig = EnhanceMediaQualityOutputConfig.new
@@ -16486,6 +16517,66 @@ module TencentCloud
           @FileId = params['FileId']
           @Url = params['Url']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 云点播中存储的文件。
+      class FileContent < TencentCloud::Common::AbstractModel
+        # @param Key: 对象键。
+        # @type Key: String
+        # @param LastModified: 对象最后修改时间，为 ISO8601格式，例如2019-05-24T10:56:40Z。
+        # @type LastModified: String
+        # @param ETag: 对象的实体标签（Entity Tag），是对象被创建时标识对象内容的信息标签，可用于检查对象的内容是否发生变化。
+        # @type ETag: String
+        # @param Size: 对象大小，单位为Byte。
+        # @type Size: Integer
+        # @param StorageClass: 枚举值请参见[存储类型](https://cloud.tencent.com/document/product/436/33417)文档，例如 STANDARD_IA，ARCHIVE。
+        # @type StorageClass: String
+        # @param FileId: 此文件对应的媒体文件的唯一标识。
+        # @type FileId: String
+        # @param Category: 文件分类： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li> <li>Other: 其他文件</li>
+        # @type Category: String
+        # @param FileType: 可选值有：
+        #  - OriginalFiles：原文件
+        # - TranscodeFiles：转码文件
+        # - AdaptiveDynamicStreamingFiles：转自适应码流文件
+        # - SubtitleFiles：字幕文件
+        # - SampleSnapshotFiles：采样截图文件
+        # - ImageSpriteFiles：雪碧图截图文件
+        # - SnapshotByTimeOffsetFiles：时间点截图文件
+        # @type FileType: String
+        # @param Definition: 视频模板号，模板定义参见转码模板。
+        # @type Definition: Integer
+        # @param SubtitleID: 字幕ID。
+        # 仅当FileType=SubtitleFiles时有值。
+        # @type SubtitleID: String
+
+        attr_accessor :Key, :LastModified, :ETag, :Size, :StorageClass, :FileId, :Category, :FileType, :Definition, :SubtitleID
+
+        def initialize(key=nil, lastmodified=nil, etag=nil, size=nil, storageclass=nil, fileid=nil, category=nil, filetype=nil, definition=nil, subtitleid=nil)
+          @Key = key
+          @LastModified = lastmodified
+          @ETag = etag
+          @Size = size
+          @StorageClass = storageclass
+          @FileId = fileid
+          @Category = category
+          @FileType = filetype
+          @Definition = definition
+          @SubtitleID = subtitleid
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @LastModified = params['LastModified']
+          @ETag = params['ETag']
+          @Size = params['Size']
+          @StorageClass = params['StorageClass']
+          @FileId = params['FileId']
+          @Category = params['Category']
+          @FileType = params['FileType']
+          @Definition = params['Definition']
+          @SubtitleID = params['SubtitleID']
         end
       end
 
@@ -17769,6 +17860,81 @@ module TencentCloud
         end
       end
 
+      # ListFiles请求参数结构体
+      class ListFilesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: 点播[应用](/document/product/266/14574) ID。
+        # @type SubAppId: Integer
+        # @param Prefix: 对象键匹配前缀，限定响应中只包含指定前缀的对象键。
+        # @type Prefix: String
+        # @param Delimiter: 一个字符的分隔符，用于对对象键进行分组。所有对象键中从 prefix 或从头（如未指定 prefix）到首个 delimiter 之间相同的部分将作为 CommonPrefixes 下的一个 Prefix 节点。被分组的对象键不再出现在后续对象列表中。
+        # @type Delimiter: String
+        # @param MaxKeys: ys 	 单次返回最大的条目数量，默认值为100，最小为1，最大为100。
+        # @type MaxKeys: Integer
+        # @param Marker: 起始对象键标记
+        # @type Marker: String
+        # @param Categories: 文件类型。匹配集合中的任意元素： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li>
+        # @type Categories: Array
+
+        attr_accessor :SubAppId, :Prefix, :Delimiter, :MaxKeys, :Marker, :Categories
+
+        def initialize(subappid=nil, prefix=nil, delimiter=nil, maxkeys=nil, marker=nil, categories=nil)
+          @SubAppId = subappid
+          @Prefix = prefix
+          @Delimiter = delimiter
+          @MaxKeys = maxkeys
+          @Marker = marker
+          @Categories = categories
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Prefix = params['Prefix']
+          @Delimiter = params['Delimiter']
+          @MaxKeys = params['MaxKeys']
+          @Marker = params['Marker']
+          @Categories = params['Categories']
+        end
+      end
+
+      # ListFiles返回参数结构体
+      class ListFilesResponse < TencentCloud::Common::AbstractModel
+        # @param IsTruncated: 响应条目是否被截断。
+        # @type IsTruncated: Boolean
+        # @param NextMarker: 仅当响应条目有截断（IsTruncated 为 true）才会返回该节点，该节点的值为当前响应条目中的最后一个对象键，当需要继续请求后续条目时，将该节点的值作为下一次请求的 marker 参数传入。
+        # @type NextMarker: String
+        # @param CommonPrefixes: 从 prefix 或从头（如未指定 prefix）到首个 delimiter 之间相同的部分，定义为 Common Prefix。仅当请求中指定了 delimiter 参数才有可能返回该节点。
+        # @type CommonPrefixes: Array
+        # @param Contents: 对象条目。
+        # @type Contents: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :IsTruncated, :NextMarker, :CommonPrefixes, :Contents, :RequestId
+
+        def initialize(istruncated=nil, nextmarker=nil, commonprefixes=nil, contents=nil, requestid=nil)
+          @IsTruncated = istruncated
+          @NextMarker = nextmarker
+          @CommonPrefixes = commonprefixes
+          @Contents = contents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @IsTruncated = params['IsTruncated']
+          @NextMarker = params['NextMarker']
+          @CommonPrefixes = params['CommonPrefixes']
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              filecontent_tmp = FileContent.new
+              filecontent_tmp.deserialize(i)
+              @Contents << filecontent_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 即时剪辑后媒体的片段信息。
       class LiveRealTimeClipMediaSegmentInfo < TencentCloud::Common::AbstractModel
         # @param StartTime: 片段的起始时间。格式参照 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
@@ -18648,6 +18814,8 @@ module TencentCloud
         # @type SourceInfo: :class:`Tencentcloud::Vod.v20180717.models.MediaSourceData`
         # @param StorageRegion: 媒体文件存储地区，如 ap-chongqing，参见[地域列表](https://cloud.tencent.com/document/product/266/9760#.E5.B7.B2.E6.94.AF.E6.8C.81.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)。
         # @type StorageRegion: String
+        # @param StoragePath: 媒体的存储路径。
+        # @type StoragePath: String
         # @param TagSet: 媒体文件的标签信息。
         # @type TagSet: Array
         # @param Vid: 直播录制文件的唯一标识。
@@ -18666,9 +18834,9 @@ module TencentCloud
         # <li> DEEP_ARCHIVE：深度归档存储。</li>
         # @type StorageClass: String
 
-        attr_accessor :Name, :Description, :CreateTime, :UpdateTime, :ExpireTime, :ClassId, :ClassName, :ClassPath, :CoverUrl, :Type, :MediaUrl, :SourceInfo, :StorageRegion, :TagSet, :Vid, :Category, :Status, :StorageClass
+        attr_accessor :Name, :Description, :CreateTime, :UpdateTime, :ExpireTime, :ClassId, :ClassName, :ClassPath, :CoverUrl, :Type, :MediaUrl, :SourceInfo, :StorageRegion, :StoragePath, :TagSet, :Vid, :Category, :Status, :StorageClass
 
-        def initialize(name=nil, description=nil, createtime=nil, updatetime=nil, expiretime=nil, classid=nil, classname=nil, classpath=nil, coverurl=nil, type=nil, mediaurl=nil, sourceinfo=nil, storageregion=nil, tagset=nil, vid=nil, category=nil, status=nil, storageclass=nil)
+        def initialize(name=nil, description=nil, createtime=nil, updatetime=nil, expiretime=nil, classid=nil, classname=nil, classpath=nil, coverurl=nil, type=nil, mediaurl=nil, sourceinfo=nil, storageregion=nil, storagepath=nil, tagset=nil, vid=nil, category=nil, status=nil, storageclass=nil)
           @Name = name
           @Description = description
           @CreateTime = createtime
@@ -18682,6 +18850,7 @@ module TencentCloud
           @MediaUrl = mediaurl
           @SourceInfo = sourceinfo
           @StorageRegion = storageregion
+          @StoragePath = storagepath
           @TagSet = tagset
           @Vid = vid
           @Category = category
@@ -18706,6 +18875,7 @@ module TencentCloud
             @SourceInfo.deserialize(params['SourceInfo'])
           end
           @StorageRegion = params['StorageRegion']
+          @StoragePath = params['StoragePath']
           @TagSet = params['TagSet']
           @Vid = params['Vid']
           @Category = params['Category']
@@ -24359,10 +24529,14 @@ module TencentCloud
 
       # ProcessMediaByProcedure请求参数结构体
       class ProcessMediaByProcedureRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件 ID。
-        # @type FileId: String
         # @param ProcedureName: [任务流](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E6.B5.81)名称。
         # @type ProcedureName: String
+        # @param FileId: 媒体文件 ID。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type FileId: String
+        # @param MediaStoragePath: 媒体的存储路径。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type MediaStoragePath: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param TasksPriority: 任务流的优先级，数值越大优先级越高，取值范围是-10到10，不填代表0。
@@ -24376,11 +24550,12 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :FileId, :ProcedureName, :SubAppId, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
+        attr_accessor :ProcedureName, :FileId, :MediaStoragePath, :SubAppId, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
 
-        def initialize(fileid=nil, procedurename=nil, subappid=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
-          @FileId = fileid
+        def initialize(procedurename=nil, fileid=nil, mediastoragepath=nil, subappid=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @ProcedureName = procedurename
+          @FileId = fileid
+          @MediaStoragePath = mediastoragepath
           @SubAppId = subappid
           @TasksPriority = taskspriority
           @TasksNotifyMode = tasksnotifymode
@@ -24390,8 +24565,9 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @FileId = params['FileId']
           @ProcedureName = params['ProcedureName']
+          @FileId = params['FileId']
+          @MediaStoragePath = params['MediaStoragePath']
           @SubAppId = params['SubAppId']
           @TasksPriority = params['TasksPriority']
           @TasksNotifyMode = params['TasksNotifyMode']
@@ -24515,7 +24691,11 @@ module TencentCloud
       # ProcessMedia请求参数结构体
       class ProcessMediaRequest < TencentCloud::Common::AbstractModel
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
+        # FileId和MediaStoragePath必须提供其中一个。
         # @type FileId: String
+        # @param MediaStoragePath: 媒体的存储路径。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type MediaStoragePath: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
         # @param MediaProcessTask: 视频处理类型任务参数。
@@ -24538,10 +24718,11 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :FileId, :SubAppId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
+        attr_accessor :FileId, :MediaStoragePath, :SubAppId, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTask, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :ExtInfo
 
-        def initialize(fileid=nil, subappid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
+        def initialize(fileid=nil, mediastoragepath=nil, subappid=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontask=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, extinfo=nil)
           @FileId = fileid
+          @MediaStoragePath = mediastoragepath
           @SubAppId = subappid
           @MediaProcessTask = mediaprocesstask
           @AiContentReviewTask = aicontentreviewtask
@@ -24556,6 +24737,7 @@ module TencentCloud
 
         def deserialize(params)
           @FileId = params['FileId']
+          @MediaStoragePath = params['MediaStoragePath']
           @SubAppId = params['SubAppId']
           unless params['MediaProcessTask'].nil?
             @MediaProcessTask = MediaProcessTaskInput.new
@@ -25057,10 +25239,12 @@ module TencentCloud
         # @type ExtInfo: String
         # @param SourceContext: 来源上下文，用于透传用户请求信息，[上传完成回调](/document/product/266/7830) 将返回该字段值，最长 250 个字符。
         # @type SourceContext: String
+        # @param MediaStoragePath: 媒体存储路径，以/开头。
+        # @type MediaStoragePath: String
 
-        attr_accessor :MediaUrl, :MediaType, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :TasksPriority, :SessionContext, :SessionId, :ExtInfo, :SourceContext
+        attr_accessor :MediaUrl, :MediaType, :SubAppId, :MediaName, :CoverUrl, :Procedure, :ExpireTime, :StorageRegion, :ClassId, :TasksPriority, :SessionContext, :SessionId, :ExtInfo, :SourceContext, :MediaStoragePath
 
-        def initialize(mediaurl=nil, mediatype=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil)
+        def initialize(mediaurl=nil, mediatype=nil, subappid=nil, medianame=nil, coverurl=nil, procedure=nil, expiretime=nil, storageregion=nil, classid=nil, taskspriority=nil, sessioncontext=nil, sessionid=nil, extinfo=nil, sourcecontext=nil, mediastoragepath=nil)
           @MediaUrl = mediaurl
           @MediaType = mediatype
           @SubAppId = subappid
@@ -25075,6 +25259,7 @@ module TencentCloud
           @SessionId = sessionid
           @ExtInfo = extinfo
           @SourceContext = sourcecontext
+          @MediaStoragePath = mediastoragepath
         end
 
         def deserialize(params)
@@ -25092,6 +25277,7 @@ module TencentCloud
           @SessionId = params['SessionId']
           @ExtInfo = params['ExtInfo']
           @SourceContext = params['SourceContext']
+          @MediaStoragePath = params['MediaStoragePath']
         end
       end
 
@@ -27598,25 +27784,31 @@ module TencentCloud
 
       # ReviewImage请求参数结构体
       class ReviewImageRequest < TencentCloud::Common::AbstractModel
-        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
-        # @type FileId: String
         # @param Definition: 图片审核模板 ID，取值范围：
         # <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴力（Terror）和不适宜的信息（Polity）。</li>
         # @type Definition: Integer
+        # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type FileId: String
+        # @param MediaStoragePath: 媒体的存储路径。
+        # FileId和MediaStoragePath必须提供其中一个。
+        # @type MediaStoragePath: String
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
         # @type SubAppId: Integer
 
-        attr_accessor :FileId, :Definition, :SubAppId
+        attr_accessor :Definition, :FileId, :MediaStoragePath, :SubAppId
 
-        def initialize(fileid=nil, definition=nil, subappid=nil)
-          @FileId = fileid
+        def initialize(definition=nil, fileid=nil, mediastoragepath=nil, subappid=nil)
           @Definition = definition
+          @FileId = fileid
+          @MediaStoragePath = mediastoragepath
           @SubAppId = subappid
         end
 
         def deserialize(params)
-          @FileId = params['FileId']
           @Definition = params['Definition']
+          @FileId = params['FileId']
+          @MediaStoragePath = params['MediaStoragePath']
           @SubAppId = params['SubAppId']
         end
       end
@@ -29887,16 +30079,28 @@ module TencentCloud
         # @type Status: String
         # @param Name: 子应用名称（该字段已不推荐使用，建议使用新的子应用名称字段 SubAppIdName）。
         # @type Name: String
+        # @param Mode: 此应用的模式，可选值为：
+        # - fileid：仅FileID模式
+        # - - fileid+path：FileID & Path模式
+        # 留空时默认选择仅FileID模式
+        # @type Mode: String
+        # @param StorageRegions: 子应用已启用的存储地域。
+        # @type StorageRegions: Array
+        # @param Tags: 子应用绑定的tag。
+        # @type Tags: Array
 
-        attr_accessor :SubAppId, :SubAppIdName, :Description, :CreateTime, :Status, :Name
+        attr_accessor :SubAppId, :SubAppIdName, :Description, :CreateTime, :Status, :Name, :Mode, :StorageRegions, :Tags
 
-        def initialize(subappid=nil, subappidname=nil, description=nil, createtime=nil, status=nil, name=nil)
+        def initialize(subappid=nil, subappidname=nil, description=nil, createtime=nil, status=nil, name=nil, mode=nil, storageregions=nil, tags=nil)
           @SubAppId = subappid
           @SubAppIdName = subappidname
           @Description = description
           @CreateTime = createtime
           @Status = status
           @Name = name
+          @Mode = mode
+          @StorageRegions = storageregions
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -29906,6 +30110,16 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @Status = params['Status']
           @Name = params['Name']
+          @Mode = params['Mode']
+          @StorageRegions = params['StorageRegions']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              resourcetag_tmp = ResourceTag.new
+              resourcetag_tmp.deserialize(i)
+              @Tags << resourcetag_tmp
+            end
+          end
         end
       end
 

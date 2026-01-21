@@ -11786,14 +11786,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2025, 12
-        deprecate :AlarmNotifyPeriod=, :none, 2025, 12
-        deprecate :AlarmNotifyType, :none, 2025, 12
-        deprecate :AlarmNotifyType=, :none, 2025, 12
-        deprecate :EventID, :none, 2025, 12
-        deprecate :EventID=, :none, 2025, 12
-        deprecate :RuleID, :none, 2025, 12
-        deprecate :RuleID=, :none, 2025, 12
+        deprecate :AlarmNotifyPeriod, :none, 2026, 1
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 1
+        deprecate :AlarmNotifyType, :none, 2026, 1
+        deprecate :AlarmNotifyType=, :none, 2026, 1
+        deprecate :EventID, :none, 2026, 1
+        deprecate :EventID=, :none, 2026, 1
+        deprecate :RuleID, :none, 2026, 1
+        deprecate :RuleID=, :none, 2026, 1
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -14689,10 +14689,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2025, 12
-        deprecate :MaxBlockSize=, :none, 2025, 12
-        deprecate :Label, :none, 2025, 12
-        deprecate :Label=, :none, 2025, 12
+        deprecate :MaxBlockSize, :none, 2026, 1
+        deprecate :MaxBlockSize=, :none, 2026, 1
+        deprecate :Label, :none, 2026, 1
+        deprecate :Label=, :none, 2026, 1
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url
@@ -15710,15 +15710,18 @@ module TencentCloud
         # @type KubeType: Integer
         # @param ClusterId: 集群 ID，可不填
         # @type ClusterId: String
+        # @param Disable: 值为true时禁用集成
+        # @type Disable: Boolean
 
-        attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId
+        attr_accessor :InstanceId, :Kind, :Content, :KubeType, :ClusterId, :Disable
 
-        def initialize(instanceid=nil, kind=nil, content=nil, kubetype=nil, clusterid=nil)
+        def initialize(instanceid=nil, kind=nil, content=nil, kubetype=nil, clusterid=nil, disable=nil)
           @InstanceId = instanceid
           @Kind = kind
           @Content = content
           @KubeType = kubetype
           @ClusterId = clusterid
+          @Disable = disable
         end
 
         def deserialize(params)
@@ -15727,6 +15730,7 @@ module TencentCloud
           @Content = params['Content']
           @KubeType = params['KubeType']
           @ClusterId = params['ClusterId']
+          @Disable = params['Disable']
         end
       end
 

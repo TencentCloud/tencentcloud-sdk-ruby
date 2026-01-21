@@ -10752,6 +10752,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（UpgradeNatGatewayProductVersion）用于升级NAT实例产品版本，将传统型NAT实例升级到标准型NAT。
+
+        # @param request: Request instance for UpgradeNatGatewayProductVersion.
+        # @type request: :class:`Tencentcloud::vpc::V20170312::UpgradeNatGatewayProductVersionRequest`
+        # @rtype: :class:`Tencentcloud::vpc::V20170312::UpgradeNatGatewayProductVersionResponse`
+        def UpgradeNatGatewayProductVersion(request)
+          body = send_request('UpgradeNatGatewayProductVersion', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpgradeNatGatewayProductVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（WithdrawNotifyRoutes）用于撤销已发布到云联网的路由。路由表列表页操作增加“从云联网撤销”。
 
         # @param request: Request instance for WithdrawNotifyRoutes.

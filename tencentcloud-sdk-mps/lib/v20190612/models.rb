@@ -826,12 +826,15 @@ module TencentCloud
         # @type ImageSet: Array
         # @param OutputConfig: 图片处理输出配置。
         # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.ImageProcessOutputConfig`
+        # @param ExtPrompt: 图片处理附加 prompt，只针对某些场景可用。
+        # @type ExtPrompt: Array
 
-        attr_accessor :ImageSet, :OutputConfig
+        attr_accessor :ImageSet, :OutputConfig, :ExtPrompt
 
-        def initialize(imageset=nil, outputconfig=nil)
+        def initialize(imageset=nil, outputconfig=nil, extprompt=nil)
           @ImageSet = imageset
           @OutputConfig = outputconfig
+          @ExtPrompt = extprompt
         end
 
         def deserialize(params)
@@ -846,6 +849,14 @@ module TencentCloud
           unless params['OutputConfig'].nil?
             @OutputConfig = ImageProcessOutputConfig.new
             @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          unless params['ExtPrompt'].nil?
+            @ExtPrompt = []
+            params['ExtPrompt'].each do |i|
+              imageprocessprompt_tmp = ImageProcessPrompt.new
+              imageprocessprompt_tmp.deserialize(i)
+              @ExtPrompt << imageprocessprompt_tmp
+            end
           end
         end
       end
@@ -1573,20 +1584,24 @@ module TencentCloud
         # @type VideoPath: String
         # @param SpeakerPath: 标记文件路径
         # @type SpeakerPath: String
+        # @param VoiceId: 音色id
+        # @type VoiceId: String
         # @param OutputStorage: 译制视频存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :VideoPath, :SpeakerPath, :OutputStorage
+        attr_accessor :VideoPath, :SpeakerPath, :VoiceId, :OutputStorage
 
-        def initialize(videopath=nil, speakerpath=nil, outputstorage=nil)
+        def initialize(videopath=nil, speakerpath=nil, voiceid=nil, outputstorage=nil)
           @VideoPath = videopath
           @SpeakerPath = speakerpath
+          @VoiceId = voiceid
           @OutputStorage = outputstorage
         end
 
         def deserialize(params)
           @VideoPath = params['VideoPath']
           @SpeakerPath = params['SpeakerPath']
+          @VoiceId = params['VoiceId']
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
@@ -7820,6 +7835,12 @@ module TencentCloud
         # 4. GV, 可选[3.1]。
         # 5. OS，可选[2.0]。
         # @type ModelVersion: String
+        # @param SceneType: 指定场景生视频。
+        # 注意：仅部分模型支持指定场景。
+        # 1. Kling支持动作控制，motion_control。
+        # 2. Mingmou支持横转竖，land2port。
+        # 3. Vidu支持特效模板，template_effect。
+        # @type SceneType: String
         # @param Prompt: 生成视频的描述。(注：最大支持2000字符)。当未传入图片时，此参数必填。
         # @type Prompt: String
         # @param NegativePrompt: 用于描述您想要阻止模型生成的内容。
@@ -7876,11 +7897,12 @@ module TencentCloud
         # @param Operator: 接口操作者名称。
         # @type Operator: String
 
-        attr_accessor :ModelName, :ModelVersion, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
+        attr_accessor :ModelName, :ModelVersion, :SceneType, :Prompt, :NegativePrompt, :EnhancePrompt, :ImageUrl, :LastImageUrl, :ImageInfos, :Duration, :ExtraParameters, :StoreCosParam, :AdditionalParameters, :Operator
 
-        def initialize(modelname=nil, modelversion=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
+        def initialize(modelname=nil, modelversion=nil, scenetype=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, imageurl=nil, lastimageurl=nil, imageinfos=nil, duration=nil, extraparameters=nil, storecosparam=nil, additionalparameters=nil, operator=nil)
           @ModelName = modelname
           @ModelVersion = modelversion
+          @SceneType = scenetype
           @Prompt = prompt
           @NegativePrompt = negativeprompt
           @EnhancePrompt = enhanceprompt
@@ -7897,6 +7919,7 @@ module TencentCloud
         def deserialize(params)
           @ModelName = params['ModelName']
           @ModelVersion = params['ModelVersion']
+          @SceneType = params['SceneType']
           @Prompt = params['Prompt']
           @NegativePrompt = params['NegativePrompt']
           @EnhancePrompt = params['EnhancePrompt']
@@ -17800,14 +17823,20 @@ module TencentCloud
         # @type ImageWidth: Integer
         # @param ImageSize: 图片输出分辨率，取值：1K/2K/4K。
         # @type ImageSize: String
+        # @param Format: 图片输出编码格式，可取值：PNG、JPG、WEBP、HEIF、AVIF。
+        # @type Format: String
+        # @param Quality: 图片质量，对于某些输出格式可用，只有Format 有效的情况下生效，取值范围 0-100。
+        # @type Quality: Integer
 
-        attr_accessor :AspectRatio, :ImageHeight, :ImageWidth, :ImageSize
+        attr_accessor :AspectRatio, :ImageHeight, :ImageWidth, :ImageSize, :Format, :Quality
 
-        def initialize(aspectratio=nil, imageheight=nil, imagewidth=nil, imagesize=nil)
+        def initialize(aspectratio=nil, imageheight=nil, imagewidth=nil, imagesize=nil, format=nil, quality=nil)
           @AspectRatio = aspectratio
           @ImageHeight = imageheight
           @ImageWidth = imagewidth
           @ImageSize = imagesize
+          @Format = format
+          @Quality = quality
         end
 
         def deserialize(params)
@@ -17815,6 +17844,24 @@ module TencentCloud
           @ImageHeight = params['ImageHeight']
           @ImageWidth = params['ImageWidth']
           @ImageSize = params['ImageSize']
+          @Format = params['Format']
+          @Quality = params['Quality']
+        end
+      end
+
+      # 图片处理相关提示词。
+      class ImageProcessPrompt < TencentCloud::Common::AbstractModel
+        # @param Prompt: 图片处理相关的prompt。
+        # @type Prompt: String
+
+        attr_accessor :Prompt
+
+        def initialize(prompt=nil)
+          @Prompt = prompt
+        end
+
+        def deserialize(params)
+          @Prompt = params['Prompt']
         end
       end
 
@@ -26266,17 +26313,26 @@ module TencentCloud
         # @type Source: String
         # @param AudioFormat: 音频数据格式，默认为 pcm
 
-        # 支持的格式：pcm (16k 采样率的单声道 16 位采样 pcm 数据)
+        # 支持的格式：
+        # pcm (16000 采样率的单声道 16 位采样 pcm 数据)
+        # ogg-opus (16000 / 24000 / 48000 采样率的单声道 opus 编码的 ogg 数据)
         # @type AudioFormat: String
+        # @param SampleRate: 音频的采样率
+
+        # 支持的采样率：
+        # pcm 16000
+        # ogg-opus 16000 / 24000 / 48000
+        # @type SampleRate: Integer
         # @param UserExtPara: 扩展参数，默认不填，特殊需求使用
         # @type UserExtPara: String
 
-        attr_accessor :AudioData, :Source, :AudioFormat, :UserExtPara
+        attr_accessor :AudioData, :Source, :AudioFormat, :SampleRate, :UserExtPara
 
-        def initialize(audiodata=nil, source=nil, audioformat=nil, userextpara=nil)
+        def initialize(audiodata=nil, source=nil, audioformat=nil, samplerate=nil, userextpara=nil)
           @AudioData = audiodata
           @Source = source
           @AudioFormat = audioformat
+          @SampleRate = samplerate
           @UserExtPara = userextpara
         end
 
@@ -26284,6 +26340,7 @@ module TencentCloud
           @AudioData = params['AudioData']
           @Source = params['Source']
           @AudioFormat = params['AudioFormat']
+          @SampleRate = params['SampleRate']
           @UserExtPara = params['UserExtPara']
         end
       end

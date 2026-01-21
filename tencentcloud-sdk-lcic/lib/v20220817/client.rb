@@ -289,6 +289,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建分组直播参加码
+
+        # @param request: Request instance for CreateGroupLiveCodes.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::CreateGroupLiveCodesRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::CreateGroupLiveCodesResponse`
+        def CreateGroupLiveCodes(request)
+          body = send_request('CreateGroupLiveCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGroupLiveCodesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口根据成员列表创建群组
 
         # @param request: Request instance for CreateGroupWithMembers.
@@ -806,6 +830,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeGroupListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取分组直播参加码
+
+        # @param request: Request instance for DescribeGroupLiveCodes.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribeGroupLiveCodesRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribeGroupLiveCodesResponse`
+        def DescribeGroupLiveCodes(request)
+          body = send_request('DescribeGroupLiveCodes', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGroupLiveCodesResponse.new
             model.deserialize(response['Response'])
             model
           else

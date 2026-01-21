@@ -1112,10 +1112,14 @@ module TencentCloud
         # @type FinanceType: Integer
         # @param ToolAdvanceConfig: 工具高级设置
         # @type ToolAdvanceConfig: :class:`Tencentcloud::Lke.v20231130.models.ToolAdvanceConfig`
+        # @param AuthMode: 授权模式； 0-开发者授权；1-使用者授权
+        # @type AuthMode: Integer
+        # @param AuthType: 授权类型; 0-无鉴权；1-APIKey；2-CAM授权；3-Oauth2.0授权；
+        # @type AuthType: Integer
 
-        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource, :FinanceType, :ToolAdvanceConfig
+        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource, :FinanceType, :ToolAdvanceConfig, :AuthMode, :AuthType
 
-        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil, financetype=nil, tooladvanceconfig=nil)
+        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil, financetype=nil, tooladvanceconfig=nil, authmode=nil, authtype=nil)
           @PluginId = pluginid
           @PluginName = pluginname
           @IconUrl = iconurl
@@ -1136,6 +1140,8 @@ module TencentCloud
           @ToolSource = toolsource
           @FinanceType = financetype
           @ToolAdvanceConfig = tooladvanceconfig
+          @AuthMode = authmode
+          @AuthType = authtype
         end
 
         def deserialize(params)
@@ -1193,6 +1199,8 @@ module TencentCloud
             @ToolAdvanceConfig = ToolAdvanceConfig.new
             @ToolAdvanceConfig.deserialize(params['ToolAdvanceConfig'])
           end
+          @AuthMode = params['AuthMode']
+          @AuthType = params['AuthType']
         end
       end
 
@@ -1788,6 +1796,70 @@ module TencentCloud
               @WorkflowList << workflowref_tmp
             end
           end
+        end
+      end
+
+      # 音频信息
+      class Audio < TencentCloud::Common::AbstractModel
+        # @param Format: 音频文件格式
+        # @type Format: String
+        # @param AudioUrl: 音频文件地址
+        # @type AudioUrl: String
+        # @param Title: 音频标题
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Title: String
+        # @param Position: 音频文件在正文中的位置
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Position: Integer
+        # @param AudioTranscripts: 音频转录后的文字列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioTranscripts: Array
+
+        attr_accessor :Format, :AudioUrl, :Title, :Position, :AudioTranscripts
+
+        def initialize(format=nil, audiourl=nil, title=nil, position=nil, audiotranscripts=nil)
+          @Format = format
+          @AudioUrl = audiourl
+          @Title = title
+          @Position = position
+          @AudioTranscripts = audiotranscripts
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @AudioUrl = params['AudioUrl']
+          @Title = params['Title']
+          @Position = params['Position']
+          unless params['AudioTranscripts'].nil?
+            @AudioTranscripts = []
+            params['AudioTranscripts'].each do |i|
+              audiotranscript_tmp = AudioTranscript.new
+              audiotranscript_tmp.deserialize(i)
+              @AudioTranscripts << audiotranscript_tmp
+            end
+          end
+        end
+      end
+
+      # 音频转录的文本内容
+      class AudioTranscript < TencentCloud::Common::AbstractModel
+        # @param Speaker: 音频的发言者
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Speaker: String
+        # @param Transcript: 音频转录为文字后的内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Transcript: String
+
+        attr_accessor :Speaker, :Transcript
+
+        def initialize(speaker=nil, transcript=nil)
+          @Speaker = speaker
+          @Transcript = transcript
+        end
+
+        def deserialize(params)
+          @Speaker = params['Speaker']
+          @Transcript = params['Transcript']
         end
       end
 
@@ -8794,13 +8866,17 @@ module TencentCloud
       class ListReferShareKnowledgeResponse < TencentCloud::Common::AbstractModel
         # @param List: 共享知识库信息列表
         # @type List: Array
+        # @param Total: 共享知识库数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :List, :Total, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(list=nil, total=nil, requestid=nil)
           @List = list
+          @Total = total
           @RequestId = requestid
         end
 
@@ -8813,6 +8889,7 @@ module TencentCloud
               @List << knowledgebaseinfo_tmp
             end
           end
+          @Total = params['Total']
           @RequestId = params['RequestId']
         end
       end
@@ -10598,10 +10675,13 @@ module TencentCloud
         # @param WidgetAction: Widget动作信息
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WidgetAction: :class:`Tencentcloud::Lke.v20231130.models.WidgetAction`
+        # @param Audios: 音频信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Audios: Array
 
-        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought, :ExtraInfo, :WorkFlow, :Widgets, :WidgetAction
+        attr_accessor :Content, :SessionId, :RecordId, :RelatedRecordId, :IsFromSelf, :FromName, :FromAvatar, :Timestamp, :HasRead, :Score, :CanRating, :CanFeedback, :Type, :References, :Reasons, :IsLlmGenerated, :ImageUrls, :TokenStat, :ReplyMethod, :OptionCards, :TaskFlow, :FileInfos, :QuoteInfos, :AgentThought, :ExtraInfo, :WorkFlow, :Widgets, :WidgetAction, :Audios
 
-        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil, extrainfo=nil, workflow=nil, widgets=nil, widgetaction=nil)
+        def initialize(content=nil, sessionid=nil, recordid=nil, relatedrecordid=nil, isfromself=nil, fromname=nil, fromavatar=nil, timestamp=nil, hasread=nil, score=nil, canrating=nil, canfeedback=nil, type=nil, references=nil, reasons=nil, isllmgenerated=nil, imageurls=nil, tokenstat=nil, replymethod=nil, optioncards=nil, taskflow=nil, fileinfos=nil, quoteinfos=nil, agentthought=nil, extrainfo=nil, workflow=nil, widgets=nil, widgetaction=nil, audios=nil)
           @Content = content
           @SessionId = sessionid
           @RecordId = recordid
@@ -10630,6 +10710,7 @@ module TencentCloud
           @WorkFlow = workflow
           @Widgets = widgets
           @WidgetAction = widgetaction
+          @Audios = audios
         end
 
         def deserialize(params)
@@ -10706,6 +10787,14 @@ module TencentCloud
           unless params['WidgetAction'].nil?
             @WidgetAction = WidgetAction.new
             @WidgetAction.deserialize(params['WidgetAction'])
+          end
+          unless params['Audios'].nil?
+            @Audios = []
+            params['Audios'].each do |i|
+              audio_tmp = Audio.new
+              audio_tmp.deserialize(i)
+              @Audios << audio_tmp
+            end
           end
         end
       end

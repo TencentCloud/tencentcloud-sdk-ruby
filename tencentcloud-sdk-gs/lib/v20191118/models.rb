@@ -186,10 +186,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param HostServerSerialNumber: 机箱 ID
         # @type HostServerSerialNumber: String
+        # @param ServiceStatus: 服务状态。
+        # IDLE：未连接
+        # ESTABLISHED：连接中
+        # @type ServiceStatus: String
 
-        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber
+        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber, :ServiceStatus
 
-        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil)
+        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil, servicestatus=nil)
           @AndroidInstanceId = androidinstanceid
           @AndroidInstanceRegion = androidinstanceregion
           @AndroidInstanceZone = androidinstancezone
@@ -206,6 +210,7 @@ module TencentCloud
           @PrivateIP = privateip
           @CreateTime = createtime
           @HostServerSerialNumber = hostserverserialnumber
+          @ServiceStatus = servicestatus
         end
 
         def deserialize(params)
@@ -232,6 +237,7 @@ module TencentCloud
           @PrivateIP = params['PrivateIP']
           @CreateTime = params['CreateTime']
           @HostServerSerialNumber = params['HostServerSerialNumber']
+          @ServiceStatus = params['ServiceStatus']
         end
       end
 
@@ -275,8 +281,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2025, 12
-        deprecate :PackageVersion=, :none, 2025, 12
+        deprecate :PackageVersion, :none, 2026, 1
+        deprecate :PackageVersion=, :none, 2026, 1
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -2147,8 +2153,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2025, 12
-        deprecate :Labels=, :none, 2025, 12
+        deprecate :Labels, :none, 2026, 1
+        deprecate :Labels=, :none, 2026, 1
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total

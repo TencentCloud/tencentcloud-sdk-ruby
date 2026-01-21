@@ -21612,13 +21612,16 @@ module TencentCloud
         # @type SubnetId: String
         # @param Tags: 腾讯云标签
         # @type Tags: Array
+        # @param Quota: 按量配额
+        # @type Quota: :class:`Tencentcloud::Tke.v20180525.models.SuperNodeResource`
 
-        attr_accessor :DisplayName, :SubnetId, :Tags
+        attr_accessor :DisplayName, :SubnetId, :Tags, :Quota
 
-        def initialize(displayname=nil, subnetid=nil, tags=nil)
+        def initialize(displayname=nil, subnetid=nil, tags=nil, quota=nil)
           @DisplayName = displayname
           @SubnetId = subnetid
           @Tags = tags
+          @Quota = quota
         end
 
         def deserialize(params)
@@ -21631,6 +21634,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['Quota'].nil?
+            @Quota = SuperNodeResource.new
+            @Quota.deserialize(params['Quota'])
           end
         end
       end

@@ -2336,8 +2336,6 @@ module TencentCloud
         # @type Name: String
         # @param Spec: 集群规格，支持规格有 1.通用型:rocket-vip-basic-0; 2.基础型:rocket-vip-basic-1; 3.标准型:rocket-vip-basic-2; 4.高阶Ⅰ型:rocket-vip-basic-3; 5.高阶Ⅱ型:rocket-vip-basic-4
         # @type Spec: String
-        # @param NodeCount: 节点数量，最小2，最大20
-        # @type NodeCount: Integer
         # @param StorageSize: 单节点存储空间，GB为单位，最低200GB
         # @type StorageSize: Integer
         # @param ZoneIds: 节点部署的区域ID列表，如广州一区，则是100001，具体可查询腾讯云官网
@@ -2346,6 +2344,10 @@ module TencentCloud
         # @type VpcInfo: :class:`Tencentcloud::Tdmq.v20200217.models.VpcInfo`
         # @param TimeSpan: 购买时长，月为单位
         # @type TimeSpan: Integer
+        # @param NodeCount: 节点数量，创建专享集群时必填
+        # @type NodeCount: Integer
+        # @param GeneralSkuCode: 通用集群规格标识，新购通用集群时必填，从 [DescribeRocketMQGeneralSKUs](https://cloud.tencent.com/document/api/1179/127066) 接口返回的 [GeneralSKU](https://cloud.tencent.com/document/api/1179/46089#GeneralSKU) 字段获取。
+        # @type GeneralSkuCode: String
         # @param SupportsMigrateToCloud: 是否用于迁移上云，默认为false
         # @type SupportsMigrateToCloud: Boolean
         # @param EnablePublic: 是否开启公网
@@ -2357,16 +2359,17 @@ module TencentCloud
         # @param Tags: 标签
         # @type Tags: Array
 
-        attr_accessor :Name, :Spec, :NodeCount, :StorageSize, :ZoneIds, :VpcInfo, :TimeSpan, :SupportsMigrateToCloud, :EnablePublic, :Bandwidth, :IpRules, :Tags
+        attr_accessor :Name, :Spec, :StorageSize, :ZoneIds, :VpcInfo, :TimeSpan, :NodeCount, :GeneralSkuCode, :SupportsMigrateToCloud, :EnablePublic, :Bandwidth, :IpRules, :Tags
 
-        def initialize(name=nil, spec=nil, nodecount=nil, storagesize=nil, zoneids=nil, vpcinfo=nil, timespan=nil, supportsmigratetocloud=nil, enablepublic=nil, bandwidth=nil, iprules=nil, tags=nil)
+        def initialize(name=nil, spec=nil, storagesize=nil, zoneids=nil, vpcinfo=nil, timespan=nil, nodecount=nil, generalskucode=nil, supportsmigratetocloud=nil, enablepublic=nil, bandwidth=nil, iprules=nil, tags=nil)
           @Name = name
           @Spec = spec
-          @NodeCount = nodecount
           @StorageSize = storagesize
           @ZoneIds = zoneids
           @VpcInfo = vpcinfo
           @TimeSpan = timespan
+          @NodeCount = nodecount
+          @GeneralSkuCode = generalskucode
           @SupportsMigrateToCloud = supportsmigratetocloud
           @EnablePublic = enablepublic
           @Bandwidth = bandwidth
@@ -2377,7 +2380,6 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Spec = params['Spec']
-          @NodeCount = params['NodeCount']
           @StorageSize = params['StorageSize']
           @ZoneIds = params['ZoneIds']
           unless params['VpcInfo'].nil?
@@ -2385,6 +2387,8 @@ module TencentCloud
             @VpcInfo.deserialize(params['VpcInfo'])
           end
           @TimeSpan = params['TimeSpan']
+          @NodeCount = params['NodeCount']
+          @GeneralSkuCode = params['GeneralSkuCode']
           @SupportsMigrateToCloud = params['SupportsMigrateToCloud']
           @EnablePublic = params['EnablePublic']
           @Bandwidth = params['Bandwidth']
@@ -12734,10 +12738,15 @@ module TencentCloud
         # @type TopicNumUpperLimit: Integer
         # @param SendReceiveRatio: 控制生产和消费消息的 TPS 占比，取值范围0～1，默认值为0.5
         # @type SendReceiveRatio: Float
+        # @param TpsLimit: 收发 TPS 峰值上限
+        # @type TpsLimit: Integer
+        # @param GeneralSkuCode: 通用集群规格
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GeneralSkuCode: String
 
-        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic, :MaxRetention, :MinRetention, :Retention, :TopicNumLowerLimit, :TopicNumUpperLimit, :SendReceiveRatio
+        attr_accessor :MaxTpsPerNamespace, :MaxNamespaceNum, :UsedNamespaceNum, :MaxTopicNum, :UsedTopicNum, :MaxGroupNum, :UsedGroupNum, :ConfigDisplay, :NodeCount, :NodeDistribution, :TopicDistribution, :MaxQueuesPerTopic, :MaxRetention, :MinRetention, :Retention, :TopicNumLowerLimit, :TopicNumUpperLimit, :SendReceiveRatio, :TpsLimit, :GeneralSkuCode
 
-        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil, maxretention=nil, minretention=nil, retention=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, sendreceiveratio=nil)
+        def initialize(maxtpspernamespace=nil, maxnamespacenum=nil, usednamespacenum=nil, maxtopicnum=nil, usedtopicnum=nil, maxgroupnum=nil, usedgroupnum=nil, configdisplay=nil, nodecount=nil, nodedistribution=nil, topicdistribution=nil, maxqueuespertopic=nil, maxretention=nil, minretention=nil, retention=nil, topicnumlowerlimit=nil, topicnumupperlimit=nil, sendreceiveratio=nil, tpslimit=nil, generalskucode=nil)
           @MaxTpsPerNamespace = maxtpspernamespace
           @MaxNamespaceNum = maxnamespacenum
           @UsedNamespaceNum = usednamespacenum
@@ -12756,6 +12765,8 @@ module TencentCloud
           @TopicNumLowerLimit = topicnumlowerlimit
           @TopicNumUpperLimit = topicnumupperlimit
           @SendReceiveRatio = sendreceiveratio
+          @TpsLimit = tpslimit
+          @GeneralSkuCode = generalskucode
         end
 
         def deserialize(params)
@@ -12791,6 +12802,8 @@ module TencentCloud
           @TopicNumLowerLimit = params['TopicNumLowerLimit']
           @TopicNumUpperLimit = params['TopicNumUpperLimit']
           @SendReceiveRatio = params['SendReceiveRatio']
+          @TpsLimit = params['TpsLimit']
+          @GeneralSkuCode = params['GeneralSkuCode']
         end
       end
 

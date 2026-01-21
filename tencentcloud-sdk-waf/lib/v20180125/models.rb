@@ -11803,6 +11803,37 @@ module TencentCloud
         end
       end
 
+      # GetOrganizationRole请求参数结构体
+      class GetOrganizationRoleRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # GetOrganizationRole返回参数结构体
+      class GetOrganizationRoleResponse < TencentCloud::Common::AbstractModel
+        # @param Role: Admin:集团账号创建，DelegatedAdmin:委派管理员，Member：成员，NoMember：非集团账号成员
+        # @type Role: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Role, :RequestId
+
+        def initialize(role=nil, requestid=nil)
+          @Role = role
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 当前开启的、匹配范围为全局、优先级最高的场景信息
       class GlobalSceneInfo < TencentCloud::Common::AbstractModel
         # @param SceneId: 场景ID

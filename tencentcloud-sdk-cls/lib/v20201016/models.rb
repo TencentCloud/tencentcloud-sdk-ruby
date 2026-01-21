@@ -3600,24 +3600,23 @@ module TencentCloud
 
       # CreateDlcDeliver请求参数结构体
       class CreateDlcDeliverRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题id。
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id。</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @param Name: <p>名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。</p>
         # @type Name: String
-        # @param DeliverType: 投递类型。0:批投递,1:实时投递
+        # @param DeliverType: <p>投递类型。0:批投递,1:实时投递</p>
         # @type DeliverType: Integer
-        # @param StartTime: 投递时间范围的开始时间
+        # @param StartTime: <p>投递时间范围的开始时间</p>
         # @type StartTime: Integer
-        # @param DlcInfo: dlc配置信息
+        # @param DlcInfo: <p>dlc配置信息</p>
         # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
-        # @param MaxSize: 投递文件大小,单位MB。 DeliverType=0时必填，范围 5<= MaxSize <= 256。
+        # @param MaxSize: <p>投递文件大小,单位MB。 DeliverType=0时必填，范围 5&lt;= MaxSize &lt;= 256。</p>
         # @type MaxSize: Integer
-        # @param Interval: 投递间隔，单位秒。 DeliverType=0时必填，范围 300<= Interval <=900。
+        # @param Interval: <p>投递间隔，单位秒。 DeliverType=0时必填，范围 300&lt;= Interval &lt;=900。</p>
         # @type Interval: Integer
-        # @param EndTime: 投递时间范围的结束时间。 如果为空，则表示不限时。EndTime不为空时，需要大于StartTime。
+        # @param EndTime: <p>投递时间范围的结束时间。 如果为空，则表示不限时。EndTime不为空时，需要大于StartTime。</p>
         # @type EndTime: Integer
-        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启。默认开启
+        # @param HasServicesLog: <p>是否开启投递服务日志。1关闭，2开启。默认开启</p>
         # @type HasServicesLog: Integer
 
         attr_accessor :TopicId, :Name, :DeliverType, :StartTime, :DlcInfo, :MaxSize, :Interval, :EndTime, :HasServicesLog
@@ -3652,7 +3651,7 @@ module TencentCloud
 
       # CreateDlcDeliver返回参数结构体
       class CreateDlcDeliverResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 配置id
+        # @param TaskId: <p>配置id</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
