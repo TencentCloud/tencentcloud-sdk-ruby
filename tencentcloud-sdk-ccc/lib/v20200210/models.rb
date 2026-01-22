@@ -490,6 +490,7 @@ module TencentCloud
         # 2 已完成：任务中所有呼叫完成
         # 3结束中：任务到期，但仍有部分呼叫未结束
         # 4已结束：任务到期终止
+        # 5已暂停：可恢复继续执行
         # @type State: Integer
         # @param TaskId: 任务Id
         # @type TaskId: Integer
@@ -3008,7 +3009,7 @@ module TencentCloud
         # @type Callees: Array
         # @param IvrId: 任务使用的IvrId
         # @type IvrId: Integer
-        # @param State: 任务状态 0初始 1运行中 2已完成 3结束中 4已终止
+        # @param State: 任务状态 0初始 1运行中 2已完成 3结束中 4已终止 5已暂停
         # @type State: Integer
         # @param MaxRingTimeoutSecond: 最大振铃时长，达到时长阈值自动挂断。 仅自携号码支持当前参数
         # @type MaxRingTimeoutSecond: Integer

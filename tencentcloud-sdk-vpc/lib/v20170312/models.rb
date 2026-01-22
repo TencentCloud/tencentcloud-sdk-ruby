@@ -15613,14 +15613,20 @@ module TencentCloud
         # @type Offset: String
         # @param Limit: 返回数量，默认为20，最大值为100。
         # @type Limit: String
+        # @param MaxResults: 每次调用返回的最大结果数。如果查询返回的时候有NextToken返回，您可以使用NextToken值获取更多页结果， 当NextToke返回空或者返回的结果数量小于MaxResults时，表示没有更多数据了。允许的最大页面大小为 100。
+        # @type MaxResults: Integer
+        # @param NextToken: 如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
 
-        attr_accessor :SubnetIds, :Filters, :Offset, :Limit
+        attr_accessor :SubnetIds, :Filters, :Offset, :Limit, :MaxResults, :NextToken
 
-        def initialize(subnetids=nil, filters=nil, offset=nil, limit=nil)
+        def initialize(subnetids=nil, filters=nil, offset=nil, limit=nil, maxresults=nil, nexttoken=nil)
           @SubnetIds = subnetids
           @Filters = filters
           @Offset = offset
           @Limit = limit
+          @MaxResults = maxresults
+          @NextToken = nexttoken
         end
 
         def deserialize(params)
@@ -15635,6 +15641,8 @@ module TencentCloud
           end
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
         end
       end
 
@@ -15644,14 +15652,17 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param SubnetSet: 子网对象。
         # @type SubnetSet: Array
+        # @param NextToken: 如果NextToken返回非空字符串 ，表示还有更多可用结果。 NextToken是每个页面唯一的分页令牌。使用返回的令牌再次调用以检索下一页。需要保持所有其他参数不变。每个分页令牌在 24 小时后过期。
+        # @type NextToken: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :SubnetSet, :RequestId
+        attr_accessor :TotalCount, :SubnetSet, :NextToken, :RequestId
 
-        def initialize(totalcount=nil, subnetset=nil, requestid=nil)
+        def initialize(totalcount=nil, subnetset=nil, nexttoken=nil, requestid=nil)
           @TotalCount = totalcount
           @SubnetSet = subnetset
+          @NextToken = nexttoken
           @RequestId = requestid
         end
 
@@ -15665,6 +15676,7 @@ module TencentCloud
               @SubnetSet << subnet_tmp
             end
           end
+          @NextToken = params['NextToken']
           @RequestId = params['RequestId']
         end
       end

@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 开启智能顾问授权。会同步开启报告解读和云架构协作权限
+
+        # @param request: Request instance for CreateAdvisorAuthorization.
+        # @type request: :class:`Tencentcloud::advisor::V20200721::CreateAdvisorAuthorizationRequest`
+        # @rtype: :class:`Tencentcloud::advisor::V20200721::CreateAdvisorAuthorizationResponse`
+        def CreateAdvisorAuthorization(request)
+          body = send_request('CreateAdvisorAuthorization', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAdvisorAuthorizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 用于查询评估项的信息
 
         # @param request: Request instance for DescribeStrategies.

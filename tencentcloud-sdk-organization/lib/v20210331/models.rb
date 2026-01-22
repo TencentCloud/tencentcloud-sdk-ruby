@@ -443,13 +443,13 @@ module TencentCloud
 
       # AttachPolicy请求参数结构体
       class AttachPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param TargetId: 绑定策略目标ID。成员Uin或部门ID
+        # @param TargetId: <p>绑定策略目标ID。成员Uin或部门ID</p>
         # @type TargetId: Integer
-        # @param TargetType: 目标类型。取值范围：NODE-部门、MEMBER-成员
+        # @param TargetType: <p>目标类型。取值范围：NODE-部门、MEMBER-成员</p>
         # @type TargetType: String
-        # @param PolicyId: 策略ID。
+        # @param PolicyId: <p>策略Id。可以调用<a href="https://cloud.tencent.com/document/product/850/105311">ListPolicies</a>获取</p>
         # @type PolicyId: Integer
-        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @param Type: <p>策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略</p>
         # @type Type: String
 
         attr_accessor :TargetId, :TargetType, :PolicyId, :Type
@@ -3511,13 +3511,13 @@ module TencentCloud
 
       # DetachPolicy请求参数结构体
       class DetachPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param TargetId: 解绑策略目标ID。成员Uin或部门ID
+        # @param TargetId: <p>解绑策略目标ID。成员Uin或部门ID</p>
         # @type TargetId: Integer
-        # @param TargetType: 目标类型。取值范围：NODE-部门、MEMBER-成员
+        # @param TargetType: <p>目标类型。取值范围：NODE-部门、MEMBER-成员</p>
         # @type TargetType: String
-        # @param PolicyId: 策略ID。
+        # @param PolicyId: <p>策略Id。可以调用<a href="https://cloud.tencent.com/document/product/850/105311">ListPolicies</a>获取</p>
         # @type PolicyId: Integer
-        # @param Type: 策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略
+        # @param Type: <p>策略类型。默认值SERVICE_CONTROL_POLICY，取值范围：SERVICE_CONTROL_POLICY-服务控制策略、TAG_POLICY-标签策略</p>
         # @type Type: String
 
         attr_accessor :TargetId, :TargetType, :PolicyId, :Type

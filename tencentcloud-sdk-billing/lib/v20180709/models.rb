@@ -5065,6 +5065,91 @@ module TencentCloud
         end
       end
 
+      # CreateInstance请求参数结构体
+      class CreateInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClientToken: ClientToken是一个由客户端生成的唯一的、区分大小写、不超过64个ASCII字符的字符串。例如，ClientToken=123e4567-e89b-12d3-a456-42665544****。
+        # @type ClientToken: String
+        # @param ProductCode: 产品一层code
+        # @type ProductCode: String
+        # @param SubProductCode: 产品二层code
+        # @type SubProductCode: String
+        # @param RegionCode: 地域code
+        # @type RegionCode: String
+        # @param ZoneCode: 可用区code
+        # @type ZoneCode: String
+        # @param PayMode: 付费类型，取值：  PrePay：预付费
+        # @type PayMode: String
+        # @param Parameter: 商品详情信息
+        # @type Parameter: String
+        # @param Quantity: 商品数量，默认取值1
+        # @type Quantity: Integer
+        # @param ProjectId: 项目id，默认取0
+        # @type ProjectId: Integer
+        # @param Period: 新购时长，取值上限：36，默认取值1
+        # @type Period: Integer
+        # @param PeriodUnit: 新购时长单位，取值：m：按月购买，y：按年购买，默认取值m
+        # @type PeriodUnit: String
+        # @param RenewFlag: 自动续费标识，取值：NOTIFY_AND_MANUAL_RENEW：手动续费，NOTIFY_AND_AUTO_RENEW：自动续费，DISABLE_NOTIFY_AND_MANUAL_RENEW：到期不续，默认取值NOTIFY_AND_MANUAL_RENEW
+        # @type RenewFlag: String
+
+        attr_accessor :ClientToken, :ProductCode, :SubProductCode, :RegionCode, :ZoneCode, :PayMode, :Parameter, :Quantity, :ProjectId, :Period, :PeriodUnit, :RenewFlag
+
+        def initialize(clienttoken=nil, productcode=nil, subproductcode=nil, regioncode=nil, zonecode=nil, paymode=nil, parameter=nil, quantity=nil, projectid=nil, period=nil, periodunit=nil, renewflag=nil)
+          @ClientToken = clienttoken
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @RegionCode = regioncode
+          @ZoneCode = zonecode
+          @PayMode = paymode
+          @Parameter = parameter
+          @Quantity = quantity
+          @ProjectId = projectid
+          @Period = period
+          @PeriodUnit = periodunit
+          @RenewFlag = renewflag
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @RegionCode = params['RegionCode']
+          @ZoneCode = params['ZoneCode']
+          @PayMode = params['PayMode']
+          @Parameter = params['Parameter']
+          @Quantity = params['Quantity']
+          @ProjectId = params['ProjectId']
+          @Period = params['Period']
+          @PeriodUnit = params['PeriodUnit']
+          @RenewFlag = params['RenewFlag']
+        end
+      end
+
+      # CreateInstance返回参数结构体
+      class CreateInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param OrderId: 订单号
+        # @type OrderId: String
+        # @param InstanceIdList: 实例列表，商品发货延迟可能返回空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceIdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderId, :InstanceIdList, :RequestId
+
+        def initialize(orderid=nil, instanceidlist=nil, requestid=nil)
+          @OrderId = orderid
+          @InstanceIdList = instanceidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderId = params['OrderId']
+          @InstanceIdList = params['InstanceIdList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取预算管理的基础信息分页数据
       class DataForBudgetInfoPage < TencentCloud::Common::AbstractModel
         # @param Pages: 分页
@@ -8523,7 +8608,7 @@ module TencentCloud
         # payerUin=支付者账号
         # ownerUin=使用者账号
         # @type Dimensions: String
-        # @param FeeType: 费用类型：cost-总费用，totalCost-原价费用
+        # @param FeeType: 费用类型：cost-折后总费用，totalCost-原价费用
         # @type FeeType: String
         # @param PageSize: 数量，每页最大值为100
         # @type PageSize: Integer
@@ -10875,6 +10960,58 @@ module TencentCloud
         end
       end
 
+      # RefundInstance请求参数结构体
+      class RefundInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClientToken: ClientToken是一个由客户端生成的唯一的、区分大小写、不超过64个ASCII字符的字符串。例如，ClientToken=123e4567-e89b-12d3-a456-42665544****。
+        # @type ClientToken: String
+        # @param ProductCode: 产品一层code
+        # @type ProductCode: String
+        # @param SubProductCode: 产品二层code
+        # @type SubProductCode: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param RegionCode: 地域code
+        # @type RegionCode: String
+
+        attr_accessor :ClientToken, :ProductCode, :SubProductCode, :InstanceId, :RegionCode
+
+        def initialize(clienttoken=nil, productcode=nil, subproductcode=nil, instanceid=nil, regioncode=nil)
+          @ClientToken = clienttoken
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @InstanceId = instanceid
+          @RegionCode = regioncode
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @InstanceId = params['InstanceId']
+          @RegionCode = params['RegionCode']
+        end
+      end
+
+      # RefundInstance返回参数结构体
+      class RefundInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param OrderIdList: 订单号列表
+        # @type OrderIdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderIdList, :RequestId
+
+        def initialize(orderidlist=nil, requestid=nil)
+          @OrderIdList = orderidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderIdList = params['OrderIdList']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 按地域汇总消费详情
       class RegionSummaryOverviewItem < TencentCloud::Common::AbstractModel
         # @param RegionId: 地域ID
@@ -10924,6 +11061,66 @@ module TencentCloud
           @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
+        end
+      end
+
+      # RenewInstance请求参数结构体
+      class RenewInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClientToken: ClientToken是一个由客户端生成的唯一的、区分大小写、不超过64个ASCII字符的字符串。例如，ClientToken=123e4567-e89b-12d3-a456-42665544****。
+        # @type ClientToken: String
+        # @param ProductCode: 产品一层code
+        # @type ProductCode: String
+        # @param SubProductCode: 产品二层code
+        # @type SubProductCode: String
+        # @param RegionCode: 地域code
+        # @type RegionCode: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Period: 手动续费时长，取值上限：36，默认取值1
+        # @type Period: Integer
+        # @param PeriodUnit: 手动续费时长单位，取值：m：按月续费，y：按年续费，默认取值m
+        # @type PeriodUnit: String
+
+        attr_accessor :ClientToken, :ProductCode, :SubProductCode, :RegionCode, :InstanceId, :Period, :PeriodUnit
+
+        def initialize(clienttoken=nil, productcode=nil, subproductcode=nil, regioncode=nil, instanceid=nil, period=nil, periodunit=nil)
+          @ClientToken = clienttoken
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @RegionCode = regioncode
+          @InstanceId = instanceid
+          @Period = period
+          @PeriodUnit = periodunit
+        end
+
+        def deserialize(params)
+          @ClientToken = params['ClientToken']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @RegionCode = params['RegionCode']
+          @InstanceId = params['InstanceId']
+          @Period = params['Period']
+          @PeriodUnit = params['PeriodUnit']
+        end
+      end
+
+      # RenewInstance返回参数结构体
+      class RenewInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param OrderIdList: 订单号列表
+        # @type OrderIdList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :OrderIdList, :RequestId
+
+        def initialize(orderidlist=nil, requestid=nil)
+          @OrderIdList = orderidlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @OrderIdList = params['OrderIdList']
+          @RequestId = params['RequestId']
         end
       end
 

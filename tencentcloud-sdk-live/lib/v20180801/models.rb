@@ -8632,27 +8632,19 @@ module TencentCloud
 
       # DescribeLiveTranscodeDetailInfo请求参数结构体
       class DescribeLiveTranscodeDetailInfoRequest < TencentCloud::Common::AbstractModel
-        # @param PushDomain: 推流域名。
+        # @param PushDomain: <p>推流域名。</p>
         # @type PushDomain: String
-        # @param StreamName: 流名称。
+        # @param StreamName: <p>流名称。</p>
         # @type StreamName: String
-        # @param DayTime: 查询时间，北京时间，
-        # 格式：yyyymmdd。
-        # 注意：支持查询近1个月内某天的详细数据，截止到昨天。
+        # @param DayTime: <p>查询时间，北京时间，<br>格式：yyyymmdd。<br>注意：支持查询近1个月内某天的详细数据，截止到昨天。</p>
         # @type DayTime: String
-        # @param PageNum: 页数，默认1，
-        # 不超过100页。
+        # @param PageNum: <p>页数，默认1，<br>不超过100页。</p>
         # @type PageNum: Integer
-        # @param PageSize: 每页个数，默认20，
-        # 范围：[10,1000]。
+        # @param PageSize: <p>每页个数，默认20，<br>范围：[10,1000]。</p>
         # @type PageSize: Integer
-        # @param StartDayTime: 起始天时间，北京时间，
-        # 格式：yyyymmdd。
-        # 注意：支持查询近1个月内的详细数据。
+        # @param StartDayTime: <p>起始天时间，北京时间，<br>格式：yyyymmdd。<br>注意：支持查询近1个月内的详细数据。</p>
         # @type StartDayTime: String
-        # @param EndDayTime: 结束天时间，北京时间，
-        # 格式：yyyymmdd。
-        # 注意：支持查询近1个月内的详细数据，截止到昨天，注意DayTime 与（StartDayTime，EndDayTime）必须要传一个，如果都传，会以DayTime为准 。
+        # @param EndDayTime: <p>结束天时间，北京时间，<br>格式：yyyymmdd。<br>注意：支持查询近1个月内的详细数据，截止到昨天，注意DayTime 与（StartDayTime，EndDayTime）必须要传一个，如果都传，会以DayTime为准 。</p>
         # @type EndDayTime: String
 
         attr_accessor :PushDomain, :StreamName, :DayTime, :PageNum, :PageSize, :StartDayTime, :EndDayTime
@@ -8680,15 +8672,15 @@ module TencentCloud
 
       # DescribeLiveTranscodeDetailInfo返回参数结构体
       class DescribeLiveTranscodeDetailInfoResponse < TencentCloud::Common::AbstractModel
-        # @param DataInfoList: 统计数据列表。
+        # @param DataInfoList: <p>统计数据列表。</p>
         # @type DataInfoList: Array
-        # @param PageNum: 页码。
+        # @param PageNum: <p>页码。</p>
         # @type PageNum: Integer
-        # @param PageSize: 每页个数。
+        # @param PageSize: <p>每页个数。</p>
         # @type PageSize: Integer
-        # @param TotalNum: 总个数。
+        # @param TotalNum: <p>总个数。</p>
         # @type TotalNum: Integer
-        # @param TotalPage: 总页数。
+        # @param TotalPage: <p>总页数。</p>
         # @type TotalPage: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

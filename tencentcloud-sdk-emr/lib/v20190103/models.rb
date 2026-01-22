@@ -8358,10 +8358,12 @@ module TencentCloud
         # @type GroupId: Integer
         # @param Soft: soft例如yarn
         # @type Soft: String
+        # @param GraceDownProtectTime: 任务保护时间
+        # @type GraceDownProtectTime: Integer
 
-        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :SoftDeployDesc, :ServiceNodeDesc, :ServiceNodeInfo, :SoftDeployInfo, :LoadMetricsConditions, :GroupId, :Soft
+        attr_accessor :StrategyId, :StrategyName, :CalmDownTime, :ScaleAction, :ScaleNum, :ProcessMethod, :Priority, :StrategyStatus, :YarnNodeLabel, :PeriodValid, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :SoftDeployDesc, :ServiceNodeDesc, :ServiceNodeInfo, :SoftDeployInfo, :LoadMetricsConditions, :GroupId, :Soft, :GraceDownProtectTime
 
-        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, softdeploydesc=nil, servicenodedesc=nil, servicenodeinfo=nil, softdeployinfo=nil, loadmetricsconditions=nil, groupid=nil, soft=nil)
+        def initialize(strategyid=nil, strategyname=nil, calmdowntime=nil, scaleaction=nil, scalenum=nil, processmethod=nil, priority=nil, strategystatus=nil, yarnnodelabel=nil, periodvalid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, softdeploydesc=nil, servicenodedesc=nil, servicenodeinfo=nil, softdeployinfo=nil, loadmetricsconditions=nil, groupid=nil, soft=nil, gracedownprotecttime=nil)
           @StrategyId = strategyid
           @StrategyName = strategyname
           @CalmDownTime = calmdowntime
@@ -8385,6 +8387,7 @@ module TencentCloud
           @LoadMetricsConditions = loadmetricsconditions
           @GroupId = groupid
           @Soft = soft
+          @GraceDownProtectTime = gracedownprotecttime
         end
 
         def deserialize(params)
@@ -8421,6 +8424,7 @@ module TencentCloud
           end
           @GroupId = params['GroupId']
           @Soft = params['Soft']
+          @GraceDownProtectTime = params['GraceDownProtectTime']
         end
       end
 
@@ -14342,10 +14346,12 @@ module TencentCloud
         # @type GroupId: Integer
         # @param GraceDownLabel: 优雅缩容业务pod标签，当node不存在上述pod或超过优雅缩容时间时，缩容节点
         # @type GraceDownLabel: Array
+        # @param GraceDownProtectTime: 任务保护时间
+        # @type GraceDownProtectTime: Integer
 
-        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId, :GraceDownLabel
+        attr_accessor :StrategyName, :IntervalTime, :ScaleAction, :ScaleNum, :StrategyStatus, :Priority, :RetryValidTime, :RepeatStrategy, :StrategyId, :GraceDownFlag, :GraceDownTime, :GraceDownProtectFlag, :Tags, :ConfigGroupAssigned, :MeasureMethod, :TerminatePolicy, :MaxUse, :SoftDeployInfo, :ServiceNodeInfo, :CompensateFlag, :GroupId, :GraceDownLabel, :GraceDownProtectTime
 
-        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil, gracedownlabel=nil)
+        def initialize(strategyname=nil, intervaltime=nil, scaleaction=nil, scalenum=nil, strategystatus=nil, priority=nil, retryvalidtime=nil, repeatstrategy=nil, strategyid=nil, gracedownflag=nil, gracedowntime=nil, gracedownprotectflag=nil, tags=nil, configgroupassigned=nil, measuremethod=nil, terminatepolicy=nil, maxuse=nil, softdeployinfo=nil, servicenodeinfo=nil, compensateflag=nil, groupid=nil, gracedownlabel=nil, gracedownprotecttime=nil)
           @StrategyName = strategyname
           @IntervalTime = intervaltime
           @ScaleAction = scaleaction
@@ -14368,6 +14374,7 @@ module TencentCloud
           @CompensateFlag = compensateflag
           @GroupId = groupid
           @GraceDownLabel = gracedownlabel
+          @GraceDownProtectTime = gracedownprotecttime
         end
 
         def deserialize(params)
@@ -14410,6 +14417,7 @@ module TencentCloud
               @GraceDownLabel << tkelabel_tmp
             end
           end
+          @GraceDownProtectTime = params['GraceDownProtectTime']
         end
       end
 

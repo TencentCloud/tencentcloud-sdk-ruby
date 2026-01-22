@@ -45,6 +45,37 @@ module TencentCloud
         end
       end
 
+      # CreateAdvisorAuthorization请求参数结构体
+      class CreateAdvisorAuthorizationRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateAdvisorAuthorization返回参数结构体
+      class CreateAdvisorAuthorizationResponse < TencentCloud::Common::AbstractModel
+        # @param Message: 返回信息
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Message, :RequestId
+
+        def initialize(message=nil, requestid=nil)
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStrategies请求参数结构体
       class DescribeStrategiesRequest < TencentCloud::Common::AbstractModel
 
