@@ -1437,10 +1437,12 @@ module TencentCloud
         # @type SubscriptionExpirationTime: Integer
         # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
         # @type SubscriptionExpirationTimeEnable: Boolean
+        # @param Tags: 命名空间标签
+        # @type Tags: Array
 
-        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable
+        attr_accessor :EnvironmentId, :MsgTTL, :ClusterId, :Remark, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable, :Tags
 
-        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil)
+        def initialize(environmentid=nil, msgttl=nil, clusterid=nil, remark=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil, tags=nil)
           @EnvironmentId = environmentid
           @MsgTTL = msgttl
           @ClusterId = clusterid
@@ -1449,6 +1451,7 @@ module TencentCloud
           @AutoSubscriptionCreation = autosubscriptioncreation
           @SubscriptionExpirationTime = subscriptionexpirationtime
           @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -1463,6 +1466,14 @@ module TencentCloud
           @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
           @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
           @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2595,10 +2606,14 @@ module TencentCloud
         # @type AckTimeOut: Integer
         # @param PulsarTopicMessageType: Pulsar主题消息类型0: 混合消息1:普通消息2:延迟消息
         # @type PulsarTopicMessageType: Integer
+        # @param Tags: 主题标签
+        # @type Tags: Array
+        # @param DelayMessagePolicy: defaultPolicy/timingwheelPolicy不传默认是社区版本延迟消息策略
+        # @type DelayMessagePolicy: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :TopicType, :PulsarTopicType, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType, :Tags, :DelayMessagePolicy
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, topictype=nil, pulsartopictype=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil, tags=nil, delaymessagepolicy=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -2611,6 +2626,8 @@ module TencentCloud
           @IsolateConsumerEnable = isolateconsumerenable
           @AckTimeOut = acktimeout
           @PulsarTopicMessageType = pulsartopicmessagetype
+          @Tags = tags
+          @DelayMessagePolicy = delaymessagepolicy
         end
 
         def deserialize(params)
@@ -2626,6 +2643,15 @@ module TencentCloud
           @IsolateConsumerEnable = params['IsolateConsumerEnable']
           @AckTimeOut = params['AckTimeOut']
           @PulsarTopicMessageType = params['PulsarTopicMessageType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DelayMessagePolicy = params['DelayMessagePolicy']
         end
       end
 
@@ -8251,10 +8277,12 @@ module TencentCloud
         # @type SubscriptionExpirationTime: Integer
         # @param SubscriptionExpirationTimeEnable: 离线订阅过期自动清理时间开关
         # @type SubscriptionExpirationTimeEnable: Boolean
+        # @param Tags: 命名空间标签
+        # @type Tags: Array
 
-        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable
+        attr_accessor :EnvironmentId, :Remark, :MsgTTL, :CreateTime, :UpdateTime, :NamespaceId, :NamespaceName, :TopicNum, :RetentionPolicy, :AutoSubscriptionCreation, :SubscriptionExpirationTime, :SubscriptionExpirationTimeEnable, :Tags
 
-        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil)
+        def initialize(environmentid=nil, remark=nil, msgttl=nil, createtime=nil, updatetime=nil, namespaceid=nil, namespacename=nil, topicnum=nil, retentionpolicy=nil, autosubscriptioncreation=nil, subscriptionexpirationtime=nil, subscriptionexpirationtimeenable=nil, tags=nil)
           @EnvironmentId = environmentid
           @Remark = remark
           @MsgTTL = msgttl
@@ -8267,6 +8295,7 @@ module TencentCloud
           @AutoSubscriptionCreation = autosubscriptioncreation
           @SubscriptionExpirationTime = subscriptionexpirationtime
           @SubscriptionExpirationTimeEnable = subscriptionexpirationtimeenable
+          @Tags = tags
         end
 
         def deserialize(params)
@@ -8285,6 +8314,14 @@ module TencentCloud
           @AutoSubscriptionCreation = params['AutoSubscriptionCreation']
           @SubscriptionExpirationTime = params['SubscriptionExpirationTime']
           @SubscriptionExpirationTimeEnable = params['SubscriptionExpirationTimeEnable']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
         end
       end
 
@@ -10076,10 +10113,12 @@ module TencentCloud
         # @type IsolateConsumerEnable: Boolean
         # @param AckTimeOut: 消费者 Ack 超时时间，单位：秒，范围60-（3600*24
         # @type AckTimeOut: Integer
+        # @param DelayMessagePolicy: defaultPolicy/timingwheelPolicy不传默认是社区版本延迟消息策略
+        # @type DelayMessagePolicy: String
 
-        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut
+        attr_accessor :EnvironmentId, :TopicName, :Partitions, :ClusterId, :Remark, :MsgTTL, :UnackPolicy, :IsolateConsumerEnable, :AckTimeOut, :DelayMessagePolicy
 
-        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil)
+        def initialize(environmentid=nil, topicname=nil, partitions=nil, clusterid=nil, remark=nil, msgttl=nil, unackpolicy=nil, isolateconsumerenable=nil, acktimeout=nil, delaymessagepolicy=nil)
           @EnvironmentId = environmentid
           @TopicName = topicname
           @Partitions = partitions
@@ -10089,6 +10128,7 @@ module TencentCloud
           @UnackPolicy = unackpolicy
           @IsolateConsumerEnable = isolateconsumerenable
           @AckTimeOut = acktimeout
+          @DelayMessagePolicy = delaymessagepolicy
         end
 
         def deserialize(params)
@@ -10101,6 +10141,7 @@ module TencentCloud
           @UnackPolicy = params['UnackPolicy']
           @IsolateConsumerEnable = params['IsolateConsumerEnable']
           @AckTimeOut = params['AckTimeOut']
+          @DelayMessagePolicy = params['DelayMessagePolicy']
         end
       end
 
@@ -10700,7 +10741,7 @@ module TencentCloud
         # @type MaxBandWidth: Integer
         # @param MaxNamespaces: 最大命名空间个数
         # @type MaxNamespaces: Integer
-        # @param MaxTopics: 最大主题分区数
+        # @param MaxTopics: 可以创建的最大主题数
         # @type MaxTopics: Integer
         # @param ScalableTps: 规格外弹性TPS
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10709,12 +10750,20 @@ module TencentCloud
         # 当前集群topic的最大分区数
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MaxPartitions: Integer
-        # @param MaxDelayedMessages: 商品最大延迟消息数量。0代表没有限制
+        # @param MaxDelayedMessages: 最大延迟消息数量。0代表没有限制
         # @type MaxDelayedMessages: Integer
+        # @param MaxTopicsPartitioned: 可以创建的最大主题分区数
+        # @type MaxTopicsPartitioned: Integer
+        # @param BrokerMaxConnections: 单broker最大链接数
+        # @type BrokerMaxConnections: Integer
+        # @param BrokerMaxConnectionsPerIp: 单IP最大链接数
+        # @type BrokerMaxConnectionsPerIp: Integer
+        # @param MaximumElasticStorage: 弹性存储集群最大存储规格；固定存储该值为0
+        # @type MaximumElasticStorage: Integer
 
-        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps, :MaxPartitions, :MaxDelayedMessages
+        attr_accessor :SpecName, :MaxTps, :MaxBandWidth, :MaxNamespaces, :MaxTopics, :ScalableTps, :MaxPartitions, :MaxDelayedMessages, :MaxTopicsPartitioned, :BrokerMaxConnections, :BrokerMaxConnectionsPerIp, :MaximumElasticStorage
 
-        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil, maxpartitions=nil, maxdelayedmessages=nil)
+        def initialize(specname=nil, maxtps=nil, maxbandwidth=nil, maxnamespaces=nil, maxtopics=nil, scalabletps=nil, maxpartitions=nil, maxdelayedmessages=nil, maxtopicspartitioned=nil, brokermaxconnections=nil, brokermaxconnectionsperip=nil, maximumelasticstorage=nil)
           @SpecName = specname
           @MaxTps = maxtps
           @MaxBandWidth = maxbandwidth
@@ -10723,6 +10772,10 @@ module TencentCloud
           @ScalableTps = scalabletps
           @MaxPartitions = maxpartitions
           @MaxDelayedMessages = maxdelayedmessages
+          @MaxTopicsPartitioned = maxtopicspartitioned
+          @BrokerMaxConnections = brokermaxconnections
+          @BrokerMaxConnectionsPerIp = brokermaxconnectionsperip
+          @MaximumElasticStorage = maximumelasticstorage
         end
 
         def deserialize(params)
@@ -10734,6 +10787,10 @@ module TencentCloud
           @ScalableTps = params['ScalableTps']
           @MaxPartitions = params['MaxPartitions']
           @MaxDelayedMessages = params['MaxDelayedMessages']
+          @MaxTopicsPartitioned = params['MaxTopicsPartitioned']
+          @BrokerMaxConnections = params['BrokerMaxConnections']
+          @BrokerMaxConnectionsPerIp = params['BrokerMaxConnectionsPerIp']
+          @MaximumElasticStorage = params['MaximumElasticStorage']
         end
       end
 
@@ -14033,10 +14090,14 @@ module TencentCloud
         # @type AckTimeOut: Integer
         # @param PulsarTopicMessageType: Pulsar主题消息类型0: 混合消息1:普通消息2:延迟消息
         # @type PulsarTopicMessageType: Integer
+        # @param Tags: 主题标签
+        # @type Tags: Array
+        # @param DelayMessagePolicy: defaultPolicy/timingwheelPolicy不传默认是社区版本延迟消息策略
+        # @type DelayMessagePolicy: String
 
-        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType
+        attr_accessor :AverageMsgSize, :ConsumerCount, :LastConfirmedEntry, :LastLedgerCreatedTimestamp, :MsgRateIn, :MsgRateOut, :MsgThroughputIn, :MsgThroughputOut, :NumberOfEntries, :Partitions, :ProducerCount, :TotalSize, :SubTopicSets, :TopicType, :EnvironmentId, :TopicName, :Remark, :CreateTime, :UpdateTime, :ProducerLimit, :ConsumerLimit, :PulsarTopicType, :MsgTTL, :ClusterId, :Tenant, :IsolateConsumerEnable, :AckTimeOut, :PulsarTopicMessageType, :Tags, :DelayMessagePolicy
 
-        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil)
+        def initialize(averagemsgsize=nil, consumercount=nil, lastconfirmedentry=nil, lastledgercreatedtimestamp=nil, msgratein=nil, msgrateout=nil, msgthroughputin=nil, msgthroughputout=nil, numberofentries=nil, partitions=nil, producercount=nil, totalsize=nil, subtopicsets=nil, topictype=nil, environmentid=nil, topicname=nil, remark=nil, createtime=nil, updatetime=nil, producerlimit=nil, consumerlimit=nil, pulsartopictype=nil, msgttl=nil, clusterid=nil, tenant=nil, isolateconsumerenable=nil, acktimeout=nil, pulsartopicmessagetype=nil, tags=nil, delaymessagepolicy=nil)
           @AverageMsgSize = averagemsgsize
           @ConsumerCount = consumercount
           @LastConfirmedEntry = lastconfirmedentry
@@ -14065,6 +14126,8 @@ module TencentCloud
           @IsolateConsumerEnable = isolateconsumerenable
           @AckTimeOut = acktimeout
           @PulsarTopicMessageType = pulsartopicmessagetype
+          @Tags = tags
+          @DelayMessagePolicy = delaymessagepolicy
         end
 
         def deserialize(params)
@@ -14103,6 +14166,15 @@ module TencentCloud
           @IsolateConsumerEnable = params['IsolateConsumerEnable']
           @AckTimeOut = params['AckTimeOut']
           @PulsarTopicMessageType = params['PulsarTopicMessageType']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @DelayMessagePolicy = params['DelayMessagePolicy']
         end
       end
 

@@ -3420,6 +3420,26 @@ module TencentCloud
         end
       end
 
+      # 版本管理配置组工作模式信息。
+      class ConfigGroupWorkModeInfo < TencentCloud::Common::AbstractModel
+        # @param ConfigGroupType: 配置组类型，可选项如下：<li>l7_acceleration: 七层加速配置组；</li><li>edge_functions: 边缘函数配置组。</li>
+        # @type ConfigGroupType: String
+        # @param WorkMode: 工作模式，可选项如下：<li>immediate_effect: 即时生效模式；</li><li>version_control: 版本管理模式。</li>
+        # @type WorkMode: String
+
+        attr_accessor :ConfigGroupType, :WorkMode
+
+        def initialize(configgrouptype=nil, workmode=nil)
+          @ConfigGroupType = configgrouptype
+          @WorkMode = workmode
+        end
+
+        def deserialize(params)
+          @ConfigGroupType = params['ConfigGroupType']
+          @WorkMode = params['WorkMode']
+        end
+      end
+
       # ConfirmMultiPathGatewayOriginACL请求参数结构体
       class ConfirmMultiPathGatewayOriginACLRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
@@ -11694,8 +11714,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：
-        # <li>zone-name：按照站点名称进行过滤；</li><li>zone-type：按照站点类型进行过滤。可选项：<br>   full：NS 接入类型；<br>   partial：CNAME 接入类型；<br>   partialComposite：无域名接入类型；<br>   dnsPodAccess：DNSPod 托管接入类型；<br>   pages：Pages 类型。</li><li>zone-id：按照站点 ID 进行过滤，站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤。可选项：<br>   active：NS 已切换；<br>   pending：NS 待切换；<br>   deleted：已删除。</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤；</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：<li>zone-name：按照站点名称进行过滤；</li><li>zone-type：按照站点类型进行过滤。可选项：<br>   full：NS 接入类型；<br>   partial：CNAME 接入类型；<br>   partialComposite：无域名接入类型；<br>   dnsPodAccess：DNSPod 托管接入类型；<br>   pages：Pages 接入类型。 </li><li>zone-id：按照站点 ID 进行过滤，站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤。可选项：<br>   active：NS 已切换；<br>   pending：NS 待切换；<br>   deleted：已删除。</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤；</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
         # @type Filters: Array
         # @param Order: 可根据该字段对返回结果进行排序，取值有：
         # <li> type：接入类型；</li>
@@ -17910,6 +17929,49 @@ module TencentCloud
         end
       end
 
+      # ModifyZoneWorkMode请求参数结构体
+      class ModifyZoneWorkModeRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: 站点 ID。
+        # @type ZoneId: String
+        # @param WorkModeInfos: 版本管理配置组工作模式。站点各配置模块可按照配置组维度开启「版本管理模式」或「即时生效模式」，详情请参考 [版本管理](https://cloud.tencent.com/document/product/1552/113690)。
+        # @type WorkModeInfos: Array
+
+        attr_accessor :ZoneId, :WorkModeInfos
+
+        def initialize(zoneid=nil, workmodeinfos=nil)
+          @ZoneId = zoneid
+          @WorkModeInfos = workmodeinfos
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          unless params['WorkModeInfos'].nil?
+            @WorkModeInfos = []
+            params['WorkModeInfos'].each do |i|
+              configgroupworkmodeinfo_tmp = ConfigGroupWorkModeInfo.new
+              configgroupworkmodeinfo_tmp.deserialize(i)
+              @WorkModeInfos << configgroupworkmodeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyZoneWorkMode返回参数结构体
+      class ModifyZoneWorkModeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 多通道安全网关详情
       class MultiPathGateway < TencentCloud::Common::AbstractModel
         # @param GatewayId: 网关 ID。
@@ -23363,10 +23425,12 @@ module TencentCloud
         # @param VanityNameServersIps: 用户自定义 NS IP 信息。（该字段为历史保留字段，已不再维护，请根据站点类型参考对应字段）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VanityNameServersIps: Array
+        # @param WorkModeInfos: 版本管理配置组工作模式。站点各配置模块可按照配置组维度开启「版本管理模式」或「即时生效模式」，详情请参考 [版本管理](https://cloud.tencent.com/document/product/1552/113690)。
+        # @type WorkModeInfos: Array
 
-        attr_accessor :ZoneId, :ZoneName, :AliasZoneName, :Area, :Type, :Tags, :Resources, :NSDetail, :CNAMEDetail, :DNSPodDetail, :CreatedOn, :ModifiedOn, :Status, :CnameStatus, :ActiveStatus, :LockStatus, :Paused, :IsFake, :CnameSpeedUp, :OwnershipVerification, :OriginalNameServers, :NameServers, :VanityNameServers, :VanityNameServersIps
+        attr_accessor :ZoneId, :ZoneName, :AliasZoneName, :Area, :Type, :Tags, :Resources, :NSDetail, :CNAMEDetail, :DNSPodDetail, :CreatedOn, :ModifiedOn, :Status, :CnameStatus, :ActiveStatus, :LockStatus, :Paused, :IsFake, :CnameSpeedUp, :OwnershipVerification, :OriginalNameServers, :NameServers, :VanityNameServers, :VanityNameServersIps, :WorkModeInfos
 
-        def initialize(zoneid=nil, zonename=nil, aliaszonename=nil, area=nil, type=nil, tags=nil, resources=nil, nsdetail=nil, cnamedetail=nil, dnspoddetail=nil, createdon=nil, modifiedon=nil, status=nil, cnamestatus=nil, activestatus=nil, lockstatus=nil, paused=nil, isfake=nil, cnamespeedup=nil, ownershipverification=nil, originalnameservers=nil, nameservers=nil, vanitynameservers=nil, vanitynameserversips=nil)
+        def initialize(zoneid=nil, zonename=nil, aliaszonename=nil, area=nil, type=nil, tags=nil, resources=nil, nsdetail=nil, cnamedetail=nil, dnspoddetail=nil, createdon=nil, modifiedon=nil, status=nil, cnamestatus=nil, activestatus=nil, lockstatus=nil, paused=nil, isfake=nil, cnamespeedup=nil, ownershipverification=nil, originalnameservers=nil, nameservers=nil, vanitynameservers=nil, vanitynameserversips=nil, workmodeinfos=nil)
           @ZoneId = zoneid
           @ZoneName = zonename
           @AliasZoneName = aliaszonename
@@ -23391,6 +23455,7 @@ module TencentCloud
           @NameServers = nameservers
           @VanityNameServers = vanitynameservers
           @VanityNameServersIps = vanitynameserversips
+          @WorkModeInfos = workmodeinfos
         end
 
         def deserialize(params)
@@ -23452,6 +23517,14 @@ module TencentCloud
               vanitynameserversips_tmp = VanityNameServersIps.new
               vanitynameserversips_tmp.deserialize(i)
               @VanityNameServersIps << vanitynameserversips_tmp
+            end
+          end
+          unless params['WorkModeInfos'].nil?
+            @WorkModeInfos = []
+            params['WorkModeInfos'].each do |i|
+              configgroupworkmodeinfo_tmp = ConfigGroupWorkModeInfo.new
+              configgroupworkmodeinfo_tmp.deserialize(i)
+              @WorkModeInfos << configgroupworkmodeinfo_tmp
             end
           end
         end

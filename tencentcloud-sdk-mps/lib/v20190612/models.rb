@@ -24583,10 +24583,12 @@ module TencentCloud
         # @type ScheduleId: Integer
         # @param AddOnParameter: 图片处理附加参数。
         # @type AddOnParameter: :class:`Tencentcloud::Mps.v20190612.models.AddOnParameter`
+        # @param StdExtInfo: 图片处理拓展参数。
+        # @type StdExtInfo: String
 
-        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :Definition, :ResourceId, :ImageTask, :ScheduleId, :AddOnParameter
+        attr_accessor :InputInfo, :OutputStorage, :OutputDir, :OutputPath, :Definition, :ResourceId, :ImageTask, :ScheduleId, :AddOnParameter, :StdExtInfo
 
-        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, definition=nil, resourceid=nil, imagetask=nil, scheduleid=nil, addonparameter=nil)
+        def initialize(inputinfo=nil, outputstorage=nil, outputdir=nil, outputpath=nil, definition=nil, resourceid=nil, imagetask=nil, scheduleid=nil, addonparameter=nil, stdextinfo=nil)
           @InputInfo = inputinfo
           @OutputStorage = outputstorage
           @OutputDir = outputdir
@@ -24596,6 +24598,7 @@ module TencentCloud
           @ImageTask = imagetask
           @ScheduleId = scheduleid
           @AddOnParameter = addonparameter
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -24620,6 +24623,7 @@ module TencentCloud
             @AddOnParameter = AddOnParameter.new
             @AddOnParameter.deserialize(params['AddOnParameter'])
           end
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 

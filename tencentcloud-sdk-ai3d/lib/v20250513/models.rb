@@ -510,11 +510,14 @@ module TencentCloud
       class SubmitHunyuan3DPartJobRequest < TencentCloud::Common::AbstractModel
         # @param File: 需进行组件生成的3D模型文件，仅支持FBX格式。
         # @type File: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
+        # @param Model: 组件生成模型版本，默认为1.0，可选项：1.0，1.5；
+        # @type Model: String
 
-        attr_accessor :File
+        attr_accessor :File, :Model
 
-        def initialize(file=nil)
+        def initialize(file=nil, model=nil)
           @File = file
+          @Model = model
         end
 
         def deserialize(params)
@@ -522,6 +525,7 @@ module TencentCloud
             @File = InputFile3D.new
             @File.deserialize(params['File'])
           end
+          @Model = params['Model']
         end
       end
 

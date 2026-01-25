@@ -4037,16 +4037,24 @@ module TencentCloud
         # @param StorageSize: 数据库存储大小
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StorageSize: Integer
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param DatasourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: String
 
-        attr_accessor :Guid, :Name, :CatalogName, :Description, :Location, :StorageSize
+        attr_accessor :Guid, :Name, :CatalogName, :Description, :Location, :StorageSize, :DatasourceId, :DatasourceType
 
-        def initialize(guid=nil, name=nil, catalogname=nil, description=nil, location=nil, storagesize=nil)
+        def initialize(guid=nil, name=nil, catalogname=nil, description=nil, location=nil, storagesize=nil, datasourceid=nil, datasourcetype=nil)
           @Guid = guid
           @Name = name
           @CatalogName = catalogname
           @Description = description
           @Location = location
           @StorageSize = storagesize
+          @DatasourceId = datasourceid
+          @DatasourceType = datasourcetype
         end
 
         def deserialize(params)
@@ -4056,6 +4064,8 @@ module TencentCloud
           @Description = params['Description']
           @Location = params['Location']
           @StorageSize = params['StorageSize']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceType = params['DatasourceType']
         end
       end
 
@@ -8950,7 +8960,7 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: 分页大小，最大500
         # @type PageSize: Integer
-        # @param ParentCatalogId: 父目录ID
+        # @param ParentCatalogId: 父目录ID(此参数还未支持)
         # @type ParentCatalogId: String
 
         attr_accessor :PageNumber, :PageSize, :ParentCatalogId
@@ -18334,10 +18344,19 @@ module TencentCloud
         # @param BusinessMetadata: 表的业务元数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BusinessMetadata: :class:`Tencentcloud::Wedata.v20250806.models.BusinessMetadata`
+        # @param CatalogName: 数据目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param DatasourceId: 数据源ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceId: Integer
+        # @param DatasourceType: 数据源类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceType: String
 
-        attr_accessor :Guid, :Name, :Description, :DatabaseName, :SchemaName, :TableType, :CreateTime, :UpdateTime, :TechnicalMetadata, :BusinessMetadata
+        attr_accessor :Guid, :Name, :Description, :DatabaseName, :SchemaName, :TableType, :CreateTime, :UpdateTime, :TechnicalMetadata, :BusinessMetadata, :CatalogName, :DatasourceId, :DatasourceType
 
-        def initialize(guid=nil, name=nil, description=nil, databasename=nil, schemaname=nil, tabletype=nil, createtime=nil, updatetime=nil, technicalmetadata=nil, businessmetadata=nil)
+        def initialize(guid=nil, name=nil, description=nil, databasename=nil, schemaname=nil, tabletype=nil, createtime=nil, updatetime=nil, technicalmetadata=nil, businessmetadata=nil, catalogname=nil, datasourceid=nil, datasourcetype=nil)
           @Guid = guid
           @Name = name
           @Description = description
@@ -18348,6 +18367,9 @@ module TencentCloud
           @UpdateTime = updatetime
           @TechnicalMetadata = technicalmetadata
           @BusinessMetadata = businessmetadata
+          @CatalogName = catalogname
+          @DatasourceId = datasourceid
+          @DatasourceType = datasourcetype
         end
 
         def deserialize(params)
@@ -18367,6 +18389,9 @@ module TencentCloud
             @BusinessMetadata = BusinessMetadata.new
             @BusinessMetadata.deserialize(params['BusinessMetadata'])
           end
+          @CatalogName = params['CatalogName']
+          @DatasourceId = params['DatasourceId']
+          @DatasourceType = params['DatasourceType']
         end
       end
 

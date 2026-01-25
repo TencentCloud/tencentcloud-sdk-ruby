@@ -501,6 +501,42 @@ module TencentCloud
         end
       end
 
+      # 目标IP信息
+      class DestIpInfo < TencentCloud::Common::AbstractModel
+        # @param Time: 时间：s
+        # @type Time: String
+        # @param GatewayIp: 网关IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayIp: String
+        # @param GatewaySite: 网关地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewaySite: String
+        # @param IpCount: 目标IP数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpCount: Integer
+        # @param IpList: 目标IP列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IpList: Array
+
+        attr_accessor :Time, :GatewayIp, :GatewaySite, :IpCount, :IpList
+
+        def initialize(time=nil, gatewayip=nil, gatewaysite=nil, ipcount=nil, iplist=nil)
+          @Time = time
+          @GatewayIp = gatewayip
+          @GatewaySite = gatewaysite
+          @IpCount = ipcount
+          @IpList = iplist
+        end
+
+        def deserialize(params)
+          @Time = params['Time']
+          @GatewayIp = params['GatewayIp']
+          @GatewaySite = params['GatewaySite']
+          @IpCount = params['IpCount']
+          @IpList = params['IpList']
+        end
+      end
+
       # 设备的基本信息
       class DeviceBaseInfo < TencentCloud::Common::AbstractModel
         # @param DeviceId: 设备唯一ID
@@ -969,6 +1005,66 @@ module TencentCloud
         end
       end
 
+      # GetDestIPByName请求参数结构体
+      class GetDestIPByNameRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+
+        attr_accessor :DeviceName, :BeginTime, :EndTime, :GatewayType
+
+        def initialize(devicename=nil, begintime=nil, endtime=nil, gatewaytype=nil)
+          @DeviceName = devicename
+          @BeginTime = begintime
+          @EndTime = endtime
+          @GatewayType = gatewaytype
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @GatewayType = params['GatewayType']
+        end
+      end
+
+      # GetDestIPByName返回参数结构体
+      class GetDestIPByNameResponse < TencentCloud::Common::AbstractModel
+        # @param DestIpInfo: 目标IP信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DestIpInfo: Array
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲
+        # @type AccessRegion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DestIpInfo, :AccessRegion, :RequestId
+
+        def initialize(destipinfo=nil, accessregion=nil, requestid=nil)
+          @DestIpInfo = destipinfo
+          @AccessRegion = accessregion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DestIpInfo'].nil?
+            @DestIpInfo = []
+            params['DestIpInfo'].each do |i|
+              destipinfo_tmp = DestIpInfo.new
+              destipinfo_tmp.deserialize(i)
+              @DestIpInfo << destipinfo_tmp
+            end
+          end
+          @AccessRegion = params['AccessRegion']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetDevicePayMode请求参数结构体
       class GetDevicePayModeRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIdList: 设备ID列表
@@ -1265,6 +1361,89 @@ module TencentCloud
 
       # GetFlowStatisticByGroup返回参数结构体
       class GetFlowStatisticByGroupResponse < TencentCloud::Common::AbstractModel
+        # @param NetDetails: 流量详细信息
+        # @type NetDetails: Array
+        # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
+        # @type MaxValue: Float
+        # @param AvgValue: 查找时间段流量使用平均值（单位：byte）
+        # @type AvgValue: Float
+        # @param TotalValue: 查找时间段流量使用总量（单位：byte）
+        # @type TotalValue: Float
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetDetails, :MaxValue, :AvgValue, :TotalValue, :RequestId
+
+        def initialize(netdetails=nil, maxvalue=nil, avgvalue=nil, totalvalue=nil, requestid=nil)
+          @NetDetails = netdetails
+          @MaxValue = maxvalue
+          @AvgValue = avgvalue
+          @TotalValue = totalvalue
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NetDetails'].nil?
+            @NetDetails = []
+            params['NetDetails'].each do |i|
+              netdetails_tmp = NetDetails.new
+              netdetails_tmp.deserialize(i)
+              @NetDetails << netdetails_tmp
+            end
+          end
+          @MaxValue = params['MaxValue']
+          @AvgValue = params['AvgValue']
+          @TotalValue = params['TotalValue']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetFlowStatisticByName请求参数结构体
+      class GetFlowStatisticByNameRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param BeginTime: 开始查找时间
+        # @type BeginTime: Integer
+        # @param EndTime: 截止时间
+        # @type EndTime: Integer
+        # @param Type: 流量种类（1：上行流量，2：下行流量，3：上下行总和）
+        # @type Type: Integer
+        # @param TimeGranularity: 时间粒度（1：按小时统计，2：按天统计）
+        # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+        # @param DeviceList: 设备名列表，用于查询多设备流量，该字段启用时DeviceId可传"-1"
+        # @type DeviceList: Array
+
+        attr_accessor :DeviceName, :BeginTime, :EndTime, :Type, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList
+
+        def initialize(devicename=nil, begintime=nil, endtime=nil, type=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil, devicelist=nil)
+          @DeviceName = devicename
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Type = type
+          @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
+          @DeviceList = devicelist
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+          @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
+          @DeviceList = params['DeviceList']
+        end
+      end
+
+      # GetFlowStatisticByName返回参数结构体
+      class GetFlowStatisticByNameResponse < TencentCloud::Common::AbstractModel
         # @param NetDetails: 流量详细信息
         # @type NetDetails: Array
         # @param MaxValue: 查找时间段流量使用最大值（单位：byte）
@@ -1711,6 +1890,54 @@ module TencentCloud
         end
       end
 
+      # GetMonitorDataByName请求参数结构体
+      class GetMonitorDataByNameRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+
+        attr_accessor :DeviceName, :BeginTime, :EndTime, :GatewayType
+
+        def initialize(devicename=nil, begintime=nil, endtime=nil, gatewaytype=nil)
+          @DeviceName = devicename
+          @BeginTime = begintime
+          @EndTime = endtime
+          @GatewayType = gatewaytype
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @GatewayType = params['GatewayType']
+        end
+      end
+
+      # GetMonitorDataByName返回参数结构体
+      class GetMonitorDataByNameResponse < TencentCloud::Common::AbstractModel
+        # @param FilePath: 文件下载链接
+        # @type FilePath: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilePath, :RequestId
+
+        def initialize(filepath=nil, requestid=nil)
+          @FilePath = filepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetMultiFlowStatistic请求参数结构体
       class GetMultiFlowStatisticRequest < TencentCloud::Common::AbstractModel
         # @param DeviceIds: 设备id列表，单次最多请求10个设备
@@ -1774,6 +2001,73 @@ module TencentCloud
               @FlowDetails << flowdetails_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetNetMonitorByName请求参数结构体
+      class GetNetMonitorByNameRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名
+        # @type DeviceName: String
+        # @param BeginTime: 开始时间
+        # @type BeginTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param Metrics: 统计指标（上行速率："TxRate":bit/s，下行速率："RxRate":bit/s，丢包："Loss":%，时延："RTT":ms）
+        # @type Metrics: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+
+        attr_accessor :DeviceName, :BeginTime, :EndTime, :Metrics, :GatewayType
+
+        def initialize(devicename=nil, begintime=nil, endtime=nil, metrics=nil, gatewaytype=nil)
+          @DeviceName = devicename
+          @BeginTime = begintime
+          @EndTime = endtime
+          @Metrics = metrics
+          @GatewayType = gatewaytype
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @Metrics = params['Metrics']
+          @GatewayType = params['GatewayType']
+        end
+      end
+
+      # GetNetMonitorByName返回参数结构体
+      class GetNetMonitorByNameResponse < TencentCloud::Common::AbstractModel
+        # @param MonitorData: 监控数据
+        # @type MonitorData: Array
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM']
+        # MC=中国大陆
+        # AP=亚太
+        # EU=欧洲
+        # AM=美洲
+        # @type AccessRegion: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MonitorData, :AccessRegion, :RequestId
+
+        def initialize(monitordata=nil, accessregion=nil, requestid=nil)
+          @MonitorData = monitordata
+          @AccessRegion = accessregion
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['MonitorData'].nil?
+            @MonitorData = []
+            params['MonitorData'].each do |i|
+              monitordata_tmp = MonitorData.new
+              monitordata_tmp.deserialize(i)
+              @MonitorData << monitordata_tmp
+            end
+          end
+          @AccessRegion = params['AccessRegion']
           @RequestId = params['RequestId']
         end
       end
@@ -1872,6 +2166,76 @@ module TencentCloud
 
         def deserialize(params)
           @PublicKey = params['PublicKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetStatisticDataByName请求参数结构体
+      class GetStatisticDataByNameRequest < TencentCloud::Common::AbstractModel
+        # @param DeviceName: 设备名。若不指定设备，可传"-1"
+        # @type DeviceName: String
+        # @param BeginTime: 统计开始时间，单位：s
+        # @type BeginTime: Integer
+        # @param EndTime: 统计结束时间，单位：s
+        # @type EndTime: Integer
+        # @param TimeGranularity: 聚合粒度：
+        # 1:按小时统计
+        # 2:按天统计
+        # @type TimeGranularity: Integer
+        # @param AccessRegion: 接入区域。取值范围：['MC','AP','EU','AM'] MC=中国大陆 AP=亚太 EU=欧洲 AM=美洲。不填代表全量区域。
+        # @type AccessRegion: String
+        # @param GatewayType: 网关类型。0：公有云网关；1：自有网关。不传默认为0。
+        # @type GatewayType: Integer
+        # @param DeviceList: 设备名列表，最多10个设备，下载多个设备流量时使用，此时DeviceName可传"-1"
+        # @type DeviceList: Array
+        # @param GroupId: 设备分组ID，若不指定分组则不传，按分组下载数据时使用
+        # @type GroupId: String
+        # @param MpApplicationId: 应用ID，若不指定应用不填，按应用下载数据时使用
+        # @type MpApplicationId: String
+
+        attr_accessor :DeviceName, :BeginTime, :EndTime, :TimeGranularity, :AccessRegion, :GatewayType, :DeviceList, :GroupId, :MpApplicationId
+
+        def initialize(devicename=nil, begintime=nil, endtime=nil, timegranularity=nil, accessregion=nil, gatewaytype=nil, devicelist=nil, groupid=nil, mpapplicationid=nil)
+          @DeviceName = devicename
+          @BeginTime = begintime
+          @EndTime = endtime
+          @TimeGranularity = timegranularity
+          @AccessRegion = accessregion
+          @GatewayType = gatewaytype
+          @DeviceList = devicelist
+          @GroupId = groupid
+          @MpApplicationId = mpapplicationid
+        end
+
+        def deserialize(params)
+          @DeviceName = params['DeviceName']
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @TimeGranularity = params['TimeGranularity']
+          @AccessRegion = params['AccessRegion']
+          @GatewayType = params['GatewayType']
+          @DeviceList = params['DeviceList']
+          @GroupId = params['GroupId']
+          @MpApplicationId = params['MpApplicationId']
+        end
+      end
+
+      # GetStatisticDataByName返回参数结构体
+      class GetStatisticDataByNameResponse < TencentCloud::Common::AbstractModel
+        # @param FilePath: 文件地址url
+        # @type FilePath: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FilePath, :RequestId
+
+        def initialize(filepath=nil, requestid=nil)
+          @FilePath = filepath
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FilePath = params['FilePath']
           @RequestId = params['RequestId']
         end
       end

@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 统计单个设备访问目标IP地址信息
+
+        # @param request: Request instance for GetDestIPByName.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetDestIPByNameRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetDestIPByNameResponse`
+        def GetDestIPByName(request)
+          body = send_request('GetDestIPByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetDestIPByNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过指定设备的ID查找设备详细信息
 
         # @param request: Request instance for GetDevice.
@@ -461,6 +485,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取指定设备Id，指定时间点数据流量使用情况
+
+        # @param request: Request instance for GetFlowStatisticByName.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByNameRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetFlowStatisticByNameResponse`
+        def GetFlowStatisticByName(request)
+          body = send_request('GetFlowStatisticByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetFlowStatisticByNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取指定区域，指定时间点数据流量使用情况
 
         # @param request: Request instance for GetFlowStatisticByRegion.
@@ -581,6 +629,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单个设备所有监控指标的下载文件链接
+
+        # @param request: Request instance for GetMonitorDataByName.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetMonitorDataByNameRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetMonitorDataByNameResponse`
+        def GetMonitorDataByName(request)
+          body = send_request('GetMonitorDataByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetMonitorDataByNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量获取设备流量统计曲线
 
         # @param request: Request instance for GetMultiFlowStatistic.
@@ -629,6 +701,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取单设备的实时流量统计指标
+
+        # @param request: Request instance for GetNetMonitorByName.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetNetMonitorByNameRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetNetMonitorByNameResponse`
+        def GetNetMonitorByName(request)
+          body = send_request('GetNetMonitorByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetNetMonitorByNameResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取公钥用于验签
 
         # @param request: Request instance for GetPublicKey.
@@ -663,6 +759,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetStatisticDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 在用量统计页面下载流量数据
+
+        # @param request: Request instance for GetStatisticDataByName.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetStatisticDataByNameRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetStatisticDataByNameResponse`
+        def GetStatisticDataByName(request)
+          body = send_request('GetStatisticDataByName', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetStatisticDataByNameResponse.new
             model.deserialize(response['Response'])
             model
           else
