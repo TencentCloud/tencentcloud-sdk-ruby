@@ -3206,6 +3206,8 @@ module TencentCloud
         # @type IdSet: Array
         # @param Name: 资产名或资产IP，模糊查询
         # @type Name: String
+        # @param ResourceIdSet: 主机绑定的堡垒机服务ID集合  未绑定的通过Filters进行传递
+        # @type ResourceIdSet: Array
         # @param Offset: 分页偏移位置，默认值为0
         # @type Offset: Integer
         # @param Limit: 每页条目数，默认20, 最大500
@@ -3216,21 +3218,25 @@ module TencentCloud
         # @type KindSet: Array
         # @param DepartmentId: 所属部门ID
         # @type DepartmentId: String
+        # @param Filters: 过滤条件,支持 BindingStatus｜VpcId ｜InstanceId ｜DeviceAccount ｜ManageDimension｜DomainId｜Ip｜Name
+        # @type Filters: Array
         # @param TagFilters: 过滤条件，可按照标签键、标签进行过滤。如果同时指定标签键和标签过滤条件，它们之间为“AND”的关系
         # @type TagFilters: Array
 
-        attr_accessor :Bound, :Id, :IdSet, :Name, :Offset, :Limit, :Kind, :KindSet, :DepartmentId, :TagFilters
+        attr_accessor :Bound, :Id, :IdSet, :Name, :ResourceIdSet, :Offset, :Limit, :Kind, :KindSet, :DepartmentId, :Filters, :TagFilters
 
-        def initialize(bound=nil, id=nil, idset=nil, name=nil, offset=nil, limit=nil, kind=nil, kindset=nil, departmentid=nil, tagfilters=nil)
+        def initialize(bound=nil, id=nil, idset=nil, name=nil, resourceidset=nil, offset=nil, limit=nil, kind=nil, kindset=nil, departmentid=nil, filters=nil, tagfilters=nil)
           @Bound = bound
           @Id = id
           @IdSet = idset
           @Name = name
+          @ResourceIdSet = resourceidset
           @Offset = offset
           @Limit = limit
           @Kind = kind
           @KindSet = kindset
           @DepartmentId = departmentid
+          @Filters = filters
           @TagFilters = tagfilters
         end
 
@@ -3239,11 +3245,20 @@ module TencentCloud
           @Id = params['Id']
           @IdSet = params['IdSet']
           @Name = params['Name']
+          @ResourceIdSet = params['ResourceIdSet']
           @Offset = params['Offset']
           @Limit = params['Limit']
           @Kind = params['Kind']
           @KindSet = params['KindSet']
           @DepartmentId = params['DepartmentId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
           unless params['TagFilters'].nil?
             @TagFilters = []
             params['TagFilters'].each do |i|
@@ -4925,6 +4940,100 @@ module TencentCloud
         end
       end
 
+      # LDAP配置信息
+      class LDAPSetting < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启LDAP认证，false-不开启，true-开启
+        # @type Enable: Boolean
+        # @param Ip: 服务器地址
+        # @type Ip: String
+        # @param IpBackup: 备用服务器地址
+        # @type IpBackup: String
+        # @param Port: 服务端口
+        # @type Port: Integer
+        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @type EnableSSL: Boolean
+        # @param BaseDN: Base DN
+        # @type BaseDN: String
+        # @param AdminAccount: 管理员账号
+        # @type AdminAccount: String
+        # @param AttributeUser: 用户属性
+        # @type AttributeUser: String
+        # @param AttributeUserName: 用户名属性
+        # @type AttributeUserName: String
+        # @param AutoSync: 自动同步，false-不开启，true-开启
+        # @type AutoSync: Boolean
+        # @param Overwrite: 覆盖用户信息，false-不开启，true-开启
+        # @type Overwrite: Boolean
+        # @param SyncPeriod: 同步周期，30～60000之间的整数
+        # @type SyncPeriod: Integer
+        # @param SyncAll: 是否同步全部，false-不开启，true-开启
+        # @type SyncAll: Boolean
+        # @param SyncUnitSet: 同步OU列表
+        # @type SyncUnitSet: Array
+        # @param AttributeUnit: 组织单元属性
+        # @type AttributeUnit: String
+        # @param AttributeRealName: 用户姓名属性
+        # @type AttributeRealName: String
+        # @param AttributePhone: 手机号属性
+        # @type AttributePhone: String
+        # @param AttributeEmail: 邮箱属性
+        # @type AttributeEmail: String
+        # @param ResourceId: 请求LDAP服务的堡垒机实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceId: String
+        # @param DomainId: 网络域Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainId: String
+
+        attr_accessor :Enable, :Ip, :IpBackup, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AttributeUser, :AttributeUserName, :AutoSync, :Overwrite, :SyncPeriod, :SyncAll, :SyncUnitSet, :AttributeUnit, :AttributeRealName, :AttributePhone, :AttributeEmail, :ResourceId, :DomainId
+
+        def initialize(enable=nil, ip=nil, ipbackup=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, attributeuser=nil, attributeusername=nil, autosync=nil, overwrite=nil, syncperiod=nil, syncall=nil, syncunitset=nil, attributeunit=nil, attributerealname=nil, attributephone=nil, attributeemail=nil, resourceid=nil, domainid=nil)
+          @Enable = enable
+          @Ip = ip
+          @IpBackup = ipbackup
+          @Port = port
+          @EnableSSL = enablessl
+          @BaseDN = basedn
+          @AdminAccount = adminaccount
+          @AttributeUser = attributeuser
+          @AttributeUserName = attributeusername
+          @AutoSync = autosync
+          @Overwrite = overwrite
+          @SyncPeriod = syncperiod
+          @SyncAll = syncall
+          @SyncUnitSet = syncunitset
+          @AttributeUnit = attributeunit
+          @AttributeRealName = attributerealname
+          @AttributePhone = attributephone
+          @AttributeEmail = attributeemail
+          @ResourceId = resourceid
+          @DomainId = domainid
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @Ip = params['Ip']
+          @IpBackup = params['IpBackup']
+          @Port = params['Port']
+          @EnableSSL = params['EnableSSL']
+          @BaseDN = params['BaseDN']
+          @AdminAccount = params['AdminAccount']
+          @AttributeUser = params['AttributeUser']
+          @AttributeUserName = params['AttributeUserName']
+          @AutoSync = params['AutoSync']
+          @Overwrite = params['Overwrite']
+          @SyncPeriod = params['SyncPeriod']
+          @SyncAll = params['SyncAll']
+          @SyncUnitSet = params['SyncUnitSet']
+          @AttributeUnit = params['AttributeUnit']
+          @AttributeRealName = params['AttributeRealName']
+          @AttributePhone = params['AttributePhone']
+          @AttributeEmail = params['AttributeEmail']
+          @ResourceId = params['ResourceId']
+          @DomainId = params['DomainId']
+        end
+      end
+
       # 登录日志
       class LoginEvent < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -4958,6 +5067,34 @@ module TencentCloud
           @SourceIp = params['SourceIp']
           @Entry = params['Entry']
           @Result = params['Result']
+        end
+      end
+
+      # 登录安全设置
+      class LoginSetting < TencentCloud::Common::AbstractModel
+        # @param TimeOut: 登录会话超时，10分钟，20分钟，30分钟，默认20分钟
+        # @type TimeOut: Integer
+        # @param LockThreshold: 连续密码错误次数，超过锁定账号，3-5
+        # @type LockThreshold: Integer
+        # @param LockTime: 账号锁定时长，10分钟，20分钟，30分钟
+        # @type LockTime: Integer
+        # @param InactiveUserLock: 用户多少天不活跃，账号自动锁定
+        # @type InactiveUserLock: Integer
+
+        attr_accessor :TimeOut, :LockThreshold, :LockTime, :InactiveUserLock
+
+        def initialize(timeout=nil, lockthreshold=nil, locktime=nil, inactiveuserlock=nil)
+          @TimeOut = timeout
+          @LockThreshold = lockthreshold
+          @LockTime = locktime
+          @InactiveUserLock = inactiveuserlock
+        end
+
+        def deserialize(params)
+          @TimeOut = params['TimeOut']
+          @LockThreshold = params['LockThreshold']
+          @LockTime = params['LockTime']
+          @InactiveUserLock = params['InactiveUserLock']
         end
       end
 
@@ -5249,20 +5386,26 @@ module TencentCloud
 
       # ModifyAuthModeSetting请求参数结构体
       class ModifyAuthModeSettingRequest < TencentCloud::Common::AbstractModel
-        # @param AuthMode: 双因子认证，0-不开启，1-OTP，2-短信，3-USB Key
+        # @param AuthMode: 双因子认证，0-不开启（暂停使用），1-OTP，2-短信，3-USB Key（只有ResourceType=1且AuthModeGM不传时有效，其他情况不能为3）
+        # 备注：AuthMode和AuthModeGM至少有一个有效传参
         # @type AuthMode: Integer
-        # @param ResourceType: 资源类型，0：普通 1：国密
+        # @param AuthModeGM: 国密双因子认证，0-不开启（暂停使用），1-OTP，2-短信，3-USB Key
+        # 备注：AuthMode和AuthModeGM至少有一个有效传参，AuthModeGM优先级高于ResourceType
+        # @type AuthModeGM: Integer
+        # @param ResourceType: 资源类型，0：普通（暂停使用，由AuthMode和AuthModeGM传参决定） 1：国密
         # @type ResourceType: Integer
 
-        attr_accessor :AuthMode, :ResourceType
+        attr_accessor :AuthMode, :AuthModeGM, :ResourceType
 
-        def initialize(authmode=nil, resourcetype=nil)
+        def initialize(authmode=nil, authmodegm=nil, resourcetype=nil)
           @AuthMode = authmode
+          @AuthModeGM = authmodegm
           @ResourceType = resourcetype
         end
 
         def deserialize(params)
           @AuthMode = params['AuthMode']
+          @AuthModeGM = params['AuthModeGM']
           @ResourceType = params['ResourceType']
         end
       end
@@ -6020,6 +6163,46 @@ module TencentCloud
         end
       end
 
+      # OAuth认证配置
+      class OAuthSetting < TencentCloud::Common::AbstractModel
+        # @param Enable: 是否开启OAuth认证
+        # @type Enable: Boolean
+        # @param AuthMethod: OAuth认证方式。
+        # @type AuthMethod: String
+        # @param ClientId: OAuth认证客户端Id。
+        # @type ClientId: String
+        # @param CodeUrl: 获取OAuth认证授权码URL。
+        # @type CodeUrl: String
+        # @param TokenUrl: 获取OAuth令牌URL。
+        # @type TokenUrl: String
+        # @param UserInfoUrl: 获取OAuth用户信息URL。
+        # @type UserInfoUrl: String
+        # @param Scopes: 使用Okta认证时指定范围。
+        # @type Scopes: Array
+
+        attr_accessor :Enable, :AuthMethod, :ClientId, :CodeUrl, :TokenUrl, :UserInfoUrl, :Scopes
+
+        def initialize(enable=nil, authmethod=nil, clientid=nil, codeurl=nil, tokenurl=nil, userinfourl=nil, scopes=nil)
+          @Enable = enable
+          @AuthMethod = authmethod
+          @ClientId = clientid
+          @CodeUrl = codeurl
+          @TokenUrl = tokenurl
+          @UserInfoUrl = userinfourl
+          @Scopes = scopes
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @AuthMethod = params['AuthMethod']
+          @ClientId = params['ClientId']
+          @CodeUrl = params['CodeUrl']
+          @TokenUrl = params['TokenUrl']
+          @UserInfoUrl = params['UserInfoUrl']
+          @Scopes = params['Scopes']
+        end
+      end
+
       # 操作日志
       class OperationEvent < TencentCloud::Common::AbstractModel
         # @param UserName: 用户名
@@ -6109,6 +6292,34 @@ module TencentCloud
           @Period = params['Period']
           @NextTime = params['NextTime']
           @FirstTime = params['FirstTime']
+        end
+      end
+
+      # 密码要求设置。
+      class PasswordSetting < TencentCloud::Common::AbstractModel
+        # @param MinLength: 密码最小长度，8-20，默认8。
+        # @type MinLength: Integer
+        # @param Complexity: 密码复杂度，0不限制，1包含字母和数字，2至少包括大写字母、小写字母、数字、特殊符号，默认2。
+        # @type Complexity: Integer
+        # @param ValidTerm: 密码有效期，0不限制，30天，90天，180天。
+        # @type ValidTerm: Integer
+        # @param CheckHistory: 检查最近n次密码设置是否存在相同密码，2-10，默认5。
+        # @type CheckHistory: Integer
+
+        attr_accessor :MinLength, :Complexity, :ValidTerm, :CheckHistory
+
+        def initialize(minlength=nil, complexity=nil, validterm=nil, checkhistory=nil)
+          @MinLength = minlength
+          @Complexity = complexity
+          @ValidTerm = validterm
+          @CheckHistory = checkhistory
+        end
+
+        def deserialize(params)
+          @MinLength = params['MinLength']
+          @Complexity = params['Complexity']
+          @ValidTerm = params['ValidTerm']
+          @CheckHistory = params['CheckHistory']
         end
       end
 
@@ -7646,6 +7857,16 @@ module TencentCloud
 
       # 系统安全设置
       class SecuritySetting < TencentCloud::Common::AbstractModel
+        # @param AuthMode: 认证方式设置
+        # @type AuthMode: :class:`Tencentcloud::Bh.v20230418.models.AuthModeSetting`
+        # @param Password: 密码安全设置
+        # @type Password: :class:`Tencentcloud::Bh.v20230418.models.PasswordSetting`
+        # @param Login: 登录安全设置
+        # @type Login: :class:`Tencentcloud::Bh.v20230418.models.LoginSetting`
+        # @param LDAP: LDAP配置信息
+        # @type LDAP: :class:`Tencentcloud::Bh.v20230418.models.LDAPSetting`
+        # @param OAuth: OAuth配置信息
+        # @type OAuth: :class:`Tencentcloud::Bh.v20230418.models.OAuthSetting`
         # @param AuthModeGM: 国密认证方式设置
         # @type AuthModeGM: :class:`Tencentcloud::Bh.v20230418.models.AuthModeSetting`
         # @param Reconnection: 资产重连次数
@@ -7653,15 +7874,40 @@ module TencentCloud
         # @param EnvInternetAccess: 大区环境网络设置
         # @type EnvInternetAccess: :class:`Tencentcloud::Bh.v20230418.models.EnvInternetAccessSetting`
 
-        attr_accessor :AuthModeGM, :Reconnection, :EnvInternetAccess
+        attr_accessor :AuthMode, :Password, :Login, :LDAP, :OAuth, :AuthModeGM, :Reconnection, :EnvInternetAccess
 
-        def initialize(authmodegm=nil, reconnection=nil, envinternetaccess=nil)
+        def initialize(authmode=nil, password=nil, login=nil, ldap=nil, oauth=nil, authmodegm=nil, reconnection=nil, envinternetaccess=nil)
+          @AuthMode = authmode
+          @Password = password
+          @Login = login
+          @LDAP = ldap
+          @OAuth = oauth
           @AuthModeGM = authmodegm
           @Reconnection = reconnection
           @EnvInternetAccess = envinternetaccess
         end
 
         def deserialize(params)
+          unless params['AuthMode'].nil?
+            @AuthMode = AuthModeSetting.new
+            @AuthMode.deserialize(params['AuthMode'])
+          end
+          unless params['Password'].nil?
+            @Password = PasswordSetting.new
+            @Password.deserialize(params['Password'])
+          end
+          unless params['Login'].nil?
+            @Login = LoginSetting.new
+            @Login.deserialize(params['Login'])
+          end
+          unless params['LDAP'].nil?
+            @LDAP = LDAPSetting.new
+            @LDAP.deserialize(params['LDAP'])
+          end
+          unless params['OAuth'].nil?
+            @OAuth = OAuthSetting.new
+            @OAuth.deserialize(params['OAuth'])
+          end
           unless params['AuthModeGM'].nil?
             @AuthModeGM = AuthModeSetting.new
             @AuthModeGM.deserialize(params['AuthModeGM'])

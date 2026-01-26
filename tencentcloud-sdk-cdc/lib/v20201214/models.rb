@@ -544,14 +544,14 @@ module TencentCloud
 
         attr_accessor :DedicatedClusterId, :DedicatedClusterTypeId, :SupportedStorageType, :SupportedUplinkSpeed, :SupportedInstanceFamily, :Weight, :PowerDraw, :OrderStatus, :CreateTime, :DedicatedClusterOrderId, :Action, :DedicatedClusterOrderItems, :Cpu, :Mem, :Gpu, :PayStatus, :PayType, :TimeUnit, :TimeSpan, :OrderType, :CheckStatus, :DeliverExpectTime, :DeliverFinishTime, :CheckExpectTime, :CheckFinishTime, :OrderSLA, :OrderPayPlan
         extend Gem::Deprecate
-        deprecate :DedicatedClusterTypeId, :none, 2025, 12
-        deprecate :DedicatedClusterTypeId=, :none, 2025, 12
-        deprecate :SupportedStorageType, :none, 2025, 12
-        deprecate :SupportedStorageType=, :none, 2025, 12
-        deprecate :SupportedUplinkSpeed, :none, 2025, 12
-        deprecate :SupportedUplinkSpeed=, :none, 2025, 12
-        deprecate :SupportedInstanceFamily, :none, 2025, 12
-        deprecate :SupportedInstanceFamily=, :none, 2025, 12
+        deprecate :DedicatedClusterTypeId, :none, 2026, 1
+        deprecate :DedicatedClusterTypeId=, :none, 2026, 1
+        deprecate :SupportedStorageType, :none, 2026, 1
+        deprecate :SupportedStorageType=, :none, 2026, 1
+        deprecate :SupportedUplinkSpeed, :none, 2026, 1
+        deprecate :SupportedUplinkSpeed=, :none, 2026, 1
+        deprecate :SupportedInstanceFamily, :none, 2026, 1
+        deprecate :SupportedInstanceFamily=, :none, 2026, 1
 
         def initialize(dedicatedclusterid=nil, dedicatedclustertypeid=nil, supportedstoragetype=nil, supporteduplinkspeed=nil, supportedinstancefamily=nil, weight=nil, powerdraw=nil, orderstatus=nil, createtime=nil, dedicatedclusterorderid=nil, action=nil, dedicatedclusterorderitems=nil, cpu=nil, mem=nil, gpu=nil, paystatus=nil, paytype=nil, timeunit=nil, timespan=nil, ordertype=nil, checkstatus=nil, deliverexpecttime=nil, deliverfinishtime=nil, checkexpecttime=nil, checkfinishtime=nil, ordersla=nil, orderpayplan=nil)
           @DedicatedClusterId = dedicatedclusterid
@@ -1447,7 +1447,7 @@ module TencentCloud
 
       # DescribeDedicatedSupportedZones请求参数结构体
       class DescribeDedicatedSupportedZonesRequest < TencentCloud::Common::AbstractModel
-        # @param Regions: 传入region列表
+        # @param Regions: <p>传入region列表</p>
         # @type Regions: Array
 
         attr_accessor :Regions
@@ -1463,7 +1463,7 @@ module TencentCloud
 
       # DescribeDedicatedSupportedZones返回参数结构体
       class DescribeDedicatedSupportedZonesResponse < TencentCloud::Common::AbstractModel
-        # @param ZoneSet: 支持的可用区列表
+        # @param ZoneSet: <p>支持的可用区列表</p>
         # @type ZoneSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1685,8 +1685,8 @@ module TencentCloud
 
         attr_accessor :HostIp, :ServiceType, :HostStatus, :HostType, :CpuAvailable, :CpuTotal, :MemAvailable, :MemTotal, :RunTime, :ExpireTime, :HostId
         extend Gem::Deprecate
-        deprecate :HostIp, :none, 2025, 12
-        deprecate :HostIp=, :none, 2025, 12
+        deprecate :HostIp, :none, 2026, 1
+        deprecate :HostIp=, :none, 2026, 1
 
         def initialize(hostip=nil, servicetype=nil, hoststatus=nil, hosttype=nil, cpuavailable=nil, cputotal=nil, memavailable=nil, memtotal=nil, runtime=nil, expiretime=nil, hostid=nil)
           @HostIp = hostip

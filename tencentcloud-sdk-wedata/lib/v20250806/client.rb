@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Catalog模式下授权
+
+        # @param request: Request instance for AuthorizePrivileges.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::AuthorizePrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::AuthorizePrivilegesResponse`
+        def AuthorizePrivileges(request)
+          body = send_request('AuthorizePrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AuthorizePrivilegesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建代码文件
 
         # @param request: Request instance for CreateCodeFile.
@@ -2621,6 +2645,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取可授权权限详情
+
+        # @param request: Request instance for ListPermissions.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::ListPermissionsRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::ListPermissionsResponse`
+        def ListPermissions(request)
+          body = send_request('ListPermissions', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListPermissionsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取资产血缘信息
 
         # @param request: Request instance for ListProcessLineage.
@@ -3594,6 +3642,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RevokeDataSourceAuthorizationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # Catalog模式下授权回收
+
+        # @param request: Request instance for RevokePrivileges.
+        # @type request: :class:`Tencentcloud::wedata::V20250806::RevokePrivilegesRequest`
+        # @rtype: :class:`Tencentcloud::wedata::V20250806::RevokePrivilegesResponse`
+        def RevokePrivileges(request)
+          body = send_request('RevokePrivileges', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RevokePrivilegesResponse.new
             model.deserialize(response['Response'])
             model
           else

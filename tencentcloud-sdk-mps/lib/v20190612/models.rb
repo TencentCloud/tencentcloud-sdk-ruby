@@ -29225,6 +29225,8 @@ module TencentCloud
         # @param SubtitleFileInput: 要压制到视频中的字幕文件的输入信息，目前仅支持存储在COS的字幕文件
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubtitleFileInput: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
+        # @param FontFileInput: 压制字幕字体文件的输入信息，目前仅支持url和cos。都填时url优先于cos。填了FontFileInput时FontFileInput优先于FontType
+        # @type FontFileInput: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
         # @param FontType: 字体类型，支持：
         # <li>hei.ttf：黑体</li>
         # <li>song.ttf：宋体</li>
@@ -29243,11 +29245,20 @@ module TencentCloud
         # <li>korean.ttf：韩语</li>
         # <li>japanese.ttf：日语</li>
         # <li>thai.ttf：泰语</li>
-        # 默认：hei.ttf 黑体。注意：楷体推荐使用kai.ttf
+        # 默认：hei.ttf 黑体。
+        # <br>注意：
+        # <li>楷体推荐使用kai.ttf</li>
+        # <li>填了FontFileInput时FontFileInput优先</li>
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontType: String
-        # @param FontSize: 字体大小，格式：Npx，N 为数值，不指定则以字幕文件中为准。
-        # 默认源视频高度的5%。
+        # @param FontSize: 字体大小，不指定则以字幕文件中为准。支持像素和百分比格式：
+
+        # - 像素：Npx，N范围：(0,4096]。
+        # - 百分百：N%，N范围：(0,100]；例如10%表示字幕字体大小=10%*源视频高度。
+
+        # 不填且字幕文件无设置时，默认源视频高度的5%。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FontSize: String
         # @param FontColor: 字体颜色，格式：0xRRGGBB，默认值：0xFFFFFF（白色）。
@@ -29281,13 +29292,18 @@ module TencentCloud
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardY: String
-        # @param BoardWidth: 底板的宽度，单位为像素，取值范围：[0,4096]。
-        # 默认源视频宽像素的90%。
+        # @param BoardWidth: 底板的宽度，正整数。
+        # - 代表像素时，取值范围：[0,4096]。
+        # - 代表百分数时，[0, 100]。
+        # 开启底板且不填此值时，默认源视频宽像素的90%。
 
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardWidth: Integer
-        # @param BoardHeight: 底板的高度。单位为像素，取值范围：[0,4096]。
-        # 默认为源视频高像素的15%。
+        # @param BoardHeight: 底板的高度，正整数。
+        # - 代表像素时，取值范围：[0,4096]。
+        # - 代表百分数时，[0, 100]。
+        # 开启底板且不填此值时，默认为源视频高像素的15%。
+
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardHeight: Integer
         # @param BoardColor: 底板颜色。格式：0xRRGGBB，
@@ -29300,37 +29316,48 @@ module TencentCloud
         # 默认值：0.8。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BoardAlpha: Float
-        # @param OutlineWidth: 描边宽度
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param OutlineWidth: 描边宽度。浮点数。
+        # - 代表像素值时， [0, 1000]。
+        # - 代表百分数时，[0, 100]。
+        # 不填默认源视频高度的0.3%。
         # @type OutlineWidth: Float
-        # @param OutlineColor: 描边颜色。6位16进制RGB
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param OutlineColor: 描边颜色。6位16进制RGB。不填默认黑色。
         # @type OutlineColor: String
-        # @param OutlineAlpha: 描边透明度。(0，1] 正浮点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param OutlineAlpha: 描边透明度。(0，1] 正浮点数。不填默认1，完全不透明
         # @type OutlineAlpha: Float
-        # @param ShadowWidth: 阴影宽度。浮点数  [0, 1000]
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ShadowWidth: 阴影宽度。浮点数。
+        # - 代表像素值时， [0, 1000]。
+        # - 代表百分数时，[0, 100]。
+        # 不填默认无阴影。
         # @type ShadowWidth: Float
-        # @param ShadowColor: 阴影颜色。6位16进制RGB
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ShadowColor: 阴影颜色。6位16进制RGB。不填默认黑色（有设置阴影的情况下）
         # @type ShadowColor: String
-        # @param ShadowAlpha: 阴影透明度。(0，1] 正浮点数
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param ShadowAlpha: 阴影透明度。(0，1] 正浮点数。不填默认1，完全不透明（有设置阴影的情况下）
         # @type ShadowAlpha: Float
-        # @param LineSpacing: 行间距。正整数  [0, 1000]
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param LineSpacing: 行间距。正整数。
+        # - 代表像素值时， [0, 1000]。
+        # - 代表百分数时，[0, 100]。不填默认0。
         # @type LineSpacing: Integer
-        # @param Alignment: 对齐方式，，取值：top: 顶部对齐，字幕顶部按位置固定，底部随行数变化。bottom: 底部对齐，字幕底部按位置固定，顶部随行数变化。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Alignment: 对齐方式，取值：top: 顶部对齐，字幕顶部按位置固定，底部随行数变化。bottom: 底部对齐，字幕底部按位置固定，顶部随行数变化。不填默认底部对齐。
         # @type Alignment: String
+        # @param BoardWidthUnit: 默认0。为1时BoardWidth代表百分之几，以视频宽为基准
+        # @type BoardWidthUnit: Integer
+        # @param BoardHeightUnit: 默认0。为1时BoardHeight代表百分之几，以视频高为基准
+        # @type BoardHeightUnit: Integer
+        # @param OutlineWidthUnit: 默认0。为1时OutlineWidth代表百分之几，以视频高为基准
+        # @type OutlineWidthUnit: Integer
+        # @param ShadowWidthUnit: 默认0。为1时ShadowWidth代表百分之几，以视频高为基准
+        # @type ShadowWidthUnit: Integer
+        # @param LineSpacingUnit: 默认0。为1时LineSpacing代表百分之几，以视频高为基准
+        # @type LineSpacingUnit: Integer
 
-        attr_accessor :Path, :StreamIndex, :SubtitleFileInput, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha, :OutlineWidth, :OutlineColor, :OutlineAlpha, :ShadowWidth, :ShadowColor, :ShadowAlpha, :LineSpacing, :Alignment
+        attr_accessor :Path, :StreamIndex, :SubtitleFileInput, :FontFileInput, :FontType, :FontSize, :FontColor, :FontAlpha, :YPos, :BoardY, :BoardWidth, :BoardHeight, :BoardColor, :BoardAlpha, :OutlineWidth, :OutlineColor, :OutlineAlpha, :ShadowWidth, :ShadowColor, :ShadowAlpha, :LineSpacing, :Alignment, :BoardWidthUnit, :BoardHeightUnit, :OutlineWidthUnit, :ShadowWidthUnit, :LineSpacingUnit
 
-        def initialize(path=nil, streamindex=nil, subtitlefileinput=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil, outlinewidth=nil, outlinecolor=nil, outlinealpha=nil, shadowwidth=nil, shadowcolor=nil, shadowalpha=nil, linespacing=nil, alignment=nil)
+        def initialize(path=nil, streamindex=nil, subtitlefileinput=nil, fontfileinput=nil, fonttype=nil, fontsize=nil, fontcolor=nil, fontalpha=nil, ypos=nil, boardy=nil, boardwidth=nil, boardheight=nil, boardcolor=nil, boardalpha=nil, outlinewidth=nil, outlinecolor=nil, outlinealpha=nil, shadowwidth=nil, shadowcolor=nil, shadowalpha=nil, linespacing=nil, alignment=nil, boardwidthunit=nil, boardheightunit=nil, outlinewidthunit=nil, shadowwidthunit=nil, linespacingunit=nil)
           @Path = path
           @StreamIndex = streamindex
           @SubtitleFileInput = subtitlefileinput
+          @FontFileInput = fontfileinput
           @FontType = fonttype
           @FontSize = fontsize
           @FontColor = fontcolor
@@ -29349,6 +29376,11 @@ module TencentCloud
           @ShadowAlpha = shadowalpha
           @LineSpacing = linespacing
           @Alignment = alignment
+          @BoardWidthUnit = boardwidthunit
+          @BoardHeightUnit = boardheightunit
+          @OutlineWidthUnit = outlinewidthunit
+          @ShadowWidthUnit = shadowwidthunit
+          @LineSpacingUnit = linespacingunit
         end
 
         def deserialize(params)
@@ -29357,6 +29389,10 @@ module TencentCloud
           unless params['SubtitleFileInput'].nil?
             @SubtitleFileInput = MediaInputInfo.new
             @SubtitleFileInput.deserialize(params['SubtitleFileInput'])
+          end
+          unless params['FontFileInput'].nil?
+            @FontFileInput = MediaInputInfo.new
+            @FontFileInput.deserialize(params['FontFileInput'])
           end
           @FontType = params['FontType']
           @FontSize = params['FontSize']
@@ -29376,6 +29412,11 @@ module TencentCloud
           @ShadowAlpha = params['ShadowAlpha']
           @LineSpacing = params['LineSpacing']
           @Alignment = params['Alignment']
+          @BoardWidthUnit = params['BoardWidthUnit']
+          @BoardHeightUnit = params['BoardHeightUnit']
+          @OutlineWidthUnit = params['OutlineWidthUnit']
+          @ShadowWidthUnit = params['ShadowWidthUnit']
+          @LineSpacingUnit = params['LineSpacingUnit']
         end
       end
 

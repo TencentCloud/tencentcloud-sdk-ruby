@@ -526,6 +526,146 @@ module TencentCloud
         end
       end
 
+      # AuthorizePrivileges请求参数结构体
+      class AuthorizePrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param Resources: 资源数组
+        # ResourceType：来源于TCCATALOG模块的GetGrantPrivilegesSTD接口中返回的ResourceType，并改为首字母大写，例如METALAKE对应Metalake
+        # ResourceUri，取决于 ResourceType，Metalake时固定为default，其他类别采用catalog的三段式结构，例如
+        # - Metalake，固定为default
+        # - Catalog，取catalogName
+        # - Schema，取catalogName.SchemaName
+        # - Table,，取catalogName.SchemaName.TableName
+        # @type Resources: Array
+        # @param Subjects: 授权主体数组，SubjectType及对应SubjectValue取值规则
+        # - User 用户
+        #     - 取自DescribeTenantUserList中的UserId
+        # - Project 项目
+        #     - 取自DescribeUserProjects中的ProjectId
+        # - Role 角色（项目级角色）
+        #     - 先调用DescribeUserProjects获取项目ID（ProjectId），再调用DescribeRoleList中的角色ID（RoleId），拼装为$ProjectId.$ProjectId. RoleId，例如"3085649716411588608.308335260274237440"
+        # - GlobalRole （平台级角色）
+        #     - AllAccountUsers 全部用户
+        #     - 其他ID，取自DescribeTenantRole中的RoleId
+        # @type Subjects: Array
+        # @param Privileges: 权限点，来源于TCCATALOG模块的GetGrantPrivilegesSTD接口中返回的各类Privileges中的NAME
+        # @type Privileges: Array
+
+        attr_accessor :Resources, :Subjects, :Privileges
+
+        def initialize(resources=nil, subjects=nil, privileges=nil)
+          @Resources = resources
+          @Subjects = subjects
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              privilegeresource_tmp = PrivilegeResource.new
+              privilegeresource_tmp.deserialize(i)
+              @Resources << privilegeresource_tmp
+            end
+          end
+          unless params['Subjects'].nil?
+            @Subjects = []
+            params['Subjects'].each do |i|
+              subject_tmp = Subject.new
+              subject_tmp.deserialize(i)
+              @Subjects << subject_tmp
+            end
+          end
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              privilegeinfo_tmp = PrivilegeInfo.new
+              privilegeinfo_tmp.deserialize(i)
+              @Privileges << privilegeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # AuthorizePrivileges返回参数结构体
+      class AuthorizePrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.AuthorizePrivilegesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = AuthorizePrivilegesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # openapi授权返回
+      class AuthorizePrivilegesRsp < TencentCloud::Common::AbstractModel
+        # @param OverallSuccess: 批量授权结果
+        # @type OverallSuccess: Boolean
+        # @param Results: 授权详情列表
+        # @type Results: Array
+
+        attr_accessor :OverallSuccess, :Results
+
+        def initialize(overallsuccess=nil, results=nil)
+          @OverallSuccess = overallsuccess
+          @Results = results
+        end
+
+        def deserialize(params)
+          @OverallSuccess = params['OverallSuccess']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              authorizeresult_tmp = AuthorizeResult.new
+              authorizeresult_tmp.deserialize(i)
+              @Results << authorizeresult_tmp
+            end
+          end
+        end
+      end
+
+      # AuthorizeResult授权结果
+      class AuthorizeResult < TencentCloud::Common::AbstractModel
+        # @param Resource: 授权资源
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Resource: :class:`Tencentcloud::Wedata.v20250806.models.PrivilegeResource`
+        # @param Result: 结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: Boolean
+        # @param Reason: 原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Reason: String
+
+        attr_accessor :Resource, :Result, :Reason
+
+        def initialize(resource=nil, result=nil, reason=nil)
+          @Resource = resource
+          @Result = result
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = PrivilegeResource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          @Result = params['Result']
+          @Reason = params['Reason']
+        end
+      end
+
       # 单次补录实例详情
       class BackfillInstance < TencentCloud::Common::AbstractModel
         # @param TaskName: 任务名称
@@ -7013,6 +7153,33 @@ module TencentCloud
         end
       end
 
+      # GetResourcePrivilegeDetailRsp
+      class GetResourcePrivilegeDetailRsp < TencentCloud::Common::AbstractModel
+        # @param Details: 权限详情列表
+        # @type Details: Array
+        # @param TotalCount: 总计
+        # @type TotalCount: Integer
+
+        attr_accessor :Details, :TotalCount
+
+        def initialize(details=nil, totalcount=nil)
+          @Details = details
+          @TotalCount = totalcount
+        end
+
+        def deserialize(params)
+          unless params['Details'].nil?
+            @Details = []
+            params['Details'].each do |i|
+              resourceprivilegedetail_tmp = ResourcePrivilegeDetail.new
+              resourceprivilegedetail_tmp.deserialize(i)
+              @Details << resourceprivilegedetail_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+        end
+      end
+
       # GetSQLFolder请求参数结构体
       class GetSQLFolderRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目id
@@ -8453,12 +8620,18 @@ module TencentCloud
         # @param Relation: 关系
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Relation: :class:`Tencentcloud::Wedata.v20250806.models.LineageRelation`
+        # @param DownStreamCount: 上游数量
+        # @type DownStreamCount: Integer
+        # @param UpStreamCount: 下游数量
+        # @type UpStreamCount: Integer
 
-        attr_accessor :Resource, :Relation
+        attr_accessor :Resource, :Relation, :DownStreamCount, :UpStreamCount
 
-        def initialize(resource=nil, relation=nil)
+        def initialize(resource=nil, relation=nil, downstreamcount=nil, upstreamcount=nil)
           @Resource = resource
           @Relation = relation
+          @DownStreamCount = downstreamcount
+          @UpStreamCount = upstreamcount
         end
 
         def deserialize(params)
@@ -8470,6 +8643,8 @@ module TencentCloud
             @Relation = LineageRelation.new
             @Relation.deserialize(params['Relation'])
           end
+          @DownStreamCount = params['DownStreamCount']
+          @UpStreamCount = params['UpStreamCount']
         end
       end
 
@@ -10176,6 +10351,84 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = OpsWorkflows.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListPermissions请求参数结构体
+      class ListPermissionsRequest < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源
+        # ResourceType：来源于TCCATALOG模块的GetGrantPrivilegesSTD接口中返回的ResourceType，并改为首字母大写，例如METALAKE对应Metalake
+        # ResourceUri，取决于 ResourceType，Metalake时固定为default，其他类别采用catalog的三段式结构，例如
+        # - Metalake，固定为default
+        # - Catalog，取catalogName
+        # - Schema，取catalogName.SchemaName
+        # - Table,，取catalogName.SchemaName.TableName
+        # @type Resource: :class:`Tencentcloud::Wedata.v20250806.models.PrivilegeResource`
+        # @param Filters: 过滤条件(此参数还未支持)
+        # @type Filters: Array
+        # @param OrderFields: 排序字段(此参数还未支持)
+        # @type OrderFields: Array
+        # @param Page: 页参数(此参数还未支持)
+        # @type Page: :class:`Tencentcloud::Wedata.v20250806.models.Page`
+
+        attr_accessor :Resource, :Filters, :OrderFields, :Page
+
+        def initialize(resource=nil, filters=nil, orderfields=nil, page=nil)
+          @Resource = resource
+          @Filters = filters
+          @OrderFields = orderfields
+          @Page = page
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = PrivilegeResource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              securityfilter_tmp = SecurityFilter.new
+              securityfilter_tmp.deserialize(i)
+              @Filters << securityfilter_tmp
+            end
+          end
+          unless params['OrderFields'].nil?
+            @OrderFields = []
+            params['OrderFields'].each do |i|
+              orderfield_tmp = OrderField.new
+              orderfield_tmp.deserialize(i)
+              @OrderFields << orderfield_tmp
+            end
+          end
+          unless params['Page'].nil?
+            @Page = Page.new
+            @Page.deserialize(params['Page'])
+          end
+        end
+      end
+
+      # ListPermissions返回参数结构体
+      class ListPermissionsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 获取资源权限详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.GetResourcePrivilegeDetailRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetResourcePrivilegeDetailRsp.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
@@ -14207,6 +14460,28 @@ module TencentCloud
         end
       end
 
+      # 页码参数
+      class Page < TencentCloud::Common::AbstractModel
+        # @param PageSize: 页大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+        # @param PageNumber: 页码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageNumber: Integer
+
+        attr_accessor :PageSize, :PageNumber
+
+        def initialize(pagesize=nil, pagenumber=nil)
+          @PageSize = pagesize
+          @PageNumber = pagenumber
+        end
+
+        def deserialize(params)
+          @PageSize = params['PageSize']
+          @PageNumber = params['PageNumber']
+        end
+      end
+
       # 角色列表分页信息
       class PageRoles < TencentCloud::Common::AbstractModel
         # @param Items: 角色信息
@@ -14359,6 +14634,112 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 权限信息
+      class PrivilegeInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 权限名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param DisplayName: 权限展示名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DisplayName: String
+        # @param Description: 权限描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param IsRead: 是否为读取权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRead: Boolean
+        # @param IsManage: 是否为管理权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsManage: Boolean
+        # @param Granted: 是否拥有此权限，检查权限时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Granted: Boolean
+        # @param InheritedObject: 继承自哪个资源，查询权限详情时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InheritedObject: :class:`Tencentcloud::Wedata.v20250806.models.PrivilegeResource`
+        # @param Inherited: 否继承获得，查询权限详情时使用
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Inherited: Boolean
+        # @param IsEdit: 是否为编辑权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsEdit: Boolean
+        # @param IsMetaDataPermission: 是否元数据权限（前端展示）
+        # @type IsMetaDataPermission: Boolean
+        # @param CatalogID: CatalogID(废弃)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogID: String
+        # @param CatalogName: catalog名称(废弃)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param WorkSpaceID: 空间ID(废弃)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceID: String
+        # @param WorkSpaceName: 空间名称(废弃)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkSpaceName: String
+
+        attr_accessor :Name, :DisplayName, :Description, :IsRead, :IsManage, :Granted, :InheritedObject, :Inherited, :IsEdit, :IsMetaDataPermission, :CatalogID, :CatalogName, :WorkSpaceID, :WorkSpaceName
+
+        def initialize(name=nil, displayname=nil, description=nil, isread=nil, ismanage=nil, granted=nil, inheritedobject=nil, inherited=nil, isedit=nil, ismetadatapermission=nil, catalogid=nil, catalogname=nil, workspaceid=nil, workspacename=nil)
+          @Name = name
+          @DisplayName = displayname
+          @Description = description
+          @IsRead = isread
+          @IsManage = ismanage
+          @Granted = granted
+          @InheritedObject = inheritedobject
+          @Inherited = inherited
+          @IsEdit = isedit
+          @IsMetaDataPermission = ismetadatapermission
+          @CatalogID = catalogid
+          @CatalogName = catalogname
+          @WorkSpaceID = workspaceid
+          @WorkSpaceName = workspacename
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @IsRead = params['IsRead']
+          @IsManage = params['IsManage']
+          @Granted = params['Granted']
+          unless params['InheritedObject'].nil?
+            @InheritedObject = PrivilegeResource.new
+            @InheritedObject.deserialize(params['InheritedObject'])
+          end
+          @Inherited = params['Inherited']
+          @IsEdit = params['IsEdit']
+          @IsMetaDataPermission = params['IsMetaDataPermission']
+          @CatalogID = params['CatalogID']
+          @CatalogName = params['CatalogName']
+          @WorkSpaceID = params['WorkSpaceID']
+          @WorkSpaceName = params['WorkSpaceName']
+        end
+      end
+
+      # 权限资源模型
+      class PrivilegeResource < TencentCloud::Common::AbstractModel
+        # @param ResourceType: 资源类型 Catalog、Schema等
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceType: String
+        # @param ResourceUri: 资源URI
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceUri: String
+
+        attr_accessor :ResourceType, :ResourceUri
+
+        def initialize(resourcetype=nil, resourceuri=nil)
+          @ResourceType = resourcetype
+          @ResourceUri = resourceuri
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceUri = params['ResourceUri']
         end
       end
 
@@ -17470,6 +17851,47 @@ module TencentCloud
         end
       end
 
+      # ResourcePrivilegeDetail
+      class ResourcePrivilegeDetail < TencentCloud::Common::AbstractModel
+        # @param Resource: 资源
+        # @type Resource: :class:`Tencentcloud::Wedata.v20250806.models.PrivilegeResource`
+        # @param SubjectDetails: 主体
+        # @type SubjectDetails: Array
+        # @param PermissionDetails: 权限详情
+        # @type PermissionDetails: Array
+
+        attr_accessor :Resource, :SubjectDetails, :PermissionDetails
+
+        def initialize(resource=nil, subjectdetails=nil, permissiondetails=nil)
+          @Resource = resource
+          @SubjectDetails = subjectdetails
+          @PermissionDetails = permissiondetails
+        end
+
+        def deserialize(params)
+          unless params['Resource'].nil?
+            @Resource = PrivilegeResource.new
+            @Resource.deserialize(params['Resource'])
+          end
+          unless params['SubjectDetails'].nil?
+            @SubjectDetails = []
+            params['SubjectDetails'].each do |i|
+              subjectinfo_tmp = SubjectInfo.new
+              subjectinfo_tmp.deserialize(i)
+              @SubjectDetails << subjectinfo_tmp
+            end
+          end
+          unless params['PermissionDetails'].nil?
+            @PermissionDetails = []
+            params['PermissionDetails'].each do |i|
+              privilegeinfo_tmp = PrivilegeInfo.new
+              privilegeinfo_tmp.deserialize(i)
+              @PermissionDetails << privilegeinfo_tmp
+            end
+          end
+        end
+      end
+
       # 资源组操作结果
       class ResourceResult < TencentCloud::Common::AbstractModel
         # @param Status: 是否成功
@@ -17608,6 +18030,103 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # RevokePrivileges请求参数结构体
+      class RevokePrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param Resources: 资源数组，数据来源于ListPermissions接口返回的Resource中的ResourceType和ResourceUri
+        # @type Resources: Array
+        # @param Subjects: 授权回收主体数组，参数组装需要注意：
+        # 1.SubjectType 和SubjectValues的取值参考ListPermissions接口中返回SubjectDetails中的SubjectType和SubjectValue
+        # 2.批量回收时，Subjects数组长度需要与权限点Privileges长度一致，并且数据一一对应
+        # @type Subjects: Array
+        # @param Privileges: 权限点，Name来源于ListPermissions接口返回的PermissionDetails中的Name，例如：BROWSE 、GRANT_PRIVILEGES
+        # @type Privileges: Array
+
+        attr_accessor :Resources, :Subjects, :Privileges
+
+        def initialize(resources=nil, subjects=nil, privileges=nil)
+          @Resources = resources
+          @Subjects = subjects
+          @Privileges = privileges
+        end
+
+        def deserialize(params)
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              privilegeresource_tmp = PrivilegeResource.new
+              privilegeresource_tmp.deserialize(i)
+              @Resources << privilegeresource_tmp
+            end
+          end
+          unless params['Subjects'].nil?
+            @Subjects = []
+            params['Subjects'].each do |i|
+              subject_tmp = Subject.new
+              subject_tmp.deserialize(i)
+              @Subjects << subject_tmp
+            end
+          end
+          unless params['Privileges'].nil?
+            @Privileges = []
+            params['Privileges'].each do |i|
+              privilegeinfo_tmp = PrivilegeInfo.new
+              privilegeinfo_tmp.deserialize(i)
+              @Privileges << privilegeinfo_tmp
+            end
+          end
+        end
+      end
+
+      # RevokePrivileges返回参数结构体
+      class RevokePrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 返回
+        # @type Data: :class:`Tencentcloud::Wedata.v20250806.models.RevokePrivilegesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = RevokePrivilegesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # openapi回收授权返回
+      class RevokePrivilegesRsp < TencentCloud::Common::AbstractModel
+        # @param OverallSuccess: 结果
+        # @type OverallSuccess: Boolean
+        # @param Results: 详情列表
+        # @type Results: Array
+
+        attr_accessor :OverallSuccess, :Results
+
+        def initialize(overallsuccess=nil, results=nil)
+          @OverallSuccess = overallsuccess
+          @Results = results
+        end
+
+        def deserialize(params)
+          @OverallSuccess = params['OverallSuccess']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              authorizeresult_tmp = AuthorizeResult.new
+              authorizeresult_tmp.deserialize(i)
+              @Results << authorizeresult_tmp
+            end
+          end
         end
       end
 
@@ -17951,6 +18470,26 @@ module TencentCloud
         end
       end
 
+      # 数据安全使用的filter
+      class SecurityFilter < TencentCloud::Common::AbstractModel
+        # @param Name: key
+        # @type Name: String
+        # @param Values: values
+        # @type Values: Array
+
+        attr_accessor :Name, :Values
+
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
       # SetSuccessTaskInstancesAsync请求参数结构体
       class SetSuccessTaskInstancesAsyncRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目Id
@@ -18161,6 +18700,54 @@ module TencentCloud
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # Subject主体信息，授权/回收主体
+      class Subject < TencentCloud::Common::AbstractModel
+        # @param SubjectType: 主体类型
+        # @type SubjectType: String
+        # @param SubjectValues: 主体列表
+        # @type SubjectValues: Array
+
+        attr_accessor :SubjectType, :SubjectValues
+
+        def initialize(subjecttype=nil, subjectvalues=nil)
+          @SubjectType = subjecttype
+          @SubjectValues = subjectvalues
+        end
+
+        def deserialize(params)
+          @SubjectType = params['SubjectType']
+          @SubjectValues = params['SubjectValues']
+        end
+      end
+
+      # SubjectInfo
+      class SubjectInfo < TencentCloud::Common::AbstractModel
+        # @param SubjectType: 主体类型
+        # @type SubjectType: String
+        # @param SubjectTypeDisplayName: 主题类型展示名
+        # @type SubjectTypeDisplayName: String
+        # @param SubjectValue: 主体id
+        # @type SubjectValue: String
+        # @param SubjectValueDisplayName: 主体名
+        # @type SubjectValueDisplayName: String
+
+        attr_accessor :SubjectType, :SubjectTypeDisplayName, :SubjectValue, :SubjectValueDisplayName
+
+        def initialize(subjecttype=nil, subjecttypedisplayname=nil, subjectvalue=nil, subjectvaluedisplayname=nil)
+          @SubjectType = subjecttype
+          @SubjectTypeDisplayName = subjecttypedisplayname
+          @SubjectValue = subjectvalue
+          @SubjectValueDisplayName = subjectvaluedisplayname
+        end
+
+        def deserialize(params)
+          @SubjectType = params['SubjectType']
+          @SubjectTypeDisplayName = params['SubjectTypeDisplayName']
+          @SubjectValue = params['SubjectValue']
+          @SubjectValueDisplayName = params['SubjectValueDisplayName']
         end
       end
 

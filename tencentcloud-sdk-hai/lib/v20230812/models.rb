@@ -799,15 +799,21 @@ module TencentCloud
         # @type ChargeUnit: String
         # @param Amount: 商品数量
         # @type Amount: Integer
+        # @param OriginPrice: 原价
+        # @type OriginPrice: Float
+        # @param DiscountPrice: 折扣价
+        # @type DiscountPrice: Float
 
-        attr_accessor :UnitPrice, :DiscountUnitPrice, :Discount, :ChargeUnit, :Amount
+        attr_accessor :UnitPrice, :DiscountUnitPrice, :Discount, :ChargeUnit, :Amount, :OriginPrice, :DiscountPrice
 
-        def initialize(unitprice=nil, discountunitprice=nil, discount=nil, chargeunit=nil, amount=nil)
+        def initialize(unitprice=nil, discountunitprice=nil, discount=nil, chargeunit=nil, amount=nil, originprice=nil, discountprice=nil)
           @UnitPrice = unitprice
           @DiscountUnitPrice = discountunitprice
           @Discount = discount
           @ChargeUnit = chargeunit
           @Amount = amount
+          @OriginPrice = originprice
+          @DiscountPrice = discountprice
         end
 
         def deserialize(params)
@@ -816,6 +822,8 @@ module TencentCloud
           @Discount = params['Discount']
           @ChargeUnit = params['ChargeUnit']
           @Amount = params['Amount']
+          @OriginPrice = params['OriginPrice']
+          @DiscountPrice = params['DiscountPrice']
         end
       end
 

@@ -9702,6 +9702,83 @@ module TencentCloud
         end
       end
 
+      # DescribeRenewInstances请求参数结构体
+      class DescribeRenewInstancesRequest < TencentCloud::Common::AbstractModel
+        # @param MaxResults: 每页的最大实例条数。 取值范围：1~100。
+        # @type MaxResults: Integer
+        # @param NextToken: 查询返回结果下一页的令牌。首次调用 API 不需要NextToken。
+        # @type NextToken: String
+        # @param Reverse: 获取实例的排序方向。枚举值如下：
+        # false=正序（默认）
+        # true=倒序
+        # @type Reverse: Boolean
+        # @param RenewFlagList: 续费标识。多个值用英文逗号分隔。枚举值如下：
+        # NOTIFY_AND_MANUAL_RENEW：手动续费
+        # NOTIFY_AND_AUTO_RENEW：自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：到期不续
+        # @type RenewFlagList: Array
+        # @param InstanceIdList: 实例ID。多个ID用英文逗号分隔，最多不超过100个。
+        # @type InstanceIdList: Array
+        # @param ExpireTimeStart: 到期时间段起，格式为yyyy-MM-dd HH:mm:ss。
+        # @type ExpireTimeStart: String
+        # @param ExpireTimeEnd: 到期时间段止，格式为yyyy-MM-dd HH:mm:ss。
+        # @type ExpireTimeEnd: String
+
+        attr_accessor :MaxResults, :NextToken, :Reverse, :RenewFlagList, :InstanceIdList, :ExpireTimeStart, :ExpireTimeEnd
+
+        def initialize(maxresults=nil, nexttoken=nil, reverse=nil, renewflaglist=nil, instanceidlist=nil, expiretimestart=nil, expiretimeend=nil)
+          @MaxResults = maxresults
+          @NextToken = nexttoken
+          @Reverse = reverse
+          @RenewFlagList = renewflaglist
+          @InstanceIdList = instanceidlist
+          @ExpireTimeStart = expiretimestart
+          @ExpireTimeEnd = expiretimeend
+        end
+
+        def deserialize(params)
+          @MaxResults = params['MaxResults']
+          @NextToken = params['NextToken']
+          @Reverse = params['Reverse']
+          @RenewFlagList = params['RenewFlagList']
+          @InstanceIdList = params['InstanceIdList']
+          @ExpireTimeStart = params['ExpireTimeStart']
+          @ExpireTimeEnd = params['ExpireTimeEnd']
+        end
+      end
+
+      # DescribeRenewInstances返回参数结构体
+      class DescribeRenewInstancesResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 实例汇总列表。
+        # @type InstanceList: Array
+        # @param NextToken: 查询返回结果下一页的令牌。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NextToken: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceList, :NextToken, :RequestId
+
+        def initialize(instancelist=nil, nexttoken=nil, requestid=nil)
+          @InstanceList = instancelist
+          @NextToken = nexttoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              renewinstance_tmp = RenewInstance.new
+              renewinstance_tmp.deserialize(i)
+              @InstanceList << renewinstance_tmp
+            end
+          end
+          @NextToken = params['NextToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSavingPlanResourceInfo请求参数结构体
       class DescribeSavingPlanResourceInfoRequest < TencentCloud::Common::AbstractModel
         # @param Limit: 数量，最大值为100
@@ -11061,6 +11138,80 @@ module TencentCloud
           @TransferPayAmount = params['TransferPayAmount']
           @BillMonth = params['BillMonth']
           @TotalCost = params['TotalCost']
+        end
+      end
+
+      # 资源实例信息
+      class RenewInstance < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param ProductCode: 产品编码
+        # @type ProductCode: String
+        # @param SubProductCode: 子产品编码
+        # @type SubProductCode: String
+        # @param RegionCode: 地域编码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RegionCode: String
+        # @param Status: 实例状态：
+        # NORMAL 正常，
+        # ISOLATED 已隔离
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param RenewFlag: 续费标识：
+        # NOTIFY_AND_MANUAL_RENEW 手动续费，
+        # NOTIFY_AND_AUTO_RENEW 自动续费，
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW 到期不续
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: String
+        # @param ExpireTime: 实例到期时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpireTime: String
+        # @param InstanceName: 实例别名：用户在控制台为实例设置的名称，如果未设置，则默认为空
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ProductName: 产品名称：用户所采购的各类云产品，例如：云服务器 CVM
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductName: String
+        # @param ProjectName: 项目名称：实例归属的项目，用户在控制台给实例自主分配项目，未分配则是默认项目
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectName: String
+        # @param RenewPeriod: 自动续费周期长度
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewPeriod: Integer
+        # @param RenewPeriodUnit: 自动续费周期单位：y 年，m 月
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewPeriodUnit: String
+
+        attr_accessor :InstanceId, :ProductCode, :SubProductCode, :RegionCode, :Status, :RenewFlag, :ExpireTime, :InstanceName, :ProductName, :ProjectName, :RenewPeriod, :RenewPeriodUnit
+
+        def initialize(instanceid=nil, productcode=nil, subproductcode=nil, regioncode=nil, status=nil, renewflag=nil, expiretime=nil, instancename=nil, productname=nil, projectname=nil, renewperiod=nil, renewperiodunit=nil)
+          @InstanceId = instanceid
+          @ProductCode = productcode
+          @SubProductCode = subproductcode
+          @RegionCode = regioncode
+          @Status = status
+          @RenewFlag = renewflag
+          @ExpireTime = expiretime
+          @InstanceName = instancename
+          @ProductName = productname
+          @ProjectName = projectname
+          @RenewPeriod = renewperiod
+          @RenewPeriodUnit = renewperiodunit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ProductCode = params['ProductCode']
+          @SubProductCode = params['SubProductCode']
+          @RegionCode = params['RegionCode']
+          @Status = params['Status']
+          @RenewFlag = params['RenewFlag']
+          @ExpireTime = params['ExpireTime']
+          @InstanceName = params['InstanceName']
+          @ProductName = params['ProductName']
+          @ProjectName = params['ProjectName']
+          @RenewPeriod = params['RenewPeriod']
+          @RenewPeriodUnit = params['RenewPeriodUnit']
         end
       end
 

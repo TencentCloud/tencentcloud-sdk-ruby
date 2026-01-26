@@ -12650,6 +12650,50 @@ module TencentCloud
         end
       end
 
+      # EnableEksEventPersistence请求参数结构体
+      class EnableEksEventPersistenceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param LogsetId: cls服务的logsetID
+        # @type LogsetId: String
+        # @param TopicId: cls服务的topicID
+        # @type TopicId: String
+        # @param TopicRegion: topic所在region
+        # @type TopicRegion: String
+
+        attr_accessor :ClusterId, :LogsetId, :TopicId, :TopicRegion
+
+        def initialize(clusterid=nil, logsetid=nil, topicid=nil, topicregion=nil)
+          @ClusterId = clusterid
+          @LogsetId = logsetid
+          @TopicId = topicid
+          @TopicRegion = topicregion
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @LogsetId = params['LogsetId']
+          @TopicId = params['TopicId']
+          @TopicRegion = params['TopicRegion']
+        end
+      end
+
+      # EnableEksEventPersistence返回参数结构体
+      class EnableEksEventPersistenceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # EnableEncryptionProtection请求参数结构体
       class EnableEncryptionProtectionRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID

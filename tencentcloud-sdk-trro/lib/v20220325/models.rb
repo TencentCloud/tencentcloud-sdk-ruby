@@ -464,28 +464,31 @@ module TencentCloud
 
       # DescribeDeviceList请求参数结构体
       class DescribeDeviceListRequest < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 设备所属项目ID
+        # @param ProjectId: <p>设备所属项目ID</p>
         # @type ProjectId: String
-        # @param DeviceType: 设备类型筛选，不填默认为全部设备类型
+        # @param DeviceType: <p>设备类型筛选，不填默认为全部设备类型</p>
         # @type DeviceType: String
-        # @param SearchWords: 对设备ID或Name按关键字进行模糊匹配，不填则不进行模糊匹配
+        # @param SearchWords: <p>对设备ID或Name按关键字进行模糊匹配，不填则不进行模糊匹配</p>
         # @type SearchWords: String
-        # @param PageSize: 每页返回的最大设备数，不填默认为10
+        # @param PageSize: <p>每页返回的最大设备数，不填默认为10</p>
         # @type PageSize: Integer
-        # @param PageNumber: 当前页码，不填默认为1（首页）
+        # @param PageNumber: <p>当前页码，不填默认为1（首页）</p>
         # @type PageNumber: Integer
-        # @param DeviceStatus: 设备状态筛选，不填默认为不过滤。取值：["ready","connected","online"]，online代表ready或connected
+        # @param DeviceStatus: <p>设备状态筛选，不填默认为不过滤。取值：[&quot;ready&quot;,&quot;connected&quot;,&quot;online&quot;]，online代表ready或connected</p>
         # @type DeviceStatus: String
+        # @param RegisterType: <p>标识查询项目下的设备注册类型，默认不包含免注册登录设备。 若存在免注册登录设备，该参数传&quot;1&quot;</p><p>枚举值：</p><ul><li>0： 项目不包含免注册登录设备</li><li>1： 项目包含免注册登录设备</li></ul><p>默认值：0</p>
+        # @type RegisterType: Integer
 
-        attr_accessor :ProjectId, :DeviceType, :SearchWords, :PageSize, :PageNumber, :DeviceStatus
+        attr_accessor :ProjectId, :DeviceType, :SearchWords, :PageSize, :PageNumber, :DeviceStatus, :RegisterType
 
-        def initialize(projectid=nil, devicetype=nil, searchwords=nil, pagesize=nil, pagenumber=nil, devicestatus=nil)
+        def initialize(projectid=nil, devicetype=nil, searchwords=nil, pagesize=nil, pagenumber=nil, devicestatus=nil, registertype=nil)
           @ProjectId = projectid
           @DeviceType = devicetype
           @SearchWords = searchwords
           @PageSize = pagesize
           @PageNumber = pagenumber
           @DeviceStatus = devicestatus
+          @RegisterType = registertype
         end
 
         def deserialize(params)
@@ -495,16 +498,17 @@ module TencentCloud
           @PageSize = params['PageSize']
           @PageNumber = params['PageNumber']
           @DeviceStatus = params['DeviceStatus']
+          @RegisterType = params['RegisterType']
         end
       end
 
       # DescribeDeviceList返回参数结构体
       class DescribeDeviceListResponse < TencentCloud::Common::AbstractModel
-        # @param Devices: 设备信息列表
+        # @param Devices: <p>设备信息列表</p>
         # @type Devices: Array
-        # @param Total: 设备总数
+        # @param Total: <p>设备总数</p>
         # @type Total: Integer
-        # @param Num: 本次返回的设备数
+        # @param Num: <p>本次返回的设备数</p>
         # @type Num: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2069,8 +2073,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2025, 11
-        deprecate :RenderConst=, :none, 2025, 11
+        deprecate :RenderConst, :none, 2026, 1
+        deprecate :RenderConst=, :none, 2026, 1
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil)
           @DeviceType = devicetype

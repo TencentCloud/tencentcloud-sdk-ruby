@@ -4613,6 +4613,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # Eks集群开启事件持久化功能
+
+        # @param request: Request instance for EnableEksEventPersistence.
+        # @type request: :class:`Tencentcloud::tke::V20180525::EnableEksEventPersistenceRequest`
+        # @rtype: :class:`Tencentcloud::tke::V20180525::EnableEksEventPersistenceResponse`
+        def EnableEksEventPersistence(request)
+          body = send_request('EnableEksEventPersistence', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableEksEventPersistenceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开启加密数据保护，需要先开启KMS能力，完成KMS授权
 
         # @param request: Request instance for EnableEncryptionProtection.
