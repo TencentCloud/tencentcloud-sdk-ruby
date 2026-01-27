@@ -271,6 +271,179 @@ module TencentCloud
         end
       end
 
+      # 采集器配置项
+      class CollectorConfigInfo < TencentCloud::Common::AbstractModel
+        # @param FileName: 采集器的主配置文件名，如filebeat.yml，metricbeat.yml等
+        # @type FileName: String
+        # @param FileContent: 采集器的主配置文件内容
+        # @type FileContent: String
+
+        attr_accessor :FileName, :FileContent
+
+        def initialize(filename=nil, filecontent=nil)
+          @FileName = filename
+          @FileContent = filecontent
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileContent = params['FileContent']
+        end
+      end
+
+      # 采集器输出的实例信息
+      class CollectorOutputInstance < TencentCloud::Common::AbstractModel
+        # @param Type: 采集器输出的实例类型（支持elasticsearch、logstash）
+        # @type Type: String
+        # @param InstanceId: 采集器输出的实例ID
+        # @type InstanceId: String
+        # @param ESUserName: 采集器输出到的ES实例的用户名
+        # @type ESUserName: String
+        # @param ESUserPasswd: 采集器输出到的ES实例的密码
+        # @type ESUserPasswd: String
+        # @param EnableMonitoring: 采集器输出到ES实例时，是否开启监控（1为开启，0为不开启，默认为0）
+        # @type EnableMonitoring: Integer
+        # @param EnableDashboard: 采集器输出到ES实例时，是否开启自动在kibana中生成Dashboard（1为开启，0为不开启，默认为0）
+        # @type EnableDashboard: Integer
+        # @param KafkaEndpoint: Ckafka实例的vip
+        # @type KafkaEndpoint: String
+        # @param KafkaTopic: Ckafka实例中的Topic
+        # @type KafkaTopic: String
+        # @param KafkaVersion: Ckafka实例的版本号
+        # @type KafkaVersion: String
+        # @param SesTopicId: topic id
+        # @type SesTopicId: String
+        # @param SesTopicName: topic name
+        # @type SesTopicName: String
+        # @param SesTopicAddress: topic address
+        # @type SesTopicAddress: String
+        # @param SesTopicUserName: /
+        # @type SesTopicUserName: String
+        # @param SesTopicPasswd: /
+        # @type SesTopicPasswd: String
+        # @param LogstashListenPort: /
+        # @type LogstashListenPort: Integer
+
+        attr_accessor :Type, :InstanceId, :ESUserName, :ESUserPasswd, :EnableMonitoring, :EnableDashboard, :KafkaEndpoint, :KafkaTopic, :KafkaVersion, :SesTopicId, :SesTopicName, :SesTopicAddress, :SesTopicUserName, :SesTopicPasswd, :LogstashListenPort
+
+        def initialize(type=nil, instanceid=nil, esusername=nil, esuserpasswd=nil, enablemonitoring=nil, enabledashboard=nil, kafkaendpoint=nil, kafkatopic=nil, kafkaversion=nil, sestopicid=nil, sestopicname=nil, sestopicaddress=nil, sestopicusername=nil, sestopicpasswd=nil, logstashlistenport=nil)
+          @Type = type
+          @InstanceId = instanceid
+          @ESUserName = esusername
+          @ESUserPasswd = esuserpasswd
+          @EnableMonitoring = enablemonitoring
+          @EnableDashboard = enabledashboard
+          @KafkaEndpoint = kafkaendpoint
+          @KafkaTopic = kafkatopic
+          @KafkaVersion = kafkaversion
+          @SesTopicId = sestopicid
+          @SesTopicName = sestopicname
+          @SesTopicAddress = sestopicaddress
+          @SesTopicUserName = sestopicusername
+          @SesTopicPasswd = sestopicpasswd
+          @LogstashListenPort = logstashlistenport
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @InstanceId = params['InstanceId']
+          @ESUserName = params['ESUserName']
+          @ESUserPasswd = params['ESUserPasswd']
+          @EnableMonitoring = params['EnableMonitoring']
+          @EnableDashboard = params['EnableDashboard']
+          @KafkaEndpoint = params['KafkaEndpoint']
+          @KafkaTopic = params['KafkaTopic']
+          @KafkaVersion = params['KafkaVersion']
+          @SesTopicId = params['SesTopicId']
+          @SesTopicName = params['SesTopicName']
+          @SesTopicAddress = params['SesTopicAddress']
+          @SesTopicUserName = params['SesTopicUserName']
+          @SesTopicPasswd = params['SesTopicPasswd']
+          @LogstashListenPort = params['LogstashListenPort']
+        end
+      end
+
+      # 容器日志采集配置
+      class CollectorTarget < TencentCloud::Common::AbstractModel
+        # @param TargetName: 采集配置名称
+        # @type TargetName: String
+        # @param Namespaces: 命名空间列表，包括Include包含和Exclude不包含选项，两者都为空时等同于全部命名空间(包含当前所有的以及未来创建的)。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespaces: :class:`Tencentcloud::Es.v20180416.models.Namespaces`
+        # @param PodLabels: Pod标签列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PodLabels: Array
+        # @param ContainerName: 容器名称，支持小写字母、数字、连接符-、下划线_，最多支持63个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ContainerName: String
+        # @param IndexPrefix: ES索引名称前缀，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称的前缀，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexPrefix: String
+        # @param LogFilters: 日志内容过滤，以逗号分隔，支持大小写字母、数字、连接符-、下划线_以及逗号，最多支持50个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogFilters: String
+        # @param ConfigContent: 高级配置，可自定义采集规则，最多支持2048个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConfigContent: String
+        # @param KafkaTopic: Ckafka实例的Topic
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KafkaTopic: String
+        # @param IndexAlias: ES索引名称，如果当前采集配置下的容器日志输出到ES集群，则使用该字段作为ES索引名称，支持大小写字母、数字、连接符-、下划线_，最多支持50个字符
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexAlias: String
+        # @param InputType: /
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputType: String
+        # @param InputPath: 日志采集host路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputPath: String
+        # @param InputsTailFiles: inputs.tail_files
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InputsTailFiles: Boolean
+
+        attr_accessor :TargetName, :Namespaces, :PodLabels, :ContainerName, :IndexPrefix, :LogFilters, :ConfigContent, :KafkaTopic, :IndexAlias, :InputType, :InputPath, :InputsTailFiles
+
+        def initialize(targetname=nil, namespaces=nil, podlabels=nil, containername=nil, indexprefix=nil, logfilters=nil, configcontent=nil, kafkatopic=nil, indexalias=nil, inputtype=nil, inputpath=nil, inputstailfiles=nil)
+          @TargetName = targetname
+          @Namespaces = namespaces
+          @PodLabels = podlabels
+          @ContainerName = containername
+          @IndexPrefix = indexprefix
+          @LogFilters = logfilters
+          @ConfigContent = configcontent
+          @KafkaTopic = kafkatopic
+          @IndexAlias = indexalias
+          @InputType = inputtype
+          @InputPath = inputpath
+          @InputsTailFiles = inputstailfiles
+        end
+
+        def deserialize(params)
+          @TargetName = params['TargetName']
+          unless params['Namespaces'].nil?
+            @Namespaces = Namespaces.new
+            @Namespaces.deserialize(params['Namespaces'])
+          end
+          unless params['PodLabels'].nil?
+            @PodLabels = []
+            params['PodLabels'].each do |i|
+              podlabel_tmp = PodLabel.new
+              podlabel_tmp.deserialize(i)
+              @PodLabels << podlabel_tmp
+            end
+          end
+          @ContainerName = params['ContainerName']
+          @IndexPrefix = params['IndexPrefix']
+          @LogFilters = params['LogFilters']
+          @ConfigContent = params['ConfigContent']
+          @KafkaTopic = params['KafkaTopic']
+          @IndexAlias = params['IndexAlias']
+          @InputType = params['InputType']
+          @InputPath = params['InputPath']
+          @InputsTailFiles = params['InputsTailFiles']
+        end
+      end
+
       # 普通索引信息列表
       class CommonIndexInfo < TencentCloud::Common::AbstractModel
         # @param IndexName: 普通索引名
@@ -550,6 +723,102 @@ module TencentCloud
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCollector请求参数结构体
+      class CreateCollectorRequest < TencentCloud::Common::AbstractModel
+        # @param CollectorName: 采集器名称（1-50 个英文、汉字、数字、连接线-或下划线_）
+        # @type CollectorName: String
+        # @param CollectorVersion: 采集器版本（支持"6.8.15"、"7.10.2"）
+        # @type CollectorVersion: String
+        # @param CollectorType: 采集器类型（支持filebeat、metricbeat、heartbeat、auditbeat、packetbeat）
+        # @type CollectorType: String
+        # @param OutputInstance: 采集器输出的ES实例信息
+        # @type OutputInstance: :class:`Tencentcloud::Es.v20180416.models.CollectorOutputInstance`
+        # @param CollectorConfigs: 采集器配置
+        # @type CollectorConfigs: Array
+        # @param CVMInstanceIds: 采集器下发的CVM实例ID列表
+        # @type CVMInstanceIds: Array
+        # @param TargetType: 采集目标类型，CVM或者TKE
+        # @type TargetType: String
+        # @param ContainerClusterId: 容器集群ID，采集目标为TKE时必填
+        # @type ContainerClusterId: String
+        # @param CollectorTargets: 采集器配置，采集目标为TKE时必填
+        # @type CollectorTargets: Array
+        # @param TagList: 标签信息
+        # @type TagList: Array
+
+        attr_accessor :CollectorName, :CollectorVersion, :CollectorType, :OutputInstance, :CollectorConfigs, :CVMInstanceIds, :TargetType, :ContainerClusterId, :CollectorTargets, :TagList
+
+        def initialize(collectorname=nil, collectorversion=nil, collectortype=nil, outputinstance=nil, collectorconfigs=nil, cvminstanceids=nil, targettype=nil, containerclusterid=nil, collectortargets=nil, taglist=nil)
+          @CollectorName = collectorname
+          @CollectorVersion = collectorversion
+          @CollectorType = collectortype
+          @OutputInstance = outputinstance
+          @CollectorConfigs = collectorconfigs
+          @CVMInstanceIds = cvminstanceids
+          @TargetType = targettype
+          @ContainerClusterId = containerclusterid
+          @CollectorTargets = collectortargets
+          @TagList = taglist
+        end
+
+        def deserialize(params)
+          @CollectorName = params['CollectorName']
+          @CollectorVersion = params['CollectorVersion']
+          @CollectorType = params['CollectorType']
+          unless params['OutputInstance'].nil?
+            @OutputInstance = CollectorOutputInstance.new
+            @OutputInstance.deserialize(params['OutputInstance'])
+          end
+          unless params['CollectorConfigs'].nil?
+            @CollectorConfigs = []
+            params['CollectorConfigs'].each do |i|
+              collectorconfiginfo_tmp = CollectorConfigInfo.new
+              collectorconfiginfo_tmp.deserialize(i)
+              @CollectorConfigs << collectorconfiginfo_tmp
+            end
+          end
+          @CVMInstanceIds = params['CVMInstanceIds']
+          @TargetType = params['TargetType']
+          @ContainerClusterId = params['ContainerClusterId']
+          unless params['CollectorTargets'].nil?
+            @CollectorTargets = []
+            params['CollectorTargets'].each do |i|
+              collectortarget_tmp = CollectorTarget.new
+              collectortarget_tmp.deserialize(i)
+              @CollectorTargets << collectortarget_tmp
+            end
+          end
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCollector返回参数结构体
+      class CreateCollectorResponse < TencentCloud::Common::AbstractModel
+        # @param CollectorId: 采集器ID
+        # @type CollectorId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CollectorId, :RequestId
+
+        def initialize(collectorid=nil, requestid=nil)
+          @CollectorId = collectorid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @CollectorId = params['CollectorId']
           @RequestId = params['RequestId']
         end
       end
@@ -5882,6 +6151,26 @@ module TencentCloud
         end
       end
 
+      # TKE命名空间
+      class Namespaces < TencentCloud::Common::AbstractModel
+        # @param Include: 包含的命名空间的列表，单个命名空间支持小写字母、数字、连接符-、下划线_，最多支持63个字符
+        # @type Include: Array
+        # @param Exclude: 不包含的命名空间列表，单个命名空间支持小写字母、数字、连接符-、下划线_，最多支持63个字符
+        # @type Exclude: Array
+
+        attr_accessor :Include, :Exclude
+
+        def initialize(include=nil, exclude=nil)
+          @Include = include
+          @Exclude = exclude
+        end
+
+        def deserialize(params)
+          @Include = params['Include']
+          @Exclude = params['Exclude']
+        end
+      end
+
       # 集群中一种节点类型（如热数据节点，冷数据节点，专用主节点等）的规格描述信息，包括节点类型，节点个数，节点规格，磁盘类型，磁盘大小等, Type不指定时默认为热数据节点；如果节点为master节点，则DiskType和DiskSize参数会被忽略（主节点无数据盘）
       class NodeInfo < TencentCloud::Common::AbstractModel
         # @param NodeNum: 节点数量
@@ -6288,6 +6577,26 @@ module TencentCloud
         def deserialize(params)
           @NodeType = params['NodeType']
           @WhiteHostList = params['WhiteHostList']
+        end
+      end
+
+      # Pod标签
+      class PodLabel < TencentCloud::Common::AbstractModel
+        # @param LabelKey: 标签键，支持大小写字母、数字、以及-_./，最多支持63个字符
+        # @type LabelKey: String
+        # @param LabelValue: 标签值，支持大小写字母、数字、以及-_./，最多支持63个字符
+        # @type LabelValue: String
+
+        attr_accessor :LabelKey, :LabelValue
+
+        def initialize(labelkey=nil, labelvalue=nil)
+          @LabelKey = labelkey
+          @LabelValue = labelvalue
+        end
+
+        def deserialize(params)
+          @LabelKey = params['LabelKey']
+          @LabelValue = params['LabelValue']
         end
       end
 

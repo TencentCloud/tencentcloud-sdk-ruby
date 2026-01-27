@@ -1218,35 +1218,46 @@ module TencentCloud
 
       # CreateTagRetentionRule请求参数结构体
       class CreateTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 主实例iD
+        # @param RegistryId: <p>主实例iD</p>
         # @type RegistryId: String
-        # @param NamespaceId: 命名空间的Id
+        # @param NamespaceId: <p>命名空间的Id</p>
         # @type NamespaceId: Integer
-        # @param RetentionRule: 保留策略
-        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
-        # @param CronSetting: 执行周期，当前只能选择： manual;daily;weekly;monthly
+        # @param CronSetting: <p>执行周期，当前只能选择： manual;daily;weekly;monthly</p>
         # @type CronSetting: String
-        # @param Disabled: 是否禁用规则，默认值为false
+        # @param RetentionRule: <p>保留策略，当基本保留策略和高级保留策略同时配置时，优先使用高级保留策略</p>
+        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
+        # @param AdvancedRuleItems: <p>高级版本保留策略，当基本保留策略和高级保留策略同时配置时，优先使用高级保留策略</p>
+        # @type AdvancedRuleItems: Array
+        # @param Disabled: <p>是否禁用规则，默认值为false</p>
         # @type Disabled: Boolean
 
-        attr_accessor :RegistryId, :NamespaceId, :RetentionRule, :CronSetting, :Disabled
+        attr_accessor :RegistryId, :NamespaceId, :CronSetting, :RetentionRule, :AdvancedRuleItems, :Disabled
 
-        def initialize(registryid=nil, namespaceid=nil, retentionrule=nil, cronsetting=nil, disabled=nil)
+        def initialize(registryid=nil, namespaceid=nil, cronsetting=nil, retentionrule=nil, advancedruleitems=nil, disabled=nil)
           @RegistryId = registryid
           @NamespaceId = namespaceid
-          @RetentionRule = retentionrule
           @CronSetting = cronsetting
+          @RetentionRule = retentionrule
+          @AdvancedRuleItems = advancedruleitems
           @Disabled = disabled
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @NamespaceId = params['NamespaceId']
+          @CronSetting = params['CronSetting']
           unless params['RetentionRule'].nil?
             @RetentionRule = RetentionRule.new
             @RetentionRule.deserialize(params['RetentionRule'])
           end
-          @CronSetting = params['CronSetting']
+          unless params['AdvancedRuleItems'].nil?
+            @AdvancedRuleItems = []
+            params['AdvancedRuleItems'].each do |i|
+              retentionruleitem_tmp = RetentionRuleItem.new
+              retentionruleitem_tmp.deserialize(i)
+              @AdvancedRuleItems << retentionruleitem_tmp
+            end
+          end
           @Disabled = params['Disabled']
         end
       end
@@ -1982,25 +1993,29 @@ module TencentCloud
 
       # DeleteRepository请求参数结构体
       class DeleteRepositoryRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 实例Id
+        # @param RegistryId: <p>实例Id</p>
         # @type RegistryId: String
-        # @param NamespaceName: 命名空间的名称
+        # @param NamespaceName: <p>命名空间的名称</p>
         # @type NamespaceName: String
-        # @param RepositoryName: 镜像仓库的名称
+        # @param RepositoryName: <p>镜像仓库的名称</p>
         # @type RepositoryName: String
+        # @param ForceDelete: <p>默认值为true，表示无论仓库是否存在镜像都直接删除；false代表删除仓库前需检查是否存在镜像。</p>
+        # @type ForceDelete: Boolean
 
-        attr_accessor :RegistryId, :NamespaceName, :RepositoryName
+        attr_accessor :RegistryId, :NamespaceName, :RepositoryName, :ForceDelete
 
-        def initialize(registryid=nil, namespacename=nil, repositoryname=nil)
+        def initialize(registryid=nil, namespacename=nil, repositoryname=nil, forcedelete=nil)
           @RegistryId = registryid
           @NamespaceName = namespacename
           @RepositoryName = repositoryname
+          @ForceDelete = forcedelete
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @NamespaceName = params['NamespaceName']
           @RepositoryName = params['RepositoryName']
+          @ForceDelete = params['ForceDelete']
         end
       end
 
@@ -4223,13 +4238,13 @@ module TencentCloud
 
       # DescribeTagRetentionRules请求参数结构体
       class DescribeTagRetentionRulesRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 主实例iD
+        # @param RegistryId: <p>主实例iD</p>
         # @type RegistryId: String
-        # @param NamespaceName: 命名空间的名称
+        # @param NamespaceName: <p>命名空间的名称</p>
         # @type NamespaceName: String
-        # @param Limit: 分页PageSize
+        # @param Limit: <p>分页PageSize</p>
         # @type Limit: Integer
-        # @param Offset: 分页Page
+        # @param Offset: <p>分页Page</p>
         # @type Offset: Integer
 
         attr_accessor :RegistryId, :NamespaceName, :Limit, :Offset
@@ -4251,9 +4266,9 @@ module TencentCloud
 
       # DescribeTagRetentionRules返回参数结构体
       class DescribeTagRetentionRulesResponse < TencentCloud::Common::AbstractModel
-        # @param RetentionPolicyList: 版本保留策略列表
+        # @param RetentionPolicyList: <p>版本保留策略列表</p>
         # @type RetentionPolicyList: Array
-        # @param TotalCount: 版本保留策略总数
+        # @param TotalCount: <p>版本保留策略总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4727,6 +4742,26 @@ module TencentCloud
         def deserialize(params)
           @Name = params['Name']
           @Values = params['Values']
+        end
+      end
+
+      # 过滤选择器
+      class FilterSelector < TencentCloud::Common::AbstractModel
+        # @param Decoration: <p>过滤规则类型，在tag过滤中，可选值为matches（匹配），excludes(排除)，在仓库过滤中，可选值为repoMatches（仓库匹配），repoExcludes（仓库排除）</p>
+        # @type Decoration: String
+        # @param Pattern: <p>过滤表达式</p>
+        # @type Pattern: String
+
+        attr_accessor :Decoration, :Pattern
+
+        def initialize(decoration=nil, pattern=nil)
+          @Decoration = decoration
+          @Pattern = pattern
+        end
+
+        def deserialize(params)
+          @Decoration = params['Decoration']
+          @Pattern = params['Pattern']
         end
       end
 
@@ -5653,39 +5688,50 @@ module TencentCloud
 
       # ModifyTagRetentionRule请求参数结构体
       class ModifyTagRetentionRuleRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: 主实例iD
+        # @param RegistryId: <p>主实例iD</p>
         # @type RegistryId: String
-        # @param NamespaceId: 命名空间的Id，必须填写原有的命名空间id
+        # @param NamespaceId: <p>命名空间的Id，必须填写原有的命名空间id</p>
         # @type NamespaceId: Integer
-        # @param RetentionRule: 保留策略
-        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
-        # @param CronSetting: 执行周期，必须填写为原来的设置
+        # @param CronSetting: <p>执行周期，必须填写为原来的设置</p>
         # @type CronSetting: String
-        # @param RetentionId: 规则Id
+        # @param RetentionId: <p>规则Id</p>
         # @type RetentionId: Integer
-        # @param Disabled: 是否禁用规则
+        # @param RetentionRule: <p>保留策略，当基本保留策略和高级保留策略同时配置时，优先使用高级保留策略</p>
+        # @type RetentionRule: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
+        # @param AdvancedRuleItems: <p>高级保留策略，当基本保留策略和高级保留策略同时配置时，优先使用高级保留策略</p>
+        # @type AdvancedRuleItems: Array
+        # @param Disabled: <p>是否禁用规则</p>
         # @type Disabled: Boolean
 
-        attr_accessor :RegistryId, :NamespaceId, :RetentionRule, :CronSetting, :RetentionId, :Disabled
+        attr_accessor :RegistryId, :NamespaceId, :CronSetting, :RetentionId, :RetentionRule, :AdvancedRuleItems, :Disabled
 
-        def initialize(registryid=nil, namespaceid=nil, retentionrule=nil, cronsetting=nil, retentionid=nil, disabled=nil)
+        def initialize(registryid=nil, namespaceid=nil, cronsetting=nil, retentionid=nil, retentionrule=nil, advancedruleitems=nil, disabled=nil)
           @RegistryId = registryid
           @NamespaceId = namespaceid
-          @RetentionRule = retentionrule
           @CronSetting = cronsetting
           @RetentionId = retentionid
+          @RetentionRule = retentionrule
+          @AdvancedRuleItems = advancedruleitems
           @Disabled = disabled
         end
 
         def deserialize(params)
           @RegistryId = params['RegistryId']
           @NamespaceId = params['NamespaceId']
+          @CronSetting = params['CronSetting']
+          @RetentionId = params['RetentionId']
           unless params['RetentionRule'].nil?
             @RetentionRule = RetentionRule.new
             @RetentionRule.deserialize(params['RetentionRule'])
           end
-          @CronSetting = params['CronSetting']
-          @RetentionId = params['RetentionId']
+          unless params['AdvancedRuleItems'].nil?
+            @AdvancedRuleItems = []
+            params['AdvancedRuleItems'].each do |i|
+              retentionruleitem_tmp = RetentionRuleItem.new
+              retentionruleitem_tmp.deserialize(i)
+              @AdvancedRuleItems << retentionruleitem_tmp
+            end
+          end
           @Disabled = params['Disabled']
         end
       end
@@ -6586,25 +6632,28 @@ module TencentCloud
 
       # 版本保留策略
       class RetentionPolicy < TencentCloud::Common::AbstractModel
-        # @param RetentionId: 版本保留策略Id
+        # @param RetentionId: <p>版本保留策略Id</p>
         # @type RetentionId: Integer
-        # @param NamespaceName: 命名空间的名称
+        # @param NamespaceName: <p>命名空间的名称</p>
         # @type NamespaceName: String
-        # @param RetentionRuleList: 规则列表
+        # @param RetentionRuleList: <p>规则列表</p>
         # @type RetentionRuleList: Array
-        # @param CronSetting: 定期执行方式
+        # @param AdvancedRuleItems: <p>高级保留规则列表</p>
+        # @type AdvancedRuleItems: Array
+        # @param CronSetting: <p>定期执行方式</p>
         # @type CronSetting: String
-        # @param Disabled: 是否启用规则
+        # @param Disabled: <p>是否启用规则</p>
         # @type Disabled: Boolean
-        # @param NextExecutionTime: 基于当前时间根据cronSetting后下一次任务要执行的时间，仅做参考使用
+        # @param NextExecutionTime: <p>基于当前时间根据cronSetting后下一次任务要执行的时间，仅做参考使用</p>
         # @type NextExecutionTime: String
 
-        attr_accessor :RetentionId, :NamespaceName, :RetentionRuleList, :CronSetting, :Disabled, :NextExecutionTime
+        attr_accessor :RetentionId, :NamespaceName, :RetentionRuleList, :AdvancedRuleItems, :CronSetting, :Disabled, :NextExecutionTime
 
-        def initialize(retentionid=nil, namespacename=nil, retentionrulelist=nil, cronsetting=nil, disabled=nil, nextexecutiontime=nil)
+        def initialize(retentionid=nil, namespacename=nil, retentionrulelist=nil, advancedruleitems=nil, cronsetting=nil, disabled=nil, nextexecutiontime=nil)
           @RetentionId = retentionid
           @NamespaceName = namespacename
           @RetentionRuleList = retentionrulelist
+          @AdvancedRuleItems = advancedruleitems
           @CronSetting = cronsetting
           @Disabled = disabled
           @NextExecutionTime = nextexecutiontime
@@ -6619,6 +6668,14 @@ module TencentCloud
               retentionrule_tmp = RetentionRule.new
               retentionrule_tmp.deserialize(i)
               @RetentionRuleList << retentionrule_tmp
+            end
+          end
+          unless params['AdvancedRuleItems'].nil?
+            @AdvancedRuleItems = []
+            params['AdvancedRuleItems'].each do |i|
+              retentionruleitem_tmp = RetentionRuleItem.new
+              retentionruleitem_tmp.deserialize(i)
+              @AdvancedRuleItems << retentionruleitem_tmp
             end
           end
           @CronSetting = params['CronSetting']
@@ -6644,6 +6701,39 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 版本保留规则
+      class RetentionRuleItem < TencentCloud::Common::AbstractModel
+        # @param RetentionPolicy: <p>版本保留规则</p>
+        # @type RetentionPolicy: :class:`Tencentcloud::Tcr.v20190924.models.RetentionRule`
+        # @param TagFilter: <p>标签过滤器</p>
+        # @type TagFilter: :class:`Tencentcloud::Tcr.v20190924.models.FilterSelector`
+        # @param RepositoryFilter: <p>仓库过滤器</p>
+        # @type RepositoryFilter: :class:`Tencentcloud::Tcr.v20190924.models.FilterSelector`
+
+        attr_accessor :RetentionPolicy, :TagFilter, :RepositoryFilter
+
+        def initialize(retentionpolicy=nil, tagfilter=nil, repositoryfilter=nil)
+          @RetentionPolicy = retentionpolicy
+          @TagFilter = tagfilter
+          @RepositoryFilter = repositoryfilter
+        end
+
+        def deserialize(params)
+          unless params['RetentionPolicy'].nil?
+            @RetentionPolicy = RetentionRule.new
+            @RetentionPolicy.deserialize(params['RetentionPolicy'])
+          end
+          unless params['TagFilter'].nil?
+            @TagFilter = FilterSelector.new
+            @TagFilter.deserialize(params['TagFilter'])
+          end
+          unless params['RepositoryFilter'].nil?
+            @RepositoryFilter = FilterSelector.new
+            @RepositoryFilter.deserialize(params['RepositoryFilter'])
+          end
         end
       end
 

@@ -692,6 +692,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户自定义图像异步处理模板，数量上限：50。暂时不支持 HLS 格式。
+
+        # @param request: Request instance for CreateProcessImageAsyncTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateProcessImageAsyncTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateProcessImageAsyncTemplateResponse`
+        def CreateProcessImageAsyncTemplate(request)
+          body = send_request('CreateProcessImageAsyncTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateProcessImageAsyncTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建音画质检测模板。
 
         # @param request: Request instance for CreateQualityInspectTemplate.
@@ -1437,6 +1461,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteProcedureTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义图像异步处理模板。
+
+        # 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+
+        # @param request: Request instance for DeleteProcessImageAsyncTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteProcessImageAsyncTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteProcessImageAsyncTemplateResponse`
+        def DeleteProcessImageAsyncTemplate(request)
+          body = send_request('DeleteProcessImageAsyncTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteProcessImageAsyncTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2691,6 +2741,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeProcedureTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据图像异步处理模板唯一标识，获取图像异步处理模板详情列表。返回结果包含符合条件的所有用户自定义图像异步处理模板。
+
+        # @param request: Request instance for DescribeProcessImageAsyncTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeProcessImageAsyncTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeProcessImageAsyncTemplatesResponse`
+        def DescribeProcessImageAsyncTemplates(request)
+          body = send_request('DescribeProcessImageAsyncTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeProcessImageAsyncTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3970,6 +4044,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改用户自定义图像异步处理模板。
+
+        # 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
+
+        # @param request: Request instance for ModifyProcessImageAsyncTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyProcessImageAsyncTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyProcessImageAsyncTemplateResponse`
+        def ModifyProcessImageAsyncTemplate(request)
+          body = send_request('ModifyProcessImageAsyncTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyProcessImageAsyncTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改音画质检测模板。
 
         # @param request: Request instance for ModifyQualityInspectTemplate.
@@ -4354,6 +4454,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ProcessImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于图片处理任务
+
+        # @param request: Request instance for ProcessImageAsync.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ProcessImageAsyncRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ProcessImageAsyncResponse`
+        def ProcessImageAsync(request)
+          body = send_request('ProcessImageAsync', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ProcessImageAsyncResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -29,6 +29,8 @@ module TencentCloud
         end
 
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建网络策略添加并发布任务
 
         # @param request: Request instance for AddAndPublishNetworkFirewallPolicyDetail.
@@ -52,6 +54,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络创建Yaml网络策略并发布任务
 
@@ -367,6 +371,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建网络策略添加任务
 
         # @param request: Request instance for AddNetworkFirewallPolicyDetail.
@@ -391,6 +397,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建Yaml网络策略添加任务
 
         # @param request: Request instance for AddNetworkFirewallPolicyYamlDetail.
@@ -414,6 +422,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络创建检查Yaml网络策略任务
 
@@ -462,6 +472,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络创建网络策略确认任务
 
@@ -1015,6 +1027,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络集群下发刷新任务
 
         # @param request: Request instance for CreateNetworkFirewallClusterRefresh.
@@ -1038,6 +1052,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络集群网络策略创建自动发现任务
 
@@ -1063,6 +1079,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建网络策略发布任务
 
         # @param request: Request instance for CreateNetworkFirewallPublish.
@@ -1086,6 +1104,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络创建网络策略撤销任务
 
@@ -1689,6 +1709,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络创建网络策略删除任务
 
@@ -4498,6 +4520,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 查询集群策略审计列表
 
         # @param request: Request instance for DescribeNetworkFirewallAuditRecord.
@@ -4521,6 +4545,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 查询集群策略列表
 
@@ -4546,6 +4572,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络查询资产任务进度
 
         # @param request: Request instance for DescribeNetworkFirewallClusterRefreshStatus.
@@ -4569,6 +4597,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 查询集群网络空间标签列表
 
@@ -4594,6 +4624,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 查询集群网络空间列表
 
         # @param request: Request instance for DescribeNetworkFirewallNamespaceList.
@@ -4617,6 +4649,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 查询集群网络pod标签
 
@@ -4642,6 +4676,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络集群查看策略详情
 
         # @param request: Request instance for DescribeNetworkFirewallPolicyDetail.
@@ -4665,6 +4701,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络查询网络策略自动发现任务进度
 
@@ -4690,6 +4728,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 查询集群网络策略列表
 
         # @param request: Request instance for DescribeNetworkFirewallPolicyList.
@@ -4714,6 +4754,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络查询网络策略策略执行状态
 
         # @param request: Request instance for DescribeNetworkFirewallPolicyStatus.
@@ -4737,6 +4779,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络集群查看Yaml网络策略详情
 
@@ -8074,6 +8118,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建网络策略更新并发布任务
 
         # @param request: Request instance for UpdateAndPublishNetworkFirewallPolicyDetail.
@@ -8097,6 +8143,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络更新Yaml网络策略并发布任务
 
@@ -8170,6 +8218,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 功能已下线待三合一重构
+
         # 容器网络创建网络策略更新任务
 
         # @param request: Request instance for UpdateNetworkFirewallPolicyDetail.
@@ -8193,6 +8243,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 功能已下线待三合一重构
 
         # 容器网络更新Yaml网络策略任务
 

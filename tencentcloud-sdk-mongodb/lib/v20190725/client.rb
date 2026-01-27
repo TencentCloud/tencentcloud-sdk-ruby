@@ -800,6 +800,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeSRVConnectionDomain）用于查询MongoDB数据库当前的域名信息。
+
+        # @param request: Request instance for DescribeSRVConnectionDomain.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DescribeSRVConnectionDomainRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DescribeSRVConnectionDomainResponse`
+        def DescribeSRVConnectionDomain(request)
+          body = send_request('DescribeSRVConnectionDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSRVConnectionDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeSecurityGroup）用于查询实例绑定的安全组。
 
         # @param request: Request instance for DescribeSecurityGroup.
@@ -920,6 +944,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DisableSRVConnectionUrl）用于关闭MongoDB数据库的SRV访问地址。
+
+        # @param request: Request instance for DisableSRVConnectionUrl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::DisableSRVConnectionUrlRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::DisableSRVConnectionUrlResponse`
+        def DisableSRVConnectionUrl(request)
+          body = send_request('DisableSRVConnectionUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DisableSRVConnectionUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口(DropDBInstanceParamTpl )用于删除云数据库MongoDB实例的参数模板
         # **说明：DropDBInstanceParamTpl  API正在公测中，在此期间，该接口仅对公测用户开放**
 
@@ -931,6 +979,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DropDBInstanceParamTplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（EnableSRVConnectionUrl）用于开启MongoDB数据库的SRV访问地址。
+
+        # @param request: Request instance for EnableSRVConnectionUrl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::EnableSRVConnectionUrlRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::EnableSRVConnectionUrlResponse`
+        def EnableSRVConnectionUrl(request)
+          body = send_request('EnableSRVConnectionUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = EnableSRVConnectionUrlResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1293,6 +1365,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceParamsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DisableSRVConnectionUrl）用于修改MongoDB数据库的SRV访问地址的TTL时长。
+
+        # @param request: Request instance for ModifySRVConnectionUrl.
+        # @type request: :class:`Tencentcloud::mongodb::V20190725::ModifySRVConnectionUrlRequest`
+        # @rtype: :class:`Tencentcloud::mongodb::V20190725::ModifySRVConnectionUrlResponse`
+        def ModifySRVConnectionUrl(request)
+          body = send_request('ModifySRVConnectionUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySRVConnectionUrlResponse.new
             model.deserialize(response['Response'])
             model
           else

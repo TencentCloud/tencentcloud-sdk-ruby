@@ -14328,9 +14328,9 @@ module TencentCloud
 
       # kms加密参数
       class KMSConfiguration < TencentCloud::Common::AbstractModel
-        # @param KeyId: kms id，可以在密钥管理控制台获取
+        # @param KeyId: 自定义密钥,当不指定KeyId时，采用默认生成密钥（TKE-KMS）
         # @type KeyId: String
-        # @param KmsRegion: kms 地域
+        # @param KmsRegion: 默认生成密钥或自定义密钥地域信息
         # @type KmsRegion: String
 
         attr_accessor :KeyId, :KmsRegion

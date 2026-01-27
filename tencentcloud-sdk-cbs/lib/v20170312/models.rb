@@ -518,6 +518,51 @@ module TencentCloud
         end
       end
 
+      # CopyAutoSnapshotPolicyCrossAccount请求参数结构体
+      class CopyAutoSnapshotPolicyCrossAccountRequest < TencentCloud::Common::AbstractModel
+        # @param AutoSnapshotPolicyIds: 要备份的定期快照策略ID列表
+        # @type AutoSnapshotPolicyIds: Array
+        # @param TargetAccountUin: 目标账户uin
+        # @type TargetAccountUin: String
+
+        attr_accessor :AutoSnapshotPolicyIds, :TargetAccountUin
+
+        def initialize(autosnapshotpolicyids=nil, targetaccountuin=nil)
+          @AutoSnapshotPolicyIds = autosnapshotpolicyids
+          @TargetAccountUin = targetaccountuin
+        end
+
+        def deserialize(params)
+          @AutoSnapshotPolicyIds = params['AutoSnapshotPolicyIds']
+          @TargetAccountUin = params['TargetAccountUin']
+        end
+      end
+
+      # CopyAutoSnapshotPolicyCrossAccount返回参数结构体
+      class CopyAutoSnapshotPolicyCrossAccountResponse < TencentCloud::Common::AbstractModel
+        # @param AutoSnapshotPolicyIds: 已备份的定期快照策略ID列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoSnapshotPolicyIds: Array
+        # @param TargetAccountUin: 目标账户uin
+        # @type TargetAccountUin: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoSnapshotPolicyIds, :TargetAccountUin, :RequestId
+
+        def initialize(autosnapshotpolicyids=nil, targetaccountuin=nil, requestid=nil)
+          @AutoSnapshotPolicyIds = autosnapshotpolicyids
+          @TargetAccountUin = targetaccountuin
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AutoSnapshotPolicyIds = params['AutoSnapshotPolicyIds']
+          @TargetAccountUin = params['TargetAccountUin']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CopySnapshotCrossRegions请求参数结构体
       class CopySnapshotCrossRegionsRequest < TencentCloud::Common::AbstractModel
         # @param DestinationRegions: 快照需要复制到的目标地域，各地域的标准取值可通过接口[DescribeRegions](https://cloud.tencent.com/document/product/213/9456)查询，且只能传入支持快照的地域。

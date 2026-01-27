@@ -166,6 +166,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 针对白名单内用户实现自动快照策略的跨账号复制功能
+
+        # @param request: Request instance for CopyAutoSnapshotPolicyCrossAccount.
+        # @type request: :class:`Tencentcloud::cbs::V20170312::CopyAutoSnapshotPolicyCrossAccountRequest`
+        # @rtype: :class:`Tencentcloud::cbs::V20170312::CopyAutoSnapshotPolicyCrossAccountResponse`
+        def CopyAutoSnapshotPolicyCrossAccount(request)
+          body = send_request('CopyAutoSnapshotPolicyCrossAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CopyAutoSnapshotPolicyCrossAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（CopySnapshotCrossRegions）用于快照跨地域复制。
 
         # * 本接口为异步接口，当跨地域复制的请求下发成功后会返回一个新的快照ID，此时快照未立即复制到目标地域，可请求目标地域的[DescribeSnapshots](/document/product/362/15647)接口查询新快照的状态，判断是否复制完成。如果快照的状态为“NORMAL”，表示快照复制完成。

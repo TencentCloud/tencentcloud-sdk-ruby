@@ -3490,21 +3490,21 @@ module TencentCloud
         # @type UDPMappingTimeout: Integer
         # @param TCPEstablishedConnectionTimeout: TCP已建立的连接空闲超时，指多少秒以后连接变为空闲状态。取值范围为：40-10800秒，默认为10800秒。
         # @type TCPEstablishedConnectionTimeout: Integer
-        # @param TcpTimeWaitTimeout: TCP TIME_WAIT超时，指完全关闭的TCP连接在到期后保留在NAT映射中的秒数。取值范围为：10-600秒，默认为120秒。
-        # @type TcpTimeWaitTimeout: Integer
+        # @param TCPTimeWaitTimeout: TCP TIME_WAIT超时，指完全关闭的TCP连接在到期后保留在NAT映射中的秒数。取值范围为：10-600秒，默认为120秒。
+        # @type TCPTimeWaitTimeout: Integer
 
-        attr_accessor :UDPMappingTimeout, :TCPEstablishedConnectionTimeout, :TcpTimeWaitTimeout
+        attr_accessor :UDPMappingTimeout, :TCPEstablishedConnectionTimeout, :TCPTimeWaitTimeout
 
         def initialize(udpmappingtimeout=nil, tcpestablishedconnectiontimeout=nil, tcptimewaittimeout=nil)
           @UDPMappingTimeout = udpmappingtimeout
           @TCPEstablishedConnectionTimeout = tcpestablishedconnectiontimeout
-          @TcpTimeWaitTimeout = tcptimewaittimeout
+          @TCPTimeWaitTimeout = tcptimewaittimeout
         end
 
         def deserialize(params)
           @UDPMappingTimeout = params['UDPMappingTimeout']
           @TCPEstablishedConnectionTimeout = params['TCPEstablishedConnectionTimeout']
-          @TcpTimeWaitTimeout = params['TcpTimeWaitTimeout']
+          @TCPTimeWaitTimeout = params['TCPTimeWaitTimeout']
         end
       end
 

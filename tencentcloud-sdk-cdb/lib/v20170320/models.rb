@@ -7487,7 +7487,7 @@ module TencentCloud
         # @type DstZoneId: Integer
         # @param NodeDistribution: 独享集群 CDB 实例的节点分布情况。
         # @type NodeDistribution: :class:`Tencentcloud::Cdb.v20170320.models.NodeDistribution`
-        # @param ClusterTopology: 集群版的节点拓扑配置。Nodeld信息可通过 [DescribeClusterInfo](https://cloud.tencent.com/document/api/236/105116) 接口获取。
+        # @param ClusterTopology: 云盘版的节点拓扑配置。Nodeld 信息可通过 [DescribeClusterInfo](https://cloud.tencent.com/document/api/236/105116) 接口获取。
         # @type ClusterTopology: :class:`Tencentcloud::Cdb.v20170320.models.ClusterTopology`
 
         attr_accessor :InstanceId, :DstCpu, :DstMemory, :DstDisk, :DstVersion, :DstDeployMode, :DstProtectMode, :DstSlaveZone, :DstBackupZone, :DstCdbType, :DstZoneId, :NodeDistribution, :ClusterTopology
@@ -10213,7 +10213,7 @@ module TencentCloud
         # @type NewPassword: String
         # @param Accounts: 云数据库账号。可通过 [DescribeAccounts](https://cloud.tencent.com/document/api/236/17499) 接口获取。
         # @type Accounts: Array
-        # @param SkipValidatePassword: 是否跳过校验密码复杂度
+        # @param SkipValidatePassword: 该字段已废弃。
         # @type SkipValidatePassword: Boolean
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword

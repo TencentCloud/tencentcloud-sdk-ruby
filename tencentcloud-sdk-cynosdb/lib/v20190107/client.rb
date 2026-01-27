@@ -749,6 +749,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DeleteClusterSaveBackup）用于为集群删除遗留备份
+
+        # @param request: Request instance for DeleteClusterSaveBackup.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterSaveBackupRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DeleteClusterSaveBackupResponse`
+        def DeleteClusterSaveBackup(request)
+          body = send_request('DeleteClusterSaveBackup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteClusterSaveBackupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DeleteParamTemplate）用于删除用户创建的参数模板。
 
         # @param request: Request instance for DeleteParamTemplate.
@@ -1949,6 +1973,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeRedoLogs）用于查询redo日志列表。
+
+        # @param request: Request instance for DescribeRedoLogs.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeRedoLogsRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeRedoLogsResponse`
+        def DescribeRedoLogs(request)
+          body = send_request('DescribeRedoLogs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRedoLogsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeResourcePackageDetail）用于查询资源包使用详情。
 
         # @param request: Request instance for DescribeResourcePackageDetail.
@@ -2079,6 +2127,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSSLStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeSaveBackupClusters）用于查询遗留备份集群信息。
+
+        # @param request: Request instance for DescribeSaveBackupClusters.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeSaveBackupClustersRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeSaveBackupClustersResponse`
+        def DescribeSaveBackupClusters(request)
+          body = send_request('DescribeSaveBackupClusters', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSaveBackupClustersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3255,6 +3327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyServerlessStrategyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifySnapBackupCrossRegionConfig）用于修改指定集群的快照备份跨地域配置。
+
+        # @param request: Request instance for ModifySnapBackupCrossRegionConfig.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::ModifySnapBackupCrossRegionConfigRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::ModifySnapBackupCrossRegionConfigResponse`
+        def ModifySnapBackupCrossRegionConfig(request)
+          body = send_request('ModifySnapBackupCrossRegionConfig', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySnapBackupCrossRegionConfigResponse.new
             model.deserialize(response['Response'])
             model
           else

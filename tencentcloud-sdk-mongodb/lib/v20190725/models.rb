@@ -2954,6 +2954,42 @@ module TencentCloud
         end
       end
 
+      # DescribeSRVConnectionDomain请求参数结构体
+      class DescribeSRVConnectionDomainRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeSRVConnectionDomain返回参数结构体
+      class DescribeSRVConnectionDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Domain: 实例当前的srv域名信息。
+        # @type Domain: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Domain, :RequestId
+
+        def initialize(domain=nil, requestid=nil)
+          @Domain = domain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSecurityGroup请求参数结构体
       class DescribeSecurityGroupRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
@@ -3233,6 +3269,42 @@ module TencentCloud
         end
       end
 
+      # DisableSRVConnectionUrl请求参数结构体
+      class DisableSRVConnectionUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DisableSRVConnectionUrl返回参数结构体
+      class DisableSRVConnectionUrlResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开启任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DropDBInstanceParamTpl请求参数结构体
       class DropDBInstanceParamTplRequest < TencentCloud::Common::AbstractModel
         # @param TplId: 参数模板 ID。请通过接口 [DescribeDBInstanceParamTpl](https://cloud.tencent.com/document/product/240/109155) 获取模板 ID。
@@ -3261,6 +3333,42 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # EnableSRVConnectionUrl请求参数结构体
+      class EnableSRVConnectionUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，例如：cmgo-p8vn****。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # EnableSRVConnectionUrl返回参数结构体
+      class EnableSRVConnectionUrlResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开启任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -4788,8 +4896,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2025, 12
-        deprecate :OplogSize=, :none, 2025, 12
+        deprecate :OplogSize, :none, 2026, 1
+        deprecate :OplogSize=, :none, 2026, 1
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -4948,6 +5056,46 @@ module TencentCloud
         def deserialize(params)
           @NewIPAddress = params['NewIPAddress']
           @OldIpAddress = params['OldIpAddress']
+        end
+      end
+
+      # ModifySRVConnectionUrl请求参数结构体
+      class ModifySRVConnectionUrlRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID。请登录 [MongoDB 控制台](https://console.cloud.tencent.com/mongodb)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param CustomDomain: 自定义的实例的访问域名。
+        # @type CustomDomain: String
+
+        attr_accessor :InstanceId, :CustomDomain
+
+        def initialize(instanceid=nil, customdomain=nil)
+          @InstanceId = instanceid
+          @CustomDomain = customdomain
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CustomDomain = params['CustomDomain']
+        end
+      end
+
+      # ModifySRVConnectionUrl返回参数结构体
+      class ModifySRVConnectionUrlResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 开启任务ID。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

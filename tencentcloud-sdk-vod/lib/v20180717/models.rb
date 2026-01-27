@@ -512,6 +512,51 @@ module TencentCloud
         end
       end
 
+      # 超分配置
+      class AdvancedSuperResolutionConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>standard：通用超分</li>
+        # <li>super：高级超分。</li>
+        # 默认值：standard。
+        # @type Type: String
+        # @param Mode: 输出图片模式，默认percent。
+        # <li> aspect: 超分至指定宽高的较大矩形。</li>
+        # <li> fixed: 超分至固定宽高，强制缩放。</li>
+        # <li> percent: 超分倍率，可以为小数。</li>
+        # @type Mode: String
+        # @param Percent: 超分倍率，可以为小数。
+        # @type Percent: Float
+        # @param Width: 目标图片宽度，不能超过4096。
+        # @type Width: Integer
+        # @param Height: 目标图片高度，不能超过4096。
+        # @type Height: Integer
+
+        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height
+
+        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil)
+          @Switch = switch
+          @Type = type
+          @Mode = mode
+          @Percent = percent
+          @Width = width
+          @Height = height
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Mode = params['Mode']
+          @Percent = params['Percent']
+          @Width = params['Width']
+          @Height = params['Height']
+        end
+      end
+
       # 智能分析结果
       class AiAnalysisResult < TencentCloud::Common::AbstractModel
         # @param Type: 任务的类型，可以取的值有：
@@ -5996,11 +6041,14 @@ module TencentCloud
       class ChangeClothesConfig < TencentCloud::Common::AbstractModel
         # @param ClothesFileInfos: 输入需要更换的**衣物**图片列表。目前最大支持4张图片。
         # @type ClothesFileInfos: Array
+        # @param Prompt: AI换衣的提示词。
+        # @type Prompt: String
 
-        attr_accessor :ClothesFileInfos
+        attr_accessor :ClothesFileInfos, :Prompt
 
-        def initialize(clothesfileinfos=nil)
+        def initialize(clothesfileinfos=nil, prompt=nil)
           @ClothesFileInfos = clothesfileinfos
+          @Prompt = prompt
         end
 
         def deserialize(params)
@@ -6012,6 +6060,7 @@ module TencentCloud
               @ClothesFileInfos << sceneaigcimagetaskinputfileinfo_tmp
             end
           end
+          @Prompt = params['Prompt']
         end
       end
 
@@ -8708,6 +8757,57 @@ module TencentCloud
         end
       end
 
+      # CreateProcessImageAsyncTemplate请求参数结构体
+      class CreateProcessImageAsyncTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param ProcessImageConfigure: 图片异步处理任务配置。
+        # @type ProcessImageConfigure: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTask`
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Name: 图片异步处理模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 图片异步处理模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :ProcessImageConfigure, :SubAppId, :Name, :Comment
+
+        def initialize(processimageconfigure=nil, subappid=nil, name=nil, comment=nil)
+          @ProcessImageConfigure = processimageconfigure
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          unless params['ProcessImageConfigure'].nil?
+            @ProcessImageConfigure = ProcessImageAsyncTask.new
+            @ProcessImageConfigure.deserialize(params['ProcessImageConfigure'])
+          end
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateProcessImageAsyncTemplate返回参数结构体
+      class CreateProcessImageAsyncTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateQualityInspectTemplate请求参数结构体
       class CreateQualityInspectTemplateRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -10528,6 +10628,42 @@ module TencentCloud
 
       # DeleteProcedureTemplate返回参数结构体
       class DeleteProcedureTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteProcessImageAsyncTemplate请求参数结构体
+      class DeleteProcessImageAsyncTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteProcessImageAsyncTemplate返回参数结构体
+      class DeleteProcessImageAsyncTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13297,6 +13433,65 @@ module TencentCloud
         end
       end
 
+      # DescribeProcessImageAsyncTemplates请求参数结构体
+      class DescribeProcessImageAsyncTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Definitions: 图片异步处理模板唯一标识过滤条件，数组长度最大值：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :Definitions, :Offset, :Limit
+
+        def initialize(subappid=nil, definitions=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeProcessImageAsyncTemplates返回参数结构体
+      class DescribeProcessImageAsyncTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param ProcessImageAsyncTemplateSet: 图片异步处理模板详情列表。
+        # @type ProcessImageAsyncTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :ProcessImageAsyncTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, processimageasynctemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ProcessImageAsyncTemplateSet = processimageasynctemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ProcessImageAsyncTemplateSet'].nil?
+            @ProcessImageAsyncTemplateSet = []
+            params['ProcessImageAsyncTemplateSet'].each do |i|
+              processimageasynctemplateitem_tmp = ProcessImageAsyncTemplateItem.new
+              processimageasynctemplateitem_tmp.deserialize(i)
+              @ProcessImageAsyncTemplateSet << processimageasynctemplateitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQualityInspectTemplates请求参数结构体
       class DescribeQualityInspectTemplatesRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
@@ -14211,12 +14406,14 @@ module TencentCloud
         # @type SceneAigcImageTask: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcImageTask`
         # @param SceneAigcVideoTask: 场景化 AIGC 生视频任务信息，仅当 TaskType 为 SceneAigcVideoTask，该字段有值。
         # @type SceneAigcVideoTask: :class:`Tencentcloud::Vod.v20180717.models.SceneAigcVideoTask`
+        # @param ProcessImageAsyncTask: 图像异步处理任务信息，仅当 TaskType 为 ProcessImageAsync，该字段有值。
+        # @type ProcessImageAsyncTask: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsync`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :RequestId
+        attr_accessor :TaskType, :Status, :CreateTime, :BeginProcessTime, :FinishTime, :ProcedureTask, :EditMediaTask, :WechatPublishTask, :ComposeMediaTask, :SplitMediaTask, :WechatMiniProgramPublishTask, :PullUploadTask, :TranscodeTask, :ConcatTask, :ClipTask, :CreateImageSpriteTask, :SnapshotByTimeOffsetTask, :RemoveWatermarkTask, :RebuildMediaTask, :ExtractTraceWatermarkTask, :ExtractCopyRightWatermarkTask, :ReviewAudioVideoTask, :ReduceMediaBitrateTask, :DescribeFileAttributesTask, :QualityInspectTask, :QualityEnhanceTask, :ComplexAdaptiveDynamicStreamingTask, :ProcessMediaByMPSTask, :AigcImageTask, :AigcVideoTask, :ImportMediaKnowledge, :SceneAigcImageTask, :SceneAigcVideoTask, :ProcessImageAsyncTask, :RequestId
 
-        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, requestid=nil)
+        def initialize(tasktype=nil, status=nil, createtime=nil, beginprocesstime=nil, finishtime=nil, proceduretask=nil, editmediatask=nil, wechatpublishtask=nil, composemediatask=nil, splitmediatask=nil, wechatminiprogrampublishtask=nil, pulluploadtask=nil, transcodetask=nil, concattask=nil, cliptask=nil, createimagespritetask=nil, snapshotbytimeoffsettask=nil, removewatermarktask=nil, rebuildmediatask=nil, extracttracewatermarktask=nil, extractcopyrightwatermarktask=nil, reviewaudiovideotask=nil, reducemediabitratetask=nil, describefileattributestask=nil, qualityinspecttask=nil, qualityenhancetask=nil, complexadaptivedynamicstreamingtask=nil, processmediabympstask=nil, aigcimagetask=nil, aigcvideotask=nil, importmediaknowledge=nil, sceneaigcimagetask=nil, sceneaigcvideotask=nil, processimageasynctask=nil, requestid=nil)
           @TaskType = tasktype
           @Status = status
           @CreateTime = createtime
@@ -14250,6 +14447,7 @@ module TencentCloud
           @ImportMediaKnowledge = importmediaknowledge
           @SceneAigcImageTask = sceneaigcimagetask
           @SceneAigcVideoTask = sceneaigcvideotask
+          @ProcessImageAsyncTask = processimageasynctask
           @RequestId = requestid
         end
 
@@ -14370,6 +14568,10 @@ module TencentCloud
           unless params['SceneAigcVideoTask'].nil?
             @SceneAigcVideoTask = SceneAigcVideoTask.new
             @SceneAigcVideoTask.deserialize(params['SceneAigcVideoTask'])
+          end
+          unless params['ProcessImageAsyncTask'].nil?
+            @ProcessImageAsyncTask = ProcessImageAsync.new
+            @ProcessImageAsyncTask.deserialize(params['ProcessImageAsyncTask'])
           end
           @RequestId = params['RequestId']
         end
@@ -17203,6 +17405,128 @@ module TencentCloud
         end
       end
 
+      # 图片降噪配置
+      class ImageDenoiseConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: 能力配置开关，可选值：
+        # <li>ON：开启；</li>
+        # <li>OFF：关闭。</li>
+        # 默认值：ON。
+        # @type Switch: String
+        # @param Type: 类型，可选值：
+        # <li>weak</li>
+        # <li>strong</li>
+        # 默认值：weak。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+        end
+      end
+
+      # 图片编码格式参数
+      class ImageEncodeConfig < TencentCloud::Common::AbstractModel
+        # @param Format: 图片格式，取值范围：JPEG、PNG、BMP、WebP，缺省为原图格式。不支持动画。
+        # @type Format: String
+        # @param Quality: 图片的相对质量，取值范围：1 - 100，数值以原图质量为标准，缺省为原图质量。
+        # @type Quality: Integer
+
+        attr_accessor :Format, :Quality
+
+        def initialize(format=nil, quality=nil)
+          @Format = format
+          @Quality = quality
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @Quality = params['Quality']
+        end
+      end
+
+      # 图片增强参数
+      class ImageEnhanceConfig < TencentCloud::Common::AbstractModel
+        # @param SuperResolution: 超分配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperResolution: :class:`Tencentcloud::Vod.v20180717.models.SuperResolutionInfo`
+        # @param AdvancedSuperResolution: 高级超分配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AdvancedSuperResolution: :class:`Tencentcloud::Vod.v20180717.models.AdvancedSuperResolutionConfig`
+        # @param Denoise: 降噪配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Denoise: :class:`Tencentcloud::Vod.v20180717.models.ImageDenoiseConfig`
+        # @param ImageQualityEnhance: 综合增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageQualityEnhance: :class:`Tencentcloud::Vod.v20180717.models.ImageQualityEnhanceInfo`
+        # @param ColorEnhance: 色彩增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColorEnhance: :class:`Tencentcloud::Vod.v20180717.models.ColorEnhanceInfo`
+        # @param SharpEnhance: 细节增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SharpEnhance: :class:`Tencentcloud::Vod.v20180717.models.SharpEnhanceInfo`
+        # @param FaceEnhance: 人脸增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FaceEnhance: :class:`Tencentcloud::Vod.v20180717.models.FaceEnhanceInfo`
+        # @param LowLightEnhance: 低光照增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LowLightEnhance: :class:`Tencentcloud::Vod.v20180717.models.LowLightEnhanceInfo`
+
+        attr_accessor :SuperResolution, :AdvancedSuperResolution, :Denoise, :ImageQualityEnhance, :ColorEnhance, :SharpEnhance, :FaceEnhance, :LowLightEnhance
+
+        def initialize(superresolution=nil, advancedsuperresolution=nil, denoise=nil, imagequalityenhance=nil, colorenhance=nil, sharpenhance=nil, faceenhance=nil, lowlightenhance=nil)
+          @SuperResolution = superresolution
+          @AdvancedSuperResolution = advancedsuperresolution
+          @Denoise = denoise
+          @ImageQualityEnhance = imagequalityenhance
+          @ColorEnhance = colorenhance
+          @SharpEnhance = sharpenhance
+          @FaceEnhance = faceenhance
+          @LowLightEnhance = lowlightenhance
+        end
+
+        def deserialize(params)
+          unless params['SuperResolution'].nil?
+            @SuperResolution = SuperResolutionInfo.new
+            @SuperResolution.deserialize(params['SuperResolution'])
+          end
+          unless params['AdvancedSuperResolution'].nil?
+            @AdvancedSuperResolution = AdvancedSuperResolutionConfig.new
+            @AdvancedSuperResolution.deserialize(params['AdvancedSuperResolution'])
+          end
+          unless params['Denoise'].nil?
+            @Denoise = ImageDenoiseConfig.new
+            @Denoise.deserialize(params['Denoise'])
+          end
+          unless params['ImageQualityEnhance'].nil?
+            @ImageQualityEnhance = ImageQualityEnhanceInfo.new
+            @ImageQualityEnhance.deserialize(params['ImageQualityEnhance'])
+          end
+          unless params['ColorEnhance'].nil?
+            @ColorEnhance = ColorEnhanceInfo.new
+            @ColorEnhance.deserialize(params['ColorEnhance'])
+          end
+          unless params['SharpEnhance'].nil?
+            @SharpEnhance = SharpEnhanceInfo.new
+            @SharpEnhance.deserialize(params['SharpEnhance'])
+          end
+          unless params['FaceEnhance'].nil?
+            @FaceEnhance = FaceEnhanceInfo.new
+            @FaceEnhance.deserialize(params['FaceEnhance'])
+          end
+          unless params['LowLightEnhance'].nil?
+            @LowLightEnhance = LowLightEnhanceInfo.new
+            @LowLightEnhance.deserialize(params['LowLightEnhance'])
+          end
+        end
+      end
+
       # 单个图片处理操作。
       class ImageOperation < TencentCloud::Common::AbstractModel
         # @param Type: 图片处理类型。可选类型有：
@@ -17369,6 +17693,26 @@ module TencentCloud
           @Width = params['Width']
           @LongEdge = params['LongEdge']
           @ShortEdge = params['ShortEdge']
+        end
+      end
+
+      # 图片编码格式参数。
+      class ImageSceneAigcEncodeConfig < TencentCloud::Common::AbstractModel
+        # @param Format: 图片格式，取值范围：JPEG、PNG，缺省为原图格式。不支持动画。
+        # @type Format: String
+        # @param Quality: 图片的相对质量，取值范围：1 - 100，数值以原图质量为标准，缺省为原图质量。
+        # @type Quality: Integer
+
+        attr_accessor :Format, :Quality
+
+        def initialize(format=nil, quality=nil)
+          @Format = format
+          @Quality = quality
+        end
+
+        def deserialize(params)
+          @Format = params['Format']
+          @Quality = params['Quality']
         end
       end
 
@@ -22018,6 +22362,57 @@ module TencentCloud
         end
       end
 
+      # ModifyProcessImageAsyncTemplate请求参数结构体
+      class ModifyProcessImageAsyncTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Name: 图片异步处理模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 图片异步处理模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param ProcessImageConfigure: 图片异步处理配置。
+        # @type ProcessImageConfigure: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTask`
+
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :ProcessImageConfigure
+
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, processimageconfigure=nil)
+          @Definition = definition
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @ProcessImageConfigure = processimageconfigure
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['ProcessImageConfigure'].nil?
+            @ProcessImageConfigure = ProcessImageAsyncTask.new
+            @ProcessImageConfigure.deserialize(params['ProcessImageConfigure'])
+          end
+        end
+      end
+
+      # ModifyProcessImageAsyncTemplate返回参数结构体
+      class ModifyProcessImageAsyncTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyQualityInspectTemplate请求参数结构体
       class ModifyQualityInspectTemplateRequest < TencentCloud::Common::AbstractModel
         # @param Definition: 模板 ID。
@@ -24376,6 +24771,334 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 图片异步处理任务信息
+      class ProcessImageAsync < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @type Status: String
+        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @type ErrCode: Integer
+        # @param Message: 错误信息。
+        # @type Message: String
+        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @type Progress: Integer
+        # @param Input: 图片异步处理任务的输入信息。
+        # @type Input: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncInput`
+        # @param Output: 图片异步处理任务的输出信息。
+        # @type Output: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutput`
+        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+
+        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+
+        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+          @TaskId = taskid
+          @Status = status
+          @ErrCode = errcode
+          @Message = message
+          @Progress = progress
+          @Input = input
+          @Output = output
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Status = params['Status']
+          @ErrCode = params['ErrCode']
+          @Message = params['Message']
+          @Progress = params['Progress']
+          unless params['Input'].nil?
+            @Input = ProcessImageAsyncInput.new
+            @Input.deserialize(params['Input'])
+          end
+          unless params['Output'].nil?
+            @Output = ProcessImageAsyncOutput.new
+            @Output.deserialize(params['Output'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+        end
+      end
+
+      # 图片异步处理任务信息。
+      class ProcessImageAsyncInput < TencentCloud::Common::AbstractModel
+        # @param FileId: 图片处理的FileId。
+        # @type FileId: String
+        # @param ImageTaskInput: 图片处理参数。
+        # @type ImageTaskInput: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTaskInput`
+        # @param OutputConfig: 图片处理任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputConfig`
+
+        attr_accessor :FileId, :ImageTaskInput, :OutputConfig
+
+        def initialize(fileid=nil, imagetaskinput=nil, outputconfig=nil)
+          @FileId = fileid
+          @ImageTaskInput = imagetaskinput
+          @OutputConfig = outputconfig
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          unless params['ImageTaskInput'].nil?
+            @ImageTaskInput = ProcessImageAsyncTaskInput.new
+            @ImageTaskInput.deserialize(params['ImageTaskInput'])
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = ProcessImageAsyncOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+        end
+      end
+
+      # 图片异步处理任务的输出。
+      class ProcessImageAsyncOutput < TencentCloud::Common::AbstractModel
+        # @param FileInfo: 图片异步处理任务的输出文件信息。
+        # @type FileInfo: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputFileInfo`
+
+        attr_accessor :FileInfo
+
+        def initialize(fileinfo=nil)
+          @FileInfo = fileinfo
+        end
+
+        def deserialize(params)
+          unless params['FileInfo'].nil?
+            @FileInfo = ProcessImageAsyncOutputFileInfo.new
+            @FileInfo.deserialize(params['FileInfo'])
+          end
+        end
+      end
+
+      # 图片异步处理任务的输出媒体文件配置。
+      class ProcessImageAsyncOutputConfig < TencentCloud::Common::AbstractModel
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。
+        # <li>默认值：0，表示其他分类。</li>
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+
+        attr_accessor :MediaName, :ClassId, :ExpireTime
+
+        def initialize(medianame=nil, classid=nil, expiretime=nil)
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+        end
+
+        def deserialize(params)
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+        end
+      end
+
+      # 图片异步处理任务的输出文件信息。
+      class ProcessImageAsyncOutputFileInfo < TencentCloud::Common::AbstractModel
+        # @param MediaName: 输出文件名，最长 64 个字符。缺省由系统指定生成文件名。
+        # @type MediaName: String
+        # @param ClassId: 分类ID，用于对媒体进行分类管理，可通过 [创建分类](/document/product/266/7812) 接口，创建分类，获得分类 ID。当 StorageMode 为 Permanent 时有效。
+        # @type ClassId: Integer
+        # @param ExpireTime: 输出文件的过期时间，超过该时间文件将被删除，默认为永久不过期，格式按照 ISO 8601标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type ExpireTime: String
+        # @param FileType: 文件类型，例如 mp4、flv 等。
+        # @type FileType: String
+        # @param FileUrl: 媒体文件播放地址。
+        # @type FileUrl: String
+        # @param FileId: 媒体文件 ID。当 StorageMode 为 Permanent 时有效。
+        # @type FileId: String
+        # @param MetaData: 输出视频的元信息。当 StorageMode 为 Permanent 时有效。
+        # @type MetaData: :class:`Tencentcloud::Vod.v20180717.models.MediaMetaData`
+
+        attr_accessor :MediaName, :ClassId, :ExpireTime, :FileType, :FileUrl, :FileId, :MetaData
+
+        def initialize(medianame=nil, classid=nil, expiretime=nil, filetype=nil, fileurl=nil, fileid=nil, metadata=nil)
+          @MediaName = medianame
+          @ClassId = classid
+          @ExpireTime = expiretime
+          @FileType = filetype
+          @FileUrl = fileurl
+          @FileId = fileid
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @MediaName = params['MediaName']
+          @ClassId = params['ClassId']
+          @ExpireTime = params['ExpireTime']
+          @FileType = params['FileType']
+          @FileUrl = params['FileUrl']
+          @FileId = params['FileId']
+          unless params['MetaData'].nil?
+            @MetaData = MediaMetaData.new
+            @MetaData.deserialize(params['MetaData'])
+          end
+        end
+      end
+
+      # ProcessImageAsync请求参数结构体
+      class ProcessImageAsyncRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param FileId: 需要进行图片处理的FileId。
+        # @type FileId: String
+        # @param ImageTaskInput: 图片处理参数。
+        # @type ImageTaskInput: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTaskInput`
+        # @param OutputConfig: 图片处理任务的输出媒体文件配置。
+        # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputConfig`
+        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @type ExtInfo: String
+
+        attr_accessor :SubAppId, :FileId, :ImageTaskInput, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+
+        def initialize(subappid=nil, fileid=nil, imagetaskinput=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+          @SubAppId = subappid
+          @FileId = fileid
+          @ImageTaskInput = imagetaskinput
+          @OutputConfig = outputconfig
+          @SessionId = sessionid
+          @SessionContext = sessioncontext
+          @TasksPriority = taskspriority
+          @ExtInfo = extinfo
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @FileId = params['FileId']
+          unless params['ImageTaskInput'].nil?
+            @ImageTaskInput = ProcessImageAsyncTaskInput.new
+            @ImageTaskInput.deserialize(params['ImageTaskInput'])
+          end
+          unless params['OutputConfig'].nil?
+            @OutputConfig = ProcessImageAsyncOutputConfig.new
+            @OutputConfig.deserialize(params['OutputConfig'])
+          end
+          @SessionId = params['SessionId']
+          @SessionContext = params['SessionContext']
+          @TasksPriority = params['TasksPriority']
+          @ExtInfo = params['ExtInfo']
+        end
+      end
+
+      # ProcessImageAsync返回参数结构体
+      class ProcessImageAsyncResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 图片异步处理配置
+      class ProcessImageAsyncTask < TencentCloud::Common::AbstractModel
+        # @param EncodeConfig: 图片转码输出配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncodeConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageEncodeConfig`
+        # @param EnhanceConfig: 图片增强配置。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnhanceConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageEnhanceConfig`
+
+        attr_accessor :EncodeConfig, :EnhanceConfig
+
+        def initialize(encodeconfig=nil, enhanceconfig=nil)
+          @EncodeConfig = encodeconfig
+          @EnhanceConfig = enhanceconfig
+        end
+
+        def deserialize(params)
+          unless params['EncodeConfig'].nil?
+            @EncodeConfig = ImageEncodeConfig.new
+            @EncodeConfig.deserialize(params['EncodeConfig'])
+          end
+          unless params['EnhanceConfig'].nil?
+            @EnhanceConfig = ImageEnhanceConfig.new
+            @EnhanceConfig.deserialize(params['EnhanceConfig'])
+          end
+        end
+      end
+
+      # 图片处理配置。
+      class ProcessImageAsyncTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板ID。
+        # @type Definition: Integer
+
+        attr_accessor :Definition
+
+        def initialize(definition=nil)
+          @Definition = definition
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+        end
+      end
+
+      # 图片异步处理模板详情。
+      class ProcessImageAsyncTemplateItem < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板唯一标识。
+        # @type Definition: Integer
+        # @param Type: 模板类型。
+        # @type Type: String
+        # @param Name: 图片异步处理模板名称。
+        # @type Name: String
+        # @param Comment: 图片异步处理模板描述信息。
+        # @type Comment: String
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+        # @param ProcessImageConfigure: 图片异步处理模板配置。
+        # @type ProcessImageConfigure: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTask`
+
+        attr_accessor :Definition, :Type, :Name, :Comment, :CreateTime, :UpdateTime, :ProcessImageConfigure
+
+        def initialize(definition=nil, type=nil, name=nil, comment=nil, createtime=nil, updatetime=nil, processimageconfigure=nil)
+          @Definition = definition
+          @Type = type
+          @Name = name
+          @Comment = comment
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @ProcessImageConfigure = processimageconfigure
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          unless params['ProcessImageConfigure'].nil?
+            @ProcessImageConfigure = ProcessImageAsyncTask.new
+            @ProcessImageConfigure.deserialize(params['ProcessImageConfigure'])
+          end
         end
       end
 
@@ -28346,15 +29069,18 @@ module TencentCloud
 
         # 仅生商品图场景有效，可选值为：1:1、3:2、2:3、3:4、4:3、4:5、5:4、16:9、9:16、21:9
         # @type AspectRatio: String
+        # @param EncodeConfig: 输出图片编码格式参数。**仅AI换衣场景有效。**
+        # @type EncodeConfig: :class:`Tencentcloud::Vod.v20180717.models.ImageSceneAigcEncodeConfig`
 
-        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :AspectRatio
+        attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :AspectRatio, :EncodeConfig
 
-        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, aspectratio=nil)
+        def initialize(storagemode=nil, medianame=nil, classid=nil, expiretime=nil, aspectratio=nil, encodeconfig=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ClassId = classid
           @ExpireTime = expiretime
           @AspectRatio = aspectratio
+          @EncodeConfig = encodeconfig
         end
 
         def deserialize(params)
@@ -28363,6 +29089,10 @@ module TencentCloud
           @ClassId = params['ClassId']
           @ExpireTime = params['ExpireTime']
           @AspectRatio = params['AspectRatio']
+          unless params['EncodeConfig'].nil?
+            @EncodeConfig = ImageSceneAigcEncodeConfig.new
+            @EncodeConfig.deserialize(params['EncodeConfig'])
+          end
         end
       end
 

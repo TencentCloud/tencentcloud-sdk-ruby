@@ -119,21 +119,21 @@ module TencentCloud
 
       # CreateAuditTrack请求参数结构体
       class CreateAuditTrackRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @param Name: <p>跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符</p>
         # @type Name: String
-        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @param Status: <p>跟踪集状态（未开启：0；开启：1）</p>
         # @type Status: Integer
-        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @param Storage: <p>数据投递存储（目前支持 cos、cls 、ckafka）</p>
         # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
-        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @param ActionType: <p>跟踪事件类型（读：Read；写：Write；全部：*）</p>
         # @type ActionType: String
-        # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）
+        # @param ResourceType: <p>跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）</p>
         # @type ResourceType: String
-        # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：["*"]；指定ResourceType时，支持全部接口：["*"]；支持部分接口：["cos", "cls"]，接口列表上限10个）
+        # @param EventNames: <p>跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：[&quot;*&quot;]；指定ResourceType时，支持全部接口：[&quot;*&quot;]；支持部分接口：[&quot;cos&quot;, &quot;cls&quot;]，接口列表上限10个）</p>
         # @type EventNames: Array
-        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @param TrackForAllMembers: <p>是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)</p>
         # @type TrackForAllMembers: Integer
-        # @param ExportId: 任务ID
+        # @param ExportId: <p>任务ID</p>
         # @type ExportId: String
 
         attr_accessor :Name, :Status, :Storage, :ActionType, :ResourceType, :EventNames, :TrackForAllMembers, :ExportId
@@ -166,7 +166,7 @@ module TencentCloud
 
       # CreateAuditTrack返回参数结构体
       class CreateAuditTrackResponse < TencentCloud::Common::AbstractModel
-        # @param TrackId: 跟踪集 ID
+        # @param TrackId: <p>跟踪集 ID</p>
         # @type TrackId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -186,15 +186,15 @@ module TencentCloud
 
       # CreateEventsAuditTrack请求参数结构体
       class CreateEventsAuditTrackRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @param Name: <p>跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符</p>
         # @type Name: String
-        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @param Status: <p>跟踪集状态（未开启：0；开启：1）</p>
         # @type Status: Integer
-        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @param Storage: <p>数据投递存储（目前支持 cos、cls、ckafka）</p>
         # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
-        # @param Filters: 数据过滤条件
+        # @param Filters: <p>数据过滤条件</p>
         # @type Filters: :class:`Tencentcloud::Cloudaudit.v20190319.models.Filter`
-        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @param TrackForAllMembers: <p>是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)</p>
         # @type TrackForAllMembers: Integer
 
         attr_accessor :Name, :Status, :Storage, :Filters, :TrackForAllMembers
@@ -224,7 +224,7 @@ module TencentCloud
 
       # CreateEventsAuditTrack返回参数结构体
       class CreateEventsAuditTrackResponse < TencentCloud::Common::AbstractModel
-        # @param TrackId: 跟踪集 ID
+        # @param TrackId: <p>跟踪集 ID</p>
         # @type TrackId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1062,21 +1062,21 @@ module TencentCloud
 
       # ModifyAuditTrack请求参数结构体
       class ModifyAuditTrackRequest < TencentCloud::Common::AbstractModel
-        # @param TrackId: 跟踪集 ID
+        # @param TrackId: <p>跟踪集 ID</p>
         # @type TrackId: Integer
-        # @param Name: 跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符
+        # @param Name: <p>跟踪集名称，仅支持大小写字母、数字、-以及_的组合，3-48个字符</p>
         # @type Name: String
-        # @param ActionType: 跟踪事件类型（读：Read；写：Write；全部：*）
+        # @param ActionType: <p>跟踪事件类型（读：Read；写：Write；全部：*）</p>
         # @type ActionType: String
-        # @param ResourceType: 跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）
+        # @param ResourceType: <p>跟踪事件所属产品（支持全部产品或单个产品，如：cos，全部：*）</p>
         # @type ResourceType: String
-        # @param Status: 跟踪集状态（未开启：0；开启：1）
+        # @param Status: <p>跟踪集状态（未开启：0；开启：1）</p>
         # @type Status: Integer
-        # @param EventNames: 跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：["*"]；指定ResourceType时，支持全部接口：["*"]；支持部分接口：["cos", "cls"]，接口列表上限10个）
+        # @param EventNames: <p>跟踪事件接口名列表（ResourceType为 * 时，EventNames必须为全部：[&quot;*&quot;]；指定ResourceType时，支持全部接口：[&quot;*&quot;]；支持部分接口：[&quot;cos&quot;, &quot;cls&quot;]，接口列表上限10个）</p>
         # @type EventNames: Array
-        # @param Storage: 数据投递存储（目前支持 cos、cls）
+        # @param Storage: <p>数据投递存储（目前支持 cos、cls、ckafka）</p>
         # @type Storage: :class:`Tencentcloud::Cloudaudit.v20190319.models.Storage`
-        # @param TrackForAllMembers: 是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)
+        # @param TrackForAllMembers: <p>是否开启将集团成员操作日志投递到集团管理账号或者可信服务管理账号(0：未开启，1：开启，只能集团管理账号或者可信服务管理账号开启此项功能)</p>
         # @type TrackForAllMembers: Integer
 
         attr_accessor :TrackId, :Name, :ActionType, :ResourceType, :Status, :EventNames, :Storage, :TrackForAllMembers
@@ -1299,20 +1299,19 @@ module TencentCloud
 
       # 跟踪集存储信息
       class Storage < TencentCloud::Common::AbstractModel
-        # @param StorageType: 存储类型（目前支持 cos、cls）
+        # @param StorageType: <p>存储类型（目前支持 cos、cls、ckafka）</p>
         # @type StorageType: String
-        # @param StorageRegion: 存储所在地域
+        # @param StorageRegion: <p>存储所在地域</p>
         # @type StorageRegion: String
-        # @param StorageName: 存储名称(cos：存储名称为用户自定义的存储桶名称，不包含"-APPID"，仅支持小写字母、数字以及中划线"-"的组合，不能超过50字符，且不支持中划线"-"开头或结尾； cls：存储名称为日志主题id，字符长度为1-50个字符)
+        # @param StorageName: <p>存储名称(cos：存储名称为用户自定义的存储桶名称，不包含&quot;-APPID&quot;，仅支持小写字母、数字以及中划线&quot;-&quot;的组合，不能超过50字符，且不支持中划线&quot;-&quot;开头或结尾； cls：存储名称为日志主题id，字符长度为1-50个字符； ckafka： ckafka实例ID/topic. 举例：ckafka-xxxxxx/tencent_test_audit_log)</p>
         # @type StorageName: String
-        # @param StoragePrefix: 存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符
+        # @param StoragePrefix: <p>存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符</p>
         # @type StoragePrefix: String
-        # @param StorageAccountId: 被指定存储用户ID
+        # @param StorageAccountId: <p>被指定存储用户ID</p>
         # @type StorageAccountId: String
-        # @param StorageAppId: 被指定存储用户appid
+        # @param StorageAppId: <p>被指定存储用户appid</p>
         # @type StorageAppId: String
-        # @param Compress: 是否压缩。
-        # 1:压缩  2:不压缩
+        # @param Compress: <p>是否压缩。<br>1:压缩  2:不压缩</p>
         # @type Compress: Integer
 
         attr_accessor :StorageType, :StorageRegion, :StorageName, :StoragePrefix, :StorageAccountId, :StorageAppId, :Compress

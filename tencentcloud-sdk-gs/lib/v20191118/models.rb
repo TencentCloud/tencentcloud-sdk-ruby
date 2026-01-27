@@ -3124,17 +3124,21 @@ module TencentCloud
         # @type AndroidInstanceIds: Array
         # @param AndroidAppURL: 安卓应用下载 URL
         # @type AndroidAppURL: String
+        # @param AndroidAppMD5: 安卓应用MD5码值（32位小写十六进制字符串）
+        # @type AndroidAppMD5: String
 
-        attr_accessor :AndroidInstanceIds, :AndroidAppURL
+        attr_accessor :AndroidInstanceIds, :AndroidAppURL, :AndroidAppMD5
 
-        def initialize(androidinstanceids=nil, androidappurl=nil)
+        def initialize(androidinstanceids=nil, androidappurl=nil, androidappmd5=nil)
           @AndroidInstanceIds = androidinstanceids
           @AndroidAppURL = androidappurl
+          @AndroidAppMD5 = androidappmd5
         end
 
         def deserialize(params)
           @AndroidInstanceIds = params['AndroidInstanceIds']
           @AndroidAppURL = params['AndroidAppURL']
+          @AndroidAppMD5 = params['AndroidAppMD5']
         end
       end
 

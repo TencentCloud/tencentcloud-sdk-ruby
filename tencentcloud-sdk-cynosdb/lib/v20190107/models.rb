@@ -761,6 +761,58 @@ module TencentCloud
         end
       end
 
+      # 备份设置
+      class BackupConfigInfo < TencentCloud::Common::AbstractModel
+        # @param BackupCustomAutoTime: 系统自动时间
+        # @type BackupCustomAutoTime: Boolean
+        # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @type BackupTimeBeg: Integer
+        # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @type BackupTimeEnd: Integer
+        # @param BackupWeekDays: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周日到周六的备份方式，full-全量备份，increment-增量备份
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupWeekDays: Array
+        # @param BackupIntervalTime: 间隔时间
+        # @type BackupIntervalTime: Integer
+        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600247=604800，最大为158112000
+        # @type ReserveDuration: Integer
+        # @param CrossRegionsEnable: 跨地域备份开启
+        # yes-开启
+        # no-关闭
+        # @type CrossRegionsEnable: String
+        # @param CrossRegions: 跨地域备份地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CrossRegions: Array
+        # @param BackupTriggerStrategy: 动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
+        # @type BackupTriggerStrategy: String
+
+        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :CrossRegionsEnable, :CrossRegions, :BackupTriggerStrategy
+
+        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, crossregionsenable=nil, crossregions=nil, backuptriggerstrategy=nil)
+          @BackupCustomAutoTime = backupcustomautotime
+          @BackupTimeBeg = backuptimebeg
+          @BackupTimeEnd = backuptimeend
+          @BackupWeekDays = backupweekdays
+          @BackupIntervalTime = backupintervaltime
+          @ReserveDuration = reserveduration
+          @CrossRegionsEnable = crossregionsenable
+          @CrossRegions = crossregions
+          @BackupTriggerStrategy = backuptriggerstrategy
+        end
+
+        def deserialize(params)
+          @BackupCustomAutoTime = params['BackupCustomAutoTime']
+          @BackupTimeBeg = params['BackupTimeBeg']
+          @BackupTimeEnd = params['BackupTimeEnd']
+          @BackupWeekDays = params['BackupWeekDays']
+          @BackupIntervalTime = params['BackupIntervalTime']
+          @ReserveDuration = params['ReserveDuration']
+          @CrossRegionsEnable = params['CrossRegionsEnable']
+          @CrossRegions = params['CrossRegions']
+          @BackupTriggerStrategy = params['BackupTriggerStrategy']
+        end
+      end
+
       # 备份文件信息
       class BackupFileInfo < TencentCloud::Common::AbstractModel
         # @param SnapshotId: 快照文件ID，已废弃，请使用BackupId
@@ -902,6 +954,26 @@ module TencentCloud
         def deserialize(params)
           @Region = params['Region']
           @VpcList = params['VpcList']
+        end
+      end
+
+      # 备份文件所在地域及ID
+      class BackupRegionAndIds < TencentCloud::Common::AbstractModel
+        # @param BackupRegion: 备份地域
+        # @type BackupRegion: String
+        # @param BackupId: 备份ID
+        # @type BackupId: Integer
+
+        attr_accessor :BackupRegion, :BackupId
+
+        def initialize(backupregion=nil, backupid=nil)
+          @BackupRegion = backupregion
+          @BackupId = backupid
+        end
+
+        def deserialize(params)
+          @BackupRegion = params['BackupRegion']
+          @BackupId = params['BackupId']
         end
       end
 
@@ -3527,10 +3599,12 @@ module TencentCloud
         # @type ArchiveStatus: String
         # @param ArchiveProgress: 归档进度，百分比。
         # @type ArchiveProgress: Integer
+        # @param IsOpenTDE: 是否开启透明加密
+        # @type IsOpenTDE: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :IsOpenTDE
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, isopentde=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -3587,6 +3661,7 @@ module TencentCloud
           @UsedArchiveStorage = usedarchivestorage
           @ArchiveStatus = archivestatus
           @ArchiveProgress = archiveprogress
+          @IsOpenTDE = isopentde
         end
 
         def deserialize(params)
@@ -3691,6 +3766,7 @@ module TencentCloud
           @UsedArchiveStorage = params['UsedArchiveStorage']
           @ArchiveStatus = params['ArchiveStatus']
           @ArchiveProgress = params['ArchiveProgress']
+          @IsOpenTDE = params['IsOpenTDE']
         end
       end
 
@@ -4754,6 +4830,46 @@ module TencentCloud
         end
       end
 
+      # DeleteClusterSaveBackup请求参数结构体
+      class DeleteClusterSaveBackupRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param SaveBackupId: 保留备份文件ID，推荐使用
+        # @type SaveBackupId: Integer
+
+        attr_accessor :ClusterId, :SaveBackupId
+
+        def initialize(clusterid=nil, savebackupid=nil)
+          @ClusterId = clusterid
+          @SaveBackupId = savebackupid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @SaveBackupId = params['SaveBackupId']
+        end
+      end
+
+      # DeleteClusterSaveBackup返回参数结构体
+      class DeleteClusterSaveBackupResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteParamTemplate请求参数结构体
       class DeleteParamTemplateRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 参数模板ID
@@ -5386,12 +5502,15 @@ module TencentCloud
         # @type LogicCrossRegionsConfigUpdateTime: String
         # @param LogicBackupConfig: 自动逻辑备份配置
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
+        # @param SnapshotSecondaryBackupConfig: 二级快照备份配置信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SnapshotSecondaryBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.BackupConfigInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :LogicBackupConfig, :RequestId
+        attr_accessor :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicCrossRegionsConfigUpdateTime, :LogicBackupConfig, :SnapshotSecondaryBackupConfig, :RequestId
 
-        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, logicbackupconfig=nil, requestid=nil)
+        def initialize(backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logiccrossregionsconfigupdatetime=nil, logicbackupconfig=nil, snapshotsecondarybackupconfig=nil, requestid=nil)
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
           @ReserveDuration = reserveduration
@@ -5399,6 +5518,7 @@ module TencentCloud
           @BackupType = backuptype
           @LogicCrossRegionsConfigUpdateTime = logiccrossregionsconfigupdatetime
           @LogicBackupConfig = logicbackupconfig
+          @SnapshotSecondaryBackupConfig = snapshotsecondarybackupconfig
           @RequestId = requestid
         end
 
@@ -5412,6 +5532,10 @@ module TencentCloud
           unless params['LogicBackupConfig'].nil?
             @LogicBackupConfig = LogicBackupConfigInfo.new
             @LogicBackupConfig.deserialize(params['LogicBackupConfig'])
+          end
+          unless params['SnapshotSecondaryBackupConfig'].nil?
+            @SnapshotSecondaryBackupConfig = BackupConfigInfo.new
+            @SnapshotSecondaryBackupConfig.deserialize(params['SnapshotSecondaryBackupConfig'])
           end
           @RequestId = params['RequestId']
         end
@@ -7784,6 +7908,73 @@ module TencentCloud
         end
       end
 
+      # DescribeRedoLogs请求参数结构体
+      class DescribeRedoLogsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param FileNames: redolog文件名
+        # @type FileNames: Array
+
+        attr_accessor :ClusterId, :Limit, :Offset, :StartTime, :EndTime, :FileNames
+
+        def initialize(clusterid=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, filenames=nil)
+          @ClusterId = clusterid
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @FileNames = filenames
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @FileNames = params['FileNames']
+        end
+      end
+
+      # DescribeRedoLogs返回参数结构体
+      class DescribeRedoLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RedoLogs: redo日志信息
+        # @type RedoLogs: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :RedoLogs, :RequestId
+
+        def initialize(totalcount=nil, redologs=nil, requestid=nil)
+          @TotalCount = totalcount
+          @RedoLogs = redologs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['RedoLogs'].nil?
+            @RedoLogs = []
+            params['RedoLogs'].each do |i|
+              redologitem_tmp = RedoLogItem.new
+              redologitem_tmp.deserialize(i)
+              @RedoLogs << redologitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeResourcePackageDetail请求参数结构体
       class DescribeResourcePackageDetailRequest < TencentCloud::Common::AbstractModel
         # @param PackageId: 资源包唯一ID
@@ -8150,6 +8341,68 @@ module TencentCloud
         def deserialize(params)
           @IsOpenSSL = params['IsOpenSSL']
           @DownloadUrl = params['DownloadUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSaveBackupClusters请求参数结构体
+      class DescribeSaveBackupClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 每页条数
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Filters: 检索条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :Filters
+
+        def initialize(limit=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              querysimplefilter_tmp = QuerySimpleFilter.new
+              querysimplefilter_tmp.deserialize(i)
+              @Filters << querysimplefilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeSaveBackupClusters返回参数结构体
+      class DescribeSaveBackupClustersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param SaveBackupClusterInfos: 遗留备份信息
+        # @type SaveBackupClusterInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :SaveBackupClusterInfos, :RequestId
+
+        def initialize(totalcount=nil, savebackupclusterinfos=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SaveBackupClusterInfos = savebackupclusterinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['SaveBackupClusterInfos'].nil?
+            @SaveBackupClusterInfos = []
+            params['SaveBackupClusterInfos'].each do |i|
+              savebackupclusterinfo_tmp = SaveBackupClusterInfo.new
+              savebackupclusterinfo_tmp.deserialize(i)
+              @SaveBackupClusterInfos << savebackupclusterinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9850,14 +10103,17 @@ module TencentCloud
         # @type IsolateReasonTypes: Array
         # @param IsolateReason: 实例退还原因补充
         # @type IsolateReason: String
+        # @param SaveBackup: 保留备份,true-保留（会产生费用）
+        # @type SaveBackup: Boolean
 
-        attr_accessor :ClusterId, :DbType, :IsolateReasonTypes, :IsolateReason
+        attr_accessor :ClusterId, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup
 
-        def initialize(clusterid=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil)
+        def initialize(clusterid=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil)
           @ClusterId = clusterid
           @DbType = dbtype
           @IsolateReasonTypes = isolatereasontypes
           @IsolateReason = isolatereason
+          @SaveBackup = savebackup
         end
 
         def deserialize(params)
@@ -9865,6 +10121,7 @@ module TencentCloud
           @DbType = params['DbType']
           @IsolateReasonTypes = params['IsolateReasonTypes']
           @IsolateReason = params['IsolateReason']
+          @SaveBackup = params['SaveBackup']
         end
       end
 
@@ -9905,15 +10162,18 @@ module TencentCloud
         # @type IsolateReasonTypes: Array
         # @param IsolateReason: 实例退还原因补充
         # @type IsolateReason: String
+        # @param SaveBackup: 保留备份
+        # @type SaveBackup: Boolean
 
-        attr_accessor :ClusterId, :InstanceIdList, :DbType, :IsolateReasonTypes, :IsolateReason
+        attr_accessor :ClusterId, :InstanceIdList, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup
 
-        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil)
+        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil)
           @ClusterId = clusterid
           @InstanceIdList = instanceidlist
           @DbType = dbtype
           @IsolateReasonTypes = isolatereasontypes
           @IsolateReason = isolatereason
+          @SaveBackup = savebackup
         end
 
         def deserialize(params)
@@ -9922,6 +10182,7 @@ module TencentCloud
           @DbType = params['DbType']
           @IsolateReasonTypes = params['IsolateReasonTypes']
           @IsolateReason = params['IsolateReason']
+          @SaveBackup = params['SaveBackup']
         end
       end
 
@@ -10407,10 +10668,12 @@ module TencentCloud
         # @type LogicBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.LogicBackupConfigInfo`
         # @param DeleteAutoLogicBackup: 是否删除自动逻辑备份
         # @type DeleteAutoLogicBackup: Boolean
+        # @param SnapshotSecondaryBackupConfig: 二级快照备份参数
+        # @type SnapshotSecondaryBackupConfig: :class:`Tencentcloud::Cynosdb.v20190107.models.SnapshotBackupConfig`
 
-        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicBackupConfig, :DeleteAutoLogicBackup
+        attr_accessor :ClusterId, :BackupTimeBeg, :BackupTimeEnd, :ReserveDuration, :BackupFreq, :BackupType, :LogicBackupConfig, :DeleteAutoLogicBackup, :SnapshotSecondaryBackupConfig
 
-        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logicbackupconfig=nil, deleteautologicbackup=nil)
+        def initialize(clusterid=nil, backuptimebeg=nil, backuptimeend=nil, reserveduration=nil, backupfreq=nil, backuptype=nil, logicbackupconfig=nil, deleteautologicbackup=nil, snapshotsecondarybackupconfig=nil)
           @ClusterId = clusterid
           @BackupTimeBeg = backuptimebeg
           @BackupTimeEnd = backuptimeend
@@ -10419,6 +10682,7 @@ module TencentCloud
           @BackupType = backuptype
           @LogicBackupConfig = logicbackupconfig
           @DeleteAutoLogicBackup = deleteautologicbackup
+          @SnapshotSecondaryBackupConfig = snapshotsecondarybackupconfig
         end
 
         def deserialize(params)
@@ -10433,6 +10697,10 @@ module TencentCloud
             @LogicBackupConfig.deserialize(params['LogicBackupConfig'])
           end
           @DeleteAutoLogicBackup = params['DeleteAutoLogicBackup']
+          unless params['SnapshotSecondaryBackupConfig'].nil?
+            @SnapshotSecondaryBackupConfig = SnapshotBackupConfig.new
+            @SnapshotSecondaryBackupConfig.deserialize(params['SnapshotSecondaryBackupConfig'])
+          end
         end
       end
 
@@ -11869,6 +12137,50 @@ module TencentCloud
 
         def deserialize(params)
           @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySnapBackupCrossRegionConfig请求参数结构体
+      class ModifySnapBackupCrossRegionConfigRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param CrossRegionsEnable: 是否开启跨地域快照备份ON/OFF
+        # @type CrossRegionsEnable: String
+        # @param CrossRegions: 快照备份所跨地域
+        # @type CrossRegions: Array
+
+        attr_accessor :ClusterId, :CrossRegionsEnable, :CrossRegions
+
+        def initialize(clusterid=nil, crossregionsenable=nil, crossregions=nil)
+          @ClusterId = clusterid
+          @CrossRegionsEnable = crossregionsenable
+          @CrossRegions = crossregions
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @CrossRegionsEnable = params['CrossRegionsEnable']
+          @CrossRegions = params['CrossRegions']
+        end
+      end
+
+      # ModifySnapBackupCrossRegionConfig返回参数结构体
+      class ModifySnapBackupCrossRegionConfigResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务id
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
@@ -13638,6 +13950,81 @@ module TencentCloud
         end
       end
 
+      # 模糊查询过滤器
+      class QuerySimpleFilter < TencentCloud::Common::AbstractModel
+        # @param Names: 字段名称
+        # @type Names: Array
+        # @param Values: 字段值
+        # @type Values: Array
+        # @param ExactMatch: 模糊匹配，true-是，false否
+        # @type ExactMatch: Boolean
+
+        attr_accessor :Names, :Values, :ExactMatch
+
+        def initialize(names=nil, values=nil, exactmatch=nil)
+          @Names = names
+          @Values = values
+          @ExactMatch = exactmatch
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+          @Values = params['Values']
+          @ExactMatch = params['ExactMatch']
+        end
+      end
+
+      # redo日志详情
+      class RedoLogItem < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名
+        # @type FileName: String
+        # @param FileSize: 文件大小
+        # @type FileSize: Integer
+        # @param BackupTime: 备份时间
+        # @type BackupTime: String
+        # @param RedoLogId: redoLogId
+        # @type RedoLogId: Integer
+        # @param RedoCrossRegions: 跨地域信息
+        # @type RedoCrossRegions: Array
+        # @param Status: 状态
+        # @type Status: String
+        # @param StartTime: 开始时间
+        # @type StartTime: String
+        # @param FinishTime: 完成时间
+        # @type FinishTime: String
+
+        attr_accessor :FileName, :FileSize, :BackupTime, :RedoLogId, :RedoCrossRegions, :Status, :StartTime, :FinishTime
+
+        def initialize(filename=nil, filesize=nil, backuptime=nil, redologid=nil, redocrossregions=nil, status=nil, starttime=nil, finishtime=nil)
+          @FileName = filename
+          @FileSize = filesize
+          @BackupTime = backuptime
+          @RedoLogId = redologid
+          @RedoCrossRegions = redocrossregions
+          @Status = status
+          @StartTime = starttime
+          @FinishTime = finishtime
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @FileSize = params['FileSize']
+          @BackupTime = params['BackupTime']
+          @RedoLogId = params['RedoLogId']
+          unless params['RedoCrossRegions'].nil?
+            @RedoCrossRegions = []
+            params['RedoCrossRegions'].each do |i|
+              backupregionandids_tmp = BackupRegionAndIds.new
+              backupregionandids_tmp.deserialize(i)
+              @RedoCrossRegions << backupregionandids_tmp
+            end
+          end
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @FinishTime = params['FinishTime']
+        end
+      end
+
       # RefundResourcePackage请求参数结构体
       class RefundResourcePackageRequest < TencentCloud::Common::AbstractModel
         # @param PackageId: 资源包唯一ID
@@ -14551,10 +14938,12 @@ module TencentCloud
         # @type ProjectId: Integer
         # @param AutoArchive: 是否开启归档，可选范围<li>yes</li><li>no</li>默认值:yes
         # @type AutoArchive: String
+        # @param FromSaveBackup: 是否从保存备份中恢复
+        # @type FromSaveBackup: Boolean
 
-        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive
+        attr_accessor :Zone, :OriginalClusterId, :UniqVpcId, :UniqSubnetId, :ClusterName, :RollbackId, :ExpectTime, :AutoVoucher, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :ParamTemplateId, :InstanceInitInfos, :DealMode, :PayMode, :TimeSpan, :TimeUnit, :RollbackDatabases, :RollbackTables, :OriginalROInstanceList, :ProjectId, :AutoArchive, :FromSaveBackup
 
-        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil, autoarchive=nil)
+        def initialize(zone=nil, originalclusterid=nil, uniqvpcid=nil, uniqsubnetid=nil, clustername=nil, rollbackid=nil, expecttime=nil, autovoucher=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, paramtemplateid=nil, instanceinitinfos=nil, dealmode=nil, paymode=nil, timespan=nil, timeunit=nil, rollbackdatabases=nil, rollbacktables=nil, originalroinstancelist=nil, projectid=nil, autoarchive=nil, fromsavebackup=nil)
           @Zone = zone
           @OriginalClusterId = originalclusterid
           @UniqVpcId = uniqvpcid
@@ -14583,6 +14972,7 @@ module TencentCloud
           @OriginalROInstanceList = originalroinstancelist
           @ProjectId = projectid
           @AutoArchive = autoarchive
+          @FromSaveBackup = fromsavebackup
         end
 
         def deserialize(params)
@@ -14649,6 +15039,7 @@ module TencentCloud
           @OriginalROInstanceList = params['OriginalROInstanceList']
           @ProjectId = params['ProjectId']
           @AutoArchive = params['AutoArchive']
+          @FromSaveBackup = params['FromSaveBackup']
         end
       end
 
@@ -14894,6 +15285,65 @@ module TencentCloud
           @HasPermission = params['HasPermission']
           @IsWholeRdmaZone = params['IsWholeRdmaZone']
           @IsSupportCreateCluster = params['IsSupportCreateCluster']
+        end
+      end
+
+      # 遗留备份列表
+      class SaveBackupClusterInfo < TencentCloud::Common::AbstractModel
+        # @param BackupId: 遗照备份id
+        # @type BackupId: Integer
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param BackupTime: 备份时间
+        # @type BackupTime: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
+        # @param DbMode: Db类型(NORMAL, SERVERLESS)
+        # @type DbMode: String
+        # @param ClusterStatus: 集群状态
+        # @type ClusterStatus: String
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+
+        attr_accessor :BackupId, :ClusterId, :ClusterName, :Region, :Zone, :BackupTime, :DbVersion, :DbMode, :ClusterStatus, :Tasks
+
+        def initialize(backupid=nil, clusterid=nil, clustername=nil, region=nil, zone=nil, backuptime=nil, dbversion=nil, dbmode=nil, clusterstatus=nil, tasks=nil)
+          @BackupId = backupid
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @Zone = zone
+          @BackupTime = backuptime
+          @DbVersion = dbversion
+          @DbMode = dbmode
+          @ClusterStatus = clusterstatus
+          @Tasks = tasks
+        end
+
+        def deserialize(params)
+          @BackupId = params['BackupId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @BackupTime = params['BackupTime']
+          @DbVersion = params['DbVersion']
+          @DbMode = params['DbMode']
+          @ClusterStatus = params['ClusterStatus']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
         end
       end
 
@@ -15315,6 +15765,46 @@ module TencentCloud
           @SyncWriteBytesRemote = params['SyncWriteBytesRemote']
           @SyncWriteTimeRemote = params['SyncWriteTimeRemote']
           @TrxCommitDelay = params['TrxCommitDelay']
+        end
+      end
+
+      # 快照备份设置
+      class SnapshotBackupConfig < TencentCloud::Common::AbstractModel
+        # @param BackupCustomAutoTime: 系统自动时间
+        # @type BackupCustomAutoTime: Boolean
+        # @param BackupTimeBeg: 表示全备开始时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @type BackupTimeBeg: Integer
+        # @param BackupTimeEnd: 表示全备结束时间，[0-24*3600]， 如0:00, 1:00, 2:00 分别为 0，3600， 7200
+        # @type BackupTimeEnd: Integer
+        # @param BackupWeekDays: 该参数目前不支持修改，无需填写。备份频率，长度为7的数组，分别对应周日到周六的备份方式，full-全量备份，increment-增量备份
+        # @type BackupWeekDays: Array
+        # @param BackupIntervalTime: 间隔时间
+        # @type BackupIntervalTime: Integer
+        # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600247=604800，最大为158112000
+        # @type ReserveDuration: Integer
+        # @param BackupTriggerStrategy: 动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
+        # @type BackupTriggerStrategy: String
+
+        attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :BackupTriggerStrategy
+
+        def initialize(backupcustomautotime=nil, backuptimebeg=nil, backuptimeend=nil, backupweekdays=nil, backupintervaltime=nil, reserveduration=nil, backuptriggerstrategy=nil)
+          @BackupCustomAutoTime = backupcustomautotime
+          @BackupTimeBeg = backuptimebeg
+          @BackupTimeEnd = backuptimeend
+          @BackupWeekDays = backupweekdays
+          @BackupIntervalTime = backupintervaltime
+          @ReserveDuration = reserveduration
+          @BackupTriggerStrategy = backuptriggerstrategy
+        end
+
+        def deserialize(params)
+          @BackupCustomAutoTime = params['BackupCustomAutoTime']
+          @BackupTimeBeg = params['BackupTimeBeg']
+          @BackupTimeEnd = params['BackupTimeEnd']
+          @BackupWeekDays = params['BackupWeekDays']
+          @BackupIntervalTime = params['BackupIntervalTime']
+          @ReserveDuration = params['ReserveDuration']
+          @BackupTriggerStrategy = params['BackupTriggerStrategy']
         end
       end
 
