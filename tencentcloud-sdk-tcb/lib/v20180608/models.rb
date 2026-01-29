@@ -1828,6 +1828,29 @@ module TencentCloud
         end
       end
 
+      # 本类型用于UpdateTable接口中描述待创建索引信息
+      class CreateIndex < TencentCloud::Common::AbstractModel
+        # @param IndexName: 索引名称
+        # @type IndexName: String
+        # @param MgoKeySchema: 索引结构
+        # @type MgoKeySchema: :class:`Tencentcloud::Tcb.v20180608.models.MgoKeySchema`
+
+        attr_accessor :IndexName, :MgoKeySchema
+
+        def initialize(indexname=nil, mgokeyschema=nil)
+          @IndexName = indexname
+          @MgoKeySchema = mgokeyschema
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
+          unless params['MgoKeySchema'].nil?
+            @MgoKeySchema = MgoKeySchema.new
+            @MgoKeySchema.deserialize(params['MgoKeySchema'])
+          end
+        end
+      end
+
       # CreatePostpayPackage请求参数结构体
       class CreatePostpayPackageRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID，需要系统自动创建环境时，此字段不传
@@ -1954,6 +1977,155 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateTable请求参数结构体
+      class CreateTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableName: 数据表名；长度不超过96个字符，可以为英文字母、数字、下划线(_)和短横线(-)的组合，且不能以下划线开头
+        # @type TableName: String
+        # @param Tag: FlexDB实例ID，如：tnt-nl7hjzasw
+        # @type Tag: String
+        # @param PermissionInfo: FlexDB数据库权限信息
+        # @type PermissionInfo: :class:`Tencentcloud::Tcb.v20180608.models.PermissionInfo`
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param MongoConnector: MongoDB连接器配置
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :TableName, :Tag, :PermissionInfo, :EnvId, :MongoConnector
+
+        def initialize(tablename=nil, tag=nil, permissioninfo=nil, envid=nil, mongoconnector=nil)
+          @TableName = tablename
+          @Tag = tag
+          @PermissionInfo = permissioninfo
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Tag = params['Tag']
+          unless params['PermissionInfo'].nil?
+            @PermissionInfo = PermissionInfo.new
+            @PermissionInfo.deserialize(params['PermissionInfo'])
+          end
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # CreateTable返回参数结构体
+      class CreateTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateUser请求参数结构体
+      class CreateUserRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param Name: 用户名，用户名规则：1. 长度1-64字符 2. 只能包含大小写英文字母、数字和符号 . _ - 3. 只能以字母或数字开头 4. 不能重复
+        # @type Name: String
+        # @param Uid: 用户ID，最多64字符，如不传则系统自动生成
+        # @type Uid: String
+        # @param Type: 用户类型：internalUser-内部用户、externalUser-外部用户，默认internalUser（内部用户）
+        # @type Type: String
+        # @param Password: 密码，传入Uid时密码可不传。密码规则：1. 长度8-32字符（推荐12位以上） 2. 不能以特殊字符开头 3. 至少包含以下四项中的三项：小写字母a-z、大写字母A-Z、数字0-9、特殊字符()!@#$%^&*\|?><_-
+        # @type Password: String
+        # @param UserStatus: 用户状态：ACTIVE（激活）、BLOCKED（冻结），默认激活
+        # @type UserStatus: String
+        # @param NickName: 用户昵称，长度2-64字符
+        # @type NickName: String
+        # @param Phone: 手机号，不能重复
+        # @type Phone: String
+        # @param Email: 邮箱地址，不能重复
+        # @type Email: String
+        # @param AvatarUrl: 头像链接，可访问的公网URL
+        # @type AvatarUrl: String
+        # @param Description: 用户描述，最多200字符
+        # @type Description: String
+
+        attr_accessor :EnvId, :Name, :Uid, :Type, :Password, :UserStatus, :NickName, :Phone, :Email, :AvatarUrl, :Description
+
+        def initialize(envid=nil, name=nil, uid=nil, type=nil, password=nil, userstatus=nil, nickname=nil, phone=nil, email=nil, avatarurl=nil, description=nil)
+          @EnvId = envid
+          @Name = name
+          @Uid = uid
+          @Type = type
+          @Password = password
+          @UserStatus = userstatus
+          @NickName = nickname
+          @Phone = phone
+          @Email = email
+          @AvatarUrl = avatarurl
+          @Description = description
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Name = params['Name']
+          @Uid = params['Uid']
+          @Type = params['Type']
+          @Password = params['Password']
+          @UserStatus = params['UserStatus']
+          @NickName = params['NickName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+          @AvatarUrl = params['AvatarUrl']
+          @Description = params['Description']
+        end
+      end
+
+      # 创建用户返回结果
+      class CreateUserResp < TencentCloud::Common::AbstractModel
+        # @param Uid: 用户ID
+        # @type Uid: String
+
+        attr_accessor :Uid
+
+        def initialize(uid=nil)
+          @Uid = uid
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+        end
+      end
+
+      # CreateUser返回参数结构体
+      class CreateUserResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果返回
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.CreateUserResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateUserResp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2254,6 +2426,116 @@ module TencentCloud
 
         def deserialize(params)
           @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTable请求参数结构体
+      class DeleteTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableName: 待删除的表名
+        # @type TableName: String
+        # @param Tag: FlexDB实例ID
+        # @type Tag: String
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param MongoConnector: MongoDB连接器配置
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :TableName, :Tag, :EnvId, :MongoConnector
+
+        def initialize(tablename=nil, tag=nil, envid=nil, mongoconnector=nil)
+          @TableName = tablename
+          @Tag = tag
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Tag = params['Tag']
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # DeleteTable返回参数结构体
+      class DeleteTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteUsers请求参数结构体
+      class DeleteUsersRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param Uids: tcb用户id列表, 一次最多支持删除100个
+        # @type Uids: Array
+
+        attr_accessor :EnvId, :Uids
+
+        def initialize(envid=nil, uids=nil)
+          @EnvId = envid
+          @Uids = uids
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Uids = params['Uids']
+        end
+      end
+
+      # 删除tcb用户返回值
+      class DeleteUsersResp < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: 成功个数
+        # @type SuccessCount: Integer
+        # @param FailedCount: 失败个数
+        # @type FailedCount: Integer
+
+        attr_accessor :SuccessCount, :FailedCount
+
+        def initialize(successcount=nil, failedcount=nil)
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+        end
+
+        def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+        end
+      end
+
+      # DeleteUsers返回参数结构体
+      class DeleteUsersResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 删除用户结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DeleteUsersResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DeleteUsersResp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4757,6 +5039,139 @@ module TencentCloud
         end
       end
 
+      # DescribeTable请求参数结构体
+      class DescribeTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableName: 表名
+        # @type TableName: String
+        # @param Tag: FlecDB实例ID
+        # @type Tag: String
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param MongoConnector: MongoDB连接器配置
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :TableName, :Tag, :EnvId, :MongoConnector
+
+        def initialize(tablename=nil, tag=nil, envid=nil, mongoconnector=nil)
+          @TableName = tablename
+          @Tag = tag
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Tag = params['Tag']
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # DescribeTable返回参数结构体
+      class DescribeTableResponse < TencentCloud::Common::AbstractModel
+        # @param Indexes: 索引相关信息
+        # @type Indexes: Array
+        # @param IndexNum: 索引个数
+        # @type IndexNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Indexes, :IndexNum, :RequestId
+
+        def initialize(indexes=nil, indexnum=nil, requestid=nil)
+          @Indexes = indexes
+          @IndexNum = indexnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Indexes'].nil?
+            @Indexes = []
+            params['Indexes'].each do |i|
+              indexinfo_tmp = IndexInfo.new
+              indexinfo_tmp.deserialize(i)
+              @Indexes << indexinfo_tmp
+            end
+          end
+          @IndexNum = params['IndexNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTables请求参数结构体
+      class DescribeTablesRequest < TencentCloud::Common::AbstractModel
+        # @param MgoLimit: 分页条件
+        # @type MgoLimit: Integer
+        # @param Tag: 实例ID
+        # @type Tag: String
+        # @param MgoOffset: 分页条件
+        # @type MgoOffset: Integer
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param MongoConnector: MongoConnector
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :MgoLimit, :Tag, :MgoOffset, :EnvId, :MongoConnector
+
+        def initialize(mgolimit=nil, tag=nil, mgooffset=nil, envid=nil, mongoconnector=nil)
+          @MgoLimit = mgolimit
+          @Tag = tag
+          @MgoOffset = mgooffset
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @MgoLimit = params['MgoLimit']
+          @Tag = params['Tag']
+          @MgoOffset = params['MgoOffset']
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # DescribeTables返回参数结构体
+      class DescribeTablesResponse < TencentCloud::Common::AbstractModel
+        # @param Tables: 表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+        # @param Pager: 分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pager: :class:`Tencentcloud::Tcb.v20180608.models.Pager`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tables, :Pager, :RequestId
+
+        def initialize(tables=nil, pager=nil, requestid=nil)
+          @Tables = tables
+          @Pager = pager
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              tableinfo_tmp = TableInfo.new
+              tableinfo_tmp.deserialize(i)
+              @Tables << tableinfo_tmp
+            end
+          end
+          unless params['Pager'].nil?
+            @Pager = Pager.new
+            @Pager.deserialize(params['Pager'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeUserActivityInfo请求参数结构体
       class DescribeUserActivityInfoRequest < TencentCloud::Common::AbstractModel
         # @param ActivityId: 活动id
@@ -4817,6 +5232,96 @@ module TencentCloud
           @ActivityTimeLeft = params['ActivityTimeLeft']
           @GroupTimeLeft = params['GroupTimeLeft']
           @NickNameList = params['NickNameList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserList请求参数结构体
+      class DescribeUserListRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param PageNo: 页码，从1开始，默认1
+        # @type PageNo: Integer
+        # @param PageSize: 每页数量，默认20，最大100
+        # @type PageSize: Integer
+        # @param Name: 用户名，模糊查询
+        # @type Name: String
+        # @param NickName: 用户昵称，模糊查询
+        # @type NickName: String
+        # @param Phone: 手机号，模糊查询
+        # @type Phone: String
+        # @param Email: 邮箱，模糊查询
+        # @type Email: String
+
+        attr_accessor :EnvId, :PageNo, :PageSize, :Name, :NickName, :Phone, :Email
+
+        def initialize(envid=nil, pageno=nil, pagesize=nil, name=nil, nickname=nil, phone=nil, email=nil)
+          @EnvId = envid
+          @PageNo = pageno
+          @PageSize = pagesize
+          @Name = name
+          @NickName = nickname
+          @Phone = phone
+          @Email = email
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @PageNo = params['PageNo']
+          @PageSize = params['PageSize']
+          @Name = params['Name']
+          @NickName = params['NickName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+        end
+      end
+
+      # 查询用户返回结果
+      class DescribeUserListResp < TencentCloud::Common::AbstractModel
+        # @param Total: 用户总数
+        # @type Total: Integer
+        # @param UserList: 用户列表
+        # @type UserList: Array
+
+        attr_accessor :Total, :UserList
+
+        def initialize(total=nil, userlist=nil)
+          @Total = total
+          @UserList = userlist
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['UserList'].nil?
+            @UserList = []
+            params['UserList'].each do |i|
+              user_tmp = User.new
+              user_tmp.deserialize(i)
+              @UserList << user_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeUserList返回参数结构体
+      class DescribeUserListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 结果返回
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DescribeUserListResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeUserListResp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -5020,6 +5525,22 @@ module TencentCloud
         def deserialize(params)
           @Result = params['Result']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 本类型用于UpdateTable接口中描述待删除索引信息
+      class DropIndex < TencentCloud::Common::AbstractModel
+        # @param IndexName: 索引名称
+        # @type IndexName: String
+
+        attr_accessor :IndexName
+
+        def initialize(indexname=nil)
+          @IndexName = indexname
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
         end
       end
 
@@ -5855,6 +6376,95 @@ module TencentCloud
         end
       end
 
+      # 索引命中信息
+      class IndexAccesses < TencentCloud::Common::AbstractModel
+        # @param Ops: 索引命中次数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Ops: Integer
+        # @param Since: 命中次数从何时开始计数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Since: String
+
+        attr_accessor :Ops, :Since
+
+        def initialize(ops=nil, since=nil)
+          @Ops = ops
+          @Since = since
+        end
+
+        def deserialize(params)
+          @Ops = params['Ops']
+          @Since = params['Since']
+        end
+      end
+
+      # 索引信息
+      class IndexInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 索引名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Size: 索引大小，单位: 字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param Keys: 索引键值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Keys: Array
+        # @param Accesses: 索引使用信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Accesses: :class:`Tencentcloud::Tcb.v20180608.models.IndexAccesses`
+        # @param Unique: 是否为唯一索引
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Unique: Boolean
+
+        attr_accessor :Name, :Size, :Keys, :Accesses, :Unique
+
+        def initialize(name=nil, size=nil, keys=nil, accesses=nil, unique=nil)
+          @Name = name
+          @Size = size
+          @Keys = keys
+          @Accesses = accesses
+          @Unique = unique
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Size = params['Size']
+          unless params['Keys'].nil?
+            @Keys = []
+            params['Keys'].each do |i|
+              indexkey_tmp = Indexkey.new
+              indexkey_tmp.deserialize(i)
+              @Keys << indexkey_tmp
+            end
+          end
+          unless params['Accesses'].nil?
+            @Accesses = IndexAccesses.new
+            @Accesses.deserialize(params['Accesses'])
+          end
+          @Unique = params['Unique']
+        end
+      end
+
+      # 索引的key值
+      class Indexkey < TencentCloud::Common::AbstractModel
+        # @param Name: 键名
+        # @type Name: String
+        # @param Direction: 方向：specify 1 for ascending or -1 for descending
+        # @type Direction: String
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
+        end
+      end
+
       # 键值对
       class KVPair < TencentCloud::Common::AbstractModel
         # @param Key: 键
@@ -5872,6 +6482,89 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # ListTables请求参数结构体
+      class ListTablesRequest < TencentCloud::Common::AbstractModel
+        # @param MgoLimit: 每页返回数量（0-1000)
+        # @type MgoLimit: Integer
+        # @param Tag: FlexDB实例ID
+        # @type Tag: String
+        # @param MgoOffset: 分页偏移量
+        # @type MgoOffset: Integer
+        # @param Filters: 过滤标签数组，用于过滤表名，可选值如：HIDDEN、WEDA、WEDA_SYSTEM
+        # @type Filters: Array
+        # @param SearchValue: 模糊搜索查询值
+        # @type SearchValue: String
+        # @param ShowHidden: 是否展示隐藏表
+        # @type ShowHidden: Boolean
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param MongoConnector: mongo连接器信息
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :MgoLimit, :Tag, :MgoOffset, :Filters, :SearchValue, :ShowHidden, :EnvId, :MongoConnector
+
+        def initialize(mgolimit=nil, tag=nil, mgooffset=nil, filters=nil, searchvalue=nil, showhidden=nil, envid=nil, mongoconnector=nil)
+          @MgoLimit = mgolimit
+          @Tag = tag
+          @MgoOffset = mgooffset
+          @Filters = filters
+          @SearchValue = searchvalue
+          @ShowHidden = showhidden
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @MgoLimit = params['MgoLimit']
+          @Tag = params['Tag']
+          @MgoOffset = params['MgoOffset']
+          @Filters = params['Filters']
+          @SearchValue = params['SearchValue']
+          @ShowHidden = params['ShowHidden']
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # ListTables返回参数结构体
+      class ListTablesResponse < TencentCloud::Common::AbstractModel
+        # @param Tables: 表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+        # @param Pager: 分页信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Pager: :class:`Tencentcloud::Tcb.v20180608.models.Pager`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tables, :Pager, :RequestId
+
+        def initialize(tables=nil, pager=nil, requestid=nil)
+          @Tables = tables
+          @Pager = pager
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              tableinfo_tmp = TableInfo.new
+              tableinfo_tmp.deserialize(i)
+              @Tables << tableinfo_tmp
+            end
+          end
+          unless params['Pager'].nil?
+            @Pager = Pager.new
+            @Pager.deserialize(params['Pager'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
@@ -5908,6 +6601,57 @@ module TencentCloud
           @TopicId = params['TopicId']
           @Region = params['Region']
           @Period = params['Period']
+        end
+      end
+
+      # 本类型用于UpdateTable接口中描述待创建索引信息
+      class MgoIndexKeys < TencentCloud::Common::AbstractModel
+        # @param Name: 无
+        # @type Name: String
+        # @param Direction: 无
+        # @type Direction: String
+
+        attr_accessor :Name, :Direction
+
+        def initialize(name=nil, direction=nil)
+          @Name = name
+          @Direction = direction
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Direction = params['Direction']
+        end
+      end
+
+      # 本类型用于接口中描述待创建索引结构
+      class MgoKeySchema < TencentCloud::Common::AbstractModel
+        # @param MgoIndexKeys: 索引字段
+        # @type MgoIndexKeys: Array
+        # @param MgoIsUnique: 是否唯一索引
+        # @type MgoIsUnique: Boolean
+        # @param MgoIsSparse: 是否稀疏索引
+        # @type MgoIsSparse: Boolean
+
+        attr_accessor :MgoIndexKeys, :MgoIsUnique, :MgoIsSparse
+
+        def initialize(mgoindexkeys=nil, mgoisunique=nil, mgoissparse=nil)
+          @MgoIndexKeys = mgoindexkeys
+          @MgoIsUnique = mgoisunique
+          @MgoIsSparse = mgoissparse
+        end
+
+        def deserialize(params)
+          unless params['MgoIndexKeys'].nil?
+            @MgoIndexKeys = []
+            params['MgoIndexKeys'].each do |i|
+              mgoindexkeys_tmp = MgoIndexKeys.new
+              mgoindexkeys_tmp.deserialize(i)
+              @MgoIndexKeys << mgoindexkeys_tmp
+            end
+          end
+          @MgoIsUnique = params['MgoIsUnique']
+          @MgoIsSparse = params['MgoIsSparse']
         end
       end
 
@@ -6213,6 +6957,122 @@ module TencentCloud
         end
       end
 
+      # ModifyUser请求参数结构体
+      class ModifyUserRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param Uid: 用户Id, 不做修改
+        # @type Uid: String
+        # @param Name: 用户名，用户名规则：1. 长度1-64字符 2. 只能包含大小写英文字母、数字和符号 . _ - 3. 只能以字母或数字开头 4. 不能重复，不传该字段或传空字符不修改
+        # @type Name: String
+        # @param Type: 用户类型：0-内部用户、1-外部用户，默认0（内部用户），不传该字段或传空字符串不修改
+        # @type Type: String
+        # @param Password: 密码，传入Uid时密码可不传。密码规则：1. 长度8-32字符（推荐12位以上） 2. 不能以特殊字符开头 3. 至少包含以下四项中的三项：小写字母a-z、大写字母A-Z、数字0-9、特殊字符()!@#$%^&*\|?><_-，不传该字段或传空字符串不修改
+        # @type Password: String
+        # @param UserStatus: 用户状态：ACTIVE（激活）、BLOCKED（冻结），默认冻结，不传该字段或传空字符串不修改
+        # @type UserStatus: String
+        # @param NickName: 用户昵称，长度2-64字符，不传该字段不修改，传空字符修改为空
+        # @type NickName: String
+        # @param Phone: 手机号，11位数字，不传该字段不修改，传空字符串修改为空
+        # @type Phone: String
+        # @param Email: 邮箱地址，不传该字段不修改，传空字符修改为空
+        # @type Email: String
+        # @param AvatarUrl: 头像链接，可访问的公网URL，不传该字段不修改，传空字符串修改为空
+        # @type AvatarUrl: String
+        # @param Description: 用户描述，最多200字符，不传该字段不修改，传空字符修改为空
+        # @type Description: String
+
+        attr_accessor :EnvId, :Uid, :Name, :Type, :Password, :UserStatus, :NickName, :Phone, :Email, :AvatarUrl, :Description
+
+        def initialize(envid=nil, uid=nil, name=nil, type=nil, password=nil, userstatus=nil, nickname=nil, phone=nil, email=nil, avatarurl=nil, description=nil)
+          @EnvId = envid
+          @Uid = uid
+          @Name = name
+          @Type = type
+          @Password = password
+          @UserStatus = userstatus
+          @NickName = nickname
+          @Phone = phone
+          @Email = email
+          @AvatarUrl = avatarurl
+          @Description = description
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @Uid = params['Uid']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Password = params['Password']
+          @UserStatus = params['UserStatus']
+          @NickName = params['NickName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+          @AvatarUrl = params['AvatarUrl']
+          @Description = params['Description']
+        end
+      end
+
+      # 修改用户返回值
+      class ModifyUserResp < TencentCloud::Common::AbstractModel
+        # @param Success: 是否成功
+        # @type Success: Boolean
+
+        attr_accessor :Success
+
+        def initialize(success=nil)
+          @Success = success
+        end
+
+        def deserialize(params)
+          @Success = params['Success']
+        end
+      end
+
+      # ModifyUser返回参数结构体
+      class ModifyUserResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 修改用户返回值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.ModifyUserResp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ModifyUserResp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # MongoDB连接器配置
+      class MongoConnector < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 连接器实例ID
+        # @type InstanceId: String
+        # @param DatabaseName: MongoDB数据库名
+        # @type DatabaseName: String
+
+        attr_accessor :InstanceId, :DatabaseName
+
+        def initialize(instanceid=nil, databasename=nil)
+          @InstanceId = instanceid
+          @DatabaseName = databasename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DatabaseName = params['DatabaseName']
+        end
+      end
+
       # Key-Value类型，模拟的 object 类型
       class ObjectKV < TencentCloud::Common::AbstractModel
         # @param Key: object 的 key
@@ -6345,6 +7205,61 @@ module TencentCloud
           @MetricUnit = params['MetricUnit']
           @DeductType = params['DeductType']
           @FreeQuotaType = params['FreeQuotaType']
+        end
+      end
+
+      # 分页信息
+      class Pager < TencentCloud::Common::AbstractModel
+        # @param Offset: 分页偏移量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 每页返回记录数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param Total: 文档集合总数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+
+        attr_accessor :Offset, :Limit, :Total
+
+        def initialize(offset=nil, limit=nil, total=nil)
+          @Offset = offset
+          @Limit = limit
+          @Total = total
+        end
+
+        def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Total = params['Total']
+        end
+      end
+
+      # FlexDB数据库权限信息
+      class PermissionInfo < TencentCloud::Common::AbstractModel
+        # @param AclTag: "READONLY",   //公有读，私有写。所有用户可读，仅创建者及管理员可写
+        # "PRIVATE",    //私有读写，仅创建者及管理员可读写
+        # "ADMINWRITE", //所有用户可读，仅管理员可写
+        # "ADMINONLY",  //仅管理员可操作
+        # "CUSTOM",     // 安全规则
+        # @type AclTag: String
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param Rule: 自定义规则
+        # @type Rule: String
+
+        attr_accessor :AclTag, :EnvId, :Rule
+
+        def initialize(acltag=nil, envid=nil, rule=nil)
+          @AclTag = acltag
+          @EnvId = envid
+          @Rule = rule
+        end
+
+        def deserialize(params)
+          @AclTag = params['AclTag']
+          @EnvId = params['EnvId']
+          @Rule = params['Rule']
         end
       end
 
@@ -6678,6 +7593,43 @@ module TencentCloud
         end
       end
 
+      # 表信息
+      class TableInfo < TencentCloud::Common::AbstractModel
+        # @param TableName: 表名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+        # @param Count: 表中文档数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Count: Integer
+        # @param Size: 表的大小（即表中文档总大小），单位：字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: Integer
+        # @param IndexCount: 索引数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexCount: Integer
+        # @param IndexSize: 索引占用空间，单位：字节
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IndexSize: Integer
+
+        attr_accessor :TableName, :Count, :Size, :IndexCount, :IndexSize
+
+        def initialize(tablename=nil, count=nil, size=nil, indexcount=nil, indexsize=nil)
+          @TableName = tablename
+          @Count = count
+          @Size = size
+          @IndexCount = indexcount
+          @IndexSize = indexsize
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Count = params['Count']
+          @Size = params['Size']
+          @IndexCount = params['IndexCount']
+          @IndexSize = params['IndexSize']
+        end
+      end
+
       # 标签键值对
       class Tag < TencentCloud::Common::AbstractModel
         # @param Key: 标签键
@@ -6768,6 +7720,123 @@ module TencentCloud
           @Result = params['Result']
           @FailServerList = params['FailServerList']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateTable请求参数结构体
+      class UpdateTableRequest < TencentCloud::Common::AbstractModel
+        # @param TableName: 表名
+        # @type TableName: String
+        # @param Tag: FlexDB实例ID
+        # @type Tag: String
+        # @param DropIndexes: 待删除索引信息
+        # @type DropIndexes: Array
+        # @param CreateIndexes: 待创建索引信息
+        # @type CreateIndexes: Array
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param MongoConnector: MongoDB连接器配置
+        # @type MongoConnector: :class:`Tencentcloud::Tcb.v20180608.models.MongoConnector`
+
+        attr_accessor :TableName, :Tag, :DropIndexes, :CreateIndexes, :EnvId, :MongoConnector
+
+        def initialize(tablename=nil, tag=nil, dropindexes=nil, createindexes=nil, envid=nil, mongoconnector=nil)
+          @TableName = tablename
+          @Tag = tag
+          @DropIndexes = dropindexes
+          @CreateIndexes = createindexes
+          @EnvId = envid
+          @MongoConnector = mongoconnector
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @Tag = params['Tag']
+          unless params['DropIndexes'].nil?
+            @DropIndexes = []
+            params['DropIndexes'].each do |i|
+              dropindex_tmp = DropIndex.new
+              dropindex_tmp.deserialize(i)
+              @DropIndexes << dropindex_tmp
+            end
+          end
+          unless params['CreateIndexes'].nil?
+            @CreateIndexes = []
+            params['CreateIndexes'].each do |i|
+              createindex_tmp = CreateIndex.new
+              createindex_tmp.deserialize(i)
+              @CreateIndexes << createindex_tmp
+            end
+          end
+          @EnvId = params['EnvId']
+          unless params['MongoConnector'].nil?
+            @MongoConnector = MongoConnector.new
+            @MongoConnector.deserialize(params['MongoConnector'])
+          end
+        end
+      end
+
+      # UpdateTable返回参数结构体
+      class UpdateTableResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户信息
+      class User < TencentCloud::Common::AbstractModel
+        # @param Uid: 用户ID
+        # @type Uid: String
+        # @param Name: 用户名
+        # @type Name: String
+        # @param Type: 用户类型：internalUser-内部用户、externalUser-外部用户
+        # @type Type: String
+        # @param UserStatus: 用户状态：ACTIVE（激活）、BLOCKED（冻结）
+        # @type UserStatus: String
+        # @param NickName: 用户昵称
+        # @type NickName: String
+        # @param Phone: 手机号
+        # @type Phone: String
+        # @param Email: 邮箱
+        # @type Email: String
+        # @param AvatarUrl: 头像链接
+        # @type AvatarUrl: String
+        # @param Description: 用户描述
+        # @type Description: String
+
+        attr_accessor :Uid, :Name, :Type, :UserStatus, :NickName, :Phone, :Email, :AvatarUrl, :Description
+
+        def initialize(uid=nil, name=nil, type=nil, userstatus=nil, nickname=nil, phone=nil, email=nil, avatarurl=nil, description=nil)
+          @Uid = uid
+          @Name = name
+          @Type = type
+          @UserStatus = userstatus
+          @NickName = nickname
+          @Phone = phone
+          @Email = email
+          @AvatarUrl = avatarurl
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Uid = params['Uid']
+          @Name = params['Name']
+          @Type = params['Type']
+          @UserStatus = params['UserStatus']
+          @NickName = params['NickName']
+          @Phone = params['Phone']
+          @Email = params['Email']
+          @AvatarUrl = params['AvatarUrl']
+          @Description = params['Description']
         end
       end
 

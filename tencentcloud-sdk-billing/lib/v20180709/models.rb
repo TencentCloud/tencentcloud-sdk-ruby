@@ -10820,6 +10820,33 @@ module TencentCloud
         end
       end
 
+      # 资源操作返回详情
+      class OperateRsp < TencentCloud::Common::AbstractModel
+        # @param Code: 实例维度操作失败code码
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Code: Integer
+        # @param Message: 资源操作失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+
+        attr_accessor :Code, :Message, :InstanceId
+
+        def initialize(code=nil, message=nil, instanceid=nil)
+          @Code = code
+          @Message = message
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @Code = params['Code']
+          @Message = params['Message']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
       # 字段排序
       class OrderDto < TencentCloud::Common::AbstractModel
         # @param Column: 字段
@@ -11271,6 +11298,77 @@ module TencentCloud
 
         def deserialize(params)
           @OrderIdList = params['OrderIdList']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SetRenewal请求参数结构体
+      class SetRenewalRequest < TencentCloud::Common::AbstractModel
+        # @param ProductCode: 产品编码。
+        # @type ProductCode: String
+        # @param RegionCode: 地域编码。
+        # @type RegionCode: String
+        # @param InstanceId: 实例ID，仅支持指定一个。
+        # @type InstanceId: String
+        # @param RenewFlag: 续费标识。枚举值如下：
+        # NOTIFY_AND_MANUAL_RENEW：手动续费
+        # NOTIFY_AND_AUTO_RENEW：自动续费
+        # DISABLE_NOTIFY_AND_MANUAL_RENEW：到期不续
+        # @type RenewFlag: String
+        # @param RenewPeriod: 自动续费周期长度，不填写时默认按产品侧设置的默认值
+        # 如果是月，支持：1-11
+        # 如果是年，支持：1-5
+        # 实际按产品侧支持的范围为主
+        # @type RenewPeriod: String
+        # @param RenewPeriodUnit: 自动续费周期单位，不填写时默认按产品侧设置的默认值
+        # y 年，m 月
+        # 实际按产品侧支持的范围为主
+        # @type RenewPeriodUnit: String
+
+        attr_accessor :ProductCode, :RegionCode, :InstanceId, :RenewFlag, :RenewPeriod, :RenewPeriodUnit
+
+        def initialize(productcode=nil, regioncode=nil, instanceid=nil, renewflag=nil, renewperiod=nil, renewperiodunit=nil)
+          @ProductCode = productcode
+          @RegionCode = regioncode
+          @InstanceId = instanceid
+          @RenewFlag = renewflag
+          @RenewPeriod = renewperiod
+          @RenewPeriodUnit = renewperiodunit
+        end
+
+        def deserialize(params)
+          @ProductCode = params['ProductCode']
+          @RegionCode = params['RegionCode']
+          @InstanceId = params['InstanceId']
+          @RenewFlag = params['RenewFlag']
+          @RenewPeriod = params['RenewPeriod']
+          @RenewPeriodUnit = params['RenewPeriodUnit']
+        end
+      end
+
+      # SetRenewal返回参数结构体
+      class SetRenewalResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceList: 操作失败时的实例列表。
+        # @type InstanceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceList, :RequestId
+
+        def initialize(instancelist=nil, requestid=nil)
+          @InstanceList = instancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceList'].nil?
+            @InstanceList = []
+            params['InstanceList'].each do |i|
+              operatersp_tmp = OperateRsp.new
+              operatersp_tmp.deserialize(i)
+              @InstanceList << operatersp_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

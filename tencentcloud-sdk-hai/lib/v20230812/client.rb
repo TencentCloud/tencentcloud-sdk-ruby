@@ -269,6 +269,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(InquirePriceUpdateServiceConfigs)用于更新服务配置询价
+
+        # @param request: Request instance for InquirePriceUpdateServiceConfigs.
+        # @type request: :class:`Tencentcloud::hai::V20230812::InquirePriceUpdateServiceConfigsRequest`
+        # @rtype: :class:`Tencentcloud::hai::V20230812::InquirePriceUpdateServiceConfigsResponse`
+        def InquirePriceUpdateServiceConfigs(request)
+          body = send_request('InquirePriceUpdateServiceConfigs', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InquirePriceUpdateServiceConfigsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口 (ResetInstancesPassword) 用于重置实例的用户密码。
 
         # @param request: Request instance for ResetInstancesPassword.

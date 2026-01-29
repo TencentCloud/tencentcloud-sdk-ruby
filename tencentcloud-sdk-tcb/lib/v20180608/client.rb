@@ -269,6 +269,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(CreateTable)用于创建表，支持创建capped类型集合，暂时不支持分片表
+
+        # @param request: Request instance for CreateTable.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateTableRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateTableResponse`
+        def CreateTable(request)
+          body = send_request('CreateTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建tcb用户
+
+        # @param request: Request instance for CreateUser.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateUserRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateUserResponse`
+        def CreateUser(request)
+          body = send_request('CreateUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除云项目
 
         # @param request: Request instance for DeleteCloudBaseProjectLatestVersion.
@@ -327,6 +375,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGatewayVersionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(DeleteTable)用于删除表，删除表后表中数据将会被删除且无法恢复，请谨慎操作
+
+        # @param request: Request instance for DeleteTable.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteTableRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteTableResponse`
+        def DeleteTable(request)
+          body = send_request('DeleteTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除tcb用户
+
+        # @param request: Request instance for DeleteUsers.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteUsersRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteUsersResponse`
+        def DeleteUsers(request)
+          body = send_request('DeleteUsers', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteUsersResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1161,6 +1257,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询表的相关信息，包括索引等信息
+
+        # @param request: Request instance for DescribeTable.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeTableRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeTableResponse`
+        def DescribeTable(request)
+          body = send_request('DescribeTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTableResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(ListTables)用于查询所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等
+
+        # @param request: Request instance for DescribeTables.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeTablesRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeTablesResponse`
+        def DescribeTables(request)
+          body = send_request('DescribeTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用户活动信息
 
         # @param request: Request instance for DescribeUserActivityInfo.
@@ -1171,6 +1315,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserActivityInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询tcb用户列表
+
+        # @param request: Request instance for DescribeUserList.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeUserListRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeUserListResponse`
+        def DescribeUserList(request)
+          body = send_request('DescribeUserList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1377,6 +1545,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口(ListTables)用于查询所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等
+
+        # @param request: Request instance for ListTables.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ListTablesRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ListTablesResponse`
+        def ListTables(request)
+          body = send_request('ListTables', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 修改容器内的版本流量配置
 
         # @param request: Request instance for ModifyCloudBaseRunServerFlowConf.
@@ -1521,6 +1713,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改tcb用户
+
+        # @param request: Request instance for ModifyUser.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyUserRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyUserResponse`
+        def ModifyUser(request)
+          body = send_request('ModifyUser', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 针对已隔离的免费环境，可以通过本接口将其恢复访问。
 
         # @param request: Request instance for ReinstateEnv.
@@ -1603,6 +1819,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnfreezeCloudBaseRunServersResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口(UpdateTable)用于修改表信息，当前可以支持创建和删除索引
+
+        # @param request: Request instance for UpdateTable.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::UpdateTableRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::UpdateTableResponse`
+        def UpdateTable(request)
+          body = send_request('UpdateTable', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateTableResponse.new
             model.deserialize(response['Response'])
             model
           else

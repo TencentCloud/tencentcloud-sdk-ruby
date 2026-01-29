@@ -1676,6 +1676,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（CreateLMInformationExtractionTaskFieldFeedback）用于创建合同智能提取任务字段结果的反馈。
+
+        # @param request: Request instance for CreateLMInformationExtractionTaskFieldFeedback.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateLMInformationExtractionTaskFieldFeedbackRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateLMInformationExtractionTaskFieldFeedbackResponse`
+        def CreateLMInformationExtractionTaskFieldFeedback(request)
+          body = send_request('CreateLMInformationExtractionTaskFieldFeedback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLMInformationExtractionTaskFieldFeedbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于获取创建法人章的二维码，需要通过微信扫描。扫描后将跳转到腾讯电子签署，进入到创建法人章的流程。
 
         # **注意**
@@ -2168,6 +2192,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateReleaseFlowResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（CreateRiskIdentificationTaskFeedback）用于创建合同审查任务结果反馈。
+
+        # @param request: Request instance for CreateRiskIdentificationTaskFeedback.
+        # @type request: :class:`Tencentcloud::ess::V20201111::CreateRiskIdentificationTaskFeedbackRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::CreateRiskIdentificationTaskFeedbackResponse`
+        def CreateRiskIdentificationTaskFeedback(request)
+          body = send_request('CreateRiskIdentificationTaskFeedback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateRiskIdentificationTaskFeedbackResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3444,6 +3492,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 此接口（DescribeLMInformationExtractionTaskFieldFeedback）用于查询合同智能提取任务字段反馈信息。
+
+        # @param request: Request instance for DescribeLMInformationExtractionTaskFieldFeedback.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeLMInformationExtractionTaskFieldFeedbackRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeLMInformationExtractionTaskFieldFeedbackResponse`
+        def DescribeLMInformationExtractionTaskFieldFeedback(request)
+          body = send_request('DescribeLMInformationExtractionTaskFieldFeedback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLMInformationExtractionTaskFieldFeedbackResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询企业认证状态- 仅通过[CreateOrganizationAuthUrl](https://qian.tencent.com/developers/companyApis/organizations/CreateOrganizationAuthUrl) 和[CreateBatchOrganizationRegistrationTasks](https://qian.tencent.com/developers/companyApis/organizations/CreateBatchOrganizationRegistrationTasks)这两个接口进行引导认证的企业，调用方企业可以依据这个接口，查询认证状态。
 
         # @param request: Request instance for DescribeOrganizationAuthStatus.
@@ -3554,6 +3626,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribePersonCertificateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 此接口（DescribeRiskIdentificationTaskFeedback）用于查询合同审查任务结果反馈信息
+
+        # @param request: Request instance for DescribeRiskIdentificationTaskFeedback.
+        # @type request: :class:`Tencentcloud::ess::V20201111::DescribeRiskIdentificationTaskFeedbackRequest`
+        # @rtype: :class:`Tencentcloud::ess::V20201111::DescribeRiskIdentificationTaskFeedbackResponse`
+        def DescribeRiskIdentificationTaskFeedback(request)
+          body = send_request('DescribeRiskIdentificationTaskFeedback', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeRiskIdentificationTaskFeedbackResponse.new
             model.deserialize(response['Response'])
             model
           else

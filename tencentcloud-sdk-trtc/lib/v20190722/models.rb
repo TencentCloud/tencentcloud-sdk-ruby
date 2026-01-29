@@ -3273,7 +3273,7 @@ module TencentCloud
         # @type AudioEncode: :class:`Tencentcloud::Trtc.v20190722.models.AudioEncode`
         # @param SubscribeAudioList: 音频用户白名单，start时，为空或不填表示混所有主播音频，填具体值表示混指定主播音频；update时，不填表示不更新，为空表示更新为混所有主播音频，填具体值表示更新为混指定主播音频。
         # 使用黑白名单时，黑白名单必须同时填写。都不填写时表示不更新。同一个用户同时在黑白名单时，以黑名单为主。
-        # 注：如果是跨房pk时，跨房混流需要指定音频白名单，否则pk主播的的音频上行会被拉到两次，产生重音。
+        # 注：如果是跨房pk时，跨房混流需要指定音频白名单，否则pk主播的音频上行会被拉到两次，产生重音。
         # @type SubscribeAudioList: Array
         # @param UnSubscribeAudioList: 音频用户黑名单，为空或不填表示无黑名单，填具体值表示不混指定主播音频。update时，不填表示不更新，为空表示更新为清空黑名单，填具体值表示更新为不混指定主播音频。
         # 使用黑白名单时，黑白名单必须同时填写。都不填写时表示不更新。同一个用户同时在黑白名单时，以黑名单为主。
@@ -3435,7 +3435,7 @@ module TencentCloud
         # 白色：0xFFFFFF。
         # 灰色：0x999999。
         # @type BackGroundColor: String
-        # @param BackgroundImageUrl: 子画面的占位图片url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。支持png、jpg、jpeg、bmp、gif、webm格式。图片大小限制不超过5MB。
+        # @param BackgroundImageUrl: 子画面的占位图片url，填写该参数，当用户关闭摄像头或未进入TRTC房间时，会在布局位置填充为指定图片。若指定图片与布局位置尺寸比例不一致，则会对图片进行拉伸处理，优先级高于BackGroundColor。支持png、jpg、jpeg、bmp、gif、webm格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
         # 注：
         # 1，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，占位图片将不会生效。
         # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，占位图片将不会生效。
@@ -3444,9 +3444,9 @@ module TencentCloud
         # @type CustomCrop: :class:`Tencentcloud::Trtc.v20190722.models.McuCustomCrop`
         # @param BackgroundRenderMode: 子背景图在输出时的显示模式：0为裁剪，1为缩放并显示背景，2为缩放并显示黑底，3为变比例伸缩，4为自定义渲染。不填默认为3。
         # @type BackgroundRenderMode: Integer
-        # @param TransparentUrl: 子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片大小限制不超过5MB。
+        # @param TransparentUrl: 子画面的透明模版url，指向一张包含透明通道的模板图片。填写该参数，后台混流时会提取该模板图片的透明通道，将其缩放作为目标画面的透明通道，再和其他画面进行混合。您可以通过透明模版实现目标画面的半透明效果和任意形状裁剪（如圆角、星形、心形等）。 支持png格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
         # 注：
-        # 1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模版将不会生效。
+        # 1，模板图片宽高比应接近目标画面宽高比，以避免缩放适配目标画面时出现模板效果变形；2，透明模版只有RenderMode为0（裁剪）时才生效；3，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，透明模板将不会生效。
         # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，透明模版将不会生效。
         # @type TransparentUrl: String
         # @param BackgroundCustomRender: 子背景图的自定义渲染参数，当BackgroundRenderMode为4时必须配置。
@@ -3823,7 +3823,7 @@ module TencentCloud
         # 白色：0xFFFFFF。
         # 灰色：0x999999。
         # @type BackGroundColor: String
-        # @param BackgroundImageUrl: 整个画布的背景图片url，优先级高于BackGroundColor。支持png、jpg、jpeg格式。图片大小限制不超过5MB。
+        # @param BackgroundImageUrl: 整个画布的背景图片url，优先级高于BackGroundColor。支持png、jpg、jpeg格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
         # 注：
         # 1，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，背景图片将不会生效。
         # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，背景图片将不会生效。
@@ -3869,7 +3869,7 @@ module TencentCloud
 
       # 图片水印参数。
       class McuWaterMarkImage < TencentCloud::Common::AbstractModel
-        # @param WaterMarkUrl: 水印图片URL地址，支持png、jpg、jpeg格式。图片大小限制不超过5MB。
+        # @param WaterMarkUrl: 水印图片URL地址，支持png、jpg、jpeg格式。图片分辨率限制不超过2K，图片大小限制不超过5MB。
         # 注：
         # 1，您需要确保图片链接的可访问性，后台单次下载超时时间为10秒，最多重试3次，若最终图片下载失败，水印图片将不会生效。
         # 2，url可支持字符集：【'0-9','a-z','A-Z','-', '.', '_', '~', ':', '/', '?', '#', '[', ']','@', '!', '&', '(', ')', '*', '+', ',', '%', '=', ';', '|'】，您需要确保url字符在可支持字符集内，若存在可支持字符集外的字符，水印图片将不会生效。
@@ -3914,7 +3914,7 @@ module TencentCloud
       class McuWaterMarkParams < TencentCloud::Common::AbstractModel
         # @param WaterMarkType: 水印类型，0为图片（默认），1为文字。
         # @type WaterMarkType: Integer
-        # @param WaterMarkImage: 图片水印参数。WaterMarkType为0指定。
+        # @param WaterMarkImage: 图片水印参数。WaterMarkType为0指定。图片分辨率限制不超过2K，图片大小限制不超过5MB。
         # @type WaterMarkImage: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkImage`
         # @param WaterMarkText: 文字水印参数。WaterMarkType为1指定。
         # @type WaterMarkText: :class:`Tencentcloud::Trtc.v20190722.models.McuWaterMarkText`
@@ -5417,17 +5417,21 @@ module TencentCloud
         # @type SliceVideo: Integer
         # @param SubscribeStreamUserIds: 指定订阅流白名单或者黑名单。
         # @type SubscribeStreamUserIds: :class:`Tencentcloud::Trtc.v20190722.models.SubscribeStreamUserIds`
+        # @param SliceImageType: 知道图片格式类型：
+        # 0 png, 1 jpg默认0
+        # @type SliceImageType: Integer
         # @param SliceCallbackUrl: 已废弃，从控制台配置回调url
         # @type SliceCallbackUrl: String
 
-        attr_accessor :SliceType, :MaxIdleTime, :SliceAudio, :SliceVideo, :SubscribeStreamUserIds, :SliceCallbackUrl
+        attr_accessor :SliceType, :MaxIdleTime, :SliceAudio, :SliceVideo, :SubscribeStreamUserIds, :SliceImageType, :SliceCallbackUrl
 
-        def initialize(slicetype=nil, maxidletime=nil, sliceaudio=nil, slicevideo=nil, subscribestreamuserids=nil, slicecallbackurl=nil)
+        def initialize(slicetype=nil, maxidletime=nil, sliceaudio=nil, slicevideo=nil, subscribestreamuserids=nil, sliceimagetype=nil, slicecallbackurl=nil)
           @SliceType = slicetype
           @MaxIdleTime = maxidletime
           @SliceAudio = sliceaudio
           @SliceVideo = slicevideo
           @SubscribeStreamUserIds = subscribestreamuserids
+          @SliceImageType = sliceimagetype
           @SliceCallbackUrl = slicecallbackurl
         end
 
@@ -5440,6 +5444,7 @@ module TencentCloud
             @SubscribeStreamUserIds = SubscribeStreamUserIds.new
             @SubscribeStreamUserIds.deserialize(params['SubscribeStreamUserIds'])
           end
+          @SliceImageType = params['SliceImageType']
           @SliceCallbackUrl = params['SliceCallbackUrl']
         end
       end

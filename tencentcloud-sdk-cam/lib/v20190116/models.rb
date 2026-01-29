@@ -1173,10 +1173,12 @@ module TencentCloud
         # @type Scope: Array
         # @param Description: 描述信息。由用户自行定义。
         # @type Description: String
+        # @param AutoRotateKey: OIDC公钥自动轮转开关（默认为0代表关闭，1代表开启）如果不传的话会默认置0
+        # @type AutoRotateKey: Integer
 
-        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description
+        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description, :AutoRotateKey
 
-        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil, autorotatekey=nil)
           @IdentityUrl = identityurl
           @ClientId = clientid
           @AuthorizationEndpoint = authorizationendpoint
@@ -1186,6 +1188,7 @@ module TencentCloud
           @IdentityKey = identitykey
           @Scope = scope
           @Description = description
+          @AutoRotateKey = autorotatekey
         end
 
         def deserialize(params)
@@ -1198,6 +1201,7 @@ module TencentCloud
           @IdentityKey = params['IdentityKey']
           @Scope = params['Scope']
           @Description = params['Description']
+          @AutoRotateKey = params['AutoRotateKey']
         end
       end
 
@@ -2018,12 +2022,14 @@ module TencentCloud
         # @type MappingFiled: String
         # @param Description: 描述
         # @type Description: String
+        # @param AutoRotateKey: OIDC公钥自动轮转开关（默认为0代表关闭，1代表开启）
+        # @type AutoRotateKey: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :AuthorizationEndpoint, :Scope, :ResponseType, :ResponseMode, :MappingFiled, :Description, :RequestId
+        attr_accessor :ProviderType, :IdentityUrl, :IdentityKey, :ClientId, :Status, :AuthorizationEndpoint, :Scope, :ResponseType, :ResponseMode, :MappingFiled, :Description, :AutoRotateKey, :RequestId
 
-        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, authorizationendpoint=nil, scope=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, description=nil, requestid=nil)
+        def initialize(providertype=nil, identityurl=nil, identitykey=nil, clientid=nil, status=nil, authorizationendpoint=nil, scope=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, description=nil, autorotatekey=nil, requestid=nil)
           @ProviderType = providertype
           @IdentityUrl = identityurl
           @IdentityKey = identitykey
@@ -2035,6 +2041,7 @@ module TencentCloud
           @ResponseMode = responsemode
           @MappingFiled = mappingfiled
           @Description = description
+          @AutoRotateKey = autorotatekey
           @RequestId = requestid
         end
 
@@ -2050,6 +2057,7 @@ module TencentCloud
           @ResponseMode = params['ResponseMode']
           @MappingFiled = params['MappingFiled']
           @Description = params['Description']
+          @AutoRotateKey = params['AutoRotateKey']
           @RequestId = params['RequestId']
         end
       end
@@ -2268,8 +2276,8 @@ module TencentCloud
 
         attr_accessor :Policies, :Roles, :Idps, :User, :Group, :Member, :IdentityProviders, :RequestId
         extend Gem::Deprecate
-        deprecate :Idps, :none, 2025, 12
-        deprecate :Idps=, :none, 2025, 12
+        deprecate :Idps, :none, 2026, 1
+        deprecate :Idps=, :none, 2026, 1
 
         def initialize(policies=nil, roles=nil, idps=nil, user=nil, group=nil, member=nil, identityproviders=nil, requestid=nil)
           @Policies = policies
@@ -5381,10 +5389,12 @@ module TencentCloud
         # @type Scope: Array
         # @param Description: 描述，长度为1~255个英文或中文字符，默认值为空。
         # @type Description: String
+        # @param AutoRotateKey: OIDC公钥自动轮转开关（默认为0代表关闭，1代表开启）如果不传的话，会默认置0
+        # @type AutoRotateKey: Integer
 
-        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description
+        attr_accessor :IdentityUrl, :ClientId, :AuthorizationEndpoint, :ResponseType, :ResponseMode, :MappingFiled, :IdentityKey, :Scope, :Description, :AutoRotateKey
 
-        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil)
+        def initialize(identityurl=nil, clientid=nil, authorizationendpoint=nil, responsetype=nil, responsemode=nil, mappingfiled=nil, identitykey=nil, scope=nil, description=nil, autorotatekey=nil)
           @IdentityUrl = identityurl
           @ClientId = clientid
           @AuthorizationEndpoint = authorizationendpoint
@@ -5394,6 +5404,7 @@ module TencentCloud
           @IdentityKey = identitykey
           @Scope = scope
           @Description = description
+          @AutoRotateKey = autorotatekey
         end
 
         def deserialize(params)
@@ -5406,6 +5417,7 @@ module TencentCloud
           @IdentityKey = params['IdentityKey']
           @Scope = params['Scope']
           @Description = params['Description']
+          @AutoRotateKey = params['AutoRotateKey']
         end
       end
 

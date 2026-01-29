@@ -1272,6 +1272,8 @@ module TencentCloud
         # - 支持jpg，png，jpeg，webp，bmp，tiff 格式
         # - 单边分辨率不超过5000，不小于50，长宽限制1:4 ~ 4:1
         # @type Image: :class:`Tencentcloud::Vclm.v20240523.models.Image`
+        # @param VideoEditParam: 扩展字段。
+        # @type VideoEditParam: :class:`Tencentcloud::Vclm.v20240523.models.VideoEditParam`
         # @param LogoAdd: 为生成视频添加标识的开关，默认为1。传0 需前往  [控制台](https://console.cloud.tencent.com/vtc/setting)  申请开启显式标识自主完成后方可生效。
         # 1：添加标识；
         # 0：不添加标识；
@@ -1282,16 +1284,17 @@ module TencentCloud
         # 默认在生成视频的右下角添加“ AI 生成”或“视频由 AI 生成”字样，如需替换为其他的标识图片，需前往   [控制台](https://console.cloud.tencent.com/vtc/setting)  申请开启显式标识自主完成。
         # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
 
-        attr_accessor :VideoUrl, :Prompt, :Images, :Image, :LogoAdd, :LogoParam
+        attr_accessor :VideoUrl, :Prompt, :Images, :Image, :VideoEditParam, :LogoAdd, :LogoParam
         extend Gem::Deprecate
         deprecate :Image, :none, 2026, 1
         deprecate :Image=, :none, 2026, 1
 
-        def initialize(videourl=nil, prompt=nil, images=nil, image=nil, logoadd=nil, logoparam=nil)
+        def initialize(videourl=nil, prompt=nil, images=nil, image=nil, videoeditparam=nil, logoadd=nil, logoparam=nil)
           @VideoUrl = videourl
           @Prompt = prompt
           @Images = images
           @Image = image
+          @VideoEditParam = videoeditparam
           @LogoAdd = logoadd
           @LogoParam = logoparam
         end
@@ -1310,6 +1313,10 @@ module TencentCloud
           unless params['Image'].nil?
             @Image = Image.new
             @Image.deserialize(params['Image'])
+          end
+          unless params['VideoEditParam'].nil?
+            @VideoEditParam = VideoEditParam.new
+            @VideoEditParam.deserialize(params['VideoEditParam'])
           end
           @LogoAdd = params['LogoAdd']
           unless params['LogoParam'].nil?
@@ -1539,6 +1546,23 @@ module TencentCloud
         def deserialize(params)
           @JobId = params['JobId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 视频编辑参数
+      class VideoEditParam < TencentCloud::Common::AbstractModel
+        # @param Magic: 魔法词，针对特定场景生效。不同场景传不同的值。默认不传。
+        # - 换人场景：1
+        # @type Magic: String
+
+        attr_accessor :Magic
+
+        def initialize(magic=nil)
+          @Magic = magic
+        end
+
+        def deserialize(params)
+          @Magic = params['Magic']
         end
       end
 

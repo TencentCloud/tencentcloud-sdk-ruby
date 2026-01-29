@@ -2920,10 +2920,15 @@ module TencentCloud
         # @type SpecifiedSubBackupId: Integer
         # @param MasterZone: 新产生的克隆实例主库的可用区信息，默认同源实例 Zone 的值。
         # @type MasterZone: String
+        # @param Zone: 新产生的克隆实例主库的可用区信息，默认同源实例 Zone 的值。
+        # @type Zone: String
 
-        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone
+        attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone
+        extend Gem::Deprecate
+        deprecate :MasterZone, :none, 2026, 1
+        deprecate :MasterZone=, :none, 2026, 1
 
-        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil)
+        def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil)
           @InstanceId = instanceid
           @SpecifiedRollbackTime = specifiedrollbacktime
           @SpecifiedBackupId = specifiedbackupid
@@ -2951,6 +2956,7 @@ module TencentCloud
           @SrcRegion = srcregion
           @SpecifiedSubBackupId = specifiedsubbackupid
           @MasterZone = masterzone
+          @Zone = zone
         end
 
         def deserialize(params)
@@ -2991,6 +2997,7 @@ module TencentCloud
           @SrcRegion = params['SrcRegion']
           @SpecifiedSubBackupId = params['SpecifiedSubBackupId']
           @MasterZone = params['MasterZone']
+          @Zone = params['Zone']
         end
       end
 

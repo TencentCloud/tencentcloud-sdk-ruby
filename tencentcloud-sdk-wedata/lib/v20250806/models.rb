@@ -10365,7 +10365,7 @@ module TencentCloud
         # - Metalake，固定为default
         # - Catalog，取catalogName
         # - Schema，取catalogName.SchemaName
-        # - Table,，取catalogName.SchemaName.TableName
+        # - Table，取catalogName.SchemaName.TableName
         # @type Resource: :class:`Tencentcloud::Wedata.v20250806.models.PrivilegeResource`
         # @param Filters: 过滤条件(此参数还未支持)
         # @type Filters: Array

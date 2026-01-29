@@ -10285,7 +10285,7 @@ module TencentCloud
 
       # ModifyOrganizationAccountStatus请求参数结构体
       class ModifyOrganizationAccountStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Status: 修改集团账号状态，1 开启， 2关闭
+        # @param Status: 修改集团账号状态，1 开启， 0关闭
         # @type Status: Integer
         # @param MemberId: 集团账号的成员id
         # @type MemberId: Array

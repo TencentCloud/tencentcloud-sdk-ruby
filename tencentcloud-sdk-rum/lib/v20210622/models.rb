@@ -2167,6 +2167,58 @@ module TencentCloud
         end
       end
 
+      # DescribeDataReportCountV2请求参数结构体
+      class DescribeDataReportCountV2Request < TencentCloud::Common::AbstractModel
+        # @param StartTime: 开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间
+        # @type EndTime: Integer
+        # @param ID: 项目ID
+        # @type ID: Integer
+        # @param ReportType: 上报类型（custom，event，log，miniProgramData，performance，pv，speed，webvitals）
+        # @type ReportType: String
+        # @param InstanceID: 实例ID
+        # @type InstanceID: String
+
+        attr_accessor :StartTime, :EndTime, :ID, :ReportType, :InstanceID
+
+        def initialize(starttime=nil, endtime=nil, id=nil, reporttype=nil, instanceid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @ID = id
+          @ReportType = reporttype
+          @InstanceID = instanceid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ID = params['ID']
+          @ReportType = params['ReportType']
+          @InstanceID = params['InstanceID']
+        end
+      end
+
+      # DescribeDataReportCountV2返回参数结构体
+      class DescribeDataReportCountV2Response < TencentCloud::Common::AbstractModel
+        # @param Result: 返回值
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeData请求参数结构体
       class DescribeDataRequest < TencentCloud::Common::AbstractModel
         # @param Query: 查询字符串

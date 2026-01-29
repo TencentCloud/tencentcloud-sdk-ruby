@@ -11925,7 +11925,7 @@ module TencentCloud
         # @type Name: String
         # @param Type: 托管存储类型
         # @type Type: String
-        # @param SpaceUsedSize: 容量
+        # @param SpaceUsedSize: 存储用量
         # @type SpaceUsedSize: Float
         # @param CreateTimeStamp: 创建时候的时间戳
         # @type CreateTimeStamp: Integer
@@ -11937,10 +11937,12 @@ module TencentCloud
         # @type Description: String
         # @param Status: 托管桶状态，当前取值为：creating、bind、readOnly、isolate
         # @type Status: String
+        # @param TagList: 托管存储桶标签列表
+        # @type TagList: Array
 
-        attr_accessor :Name, :Type, :SpaceUsedSize, :CreateTimeStamp, :DefaultBucket, :ShortName, :Description, :Status
+        attr_accessor :Name, :Type, :SpaceUsedSize, :CreateTimeStamp, :DefaultBucket, :ShortName, :Description, :Status, :TagList
 
-        def initialize(name=nil, type=nil, spaceusedsize=nil, createtimestamp=nil, defaultbucket=nil, shortname=nil, description=nil, status=nil)
+        def initialize(name=nil, type=nil, spaceusedsize=nil, createtimestamp=nil, defaultbucket=nil, shortname=nil, description=nil, status=nil, taglist=nil)
           @Name = name
           @Type = type
           @SpaceUsedSize = spaceusedsize
@@ -11949,6 +11951,7 @@ module TencentCloud
           @ShortName = shortname
           @Description = description
           @Status = status
+          @TagList = taglist
         end
 
         def deserialize(params)
@@ -11960,6 +11963,14 @@ module TencentCloud
           @ShortName = params['ShortName']
           @Description = params['Description']
           @Status = params['Status']
+          unless params['TagList'].nil?
+            @TagList = []
+            params['TagList'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @TagList << taginfo_tmp
+            end
+          end
         end
       end
 
@@ -13557,10 +13568,12 @@ module TencentCloud
         # @type EngineGeneration: String
         # @param Model: 需要授权的Model名，填 * 代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。
         # @type Model: String
+        # @param IsAdminPolicy: 权限来源是否为管理员
+        # @type IsAdminPolicy: Boolean
 
-        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id, :EngineGeneration, :Model
+        attr_accessor :Database, :Catalog, :Table, :Operation, :PolicyType, :Function, :View, :Column, :DataEngine, :ReAuth, :Source, :Mode, :Operator, :CreateTime, :SourceId, :SourceName, :Id, :EngineGeneration, :Model, :IsAdminPolicy
 
-        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil, enginegeneration=nil, model=nil)
+        def initialize(database=nil, catalog=nil, table=nil, operation=nil, policytype=nil, function=nil, view=nil, column=nil, dataengine=nil, reauth=nil, source=nil, mode=nil, operator=nil, createtime=nil, sourceid=nil, sourcename=nil, id=nil, enginegeneration=nil, model=nil, isadminpolicy=nil)
           @Database = database
           @Catalog = catalog
           @Table = table
@@ -13580,6 +13593,7 @@ module TencentCloud
           @Id = id
           @EngineGeneration = enginegeneration
           @Model = model
+          @IsAdminPolicy = isadminpolicy
         end
 
         def deserialize(params)
@@ -13602,6 +13616,7 @@ module TencentCloud
           @Id = params['Id']
           @EngineGeneration = params['EngineGeneration']
           @Model = params['Model']
+          @IsAdminPolicy = params['IsAdminPolicy']
         end
       end
 
@@ -14443,16 +14458,19 @@ module TencentCloud
         # @param ChangeTable: SmartOptimizerChangeTablePolicy
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ChangeTable: :class:`Tencentcloud::Dlc.v20210125.models.SmartOptimizerChangeTablePolicy`
+        # @param TableExpiration: 表过期策略
+        # @type TableExpiration: :class:`Tencentcloud::Dlc.v20210125.models.TableExpirationPolicy`
 
-        attr_accessor :Inherit, :Resources, :Written, :Lifecycle, :Index, :ChangeTable
+        attr_accessor :Inherit, :Resources, :Written, :Lifecycle, :Index, :ChangeTable, :TableExpiration
 
-        def initialize(inherit=nil, resources=nil, written=nil, lifecycle=nil, index=nil, changetable=nil)
+        def initialize(inherit=nil, resources=nil, written=nil, lifecycle=nil, index=nil, changetable=nil, tableexpiration=nil)
           @Inherit = inherit
           @Resources = resources
           @Written = written
           @Lifecycle = lifecycle
           @Index = index
           @ChangeTable = changetable
+          @TableExpiration = tableexpiration
         end
 
         def deserialize(params)
@@ -14480,6 +14498,10 @@ module TencentCloud
           unless params['ChangeTable'].nil?
             @ChangeTable = SmartOptimizerChangeTablePolicy.new
             @ChangeTable.deserialize(params['ChangeTable'])
+          end
+          unless params['TableExpiration'].nil?
+            @TableExpiration = TableExpirationPolicy.new
+            @TableExpiration.deserialize(params['TableExpiration'])
           end
         end
       end
@@ -15694,6 +15716,26 @@ module TencentCloud
             @SmartPolicy.deserialize(params['SmartPolicy'])
           end
           @PrimaryKeys = params['PrimaryKeys']
+        end
+      end
+
+      # 表过期策略
+      class TableExpirationPolicy < TencentCloud::Common::AbstractModel
+        # @param Enabled: 是否启用策略
+        # @type Enabled: Boolean
+        # @param Expiration: 表过期时间，单位：天
+        # @type Expiration: Integer
+
+        attr_accessor :Enabled, :Expiration
+
+        def initialize(enabled=nil, expiration=nil)
+          @Enabled = enabled
+          @Expiration = expiration
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          @Expiration = params['Expiration']
         end
       end
 

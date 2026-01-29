@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取项目上报量
+
+        # @param request: Request instance for DescribeDataReportCountV2.
+        # @type request: :class:`Tencentcloud::rum::V20210622::DescribeDataReportCountV2Request`
+        # @rtype: :class:`Tencentcloud::rum::V20210622::DescribeDataReportCountV2Response`
+        def DescribeDataReportCountV2(request)
+          body = send_request('DescribeDataReportCountV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDataReportCountV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取DescribeDataSetUrlStatistics信息
 
         # @param request: Request instance for DescribeDataSetUrlStatistics.

@@ -5666,6 +5666,52 @@ module TencentCloud
         end
       end
 
+      # CreateLMInformationExtractionTaskFieldFeedback请求参数结构体
+      class CreateLMInformationExtractionTaskFieldFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同智能提取任务的员工信息。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param Id: 合同智能提取任务结果字段ID值。该参数通过调用接口[获取合同智能提取任务详情](https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/DescribeInformationExtractionTask)返回中的Results. ExtractionFieldResults.Id获取。
+        # @type Id: String
+        # @param Feedback: 合同智能提取任务反馈信息
+        # @type Feedback: :class:`Tencentcloud::Ess.v20201111.models.FeedbackInfo`
+
+        attr_accessor :Operator, :Id, :Feedback
+
+        def initialize(operator=nil, id=nil, feedback=nil)
+          @Operator = operator
+          @Id = id
+          @Feedback = feedback
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @Id = params['Id']
+          unless params['Feedback'].nil?
+            @Feedback = FeedbackInfo.new
+            @Feedback.deserialize(params['Feedback'])
+          end
+        end
+      end
+
+      # CreateLMInformationExtractionTaskFieldFeedback返回参数结构体
+      class CreateLMInformationExtractionTaskFieldFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateLegalSealQrCode请求参数结构体
       class CreateLegalSealQrCodeRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。
@@ -7326,6 +7372,61 @@ module TencentCloud
           @Type = params['Type']
           @Title = params['Title']
           @Description = params['Description']
+        end
+      end
+
+      # CreateRiskIdentificationTaskFeedback请求参数结构体
+      class CreateRiskIdentificationTaskFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同审查任务的员工信息。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param RiskId: 合同审查风险结果ID，取值如下：
+
+        # - 反馈风险项结果。该参数通过调用接口[获取合同审查任务详情](https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/DescribeContractReviewTask)获取（取Risks.RiskId值）。
+
+        # - 反馈通过项结果。该参数通过调用接口[获取合同审查任务详情](https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/DescribeContractReviewTask)获取（取ApprovedLists.RiskId值）
+        # @type RiskId: String
+        # @param FeedbackResult: 反馈结果
+
+        # - 1: 其他错误
+        # - 2: 审查错误
+        # - 3: 审查正确
+        # @type FeedbackResult: Integer
+        # @param Reason: 审查反馈原因
+        # @type Reason: String
+
+        attr_accessor :Operator, :RiskId, :FeedbackResult, :Reason
+
+        def initialize(operator=nil, riskid=nil, feedbackresult=nil, reason=nil)
+          @Operator = operator
+          @RiskId = riskid
+          @FeedbackResult = feedbackresult
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @RiskId = params['RiskId']
+          @FeedbackResult = params['FeedbackResult']
+          @Reason = params['Reason']
+        end
+      end
+
+      # CreateRiskIdentificationTaskFeedback返回参数结构体
+      class CreateRiskIdentificationTaskFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -10963,6 +11064,60 @@ module TencentCloud
         end
       end
 
+      # DescribeLMInformationExtractionTaskFieldFeedback请求参数结构体
+      class DescribeLMInformationExtractionTaskFieldFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同智能提取任务的员工信息。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同智能提取任务ID，该参数通过调用接口[批量创建合同智能提取任务](https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/CreateBatchInformationExtractionTask/)获取。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeLMInformationExtractionTaskFieldFeedback返回参数结构体
+      class DescribeLMInformationExtractionTaskFieldFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param SubTaskFeedbackList: 合同智能提取子任务反馈信息
+        # @type SubTaskFeedbackList: Array
+        # @param TaskId: 合同智能提取任务ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SubTaskFeedbackList, :TaskId, :RequestId
+
+        def initialize(subtaskfeedbacklist=nil, taskid=nil, requestid=nil)
+          @SubTaskFeedbackList = subtaskfeedbacklist
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['SubTaskFeedbackList'].nil?
+            @SubTaskFeedbackList = []
+            params['SubTaskFeedbackList'].each do |i|
+              subtaskfeedback_tmp = SubTaskFeedback.new
+              subtaskfeedback_tmp.deserialize(i)
+              @SubTaskFeedbackList << subtaskfeedback_tmp
+            end
+          end
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeOrganizationAuthStatus请求参数结构体
       class DescribeOrganizationAuthStatusRequest < TencentCloud::Common::AbstractModel
         # @param Operator: 执行本接口操作的员工信息。使用此接口时，必须填写userId。 支持填入集团子公司经办人 userId 代发合同。  注: `在调用此接口时，请确保指定的员工已获得所需的接口调用权限，并具备接口传入的相应资源的数据权限。`
@@ -11347,6 +11502,56 @@ module TencentCloud
 
         def deserialize(params)
           @Cert = params['Cert']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRiskIdentificationTaskFeedback请求参数结构体
+      class DescribeRiskIdentificationTaskFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param Operator: 执行合同审查任务的员工信息。
+        # @type Operator: :class:`Tencentcloud::Ess.v20201111.models.UserInfo`
+        # @param TaskId: 合同审查任务ID，该参数通过调用接口[批量创建合同智能提取任务](https://qian.tencent.com/developers/companyApis/%E5%90%88%E5%90%8C%E6%99%BA%E8%83%BD%E7%9B%B8%E5%85%B3%E6%8E%A5%E5%8F%A3/CreateBatchInformationExtractionTask)获取。
+        # @type TaskId: String
+
+        attr_accessor :Operator, :TaskId
+
+        def initialize(operator=nil, taskid=nil)
+          @Operator = operator
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          unless params['Operator'].nil?
+            @Operator = UserInfo.new
+            @Operator.deserialize(params['Operator'])
+          end
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeRiskIdentificationTaskFeedback返回参数结构体
+      class DescribeRiskIdentificationTaskFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param FeedbackList: 合同审查任务反馈信息列表
+        # @type FeedbackList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FeedbackList, :RequestId
+
+        def initialize(feedbacklist=nil, requestid=nil)
+          @FeedbackList = feedbacklist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['FeedbackList'].nil?
+            @FeedbackList = []
+            params['FeedbackList'].each do |i|
+              riskidentificationfeedbackinfo_tmp = RiskIdentificationFeedbackInfo.new
+              riskidentificationfeedbackinfo_tmp.deserialize(i)
+              @FeedbackList << riskidentificationfeedbackinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12379,6 +12584,79 @@ module TencentCloud
           @Reason = params['Reason']
           @UserId = params['UserId']
           @OpenId = params['OpenId']
+        end
+      end
+
+      # 信息提取结果字段反馈
+      class FeedbackInfo < TencentCloud::Common::AbstractModel
+        # @param Result: 合同信息提取结果反馈。
+        # `值如下`：
+        # - 0:  未反馈
+        # - 1: 信息提取正确
+        # - 2: 信息提取有错误
+        # @type Result: Integer
+        # @param Reason: 信息提取错误原因，当Result为2时需要填写此信息
+        # @type Reason: :class:`Tencentcloud::Ess.v20201111.models.FeedbackInfoReason`
+
+        attr_accessor :Result, :Reason
+
+        def initialize(result=nil, reason=nil)
+          @Result = result
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          unless params['Reason'].nil?
+            @Reason = FeedbackInfoReason.new
+            @Reason.deserialize(params['Reason'])
+          end
+        end
+      end
+
+      # 信息提取结果字段反馈错误原因
+      class FeedbackInfoReason < TencentCloud::Common::AbstractModel
+        # @param ReasonType: 反馈信息提取错误原因。
+        # `值如下`：
+        # - 1: 提取错误(提取不精准、提取为空等)
+        # - 2: 其他错误
+        # @type ReasonType: Integer
+        # @param ReasonContent: 反馈提取错误详细错误原因，不能超过500个字符
+        # @type ReasonContent: String
+
+        attr_accessor :ReasonType, :ReasonContent
+
+        def initialize(reasontype=nil, reasoncontent=nil)
+          @ReasonType = reasontype
+          @ReasonContent = reasoncontent
+        end
+
+        def deserialize(params)
+          @ReasonType = params['ReasonType']
+          @ReasonContent = params['ReasonContent']
+        end
+      end
+
+      # 信息提取任务反馈信息列表
+      class FeedbackList < TencentCloud::Common::AbstractModel
+        # @param Id: 信息提取结果字段ID
+        # @type Id: String
+        # @param Info: 反馈信息
+        # @type Info: :class:`Tencentcloud::Ess.v20201111.models.FeedbackInfo`
+
+        attr_accessor :Id, :Info
+
+        def initialize(id=nil, info=nil)
+          @Id = id
+          @Info = info
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Info'].nil?
+            @Info = FeedbackInfo.new
+            @Info.deserialize(params['Info'])
+          end
         end
       end
 
@@ -16684,6 +16962,34 @@ module TencentCloud
         end
       end
 
+      # 合同审查反馈信息
+      class RiskIdentificationFeedbackInfo < TencentCloud::Common::AbstractModel
+        # @param RiskId: 审查结果ID
+        # @type RiskId: String
+        # @param FeedbackResult: 反馈结果
+
+        # - 1: 其他错误
+        # - 2: 审查错误
+        # - 3: 审查正确
+        # @type FeedbackResult: Integer
+        # @param Reason: 反馈原因
+        # @type Reason: String
+
+        attr_accessor :RiskId, :FeedbackResult, :Reason
+
+        def initialize(riskid=nil, feedbackresult=nil, reason=nil)
+          @RiskId = riskid
+          @FeedbackResult = feedbackresult
+          @Reason = reason
+        end
+
+        def deserialize(params)
+          @RiskId = params['RiskId']
+          @FeedbackResult = params['FeedbackResult']
+          @Reason = params['Reason']
+        end
+      end
+
       # 用于定义合同风险识别角色信息。
       class RiskIdentificationRoleInfo < TencentCloud::Common::AbstractModel
         # @param Name: 风险识别角色的名称。用于唯一标识和区分不同的风险识别角色。
@@ -17118,6 +17424,33 @@ module TencentCloud
         def deserialize(params)
           @Used = params['Used']
           @QuotaType = params['QuotaType']
+        end
+      end
+
+      # 信息提取子任务反馈信息
+      class SubTaskFeedback < TencentCloud::Common::AbstractModel
+        # @param SubTaskId: 信息提取子任务ID
+        # @type SubTaskId: String
+        # @param FeedbackList: 提取结果反馈信息
+        # @type FeedbackList: Array
+
+        attr_accessor :SubTaskId, :FeedbackList
+
+        def initialize(subtaskid=nil, feedbacklist=nil)
+          @SubTaskId = subtaskid
+          @FeedbackList = feedbacklist
+        end
+
+        def deserialize(params)
+          @SubTaskId = params['SubTaskId']
+          unless params['FeedbackList'].nil?
+            @FeedbackList = []
+            params['FeedbackList'].each do |i|
+              feedbacklist_tmp = FeedbackList.new
+              feedbacklist_tmp.deserialize(i)
+              @FeedbackList << feedbacklist_tmp
+            end
+          end
         end
       end
 

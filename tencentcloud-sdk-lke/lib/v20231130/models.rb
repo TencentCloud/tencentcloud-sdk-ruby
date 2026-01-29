@@ -10126,13 +10126,13 @@ module TencentCloud
 
       # ModifyDocAttrRange请求参数结构体
       class ModifyDocAttrRangeRequest < TencentCloud::Common::AbstractModel
-        # @param BotBizId: 应用ID
+        # @param BotBizId: 应用ID，获取方法参看[如何获取   BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)
         # @type BotBizId: String
         # @param DocBizIds: 文档ID
         # @type DocBizIds: Array
         # @param AttrRange: 属性标签适用范围 1：全部，2：按条件
         # @type AttrRange: Integer
-        # @param AttrLabels: 属性标签引用
+        # @param AttrLabels: 属性标签引用，LabelBizIds可通过 DescribeAttributeLabel 接口获取
         # @type AttrLabels: Array
 
         attr_accessor :BotBizId, :DocBizIds, :AttrRange, :AttrLabels

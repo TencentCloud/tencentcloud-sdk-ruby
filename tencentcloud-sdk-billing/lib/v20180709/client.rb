@@ -1646,6 +1646,33 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 注意事项：
+        # 1、本接口支持对包年包月实例设置自动续费模式及周期
+        # 2、可通过实例查询接口获取到产品编码、地域编码
+        # 3、子用户使用该接口时，应具备QcloudFinanceRenewManageFullAccess权限策略。
+
+        # @param request: Request instance for SetRenewal.
+        # @type request: :class:`Tencentcloud::billing::V20180709::SetRenewalRequest`
+        # @rtype: :class:`Tencentcloud::billing::V20180709::SetRenewalResponse`
+        def SetRenewal(request)
+          body = send_request('SetRenewal', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetRenewalResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

@@ -639,6 +639,40 @@ module TencentCloud
         end
       end
 
+      # InquirePriceUpdateServiceConfigs请求参数结构体
+      class InquirePriceUpdateServiceConfigsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # InquirePriceUpdateServiceConfigs返回参数结构体
+      class InquirePriceUpdateServiceConfigsResponse < TencentCloud::Common::AbstractModel
+        # @param Price: 发货参数对应的价格组合。
+        # @type Price: :class:`Tencentcloud::Hai.v20230812.models.ServicePriceDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Price, :RequestId
+
+        def initialize(price=nil, requestid=nil)
+          @Price = price
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Price'].nil?
+            @Price = ServicePriceDetail.new
+            @Price.deserialize(params['Price'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 实例信息
       class Instance < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例id
@@ -1212,6 +1246,25 @@ module TencentCloud
         def deserialize(params)
           @SceneId = params['SceneId']
           @SceneName = params['SceneName']
+        end
+      end
+
+      # 推理集群费用数据结构体
+      class ServicePriceDetail < TencentCloud::Common::AbstractModel
+        # @param ServicePrice: 推理集群价格信息
+        # @type ServicePrice: :class:`Tencentcloud::Hai.v20230812.models.ItemPrice`
+
+        attr_accessor :ServicePrice
+
+        def initialize(serviceprice=nil)
+          @ServicePrice = serviceprice
+        end
+
+        def deserialize(params)
+          unless params['ServicePrice'].nil?
+            @ServicePrice = ItemPrice.new
+            @ServicePrice.deserialize(params['ServicePrice'])
+          end
         end
       end
 
