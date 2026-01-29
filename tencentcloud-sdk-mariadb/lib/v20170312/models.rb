@@ -685,16 +685,16 @@ module TencentCloud
 
         attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2025, 12
-        deprecate :Zone=, :none, 2025, 12
-        deprecate :Pid, :none, 2025, 12
-        deprecate :Pid=, :none, 2025, 12
-        deprecate :Machine, :none, 2025, 12
-        deprecate :Machine=, :none, 2025, 12
-        deprecate :Manual, :none, 2025, 12
-        deprecate :Manual=, :none, 2025, 12
-        deprecate :DeviceNo, :none, 2025, 12
-        deprecate :DeviceNo=, :none, 2025, 12
+        deprecate :Zone, :none, 2026, 1
+        deprecate :Zone=, :none, 2026, 1
+        deprecate :Pid, :none, 2026, 1
+        deprecate :Pid=, :none, 2026, 1
+        deprecate :Machine, :none, 2026, 1
+        deprecate :Machine=, :none, 2026, 1
+        deprecate :Manual, :none, 2026, 1
+        deprecate :Manual=, :none, 2026, 1
+        deprecate :DeviceNo, :none, 2026, 1
+        deprecate :DeviceNo=, :none, 2026, 1
 
         def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum
@@ -1044,111 +1044,111 @@ module TencentCloud
 
       # 描述云数据库实例的详细信息。
       class DBInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，唯一标识一个 TDSQL 实例
+        # @param InstanceId: <p>实例 ID，唯一标识一个 TDSQL 实例</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称，用户可修改
+        # @param InstanceName: <p>实例名称，用户可修改</p>
         # @type InstanceName: String
-        # @param AppId: 实例所属应用 ID
+        # @param AppId: <p>实例所属应用 ID</p>
         # @type AppId: Integer
-        # @param ProjectId: 实例所属项目 ID
+        # @param ProjectId: <p>实例所属项目 ID</p>
         # @type ProjectId: Integer
-        # @param Region: 实例所在地域名称，如 ap-shanghai
+        # @param Region: <p>实例所在地域名称，如 ap-shanghai</p>
         # @type Region: String
-        # @param Zone: 实例所在可用区名称，如 ap-shanghai-1
+        # @param Zone: <p>实例所在可用区名称，如 ap-shanghai-2</p>
         # @type Zone: String
-        # @param VpcId: 私有网络 ID，基础网络时为 0
+        # @param VpcId: <p>私有网络 ID，基础网络时为 0</p>
         # @type VpcId: Integer
-        # @param SubnetId: 子网 ID，基础网络时为 0
+        # @param SubnetId: <p>子网 ID，基础网络时为 0</p>
         # @type SubnetId: Integer
-        # @param Status: 实例状态：0 创建中，1 流程处理中， 2 运行中，3 实例未初始化，-1 实例已隔离，4 实例初始化中，5 实例删除中，6 实例重启中，7 数据迁移中
+        # @param Status: <p>实例状态：0 创建中，1 流程处理中， 2 运行中，3 实例未初始化，-1 实例已隔离，4 实例初始化中，5 实例删除中，6 实例重启中，7 数据迁移中</p>
         # @type Status: Integer
-        # @param Vip: 内网 IP 地址
+        # @param Vip: <p>内网 IP 地址</p>
         # @type Vip: String
-        # @param Vport: 内网端口
+        # @param Vport: <p>内网端口</p>
         # @type Vport: Integer
-        # @param WanDomain: 外网访问的域名，公网可解析
+        # @param WanDomain: <p>外网访问的域名，公网可解析</p>
         # @type WanDomain: String
-        # @param WanVip: 外网 IP 地址，公网可访问
+        # @param WanVip: <p>外网 IP 地址，公网可访问</p>
         # @type WanVip: String
-        # @param WanPort: 外网端口
+        # @param WanPort: <p>外网端口</p>
         # @type WanPort: Integer
-        # @param CreateTime: 实例创建时间，格式为 2006-01-02 15:04:05
+        # @param CreateTime: <p>实例创建时间，格式为 2006-01-02 15:04:05</p>
         # @type CreateTime: String
-        # @param UpdateTime: 实例最后更新时间，格式为 2006-01-02 15:04:05
+        # @param UpdateTime: <p>实例最后更新时间，格式为 2006-01-02 15:04:05</p>
         # @type UpdateTime: String
-        # @param AutoRenewFlag: 自动续费标志：0 否，1 是
+        # @param AutoRenewFlag: <p>自动续费标志：0 否，1 是</p>
         # @type AutoRenewFlag: Integer
-        # @param PeriodEndTime: 实例到期时间，格式为 2006-01-02 15:04:05
+        # @param PeriodEndTime: <p>实例到期时间，格式为 2006-01-02 15:04:05</p>
         # @type PeriodEndTime: String
-        # @param Uin: 实例所属账号
+        # @param Uin: <p>实例所属账号</p>
         # @type Uin: String
-        # @param TdsqlVersion: TDSQL 版本信息
+        # @param TdsqlVersion: <p>TDSQL 版本信息</p>
         # @type TdsqlVersion: String
-        # @param Memory: 实例内存大小，单位 GB
+        # @param Memory: <p>实例内存大小，单位 GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例存储大小，单位 GB
+        # @param Storage: <p>实例存储大小，单位 GB</p>
         # @type Storage: Integer
-        # @param UniqueVpcId: 字符串型的私有网络ID
+        # @param UniqueVpcId: <p>字符串型的私有网络ID</p>
         # @type UniqueVpcId: String
-        # @param UniqueSubnetId: 字符串型的私有网络子网ID
+        # @param UniqueSubnetId: <p>字符串型的私有网络子网ID</p>
         # @type UniqueSubnetId: String
-        # @param OriginSerialId: 原始实例ID（过时字段，请勿依赖该值）
+        # @param OriginSerialId: <p>原始实例ID（过时字段，请勿依赖该值）</p>
         # @type OriginSerialId: String
-        # @param NodeCount: 节点数，2为一主一从，3为一主二从
+        # @param NodeCount: <p>节点数，2为一主一从，3为一主二从</p>
         # @type NodeCount: Integer
-        # @param IsTmp: 是否临时实例，0为否，非0为是
+        # @param IsTmp: <p>是否临时实例，0为否，非0为是</p>
         # @type IsTmp: Integer
-        # @param ExclusterId: 独享集群ID，为空表示为普通实例
+        # @param ExclusterId: <p>独享集群ID，为空表示为普通实例</p>
         # @type ExclusterId: String
-        # @param Id: 数字实例ID（过时字段，请勿依赖该值）
+        # @param Id: <p>数字实例ID（过时字段，请勿依赖该值）</p>
         # @type Id: Integer
-        # @param Pid: 产品类型 ID
+        # @param Pid: <p>产品类型 ID</p>
         # @type Pid: Integer
-        # @param Qps: 最大 Qps 值
+        # @param Qps: <p>最大 Qps 值</p>
         # @type Qps: Integer
-        # @param Paymode: 付费模式
+        # @param Paymode: <p>付费模式</p>
         # @type Paymode: String
-        # @param Locker: 实例处于异步任务时的异步任务流程ID
+        # @param Locker: <p>实例处于异步任务时的异步任务流程ID</p>
         # @type Locker: Integer
-        # @param StatusDesc: 实例目前运行状态描述
+        # @param StatusDesc: <p>实例目前运行状态描述</p>
         # @type StatusDesc: String
-        # @param WanStatus: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中
+        # @param WanStatus: <p>外网状态，0-未开通；1-已开通；2-关闭；3-开通中</p>
         # @type WanStatus: Integer
-        # @param IsAuditSupported: 该实例是否支持审计。1-支持；0-不支持
+        # @param IsAuditSupported: <p>该实例是否支持审计。1-支持；0-不支持</p>
         # @type IsAuditSupported: Integer
-        # @param Machine: 机器型号
+        # @param Machine: <p>机器型号</p>
         # @type Machine: String
-        # @param IsEncryptSupported: 是否支持数据加密。1-支持；0-不支持
+        # @param IsEncryptSupported: <p>是否支持数据加密。1-支持；0-不支持</p>
         # @type IsEncryptSupported: Integer
-        # @param Cpu: 实例CPU核数
+        # @param Cpu: <p>实例CPU核数</p>
         # @type Cpu: Integer
-        # @param Ipv6Flag: 实例IPv6标志
+        # @param Ipv6Flag: <p>实例IPv6标志</p>
         # @type Ipv6Flag: Integer
-        # @param Vipv6: 内网IPv6
+        # @param Vipv6: <p>内网IPv6</p>
         # @type Vipv6: String
-        # @param WanVipv6: 外网IPv6
+        # @param WanVipv6: <p>外网IPv6</p>
         # @type WanVipv6: String
-        # @param WanPortIpv6: 外网IPv6端口
+        # @param WanPortIpv6: <p>外网IPv6端口</p>
         # @type WanPortIpv6: Integer
-        # @param WanStatusIpv6: 外网IPv6状态
+        # @param WanStatusIpv6: <p>外网IPv6状态</p>
         # @type WanStatusIpv6: Integer
-        # @param DbEngine: 数据库引擎
+        # @param DbEngine: <p>数据库引擎</p>
         # @type DbEngine: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
+        # @param DcnFlag: <p>DCN标志，0-无，1-主实例，2-灾备实例</p>
         # @type DcnFlag: Integer
-        # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
+        # @param DcnStatus: <p>DCN状态，0-无，1-创建中，2-同步中，3-已断开</p>
         # @type DcnStatus: Integer
-        # @param DcnDstNum: DCN灾备实例数
+        # @param DcnDstNum: <p>DCN灾备实例数</p>
         # @type DcnDstNum: Integer
-        # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
+        # @param InstanceType: <p>1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）</p>
         # @type InstanceType: Integer
-        # @param ResourceTags: 实例标签信息
+        # @param ResourceTags: <p>实例标签信息</p>
         # @type ResourceTags: Array
-        # @param DbVersionId: 数据库版本
+        # @param DbVersionId: <p>数据库版本</p>
         # @type DbVersionId: String
-        # @param ProtectedProperty: 实例删除保护标签，1: 已开启删除保护，0: 未开启删除保护
+        # @param ProtectedProperty: <p>实例删除保护标签，1: 已开启删除保护，0: 未开启删除保护</p>
         # @type ProtectedProperty: Integer
 
         attr_accessor :InstanceId, :InstanceName, :AppId, :ProjectId, :Region, :Zone, :VpcId, :SubnetId, :Status, :Vip, :Vport, :WanDomain, :WanVip, :WanPort, :CreateTime, :UpdateTime, :AutoRenewFlag, :PeriodEndTime, :Uin, :TdsqlVersion, :Memory, :Storage, :UniqueVpcId, :UniqueSubnetId, :OriginSerialId, :NodeCount, :IsTmp, :ExclusterId, :Id, :Pid, :Qps, :Paymode, :Locker, :StatusDesc, :WanStatus, :IsAuditSupported, :Machine, :IsEncryptSupported, :Cpu, :Ipv6Flag, :Vipv6, :WanVipv6, :WanPortIpv6, :WanStatusIpv6, :DbEngine, :DbVersion, :DcnFlag, :DcnStatus, :DcnDstNum, :InstanceType, :ResourceTags, :DbVersionId, :ProtectedProperty
@@ -2056,7 +2056,7 @@ module TencentCloud
 
       # DescribeDBInstanceDetail请求参数结构体
       class DescribeDBInstanceDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id形如：tdsql-ow728lmc。
+        # @param InstanceId: <p>实例Id形如：tdsql-ow728lmc。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -2072,133 +2072,133 @@ module TencentCloud
 
       # DescribeDBInstanceDetail返回参数结构体
       class DescribeDBInstanceDetailResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param Status: 实例状态
+        # @param Status: <p>实例状态</p>
         # @type Status: Integer
-        # @param StatusDesc: 实例目前运行状态描述
+        # @param StatusDesc: <p>实例目前运行状态描述</p>
         # @type StatusDesc: String
-        # @param Vip: 内网 IP 地址
+        # @param Vip: <p>内网 IP 地址</p>
         # @type Vip: String
-        # @param Vport: 内网端口
+        # @param Vport: <p>内网端口</p>
         # @type Vport: Integer
-        # @param IsTmp: 是否临时实例，0为否，非0为是
+        # @param IsTmp: <p>是否临时实例，0为否，非0为是</p>
         # @type IsTmp: Integer
-        # @param NodeCount: 节点数，2为一主一从，3为一主二从
+        # @param NodeCount: <p>节点数，2为一主一从，3为一主二从</p>
         # @type NodeCount: Integer
-        # @param Region: 实例所在地域名称，如 ap-shanghai
+        # @param Region: <p>实例所在地域名称，如 ap-shanghai</p>
         # @type Region: String
-        # @param Zone: 实例所在可用区名称，如 ap-shanghai-1
+        # @param Zone: <p>实例所在可用区名称，如 ap-shanghai-2</p>
         # @type Zone: String
-        # @param VpcId: 字符串型的私有网络Id
+        # @param VpcId: <p>字符串型的私有网络Id</p>
         # @type VpcId: String
-        # @param SubnetId: 字符串型的私有网络子网Id
+        # @param SubnetId: <p>字符串型的私有网络子网Id</p>
         # @type SubnetId: String
-        # @param WanStatus: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中
+        # @param WanStatus: <p>外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中</p>
         # @type WanStatus: Integer
-        # @param WanDomain: 外网访问的域名，公网可解析
+        # @param WanDomain: <p>外网访问的域名，公网可解析</p>
         # @type WanDomain: String
-        # @param WanVip: 外网 IP 地址，公网可访问
+        # @param WanVip: <p>外网 IP 地址，公网可访问</p>
         # @type WanVip: String
-        # @param WanPort: 外网端口
+        # @param WanPort: <p>外网端口</p>
         # @type WanPort: Integer
-        # @param ProjectId: 实例所属项目 Id
+        # @param ProjectId: <p>实例所属项目 Id</p>
         # @type ProjectId: Integer
-        # @param TdsqlVersion: TDSQL 版本信息
+        # @param TdsqlVersion: <p>TDSQL 版本信息</p>
         # @type TdsqlVersion: String
-        # @param Memory: 实例内存大小，单位 GB
+        # @param Memory: <p>实例内存大小，单位 GB</p>
         # @type Memory: Integer
-        # @param Storage: 实例存储大小，单位 GB
+        # @param Storage: <p>实例存储大小，单位 GB</p>
         # @type Storage: Integer
-        # @param MasterZone: 主可用区，如 ap-shanghai-1
+        # @param MasterZone: <p>主可用区，如 ap-shanghai-2</p>
         # @type MasterZone: String
-        # @param SlaveZones: 从可用区列表，如 [ap-shanghai-2]
+        # @param SlaveZones: <p>从可用区列表，如 [ap-shanghai-2]</p>
         # @type SlaveZones: Array
-        # @param AutoRenewFlag: 自动续费标志：0 否，1 是
+        # @param AutoRenewFlag: <p>自动续费标志：0 否，1 是</p>
         # @type AutoRenewFlag: Integer
-        # @param ExclusterId: 独享集群Id，普通实例为空
+        # @param ExclusterId: <p>独享集群Id，普通实例为空</p>
         # @type ExclusterId: String
-        # @param PayMode: 付费模式：prepaid 表示预付费
+        # @param PayMode: <p>付费模式：prepaid 表示预付费</p>
         # @type PayMode: String
-        # @param CreateTime: 实例创建时间，格式为 2006-01-02 15:04:05
+        # @param CreateTime: <p>实例创建时间，格式为 2006-01-02 15:04:05</p>
         # @type CreateTime: String
-        # @param IsAuditSupported: 实例是否支持审计
+        # @param IsAuditSupported: <p>实例是否支持审计</p>
         # @type IsAuditSupported: Boolean
-        # @param PeriodEndTime: 实例到期时间，格式为 2006-01-02 15:04:05
+        # @param PeriodEndTime: <p>实例到期时间，格式为 2006-01-02 15:04:05</p>
         # @type PeriodEndTime: String
-        # @param Machine: 机型信息
+        # @param Machine: <p>机型信息</p>
         # @type Machine: String
-        # @param StorageUsage: 存储空间使用率
+        # @param StorageUsage: <p>存储空间使用率</p>
         # @type StorageUsage: String
-        # @param LogStorage: 日志存储空间大小，单位 GB
+        # @param LogStorage: <p>日志存储空间大小，单位 GB</p>
         # @type LogStorage: Integer
-        # @param IsEncryptSupported: 是否支持数据加密。1-支持；0-不支持
+        # @param IsEncryptSupported: <p>是否支持数据加密。1-支持；0-不支持</p>
         # @type IsEncryptSupported: Integer
-        # @param Vip6: 内网IPv6
+        # @param Vip6: <p>内网IPv6</p>
         # @type Vip6: String
-        # @param Cpu: 实例Cpu核数
+        # @param Cpu: <p>实例Cpu核数</p>
         # @type Cpu: Integer
-        # @param Pid: 产品类型ID
+        # @param Pid: <p>产品类型ID</p>
         # @type Pid: Integer
-        # @param Qps: 最大QPS
+        # @param Qps: <p>最大QPS</p>
         # @type Qps: Integer
-        # @param Ipv6Flag: 是否支持IPv6
+        # @param Ipv6Flag: <p>是否支持IPv6</p>
         # @type Ipv6Flag: Integer
-        # @param WanVipv6: 外网IPv6地址，公网可访问
+        # @param WanVipv6: <p>外网IPv6地址，公网可访问</p>
         # @type WanVipv6: String
-        # @param WanStatusIpv6: 外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中
+        # @param WanStatusIpv6: <p>外网状态，0-未开通；1-已开通；2-关闭；3-开通中；4-关闭中</p>
         # @type WanStatusIpv6: Integer
-        # @param WanPortIpv6: 外网IPv6端口
+        # @param WanPortIpv6: <p>外网IPv6端口</p>
         # @type WanPortIpv6: Integer
-        # @param DbEngine: 数据库引擎
+        # @param DbEngine: <p>数据库引擎</p>
         # @type DbEngine: String
-        # @param DbVersion: 数据库版本
+        # @param DbVersion: <p>数据库版本</p>
         # @type DbVersion: String
-        # @param ResourceTags: 标签信息
+        # @param ResourceTags: <p>标签信息</p>
         # @type ResourceTags: Array
-        # @param DcnFlag: DCN标志，0-无，1-主实例，2-灾备实例
+        # @param DcnFlag: <p>DCN标志，0-无，1-主实例，2-灾备实例</p>
         # @type DcnFlag: Integer
-        # @param DcnStatus: DCN状态，0-无，1-创建中，2-同步中，3-已断开
+        # @param DcnStatus: <p>DCN状态，0-无，1-创建中，2-同步中，3-已断开</p>
         # @type DcnStatus: Integer
-        # @param DcnDstNum: DCN灾备实例数
+        # @param DcnDstNum: <p>DCN灾备实例数</p>
         # @type DcnDstNum: Integer
-        # @param InstanceType: 1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）
+        # @param InstanceType: <p>1： 主实例（独享型）, 2: 主实例, 3： 灾备实例, 4： 灾备实例（独享型）</p>
         # @type InstanceType: Integer
-        # @param NodesInfo: 实例的各个DB节点信息
+        # @param NodesInfo: <p>实例的各个DB节点信息</p>
         # @type NodesInfo: Array
-        # @param IsMaxUserConnectionsSupported: 实例是否支持设置用户连接数限制，内核为10.1暂不支持。
+        # @param IsMaxUserConnectionsSupported: <p>实例是否支持设置用户连接数限制，内核为10.1暂不支持。</p>
         # @type IsMaxUserConnectionsSupported: Boolean
-        # @param DbVersionId: 对外显示的数据库版本
+        # @param DbVersionId: <p>对外显示的数据库版本</p>
         # @type DbVersionId: String
-        # @param EncryptStatus: 加密状态, 0-未开启，1-已开启
+        # @param EncryptStatus: <p>加密状态, 0-未开启，1-已开启</p>
         # @type EncryptStatus: Integer
-        # @param ReplicaConfig: DCN的配置信息
+        # @param ReplicaConfig: <p>DCN的配置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaConfig: :class:`Tencentcloud::Mariadb.v20170312.models.DCNReplicaConfig`
-        # @param ReplicaStatus: DCN的运行状态
+        # @param ReplicaStatus: <p>DCN的运行状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReplicaStatus: :class:`Tencentcloud::Mariadb.v20170312.models.DCNReplicaStatus`
-        # @param ExclusterType: 独享集群类型，0:公有云, 1:金融围笼, 2:CDC集群
+        # @param ExclusterType: <p>独享集群类型，0:公有云, 1:金融围笼, 2:CDC集群</p>
         # @type ExclusterType: Integer
-        # @param RsAccessStrategy: VPC就近访问
+        # @param RsAccessStrategy: <p>VPC就近访问</p>
         # @type RsAccessStrategy: Integer
-        # @param ReservedNetResources: 尚未回收的网络资源
+        # @param ReservedNetResources: <p>尚未回收的网络资源</p>
         # @type ReservedNetResources: Array
-        # @param IsPhysicalReplicationSupported: 是否支持物理复制
+        # @param IsPhysicalReplicationSupported: <p>是否支持物理复制</p>
         # @type IsPhysicalReplicationSupported: Boolean
-        # @param IsDcnStrongSyncSupported: 是否支持强同步DCN
+        # @param IsDcnStrongSyncSupported: <p>是否支持强同步DCN</p>
         # @type IsDcnStrongSyncSupported: Integer
-        # @param IsDcnSwitchSupported: 是否支持DCN切换
+        # @param IsDcnSwitchSupported: <p>是否支持DCN切换</p>
         # @type IsDcnSwitchSupported: Integer
-        # @param ProxyVersion: proxy版本号
+        # @param ProxyVersion: <p>proxy版本号</p>
         # @type ProxyVersion: String
-        # @param CpuType: Cpu类型，如：英特尔：Intel/AMD，海光：Hygon
+        # @param CpuType: <p>Cpu类型，如：英特尔：Intel/AMD，海光：Hygon</p>
         # @type CpuType: String
-        # @param ProtectedProperty: 删除保护标记，1: 已开启删除保护，0: 未开启删除保护
+        # @param ProtectedProperty: <p>删除保护标记，1: 已开启删除保护，0: 未开启删除保护</p>
         # @type ProtectedProperty: Integer
-        # @param FlowId: 流程Id，标志实例当前所处的异步任务
+        # @param FlowId: <p>流程Id，标志实例当前所处的异步任务</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

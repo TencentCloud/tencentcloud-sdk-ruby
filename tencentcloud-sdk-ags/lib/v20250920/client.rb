@@ -270,6 +270,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 暂停沙箱实例
+
+        # @param request: Request instance for PauseSandboxInstance.
+        # @type request: :class:`Tencentcloud::ags::V20250920::PauseSandboxInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::PauseSandboxInstanceResponse`
+        def PauseSandboxInstance(request)
+          body = send_request('PauseSandboxInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = PauseSandboxInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 恢复沙箱实例
+
+        # @param request: Request instance for ResumeSandboxInstance.
+        # @type request: :class:`Tencentcloud::ags::V20250920::ResumeSandboxInstanceRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::ResumeSandboxInstanceResponse`
+        def ResumeSandboxInstance(request)
+          body = send_request('ResumeSandboxInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ResumeSandboxInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 启动沙箱实例
 
         # @param request: Request instance for StartSandboxInstance.

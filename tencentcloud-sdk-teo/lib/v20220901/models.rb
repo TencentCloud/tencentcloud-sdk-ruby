@@ -10948,12 +10948,14 @@ module TencentCloud
         # @param EndTime: 结束时间。查询时间范围（`EndTime` - `StartTime`）需小于等于 31 天。
         # @type EndTime: String
         # @param MetricNames: 查询指标，取值有：
-        # <li>l4Flow_connections: 访问并发连接数；</li>
-        # <li>l4Flow_flux: 访问总流量；</li>
-        # <li>l4Flow_inFlux: 访问入流量；</li>
-        # <li>l4Flow_outFlux: 访问出流量；</li>
-        # <li>l4Flow_inBandwidth: 访问入向带宽峰值；</li>
-        # <li>l4Flow_outBandwidth: 访问出向带宽峰值。</li>
+        # <ul><li>**l4Flow_flux**: 访问总流量，单位：Byte，指标值类型：Integer；</li>
+        # <li>**l4Flow_inFlux**: 访问入流量，单位：Byte，指标值类型：Integer；</li>
+        # <li>**l4Flow_outFlux**: 访问出流量，单位：Byte，指标值类型：Integer；</li>
+        # <li>**l4Flow_inBandwidth**: 访问入向带宽峰值，单位：bps，指标值类型：Integer；</li>
+        # <li>**l4Flow_outBandwidth**: 访问出向带宽峰值，单位：bps，指标值类型：Integer；</li>
+        # <li>**l4Flow_connections**: 访问并发连接数，单位：个，指标值类型：Integer ；</li>
+        # <li>**l4Flow_newConnectionsRate**: 新建连接数速率，单位：个/秒，指标值类型： Float，保留两位小数。</li></ul>**注意**：<ul><li><code> Integer</code> 值类型的指标将从  <code>Data.N.TypeValue</code> 返回对应时序数据；</li>
+        # <li><code>Float</code> 值类型的指标将从 <code>Data.N.FloatTypeValue</code> 返回对应时序数据。</li></ul>
         # @type MetricNames: Array
         # @param ZoneIds: 站点ID，此参数将于2024年05月30日后由可选改为必填，详见公告：[【腾讯云 EdgeOne】云 API 变更通知](https://cloud.tencent.com/document/product/1552/104902)。
         # 最多传入 100 个站点 ID。若需查询腾讯云主账号下所有站点数据，请用 `*` 代替，查询账号级别数据需具备本接口全部站点资源权限。
@@ -10961,19 +10963,22 @@ module TencentCloud
         # @param ProxyIds: 四层实例列表, 不填表示选择全部实例。
         # @type ProxyIds: Array
         # @param Interval: 查询时间粒度，取值有：
-        # <li>min: 1分钟 ；</li>
-        # <li>5min: 5分钟 ；</li>
-        # <li>hour: 1小时 ；</li>
-        # <li>day: 1天 。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
+        # <ul><li>**min**: 1分钟 ；</li>
+        # <li>**5min**: 5分钟 ；</li>
+        # <li>**hour**: 1小时 ；</li>
+        # <li>**day**: 1天 。</li></ul>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以 <code>min</code> 粒度查询，2天范围内以 <code>5min</code> 粒度查询，7天范围内以 <code>hour</code> 粒度查询，超过7天以 <code>day</code> 粒度查询。
         # @type Interval: String
         # @param Filters: 过滤条件，详细的过滤条件Key值如下：
-        # <li>ruleId：按照转发规则 ID 进行过滤。</li>
-        # <li>proxyId：按照四层代理实例 ID 进行过滤。</li>
+        # <ul><li>**ruleId**：按照转发规则 ID 进行过滤。</li>
+        # <li>**proxyId**：按照四层代理实例 ID 进行过滤。</li></ul>
         # @type Filters: Array
         # @param Area: 数据归属地区。该参数已废弃。请在 Filters.country 中按客户端地域过滤数据。
         # @type Area: String
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
+        extend Gem::Deprecate
+        deprecate :Area, :none, 2026, 1
+        deprecate :Area=, :none, 2026, 1
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -11009,7 +11014,8 @@ module TencentCloud
       class DescribeTimingL4DataResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 查询结果的总条数。
         # @type TotalCount: Integer
-        # @param Data: 四层时序流量数据列表。
+        # @param Data: <p>四层时序流量数据列表。<br>对于不同的查询指标，根据指标值类型的不同，会从不同的参数返回时序数据。<br>目前存在的值类型有以下两种：</p><ul><li><strong>Integer</strong>：<code>Integer</code> 值类型的指标将从 <code>Data.N.TypeValue</code> 返回对应时序数据。<br>对应的查询指标 <code>MetricName</code> 有：<ul><li><code>l4Flow_flux</code>：访问总流量；</li><li><code>l4Flow_inFlux</code>：访问入流量；</li><li><code>l4Flow_outFlux</code>：访问出流量；</li><li><code>l4Flow_inBandwidth</code>：访问入向带宽峰值；</li><li><code>l4Flow_outBandwidth</code>：访问出向带宽峰值；</li><li><code>l4Flow_connections</code>：访问并发连接数。</li></ul></li><li><strong>Float</strong>：<code>Float</code> 值类型的指标将从 <code>Data.N.FloatTypeValue</code> 返回对应时序数据。<br>对应的查询指标 <code>MetricName</code> 有：<ul><li><code>l4Flow_newConnectionsRate</code>：新建连接数速率。</li></ul></li>
+        # </ul><p>本接口暂不支持指定维度查询，默认按主账号汇总返回数据，即 <code>Data.N.TypeKey = AppId</code>，AppId 是腾讯云主账号唯一标识，N 恒等于 1。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -13098,6 +13104,65 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @StatTime = params['StatTime']
+        end
+      end
+
+      # 统计曲线数据项
+      class FloatTimingDataItem < TencentCloud::Common::AbstractModel
+        # @param Timestamp: 返回数据对应时间点，采用 unix 秒级时间戳。
+        # @type Timestamp: Integer
+        # @param Value: 具体数值。
+        # @type Value: Float
+
+        attr_accessor :Timestamp, :Value
+
+        def initialize(timestamp=nil, value=nil)
+          @Timestamp = timestamp
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Timestamp = params['Timestamp']
+          @Value = params['Value']
+        end
+      end
+
+      # 时序类型详细数据
+      class FloatTimingTypeValue < TencentCloud::Common::AbstractModel
+        # @param Sum: 数据和。
+        # @type Sum: Float
+        # @param Max: 最大值。
+        # @type Max: Float
+        # @param Avg: 平均值。
+        # @type Avg: Float
+        # @param MetricName: 指标名。
+        # @type MetricName: String
+        # @param Detail: 详细数据。
+        # @type Detail: Array
+
+        attr_accessor :Sum, :Max, :Avg, :MetricName, :Detail
+
+        def initialize(sum=nil, max=nil, avg=nil, metricname=nil, detail=nil)
+          @Sum = sum
+          @Max = max
+          @Avg = avg
+          @MetricName = metricname
+          @Detail = detail
+        end
+
+        def deserialize(params)
+          @Sum = params['Sum']
+          @Max = params['Max']
+          @Avg = params['Avg']
+          @MetricName = params['MetricName']
+          unless params['Detail'].nil?
+            @Detail = []
+            params['Detail'].each do |i|
+              floattimingdataitem_tmp = FloatTimingDataItem.new
+              floattimingdataitem_tmp.deserialize(i)
+              @Detail << floattimingdataitem_tmp
+            end
+          end
         end
       end
 
@@ -22628,14 +22693,17 @@ module TencentCloud
       class TimingDataRecord < TencentCloud::Common::AbstractModel
         # @param TypeKey: 查询维度值。
         # @type TypeKey: String
-        # @param TypeValue: 详细时序数据。
+        # @param TypeValue: <code>Integer</code> 类型的详细时序数据，查询指标值类型为 <code>Integer</code> 指标会由本字段返回对应时序数据。<br> **注意**：若查询指标未明确说明指标值类型，默认由本字段返回数据。
         # @type TypeValue: Array
+        # @param FloatTypeValue: <code>Float</code> 类型的详细时序数据，查询指标值类型为 <code>Float</code> 指标会由本字段返回对应时序数据。
+        # @type FloatTypeValue: Array
 
-        attr_accessor :TypeKey, :TypeValue
+        attr_accessor :TypeKey, :TypeValue, :FloatTypeValue
 
-        def initialize(typekey=nil, typevalue=nil)
+        def initialize(typekey=nil, typevalue=nil, floattypevalue=nil)
           @TypeKey = typekey
           @TypeValue = typevalue
+          @FloatTypeValue = floattypevalue
         end
 
         def deserialize(params)
@@ -22646,6 +22714,14 @@ module TencentCloud
               timingtypevalue_tmp = TimingTypeValue.new
               timingtypevalue_tmp.deserialize(i)
               @TypeValue << timingtypevalue_tmp
+            end
+          end
+          unless params['FloatTypeValue'].nil?
+            @FloatTypeValue = []
+            params['FloatTypeValue'].each do |i|
+              floattimingtypevalue_tmp = FloatTimingTypeValue.new
+              floattimingtypevalue_tmp.deserialize(i)
+              @FloatTypeValue << floattimingtypevalue_tmp
             end
           end
         end

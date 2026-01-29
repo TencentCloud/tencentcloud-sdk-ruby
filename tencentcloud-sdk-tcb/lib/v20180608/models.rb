@@ -2074,6 +2074,30 @@ module TencentCloud
         end
       end
 
+      # 数据库连接器实例信息
+      class DbInstance < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param InstanceId: MySQL 连接器实例 ID；`"default"` 或为空表示使用 TCB 环境的默认连接器
+        # @type InstanceId: String
+        # @param Schema: 数据库名；为空时使用连接器配置的默认数据库名
+        # @type Schema: String
+
+        attr_accessor :EnvId, :InstanceId, :Schema
+
+        def initialize(envid=nil, instanceid=nil, schema=nil)
+          @EnvId = envid
+          @InstanceId = instanceid
+          @Schema = schema
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @InstanceId = params['InstanceId']
+          @Schema = params['Schema']
+        end
+      end
+
       # DeleteCloudBaseProjectLatestVersion请求参数结构体
       class DeleteCloudBaseProjectLatestVersionRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境id
@@ -5851,77 +5875,6 @@ module TencentCloud
         end
       end
 
-      # CLS日志单条信息
-      class LogObject < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志属于的 topic ID
-        # @type TopicId: String
-        # @param TopicName: 日志主题的名字
-        # @type TopicName: String
-        # @param Timestamp: 日志时间
-        # @type Timestamp: String
-        # @param Content: 日志内容
-        # @type Content: String
-        # @param FileName: 采集路径
-        # @type FileName: String
-        # @param Source: 日志来源设备
-        # @type Source: String
-
-        attr_accessor :TopicId, :TopicName, :Timestamp, :Content, :FileName, :Source
-
-        def initialize(topicid=nil, topicname=nil, timestamp=nil, content=nil, filename=nil, source=nil)
-          @TopicId = topicid
-          @TopicName = topicname
-          @Timestamp = timestamp
-          @Content = content
-          @FileName = filename
-          @Source = source
-        end
-
-        def deserialize(params)
-          @TopicId = params['TopicId']
-          @TopicName = params['TopicName']
-          @Timestamp = params['Timestamp']
-          @Content = params['Content']
-          @FileName = params['FileName']
-          @Source = params['Source']
-        end
-      end
-
-      # CLS日志结果
-      class LogResObject < TencentCloud::Common::AbstractModel
-        # @param Context: 获取更多检索结果的游标
-        # @type Context: String
-        # @param ListOver: 搜索结果是否已经全部返回
-        # @type ListOver: Boolean
-        # @param Results: 日志内容信息
-        # @type Results: Array
-        # @param AnalysisRecords: 日志聚合结果
-        # @type AnalysisRecords: Array
-
-        attr_accessor :Context, :ListOver, :Results, :AnalysisRecords
-
-        def initialize(context=nil, listover=nil, results=nil, analysisrecords=nil)
-          @Context = context
-          @ListOver = listover
-          @Results = results
-          @AnalysisRecords = analysisrecords
-        end
-
-        def deserialize(params)
-          @Context = params['Context']
-          @ListOver = params['ListOver']
-          unless params['Results'].nil?
-            @Results = []
-            params['Results'].each do |i|
-              logobject_tmp = LogObject.new
-              logobject_tmp.deserialize(i)
-              @Results << logobject_tmp
-            end
-          end
-          @AnalysisRecords = params['AnalysisRecords']
-        end
-      end
-
       # 云日志服务相关信息
       class LogServiceInfo < TencentCloud::Common::AbstractModel
         # @param LogsetName: log名
@@ -6545,69 +6498,61 @@ module TencentCloud
         end
       end
 
-      # SearchClsLog请求参数结构体
-      class SearchClsLogRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境唯一ID
+      # RunSql请求参数结构体
+      class RunSqlRequest < TencentCloud::Common::AbstractModel
+        # @param Sql: 要执行的SQL语句
+        # @type Sql: String
+        # @param EnvId: 云开发环境ID
         # @type EnvId: String
-        # @param StartTime: 查询起始时间条件
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间条件
-        # @type EndTime: String
-        # @param QueryString: 查询语句，详情参考 https://cloud.tencent.com/document/product/614/47044
-        # @type QueryString: String
-        # @param Limit: 单次要返回的日志条数，单次返回的最大条数为100
-        # @type Limit: Integer
-        # @param Context: 加载更多使用，透传上次返回的 context 值，获取后续的日志内容，通过游标最多可获取10000条，请尽可能缩小时间范围
-        # @type Context: String
-        # @param Sort: 按时间排序 asc（升序）或者 desc（降序），默认为 desc
-        # @type Sort: String
-        # @param UseLucene: 是否使用Lucene语法，默认为false
-        # @type UseLucene: Boolean
+        # @param DbInstance: 数据库连接器实例信息
+        # @type DbInstance: :class:`Tencentcloud::Tcb.v20180608.models.DbInstance`
+        # @param ReadOnly: 是否只读；当 `true` 时仅允许以 `SELECT/WITH/SHOW/DESCRIBE/DESC/EXPLAIN` 开头的 SQL
+        # @type ReadOnly: Boolean
 
-        attr_accessor :EnvId, :StartTime, :EndTime, :QueryString, :Limit, :Context, :Sort, :UseLucene
+        attr_accessor :Sql, :EnvId, :DbInstance, :ReadOnly
 
-        def initialize(envid=nil, starttime=nil, endtime=nil, querystring=nil, limit=nil, context=nil, sort=nil, uselucene=nil)
+        def initialize(sql=nil, envid=nil, dbinstance=nil, readonly=nil)
+          @Sql = sql
           @EnvId = envid
-          @StartTime = starttime
-          @EndTime = endtime
-          @QueryString = querystring
-          @Limit = limit
-          @Context = context
-          @Sort = sort
-          @UseLucene = uselucene
+          @DbInstance = dbinstance
+          @ReadOnly = readonly
         end
 
         def deserialize(params)
+          @Sql = params['Sql']
           @EnvId = params['EnvId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @QueryString = params['QueryString']
-          @Limit = params['Limit']
-          @Context = params['Context']
-          @Sort = params['Sort']
-          @UseLucene = params['UseLucene']
+          unless params['DbInstance'].nil?
+            @DbInstance = DbInstance.new
+            @DbInstance.deserialize(params['DbInstance'])
+          end
+          @ReadOnly = params['ReadOnly']
         end
       end
 
-      # SearchClsLog返回参数结构体
-      class SearchClsLogResponse < TencentCloud::Common::AbstractModel
-        # @param LogResults: 日志内容结果
-        # @type LogResults: :class:`Tencentcloud::Tcb.v20180608.models.LogResObject`
+      # RunSql返回参数结构体
+      class RunSqlResponse < TencentCloud::Common::AbstractModel
+        # @param Items: 查询结果行，每个元素为 JSON 字符串
+        # @type Items: Array
+        # @param Infos: 列元数据信息，每个元素为 JSON 字符串，字段包含 `name/databaseType/nullable/length/precision/scale`
+        # @type Infos: Array
+        # @param RowsAffected: 受影响的行数（INSERT/UPDATE/DELETE 等语句）
+        # @type RowsAffected: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :LogResults, :RequestId
+        attr_accessor :Items, :Infos, :RowsAffected, :RequestId
 
-        def initialize(logresults=nil, requestid=nil)
-          @LogResults = logresults
+        def initialize(items=nil, infos=nil, rowsaffected=nil, requestid=nil)
+          @Items = items
+          @Infos = infos
+          @RowsAffected = rowsaffected
           @RequestId = requestid
         end
 
         def deserialize(params)
-          unless params['LogResults'].nil?
-            @LogResults = LogResObject.new
-            @LogResults.deserialize(params['LogResults'])
-          end
+          @Items = params['Items']
+          @Infos = params['Infos']
+          @RowsAffected = params['RowsAffected']
           @RequestId = params['RequestId']
         end
       end

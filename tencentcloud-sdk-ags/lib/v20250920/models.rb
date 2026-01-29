@@ -874,6 +874,38 @@ module TencentCloud
         end
       end
 
+      # PauseSandboxInstance请求参数结构体
+      class PauseSandboxInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 沙箱实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # PauseSandboxInstance返回参数结构体
+      class PauseSandboxInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 端口配置
       class PortConfiguration < TencentCloud::Common::AbstractModel
         # @param Name: 端口名
@@ -954,6 +986,38 @@ module TencentCloud
         def deserialize(params)
           @CPU = params['CPU']
           @Memory = params['Memory']
+        end
+      end
+
+      # ResumeSandboxInstance请求参数结构体
+      class ResumeSandboxInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 沙箱实例ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ResumeSandboxInstance返回参数结构体
+      class ResumeSandboxInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

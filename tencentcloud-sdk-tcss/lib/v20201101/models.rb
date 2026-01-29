@@ -1759,10 +1759,23 @@ module TencentCloud
         # @type MemLimit: Integer
         # @param CpuLimit: cpu
         # @type CpuLimit: Integer
+        # @param ClusterAuditStatus: 集群审计开关状态：
+        # 已关闭Closed/关闭中Closing/关闭失败CloseFailed/已开启Opened/开启中Opening/开启失败OpenFailed
+        # @type ClusterAuditStatus: String
+        # @param AccessedStatus: 接入状态:
+        # 未接入: AccessedNone
+        # 已防护: AccessedDefended
+        # 未防护: AccessedInstalled
+        # 部分防护: AccessedPartialDefence
+        # 接入异常: AccessedException
+        # 卸载异常: AccessedUninstallException
+        # 接入中: AccessedInstalling
+        # 卸载中: AccessedUninstalling
+        # @type AccessedStatus: String
 
-        attr_accessor :ClusterID, :ClusterName, :Status, :BindRuleName, :ClusterType, :ClusterVersion, :MemLimit, :CpuLimit
+        attr_accessor :ClusterID, :ClusterName, :Status, :BindRuleName, :ClusterType, :ClusterVersion, :MemLimit, :CpuLimit, :ClusterAuditStatus, :AccessedStatus
 
-        def initialize(clusterid=nil, clustername=nil, status=nil, bindrulename=nil, clustertype=nil, clusterversion=nil, memlimit=nil, cpulimit=nil)
+        def initialize(clusterid=nil, clustername=nil, status=nil, bindrulename=nil, clustertype=nil, clusterversion=nil, memlimit=nil, cpulimit=nil, clusterauditstatus=nil, accessedstatus=nil)
           @ClusterID = clusterid
           @ClusterName = clustername
           @Status = status
@@ -1771,6 +1784,8 @@ module TencentCloud
           @ClusterVersion = clusterversion
           @MemLimit = memlimit
           @CpuLimit = cpulimit
+          @ClusterAuditStatus = clusterauditstatus
+          @AccessedStatus = accessedstatus
         end
 
         def deserialize(params)
@@ -1782,6 +1797,8 @@ module TencentCloud
           @ClusterVersion = params['ClusterVersion']
           @MemLimit = params['MemLimit']
           @CpuLimit = params['CpuLimit']
+          @ClusterAuditStatus = params['ClusterAuditStatus']
+          @AccessedStatus = params['AccessedStatus']
         end
       end
 

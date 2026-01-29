@@ -3117,7 +3117,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
+        # <p>本接口（<code>DescribeTimingL4Data</code>）用于查询四层时序数据列表。</p>
 
         # @param request: Request instance for DescribeTimingL4Data.
         # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingL4DataRequest`

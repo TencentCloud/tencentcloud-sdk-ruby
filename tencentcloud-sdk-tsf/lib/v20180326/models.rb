@@ -10393,15 +10393,18 @@ module TencentCloud
         # @type RuleId: String
         # @param RuleIdList: 灰度发布规则ID。该参数可以通过调用 [DescribeLaneRules](https://cloud.tencent.com/document/product/649/44505) 的返回值中的 RuleId 字段来获取或通过登录[控制台](https://console.cloud.tencent.com/tse/tsf-consul?tab=grayscale&subTab=lanerule)查看；也可以调用[CreateLaneRule](https://cloud.tencent.com/document/product/649/44507)创建新的灰度发布规则。
         # @type RuleIdList: Array
+        # @param QueryAll: 查询全部标记
+        # @type QueryAll: Boolean
 
-        attr_accessor :Limit, :Offset, :SearchWord, :RuleId, :RuleIdList
+        attr_accessor :Limit, :Offset, :SearchWord, :RuleId, :RuleIdList, :QueryAll
 
-        def initialize(limit=nil, offset=nil, searchword=nil, ruleid=nil, ruleidlist=nil)
+        def initialize(limit=nil, offset=nil, searchword=nil, ruleid=nil, ruleidlist=nil, queryall=nil)
           @Limit = limit
           @Offset = offset
           @SearchWord = searchword
           @RuleId = ruleid
           @RuleIdList = ruleidlist
+          @QueryAll = queryall
         end
 
         def deserialize(params)
@@ -10410,6 +10413,7 @@ module TencentCloud
           @SearchWord = params['SearchWord']
           @RuleId = params['RuleId']
           @RuleIdList = params['RuleIdList']
+          @QueryAll = params['QueryAll']
         end
       end
 

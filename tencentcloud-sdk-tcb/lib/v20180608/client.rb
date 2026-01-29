@@ -1569,16 +1569,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 搜索CLS日志，TCB角色密钥访问
+        # 执行SQL语句
 
-        # @param request: Request instance for SearchClsLog.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::SearchClsLogRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::SearchClsLogResponse`
-        def SearchClsLog(request)
-          body = send_request('SearchClsLog', request.serialize)
+        # @param request: Request instance for RunSql.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::RunSqlRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::RunSqlResponse`
+        def RunSql(request)
+          body = send_request('RunSql', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = SearchClsLogResponse.new
+            model = RunSqlResponse.new
             model.deserialize(response['Response'])
             model
           else

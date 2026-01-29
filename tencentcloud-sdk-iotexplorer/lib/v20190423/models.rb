@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 12
-        deprecate :MiniProgramAppId=, :none, 2025, 12
+        deprecate :MiniProgramAppId, :none, 2026, 1
+        deprecate :MiniProgramAppId=, :none, 2026, 1
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2025, 12
-        deprecate :DeviceList=, :none, 2025, 12
+        deprecate :DeviceList, :none, 2026, 1
+        deprecate :DeviceList=, :none, 2026, 1
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -844,38 +844,6 @@ module TencentCloud
         def deserialize(params)
           @TagKey = params['TagKey']
           @TagValue = params['TagValue']
-        end
-      end
-
-      # CancelAssignTWeCallLicense请求参数结构体
-      class CancelAssignTWeCallLicenseRequest < TencentCloud::Common::AbstractModel
-        # @param PkgId: 订单号
-        # @type PkgId: String
-
-        attr_accessor :PkgId
-
-        def initialize(pkgid=nil)
-          @PkgId = pkgid
-        end
-
-        def deserialize(params)
-          @PkgId = params['PkgId']
-        end
-      end
-
-      # CancelAssignTWeCallLicense返回参数结构体
-      class CancelAssignTWeCallLicenseResponse < TencentCloud::Common::AbstractModel
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :RequestId
-
-        def initialize(requestid=nil)
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @RequestId = params['RequestId']
         end
       end
 
@@ -1771,6 +1739,50 @@ module TencentCloud
             @Data = DeviceData.new
             @Data.deserialize(params['Data'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateDeviceSDPAnswer请求参数结构体
+      class CreateDeviceSDPAnswerRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: 产品ID
+        # @type ProductId: String
+        # @param DeviceName: 设备名称
+        # @type DeviceName: String
+        # @param SDPOffer: SDP提议
+        # @type SDPOffer: String
+
+        attr_accessor :ProductId, :DeviceName, :SDPOffer
+
+        def initialize(productid=nil, devicename=nil, sdpoffer=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @SDPOffer = sdpoffer
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @SDPOffer = params['SDPOffer']
+        end
+      end
+
+      # CreateDeviceSDPAnswer返回参数结构体
+      class CreateDeviceSDPAnswerResponse < TencentCloud::Common::AbstractModel
+        # @param SDPAnswer: SDP应答
+        # @type SDPAnswer: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SDPAnswer, :RequestId
+
+        def initialize(sdpanswer=nil, requestid=nil)
+          @SDPAnswer = sdpanswer
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SDPAnswer = params['SDPAnswer']
           @RequestId = params['RequestId']
         end
       end
@@ -7281,8 +7293,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 12
-        deprecate :ModelId=, :none, 2025, 12
+        deprecate :ModelId, :none, 2026, 1
+        deprecate :ModelId=, :none, 2026, 1
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -8998,8 +9010,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2025, 12
-        deprecate :MiniProgramAppId=, :none, 2025, 12
+        deprecate :MiniProgramAppId, :none, 2026, 1
+        deprecate :MiniProgramAppId=, :none, 2026, 1
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -9050,6 +9062,8 @@ module TencentCloud
       class GetTWeTalkAIBotListRequest < TencentCloud::Common::AbstractModel
         # @param BotId: 智能体ID
         # @type BotId: String
+        # @param Name: 智能体名称
+        # @type Name: String
         # @param ProductId: 产品ID
         # @type ProductId: String
         # @param InstanceId: 实例ID
@@ -9061,10 +9075,11 @@ module TencentCloud
         # @param Limit: 10
         # @type Limit: Integer
 
-        attr_accessor :BotId, :ProductId, :InstanceId, :IncludeCredentials, :Offset, :Limit
+        attr_accessor :BotId, :Name, :ProductId, :InstanceId, :IncludeCredentials, :Offset, :Limit
 
-        def initialize(botid=nil, productid=nil, instanceid=nil, includecredentials=nil, offset=nil, limit=nil)
+        def initialize(botid=nil, name=nil, productid=nil, instanceid=nil, includecredentials=nil, offset=nil, limit=nil)
           @BotId = botid
+          @Name = name
           @ProductId = productid
           @InstanceId = instanceid
           @IncludeCredentials = includecredentials
@@ -9074,6 +9089,7 @@ module TencentCloud
 
         def deserialize(params)
           @BotId = params['BotId']
+          @Name = params['Name']
           @ProductId = params['ProductId']
           @InstanceId = params['InstanceId']
           @IncludeCredentials = params['IncludeCredentials']
@@ -13125,8 +13141,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 12
-        deprecate :ModelId=, :none, 2025, 12
+        deprecate :ModelId, :none, 2026, 1
+        deprecate :ModelId=, :none, 2026, 1
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -13156,10 +13172,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2025, 12
-        deprecate :ModelId=, :none, 2025, 12
-        deprecate :ActiveNum, :none, 2025, 12
-        deprecate :ActiveNum=, :none, 2025, 12
+        deprecate :ModelId, :none, 2026, 1
+        deprecate :ModelId=, :none, 2026, 1
+        deprecate :ActiveNum, :none, 2026, 1
+        deprecate :ActiveNum=, :none, 2026, 1
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -13228,10 +13244,15 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: 更新时间
         # @type UpdateTime: Integer
+        # @param BoundProducts: 已关联产品信息列表
+        # @type BoundProducts: Array
 
-        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime
+        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts
+        extend Gem::Deprecate
+        deprecate :ProductList, :none, 2026, 1
+        deprecate :ProductList=, :none, 2026, 1
 
-        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil)
+        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil)
           @Uin = uin
           @AppId = appid
           @InstanceId = instanceid
@@ -13246,6 +13267,7 @@ module TencentCloud
           @ProductList = productlist
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @BoundProducts = boundproducts
         end
 
         def deserialize(params)
@@ -13278,6 +13300,14 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          unless params['BoundProducts'].nil?
+            @BoundProducts = []
+            params['BoundProducts'].each do |i|
+              talkproductinfo_tmp = TalkProductInfo.new
+              talkproductinfo_tmp.deserialize(i)
+              @BoundProducts << talkproductinfo_tmp
+            end
+          end
         end
       end
 
@@ -13301,7 +13331,7 @@ module TencentCloud
         # @type SilenceTime: Integer
         # @param NoiseFilterEnabled: 是否启用噪声过滤
         # @type NoiseFilterEnabled: Boolean
-        # @param LongTermMemoryEnabled: 是否开启长记忆，默认开启
+        # @param LongTermMemoryEnabled: 是否开启长记忆，默认关闭
         # @type LongTermMemoryEnabled: Boolean
         # @param SystemPrompt: 系统提示词，仅当未配置LLMConfig时使用
         # @type SystemPrompt: String

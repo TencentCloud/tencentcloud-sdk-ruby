@@ -1739,6 +1739,8 @@ module TencentCloud
         # @param InstanceTasks: 实例任务信息
         # @type InstanceTasks: Array
         # @param InstanceDeviceType: 实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type InstanceDeviceType: String
         # @param InstanceStorageType: 实例存储类型
         # 说明：仅当要查询的资源为 LibraDB 时，此参数才会返回值。
@@ -3910,6 +3912,8 @@ module TencentCloud
         # @param InstanceAbility: 当前实例支持的能力
         # @type InstanceAbility: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceAbility`
         # @param DeviceType: 实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type DeviceType: String
         # @param InstanceStorageType: 实例存储类型
         # @type InstanceStorageType: String
@@ -9184,7 +9188,9 @@ module TencentCloud
         # @param TimeUnit: 时长单位
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TimeUnit: String
-        # @param DeviceType: 机器类型
+        # @param DeviceType: 实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type DeviceType: String
 
         attr_accessor :GoodsNum, :Cpu, :Memory, :Ccu, :StorageLimit, :TimeSpan, :TimeUnit, :DeviceType
@@ -9827,6 +9833,8 @@ module TencentCloud
         # @param MaxRoCpu: Serverless实例最大规格
         # @type MaxRoCpu: Float
         # @param DeviceType: 实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type DeviceType: String
 
         attr_accessor :Cpu, :Memory, :InstanceType, :InstanceCount, :MinRoCount, :MaxRoCount, :MinRoCpu, :MaxRoCpu, :DeviceType
@@ -11437,8 +11445,12 @@ module TencentCloud
         # @param OldStorageLimit: 变配前存储上限
         # @type OldStorageLimit: Integer
         # @param OldDeviceType: 变配前实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type OldDeviceType: String
         # @param DeviceType: 变配后实例机器类型
+        # 1. common，通用型。
+        # 2. exclusive，独享型。
         # @type DeviceType: String
         # @param UpgradeType: 升级方式。升级完成后切换或维护时间内切换
         # @type UpgradeType: String

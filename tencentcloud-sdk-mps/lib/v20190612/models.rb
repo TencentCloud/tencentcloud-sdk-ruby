@@ -9111,13 +9111,16 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 图片处理模板描述信息，长度限制：256个字符。
         # @type Comment: String
+        # @param StdExtInfo: 图片处理模板拓展参数。
+        # @type StdExtInfo: String
 
-        attr_accessor :ProcessImageTemplate, :Name, :Comment
+        attr_accessor :ProcessImageTemplate, :Name, :Comment, :StdExtInfo
 
-        def initialize(processimagetemplate=nil, name=nil, comment=nil)
+        def initialize(processimagetemplate=nil, name=nil, comment=nil, stdextinfo=nil)
           @ProcessImageTemplate = processimagetemplate
           @Name = name
           @Comment = comment
+          @StdExtInfo = stdextinfo
         end
 
         def deserialize(params)
@@ -9127,6 +9130,7 @@ module TencentCloud
           end
           @Name = params['Name']
           @Comment = params['Comment']
+          @StdExtInfo = params['StdExtInfo']
         end
       end
 
@@ -27113,16 +27117,19 @@ module TencentCloud
         # @param Output: 媒体质检任务的输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.QualityControlData`
+        # @param Progress: 任务执行进度。
+        # @type Progress: Integer
 
-        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output
+        attr_accessor :Status, :ErrCodeExt, :ErrCode, :Message, :Input, :Output, :Progress
 
-        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil)
+        def initialize(status=nil, errcodeext=nil, errcode=nil, message=nil, input=nil, output=nil, progress=nil)
           @Status = status
           @ErrCodeExt = errcodeext
           @ErrCode = errcode
           @Message = message
           @Input = input
           @Output = output
+          @Progress = progress
         end
 
         def deserialize(params)
@@ -27138,6 +27145,7 @@ module TencentCloud
             @Output = QualityControlData.new
             @Output.deserialize(params['Output'])
           end
+          @Progress = params['Progress']
         end
       end
 

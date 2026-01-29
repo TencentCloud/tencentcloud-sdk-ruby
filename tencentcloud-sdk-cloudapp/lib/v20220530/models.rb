@@ -147,10 +147,14 @@ module TencentCloud
         # @type LicenseData: :class:`Tencentcloud::Cloudapp.v20220530.models.LicenseData`
         # @param IssueURL: <p>License 颁发地址</p>
         # @type IssueURL: String
+        # @param ProviderUin: <p>商品供应商 UIN</p>
+        # @type ProviderUin: String
+        # @param CreateSource: <p>License 创建来源 ID</p>
+        # @type CreateSource: String
 
-        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType, :LicenseLevel, :LicenseData, :IssueURL
+        attr_accessor :LicenseId, :LicenseMode, :LicenseStatus, :ProviderId, :SoftwarePackageId, :SoftwarePackageVersion, :AuthorizedUserUin, :AuthorizedCloudappId, :AuthorizedCloudappRoleId, :AuthorizedSpecification, :BillingMode, :LifeSpan, :IssueDate, :ActivationDate, :ExpirationDate, :LifeSpanUnit, :LicenseType, :LicenseLevel, :LicenseData, :IssueURL, :ProviderUin, :CreateSource
 
-        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil, licenselevel=nil, licensedata=nil, issueurl=nil)
+        def initialize(licenseid=nil, licensemode=nil, licensestatus=nil, providerid=nil, softwarepackageid=nil, softwarepackageversion=nil, authorizeduseruin=nil, authorizedcloudappid=nil, authorizedcloudapproleid=nil, authorizedspecification=nil, billingmode=nil, lifespan=nil, issuedate=nil, activationdate=nil, expirationdate=nil, lifespanunit=nil, licensetype=nil, licenselevel=nil, licensedata=nil, issueurl=nil, provideruin=nil, createsource=nil)
           @LicenseId = licenseid
           @LicenseMode = licensemode
           @LicenseStatus = licensestatus
@@ -171,6 +175,8 @@ module TencentCloud
           @LicenseLevel = licenselevel
           @LicenseData = licensedata
           @IssueURL = issueurl
+          @ProviderUin = provideruin
+          @CreateSource = createsource
         end
 
         def deserialize(params)
@@ -204,6 +210,8 @@ module TencentCloud
             @LicenseData.deserialize(params['LicenseData'])
           end
           @IssueURL = params['IssueURL']
+          @ProviderUin = params['ProviderUin']
+          @CreateSource = params['CreateSource']
         end
       end
 

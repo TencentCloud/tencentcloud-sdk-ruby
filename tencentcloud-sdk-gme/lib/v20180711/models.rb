@@ -982,15 +982,15 @@ module TencentCloud
 
       # DeleteRoomMember请求参数结构体
       class DeleteRoomMemberRequest < TencentCloud::Common::AbstractModel
-        # @param RoomId: 要操作的房间id
+        # @param RoomId: <p>要操作的房间id</p>
         # @type RoomId: String
-        # @param DeleteType: 剔除类型 1-删除房间 2-剔除用户
+        # @param DeleteType: <p>剔除类型 1-删除房间 2-剔除用户</p>
         # @type DeleteType: Integer
-        # @param BizId: 应用id
+        # @param BizId: <p>应用id</p>
         # @type BizId: Integer
-        # @param Uids: 要剔除的用户列表（整型）
+        # @param Uids: <p>要剔除的用户列表（整型）</p>
         # @type Uids: Array
-        # @param StrUids: 要剔除的用户列表（字符串类型）
+        # @param StrUids: <p>要剔除的用户列表（字符串类型）</p>
         # @type StrUids: Array
 
         attr_accessor :RoomId, :DeleteType, :BizId, :Uids, :StrUids
@@ -1014,7 +1014,7 @@ module TencentCloud
 
       # DeleteRoomMember返回参数结构体
       class DeleteRoomMemberResponse < TencentCloud::Common::AbstractModel
-        # @param DeleteResult: 剔除房间或成员的操作结果
+        # @param DeleteResult: <p>剔除房间或成员的操作结果</p>
         # @type DeleteResult: :class:`Tencentcloud::Gme.v20180711.models.DeleteResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1221,13 +1221,13 @@ module TencentCloud
 
       # DescribeAppStatistics请求参数结构体
       class DescribeAppStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param BizId: GME应用ID
+        # @param BizId: <p>GME应用ID</p>
         # @type BizId: Integer
-        # @param StartDate: 数据开始时间，东八区时间，格式: 年-月-日，如: 2018-07-13
+        # @param StartDate: <p>数据开始时间，东八区时间，格式: 年-月-日，如: 2018-07-13</p>
         # @type StartDate: String
-        # @param EndDate: 数据结束时间，东八区时间，格式: 年-月-日，如: 2018-07-13
+        # @param EndDate: <p>数据结束时间，东八区时间，格式: 年-月-日，如: 2018-07-13</p>
         # @type EndDate: String
-        # @param Services: 要查询的服务列表，取值：RealTimeSpeech/VoiceMessage/VoiceFilter/SpeechToText
+        # @param Services: <p>要查询的服务列表，取值：RealTimeSpeech/VoiceMessage/VoiceFilter/SpeechToText</p>
         # @type Services: Array
 
         attr_accessor :BizId, :StartDate, :EndDate, :Services
@@ -1272,7 +1272,7 @@ module TencentCloud
 
       # DescribeAppStatistics返回参数结构体
       class DescribeAppStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 应用用量统计数据
+        # @param Data: <p>应用用量统计数据</p>
         # @type Data: :class:`Tencentcloud::Gme.v20180711.models.DescribeAppStatisticsResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1623,11 +1623,11 @@ module TencentCloud
 
       # DescribeRoomInfo请求参数结构体
       class DescribeRoomInfoRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用ID，登录[控制台 - 服务管理](https://console.cloud.tencent.com/gamegme)创建应用得到的AppID
+        # @param SdkAppId: <p>应用ID，登录<a href="https://console.cloud.tencent.com/gamegme">控制台 - 服务管理</a>创建应用得到的AppID</p>
         # @type SdkAppId: Integer
-        # @param RoomIds: 房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）
+        # @param RoomIds: <p>房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）</p>
         # @type RoomIds: Array
-        # @param StrRoomIds: 字符串类型房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）
+        # @param StrRoomIds: <p>字符串类型房间号列表，最大不能超过10个（RoomIds、StrRoomIds必须填一个）</p>
         # @type StrRoomIds: Array
 
         attr_accessor :SdkAppId, :RoomIds, :StrRoomIds
@@ -1647,9 +1647,9 @@ module TencentCloud
 
       # DescribeRoomInfo返回参数结构体
       class DescribeRoomInfoResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 操作结果, 0成功, 非0失败
+        # @param Result: <p>操作结果, 0成功, 非0失败</p>
         # @type Result: Integer
-        # @param RoomUsers: 房间用户信息
+        # @param RoomUsers: <p>房间用户信息</p>
         # @type RoomUsers: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2238,13 +2238,13 @@ module TencentCloud
 
       # ModifyRecordInfo请求参数结构体
       class ModifyRecordInfoRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 进行中的任务taskid（StartRecord接口返回）。
+        # @param TaskId: <p>进行中的任务taskid（StartRecord接口返回）。</p>
         # @type TaskId: Integer
-        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # @param RecordMode: <p>录制类型：1代表单流 2代表混流 3代表单流和混流。</p>
         # @type RecordMode: Integer
-        # @param BizId: 应用ID。
+        # @param BizId: <p>应用ID。</p>
         # @type BizId: Integer
-        # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单。
+        # @param SubscribeRecordUserIds: <p>指定订阅流白名单或者黑名单。</p>
         # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
 
         attr_accessor :TaskId, :RecordMode, :BizId, :SubscribeRecordUserIds
@@ -2999,13 +2999,13 @@ module TencentCloud
 
       # StartRecord请求参数结构体
       class StartRecordRequest < TencentCloud::Common::AbstractModel
-        # @param BizId: 应用ID。
+        # @param BizId: <p>应用ID。</p>
         # @type BizId: Integer
-        # @param RoomId: 房间ID。
+        # @param RoomId: <p>房间ID。</p>
         # @type RoomId: String
-        # @param RecordMode: 录制类型：1代表单流 2代表混流 3代表单流和混流。
+        # @param RecordMode: <p>录制类型：1代表单流 2代表混流 3代表单流和混流。</p>
         # @type RecordMode: Integer
-        # @param SubscribeRecordUserIds: 指定订阅流白名单或者黑名单（不传默认订阅房间内所有音频流）。
+        # @param SubscribeRecordUserIds: <p>指定订阅流白名单或者黑名单（不传默认订阅房间内所有音频流）。</p>
         # @type SubscribeRecordUserIds: :class:`Tencentcloud::Gme.v20180711.models.SubscribeRecordUserIds`
 
         attr_accessor :BizId, :RoomId, :RecordMode, :SubscribeRecordUserIds
@@ -3030,7 +3030,7 @@ module TencentCloud
 
       # StartRecord返回参数结构体
       class StartRecordResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务taskid。
+        # @param TaskId: <p>任务taskid。</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

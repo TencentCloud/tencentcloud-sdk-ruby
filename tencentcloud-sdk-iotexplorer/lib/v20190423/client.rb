@@ -269,32 +269,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 业务已下线
-
-        # 取消分配
-
-        # @param request: Request instance for CancelAssignTWeCallLicense.
-        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CancelAssignTWeCallLicenseRequest`
-        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CancelAssignTWeCallLicenseResponse`
-        def CancelAssignTWeCallLicense(request)
-          body = send_request('CancelAssignTWeCallLicense', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CancelAssignTWeCallLicenseResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # p2p路线切换（此接口目前处于内测接口，可以联系申请加白 ）
 
         # @param request: Request instance for ChangeP2PRoute.
@@ -497,6 +471,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateDeviceChannelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建设备SDP应答
+
+        # @param request: Request instance for CreateDeviceSDPAnswer.
+        # @type request: :class:`Tencentcloud::iotexplorer::V20190423::CreateDeviceSDPAnswerRequest`
+        # @rtype: :class:`Tencentcloud::iotexplorer::V20190423::CreateDeviceSDPAnswerResponse`
+        def CreateDeviceSDPAnswer(request)
+          body = send_request('CreateDeviceSDPAnswer', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateDeviceSDPAnswerResponse.new
             model.deserialize(response['Response'])
             model
           else
