@@ -17,6 +17,35 @@
 module TencentCloud
   module Teo
     module V20220901
+      # AI 爬虫检测的具体配置。
+      class AICrawlerDetection < TencentCloud::Common::AbstractModel
+        # @param Enabled: AI 爬虫检测是否开启。取值有：
+        # <li>on：开启；</li>
+        # <li>off：关闭。</li>
+        # @type Enabled: String
+        # @param Action: AI 爬虫检测的执行动作，当 Enabled 为 on 时，此字段必填。SecurityAction 的 Name 取值仅支持：
+        # <li>Deny：拦截；</li>
+        # <li>Monitor：观察；</li>
+        # <li>Allow：放行；</li>
+        # <li>Challenge：挑战，其中 ChallengeActionParameters 中的 ChallengeOption 仅支持 JSChallenge 和 ManagedChallenge。</li>
+        # @type Action: :class:`Tencentcloud::Teo.v20220901.models.SecurityAction`
+
+        attr_accessor :Enabled, :Action
+
+        def initialize(enabled=nil, action=nil)
+          @Enabled = enabled
+          @Action = action
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['Action'].nil?
+            @Action = SecurityAction.new
+            @Action.deserialize(params['Action'])
+          end
+        end
+      end
+
       # API 资源。
       class APIResource < TencentCloud::Common::AbstractModel
         # @param Id: 资源 ID。
@@ -1929,6 +1958,32 @@ module TencentCloud
         end
       end
 
+      # Web 安全的基础 BOT 规则结构。
+      class BotManagementLite < TencentCloud::Common::AbstractModel
+        # @param CAPTCHAPageChallenge: 人机校验页的具体配置。
+        # @type CAPTCHAPageChallenge: :class:`Tencentcloud::Teo.v20220901.models.CAPTCHAPageChallenge`
+        # @param AICrawlerDetection: AI爬虫检测的具体配置。
+        # @type AICrawlerDetection: :class:`Tencentcloud::Teo.v20220901.models.AICrawlerDetection`
+
+        attr_accessor :CAPTCHAPageChallenge, :AICrawlerDetection
+
+        def initialize(captchapagechallenge=nil, aicrawlerdetection=nil)
+          @CAPTCHAPageChallenge = captchapagechallenge
+          @AICrawlerDetection = aicrawlerdetection
+        end
+
+        def deserialize(params)
+          unless params['CAPTCHAPageChallenge'].nil?
+            @CAPTCHAPageChallenge = CAPTCHAPageChallenge.new
+            @CAPTCHAPageChallenge.deserialize(params['CAPTCHAPageChallenge'])
+          end
+          unless params['AICrawlerDetection'].nil?
+            @AICrawlerDetection = AICrawlerDetection.new
+            @AICrawlerDetection.deserialize(params['AICrawlerDetection'])
+          end
+        end
+      end
+
       # bot 用户画像规则
       class BotPortraitRule < TencentCloud::Common::AbstractModel
         # @param Switch: 本功能的开关，取值有：
@@ -2235,6 +2290,22 @@ module TencentCloud
         end
       end
 
+      # 人机校验页的具体配置。
+      class CAPTCHAPageChallenge < TencentCloud::Common::AbstractModel
+        # @param Enabled: 人机校验页是否开启，取值有：<li>on：开启；</li><li>off：关闭。</li>
+        # @type Enabled: String
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
       # cc配置项。
       class CC < TencentCloud::Common::AbstractModel
         # @param Switch: Waf开关，取值为：
@@ -2323,8 +2394,8 @@ module TencentCloud
 
         attr_accessor :Switch, :CacheTime, :IgnoreCacheControl
         extend Gem::Deprecate
-        deprecate :IgnoreCacheControl, :none, 2026, 1
-        deprecate :IgnoreCacheControl=, :none, 2026, 1
+        deprecate :IgnoreCacheControl, :none, 2026, 2
+        deprecate :IgnoreCacheControl=, :none, 2026, 2
 
         def initialize(switch=nil, cachetime=nil, ignorecachecontrol=nil)
           @Switch = switch
@@ -2854,7 +2925,7 @@ module TencentCloud
       class CheckCnameStatusRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: 站点 ID。
         # @type ZoneId: String
-        # @param RecordNames: 加速域名列表。
+        # @param RecordNames: 需要检测 CNAME 配置状态的域名列表，可以为：<li>加速域名;</li><li>别称域名。</li>
         # @type RecordNames: Array
 
         attr_accessor :ZoneId, :RecordNames
@@ -2872,7 +2943,7 @@ module TencentCloud
 
       # CheckCnameStatus返回参数结构体
       class CheckCnameStatusResponse < TencentCloud::Common::AbstractModel
-        # @param CnameStatus: 加速域名 CNAME 状态信息列表。
+        # @param CnameStatus: 接入域名的 CNAME 配置状态信息列表。
         # @type CnameStatus: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3273,16 +3344,16 @@ module TencentCloud
         end
       end
 
-      # CNAME 状态
+      # 接入域名 CNAME 配置状态
       class CnameStatus < TencentCloud::Common::AbstractModel
-        # @param RecordName: 记录名称。
+        # @param RecordName: 接入域名。
         # @type RecordName: String
-        # @param Cname: CNAME 地址。
-        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @param Cname: EdgeOne 分配给接入域名的 CNAME。
         # @type Cname: String
-        # @param Status: CNAME 状态信息，取值有：
-        # <li>active：生效；</li>
-        # <li>moved：不生效；</li>
+        # @param Status: CNAME 配置状态校验结果，取值有：
+        # <li>active：表示接入域名已正确配置到 EdgeOne 为其分配的指定 CNAME；</li>
+        # <li>moved：表示接入域名未配置到 EdgeOne 为其分配的指定 CNAME；</li>
+        # <li>invalid：表示接入域名配置的 CNAME 为 EdgeOne 为其他域名分配的 CNAME，会导致服务异常，请修改为 EdgeOne 为该接入域名提供的指定 CNAME，您可通过本结构体的 Cname 字段获取 EdgeOne 为该接入域名提供的 CNAME。</li>
         # @type Status: String
 
         attr_accessor :RecordName, :Cname, :Status
@@ -4390,8 +4461,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyName, :Area, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 1
-        deprecate :DDosProtectionConfig=, :none, 2026, 1
+        deprecate :DDosProtectionConfig, :none, 2026, 2
+        deprecate :DDosProtectionConfig=, :none, 2026, 2
 
         def initialize(zoneid=nil, proxyname=nil, area=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil)
           @ZoneId = zoneid
@@ -4972,8 +5043,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Targets, :Mode, :EncodeUrl, :Headers, :PrefetchMediaSegments
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 1
-        deprecate :EncodeUrl=, :none, 2026, 1
+        deprecate :EncodeUrl, :none, 2026, 2
+        deprecate :EncodeUrl=, :none, 2026, 2
 
         def initialize(zoneid=nil, targets=nil, mode=nil, encodeurl=nil, headers=nil, prefetchmediasegments=nil)
           @ZoneId = zoneid
@@ -5057,8 +5128,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Type, :Method, :Targets, :EncodeUrl, :CacheTag
         extend Gem::Deprecate
-        deprecate :EncodeUrl, :none, 2026, 1
-        deprecate :EncodeUrl=, :none, 2026, 1
+        deprecate :EncodeUrl, :none, 2026, 2
+        deprecate :EncodeUrl=, :none, 2026, 2
 
         def initialize(zoneid=nil, type=nil, method=nil, targets=nil, encodeurl=nil, cachetag=nil)
           @ZoneId = zoneid
@@ -5668,10 +5739,10 @@ module TencentCloud
 
         attr_accessor :Type, :ZoneName, :Area, :PlanId, :AliasZoneName, :Tags, :AllowDuplicates, :JumpStart
         extend Gem::Deprecate
-        deprecate :AllowDuplicates, :none, 2026, 1
-        deprecate :AllowDuplicates=, :none, 2026, 1
-        deprecate :JumpStart, :none, 2026, 1
-        deprecate :JumpStart=, :none, 2026, 1
+        deprecate :AllowDuplicates, :none, 2026, 2
+        deprecate :AllowDuplicates=, :none, 2026, 2
+        deprecate :JumpStart, :none, 2026, 2
+        deprecate :JumpStart=, :none, 2026, 2
 
         def initialize(type=nil, zonename=nil, area=nil, planid=nil, aliaszonename=nil, tags=nil, allowduplicates=nil, jumpstart=nil)
           @Type = type
@@ -10977,8 +11048,8 @@ module TencentCloud
 
         attr_accessor :StartTime, :EndTime, :MetricNames, :ZoneIds, :ProxyIds, :Interval, :Filters, :Area
         extend Gem::Deprecate
-        deprecate :Area, :none, 2026, 1
-        deprecate :Area=, :none, 2026, 1
+        deprecate :Area, :none, 2026, 2
+        deprecate :Area=, :none, 2026, 2
 
         def initialize(starttime=nil, endtime=nil, metricnames=nil, zoneids=nil, proxyids=nil, interval=nil, filters=nil, area=nil)
           @StartTime = starttime
@@ -14795,8 +14866,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :ProxyId, :ProxyName, :Area, :Cname, :Ips, :Status, :Ipv6, :StaticIp, :AccelerateMainland, :DDosProtectionConfig, :L4ProxyRuleCount, :UpdateTime
         extend Gem::Deprecate
-        deprecate :DDosProtectionConfig, :none, 2026, 1
-        deprecate :DDosProtectionConfig=, :none, 2026, 1
+        deprecate :DDosProtectionConfig, :none, 2026, 2
+        deprecate :DDosProtectionConfig=, :none, 2026, 2
 
         def initialize(zoneid=nil, proxyid=nil, proxyname=nil, area=nil, cname=nil, ips=nil, status=nil, ipv6=nil, staticip=nil, acceleratemainland=nil, ddosprotectionconfig=nil, l4proxyrulecount=nil, updatetime=nil)
           @ZoneId = zoneid
@@ -16290,8 +16361,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :Hosts, :Mode, :ServerCertInfo, :ApplyType, :ClientCertInfo, :UpstreamCertInfo
         extend Gem::Deprecate
-        deprecate :ApplyType, :none, 2026, 1
-        deprecate :ApplyType=, :none, 2026, 1
+        deprecate :ApplyType, :none, 2026, 2
+        deprecate :ApplyType=, :none, 2026, 2
 
         def initialize(zoneid=nil, hosts=nil, mode=nil, servercertinfo=nil, applytype=nil, clientcertinfo=nil, upstreamcertinfo=nil)
           @ZoneId = zoneid
@@ -18751,12 +18822,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :OriginGroupName, :BackOriginGroupName, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 1
-        deprecate :VodeoSubAppId=, :none, 2026, 1
-        deprecate :VodeoDistributionRange, :none, 2026, 1
-        deprecate :VodeoDistributionRange=, :none, 2026, 1
-        deprecate :VodeoBucketId, :none, 2026, 1
-        deprecate :VodeoBucketId=, :none, 2026, 1
+        deprecate :VodeoSubAppId, :none, 2026, 2
+        deprecate :VodeoSubAppId=, :none, 2026, 2
+        deprecate :VodeoDistributionRange, :none, 2026, 2
+        deprecate :VodeoDistributionRange=, :none, 2026, 2
+        deprecate :VodeoBucketId, :none, 2026, 2
+        deprecate :VodeoBucketId=, :none, 2026, 2
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, origingroupname=nil, backorigingroupname=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -19073,12 +19144,12 @@ module TencentCloud
 
         attr_accessor :OriginType, :Origin, :BackupOrigin, :PrivateAccess, :PrivateParameters, :HostHeader, :VodeoSubAppId, :VodeoDistributionRange, :VodeoBucketId, :VodOriginScope, :VodBucketId
         extend Gem::Deprecate
-        deprecate :VodeoSubAppId, :none, 2026, 1
-        deprecate :VodeoSubAppId=, :none, 2026, 1
-        deprecate :VodeoDistributionRange, :none, 2026, 1
-        deprecate :VodeoDistributionRange=, :none, 2026, 1
-        deprecate :VodeoBucketId, :none, 2026, 1
-        deprecate :VodeoBucketId=, :none, 2026, 1
+        deprecate :VodeoSubAppId, :none, 2026, 2
+        deprecate :VodeoSubAppId=, :none, 2026, 2
+        deprecate :VodeoDistributionRange, :none, 2026, 2
+        deprecate :VodeoDistributionRange=, :none, 2026, 2
+        deprecate :VodeoBucketId, :none, 2026, 2
+        deprecate :VodeoBucketId=, :none, 2026, 2
 
         def initialize(origintype=nil, origin=nil, backuporigin=nil, privateaccess=nil, privateparameters=nil, hostheader=nil, vodeosubappid=nil, vodeodistributionrange=nil, vodeobucketid=nil, vodoriginscope=nil, vodbucketid=nil)
           @OriginType = origintype
@@ -20807,8 +20878,8 @@ module TencentCloud
 
         attr_accessor :Operator, :Target, :Values, :IgnoreCase, :Name, :IgnoreNameCase
         extend Gem::Deprecate
-        deprecate :IgnoreNameCase, :none, 2026, 1
-        deprecate :IgnoreNameCase=, :none, 2026, 1
+        deprecate :IgnoreNameCase, :none, 2026, 2
+        deprecate :IgnoreNameCase=, :none, 2026, 2
 
         def initialize(operator=nil, target=nil, values=nil, ignorecase=nil, name=nil, ignorenamecase=nil)
           @Operator = operator
@@ -21803,16 +21874,19 @@ module TencentCloud
         # @type ExceptionRules: :class:`Tencentcloud::Teo.v20220901.models.ExceptionRules`
         # @param BotManagement: Bot 管理配置。
         # @type BotManagement: :class:`Tencentcloud::Teo.v20220901.models.BotManagement`
+        # @param BotManagementLite: 基础 Bot 管理配置。
+        # @type BotManagementLite: :class:`Tencentcloud::Teo.v20220901.models.BotManagementLite`
 
-        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement
+        attr_accessor :CustomRules, :ManagedRules, :HttpDDoSProtection, :RateLimitingRules, :ExceptionRules, :BotManagement, :BotManagementLite
 
-        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil)
+        def initialize(customrules=nil, managedrules=nil, httpddosprotection=nil, ratelimitingrules=nil, exceptionrules=nil, botmanagement=nil, botmanagementlite=nil)
           @CustomRules = customrules
           @ManagedRules = managedrules
           @HttpDDoSProtection = httpddosprotection
           @RateLimitingRules = ratelimitingrules
           @ExceptionRules = exceptionrules
           @BotManagement = botmanagement
+          @BotManagementLite = botmanagementlite
         end
 
         def deserialize(params)
@@ -21839,6 +21913,10 @@ module TencentCloud
           unless params['BotManagement'].nil?
             @BotManagement = BotManagement.new
             @BotManagement.deserialize(params['BotManagement'])
+          end
+          unless params['BotManagementLite'].nil?
+            @BotManagementLite = BotManagementLite.new
+            @BotManagementLite.deserialize(params['BotManagementLite'])
           end
         end
       end

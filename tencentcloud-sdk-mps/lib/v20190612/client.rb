@@ -3704,6 +3704,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # # 同步配音接口
+        # ## 音色克隆
+        # ## 语音合成
+
+        # @param request: Request instance for SyncDubbing.
+        # @type request: :class:`Tencentcloud::mps::V20190612::SyncDubbingRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::SyncDubbingResponse`
+        def SyncDubbing(request)
+          body = send_request('SyncDubbing', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SyncDubbingResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 文本翻译
 
         # @param request: Request instance for TextTranslation.

@@ -1835,10 +1835,11 @@ module TencentCloud
       class SendEmailRequest < TencentCloud::Common::AbstractModel
         # @param FromEmailAddress: 发件人邮箱地址。不使用别名时请直接填写发件人邮箱地址，例如：noreply@mail.qcloud.com如需填写发件人别名时，请按照如下方式（注意别名与邮箱地址之间必须使用一个空格隔开）：别名+一个空格+<邮箱地址>，别名中不能带有冒号(:)。
         # @type FromEmailAddress: String
-        # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
-        # @type Destination: Array
         # @param Subject: 邮件主题
         # @type Subject: String
+        # @param Destination: 收信人邮箱地址，最多支持群发50人。注意：邮件内容会显示所有收件人地址，非群发邮件请多次调用API发送。
+        # Destination/Cc/Bcc三个参数必须至少存在一个。
+        # @type Destination: Array
         # @param ReplyToAddresses: 邮件的“回复”电子邮件地址。可以填写您能收到邮件的邮箱地址，可以是个人邮箱。如果不填，收件人的回复邮件将会发送失败。
         # @type ReplyToAddresses: String
         # @param Cc: 抄送人邮箱地址，最多支持抄送20人。
@@ -1864,12 +1865,12 @@ module TencentCloud
         # @param HeaderFrom: smtp头中的from字段，建议域名与FromEmailAddress保持一致
         # @type HeaderFrom: String
 
-        attr_accessor :FromEmailAddress, :Destination, :Subject, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders, :HeaderFrom
+        attr_accessor :FromEmailAddress, :Subject, :Destination, :ReplyToAddresses, :Cc, :Bcc, :Template, :Simple, :Attachments, :Unsubscribe, :TriggerType, :SmtpMessageId, :SmtpHeaders, :HeaderFrom
 
-        def initialize(fromemailaddress=nil, destination=nil, subject=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil, smtpmessageid=nil, smtpheaders=nil, headerfrom=nil)
+        def initialize(fromemailaddress=nil, subject=nil, destination=nil, replytoaddresses=nil, cc=nil, bcc=nil, template=nil, simple=nil, attachments=nil, unsubscribe=nil, triggertype=nil, smtpmessageid=nil, smtpheaders=nil, headerfrom=nil)
           @FromEmailAddress = fromemailaddress
-          @Destination = destination
           @Subject = subject
+          @Destination = destination
           @ReplyToAddresses = replytoaddresses
           @Cc = cc
           @Bcc = bcc
@@ -1885,8 +1886,8 @@ module TencentCloud
 
         def deserialize(params)
           @FromEmailAddress = params['FromEmailAddress']
-          @Destination = params['Destination']
           @Subject = params['Subject']
+          @Destination = params['Destination']
           @ReplyToAddresses = params['ReplyToAddresses']
           @Cc = params['Cc']
           @Bcc = params['Bcc']
@@ -1994,8 +1995,8 @@ module TencentCloud
 
         attr_accessor :MessageId, :ToEmailAddress, :FromEmailAddress, :SendStatus, :DeliverStatus, :DeliverMessage, :RequestTime, :DeliverTime, :UserOpened, :UserClicked, :UserUnsubscribed, :UserComplainted, :UserComplained
         extend Gem::Deprecate
-        deprecate :UserComplainted, :none, 2026, 1
-        deprecate :UserComplainted=, :none, 2026, 1
+        deprecate :UserComplainted, :none, 2026, 2
+        deprecate :UserComplainted=, :none, 2026, 2
 
         def initialize(messageid=nil, toemailaddress=nil, fromemailaddress=nil, sendstatus=nil, deliverstatus=nil, delivermessage=nil, requesttime=nil, delivertime=nil, useropened=nil, userclicked=nil, userunsubscribed=nil, usercomplainted=nil, usercomplained=nil)
           @MessageId = messageid

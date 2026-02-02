@@ -142,31 +142,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 混元生3D接口，采用 Polygon 1.5模型，输入3D 高模后，可生成布线规整，较低面数的3D 模型。
-        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
-
-        # @param request: Request instance for Describe3DSmartTopologyJob.
-        # @type request: :class:`Tencentcloud::hunyuan::V20230901::Describe3DSmartTopologyJobRequest`
-        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::Describe3DSmartTopologyJobResponse`
-        def Describe3DSmartTopologyJob(request)
-          body = send_request('Describe3DSmartTopologyJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = Describe3DSmartTopologyJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 删除文件。
 
         # @param request: Request instance for FilesDeletions.
@@ -530,31 +505,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetPayModeResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 混元生3D接口，采用 Polygon 1.5模型，输入3D 高模后，可生成布线规整，较低面数的3D 模型。
-        # 默认提供1个并发，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后，才能开始处理下一个任务。
-
-        # @param request: Request instance for Submit3DSmartTopologyJob.
-        # @type request: :class:`Tencentcloud::hunyuan::V20230901::Submit3DSmartTopologyJobRequest`
-        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::Submit3DSmartTopologyJobResponse`
-        def Submit3DSmartTopologyJob(request)
-          body = send_request('Submit3DSmartTopologyJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = Submit3DSmartTopologyJobResponse.new
             model.deserialize(response['Response'])
             model
           else

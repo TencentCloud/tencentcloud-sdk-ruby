@@ -236,6 +236,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建AIGC调用API的Token。创建后数据同步有延时，约30秒后可查询或删除。
+
+        # @param request: Request instance for CreateAigcApiToken.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateAigcApiTokenRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateAigcApiTokenResponse`
+        def CreateAigcApiToken(request)
+          body = send_request('CreateAigcApiToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAigcApiTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，针对指定模型进行主体创建。
 
         # @param request: Request instance for CreateAigcCustomElement.
@@ -1158,6 +1182,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除 AIGC API Token
+
+        # @param request: Request instance for DeleteAigcApiToken.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteAigcApiTokenRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteAigcApiTokenResponse`
+        def DeleteAigcApiToken(request)
+          body = send_request('DeleteAigcApiToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAigcApiTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除用户自定义转动图模板。
 
         # @param request: Request instance for DeleteAnimatedGraphicsTemplate.
@@ -1828,6 +1876,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAdaptiveDynamicStreamingTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 AIGC API Token 列表。创建或删除后数据同步有延时，约30秒后可查询最新数据。
+
+        # @param request: Request instance for DescribeAigcApiTokens.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcApiTokensRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcApiTokensResponse`
+        def DescribeAigcApiTokens(request)
+          body = send_request('DescribeAigcApiTokens', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcApiTokensResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 该接口用于获取 AIGC 人脸信息。注意，调用本接口会产生人脸识别费用，请参考[计费文档](https://cloud.tencent.com/document/product/266/95125#96b3b59a-f9e1-49e9-966a-bedb70a4bf12)。
+
+        # @param request: Request instance for DescribeAigcFaceInfo.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcFaceInfoRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcFaceInfoResponse`
+        def DescribeAigcFaceInfo(request)
+          body = send_request('DescribeAigcFaceInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcFaceInfoResponse.new
             model.deserialize(response['Response'])
             model
           else

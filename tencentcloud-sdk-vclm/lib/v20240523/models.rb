@@ -1286,8 +1286,8 @@ module TencentCloud
 
         attr_accessor :VideoUrl, :Prompt, :Images, :Image, :VideoEditParam, :LogoAdd, :LogoParam
         extend Gem::Deprecate
-        deprecate :Image, :none, 2026, 1
-        deprecate :Image=, :none, 2026, 1
+        deprecate :Image, :none, 2026, 2
+        deprecate :Image=, :none, 2026, 2
 
         def initialize(videourl=nil, prompt=nil, images=nil, image=nil, videoeditparam=nil, logoadd=nil, logoparam=nil)
           @VideoUrl = videourl

@@ -211,10 +211,10 @@ module TencentCloud
 
         attr_accessor :Model, :Messages, :Stream, :StreamModeration, :TopP, :Temperature, :EnableEnhancement, :Tools, :ToolChoice, :CustomTool, :SearchInfo, :Citation, :EnableSpeedSearch, :EnableMultimedia, :EnableDeepSearch, :Seed, :ForceSearchEnhancement, :Stop, :EnableRecommendedQuestions, :EnableDeepRead, :WebSearchOptions, :TopicChoice, :EnableThinking
         extend Gem::Deprecate
-        deprecate :EnableDeepSearch, :none, 2026, 1
-        deprecate :EnableDeepSearch=, :none, 2026, 1
-        deprecate :EnableDeepRead, :none, 2026, 1
-        deprecate :EnableDeepRead=, :none, 2026, 1
+        deprecate :EnableDeepSearch, :none, 2026, 2
+        deprecate :EnableDeepSearch=, :none, 2026, 2
+        deprecate :EnableDeepRead, :none, 2026, 2
+        deprecate :EnableDeepRead=, :none, 2026, 2
 
         def initialize(model=nil, messages=nil, stream=nil, streammoderation=nil, topp=nil, temperature=nil, enableenhancement=nil, tools=nil, toolchoice=nil, customtool=nil, searchinfo=nil, citation=nil, enablespeedsearch=nil, enablemultimedia=nil, enabledeepsearch=nil, seed=nil, forcesearchenhancement=nil, stop=nil, enablerecommendedquestions=nil, enabledeepread=nil, websearchoptions=nil, topicchoice=nil, enablethinking=nil)
           @Model = model
@@ -324,8 +324,8 @@ module TencentCloud
 
         attr_accessor :Created, :Usage, :Note, :Id, :Choices, :ErrorMsg, :ModerationLevel, :SearchInfo, :Replaces, :RecommendedQuestions, :Processes, :RequestId
         extend Gem::Deprecate
-        deprecate :ModerationLevel, :none, 2026, 1
-        deprecate :ModerationLevel=, :none, 2026, 1
+        deprecate :ModerationLevel, :none, 2026, 2
+        deprecate :ModerationLevel=, :none, 2026, 2
 
         def initialize(created=nil, usage=nil, note=nil, id=nil, choices=nil, errormsg=nil, moderationlevel=nil, searchinfo=nil, replaces=nil, recommendedquestions=nil, processes=nil, requestid=nil)
           @Created = created
@@ -687,61 +687,6 @@ module TencentCloud
         end
       end
 
-      # Describe3DSmartTopologyJob请求参数结构体
-      class Describe3DSmartTopologyJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
-        # @type JobId: String
-
-        attr_accessor :JobId
-
-        def initialize(jobid=nil)
-          @JobId = jobid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-        end
-      end
-
-      # Describe3DSmartTopologyJob返回参数结构体
-      class Describe3DSmartTopologyJobResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功 示例值：RUN。
-        # @type Status: String
-        # @param ErrorCode: 错误码。
-        # @type ErrorCode: String
-        # @param ErrorMessage: 错误信息。
-        # @type ErrorMessage: String
-        # @param ResultFile3Ds: 生成文件的URL地址，有效期1天。
-        # @type ResultFile3Ds: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultFile3Ds, :RequestId
-
-        def initialize(status=nil, errorcode=nil, errormessage=nil, resultfile3ds=nil, requestid=nil)
-          @Status = status
-          @ErrorCode = errorcode
-          @ErrorMessage = errormessage
-          @ResultFile3Ds = resultfile3ds
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @Status = params['Status']
-          @ErrorCode = params['ErrorCode']
-          @ErrorMessage = params['ErrorMessage']
-          unless params['ResultFile3Ds'].nil?
-            @ResultFile3Ds = []
-            params['ResultFile3Ds'].each do |i|
-              file3d_tmp = File3D.new
-              file3d_tmp.deserialize(i)
-              @ResultFile3Ds << file3d_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # Embedding 信息。
       class EmbeddingData < TencentCloud::Common::AbstractModel
         # @param Embedding: Embedding 信息，目前为 1024 维浮点数。
@@ -808,30 +753,6 @@ module TencentCloud
         def deserialize(params)
           @Msg = params['Msg']
           @Code = params['Code']
-        end
-      end
-
-      # 3D文件
-      class File3D < TencentCloud::Common::AbstractModel
-        # @param Type: 3D文件的格式。取值范围：GIF, OBJ
-        # @type Type: String
-        # @param Url: 文件的Url（有效期24小时）
-        # @type Url: String
-        # @param PreviewImageUrl: 预览图片Url
-        # @type PreviewImageUrl: String
-
-        attr_accessor :Type, :Url, :PreviewImageUrl
-
-        def initialize(type=nil, url=nil, previewimageurl=nil)
-          @Type = type
-          @Url = url
-          @PreviewImageUrl = previewimageurl
-        end
-
-        def deserialize(params)
-          @Type = params['Type']
-          @Url = params['Url']
-          @PreviewImageUrl = params['PreviewImageUrl']
         end
       end
 
@@ -1131,10 +1052,10 @@ module TencentCloud
 
         attr_accessor :Data, :FirstID, :LastID, :HasMore, :Object, :FirstMsgID, :LastMsgID, :RequestId
         extend Gem::Deprecate
-        deprecate :FirstID, :none, 2026, 1
-        deprecate :FirstID=, :none, 2026, 1
-        deprecate :LastID, :none, 2026, 1
-        deprecate :LastID=, :none, 2026, 1
+        deprecate :FirstID, :none, 2026, 2
+        deprecate :FirstID=, :none, 2026, 2
+        deprecate :LastID, :none, 2026, 2
+        deprecate :LastID=, :none, 2026, 2
 
         def initialize(data=nil, firstid=nil, lastid=nil, hasmore=nil, object=nil, firstmsgid=nil, lastmsgid=nil, requestid=nil)
           @Data = data
@@ -1756,26 +1677,6 @@ module TencentCloud
 
         def deserialize(params)
           @Url = params['Url']
-        end
-      end
-
-      # 3D文件
-      class InputFile3D < TencentCloud::Common::AbstractModel
-        # @param Url: 文件的Url（有效期24小时）
-        # @type Url: String
-        # @param Type: 文件格式
-        # @type Type: String
-
-        attr_accessor :Url, :Type
-
-        def initialize(url=nil, type=nil)
-          @Url = url
-          @Type = type
-        end
-
-        def deserialize(params)
-          @Url = params['Url']
-          @Type = params['Type']
         end
       end
 
@@ -2562,58 +2463,6 @@ module TencentCloud
           @SongId = params['SongId']
           @SongMid = params['SongMid']
           @Vip = params['Vip']
-        end
-      end
-
-      # Submit3DSmartTopologyJob请求参数结构体
-      class Submit3DSmartTopologyJobRequest < TencentCloud::Common::AbstractModel
-        # @param File3D: 源3D文件模型链接，参考值：
-        # Type：glb，obj格式文件必选其一。
-        # Url：文件大小不超过200MB。
-        # 3D模型要求：复杂模型和拓扑过的模型暂无法支持减面操作，建议输入未拓扑过的高模，比如混元3D生成的模型，适用度比较高的类别：硬表面、游戏角色、道具、日常生活用品等。
-        # @type File3D: :class:`Tencentcloud::Hunyuan.v20230901.models.InputFile3D`
-        # @param PolygonType: 多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:
-        # triangle:三角形面。
-        # quadrilateral：四边形面。
-        # @type PolygonType: String
-        # @param FaceLevel: 减面后面数档位类型，可选值：high，medium, low。
-        # @type FaceLevel: String
-
-        attr_accessor :File3D, :PolygonType, :FaceLevel
-
-        def initialize(file3d=nil, polygontype=nil, facelevel=nil)
-          @File3D = file3d
-          @PolygonType = polygontype
-          @FaceLevel = facelevel
-        end
-
-        def deserialize(params)
-          unless params['File3D'].nil?
-            @File3D = InputFile3D.new
-            @File3D.deserialize(params['File3D'])
-          end
-          @PolygonType = params['PolygonType']
-          @FaceLevel = params['FaceLevel']
-        end
-      end
-
-      # Submit3DSmartTopologyJob返回参数结构体
-      class Submit3DSmartTopologyJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
-        # @type JobId: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :JobId, :RequestId
-
-        def initialize(jobid=nil, requestid=nil)
-          @JobId = jobid
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @JobId = params['JobId']
-          @RequestId = params['RequestId']
         end
       end
 
