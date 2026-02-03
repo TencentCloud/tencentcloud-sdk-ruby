@@ -166,6 +166,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 颁发 License
+
+        # @param request: Request instance for IssueLicense.
+        # @type request: :class:`Tencentcloud::cloudapp::V20220530::IssueLicenseRequest`
+        # @rtype: :class:`Tencentcloud::cloudapp::V20220530::IssueLicenseResponse`
+        def IssueLicense(request)
+          body = send_request('IssueLicense', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = IssueLicenseResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 从软件进程读取 LICENSE。
 
         # @param request: Request instance for VerifyLicense.

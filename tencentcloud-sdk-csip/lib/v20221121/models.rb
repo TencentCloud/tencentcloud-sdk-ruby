@@ -5078,16 +5078,19 @@ module TencentCloud
         # @type SourceIPID: Integer
         # @param AccUin: 访问账号uin
         # @type AccUin: String
+        # @param AccessKey: 访问密钥，注意：不支持临时密钥的情况
+        # @type AccessKey: String
         # @param Filter: 过滤器
         # @type Filter: :class:`Tencentcloud::Csip.v20221121.models.Filter`
 
-        attr_accessor :MemberId, :AccessKeyID, :SourceIPID, :AccUin, :Filter
+        attr_accessor :MemberId, :AccessKeyID, :SourceIPID, :AccUin, :AccessKey, :Filter
 
-        def initialize(memberid=nil, accesskeyid=nil, sourceipid=nil, accuin=nil, filter=nil)
+        def initialize(memberid=nil, accesskeyid=nil, sourceipid=nil, accuin=nil, accesskey=nil, filter=nil)
           @MemberId = memberid
           @AccessKeyID = accesskeyid
           @SourceIPID = sourceipid
           @AccUin = accuin
+          @AccessKey = accesskey
           @Filter = filter
         end
 
@@ -5096,6 +5099,7 @@ module TencentCloud
           @AccessKeyID = params['AccessKeyID']
           @SourceIPID = params['SourceIPID']
           @AccUin = params['AccUin']
+          @AccessKey = params['AccessKey']
           unless params['Filter'].nil?
             @Filter = Filter.new
             @Filter.deserialize(params['Filter'])

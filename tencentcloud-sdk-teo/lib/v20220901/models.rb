@@ -22584,15 +22584,19 @@ module TencentCloud
       class TCRCEOption < TencentCloud::Common::AbstractModel
         # @param Channel: Channel 信息。
         # @type Channel: String
+        # @param Region: RCE Channel 的开通地域，目前可选的取值范围：<li>ap-beijing：华北地区（北京）；</li><li>ap-jakarta：亚太东南（雅加达）；</li><li>ap-singapore：亚太东南（新加坡）；</li><li>eu-frankfurt：欧洲地区（法兰克福）；</li><li>na-siliconvalley：美国西部（硅谷）。</li>
+        # @type Region: String
 
-        attr_accessor :Channel
+        attr_accessor :Channel, :Region
 
-        def initialize(channel=nil)
+        def initialize(channel=nil, region=nil)
           @Channel = channel
+          @Region = region
         end
 
         def deserialize(params)
           @Channel = params['Channel']
+          @Region = params['Region']
         end
       end
 

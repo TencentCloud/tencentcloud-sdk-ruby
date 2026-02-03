@@ -1126,10 +1126,10 @@ module TencentCloud
 
         attr_accessor :Id, :ClusterId, :Ftitle, :ClusterName, :RegionId, :ZoneId, :AppId, :Uin, :ProjectId, :VpcId, :SubnetId, :Status, :AddTime, :RunTime, :Config, :MasterIp, :EmrVersion, :ChargeType, :TradeVersion, :ResourceOrderId, :IsTradeCluster, :AlarmInfo, :IsWoodpeckerCluster, :MetaDb, :Tags, :HiveMetaDb, :ServiceClass, :AliasInfo, :ProductId, :Zone, :SceneName, :SceneServiceClass, :SceneEmrVersion, :DisplayName, :VpcName, :SubnetName, :ClusterExternalServiceInfo, :UniqVpcId, :UniqSubnetId, :TopologyInfoList, :IsMultiZoneCluster, :IsCvmReplace, :ClusterTitle, :ConfigDetail, :BindFileSystemNum, :ClusterRelationInfoList, :RedisId
         extend Gem::Deprecate
-        deprecate :Ftitle, :none, 2026, 1
-        deprecate :Ftitle=, :none, 2026, 1
-        deprecate :Config, :none, 2026, 1
-        deprecate :Config=, :none, 2026, 1
+        deprecate :Ftitle, :none, 2026, 2
+        deprecate :Ftitle=, :none, 2026, 2
+        deprecate :Config, :none, 2026, 2
+        deprecate :Config=, :none, 2026, 2
 
         def initialize(id=nil, clusterid=nil, ftitle=nil, clustername=nil, regionid=nil, zoneid=nil, appid=nil, uin=nil, projectid=nil, vpcid=nil, subnetid=nil, status=nil, addtime=nil, runtime=nil, config=nil, masterip=nil, emrversion=nil, chargetype=nil, tradeversion=nil, resourceorderid=nil, istradecluster=nil, alarminfo=nil, iswoodpeckercluster=nil, metadb=nil, tags=nil, hivemetadb=nil, serviceclass=nil, aliasinfo=nil, productid=nil, zone=nil, scenename=nil, sceneserviceclass=nil, sceneemrversion=nil, displayname=nil, vpcname=nil, subnetname=nil, clusterexternalserviceinfo=nil, uniqvpcid=nil, uniqsubnetid=nil, topologyinfolist=nil, ismultizonecluster=nil, iscvmreplace=nil, clustertitle=nil, configdetail=nil, bindfilesystemnum=nil, clusterrelationinfolist=nil, redisid=nil)
           @Id = id
@@ -2101,6 +2101,29 @@ module TencentCloud
         # 37:表示EMR-V3.4.0
         # 44:表示EMR-V3.5.0
         # 53:表示EMR-V3.6.0
+        # 58:表示EMR-3.6.1
+        # 59:表示EMR-serverless-1.0.0
+        # 60:表示EMR-TKE-1.1.0
+        # 61:表示SR-V2.1.0
+        # 62:表示SR-V2.1.0-SharedData
+        # 63:表示SR-V2.1.0.tlinux
+        # 64:表示统一元数据管理项目
+        # 65:表示EMR-TKE-AI-1.0.0
+        # 66:表示RSS-1.0.0
+        # 67:表示SR-V2.2.0
+        # 68:表示SR-V2.2.0.tlinux
+        # 69:表示EMR-AI-1.1.0
+        # 70:表示SR-V2.2.1
+        # 71:表示EMR-3.7.0
+        # 72:表示EMR-serverless-1.0.1
+        # 73:表示KAFKA-2.0.1
+        # 74:表示SR-V2.2.2
+        # 75:表示EMR-TKE-AI-1.1.0
+        # 76:表示EMR-V3.7.1
+        # 77:表示SERVERLESS-TCBASE-1.0.0
+        # 78:表示EMR-V3.6.2
+        # 79:表示STARROCKS-V2.2.2
+        # 80:表示EMR-AI-V1.1.1
         # @type ProductId: Integer
         # @param Software: 部署的组件列表。不同的EMR产品ID（ProductId：具体含义参考入参ProductId字段）对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
         # 填写实例值：hive、flink。
@@ -13326,12 +13349,12 @@ module TencentCloud
 
         attr_accessor :DetectAlert, :DetetcFunctionKey, :DetetcFunctionValue, :DetetcTime, :DetectFunctionKey, :DetectFunctionValue, :DetectTime
         extend Gem::Deprecate
-        deprecate :DetetcFunctionKey, :none, 2026, 1
-        deprecate :DetetcFunctionKey=, :none, 2026, 1
-        deprecate :DetetcFunctionValue, :none, 2026, 1
-        deprecate :DetetcFunctionValue=, :none, 2026, 1
-        deprecate :DetetcTime, :none, 2026, 1
-        deprecate :DetetcTime=, :none, 2026, 1
+        deprecate :DetetcFunctionKey, :none, 2026, 2
+        deprecate :DetetcFunctionKey=, :none, 2026, 2
+        deprecate :DetetcFunctionValue, :none, 2026, 2
+        deprecate :DetetcFunctionValue=, :none, 2026, 2
+        deprecate :DetetcTime, :none, 2026, 2
+        deprecate :DetetcTime=, :none, 2026, 2
 
         def initialize(detectalert=nil, detetcfunctionkey=nil, detetcfunctionvalue=nil, detetctime=nil, detectfunctionkey=nil, detectfunctionvalue=nil, detecttime=nil)
           @DetectAlert = detectalert

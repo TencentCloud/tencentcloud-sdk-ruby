@@ -184,6 +184,103 @@ module TencentCloud
         end
       end
 
+      # BindCloudBaseAccessDomain请求参数结构体
+      class BindCloudBaseAccessDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务Id，目前是指环境Id
+        # @type ServiceId: String
+        # @param Domain: 自定义域名
+        # @type Domain: String
+        # @param CertId: 腾讯云证书Id
+        # @type CertId: String
+        # @param BindFlag: 默认1，1 绑定默认Cdn，2 绑定TcbIngress（不经过cdn），4 绑定自定义cdn
+        # @type BindFlag: Integer
+        # @param CustomCname: 自定义cdn cname域名
+        # @type CustomCname: String
+
+        attr_accessor :ServiceId, :Domain, :CertId, :BindFlag, :CustomCname
+
+        def initialize(serviceid=nil, domain=nil, certid=nil, bindflag=nil, customcname=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+          @CertId = certid
+          @BindFlag = bindflag
+          @CustomCname = customcname
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @CertId = params['CertId']
+          @BindFlag = params['BindFlag']
+          @CustomCname = params['CustomCname']
+        end
+      end
+
+      # BindCloudBaseAccessDomain返回参数结构体
+      class BindCloudBaseAccessDomainResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务Id，目前是指环境Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceId, :RequestId
+
+        def initialize(serviceid=nil, requestid=nil)
+          @ServiceId = serviceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # BindCloudBaseGWDomain请求参数结构体
+      class BindCloudBaseGWDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Domain: 服务域名
+        # @type Domain: String
+        # @param CertId: 证书ID
+        # @type CertId: String
+        # @param EnableRegion: 是否启用多地域
+        # @type EnableRegion: Boolean
+
+        attr_accessor :ServiceId, :Domain, :CertId, :EnableRegion
+
+        def initialize(serviceid=nil, domain=nil, certid=nil, enableregion=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+          @CertId = certid
+          @EnableRegion = enableregion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @CertId = params['CertId']
+          @EnableRegion = params['EnableRegion']
+        end
+      end
+
+      # BindCloudBaseGWDomain返回参数结构体
+      class BindCloudBaseGWDomainResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BindEnvGateway请求参数结构体
       class BindEnvGatewayRequest < TencentCloud::Common::AbstractModel
         # @param SubEnvId: 子环境id
@@ -315,6 +412,26 @@ module TencentCloud
         end
       end
 
+      # http访问服务客户端限频
+      class CloudBaseClientQPSPolicy < TencentCloud::Common::AbstractModel
+        # @param LimitBy: UserID 或 ClientIP 或 None，如果为 None 代表不限制
+        # @type LimitBy: String
+        # @param LimitValue: 限制值
+        # @type LimitValue: Integer
+
+        attr_accessor :LimitBy, :LimitValue
+
+        def initialize(limitby=nil, limitvalue=nil)
+          @LimitBy = limitby
+          @LimitValue = limitvalue
+        end
+
+        def deserialize(params)
+          @LimitBy = params['LimitBy']
+          @LimitValue = params['LimitValue']
+        end
+      end
+
       # 代码仓库里 Repo的信息描述
       class CloudBaseCodeRepoDetail < TencentCloud::Common::AbstractModel
         # @param Name: repo的名字
@@ -395,6 +512,239 @@ module TencentCloud
           @Index = params['Index']
           @Account = params['Account']
           @Password = params['Password']
+        end
+      end
+
+      # tcb 网关API
+      class CloudBaseGWAPI < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param APIId: API ID
+        # @type APIId: String
+        # @param Path: API Path
+        # @type Path: String
+        # @param Type: API 类型
+        # @type Type: Integer
+        # @param Name: API 名
+        # @type Name: String
+        # @param CreateTime: API创建时间
+        # @type CreateTime: Integer
+        # @param Custom: 自定义值通用字段：
+        # Type为1时，该值为空。
+        # Type为2时，该值为容器的代理IP:PORT数组。
+        # @type Custom: String
+        # @param EnableAuth: 表示是否开启认证
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableAuth: Boolean
+        # @param EnvId: 云开发环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param AccessType: 访问类型（该参数暂不对外暴露）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccessType: Integer
+        # @param UnionStatus: 统一发布状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnionStatus: Integer
+        # @param Domain: 域名（*表示所有域名）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Domain: String
+        # @param ConflictFlag: 是否有路径冲突
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConflictFlag: Boolean
+        # @param DomainStatus: 域名状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DomainStatus: Integer
+        # @param IsShortPath: 是否开启路径透传，默认true表示短路径，即不开启(已弃用)
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsShortPath: Boolean
+        # @param PathTransmission: 路径透传，默认0关闭，1开启，2关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PathTransmission: Integer
+        # @param EnableCheckAcrossDomain: 跨域校验，默认0开启，1开启，2关闭
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCheckAcrossDomain: Integer
+        # @param StaticFileDirectory: 静态托管文件目录
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StaticFileDirectory: String
+        # @param QPSPolicy: QPS策略
+        # @type QPSPolicy: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseGWAPIQPSPolicy`
+
+        attr_accessor :ServiceId, :APIId, :Path, :Type, :Name, :CreateTime, :Custom, :EnableAuth, :EnvId, :AccessType, :UnionStatus, :Domain, :ConflictFlag, :DomainStatus, :IsShortPath, :PathTransmission, :EnableCheckAcrossDomain, :StaticFileDirectory, :QPSPolicy
+
+        def initialize(serviceid=nil, apiid=nil, path=nil, type=nil, name=nil, createtime=nil, custom=nil, enableauth=nil, envid=nil, accesstype=nil, unionstatus=nil, domain=nil, conflictflag=nil, domainstatus=nil, isshortpath=nil, pathtransmission=nil, enablecheckacrossdomain=nil, staticfiledirectory=nil, qpspolicy=nil)
+          @ServiceId = serviceid
+          @APIId = apiid
+          @Path = path
+          @Type = type
+          @Name = name
+          @CreateTime = createtime
+          @Custom = custom
+          @EnableAuth = enableauth
+          @EnvId = envid
+          @AccessType = accesstype
+          @UnionStatus = unionstatus
+          @Domain = domain
+          @ConflictFlag = conflictflag
+          @DomainStatus = domainstatus
+          @IsShortPath = isshortpath
+          @PathTransmission = pathtransmission
+          @EnableCheckAcrossDomain = enablecheckacrossdomain
+          @StaticFileDirectory = staticfiledirectory
+          @QPSPolicy = qpspolicy
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @APIId = params['APIId']
+          @Path = params['Path']
+          @Type = params['Type']
+          @Name = params['Name']
+          @CreateTime = params['CreateTime']
+          @Custom = params['Custom']
+          @EnableAuth = params['EnableAuth']
+          @EnvId = params['EnvId']
+          @AccessType = params['AccessType']
+          @UnionStatus = params['UnionStatus']
+          @Domain = params['Domain']
+          @ConflictFlag = params['ConflictFlag']
+          @DomainStatus = params['DomainStatus']
+          @IsShortPath = params['IsShortPath']
+          @PathTransmission = params['PathTransmission']
+          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
+          @StaticFileDirectory = params['StaticFileDirectory']
+          unless params['QPSPolicy'].nil?
+            @QPSPolicy = CloudBaseGWAPIQPSPolicy.new
+            @QPSPolicy.deserialize(params['QPSPolicy'])
+          end
+        end
+      end
+
+      # http访问服务路由qps策略
+      class CloudBaseGWAPIQPSPolicy < TencentCloud::Common::AbstractModel
+        # @param QPSTotal: qps限额总量
+        # @type QPSTotal: Integer
+        # @param QPSPerClient: 客户端限频，如果不限制，LimitBy=None
+        # @type QPSPerClient: :class:`Tencentcloud::Tcb.v20180608.models.CloudBaseClientQPSPolicy`
+
+        attr_accessor :QPSTotal, :QPSPerClient
+
+        def initialize(qpstotal=nil, qpsperclient=nil)
+          @QPSTotal = qpstotal
+          @QPSPerClient = qpsperclient
+        end
+
+        def deserialize(params)
+          @QPSTotal = params['QPSTotal']
+          unless params['QPSPerClient'].nil?
+            @QPSPerClient = CloudBaseClientQPSPolicy.new
+            @QPSPerClient.deserialize(params['QPSPerClient'])
+          end
+        end
+      end
+
+      # 网关服务
+      class CloudBaseGWService < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Domain: 服务域名
+        # @type Domain: String
+        # @param OpenTime: 开启时间
+        # @type OpenTime: Integer
+        # @param Status: 绑定状态，1 绑定中；2绑定失败；3绑定成功
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param IsPreempted: 是否被抢占, 被抢占表示域名被其他环境绑定了，需要解绑或者重新绑定。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsPreempted: Boolean
+        # @param EnableRegion: 是否开启多地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRegion: Boolean
+        # @param Cname: cdn CName地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cname: String
+        # @param UnionStatus: 统一域名状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UnionStatus: Integer
+        # @param CnameStatus: CName状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CnameStatus: Integer
+        # @param CertId: 证书Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CertId: String
+        # @param ForceHttps: 是否强制https
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForceHttps: Boolean
+        # @param IcpForbidStatus: icp黑名单封禁状态，0-未封禁，1-封禁
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IcpForbidStatus: Integer
+        # @param CustomRoutingRules: 自定义路由规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRoutingRules: String
+        # @param BindFlag: 绑定类型，1绑定cdn，2源站，4自定义
+        # @type BindFlag: Integer
+        # @param OriginCname: TcbIngress源站cname
+        # @type OriginCname: String
+        # @param CustomCname: 自定义cname
+        # @type CustomCname: String
+
+        attr_accessor :ServiceId, :Domain, :OpenTime, :Status, :IsPreempted, :EnableRegion, :Cname, :UnionStatus, :CnameStatus, :CertId, :ForceHttps, :IcpForbidStatus, :CustomRoutingRules, :BindFlag, :OriginCname, :CustomCname
+
+        def initialize(serviceid=nil, domain=nil, opentime=nil, status=nil, ispreempted=nil, enableregion=nil, cname=nil, unionstatus=nil, cnamestatus=nil, certid=nil, forcehttps=nil, icpforbidstatus=nil, customroutingrules=nil, bindflag=nil, origincname=nil, customcname=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+          @OpenTime = opentime
+          @Status = status
+          @IsPreempted = ispreempted
+          @EnableRegion = enableregion
+          @Cname = cname
+          @UnionStatus = unionstatus
+          @CnameStatus = cnamestatus
+          @CertId = certid
+          @ForceHttps = forcehttps
+          @IcpForbidStatus = icpforbidstatus
+          @CustomRoutingRules = customroutingrules
+          @BindFlag = bindflag
+          @OriginCname = origincname
+          @CustomCname = customcname
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @OpenTime = params['OpenTime']
+          @Status = params['Status']
+          @IsPreempted = params['IsPreempted']
+          @EnableRegion = params['EnableRegion']
+          @Cname = params['Cname']
+          @UnionStatus = params['UnionStatus']
+          @CnameStatus = params['CnameStatus']
+          @CertId = params['CertId']
+          @ForceHttps = params['ForceHttps']
+          @IcpForbidStatus = params['IcpForbidStatus']
+          @CustomRoutingRules = params['CustomRoutingRules']
+          @BindFlag = params['BindFlag']
+          @OriginCname = params['OriginCname']
+          @CustomCname = params['CustomCname']
+        end
+      end
+
+      # http service选项
+      class CloudBaseOption < TencentCloud::Common::AbstractModel
+        # @param Key: 键
+        # @type Key: String
+        # @param Value: 值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -1478,6 +1828,126 @@ module TencentCloud
         end
       end
 
+      # CreateBillDeal请求参数结构体
+      class CreateBillDealRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateBillDeal返回参数结构体
+      class CreateBillDealResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCloudBaseGWAPI请求参数结构体
+      class CreateCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: Service ID
+        # @type ServiceId: String
+        # @param Path: API Path
+        # @type Path: String
+        # @param Type: API类型（1表示云函数，2表示容器）
+        # @type Type: Integer
+        # @param Name: API Name
+        # @type Name: String
+        # @param APIId: APIId，如果非空，表示修改绑定Path
+        # @type APIId: String
+        # @param Custom: 自定义值通用字段（当Type为容器时必填）
+        # @type Custom: String
+        # @param AuthSwitch: 认证开关 1为开启 2为关闭
+        # @type AuthSwitch: Integer
+        # @param EnableRegion: 是否开启多地域
+        # @type EnableRegion: Boolean
+        # @param EnableUnion: 是否启用统一域名
+        # @type EnableUnion: Boolean
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param AccessTypes: 访问类型："OA", "PUBLIC", "MINIAPP", "VPC" （不传默认PUBLIC+MINIAPP+VPC）
+        # @type AccessTypes: Array
+        # @param IsShortPath: 是否开启路径透传，默认true表示短路径，即不开启路径透传(已弃用)
+        # @type IsShortPath: Boolean
+        # @param PathTransmission: 路径透传，默认0关闭，1开启，2关闭
+        # @type PathTransmission: Integer
+        # @param EnableCheckAcrossDomain: 跨域校验，默认0开启，1开启，2关闭
+        # @type EnableCheckAcrossDomain: Integer
+        # @param StaticFileDirectory: 静态托管资源目录
+        # @type StaticFileDirectory: String
+
+        attr_accessor :ServiceId, :Path, :Type, :Name, :APIId, :Custom, :AuthSwitch, :EnableRegion, :EnableUnion, :Domain, :AccessTypes, :IsShortPath, :PathTransmission, :EnableCheckAcrossDomain, :StaticFileDirectory
+
+        def initialize(serviceid=nil, path=nil, type=nil, name=nil, apiid=nil, custom=nil, authswitch=nil, enableregion=nil, enableunion=nil, domain=nil, accesstypes=nil, isshortpath=nil, pathtransmission=nil, enablecheckacrossdomain=nil, staticfiledirectory=nil)
+          @ServiceId = serviceid
+          @Path = path
+          @Type = type
+          @Name = name
+          @APIId = apiid
+          @Custom = custom
+          @AuthSwitch = authswitch
+          @EnableRegion = enableregion
+          @EnableUnion = enableunion
+          @Domain = domain
+          @AccessTypes = accesstypes
+          @IsShortPath = isshortpath
+          @PathTransmission = pathtransmission
+          @EnableCheckAcrossDomain = enablecheckacrossdomain
+          @StaticFileDirectory = staticfiledirectory
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Path = params['Path']
+          @Type = params['Type']
+          @Name = params['Name']
+          @APIId = params['APIId']
+          @Custom = params['Custom']
+          @AuthSwitch = params['AuthSwitch']
+          @EnableRegion = params['EnableRegion']
+          @EnableUnion = params['EnableUnion']
+          @Domain = params['Domain']
+          @AccessTypes = params['AccessTypes']
+          @IsShortPath = params['IsShortPath']
+          @PathTransmission = params['PathTransmission']
+          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
+          @StaticFileDirectory = params['StaticFileDirectory']
+        end
+      end
+
+      # CreateCloudBaseGWAPI返回参数结构体
+      class CreateCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
+        # @param APIId: API ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APIId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :APIId, :RequestId
+
+        def initialize(apiid=nil, requestid=nil)
+          @APIId = apiid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @APIId = params['APIId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCloudBaseRunResource请求参数结构体
       class CreateCloudBaseRunResourceRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -2267,6 +2737,106 @@ module TencentCloud
           @EnvId = params['EnvId']
           @InstanceId = params['InstanceId']
           @Schema = params['Schema']
+        end
+      end
+
+      # DeleteCloudBaseGWAPI请求参数结构体
+      class DeleteCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Path: API Path
+        # @type Path: String
+        # @param APIId: API ID
+        # @type APIId: String
+        # @param Type: API类型
+        # @type Type: Integer
+        # @param Name: API Name
+        # @type Name: String
+        # @param Custom: 自定义值字段（Type为2时，传递容器服务名表示需要删除JNSGW）
+        # @type Custom: String
+        # @param Domain: 域名
+        # @type Domain: String
+
+        attr_accessor :ServiceId, :Path, :APIId, :Type, :Name, :Custom, :Domain
+
+        def initialize(serviceid=nil, path=nil, apiid=nil, type=nil, name=nil, custom=nil, domain=nil)
+          @ServiceId = serviceid
+          @Path = path
+          @APIId = apiid
+          @Type = type
+          @Name = name
+          @Custom = custom
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Path = params['Path']
+          @APIId = params['APIId']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Custom = params['Custom']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteCloudBaseGWAPI返回参数结构体
+      class DeleteCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 最终删除API个数
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCloudBaseGWDomain请求参数结构体
+      class DeleteCloudBaseGWDomainRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Domain: 服务域名
+        # @type Domain: String
+
+        attr_accessor :ServiceId, :Domain
+
+        def initialize(serviceid=nil, domain=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+        end
+      end
+
+      # DeleteCloudBaseGWDomain返回参数结构体
+      class DeleteCloudBaseGWDomainResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 删除个数
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3068,6 +3638,193 @@ module TencentCloud
             end
           end
           @OutDate = params['OutDate']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseGWAPI请求参数结构体
+      class DescribeCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Domain: API域名
+        # @type Domain: String
+        # @param Path: API Path
+        # @type Path: String
+        # @param APIId: API ID
+        # @type APIId: String
+        # @param Type: API类型，1为云函数，2为容器
+        # @type Type: Integer
+        # @param Name: API名，Type为1时为云函数名，Type为2时为容器服务名
+        # @type Name: String
+        # @param Offset: 查询的分页参数，用于设置查询的偏移位置，0表示从头开始
+        # @type Offset: Integer
+        # @param Limit: 查询的分页参数，用于表示每次查询的最大返回数据量
+        # @type Limit: Integer
+        # @param EnableRegion: 是否启用多地域
+        # @type EnableRegion: Boolean
+        # @param EnableUnion: 是否使用统一域名
+        # @type EnableUnion: Boolean
+
+        attr_accessor :ServiceId, :Domain, :Path, :APIId, :Type, :Name, :Offset, :Limit, :EnableRegion, :EnableUnion
+
+        def initialize(serviceid=nil, domain=nil, path=nil, apiid=nil, type=nil, name=nil, offset=nil, limit=nil, enableregion=nil, enableunion=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+          @Path = path
+          @APIId = apiid
+          @Type = type
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+          @EnableRegion = enableregion
+          @EnableUnion = enableunion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @Path = params['Path']
+          @APIId = params['APIId']
+          @Type = params['Type']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @EnableRegion = params['EnableRegion']
+          @EnableUnion = params['EnableUnion']
+        end
+      end
+
+      # DescribeCloudBaseGWAPI返回参数结构体
+      class DescribeCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
+        # @param APISet: API列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type APISet: Array
+        # @param EnableService: 是否开启http调用
+        # @type EnableService: Boolean
+        # @param Total: 查询结果的数据总量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Offset: 查询的分页参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Offset: Integer
+        # @param Limit: 查询的分页参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Limit: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :APISet, :EnableService, :Total, :Offset, :Limit, :RequestId
+
+        def initialize(apiset=nil, enableservice=nil, total=nil, offset=nil, limit=nil, requestid=nil)
+          @APISet = apiset
+          @EnableService = enableservice
+          @Total = total
+          @Offset = offset
+          @Limit = limit
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['APISet'].nil?
+            @APISet = []
+            params['APISet'].each do |i|
+              cloudbasegwapi_tmp = CloudBaseGWAPI.new
+              cloudbasegwapi_tmp.deserialize(i)
+              @APISet << cloudbasegwapi_tmp
+            end
+          end
+          @EnableService = params['EnableService']
+          @Total = params['Total']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCloudBaseGWService请求参数结构体
+      class DescribeCloudBaseGWServiceRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: 服务ID
+        # @type ServiceId: String
+        # @param Domain: 服务域名
+        # @type Domain: String
+        # @param EnableRegion: 是否启用多地域
+        # @type EnableRegion: Boolean
+        # @param EnableUnion: 是否启用统一域名
+        # @type EnableUnion: Boolean
+
+        attr_accessor :ServiceId, :Domain, :EnableRegion, :EnableUnion
+
+        def initialize(serviceid=nil, domain=nil, enableregion=nil, enableunion=nil)
+          @ServiceId = serviceid
+          @Domain = domain
+          @EnableRegion = enableregion
+          @EnableUnion = enableunion
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @Domain = params['Domain']
+          @EnableRegion = params['EnableRegion']
+          @EnableUnion = params['EnableUnion']
+        end
+      end
+
+      # DescribeCloudBaseGWService返回参数结构体
+      class DescribeCloudBaseGWServiceResponse < TencentCloud::Common::AbstractModel
+        # @param ServiceSet: 服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceSet: Array
+        # @param EnableService: 是否开启服务
+        # @type EnableService: Boolean
+        # @param DefaultDomain: 默认域名信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DefaultDomain: String
+        # @param EnableUnion: 是否开启CDN迁移
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableUnion: Boolean
+        # @param EnableCheckAcrossDomain: 是否开启跨域校验，默认开启 true
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableCheckAcrossDomain: Boolean
+        # @param CustomRoutingRules: 自定义路由规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CustomRoutingRules: String
+        # @param AccessFlag: 默认域名绑定类型，1绑定TCB-CDN，2绑定tcbingres（不经过cdn）
+        # @type AccessFlag: Integer
+        # @param OriginDomain: 云接入源站域名
+        # @type OriginDomain: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ServiceSet, :EnableService, :DefaultDomain, :EnableUnion, :EnableCheckAcrossDomain, :CustomRoutingRules, :AccessFlag, :OriginDomain, :RequestId
+
+        def initialize(serviceset=nil, enableservice=nil, defaultdomain=nil, enableunion=nil, enablecheckacrossdomain=nil, customroutingrules=nil, accessflag=nil, origindomain=nil, requestid=nil)
+          @ServiceSet = serviceset
+          @EnableService = enableservice
+          @DefaultDomain = defaultdomain
+          @EnableUnion = enableunion
+          @EnableCheckAcrossDomain = enablecheckacrossdomain
+          @CustomRoutingRules = customroutingrules
+          @AccessFlag = accessflag
+          @OriginDomain = origindomain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ServiceSet'].nil?
+            @ServiceSet = []
+            params['ServiceSet'].each do |i|
+              cloudbasegwservice_tmp = CloudBaseGWService.new
+              cloudbasegwservice_tmp.deserialize(i)
+              @ServiceSet << cloudbasegwservice_tmp
+            end
+          end
+          @EnableService = params['EnableService']
+          @DefaultDomain = params['DefaultDomain']
+          @EnableUnion = params['EnableUnion']
+          @EnableCheckAcrossDomain = params['EnableCheckAcrossDomain']
+          @CustomRoutingRules = params['CustomRoutingRules']
+          @AccessFlag = params['AccessFlag']
+          @OriginDomain = params['OriginDomain']
           @RequestId = params['RequestId']
         end
       end
@@ -4082,6 +4839,46 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvAccountCircle请求参数结构体
+      class DescribeEnvAccountCircleRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeEnvAccountCircle返回参数结构体
+      class DescribeEnvAccountCircleResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: 环境计费周期开始时间
+        # @type StartTime: String
+        # @param EndTime: 环境计费周期结束时间
+        # @type EndTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :EndTime, :RequestId
+
+        def initialize(starttime=nil, endtime=nil, requestid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvDealRegion请求参数结构体
       class DescribeEnvDealRegionRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -4945,6 +5742,60 @@ module TencentCloud
         end
       end
 
+      # DescribeSafeRule请求参数结构体
+      class DescribeSafeRuleRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+        # @param CollectionName: 集合名称
+        # @type CollectionName: String
+        # @param WxAppId: 微信AppId，微信必传
+        # @type WxAppId: String
+
+        attr_accessor :EnvId, :CollectionName, :WxAppId
+
+        def initialize(envid=nil, collectionname=nil, wxappid=nil)
+          @EnvId = envid
+          @CollectionName = collectionname
+          @WxAppId = wxappid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @CollectionName = params['CollectionName']
+          @WxAppId = params['WxAppId']
+        end
+      end
+
+      # DescribeSafeRule返回参数结构体
+      class DescribeSafeRuleResponse < TencentCloud::Common::AbstractModel
+        # @param Rule: 规则内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rule: String
+        # @param AclTag: 权限标签。包含以下取值：
+        # <li> READONLY：所有用户可读，仅创建者和管理员可写</li>
+        # <li> PRIVATE：仅创建者及管理员可读写</li>
+        # <li> ADMINWRITE：所有用户可读，仅管理员可写</li>
+        # <li> ADMINONLY：仅管理员可读写</li>
+        # <li> CUSTOM：自定义安全规则</li>
+        # @type AclTag: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Rule, :AclTag, :RequestId
+
+        def initialize(rule=nil, acltag=nil, requestid=nil)
+          @Rule = rule
+          @AclTag = acltag
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Rule = params['Rule']
+          @AclTag = params['AclTag']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSmsQuotas请求参数结构体
       class DescribeSmsQuotasRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -5033,6 +5884,50 @@ module TencentCloud
               specialcostitem_tmp = SpecialCostItem.new
               specialcostitem_tmp.deserialize(i)
               @SpecialCostItems << specialcostitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeStaticStore请求参数结构体
+      class DescribeStaticStoreRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeStaticStore返回参数结构体
+      class DescribeStaticStoreResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 静态托管资源信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              staticstoreinfo_tmp = StaticStoreInfo.new
+              staticstoreinfo_tmp.deserialize(i)
+              @Data << staticstoreinfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6568,6 +7463,77 @@ module TencentCloud
         end
       end
 
+      # CLS日志单条信息
+      class LogObject < TencentCloud::Common::AbstractModel
+        # @param TopicId: 日志属于的 topic ID
+        # @type TopicId: String
+        # @param TopicName: 日志主题的名字
+        # @type TopicName: String
+        # @param Timestamp: 日志时间
+        # @type Timestamp: String
+        # @param Content: 日志内容
+        # @type Content: String
+        # @param FileName: 采集路径
+        # @type FileName: String
+        # @param Source: 日志来源设备
+        # @type Source: String
+
+        attr_accessor :TopicId, :TopicName, :Timestamp, :Content, :FileName, :Source
+
+        def initialize(topicid=nil, topicname=nil, timestamp=nil, content=nil, filename=nil, source=nil)
+          @TopicId = topicid
+          @TopicName = topicname
+          @Timestamp = timestamp
+          @Content = content
+          @FileName = filename
+          @Source = source
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+          @TopicName = params['TopicName']
+          @Timestamp = params['Timestamp']
+          @Content = params['Content']
+          @FileName = params['FileName']
+          @Source = params['Source']
+        end
+      end
+
+      # CLS日志结果
+      class LogResObject < TencentCloud::Common::AbstractModel
+        # @param Context: 获取更多检索结果的游标
+        # @type Context: String
+        # @param ListOver: 搜索结果是否已经全部返回
+        # @type ListOver: Boolean
+        # @param Results: 日志内容信息
+        # @type Results: Array
+        # @param AnalysisRecords: 日志聚合结果
+        # @type AnalysisRecords: Array
+
+        attr_accessor :Context, :ListOver, :Results, :AnalysisRecords
+
+        def initialize(context=nil, listover=nil, results=nil, analysisrecords=nil)
+          @Context = context
+          @ListOver = listover
+          @Results = results
+          @AnalysisRecords = analysisrecords
+        end
+
+        def deserialize(params)
+          @Context = params['Context']
+          @ListOver = params['ListOver']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              logobject_tmp = LogObject.new
+              logobject_tmp.deserialize(i)
+              @Results << logobject_tmp
+            end
+          end
+          @AnalysisRecords = params['AnalysisRecords']
+        end
+      end
+
       # 云日志服务相关信息
       class LogServiceInfo < TencentCloud::Common::AbstractModel
         # @param LogsetName: log名
@@ -6652,6 +7618,53 @@ module TencentCloud
           end
           @MgoIsUnique = params['MgoIsUnique']
           @MgoIsSparse = params['MgoIsSparse']
+        end
+      end
+
+      # ModifyCloudBaseGWAPI请求参数结构体
+      class ModifyCloudBaseGWAPIRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: Service ID
+        # @type ServiceId: String
+        # @param APIId: API ID
+        # @type APIId: String
+        # @param Options: 选项列表，key取值：domain, path。
+        # @type Options: Array
+
+        attr_accessor :ServiceId, :APIId, :Options
+
+        def initialize(serviceid=nil, apiid=nil, options=nil)
+          @ServiceId = serviceid
+          @APIId = apiid
+          @Options = options
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @APIId = params['APIId']
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              cloudbaseoption_tmp = CloudBaseOption.new
+              cloudbaseoption_tmp.deserialize(i)
+              @Options << cloudbaseoption_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCloudBaseGWAPI返回参数结构体
+      class ModifyCloudBaseGWAPIResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -7472,6 +8485,73 @@ module TencentCloud
         end
       end
 
+      # SearchClsLog请求参数结构体
+      class SearchClsLogRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境唯一ID
+        # @type EnvId: String
+        # @param StartTime: 查询起始时间条件
+        # @type StartTime: String
+        # @param EndTime: 查询结束时间条件
+        # @type EndTime: String
+        # @param QueryString: 查询语句，例如查询云函数：(src:app OR src:system) AND log:\"START RequestId*\"， 查询云数据库：module:database，查询审批流：module:workflow，查询模型：module:model，查询用户权限：module:auth，以上仅为示例语句，实际使用时请根据具体日志内容进行调整，查询语句需严格遵循CLS（Cloud Log Service）语法规范 详细的语法规则请参考官方档：https://cloud.tencent.com/document/product/614/47044
+        # @type QueryString: String
+        # @param Limit: 单次要返回的日志条数，单次返回的最大条数为100
+        # @type Limit: Integer
+        # @param Context: 加载更多使用，透传上次返回的 context 值，获取后续的日志内容，通过游标最多可获取10000条，请尽可能缩小时间范围
+        # @type Context: String
+        # @param Sort: 按时间排序 asc（升序）或者 desc（降序），默认为 desc
+        # @type Sort: String
+        # @param UseLucene: 是否使用Lucene语法，默认为false
+        # @type UseLucene: Boolean
+
+        attr_accessor :EnvId, :StartTime, :EndTime, :QueryString, :Limit, :Context, :Sort, :UseLucene
+
+        def initialize(envid=nil, starttime=nil, endtime=nil, querystring=nil, limit=nil, context=nil, sort=nil, uselucene=nil)
+          @EnvId = envid
+          @StartTime = starttime
+          @EndTime = endtime
+          @QueryString = querystring
+          @Limit = limit
+          @Context = context
+          @Sort = sort
+          @UseLucene = uselucene
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @QueryString = params['QueryString']
+          @Limit = params['Limit']
+          @Context = params['Context']
+          @Sort = params['Sort']
+          @UseLucene = params['UseLucene']
+        end
+      end
+
+      # SearchClsLog返回参数结构体
+      class SearchClsLogResponse < TencentCloud::Common::AbstractModel
+        # @param LogResults: 日志内容结果
+        # @type LogResults: :class:`Tencentcloud::Tcb.v20180608.models.LogResObject`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LogResults, :RequestId
+
+        def initialize(logresults=nil, requestid=nil)
+          @LogResults = logresults
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LogResults'].nil?
+            @LogResults = LogResObject.new
+            @LogResults.deserialize(params['LogResults'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 短信免费量
       class SmsFreeQuota < TencentCloud::Common::AbstractModel
         # @param FreeQuota: 免费量总条数
@@ -7561,6 +8641,51 @@ module TencentCloud
           @Status = params['Status']
           @Region = params['Region']
           @Bucket = params['Bucket']
+        end
+      end
+
+      # 静态托管资源信息
+      class StaticStoreInfo < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnvId: String
+        # @param CdnDomain: 静态域名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CdnDomain: String
+        # @param Bucket: COS桶
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Bucket: String
+        # @param Regoin: cos区域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Regoin: String
+        # @param Status: 资源状态:init(初始化)/process(处理中)/online(上线)/destroying(销毁中)/offline(下线))
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :EnvId, :CdnDomain, :Bucket, :Regoin, :Status, :Region
+        extend Gem::Deprecate
+        deprecate :Regoin, :none, 2026, 2
+        deprecate :Regoin=, :none, 2026, 2
+
+        def initialize(envid=nil, cdndomain=nil, bucket=nil, regoin=nil, status=nil, region=nil)
+          @EnvId = envid
+          @CdnDomain = cdndomain
+          @Bucket = bucket
+          @Regoin = regoin
+          @Status = status
+          @Region = region
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @CdnDomain = params['CdnDomain']
+          @Bucket = params['Bucket']
+          @Regoin = params['Regoin']
+          @Status = params['Status']
+          @Region = params['Region']
         end
       end
 

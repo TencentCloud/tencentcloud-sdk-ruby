@@ -173,6 +173,83 @@ module TencentCloud
         end
       end
 
+      # ActivateLibraDBCluster请求参数结构体
+      class ActivateLibraDBClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # ActivateLibraDBCluster返回参数结构体
+      class ActivateLibraDBClusterResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: flow id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ActivateLibraDBInstance请求参数结构体
+      class ActivateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIdList: 只读分析引擎实例 ID 列表
+        # @type InstanceIdList: Array
+
+        attr_accessor :ClusterId, :InstanceIdList
+
+        def initialize(clusterid=nil, instanceidlist=nil)
+          @ClusterId = clusterid
+          @InstanceIdList = instanceidlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIdList = params['InstanceIdList']
+        end
+      end
+
+      # ActivateLibraDBInstance返回参数结构体
+      class ActivateLibraDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddClusterSlaveZone请求参数结构体
       class AddClusterSlaveZoneRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -265,8 +342,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :Cpu, :Memory, :ReadOnlyCount, :DeviceType, :InstanceGrpId, :VpcId, :SubnetId, :Port, :InstanceName, :AutoVoucher, :DbType, :OrderSource, :DealMode, :ParamTemplateId, :InstanceParams, :SecurityGroupIds, :UpgradeProxy
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 1
-        deprecate :InstanceGrpId=, :none, 2026, 1
+        deprecate :InstanceGrpId, :none, 2026, 2
+        deprecate :InstanceGrpId=, :none, 2026, 2
 
         def initialize(clusterid=nil, cpu=nil, memory=nil, readonlycount=nil, devicetype=nil, instancegrpid=nil, vpcid=nil, subnetid=nil, port=nil, instancename=nil, autovoucher=nil, dbtype=nil, ordersource=nil, dealmode=nil, paramtemplateid=nil, instanceparams=nil, securitygroupids=nil, upgradeproxy=nil)
           @ClusterId = clusterid
@@ -761,6 +838,38 @@ module TencentCloud
         end
       end
 
+      # 高级映射，自动映射规则
+      class AutoMapRule < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceId: 源端实例Id
+        # @type SrcInstanceId: String
+        # @param SrcDatabaseRegex: 源端数据库正则
+        # @type SrcDatabaseRegex: String
+        # @param SrcTableRegex: 源端表正则
+        # @type SrcTableRegex: String
+        # @param DstDatabaseRegex: 目标端数据库正则
+        # @type DstDatabaseRegex: String
+        # @param DstTableRegex: 目标端表正则
+        # @type DstTableRegex: String
+
+        attr_accessor :SrcInstanceId, :SrcDatabaseRegex, :SrcTableRegex, :DstDatabaseRegex, :DstTableRegex
+
+        def initialize(srcinstanceid=nil, srcdatabaseregex=nil, srctableregex=nil, dstdatabaseregex=nil, dsttableregex=nil)
+          @SrcInstanceId = srcinstanceid
+          @SrcDatabaseRegex = srcdatabaseregex
+          @SrcTableRegex = srctableregex
+          @DstDatabaseRegex = dstdatabaseregex
+          @DstTableRegex = dsttableregex
+        end
+
+        def deserialize(params)
+          @SrcInstanceId = params['SrcInstanceId']
+          @SrcDatabaseRegex = params['SrcDatabaseRegex']
+          @SrcTableRegex = params['SrcTableRegex']
+          @DstDatabaseRegex = params['DstDatabaseRegex']
+          @DstTableRegex = params['DstTableRegex']
+        end
+      end
+
       # 备份设置
       class BackupConfigInfo < TencentCloud::Common::AbstractModel
         # @param BackupCustomAutoTime: 系统自动时间
@@ -1211,10 +1320,10 @@ module TencentCloud
 
         attr_accessor :ID, :AppId, :ClusterId, :Region, :CreateTime, :DelayTime, :ErrMsg, :FlowId, :Input, :InstanceGrpId, :InstanceGroupId, :InstanceId, :ObjectId, :ObjectType, :Operator, :Output, :Status, :TaskType, :TriggerTaskId, :UpdateTime, :StartTime, :EndTime, :ClusterName, :InstanceName, :Process, :ModifyParamsData, :CreateClustersData, :RollbackData, :ModifyInstanceData, :ManualBackupData, :ModifyDbVersionData, :ClusterSlaveData, :SwitchClusterLogBin, :ModifyInstanceParamsData, :TaskMaintainInfo, :InstanceCLSDeliveryInfos, :TaskProgressInfo, :GdnTaskInfo
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 1
-        deprecate :InstanceGrpId=, :none, 2026, 1
-        deprecate :ModifyParamsData, :none, 2026, 1
-        deprecate :ModifyParamsData=, :none, 2026, 1
+        deprecate :InstanceGrpId, :none, 2026, 2
+        deprecate :InstanceGrpId=, :none, 2026, 2
+        deprecate :ModifyParamsData, :none, 2026, 2
+        deprecate :ModifyParamsData=, :none, 2026, 2
 
         def initialize(id=nil, appid=nil, clusterid=nil, region=nil, createtime=nil, delaytime=nil, errmsg=nil, flowid=nil, input=nil, instancegrpid=nil, instancegroupid=nil, instanceid=nil, objectid=nil, objecttype=nil, operator=nil, output=nil, status=nil, tasktype=nil, triggertaskid=nil, updatetime=nil, starttime=nil, endtime=nil, clustername=nil, instancename=nil, process=nil, modifyparamsdata=nil, createclustersdata=nil, rollbackdata=nil, modifyinstancedata=nil, manualbackupdata=nil, modifydbversiondata=nil, clusterslavedata=nil, switchclusterlogbin=nil, modifyinstanceparamsdata=nil, taskmaintaininfo=nil, instanceclsdeliveryinfos=nil, taskprogressinfo=nil, gdntaskinfo=nil)
           @ID = id
@@ -1457,6 +1566,91 @@ module TencentCloud
         end
       end
 
+      # CheckCreateLibraDBInstance请求参数结构体
+      class CheckCreateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CheckCreateLibraDBInstance返回参数结构体
+      class CheckCreateLibraDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 整体校验状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param CheckItem: 校验项
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CheckItem: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :CheckItem, :RequestId
+
+        def initialize(status=nil, checkitem=nil, requestid=nil)
+          @Status = status
+          @CheckItem = checkitem
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          unless params['CheckItem'].nil?
+            @CheckItem = []
+            params['CheckItem'].each do |i|
+              checkitem_tmp = CheckItem.new
+              checkitem_tmp.deserialize(i)
+              @CheckItem << checkitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 校验项
+      class CheckItem < TencentCloud::Common::AbstractModel
+        # @param Item: 校验项名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Item: String
+        # @param Result: 该项的校验结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Result: String
+        # @param CurrentValue: 校验不通过的详细说明和修改建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CurrentValue: String
+        # @param ExpectedValue: 校验不通过的详细说明和修改建议
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpectedValue: String
+
+        attr_accessor :Item, :Result, :CurrentValue, :ExpectedValue
+
+        def initialize(item=nil, result=nil, currentvalue=nil, expectedvalue=nil)
+          @Item = item
+          @Result = result
+          @CurrentValue = currentvalue
+          @ExpectedValue = expectedvalue
+        end
+
+        def deserialize(params)
+          @Item = params['Item']
+          @Result = params['Result']
+          @CurrentValue = params['CurrentValue']
+          @ExpectedValue = params['ExpectedValue']
+        end
+      end
+
       # CloseAuditService请求参数结构体
       class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。
@@ -1672,8 +1866,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceGroupId, :InstanceId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 1
-        deprecate :InstanceGrpId=, :none, 2026, 1
+        deprecate :InstanceGrpId, :none, 2026, 2
+        deprecate :InstanceGrpId=, :none, 2026, 2
 
         def initialize(instancegrpid=nil, instancegroupid=nil, instanceid=nil)
           @InstanceGrpId = instancegrpid
@@ -2046,8 +2240,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 1
-        deprecate :Filter=, :none, 2026, 1
+        deprecate :Filter, :none, 2026, 2
+        deprecate :Filter=, :none, 2026, 2
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2840,6 +3034,195 @@ module TencentCloud
           @ResourceIds = params['ResourceIds']
           @ClusterIds = params['ClusterIds']
           @BigDealIds = params['BigDealIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLibraDBClusterAccounts请求参数结构体
+      class CreateLibraDBClusterAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param Accounts: 账户信息
+        # @type Accounts: Array
+        # @param EncryptMethod: 加密方式
+        # @type EncryptMethod: String
+
+        attr_accessor :ClusterId, :Accounts, :EncryptMethod
+
+        def initialize(clusterid=nil, accounts=nil, encryptmethod=nil)
+          @ClusterId = clusterid
+          @Accounts = accounts
+          @EncryptMethod = encryptmethod
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              newaccount_tmp = NewAccount.new
+              newaccount_tmp.deserialize(i)
+              @Accounts << newaccount_tmp
+            end
+          end
+          @EncryptMethod = params['EncryptMethod']
+        end
+      end
+
+      # CreateLibraDBClusterAccounts返回参数结构体
+      class CreateLibraDBClusterAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLibraDBClusters请求参数结构体
+      class CreateLibraDBClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param InstanceInitInfos: 实例初始化信息
+        # @type InstanceInitInfos: Array
+        # @param AdminPassword: 用户密码
+        # @type AdminPassword: String
+        # @param AutoRenewFlag: 是否自动续费
+        # @type AutoRenewFlag: Integer
+        # @param AutoVoucher: 是否自动选择代金券
+        # @type AutoVoucher: Integer
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param DealMode: 下单模式
+        # @type DealMode: String
+        # @param EncryptMethod: 加密方法
+        # @type EncryptMethod: String
+        # @param LibraDBVersion: LibraDBVersion 版本，缺省为最新版本
+        # @type LibraDBVersion: String
+        # @param OrderSource: 订单来源
+        # @type OrderSource: String
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param ProjectId: 项目id
+        # @type ProjectId: String
+        # @param SecurityGroupIds: 安全组
+        # @type SecurityGroupIds: Array
+        # @param TimeSpan: 时长
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时间单位
+        # @type TimeUnit: String
+        # @param ResourceTags: 实例创建绑定Tag数组信息
+        # @type ResourceTags: Array
+        # @param VpcId: 集群所在vpcId
+        # @type VpcId: String
+        # @param SubnetId: 集群所在SubnetId
+        # @type SubnetId: String
+        # @param Port: 端口
+        # @type Port: String
+
+        attr_accessor :Count, :Zone, :InstanceInitInfos, :AdminPassword, :AutoRenewFlag, :AutoVoucher, :ClusterName, :DealMode, :EncryptMethod, :LibraDBVersion, :OrderSource, :PayMode, :ProjectId, :SecurityGroupIds, :TimeSpan, :TimeUnit, :ResourceTags, :VpcId, :SubnetId, :Port
+
+        def initialize(count=nil, zone=nil, instanceinitinfos=nil, adminpassword=nil, autorenewflag=nil, autovoucher=nil, clustername=nil, dealmode=nil, encryptmethod=nil, libradbversion=nil, ordersource=nil, paymode=nil, projectid=nil, securitygroupids=nil, timespan=nil, timeunit=nil, resourcetags=nil, vpcid=nil, subnetid=nil, port=nil)
+          @Count = count
+          @Zone = zone
+          @InstanceInitInfos = instanceinitinfos
+          @AdminPassword = adminpassword
+          @AutoRenewFlag = autorenewflag
+          @AutoVoucher = autovoucher
+          @ClusterName = clustername
+          @DealMode = dealmode
+          @EncryptMethod = encryptmethod
+          @LibraDBVersion = libradbversion
+          @OrderSource = ordersource
+          @PayMode = paymode
+          @ProjectId = projectid
+          @SecurityGroupIds = securitygroupids
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @ResourceTags = resourcetags
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Port = port
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @Zone = params['Zone']
+          unless params['InstanceInitInfos'].nil?
+            @InstanceInitInfos = []
+            params['InstanceInitInfos'].each do |i|
+              libradbinstanceinitinfo_tmp = LibraDBInstanceInitInfo.new
+              libradbinstanceinitinfo_tmp.deserialize(i)
+              @InstanceInitInfos << libradbinstanceinitinfo_tmp
+            end
+          end
+          @AdminPassword = params['AdminPassword']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @AutoVoucher = params['AutoVoucher']
+          @ClusterName = params['ClusterName']
+          @DealMode = params['DealMode']
+          @EncryptMethod = params['EncryptMethod']
+          @LibraDBVersion = params['LibraDBVersion']
+          @OrderSource = params['OrderSource']
+          @PayMode = params['PayMode']
+          @ProjectId = params['ProjectId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Port = params['Port']
+        end
+      end
+
+      # CreateLibraDBClusters返回参数结构体
+      class CreateLibraDBClustersResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: 预付费总订单号
+        # @type BigDealIds: Array
+        # @param ClusterIds: 集群ID
+        # @type ClusterIds: Array
+        # @param DealNames: 每个资源对应一个dealName，业务需要根据dealName保证发货接口幂等
+        # @type DealNames: Array
+        # @param TranId: 冻结流水
+        # @type TranId: String
+        # @param ResourceIds: 实例id
+        # @type ResourceIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIds, :ClusterIds, :DealNames, :TranId, :ResourceIds, :RequestId
+
+        def initialize(bigdealids=nil, clusterids=nil, dealnames=nil, tranid=nil, resourceids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @ClusterIds = clusterids
+          @DealNames = dealnames
+          @TranId = tranid
+          @ResourceIds = resourceids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @ClusterIds = params['ClusterIds']
+          @DealNames = params['DealNames']
+          @TranId = params['TranId']
+          @ResourceIds = params['ResourceIds']
           @RequestId = params['RequestId']
         end
       end
@@ -4472,6 +4855,58 @@ module TencentCloud
         end
       end
 
+      # 数据源项
+      class DataSourceItem < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 源端实例ID
+        # @type InstanceId: String
+        # @param ClusterId: 源端集群ID
+        # @type ClusterId: String
+        # @param DBType: 源端数据库类型
+        # @type DBType: String
+        # @param IP: 源端数据库IP
+        # @type IP: String
+        # @param Port: 源端数据库端口
+        # @type Port: Integer
+        # @param Region: 源实例地域
+        # @type Region: String
+        # @param Zone: 源端实例可用区
+        # @type Zone: String
+        # @param SrcUin: 源端主账号uin
+        # @type SrcUin: String
+        # @param AccountMode: 账号类型
+        # @type AccountMode: String
+        # @param ReplicationJobStatus: 同步任务状态
+        # @type ReplicationJobStatus: String
+
+        attr_accessor :InstanceId, :ClusterId, :DBType, :IP, :Port, :Region, :Zone, :SrcUin, :AccountMode, :ReplicationJobStatus
+
+        def initialize(instanceid=nil, clusterid=nil, dbtype=nil, ip=nil, port=nil, region=nil, zone=nil, srcuin=nil, accountmode=nil, replicationjobstatus=nil)
+          @InstanceId = instanceid
+          @ClusterId = clusterid
+          @DBType = dbtype
+          @IP = ip
+          @Port = port
+          @Region = region
+          @Zone = zone
+          @SrcUin = srcuin
+          @AccountMode = accountmode
+          @ReplicationJobStatus = replicationjobstatus
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ClusterId = params['ClusterId']
+          @DBType = params['DBType']
+          @IP = params['IP']
+          @Port = params['Port']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @SrcUin = params['SrcUin']
+          @AccountMode = params['AccountMode']
+          @ReplicationJobStatus = params['ReplicationJobStatus']
+        end
+      end
+
       # 数据库权限列表
       class DatabasePrivileges < TencentCloud::Common::AbstractModel
         # @param Db: 数据库
@@ -4870,6 +5305,85 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLibraDBClusterAccounts请求参数结构体
+      class DeleteLibraDBClusterAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param Accounts: 账号
+        # @type Accounts: Array
+
+        attr_accessor :ClusterId, :Accounts
+
+        def initialize(clusterid=nil, accounts=nil)
+          @ClusterId = clusterid
+          @Accounts = accounts
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              inputaccount_tmp = InputAccount.new
+              inputaccount_tmp.deserialize(i)
+              @Accounts << inputaccount_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteLibraDBClusterAccounts返回参数结构体
+      class DeleteLibraDBClusterAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLibraDBCluster请求参数结构体
+      class DeleteLibraDBClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # DeleteLibraDBCluster返回参数结构体
+      class DeleteLibraDBClusterResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: flow id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
           @RequestId = params['RequestId']
         end
       end
@@ -5289,8 +5803,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :Limit, :Offset, :LogFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 1
-        deprecate :Filter=, :none, 2026, 1
+        deprecate :Filter, :none, 2026, 2
+        deprecate :Filter=, :none, 2026, 2
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, limit=nil, offset=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -6335,8 +6849,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceGrpInfoList, :InstanceGroupInfoList, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceGrpInfoList, :none, 2026, 1
-        deprecate :InstanceGrpInfoList=, :none, 2026, 1
+        deprecate :InstanceGrpInfoList, :none, 2026, 2
+        deprecate :InstanceGrpInfoList=, :none, 2026, 2
 
         def initialize(totalcount=nil, instancegrpinfolist=nil, instancegroupinfolist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -6741,8 +7255,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 1
-        deprecate :InstanceId=, :none, 2026, 1
+        deprecate :InstanceId, :none, 2026, 2
+        deprecate :InstanceId=, :none, 2026, 2
 
         def initialize(instanceid=nil, instancegroupid=nil)
           @InstanceId = instanceid
@@ -7442,6 +7956,910 @@ module TencentCloud
               cynosdbinstance_tmp = CynosdbInstance.new
               cynosdbinstance_tmp.deserialize(i)
               @InstanceSet << cynosdbinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterAccountAllPrivileges请求参数结构体
+      class DescribeLibraDBClusterAccountAllPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param Account: 账号
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+
+        attr_accessor :ClusterId, :Account
+
+        def initialize(clusterid=nil, account=nil)
+          @ClusterId = clusterid
+          @Account = account
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+        end
+      end
+
+      # DescribeLibraDBClusterAccountAllPrivileges返回参数结构体
+      class DescribeLibraDBClusterAccountAllPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param PrivilegeStatements: 权限语句
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegeStatements: Array
+        # @param GlobalPrivileges: 全局权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 表权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePrivileges: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PrivilegeStatements, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :RequestId
+
+        def initialize(privilegestatements=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, requestid=nil)
+          @PrivilegeStatements = privilegestatements
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PrivilegeStatements = params['PrivilegeStatements']
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivileges_tmp = DatabasePrivileges.new
+              databaseprivileges_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivileges_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivileges_tmp = TablePrivileges.new
+              tableprivileges_tmp.deserialize(i)
+              @TablePrivileges << tableprivileges_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterAccountPrivileges请求参数结构体
+      class DescribeLibraDBClusterAccountPrivilegesRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param AccountName: 账号名
+        # @type AccountName: String
+        # @param Host: 主机名
+        # @type Host: String
+        # @param Db: 数据库名
+        # @type Db: String
+        # @param Type: 类型
+        # @type Type: String
+        # @param TableName: 表名
+        # @type TableName: String
+
+        attr_accessor :ClusterId, :AccountName, :Host, :Db, :Type, :TableName
+
+        def initialize(clusterid=nil, accountname=nil, host=nil, db=nil, type=nil, tablename=nil)
+          @ClusterId = clusterid
+          @AccountName = accountname
+          @Host = host
+          @Db = db
+          @Type = type
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AccountName = params['AccountName']
+          @Host = params['Host']
+          @Db = params['Db']
+          @Type = params['Type']
+          @TableName = params['TableName']
+        end
+      end
+
+      # DescribeLibraDBClusterAccountPrivileges返回参数结构体
+      class DescribeLibraDBClusterAccountPrivilegesResponse < TencentCloud::Common::AbstractModel
+        # @param Privileges: 权限列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Privileges: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Privileges, :RequestId
+
+        def initialize(privileges=nil, requestid=nil)
+          @Privileges = privileges
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Privileges = params['Privileges']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterAccounts请求参数结构体
+      class DescribeLibraDBClusterAccountsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param AccountNames: 账号名
+        # @type AccountNames: Array
+        # @param AccountRegular: 模糊匹配关键字
+        # @type AccountRegular: String
+        # @param Hosts: 主机名
+        # @type Hosts: Array
+        # @param Limit: 限制
+        # @type Limit: Integer
+        # @param Offset: 偏移
+        # @type Offset: Integer
+
+        attr_accessor :ClusterId, :AccountNames, :AccountRegular, :Hosts, :Limit, :Offset
+
+        def initialize(clusterid=nil, accountnames=nil, accountregular=nil, hosts=nil, limit=nil, offset=nil)
+          @ClusterId = clusterid
+          @AccountNames = accountnames
+          @AccountRegular = accountregular
+          @Hosts = hosts
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AccountNames = params['AccountNames']
+          @AccountRegular = params['AccountRegular']
+          @Hosts = params['Hosts']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeLibraDBClusterAccounts返回参数结构体
+      class DescribeLibraDBClusterAccountsResponse < TencentCloud::Common::AbstractModel
+        # @param AccountSet: 账号信息
+        # @type AccountSet: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccountSet, :TotalCount, :RequestId
+
+        def initialize(accountset=nil, totalcount=nil, requestid=nil)
+          @AccountSet = accountset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccountSet'].nil?
+            @AccountSet = []
+            params['AccountSet'].each do |i|
+              account_tmp = Account.new
+              account_tmp.deserialize(i)
+              @AccountSet << account_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterAutoMapRule请求参数结构体
+      class DescribeLibraDBClusterAutoMapRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 分析实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLibraDBClusterAutoMapRule返回参数结构体
+      class DescribeLibraDBClusterAutoMapRuleResponse < TencentCloud::Common::AbstractModel
+        # @param AutoMapRules: 高级映射规则
+        # @type AutoMapRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AutoMapRules, :RequestId
+
+        def initialize(automaprules=nil, requestid=nil)
+          @AutoMapRules = automaprules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AutoMapRules'].nil?
+            @AutoMapRules = []
+            params['AutoMapRules'].each do |i|
+              automaprule_tmp = AutoMapRule.new
+              automaprule_tmp.deserialize(i)
+              @AutoMapRules << automaprule_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterDetail请求参数结构体
+      class DescribeLibraDBClusterDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+        # @param GetServerInfo: 是否获取更多服务器信息，可选值yes no
+        # @type GetServerInfo: String
+
+        attr_accessor :ClusterId, :GetServerInfo
+
+        def initialize(clusterid=nil, getserverinfo=nil)
+          @ClusterId = clusterid
+          @GetServerInfo = getserverinfo
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @GetServerInfo = params['GetServerInfo']
+        end
+      end
+
+      # DescribeLibraDBClusterDetail返回参数结构体
+      class DescribeLibraDBClusterDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Detail: 集群信息
+        # @type Detail: :class:`Tencentcloud::Cynosdb.v20190107.models.LibraDBClusterDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Detail, :RequestId
+
+        def initialize(detail=nil, requestid=nil)
+          @Detail = detail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Detail'].nil?
+            @Detail = LibraDBClusterDetail.new
+            @Detail.deserialize(params['Detail'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusterTableMapping请求参数结构体
+      class DescribeLibraDBClusterTableMappingRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 分析引擎实例ID
+        # @type InstanceId: String
+        # @param NodeId: 节点ID
+        # @type NodeId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 页面记录限制
+        # @type Limit: Integer
+        # @param SrcSchemas: 源端schema列表
+        # @type SrcSchemas: Array
+        # @param SrcTableName: 源端表列表
+        # @type SrcTableName: Array
+        # @param StatusList: 状态列表
+        # @type StatusList: Array
+        # @param MapSchemas: 映射数据库名称
+        # @type MapSchemas: Array
+        # @param MapTableName: 映射表名
+        # @type MapTableName: Array
+        # @param MapSchemaNotEmpty: 是否查询映射数据库名称不为空的记录
+        # @type MapSchemaNotEmpty: Boolean
+        # @param MapTableNameNotEmpty: 是否查询映射表名不为空的记录
+        # @type MapTableNameNotEmpty: Boolean
+
+        attr_accessor :ClusterId, :InstanceId, :NodeId, :Offset, :Limit, :SrcSchemas, :SrcTableName, :StatusList, :MapSchemas, :MapTableName, :MapSchemaNotEmpty, :MapTableNameNotEmpty
+
+        def initialize(clusterid=nil, instanceid=nil, nodeid=nil, offset=nil, limit=nil, srcschemas=nil, srctablename=nil, statuslist=nil, mapschemas=nil, maptablename=nil, mapschemanotempty=nil, maptablenamenotempty=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @NodeId = nodeid
+          @Offset = offset
+          @Limit = limit
+          @SrcSchemas = srcschemas
+          @SrcTableName = srctablename
+          @StatusList = statuslist
+          @MapSchemas = mapschemas
+          @MapTableName = maptablename
+          @MapSchemaNotEmpty = mapschemanotempty
+          @MapTableNameNotEmpty = maptablenamenotempty
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          @NodeId = params['NodeId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @SrcSchemas = params['SrcSchemas']
+          @SrcTableName = params['SrcTableName']
+          @StatusList = params['StatusList']
+          @MapSchemas = params['MapSchemas']
+          @MapTableName = params['MapTableName']
+          @MapSchemaNotEmpty = params['MapSchemaNotEmpty']
+          @MapTableNameNotEmpty = params['MapTableNameNotEmpty']
+        end
+      end
+
+      # DescribeLibraDBClusterTableMapping返回参数结构体
+      class DescribeLibraDBClusterTableMappingResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCnt: 总记录数
+        # @type TotalCnt: Integer
+        # @param TableMappings: 数据库映射信息
+        # @type TableMappings: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCnt, :TableMappings, :RequestId
+
+        def initialize(totalcnt=nil, tablemappings=nil, requestid=nil)
+          @TotalCnt = totalcnt
+          @TableMappings = tablemappings
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCnt = params['TotalCnt']
+          unless params['TableMappings'].nil?
+            @TableMappings = []
+            params['TableMappings'].each do |i|
+              tablemappingobject_tmp = TableMappingObject.new
+              tablemappingobject_tmp.deserialize(i)
+              @TableMappings << tablemappingobject_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBClusters请求参数结构体
+      class DescribeLibraDBClustersRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 限制
+        # @type Limit: Integer
+        # @param Offset: 偏置
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段
+        # @type OrderBy: String
+        # @param OrderByType: 排序方法
+        # @type OrderByType: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :OrderBy, :OrderByType, :Filters
+
+        def initialize(limit=nil, offset=nil, orderby=nil, orderbytype=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLibraDBClusters返回参数结构体
+      class DescribeLibraDBClustersResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 集群信息
+        # @type ClusterSet: Array
+        # @param TotalCount: 集群数量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :TotalCount, :RequestId
+
+        def initialize(clusterset=nil, totalcount=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              libradbclusterset_tmp = LibraDBClusterSet.new
+              libradbclusterset_tmp.deserialize(i)
+              @ClusterSet << libradbclusterset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBDataSource请求参数结构体
+      class DescribeLibraDBDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 只读分析引擎实例ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLibraDBDataSource返回参数结构体
+      class DescribeLibraDBDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param DataSourceList: 源端信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DataSourceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DataSourceList, :RequestId
+
+        def initialize(datasourcelist=nil, requestid=nil)
+          @DataSourceList = datasourcelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['DataSourceList'].nil?
+            @DataSourceList = []
+            params['DataSourceList'].each do |i|
+              datasourceitem_tmp = DataSourceItem.new
+              datasourceitem_tmp.deserialize(i)
+              @DataSourceList << datasourceitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBForwardConfig请求参数结构体
+      class DescribeLibraDBForwardConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读分析引擎实例id
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLibraDBForwardConfig返回参数结构体
+      class DescribeLibraDBForwardConfigResponse < TencentCloud::Common::AbstractModel
+        # @param ForwardMode: 是否开启转发
+        # @type ForwardMode: String
+        # @param ForwardList: 转发列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ForwardList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ForwardMode, :ForwardList, :RequestId
+
+        def initialize(forwardmode=nil, forwardlist=nil, requestid=nil)
+          @ForwardMode = forwardmode
+          @ForwardList = forwardlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ForwardMode = params['ForwardMode']
+          unless params['ForwardList'].nil?
+            @ForwardList = []
+            params['ForwardList'].each do |i|
+              forwardinstanceinfo_tmp = ForwardInstanceInfo.new
+              forwardinstanceinfo_tmp.deserialize(i)
+              @ForwardList << forwardinstanceinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBInstanceDetail请求参数结构体
+      class DescribeLibraDBInstanceDetailRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 只读分析引擎实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :ClusterId, :InstanceId
+
+        def initialize(clusterid=nil, instanceid=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLibraDBInstanceDetail返回参数结构体
+      class DescribeLibraDBInstanceDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Uin: 主账号
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Uin: String
+        # @param AppId: 账号唯一ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param ClusterId: 集群ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterName: String
+        # @param InstanceId: 实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param ProjectId: 项目ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProjectId: Integer
+        # @param Region: 地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param Status: 实例状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StatusDesc: String
+        # @param LibraDBVersion: Libra分析引擎版本
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LibraDBVersion: String
+        # @param Cpu: cpu核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Storage: 存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Storage: Integer
+        # @param StorageType: 存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param InstanceType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param InstanceRole: 实例角色
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceRole: String
+        # @param UpdateTime: 更新时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param PayMode: 售卖方式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PayMode: Integer
+        # @param PeriodStartTime: 售卖开始时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodStartTime: String
+        # @param PeriodEndTime: 售卖结束时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodEndTime: String
+        # @param RenewFlag: 续费标识
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param NetType: 网络类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NetType: Integer
+        # @param VpcId: 私有网络ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubnetId: String
+        # @param Vip: 虚拟IP
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vip: String
+        # @param Vport: 端口
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Vport: Integer
+        # @param InstanceNetInfo: 实例网络信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceNetInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceNetInfo`
+        # @param ResourceTags: 实例标签信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResourceTags: Array
+        # @param NodeInfo: 实例节点信息
+        # @type NodeInfo: Array
+        # @param NodeCount: 实例节点个数
+        # @type NodeCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :LibraDBVersion, :Cpu, :Memory, :Storage, :StorageType, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodStartTime, :PeriodEndTime, :RenewFlag, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :InstanceNetInfo, :ResourceTags, :NodeInfo, :NodeCount, :RequestId
+
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, libradbversion=nil, cpu=nil, memory=nil, storage=nil, storagetype=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodstarttime=nil, periodendtime=nil, renewflag=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, instancenetinfo=nil, resourcetags=nil, nodeinfo=nil, nodecount=nil, requestid=nil)
+          @Uin = uin
+          @AppId = appid
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @ProjectId = projectid
+          @Region = region
+          @Zone = zone
+          @Status = status
+          @StatusDesc = statusdesc
+          @LibraDBVersion = libradbversion
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @StorageType = storagetype
+          @InstanceType = instancetype
+          @InstanceRole = instancerole
+          @UpdateTime = updatetime
+          @CreateTime = createtime
+          @PayMode = paymode
+          @PeriodStartTime = periodstarttime
+          @PeriodEndTime = periodendtime
+          @RenewFlag = renewflag
+          @NetType = nettype
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Vip = vip
+          @Vport = vport
+          @InstanceNetInfo = instancenetinfo
+          @ResourceTags = resourcetags
+          @NodeInfo = nodeinfo
+          @NodeCount = nodecount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Uin = params['Uin']
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @ProjectId = params['ProjectId']
+          @Region = params['Region']
+          @Zone = params['Zone']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @LibraDBVersion = params['LibraDBVersion']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @StorageType = params['StorageType']
+          @InstanceType = params['InstanceType']
+          @InstanceRole = params['InstanceRole']
+          @UpdateTime = params['UpdateTime']
+          @CreateTime = params['CreateTime']
+          @PayMode = params['PayMode']
+          @PeriodStartTime = params['PeriodStartTime']
+          @PeriodEndTime = params['PeriodEndTime']
+          @RenewFlag = params['RenewFlag']
+          @NetType = params['NetType']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          unless params['InstanceNetInfo'].nil?
+            @InstanceNetInfo = InstanceNetInfo.new
+            @InstanceNetInfo.deserialize(params['InstanceNetInfo'])
+          end
+          unless params['ResourceTags'].nil?
+            @ResourceTags = []
+            params['ResourceTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @ResourceTags << tag_tmp
+            end
+          end
+          unless params['NodeInfo'].nil?
+            @NodeInfo = []
+            params['NodeInfo'].each do |i|
+              libradbnodeinfo_tmp = LibraDBNodeInfo.new
+              libradbnodeinfo_tmp.deserialize(i)
+              @NodeInfo << libradbnodeinfo_tmp
+            end
+          end
+          @NodeCount = params['NodeCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBInstanceSpecs请求参数结构体
+      class DescribeLibraDBInstanceSpecsRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLibraDBInstanceSpecs返回参数结构体
+      class DescribeLibraDBInstanceSpecsResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceSpecSet: 该地域实例规格信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceSpecSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceSpecSet, :RequestId
+
+        def initialize(instancespecset=nil, requestid=nil)
+          @InstanceSpecSet = instancespecset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['InstanceSpecSet'].nil?
+            @InstanceSpecSet = []
+            params['InstanceSpecSet'].each do |i|
+              regioninstancespecinfo_tmp = RegionInstanceSpecInfo.new
+              regioninstancespecinfo_tmp.deserialize(i)
+              @InstanceSpecSet << regioninstancespecinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBSlowLogs请求参数结构体
+      class DescribeLibraDBSlowLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读分析引擎实例 ID
+        # @type InstanceId: String
+        # @param StartTime: 开始时间,1753171200。
+        # @type StartTime: Integer
+        # @param EndTime: 结束时间,1753171200。
+        # @type EndTime: Integer
+        # @param Limit: 日志单页条数限制:0-200。
+        # @type Limit: String
+        # @param Offset: 日志分页，大于0。
+        # @type Offset: String
+        # @param Order: 日志排序方式，DESC-降序，ASC-升序。
+        # @type Order: String
+        # @param OrderBy: 日志排序条件。
+        # @type OrderBy: String
+        # @param LogFilter: 过滤条件。
+        # @type LogFilter: Array
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Limit, :Offset, :Order, :OrderBy, :LogFilter
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, limit=nil, offset=nil, order=nil, orderby=nil, logfilter=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+          @LogFilter = logfilter
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+          unless params['LogFilter'].nil?
+            @LogFilter = []
+            params['LogFilter'].each do |i|
+              logfilter_tmp = LogFilter.new
+              logfilter_tmp.deserialize(i)
+              @LogFilter << logfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeLibraDBSlowLogs返回参数结构体
+      class DescribeLibraDBSlowLogsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLibraDBVersion请求参数结构体
+      class DescribeLibraDBVersionRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeLibraDBVersion返回参数结构体
+      class DescribeLibraDBVersionResponse < TencentCloud::Common::AbstractModel
+        # @param VersionList: 版本列表
+        # @type VersionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VersionList, :RequestId
+
+        def initialize(versionlist=nil, requestid=nil)
+          @VersionList = versionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VersionList'].nil?
+            @VersionList = []
+            params['VersionList'].each do |i|
+              libradbversion_tmp = LibraDBVersion.new
+              libradbversion_tmp.deserialize(i)
+              @VersionList << libradbversion_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -8770,6 +10188,76 @@ module TencentCloud
         end
       end
 
+      # DownloadLibraDBClusterList请求参数结构体
+      class DownloadLibraDBClusterListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 限制数
+        # @type Limit: Integer
+        # @param Offset: 偏移值
+        # @type Offset: Integer
+        # @param OrderBy: 排序字段
+        # @type OrderBy: String
+        # @param OrderByType: 排序方式，desc,asc,DESC,ASC
+        # @type OrderByType: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Offset, :OrderBy, :OrderByType, :Filters
+
+        def initialize(limit=nil, offset=nil, orderby=nil, orderbytype=nil, filters=nil)
+          @Limit = limit
+          @Offset = offset
+          @OrderBy = orderby
+          @OrderByType = orderbytype
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @OrderBy = params['OrderBy']
+          @OrderByType = params['OrderByType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              queryfilter_tmp = QueryFilter.new
+              queryfilter_tmp.deserialize(i)
+              @Filters << queryfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DownloadLibraDBClusterList返回参数结构体
+      class DownloadLibraDBClusterListResponse < TencentCloud::Common::AbstractModel
+        # @param ClusterSet: 分析集群信息
+        # @type ClusterSet: Array
+        # @param TotalCount: 总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ClusterSet, :TotalCount, :RequestId
+
+        def initialize(clusterset=nil, totalcount=nil, requestid=nil)
+          @ClusterSet = clusterset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ClusterSet'].nil?
+            @ClusterSet = []
+            params['ClusterSet'].each do |i|
+              libraclusterset_tmp = LibraClusterSet.new
+              libraclusterset_tmp.deserialize(i)
+              @ClusterSet << libraclusterset_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 错误日志导出格式
       class ErrorLogItemExport < TencentCloud::Common::AbstractModel
         # @param Timestamp: 时间
@@ -9070,6 +10558,28 @@ module TencentCloud
         def deserialize(params)
           @FileContent = params['FileContent']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 转发实例信息
+      class ForwardInstanceInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 转发实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param Region: 转发实例地域
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+
+        attr_accessor :InstanceId, :Region
+
+        def initialize(instanceid=nil, region=nil)
+          @InstanceId = instanceid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Region = params['Region']
         end
       end
 
@@ -9967,6 +11477,93 @@ module TencentCloud
         end
       end
 
+      # 实例信息
+      class InstanceSet < TencentCloud::Common::AbstractModel
+        # @param DbMode: 数据库模式
+        # @type DbMode: String
+        # @param InstanceCpu: cpu核数
+        # @type InstanceCpu: Integer
+        # @param InstanceDeviceType: 实例类型
+        # @type InstanceDeviceType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param InstanceMemory: 内存
+        # @type InstanceMemory: Integer
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstanceRole: 实例角色
+        # @type InstanceRole: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param InstanceStatusDesc: 状态描述
+        # @type InstanceStatusDesc: String
+        # @param InstanceStorage: 硬盘
+        # @type InstanceStorage: Integer
+        # @param InstanceStorageType: 硬盘类型
+        # @type InstanceStorageType: String
+        # @param InstanceType: 引擎类型
+        # @type InstanceType: String
+        # @param MaintainDuration: 持续的时间
+        # @type MaintainDuration: Integer
+        # @param MaintainStartTime: 执行开始时间(距离0点的秒数)
+        # @type MaintainStartTime: Integer
+        # @param MaintainWeekDays: 可以执行的时间，枚举值：["Mon","Tue","Wed","Thu","Fri", "Sat", "Sun"]
+        # @type MaintainWeekDays: Array
+        # @param NodeList: 节点列表
+        # @type NodeList: Array
+        # @param InstanceTasks: 实例任务
+        # @type InstanceTasks: Array
+
+        attr_accessor :DbMode, :InstanceCpu, :InstanceDeviceType, :InstanceId, :InstanceMemory, :InstanceName, :InstanceRole, :InstanceStatus, :InstanceStatusDesc, :InstanceStorage, :InstanceStorageType, :InstanceType, :MaintainDuration, :MaintainStartTime, :MaintainWeekDays, :NodeList, :InstanceTasks
+
+        def initialize(dbmode=nil, instancecpu=nil, instancedevicetype=nil, instanceid=nil, instancememory=nil, instancename=nil, instancerole=nil, instancestatus=nil, instancestatusdesc=nil, instancestorage=nil, instancestoragetype=nil, instancetype=nil, maintainduration=nil, maintainstarttime=nil, maintainweekdays=nil, nodelist=nil, instancetasks=nil)
+          @DbMode = dbmode
+          @InstanceCpu = instancecpu
+          @InstanceDeviceType = instancedevicetype
+          @InstanceId = instanceid
+          @InstanceMemory = instancememory
+          @InstanceName = instancename
+          @InstanceRole = instancerole
+          @InstanceStatus = instancestatus
+          @InstanceStatusDesc = instancestatusdesc
+          @InstanceStorage = instancestorage
+          @InstanceStorageType = instancestoragetype
+          @InstanceType = instancetype
+          @MaintainDuration = maintainduration
+          @MaintainStartTime = maintainstarttime
+          @MaintainWeekDays = maintainweekdays
+          @NodeList = nodelist
+          @InstanceTasks = instancetasks
+        end
+
+        def deserialize(params)
+          @DbMode = params['DbMode']
+          @InstanceCpu = params['InstanceCpu']
+          @InstanceDeviceType = params['InstanceDeviceType']
+          @InstanceId = params['InstanceId']
+          @InstanceMemory = params['InstanceMemory']
+          @InstanceName = params['InstanceName']
+          @InstanceRole = params['InstanceRole']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceStatusDesc = params['InstanceStatusDesc']
+          @InstanceStorage = params['InstanceStorage']
+          @InstanceStorageType = params['InstanceStorageType']
+          @InstanceType = params['InstanceType']
+          @MaintainDuration = params['MaintainDuration']
+          @MaintainStartTime = params['MaintainStartTime']
+          @MaintainWeekDays = params['MaintainWeekDays']
+          @NodeList = params['NodeList']
+          unless params['InstanceTasks'].nil?
+            @InstanceTasks = []
+            params['InstanceTasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @InstanceTasks << objecttask_tmp
+            end
+          end
+        end
+      end
+
       # 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
       class InstanceSpec < TencentCloud::Common::AbstractModel
         # @param Cpu: 实例CPU，单位：核
@@ -10219,6 +11816,806 @@ module TencentCloud
         end
       end
 
+      # IsolateLibraDBCluster请求参数结构体
+      class IsolateLibraDBClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+        # @param IsolateReasonTypes: 隔离原因类型
+        # @type IsolateReasonTypes: Array
+        # @param IsolateReason: 隔离原因
+        # @type IsolateReason: String
+
+        attr_accessor :ClusterId, :IsolateReasonTypes, :IsolateReason
+
+        def initialize(clusterid=nil, isolatereasontypes=nil, isolatereason=nil)
+          @ClusterId = clusterid
+          @IsolateReasonTypes = isolatereasontypes
+          @IsolateReason = isolatereason
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @IsolateReasonTypes = params['IsolateReasonTypes']
+          @IsolateReason = params['IsolateReason']
+        end
+      end
+
+      # IsolateLibraDBCluster返回参数结构体
+      class IsolateLibraDBClusterResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: flow id
+        # @type FlowId: Integer
+        # @param DealNames: 返回订单号
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :DealNames, :RequestId
+
+        def initialize(flowid=nil, dealnames=nil, requestid=nil)
+          @FlowId = flowid
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # IsolateLibraDBInstance请求参数结构体
+      class IsolateLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIdList: 只读分析引擎实例 ID 列表
+        # @type InstanceIdList: Array
+        # @param ForceIsolate: 是否是强制隔离
+        # @type ForceIsolate: Boolean
+        # @param IsolateReasonTypes: 隔离原因类型
+        # @type IsolateReasonTypes: Array
+        # @param IsolateReason: 隔离原因
+        # @type IsolateReason: String
+
+        attr_accessor :ClusterId, :InstanceIdList, :ForceIsolate, :IsolateReasonTypes, :IsolateReason
+
+        def initialize(clusterid=nil, instanceidlist=nil, forceisolate=nil, isolatereasontypes=nil, isolatereason=nil)
+          @ClusterId = clusterid
+          @InstanceIdList = instanceidlist
+          @ForceIsolate = forceisolate
+          @IsolateReasonTypes = isolatereasontypes
+          @IsolateReason = isolatereason
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIdList = params['InstanceIdList']
+          @ForceIsolate = params['ForceIsolate']
+          @IsolateReasonTypes = params['IsolateReasonTypes']
+          @IsolateReason = params['IsolateReason']
+        end
+      end
+
+      # IsolateLibraDBInstance返回参数结构体
+      class IsolateLibraDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param DealNames: 订单号列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealNames: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :DealNames, :RequestId
+
+        def initialize(flowid=nil, dealnames=nil, requestid=nil)
+          @FlowId = flowid
+          @DealNames = dealnames
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @DealNames = params['DealNames']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # libra集群信息
+      class LibraClusterSet < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户id
+        # @type AppId: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
+        # @param InstanceSet: 实例信息
+        # @type InstanceSet: Array
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param PeriodEndTime: 到期时间
+        # @type PeriodEndTime: String
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param RenewFlag: 自动续费标识，1为自动续费，0为到期不续
+        # @type RenewFlag: Integer
+        # @param Status: 状态
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Storage: 存储大小
+        # @type Storage: Integer
+        # @param UsedStorage: 使用容量
+        # @type UsedStorage: Integer
+        # @param Vip: vip地址
+        # @type Vip: String
+        # @param Vport: vport端口
+        # @type Vport: Integer
+
+        attr_accessor :AppId, :ClusterId, :ClusterName, :CreateTime, :DbVersion, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :Region, :RenewFlag, :Status, :StatusDesc, :Storage, :UsedStorage, :Vip, :Vport
+
+        def initialize(appid=nil, clusterid=nil, clustername=nil, createtime=nil, dbversion=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, region=nil, renewflag=nil, status=nil, statusdesc=nil, storage=nil, usedstorage=nil, vip=nil, vport=nil)
+          @AppId = appid
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @CreateTime = createtime
+          @DbVersion = dbversion
+          @InstanceSet = instanceset
+          @PayMode = paymode
+          @PeriodEndTime = periodendtime
+          @ProjectID = projectid
+          @Region = region
+          @RenewFlag = renewflag
+          @Status = status
+          @StatusDesc = statusdesc
+          @Storage = storage
+          @UsedStorage = usedstorage
+          @Vip = vip
+          @Vport = vport
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @CreateTime = params['CreateTime']
+          @DbVersion = params['DbVersion']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              librainstanceset_tmp = LibraInstanceSet.new
+              librainstanceset_tmp.deserialize(i)
+              @InstanceSet << librainstanceset_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @PeriodEndTime = params['PeriodEndTime']
+          @ProjectID = params['ProjectID']
+          @Region = params['Region']
+          @RenewFlag = params['RenewFlag']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Storage = params['Storage']
+          @UsedStorage = params['UsedStorage']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+        end
+      end
+
+      # libra集群详情
+      class LibraDBClusterDetail < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param Region: 地域
+        # @type Region: String
+        # @param Status: 状态
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Storage: 存储大小
+        # @type Storage: Integer
+        # @param VpcName: VPC名称
+        # @type VpcName: String
+        # @param VpcId: vpc唯一id
+        # @type VpcId: String
+        # @param SubnetName: 子网名称
+        # @type SubnetName: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
+        # @param UsedStorage: 使用容量
+        # @type UsedStorage: Integer
+        # @param Vip: vip地址
+        # @type Vip: String
+        # @param Vport: vport端口
+        # @type Vport: Integer
+        # @param RoAddr: 集群只读实例的vip地址和vport端口
+        # @type RoAddr: Array
+        # @param CynosVersion: cynos版本
+        # @type CynosVersion: String
+        # @param IsFreeze: 是否冻结
+        # @type IsFreeze: String
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param MasterZone: 主可用区
+        # @type MasterZone: String
+        # @param InstanceSet: 实例集合
+        # @type InstanceSet: Array
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param PeriodEndTime: 到期时间
+        # @type PeriodEndTime: String
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param RenewFlag: 自动续费标识
+        # @type RenewFlag: Integer
+        # @param CynosVersionTag: 版本标签
+        # @type CynosVersionTag: String
+        # @param NoSupportAddRo: 不支持添加ro yes-不支持添加ro， no/null/"" 支持添加ro
+        # @type NoSupportAddRo: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param PhysicalZone: 物理可用区
+        # @type PhysicalZone: String
+
+        attr_accessor :ClusterId, :ClusterName, :Region, :Status, :StatusDesc, :Storage, :VpcName, :VpcId, :SubnetName, :SubnetId, :CreateTime, :DbVersion, :UsedStorage, :Vip, :Vport, :RoAddr, :CynosVersion, :IsFreeze, :Tasks, :MasterZone, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :RenewFlag, :CynosVersionTag, :NoSupportAddRo, :Zone, :PhysicalZone
+
+        def initialize(clusterid=nil, clustername=nil, region=nil, status=nil, statusdesc=nil, storage=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, createtime=nil, dbversion=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, cynosversion=nil, isfreeze=nil, tasks=nil, masterzone=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, renewflag=nil, cynosversiontag=nil, nosupportaddro=nil, zone=nil, physicalzone=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @Region = region
+          @Status = status
+          @StatusDesc = statusdesc
+          @Storage = storage
+          @VpcName = vpcname
+          @VpcId = vpcid
+          @SubnetName = subnetname
+          @SubnetId = subnetid
+          @CreateTime = createtime
+          @DbVersion = dbversion
+          @UsedStorage = usedstorage
+          @Vip = vip
+          @Vport = vport
+          @RoAddr = roaddr
+          @CynosVersion = cynosversion
+          @IsFreeze = isfreeze
+          @Tasks = tasks
+          @MasterZone = masterzone
+          @InstanceSet = instanceset
+          @PayMode = paymode
+          @PeriodEndTime = periodendtime
+          @ProjectID = projectid
+          @RenewFlag = renewflag
+          @CynosVersionTag = cynosversiontag
+          @NoSupportAddRo = nosupportaddro
+          @Zone = zone
+          @PhysicalZone = physicalzone
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @Region = params['Region']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Storage = params['Storage']
+          @VpcName = params['VpcName']
+          @VpcId = params['VpcId']
+          @SubnetName = params['SubnetName']
+          @SubnetId = params['SubnetId']
+          @CreateTime = params['CreateTime']
+          @DbVersion = params['DbVersion']
+          @UsedStorage = params['UsedStorage']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          unless params['RoAddr'].nil?
+            @RoAddr = []
+            params['RoAddr'].each do |i|
+              roaddr_tmp = RoAddr.new
+              roaddr_tmp.deserialize(i)
+              @RoAddr << roaddr_tmp
+            end
+          end
+          @CynosVersion = params['CynosVersion']
+          @IsFreeze = params['IsFreeze']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @MasterZone = params['MasterZone']
+          unless params['InstanceSet'].nil?
+            @InstanceSet = []
+            params['InstanceSet'].each do |i|
+              instanceset_tmp = InstanceSet.new
+              instanceset_tmp.deserialize(i)
+              @InstanceSet << instanceset_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @PeriodEndTime = params['PeriodEndTime']
+          @ProjectID = params['ProjectID']
+          @RenewFlag = params['RenewFlag']
+          @CynosVersionTag = params['CynosVersionTag']
+          @NoSupportAddRo = params['NoSupportAddRo']
+          @Zone = params['Zone']
+          @PhysicalZone = params['PhysicalZone']
+        end
+      end
+
+      # 集群列表信息
+      class LibraDBClusterSet < TencentCloud::Common::AbstractModel
+        # @param AppId: 用户id
+        # @type AppId: Integer
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+        # @param CreateTime: 创建时间
+        # @type CreateTime: String
+        # @param CynosVersion: cynos版本
+        # @type CynosVersion: String
+        # @param CynosVersionTag: 版本标签
+        # @type CynosVersionTag: String
+        # @param DbVersion: 数据库版本
+        # @type DbVersion: String
+        # @param InstanceNum: 实例数量
+        # @type InstanceNum: Integer
+        # @param IsFreeze: 是否冻结
+        # @type IsFreeze: String
+        # @param NetAddrs: 网络地址
+        # @type NetAddrs: Array
+        # @param PayMode: 付费模式
+        # @type PayMode: Integer
+        # @param PeriodEndTime: 到期时间
+        # @type PeriodEndTime: String
+        # @param ProjectID: 项目id
+        # @type ProjectID: Integer
+        # @param Region: 地域
+        # @type Region: String
+        # @param RenewFlag: 自动续费标识，1为自动续费，0为到期不续
+        # @type RenewFlag: Integer
+        # @param Status: 状态
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+        # @param Storage: 存储大小，单位为G
+        # @type Storage: Integer
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param Tasks: 任务列表
+        # @type Tasks: Array
+        # @param Uin: 账户id
+        # @type Uin: String
+        # @param Vip: vip地址
+        # @type Vip: String
+        # @param VpcId: vpc唯一id
+        # @type VpcId: String
+        # @param Vport: vport端口
+        # @type Vport: Integer
+        # @param UpdateTime: 更新时间
+        # @type UpdateTime: String
+        # @param MasterZone: 主可用区
+        # @type MasterZone: String
+        # @param PhysicalZone: 物理可用区
+        # @type PhysicalZone: String
+        # @param Zone: 可用区
+        # @type Zone: String
+
+        attr_accessor :AppId, :ClusterId, :ClusterName, :CreateTime, :CynosVersion, :CynosVersionTag, :DbVersion, :InstanceNum, :IsFreeze, :NetAddrs, :PayMode, :PeriodEndTime, :ProjectID, :Region, :RenewFlag, :Status, :StatusDesc, :Storage, :SubnetId, :Tasks, :Uin, :Vip, :VpcId, :Vport, :UpdateTime, :MasterZone, :PhysicalZone, :Zone
+
+        def initialize(appid=nil, clusterid=nil, clustername=nil, createtime=nil, cynosversion=nil, cynosversiontag=nil, dbversion=nil, instancenum=nil, isfreeze=nil, netaddrs=nil, paymode=nil, periodendtime=nil, projectid=nil, region=nil, renewflag=nil, status=nil, statusdesc=nil, storage=nil, subnetid=nil, tasks=nil, uin=nil, vip=nil, vpcid=nil, vport=nil, updatetime=nil, masterzone=nil, physicalzone=nil, zone=nil)
+          @AppId = appid
+          @ClusterId = clusterid
+          @ClusterName = clustername
+          @CreateTime = createtime
+          @CynosVersion = cynosversion
+          @CynosVersionTag = cynosversiontag
+          @DbVersion = dbversion
+          @InstanceNum = instancenum
+          @IsFreeze = isfreeze
+          @NetAddrs = netaddrs
+          @PayMode = paymode
+          @PeriodEndTime = periodendtime
+          @ProjectID = projectid
+          @Region = region
+          @RenewFlag = renewflag
+          @Status = status
+          @StatusDesc = statusdesc
+          @Storage = storage
+          @SubnetId = subnetid
+          @Tasks = tasks
+          @Uin = uin
+          @Vip = vip
+          @VpcId = vpcid
+          @Vport = vport
+          @UpdateTime = updatetime
+          @MasterZone = masterzone
+          @PhysicalZone = physicalzone
+          @Zone = zone
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+          @CreateTime = params['CreateTime']
+          @CynosVersion = params['CynosVersion']
+          @CynosVersionTag = params['CynosVersionTag']
+          @DbVersion = params['DbVersion']
+          @InstanceNum = params['InstanceNum']
+          @IsFreeze = params['IsFreeze']
+          unless params['NetAddrs'].nil?
+            @NetAddrs = []
+            params['NetAddrs'].each do |i|
+              netaddr_tmp = NetAddr.new
+              netaddr_tmp.deserialize(i)
+              @NetAddrs << netaddr_tmp
+            end
+          end
+          @PayMode = params['PayMode']
+          @PeriodEndTime = params['PeriodEndTime']
+          @ProjectID = params['ProjectID']
+          @Region = params['Region']
+          @RenewFlag = params['RenewFlag']
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
+          @Storage = params['Storage']
+          @SubnetId = params['SubnetId']
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              objecttask_tmp = ObjectTask.new
+              objecttask_tmp.deserialize(i)
+              @Tasks << objecttask_tmp
+            end
+          end
+          @Uin = params['Uin']
+          @Vip = params['Vip']
+          @VpcId = params['VpcId']
+          @Vport = params['Vport']
+          @UpdateTime = params['UpdateTime']
+          @MasterZone = params['MasterZone']
+          @PhysicalZone = params['PhysicalZone']
+          @Zone = params['Zone']
+        end
+      end
+
+      # libra分析集群源数据库信息
+      class LibraDBClusterSrcInfo < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceType: 源端类型
+        # @type SrcInstanceType: String
+        # @param AccessType: 网络类型
+        # @type AccessType: String
+        # @param SrcInstanceId: 源端实例ID
+        # @type SrcInstanceId: String
+        # @param SrcClusterId: 源端集群ID
+        # @type SrcClusterId: String
+        # @param IP: 地址
+        # @type IP: String
+        # @param Port: 端口
+        # @type Port: String
+        # @param User: 用户名
+        # @type User: String
+        # @param Password: 密码
+        # @type Password: String
+        # @param SqlMode: 源端sql_mode
+        # @type SqlMode: String
+        # @param SrcAppId: 源端应用id
+        # @type SrcAppId: Integer
+        # @param SrcUin: 源端账号
+        # @type SrcUin: String
+        # @param SrcSubAccountUin: 源端子账号
+        # @type SrcSubAccountUin: String
+        # @param AccountMode: 账号
+        # @type AccountMode: String
+        # @param Region: 源端实例地域
+        # @type Region: String
+        # @param Operation: 对源端实例的操作
+        # @type Operation: String
+
+        attr_accessor :SrcInstanceType, :AccessType, :SrcInstanceId, :SrcClusterId, :IP, :Port, :User, :Password, :SqlMode, :SrcAppId, :SrcUin, :SrcSubAccountUin, :AccountMode, :Region, :Operation
+
+        def initialize(srcinstancetype=nil, accesstype=nil, srcinstanceid=nil, srcclusterid=nil, ip=nil, port=nil, user=nil, password=nil, sqlmode=nil, srcappid=nil, srcuin=nil, srcsubaccountuin=nil, accountmode=nil, region=nil, operation=nil)
+          @SrcInstanceType = srcinstancetype
+          @AccessType = accesstype
+          @SrcInstanceId = srcinstanceid
+          @SrcClusterId = srcclusterid
+          @IP = ip
+          @Port = port
+          @User = user
+          @Password = password
+          @SqlMode = sqlmode
+          @SrcAppId = srcappid
+          @SrcUin = srcuin
+          @SrcSubAccountUin = srcsubaccountuin
+          @AccountMode = accountmode
+          @Region = region
+          @Operation = operation
+        end
+
+        def deserialize(params)
+          @SrcInstanceType = params['SrcInstanceType']
+          @AccessType = params['AccessType']
+          @SrcInstanceId = params['SrcInstanceId']
+          @SrcClusterId = params['SrcClusterId']
+          @IP = params['IP']
+          @Port = params['Port']
+          @User = params['User']
+          @Password = params['Password']
+          @SqlMode = params['SqlMode']
+          @SrcAppId = params['SrcAppId']
+          @SrcUin = params['SrcUin']
+          @SrcSubAccountUin = params['SrcSubAccountUin']
+          @AccountMode = params['AccountMode']
+          @Region = params['Region']
+          @Operation = params['Operation']
+        end
+      end
+
+      # libra实例初始化信息
+      class LibraDBInstanceInitInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: cpu
+        # @type Cpu: Integer
+        # @param Memory: 内存
+        # @type Memory: Integer
+        # @param StorageSize: 硬盘
+        # @type StorageSize: Integer
+        # @param StorageType: 存储类型
+        # @type StorageType: String
+        # @param InstanceType: 实例类型
+        # @type InstanceType: String
+        # @param LibraDBVersion: 实例版本
+        # @type LibraDBVersion: String
+        # @param InstanceCount: 实例数量
+        # @type InstanceCount: Integer
+        # @param VpcId: vpc id
+        # @type VpcId: String
+        # @param SubnetId: subnet id
+        # @type SubnetId: String
+        # @param Port: 端口
+        # @type Port: Integer
+        # @param ReplicasNum: 购买实例副本数
+        # @type ReplicasNum: Integer
+
+        attr_accessor :Cpu, :Memory, :StorageSize, :StorageType, :InstanceType, :LibraDBVersion, :InstanceCount, :VpcId, :SubnetId, :Port, :ReplicasNum
+
+        def initialize(cpu=nil, memory=nil, storagesize=nil, storagetype=nil, instancetype=nil, libradbversion=nil, instancecount=nil, vpcid=nil, subnetid=nil, port=nil, replicasnum=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @StorageSize = storagesize
+          @StorageType = storagetype
+          @InstanceType = instancetype
+          @LibraDBVersion = libradbversion
+          @InstanceCount = instancecount
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @Port = port
+          @ReplicasNum = replicasnum
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @StorageSize = params['StorageSize']
+          @StorageType = params['StorageType']
+          @InstanceType = params['InstanceType']
+          @LibraDBVersion = params['LibraDBVersion']
+          @InstanceCount = params['InstanceCount']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @Port = params['Port']
+          @ReplicasNum = params['ReplicasNum']
+        end
+      end
+
+      # LibraDB 节点信息
+      class LibraDBNodeInfo < TencentCloud::Common::AbstractModel
+        # @param NodeId: LibraDB节点ID
+        # @type NodeId: String
+        # @param Status: 节点状态
+        # @type Status: String
+        # @param DataStatus: 数据同步中
+        # @type DataStatus: String
+        # @param Cpu: CPU核数
+        # @type Cpu: Integer
+        # @param Memory: 内存大小，单位 G
+        # @type Memory: Integer
+        # @param Storage: 磁盘大小，单位G
+        # @type Storage: Integer
+        # @param Message: 错误信息
+        # @type Message: String
+
+        attr_accessor :NodeId, :Status, :DataStatus, :Cpu, :Memory, :Storage, :Message
+
+        def initialize(nodeid=nil, status=nil, datastatus=nil, cpu=nil, memory=nil, storage=nil, message=nil)
+          @NodeId = nodeid
+          @Status = status
+          @DataStatus = datastatus
+          @Cpu = cpu
+          @Memory = memory
+          @Storage = storage
+          @Message = message
+        end
+
+        def deserialize(params)
+          @NodeId = params['NodeId']
+          @Status = params['Status']
+          @DataStatus = params['DataStatus']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Storage = params['Storage']
+          @Message = params['Message']
+        end
+      end
+
+      # LibraDB 版本信息
+      class LibraDBVersion < TencentCloud::Common::AbstractModel
+        # @param Version: 版本号
+        # @type Version: String
+        # @param Tag: 版本tag
+        # @type Tag: String
+        # @param HasPermission: 是否可以使用该版本
+        # @type HasPermission: Boolean
+
+        attr_accessor :Version, :Tag, :HasPermission
+
+        def initialize(version=nil, tag=nil, haspermission=nil)
+          @Version = version
+          @Tag = tag
+          @HasPermission = haspermission
+        end
+
+        def deserialize(params)
+          @Version = params['Version']
+          @Tag = params['Tag']
+          @HasPermission = params['HasPermission']
+        end
+      end
+
+      # libra实例信息
+      class LibraInstanceSet < TencentCloud::Common::AbstractModel
+        # @param DbMode: 数据库模式
+        # @type DbMode: String
+        # @param InstanceCpu: cpu核数
+        # @type InstanceCpu: Integer
+        # @param InstanceDeviceType: 实例类型
+        # @type InstanceDeviceType: String
+        # @param InstanceGroupId: 组id
+        # @type InstanceGroupId: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param InstanceMemory: 内存
+        # @type InstanceMemory: Integer
+        # @param InstanceName: 实例名称
+        # @type InstanceName: String
+        # @param InstancePayMode: 付费模式
+        # @type InstancePayMode: Integer
+        # @param InstancePeriodEndTime: 付费结束时间
+        # @type InstancePeriodEndTime: String
+        # @param InstanceRole: 实例角色
+        # @type InstanceRole: String
+        # @param InstanceStatus: 实例状态
+        # @type InstanceStatus: String
+        # @param InstanceStatusDesc: 实例状态描述
+        # @type InstanceStatusDesc: String
+        # @param NetType: 网络类型
+        # @type NetType: String
+        # @param UniqSubnetId: 子网id
+        # @type UniqSubnetId: String
+        # @param UniqVpcId: vpcid
+        # @type UniqVpcId: String
+        # @param Vip: 虚拟ip
+        # @type Vip: String
+        # @param Vport: 虚拟端口
+        # @type Vport: Integer
+        # @param WanDomain: 外网区域
+        # @type WanDomain: String
+        # @param WanIP: 外网ip
+        # @type WanIP: String
+        # @param WanPort: 外网port
+        # @type WanPort: Integer
+        # @param WanStatus: 外网状态
+        # @type WanStatus: String
+        # @param InstanceStorage: 硬盘
+        # @type InstanceStorage: Integer
+        # @param InstanceStorageType: 硬盘类型
+        # @type InstanceStorageType: String
+
+        attr_accessor :DbMode, :InstanceCpu, :InstanceDeviceType, :InstanceGroupId, :InstanceId, :InstanceMemory, :InstanceName, :InstancePayMode, :InstancePeriodEndTime, :InstanceRole, :InstanceStatus, :InstanceStatusDesc, :NetType, :UniqSubnetId, :UniqVpcId, :Vip, :Vport, :WanDomain, :WanIP, :WanPort, :WanStatus, :InstanceStorage, :InstanceStorageType
+
+        def initialize(dbmode=nil, instancecpu=nil, instancedevicetype=nil, instancegroupid=nil, instanceid=nil, instancememory=nil, instancename=nil, instancepaymode=nil, instanceperiodendtime=nil, instancerole=nil, instancestatus=nil, instancestatusdesc=nil, nettype=nil, uniqsubnetid=nil, uniqvpcid=nil, vip=nil, vport=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, instancestorage=nil, instancestoragetype=nil)
+          @DbMode = dbmode
+          @InstanceCpu = instancecpu
+          @InstanceDeviceType = instancedevicetype
+          @InstanceGroupId = instancegroupid
+          @InstanceId = instanceid
+          @InstanceMemory = instancememory
+          @InstanceName = instancename
+          @InstancePayMode = instancepaymode
+          @InstancePeriodEndTime = instanceperiodendtime
+          @InstanceRole = instancerole
+          @InstanceStatus = instancestatus
+          @InstanceStatusDesc = instancestatusdesc
+          @NetType = nettype
+          @UniqSubnetId = uniqsubnetid
+          @UniqVpcId = uniqvpcid
+          @Vip = vip
+          @Vport = vport
+          @WanDomain = wandomain
+          @WanIP = wanip
+          @WanPort = wanport
+          @WanStatus = wanstatus
+          @InstanceStorage = instancestorage
+          @InstanceStorageType = instancestoragetype
+        end
+
+        def deserialize(params)
+          @DbMode = params['DbMode']
+          @InstanceCpu = params['InstanceCpu']
+          @InstanceDeviceType = params['InstanceDeviceType']
+          @InstanceGroupId = params['InstanceGroupId']
+          @InstanceId = params['InstanceId']
+          @InstanceMemory = params['InstanceMemory']
+          @InstanceName = params['InstanceName']
+          @InstancePayMode = params['InstancePayMode']
+          @InstancePeriodEndTime = params['InstancePeriodEndTime']
+          @InstanceRole = params['InstanceRole']
+          @InstanceStatus = params['InstanceStatus']
+          @InstanceStatusDesc = params['InstanceStatusDesc']
+          @NetType = params['NetType']
+          @UniqSubnetId = params['UniqSubnetId']
+          @UniqVpcId = params['UniqVpcId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
+          @WanDomain = params['WanDomain']
+          @WanIP = params['WanIP']
+          @WanPort = params['WanPort']
+          @WanStatus = params['WanStatus']
+          @InstanceStorage = params['InstanceStorage']
+          @InstanceStorageType = params['InstanceStorageType']
+        end
+      end
+
+      # 日志过滤条件
+      class LogFilter < TencentCloud::Common::AbstractModel
+        # @param Type: 过滤项。
+        # @type Type: String
+        # @param Compare: 过滤条件。支持以下条件： WINC-包含（分词维度）， WEXC-不包含（分词维度）, INC - 包含, EXC - 不包含, EQS - 等于, NEQ - 不等于, RA - 范围。
+        # @type Compare: String
+        # @param Value: 过滤的值。反向查询时，多个值之前是且的关系，正向查询多个值是或的关系
+        # @type Value: Array
+
+        attr_accessor :Type, :Compare, :Value
+
+        def initialize(type=nil, compare=nil, value=nil)
+          @Type = type
+          @Compare = compare
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Compare = params['Compare']
+          @Value = params['Value']
+        end
+      end
+
       # 审计日志命中规则模板的基本信息
       class LogRuleTemplateInfo < TencentCloud::Common::AbstractModel
         # @param RuleTemplateId: 模板ID
@@ -10319,6 +12716,105 @@ module TencentCloud
               @CrossRegionBackupInfos << crossregionbackupitem_tmp
             end
           end
+        end
+      end
+
+      # 同步库表对象
+      class MigrateDBItem < TencentCloud::Common::AbstractModel
+        # @param DbName: 数据库名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DbName: String
+        # @param MigrateTableMode: 数据表迁移模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateTableMode: String
+        # @param Tables: 数据表信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tables: Array
+
+        attr_accessor :DbName, :MigrateTableMode, :Tables
+
+        def initialize(dbname=nil, migratetablemode=nil, tables=nil)
+          @DbName = dbname
+          @MigrateTableMode = migratetablemode
+          @Tables = tables
+        end
+
+        def deserialize(params)
+          @DbName = params['DbName']
+          @MigrateTableMode = params['MigrateTableMode']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              migratetableitem_tmp = MigrateTableItem.new
+              migratetableitem_tmp.deserialize(i)
+              @Tables << migratetableitem_tmp
+            end
+          end
+        end
+      end
+
+      # 同步数据对象
+      class MigrateObject < TencentCloud::Common::AbstractModel
+        # @param MigrateDBMode: 数据库迁移模式
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateDBMode: String
+        # @param Databases: 数据库信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Databases: Array
+
+        attr_accessor :MigrateDBMode, :Databases
+
+        def initialize(migratedbmode=nil, databases=nil)
+          @MigrateDBMode = migratedbmode
+          @Databases = databases
+        end
+
+        def deserialize(params)
+          @MigrateDBMode = params['MigrateDBMode']
+          unless params['Databases'].nil?
+            @Databases = []
+            params['Databases'].each do |i|
+              migratedbitem_tmp = MigrateDBItem.new
+              migratedbitem_tmp.deserialize(i)
+              @Databases << migratedbitem_tmp
+            end
+          end
+        end
+      end
+
+      # 同步对象详情
+      class MigrateOpt < TencentCloud::Common::AbstractModel
+        # @param DatabaseTables: 包含数据库表信息
+        # @type DatabaseTables: :class:`Tencentcloud::Cynosdb.v20190107.models.MigrateObject`
+
+        attr_accessor :DatabaseTables
+
+        def initialize(databasetables=nil)
+          @DatabaseTables = databasetables
+        end
+
+        def deserialize(params)
+          unless params['DatabaseTables'].nil?
+            @DatabaseTables = MigrateObject.new
+            @DatabaseTables.deserialize(params['DatabaseTables'])
+          end
+        end
+      end
+
+      # 同步数据表名称
+      class MigrateTableItem < TencentCloud::Common::AbstractModel
+        # @param TableName: 数据表名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TableName: String
+
+        attr_accessor :TableName
+
+        def initialize(tablename=nil)
+          @TableName = tablename
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
         end
       end
 
@@ -11632,6 +14128,402 @@ module TencentCloud
         end
       end
 
+      # ModifyLibraDBClusterAccountDescription请求参数结构体
+      class ModifyLibraDBClusterAccountDescriptionRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param AccountName: 账号名
+        # @type AccountName: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param Host: 主机名
+        # @type Host: String
+
+        attr_accessor :ClusterId, :AccountName, :Description, :Host
+
+        def initialize(clusterid=nil, accountname=nil, description=nil, host=nil)
+          @ClusterId = clusterid
+          @AccountName = accountname
+          @Description = description
+          @Host = host
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AccountName = params['AccountName']
+          @Description = params['Description']
+          @Host = params['Host']
+        end
+      end
+
+      # ModifyLibraDBClusterAccountDescription返回参数结构体
+      class ModifyLibraDBClusterAccountDescriptionResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterAccountHost请求参数结构体
+      class ModifyLibraDBClusterAccountHostRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群id
+        # @type ClusterId: String
+        # @param Account: 账号信息
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param NewHost: 主机名
+        # @type NewHost: String
+
+        attr_accessor :ClusterId, :Account, :NewHost
+
+        def initialize(clusterid=nil, account=nil, newhost=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @NewHost = newhost
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          @NewHost = params['NewHost']
+        end
+      end
+
+      # ModifyLibraDBClusterAccountHost返回参数结构体
+      class ModifyLibraDBClusterAccountHostResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterAccountPrivilege请求参数结构体
+      class ModifyLibraDBClusterAccountPrivilegeRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群id
+        # @type ClusterId: String
+        # @param Account: 账号
+        # @type Account: :class:`Tencentcloud::Cynosdb.v20190107.models.InputAccount`
+        # @param GlobalPrivileges: 全局权限
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库权限
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 表权限
+        # @type TablePrivileges: Array
+
+        attr_accessor :ClusterId, :Account, :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges
+
+        def initialize(clusterid=nil, account=nil, globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil)
+          @ClusterId = clusterid
+          @Account = account
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['Account'].nil?
+            @Account = InputAccount.new
+            @Account.deserialize(params['Account'])
+          end
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivileges_tmp = DatabasePrivileges.new
+              databaseprivileges_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivileges_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivileges_tmp = TablePrivileges.new
+              tableprivileges_tmp.deserialize(i)
+              @TablePrivileges << tableprivileges_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyLibraDBClusterAccountPrivilege返回参数结构体
+      class ModifyLibraDBClusterAccountPrivilegeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterDataSource请求参数结构体
+      class ModifyLibraDBClusterDataSourceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 只读分析引擎实例ID
+        # @type InstanceId: String
+        # @param SrcInfo: 源端信息
+        # @type SrcInfo: Array
+
+        attr_accessor :ClusterId, :InstanceId, :SrcInfo
+
+        def initialize(clusterid=nil, instanceid=nil, srcinfo=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @SrcInfo = srcinfo
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          unless params['SrcInfo'].nil?
+            @SrcInfo = []
+            params['SrcInfo'].each do |i|
+              libradbclustersrcinfo_tmp = LibraDBClusterSrcInfo.new
+              libradbclustersrcinfo_tmp.deserialize(i)
+              @SrcInfo << libradbclustersrcinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyLibraDBClusterDataSource返回参数结构体
+      class ModifyLibraDBClusterDataSourceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterName请求参数结构体
+      class ModifyLibraDBClusterNameRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+        # @param ClusterName: 集群名称
+        # @type ClusterName: String
+
+        attr_accessor :ClusterId, :ClusterName
+
+        def initialize(clusterid=nil, clustername=nil)
+          @ClusterId = clusterid
+          @ClusterName = clustername
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
+        end
+      end
+
+      # ModifyLibraDBClusterName返回参数结构体
+      class ModifyLibraDBClusterNameResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterProject请求参数结构体
+      class ModifyLibraDBClusterProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterIdSet: 分析集群 ID 列表
+        # @type ClusterIdSet: Array
+        # @param ProjectId: 项目 ID
+        # @type ProjectId: Integer
+
+        attr_accessor :ClusterIdSet, :ProjectId
+
+        def initialize(clusteridset=nil, projectid=nil)
+          @ClusterIdSet = clusteridset
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @ClusterIdSet = params['ClusterIdSet']
+          @ProjectId = params['ProjectId']
+        end
+      end
+
+      # ModifyLibraDBClusterProject返回参数结构体
+      class ModifyLibraDBClusterProjectResponse < TencentCloud::Common::AbstractModel
+        # @param AffectedClusterIdSet: 集群列表
+        # @type AffectedClusterIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AffectedClusterIdSet, :RequestId
+
+        def initialize(affectedclusteridset=nil, requestid=nil)
+          @AffectedClusterIdSet = affectedclusteridset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AffectedClusterIdSet = params['AffectedClusterIdSet']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBClusterReplicationObject请求参数结构体
+      class ModifyLibraDBClusterReplicationObjectRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群ID
+        # @type ClusterId: String
+        # @param InstanceId: 只读分析引擎实例 ID
+        # @type InstanceId: String
+        # @param ForceDefaultMapRule: 映射模式
+        # @type ForceDefaultMapRule: String
+        # @param Objects: 同步对象
+        # @type Objects: Array
+        # @param AutoMapRules: 自动映射规则
+        # @type AutoMapRules: Array
+        # @param RefreshMapping: 是否按照最新映射规则刷新存量映射关系
+        # @type RefreshMapping: Boolean
+
+        attr_accessor :ClusterId, :InstanceId, :ForceDefaultMapRule, :Objects, :AutoMapRules, :RefreshMapping
+
+        def initialize(clusterid=nil, instanceid=nil, forcedefaultmaprule=nil, objects=nil, automaprules=nil, refreshmapping=nil)
+          @ClusterId = clusterid
+          @InstanceId = instanceid
+          @ForceDefaultMapRule = forcedefaultmaprule
+          @Objects = objects
+          @AutoMapRules = automaprules
+          @RefreshMapping = refreshmapping
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceId = params['InstanceId']
+          @ForceDefaultMapRule = params['ForceDefaultMapRule']
+          unless params['Objects'].nil?
+            @Objects = []
+            params['Objects'].each do |i|
+              replicationobject_tmp = ReplicationObject.new
+              replicationobject_tmp.deserialize(i)
+              @Objects << replicationobject_tmp
+            end
+          end
+          unless params['AutoMapRules'].nil?
+            @AutoMapRules = []
+            params['AutoMapRules'].each do |i|
+              automaprule_tmp = AutoMapRule.new
+              automaprule_tmp.deserialize(i)
+              @AutoMapRules << automaprule_tmp
+            end
+          end
+          @RefreshMapping = params['RefreshMapping']
+        end
+      end
+
+      # ModifyLibraDBClusterReplicationObject返回参数结构体
+      class ModifyLibraDBClusterReplicationObjectResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务ID
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLibraDBForwardConfig请求参数结构体
+      class ModifyLibraDBForwardConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读分析引擎实例Id
+        # @type InstanceId: String
+        # @param ForwardMode: 转发模式
+        # @type ForwardMode: String
+        # @param ForwardList: 转发实例列表
+        # @type ForwardList: Array
+
+        attr_accessor :InstanceId, :ForwardMode, :ForwardList
+
+        def initialize(instanceid=nil, forwardmode=nil, forwardlist=nil)
+          @InstanceId = instanceid
+          @ForwardMode = forwardmode
+          @ForwardList = forwardlist
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ForwardMode = params['ForwardMode']
+          unless params['ForwardList'].nil?
+            @ForwardList = []
+            params['ForwardList'].each do |i|
+              forwardinstanceinfo_tmp = ForwardInstanceInfo.new
+              forwardinstanceinfo_tmp.deserialize(i)
+              @ForwardList << forwardinstanceinfo_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyLibraDBForwardConfig返回参数结构体
+      class ModifyLibraDBForwardConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMaintainPeriodConfig请求参数结构体
       class ModifyMaintainPeriodConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -12138,8 +15030,8 @@ module TencentCloud
 
         attr_accessor :FlowId, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :FlowId, :none, 2026, 1
-        deprecate :FlowId=, :none, 2026, 1
+        deprecate :FlowId, :none, 2026, 2
+        deprecate :FlowId=, :none, 2026, 2
 
         def initialize(flowid=nil, taskid=nil, requestid=nil)
           @FlowId = flowid
@@ -12218,8 +15110,8 @@ module TencentCloud
 
         attr_accessor :ClusterId, :InstanceGrpId, :InstanceGroupId, :Vip, :Vport, :DbType, :OldIpReserveHours
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 1
-        deprecate :InstanceGrpId=, :none, 2026, 1
+        deprecate :InstanceGrpId, :none, 2026, 2
+        deprecate :InstanceGrpId=, :none, 2026, 2
 
         def initialize(clusterid=nil, instancegrpid=nil, instancegroupid=nil, vip=nil, vport=nil, dbtype=nil, oldipreservehours=nil)
           @ClusterId = clusterid
@@ -12478,6 +15370,83 @@ module TencentCloud
         end
       end
 
+      # OfflineLibraDBCluster请求参数结构体
+      class OfflineLibraDBClusterRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+
+        attr_accessor :ClusterId
+
+        def initialize(clusterid=nil)
+          @ClusterId = clusterid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+        end
+      end
+
+      # OfflineLibraDBCluster返回参数结构体
+      class OfflineLibraDBClusterResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: flow id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # OfflineLibraDBInstance请求参数结构体
+      class OfflineLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群ID
+        # @type ClusterId: String
+        # @param InstanceIdList: 只读分析引擎实例 ID 列表
+        # @type InstanceIdList: Array
+
+        attr_accessor :ClusterId, :InstanceIdList
+
+        def initialize(clusterid=nil, instanceidlist=nil)
+          @ClusterId = clusterid
+          @InstanceIdList = instanceidlist
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceIdList = params['InstanceIdList']
+        end
+      end
+
+      # OfflineLibraDBInstance返回参数结构体
+      class OfflineLibraDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务流id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 数据库地址
       class OldAddrInfo < TencentCloud::Common::AbstractModel
         # @param Vip: IP
@@ -12519,8 +15488,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 1
-        deprecate :AuditRuleFilters=, :none, 2026, 1
+        deprecate :AuditRuleFilters, :none, 2026, 2
+        deprecate :AuditRuleFilters=, :none, 2026, 2
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12831,8 +15800,8 @@ module TencentCloud
 
         attr_accessor :InstanceGrpId, :InstanceId, :InstanceGroupId
         extend Gem::Deprecate
-        deprecate :InstanceGrpId, :none, 2026, 1
-        deprecate :InstanceGrpId=, :none, 2026, 1
+        deprecate :InstanceGrpId, :none, 2026, 2
+        deprecate :InstanceGrpId=, :none, 2026, 2
 
         def initialize(instancegrpid=nil, instanceid=nil, instancegroupid=nil)
           @InstanceGrpId = instancegrpid
@@ -13918,8 +16887,8 @@ module TencentCloud
 
         attr_accessor :Values, :Names, :ExactMatch, :Name, :Operator
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2026, 1
-        deprecate :Operator=, :none, 2026, 1
+        deprecate :Operator, :none, 2026, 2
+        deprecate :Operator=, :none, 2026, 2
 
         def initialize(values=nil, names=nil, exactmatch=nil, name=nil, operator=nil)
           @Values = values
@@ -14073,6 +17042,75 @@ module TencentCloud
         end
       end
 
+      # 该地域实例规格信息
+      class RegionInstanceSpecInfo < TencentCloud::Common::AbstractModel
+        # @param Cpu: cpu核数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: 内存大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param MinStorageSize: 最小存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinStorageSize: Integer
+        # @param MaxStorageSize: 最大存储大小
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxStorageSize: Integer
+        # @param HasStock: 是否有库存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasStock: Boolean
+        # @param InstanceType: 实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceType: String
+        # @param StorageType: 存储类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param MinReplicaNum: 最小副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinReplicaNum: Integer
+        # @param MaxReplicaNum: 最大副本数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicaNum: Integer
+        # @param ZoneStockInfos: 可用区库存信息列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ZoneStockInfos: Array
+
+        attr_accessor :Cpu, :Memory, :MinStorageSize, :MaxStorageSize, :HasStock, :InstanceType, :StorageType, :MinReplicaNum, :MaxReplicaNum, :ZoneStockInfos
+
+        def initialize(cpu=nil, memory=nil, minstoragesize=nil, maxstoragesize=nil, hasstock=nil, instancetype=nil, storagetype=nil, minreplicanum=nil, maxreplicanum=nil, zonestockinfos=nil)
+          @Cpu = cpu
+          @Memory = memory
+          @MinStorageSize = minstoragesize
+          @MaxStorageSize = maxstoragesize
+          @HasStock = hasstock
+          @InstanceType = instancetype
+          @StorageType = storagetype
+          @MinReplicaNum = minreplicanum
+          @MaxReplicaNum = maxreplicanum
+          @ZoneStockInfos = zonestockinfos
+        end
+
+        def deserialize(params)
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @MinStorageSize = params['MinStorageSize']
+          @MaxStorageSize = params['MaxStorageSize']
+          @HasStock = params['HasStock']
+          @InstanceType = params['InstanceType']
+          @StorageType = params['StorageType']
+          @MinReplicaNum = params['MinReplicaNum']
+          @MaxReplicaNum = params['MaxReplicaNum']
+          unless params['ZoneStockInfos'].nil?
+            @ZoneStockInfos = []
+            params['ZoneStockInfos'].each do |i|
+              zonestockinfo4libra_tmp = ZoneStockInfo4Libra.new
+              zonestockinfo4libra_tmp.deserialize(i)
+              @ZoneStockInfos << zonestockinfo4libra_tmp
+            end
+          end
+        end
+      end
+
       # ReloadBalanceProxyNode请求参数结构体
       class ReloadBalanceProxyNodeRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -14221,6 +17259,70 @@ module TencentCloud
         end
       end
 
+      # RenewLibraDBClusters请求参数结构体
+      class RenewLibraDBClustersRequest < TencentCloud::Common::AbstractModel
+        # @param TimeSpan: 时间间隔
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 时间单位
+        # @type TimeUnit: String
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+        # @param DealMode: 订单模式
+        # @type DealMode: Integer
+
+        attr_accessor :TimeSpan, :TimeUnit, :ClusterId, :DealMode
+
+        def initialize(timespan=nil, timeunit=nil, clusterid=nil, dealmode=nil)
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @ClusterId = clusterid
+          @DealMode = dealmode
+        end
+
+        def deserialize(params)
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @ClusterId = params['ClusterId']
+          @DealMode = params['DealMode']
+        end
+      end
+
+      # RenewLibraDBClusters返回参数结构体
+      class RenewLibraDBClustersResponse < TencentCloud::Common::AbstractModel
+        # @param BigDealIds: 预付费总订单号
+        # @type BigDealIds: Array
+        # @param TranId: 冻结流水
+        # @type TranId: String
+        # @param DealNames: 订单名称
+        # @type DealNames: Array
+        # @param ResourceIds: 资源id
+        # @type ResourceIds: Array
+        # @param ClusterIds: 集群id
+        # @type ClusterIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BigDealIds, :TranId, :DealNames, :ResourceIds, :ClusterIds, :RequestId
+
+        def initialize(bigdealids=nil, tranid=nil, dealnames=nil, resourceids=nil, clusterids=nil, requestid=nil)
+          @BigDealIds = bigdealids
+          @TranId = tranid
+          @DealNames = dealnames
+          @ResourceIds = resourceids
+          @ClusterIds = clusterids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @BigDealIds = params['BigDealIds']
+          @TranId = params['TranId']
+          @DealNames = params['DealNames']
+          @ResourceIds = params['ResourceIds']
+          @ClusterIds = params['ClusterIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ReplayInstanceAuditLog请求参数结构体
       class ReplayInstanceAuditLogRequest < TencentCloud::Common::AbstractModel
         # @param SourceClusterId: 源集群id
@@ -14286,6 +17388,46 @@ module TencentCloud
         end
       end
 
+      # 分析引擎同步对象
+      class ReplicationObject < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceType: 源端实例类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInstanceType: String
+        # @param SrcClusterId: 源端集群Id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcClusterId: String
+        # @param SrcInstanceId: 源端实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SrcInstanceId: String
+        # @param ReplicationJobId: 复制任务ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReplicationJobId: String
+        # @param MigrateObjects: 同步对象详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MigrateObjects: :class:`Tencentcloud::Cynosdb.v20190107.models.MigrateOpt`
+
+        attr_accessor :SrcInstanceType, :SrcClusterId, :SrcInstanceId, :ReplicationJobId, :MigrateObjects
+
+        def initialize(srcinstancetype=nil, srcclusterid=nil, srcinstanceid=nil, replicationjobid=nil, migrateobjects=nil)
+          @SrcInstanceType = srcinstancetype
+          @SrcClusterId = srcclusterid
+          @SrcInstanceId = srcinstanceid
+          @ReplicationJobId = replicationjobid
+          @MigrateObjects = migrateobjects
+        end
+
+        def deserialize(params)
+          @SrcInstanceType = params['SrcInstanceType']
+          @SrcClusterId = params['SrcClusterId']
+          @SrcInstanceId = params['SrcInstanceId']
+          @ReplicationJobId = params['ReplicationJobId']
+          unless params['MigrateObjects'].nil?
+            @MigrateObjects = MigrateOpt.new
+            @MigrateObjects.deserialize(params['MigrateObjects'])
+          end
+        end
+      end
+
       # ResetAccountPassword请求参数结构体
       class ResetAccountPasswordRequest < TencentCloud::Common::AbstractModel
         # @param AccountName: 数据库账号名
@@ -14316,6 +17458,54 @@ module TencentCloud
 
       # ResetAccountPassword返回参数结构体
       class ResetAccountPasswordResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ResetLibraDBClusterAccountPassword请求参数结构体
+      class ResetLibraDBClusterAccountPasswordRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 分析集群 ID
+        # @type ClusterId: String
+        # @param AccountPassword: 密码
+        # @type AccountPassword: String
+        # @param AccountName: 账号
+        # @type AccountName: String
+        # @param EncryptMethod: 加密方式
+        # @type EncryptMethod: String
+        # @param Host: 主机
+        # @type Host: String
+
+        attr_accessor :ClusterId, :AccountPassword, :AccountName, :EncryptMethod, :Host
+
+        def initialize(clusterid=nil, accountpassword=nil, accountname=nil, encryptmethod=nil, host=nil)
+          @ClusterId = clusterid
+          @AccountPassword = accountpassword
+          @AccountName = accountname
+          @EncryptMethod = encryptmethod
+          @Host = host
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @AccountPassword = params['AccountPassword']
+          @AccountName = params['AccountName']
+          @EncryptMethod = params['EncryptMethod']
+          @Host = params['Host']
+        end
+      end
+
+      # ResetLibraDBClusterAccountPassword返回参数结构体
+      class ResetLibraDBClusterAccountPasswordResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -14374,6 +17564,43 @@ module TencentCloud
       # RestartInstance返回参数结构体
       class RestartInstanceResponse < TencentCloud::Common::AbstractModel
         # @param FlowId: 异步任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RestartLibraDBInstance请求参数结构体
+      class RestartLibraDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 只读分析引擎实例 ID
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # RestartLibraDBInstance返回参数结构体
+      class RestartLibraDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 异步任务id
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14478,6 +17705,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 只读实例地址
+      class RoAddr < TencentCloud::Common::AbstractModel
+        # @param IP: IP地址
+        # @type IP: String
+        # @param Port: 端口
+        # @type Port: Integer
+
+        attr_accessor :IP, :Port
+
+        def initialize(ip=nil, port=nil)
+          @IP = ip
+          @Port = port
+        end
+
+        def deserialize(params)
+          @IP = params['IP']
+          @Port = params['Port']
         end
       end
 
@@ -15601,6 +18848,46 @@ module TencentCloud
         end
       end
 
+      # SetLibraDBClusterRenewFlag请求参数结构体
+      class SetLibraDBClusterRenewFlagRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceIds: 分析集群 ID 列表
+        # @type ResourceIds: Array
+        # @param AutoRenewFlag: 续费标记 0:正常续费  1:自动续费 2:到期不续
+        # @type AutoRenewFlag: Integer
+
+        attr_accessor :ResourceIds, :AutoRenewFlag
+
+        def initialize(resourceids=nil, autorenewflag=nil)
+          @ResourceIds = resourceids
+          @AutoRenewFlag = autorenewflag
+        end
+
+        def deserialize(params)
+          @ResourceIds = params['ResourceIds']
+          @AutoRenewFlag = params['AutoRenewFlag']
+        end
+      end
+
+      # SetLibraDBClusterRenewFlag返回参数结构体
+      class SetLibraDBClusterRenewFlagResponse < TencentCloud::Common::AbstractModel
+        # @param Count: 数量
+        # @type Count: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Count, :RequestId
+
+        def initialize(count=nil, requestid=nil)
+          @Count = count
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Count = params['Count']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetRenewFlag请求参数结构体
       class SetRenewFlagRequest < TencentCloud::Common::AbstractModel
         # @param ResourceIds: 需操作的集群ID
@@ -16077,6 +19364,62 @@ module TencentCloud
         def deserialize(params)
           @FlowId = params['FlowId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 表映射关系
+      class TableMappingObject < TencentCloud::Common::AbstractModel
+        # @param SrcInstanceId: 源端实例Id
+        # @type SrcInstanceId: String
+        # @param DatabaseName: 数据库名称
+        # @type DatabaseName: String
+        # @param TableName: 表名
+        # @type TableName: String
+        # @param MapDatabaseName: 映射数据库名称
+        # @type MapDatabaseName: String
+        # @param MapTableName: 映射表名
+        # @type MapTableName: String
+        # @param Status: 同步状态
+        # @type Status: String
+        # @param Process: 同步进度
+        # @type Process: Float
+        # @param Lag: 延迟
+        # @type Lag: Integer
+        # @param Message: 消息
+        # @type Message: String
+        # @param IsPrimary: 是否为主表
+        # @type IsPrimary: Boolean
+        # @param VirtualColValue: 虚拟列填充值
+        # @type VirtualColValue: String
+
+        attr_accessor :SrcInstanceId, :DatabaseName, :TableName, :MapDatabaseName, :MapTableName, :Status, :Process, :Lag, :Message, :IsPrimary, :VirtualColValue
+
+        def initialize(srcinstanceid=nil, databasename=nil, tablename=nil, mapdatabasename=nil, maptablename=nil, status=nil, process=nil, lag=nil, message=nil, isprimary=nil, virtualcolvalue=nil)
+          @SrcInstanceId = srcinstanceid
+          @DatabaseName = databasename
+          @TableName = tablename
+          @MapDatabaseName = mapdatabasename
+          @MapTableName = maptablename
+          @Status = status
+          @Process = process
+          @Lag = lag
+          @Message = message
+          @IsPrimary = isprimary
+          @VirtualColValue = virtualcolvalue
+        end
+
+        def deserialize(params)
+          @SrcInstanceId = params['SrcInstanceId']
+          @DatabaseName = params['DatabaseName']
+          @TableName = params['TableName']
+          @MapDatabaseName = params['MapDatabaseName']
+          @MapTableName = params['MapTableName']
+          @Status = params['Status']
+          @Process = params['Process']
+          @Lag = params['Lag']
+          @Message = params['Message']
+          @IsPrimary = params['IsPrimary']
+          @VirtualColValue = params['VirtualColValue']
         end
       end
 
@@ -16665,6 +20008,28 @@ module TencentCloud
               @SlaveZoneStockInfos << slavezonestockinfo_tmp
             end
           end
+        end
+      end
+
+      # Libra所售卖的地域库存信息
+      class ZoneStockInfo4Libra < TencentCloud::Common::AbstractModel
+        # @param Zone: 可用区
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Zone: String
+        # @param HasStock: 是否有库存
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HasStock: Boolean
+
+        attr_accessor :Zone, :HasStock
+
+        def initialize(zone=nil, hasstock=nil)
+          @Zone = zone
+          @HasStock = hasstock
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @HasStock = params['HasStock']
         end
       end
 

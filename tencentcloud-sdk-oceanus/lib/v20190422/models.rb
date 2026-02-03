@@ -5340,53 +5340,54 @@ module TencentCloud
 
       # setats类型
       class Setats < TencentCloud::Common::AbstractModel
-        # @param SetatsSerialId: setats serialId
+        # @param SetatsSerialId: <p>setats serialId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SetatsSerialId: String
-        # @param Status: 1  // 停止
-        # 2  // 运行中
-        # 3  // 初始化中
-        # 4  // 扩容中
-        # 5  // Warehoouse未配置
-        # 6  // Warehoouse配置中
-        # 7  // 重启中
-        # -2 // 已删除(集群被销毁时更新为此状态)
+        # @param Status: <p>1  // 停止<br>2  // 运行中<br>3  // 初始化中<br>4  // 扩容中<br>5  // Warehoouse未配置<br>6  // Warehoouse配置中<br>7  // 重启中<br>-2 // 已删除(集群被销毁时更新为此状态)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Warehouse: setats warehouse
+        # @param Warehouse: <p>setats warehouse</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Warehouse: :class:`Tencentcloud::Oceanus.v20190422.models.Warehouse`
-        # @param MasterInfo: setats master 机器规格
+        # @param MasterInfo: <p>setats master 机器规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MasterInfo: :class:`Tencentcloud::Oceanus.v20190422.models.SetatsCvmInfo`
-        # @param WorkerInfo: setats worker规格
+        # @param WorkerInfo: <p>setats worker规格</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkerInfo: :class:`Tencentcloud::Oceanus.v20190422.models.SetatsCvmInfo`
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param AutoRenewFlag: 自动续费
+        # @param AutoRenewFlag: <p>自动续费</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoRenewFlag: Integer
-        # @param ExpireTime: 过期时间
+        # @param ExpireTime: <p>过期时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param SecondsUntilExpiry: 过期时间 秒
+        # @param SecondsUntilExpiry: <p>过期时间 秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SecondsUntilExpiry: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
-        # @param ManagerUrl: manager url
+        # @param ManagerUrl: <p>manager url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ManagerUrl: String
-        # @param IsolatedTime: 隔离时间
+        # @param IsolatedTime: <p>隔离时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsolatedTime: String
+        # @param OwnerClusterGroupSerialId: <p>Setats集群自己的id</p>
+        # @type OwnerClusterGroupSerialId: String
+        # @param Type: <p>setats 集群类型</p>
+        # @type Type: Integer
+        # @param SetatsUiUrl: <p>Setats UI url</p>
+        # @type SetatsUiUrl: String
+        # @param ImageVersion: <p>setats镜像版本</p>
+        # @type ImageVersion: String
 
-        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime
+        attr_accessor :SetatsSerialId, :Status, :Warehouse, :MasterInfo, :WorkerInfo, :Tags, :AutoRenewFlag, :ExpireTime, :SecondsUntilExpiry, :CreateTime, :ManagerUrl, :IsolatedTime, :OwnerClusterGroupSerialId, :Type, :SetatsUiUrl, :ImageVersion
 
-        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil)
+        def initialize(setatsserialid=nil, status=nil, warehouse=nil, masterinfo=nil, workerinfo=nil, tags=nil, autorenewflag=nil, expiretime=nil, secondsuntilexpiry=nil, createtime=nil, managerurl=nil, isolatedtime=nil, ownerclustergroupserialid=nil, type=nil, setatsuiurl=nil, imageversion=nil)
           @SetatsSerialId = setatsserialid
           @Status = status
           @Warehouse = warehouse
@@ -5399,6 +5400,10 @@ module TencentCloud
           @CreateTime = createtime
           @ManagerUrl = managerurl
           @IsolatedTime = isolatedtime
+          @OwnerClusterGroupSerialId = ownerclustergroupserialid
+          @Type = type
+          @SetatsUiUrl = setatsuiurl
+          @ImageVersion = imageversion
         end
 
         def deserialize(params)
@@ -5430,6 +5435,10 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @ManagerUrl = params['ManagerUrl']
           @IsolatedTime = params['IsolatedTime']
+          @OwnerClusterGroupSerialId = params['OwnerClusterGroupSerialId']
+          @Type = params['Type']
+          @SetatsUiUrl = params['SetatsUiUrl']
+          @ImageVersion = params['ImageVersion']
         end
       end
 
@@ -6119,37 +6128,39 @@ module TencentCloud
 
       # Setats Warehouse结构
       class Warehouse < TencentCloud::Common::AbstractModel
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
-        # @param Location: location
+        # @param Location: <p>location</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Location: String
-        # @param CatalogType: catalogtype
+        # @param CatalogType: <p>catalogtype</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogType: String
-        # @param Uri: uri
+        # @param Uri: <p>uri</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Uri: String
-        # @param WarehouseUrl: warehouse url
+        # @param WarehouseUrl: <p>warehouse url</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WarehouseUrl: String
-        # @param Authentication: 认证方式
+        # @param Authentication: <p>认证方式</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Authentication: String
-        # @param ResourceRefs: 资源
+        # @param ResourceRefs: <p>资源</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceRefs: Array
-        # @param HiveUri: hive warehouse uri
+        # @param HiveUri: <p>hive warehouse uri</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HiveUri: String
-        # @param Properties: 高级参数
+        # @param Properties: <p>高级参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Properties: Array
+        # @param HiveCatalogType: <p>hive cata 类型</p>
+        # @type HiveCatalogType: Integer
 
-        attr_accessor :Status, :Location, :CatalogType, :Uri, :WarehouseUrl, :Authentication, :ResourceRefs, :HiveUri, :Properties
+        attr_accessor :Status, :Location, :CatalogType, :Uri, :WarehouseUrl, :Authentication, :ResourceRefs, :HiveUri, :Properties, :HiveCatalogType
 
-        def initialize(status=nil, location=nil, catalogtype=nil, uri=nil, warehouseurl=nil, authentication=nil, resourcerefs=nil, hiveuri=nil, properties=nil)
+        def initialize(status=nil, location=nil, catalogtype=nil, uri=nil, warehouseurl=nil, authentication=nil, resourcerefs=nil, hiveuri=nil, properties=nil, hivecatalogtype=nil)
           @Status = status
           @Location = location
           @CatalogType = catalogtype
@@ -6159,6 +6170,7 @@ module TencentCloud
           @ResourceRefs = resourcerefs
           @HiveUri = hiveuri
           @Properties = properties
+          @HiveCatalogType = hivecatalogtype
         end
 
         def deserialize(params)
@@ -6185,6 +6197,7 @@ module TencentCloud
               @Properties << property_tmp
             end
           end
+          @HiveCatalogType = params['HiveCatalogType']
         end
       end
 

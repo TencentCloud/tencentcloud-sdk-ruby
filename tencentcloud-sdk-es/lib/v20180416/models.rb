@@ -500,12 +500,14 @@ module TencentCloud
         # @type StrategyName: String
         # @param Indices: 备份索引列表，如果不填表示备份所有索引
         # @type Indices: String
+        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # @type MultiAz: Integer
         # @param CreateTime: 策略创建时间
         # @type CreateTime: String
 
-        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :CosBasePath, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :CreateTime
+        attr_accessor :IsAutoBackup, :BackupTime, :SnapshotName, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :CosBasePath, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :StrategyName, :Indices, :MultiAz, :CreateTime
 
-        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, cosbasepath=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, createtime=nil)
+        def initialize(isautobackup=nil, backuptime=nil, snapshotname=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, cosbasepath=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, strategyname=nil, indices=nil, multiaz=nil, createtime=nil)
           @IsAutoBackup = isautobackup
           @BackupTime = backuptime
           @SnapshotName = snapshotname
@@ -522,6 +524,7 @@ module TencentCloud
           @RemoteCosRegion = remotecosregion
           @StrategyName = strategyname
           @Indices = indices
+          @MultiAz = multiaz
           @CreateTime = createtime
         end
 
@@ -542,6 +545,7 @@ module TencentCloud
           @RemoteCosRegion = params['RemoteCosRegion']
           @StrategyName = params['StrategyName']
           @Indices = params['Indices']
+          @MultiAz = params['MultiAz']
           @CreateTime = params['CreateTime']
         end
       end
@@ -674,10 +678,12 @@ module TencentCloud
         # @type RemoteCos: Integer
         # @param RemoteCosRegion: 跨地域备份地域名称 ap-guangzhou
         # @type RemoteCosRegion: String
+        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # @type MultiAz: Integer
 
-        attr_accessor :InstanceId, :SnapshotName, :Indices, :EsRepositoryType, :UserEsRepository, :StorageDuration, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion
+        attr_accessor :InstanceId, :SnapshotName, :Indices, :EsRepositoryType, :UserEsRepository, :StorageDuration, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :RemoteCos, :RemoteCosRegion, :MultiAz
 
-        def initialize(instanceid=nil, snapshotname=nil, indices=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil)
+        def initialize(instanceid=nil, snapshotname=nil, indices=nil, esrepositorytype=nil, useresrepository=nil, storageduration=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, remotecos=nil, remotecosregion=nil, multiaz=nil)
           @InstanceId = instanceid
           @SnapshotName = snapshotname
           @Indices = indices
@@ -689,6 +695,7 @@ module TencentCloud
           @RetentionGraceTime = retentiongracetime
           @RemoteCos = remotecos
           @RemoteCosRegion = remotecosregion
+          @MultiAz = multiaz
         end
 
         def deserialize(params)
@@ -703,6 +710,7 @@ module TencentCloud
           @RetentionGraceTime = params['RetentionGraceTime']
           @RemoteCos = params['RemoteCos']
           @RemoteCosRegion = params['RemoteCosRegion']
+          @MultiAz = params['MultiAz']
         end
       end
 
@@ -6558,6 +6566,26 @@ module TencentCloud
         end
       end
 
+      # updateInstance使用的额外的EsConfig和JvmHeapConfig
+      class OtherConfig < TencentCloud::Common::AbstractModel
+        # @param EsConfig: es的yml额外配置
+        # @type EsConfig: String
+        # @param JvmHeapConfig: es的jvm heap config
+        # @type JvmHeapConfig: String
+
+        attr_accessor :EsConfig, :JvmHeapConfig
+
+        def initialize(esconfig=nil, jvmheapconfig=nil)
+          @EsConfig = esconfig
+          @JvmHeapConfig = jvmheapconfig
+        end
+
+        def deserialize(params)
+          @EsConfig = params['EsConfig']
+          @JvmHeapConfig = params['JvmHeapConfig']
+        end
+      end
+
       # 节点出站访问信息
       class OutboundPublicAcl < TencentCloud::Common::AbstractModel
         # @param NodeType: 允许节点出站访问的节点类型
@@ -7578,10 +7606,13 @@ module TencentCloud
         # @param StrategyName: 策略名称
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StrategyName: String
+        # @param MultiAz: cos多AZ备份 0 单AZ; 1 多AZ
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MultiAz: Integer
 
-        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :IsLocked, :RemoteCos, :RemoteCosRegion, :CosEncryption, :KmsKey, :StrategyName
+        attr_accessor :SnapshotName, :Uuid, :Repository, :Version, :Indices, :DataStreams, :State, :StartTime, :EndTime, :DurationInMillis, :TotalShards, :FailedShards, :SuccessfulShards, :Failures, :UserBackUp, :EsRepositoryType, :PaasEsRepository, :UserEsRepository, :StorageDuration, :AutoBackupInterval, :CosRetention, :RetainUntilDate, :RetentionGraceTime, :IsLocked, :RemoteCos, :RemoteCosRegion, :CosEncryption, :KmsKey, :StrategyName, :MultiAz
 
-        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, islocked=nil, remotecos=nil, remotecosregion=nil, cosencryption=nil, kmskey=nil, strategyname=nil)
+        def initialize(snapshotname=nil, uuid=nil, repository=nil, version=nil, indices=nil, datastreams=nil, state=nil, starttime=nil, endtime=nil, durationinmillis=nil, totalshards=nil, failedshards=nil, successfulshards=nil, failures=nil, userbackup=nil, esrepositorytype=nil, paasesrepository=nil, useresrepository=nil, storageduration=nil, autobackupinterval=nil, cosretention=nil, retainuntildate=nil, retentiongracetime=nil, islocked=nil, remotecos=nil, remotecosregion=nil, cosencryption=nil, kmskey=nil, strategyname=nil, multiaz=nil)
           @SnapshotName = snapshotname
           @Uuid = uuid
           @Repository = repository
@@ -7611,6 +7642,7 @@ module TencentCloud
           @CosEncryption = cosencryption
           @KmsKey = kmskey
           @StrategyName = strategyname
+          @MultiAz = multiaz
         end
 
         def deserialize(params)
@@ -7650,6 +7682,7 @@ module TencentCloud
           @CosEncryption = params['CosEncryption']
           @KmsKey = params['KmsKey']
           @StrategyName = params['StrategyName']
+          @MultiAz = params['MultiAz']
         end
       end
 
@@ -8103,10 +8136,12 @@ module TencentCloud
         # @type AutoScaleDiskInfoList: Array
         # @param AutoScaleDiskDeleteNodeTypeList: 自动扩盘删除参数
         # @type AutoScaleDiskDeleteNodeTypeList: Array
+        # @param OtherConfig: 其他附加配置，jvm或者yml
+        # @type OtherConfig: :class:`Tencentcloud::Es.v20180416.models.OtherConfig`
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :AutoScaleDiskInfoList, :AutoScaleDiskDeleteNodeTypeList
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :AutoScaleDiskInfoList, :AutoScaleDiskDeleteNodeTypeList, :OtherConfig
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, autoscalediskinfolist=nil, autoscalediskdeletenodetypelist=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, autoscalediskinfolist=nil, autoscalediskdeletenodetypelist=nil, otherconfig=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -8153,6 +8188,7 @@ module TencentCloud
           @EnableDestroyProtection = enabledestroyprotection
           @AutoScaleDiskInfoList = autoscalediskinfolist
           @AutoScaleDiskDeleteNodeTypeList = autoscalediskdeletenodetypelist
+          @OtherConfig = otherconfig
         end
 
         def deserialize(params)
@@ -8251,6 +8287,10 @@ module TencentCloud
             end
           end
           @AutoScaleDiskDeleteNodeTypeList = params['AutoScaleDiskDeleteNodeTypeList']
+          unless params['OtherConfig'].nil?
+            @OtherConfig = OtherConfig.new
+            @OtherConfig.deserialize(params['OtherConfig'])
+          end
         end
       end
 

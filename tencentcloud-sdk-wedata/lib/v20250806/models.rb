@@ -3031,18 +3031,18 @@ module TencentCloud
 
         attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 1
-        deprecate :ScheduleRunType=, :none, 2026, 1
-        deprecate :RunPriority, :none, 2026, 1
-        deprecate :RunPriority=, :none, 2026, 1
-        deprecate :RetryWait, :none, 2026, 1
-        deprecate :RetryWait=, :none, 2026, 1
-        deprecate :MaxRetryAttempts, :none, 2026, 1
-        deprecate :MaxRetryAttempts=, :none, 2026, 1
-        deprecate :ExecutionTTL, :none, 2026, 1
-        deprecate :ExecutionTTL=, :none, 2026, 1
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 1
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 1
+        deprecate :ScheduleRunType, :none, 2026, 2
+        deprecate :ScheduleRunType=, :none, 2026, 2
+        deprecate :RunPriority, :none, 2026, 2
+        deprecate :RunPriority=, :none, 2026, 2
+        deprecate :RetryWait, :none, 2026, 2
+        deprecate :RetryWait=, :none, 2026, 2
+        deprecate :MaxRetryAttempts, :none, 2026, 2
+        deprecate :MaxRetryAttempts=, :none, 2026, 2
+        deprecate :ExecutionTTL, :none, 2026, 2
+        deprecate :ExecutionTTL=, :none, 2026, 2
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 2
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 2
 
         def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
           @CycleType = cycletype
@@ -20360,20 +20360,20 @@ module TencentCloud
 
         attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
         extend Gem::Deprecate
-        deprecate :ScheduleRunType, :none, 2026, 1
-        deprecate :ScheduleRunType=, :none, 2026, 1
-        deprecate :DownStreamDependencyConfigList, :none, 2026, 1
-        deprecate :DownStreamDependencyConfigList=, :none, 2026, 1
-        deprecate :RunPriority, :none, 2026, 1
-        deprecate :RunPriority=, :none, 2026, 1
-        deprecate :RetryWait, :none, 2026, 1
-        deprecate :RetryWait=, :none, 2026, 1
-        deprecate :MaxRetryAttempts, :none, 2026, 1
-        deprecate :MaxRetryAttempts=, :none, 2026, 1
-        deprecate :ExecutionTTL, :none, 2026, 1
-        deprecate :ExecutionTTL=, :none, 2026, 1
-        deprecate :WaitExecutionTotalTTL, :none, 2026, 1
-        deprecate :WaitExecutionTotalTTL=, :none, 2026, 1
+        deprecate :ScheduleRunType, :none, 2026, 2
+        deprecate :ScheduleRunType=, :none, 2026, 2
+        deprecate :DownStreamDependencyConfigList, :none, 2026, 2
+        deprecate :DownStreamDependencyConfigList=, :none, 2026, 2
+        deprecate :RunPriority, :none, 2026, 2
+        deprecate :RunPriority=, :none, 2026, 2
+        deprecate :RetryWait, :none, 2026, 2
+        deprecate :RetryWait=, :none, 2026, 2
+        deprecate :MaxRetryAttempts, :none, 2026, 2
+        deprecate :MaxRetryAttempts=, :none, 2026, 2
+        deprecate :ExecutionTTL, :none, 2026, 2
+        deprecate :ExecutionTTL=, :none, 2026, 2
+        deprecate :WaitExecutionTotalTTL, :none, 2026, 2
+        deprecate :WaitExecutionTotalTTL=, :none, 2026, 2
 
         def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
           @CycleType = cycletype

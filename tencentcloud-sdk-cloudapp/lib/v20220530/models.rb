@@ -103,6 +103,57 @@ module TencentCloud
         end
       end
 
+      # IssueLicense请求参数结构体
+      class IssueLicenseRequest < TencentCloud::Common::AbstractModel
+        # @param CloudappId: <p>云应用实例 ID</p>
+        # @type CloudappId: String
+        # @param LicenseId: <p>云应用颁发的 License 授权 ID。系统中唯一，伙伴可通过 License 颁发的订阅接口中获取</p>
+        # @type LicenseId: String
+        # @param LicenseData: <p>License 的详细数据</p>
+        # @type LicenseData: :class:`Tencentcloud::Cloudapp.v20220530.models.PartnerLicenseData`
+        # @param ActivateMode: <p>License 的激活模式</p>枚举值：<ul><li> immediate ： 立即激活</li><li> scheduled： 指定时间激活</li></ul>
+        # @type ActivateMode: String
+        # @param ActivateAt: <p>激活时间，指定时间激活时需要传该字段</p>
+        # @type ActivateAt: String
+
+        attr_accessor :CloudappId, :LicenseId, :LicenseData, :ActivateMode, :ActivateAt
+
+        def initialize(cloudappid=nil, licenseid=nil, licensedata=nil, activatemode=nil, activateat=nil)
+          @CloudappId = cloudappid
+          @LicenseId = licenseid
+          @LicenseData = licensedata
+          @ActivateMode = activatemode
+          @ActivateAt = activateat
+        end
+
+        def deserialize(params)
+          @CloudappId = params['CloudappId']
+          @LicenseId = params['LicenseId']
+          unless params['LicenseData'].nil?
+            @LicenseData = PartnerLicenseData.new
+            @LicenseData.deserialize(params['LicenseData'])
+          end
+          @ActivateMode = params['ActivateMode']
+          @ActivateAt = params['ActivateAt']
+        end
+      end
+
+      # IssueLicense返回参数结构体
+      class IssueLicenseResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 表示应用实例的软件授权，包含颁发信息、激活信息等内容。
       class License < TencentCloud::Common::AbstractModel
         # @param LicenseId: <p>License ID</p>
@@ -243,6 +294,26 @@ module TencentCloud
               @Metadata << displaymetadata_tmp
             end
           end
+        end
+      end
+
+      # License 内容信息
+      class PartnerLicenseData < TencentCloud::Common::AbstractModel
+        # @param Text: <p>License 文本内容。可传入密钥、证书等文本型 License 内容，二进制内容请进行 base64 编码</p>
+        # @type Text: String
+        # @param ExtraData: <p>License 的额外信息，JSON 字符串格式</p>
+        # @type ExtraData: String
+
+        attr_accessor :Text, :ExtraData
+
+        def initialize(text=nil, extradata=nil)
+          @Text = text
+          @ExtraData = extradata
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @ExtraData = params['ExtraData']
         end
       end
 

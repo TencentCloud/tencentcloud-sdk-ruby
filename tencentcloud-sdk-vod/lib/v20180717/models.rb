@@ -280,14 +280,16 @@ module TencentCloud
         # @type SubStreamSet: Array
         # @param CopyRightWatermarkText: 版权信息。
         # @type CopyRightWatermarkText: String
+        # @param BlindWatermarkDefinition: 数字水印模板id。
+        # @type BlindWatermarkDefinition: Integer
         # @param SubtitleSet: 字幕信息列表。
         # @type SubtitleSet: Array
         # @param DefaultSubtitleId: 默认字幕的唯一标识。
         # @type DefaultSubtitleId: String
 
-        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText, :SubtitleSet, :DefaultSubtitleId
+        attr_accessor :Definition, :Package, :DrmType, :Url, :Size, :DigitalWatermarkType, :SubStreamSet, :CopyRightWatermarkText, :BlindWatermarkDefinition, :SubtitleSet, :DefaultSubtitleId
 
-        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil, subtitleset=nil, defaultsubtitleid=nil)
+        def initialize(definition=nil, package=nil, drmtype=nil, url=nil, size=nil, digitalwatermarktype=nil, substreamset=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil, subtitleset=nil, defaultsubtitleid=nil)
           @Definition = definition
           @Package = package
           @DrmType = drmtype
@@ -296,6 +298,7 @@ module TencentCloud
           @DigitalWatermarkType = digitalwatermarktype
           @SubStreamSet = substreamset
           @CopyRightWatermarkText = copyrightwatermarktext
+          @BlindWatermarkDefinition = blindwatermarkdefinition
           @SubtitleSet = subtitleset
           @DefaultSubtitleId = defaultsubtitleid
         end
@@ -316,6 +319,7 @@ module TencentCloud
             end
           end
           @CopyRightWatermarkText = params['CopyRightWatermarkText']
+          @BlindWatermarkDefinition = params['BlindWatermarkDefinition']
           unless params['SubtitleSet'].nil?
             @SubtitleSet = []
             params['SubtitleSet'].each do |i|
@@ -6002,6 +6006,46 @@ module TencentCloud
         end
       end
 
+      # 数字水印模板详情
+      class BlindWatermarkTemplate < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：NAGRA取证水印；</li>
+        # @type Type: String
+        # @param Name: 数字水印模板名称。
+        # @type Name: String
+        # @param TextContent: 数字水印模板文本内容，长度不超过64个字符。
+        # @type TextContent: String
+        # @param Comment: 数字水印模板描述信息。
+        # @type Comment: String
+        # @param CreateTime: 数字水印模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type CreateTime: String
+        # @param UpdateTime: 数字水印模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Type, :Name, :TextContent, :Comment, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, type=nil, name=nil, textcontent=nil, comment=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Type = type
+          @Name = name
+          @TextContent = textcontent
+          @Comment = comment
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Type = params['Type']
+          @Name = params['Name']
+          @TextContent = params['TextContent']
+          @Comment = params['Comment']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 视频画面模糊检测的控制参数。
       class BlurConfigureInfo < TencentCloud::Common::AbstractModel
         # @param Switch: 视频画面模糊检测开关，可选值：
@@ -7916,6 +7960,58 @@ module TencentCloud
       # CreateAnimatedGraphicsTemplate返回参数结构体
       class CreateAnimatedGraphicsTemplateResponse < TencentCloud::Common::AbstractModel
         # @param Definition: 转动图模板唯一标识。
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateBlindWatermarkTemplate请求参数结构体
+      class CreateBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：NAGRA水印；</li>
+        # @type Type: String
+        # @param TextContent: 数字水印文字内容，长度不超过64个字符，NAGRA水印类型的模板创建后不支持修改文字内容。
+        # @type TextContent: String
+        # @param SubAppId: 点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。
+        # @type SubAppId: Integer
+        # @param Name: 数字水印模板名称，支持中文、英文、数字、_、-和. 六种格式，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 数字水印模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+
+        attr_accessor :Type, :TextContent, :SubAppId, :Name, :Comment
+
+        def initialize(type=nil, textcontent=nil, subappid=nil, name=nil, comment=nil)
+          @Type = type
+          @TextContent = textcontent
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @TextContent = params['TextContent']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+        end
+      end
+
+      # CreateBlindWatermarkTemplate返回参数结构体
+      class CreateBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10376,6 +10472,42 @@ module TencentCloud
         end
       end
 
+      # DeleteBlindWatermarkTemplate请求参数结构体
+      class DeleteBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: 点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteBlindWatermarkTemplate返回参数结构体
+      class DeleteBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCLSTopic请求参数结构体
       class DeleteCLSTopicRequest < TencentCloud::Common::AbstractModel
         # @param CLSRegion: 日志集所属的地域，取值有： <li>ap-guangzhou：广州；</li> <li>ap-beijing：北京；</li> <li>ap-chengdu：成都；</li> <li>ap-chongqing：重庆；</li> <li>ap-nanjing：南京；</li> <li>ap-shanghai：上海；</li> <li>ap-singapore：新加坡。</li>
@@ -11690,6 +11822,71 @@ module TencentCloud
               animatedgraphicstemplate_tmp = AnimatedGraphicsTemplate.new
               animatedgraphicstemplate_tmp.deserialize(i)
               @AnimatedGraphicsTemplateSet << animatedgraphicstemplate_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBlindWatermarkTemplates请求参数结构体
+      class DescribeBlindWatermarkTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: 点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。
+        # @type SubAppId: Integer
+        # @param Definitions: 数字水印模板唯一标识过滤条件，数组长度限制：100。
+        # @type Definitions: Array
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-nagra：Nagra取证水印；</li>
+        # @type Type: String
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数
+        # <li>默认值：10；</li>
+        # <li>最大值：100。</li>
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :Definitions, :Type, :Offset, :Limit
+
+        def initialize(subappid=nil, definitions=nil, type=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @Definitions = definitions
+          @Type = type
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Definitions = params['Definitions']
+          @Type = params['Type']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeBlindWatermarkTemplates返回参数结构体
+      class DescribeBlindWatermarkTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param BlindWatermarkTemplateSet: 数字水印模板详情列表。
+        # @type BlindWatermarkTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BlindWatermarkTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, blindwatermarktemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BlindWatermarkTemplateSet = blindwatermarktemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BlindWatermarkTemplateSet'].nil?
+            @BlindWatermarkTemplateSet = []
+            params['BlindWatermarkTemplateSet'].each do |i|
+              blindwatermarktemplate_tmp = BlindWatermarkTemplate.new
+              blindwatermarktemplate_tmp.deserialize(i)
+              @BlindWatermarkTemplateSet << blindwatermarktemplate_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -16539,6 +16736,72 @@ module TencentCloud
           @Type = params['Type']
           @FileId = params['FileId']
           @Url = params['Url']
+        end
+      end
+
+      # ExtractBlindWatermark请求参数结构体
+      class ExtractBlindWatermarkRequest < TencentCloud::Common::AbstractModel
+        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-trace：溯源ab序列水印；</li>
+        # @type Type: String
+        # @param InputInfo: 媒体处理的文件输入信息。
+        # @type InputInfo: :class:`Tencentcloud::Vod.v20180717.models.ExtractBlindWatermarkInputInfo`
+        # @param SubAppId: 添加水印时的点播应用 ID。注意不管是传入FILEID还是URL，都必须与添加水印时的SubAppId吻合才能提取到水印。
+        # @type SubAppId: Integer
+        # @param ExtractBlindWatermarkConfig: 提取数字水印任务配置
+        # @type ExtractBlindWatermarkConfig: :class:`Tencentcloud::Vod.v20180717.models.ExtractBlindWatermarkTaskConfig`
+        # @param SessionContext: 标识来源上下文，用于透传用户请求信息，在 ExtractBlindWatermarkComplete 回调和任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @type SessionContext: String
+        # @param SessionId: 用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @type SessionId: String
+        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @type TasksPriority: Integer
+
+        attr_accessor :Type, :InputInfo, :SubAppId, :ExtractBlindWatermarkConfig, :SessionContext, :SessionId, :TasksPriority
+
+        def initialize(type=nil, inputinfo=nil, subappid=nil, extractblindwatermarkconfig=nil, sessioncontext=nil, sessionid=nil, taskspriority=nil)
+          @Type = type
+          @InputInfo = inputinfo
+          @SubAppId = subappid
+          @ExtractBlindWatermarkConfig = extractblindwatermarkconfig
+          @SessionContext = sessioncontext
+          @SessionId = sessionid
+          @TasksPriority = taskspriority
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['InputInfo'].nil?
+            @InputInfo = ExtractBlindWatermarkInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @SubAppId = params['SubAppId']
+          unless params['ExtractBlindWatermarkConfig'].nil?
+            @ExtractBlindWatermarkConfig = ExtractBlindWatermarkTaskConfig.new
+            @ExtractBlindWatermarkConfig.deserialize(params['ExtractBlindWatermarkConfig'])
+          end
+          @SessionContext = params['SessionContext']
+          @SessionId = params['SessionId']
+          @TasksPriority = params['TasksPriority']
+        end
+      end
+
+      # ExtractBlindWatermark返回参数结构体
+      class ExtractBlindWatermarkResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务 ID。
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -21427,10 +21690,12 @@ module TencentCloud
         # @type DigitalWatermarkType: String
         # @param CopyRightWatermarkText: 版权信息。
         # @type CopyRightWatermarkText: String
+        # @param BlindWatermarkDefinition: 数字水印模板id。
+        # @type BlindWatermarkDefinition: Integer
 
-        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType, :CopyRightWatermarkText
+        attr_accessor :Url, :Definition, :Bitrate, :Height, :Width, :Size, :Duration, :Md5, :Container, :VideoStreamSet, :AudioStreamSet, :DigitalWatermarkType, :CopyRightWatermarkText, :BlindWatermarkDefinition
 
-        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil, copyrightwatermarktext=nil)
+        def initialize(url=nil, definition=nil, bitrate=nil, height=nil, width=nil, size=nil, duration=nil, md5=nil, container=nil, videostreamset=nil, audiostreamset=nil, digitalwatermarktype=nil, copyrightwatermarktext=nil, blindwatermarkdefinition=nil)
           @Url = url
           @Definition = definition
           @Bitrate = bitrate
@@ -21444,6 +21709,7 @@ module TencentCloud
           @AudioStreamSet = audiostreamset
           @DigitalWatermarkType = digitalwatermarktype
           @CopyRightWatermarkText = copyrightwatermarktext
+          @BlindWatermarkDefinition = blindwatermarkdefinition
         end
 
         def deserialize(params)
@@ -21474,6 +21740,7 @@ module TencentCloud
           end
           @DigitalWatermarkType = params['DigitalWatermarkType']
           @CopyRightWatermarkText = params['CopyRightWatermarkText']
+          @BlindWatermarkDefinition = params['BlindWatermarkDefinition']
         end
       end
 
@@ -21890,6 +22157,54 @@ module TencentCloud
 
       # ModifyAnimatedGraphicsTemplate返回参数结构体
       class ModifyAnimatedGraphicsTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyBlindWatermarkTemplate请求参数结构体
+      class ModifyBlindWatermarkTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 数字水印模板唯一标识。
+        # @type Definition: Integer
+        # @param SubAppId: 点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。
+        # @type SubAppId: Integer
+        # @param Name: 数字水印模板名称，支持 中文、英文、数字、_、-和. 六种格式，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 数字水印模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param TextContent: 数字水印文字内容，长度不超过64个字符，NAGRA水印类型的模板不支持修改文字内容。
+        # @type TextContent: String
+
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :TextContent
+
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, textcontent=nil)
+          @Definition = definition
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @TextContent = textcontent
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @TextContent = params['TextContent']
+        end
+      end
+
+      # ModifyBlindWatermarkTemplate返回参数结构体
+      class ModifyBlindWatermarkTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

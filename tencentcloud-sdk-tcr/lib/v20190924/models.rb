@@ -340,6 +340,45 @@ module TencentCloud
         end
       end
 
+      # CreateGCJob请求参数结构体
+      class CreateGCJobRequest < TencentCloud::Common::AbstractModel
+        # @param RegistryId: 实例 Id
+        # @type RegistryId: String
+        # @param GCParameters: GC 参数
+        # @type GCParameters: :class:`Tencentcloud::Tcr.v20190924.models.GCParameters`
+
+        attr_accessor :RegistryId, :GCParameters
+
+        def initialize(registryid=nil, gcparameters=nil)
+          @RegistryId = registryid
+          @GCParameters = gcparameters
+        end
+
+        def deserialize(params)
+          @RegistryId = params['RegistryId']
+          unless params['GCParameters'].nil?
+            @GCParameters = GCParameters.new
+            @GCParameters.deserialize(params['GCParameters'])
+          end
+        end
+      end
+
+      # CreateGCJob返回参数结构体
+      class CreateGCJobResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateImageAccelerationService请求参数结构体
       class CreateImageAccelerationServiceRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: 实例Id
@@ -4797,6 +4836,22 @@ module TencentCloud
             @Schedule = Schedule.new
             @Schedule.deserialize(params['Schedule'])
           end
+        end
+      end
+
+      # GC 参数
+      class GCParameters < TencentCloud::Common::AbstractModel
+        # @param Dryrun: 模拟运行
+        # @type Dryrun: Boolean
+
+        attr_accessor :Dryrun
+
+        def initialize(dryrun=nil)
+          @Dryrun = dryrun
+        end
+
+        def deserialize(params)
+          @Dryrun = params['Dryrun']
         end
       end
 

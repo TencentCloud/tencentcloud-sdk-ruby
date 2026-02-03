@@ -67,10 +67,10 @@ module TencentCloud
 
         attr_accessor :AppID, :ClusterID, :AccountID, :Name, :Region, :Zones, :Networks, :Spec, :Status, :Period, :CreatedAt, :UpdatedAt, :Tenant, :Tags, :Security
         extend Gem::Deprecate
-        deprecate :Networks, :none, 2026, 1
-        deprecate :Networks=, :none, 2026, 1
-        deprecate :Spec, :none, 2026, 1
-        deprecate :Spec=, :none, 2026, 1
+        deprecate :Networks, :none, 2026, 2
+        deprecate :Networks=, :none, 2026, 2
+        deprecate :Spec, :none, 2026, 2
+        deprecate :Spec=, :none, 2026, 2
 
         def initialize(appid=nil, clusterid=nil, accountid=nil, name=nil, region=nil, zones=nil, networks=nil, spec=nil, status=nil, period=nil, createdat=nil, updatedat=nil, tenant=nil, tags=nil, security=nil)
           @AppID = appid
@@ -132,6 +132,197 @@ module TencentCloud
         end
       end
 
+      # 实例详情信息
+      class ClusterDetail < TencentCloud::Common::AbstractModel
+        # @param AppID: <p>用户APPID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppID: Integer
+        # @param ClusterID: <p>实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterID: String
+        # @param AccountID: <p>账号id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AccountID: String
+        # @param Name: <p>自定义实例名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Region: <p>地域</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Region: String
+        # @param Networks: <p>网络信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Networks: Array
+        # @param Status: <p>实例状态</p>枚举值：<ul><li> 0： 运行中</li><li> 1： 创建中</li><li> 16： 变配中</li><li> 17： 隔离中</li><li> 18： 已隔离</li><li> 19： 恢复中</li><li> 20： 已关机</li><li> 21： 销毁中</li><li> 22： 已销毁</li><li> 30： 扩展节点添加中</li><li> 31： 扩展节点变配中</li><li> 32： 扩展节点删除中</li><li> 33： 扩展节点禁用中</li><li> 34： 扩展节点启用中</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: Integer
+        # @param CreatedAt: <p>创建时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>最后修改时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdatedAt: String
+        # @param Tags: <p>标签</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param Security: <p>安全组信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Security: Array
+        # @param Components: <p>组件信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Components: Array
+        # @param ExpiredAt: <p>过期时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExpiredAt: String
+        # @param RenewFlag: <p>续费标识</p>枚举值：<ul><li> 0： 默认</li><li> 1： 自动续费</li><li> 2： 不自动续费</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RenewFlag: Integer
+        # @param ShutdownAt: <p>关机时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ShutdownAt: String
+        # @param IsolatedAt: <p>隔离时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsolatedAt: String
+        # @param Type: <p>实例类型</p>枚举值：<ul><li> 0： 共享型</li><li> 1： 独享型</li><li> 2： 标准型</li></ul>
+        # @type Type: Integer
+
+        attr_accessor :AppID, :ClusterID, :AccountID, :Name, :Region, :Networks, :Status, :CreatedAt, :UpdatedAt, :Tags, :Security, :Components, :ExpiredAt, :RenewFlag, :ShutdownAt, :IsolatedAt, :Type
+
+        def initialize(appid=nil, clusterid=nil, accountid=nil, name=nil, region=nil, networks=nil, status=nil, createdat=nil, updatedat=nil, tags=nil, security=nil, components=nil, expiredat=nil, renewflag=nil, shutdownat=nil, isolatedat=nil, type=nil)
+          @AppID = appid
+          @ClusterID = clusterid
+          @AccountID = accountid
+          @Name = name
+          @Region = region
+          @Networks = networks
+          @Status = status
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+          @Tags = tags
+          @Security = security
+          @Components = components
+          @ExpiredAt = expiredat
+          @RenewFlag = renewflag
+          @ShutdownAt = shutdownat
+          @IsolatedAt = isolatedat
+          @Type = type
+        end
+
+        def deserialize(params)
+          @AppID = params['AppID']
+          @ClusterID = params['ClusterID']
+          @AccountID = params['AccountID']
+          @Name = params['Name']
+          @Region = params['Region']
+          unless params['Networks'].nil?
+            @Networks = []
+            params['Networks'].each do |i|
+              network_tmp = Network.new
+              network_tmp.deserialize(i)
+              @Networks << network_tmp
+            end
+          end
+          @Status = params['Status']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
+          @Security = params['Security']
+          unless params['Components'].nil?
+            @Components = []
+            params['Components'].each do |i|
+              component_tmp = Component.new
+              component_tmp.deserialize(i)
+              @Components << component_tmp
+            end
+          end
+          @ExpiredAt = params['ExpiredAt']
+          @RenewFlag = params['RenewFlag']
+          @ShutdownAt = params['ShutdownAt']
+          @IsolatedAt = params['IsolatedAt']
+          @Type = params['Type']
+        end
+      end
+
+      # 实例组件信息
+      class Component < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>所属实例id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceID: String
+        # @param Name: <p>名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param Type: <p>组件类型</p>枚举值：<ul><li> gateway： 时序节点</li><li> database： 数据节点</li><li> gateway-worker： 扩展节点</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Cpu: <p>cpu</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cpu: Integer
+        # @param Memory: <p>内存</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Memory: Integer
+        # @param Disk: <p>磁盘</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Disk: Integer
+        # @param Shards: <p>节点数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Shards: Integer
+        # @param Replicas: <p>副本数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Replicas: Integer
+        # @param Networks: <p>网络</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Networks: Array
+        # @param State: <p>组件状态</p>枚举值：<ul><li> 0： 运行中</li><li> 1： 创建中</li><li> 2： 变配中</li><li> 3： 隔离中</li><li> 4： 已隔离</li><li> 5： 删除中</li><li> 6： 已删除</li><li> 7： 禁用中</li><li> 8： 已禁用</li><li> 9： 启用中</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type State: Integer
+        # @param ID: <p>组件内部ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: Integer
+
+        attr_accessor :InstanceID, :Name, :Type, :Cpu, :Memory, :Disk, :Shards, :Replicas, :Networks, :State, :ID
+
+        def initialize(instanceid=nil, name=nil, type=nil, cpu=nil, memory=nil, disk=nil, shards=nil, replicas=nil, networks=nil, state=nil, id=nil)
+          @InstanceID = instanceid
+          @Name = name
+          @Type = type
+          @Cpu = cpu
+          @Memory = memory
+          @Disk = disk
+          @Shards = shards
+          @Replicas = replicas
+          @Networks = networks
+          @State = state
+          @ID = id
+        end
+
+        def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Cpu = params['Cpu']
+          @Memory = params['Memory']
+          @Disk = params['Disk']
+          @Shards = params['Shards']
+          @Replicas = params['Replicas']
+          unless params['Networks'].nil?
+            @Networks = []
+            params['Networks'].each do |i|
+              network_tmp = Network.new
+              network_tmp.deserialize(i)
+              @Networks << network_tmp
+            end
+          end
+          @State = params['State']
+          @ID = params['ID']
+        end
+      end
+
       # 数据库相关信息
       class Database < TencentCloud::Common::AbstractModel
         # @param ClusterID: 实例ID
@@ -181,6 +372,41 @@ module TencentCloud
           @Status = params['Status']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # DescribeClusterDetail请求参数结构体
+      class DescribeClusterDetailRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeClusterDetail返回参数结构体
+      class DescribeClusterDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Cluster: <p>实例详情</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Cluster: :class:`Tencentcloud::Ctsdb.v20230202.models.ClusterDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Cluster, :RequestId
+
+        def initialize(cluster=nil, requestid=nil)
+          @Cluster = cluster
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Cluster'].nil?
+            @Cluster = ClusterDetail.new
+            @Cluster.deserialize(params['Cluster'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 

@@ -356,6 +356,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建用户自定义数字水印模板。
+
+        # @param request: Request instance for CreateBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateBlindWatermarkTemplateResponse`
+        def CreateBlindWatermarkTemplate(request)
+          body = send_request('CreateBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateBlindWatermarkTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 由 VOD 创建新的日志集。
 
         # @param request: Request instance for CreateCLSLogset.
@@ -1230,6 +1254,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除用户自定义数字水印模板。
+
+        # @param request: Request instance for DeleteBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteBlindWatermarkTemplateResponse`
+        def DeleteBlindWatermarkTemplate(request)
+          body = send_request('DeleteBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBlindWatermarkTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除点播开通的日志主题。
 
         # @param request: Request instance for DeleteCLSTopic.
@@ -1999,6 +2047,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAnimatedGraphicsTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户自定义数字水印模板。
+
+        # @param request: Request instance for DescribeBlindWatermarkTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeBlindWatermarkTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeBlindWatermarkTemplatesResponse`
+        def DescribeBlindWatermarkTemplates(request)
+          body = send_request('DescribeBlindWatermarkTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBlindWatermarkTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3434,6 +3506,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 用于发起提取视频数字水印任务，提取结果可以通过DescribeTaskDetail查询。
+
+        # @param request: Request instance for ExtractBlindWatermark.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ExtractBlindWatermarkRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ExtractBlindWatermarkResponse`
+        def ExtractBlindWatermark(request)
+          body = send_request('ExtractBlindWatermark', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExtractBlindWatermarkResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果有盗录溯源需求，请参考 [幽灵水印](https://cloud.tencent.com/document/product/266/94228)。
 
         # @param request: Request instance for ExtractCopyRightWatermark.
@@ -3791,6 +3887,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAnimatedGraphicsTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改用户自定义数字水印模板，数字水印类型不允许修改。
+
+        # @param request: Request instance for ModifyBlindWatermarkTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyBlindWatermarkTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyBlindWatermarkTemplateResponse`
+        def ModifyBlindWatermarkTemplate(request)
+          body = send_request('ModifyBlindWatermarkTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBlindWatermarkTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
