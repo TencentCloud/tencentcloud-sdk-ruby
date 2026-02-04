@@ -1026,10 +1026,10 @@ module TencentCloud
         # @param VideoComprehensionTask: 视频（音频）理解任务的查询结果，当任务类型为 VideoComprehension 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VideoComprehensionTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskVideoComprehensionResult`
-        # @param CutoutTask: 视频内容分析抠图任务的查询结果，当任务类型为Cutout时有效。
+        # @param CutoutTask: 视频内容分析智能抠图任务的查询结果，当任务类型为Cutout时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CutoutTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskCutoutResult`
-        # @param ReelTask: 视频内容分析成片任务的查询结果，当任务类型为Reel时有效。
+        # @param ReelTask: 视频内容分析AI解说二创任务的查询结果，当任务类型为Reel时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReelTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelResult`
 
@@ -1329,7 +1329,7 @@ module TencentCloud
         end
       end
 
-      # 视频抠图结果数据结构
+      # 视频智能抠图结果数据结构
       class AiAnalysisTaskCutoutResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 `PROCESSING`，`SUCCESS` 和 `FAIL` 三种
         # @type Status: String
@@ -2025,25 +2025,33 @@ module TencentCloud
         end
       end
 
-      # 智能成片结果信息
+      # AI解说二创结果信息
       class AiAnalysisTaskReelOutput < TencentCloud::Common::AbstractModel
-        # @param VideoPath: 成片视频路径。
+        # @param VideoPath: 解说视频路径。
         # @type VideoPath: String
+        # @param VideoPaths: 解说视频路径列表。
+
+        # **注意**：
+        # 1. 当返回一个文件时，`VideoPath `返回一个文件路径，`VideoPaths `也会填充同样路径的一个元素。
+        # 2. 当返回多个文件时，`VideoPath `返回为空字符串，`VideoPaths `返回多文件路径列表。
+        # @type VideoPaths: Array
         # @param ScriptPath: 脚本文件路径
         # @type ScriptPath: String
-        # @param OutputStorage: 成片视频存储位置。
+        # @param OutputStorage: 解说视频存储位置。
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
 
-        attr_accessor :VideoPath, :ScriptPath, :OutputStorage
+        attr_accessor :VideoPath, :VideoPaths, :ScriptPath, :OutputStorage
 
-        def initialize(videopath=nil, scriptpath=nil, outputstorage=nil)
+        def initialize(videopath=nil, videopaths=nil, scriptpath=nil, outputstorage=nil)
           @VideoPath = videopath
+          @VideoPaths = videopaths
           @ScriptPath = scriptpath
           @OutputStorage = outputstorage
         end
 
         def deserialize(params)
           @VideoPath = params['VideoPath']
+          @VideoPaths = params['VideoPaths']
           @ScriptPath = params['ScriptPath']
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
@@ -2052,7 +2060,7 @@ module TencentCloud
         end
       end
 
-      # 智能成片结果类型
+      # AI解说二创结果类型
       class AiAnalysisTaskReelResult < TencentCloud::Common::AbstractModel
         # @param Status: 任务状态，有 PROCESSING，SUCCESS 和 FAIL 三种。
         # @type Status: String
@@ -2060,9 +2068,9 @@ module TencentCloud
         # @type ErrCode: Integer
         # @param Message: 错误信息。
         # @type Message: String
-        # @param Input: 智能成片任务输入。
+        # @param Input: AI解说二创任务输入。
         # @type Input: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelInput`
-        # @param Output: 智能成片任务输出。
+        # @param Output: AI解说二创任务输出。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Output: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskReelOutput`
         # @param ErrCodeExt: 错误码，空字符串表示成功，其他值表示失败，取值请参考 媒体处理类错误码 列表。
@@ -2296,15 +2304,30 @@ module TencentCloud
       class AiAnalysisTaskVideoComprehensionOutput < TencentCloud::Common::AbstractModel
         # @param VideoComprehensionAnalysisResult: 视频（音频）理解内容详情
         # @type VideoComprehensionAnalysisResult: String
+        # @param VideoComprehensionExtInfo: 视频（音频）理解扩展信息
+        # @type VideoComprehensionExtInfo: String
+        # @param VideoComprehensionResultList: 视频分镜理解结果
+        # @type VideoComprehensionResultList: Array
 
-        attr_accessor :VideoComprehensionAnalysisResult
+        attr_accessor :VideoComprehensionAnalysisResult, :VideoComprehensionExtInfo, :VideoComprehensionResultList
 
-        def initialize(videocomprehensionanalysisresult=nil)
+        def initialize(videocomprehensionanalysisresult=nil, videocomprehensionextinfo=nil, videocomprehensionresultlist=nil)
           @VideoComprehensionAnalysisResult = videocomprehensionanalysisresult
+          @VideoComprehensionExtInfo = videocomprehensionextinfo
+          @VideoComprehensionResultList = videocomprehensionresultlist
         end
 
         def deserialize(params)
           @VideoComprehensionAnalysisResult = params['VideoComprehensionAnalysisResult']
+          @VideoComprehensionExtInfo = params['VideoComprehensionExtInfo']
+          unless params['VideoComprehensionResultList'].nil?
+            @VideoComprehensionResultList = []
+            params['VideoComprehensionResultList'].each do |i|
+              videocomprehensionresultitem_tmp = VideoComprehensionResultItem.new
+              videocomprehensionresultitem_tmp.deserialize(i)
+              @VideoComprehensionResultList << videocomprehensionresultitem_tmp
+            end
+          end
         end
       end
 
@@ -5824,7 +5847,7 @@ module TencentCloud
         # @param InputInfo: 媒体处理的文件输入信息。
         # @type InputInfo: Array
         # @param OutputStorage: 媒体处理输出文件的目标存储。不填则继承 InputInfo 中的存储位置。
-        # 注意：当InputInfo.Type为URL时，该参数是必填项
+        # 注意：当InputInfo.Type为URL时，该参数是必填项，目前只支持COS输出
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
         # @param OutputDir: 媒体处理生成的文件输出的目标目录，必选以 / 开头和结尾，如`/movie/201907/`。
         # 如果不填，表示与 InputInfo 中文件所在的目录一致。
@@ -5837,7 +5860,7 @@ module TencentCloud
         # @type TasksPriority: Integer
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
         # @type SessionContext: String
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。
+        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
         # @type ResourceId: String
         # @param SkipMateData: 是否跳过元信息获取，可选值：
         # 0：表示不跳过
@@ -6261,10 +6284,12 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 数字水印模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/862/37710#52)。
         # @type UpdateTime: String
+        # @param Strength: 数字水印强度。 default: 默认，高清画质和抗性平衡 stronger:画质清晰，抗性较强 strongest:画质一般，抗性最强
+        # @type Strength: String
 
-        attr_accessor :Definition, :Type, :Name, :TextContent, :Comment, :CreateTime, :UpdateTime
+        attr_accessor :Definition, :Type, :Name, :TextContent, :Comment, :CreateTime, :UpdateTime, :Strength
 
-        def initialize(definition=nil, type=nil, name=nil, textcontent=nil, comment=nil, createtime=nil, updatetime=nil)
+        def initialize(definition=nil, type=nil, name=nil, textcontent=nil, comment=nil, createtime=nil, updatetime=nil, strength=nil)
           @Definition = definition
           @Type = type
           @Name = name
@@ -6272,6 +6297,7 @@ module TencentCloud
           @Comment = comment
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @Strength = strength
         end
 
         def deserialize(params)
@@ -6282,6 +6308,7 @@ module TencentCloud
           @Comment = params['Comment']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @Strength = params['Strength']
         end
       end
 
@@ -8108,14 +8135,20 @@ module TencentCloud
         # @type Name: String
         # @param Comment: 数字水印模板描述信息，长度限制：256 个字符。
         # @type Comment: String
+        # @param Strength: 数字水印强度。
+        # default: 默认，高清画质和抗性平衡
+        # stronger:画质清晰，抗性较强
+        # strongest:画质一般，抗性最强
+        # @type Strength: String
 
-        attr_accessor :Type, :TextContent, :Name, :Comment
+        attr_accessor :Type, :TextContent, :Name, :Comment, :Strength
 
-        def initialize(type=nil, textcontent=nil, name=nil, comment=nil)
+        def initialize(type=nil, textcontent=nil, name=nil, comment=nil, strength=nil)
           @Type = type
           @TextContent = textcontent
           @Name = name
           @Comment = comment
+          @Strength = strength
         end
 
         def deserialize(params)
@@ -8123,6 +8156,7 @@ module TencentCloud
           @TextContent = params['TextContent']
           @Name = params['Name']
           @Comment = params['Comment']
+          @Strength = params['Strength']
         end
       end
 
@@ -15161,7 +15195,7 @@ module TencentCloud
 
       # DescribeUsageData请求参数结构体
       class DescribeUsageDataRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
+        # @param StartTime: 起始日期。使用 ISO 日期格式。
         # @type StartTime: String
         # @param EndTime: 结束日期，需大于等于起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。
         # @type EndTime: String
@@ -18758,6 +18792,74 @@ module TencentCloud
         end
       end
 
+      # 直播智能字幕结果
+      class LiveSmartSubtitleResult < TencentCloud::Common::AbstractModel
+        # @param Text: 识别文本。
+        # @type Text: String
+        # @param StartPTSTime: 翻译片段起始的 PTS 时间，单位：秒。
+        # @type StartPTSTime: Float
+        # @param EndPTSTime: 翻译片段终止的 PTS 时间，单位：秒。
+        # @type EndPTSTime: Float
+        # @param Trans: 翻译文本。
+        # @type Trans: String
+        # @param StartTime: 翻译开始UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: 翻译结束UTC时间。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
+        # @param SteadyState: 稳态标记。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SteadyState: Boolean
+        # @param UserId: websocket与trtc实时翻译的UserId
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UserId: String
+
+        attr_accessor :Text, :StartPTSTime, :EndPTSTime, :Trans, :StartTime, :EndTime, :SteadyState, :UserId
+
+        def initialize(text=nil, startptstime=nil, endptstime=nil, trans=nil, starttime=nil, endtime=nil, steadystate=nil, userid=nil)
+          @Text = text
+          @StartPTSTime = startptstime
+          @EndPTSTime = endptstime
+          @Trans = trans
+          @StartTime = starttime
+          @EndTime = endtime
+          @SteadyState = steadystate
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @StartPTSTime = params['StartPTSTime']
+          @EndPTSTime = params['EndPTSTime']
+          @Trans = params['Trans']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SteadyState = params['SteadyState']
+          @UserId = params['UserId']
+        end
+      end
+
+      # 直播智能字幕输入结构体
+      class LiveSmartSubtitlesTaskInput < TencentCloud::Common::AbstractModel
+        # @param Definition: 智能字幕模板 ID 。
+        # @type Definition: Integer
+        # @param UserExtPara: 用户扩展字段，一般场景不用填。
+        # @type UserExtPara: String
+
+        attr_accessor :Definition, :UserExtPara
+
+        def initialize(definition=nil, userextpara=nil)
+          @Definition = definition
+          @UserExtPara = userextpara
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @UserExtPara = params['UserExtPara']
+        end
+      end
+
       # 直播流分析结果
       class LiveStreamAiAnalysisResultInfo < TencentCloud::Common::AbstractModel
         # @param ResultSet: 直播分析子任务结果，支持：
@@ -19316,6 +19418,29 @@ module TencentCloud
           @Confidence = params['Confidence']
           @Suggestion = params['Suggestion']
           @Label = params['Label']
+        end
+      end
+
+      # 直播智能字幕结果
+      class LiveStreamAiSmartSubtitleResultInfo < TencentCloud::Common::AbstractModel
+        # @param SmartSubtitleResult: 直播智能字幕任务结果列表。
+        # @type SmartSubtitleResult: Array
+
+        attr_accessor :SmartSubtitleResult
+
+        def initialize(smartsubtitleresult=nil)
+          @SmartSubtitleResult = smartsubtitleresult
+        end
+
+        def deserialize(params)
+          unless params['SmartSubtitleResult'].nil?
+            @SmartSubtitleResult = []
+            params['SmartSubtitleResult'].each do |i|
+              livesmartsubtitleresult_tmp = LiveSmartSubtitleResult.new
+              livesmartsubtitleresult_tmp.deserialize(i)
+              @SmartSubtitleResult << livesmartsubtitleresult_tmp
+            end
+          end
         end
       end
 
@@ -21619,14 +21744,17 @@ module TencentCloud
         # @type Comment: String
         # @param TextContent: 数字水印文字内容，长度不超过64个字符，NAGRA水印类型的模板不支持修改文字内容。
         # @type TextContent: String
+        # @param Strength: 数字水印强度。 default: 默认，高清画质和抗性平衡 stronger:画质清晰，抗性较强 strongest:画质一般，抗性最强
+        # @type Strength: String
 
-        attr_accessor :Definition, :Name, :Comment, :TextContent
+        attr_accessor :Definition, :Name, :Comment, :TextContent, :Strength
 
-        def initialize(definition=nil, name=nil, comment=nil, textcontent=nil)
+        def initialize(definition=nil, name=nil, comment=nil, textcontent=nil, strength=nil)
           @Definition = definition
           @Name = name
           @Comment = comment
           @TextContent = textcontent
+          @Strength = strength
         end
 
         def deserialize(params)
@@ -21634,6 +21762,7 @@ module TencentCloud
           @Name = params['Name']
           @Comment = params['Comment']
           @TextContent = params['TextContent']
+          @Strength = params['Strength']
         end
       end
 
@@ -23866,6 +23995,7 @@ module TencentCloud
         # <li>LiveRecordResult：直播录制结果；</li>
         # <li>AiQualityControlResult：媒体质检结果；</li>
         # <li>AiAnalysisResult：内容分析结果；</li>
+        # <li>AiSmartSubtitleResult：智能字幕结果；</li>
         # <li>ProcessEof：直播流处理结束。</li>
         # @type NotificationType: String
         # @param TaskId: 视频处理任务 ID。
@@ -23888,6 +24018,8 @@ module TencentCloud
         # @param LiveRecordResultInfo: 直播录制结果，当 NotificationType 为 LiveRecordResult 时有效。
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LiveRecordResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamRecordResultInfo`
+        # @param AiSmartSubtitleResultInfo: 智能字幕结果，当 NotificationType 为 AiSmartSubtitleResult 时有效。
+        # @type AiSmartSubtitleResultInfo: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamAiSmartSubtitleResultInfo`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长50个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长1000个字符。
@@ -23899,9 +24031,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :AiAnalysisResultInfo, :AiQualityControlResultInfo, :LiveRecordResultInfo, :SessionId, :SessionContext, :Timestamp, :Sign, :RequestId
+        attr_accessor :NotificationType, :TaskId, :ProcessEofInfo, :AiReviewResultInfo, :AiRecognitionResultInfo, :AiAnalysisResultInfo, :AiQualityControlResultInfo, :LiveRecordResultInfo, :AiSmartSubtitleResultInfo, :SessionId, :SessionContext, :Timestamp, :Sign, :RequestId
 
-        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, aianalysisresultinfo=nil, aiqualitycontrolresultinfo=nil, liverecordresultinfo=nil, sessionid=nil, sessioncontext=nil, timestamp=nil, sign=nil, requestid=nil)
+        def initialize(notificationtype=nil, taskid=nil, processeofinfo=nil, aireviewresultinfo=nil, airecognitionresultinfo=nil, aianalysisresultinfo=nil, aiqualitycontrolresultinfo=nil, liverecordresultinfo=nil, aismartsubtitleresultinfo=nil, sessionid=nil, sessioncontext=nil, timestamp=nil, sign=nil, requestid=nil)
           @NotificationType = notificationtype
           @TaskId = taskid
           @ProcessEofInfo = processeofinfo
@@ -23910,6 +24042,7 @@ module TencentCloud
           @AiAnalysisResultInfo = aianalysisresultinfo
           @AiQualityControlResultInfo = aiqualitycontrolresultinfo
           @LiveRecordResultInfo = liverecordresultinfo
+          @AiSmartSubtitleResultInfo = aismartsubtitleresultinfo
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @Timestamp = timestamp
@@ -23943,6 +24076,10 @@ module TencentCloud
           unless params['LiveRecordResultInfo'].nil?
             @LiveRecordResultInfo = LiveStreamRecordResultInfo.new
             @LiveRecordResultInfo.deserialize(params['LiveRecordResultInfo'])
+          end
+          unless params['AiSmartSubtitleResultInfo'].nil?
+            @AiSmartSubtitleResultInfo = LiveStreamAiSmartSubtitleResultInfo.new
+            @AiSmartSubtitleResultInfo.deserialize(params['AiSmartSubtitleResultInfo'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
@@ -24696,13 +24833,18 @@ module TencentCloud
 
       # ProcessLiveStream请求参数结构体
       class ProcessLiveStreamRequest < TencentCloud::Common::AbstractModel
-        # @param Url: 直播流 URL（必须是直播文件地址，支持 rtmp，hls 和 flv, trtc 等）。
+        # @param Url: 直播流 URL（必须是直播流地址，支持 rtmp，hls 和 flv, trtc,webrtc,srt等）。
         # trtc地址如下：
         #  trtc: //trtc.rtc.qq.com/mps/`<roomid>`?sdkappid=`<sdkappid>`&userid=`<userid>`&usersig=<`usersig>`
         # `<roomid>` 为trtc的房间号id, 为数字
         # `<sdkappid>` 为trtc的sdk app id
         # `<userid>` 为服务进入房间的用户id,可以区分谁是机器人
         # <`usersig>` 为trtc 用户的签名
+
+        # webrtc 支持[LEB](https://cloud.tencent.com/product/leb)的直播流，地址获取请[参考](https://cloud.tencent.com/document/product/267/32720)
+
+        # srt支持地址请[参考](https://ffmpeg.org/ffmpeg-protocols.html#srt)
+
         # @type Url: String
         # @param TaskNotifyConfig: 任务的事件通知信息，用于指定直播流处理的结果。
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamTaskNotifyConfig`
@@ -24718,6 +24860,8 @@ module TencentCloud
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
         # @param AiQualityControlTask: 媒体质检类型任务参数。
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
+        # @param SmartSubtitlesTask: 智能字幕任务参数。
+        # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.LiveSmartSubtitlesTaskInput`
         # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
@@ -24729,9 +24873,9 @@ module TencentCloud
         # 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessLiveStream）有设置，将覆盖原有编排的默认回调。
         # @type ScheduleId: Integer
 
-        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SessionId, :SessionContext, :ScheduleId
+        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SmartSubtitlesTask, :SessionId, :SessionContext, :ScheduleId
 
-        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil)
+        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil)
           @Url = url
           @TaskNotifyConfig = tasknotifyconfig
           @OutputStorage = outputstorage
@@ -24740,6 +24884,7 @@ module TencentCloud
           @AiRecognitionTask = airecognitiontask
           @AiAnalysisTask = aianalysistask
           @AiQualityControlTask = aiqualitycontroltask
+          @SmartSubtitlesTask = smartsubtitlestask
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @ScheduleId = scheduleid
@@ -24771,6 +24916,10 @@ module TencentCloud
           unless params['AiQualityControlTask'].nil?
             @AiQualityControlTask = AiQualityControlTaskInput.new
             @AiQualityControlTask.deserialize(params['AiQualityControlTask'])
+          end
+          unless params['SmartSubtitlesTask'].nil?
+            @SmartSubtitlesTask = LiveSmartSubtitlesTaskInput.new
+            @SmartSubtitlesTask.deserialize(params['SmartSubtitlesTask'])
           end
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
@@ -30029,7 +30178,7 @@ module TencentCloud
 
       # 任务统计数据，包括任务数和用量。
       class TaskStatDataItem < TencentCloud::Common::AbstractModel
-        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#iso-.E6.97.A5.E6.9C.9F.E6.A0.BC.E5.BC.8F)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
+        # @param Time: 数据所在时间区间的开始时间，使用 ISO 日期格式。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
         # @type Time: String
         # @param Count: 任务数。
         # @type Count: Integer
@@ -31646,6 +31795,38 @@ module TencentCloud
           @Bucket = params['Bucket']
           @Region = params['Region']
           @SubAppId = params['SubAppId']
+        end
+      end
+
+      # 视频分镜理解结果
+      class VideoComprehensionResultItem < TencentCloud::Common::AbstractModel
+        # @param StartTime: 分镜片段起始时间（单位：秒）
+        # @type StartTime: Float
+        # @param EndTime: 分镜片段结束时间（单位：秒）
+        # @type EndTime: Float
+        # @param Title: 分镜片段标题
+        # @type Title: String
+        # @param Description: 分镜片段信息描述
+        # @type Description: String
+        # @param Keywords: 分镜片段关键词
+        # @type Keywords: Array
+
+        attr_accessor :StartTime, :EndTime, :Title, :Description, :Keywords
+
+        def initialize(starttime=nil, endtime=nil, title=nil, description=nil, keywords=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Title = title
+          @Description = description
+          @Keywords = keywords
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Title = params['Title']
+          @Description = params['Description']
+          @Keywords = params['Keywords']
         end
       end
 

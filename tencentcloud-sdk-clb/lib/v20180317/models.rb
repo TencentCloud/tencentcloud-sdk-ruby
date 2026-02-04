@@ -1317,8 +1317,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2026, 1
-        deprecate :Period=, :none, 2026, 1
+        deprecate :Period, :none, 2026, 2
+        deprecate :Period=, :none, 2026, 2
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -1389,7 +1389,7 @@ module TencentCloud
         # @type MaxConn: Integer
         # @param MaxCps: <p>监听器最大新增连接数，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。基础网络实例不支持该参数。</p>
         # @type MaxCps: Integer
-        # @param IdleConnectTimeout: <p>空闲连接超时时间，此参数仅适用于TCP/UDP监听器，单位：秒。默认值：TCP监听器默认值为900s，UDP监听器默认值为300s。取值范围：共享型实例和独占型实例支持：10-900，性能容量型实例支持：10-1980。如需设置超过取值范围的值请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>。</p>
+        # @param IdleConnectTimeout: <p>空闲连接超时时间，此参数仅适用于TCP/UDP监听器，单位：秒。默认值：TCP监听器默认值为900s，UDP监听器默认值为300s。取值范围：共享型实例和独占型实例支持：10-900，性能容量型实例支持：10-1980。如需设置超过取值范围的值请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>。</p><p>取值范围：[10, 1980]</p><p>单位：秒</p><p>默认值：900</p><p>TCP监听器默认值为900s，UDP监听器默认值为300s。取值范围：共享型实例和独占型实例支持：10-900，性能容量型实例支持：10-1980。</p>
         # @type IdleConnectTimeout: Integer
         # @param ProxyProtocol: <p>TCP_SSL和QUIC是否支持PP</p>
         # @type ProxyProtocol: Boolean
@@ -4070,13 +4070,13 @@ module TencentCloud
 
       # DescribeTargetGroupList请求参数结构体
       class DescribeTargetGroupListRequest < TencentCloud::Common::AbstractModel
-        # @param TargetGroupIds: 目标组ID数组。
+        # @param TargetGroupIds: <p>目标组ID数组。</p>
         # @type TargetGroupIds: Array
-        # @param Filters: 过滤条件数组，支持TargetGroupVpcId和TargetGroupName。与TargetGroupIds互斥，优先使用目标组ID。
+        # @param Filters: <p>过滤条件数组，支持TargetGroupVpcId和TargetGroupName。与TargetGroupIds互斥，优先使用目标组ID。</p>
         # @type Filters: Array
-        # @param Offset: 显示的偏移起始量。
+        # @param Offset: <p>显示的偏移起始量。</p>
         # @type Offset: Integer
-        # @param Limit: 显示条数限制，默认为20。
+        # @param Limit: <p>每页显示条目数。</p><p>取值范围：[0, 100]</p><p>默认值：20</p>
         # @type Limit: Integer
 
         attr_accessor :TargetGroupIds, :Filters, :Offset, :Limit
@@ -4105,9 +4105,9 @@ module TencentCloud
 
       # DescribeTargetGroupList返回参数结构体
       class DescribeTargetGroupListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 显示的结果数量。
+        # @param TotalCount: <p>显示的结果数量。</p>
         # @type TotalCount: Integer
-        # @param TargetGroupSet: 显示的目标组信息集合。
+        # @param TargetGroupSet: <p>显示的目标组信息集合。</p>
         # @type TargetGroupSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5583,8 +5583,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2026, 1
-        deprecate :Log=, :none, 2026, 1
+        deprecate :Log, :none, 2026, 2
+        deprecate :Log=, :none, 2026, 2
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -6433,7 +6433,7 @@ module TencentCloud
         # @type MaxConn: Integer
         # @param MaxCps: <p>监听器粒度新建连接数上限，当前仅性能容量型实例且仅TCP/UDP/TCP_SSL/QUIC监听器支持。取值范围：1-实例规格新建连接上限，其中-1表示关闭监听器粒度新建连接数限速。基础网络实例不支持该参数。<br>默认为 -1 表示不限速。</p>
         # @type MaxCps: Integer
-        # @param IdleConnectTimeout: <p>空闲连接超时时间，此参数仅适用于TCP/UDP监听器，单位：秒。TCP监听器默认值：900，UDP监听器默认值：300s。取值范围：共享型实例和独占型实例支持：10～900，性能容量型实例支持：10~1980。如需设置超过1980s，请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>,最大可设置到3600s。</p>
+        # @param IdleConnectTimeout: <p>空闲连接超时时间，此参数仅适用于TCP/UDP监听器。如需设置超过1980s，请通过 <a href="https://console.cloud.tencent.com/workorder/category">工单申请</a>,最大可设置到3600s。</p><p>取值范围：[10, 1980]</p><p>单位：秒</p><p>默认值：900</p><p>TCP监听器默认值：900，UDP监听器默认值：300s。取值范围：共享型实例和独占型实例支持：10～900，性能容量型实例支持：10~1980。</p>
         # @type IdleConnectTimeout: Integer
         # @param ProxyProtocol: <p>TCP_SSL和QUIC是否支持PP</p>
         # @type ProxyProtocol: Boolean
@@ -7684,10 +7684,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2026, 1
-        deprecate :Domain=, :none, 2026, 1
-        deprecate :Url, :none, 2026, 1
-        deprecate :Url=, :none, 2026, 1
+        deprecate :Domain, :none, 2026, 2
+        deprecate :Domain=, :none, 2026, 2
+        deprecate :Url, :none, 2026, 2
+        deprecate :Url=, :none, 2026, 2
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8600,55 +8600,49 @@ module TencentCloud
 
       # 目标组信息
       class TargetGroupInfo < TencentCloud::Common::AbstractModel
-        # @param TargetGroupId: 目标组ID
+        # @param TargetGroupId: <p>目标组ID</p>
         # @type TargetGroupId: String
-        # @param VpcId: 目标组的vpcid
+        # @param VpcId: <p>目标组的vpcid</p>
         # @type VpcId: String
-        # @param TargetGroupName: 目标组的名字
+        # @param TargetGroupName: <p>目标组的名字</p>
         # @type TargetGroupName: String
-        # @param Port: 目标组的默认端口，全监听目标组此字段返回0，表示无效端口。
+        # @param Port: <p>目标组的默认端口，全监听目标组此字段返回0，表示无效端口。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Port: Integer
-        # @param CreatedTime: 目标组的创建时间
+        # @param CreatedTime: <p>目标组的创建时间</p>
         # @type CreatedTime: String
-        # @param UpdatedTime: 目标组的修改时间
+        # @param UpdatedTime: <p>目标组的修改时间</p>
         # @type UpdatedTime: String
-        # @param AssociatedRule: 关联到的规则数组。在DescribeTargetGroupList接口调用时无法获取到该参数。
+        # @param AssociatedRule: <p>关联到的规则数组。在DescribeTargetGroupList接口调用时无法获取到该参数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AssociatedRule: Array
-        # @param Protocol: 目标组后端转发协议, 仅v2新版目标组返回有效值。
+        # @param Protocol: <p>目标组后端转发协议, 仅v2新版目标组返回有效值。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Protocol: String
-        # @param ScheduleAlgorithm: 调度算法，仅后端转发协议为(HTTP、HTTPS、GRPC)的目标组返回有效值， 可选值：
-        # <ur>
-        # <li>WRR:按权重轮询。</li>
-        # <li>LEAST_CONN:最小连接数。</li>
-        # <li>IP_HASH:按IP哈希。</li>
-        # </ur>
-
+        # @param ScheduleAlgorithm: <p>调度算法，仅后端转发协议为(HTTP、HTTPS、GRPC)的目标组返回有效值， 可选值：<br><ur></p><li>WRR:按权重轮询。</li><li>LEAST_CONN:最小连接数。</li><li>IP_HASH:按IP哈希。</li></ur>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduleAlgorithm: String
-        # @param HealthCheck: 健康检查详情。
+        # @param HealthCheck: <p>健康检查详情。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.TargetGroupHealthCheck`
-        # @param TargetGroupType: 目标组类型，当前支持v1(旧版目标组), v2(新版目标组)。默认为v1旧版目标组。
+        # @param TargetGroupType: <p>目标组类型，当前支持v1(旧版目标组), v2(新版目标组)。默认为v1旧版目标组。</p>
         # @type TargetGroupType: String
-        # @param AssociatedRuleCount: 目标组已关联的规则数。
+        # @param AssociatedRuleCount: <p>目标组已关联的规则数。</p>
         # @type AssociatedRuleCount: Integer
-        # @param RegisteredInstancesCount: 目标组内的实例数量。
+        # @param RegisteredInstancesCount: <p>目标组内的实例数量。</p>
         # @type RegisteredInstancesCount: Integer
-        # @param Tag: 标签。
+        # @param Tag: <p>标签。</p>
         # @type Tag: Array
-        # @param Weight: 默认权重。只有v2类型目标组返回该字段。当返回为NULL时， 表示未设置默认权重。
+        # @param Weight: <p>默认权重。只有v2类型目标组返回该字段。当返回为NULL时， 表示未设置默认权重。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Integer
-        # @param FullListenSwitch: 是否全监听目标组。
+        # @param FullListenSwitch: <p>是否全监听目标组。</p>
         # @type FullListenSwitch: Boolean
-        # @param KeepaliveEnable: 是否开启长连接,  仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
+        # @param KeepaliveEnable: <p>是否开启长连接,  仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。</p>
         # @type KeepaliveEnable: Boolean
-        # @param SessionExpireTime: 会话保持时间，仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。
+        # @param SessionExpireTime: <p>会话保持时间，仅后端转发协议为HTTP/HTTPS/GRPC目标组返回有效值。</p>
         # @type SessionExpireTime: Integer
-        # @param IpVersion: IP版本。
+        # @param IpVersion: <p>IP版本。</p>
         # @type IpVersion: String
 
         attr_accessor :TargetGroupId, :VpcId, :TargetGroupName, :Port, :CreatedTime, :UpdatedTime, :AssociatedRule, :Protocol, :ScheduleAlgorithm, :HealthCheck, :TargetGroupType, :AssociatedRuleCount, :RegisteredInstancesCount, :Tag, :Weight, :FullListenSwitch, :KeepaliveEnable, :SessionExpireTime, :IpVersion
@@ -8803,8 +8797,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2026, 1
-        deprecate :HealthStatusDetial=, :none, 2026, 1
+        deprecate :HealthStatusDetial, :none, 2026, 2
+        deprecate :HealthStatusDetial=, :none, 2026, 2
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

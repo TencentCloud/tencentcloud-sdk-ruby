@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 1
-        deprecate :TagInfos=, :none, 2026, 1
+        deprecate :TagInfos, :none, 2026, 2
+        deprecate :TagInfos=, :none, 2026, 2
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -548,8 +548,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 1
-        deprecate :ReinforceHotword=, :none, 2026, 1
+        deprecate :ReinforceHotword, :none, 2026, 2
+        deprecate :ReinforceHotword=, :none, 2026, 2
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -948,8 +948,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 1
-        deprecate :TagInfos=, :none, 2026, 1
+        deprecate :TagInfos, :none, 2026, 2
+        deprecate :TagInfos=, :none, 2026, 2
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -1073,8 +1073,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 1
-        deprecate :TagInfos=, :none, 2026, 1
+        deprecate :TagInfos, :none, 2026, 2
+        deprecate :TagInfos=, :none, 2026, 2
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1374,8 +1374,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 1
-        deprecate :TagInfos=, :none, 2026, 1
+        deprecate :TagInfos, :none, 2026, 2
+        deprecate :TagInfos=, :none, 2026, 2
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1657,14 +1657,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 1
-        deprecate :ProjectId=, :none, 2026, 1
-        deprecate :SubServiceType, :none, 2026, 1
-        deprecate :SubServiceType=, :none, 2026, 1
-        deprecate :UsrAudioKey, :none, 2026, 1
-        deprecate :UsrAudioKey=, :none, 2026, 1
-        deprecate :ReinforceHotword, :none, 2026, 1
-        deprecate :ReinforceHotword=, :none, 2026, 1
+        deprecate :ProjectId, :none, 2026, 2
+        deprecate :ProjectId=, :none, 2026, 2
+        deprecate :SubServiceType, :none, 2026, 2
+        deprecate :SubServiceType=, :none, 2026, 2
+        deprecate :UsrAudioKey, :none, 2026, 2
+        deprecate :UsrAudioKey=, :none, 2026, 2
+        deprecate :ReinforceHotword, :none, 2026, 2
+        deprecate :ReinforceHotword=, :none, 2026, 2
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype
@@ -2420,25 +2420,28 @@ module TencentCloud
 
       # VoicePrintEnroll请求参数结构体
       class VoicePrintEnrollRequest < TencentCloud::Common::AbstractModel
-        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @param VoiceFormat: <p>音频格式 0: pcm, 1: wav</p>
         # @type VoiceFormat: Integer
-        # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
+        # @param SampleRate: <p>音频采样率，目前支持16000，单位：Hz，必填</p>
         # @type SampleRate: Integer
-        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @param Data: <p>音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M</p>
         # @type Data: String
-        # @param SpeakerNick: 说话人昵称  不超过32字节
+        # @param SpeakerNick: <p>说话人昵称  不超过32字节</p>
         # @type SpeakerNick: String
-        # @param GroupId: 分组id, 仅支持大小写字母和下划线的组合，不超过128个字符
+        # @param GroupId: <p>分组id, 仅支持大小写字母和下划线的组合，不超过128个字符</p>
         # @type GroupId: String
+        # @param AudioUrl: <p>声纹cos url 注意:仅支持腾讯云cos url 地址</p>
+        # @type AudioUrl: String
 
-        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick, :GroupId
+        attr_accessor :VoiceFormat, :SampleRate, :Data, :SpeakerNick, :GroupId, :AudioUrl
 
-        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil, groupid=nil)
+        def initialize(voiceformat=nil, samplerate=nil, data=nil, speakernick=nil, groupid=nil, audiourl=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
           @Data = data
           @SpeakerNick = speakernick
           @GroupId = groupid
+          @AudioUrl = audiourl
         end
 
         def deserialize(params)
@@ -2447,12 +2450,13 @@ module TencentCloud
           @Data = params['Data']
           @SpeakerNick = params['SpeakerNick']
           @GroupId = params['GroupId']
+          @AudioUrl = params['AudioUrl']
         end
       end
 
       # VoicePrintEnroll返回参数结构体
       class VoicePrintEnrollResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 说话人基本数据
+        # @param Data: <p>说话人基本数据</p>
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2530,25 +2534,28 @@ module TencentCloud
 
       # VoicePrintUpdate请求参数结构体
       class VoicePrintUpdateRequest < TencentCloud::Common::AbstractModel
-        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @param VoiceFormat: <p>音频格式 0: pcm, 1: wav</p>
         # @type VoiceFormat: Integer
-        # @param SampleRate: 音频采样率 目前仅支持16000 单位Hz
+        # @param SampleRate: <p>音频采样率 目前仅支持16000 单位Hz</p>
         # @type SampleRate: Integer
-        # @param VoicePrintId: 说话人id， 说话人唯一标识
+        # @param VoicePrintId: <p>说话人id， 说话人唯一标识</p>
         # @type VoicePrintId: String
-        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
+        # @param Data: <p>音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M</p>
         # @type Data: String
-        # @param SpeakerNick: 说话人昵称  不超过32字节
+        # @param SpeakerNick: <p>说话人昵称  不超过32字节</p>
         # @type SpeakerNick: String
+        # @param AudioUrl: <p>声纹cos url 注意:仅支持腾讯云cos url 地址</p>
+        # @type AudioUrl: String
 
-        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data, :SpeakerNick
+        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data, :SpeakerNick, :AudioUrl
 
-        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil, speakernick=nil)
+        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil, speakernick=nil, audiourl=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
           @VoicePrintId = voiceprintid
           @Data = data
           @SpeakerNick = speakernick
+          @AudioUrl = audiourl
         end
 
         def deserialize(params)
@@ -2557,12 +2564,13 @@ module TencentCloud
           @VoicePrintId = params['VoicePrintId']
           @Data = params['Data']
           @SpeakerNick = params['SpeakerNick']
+          @AudioUrl = params['AudioUrl']
         end
       end
 
       # VoicePrintUpdate返回参数结构体
       class VoicePrintUpdateResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 说话人基础数据
+        # @param Data: <p>说话人基础数据</p>
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintBaseData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2612,35 +2620,39 @@ module TencentCloud
 
       # VoicePrintVerify请求参数结构体
       class VoicePrintVerifyRequest < TencentCloud::Common::AbstractModel
-        # @param VoiceFormat: 音频格式 0: pcm, 1: wav
+        # @param VoiceFormat: <p>音频格式 0: pcm, 1: wav</p>
         # @type VoiceFormat: Integer
-        # @param SampleRate: 音频采样率，目前支持16000，单位：Hz，必填
+        # @param SampleRate: <p>音频采样率，目前支持16000，单位：Hz，必填</p>
         # @type SampleRate: Integer
-        # @param Data: 音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M
-        # @type Data: String
-        # @param VoicePrintId: 说话人id, 说话人唯一标识
+        # @param VoicePrintId: <p>说话人id, 说话人唯一标识</p>
         # @type VoicePrintId: String
+        # @param Data: <p>音频数据, base64 编码, 音频时长不能超过30s，数据大小不超过2M</p>
+        # @type Data: String
+        # @param AudioUrl: <p>声纹cos url 注意:仅支持腾讯云cos url 地址</p>
+        # @type AudioUrl: String
 
-        attr_accessor :VoiceFormat, :SampleRate, :Data, :VoicePrintId
+        attr_accessor :VoiceFormat, :SampleRate, :VoicePrintId, :Data, :AudioUrl
 
-        def initialize(voiceformat=nil, samplerate=nil, data=nil, voiceprintid=nil)
+        def initialize(voiceformat=nil, samplerate=nil, voiceprintid=nil, data=nil, audiourl=nil)
           @VoiceFormat = voiceformat
           @SampleRate = samplerate
-          @Data = data
           @VoicePrintId = voiceprintid
+          @Data = data
+          @AudioUrl = audiourl
         end
 
         def deserialize(params)
           @VoiceFormat = params['VoiceFormat']
           @SampleRate = params['SampleRate']
-          @Data = params['Data']
           @VoicePrintId = params['VoicePrintId']
+          @Data = params['Data']
+          @AudioUrl = params['AudioUrl']
         end
       end
 
       # VoicePrintVerify返回参数结构体
       class VoicePrintVerifyResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 说话人验证数据
+        # @param Data: <p>说话人验证数据</p>
         # @type Data: :class:`Tencentcloud::Asr.v20190614.models.VoicePrintVerifyData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

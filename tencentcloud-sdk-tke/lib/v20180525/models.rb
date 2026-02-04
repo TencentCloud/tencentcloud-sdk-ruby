@@ -898,10 +898,12 @@ module TencentCloud
         # @type ClusterEtcdNodeNum: Integer
         # @param CdcId: 本地专用集群Id
         # @type CdcId: String
+        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @type IsHighAvailability: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId
+        attr_accessor :ClusterId, :ClusterName, :ClusterDescription, :ClusterVersion, :ClusterOs, :ClusterType, :ClusterNetworkSettings, :ClusterNodeNum, :ProjectId, :TagSpecification, :ClusterStatus, :Property, :ClusterMaterNodeNum, :ImageId, :OsCustomizeType, :ContainerRuntime, :CreatedTime, :DeletionProtection, :EnableExternalNode, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :RuntimeVersion, :ClusterEtcdNodeNum, :CdcId, :IsHighAvailability
 
-        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil)
+        def initialize(clusterid=nil, clustername=nil, clusterdescription=nil, clusterversion=nil, clusteros=nil, clustertype=nil, clusternetworksettings=nil, clusternodenum=nil, projectid=nil, tagspecification=nil, clusterstatus=nil, property=nil, clustermaternodenum=nil, imageid=nil, oscustomizetype=nil, containerruntime=nil, createdtime=nil, deletionprotection=nil, enableexternalnode=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, runtimeversion=nil, clusteretcdnodenum=nil, cdcid=nil, ishighavailability=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @ClusterDescription = clusterdescription
@@ -927,6 +929,7 @@ module TencentCloud
           @RuntimeVersion = runtimeversion
           @ClusterEtcdNodeNum = clusteretcdnodenum
           @CdcId = cdcid
+          @IsHighAvailability = ishighavailability
         end
 
         def deserialize(params)
@@ -965,6 +968,7 @@ module TencentCloud
           @RuntimeVersion = params['RuntimeVersion']
           @ClusterEtcdNodeNum = params['ClusterEtcdNodeNum']
           @CdcId = params['CdcId']
+          @IsHighAvailability = params['IsHighAvailability']
         end
       end
 
@@ -1021,10 +1025,12 @@ module TencentCloud
         # @type RuntimeVersion: String
         # @param VpcCniType: 区分共享网卡多IP模式和独立网卡模式，共享网卡多 IP 模式填写"tke-route-eni"，独立网卡模式填写"tke-direct-eni"，默认为共享网卡模式
         # @type VpcCniType: String
+        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行，默认为true
+        # @type IsHighAvailability: Boolean
 
-        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DataPlaneV2, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType
+        attr_accessor :AsEnabled, :AuditEnabled, :AuditLogTopicId, :AuditLogsetId, :BasePodNumber, :CiliumMode, :ContainerRuntime, :DataPlaneV2, :DeletionProtection, :EnableCustomizedPodCIDR, :EtcdOverrideConfigs, :ExtraArgs, :IPVS, :IsDualStack, :IsNonStaticIpMode, :KubeProxyMode, :NetworkType, :NodeNameType, :QGPUShareEnable, :RuntimeVersion, :VpcCniType, :IsHighAvailability
 
-        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, dataplanev2=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil)
+        def initialize(asenabled=nil, auditenabled=nil, auditlogtopicid=nil, auditlogsetid=nil, basepodnumber=nil, ciliummode=nil, containerruntime=nil, dataplanev2=nil, deletionprotection=nil, enablecustomizedpodcidr=nil, etcdoverrideconfigs=nil, extraargs=nil, ipvs=nil, isdualstack=nil, isnonstaticipmode=nil, kubeproxymode=nil, networktype=nil, nodenametype=nil, qgpushareenable=nil, runtimeversion=nil, vpccnitype=nil, ishighavailability=nil)
           @AsEnabled = asenabled
           @AuditEnabled = auditenabled
           @AuditLogTopicId = auditlogtopicid
@@ -1046,6 +1052,7 @@ module TencentCloud
           @QGPUShareEnable = qgpushareenable
           @RuntimeVersion = runtimeversion
           @VpcCniType = vpccnitype
+          @IsHighAvailability = ishighavailability
         end
 
         def deserialize(params)
@@ -1080,6 +1087,7 @@ module TencentCloud
           @QGPUShareEnable = params['QGPUShareEnable']
           @RuntimeVersion = params['RuntimeVersion']
           @VpcCniType = params['VpcCniType']
+          @IsHighAvailability = params['IsHighAvailability']
         end
       end
 
@@ -15085,10 +15093,12 @@ module TencentCloud
         # @type QGPUShareEnable: Boolean
         # @param ClusterProperty: 集群属性
         # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
+        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @type IsHighAvailability: Boolean
 
-        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty
+        attr_accessor :ClusterId, :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability
 
-        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil)
+        def initialize(clusterid=nil, projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil)
           @ClusterId = clusterid
           @ProjectId = projectid
           @ClusterName = clustername
@@ -15097,6 +15107,7 @@ module TencentCloud
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
           @ClusterProperty = clusterproperty
+          @IsHighAvailability = ishighavailability
         end
 
         def deserialize(params)
@@ -15114,6 +15125,7 @@ module TencentCloud
             @ClusterProperty = ClusterProperty.new
             @ClusterProperty.deserialize(params['ClusterProperty'])
           end
+          @IsHighAvailability = params['IsHighAvailability']
         end
       end
 
@@ -15133,12 +15145,14 @@ module TencentCloud
         # @type QGPUShareEnable: Boolean
         # @param ClusterProperty: 集群属性
         # @type ClusterProperty: :class:`Tencentcloud::Tke.v20180525.models.ClusterProperty`
+        # @param IsHighAvailability: 集群是否启用高可用模式。用于指导跨可用区资源打散等高可用策略的执行
+        # @type IsHighAvailability: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :RequestId
+        attr_accessor :ProjectId, :ClusterName, :ClusterDesc, :ClusterLevel, :AutoUpgradeClusterLevel, :QGPUShareEnable, :ClusterProperty, :IsHighAvailability, :RequestId
 
-        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, requestid=nil)
+        def initialize(projectid=nil, clustername=nil, clusterdesc=nil, clusterlevel=nil, autoupgradeclusterlevel=nil, qgpushareenable=nil, clusterproperty=nil, ishighavailability=nil, requestid=nil)
           @ProjectId = projectid
           @ClusterName = clustername
           @ClusterDesc = clusterdesc
@@ -15146,6 +15160,7 @@ module TencentCloud
           @AutoUpgradeClusterLevel = autoupgradeclusterlevel
           @QGPUShareEnable = qgpushareenable
           @ClusterProperty = clusterproperty
+          @IsHighAvailability = ishighavailability
           @RequestId = requestid
         end
 
@@ -15163,6 +15178,7 @@ module TencentCloud
             @ClusterProperty = ClusterProperty.new
             @ClusterProperty.deserialize(params['ClusterProperty'])
           end
+          @IsHighAvailability = params['IsHighAvailability']
           @RequestId = params['RequestId']
         end
       end

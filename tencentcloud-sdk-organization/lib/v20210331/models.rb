@@ -5824,30 +5824,32 @@ module TencentCloud
 
       # 我的共享单元列表详情
       class ManagerShareUnit < TencentCloud::Common::AbstractModel
-        # @param UnitId: 共享单元ID。
+        # @param UnitId: <p>共享单元ID。</p>
         # @type UnitId: String
-        # @param Name: 共享单元名称。
+        # @param Name: <p>共享单元名称。</p>
         # @type Name: String
-        # @param Uin: 共享单元管理员Uin。
+        # @param Uin: <p>共享单元管理员Uin。</p>
         # @type Uin: Integer
-        # @param OwnerUin: 共享单元管理员OwnerUin。
+        # @param OwnerUin: <p>共享单元管理员OwnerUin。</p>
         # @type OwnerUin: Integer
-        # @param Area: 共享单元地域。
+        # @param Area: <p>共享单元地域。</p>
         # @type Area: String
-        # @param Description: 描述。
+        # @param Description: <p>描述。</p>
         # @type Description: String
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param ShareResourceNum: 共享单元资源数。
+        # @param ShareResourceNum: <p>共享单元资源数。</p>
         # @type ShareResourceNum: Integer
-        # @param ShareMemberNum: 共享单元成员数。
+        # @param ShareMemberNum: <p>共享单元成员数。</p>
         # @type ShareMemberNum: Integer
-        # @param ShareScope: 共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号
+        # @param ShareScope: <p>共享范围。取值：1-仅允许集团组织内共享 2-允许共享给任意账号</p>
         # @type ShareScope: Integer
+        # @param ShareNodeNum: <p>共享单元部门数。</p>
+        # @type ShareNodeNum: Integer
 
-        attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum, :ShareScope
+        attr_accessor :UnitId, :Name, :Uin, :OwnerUin, :Area, :Description, :CreateTime, :ShareResourceNum, :ShareMemberNum, :ShareScope, :ShareNodeNum
 
-        def initialize(unitid=nil, name=nil, uin=nil, owneruin=nil, area=nil, description=nil, createtime=nil, shareresourcenum=nil, sharemembernum=nil, sharescope=nil)
+        def initialize(unitid=nil, name=nil, uin=nil, owneruin=nil, area=nil, description=nil, createtime=nil, shareresourcenum=nil, sharemembernum=nil, sharescope=nil, sharenodenum=nil)
           @UnitId = unitid
           @Name = name
           @Uin = uin
@@ -5858,6 +5860,7 @@ module TencentCloud
           @ShareResourceNum = shareresourcenum
           @ShareMemberNum = sharemembernum
           @ShareScope = sharescope
+          @ShareNodeNum = sharenodenum
         end
 
         def deserialize(params)
@@ -5871,6 +5874,7 @@ module TencentCloud
           @ShareResourceNum = params['ShareResourceNum']
           @ShareMemberNum = params['ShareMemberNum']
           @ShareScope = params['ShareScope']
+          @ShareNodeNum = params['ShareNodeNum']
         end
       end
 
@@ -6736,8 +6740,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 1
-        deprecate :ResourceGrantLast=, :none, 2026, 1
+        deprecate :ResourceGrantLast, :none, 2026, 2
+        deprecate :ResourceGrantLast=, :none, 2026, 2
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -7571,8 +7575,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 1
-        deprecate :ResourceId=, :none, 2026, 1
+        deprecate :ResourceId, :none, 2026, 2
+        deprecate :ResourceId=, :none, 2026, 2
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

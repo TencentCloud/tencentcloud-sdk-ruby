@@ -4792,10 +4792,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 1
-        deprecate :Model=, :none, 2026, 1
-        deprecate :TranslationLanguage, :none, 2026, 1
-        deprecate :TranslationLanguage=, :none, 2026, 1
+        deprecate :Model, :none, 2026, 2
+        deprecate :Model=, :none, 2026, 2
+        deprecate :TranslationLanguage, :none, 2026, 2
+        deprecate :TranslationLanguage=, :none, 2026, 2
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5950,12 +5950,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 1
-        deprecate :VideoEncodeParams=, :none, 2026, 1
-        deprecate :AudioEncodeParams, :none, 2026, 1
-        deprecate :AudioEncodeParams=, :none, 2026, 1
-        deprecate :SourceUrl, :none, 2026, 1
-        deprecate :SourceUrl=, :none, 2026, 1
+        deprecate :VideoEncodeParams, :none, 2026, 2
+        deprecate :VideoEncodeParams=, :none, 2026, 2
+        deprecate :AudioEncodeParams, :none, 2026, 2
+        deprecate :AudioEncodeParams=, :none, 2026, 2
+        deprecate :SourceUrl, :none, 2026, 2
+        deprecate :SourceUrl=, :none, 2026, 2
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
@@ -6663,8 +6663,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 1
-        deprecate :APIKey=, :none, 2026, 1
+        deprecate :APIKey, :none, 2026, 2
+        deprecate :APIKey=, :none, 2026, 2
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6732,8 +6732,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 1
-        deprecate :APIKey=, :none, 2026, 1
+        deprecate :APIKey, :none, 2026, 2
+        deprecate :APIKey=, :none, 2026, 2
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6825,10 +6825,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 1
-        deprecate :IMAdminUserId=, :none, 2026, 1
-        deprecate :IMAdminUserSig, :none, 2026, 1
-        deprecate :IMAdminUserSig=, :none, 2026, 1
+        deprecate :IMAdminUserId, :none, 2026, 2
+        deprecate :IMAdminUserId=, :none, 2026, 2
+        deprecate :IMAdminUserSig, :none, 2026, 2
+        deprecate :IMAdminUserSig=, :none, 2026, 2
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7017,8 +7017,7 @@ module TencentCloud
         # @type TaskId: String
         # @param SequenceNumber: 客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。
         # @type SequenceNumber: Integer
-        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。
-        # 注：混流是必须转码，这个参数需设置为1。
+        # @param WithTranscoding: 是否转码，0表示无需转码，1表示需要转码。 WithTranscoding为0，表示旁路转推，默认不转码；WithTranscoding为1，表示混流转推，此时一定会转码，并收取转码费用。 注： 1，混流是必须转码的，这个参数需设置为1。 2，WithTranscoding=0时，视频输出Codec默认跟随上行视频Codec，如果上行视频Codec发生变化，CDN会断流重推。
         # @type WithTranscoding: Integer
         # @param AudioParams: 更新相关参数，只支持更新参与混音的主播列表参数，不支持更新Codec、采样率、码率和声道数。不填表示不更新此参数。
         # @type AudioParams: :class:`Tencentcloud::Trtc.v20190722.models.McuAudioParams`

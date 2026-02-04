@@ -19081,7 +19081,7 @@ module TencentCloud
         # @type BackupIntervalTime: Integer
         # @param ReserveDuration: 表示保留备份时长, 单位秒，超过该时间将被清理, 七天表示为3600247=604800，最大为158112000
         # @type ReserveDuration: Integer
-        # @param BackupTriggerStrategy: 动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
+        # @param BackupTriggerStrategy: 自动数据备份触发策略，periodically:自动周期备份,frequent:高频备份
         # @type BackupTriggerStrategy: String
 
         attr_accessor :BackupCustomAutoTime, :BackupTimeBeg, :BackupTimeEnd, :BackupWeekDays, :BackupIntervalTime, :ReserveDuration, :BackupTriggerStrategy

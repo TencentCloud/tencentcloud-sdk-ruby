@@ -3669,20 +3669,20 @@ module TencentCloud
         # @param OriginInfo: 源站信息。
         # @type OriginInfo: :class:`Tencentcloud::Teo.v20220901.models.OriginInfo`
         # @param OriginProtocol: 回源协议，取值有：
-        # <li>FOLLOW: 协议跟随；</li>
-        # <li>HTTP: HTTP协议回源；</li>
-        # <li>HTTPS: HTTPS协议回源。</li>
-        # <li>不填默认为： FOLLOW。</li>
+        # <li>FOLLOW：协议跟随；</li>
+        # <li>HTTP：HTTP 协议回源；</li>
+        # <li>HTTPS：HTTPS 协议回源。</li>不填默认为：FOLLOW。
         # @type OriginProtocol: String
-        # @param HttpOriginPort: HTTP回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTP时生效, 不填默认为80。
+        # @param HttpOriginPort: HTTP 回源端口，默认值80，取值：1～65535。
+        # 当 OriginProtocol = FOLLOW 或 HTTP 时生效。
         # @type HttpOriginPort: Integer
-        # @param HttpsOriginPort: HTTPS回源端口，取值为1-65535，当OriginProtocol=FOLLOW/HTTPS时生效，不填默认为443。
+        # @param HttpsOriginPort: HTTPS 回源端口，默认值443，取值：1～65535。
+        # 当 OriginProtocol = FOLLOW 或 HTTPS 时生效。
         # @type HttpsOriginPort: Integer
-        # @param IPv6Status: IPv6状态，取值有：
-        # <li>follow：遵循站点IPv6配置；</li>
+        # @param IPv6Status: IPv6 状态，取值有：
+        # <li>follow：遵循站点 IPv6 配置；</li>
         # <li>on：开启状态；</li>
-        # <li>off：关闭状态。</li>
-        # <li>不填默认为：follow。</li>
+        # <li>off：关闭状态。</li>不填默认为：follow。
         # @type IPv6Status: String
 
         attr_accessor :ZoneId, :DomainName, :OriginInfo, :OriginProtocol, :HttpOriginPort, :HttpsOriginPort, :IPv6Status
@@ -5713,7 +5713,8 @@ module TencentCloud
         # <li>partial：CNAME 接入；</li>
         # <li>full：NS 接入；</li>
         # <li>noDomainAccess：无域名接入；</li>
-        # <li>dnsPodAccess：DNSPod 托管接入，该接入模式要求您的域名已托管在 DNSPod 内。</li>
+        # <li>dnsPodAccess：DNSPod 托管接入，该接入模式要求您的域名已托管在 DNSPod 内；</li>
+        # <li>ai：边缘推理接入。</li>
         # @type Type: String
         # @param ZoneName: 站点名称。CNAME/NS 接入的时，请传入二级域名（example.com）作为站点名称；无域名接入时，该值请保留为空。
         # @type ZoneName: String
@@ -11791,7 +11792,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 分页查询限制数目。默认值：20，最大值：100。
         # @type Limit: Integer
-        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：<li>zone-name：按照站点名称进行过滤；</li><li>zone-type：按照站点类型进行过滤。可选项：<br>   full：NS 接入类型；<br>   partial：CNAME 接入类型；<br>   partialComposite：无域名接入类型；<br>   dnsPodAccess：DNSPod 托管接入类型；<br>   pages：Pages 接入类型。 </li><li>zone-id：按照站点 ID 进行过滤，站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤。可选项：<br>   active：NS 已切换；<br>   pending：NS 待切换；<br>   deleted：已删除。</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤；</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
+        # @param Filters: 过滤条件，Filters.Values 的上限为 20。该参数不填写时，返回当前 appid 下有权限的所有站点信息。详细的过滤条件如下：<li>zone-name：按照站点名称进行过滤；</li><li>zone-type：按照站点类型进行过滤。可选项：<br>   full：NS 接入类型；<br>   partial：CNAME 接入类型；<br>   partialComposite：无域名接入类型；<br>   dnsPodAccess：DNSPod 托管接入类型；<br>   pages：Pages 接入类型；<br>   ai：边缘推理接入类型。</li><li>zone-id：按照站点 ID 进行过滤，站点 ID 形如：zone-2noz78a8ev6k；</li><li>status：按照站点状态进行过滤。可选项：<br>   active：NS 已切换；<br>   pending：NS 待切换；<br>   deleted：已删除。</li><li>tag-key：按照标签键进行过滤；</li><li>tag-value： 按照标签值进行过滤；</li><li>alias-zone-name： 按照同名站点标识进行过滤。</li>模糊查询时支持过滤字段名为 zone-name 或 alias-zone-name。
         # @type Filters: Array
         # @param Order: 可根据该字段对返回结果进行排序，取值有：
         # <li> type：接入类型；</li>
@@ -19101,32 +19102,31 @@ module TencentCloud
         # <li>COS：腾讯云 COS 对象存储源站；</li>
         # <li>AWS_S3：AWS S3 对象存储源站；</li>
         # <li>ORIGIN_GROUP：源站组类型源站；</li>
-        #  <li>VOD：云点播；</li>
+        # <li>VOD：云点播；</li>
         # <li>SPACE：源站卸载，当前仅白名单开放；</li>
         # <li>LB：负载均衡，当前仅白名单开放。</li>
         # @type OriginType: String
         # @param Origin: 源站地址，根据 OriginType 的取值分为以下情况：
-        # <li>当 OriginType = IP_DOMAIN 时，该参数请填写 IPv4、IPv6 地址或域名；</li>
-        # <li>当 OriginType = COS 时，该参数请填写 COS 桶的访问域名；</li>
-        # <li>当 OriginType = AWS_S3，该参数请填写 S3 桶的访问域名；</li>
-        # <li>当 OriginType = ORIGIN_GROUP 时，该参数请填写源站组 ID；</li>
-        # <li>当 OriginType = VOD 时，该参数请填写云点播应用 ID ；</li>
-        # <li>当 OriginType = LB 时，该参数请填写负载均衡实例 ID，该功能当前仅白名单开放；</li>
-        # <li>当 OriginType = SPACE 时，该参数请填写源站卸载空间 ID，该功能当前仅白名单开放。</li>
+        # <li>当 OriginType = IP_DOMAIN 时，该参数为 IPv4、IPv6 地址或域名；</li>
+        # <li>当 OriginType = COS 时，该参数为 COS 桶的访问域名；</li>
+        # <li>当 OriginType = AWS_S3，该参数为 S3 桶的访问域名；</li>
+        # <li>当 OriginType = ORIGIN_GROUP 时，该参数为源站组 ID；如果引用了其它站点的源站组，格式为{源站组 ID}@{ZoneID}。例如：og-testorigin@zone-38moq1z10wwwy；</li>
+        # <li>当 OriginType = VOD 时，该参数为云点播应用 ID；</li>
+        # <li>当 OriginType = LB 时，该参数为负载均衡实例 ID，该功能当前仅白名单开放；如果引用了其它站点的负载均衡，格式为{负载均衡 ID}@{ZoneID}。例如：lb-2rxpamcyqfzg@zone-38moq1z10wwwy；</li>
+        # <li>当 OriginType = SPACE 时，该参数为源站卸载空间 ID，该功能当前仅白名单开放。</li>
         # @type Origin: String
         # @param BackupOrigin: 备用源站组 ID，该参数仅在 OriginType = ORIGIN_GROUP 时生效，该字段为旧版能力，调用后控制台无法进行配置修改，如需使用请提交工单咨询。
         # @type BackupOrigin: String
         # @param PrivateAccess: 指定是否允许访问私有对象存储源站，该参数仅当源站类型 OriginType = COS 或 AWS_S3 时会生效，取值有：
         # <li>on：使用私有鉴权；</li>
-        # <li>off：不使用私有鉴权。</li>
-        # 不填写时，默认值为off。
+        # <li>off：不使用私有鉴权。</li>不填写时，默认值为off。
         # @type PrivateAccess: String
         # @param PrivateParameters: 私有鉴权使用参数，该参数仅当源站类型 PrivateAccess = on 时会生效。
         # @type PrivateParameters: Array
-        # @param HostHeader: 自定义回源 HOST 头，该参数仅当 OriginType=IP_DOMAIN 时生效。
-        # 如果 OriginType=COS 或 AWS_S3 时，回源 HOST 头将与源站域名保持一致。
-        # 如果OriginType=ORIGIN_GROUP 时，回源 HOST 头遵循源站组内配置，如果没有配置则默认为加速域名。
-        # 如果 OriginType=VOD 或 SPACE 时，无需配置该头部，按对应的回源域名生效。
+        # @param HostHeader: 自定义回源 HOST 头，该参数仅当 OriginType = IP_DOMAIN 时生效。当 OriginType 是其它类型源站时，不需要传入该参数，否则会报错。
+        # 当 OriginType = COS 或 AWS_S3 时，回源 HOST 头将与源站域名保持一致。
+        # 当 OriginType = ORIGIN_GROUP 时，回源 HOST 头遵循源站组内配置，如果没有配置则默认为加速域名。
+        # 当 OriginType = VOD 或 SPACE 时，无需配置该头部，按对应的回源域名生效。
         # @type HostHeader: String
         # @param VodeoSubAppId: VODEO 子应用 ID。该参数当 OriginType = VODEO 时必填。
         # @type VodeoSubAppId: Integer
@@ -19136,8 +19136,7 @@ module TencentCloud
         # @type VodeoDistributionRange: String
         # @param VodeoBucketId: VODEO 存储桶 ID，该参数当 OriginType = VODEO 且 VodeoDistributionRange = Bucket 时必填。
         # @type VodeoBucketId: String
-        # @param VodOriginScope: 云点播回源范围，该参数当 OriginType = VOD 时生效。取值有：<li>all：当前源站对应的云点播应用内所有文件，默认值为 all；</li><li>bucket：当前源站对应的云点播应用下指定某一个存储桶内的文件。通过参数 VodBucketId 来指定存储桶。
-        # </li>
+        # @param VodOriginScope: 云点播回源范围，该参数当 OriginType = VOD 时生效。取值有：<li>all：当前源站对应的云点播应用内所有文件；</li><li>bucket：当前源站对应的云点播应用下指定某一个存储桶内的文件，通过参数 VodBucketId 来指定存储桶。</li>不填写时，默认值为 all。
         # @type VodOriginScope: String
         # @param VodBucketId: VOD 存储桶 ID，该参数当 OriginType = VOD 且 VodOriginScope = bucket 时必填。数据来源：云点播专业版应用下存储桶的存储 ID 。
         # @type VodBucketId: String
@@ -20133,9 +20132,9 @@ module TencentCloud
         # @type Id: String
         # @param Name: 精准速率限制的名称。
         # @type Name: String
-        # @param Condition: 精准速率限制的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @param Condition: 精准速率限制的具体内容，需符合表达式语法，详细规范参见[产品文档](https://cloud.tencent.com/document/product/1552/125343)。
         # @type Condition: String
-        # @param CountBy: 速率阈值请求特征的匹配方式， 当 Enabled 为 on 时，此字段必填。<br /><br />当条件有多个时，将组合多个条件共同进行统计计算，条件最多不可超过5条。取值有：<br/><li><b>http.request.ip</b>：客户端 IP；</li><li><b>http.request.xff_header_ip</b>：客户端 IP（优先匹配 XFF 头部）；</li><li><b>http.request.uri.path</b>：请求的访问路径；</li><li><b>http.request.cookies['session']</b>：名称为session的Cookie，其中session可替换为自己指定的参数；</li><li><b>http.request.headers['user-agent']</b>：名称为user-agent的HTTP头部，其中user-agent可替换为自己指定的参数；</li><li><b>http.request.ja3</b>：请求的JA3指纹；</li><li><b>http.request.uri.query['test']</b>：名称为test的URL查询参数，其中test可替换为自己指定的参数。</li>
+        # @param CountBy: 速率阈值请求特征的匹配方式， 当 Enabled 为 on 时，此字段必填。<br /><br />当条件有多个时，将组合多个条件共同进行统计计算，条件最多不可超过5条。取值有：<br/><li><b>http.request.ip</b>：客户端 IP；</li><li><b>http.request.xff_header_ip</b>：客户端 IP（优先匹配 XFF 头部）；</li><li><b>http.request.uri.path</b>：请求的访问路径；</li><li><b>http.request.cookies['session']</b>：名称为 session 的 Cookie，其中 session 可替换为自己指定的参数；</li><li><b>http.request.headers['user-agent']</b>：名称为 user-agent 的 HTTP 头部，其中 user-agent 可替换为自己指定的参数；</li><li><b>http.request.ja3</b>：请求的 JA3 指纹；</li><li><b>http.request.ja4</b>：请求的 JA4 指纹；</li><li><b>http.request.uri.query['test']</b>：名称为 test 的 URL 查询参数，其中 test 可替换为自己指定的参数。</li>
         # @type CountBy: Array
         # @param MaxRequestThreshold: 精准速率限制在时间范围内的累计拦截次数，取值范围 1 ~ 100000。
         # @type MaxRequestThreshold: Integer
@@ -23526,7 +23525,8 @@ module TencentCloud
         # <li> partial：CNAME 接入类型；</li>
         # <li> noDomainAccess：无域名接入类型；</li>
         # <li>dnsPodAccess：DNSPod 托管类型，该类型要求您的域名已托管在腾讯云 DNSPod；</li>
-        # <li> pages：Pages 类型。</li>
+        # <li> pages：Pages 类型；</li>
+        # <li> ai：边缘推理接入类型。</li>
         # @type Type: String
         # @param Tags: 站点关联的标签。
         # @type Tags: Array

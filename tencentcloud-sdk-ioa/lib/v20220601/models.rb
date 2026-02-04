@@ -145,10 +145,12 @@ module TencentCloud
         # @type SoftwareId: Integer
         # @param OsType: 0:win 2:mac
         # @type OsType: Integer
+        # @param AssetType: 所有权
+        # @type AssetType: String
 
-        attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName, :SoftwareId, :OsType
+        attr_accessor :DeviceName, :LastLoginAccount, :DeviceUserName, :Version, :PiracyRisk, :PiracyReason, :InstallTime, :UserPath, :UserGroup, :IP, :MAC, :UseTime, :DeviceId, :FullSoftName, :Id, :NewVersion, :UpgradeSoftId, :RemarkName, :SoftwareId, :OsType, :AssetType
 
-        def initialize(devicename=nil, lastloginaccount=nil, deviceusername=nil, version=nil, piracyrisk=nil, piracyreason=nil, installtime=nil, userpath=nil, usergroup=nil, ip=nil, mac=nil, usetime=nil, deviceid=nil, fullsoftname=nil, id=nil, newversion=nil, upgradesoftid=nil, remarkname=nil, softwareid=nil, ostype=nil)
+        def initialize(devicename=nil, lastloginaccount=nil, deviceusername=nil, version=nil, piracyrisk=nil, piracyreason=nil, installtime=nil, userpath=nil, usergroup=nil, ip=nil, mac=nil, usetime=nil, deviceid=nil, fullsoftname=nil, id=nil, newversion=nil, upgradesoftid=nil, remarkname=nil, softwareid=nil, ostype=nil, assettype=nil)
           @DeviceName = devicename
           @LastLoginAccount = lastloginaccount
           @DeviceUserName = deviceusername
@@ -169,6 +171,7 @@ module TencentCloud
           @RemarkName = remarkname
           @SoftwareId = softwareid
           @OsType = ostype
+          @AssetType = assettype
         end
 
         def deserialize(params)
@@ -192,6 +195,7 @@ module TencentCloud
           @RemarkName = params['RemarkName']
           @SoftwareId = params['SoftwareId']
           @OsType = params['OsType']
+          @AssetType = params['AssetType']
         end
       end
 
@@ -234,15 +238,23 @@ module TencentCloud
         # @type PageSize: Integer
         # @param PageNum: PageNum 获取第几页(只支持32位)
         # @type PageNum: Integer
+        # @param RulePayload: 复杂查询规则条件查询项（支持任意层级AND/OR组合）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePayload: :class:`Tencentcloud::Ioa.v20220601.models.RulePayload`
+        # @param RulePayloadMode: 规则模式：0-使用旧的FilterGroups，1-使用新的RulePayload
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RulePayloadMode: Integer
 
-        attr_accessor :Filters, :FilterGroups, :Sort, :PageSize, :PageNum
+        attr_accessor :Filters, :FilterGroups, :Sort, :PageSize, :PageNum, :RulePayload, :RulePayloadMode
 
-        def initialize(filters=nil, filtergroups=nil, sort=nil, pagesize=nil, pagenum=nil)
+        def initialize(filters=nil, filtergroups=nil, sort=nil, pagesize=nil, pagenum=nil, rulepayload=nil, rulepayloadmode=nil)
           @Filters = filters
           @FilterGroups = filtergroups
           @Sort = sort
           @PageSize = pagesize
           @PageNum = pagenum
+          @RulePayload = rulepayload
+          @RulePayloadMode = rulepayloadmode
         end
 
         def deserialize(params)
@@ -268,6 +280,11 @@ module TencentCloud
           end
           @PageSize = params['PageSize']
           @PageNum = params['PageNum']
+          unless params['RulePayload'].nil?
+            @RulePayload = RulePayload.new
+            @RulePayload.deserialize(params['RulePayload'])
+          end
+          @RulePayloadMode = params['RulePayloadMode']
         end
       end
 
@@ -1057,13 +1074,19 @@ module TencentCloud
         # @type Name: String
         # @param OsType: 0:win 2:mac
         # @type OsType: Integer
+        # @param GroupId: 分组ID
+        # @type GroupId: Integer
+        # @param GroupType: 分组类型 1-终端分组 2-组织架构(账号分组) 3/4-虚拟分组
+        # @type GroupType: Integer
 
-        attr_accessor :Condition, :Name, :OsType
+        attr_accessor :Condition, :Name, :OsType, :GroupId, :GroupType
 
-        def initialize(condition=nil, name=nil, ostype=nil)
+        def initialize(condition=nil, name=nil, ostype=nil, groupid=nil, grouptype=nil)
           @Condition = condition
           @Name = name
           @OsType = ostype
+          @GroupId = groupid
+          @GroupType = grouptype
         end
 
         def deserialize(params)
@@ -1073,6 +1096,8 @@ module TencentCloud
           end
           @Name = params['Name']
           @OsType = params['OsType']
+          @GroupId = params['GroupId']
+          @GroupType = params['GroupType']
         end
       end
 
@@ -3794,6 +3819,79 @@ module TencentCloud
           @Operate = params['Operate']
           @Value = params['Value']
           @Values = params['Values']
+        end
+      end
+
+      # 条件筛选
+      class RulePayload < TencentCloud::Common::AbstractModel
+        # @param Groups: 条件组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RelateOption: 条件关系 or/and
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelateOption: String
+
+        attr_accessor :Groups, :RelateOption
+
+        def initialize(groups=nil, relateoption=nil)
+          @Groups = groups
+          @RelateOption = relateoption
+        end
+
+        def deserialize(params)
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rulepayloaditem_tmp = RulePayloadItem.new
+              rulepayloaditem_tmp.deserialize(i)
+              @Groups << rulepayloaditem_tmp
+            end
+          end
+          @RelateOption = params['RelateOption']
+        end
+      end
+
+      # 条件
+      class RulePayloadItem < TencentCloud::Common::AbstractModel
+        # @param FieldKey: 字段Key
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FieldKey: String
+        # @param Option: 选项（eq:等于,neq:不等于,like,nlike,gt:大于,lt:小于,egt:大于等于,elt:小于等于）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Option: String
+        # @param Value: 值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: Array
+        # @param Groups: 嵌套条件组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Groups: Array
+        # @param RelateOption: RelateOption 关系操作符（and/or），用于根级别条件关系
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RelateOption: String
+
+        attr_accessor :FieldKey, :Option, :Value, :Groups, :RelateOption
+
+        def initialize(fieldkey=nil, option=nil, value=nil, groups=nil, relateoption=nil)
+          @FieldKey = fieldkey
+          @Option = option
+          @Value = value
+          @Groups = groups
+          @RelateOption = relateoption
+        end
+
+        def deserialize(params)
+          @FieldKey = params['FieldKey']
+          @Option = params['Option']
+          @Value = params['Value']
+          unless params['Groups'].nil?
+            @Groups = []
+            params['Groups'].each do |i|
+              rulepayloaditem_tmp = RulePayloadItem.new
+              rulepayloaditem_tmp.deserialize(i)
+              @Groups << rulepayloaditem_tmp
+            end
+          end
+          @RelateOption = params['RelateOption']
         end
       end
 

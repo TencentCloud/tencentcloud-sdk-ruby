@@ -1030,6 +1030,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取闪信记录列表
+
+        # @param request: Request instance for DescribeFlashSMSList.
+        # @type request: :class:`Tencentcloud::ccc::V20200210::DescribeFlashSMSListRequest`
+        # @rtype: :class:`Tencentcloud::ccc::V20200210::DescribeFlashSMSListResponse`
+        def DescribeFlashSMSList(request)
+          body = send_request('DescribeFlashSMSList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeFlashSMSListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取包括全媒体和文本会话两种类型的服务记录。
 
         # @param request: Request instance for DescribeIMCdrList.

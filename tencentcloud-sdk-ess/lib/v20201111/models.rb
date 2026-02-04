@@ -16079,6 +16079,10 @@ module TencentCloud
         # @type Content: String
         # @param Positions: 审查出的PDF段落位置信息
         # @type Positions: Array
+        # @param IsMark: 是否已修订
+        # @type IsMark: Boolean
+        # @param IsIgnore: 是否已忽略
+        # @type IsIgnore: Boolean
         # @param RiskBasis: 审查依据
         # @type RiskBasis: String
         # @param RiskLevelId: 风险等级id。1 为最高风险等级，0 为最低风险等级，从[2,n]数字越大风险等级逐渐降低。
@@ -16093,10 +16097,12 @@ module TencentCloud
         # @type CreatorId: String
         # @param CreatedOn: 创建时间
         # @type CreatedOn: Integer
+        # @param RiskLevelAliasName: 风险等级别名
+        # @type RiskLevelAliasName: String
 
-        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :RiskBasis, :RiskLevelId, :RiskLabels, :RiskOrigin, :Creator, :CreatorId, :CreatedOn
+        attr_accessor :RiskId, :RiskName, :RiskDescription, :RiskLevel, :RiskAdvice, :RiskPresentation, :Content, :Positions, :IsMark, :IsIgnore, :RiskBasis, :RiskLevelId, :RiskLabels, :RiskOrigin, :Creator, :CreatorId, :CreatedOn, :RiskLevelAliasName
 
-        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, riskbasis=nil, risklevelid=nil, risklabels=nil, riskorigin=nil, creator=nil, creatorid=nil, createdon=nil)
+        def initialize(riskid=nil, riskname=nil, riskdescription=nil, risklevel=nil, riskadvice=nil, riskpresentation=nil, content=nil, positions=nil, ismark=nil, isignore=nil, riskbasis=nil, risklevelid=nil, risklabels=nil, riskorigin=nil, creator=nil, creatorid=nil, createdon=nil, risklevelaliasname=nil)
           @RiskId = riskid
           @RiskName = riskname
           @RiskDescription = riskdescription
@@ -16105,6 +16111,8 @@ module TencentCloud
           @RiskPresentation = riskpresentation
           @Content = content
           @Positions = positions
+          @IsMark = ismark
+          @IsIgnore = isignore
           @RiskBasis = riskbasis
           @RiskLevelId = risklevelid
           @RiskLabels = risklabels
@@ -16112,6 +16120,7 @@ module TencentCloud
           @Creator = creator
           @CreatorId = creatorid
           @CreatedOn = createdon
+          @RiskLevelAliasName = risklevelaliasname
         end
 
         def deserialize(params)
@@ -16130,6 +16139,8 @@ module TencentCloud
               @Positions << positioninfo_tmp
             end
           end
+          @IsMark = params['IsMark']
+          @IsIgnore = params['IsIgnore']
           @RiskBasis = params['RiskBasis']
           @RiskLevelId = params['RiskLevelId']
           @RiskLabels = params['RiskLabels']
@@ -16137,6 +16148,7 @@ module TencentCloud
           @Creator = params['Creator']
           @CreatorId = params['CreatorId']
           @CreatedOn = params['CreatedOn']
+          @RiskLevelAliasName = params['RiskLevelAliasName']
         end
       end
 

@@ -55,30 +55,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询图片特效任务
-
-        # @param request: Request instance for DescribeTemplateToImageJob.
-        # @type request: :class:`Tencentcloud::aiart::V20221229::DescribeTemplateToImageJobRequest`
-        # @rtype: :class:`Tencentcloud::aiart::V20221229::DescribeTemplateToImageJobResponse`
-        def DescribeTemplateToImageJob(request)
-          body = send_request('DescribeTemplateToImageJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTemplateToImageJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 百变头像接口将根据输入的人像照片，生成风格百变的头像。
         # 百变头像默认提供1个并发任务数，代表最多能同时处理1个已提交的任务，上一个任务处理完毕后才能开始处理下一个任务。
 
@@ -499,30 +475,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SubmitMemeJobResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 提交图片特效任务
-
-        # @param request: Request instance for SubmitTemplateToImageJob.
-        # @type request: :class:`Tencentcloud::aiart::V20221229::SubmitTemplateToImageJobRequest`
-        # @rtype: :class:`Tencentcloud::aiart::V20221229::SubmitTemplateToImageJobResponse`
-        def SubmitTemplateToImageJob(request)
-          body = send_request('SubmitTemplateToImageJob', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = SubmitTemplateToImageJobResponse.new
             model.deserialize(response['Response'])
             model
           else

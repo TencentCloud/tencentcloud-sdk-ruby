@@ -1080,6 +1080,33 @@ module TencentCloud
         end
       end
 
+      # APM应用实例漏洞相关信息
+      class ApmVulnerabilityServiceDetail < TencentCloud::Common::AbstractModel
+        # @param ServiceInstance: 应用实例
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceInstance: String
+        # @param Path: 漏洞所在jar包路径
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param LastOccurTime: 最近发生时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastOccurTime: Integer
+
+        attr_accessor :ServiceInstance, :Path, :LastOccurTime
+
+        def initialize(serviceinstance=nil, path=nil, lastoccurtime=nil)
+          @ServiceInstance = serviceinstance
+          @Path = path
+          @LastOccurTime = lastoccurtime
+        end
+
+        def deserialize(params)
+          @ServiceInstance = params['ServiceInstance']
+          @Path = params['Path']
+          @LastOccurTime = params['LastOccurTime']
+        end
+      end
+
       # 自动性能剖析配置
       class AutoProfilingConfig < TencentCloud::Common::AbstractModel
         # @param CpuProfilingEnable: 自动CPU剖析任务开关
@@ -1509,6 +1536,65 @@ module TencentCloud
         end
       end
 
+      # DescribeApmAllVulCount请求参数结构体
+      class DescribeApmAllVulCountRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 秒级时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeApmAllVulCount返回参数结构体
+      class DescribeApmAllVulCountResponse < TencentCloud::Common::AbstractModel
+        # @param VulnerabilityList: 包含漏洞指标以及业务系统个数
+        # @type VulnerabilityList: Array
+        # @param VulnerabilityCount: 总漏洞个数
+        # @type VulnerabilityCount: Integer
+        # @param ImportantVulnerabilityCount: 严重漏洞个数
+        # @type ImportantVulnerabilityCount: Integer
+        # @param CriticalVulnerabilityCount: 高危漏洞个数
+        # @type CriticalVulnerabilityCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulnerabilityList, :VulnerabilityCount, :ImportantVulnerabilityCount, :CriticalVulnerabilityCount, :RequestId
+
+        def initialize(vulnerabilitylist=nil, vulnerabilitycount=nil, importantvulnerabilitycount=nil, criticalvulnerabilitycount=nil, requestid=nil)
+          @VulnerabilityList = vulnerabilitylist
+          @VulnerabilityCount = vulnerabilitycount
+          @ImportantVulnerabilityCount = importantvulnerabilitycount
+          @CriticalVulnerabilityCount = criticalvulnerabilitycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulnerabilityList'].nil?
+            @VulnerabilityList = []
+            params['VulnerabilityList'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @VulnerabilityList << apmmetricrecord_tmp
+            end
+          end
+          @VulnerabilityCount = params['VulnerabilityCount']
+          @ImportantVulnerabilityCount = params['ImportantVulnerabilityCount']
+          @CriticalVulnerabilityCount = params['CriticalVulnerabilityCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApmApplicationConfig请求参数结构体
       class DescribeApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID
@@ -1885,6 +1971,150 @@ module TencentCloud
           @PageSize = params['PageSize']
           @ErrorCount = params['ErrorCount']
           @WarningCount = params['WarningCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmVulnerabilityCount请求参数结构体
+      class DescribeApmVulnerabilityCountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: APM业务系统ID
+        # @type InstanceId: String
+        # @param ServiceName: APM应用名称
+        # @type ServiceName: String
+        # @param StartTime: 秒级时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳
+        # @type EndTime: Integer
+        # @param Type: 查询的数据类型，攻击检测为“attack_detect”
+        # @type Type: String
+
+        attr_accessor :InstanceId, :ServiceName, :StartTime, :EndTime, :Type
+
+        def initialize(instanceid=nil, servicename=nil, starttime=nil, endtime=nil, type=nil)
+          @InstanceId = instanceid
+          @ServiceName = servicename
+          @StartTime = starttime
+          @EndTime = endtime
+          @Type = type
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @ServiceName = params['ServiceName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Type = params['Type']
+        end
+      end
+
+      # DescribeApmVulnerabilityCount返回参数结构体
+      class DescribeApmVulnerabilityCountResponse < TencentCloud::Common::AbstractModel
+        # @param VulnerabilityList: 包含漏洞指标以及业务系统个数
+        # @type VulnerabilityList: Array
+        # @param VulnerabilityCount: 总漏洞个数
+        # @type VulnerabilityCount: Integer
+        # @param ImportantVulnerabilityCount: 严重漏洞个数
+        # @type ImportantVulnerabilityCount: Integer
+        # @param CriticalVulnerabilityCount: 高危漏洞个数
+        # @type CriticalVulnerabilityCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulnerabilityList, :VulnerabilityCount, :ImportantVulnerabilityCount, :CriticalVulnerabilityCount, :RequestId
+
+        def initialize(vulnerabilitylist=nil, vulnerabilitycount=nil, importantvulnerabilitycount=nil, criticalvulnerabilitycount=nil, requestid=nil)
+          @VulnerabilityList = vulnerabilitylist
+          @VulnerabilityCount = vulnerabilitycount
+          @ImportantVulnerabilityCount = importantvulnerabilitycount
+          @CriticalVulnerabilityCount = criticalvulnerabilitycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulnerabilityList'].nil?
+            @VulnerabilityList = []
+            params['VulnerabilityList'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @VulnerabilityList << apmmetricrecord_tmp
+            end
+          end
+          @VulnerabilityCount = params['VulnerabilityCount']
+          @ImportantVulnerabilityCount = params['ImportantVulnerabilityCount']
+          @CriticalVulnerabilityCount = params['CriticalVulnerabilityCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApmVulnerabilityDetail请求参数结构体
+      class DescribeApmVulnerabilityDetailRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 秒级时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳
+        # @type EndTime: Integer
+        # @param InstanceId: APM业务系统ID
+        # @type InstanceId: String
+        # @param Filters: 条件过滤，必填service.name, instrumentation.name, version, vul.id
+        # @type Filters: Array
+
+        attr_accessor :StartTime, :EndTime, :InstanceId, :Filters
+
+        def initialize(starttime=nil, endtime=nil, instanceid=nil, filters=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @InstanceId = instanceid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @InstanceId = params['InstanceId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApmVulnerabilityDetail返回参数结构体
+      class DescribeApmVulnerabilityDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Tags: 漏洞详情
+        # @type Tags: Array
+        # @param ServiceInstanceList: 漏洞相关业务系统列表
+        # @type ServiceInstanceList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tags, :ServiceInstanceList, :RequestId
+
+        def initialize(tags=nil, serviceinstancelist=nil, requestid=nil)
+          @Tags = tags
+          @ServiceInstanceList = serviceinstancelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          unless params['ServiceInstanceList'].nil?
+            @ServiceInstanceList = []
+            params['ServiceInstanceList'].each do |i|
+              apmvulnerabilityservicedetail_tmp = ApmVulnerabilityServiceDetail.new
+              apmvulnerabilityservicedetail_tmp.deserialize(i)
+              @ServiceInstanceList << apmvulnerabilityservicedetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2345,6 +2575,65 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeOPRAllVulCount请求参数结构体
+      class DescribeOPRAllVulCountRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 秒级时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳
+        # @type EndTime: Integer
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeOPRAllVulCount返回参数结构体
+      class DescribeOPRAllVulCountResponse < TencentCloud::Common::AbstractModel
+        # @param VulnerabilityList: 包含漏洞指标以及业务系统个数
+        # @type VulnerabilityList: Array
+        # @param VulnerabilityCount: 总漏洞个数
+        # @type VulnerabilityCount: Integer
+        # @param ImportantVulnerabilityCount: 严重漏洞个数
+        # @type ImportantVulnerabilityCount: Integer
+        # @param CriticalVulnerabilityCount: 高危漏洞个数
+        # @type CriticalVulnerabilityCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VulnerabilityList, :VulnerabilityCount, :ImportantVulnerabilityCount, :CriticalVulnerabilityCount, :RequestId
+
+        def initialize(vulnerabilitylist=nil, vulnerabilitycount=nil, importantvulnerabilitycount=nil, criticalvulnerabilitycount=nil, requestid=nil)
+          @VulnerabilityList = vulnerabilitylist
+          @VulnerabilityCount = vulnerabilitycount
+          @ImportantVulnerabilityCount = importantvulnerabilitycount
+          @CriticalVulnerabilityCount = criticalvulnerabilitycount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['VulnerabilityList'].nil?
+            @VulnerabilityList = []
+            params['VulnerabilityList'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @VulnerabilityList << apmmetricrecord_tmp
+            end
+          end
+          @VulnerabilityCount = params['VulnerabilityCount']
+          @ImportantVulnerabilityCount = params['ImportantVulnerabilityCount']
+          @CriticalVulnerabilityCount = params['CriticalVulnerabilityCount']
           @RequestId = params['RequestId']
         end
       end

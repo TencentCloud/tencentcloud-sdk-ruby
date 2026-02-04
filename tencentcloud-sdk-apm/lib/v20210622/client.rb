@@ -173,6 +173,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户所有漏洞信息
+
+        # @param request: Request instance for DescribeApmAllVulCount.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmAllVulCountRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmAllVulCountResponse`
+        def DescribeApmAllVulCount(request)
+          body = send_request('DescribeApmAllVulCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmAllVulCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询应用配置接口
 
         # @param request: Request instance for DescribeApmApplicationConfig.
@@ -317,6 +341,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询漏洞指标
+
+        # @param request: Request instance for DescribeApmVulnerabilityCount.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmVulnerabilityCountRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmVulnerabilityCountResponse`
+        def DescribeApmVulnerabilityCount(request)
+          body = send_request('DescribeApmVulnerabilityCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmVulnerabilityCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询漏洞详情
+
+        # @param request: Request instance for DescribeApmVulnerabilityDetail.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmVulnerabilityDetailRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmVulnerabilityDetailResponse`
+        def DescribeApmVulnerabilityDetail(request)
+          body = send_request('DescribeApmVulnerabilityDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmVulnerabilityDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询应用配置信息
 
         # @param request: Request instance for DescribeGeneralApmApplicationConfig.
@@ -444,6 +516,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMetricRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询用户所有漏洞信息
+
+        # @param request: Request instance for DescribeOPRAllVulCount.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeOPRAllVulCountRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeOPRAllVulCountResponse`
+        def DescribeOPRAllVulCount(request)
+          body = send_request('DescribeOPRAllVulCount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeOPRAllVulCountResponse.new
             model.deserialize(response['Response'])
             model
           else

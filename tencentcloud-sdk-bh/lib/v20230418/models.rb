@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 1
-        deprecate :LoginAccount=, :none, 2026, 1
-        deprecate :LoginPassword, :none, 2026, 1
-        deprecate :LoginPassword=, :none, 2026, 1
+        deprecate :LoginAccount, :none, 2026, 2
+        deprecate :LoginAccount=, :none, 2026, 2
+        deprecate :LoginPassword, :none, 2026, 2
+        deprecate :LoginPassword=, :none, 2026, 2
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5968,8 +5968,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 1
-        deprecate :Status=, :none, 2026, 1
+        deprecate :Status, :none, 2026, 2
+        deprecate :Status=, :none, 2026, 2
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -6826,16 +6826,20 @@ module TencentCloud
 
       # RunOperationTask返回参数结构体
       class RunOperationTaskResponse < TencentCloud::Common::AbstractModel
+        # @param SubTaskId: 子任务Id
+        # @type SubTaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :SubTaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(subtaskid=nil, requestid=nil)
+          @SubTaskId = subtaskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @SubTaskId = params['SubTaskId']
           @RequestId = params['RequestId']
         end
       end

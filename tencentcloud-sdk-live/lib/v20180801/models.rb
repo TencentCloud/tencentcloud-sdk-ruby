@@ -1888,61 +1888,28 @@ module TencentCloud
 
       # 通用混流布局参数。
       class CommonMixLayoutParams < TencentCloud::Common::AbstractModel
-        # @param ImageLayer: 输入图层。取值范围[1，16]。
-        # 1)背景流（即大主播画面或画布）的 image_layer 填1。
-        # 2)纯音频混流，该参数也需填。
-        # 注意：不同输入，该值不可重复
+        # @param ImageLayer: <p>输入图层。取值范围[1，16]。<br>1)背景流（即大主播画面或画布）的 image_layer 填1。<br>2)纯音频混流，该参数也需填。<br>注意：不同输入，该值不可重复</p>
         # @type ImageLayer: Integer
-        # @param InputType: 输入类型。取值范围[0，5]。
-        # 不填默认为0。
-        # 0表示输入流为音视频。
-        # 2表示输入流为图片。
-        # 3表示输入流为画布。
-        # 4表示输入流为音频。
-        # 5表示输入流为纯视频。
+        # @param InputType: <p>输入类型。取值范围[0，5]。<br>不填默认为0。<br>0表示输入流为音视频。<br>2表示输入流为图片。<br>3表示输入流为画布。<br>4表示输入流为音频。<br>5表示输入流为纯视频。</p>
         # @type InputType: Integer
-        # @param ImageHeight: 输入画面在输出时的高度。取值范围：
-        # 像素：[0，2000]
-        # 百分比：[0.01，0.99]
-        # 不填默认为输入流的高度。
-        # 使用百分比时，期望输出为（百分比 * 背景高）。
+        # @param ImageHeight: <p>输入画面在输出时的高度。取值范围：<br>像素：[0，2000]<br>百分比：[0.01，0.99]<br>不填默认为输入流的高度。<br>使用百分比时，期望输出为（百分比 * 背景高）。</p>
         # @type ImageHeight: Float
-        # @param ImageWidth: 输入画面在输出时的宽度。取值范围：
-        # 像素：[0，2000]
-        # 百分比：[0.01，0.99]
-        # 不填默认为输入流的宽度。
-        # 使用百分比时，期望输出为（百分比 * 背景宽）。
+        # @param ImageWidth: <p>输入画面在输出时的宽度。取值范围：<br>像素：[0，2000]<br>百分比：[0.01，0.99]<br>不填默认为输入流的宽度。<br>使用百分比时，期望输出为（百分比 * 背景宽）。</p>
         # @type ImageWidth: Float
-        # @param LocationX: 输入在输出画面的X偏移。取值范围：
-        # 像素：[0，2000]
-        # 百分比：[0.01，0.99]
-        # 不填默认为0。
-        # 相对于大主播背景画面左上角的横向偏移。
-        # 使用百分比时，期望输出为（百分比 * 背景宽）。
+        # @param LocationX: <p>输入在输出画面的X偏移。取值范围：<br>像素：[0，2000]<br>百分比：[0.01，0.99]<br>不填默认为0。<br>相对于大主播背景画面左上角的横向偏移。<br>使用百分比时，期望输出为（百分比 * 背景宽）。</p>
         # @type LocationX: Float
-        # @param LocationY: 输入在输出画面的Y偏移。取值范围：
-        # 像素：[0，2000]
-        # 百分比：[0.01，0.99]
-        # 不填默认为0。
-        # 相对于大主播背景画面左上角的纵向偏移。
-        # 使用百分比时，期望输出为（百分比 * 背景宽）
+        # @param LocationY: <p>输入在输出画面的Y偏移。取值范围：<br>像素：[0，2000]<br>百分比：[0.01，0.99]<br>不填默认为0。<br>相对于大主播背景画面左上角的纵向偏移。<br>使用百分比时，期望输出为（百分比 * 背景宽）</p>
         # @type LocationY: Float
-        # @param Color: 当InputType为3(画布)时，该值表示画布的颜色。
-        # 常用的颜色有：
-        # 红色：0xCC0033。
-        # 黄色：0xCC9900。
-        # 绿色：0xCCCC33。
-        # 蓝色：0x99CCFF。
-        # 黑色：0x000000。
-        # 白色：0xFFFFFF。
-        # 灰色：0x999999。
+        # @param Color: <p>当InputType为3(画布)时，该值表示画布的颜色。<br>常用的颜色有：<br>红色：0xCC0033。<br>黄色：0xCC9900。<br>绿色：0xCCCC33。<br>蓝色：0x99CCFF。<br>黑色：0x000000。<br>白色：0xFFFFFF。<br>灰色：0x999999。</p>
         # @type Color: String
-        # @param WatermarkId: 当InputType为2(图片)时，该值是水印ID。
+        # @param WatermarkId: <p>当InputType为2(图片)时，该值是水印ID。</p>
         # @type WatermarkId: Integer
+        # @param WebPageUrl: <p>当InputType为8时，该值是动效贴片的URL</p>
+        # @type WebPageUrl: String
 
-        attr_accessor :ImageLayer, :InputType, :ImageHeight, :ImageWidth, :LocationX, :LocationY, :Color, :WatermarkId
+        attr_accessor :ImageLayer, :InputType, :ImageHeight, :ImageWidth, :LocationX, :LocationY, :Color, :WatermarkId, :WebPageUrl
 
-        def initialize(imagelayer=nil, inputtype=nil, imageheight=nil, imagewidth=nil, locationx=nil, locationy=nil, color=nil, watermarkid=nil)
+        def initialize(imagelayer=nil, inputtype=nil, imageheight=nil, imagewidth=nil, locationx=nil, locationy=nil, color=nil, watermarkid=nil, webpageurl=nil)
           @ImageLayer = imagelayer
           @InputType = inputtype
           @ImageHeight = imageheight
@@ -1951,6 +1918,7 @@ module TencentCloud
           @LocationY = locationy
           @Color = color
           @WatermarkId = watermarkid
+          @WebPageUrl = webpageurl
         end
 
         def deserialize(params)
@@ -1962,6 +1930,7 @@ module TencentCloud
           @LocationY = params['LocationY']
           @Color = params['Color']
           @WatermarkId = params['WatermarkId']
+          @WebPageUrl = params['WebPageUrl']
         end
       end
 

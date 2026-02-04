@@ -4125,8 +4125,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, limit=nil, offset=nil)
           @CertificateId = certificateid
@@ -4208,8 +4208,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -4689,8 +4689,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil)
           @CertificateId = certificateid
@@ -4760,8 +4760,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -4835,8 +4835,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :ResourceType, :IsCache, :Filters, :OldCertificateId, :Offset, :Limit, :AsyncCache
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, resourcetype=nil, iscache=nil, filters=nil, oldcertificateid=nil, offset=nil, limit=nil, asynccache=nil)
           @CertificateId = certificateid
@@ -5240,8 +5240,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5313,8 +5313,8 @@ module TencentCloud
 
         attr_accessor :CertificateId, :IsCache, :Filters, :ResourceType, :OldCertificateId
         extend Gem::Deprecate
-        deprecate :ResourceType, :none, 2026, 1
-        deprecate :ResourceType=, :none, 2026, 1
+        deprecate :ResourceType, :none, 2026, 2
+        deprecate :ResourceType=, :none, 2026, 2
 
         def initialize(certificateid=nil, iscache=nil, filters=nil, resourcetype=nil, oldcertificateid=nil)
           @CertificateId = certificateid
@@ -5378,10 +5378,10 @@ module TencentCloud
 
         attr_accessor :ManagerId, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :Limit, :none, 2026, 1
-        deprecate :Limit=, :none, 2026, 1
-        deprecate :Offset, :none, 2026, 1
-        deprecate :Offset=, :none, 2026, 1
+        deprecate :Limit, :none, 2026, 2
+        deprecate :Limit=, :none, 2026, 2
+        deprecate :Offset, :none, 2026, 2
+        deprecate :Offset=, :none, 2026, 2
 
         def initialize(managerid=nil, limit=nil, offset=nil)
           @ManagerId = managerid
@@ -5451,8 +5451,8 @@ module TencentCloud
 
         attr_accessor :Status, :ManagerFirstName, :ManagerMail, :ContactFirstName, :ManagerLastName, :ContactPosition, :ManagerPosition, :VerifyTime, :CreateTime, :ExpireTime, :ContactLastName, :ManagerPhone, :ContactPhone, :ContactMail, :ManagerDepartment, :CompanyInfo, :CompanyId, :ManagerId, :StatusInfo, :ManagerIdType, :ManagerIdNumber, :ContactIdType, :ContactIdNumber, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 1
-        deprecate :Status=, :none, 2026, 1
+        deprecate :Status, :none, 2026, 2
+        deprecate :Status=, :none, 2026, 2
 
         def initialize(status=nil, managerfirstname=nil, managermail=nil, contactfirstname=nil, managerlastname=nil, contactposition=nil, managerposition=nil, verifytime=nil, createtime=nil, expiretime=nil, contactlastname=nil, managerphone=nil, contactphone=nil, contactmail=nil, managerdepartment=nil, companyinfo=nil, companyid=nil, managerid=nil, statusinfo=nil, manageridtype=nil, manageridnumber=nil, contactidtype=nil, contactidnumber=nil, requestid=nil)
           @Status = status
@@ -8052,8 +8052,8 @@ module TencentCloud
 
         attr_accessor :OldCertificateId, :ResourceTypes, :CertificateId, :Regions, :ResourceTypesRegions, :CertificatePublicKey, :CertificatePrivateKey, :ExpiringNotificationSwitch, :Repeatable, :AllowDownload, :Tags, :ProjectId
         extend Gem::Deprecate
-        deprecate :Regions, :none, 2026, 1
-        deprecate :Regions=, :none, 2026, 1
+        deprecate :Regions, :none, 2026, 2
+        deprecate :Regions=, :none, 2026, 2
 
         def initialize(oldcertificateid=nil, resourcetypes=nil, certificateid=nil, regions=nil, resourcetypesregions=nil, certificatepublickey=nil, certificateprivatekey=nil, expiringnotificationswitch=nil, repeatable=nil, allowdownload=nil, tags=nil, projectid=nil)
           @OldCertificateId = oldcertificateid
