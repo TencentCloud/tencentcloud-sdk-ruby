@@ -1157,6 +1157,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取Api安全模块的访问日志聚合topN
+
+        # @param request: Request instance for DescribeApiAggregateTopN.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiAggregateTopNRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiAggregateTopNResponse`
+        def DescribeApiAggregateTopN(request)
+          body = send_request('DescribeApiAggregateTopN', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiAggregateTopNResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取Api请求详情信息
 
         # @param request: Request instance for DescribeApiDetail.

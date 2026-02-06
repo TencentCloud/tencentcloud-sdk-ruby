@@ -425,6 +425,30 @@ module TencentCloud
         end
       end
 
+      # 实例备份总大小
+      class BackupTotalSize < TencentCloud::Common::AbstractModel
+        # @param SnapshotSize: 全量备份总大小，单位字节
+        # @type SnapshotSize: Integer
+        # @param OplogSize: 增量备份总大小
+        # @type OplogSize: Integer
+        # @param FreeQuota: 免费额度
+        # @type FreeQuota: Integer
+
+        attr_accessor :SnapshotSize, :OplogSize, :FreeQuota
+
+        def initialize(snapshotsize=nil, oplogsize=nil, freequota=nil)
+          @SnapshotSize = snapshotsize
+          @OplogSize = oplogsize
+          @FreeQuota = freequota
+        end
+
+        def deserialize(params)
+          @SnapshotSize = params['SnapshotSize']
+          @OplogSize = params['OplogSize']
+          @FreeQuota = params['FreeQuota']
+        end
+      end
+
       # 客户端连接信息，包括客户端IP和连接数
       class ClientConnection < TencentCloud::Common::AbstractModel
         # @param IP: 连接的客户端 IP。
@@ -1778,28 +1802,71 @@ module TencentCloud
       class DescribeBackupRulesResponse < TencentCloud::Common::AbstractModel
         # @param BackupSaveTime: 备份数据保留期限。单位为：天。
         # @type BackupSaveTime: Integer
+        # @param BackupFrequency: 备份频率。备份时间间隔，单位小时。取值12，24
+        # @type BackupFrequency: Integer
         # @param BackupTime: 自动备份开始时间。
         # @type BackupTime: Integer
         # @param BackupMethod: 备份方式。
         # - 0：逻辑备份。
         # - 1：物理备份。
+        # - 3：快照备份。
+        # **说明**:
+        # 1. 通用版实例支持逻辑备份与物理备份。云盘版实例支持物理备份与快照备份，暂不支持逻辑备份。
+        # 2. 实例开通存储加密，则备份方式不能为物理备份。
         # @type BackupMethod: Integer
+        # @param ActiveWeekdays: 周几备份，0-6，逗号分割
+        # @type ActiveWeekdays: String
+        # @param LongTermInterval: 长期备份周期。weekly-按周，monthly-按月，空不开启。
+        # @type LongTermInterval: String
+        # @param LongTermActiveDays: 长期备份的日期，周0-6，月1-31
+        # @type LongTermActiveDays: String
+        # @param LongTermExpiredDays: 长期备份保留时间
+        # @type LongTermExpiredDays: Integer
+        # @param OplogExpiredDays: 增量备份保留时间
+        # @type OplogExpiredDays: Integer
+        # @param BackupVersion: 备份版本号。0-旧备份方式，1-高级备份
+        # @type BackupVersion: Integer
+        # @param BackupTotalSize: 备份大小
+        # @type BackupTotalSize: :class:`Tencentcloud::Mongodb.v20190725.models.BackupTotalSize`
+        # @param AlertThreshold: 告警额度
+        # @type AlertThreshold: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupSaveTime, :BackupTime, :BackupMethod, :RequestId
+        attr_accessor :BackupSaveTime, :BackupFrequency, :BackupTime, :BackupMethod, :ActiveWeekdays, :LongTermInterval, :LongTermActiveDays, :LongTermExpiredDays, :OplogExpiredDays, :BackupVersion, :BackupTotalSize, :AlertThreshold, :RequestId
 
-        def initialize(backupsavetime=nil, backuptime=nil, backupmethod=nil, requestid=nil)
+        def initialize(backupsavetime=nil, backupfrequency=nil, backuptime=nil, backupmethod=nil, activeweekdays=nil, longterminterval=nil, longtermactivedays=nil, longtermexpireddays=nil, oplogexpireddays=nil, backupversion=nil, backuptotalsize=nil, alertthreshold=nil, requestid=nil)
           @BackupSaveTime = backupsavetime
+          @BackupFrequency = backupfrequency
           @BackupTime = backuptime
           @BackupMethod = backupmethod
+          @ActiveWeekdays = activeweekdays
+          @LongTermInterval = longterminterval
+          @LongTermActiveDays = longtermactivedays
+          @LongTermExpiredDays = longtermexpireddays
+          @OplogExpiredDays = oplogexpireddays
+          @BackupVersion = backupversion
+          @BackupTotalSize = backuptotalsize
+          @AlertThreshold = alertthreshold
           @RequestId = requestid
         end
 
         def deserialize(params)
           @BackupSaveTime = params['BackupSaveTime']
+          @BackupFrequency = params['BackupFrequency']
           @BackupTime = params['BackupTime']
           @BackupMethod = params['BackupMethod']
+          @ActiveWeekdays = params['ActiveWeekdays']
+          @LongTermInterval = params['LongTermInterval']
+          @LongTermActiveDays = params['LongTermActiveDays']
+          @LongTermExpiredDays = params['LongTermExpiredDays']
+          @OplogExpiredDays = params['OplogExpiredDays']
+          @BackupVersion = params['BackupVersion']
+          unless params['BackupTotalSize'].nil?
+            @BackupTotalSize = BackupTotalSize.new
+            @BackupTotalSize.deserialize(params['BackupTotalSize'])
+          end
+          @AlertThreshold = params['AlertThreshold']
           @RequestId = params['RequestId']
         end
       end
@@ -4896,8 +4963,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Memory, :Volume, :OplogSize, :NodeNum, :ReplicateSetNum, :InMaintenance, :MongosMemory, :AddNodeList, :RemoveNodeList
         extend Gem::Deprecate
-        deprecate :OplogSize, :none, 2026, 1
-        deprecate :OplogSize=, :none, 2026, 1
+        deprecate :OplogSize, :none, 2026, 2
+        deprecate :OplogSize=, :none, 2026, 2
 
         def initialize(instanceid=nil, memory=nil, volume=nil, oplogsize=nil, nodenum=nil, replicatesetnum=nil, inmaintenance=nil, mongosmemory=nil, addnodelist=nil, removenodelist=nil)
           @InstanceId = instanceid
@@ -5800,10 +5867,7 @@ module TencentCloud
         # - 示例：输入 1,3,5 表示系统将在每周的周一、周三、周五执行备份。
         # - 默认值：不设置，则默认为全周期 (0,1,2,3,4,5,6)，即每日执行备份。
         # @type ActiveWeekdays: String
-        # @param LongTermUnit: 长期保留周期。支持按周或按月选择特定日期的备份（例如，每月1日、15日的备份数据），将其保留更长周期。
-        # - 不开启（默认）：不启用长期保留功能。
-        # - 按周保留： 指定为 weekly。
-        # - 按月保留： 指定为 monthly。
+        # @param LongTermUnit: 长期保留周期。支持按周或按月选择特定日期的备份（例如，每月1日、15日的备份数据），将其保留更长周期。- 不开启（默认）：不启用长期保留功能。- 按周保留： 指定为 weekly。- 按月保留： 指定为 monthly。待废弃，使用LongTermInterval
         # @type LongTermUnit: String
         # @param LongTermActiveDays: 指定用于长期保留的具体备份日期。此设置仅在 **LongTermUnit** 被设为**weekly** 或 **monthly** 时生效。
         # - 按周（weekly）保留：请输入 0-6 之间的数字来代表周日至周六。多个日期请用英文逗号分隔。
@@ -5820,15 +5884,16 @@ module TencentCloud
         # - 旧版本备份：0。
         # - 开启高级备份：1。
         # @type BackupVersion: Integer
-        # @param AlarmWaterLevel: 设置备份数据集存储空间使用率的告警阈值。
-        # - 单位：%。
-        # -  默认值：100。
-        # - 取值范围：[50,300]。
+        # @param AlarmWaterLevel: 设置备份数据集存储空间使用率的告警阈值。- 单位：%。-  默认值：100。- 取值范围：[50,300]。待废弃,使用AlertThreshold
         # @type AlarmWaterLevel: Integer
+        # @param LongTermInterval: 长期保留周期。支持按周或按月选择特定日期的备份（例如，每月1日、15日的备份数据），将其保留更长周期。- 不开启（默认）：不启用长期保留功能。- 按周保留： 指定为 weekly。- 按月保留： 指定为 monthly。
+        # @type LongTermInterval: String
+        # @param AlertThreshold: 设置备份数据集存储空间使用率的告警阈值。- 单位：%。-  默认值：100。- 取值范围：[50,300]。
+        # @type AlertThreshold: Integer
 
-        attr_accessor :InstanceId, :BackupMethod, :BackupTime, :BackupFrequency, :Notify, :BackupRetentionPeriod, :ActiveWeekdays, :LongTermUnit, :LongTermActiveDays, :LongTermExpiredDays, :OplogExpiredDays, :BackupVersion, :AlarmWaterLevel
+        attr_accessor :InstanceId, :BackupMethod, :BackupTime, :BackupFrequency, :Notify, :BackupRetentionPeriod, :ActiveWeekdays, :LongTermUnit, :LongTermActiveDays, :LongTermExpiredDays, :OplogExpiredDays, :BackupVersion, :AlarmWaterLevel, :LongTermInterval, :AlertThreshold
 
-        def initialize(instanceid=nil, backupmethod=nil, backuptime=nil, backupfrequency=nil, notify=nil, backupretentionperiod=nil, activeweekdays=nil, longtermunit=nil, longtermactivedays=nil, longtermexpireddays=nil, oplogexpireddays=nil, backupversion=nil, alarmwaterlevel=nil)
+        def initialize(instanceid=nil, backupmethod=nil, backuptime=nil, backupfrequency=nil, notify=nil, backupretentionperiod=nil, activeweekdays=nil, longtermunit=nil, longtermactivedays=nil, longtermexpireddays=nil, oplogexpireddays=nil, backupversion=nil, alarmwaterlevel=nil, longterminterval=nil, alertthreshold=nil)
           @InstanceId = instanceid
           @BackupMethod = backupmethod
           @BackupTime = backuptime
@@ -5842,6 +5907,8 @@ module TencentCloud
           @OplogExpiredDays = oplogexpireddays
           @BackupVersion = backupversion
           @AlarmWaterLevel = alarmwaterlevel
+          @LongTermInterval = longterminterval
+          @AlertThreshold = alertthreshold
         end
 
         def deserialize(params)
@@ -5858,6 +5925,8 @@ module TencentCloud
           @OplogExpiredDays = params['OplogExpiredDays']
           @BackupVersion = params['BackupVersion']
           @AlarmWaterLevel = params['AlarmWaterLevel']
+          @LongTermInterval = params['LongTermInterval']
+          @AlertThreshold = params['AlertThreshold']
         end
       end
 

@@ -369,6 +369,55 @@ module TencentCloud
         end
       end
 
+      # 单题所有答案区域批改信息
+      class AnswerInfo < TencentCloud::Common::AbstractModel
+        # @param HandwriteInfo: 手写答案内容，比如选择题的手写的选项、填空题的手写内容
+        # @type HandwriteInfo: String
+        # @param IsCorrect: 答案是否正确
+        # @type IsCorrect: Boolean
+        # @param AnswerAnalysis: 答案分析结果
+        # @type AnswerAnalysis: String
+        # @param HandwriteInfoPositions: 答案区域的4个角点坐标, 是个长度为8的数组
+
+        # [0,1,2,3,4,5,6,7]
+
+        # (0,1) 左上角坐标
+        # (2,3) 右上角坐标
+        # (4,5) 右下角坐标
+        # (6,7) 左下角坐标
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HandwriteInfoPositions: Array
+        # @param RightAnswer: 返回正确答案内容
+
+        # QuestionConfigMap配置了（“TrueAnswer”：1）才生效返回
+        # @type RightAnswer: String
+        # @param KnowledgePoints: 返回题目的知识点内容
+
+        # QuestionConfigMap配置了（“KnowledgePoints”：1）才生效返回
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KnowledgePoints: Array
+
+        attr_accessor :HandwriteInfo, :IsCorrect, :AnswerAnalysis, :HandwriteInfoPositions, :RightAnswer, :KnowledgePoints
+
+        def initialize(handwriteinfo=nil, iscorrect=nil, answeranalysis=nil, handwriteinfopositions=nil, rightanswer=nil, knowledgepoints=nil)
+          @HandwriteInfo = handwriteinfo
+          @IsCorrect = iscorrect
+          @AnswerAnalysis = answeranalysis
+          @HandwriteInfoPositions = handwriteinfopositions
+          @RightAnswer = rightanswer
+          @KnowledgePoints = knowledgepoints
+        end
+
+        def deserialize(params)
+          @HandwriteInfo = params['HandwriteInfo']
+          @IsCorrect = params['IsCorrect']
+          @AnswerAnalysis = params['AnswerAnalysis']
+          @HandwriteInfoPositions = params['HandwriteInfoPositions']
+          @RightAnswer = params['RightAnswer']
+          @KnowledgePoints = params['KnowledgePoints']
+        end
+      end
+
       # ArithmeticOCR请求参数结构体
       class ArithmeticOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片的 Base64 值。
@@ -1698,6 +1747,65 @@ module TencentCloud
           @ErrorMessage = params['ErrorMessage']
           @JobStatus = params['JobStatus']
           @ThoughtContent = params['ThoughtContent']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeQuestionMarkAgentJob请求参数结构体
+      class DescribeQuestionMarkAgentJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务唯一ID。由服务端生成。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeQuestionMarkAgentJob返回参数结构体
+      class DescribeQuestionMarkAgentJobResponse < TencentCloud::Common::AbstractModel
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param JobStatus: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type JobStatus: String
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @type Angle: Float
+        # @param MarkInfos: 试题批改信息
+        # @type MarkInfos: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ErrorCode, :ErrorMessage, :JobStatus, :Angle, :MarkInfos, :RequestId
+
+        def initialize(errorcode=nil, errormessage=nil, jobstatus=nil, angle=nil, markinfos=nil, requestid=nil)
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @JobStatus = jobstatus
+          @Angle = angle
+          @MarkInfos = markinfos
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @JobStatus = params['JobStatus']
+          @Angle = params['Angle']
+          unless params['MarkInfos'].nil?
+            @MarkInfos = []
+            params['MarkInfos'].each do |i|
+              markinfo_tmp = MarkInfo.new
+              markinfo_tmp.deserialize(i)
+              @MarkInfos << markinfo_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6591,6 +6699,45 @@ module TencentCloud
         end
       end
 
+      # 整张试卷所有题目批改信息
+      class MarkInfo < TencentCloud::Common::AbstractModel
+        # @param MarkItemTitle: 题目的题干信息
+
+        # @type MarkItemTitle: String
+        # @param AnswerInfos: 批改答案列表（每个小题存在多个答案，比如多个填空区域答案，循序按照从左到右，从上到下排列）
+        # @type AnswerInfos: Array
+        # @param MarkInfos: 嵌套题目结构（如果有多层嵌套则会返回子题信息，如果没有嵌套题目则返回空）
+        # @type MarkInfos: Array
+
+        attr_accessor :MarkItemTitle, :AnswerInfos, :MarkInfos
+
+        def initialize(markitemtitle=nil, answerinfos=nil, markinfos=nil)
+          @MarkItemTitle = markitemtitle
+          @AnswerInfos = answerinfos
+          @MarkInfos = markinfos
+        end
+
+        def deserialize(params)
+          @MarkItemTitle = params['MarkItemTitle']
+          unless params['AnswerInfos'].nil?
+            @AnswerInfos = []
+            params['AnswerInfos'].each do |i|
+              answerinfo_tmp = AnswerInfo.new
+              answerinfo_tmp.deserialize(i)
+              @AnswerInfos << answerinfo_tmp
+            end
+          end
+          unless params['MarkInfos'].nil?
+            @MarkInfos = []
+            params['MarkInfos'].each do |i|
+              markinfo_tmp = MarkInfo.new
+              markinfo_tmp.deserialize(i)
+              @MarkInfos << markinfo_tmp
+            end
+          end
+        end
+      end
+
       # 医疗票据信息
       class MedicalInvoice < TencentCloud::Common::AbstractModel
         # @param Title: 发票名称
@@ -11370,6 +11517,86 @@ module TencentCloud
 
         def deserialize(params)
           @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitQuestionMarkAgentJob请求参数结构体
+      class SubmitQuestionMarkAgentJobRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64: 图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。  示例值：/9j/4AAQSkZJRg.....s97n//2Q==
+        # @type ImageBase64: String
+        # @param ImageUrl: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。  示例值：https://ocr-demo-1254418846.cos.ap-guangzhou.myqcloud.com/general/GeneralAccurateOCR/GeneralAccurateOCR1.jpg
+        # @type ImageUrl: String
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，默认值为1。
+        # @type PdfPageNumber: Integer
+        # @param BoolSingleQuestion: 表示整张试卷批改需要先切题，默认为false
+        # @type BoolSingleQuestion: Boolean
+        # @param EnableDeepThink: 默认false 表示关闭深度思考  true 表示打开深度思考，更深层次推理分析，速度更慢
+        # @type EnableDeepThink: Boolean
+        # @param QuestionConfigMap: 题目信息输出配置，当key对应为true表示开启配置开关。     当key为KnowledgePoints value为true 表示输出每道题结构信息中输出知识点内容；当key为TrueAnswer  value为true 表示输出每道题的正确答案 ；当key为ReturnAnswerPosition  value为false表示不输出手写答案坐标（降低处理耗时，按需输出）； 设置方式参考  {"KnowledgePoints":true,"TrueAnswer":true}
+        # @type QuestionConfigMap: String
+        # @param ReferenceAnswer: 仅有单题有效，如果切题有多题则不生效，单题批改的时候作为参考答案输入到批改模型中
+        # @type ReferenceAnswer: String
+
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer
+        extend Gem::Deprecate
+        deprecate :BoolSingleQuestion, :none, 2026, 2
+        deprecate :BoolSingleQuestion=, :none, 2026, 2
+        deprecate :EnableDeepThink, :none, 2026, 2
+        deprecate :EnableDeepThink=, :none, 2026, 2
+
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil)
+          @ImageBase64 = imagebase64
+          @ImageUrl = imageurl
+          @PdfPageNumber = pdfpagenumber
+          @BoolSingleQuestion = boolsinglequestion
+          @EnableDeepThink = enabledeepthink
+          @QuestionConfigMap = questionconfigmap
+          @ReferenceAnswer = referenceanswer
+        end
+
+        def deserialize(params)
+          @ImageBase64 = params['ImageBase64']
+          @ImageUrl = params['ImageUrl']
+          @PdfPageNumber = params['PdfPageNumber']
+          @BoolSingleQuestion = params['BoolSingleQuestion']
+          @EnableDeepThink = params['EnableDeepThink']
+          @QuestionConfigMap = params['QuestionConfigMap']
+          @ReferenceAnswer = params['ReferenceAnswer']
+        end
+      end
+
+      # SubmitQuestionMarkAgentJob返回参数结构体
+      class SubmitQuestionMarkAgentJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务唯一ID。由服务端生成.
+        # @type JobId: String
+        # @param QuestionInfo: 切题题目边框坐标列表 （如果BoolSingleQuestion为true则返回空）
+        # @type QuestionInfo: Array
+        # @param QuestionCount: 题目切题数量，作为计费题目数总量
+        # @type QuestionCount: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :QuestionInfo, :QuestionCount, :RequestId
+
+        def initialize(jobid=nil, questioninfo=nil, questioncount=nil, requestid=nil)
+          @JobId = jobid
+          @QuestionInfo = questioninfo
+          @QuestionCount = questioncount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          unless params['QuestionInfo'].nil?
+            @QuestionInfo = []
+            params['QuestionInfo'].each do |i|
+              questioninfo_tmp = QuestionInfo.new
+              questioninfo_tmp.deserialize(i)
+              @QuestionInfo << questioninfo_tmp
+            end
+          end
+          @QuestionCount = params['QuestionCount']
           @RequestId = params['RequestId']
         end
       end

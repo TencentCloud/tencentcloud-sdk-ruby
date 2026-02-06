@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 1
-        deprecate :MiniProgramAppId=, :none, 2026, 1
+        deprecate :MiniProgramAppId, :none, 2026, 2
+        deprecate :MiniProgramAppId=, :none, 2026, 2
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 1
-        deprecate :DeviceList=, :none, 2026, 1
+        deprecate :DeviceList, :none, 2026, 2
+        deprecate :DeviceList=, :none, 2026, 2
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -2761,10 +2761,12 @@ module TencentCloud
         # @type AgentConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkAgentConfigInfo`
         # @param InstanceId: 实例ID
         # @type InstanceId: String
+        # @param CustomTools: 自定义工具配置，最多可创建10个
+        # @type CustomTools: String
 
-        attr_accessor :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :InstanceId
+        attr_accessor :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :InstanceId, :CustomTools
 
-        def initialize(name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, instanceid=nil)
+        def initialize(name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, instanceid=nil, customtools=nil)
           @Name = name
           @Description = description
           @TargetLanguage = targetlanguage
@@ -2773,6 +2775,7 @@ module TencentCloud
           @TTSConfig = ttsconfig
           @AgentConfig = agentconfig
           @InstanceId = instanceid
+          @CustomTools = customtools
         end
 
         def deserialize(params)
@@ -2796,6 +2799,7 @@ module TencentCloud
             @AgentConfig.deserialize(params['AgentConfig'])
           end
           @InstanceId = params['InstanceId']
+          @CustomTools = params['CustomTools']
         end
       end
 
@@ -7293,8 +7297,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 1
-        deprecate :ModelId=, :none, 2026, 1
+        deprecate :ModelId, :none, 2026, 2
+        deprecate :ModelId=, :none, 2026, 2
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -9010,8 +9014,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 1
-        deprecate :MiniProgramAppId=, :none, 2026, 1
+        deprecate :MiniProgramAppId, :none, 2026, 2
+        deprecate :MiniProgramAppId=, :none, 2026, 2
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -11486,10 +11490,12 @@ module TencentCloud
         # @type TTSConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkTTSConfigInfo`
         # @param AgentConfig: 智能体配置
         # @type AgentConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkAgentConfigInfo`
+        # @param CustomTools: 自定义工具配置，最多可创建10个
+        # @type CustomTools: String
 
-        attr_accessor :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig
+        attr_accessor :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :CustomTools
 
-        def initialize(botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil)
+        def initialize(botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, customtools=nil)
           @BotId = botid
           @Name = name
           @Description = description
@@ -11498,6 +11504,7 @@ module TencentCloud
           @LLMConfig = llmconfig
           @TTSConfig = ttsconfig
           @AgentConfig = agentconfig
+          @CustomTools = customtools
         end
 
         def deserialize(params)
@@ -11521,6 +11528,7 @@ module TencentCloud
             @AgentConfig = TalkAgentConfigInfo.new
             @AgentConfig.deserialize(params['AgentConfig'])
           end
+          @CustomTools = params['CustomTools']
         end
       end
 
@@ -13141,8 +13149,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 1
-        deprecate :ModelId=, :none, 2026, 1
+        deprecate :ModelId, :none, 2026, 2
+        deprecate :ModelId=, :none, 2026, 2
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -13172,10 +13180,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 1
-        deprecate :ModelId=, :none, 2026, 1
-        deprecate :ActiveNum, :none, 2026, 1
-        deprecate :ActiveNum=, :none, 2026, 1
+        deprecate :ModelId, :none, 2026, 2
+        deprecate :ModelId=, :none, 2026, 2
+        deprecate :ActiveNum, :none, 2026, 2
+        deprecate :ActiveNum=, :none, 2026, 2
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -13246,13 +13254,15 @@ module TencentCloud
         # @type UpdateTime: Integer
         # @param BoundProducts: 已关联产品信息列表
         # @type BoundProducts: Array
+        # @param CustomTools: 自定义工具列表，最多可创建10个
+        # @type CustomTools: String
 
-        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts
+        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 1
-        deprecate :ProductList=, :none, 2026, 1
+        deprecate :ProductList, :none, 2026, 2
+        deprecate :ProductList=, :none, 2026, 2
 
-        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil)
+        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil)
           @Uin = uin
           @AppId = appid
           @InstanceId = instanceid
@@ -13268,6 +13278,7 @@ module TencentCloud
           @CreateTime = createtime
           @UpdateTime = updatetime
           @BoundProducts = boundproducts
+          @CustomTools = customtools
         end
 
         def deserialize(params)
@@ -13308,6 +13319,7 @@ module TencentCloud
               @BoundProducts << talkproductinfo_tmp
             end
           end
+          @CustomTools = params['CustomTools']
         end
       end
 

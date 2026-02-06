@@ -739,40 +739,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云监控monitor接口已下线，trtc同步下线接口
-
-        # 查询TRTC监控仪表盘-数据大盘质量指标（包括下列指标）
-        # joinSuccessRate：加入频道成功率。
-        # joinSuccessIn5sRate：5s内加入频道成功率。
-        # audioFreezeRate：音频卡顿率。
-        # videoFreezeRate：视频卡顿率。
-        # networkDelay ：网络延迟率。
-        # 注意：
-        # 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
-        # 2.查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天。
-
-        # @param request: Request instance for DescribeTRTCMarketQualityMetricData.
-        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCMarketQualityMetricDataRequest`
-        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCMarketQualityMetricDataResponse`
-        def DescribeTRTCMarketQualityMetricData(request)
-          body = send_request('DescribeTRTCMarketQualityMetricData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTRTCMarketQualityMetricDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询TRTC监控仪表盘-数据大盘规模指标（会返回通话人数，通话房间数，峰值同时在线人数，峰值同时在线频道数）
         # userCount：通话人数，
         # roomCount：通话房间数，从有用户加入频道到所有用户离开频道计为一个通话频道。
@@ -866,37 +832,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 云监控monitor接口已下线，trtc同步下线接口
-
-        # 查询TRTC监控仪表盘-实时监控质量指标（会返回下列指标）
-        # -视频卡顿率
-        # -音频卡顿率
-        # 注意：
-        # 1.调用接口需开通监控仪表盘【基础版】和【进阶版】，监控仪表盘【免费版】不支持调用，监控仪表盘版本功能和计费说明：https://cloud.tencent.com/document/product/647/81331。
-        # 2.查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时。
-
-        # @param request: Request instance for DescribeTRTCRealTimeQualityMetricData.
-        # @type request: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCRealTimeQualityMetricDataRequest`
-        # @rtype: :class:`Tencentcloud::trtc::V20190722::DescribeTRTCRealTimeQualityMetricDataResponse`
-        def DescribeTRTCRealTimeQualityMetricData(request)
-          body = send_request('DescribeTRTCRealTimeQualityMetricData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeTRTCRealTimeQualityMetricDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询TRTC监控仪表盘-实时监控规模指标（会返回下列指标）
         # -userCount（在线用户数）
         # -roomCount（在线房间数）
@@ -925,6 +860,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 腾讯云可观测平台monitor接口已下线，TRTC同步下线接口
 
         # 查询TRTC监控仪表盘-实时监控规模指标（会返回下列指标）
         # -userCount（在线用户数）

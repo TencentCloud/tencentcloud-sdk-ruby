@@ -2098,60 +2098,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTRTCMarketQualityMetricData请求参数结构体
-      class DescribeTRTCMarketQualityMetricDataRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
-        # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
-        # @type EndTime: String
-        # @param Period: 返回数据的粒度，支持设为以下值：
-        # d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。
-        # h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。
-        # @type Period: String
-
-        attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
-
-        def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
-          @SdkAppId = sdkappid
-          @StartTime = starttime
-          @EndTime = endtime
-          @Period = period
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Period = params['Period']
-        end
-      end
-
-      # DescribeTRTCMarketQualityMetricData返回参数结构体
-      class DescribeTRTCMarketQualityMetricDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: TRTC监控数据出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = TRTCDataResp.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeTRTCMarketScaleData请求参数结构体
       class DescribeTRTCMarketScaleDataRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户SdkAppId
@@ -2306,58 +2252,6 @@ module TencentCloud
         def deserialize(params)
           unless params['Data'].nil?
             @Data = TRTCDataResult.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
-      # DescribeTRTCRealTimeQualityMetricData请求参数结构体
-      class DescribeTRTCRealTimeQualityMetricDataRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
-        # @type SdkAppId: String
-        # @param StartTime: 开始时间，unix时间戳，单位：秒（查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时）
-        # @type StartTime: Integer
-        # @param EndTime: 结束时间，unix时间戳，单位：秒
-        # @type EndTime: Integer
-        # @param RoomId: 房间ID
-        # @type RoomId: String
-
-        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
-
-        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
-          @SdkAppId = sdkappid
-          @StartTime = starttime
-          @EndTime = endtime
-          @RoomId = roomid
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @RoomId = params['RoomId']
-        end
-      end
-
-      # DescribeTRTCRealTimeQualityMetricData返回参数结构体
-      class DescribeTRTCRealTimeQualityMetricDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: TRTC监控数据出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = TRTCDataResp.new
             @Data.deserialize(params['Data'])
           end
           @RequestId = params['RequestId']

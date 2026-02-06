@@ -89,6 +89,26 @@ module TencentCloud
         end
       end
 
+      # 文件存储配置
+      class CfsStorageSource < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: CFS资源ID
+        # @type FileSystemId: String
+        # @param Path: CFS挂载路径
+        # @type Path: String
+
+        attr_accessor :FileSystemId, :Path
+
+        def initialize(filesystemid=nil, path=nil)
+          @FileSystemId = filesystemid
+          @Path = path
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Path = params['Path']
+        end
+      end
+
       # 沙箱实例对象存储挂载配置
       class CosStorageSource < TencentCloud::Common::AbstractModel
         # @param Endpoint: 对象存储访问域名
@@ -1309,12 +1329,15 @@ module TencentCloud
         # @type Cos: :class:`Tencentcloud::Ags.v20250920.models.CosStorageSource`
         # @param Image: 镜像卷配置
         # @type Image: :class:`Tencentcloud::Ags.v20250920.models.ImageStorageSource`
+        # @param Cfs: 文件存储配置
+        # @type Cfs: :class:`Tencentcloud::Ags.v20250920.models.CfsStorageSource`
 
-        attr_accessor :Cos, :Image
+        attr_accessor :Cos, :Image, :Cfs
 
-        def initialize(cos=nil, image=nil)
+        def initialize(cos=nil, image=nil, cfs=nil)
           @Cos = cos
           @Image = image
+          @Cfs = cfs
         end
 
         def deserialize(params)
@@ -1325,6 +1348,10 @@ module TencentCloud
           unless params['Image'].nil?
             @Image = ImageStorageSource.new
             @Image.deserialize(params['Image'])
+          end
+          unless params['Cfs'].nil?
+            @Cfs = CfsStorageSource.new
+            @Cfs.deserialize(params['Cfs'])
           end
         end
       end

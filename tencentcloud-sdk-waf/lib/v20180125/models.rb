@@ -2136,6 +2136,30 @@ module TencentCloud
         end
       end
 
+      # 搜索框内容，冒号前面是key, 冒号是操作，值是最后一位，操作（冒号）默认是相等
+      class BotDataFilter < TencentCloud::Common::AbstractModel
+        # @param Entity: 查询维度
+        # @type Entity: String
+        # @param Operator: 操作符
+        # @type Operator: String
+        # @param Value: 操作值，多个值用
+        # @type Value: String
+
+        attr_accessor :Entity, :Operator, :Value
+
+        def initialize(entity=nil, operator=nil, value=nil)
+          @Entity = entity
+          @Operator = operator
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Entity = params['Entity']
+          @Operator = params['Operator']
+          @Value = params['Value']
+        end
+      end
+
       # BOT-ID规则信息
       class BotIdConfig < TencentCloud::Common::AbstractModel
         # @param RuleId: 规则ID
@@ -2859,6 +2883,30 @@ module TencentCloud
             @TokenValidation.deserialize(params['TokenValidation'])
           end
           @DisableMultiJson = params['DisableMultiJson']
+        end
+      end
+
+      # bot的topN复杂类型
+      class BotTopItem < TencentCloud::Common::AbstractModel
+        # @param Key: 对应的key
+        # @type Key: String
+        # @param Value: 对应的值
+        # @type Value: Integer
+        # @param Label: key对应的展示描述语
+        # @type Label: String
+
+        attr_accessor :Key, :Value, :Label
+
+        def initialize(key=nil, value=nil, label=nil)
+          @Key = key
+          @Value = value
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+          @Label = params['Label']
         end
       end
 
@@ -5875,6 +5923,81 @@ module TencentCloud
           end
           @Uri = params['Uri']
           @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # DescribeApiAggregateTopN请求参数结构体
+      class DescribeApiAggregateTopNRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param TopN: 需要的Top数，默认5， 最大值100
+        # @type TopN: Integer
+        # @param StartTs: 开始时间
+        # @type StartTs: Integer
+        # @param EndTs: 结束时间
+        # @type EndTs: Integer
+        # @param Dimension: 需要查询TOP的维度名
+        # @type Dimension: String
+        # @param Filters: 过滤条件
+        # @type Filters: Array
+        # @param GlobalFlag: 是否查询全域名的三个特殊图标
+        # @type GlobalFlag: Boolean
+
+        attr_accessor :Domain, :TopN, :StartTs, :EndTs, :Dimension, :Filters, :GlobalFlag
+
+        def initialize(domain=nil, topn=nil, startts=nil, endts=nil, dimension=nil, filters=nil, globalflag=nil)
+          @Domain = domain
+          @TopN = topn
+          @StartTs = startts
+          @EndTs = endts
+          @Dimension = dimension
+          @Filters = filters
+          @GlobalFlag = globalflag
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @TopN = params['TopN']
+          @StartTs = params['StartTs']
+          @EndTs = params['EndTs']
+          @Dimension = params['Dimension']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              botdatafilter_tmp = BotDataFilter.new
+              botdatafilter_tmp.deserialize(i)
+              @Filters << botdatafilter_tmp
+            end
+          end
+          @GlobalFlag = params['GlobalFlag']
+        end
+      end
+
+      # DescribeApiAggregateTopN返回参数结构体
+      class DescribeApiAggregateTopNResponse < TencentCloud::Common::AbstractModel
+        # @param Data: topN结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              bottopitem_tmp = BotTopItem.new
+              bottopitem_tmp.deserialize(i)
+              @Data << bottopitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 
