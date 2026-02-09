@@ -1602,6 +1602,68 @@ module TencentCloud
         end
       end
 
+      # TDSQL-C数据库详情
+      class ClusterDetail < TencentCloud::Common::AbstractModel
+        # @param IsOpenPubNetAccess: 是否开启公网访问
+        # @type IsOpenPubNetAccess: Boolean
+        # @param MaxCpu: 最大算力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxCpu: Float
+        # @param MinCpu: 最小算力
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinCpu: Float
+        # @param Status: TDSQL-C集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Status: String
+        # @param UsedStorage: 存储用量（单位：MB）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UsedStorage: Integer
+        # @param StorageLimit: 最大存储量（单位：GB）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageLimit: Integer
+        # @param DbType: 数据库类型
+        # @type DbType: String
+        # @param DbVersion: 数据库类型
+        # @type DbVersion: String
+        # @param WanStatus: 公网访问状态；open开启，opening开启中，closed关闭，closing关闭中
+        # @type WanStatus: String
+        # @param ClusterStatus: 数据库集群状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ClusterStatus: String
+        # @param ServerlessStatus: serverless状态
+        # @type ServerlessStatus: String
+
+        attr_accessor :IsOpenPubNetAccess, :MaxCpu, :MinCpu, :Status, :UsedStorage, :StorageLimit, :DbType, :DbVersion, :WanStatus, :ClusterStatus, :ServerlessStatus
+
+        def initialize(isopenpubnetaccess=nil, maxcpu=nil, mincpu=nil, status=nil, usedstorage=nil, storagelimit=nil, dbtype=nil, dbversion=nil, wanstatus=nil, clusterstatus=nil, serverlessstatus=nil)
+          @IsOpenPubNetAccess = isopenpubnetaccess
+          @MaxCpu = maxcpu
+          @MinCpu = mincpu
+          @Status = status
+          @UsedStorage = usedstorage
+          @StorageLimit = storagelimit
+          @DbType = dbtype
+          @DbVersion = dbversion
+          @WanStatus = wanstatus
+          @ClusterStatus = clusterstatus
+          @ServerlessStatus = serverlessstatus
+        end
+
+        def deserialize(params)
+          @IsOpenPubNetAccess = params['IsOpenPubNetAccess']
+          @MaxCpu = params['MaxCpu']
+          @MinCpu = params['MinCpu']
+          @Status = params['Status']
+          @UsedStorage = params['UsedStorage']
+          @StorageLimit = params['StorageLimit']
+          @DbType = params['DbType']
+          @DbVersion = params['DbVersion']
+          @WanStatus = params['WanStatus']
+          @ClusterStatus = params['ClusterStatus']
+          @ServerlessStatus = params['ServerlessStatus']
+        end
+      end
+
       # 云开发项目来源
       class CodeSource < TencentCloud::Common::AbstractModel
         # @param Type: 类型, 可能的枚举: "coding","package","package_url","github","gitlab","gitee","rawcode"
@@ -1830,12 +1892,87 @@ module TencentCloud
 
       # CreateBillDeal请求参数结构体
       class CreateBillDealRequest < TencentCloud::Common::AbstractModel
+        # @param DealType: 当前下单的操作类型，可取[purchase,renew,modify]三种值，分别代表新购，续费，变配。
+        # @type DealType: String
+        # @param ProductType: 购买的产品类型，可取[tcb-baas,tcb-promotion,tcb-package], 分别代表baas套餐、大促包、资源包
+        # @type ProductType: String
+        # @param PackageId: 目标下单产品/套餐Id
+        # @type PackageId: String
+        # @param CreateAndPay: 默认只下单不支付，为ture则下单并支付
+        # @type CreateAndPay: Boolean
+        # @param TimeSpan: 购买时长
+        # @type TimeSpan: Integer
+        # @param TimeUnit: 购买时长单位,按各产品规则可选d(天),m(月),y(年),p(一次性)
+        # @type TimeUnit: String
+        # @param ResourceId: 资源唯一标识
+        # @type ResourceId: String
+        # @param Source: 来源可选[qcloud,miniapp]，默认qcloud
+        # @type Source: String
+        # @param Alias: 资源别名
+        # @type Alias: String
+        # @param EnvId: 环境id
+        # @type EnvId: String
+        # @param EnableExcess: 开启超限按量
+        # @type EnableExcess: Boolean
+        # @param ModifyPackageId: 变配目标产品/套餐id
+        # @type ModifyPackageId: String
+        # @param Extension: jsonstr附加信息
+        # @type Extension: String
+        # @param AutoVoucher: 是否自动选择代金券支付
+        # @type AutoVoucher: Boolean
+        # @param ResourceTypes: 资源类型。
+        # 代表新购环境（DealType=purchase 并且 ProductType=tcb-baas ）时需要发货哪些资源。
+        # 可取值：flexdb, cos, cdn, scf
+        # @type ResourceTypes: Array
+        # @param EnvTags: 环境标签。
+        #  代表新购环境（DealType=purchase 并且 ProductType=tcb-baas ）时需要打的标签。
+        # @type EnvTags: Array
 
+        attr_accessor :DealType, :ProductType, :PackageId, :CreateAndPay, :TimeSpan, :TimeUnit, :ResourceId, :Source, :Alias, :EnvId, :EnableExcess, :ModifyPackageId, :Extension, :AutoVoucher, :ResourceTypes, :EnvTags
 
-        def initialize()
+        def initialize(dealtype=nil, producttype=nil, packageid=nil, createandpay=nil, timespan=nil, timeunit=nil, resourceid=nil, source=nil, _alias=nil, envid=nil, enableexcess=nil, modifypackageid=nil, extension=nil, autovoucher=nil, resourcetypes=nil, envtags=nil)
+          @DealType = dealtype
+          @ProductType = producttype
+          @PackageId = packageid
+          @CreateAndPay = createandpay
+          @TimeSpan = timespan
+          @TimeUnit = timeunit
+          @ResourceId = resourceid
+          @Source = source
+          @Alias = _alias
+          @EnvId = envid
+          @EnableExcess = enableexcess
+          @ModifyPackageId = modifypackageid
+          @Extension = extension
+          @AutoVoucher = autovoucher
+          @ResourceTypes = resourcetypes
+          @EnvTags = envtags
         end
 
         def deserialize(params)
+          @DealType = params['DealType']
+          @ProductType = params['ProductType']
+          @PackageId = params['PackageId']
+          @CreateAndPay = params['CreateAndPay']
+          @TimeSpan = params['TimeSpan']
+          @TimeUnit = params['TimeUnit']
+          @ResourceId = params['ResourceId']
+          @Source = params['Source']
+          @Alias = params['Alias']
+          @EnvId = params['EnvId']
+          @EnableExcess = params['EnableExcess']
+          @ModifyPackageId = params['ModifyPackageId']
+          @Extension = params['Extension']
+          @AutoVoucher = params['AutoVoucher']
+          @ResourceTypes = params['ResourceTypes']
+          unless params['EnvTags'].nil?
+            @EnvTags = []
+            params['EnvTags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @EnvTags << tag_tmp
+            end
+          end
         end
       end
 
@@ -2318,6 +2455,81 @@ module TencentCloud
             @MgoKeySchema = MgoKeySchema.new
             @MgoKeySchema.deserialize(params['MgoKeySchema'])
           end
+        end
+      end
+
+      # CreateMySQL请求参数结构体
+      class CreateMySQLRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param DbInstanceType: Db类型 1. FLEXDB 2.MYSQL
+        # @type DbInstanceType: String
+        # @param MysqlVersion: mysql版本
+        # @type MysqlVersion: String
+        # @param VpcId: vpc Id
+        # @type VpcId: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param LowerCaseTableNames: 0 区分表名大小写；1 不区分表名大小写(默认)
+        # @type LowerCaseTableNames: String
+
+        attr_accessor :EnvId, :DbInstanceType, :MysqlVersion, :VpcId, :SubnetId, :LowerCaseTableNames
+
+        def initialize(envid=nil, dbinstancetype=nil, mysqlversion=nil, vpcid=nil, subnetid=nil, lowercasetablenames=nil)
+          @EnvId = envid
+          @DbInstanceType = dbinstancetype
+          @MysqlVersion = mysqlversion
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @LowerCaseTableNames = lowercasetablenames
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @DbInstanceType = params['DbInstanceType']
+          @MysqlVersion = params['MysqlVersion']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @LowerCaseTableNames = params['LowerCaseTableNames']
+        end
+      end
+
+      # CreateMySQL返回参数结构体
+      class CreateMySQLResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 开通结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.CreateMySQLResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateMySQLResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 开通Mysql 结果
+      class CreateMySQLResult < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
         end
       end
 
@@ -4624,6 +4836,74 @@ module TencentCloud
         end
       end
 
+      # 查询开通Mysql结果
+      class DescribeCreateMySQLResult < TencentCloud::Common::AbstractModel
+        # @param Status: 状态 notexist | init | doing | success | fail
+        # @type Status: String
+        # @param FailReason: 失败原因
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FailReason: String
+        # @param FreezeStatus: 是否冻结
+        # @type FreezeStatus: Boolean
+
+        attr_accessor :Status, :FailReason, :FreezeStatus
+
+        def initialize(status=nil, failreason=nil, freezestatus=nil)
+          @Status = status
+          @FailReason = failreason
+          @FreezeStatus = freezestatus
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @FailReason = params['FailReason']
+          @FreezeStatus = params['FreezeStatus']
+        end
+      end
+
+      # DescribeCreateMySQLResult请求参数结构体
+      class DescribeCreateMySQLResultRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param TaskId: OpenMysql 返回任务 Id
+        # @type TaskId: String
+
+        attr_accessor :EnvId, :TaskId
+
+        def initialize(envid=nil, taskid=nil)
+          @EnvId = envid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeCreateMySQLResult返回参数结构体
+      class DescribeCreateMySQLResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 查询开通结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DescribeCreateMySQLResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeCreateMySQLResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCurveData请求参数结构体
       class DescribeCurveDataRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -5569,6 +5849,92 @@ module TencentCloud
         end
       end
 
+      # DescribeMySQLClusterDetail请求参数结构体
+      class DescribeMySQLClusterDetailRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeMySQLClusterDetail返回参数结构体
+      class DescribeMySQLClusterDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 集群详情
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.MySQLClusterDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = MySQLClusterDetail.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeMySQLTaskStatus请求参数结构体
+      class DescribeMySQLTaskStatusRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+        # @param TaskId: 任务Id
+        # @type TaskId: String
+        # @param TaskName: 任务名
+        # @type TaskName: String
+
+        attr_accessor :EnvId, :TaskId, :TaskName
+
+        def initialize(envid=nil, taskid=nil, taskname=nil)
+          @EnvId = envid
+          @TaskId = taskid
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+        end
+      end
+
+      # DescribeMySQLTaskStatus返回参数结构体
+      class DescribeMySQLTaskStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 任务状态
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.MySQLTaskStatus`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = MySQLTaskStatus.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePostpayFreeQuotas请求参数结构体
       class DescribePostpayFreeQuotasRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -6380,6 +6746,69 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyMySQL请求参数结构体
+      class DestroyMySQLRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 云开发环境ID
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DestroyMySQL返回参数结构体
+      class DestroyMySQLResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 销毁结果
+        # @type Data: :class:`Tencentcloud::Tcb.v20180608.models.DestroyMySQLResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DestroyMySQLResult.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 销毁 Mysql 结果
+      class DestroyMySQLResult < TencentCloud::Common::AbstractModel
+        # @param IsSuccess: 是否成功
+        # @type IsSuccess: Boolean
+        # @param TaskId: 任务ID
+        # @type TaskId: String
+        # @param TaskName: 任务名
+        # @type TaskName: String
+
+        attr_accessor :IsSuccess, :TaskId, :TaskName
+
+        def initialize(issuccess=nil, taskid=nil, taskname=nil)
+          @IsSuccess = issuccess
+          @TaskId = taskid
+          @TaskName = taskname
+        end
+
+        def deserialize(params)
+          @IsSuccess = params['IsSuccess']
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
         end
       end
 
@@ -8083,6 +8512,103 @@ module TencentCloud
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @DatabaseName = params['DatabaseName']
+        end
+      end
+
+      # MySql 集群详情
+      class MySQLClusterDetail < TencentCloud::Common::AbstractModel
+        # @param DbClusterId: 集群ID
+        # @type DbClusterId: String
+        # @param NetInfo: 网络详情
+        # @type NetInfo: :class:`Tencentcloud::Tcb.v20180608.models.MySQLNetDetail`
+        # @param DbInfo: 数据库详情
+        # @type DbInfo: :class:`Tencentcloud::Tcb.v20180608.models.ClusterDetail`
+
+        attr_accessor :DbClusterId, :NetInfo, :DbInfo
+
+        def initialize(dbclusterid=nil, netinfo=nil, dbinfo=nil)
+          @DbClusterId = dbclusterid
+          @NetInfo = netinfo
+          @DbInfo = dbinfo
+        end
+
+        def deserialize(params)
+          @DbClusterId = params['DbClusterId']
+          unless params['NetInfo'].nil?
+            @NetInfo = MySQLNetDetail.new
+            @NetInfo.deserialize(params['NetInfo'])
+          end
+          unless params['DbInfo'].nil?
+            @DbInfo = ClusterDetail.new
+            @DbInfo.deserialize(params['DbInfo'])
+          end
+        end
+      end
+
+      # TDSQL-C网络信息类型
+      class MySQLNetDetail < TencentCloud::Common::AbstractModel
+        # @param PrivateNetAddress: 内网地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivateNetAddress: String
+        # @param PubNetAddress: 外网地址
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PubNetAddress: String
+        # @param Net: 网络信息（VPCID/SubnetID）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Net: String
+        # @param PubNetAccessEnabled: 是否开通公网
+        # @type PubNetAccessEnabled: Boolean
+        # @param VpcId: vpc id
+        # @type VpcId: String
+        # @param VpcName: vpc name
+        # @type VpcName: String
+        # @param SubnetId: 子网ID
+        # @type SubnetId: String
+        # @param SubnetName: 子网名
+        # @type SubnetName: String
+
+        attr_accessor :PrivateNetAddress, :PubNetAddress, :Net, :PubNetAccessEnabled, :VpcId, :VpcName, :SubnetId, :SubnetName
+
+        def initialize(privatenetaddress=nil, pubnetaddress=nil, net=nil, pubnetaccessenabled=nil, vpcid=nil, vpcname=nil, subnetid=nil, subnetname=nil)
+          @PrivateNetAddress = privatenetaddress
+          @PubNetAddress = pubnetaddress
+          @Net = net
+          @PubNetAccessEnabled = pubnetaccessenabled
+          @VpcId = vpcid
+          @VpcName = vpcname
+          @SubnetId = subnetid
+          @SubnetName = subnetname
+        end
+
+        def deserialize(params)
+          @PrivateNetAddress = params['PrivateNetAddress']
+          @PubNetAddress = params['PubNetAddress']
+          @Net = params['Net']
+          @PubNetAccessEnabled = params['PubNetAccessEnabled']
+          @VpcId = params['VpcId']
+          @VpcName = params['VpcName']
+          @SubnetId = params['SubnetId']
+          @SubnetName = params['SubnetName']
+        end
+      end
+
+      # MySql 任务状态
+      class MySQLTaskStatus < TencentCloud::Common::AbstractModel
+        # @param Status: SUCCESS | FAILED | PENDING
+        # @type Status: String
+        # @param StatusDesc: 状态描述
+        # @type StatusDesc: String
+
+        attr_accessor :Status, :StatusDesc
+
+        def initialize(status=nil, statusdesc=nil)
+          @Status = status
+          @StatusDesc = statusdesc
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @StatusDesc = params['StatusDesc']
         end
       end
 

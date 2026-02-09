@@ -2310,58 +2310,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTRTCRealTimeScaleMetricData请求参数结构体
-      class DescribeTRTCRealTimeScaleMetricDataRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
-        # @type SdkAppId: String
-        # @param StartTime: 开始时间，unix时间戳，单位：秒（查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时）
-        # @type StartTime: Integer
-        # @param EndTime: 结束时间，unix时间戳，单位：秒
-        # @type EndTime: Integer
-        # @param RoomId: 房间ID
-        # @type RoomId: String
-
-        attr_accessor :SdkAppId, :StartTime, :EndTime, :RoomId
-
-        def initialize(sdkappid=nil, starttime=nil, endtime=nil, roomid=nil)
-          @SdkAppId = sdkappid
-          @StartTime = starttime
-          @EndTime = endtime
-          @RoomId = roomid
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @RoomId = params['RoomId']
-        end
-      end
-
-      # DescribeTRTCRealTimeScaleMetricData返回参数结构体
-      class DescribeTRTCRealTimeScaleMetricDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: TRTC监控数据出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = TRTCDataResp.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeTrtcMcuTranscodeTime请求参数结构体
       class DescribeTrtcMcuTranscodeTimeRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。
@@ -6621,7 +6569,15 @@ module TencentCloud
         # @type APIKey: String
         # @param Model: TTS的模型，当前固定为：flow_01_turbo
         # @type Model: String
-        # @param Language:  需要合成的语言（ISO 639-1），支持 zh（中文）、en（英文）、yue（粤语）、ja（日语）、ko（韩语），默认自动识别
+        # @param Language:  需要合成的语言（ISO 639-1），默认自动识别，支持如下语言：
+        # - zh（中文）
+        # - en（英文）
+        # - yue（粤语）
+        # - ja（日语）
+        # - ko（韩语）
+        # - ar（阿拉伯语）
+        # - id（印尼语）
+        # - th（泰语）
         # @type Language: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language

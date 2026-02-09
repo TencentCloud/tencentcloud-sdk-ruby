@@ -366,17 +366,21 @@ module TencentCloud
         # @type InstanceId: String
         # @param SessionId: 会话ID
         # @type SessionId: String
+        # @param SessionIds: 批量删除 会话id 列表
+        # @type SessionIds: Array
 
-        attr_accessor :InstanceId, :SessionId
+        attr_accessor :InstanceId, :SessionId, :SessionIds
 
-        def initialize(instanceid=nil, sessionid=nil)
+        def initialize(instanceid=nil, sessionid=nil, sessionids=nil)
           @InstanceId = instanceid
           @SessionId = sessionid
+          @SessionIds = sessionids
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SessionId = params['SessionId']
+          @SessionIds = params['SessionIds']
         end
       end
 
@@ -384,18 +388,22 @@ module TencentCloud
       class DeleteDataAgentSessionResponse < TencentCloud::Common::AbstractModel
         # @param SessionId: 删除的会话ID
         # @type SessionId: String
+        # @param SessionIds: 删除的会话ID列表
+        # @type SessionIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SessionId, :RequestId
+        attr_accessor :SessionId, :SessionIds, :RequestId
 
-        def initialize(sessionid=nil, requestid=nil)
+        def initialize(sessionid=nil, sessionids=nil, requestid=nil)
           @SessionId = sessionid
+          @SessionIds = sessionids
           @RequestId = requestid
         end
 
         def deserialize(params)
           @SessionId = params['SessionId']
+          @SessionIds = params['SessionIds']
           @RequestId = params['RequestId']
         end
       end

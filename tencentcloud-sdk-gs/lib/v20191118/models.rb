@@ -190,10 +190,14 @@ module TencentCloud
         # IDLE：未连接
         # ESTABLISHED：连接中
         # @type ServiceStatus: String
+        # @param AndroidInstanceModel: 安卓实例型号。
+        # YS1：默认值，基础型云手机
+        # GC0、GC1、GC2：三种性能型云手机
+        # @type AndroidInstanceModel: String
 
-        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber, :ServiceStatus
+        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber, :ServiceStatus, :AndroidInstanceModel
 
-        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil, servicestatus=nil)
+        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil, servicestatus=nil, androidinstancemodel=nil)
           @AndroidInstanceId = androidinstanceid
           @AndroidInstanceRegion = androidinstanceregion
           @AndroidInstanceZone = androidinstancezone
@@ -211,6 +215,7 @@ module TencentCloud
           @CreateTime = createtime
           @HostServerSerialNumber = hostserverserialnumber
           @ServiceStatus = servicestatus
+          @AndroidInstanceModel = androidinstancemodel
         end
 
         def deserialize(params)
@@ -238,6 +243,7 @@ module TencentCloud
           @CreateTime = params['CreateTime']
           @HostServerSerialNumber = params['HostServerSerialNumber']
           @ServiceStatus = params['ServiceStatus']
+          @AndroidInstanceModel = params['AndroidInstanceModel']
         end
       end
 
@@ -281,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 1
-        deprecate :PackageVersion=, :none, 2026, 1
+        deprecate :PackageVersion, :none, 2026, 2
+        deprecate :PackageVersion=, :none, 2026, 2
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -420,10 +426,14 @@ module TencentCloud
         # @type AndroidVersion: String
         # @param CreateTime: 创建时间
         # @type CreateTime: String
+        # @param AndroidInstanceImageModel: 镜像型号。
+        # YS1：基础型云手机
+        # GC0、GC1、GC2：三种性能型云手机
+        # @type AndroidInstanceImageModel: String
 
-        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone, :AndroidInstanceImageDescription, :AndroidVersion, :CreateTime
+        attr_accessor :AndroidInstanceImageId, :AndroidInstanceImageName, :AndroidInstanceImageState, :AndroidInstanceImageZone, :AndroidInstanceImageDescription, :AndroidVersion, :CreateTime, :AndroidInstanceImageModel
 
-        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil, androidinstanceimagedescription=nil, androidversion=nil, createtime=nil)
+        def initialize(androidinstanceimageid=nil, androidinstanceimagename=nil, androidinstanceimagestate=nil, androidinstanceimagezone=nil, androidinstanceimagedescription=nil, androidversion=nil, createtime=nil, androidinstanceimagemodel=nil)
           @AndroidInstanceImageId = androidinstanceimageid
           @AndroidInstanceImageName = androidinstanceimagename
           @AndroidInstanceImageState = androidinstanceimagestate
@@ -431,6 +441,7 @@ module TencentCloud
           @AndroidInstanceImageDescription = androidinstanceimagedescription
           @AndroidVersion = androidversion
           @CreateTime = createtime
+          @AndroidInstanceImageModel = androidinstanceimagemodel
         end
 
         def deserialize(params)
@@ -441,6 +452,7 @@ module TencentCloud
           @AndroidInstanceImageDescription = params['AndroidInstanceImageDescription']
           @AndroidVersion = params['AndroidVersion']
           @CreateTime = params['CreateTime']
+          @AndroidInstanceImageModel = params['AndroidInstanceImageModel']
         end
       end
 
@@ -1369,16 +1381,19 @@ module TencentCloud
         # @type ImageId: String
         # @param Labels: 安卓实例标签列表
         # @type Labels: Array
+        # @param Model: 安卓实例型号。YS1：默认值，基础型云手机GC0、GC1、GC2：三种性能型云手机
+        # @type Model: String
 
-        attr_accessor :Zone, :Type, :Number, :HostSerialNumbers, :ImageId, :Labels
+        attr_accessor :Zone, :Type, :Number, :HostSerialNumbers, :ImageId, :Labels, :Model
 
-        def initialize(zone=nil, type=nil, number=nil, hostserialnumbers=nil, imageid=nil, labels=nil)
+        def initialize(zone=nil, type=nil, number=nil, hostserialnumbers=nil, imageid=nil, labels=nil, model=nil)
           @Zone = zone
           @Type = type
           @Number = number
           @HostSerialNumbers = hostserialnumbers
           @ImageId = imageid
           @Labels = labels
+          @Model = model
         end
 
         def deserialize(params)
@@ -1395,6 +1410,7 @@ module TencentCloud
               @Labels << androidinstancelabel_tmp
             end
           end
+          @Model = params['Model']
         end
       end
 
@@ -2050,6 +2066,7 @@ module TencentCloud
         # @param Limit: 限制量，默认为20，最大值为100
         # @type Limit: Integer
         # @param Filters: 字段过滤器。Filter 的 Name 有以下值：
+        # ImageModel：镜像型号
         # ImageName：镜像名称
         # ImageState：镜像状态
         # AndroidVersion：安卓版本
@@ -2153,8 +2170,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 1
-        deprecate :Labels=, :none, 2026, 1
+        deprecate :Labels, :none, 2026, 2
+        deprecate :Labels=, :none, 2026, 2
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -2386,6 +2403,7 @@ module TencentCloud
         # UserId：实例用户ID
         # HostSerialNumber：宿主机序列号
         # HostServerSerialNumber：机箱序列号
+        # AndroidInstanceModel：实例型号
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :AndroidInstanceIds, :AndroidInstanceRegion, :AndroidInstanceZone, :AndroidInstanceGroupIds, :LabelSelector, :Filters

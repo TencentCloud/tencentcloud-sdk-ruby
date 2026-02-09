@@ -7735,7 +7735,7 @@ module TencentCloud
         # @type Limit: Integer
         # @param Id: 运维父任务执行日志ID
         # @type Id: String
-        # @param Status: 运维父任务执行状态
+        # @param Status: 运维父任务执行状态。1 - 执行中，2 - 成功，3 - 失败，4 - 超时
         # @type Status: Array
 
         attr_accessor :Name, :Offset, :Limit, :Id, :Status
@@ -7761,18 +7761,29 @@ module TencentCloud
       class SearchSubtaskResultByIdResponse < TencentCloud::Common::AbstractModel
         # @param TotalCount: 记录数
         # @type TotalCount: Integer
+        # @param SubtaskResult: 运维子任务执行结果
+        # @type SubtaskResult: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :TotalCount, :SubtaskResult, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(totalcount=nil, subtaskresult=nil, requestid=nil)
           @TotalCount = totalcount
+          @SubtaskResult = subtaskresult
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TotalCount = params['TotalCount']
+          unless params['SubtaskResult'].nil?
+            @SubtaskResult = []
+            params['SubtaskResult'].each do |i|
+              subtaskresult_tmp = SubtaskResult.new
+              subtaskresult_tmp.deserialize(i)
+              @SubtaskResult << subtaskresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -8107,6 +8118,81 @@ module TencentCloud
           @Type = params['Type']
           @Name = params['Name']
           @Target = params['Target']
+        end
+      end
+
+      # 运维子任务执行结果
+      class SubtaskResult < TencentCloud::Common::AbstractModel
+        # @param Id: 执行日志ID
+        # @type Id: String
+        # @param InstanceId: 执行主机实例ID
+        # @type InstanceId: String
+        # @param Name: 执行主机名称
+        # @type Name: String
+        # @param ApCode: 执行主机地域
+        # @type ApCode: String
+        # @param PublicIp: 执行主机外网IP
+        # @type PublicIp: String
+        # @param PrivateIp: 执行主机内网IP
+        # @type PrivateIp: String
+        # @param Status: 运维任务状态 1 - 执行中，2 - 成功， 3 - 失败，4 - 超时
+        # @type Status: Integer
+        # @param Reason: 运维任务失败原因
+        # @type Reason: String
+        # @param ExitCode: 运维任务命令退出码
+        # @type ExitCode: Integer
+        # @param StartTime: 运维任务开始时间
+        # @type StartTime: String
+        # @param EndTime: 运维任务结束时间
+        # @type EndTime: String
+        # @param StdOut: 运维任务执行结果输出。默认超出16384字节的内容会被自动截断
+        # @type StdOut: String
+        # @param StdErr: 运维任务执行结果错误
+        # @type StdErr: String
+        # @param DeviceName: 资产名
+        # @type DeviceName: String
+        # @param Account: 资产账号
+        # @type Account: String
+
+        attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
+        extend Gem::Deprecate
+        deprecate :Name, :none, 2026, 2
+        deprecate :Name=, :none, 2026, 2
+
+        def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
+          @Id = id
+          @InstanceId = instanceid
+          @Name = name
+          @ApCode = apcode
+          @PublicIp = publicip
+          @PrivateIp = privateip
+          @Status = status
+          @Reason = reason
+          @ExitCode = exitcode
+          @StartTime = starttime
+          @EndTime = endtime
+          @StdOut = stdout
+          @StdErr = stderr
+          @DeviceName = devicename
+          @Account = account
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @ApCode = params['ApCode']
+          @PublicIp = params['PublicIp']
+          @PrivateIp = params['PrivateIp']
+          @Status = params['Status']
+          @Reason = params['Reason']
+          @ExitCode = params['ExitCode']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @StdOut = params['StdOut']
+          @StdErr = params['StdErr']
+          @DeviceName = params['DeviceName']
+          @Account = params['Account']
         end
       end
 

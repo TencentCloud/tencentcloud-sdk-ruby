@@ -317,6 +317,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 开通Mysql
+
+        # @param request: Request instance for CreateMySQL.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateMySQLRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateMySQLResponse`
+        def CreateMySQL(request)
+          body = send_request('CreateMySQL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMySQLResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 开通后付费资源
 
         # @param request: Request instance for CreatePostpayPackage.
@@ -989,6 +1013,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询开通Mysql结果
+
+        # @param request: Request instance for DescribeCreateMySQLResult.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCreateMySQLResultRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCreateMySQLResultResponse`
+        def DescribeCreateMySQLResult(request)
+          body = send_request('DescribeCreateMySQLResult', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCreateMySQLResultResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 根据用户传入的指标, 拉取一段时间内的监控数据。
 
         # @param request: Request instance for DescribeCurveData.
@@ -1350,6 +1398,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 销毁Mysql
+
+        # @param request: Request instance for DescribeMySQLClusterDetail.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeMySQLClusterDetailRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeMySQLClusterDetailResponse`
+        def DescribeMySQLClusterDetail(request)
+          body = send_request('DescribeMySQLClusterDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMySQLClusterDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询Mysql任务状态
+
+        # @param request: Request instance for DescribeMySQLTaskStatus.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeMySQLTaskStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeMySQLTaskStatusResponse`
+        def DescribeMySQLTaskStatus(request)
+          body = send_request('DescribeMySQLTaskStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeMySQLTaskStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询后付费资源免费量
 
         # @param request: Request instance for DescribePostpayFreeQuotas.
@@ -1675,6 +1771,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DestroyEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 销毁Mysql
+
+        # @param request: Request instance for DestroyMySQL.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DestroyMySQLRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DestroyMySQLResponse`
+        def DestroyMySQL(request)
+          body = send_request('DestroyMySQL', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DestroyMySQLResponse.new
             model.deserialize(response['Response'])
             model
           else
