@@ -90,10 +90,12 @@ module TencentCloud
         # @type AgentMode: Integer
         # @param AdvancedConfig: 高级设置
         # @type AdvancedConfig: :class:`Tencentcloud::Lke.v20231130.models.AgentAdvancedConfig`
+        # @param MaxToolCount: 工具数量上限
+        # @type MaxToolCount: Integer
 
-        attr_accessor :AgentId, :WorkflowId, :Name, :IconUrl, :Instructions, :HandoffDescription, :Handoffs, :Model, :Tools, :Plugins, :IsStartingAgent, :AgentType, :AgentMode, :AdvancedConfig
+        attr_accessor :AgentId, :WorkflowId, :Name, :IconUrl, :Instructions, :HandoffDescription, :Handoffs, :Model, :Tools, :Plugins, :IsStartingAgent, :AgentType, :AgentMode, :AdvancedConfig, :MaxToolCount
 
-        def initialize(agentid=nil, workflowid=nil, name=nil, iconurl=nil, instructions=nil, handoffdescription=nil, handoffs=nil, model=nil, tools=nil, plugins=nil, isstartingagent=nil, agenttype=nil, agentmode=nil, advancedconfig=nil)
+        def initialize(agentid=nil, workflowid=nil, name=nil, iconurl=nil, instructions=nil, handoffdescription=nil, handoffs=nil, model=nil, tools=nil, plugins=nil, isstartingagent=nil, agenttype=nil, agentmode=nil, advancedconfig=nil, maxtoolcount=nil)
           @AgentId = agentid
           @WorkflowId = workflowid
           @Name = name
@@ -108,6 +110,7 @@ module TencentCloud
           @AgentType = agenttype
           @AgentMode = agentmode
           @AdvancedConfig = advancedconfig
+          @MaxToolCount = maxtoolcount
         end
 
         def deserialize(params)
@@ -145,6 +148,7 @@ module TencentCloud
             @AdvancedConfig = AgentAdvancedConfig.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
           end
+          @MaxToolCount = params['MaxToolCount']
         end
       end
 
@@ -680,10 +684,12 @@ module TencentCloud
         # @param Headers: 应用配置的插件header信息
         # @type Headers: Array
         # @param Model: 插件调用LLM时使用的模型配置，一般用于指定知识库问答插件的生成模型
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Model: :class:`Tencentcloud::Lke.v20231130.models.AgentModelInfo`
         # @param PluginInfoType: 插件信息类型; 0: 未指定类型; 1: 知识库问答插件
         # @type PluginInfoType: Integer
         # @param KnowledgeQa: 知识库问答插件配置
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KnowledgeQa: :class:`Tencentcloud::Lke.v20231130.models.AgentKnowledgeQAPlugin`
         # @param EnableRoleAuth: 是否使用一键授权
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1116,10 +1122,12 @@ module TencentCloud
         # @type AuthMode: Integer
         # @param AuthType: 授权类型; 0-无鉴权；1-APIKey；2-CAM授权；3-Oauth2.0授权；
         # @type AuthType: Integer
+        # @param AuthConfigStatus: 工具授权配置状态；0：不需要授权，1：需要授权-未配置，2：需要授权-已配置
+        # @type AuthConfigStatus: Integer
 
-        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource, :FinanceType, :ToolAdvanceConfig, :AuthMode, :AuthType
+        attr_accessor :PluginId, :PluginName, :IconUrl, :PluginType, :ToolId, :ToolName, :ToolDesc, :Inputs, :Outputs, :CreateType, :McpServer, :IsBindingKnowledge, :Status, :Headers, :CallingMethod, :Query, :FinanceStatus, :ToolSource, :FinanceType, :ToolAdvanceConfig, :AuthMode, :AuthType, :AuthConfigStatus
 
-        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil, financetype=nil, tooladvanceconfig=nil, authmode=nil, authtype=nil)
+        def initialize(pluginid=nil, pluginname=nil, iconurl=nil, plugintype=nil, toolid=nil, toolname=nil, tooldesc=nil, inputs=nil, outputs=nil, createtype=nil, mcpserver=nil, isbindingknowledge=nil, status=nil, headers=nil, callingmethod=nil, query=nil, financestatus=nil, toolsource=nil, financetype=nil, tooladvanceconfig=nil, authmode=nil, authtype=nil, authconfigstatus=nil)
           @PluginId = pluginid
           @PluginName = pluginname
           @IconUrl = iconurl
@@ -1142,6 +1150,7 @@ module TencentCloud
           @ToolAdvanceConfig = tooladvanceconfig
           @AuthMode = authmode
           @AuthType = authtype
+          @AuthConfigStatus = authconfigstatus
         end
 
         def deserialize(params)
@@ -1201,6 +1210,7 @@ module TencentCloud
           end
           @AuthMode = params['AuthMode']
           @AuthType = params['AuthType']
+          @AuthConfigStatus = params['AuthConfigStatus']
         end
       end
 
@@ -1604,6 +1614,29 @@ module TencentCloud
           end
           @HistoryLimit = params['HistoryLimit']
           @AliasName = params['AliasName']
+        end
+      end
+
+      # 异步工作流的消息
+      class AsyncWorkflowMessage < TencentCloud::Common::AbstractModel
+        # @param Contents: 内容数组，包含多个内容对象
+        # @type Contents: Array
+
+        attr_accessor :Contents
+
+        def initialize(contents=nil)
+          @Contents = contents
+        end
+
+        def deserialize(params)
+          unless params['Contents'].nil?
+            @Contents = []
+            params['Contents'].each do |i|
+              content_tmp = Content.new
+              content_tmp.deserialize(i)
+              @Contents << content_tmp
+            end
+          end
         end
       end
 
@@ -3359,9 +3392,9 @@ module TencentCloud
 
       # DeleteApp请求参数结构体
       class DeleteAppRequest < TencentCloud::Common::AbstractModel
-        # @param AppBizId: 应用ID
+        # @param AppBizId: 应用ID，获取方法参看如何获取   [BotBizId](https://cloud.tencent.com/document/product/1759/109469#4eecb8c1-6ce4-45f5-8fa2-b269449d8efa)。
         # @type AppBizId: String
-        # @param AppType: 应用类型；knowledge_qa-知识问答管理；summary-知识摘要；classifys-知识标签提取
+        # @param AppType: 应用类型；`"knowledge_qa"` 知识问答应用（包含标准模式 单工作流 Multi-Agent 等模式）
         # @type AppType: String
 
         attr_accessor :AppBizId, :AppType
@@ -3719,15 +3752,18 @@ module TencentCloud
         # @type Agents: Array
         # @param HandoffAdvancedSetting: Agent转交高级设置
         # @type HandoffAdvancedSetting: :class:`Tencentcloud::Lke.v20231130.models.AgentHandoffAdvancedSetting`
+        # @param MaxAgentCount: Agent数量上限
+        # @type MaxAgentCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :StaringAgentId, :Agents, :HandoffAdvancedSetting, :RequestId
+        attr_accessor :StaringAgentId, :Agents, :HandoffAdvancedSetting, :MaxAgentCount, :RequestId
 
-        def initialize(staringagentid=nil, agents=nil, handoffadvancedsetting=nil, requestid=nil)
+        def initialize(staringagentid=nil, agents=nil, handoffadvancedsetting=nil, maxagentcount=nil, requestid=nil)
           @StaringAgentId = staringagentid
           @Agents = agents
           @HandoffAdvancedSetting = handoffadvancedsetting
+          @MaxAgentCount = maxagentcount
           @RequestId = requestid
         end
 
@@ -3745,6 +3781,7 @@ module TencentCloud
             @HandoffAdvancedSetting = AgentHandoffAdvancedSetting.new
             @HandoffAdvancedSetting.deserialize(params['HandoffAdvancedSetting'])
           end
+          @MaxAgentCount = params['MaxAgentCount']
           @RequestId = params['RequestId']
         end
       end
@@ -5063,7 +5100,7 @@ module TencentCloud
       class DescribeStorageCredentialRequest < TencentCloud::Common::AbstractModel
         # @param BotBizId: 应用ID，参数非必填不代表不需要填写，下面不同的参数组合会获取到不同的权限，具体请参考 https://cloud.tencent.com/document/product/1759/116238
         # @type BotBizId: String
-        # @param FileType: 文件类型,正常的文件名类型后缀，例如 xlsx、pdf、 docx、png 等
+        # @param FileType: 文件类型,正常的文件名类型后缀，支持 docx、doc、pdf、txt、md、wps、pages、html、mhtml、epub、xml、json、log、xlsx、xls、csv、tsv、numbers、pptx、ppt、ppsx、ppsm、key、png、jpg、jpeg、gif、bmp、tiff、webp、heif、heic、jp2、eps、icns、im、pcx、ppm、xbm、xmind
         # @type FileType: String
         # @param IsPublic: IsPublic用于上传文件或图片时选择场景，当上传对话端图片时IsPublic为true，上传文件（包括文档库文件/图片等和对话端文件）时IsPublic为false
         # @type IsPublic: Boolean
@@ -5103,18 +5140,22 @@ module TencentCloud
         # @type FilePath: String
         # @param Type: 存储类型
         # @type Type: String
-        # @param CorpUin: 主号
+        # @param CorpUin: 企业主账号
         # @type CorpUin: String
         # @param ImagePath: 图片存储目录
         # @type ImagePath: String
         # @param UploadPath: 上传存储路径，到具体文件
         # @type UploadPath: String
+        # @param UploadUrl: 文件上传地址，使用put请求上传文件到该地址
+        # @type UploadUrl: String
+        # @param FileUrl: 文件的预签名地址，支持下载
+        # @type FileUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :ImagePath, :UploadPath, :RequestId
+        attr_accessor :Credentials, :ExpiredTime, :StartTime, :Bucket, :Region, :FilePath, :Type, :CorpUin, :ImagePath, :UploadPath, :UploadUrl, :FileUrl, :RequestId
 
-        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, imagepath=nil, uploadpath=nil, requestid=nil)
+        def initialize(credentials=nil, expiredtime=nil, starttime=nil, bucket=nil, region=nil, filepath=nil, type=nil, corpuin=nil, imagepath=nil, uploadpath=nil, uploadurl=nil, fileurl=nil, requestid=nil)
           @Credentials = credentials
           @ExpiredTime = expiredtime
           @StartTime = starttime
@@ -5125,6 +5166,8 @@ module TencentCloud
           @CorpUin = corpuin
           @ImagePath = imagepath
           @UploadPath = uploadpath
+          @UploadUrl = uploadurl
+          @FileUrl = fileurl
           @RequestId = requestid
         end
 
@@ -5142,6 +5185,8 @@ module TencentCloud
           @CorpUin = params['CorpUin']
           @ImagePath = params['ImagePath']
           @UploadPath = params['UploadPath']
+          @UploadUrl = params['UploadUrl']
+          @FileUrl = params['FileUrl']
           @RequestId = params['RequestId']
         end
       end
@@ -5932,6 +5977,7 @@ module TencentCloud
       # 文件信息内容
       class FileInfoContent < TencentCloud::Common::AbstractModel
         # @param DocBizId: 实时文档解析接口返回的 DocBizId
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DocBizId: Integer
         # @param FileName: 文件名称
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -5945,15 +5991,26 @@ module TencentCloud
         # @param FileUrl: 文件 URL
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileUrl: String
+        # @param DocId: 实时文档解析接口返回的 doc_id。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DocId: Integer
+        # @param CreateTime: 文件创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
 
-        attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl
+        attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl, :DocId, :CreateTime
+        extend Gem::Deprecate
+        deprecate :DocBizId, :none, 2026, 2
+        deprecate :DocBizId=, :none, 2026, 2
 
-        def initialize(docbizid=nil, filename=nil, filetype=nil, filesize=nil, fileurl=nil)
+        def initialize(docbizid=nil, filename=nil, filetype=nil, filesize=nil, fileurl=nil, docid=nil, createtime=nil)
           @DocBizId = docbizid
           @FileName = filename
           @FileType = filetype
           @FileSize = filesize
           @FileUrl = fileurl
+          @DocId = docid
+          @CreateTime = createtime
         end
 
         def deserialize(params)
@@ -5962,6 +6019,8 @@ module TencentCloud
           @FileType = params['FileType']
           @FileSize = params['FileSize']
           @FileUrl = params['FileUrl']
+          @DocId = params['DocId']
+          @CreateTime = params['CreateTime']
         end
       end
 
@@ -12578,16 +12637,19 @@ module TencentCloud
         # @param NatureLanguageToSqlModelConfig: NL2SQL模型配置
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NatureLanguageToSqlModelConfig: :class:`Tencentcloud::Lke.v20231130.models.NL2SQLModelConfig`
+        # @param GraphRetrieval: 是否开启图谱检索
+        # @type GraphRetrieval: Boolean
 
-        attr_accessor :StrategyType, :TableEnhancement, :EmbeddingModel, :RerankModelSwitch, :RerankModel, :NatureLanguageToSqlModelConfig
+        attr_accessor :StrategyType, :TableEnhancement, :EmbeddingModel, :RerankModelSwitch, :RerankModel, :NatureLanguageToSqlModelConfig, :GraphRetrieval
 
-        def initialize(strategytype=nil, tableenhancement=nil, embeddingmodel=nil, rerankmodelswitch=nil, rerankmodel=nil, naturelanguagetosqlmodelconfig=nil)
+        def initialize(strategytype=nil, tableenhancement=nil, embeddingmodel=nil, rerankmodelswitch=nil, rerankmodel=nil, naturelanguagetosqlmodelconfig=nil, graphretrieval=nil)
           @StrategyType = strategytype
           @TableEnhancement = tableenhancement
           @EmbeddingModel = embeddingmodel
           @RerankModelSwitch = rerankmodelswitch
           @RerankModel = rerankmodel
           @NatureLanguageToSqlModelConfig = naturelanguagetosqlmodelconfig
+          @GraphRetrieval = graphretrieval
         end
 
         def deserialize(params)
@@ -12600,6 +12662,7 @@ module TencentCloud
             @NatureLanguageToSqlModelConfig = NL2SQLModelConfig.new
             @NatureLanguageToSqlModelConfig.deserialize(params['NatureLanguageToSqlModelConfig'])
           end
+          @GraphRetrieval = params['GraphRetrieval']
         end
       end
 
@@ -13675,6 +13738,9 @@ module TencentCloud
         # @type WidgetId: String
         # @param WidgetRunId: Widget实例ID
         # @type WidgetRunId: String
+        # @param View: Widget显示数据
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type View: String
         # @param State: Widget状态数据
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type State: String
@@ -13688,11 +13754,12 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Payload: String
 
-        attr_accessor :WidgetId, :WidgetRunId, :State, :Position, :EncodedWidget, :Payload
+        attr_accessor :WidgetId, :WidgetRunId, :View, :State, :Position, :EncodedWidget, :Payload
 
-        def initialize(widgetid=nil, widgetrunid=nil, state=nil, position=nil, encodedwidget=nil, payload=nil)
+        def initialize(widgetid=nil, widgetrunid=nil, view=nil, state=nil, position=nil, encodedwidget=nil, payload=nil)
           @WidgetId = widgetid
           @WidgetRunId = widgetrunid
+          @View = view
           @State = state
           @Position = position
           @EncodedWidget = encodedwidget
@@ -13702,6 +13769,7 @@ module TencentCloud
         def deserialize(params)
           @WidgetId = params['WidgetId']
           @WidgetRunId = params['WidgetRunId']
+          @View = params['View']
           @State = params['State']
           @Position = params['Position']
           @EncodedWidget = params['EncodedWidget']
@@ -14036,13 +14104,16 @@ module TencentCloud
         # @type CustomVariables: Array
         # @param WorkflowGraph: 工作流的流程图
         # @type WorkflowGraph: String
+        # @param LatestMessage: 当前的回复消息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LatestMessage: :class:`Tencentcloud::Lke.v20231130.models.AsyncWorkflowMessage`
 
-        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph
+        attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph, :LatestMessage
         extend Gem::Deprecate
         deprecate :DialogJson, :none, 2026, 2
         deprecate :DialogJson=, :none, 2026, 2
 
-        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil)
+        def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil, latestmessage=nil)
           @RunEnv = runenv
           @AppBizId = appbizid
           @WorkflowRunId = workflowrunid
@@ -14060,6 +14131,7 @@ module TencentCloud
           @MainModelName = mainmodelname
           @CustomVariables = customvariables
           @WorkflowGraph = workflowgraph
+          @LatestMessage = latestmessage
         end
 
         def deserialize(params)
@@ -14087,6 +14159,10 @@ module TencentCloud
             end
           end
           @WorkflowGraph = params['WorkflowGraph']
+          unless params['LatestMessage'].nil?
+            @LatestMessage = AsyncWorkflowMessage.new
+            @LatestMessage.deserialize(params['LatestMessage'])
+          end
         end
       end
 

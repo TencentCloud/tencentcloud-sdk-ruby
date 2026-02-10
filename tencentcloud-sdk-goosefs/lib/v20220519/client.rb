@@ -149,6 +149,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 取消单个预热任务，仅任务在 waiting、running 状态时可以调用此接口。注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
+
+        # @param request: Request instance for CancelLoadTask.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CancelLoadTaskRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CancelLoadTaskResponse`
+        def CancelLoadTask(request)
+          body = send_request('CancelLoadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CancelLoadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据流通任务,包括从将文件系统的数据上传到存储桶下, 以及从存储桶下载到文件系统里。
 
         # @param request: Request instance for CreateDataRepositoryTask.
@@ -207,6 +231,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateFilesetResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # GooseFS 预热相关接口，用于下发，列出，查询，修改预热任务。用于元数据预热、数据预热场景。 注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
+
+        # @param request: Request instance for CreateLoadTask.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::CreateLoadTaskRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::CreateLoadTaskResponse`
+        def CreateLoadTask(request)
+          body = send_request('CreateLoadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLoadTaskResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -365,32 +413,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 接口废弃
-
-        # 查询GooseFS集群角色
-
-        # @param request: Request instance for DescribeClusterRoles.
-        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRolesRequest`
-        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeClusterRolesResponse`
-        def DescribeClusterRoles(request)
-          body = send_request('DescribeClusterRoles', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeClusterRolesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 获取数据流通任务实时状态，用作客户端控制
 
         # @param request: Request instance for DescribeDataRepositoryTaskStatus.
@@ -511,6 +533,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询单个预热任务执行情况。注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
+
+        # @param request: Request instance for DescribeLoadTask.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::DescribeLoadTaskRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::DescribeLoadTaskResponse`
+        def DescribeLoadTask(request)
+          body = send_request('DescribeLoadTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoadTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 解绑文件系统与Bucket的映射
 
         # @param request: Request instance for DetachFileSystemBucket.
@@ -545,6 +591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExpandCapacityResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 列出该集群下所有预热任务。注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
+
+        # @param request: Request instance for ListLoadTasks.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::ListLoadTasksRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::ListLoadTasksResponse`
+        def ListLoadTasks(request)
+          body = send_request('ListLoadTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListLoadTasksResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -665,6 +735,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UpdateFilesetGeneralConfigResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 变更已有 GooseFS 预热任务配置，仅任务状态为 waiting 时可调用该接口。注意，该接口需要 GooseFS 集群版本 ≥ 1.5.1。
+
+        # @param request: Request instance for UpdateLoadTaskPriority.
+        # @type request: :class:`Tencentcloud::goosefs::V20220519::UpdateLoadTaskPriorityRequest`
+        # @rtype: :class:`Tencentcloud::goosefs::V20220519::UpdateLoadTaskPriorityResponse`
+        def UpdateLoadTaskPriority(request)
+          body = send_request('UpdateLoadTaskPriority', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateLoadTaskPriorityResponse.new
             model.deserialize(response['Response'])
             model
           else

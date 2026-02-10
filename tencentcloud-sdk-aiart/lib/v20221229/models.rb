@@ -1441,9 +1441,9 @@ module TencentCloud
 
       # SubmitTextToImageJob请求参数结构体
       class SubmitTextToImageJobRequest < TencentCloud::Common::AbstractModel
-        # @param Prompt: <p>文本描述。<br>算法将根据输入的文本智能生成与之相关的图像。<br>不能为空，推荐使用中文。最多可传1024个 utf-8 字符。</p>
+        # @param Prompt: <p>文本描述。<br>算法将根据输入的文本智能生成与之相关的图像。<br>不能为空，推荐使用中文。最多可传8192个 utf-8 字符。</p>
         # @type Prompt: String
-        # @param Images: <p>垫图url列表，大小不超过10MB，支持 jpg jpeg png webp格式，最多3张图</p>
+        # @param Images: <p>垫图url列表，base64后大小不超过10MB，支持 jpg jpeg png webp格式，最多3张图</p>
         # @type Images: Array
         # @param Resolution: <p>生成图分辨率，默认1024:1024：</p><ul><li>宽高维度均在 [512, 2048] 像素范围内;</li><li>宽高乘积（即图像面积）不超过 1024×1024 像素;</li></ul>
         # @type Resolution: String

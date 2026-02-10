@@ -422,10 +422,12 @@ module TencentCloud
         # @type Field: String
         # @param References: 参考示例，最多10个
         # @type References: Array
+        # @param GlossaryIDs: 关联的术语库 ID 列表，用于术语翻译，最大支持5个术语库
+        # @type GlossaryIDs: Array
 
-        attr_accessor :Model, :Stream, :Text, :Source, :Target, :Field, :References
+        attr_accessor :Model, :Stream, :Text, :Source, :Target, :Field, :References, :GlossaryIDs
 
-        def initialize(model=nil, stream=nil, text=nil, source=nil, target=nil, field=nil, references=nil)
+        def initialize(model=nil, stream=nil, text=nil, source=nil, target=nil, field=nil, references=nil, glossaryids=nil)
           @Model = model
           @Stream = stream
           @Text = text
@@ -433,6 +435,7 @@ module TencentCloud
           @Target = target
           @Field = field
           @References = references
+          @GlossaryIDs = glossaryids
         end
 
         def deserialize(params)
@@ -450,6 +453,7 @@ module TencentCloud
               @References << reference_tmp
             end
           end
+          @GlossaryIDs = params['GlossaryIDs']
         end
       end
 

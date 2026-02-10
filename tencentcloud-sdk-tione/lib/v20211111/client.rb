@@ -488,7 +488,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询资源组详情
+        # 查询资源组列表
 
         # @param request: Request instance for DescribeBillingResourceGroups.
         # @type request: :class:`Tencentcloud::tione::V20211111::DescribeBillingResourceGroupsRequest`

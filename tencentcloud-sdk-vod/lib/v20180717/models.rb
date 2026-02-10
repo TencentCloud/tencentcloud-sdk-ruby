@@ -546,16 +546,24 @@ module TencentCloud
         # @type Width: Integer
         # @param Height: 目标图片高度，不能超过4096。
         # @type Height: Integer
+        # @param LongSide: 目标图片长边长度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed，且未配置Width和Height字段时使用此配置。
+        # @type LongSide: Integer
+        # @param ShortSide: 目标图片短边长度，不能超过4096。
+        # 注意：当Mode等于aspect或fixed，且未配置Width和Height字段时使用此配置。
+        # @type ShortSide: Integer
 
-        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height
+        attr_accessor :Switch, :Type, :Mode, :Percent, :Width, :Height, :LongSide, :ShortSide
 
-        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil)
+        def initialize(switch=nil, type=nil, mode=nil, percent=nil, width=nil, height=nil, longside=nil, shortside=nil)
           @Switch = switch
           @Type = type
           @Mode = mode
           @Percent = percent
           @Width = width
           @Height = height
+          @LongSide = longside
+          @ShortSide = shortside
         end
 
         def deserialize(params)
@@ -565,6 +573,8 @@ module TencentCloud
           @Percent = params['Percent']
           @Width = params['Width']
           @Height = params['Height']
+          @LongSide = params['LongSide']
+          @ShortSide = params['ShortSide']
         end
       end
 
@@ -4795,20 +4805,24 @@ module TencentCloud
         # @type Url: String
         # @param ReferenceType: 参考类型，GV模型适用。
         # 注意：
-
-        # 当使用GV模型时，可作为参考方式,可选asset(素材)、style(风格)。
+        # 当使用 GV 模型时，可作为参考方式，可选值：asset 表示素材、style 表示风格；
+        # 当使用 Kling 模型以及 Category 为 Video 时，可区分参考视频类型，feature 表示特征参考视频，base 表示待编辑视频。
         # @type ReferenceType: String
-        # @param ObjectId: 主体id.
+        # @param ObjectId: 主体 Id。
         # 适用模型：Vidu-q2.
-        # 当需要对图片标识主体时，需要每个图片都带主体id，后续生成时可以通过@主体id的方式使用。
+        # 当需要对图片标识主体时，需要每个图片都带主体 Id，后续生成时可以通过@主体 Id 的方式使用。当 Category 为 Image 时有效。
         # @type ObjectId: String
-        # @param VoiceId: 适用于Vidu-q2模型。
-        # 当全部图片携带主体id时，可针对主体设置音色id。 音色列表：https://shengshu.feishu.cn/sheets/EgFvs6DShhiEBStmjzccr5gonOg
+        # @param VoiceId: 适用于 Vidu-q2 模型。
+        # 当全部图片携带主体 Id 时，可针对主体设置音色 Id。 当 Category 为 Image 时有效。音色列表：https://shengshu.feishu.cn/sheets/EgFvs6DShhiEBStmjzccr5gonOg
         # @type VoiceId: String
+        # @param KeepOriginalSound: 是否保留视频原声。当 Category 为 Video 时有效。取值如下：
+        # <li>Enabled：保留</li>
+        # <li>Disabled：不保留</li>
+        # @type KeepOriginalSound: String
 
-        attr_accessor :Type, :Category, :FileId, :Url, :ReferenceType, :ObjectId, :VoiceId
+        attr_accessor :Type, :Category, :FileId, :Url, :ReferenceType, :ObjectId, :VoiceId, :KeepOriginalSound
 
-        def initialize(type=nil, category=nil, fileid=nil, url=nil, referencetype=nil, objectid=nil, voiceid=nil)
+        def initialize(type=nil, category=nil, fileid=nil, url=nil, referencetype=nil, objectid=nil, voiceid=nil, keeporiginalsound=nil)
           @Type = type
           @Category = category
           @FileId = fileid
@@ -4816,6 +4830,7 @@ module TencentCloud
           @ReferenceType = referencetype
           @ObjectId = objectid
           @VoiceId = voiceid
+          @KeepOriginalSound = keeporiginalsound
         end
 
         def deserialize(params)
@@ -4826,6 +4841,7 @@ module TencentCloud
           @ReferenceType = params['ReferenceType']
           @ObjectId = params['ObjectId']
           @VoiceId = params['VoiceId']
+          @KeepOriginalSound = params['KeepOriginalSound']
         end
       end
 
@@ -7742,6 +7758,8 @@ module TencentCloud
         # @type EnhancePrompt: String
         # @param OutputConfig: 生图任务的输出媒体文件配置。
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
+        # @param InputRegion: 输入文件的区域信息。当文件url是国外地址时候，可选Oversea。默认Mainland。
+        # @type InputRegion: String
         # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
         # @type SessionId: String
         # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
@@ -7751,9 +7769,9 @@ module TencentCloud
         # @param ExtInfo: 保留字段，特殊用途时使用。
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
 
-        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, modelname=nil, modelversion=nil, fileinfos=nil, prompt=nil, negativeprompt=nil, enhanceprompt=nil, outputconfig=nil, inputregion=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
           @SubAppId = subappid
           @ModelName = modelname
           @ModelVersion = modelversion
@@ -7762,6 +7780,7 @@ module TencentCloud
           @NegativePrompt = negativeprompt
           @EnhancePrompt = enhanceprompt
           @OutputConfig = outputconfig
+          @InputRegion = inputregion
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @TasksPriority = taskspriority
@@ -7787,6 +7806,7 @@ module TencentCloud
             @OutputConfig = AigcImageOutputConfig.new
             @OutputConfig.deserialize(params['OutputConfig'])
           end
+          @InputRegion = params['InputRegion']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @TasksPriority = params['TasksPriority']
@@ -7860,6 +7880,9 @@ module TencentCloud
         #     motion_control 表示动作控制；
         #     avatar_i2v 表示数字人；
         #     lip_sync 表示对口型；</li>
+        # <li>当 ModelName 为 Vidu 时：
+        #     template_effect 表示特效模板；
+        # </li>
         # <li>其他 ModelName 暂不支持。</li>
         # @type SceneType: String
         # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
@@ -8826,6 +8849,70 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLLMComprehendTemplate请求参数结构体
+      class CreateLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Level: 解析级别，可选值为：
+        # - Audio: 音频级解析
+        # - Video: 视频级解析
+        # @type Level: String
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Name: 大模型解析模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 大模型解析模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param Summary: 分段摘要解析配置
+        # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummary`
+        # @param Asr: 文本转录解析配置
+        # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
+
+        attr_accessor :Level, :SubAppId, :Name, :Comment, :Summary, :Asr
+
+        def initialize(level=nil, subappid=nil, name=nil, comment=nil, summary=nil, asr=nil)
+          @Level = level
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @Summary = summary
+          @Asr = asr
+        end
+
+        def deserialize(params)
+          @Level = params['Level']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          unless params['Summary'].nil?
+            @Summary = LLMComprehendSummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          unless params['Asr'].nil?
+            @Asr = LLMComprehendAsr.new
+            @Asr.deserialize(params['Asr'])
+          end
+        end
+      end
+
+      # CreateLLMComprehendTemplate返回参数结构体
+      class CreateLLMComprehendTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param Definition: 大模型理解模板的唯一标识
+        # @type Definition: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Definition, :RequestId
+
+        def initialize(definition=nil, requestid=nil)
+          @Definition = definition
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
           @RequestId = params['RequestId']
         end
       end
@@ -10828,6 +10915,42 @@ module TencentCloud
 
       # DeleteJustInTimeTranscodeTemplate返回参数结构体
       class DeleteJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLLMComprehendTemplate请求参数结构体
+      class DeleteLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 大模型理解模板的唯一标识
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+
+        attr_accessor :Definition, :SubAppId
+
+        def initialize(definition=nil, subappid=nil)
+          @Definition = definition
+          @SubAppId = subappid
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+        end
+      end
+
+      # DeleteLLMComprehendTemplate返回参数结构体
+      class DeleteLLMComprehendTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -13448,6 +13571,65 @@ module TencentCloud
         end
       end
 
+      # DescribeLLMComprehendTemplates请求参数结构体
+      class DescribeLLMComprehendTemplatesRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Definitions: 大模型解析模板唯一标识过滤条件，数组长度最大值：100。
+        # @type Definitions: Array
+        # @param Offset: 分页偏移量，默认值：0。
+        # @type Offset: Integer
+        # @param Limit: 返回记录条数，默认值：10，最大值：100。
+        # @type Limit: Integer
+
+        attr_accessor :SubAppId, :Definitions, :Offset, :Limit
+
+        def initialize(subappid=nil, definitions=nil, offset=nil, limit=nil)
+          @SubAppId = subappid
+          @Definitions = definitions
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @Definitions = params['Definitions']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeLLMComprehendTemplates返回参数结构体
+      class DescribeLLMComprehendTemplatesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合过滤条件的记录总数。
+        # @type TotalCount: Integer
+        # @param LLMComprehendTemplateSet: 图片异步处理模板详情列表。
+        # @type LLMComprehendTemplateSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :LLMComprehendTemplateSet, :RequestId
+
+        def initialize(totalcount=nil, llmcomprehendtemplateset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @LLMComprehendTemplateSet = llmcomprehendtemplateset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['LLMComprehendTemplateSet'].nil?
+            @LLMComprehendTemplateSet = []
+            params['LLMComprehendTemplateSet'].each do |i|
+              llmcomprehendtemplateitem_tmp = LLMComprehendTemplateItem.new
+              llmcomprehendtemplateitem_tmp.deserialize(i)
+              @LLMComprehendTemplateSet << llmcomprehendtemplateitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLicenseUsageData请求参数结构体
       class DescribeLicenseUsageDataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 起始日期。使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#52)。
@@ -13723,6 +13905,18 @@ module TencentCloud
         # <li>JITTranscoding: 即时转码</li>
         # <li>VideoSnapshot: 视频截图</li>
         # <li>JITEncryption: 即时加密</li>
+        # <li>MediaEnhancement: 音视频增强</li>
+        # <li>ImageCompression: 图片压缩</li>
+        # <li>ImageEnhancement: 图片增强</li>
+        # <li>ImageSuperResolution: 图片超分</li>
+        # <li>ImageAdvanceCompression: 图片高级压缩</li>
+        # <li>ImageUnderstanding: 图片理解</li>
+        # <li>AddTraceWatermark: 添加溯源水印</li>
+        # <li>AddBlindWatermark: 添加盲水印</li>
+        # <li>AddNagraWatermark: 添加NAGRA数字水印</li>
+        # <li>ExtractTraceWatermark: 提取溯源水印</li>
+        # <li>ExtractBlindWatermark: 提取盲水印</li>
+        # <li>ExtractNagraWatermark: 提取NAGRA数字水印</li>
         # @type Type: String
 
         attr_accessor :StartTime, :EndTime, :SubAppId, :Type
@@ -18570,6 +18764,56 @@ module TencentCloud
         end
       end
 
+      # 图片理解信息。
+      class ImageUnderstandingInfo < TencentCloud::Common::AbstractModel
+        # @param ImageUnderstandingSet: 图片理解项集合。
+        # @type ImageUnderstandingSet: Array
+
+        attr_accessor :ImageUnderstandingSet
+
+        def initialize(imageunderstandingset=nil)
+          @ImageUnderstandingSet = imageunderstandingset
+        end
+
+        def deserialize(params)
+          unless params['ImageUnderstandingSet'].nil?
+            @ImageUnderstandingSet = []
+            params['ImageUnderstandingSet'].each do |i|
+              imageunderstandingitem_tmp = ImageUnderstandingItem.new
+              imageunderstandingitem_tmp.deserialize(i)
+              @ImageUnderstandingSet << imageunderstandingitem_tmp
+            end
+          end
+        end
+      end
+
+      # 图片理解信息项。
+      class ImageUnderstandingItem < TencentCloud::Common::AbstractModel
+        # @param Definition: 模板id。
+        # @type Definition: Integer
+        # @param OutputFile: 任务输出文件。
+        # @type OutputFile: Array
+
+        attr_accessor :Definition, :OutputFile
+
+        def initialize(definition=nil, outputfile=nil)
+          @Definition = definition
+          @OutputFile = outputfile
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          unless params['OutputFile'].nil?
+            @OutputFile = []
+            params['OutputFile'].each do |i|
+              mpsoutputfileinfo_tmp = MPSOutputFileInfo.new
+              mpsoutputfileinfo_tmp.deserialize(i)
+              @OutputFile << mpsoutputfileinfo_tmp
+            end
+          end
+        end
+      end
+
       # 图片水印模板输入参数
       class ImageWatermarkInput < TencentCloud::Common::AbstractModel
         # @param ImageContent: 水印图片 [Base64](https://tools.ietf.org/html/rfc4648) 编码后的字符串。支持 jpeg、png、gif 图片格式。
@@ -18703,22 +18947,29 @@ module TencentCloud
         # @type SubAppId: Integer
         # @param FileId: 媒体文件 ID，即该文件在云点播上的全局唯一标识符，在上传成功后由云点播后台分配。可以在 [视频上传完成事件通知](/document/product/266/7830) 或 [云点播控制台](https://console.cloud.tencent.com/vod/media) 获取该字段。
         # @type FileId: String
+        # @param Definition: 大模型理解模板的唯一标识
+        # @type Definition: Integer
         # @param ImportTasks: 需要导入知识库任务类型，可选值有：
         # - AiAnalysis.DescriptionTask
         # - SmartSubtitle.AsrFullTextTask
         # @type ImportTasks: Array
 
-        attr_accessor :SubAppId, :FileId, :ImportTasks
+        attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
+        extend Gem::Deprecate
+        deprecate :ImportTasks, :none, 2026, 2
+        deprecate :ImportTasks=, :none, 2026, 2
 
-        def initialize(subappid=nil, fileid=nil, importtasks=nil)
+        def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
           @SubAppId = subappid
           @FileId = fileid
+          @Definition = definition
           @ImportTasks = importtasks
         end
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @FileId = params['FileId']
+          @Definition = params['Definition']
           @ImportTasks = params['ImportTasks']
         end
       end
@@ -18902,6 +19153,138 @@ module TencentCloud
             @WatermarkConfigure = WatermarkConfigureData.new
             @WatermarkConfigure.deserialize(params['WatermarkConfigure'])
           end
+        end
+      end
+
+      # 大模型解析文本转录解析配置
+      class LLMComprehendAsr < TencentCloud::Common::AbstractModel
+        # @param Switch: 文本转录任务开关，可选值：
+        # - ON：开启文本转录任务；
+        # - OFF：关闭文本转录任务。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 大模型解析文本转录解析配置
+      class LLMComprehendAsrForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 文本转录任务开关，可选值：
+        # - ON：开启文本转录任务；
+        # - OFF：关闭文本转录任务。
+        # @type Switch: String
+
+        attr_accessor :Switch
+
+        def initialize(switch=nil)
+          @Switch = switch
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+        end
+      end
+
+      # 大模型解析分段摘要解析配置
+      class LLMComprehendSummary < TencentCloud::Common::AbstractModel
+        # @param Switch: 分段摘要任务开关，可选值：
+        # - ON：开启分段摘要任务；
+        # - OFF：关闭分段摘要任
+        # @type Switch: String
+        # @param ExtendedParameter: 扩展参数，其值为序列化的 json字符串。可参考[扩展参数说明](/document/product/862/104493#note)
+        # @type ExtendedParameter: String
+
+        attr_accessor :Switch, :ExtendedParameter
+
+        def initialize(switch=nil, extendedparameter=nil)
+          @Switch = switch
+          @ExtendedParameter = extendedparameter
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
+      # 大模型解析分段摘要解析配置
+      class LLMComprehendSummaryForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 分段摘要任务开关，可选值：
+        # - ON：开启分段摘要任务；
+        # - OFF：关闭分段摘要任
+        # @type Switch: String
+        # @param ExtendedParameter: 扩展参数，其值为序列化的 json字符串。可参考[扩展参数说明](/document/product/862/104493#note)
+        # @type ExtendedParameter: String
+
+        attr_accessor :Switch, :ExtendedParameter
+
+        def initialize(switch=nil, extendedparameter=nil)
+          @Switch = switch
+          @ExtendedParameter = extendedparameter
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @ExtendedParameter = params['ExtendedParameter']
+        end
+      end
+
+      # 大模型解析模板详情。
+      class LLMComprehendTemplateItem < TencentCloud::Common::AbstractModel
+        # @param Definition: 图片异步处理模板唯一标识。
+        # @type Definition: Integer
+        # @param Name: 图片异步处理模板名称。
+        # @type Name: String
+        # @param Comment: 图片异步处理模板描述信息。
+        # @type Comment: String
+        # @param Level: 解析级别，可选值为：
+        # - Audio: 音频级解析
+        # - Video: 视频级解析
+        # @type Level: String
+        # @param Summary: 分段摘要解析配置
+        # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummary`
+        # @param Asr: 文本转录解析配置
+        # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
+        # @param CreateTime: 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type CreateTime: String
+        # @param UpdateTime: 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        # @type UpdateTime: String
+
+        attr_accessor :Definition, :Name, :Comment, :Level, :Summary, :Asr, :CreateTime, :UpdateTime
+
+        def initialize(definition=nil, name=nil, comment=nil, level=nil, summary=nil, asr=nil, createtime=nil, updatetime=nil)
+          @Definition = definition
+          @Name = name
+          @Comment = comment
+          @Level = level
+          @Summary = summary
+          @Asr = asr
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Level = params['Level']
+          unless params['Summary'].nil?
+            @Summary = LLMComprehendSummary.new
+            @Summary.deserialize(params['Summary'])
+          end
+          unless params['Asr'].nil?
+            @Asr = LLMComprehendAsr.new
+            @Asr.deserialize(params['Asr'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -20354,10 +20737,13 @@ module TencentCloud
         # @type ReviewInfo: :class:`Tencentcloud::Vod.v20180717.models.FileReviewInfo`
         # @param MPSAiMediaInfo: MPS智能媒资信息
         # @type MPSAiMediaInfo: :class:`Tencentcloud::Vod.v20180717.models.MPSAiMediaInfo`
+        # @param ImageUnderstandingInfo: 图片理解信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ImageUnderstandingInfo: :class:`Tencentcloud::Vod.v20180717.models.ImageUnderstandingInfo`
 
-        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo, :MPSAiMediaInfo
+        attr_accessor :BasicInfo, :MetaData, :TranscodeInfo, :AnimatedGraphicsInfo, :SampleSnapshotInfo, :ImageSpriteInfo, :SnapshotByTimeOffsetInfo, :KeyFrameDescInfo, :AdaptiveDynamicStreamingInfo, :MiniProgramReviewInfo, :SubtitleInfo, :FileId, :ReviewInfo, :MPSAiMediaInfo, :ImageUnderstandingInfo
 
-        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil, mpsaimediainfo=nil)
+        def initialize(basicinfo=nil, metadata=nil, transcodeinfo=nil, animatedgraphicsinfo=nil, samplesnapshotinfo=nil, imagespriteinfo=nil, snapshotbytimeoffsetinfo=nil, keyframedescinfo=nil, adaptivedynamicstreaminginfo=nil, miniprogramreviewinfo=nil, subtitleinfo=nil, fileid=nil, reviewinfo=nil, mpsaimediainfo=nil, imageunderstandinginfo=nil)
           @BasicInfo = basicinfo
           @MetaData = metadata
           @TranscodeInfo = transcodeinfo
@@ -20372,6 +20758,7 @@ module TencentCloud
           @FileId = fileid
           @ReviewInfo = reviewinfo
           @MPSAiMediaInfo = mpsaimediainfo
+          @ImageUnderstandingInfo = imageunderstandinginfo
         end
 
         def deserialize(params)
@@ -20427,6 +20814,10 @@ module TencentCloud
           unless params['MPSAiMediaInfo'].nil?
             @MPSAiMediaInfo = MPSAiMediaInfo.new
             @MPSAiMediaInfo.deserialize(params['MPSAiMediaInfo'])
+          end
+          unless params['ImageUnderstandingInfo'].nil?
+            @ImageUnderstandingInfo = ImageUnderstandingInfo.new
+            @ImageUnderstandingInfo.deserialize(params['ImageUnderstandingInfo'])
           end
         end
       end
@@ -22812,6 +23203,70 @@ module TencentCloud
 
       # ModifyJustInTimeTranscodeTemplate返回参数结构体
       class ModifyJustInTimeTranscodeTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLLMComprehendTemplate请求参数结构体
+      class ModifyLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param Definition: 大模型理解模板的唯一标识
+        # @type Definition: Integer
+        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @type SubAppId: Integer
+        # @param Name: 大模型解析模板名称，长度限制：64 个字符。
+        # @type Name: String
+        # @param Comment: 大模型解析模板描述信息，长度限制：256 个字符。
+        # @type Comment: String
+        # @param Model: 解析模型，可选值为：
+        # - Basic: 基础模型
+        # - Pro: 优化模型
+        # @type Model: String
+        # @param Summary: 分段摘要解析配置
+        # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummaryForUpdate`
+        # @param Asr: 文本转录解析配置
+        # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsrForUpdate`
+
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Model, :Summary, :Asr
+
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, model=nil, summary=nil, asr=nil)
+          @Definition = definition
+          @SubAppId = subappid
+          @Name = name
+          @Comment = comment
+          @Model = model
+          @Summary = summary
+          @Asr = asr
+        end
+
+        def deserialize(params)
+          @Definition = params['Definition']
+          @SubAppId = params['SubAppId']
+          @Name = params['Name']
+          @Comment = params['Comment']
+          @Model = params['Model']
+          unless params['Summary'].nil?
+            @Summary = LLMComprehendSummaryForUpdate.new
+            @Summary.deserialize(params['Summary'])
+          end
+          unless params['Asr'].nil?
+            @Asr = LLMComprehendAsrForUpdate.new
+            @Asr.deserialize(params['Asr'])
+          end
+        end
+      end
+
+      # ModifyLLMComprehendTemplate返回参数结构体
+      class ModifyLLMComprehendTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -25629,15 +26084,34 @@ module TencentCloud
         end
       end
 
+      # 图片异步处理扩展参数。
+      class ProcessImageAsyncInputExtendedParameter < TencentCloud::Common::AbstractModel
+        # @param Prompts: 输入模型的提示词。
+        # @type Prompts: Array
+
+        attr_accessor :Prompts
+
+        def initialize(prompts=nil)
+          @Prompts = prompts
+        end
+
+        def deserialize(params)
+          @Prompts = params['Prompts']
+        end
+      end
+
       # 图片异步处理任务的输出。
       class ProcessImageAsyncOutput < TencentCloud::Common::AbstractModel
         # @param FileInfo: 图片异步处理任务的输出文件信息。
         # @type FileInfo: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputFileInfo`
+        # @param OutputText: 图片理解结果。
+        # @type OutputText: String
 
-        attr_accessor :FileInfo
+        attr_accessor :FileInfo, :OutputText
 
-        def initialize(fileinfo=nil)
+        def initialize(fileinfo=nil, outputtext=nil)
           @FileInfo = fileinfo
+          @OutputText = outputtext
         end
 
         def deserialize(params)
@@ -25645,6 +26119,7 @@ module TencentCloud
             @FileInfo = ProcessImageAsyncOutputFileInfo.new
             @FileInfo.deserialize(params['FileInfo'])
           end
+          @OutputText = params['OutputText']
         end
       end
 
@@ -25818,15 +26293,22 @@ module TencentCloud
       class ProcessImageAsyncTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 图片异步处理模板ID。
         # @type Definition: Integer
+        # @param ExtendedParameter: 图片异步处理扩展参数。
+        # @type ExtendedParameter: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncInputExtendedParameter`
 
-        attr_accessor :Definition
+        attr_accessor :Definition, :ExtendedParameter
 
-        def initialize(definition=nil)
+        def initialize(definition=nil, extendedparameter=nil)
           @Definition = definition
+          @ExtendedParameter = extendedparameter
         end
 
         def deserialize(params)
           @Definition = params['Definition']
+          unless params['ExtendedParameter'].nil?
+            @ExtendedParameter = ProcessImageAsyncInputExtendedParameter.new
+            @ExtendedParameter.deserialize(params['ExtendedParameter'])
+          end
         end
       end
 

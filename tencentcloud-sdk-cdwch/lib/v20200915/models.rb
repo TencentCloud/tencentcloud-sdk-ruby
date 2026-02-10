@@ -594,8 +594,8 @@ module TencentCloud
 
         attr_accessor :Zone, :HaFlag, :UserVPCId, :UserSubnetId, :ProductVersion, :ChargeProperties, :InstanceName, :DataSpec, :Tags, :ClsLogSetId, :CosBucketName, :MountDiskType, :HAZk, :CommonSpec, :TagItems, :SecondaryZoneInfo, :CkDefaultUserPwd
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 1
-        deprecate :Tags=, :none, 2026, 1
+        deprecate :Tags, :none, 2026, 2
+        deprecate :Tags=, :none, 2026, 2
 
         def initialize(zone=nil, haflag=nil, uservpcid=nil, usersubnetid=nil, productversion=nil, chargeproperties=nil, instancename=nil, dataspec=nil, tags=nil, clslogsetid=nil, cosbucketname=nil, mountdisktype=nil, hazk=nil, commonspec=nil, tagitems=nil, secondaryzoneinfo=nil, ckdefaultuserpwd=nil)
           @Zone = zone
@@ -2919,6 +2919,54 @@ module TencentCloud
           @ComputeSpecDesc = params['ComputeSpecDesc']
           @DisplayName = params['DisplayName']
           @InstanceQuota = params['InstanceQuota']
+        end
+      end
+
+      # RestartInstance请求参数结构体
+      class RestartInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param NodeType: 节点类型，可选值：CK / ZK / CHPROXY
+        # @type NodeType: String
+        # @param NodeIpList: 符合节点类型的要重启的节点ip列表
+        # @type NodeIpList: Array
+        # @param RollingRestart: 是否滚动重启，默认为true
+        # @type RollingRestart: Boolean
+
+        attr_accessor :InstanceId, :NodeType, :NodeIpList, :RollingRestart
+
+        def initialize(instanceid=nil, nodetype=nil, nodeiplist=nil, rollingrestart=nil)
+          @InstanceId = instanceid
+          @NodeType = nodetype
+          @NodeIpList = nodeiplist
+          @RollingRestart = rollingrestart
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @NodeType = params['NodeType']
+          @NodeIpList = params['NodeIpList']
+          @RollingRestart = params['RollingRestart']
+        end
+      end
+
+      # RestartInstance返回参数结构体
+      class RestartInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: 任务id
+        # @type FlowId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :RequestId
+
+        def initialize(flowid=nil, requestid=nil)
+          @FlowId = flowid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @RequestId = params['RequestId']
         end
       end
 

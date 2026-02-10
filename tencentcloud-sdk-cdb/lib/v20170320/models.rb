@@ -4437,16 +4437,19 @@ module TencentCloud
         # @type SortBy: String
         # @param OrderBy: 待排序的时间字段，可选：CreateTime(账号创建时间)、ModifyTime(账号更新时间)、ModifyPasswordTime(密码修改时间)
         # @type OrderBy: String
+        # @param HostRegexp: 匹配账号主机地址（Host）的正则表达式，规则同 MySQL 官网
+        # @type HostRegexp: String
 
-        attr_accessor :InstanceId, :Offset, :Limit, :AccountRegexp, :SortBy, :OrderBy
+        attr_accessor :InstanceId, :Offset, :Limit, :AccountRegexp, :SortBy, :OrderBy, :HostRegexp
 
-        def initialize(instanceid=nil, offset=nil, limit=nil, accountregexp=nil, sortby=nil, orderby=nil)
+        def initialize(instanceid=nil, offset=nil, limit=nil, accountregexp=nil, sortby=nil, orderby=nil, hostregexp=nil)
           @InstanceId = instanceid
           @Offset = offset
           @Limit = limit
           @AccountRegexp = accountregexp
           @SortBy = sortby
           @OrderBy = orderby
+          @HostRegexp = hostregexp
         end
 
         def deserialize(params)
@@ -4456,6 +4459,7 @@ module TencentCloud
           @AccountRegexp = params['AccountRegexp']
           @SortBy = params['SortBy']
           @OrderBy = params['OrderBy']
+          @HostRegexp = params['HostRegexp']
         end
       end
 

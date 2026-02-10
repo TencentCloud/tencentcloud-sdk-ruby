@@ -258,8 +258,8 @@ module TencentCloud
 
         attr_accessor :Commands, :StorageMounts, :EnvVars, :Docker, :OutputRedirect, :JobType, :TaskType
         extend Gem::Deprecate
-        deprecate :JobType, :none, 2026, 1
-        deprecate :JobType=, :none, 2026, 1
+        deprecate :JobType, :none, 2026, 2
+        deprecate :JobType=, :none, 2026, 2
 
         def initialize(commands=nil, storagemounts=nil, envvars=nil, docker=nil, outputredirect=nil, jobtype=nil, tasktype=nil)
           @Commands = commands
@@ -1213,29 +1213,33 @@ module TencentCloud
 
       # DescribeAutoScalingConfiguration请求参数结构体
       class DescribeAutoScalingConfigurationRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID。
+        # @param ClusterId: <p>集群ID。</p>
         # @type ClusterId: String
+        # @param QueueName: <p>队列名称</p>
+        # @type QueueName: String
 
-        attr_accessor :ClusterId
+        attr_accessor :ClusterId, :QueueName
 
-        def initialize(clusterid=nil)
+        def initialize(clusterid=nil, queuename=nil)
           @ClusterId = clusterid
+          @QueueName = queuename
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
+          @QueueName = params['QueueName']
         end
       end
 
       # DescribeAutoScalingConfiguration返回参数结构体
       class DescribeAutoScalingConfigurationResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID。
+        # @param ClusterId: <p>集群ID。</p>
         # @type ClusterId: String
-        # @param ExpansionBusyTime: 任务连续等待时间，队列的任务处于连续等待的时间。单位秒。
+        # @param ExpansionBusyTime: <p>任务连续等待时间，队列的任务处于连续等待的时间。单位秒。</p>
         # @type ExpansionBusyTime: Integer
-        # @param ShrinkIdleTime: 节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。
+        # @param ShrinkIdleTime: <p>节点连续空闲（未运行作业）时间，一个节点连续处于空闲状态时间。</p>
         # @type ShrinkIdleTime: Integer
-        # @param QueueConfigs: 扩容队列配置概览列表。
+        # @param QueueConfigs: <p>扩容队列配置概览列表。</p>
         # @type QueueConfigs: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

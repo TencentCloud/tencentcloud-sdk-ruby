@@ -1999,8 +1999,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 1
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 1
+        deprecate :CvmInSwGroupQuota, :none, 2026, 2
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 2
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3750,8 +3750,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 1
-        deprecate :ForceStop=, :none, 2026, 1
+        deprecate :ForceStop, :none, 2026, 2
+        deprecate :ForceStop=, :none, 2026, 2
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -7075,7 +7075,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP等
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP，专有预扣资源等
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String
@@ -7244,8 +7244,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 1
-        deprecate :ForceReboot=, :none, 2026, 1
+        deprecate :ForceReboot, :none, 2026, 2
+        deprecate :ForceReboot=, :none, 2026, 2
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8363,8 +8363,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 1
-        deprecate :ForceStop=, :none, 2026, 1
+        deprecate :ForceStop, :none, 2026, 2
+        deprecate :ForceStop=, :none, 2026, 2
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

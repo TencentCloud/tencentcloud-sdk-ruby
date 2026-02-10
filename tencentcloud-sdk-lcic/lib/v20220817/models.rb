@@ -488,6 +488,61 @@ module TencentCloud
         end
       end
 
+      # BatchGetPlaybackToken请求参数结构体
+      class BatchGetPlaybackTokenRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码平台的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomIds: <p>房间ID。</p>
+        # @type RoomIds: Array
+        # @param ExpireSeconds: <p>token过期时间，单位秒。如果传0则表示不过期</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :SdkAppId, :RoomIds, :ExpireSeconds
+
+        def initialize(sdkappid=nil, roomids=nil, expireseconds=nil)
+          @SdkAppId = sdkappid
+          @RoomIds = roomids
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomIds = params['RoomIds']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
+      # BatchGetPlaybackToken返回参数结构体
+      class BatchGetPlaybackTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Results: <p>token值，用于回放鉴权。</p>
+        # @type Results: Array
+        # @param Total: <p>房间ID。</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Results, :Total, :RequestId
+
+        def initialize(results=nil, total=nil, requestid=nil)
+          @Results = results
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              tokenresult_tmp = TokenResult.new
+              tokenresult_tmp.deserialize(i)
+              @Results << tokenresult_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # BatchRegister请求参数结构体
       class BatchRegisterRequest < TencentCloud::Common::AbstractModel
         # @param Users: 批量注册用户信息列表
@@ -916,7 +971,7 @@ module TencentCloud
         # @type TurnOffMic: Integer
         # @param AudioQuality: <p>声音音质。可以有以下取值：<br>0：流畅模式（默认值），占用更小的带宽、拥有更好的降噪效果，适用于1对1、小班教学、多人音视频会议等场景。<br>1：高音质模式，适合需要高保真传输音乐的场景，但降噪效果会被削弱，适用于音乐教学场景。</p>
         # @type AudioQuality: Integer
-        # @param DisableRecord: <p>录制方式，可以有以下取值：0 开启自动录制（默认值）1  禁止录制2 开启手动录制 注： - 如果该配置取值为0，录制将从上课后开始，课堂结束后停止。 - 如果该配置取值为2，需通过startRecord、stopRecord接口控制录制的开始和结束。</p>
+        # @param DisableRecord: <p>录制方式。</p><p>枚举值：</p><ul><li>0： 开启自动录制（默认）</li><li>1： 禁止录制</li><li>2： 开启手动录制。（仅支持页面录制，需通过startRecord、stopRecord接口控制录制的开始和结束。）</li><li>3： 信令录制。</li></ul>
         # @type DisableRecord: Integer
         # @param Assistants: <p>助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。</p>
         # @type Assistants: Array
@@ -1299,6 +1354,42 @@ module TencentCloud
 
       # DeleteGroup返回参数结构体
       class DeleteGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePlaybackItem请求参数结构体
+      class DeletePlaybackItemRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>课堂ID。</p>
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :RoomId
+
+        def initialize(sdkappid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # DeletePlaybackItem返回参数结构体
+      class DeletePlaybackItemResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2230,6 +2321,132 @@ module TencentCloud
           @DisplayMode = params['DisplayMode']
           @Duration = params['Duration']
           @MarqueeCount = params['MarqueeCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlayRecords请求参数结构体
+      class DescribePlayRecordsRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID。</p>
+        # @type RoomId: Integer
+        # @param StartTime: <p>开始时间，unix时间戳（秒）。</p>
+        # @type StartTime: Integer
+        # @param EndTime: <p>结束时间，unix时间戳（秒）。</p>
+        # @type EndTime: Integer
+        # @param Page: <p>页码，从1开始递增。</p><p>默认值：1</p>
+        # @type Page: Integer
+        # @param PageSize: <p>每页获取的记录条数。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
+        # @type PageSize: Integer
+        # @param UserId: <p>用户ID。</p>
+        # @type UserId: String
+
+        attr_accessor :SdkAppId, :RoomId, :StartTime, :EndTime, :Page, :PageSize, :UserId
+
+        def initialize(sdkappid=nil, roomid=nil, starttime=nil, endtime=nil, page=nil, pagesize=nil, userid=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Page = page
+          @PageSize = pagesize
+          @UserId = userid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @UserId = params['UserId']
+        end
+      end
+
+      # DescribePlayRecords返回参数结构体
+      class DescribePlayRecordsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总条数。</p>
+        # @type Total: Integer
+        # @param Records: <p>信令录制视频回放观看记录列表。</p>
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Records, :RequestId
+
+        def initialize(total=nil, records=nil, requestid=nil)
+          @Total = total
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              playrecord_tmp = PlayRecord.new
+              playrecord_tmp.deserialize(i)
+              @Records << playrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePlaybackList请求参数结构体
+      class DescribePlaybackListRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码平台的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param Page: <p>分页查询当前页数，从1开始递增</p>
+        # @type Page: Integer
+        # @param Limit: <p>默认10条，最大上限为100条</p>
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppId, :Page, :Limit
+
+        def initialize(sdkappid=nil, page=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @Page = page
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Page = params['Page']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePlaybackList返回参数结构体
+      class DescribePlaybackListResponse < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param Items: <p>课堂回放信息列表</p>
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :Items, :RequestId
+
+        def initialize(total=nil, items=nil, requestid=nil)
+          @Total = total
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              playbackitem_tmp = PlaybackItem.new
+              playbackitem_tmp.deserialize(i)
+              @Items << playbackitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3351,6 +3568,62 @@ module TencentCloud
         end
       end
 
+      # GetPlaybackToken请求参数结构体
+      class GetPlaybackTokenRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码平台的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>房间ID。</p>
+        # @type RoomId: Integer
+        # @param UserId: <p>用户ID。</p>
+        # @type UserId: String
+        # @param ExpireSeconds: <p>token过期时间，单位秒。如果传0则表示不过期</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :SdkAppId, :RoomId, :UserId, :ExpireSeconds
+
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, expireseconds=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @UserId = userid
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @ExpireSeconds = params['ExpireSeconds']
+        end
+      end
+
+      # GetPlaybackToken返回参数结构体
+      class GetPlaybackTokenResponse < TencentCloud::Common::AbstractModel
+        # @param Token: <p>token值，用于回放鉴权。</p>
+        # @type Token: String
+        # @param RoomId: <p>房间ID。</p>
+        # @type RoomId: Integer
+        # @param UserId: <p>用户ID。</p>
+        # @type UserId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Token, :RoomId, :UserId, :RequestId
+
+        def initialize(token=nil, roomid=nil, userid=nil, requestid=nil)
+          @Token = token
+          @RoomId = roomid
+          @UserId = userid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Token = params['Token']
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # GetRoomEvent请求参数结构体
       class GetRoomEventRequest < TencentCloud::Common::AbstractModel
         # @param RoomId: 课堂Id。
@@ -4387,6 +4660,70 @@ module TencentCloud
         end
       end
 
+      # 信令录制视频观看记录详情
+      class PlayRecord < TencentCloud::Common::AbstractModel
+        # @param RoomId: <p>房间ID。</p>
+        # @type RoomId: Integer
+        # @param UserId: <p>用户ID。</p>
+        # @type UserId: String
+        # @param SessionId: <p>单次播放会话ID。</p>
+        # @type SessionId: String
+        # @param PlayBeginTime: <p>播放开始时间，unix时间戳（秒）。</p>
+        # @type PlayBeginTime: Integer
+        # @param PlayEndTime: <p>播放结束时间，unix时间戳（秒）。</p>
+        # @type PlayEndTime: Integer
+        # @param Duration: <p>播放时长（毫秒）。</p>
+        # @type Duration: Integer
+
+        attr_accessor :RoomId, :UserId, :SessionId, :PlayBeginTime, :PlayEndTime, :Duration
+
+        def initialize(roomid=nil, userid=nil, sessionid=nil, playbegintime=nil, playendtime=nil, duration=nil)
+          @RoomId = roomid
+          @UserId = userid
+          @SessionId = sessionid
+          @PlayBeginTime = playbegintime
+          @PlayEndTime = playendtime
+          @Duration = duration
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @UserId = params['UserId']
+          @SessionId = params['SessionId']
+          @PlayBeginTime = params['PlayBeginTime']
+          @PlayEndTime = params['PlayEndTime']
+          @Duration = params['Duration']
+        end
+      end
+
+      # 课堂回放信息
+      class PlaybackItem < TencentCloud::Common::AbstractModel
+        # @param RoomId: <p>房间id</p>
+        # @type RoomId: Integer
+        # @param PlaybackUrl: <p>回放地址</p>
+        # @type PlaybackUrl: String
+        # @param Duration: <p>录制时长</p>
+        # @type Duration: Integer
+        # @param CreateTime: <p>录制开始时间</p>
+        # @type CreateTime: Integer
+
+        attr_accessor :RoomId, :PlaybackUrl, :Duration, :CreateTime
+
+        def initialize(roomid=nil, playbackurl=nil, duration=nil, createtime=nil)
+          @RoomId = roomid
+          @PlaybackUrl = playbackurl
+          @Duration = duration
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @PlaybackUrl = params['PlaybackUrl']
+          @Duration = params['Duration']
+          @CreateTime = params['CreateTime']
+        end
+      end
+
       # 房间问答问题详情
       class QuestionInfo < TencentCloud::Common::AbstractModel
         # @param QuestionId: 问题ID
@@ -5283,6 +5620,26 @@ module TencentCloud
 
         def deserialize(params)
           @Text = params['Text']
+        end
+      end
+
+      # token结果
+      class TokenResult < TencentCloud::Common::AbstractModel
+        # @param RoomId: <p>房间id</p>
+        # @type RoomId: Integer
+        # @param Token: <p>该房间信令回放的token</p>
+        # @type Token: String
+
+        attr_accessor :RoomId, :Token
+
+        def initialize(roomid=nil, token=nil)
+          @RoomId = roomid
+          @Token = token
+        end
+
+        def deserialize(params)
+          @RoomId = params['RoomId']
+          @Token = params['Token']
         end
       end
 

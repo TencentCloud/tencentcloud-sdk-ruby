@@ -103,13 +103,16 @@ module TencentCloud
         # @type ClientNodes: Array
         # @param SingleClusterFlag: 是否单集群默认是false
         # @type SingleClusterFlag: Boolean
+        # @param ClusterId: 客户端集群id
+        # @type ClusterId: String
 
-        attr_accessor :FileSystemId, :ClientNodes, :SingleClusterFlag
+        attr_accessor :FileSystemId, :ClientNodes, :SingleClusterFlag, :ClusterId
 
-        def initialize(filesystemid=nil, clientnodes=nil, singleclusterflag=nil)
+        def initialize(filesystemid=nil, clientnodes=nil, singleclusterflag=nil, clusterid=nil)
           @FileSystemId = filesystemid
           @ClientNodes = clientnodes
           @SingleClusterFlag = singleclusterflag
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -123,6 +126,7 @@ module TencentCloud
             end
           end
           @SingleClusterFlag = params['SingleClusterFlag']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -150,13 +154,16 @@ module TencentCloud
         # @type ClientNodes: Array
         # @param SingleClusterFlag: 是否单集群，默认是false
         # @type SingleClusterFlag: Boolean
+        # @param ClusterId: 客户端集群id
+        # @type ClusterId: String
 
-        attr_accessor :FileSystemId, :ClientNodes, :SingleClusterFlag
+        attr_accessor :FileSystemId, :ClientNodes, :SingleClusterFlag, :ClusterId
 
-        def initialize(filesystemid=nil, clientnodes=nil, singleclusterflag=nil)
+        def initialize(filesystemid=nil, clientnodes=nil, singleclusterflag=nil, clusterid=nil)
           @FileSystemId = filesystemid
           @ClientNodes = clientnodes
           @SingleClusterFlag = singleclusterflag
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
@@ -170,6 +177,7 @@ module TencentCloud
             end
           end
           @SingleClusterFlag = params['SingleClusterFlag']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -195,17 +203,21 @@ module TencentCloud
         # @type FileSystemId: String
         # @param CustomMountDir: 自定义挂载目录的绝对路径, 如果未指定, 则会使用默认值, 格式/goosefsx/${fs_id}-proxy. 比如/goosefsx/x-c60-a2b3d4-proxy
         # @type CustomMountDir: String
+        # @param ClusterId: 客户端集群ID
+        # @type ClusterId: String
 
-        attr_accessor :FileSystemId, :CustomMountDir
+        attr_accessor :FileSystemId, :CustomMountDir, :ClusterId
 
-        def initialize(filesystemid=nil, custommountdir=nil)
+        def initialize(filesystemid=nil, custommountdir=nil, clusterid=nil)
           @FileSystemId = filesystemid
           @CustomMountDir = custommountdir
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @FileSystemId = params['FileSystemId']
           @CustomMountDir = params['CustomMountDir']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -225,6 +237,42 @@ module TencentCloud
 
         def deserialize(params)
           @Command = params['Command']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CancelLoadTask请求参数结构体
+      class CancelLoadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param TaskId: 预热任务 ID
+        # @type TaskId: String
+
+        attr_accessor :ClusterId, :TaskId
+
+        def initialize(clusterid=nil, taskid=nil)
+          @ClusterId = clusterid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # CancelLoadTask返回参数结构体
+      class CancelLoadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -265,19 +313,23 @@ module TencentCloud
         # @type NodeInstanceId: String
         # @param InitialPassword: 初始密码
         # @type InitialPassword: String
+        # @param ClusterId: 所属集群id
+        # @type ClusterId: String
 
-        attr_accessor :NodeIp, :NodeInstanceId, :InitialPassword
+        attr_accessor :NodeIp, :NodeInstanceId, :InitialPassword, :ClusterId
 
-        def initialize(nodeip=nil, nodeinstanceid=nil, initialpassword=nil)
+        def initialize(nodeip=nil, nodeinstanceid=nil, initialpassword=nil, clusterid=nil)
           @NodeIp = nodeip
           @NodeInstanceId = nodeinstanceid
           @InitialPassword = initialpassword
+          @ClusterId = clusterid
         end
 
         def deserialize(params)
           @NodeIp = params['NodeIp']
           @NodeInstanceId = params['NodeInstanceId']
           @InitialPassword = params['InitialPassword']
+          @ClusterId = params['ClusterId']
         end
       end
 
@@ -353,34 +405,6 @@ module TencentCloud
         end
       end
 
-      # ClusterRole
-      class ClusterRole < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param RoleName: 角色名
-        # @type RoleName: String
-        # @param Description: 描述
-        # @type Description: String
-        # @param DirectoryList: 目录列表
-        # @type DirectoryList: Array
-
-        attr_accessor :ClusterId, :RoleName, :Description, :DirectoryList
-
-        def initialize(clusterid=nil, rolename=nil, description=nil, directorylist=nil)
-          @ClusterId = clusterid
-          @RoleName = rolename
-          @Description = description
-          @DirectoryList = directorylist
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @RoleName = params['RoleName']
-          @Description = params['Description']
-          @DirectoryList = params['DirectoryList']
-        end
-      end
-
       # CreateDataRepositoryTask请求参数结构体
       class CreateDataRepositoryTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskType: 数据流通任务类型, FS_TO_COS(文件系统到COS Bucket),或者COS_TO_FS(COS Bucket到文件系统)
@@ -397,10 +421,14 @@ module TencentCloud
         # @type RepositoryType: String
         # @param TextLocation: 文件列表下载地址，以http开头
         # @type TextLocation: String
+        # @param EnableDataFlowSubPath: 是否开启自定义路径(暂时仅供预热使用)
+        # @type EnableDataFlowSubPath: Boolean
+        # @param DataFlowSubPath: 自定义路径(暂时仅供预热使用)
+        # @type DataFlowSubPath: String
 
-        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :RepositoryType, :TextLocation
+        attr_accessor :TaskType, :Bucket, :FileSystemId, :TaskPath, :TaskName, :RepositoryType, :TextLocation, :EnableDataFlowSubPath, :DataFlowSubPath
 
-        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, repositorytype=nil, textlocation=nil)
+        def initialize(tasktype=nil, bucket=nil, filesystemid=nil, taskpath=nil, taskname=nil, repositorytype=nil, textlocation=nil, enabledataflowsubpath=nil, dataflowsubpath=nil)
           @TaskType = tasktype
           @Bucket = bucket
           @FileSystemId = filesystemid
@@ -408,6 +436,8 @@ module TencentCloud
           @TaskName = taskname
           @RepositoryType = repositorytype
           @TextLocation = textlocation
+          @EnableDataFlowSubPath = enabledataflowsubpath
+          @DataFlowSubPath = dataflowsubpath
         end
 
         def deserialize(params)
@@ -418,6 +448,8 @@ module TencentCloud
           @TaskName = params['TaskName']
           @RepositoryType = params['RepositoryType']
           @TextLocation = params['TextLocation']
+          @EnableDataFlowSubPath = params['EnableDataFlowSubPath']
+          @DataFlowSubPath = params['DataFlowSubPath']
         end
       end
 
@@ -443,8 +475,6 @@ module TencentCloud
 
       # CreateFileSystem请求参数结构体
       class CreateFileSystemRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 文件系统类型, 可填goosefs和goosefsx
-        # @type Type: String
         # @param Name: 文件系统名
         # @type Name: String
         # @param Description: 文件系统备注描述
@@ -455,6 +485,8 @@ module TencentCloud
         # @type SubnetId: String
         # @param Zone: 子网所在的可用区
         # @type Zone: String
+        # @param Type: 文件系统类型, 可填goosefs和goosefsx
+        # @type Type: String
         # @param Tag: 文件系统关联的tag
         # @type Tag: Array
         # @param GooseFSxBuildElements: GooseFSx构建时要传递的参数
@@ -464,15 +496,18 @@ module TencentCloud
         # @param ClusterPort: 集群ssh通信端口，默认是22
         # @type ClusterPort: Integer
 
-        attr_accessor :Type, :Name, :Description, :VpcId, :SubnetId, :Zone, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
+        attr_accessor :Name, :Description, :VpcId, :SubnetId, :Zone, :Type, :Tag, :GooseFSxBuildElements, :SecurityGroupId, :ClusterPort
+        extend Gem::Deprecate
+        deprecate :Type, :none, 2026, 2
+        deprecate :Type=, :none, 2026, 2
 
-        def initialize(type=nil, name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
-          @Type = type
+        def initialize(name=nil, description=nil, vpcid=nil, subnetid=nil, zone=nil, type=nil, tag=nil, goosefsxbuildelements=nil, securitygroupid=nil, clusterport=nil)
           @Name = name
           @Description = description
           @VpcId = vpcid
           @SubnetId = subnetid
           @Zone = zone
+          @Type = type
           @Tag = tag
           @GooseFSxBuildElements = goosefsxbuildelements
           @SecurityGroupId = securitygroupid
@@ -480,12 +515,12 @@ module TencentCloud
         end
 
         def deserialize(params)
-          @Type = params['Type']
           @Name = params['Name']
           @Description = params['Description']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @Zone = params['Zone']
+          @Type = params['Type']
           unless params['Tag'].nil?
             @Tag = []
             params['Tag'].each do |i|
@@ -505,16 +540,20 @@ module TencentCloud
 
       # CreateFileSystem返回参数结构体
       class CreateFileSystemResponse < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: 创建成功返回的文件系统ID：
+        # @type FileSystemId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :FileSystemId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(filesystemid=nil, requestid=nil)
+          @FileSystemId = filesystemid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @FileSystemId = params['FileSystemId']
           @RequestId = params['RequestId']
         end
       end
@@ -571,6 +610,49 @@ module TencentCloud
 
         def deserialize(params)
           @FsetId = params['FsetId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateLoadTask请求参数结构体
+      class CreateLoadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param LoadTaskCreationAttrs: 创建预热任务参数
+        # @type LoadTaskCreationAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.LoadTaskCreationAttrs`
+
+        attr_accessor :ClusterId, :LoadTaskCreationAttrs
+
+        def initialize(clusterid=nil, loadtaskcreationattrs=nil)
+          @ClusterId = clusterid
+          @LoadTaskCreationAttrs = loadtaskcreationattrs
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['LoadTaskCreationAttrs'].nil?
+            @LoadTaskCreationAttrs = LoadTaskCreationAttrs.new
+            @LoadTaskCreationAttrs.deserialize(params['LoadTaskCreationAttrs'])
+          end
+        end
+      end
+
+      # CreateLoadTask返回参数结构体
+      class CreateLoadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 预热任务 ID
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -815,53 +897,6 @@ module TencentCloud
         end
       end
 
-      # DescribeClusterRoles请求参数结构体
-      class DescribeClusterRolesRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
-        # @type ClusterId: String
-        # @param RoleName: 角色名
-        # @type RoleName: String
-
-        attr_accessor :ClusterId, :RoleName
-
-        def initialize(clusterid=nil, rolename=nil)
-          @ClusterId = clusterid
-          @RoleName = rolename
-        end
-
-        def deserialize(params)
-          @ClusterId = params['ClusterId']
-          @RoleName = params['RoleName']
-        end
-      end
-
-      # DescribeClusterRoles返回参数结构体
-      class DescribeClusterRolesResponse < TencentCloud::Common::AbstractModel
-        # @param ClusterRoles: 集群角色
-        # @type ClusterRoles: Array
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :ClusterRoles, :RequestId
-
-        def initialize(clusterroles=nil, requestid=nil)
-          @ClusterRoles = clusterroles
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['ClusterRoles'].nil?
-            @ClusterRoles = []
-            params['ClusterRoles'].each do |i|
-              clusterrole_tmp = ClusterRole.new
-              clusterrole_tmp.deserialize(i)
-              @ClusterRoles << clusterrole_tmp
-            end
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeDataRepositoryTaskStatus请求参数结构体
       class DescribeDataRepositoryTaskStatusRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: task id
@@ -1099,6 +1134,49 @@ module TencentCloud
         end
       end
 
+      # DescribeLoadTask请求参数结构体
+      class DescribeLoadTaskRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param TaskId: 预热任务 ID
+        # @type TaskId: String
+
+        attr_accessor :ClusterId, :TaskId
+
+        def initialize(clusterid=nil, taskid=nil)
+          @ClusterId = clusterid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeLoadTask返回参数结构体
+      class DescribeLoadTaskResponse < TencentCloud::Common::AbstractModel
+        # @param LoadTaskAttrs: 预热任务参数
+        # @type LoadTaskAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.LoadTaskAttrs`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoadTaskAttrs, :RequestId
+
+        def initialize(loadtaskattrs=nil, requestid=nil)
+          @LoadTaskAttrs = loadtaskattrs
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoadTaskAttrs'].nil?
+            @LoadTaskAttrs = LoadTaskAttrs.new
+            @LoadTaskAttrs.deserialize(params['LoadTaskAttrs'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DetachFileSystemBucket请求参数结构体
       class DetachFileSystemBucketRequest < TencentCloud::Common::AbstractModel
         # @param FileSystemId: 文件系统ID
@@ -1132,6 +1210,42 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 数据预热任务参数
+      class DistributedLoadAttrs < TencentCloud::Common::AbstractModel
+        # @param LoadType: 预热类型，枚举值 LoadByPath｜LoadByList
+        # @type LoadType: String
+        # @param SkipIfExists: 是否跳过相同文件，默认为 true
+        # @type SkipIfExists: Boolean
+        # @param LoadByPath: 预热路径，入参单条挂载路径。入参数LoadType为LoadByPath，该参数不应为空
+        # @type LoadByPath: String
+        # @param LoadByList: 通过文件列表批量预热，入参为 cos://bucket-appid/ 开头的 COS 路径，且仅支持 txt 格式文件，长度不能超过255个字符。入参数LoadType为LoadByList，该参数不应为空
+        # @type LoadByList: String
+        # @param Replica: 副本数配置，枚举值，可选值 SingleReplica（单副本，默认）｜MaxReplica（最大副本）
+        # @type Replica: String
+        # @param MetadataSync: 同步执行元数据预热，并基于预热后的元数据执行 DistributedLoad。默认为 false
+        # @type MetadataSync: Boolean
+
+        attr_accessor :LoadType, :SkipIfExists, :LoadByPath, :LoadByList, :Replica, :MetadataSync
+
+        def initialize(loadtype=nil, skipifexists=nil, loadbypath=nil, loadbylist=nil, replica=nil, metadatasync=nil)
+          @LoadType = loadtype
+          @SkipIfExists = skipifexists
+          @LoadByPath = loadbypath
+          @LoadByList = loadbylist
+          @Replica = replica
+          @MetadataSync = metadatasync
+        end
+
+        def deserialize(params)
+          @LoadType = params['LoadType']
+          @SkipIfExists = params['SkipIfExists']
+          @LoadByPath = params['LoadByPath']
+          @LoadByList = params['LoadByList']
+          @Replica = params['Replica']
+          @MetadataSync = params['MetadataSync']
         end
       end
 
@@ -1368,6 +1482,9 @@ module TencentCloud
         # @type MappedBucketList: Array
 
         attr_accessor :Model, :Capacity, :MappedBucketList
+        extend Gem::Deprecate
+        deprecate :MappedBucketList, :none, 2026, 2
+        deprecate :MappedBucketList=, :none, 2026, 2
 
         def initialize(model=nil, capacity=nil, mappedbucketlist=nil)
           @Model = model
@@ -1418,6 +1535,185 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @LinuxClientNodeIp = params['LinuxClientNodeIp']
           @MountPoint = params['MountPoint']
+        end
+      end
+
+      # ListLoadTasks请求参数结构体
+      class ListLoadTasksRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 偏移量
+        # @type Limit: Integer
+        # @param StartTimestamp: 任务创建起始时间戳，默认为3天前：当前时间戳-86400*3
+        # @type StartTimestamp: Integer
+        # @param EndTimestamp: 任务变更时间戳
+        # @type EndTimestamp: Integer
+        # @param State: 筛选任务状态，枚举Waiting,Running,Canceled,Completed。默认返回所有任务
+        # @type State: String
+        # @param Priority: 筛选优先级任务，默认返回所有任务
+        # @type Priority: Integer
+
+        attr_accessor :ClusterId, :Offset, :Limit, :StartTimestamp, :EndTimestamp, :State, :Priority
+
+        def initialize(clusterid=nil, offset=nil, limit=nil, starttimestamp=nil, endtimestamp=nil, state=nil, priority=nil)
+          @ClusterId = clusterid
+          @Offset = offset
+          @Limit = limit
+          @StartTimestamp = starttimestamp
+          @EndTimestamp = endtimestamp
+          @State = state
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @StartTimestamp = params['StartTimestamp']
+          @EndTimestamp = params['EndTimestamp']
+          @State = params['State']
+          @Priority = params['Priority']
+        end
+      end
+
+      # ListLoadTasks返回参数结构体
+      class ListLoadTasksResponse < TencentCloud::Common::AbstractModel
+        # @param LoadTaskList: 预热任务参数
+        # @type LoadTaskList: Array
+        # @param TotalCount: 任务数总量
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LoadTaskList, :TotalCount, :RequestId
+
+        def initialize(loadtasklist=nil, totalcount=nil, requestid=nil)
+          @LoadTaskList = loadtasklist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['LoadTaskList'].nil?
+            @LoadTaskList = []
+            params['LoadTaskList'].each do |i|
+              loadtaskattrs_tmp = LoadTaskAttrs.new
+              loadtaskattrs_tmp.deserialize(i)
+              @LoadTaskList << loadtaskattrs_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 预热任务参数
+      class LoadTaskAttrs < TencentCloud::Common::AbstractModel
+        # @param TaskId: 预热任务 ID
+        # @type TaskId: String
+        # @param TaskType: 预热任务类型，枚举值，MetadataLoad｜DistributedLoad
+        # @type TaskType: String
+        # @param Description: 任务描述，支持中文
+        # @type Description: String
+        # @param Priority: 任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1
+        # @type Priority: Integer
+        # @param MetadataLoadAttrs: 元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。
+        # @type MetadataLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.MetadataLoadAttrs`
+        # @param DistributedLoadAttrs: 数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。
+        # @type DistributedLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.DistributedLoadAttrs`
+        # @param ReportPath: 将任务执行报告写入 COS 的路径，如果不需要报告则入参空
+        # @type ReportPath: String
+        # @param State: 枚举，Completed，Running，Waiting，Cancelled
+        # @type State: String
+        # @param TaskMessage: 任务执行信息，打印预热文件成功个数，失败个数，预热耗时信息
+        # @type TaskMessage: String
+        # @param CreateTime: 预热任务创建时间
+        # @type CreateTime: String
+        # @param ModifyTime: 预热任务变更时间
+        # @type ModifyTime: String
+        # @param Requester: 任务提交账号，子账号或服务角色 ID
+        # @type Requester: String
+
+        attr_accessor :TaskId, :TaskType, :Description, :Priority, :MetadataLoadAttrs, :DistributedLoadAttrs, :ReportPath, :State, :TaskMessage, :CreateTime, :ModifyTime, :Requester
+
+        def initialize(taskid=nil, tasktype=nil, description=nil, priority=nil, metadataloadattrs=nil, distributedloadattrs=nil, reportpath=nil, state=nil, taskmessage=nil, createtime=nil, modifytime=nil, requester=nil)
+          @TaskId = taskid
+          @TaskType = tasktype
+          @Description = description
+          @Priority = priority
+          @MetadataLoadAttrs = metadataloadattrs
+          @DistributedLoadAttrs = distributedloadattrs
+          @ReportPath = reportpath
+          @State = state
+          @TaskMessage = taskmessage
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Requester = requester
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskType = params['TaskType']
+          @Description = params['Description']
+          @Priority = params['Priority']
+          unless params['MetadataLoadAttrs'].nil?
+            @MetadataLoadAttrs = MetadataLoadAttrs.new
+            @MetadataLoadAttrs.deserialize(params['MetadataLoadAttrs'])
+          end
+          unless params['DistributedLoadAttrs'].nil?
+            @DistributedLoadAttrs = DistributedLoadAttrs.new
+            @DistributedLoadAttrs.deserialize(params['DistributedLoadAttrs'])
+          end
+          @ReportPath = params['ReportPath']
+          @State = params['State']
+          @TaskMessage = params['TaskMessage']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Requester = params['Requester']
+        end
+      end
+
+      # 创建预热任务
+      class LoadTaskCreationAttrs < TencentCloud::Common::AbstractModel
+        # @param TaskType: 预热任务类型，枚举值，MetadataLoad｜DistributedLoad。
+        # @type TaskType: String
+        # @param Priority: 任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1
+        # @type Priority: Integer
+        # @param Description: 任务描述，支持中文
+        # @type Description: String
+        # @param MetadataLoadAttrs: 元数据预热任务参数，用于仅预热元数据时入参。入参数TaskType为MetadataLoad时，该参数不应为空。
+        # @type MetadataLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.MetadataLoadAttrs`
+        # @param DistributedLoadAttrs: 数据预热任务参数。入参数TaskType为DistributedLoad时，该参数不应为空。
+        # @type DistributedLoadAttrs: :class:`Tencentcloud::Goosefs.v20220519.models.DistributedLoadAttrs`
+        # @param ReportPath: 将任务执行报告写入 COS 的路径，如果不需要报告则入参空
+        # @type ReportPath: String
+
+        attr_accessor :TaskType, :Priority, :Description, :MetadataLoadAttrs, :DistributedLoadAttrs, :ReportPath
+
+        def initialize(tasktype=nil, priority=nil, description=nil, metadataloadattrs=nil, distributedloadattrs=nil, reportpath=nil)
+          @TaskType = tasktype
+          @Priority = priority
+          @Description = description
+          @MetadataLoadAttrs = metadataloadattrs
+          @DistributedLoadAttrs = distributedloadattrs
+          @ReportPath = reportpath
+        end
+
+        def deserialize(params)
+          @TaskType = params['TaskType']
+          @Priority = params['Priority']
+          @Description = params['Description']
+          unless params['MetadataLoadAttrs'].nil?
+            @MetadataLoadAttrs = MetadataLoadAttrs.new
+            @MetadataLoadAttrs.deserialize(params['MetadataLoadAttrs'])
+          end
+          unless params['DistributedLoadAttrs'].nil?
+            @DistributedLoadAttrs = DistributedLoadAttrs.new
+            @DistributedLoadAttrs.deserialize(params['DistributedLoadAttrs'])
+          end
+          @ReportPath = params['ReportPath']
         end
       end
 
@@ -1473,6 +1769,34 @@ module TencentCloud
           @AccelerateFlag = params['AccelerateFlag']
           @BucketRegion = params['BucketRegion']
           @Endpoint = params['Endpoint']
+        end
+      end
+
+      # 元数据预热参数
+      class MetadataLoadAttrs < TencentCloud::Common::AbstractModel
+        # @param LoadType: 预热类型，枚举值 LoadByPath｜LoadByList
+        # @type LoadType: String
+        # @param SkipIfExists: 是否跳过相同文件，默认为 true
+        # @type SkipIfExists: Boolean
+        # @param LoadByPath: 预热路径，入参单条挂载路径，长度不能超过255个字符。入参数LoadType为LoadByPath，该参数不应为空
+        # @type LoadByPath: String
+        # @param LoadByList: 通过文件列表批量预热，入参为 cos://bucket-appid/ 开头的 COS 路径，且仅支持 txt 格式文件，长度不能超过255个字符。入参数LoadType为LoadByList，该参数不应为空
+        # @type LoadByList: String
+
+        attr_accessor :LoadType, :SkipIfExists, :LoadByPath, :LoadByList
+
+        def initialize(loadtype=nil, skipifexists=nil, loadbypath=nil, loadbylist=nil)
+          @LoadType = loadtype
+          @SkipIfExists = skipifexists
+          @LoadByPath = loadbypath
+          @LoadByList = loadbylist
+        end
+
+        def deserialize(params)
+          @LoadType = params['LoadType']
+          @SkipIfExists = params['SkipIfExists']
+          @LoadByPath = params['LoadByPath']
+          @LoadByList = params['LoadByList']
         end
       end
 
@@ -1625,17 +1949,29 @@ module TencentCloud
         # @type VpcId: String
         # @param SubnetId: 子网ID
         # @type SubnetId: String
+        # @param UsedCluster: 应用的集群；可以是集群id,也可以是All
+        # @type UsedCluster: String
+        # @param CIDR: cidr，只有当IsDirectConnect为true时才生效
+        # @type CIDR: String
+        # @param IsDirectConnect: 是否为专线接入场景
+        # @type IsDirectConnect: Boolean
 
-        attr_accessor :VpcId, :SubnetId
+        attr_accessor :VpcId, :SubnetId, :UsedCluster, :CIDR, :IsDirectConnect
 
-        def initialize(vpcid=nil, subnetid=nil)
+        def initialize(vpcid=nil, subnetid=nil, usedcluster=nil, cidr=nil, isdirectconnect=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
+          @UsedCluster = usedcluster
+          @CIDR = cidr
+          @IsDirectConnect = isdirectconnect
         end
 
         def deserialize(params)
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @UsedCluster = params['UsedCluster']
+          @CIDR = params['CIDR']
+          @IsDirectConnect = params['IsDirectConnect']
         end
       end
 
@@ -1729,6 +2065,46 @@ module TencentCloud
 
       # UpdateFileset返回参数结构体
       class UpdateFilesetResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateLoadTaskPriority请求参数结构体
+      class UpdateLoadTaskPriorityRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: 集群 ID
+        # @type ClusterId: String
+        # @param TaskId: 预热任务 ID
+        # @type TaskId: String
+        # @param Priority: 任务优先级，数值越高代表优先级越高，边界值 1-9999，默认值为 1
+        # @type Priority: Integer
+
+        attr_accessor :ClusterId, :TaskId, :Priority
+
+        def initialize(clusterid=nil, taskid=nil, priority=nil)
+          @ClusterId = clusterid
+          @TaskId = taskid
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @TaskId = params['TaskId']
+          @Priority = params['Priority']
+        end
+      end
+
+      # UpdateLoadTaskPriority返回参数结构体
+      class UpdateLoadTaskPriorityResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

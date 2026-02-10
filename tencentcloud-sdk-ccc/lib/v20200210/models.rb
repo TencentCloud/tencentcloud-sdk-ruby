@@ -1418,13 +1418,19 @@ module TencentCloud
         # @type MaxCallDurationMs: Integer
         # @param MaxRingTimeoutSecond: 最大振铃时长，达到时长阈值自动挂断。 **仅自携号码支持当前参数**
         # @type MaxRingTimeoutSecond: Integer
+        # @param AmbientSoundType: 环境音场景，没有的话不填。
+        # coffee_shops：咖啡店氛围，背景中有人聊天
+        # busy_office：客服中心
+        # @type AmbientSoundType: String
+        # @param AmbientSoundVolume: 环境音音量。如果AmbientSoundType 为空，该字段不填。取值的范围是 [0,2]。值越低，环境音越小；值越高，环境音越响亮。如果未设置，则使用默认值 1。
+        # @type AmbientSoundVolume: Float
 
-        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs, :MaxRingTimeoutSecond
+        attr_accessor :SdkAppId, :Callee, :LLMType, :APIKey, :APIUrl, :SystemPrompt, :Model, :VoiceType, :Callers, :WelcomeMessage, :WelcomeType, :WelcomeMessagePriority, :MaxDuration, :Languages, :InterruptMode, :InterruptSpeechDuration, :EndFunctionEnable, :EndFunctionDesc, :TransferFunctionEnable, :TransferItems, :NotifyDuration, :NotifyMessage, :NotifyMaxCount, :CustomTTSConfig, :PromptVariables, :VadSilenceTime, :ExtractConfig, :Temperature, :Variables, :TopP, :VadLevel, :ToneWord, :EnableComplianceAudio, :EnableVoicemailDetection, :VoicemailAction, :LLMExtraBody, :MaxCallDurationMs, :MaxRingTimeoutSecond, :AmbientSoundType, :AmbientSoundVolume
         extend Gem::Deprecate
         deprecate :PromptVariables, :none, 2026, 2
         deprecate :PromptVariables=, :none, 2026, 2
 
-        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil, maxringtimeoutsecond=nil)
+        def initialize(sdkappid=nil, callee=nil, llmtype=nil, apikey=nil, apiurl=nil, systemprompt=nil, model=nil, voicetype=nil, callers=nil, welcomemessage=nil, welcometype=nil, welcomemessagepriority=nil, maxduration=nil, languages=nil, interruptmode=nil, interruptspeechduration=nil, endfunctionenable=nil, endfunctiondesc=nil, transferfunctionenable=nil, transferitems=nil, notifyduration=nil, notifymessage=nil, notifymaxcount=nil, customttsconfig=nil, promptvariables=nil, vadsilencetime=nil, extractconfig=nil, temperature=nil, variables=nil, topp=nil, vadlevel=nil, toneword=nil, enablecomplianceaudio=nil, enablevoicemaildetection=nil, voicemailaction=nil, llmextrabody=nil, maxcalldurationms=nil, maxringtimeoutsecond=nil, ambientsoundtype=nil, ambientsoundvolume=nil)
           @SdkAppId = sdkappid
           @Callee = callee
           @LLMType = llmtype
@@ -1463,6 +1469,8 @@ module TencentCloud
           @LLMExtraBody = llmextrabody
           @MaxCallDurationMs = maxcalldurationms
           @MaxRingTimeoutSecond = maxringtimeoutsecond
+          @AmbientSoundType = ambientsoundtype
+          @AmbientSoundVolume = ambientsoundvolume
         end
 
         def deserialize(params)
@@ -1535,6 +1543,8 @@ module TencentCloud
           @LLMExtraBody = params['LLMExtraBody']
           @MaxCallDurationMs = params['MaxCallDurationMs']
           @MaxRingTimeoutSecond = params['MaxRingTimeoutSecond']
+          @AmbientSoundType = params['AmbientSoundType']
+          @AmbientSoundVolume = params['AmbientSoundVolume']
         end
       end
 
@@ -7279,13 +7289,17 @@ module TencentCloud
         # @type AIAgentId: Integer
         # @param AIAgentName: 如果是智能体相关通话，这里是智能体名称
         # @type AIAgentName: String
+        # @param SysHangupReason: 接通后系统挂断原因，枚举类似
+        # @type SysHangupReason: Integer
+        # @param SysHangupReasonString: 接通后系统挂断原因，文字描述信息
+        # @type SysHangupReasonString: String
 
-        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName
+        attr_accessor :Caller, :Callee, :Time, :Direction, :CallType, :Duration, :RecordURL, :RecordId, :SeatUser, :EndStatus, :SkillGroup, :CallerLocation, :IVRDuration, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :IVRKeyPressed, :HungUpSide, :ServeParticipants, :SkillGroupId, :EndStatusString, :StartTimestamp, :QueuedTimestamp, :PostIVRKeyPressed, :QueuedSkillGroupId, :SessionId, :ProtectedCaller, :ProtectedCallee, :Uui, :UUI, :IVRKeyPressedEx, :AsrUrl, :AsrStatus, :CustomRecordURL, :Remark, :QueuedSkillGroupName, :VoicemailRecordURL, :VoicemailAsrURL, :AIAgentId, :AIAgentName, :SysHangupReason, :SysHangupReasonString
         extend Gem::Deprecate
         deprecate :Uui, :none, 2026, 2
         deprecate :Uui=, :none, 2026, 2
 
-        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil)
+        def initialize(caller=nil, callee=nil, time=nil, direction=nil, calltype=nil, duration=nil, recordurl=nil, recordid=nil, seatuser=nil, endstatus=nil, skillgroup=nil, callerlocation=nil, ivrduration=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, ivrkeypressed=nil, hungupside=nil, serveparticipants=nil, skillgroupid=nil, endstatusstring=nil, starttimestamp=nil, queuedtimestamp=nil, postivrkeypressed=nil, queuedskillgroupid=nil, sessionid=nil, protectedcaller=nil, protectedcallee=nil, uui=nil, ivrkeypressedex=nil, asrurl=nil, asrstatus=nil, customrecordurl=nil, remark=nil, queuedskillgroupname=nil, voicemailrecordurl=nil, voicemailasrurl=nil, aiagentid=nil, aiagentname=nil, syshangupreason=nil, syshangupreasonstring=nil)
           @Caller = caller
           @Callee = callee
           @Time = time
@@ -7325,6 +7339,8 @@ module TencentCloud
           @VoicemailAsrURL = voicemailasrurl
           @AIAgentId = aiagentid
           @AIAgentName = aiagentname
+          @SysHangupReason = syshangupreason
+          @SysHangupReasonString = syshangupreasonstring
         end
 
         def deserialize(params)
@@ -7391,6 +7407,8 @@ module TencentCloud
           @VoicemailAsrURL = params['VoicemailAsrURL']
           @AIAgentId = params['AIAgentId']
           @AIAgentName = params['AIAgentName']
+          @SysHangupReason = params['SysHangupReason']
+          @SysHangupReasonString = params['SysHangupReasonString']
         end
       end
 

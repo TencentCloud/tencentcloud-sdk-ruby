@@ -188,6 +188,100 @@ module TencentCloud
         end
       end
 
+      # 审计日志
+      class AuditLog < TencentCloud::Common::AbstractModel
+        # @param AffectRows: 影响行数
+        # @type AffectRows: Integer
+        # @param Atype: 操作类型。如：grantRolesToRole、dropRole等。
+        # @type Atype: String
+        # @param ExecTime: 执行时间。单位为：ms。
+        # @type ExecTime: Integer
+        # @param Host: 客户端地址。
+        # @type Host: String
+        # @param Param: 操作参数。包含操作的详细参数信息。
+        # @type Param: String
+        # @param Result: 执行结果。0表示成功，非0表示失败。
+        # @type Result: Integer
+        # @param Roles: 用户角色列表。格式为：role@db,role@db。
+        # @type Roles: String
+        # @param Timestamp: 操作时间戳。格式为：YYYY-MM-DD HH:mm:ss。
+        # @type Timestamp: String
+        # @param User: 用户名。格式为：user@db。
+        # @type User: String
+
+        attr_accessor :AffectRows, :Atype, :ExecTime, :Host, :Param, :Result, :Roles, :Timestamp, :User
+
+        def initialize(affectrows=nil, atype=nil, exectime=nil, host=nil, param=nil, result=nil, roles=nil, timestamp=nil, user=nil)
+          @AffectRows = affectrows
+          @Atype = atype
+          @ExecTime = exectime
+          @Host = host
+          @Param = param
+          @Result = result
+          @Roles = roles
+          @Timestamp = timestamp
+          @User = user
+        end
+
+        def deserialize(params)
+          @AffectRows = params['AffectRows']
+          @Atype = params['Atype']
+          @ExecTime = params['ExecTime']
+          @Host = params['Host']
+          @Param = params['Param']
+          @Result = params['Result']
+          @Roles = params['Roles']
+          @Timestamp = params['Timestamp']
+          @User = params['User']
+        end
+      end
+
+      # 审计日志文件
+      class AuditLogFile < TencentCloud::Common::AbstractModel
+        # @param FileName: 审计日志文件名称。
+        # @type FileName: String
+        # @param CreateTime: 审计日志文件创建时间。格式为 : "2019-03-20 17:09:13"。
+        # @type CreateTime: String
+        # @param Status: 文件状态值。可能返回的值为：
+        # "creating" - 生成中；
+        # "failed" - 创建失败；
+        # "success" - 已生成。
+        # @type Status: String
+        # @param FileSize: 文件大小，单位为 KB。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSize: Integer
+        # @param DownloadUrl: 审计日志下载地址。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DownloadUrl: String
+        # @param ErrMsg: 错误信息。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrMsg: String
+        # @param ProgressRate: 下载进度
+        # @type ProgressRate: Integer
+
+        attr_accessor :FileName, :CreateTime, :Status, :FileSize, :DownloadUrl, :ErrMsg, :ProgressRate
+
+        def initialize(filename=nil, createtime=nil, status=nil, filesize=nil, downloadurl=nil, errmsg=nil, progressrate=nil)
+          @FileName = filename
+          @CreateTime = createtime
+          @Status = status
+          @FileSize = filesize
+          @DownloadUrl = downloadurl
+          @ErrMsg = errmsg
+          @ProgressRate = progressrate
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @CreateTime = params['CreateTime']
+          @Status = params['Status']
+          @FileSize = params['FileSize']
+          @DownloadUrl = params['DownloadUrl']
+          @ErrMsg = params['ErrMsg']
+          @ProgressRate = params['ProgressRate']
+        end
+      end
+
       # 审计日志过滤条件
       class AuditLogFilter < TencentCloud::Common::AbstractModel
         # @param Host: 客户端地址。
@@ -470,6 +564,38 @@ module TencentCloud
           @IP = params['IP']
           @Count = params['Count']
           @InternalService = params['InternalService']
+        end
+      end
+
+      # CloseAuditService请求参数结构体
+      class CloseAuditServiceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-test1234，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # CloseAuditService返回参数结构体
+      class CloseAuditServiceResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
@@ -1623,6 +1749,76 @@ module TencentCloud
         end
       end
 
+      # DescribeAuditConfig请求参数结构体
+      class DescribeAuditConfigRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cmgo-xftsghuy，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeAuditConfig返回参数结构体
+      class DescribeAuditConfigResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
+        # @param InstanceName: 实例名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceName: String
+        # @param AuditAll: true表示全审计，false表示规则审计
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AuditAll: Boolean
+        # @param CreateTime: 该实例开通数据库审计的时间。
+        # @type CreateTime: String
+        # @param LogExpireDay: 审计日志保存时长。
+        # 单位：天。目前支持的保存时长包括：0、30、180、365，1095、1825。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogExpireDay: Integer
+        # @param LogType: 审计日志存储类型。目前仅支持storage：存储型。
+        # @type LogType: String
+        # @param IsClosing: 是否正在关闭审计功能。
+        # <ul><li>true：是。</li><li>false：否。</li></ul>
+        # @type IsClosing: String
+        # @param IsOpening: 是否正在开启审计功能。<ul><li>true：是。</li><li>false：否。</li></ul>
+        # @type IsOpening: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :InstanceName, :AuditAll, :CreateTime, :LogExpireDay, :LogType, :IsClosing, :IsOpening, :RequestId
+
+        def initialize(instanceid=nil, instancename=nil, auditall=nil, createtime=nil, logexpireday=nil, logtype=nil, isclosing=nil, isopening=nil, requestid=nil)
+          @InstanceId = instanceid
+          @InstanceName = instancename
+          @AuditAll = auditall
+          @CreateTime = createtime
+          @LogExpireDay = logexpireday
+          @LogType = logtype
+          @IsClosing = isclosing
+          @IsOpening = isopening
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceName = params['InstanceName']
+          @AuditAll = params['AuditAll']
+          @CreateTime = params['CreateTime']
+          @LogExpireDay = params['LogExpireDay']
+          @LogType = params['LogType']
+          @IsClosing = params['IsClosing']
+          @IsOpening = params['IsOpening']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAuditInstanceList请求参数结构体
       class DescribeAuditInstanceListRequest < TencentCloud::Common::AbstractModel
         # @param AuditSwitch: 指明待查询的实例为已开通审计或未开通审计。<ul><li>1：已开通审计功能。</li><li>0：未开通审计功能。</li></ul>
@@ -1688,6 +1884,149 @@ module TencentCloud
               auditinstance_tmp = AuditInstance.new
               auditinstance_tmp.deserialize(i)
               @Items << auditinstance_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditLogFiles请求参数结构体
+      class DescribeAuditLogFilesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例 ID，格式如：cmgo-xfts****，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param Limit: 分页大小参数。默认值为 20，取值范围[1,100]。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+        # @param FileName: 审计日志文件名。该接口将根据此参数过滤相关的审计日志文件。
+        # @type FileName: String
+
+        attr_accessor :InstanceId, :Limit, :Offset, :FileName
+
+        def initialize(instanceid=nil, limit=nil, offset=nil, filename=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @FileName = filename
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @FileName = params['FileName']
+        end
+      end
+
+      # DescribeAuditLogFiles返回参数结构体
+      class DescribeAuditLogFilesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的审计日志文件个数。
+        # @type TotalCount: Integer
+        # @param Items: 审计日志文件详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditlogfile_tmp = AuditLogFile.new
+              auditlogfile_tmp.deserialize(i)
+              @Items << auditlogfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAuditLogs请求参数结构体
+      class DescribeAuditLogsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID，格式如：cmgo-xftsghuy，与云数据库控制台页面中显示的实例 ID 相同。
+        # @type InstanceId: String
+        # @param StartTime: 开始时间，格式为："2017-07-12 10:29:20"。
+        # @type StartTime: String
+        # @param EndTime: 结束时间，格式为："2017-07-12 10:29:20"。
+        # @type EndTime: String
+        # @param Filter: 过滤条件，可按设置的过滤条件过滤日志。
+        # @type Filter: :class:`Tencentcloud::Mongodb.v20190725.models.AuditLogFilter`
+        # @param Limit: 分页参数，指单次返回的数据条数。默认值为100，最大值为100。
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量。
+        # @type Offset: Integer
+        # @param Order: 审计日志的排序方式。
+        # <ul><li>ASC：升序。</li><li>DESC：降序。</li></ul>
+        # @type Order: String
+        # @param OrderBy: 审计日志的排序字段，包括：
+        # <ul><li>timestamp：时间戳。</li>
+        # <li>affectRows：影响行数。</li>
+        # <li>execTime：执行时间。</li></ul>
+        # @type OrderBy: String
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Filter, :Limit, :Offset, :Order, :OrderBy
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, filter=nil, limit=nil, offset=nil, order=nil, orderby=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Filter = filter
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @OrderBy = orderby
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Filter'].nil?
+            @Filter = AuditLogFilter.new
+            @Filter.deserialize(params['Filter'])
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @OrderBy = params['OrderBy']
+        end
+      end
+
+      # DescribeAuditLogs返回参数结构体
+      class DescribeAuditLogsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 符合条件的审计日志条数。
+        # @type TotalCount: Integer
+        # @param Items: 审计日志详情。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              auditlog_tmp = AuditLog.new
+              auditlog_tmp.deserialize(i)
+              @Items << auditlog_tmp
             end
           end
           @RequestId = params['RequestId']

@@ -661,6 +661,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建大模型解析模板
+
+        # @param request: Request instance for CreateLLMComprehendTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::CreateLLMComprehendTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::CreateLLMComprehendTemplateResponse`
+        def CreateLLMComprehendTemplate(request)
+          body = send_request('CreateLLMComprehendTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateLLMComprehendTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建自定义模板，模板用于 ProcessMediaByMPS 接口的部分功能。
         # 创建模板时，需要将 MPS 相关参数以 JSON 格式填入 MPSCreateTemplateParams 参数中。关于具体的任务参数配置方法，请参考 MPS 任务模板相关文档说明。
         # 当前支持创建自定义模板的 MPS 功能：
@@ -1459,6 +1483,32 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除用户自定义图像异步处理模板。
+
+        # 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
+
+        # @param request: Request instance for DeleteLLMComprehendTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DeleteLLMComprehendTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DeleteLLMComprehendTemplateResponse`
+        def DeleteLLMComprehendTemplate(request)
+          body = send_request('DeleteLLMComprehendTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLLMComprehendTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2694,6 +2744,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeJustInTimeTranscodeTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据大模型解析模板唯一标识，获取大模型解析模板详情列表。返回结果包含符合条件的所有用户自定义大模型解析模板。
+
+        # @param request: Request instance for DescribeLLMComprehendTemplates.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeLLMComprehendTemplatesRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeLLMComprehendTemplatesResponse`
+        def DescribeLLMComprehendTemplates(request)
+          body = send_request('DescribeLLMComprehendTemplates', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLLMComprehendTemplatesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4137,6 +4211,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyJustInTimeTranscodeTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改大模型解析模板
+
+        # @param request: Request instance for ModifyLLMComprehendTemplate.
+        # @type request: :class:`Tencentcloud::vod::V20180717::ModifyLLMComprehendTemplateRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::ModifyLLMComprehendTemplateResponse`
+        def ModifyLLMComprehendTemplate(request)
+          body = send_request('ModifyLLMComprehendTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLLMComprehendTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

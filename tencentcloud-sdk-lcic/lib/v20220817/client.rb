@@ -197,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量获取信令录制回放token，用于回放指定课堂时鉴权
+
+        # @param request: Request instance for BatchGetPlaybackToken.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::BatchGetPlaybackTokenRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::BatchGetPlaybackTokenResponse`
+        def BatchGetPlaybackToken(request)
+          body = send_request('BatchGetPlaybackToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BatchGetPlaybackTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
 
         # @param request: Request instance for BatchRegister.
@@ -491,6 +515,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGroupMemberResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除该堂课的录制记录
+
+        # @param request: Request instance for DeletePlaybackItem.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DeletePlaybackItemRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DeletePlaybackItemResponse`
+        def DeletePlaybackItem(request)
+          body = send_request('DeletePlaybackItem', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePlaybackItemResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -916,6 +964,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 信令录制视频观看记录查询接口，用于查询指定课堂在指定时间段内的用户播放记录。
+
+        # @param request: Request instance for DescribePlayRecords.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribePlayRecordsRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribePlayRecordsResponse`
+        def DescribePlayRecords(request)
+          body = send_request('DescribePlayRecords', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlayRecordsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询录制信息
+
+        # @param request: Request instance for DescribePlaybackList.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::DescribePlaybackListRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::DescribePlaybackListResponse`
+        def DescribePlaybackList(request)
+          body = send_request('DescribePlaybackList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePlaybackListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取房间提问列表
 
         # @param request: Request instance for DescribeQuestionList.
@@ -1266,6 +1362,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ForbidSendMsgResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取信令录制回放token，用于回放指定课堂时鉴权
+
+        # @param request: Request instance for GetPlaybackToken.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::GetPlaybackTokenRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::GetPlaybackTokenResponse`
+        def GetPlaybackToken(request)
+          body = send_request('GetPlaybackToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetPlaybackTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

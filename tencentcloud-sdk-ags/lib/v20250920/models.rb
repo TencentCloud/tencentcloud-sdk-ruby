@@ -89,6 +89,22 @@ module TencentCloud
         end
       end
 
+      # 沙箱工具日志推送CLS相关配置
+      class CLSConfig < TencentCloud::Common::AbstractModel
+        # @param TopicId: 沙箱工具日志推送所使用的CLS日志主题ID
+        # @type TopicId: String
+
+        attr_accessor :TopicId
+
+        def initialize(topicid=nil)
+          @TopicId = topicid
+        end
+
+        def deserialize(params)
+          @TopicId = params['TopicId']
+        end
+      end
+
       # 文件存储配置
       class CfsStorageSource < TencentCloud::Common::AbstractModel
         # @param FileSystemId: CFS资源ID
@@ -247,10 +263,12 @@ module TencentCloud
         # @type StorageMounts: Array
         # @param CustomConfiguration: 沙箱工具自定义配置
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfiguration`
+        # @param LogConfiguration: 沙箱工具日志推送相关配置
+        # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
 
-        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration
+        attr_accessor :ToolName, :ToolType, :NetworkConfiguration, :Description, :DefaultTimeout, :Tags, :ClientToken, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration
 
-        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil)
+        def initialize(toolname=nil, tooltype=nil, networkconfiguration=nil, description=nil, defaulttimeout=nil, tags=nil, clienttoken=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil)
           @ToolName = toolname
           @ToolType = tooltype
           @NetworkConfiguration = networkconfiguration
@@ -261,6 +279,7 @@ module TencentCloud
           @RoleArn = rolearn
           @StorageMounts = storagemounts
           @CustomConfiguration = customconfiguration
+          @LogConfiguration = logconfiguration
         end
 
         def deserialize(params)
@@ -293,6 +312,10 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfiguration.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          unless params['LogConfiguration'].nil?
+            @LogConfiguration = LogConfiguration.new
+            @LogConfiguration.deserialize(params['LogConfiguration'])
           end
         end
       end
@@ -843,6 +866,25 @@ module TencentCloud
         end
       end
 
+      # 沙箱工具日志采集相关配置
+      class LogConfiguration < TencentCloud::Common::AbstractModel
+        # @param CLSConfig: 日志推送CLS的配置。
+        # @type CLSConfig: :class:`Tencentcloud::Ags.v20250920.models.CLSConfig`
+
+        attr_accessor :CLSConfig
+
+        def initialize(clsconfig=nil)
+          @CLSConfig = clsconfig
+        end
+
+        def deserialize(params)
+          unless params['CLSConfig'].nil?
+            @CLSConfig = CLSConfig.new
+            @CLSConfig.deserialize(params['CLSConfig'])
+          end
+        end
+      end
+
       # 沙箱实例存储挂载配置可选项，用于覆盖沙箱工具的存储配置的部分选项，并提供子路径挂载配置。
       class MountOption < TencentCloud::Common::AbstractModel
         # @param Name: 指定沙箱工具中的存储配置名称
@@ -1135,10 +1177,12 @@ module TencentCloud
         # @type StorageMounts: Array
         # @param CustomConfiguration: 沙箱工具自定义配置
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
+        # @param LogConfiguration: 沙箱工具日志推送相关配置
+        # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
 
-        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration
+        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration
 
-        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil)
+        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil)
           @ToolId = toolid
           @ToolName = toolname
           @ToolType = tooltype
@@ -1152,6 +1196,7 @@ module TencentCloud
           @RoleArn = rolearn
           @StorageMounts = storagemounts
           @CustomConfiguration = customconfiguration
+          @LogConfiguration = logconfiguration
         end
 
         def deserialize(params)
@@ -1187,6 +1232,10 @@ module TencentCloud
           unless params['CustomConfiguration'].nil?
             @CustomConfiguration = CustomConfigurationDetail.new
             @CustomConfiguration.deserialize(params['CustomConfiguration'])
+          end
+          unless params['LogConfiguration'].nil?
+            @LogConfiguration = LogConfiguration.new
+            @LogConfiguration.deserialize(params['LogConfiguration'])
           end
         end
       end

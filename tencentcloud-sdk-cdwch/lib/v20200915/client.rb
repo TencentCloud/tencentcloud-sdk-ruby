@@ -677,6 +677,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 重启实例，可以按节点类型和节点进行重启，可选滚动重启
+
+        # @param request: Request instance for RestartInstance.
+        # @type request: :class:`Tencentcloud::cdwch::V20200915::RestartInstanceRequest`
+        # @rtype: :class:`Tencentcloud::cdwch::V20200915::RestartInstanceResponse`
+        def RestartInstance(request)
+          body = send_request('RestartInstance', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RestartInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # open-api接口提供弹性伸缩云原生集群能力
 
         # @param request: Request instance for ScaleCNOutUpInstance.

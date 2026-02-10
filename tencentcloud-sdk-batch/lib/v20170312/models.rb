@@ -3343,7 +3343,7 @@ module TencentCloud
         end
       end
 
-      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP等
+      # 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP，专有预扣资源等
       class Placement < TencentCloud::Common::AbstractModel
         # @param Zone: 实例所属的可用区名称。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         # @type Zone: String

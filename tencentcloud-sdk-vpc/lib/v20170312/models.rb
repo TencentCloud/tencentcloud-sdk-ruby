@@ -464,7 +464,7 @@ module TencentCloud
       class AddressChargePrepaid < TencentCloud::Common::AbstractModel
         # @param Period: 购买实例的时长，单位是月。可支持时长：1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 24, 36
         # @type Period: Integer
-        # @param AutoRenewFlag: 自动续费标志。0表示手动续费，1表示自动续费，2表示到期不续费。默认缺省为0即手动续费
+        # @param AutoRenewFlag: 自动续费标志。0表示手动续费，1表示自动续费，2表示到期不续费。默认缺省为1即自动续费。
         # @type AutoRenewFlag: Integer
 
         attr_accessor :Period, :AutoRenewFlag
@@ -24048,9 +24048,9 @@ module TencentCloud
         # @type ExclusiveType: String
         # @param AutoScaling: 标准型NAT网关自动扩容
         # @type AutoScaling: Boolean
-        # @param ICMPProxy: 是否代答公网发给NAT网关上弹性公网IP的ICMP echo请求报文，当前适用于标准型NAT网关
+        # @param ICMPProxy: 是否代答公网发给NAT网关上弹性公网IP的ICMP echo请求报文，默认为true，应答请求报文；false代表不应答。
         # @type ICMPProxy: Boolean
-        # @param PublicAddressAffinity: true代表同一个私网IP访问同一个公网目的IP时，固定使用同一个NAT网关上的弹性公网IP；false代表这种情况下使用的弹性公网IP不固定。默认为true。
+        # @param PublicAddressAffinity: 同一个内网地址通过NAT网关访问同一个目的IP时，是否使用固定的弹性公网IP。默认为true，使用固定IP；false代表使用随机IP。
         # @type PublicAddressAffinity: Boolean
 
         attr_accessor :NatGatewayId, :NatGatewayName, :CreatedTime, :State, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :PublicIpAddressSet, :NetworkState, :DestinationIpPortTranslationNatRuleSet, :VpcId, :Zone, :DirectConnectGatewayIds, :SubnetId, :TagSet, :SecurityGroupSet, :SourceIpTranslationNatRuleSet, :IsExclusive, :ExclusiveGatewayBandwidth, :RestrictState, :NatProductVersion, :StrictSnatMode, :SmartScheduleMode, :DedicatedClusterId, :DeletionProtectionEnabled, :ConnectionStateTimeouts, :ExclusiveType, :AutoScaling, :ICMPProxy, :PublicAddressAffinity
