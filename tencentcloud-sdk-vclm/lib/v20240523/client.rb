@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询生视频任务
+
+        # @param request: Request instance for DescribeAigcVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::DescribeAigcVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::DescribeAigcVideoJobResponse`
+        def DescribeAigcVideoJob(request)
+          body = send_request('DescribeAigcVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcVideoJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 通过JobId提交请求，获取人像驱动任务的结果信息。
 
         # @param request: Request instance for DescribeHumanActorJob.
@@ -280,6 +304,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeVideoVoiceJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交生视频任务
+
+        # @param request: Request instance for SubmitAigcVideoJob.
+        # @type request: :class:`Tencentcloud::vclm::V20240523::SubmitAigcVideoJobRequest`
+        # @rtype: :class:`Tencentcloud::vclm::V20240523::SubmitAigcVideoJobResponse`
+        def SubmitAigcVideoJob(request)
+          body = send_request('SubmitAigcVideoJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitAigcVideoJobResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -6363,6 +6363,46 @@ module TencentCloud
         end
       end
 
+      # DescribeNotificationContentTemplateSupports请求参数结构体
+      class DescribeNotificationContentTemplateSupportsRequest < TencentCloud::Common::AbstractModel
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+
+        attr_accessor :MonitorType
+
+        def initialize(monitortype=nil)
+          @MonitorType = monitortype
+        end
+
+        def deserialize(params)
+          @MonitorType = params['MonitorType']
+        end
+      end
+
+      # DescribeNotificationContentTemplateSupports返回参数结构体
+      class DescribeNotificationContentTemplateSupportsResponse < TencentCloud::Common::AbstractModel
+        # @param Support: 配置详情
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Support: :class:`Tencentcloud::Monitor.v20180724.models.NotificationContentTemplateSupport`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Support, :RequestId
+
+        def initialize(support=nil, requestid=nil)
+          @Support = support
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Support'].nil?
+            @Support = NotificationContentTemplateSupport.new
+            @Support.deserialize(params['Support'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePhoneAlarmFlowTotalCount请求参数结构体
       class DescribePhoneAlarmFlowTotalCountRequest < TencentCloud::Common::AbstractModel
         # @param Module: 默认monitor
@@ -11786,14 +11826,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 1
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 1
-        deprecate :AlarmNotifyType, :none, 2026, 1
-        deprecate :AlarmNotifyType=, :none, 2026, 1
-        deprecate :EventID, :none, 2026, 1
-        deprecate :EventID=, :none, 2026, 1
-        deprecate :RuleID, :none, 2026, 1
-        deprecate :RuleID=, :none, 2026, 1
+        deprecate :AlarmNotifyPeriod, :none, 2026, 2
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 2
+        deprecate :AlarmNotifyType, :none, 2026, 2
+        deprecate :AlarmNotifyType=, :none, 2026, 2
+        deprecate :EventID, :none, 2026, 2
+        deprecate :EventID=, :none, 2026, 2
+        deprecate :RuleID, :none, 2026, 2
+        deprecate :RuleID=, :none, 2026, 2
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -12446,6 +12486,70 @@ module TencentCloud
         def deserialize(params)
           @ContentTmplID = params['ContentTmplID']
           @NoticeID = params['NoticeID']
+        end
+      end
+
+      # 告警通知内容模板支持的变量或者函数列表
+      class NotificationContentTemplateSupport < TencentCloud::Common::AbstractModel
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param Variables: 支持的变量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Variables: Array
+        # @param Functions: 支持的函数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Functions: Array
+
+        attr_accessor :MonitorType, :Variables, :Functions
+
+        def initialize(monitortype=nil, variables=nil, functions=nil)
+          @MonitorType = monitortype
+          @Variables = variables
+          @Functions = functions
+        end
+
+        def deserialize(params)
+          @MonitorType = params['MonitorType']
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              notificationcontenttemplatesupportdetail_tmp = NotificationContentTemplateSupportDetail.new
+              notificationcontenttemplatesupportdetail_tmp.deserialize(i)
+              @Variables << notificationcontenttemplatesupportdetail_tmp
+            end
+          end
+          unless params['Functions'].nil?
+            @Functions = []
+            params['Functions'].each do |i|
+              notificationcontenttemplatesupportdetail_tmp = NotificationContentTemplateSupportDetail.new
+              notificationcontenttemplatesupportdetail_tmp.deserialize(i)
+              @Functions << notificationcontenttemplatesupportdetail_tmp
+            end
+          end
+        end
+      end
+
+      # 告警通知内容模板支持的变量或者函数
+      class NotificationContentTemplateSupportDetail < TencentCloud::Common::AbstractModel
+        # @param Name: 变量/函数名称
+        # @type Name: String
+        # @param Desc: 描述
+        # @type Desc: String
+        # @param Example: 示例
+        # @type Example: String
+
+        attr_accessor :Name, :Desc, :Example
+
+        def initialize(name=nil, desc=nil, example=nil)
+          @Name = name
+          @Desc = desc
+          @Example = example
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Desc = params['Desc']
+          @Example = params['Example']
         end
       end
 
@@ -14689,10 +14793,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 1
-        deprecate :MaxBlockSize=, :none, 2026, 1
-        deprecate :Label, :none, 2026, 1
-        deprecate :Label=, :none, 2026, 1
+        deprecate :MaxBlockSize, :none, 2026, 2
+        deprecate :MaxBlockSize=, :none, 2026, 2
+        deprecate :Label, :none, 2026, 2
+        deprecate :Label=, :none, 2026, 2
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil)
           @URL = url

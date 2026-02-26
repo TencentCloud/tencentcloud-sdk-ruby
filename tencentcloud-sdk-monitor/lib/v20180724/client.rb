@@ -514,6 +514,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 之前TPS的接口，迁移后已经不需要该功能
+
         # 创建全局告警通知渠道。集群内创建的告警规则如果未配置告警通知渠道，默认走全局告警通知渠道（建议在控制台创建告警，集群内创建告警不易维护）
 
         # @param request: Request instance for CreatePrometheusGlobalNotification.
@@ -1936,6 +1938,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询告警通知内容模板支持的变量或者函数列表
+
+        # @param request: Request instance for DescribeNotificationContentTemplateSupports.
+        # @type request: :class:`Tencentcloud::monitor::V20180724::DescribeNotificationContentTemplateSupportsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20180724::DescribeNotificationContentTemplateSupportsResponse`
+        def DescribeNotificationContentTemplateSupports(request)
+          body = send_request('DescribeNotificationContentTemplateSupports', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNotificationContentTemplateSupportsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询周期内电话流水总数
 
         # @param request: Request instance for DescribePhoneAlarmFlowTotalCount.
@@ -2295,6 +2321,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 之前TPS的接口，迁移后已经不需要
 
         # 查询全局告警通知渠道
 
@@ -3316,6 +3344,8 @@ module TencentCloud
         rescue StandardError => e
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
+
+        # 之前TPS接口，迁移后不需要
 
         # 修改全局告警通知渠道
 

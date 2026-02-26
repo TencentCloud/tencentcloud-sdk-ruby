@@ -68,6 +68,38 @@ module TencentCloud
         end
       end
 
+      # DeleteNoticeContentTmpls请求参数结构体
+      class DeleteNoticeContentTmplsRequest < TencentCloud::Common::AbstractModel
+        # @param TmplIDs: 要删除的模板id
+        # @type TmplIDs: Array
+
+        attr_accessor :TmplIDs
+
+        def initialize(tmplids=nil)
+          @TmplIDs = tmplids
+        end
+
+        def deserialize(params)
+          @TmplIDs = params['TmplIDs']
+        end
+      end
+
+      # DeleteNoticeContentTmpls返回参数结构体
+      class DeleteNoticeContentTmplsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAlarmNotifyHistories请求参数结构体
       class DescribeAlarmNotifyHistoriesRequest < TencentCloud::Common::AbstractModel
         # @param MonitorType: 监控类型
@@ -123,6 +155,97 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNoticeContentTmpl请求参数结构体
+      class DescribeNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: 分页数
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param TmplIDs: 指定模板ID查询，查询参数都为空则默认查询账号下所有模板
+        # @type TmplIDs: Array
+        # @param TmplName: 指定模板名称查询，查询参数都为空则默认查询账号下所有模板
+        # @type TmplName: String
+        # @param NoticeID: 指定通知模板ID查询，查询参数都为空则默认查询账号下所有模板
+        # @type NoticeID: String
+        # @param TmplLanguage: 模板语言 en/zh 缺省不过滤
+        # @type TmplLanguage: String
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+
+        attr_accessor :PageNumber, :PageSize, :TmplIDs, :TmplName, :NoticeID, :TmplLanguage, :MonitorType
+
+        def initialize(pagenumber=nil, pagesize=nil, tmplids=nil, tmplname=nil, noticeid=nil, tmpllanguage=nil, monitortype=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TmplIDs = tmplids
+          @TmplName = tmplname
+          @NoticeID = noticeid
+          @TmplLanguage = tmpllanguage
+          @MonitorType = monitortype
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TmplIDs = params['TmplIDs']
+          @TmplName = params['TmplName']
+          @NoticeID = params['NoticeID']
+          @TmplLanguage = params['TmplLanguage']
+          @MonitorType = params['MonitorType']
+        end
+      end
+
+      # DescribeNoticeContentTmpl返回参数结构体
+      class DescribeNoticeContentTmplResponse < TencentCloud::Common::AbstractModel
+        # @param NoticeContentTmpls: 自定义通知内容模板
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NoticeContentTmpls: Array
+        # @param NoticeContentTmplBindPolicyCounts: 通知内容模板绑定的告警策略数量
+        # @type NoticeContentTmplBindPolicyCounts: Array
+        # @param PageNumber: 分页数
+        # @type PageNumber: Integer
+        # @param PageSize: 分页大小
+        # @type PageSize: Integer
+        # @param TotalCount: 结果总数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NoticeContentTmpls, :NoticeContentTmplBindPolicyCounts, :PageNumber, :PageSize, :TotalCount, :RequestId
+
+        def initialize(noticecontenttmpls=nil, noticecontenttmplbindpolicycounts=nil, pagenumber=nil, pagesize=nil, totalcount=nil, requestid=nil)
+          @NoticeContentTmpls = noticecontenttmpls
+          @NoticeContentTmplBindPolicyCounts = noticecontenttmplbindpolicycounts
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['NoticeContentTmpls'].nil?
+            @NoticeContentTmpls = []
+            params['NoticeContentTmpls'].each do |i|
+              noticecontenttmpl_tmp = NoticeContentTmpl.new
+              noticecontenttmpl_tmp.deserialize(i)
+              @NoticeContentTmpls << noticecontenttmpl_tmp
+            end
+          end
+          unless params['NoticeContentTmplBindPolicyCounts'].nil?
+            @NoticeContentTmplBindPolicyCounts = []
+            params['NoticeContentTmplBindPolicyCounts'].each do |i|
+              noticecontenttmplbindpolicycount_tmp = NoticeContentTmplBindPolicyCount.new
+              noticecontenttmplbindpolicycount_tmp.deserialize(i)
+              @NoticeContentTmplBindPolicyCounts << noticecontenttmplbindpolicycount_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -212,6 +335,127 @@ module TencentCloud
             @Template = FeiShuRobotNoticeTmpl.new
             @Template.deserialize(params['Template'])
           end
+        end
+      end
+
+      # ModifyNoticeContentTmpl请求参数结构体
+      class ModifyNoticeContentTmplRequest < TencentCloud::Common::AbstractModel
+        # @param TmplName: 模板名称
+        # @type TmplName: String
+        # @param TmplContents: 模板内容
+        # @type TmplContents: :class:`Tencentcloud::Monitor.v20230616.models.NoticeContentTmplItem`
+        # @param TmplID: 需要修改的模板ID
+        # @type TmplID: String
+
+        attr_accessor :TmplName, :TmplContents, :TmplID
+
+        def initialize(tmplname=nil, tmplcontents=nil, tmplid=nil)
+          @TmplName = tmplname
+          @TmplContents = tmplcontents
+          @TmplID = tmplid
+        end
+
+        def deserialize(params)
+          @TmplName = params['TmplName']
+          unless params['TmplContents'].nil?
+            @TmplContents = NoticeContentTmplItem.new
+            @TmplContents.deserialize(params['TmplContents'])
+          end
+          @TmplID = params['TmplID']
+        end
+      end
+
+      # ModifyNoticeContentTmpl返回参数结构体
+      class ModifyNoticeContentTmplResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 自定义通知内容模板
+      class NoticeContentTmpl < TencentCloud::Common::AbstractModel
+        # @param TmplID: 自定义通知内容模板id，唯一id
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TmplID: String
+        # @param TmplName: 自定义通知内容模板名
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TmplName: String
+        # @param TmplContents: 通知内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TmplContents: :class:`Tencentcloud::Monitor.v20230616.models.NoticeContentTmplItem`
+        # @param CreateTime: Unix时间戳，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: Integer
+        # @param UpdateTime: Unix时间戳，秒
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type UpdateTime: Integer
+        # @param LastModifier: 最后修改人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastModifier: String
+        # @param Creator: 创建人
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Creator: String
+        # @param MonitorType: 监控类型
+        # @type MonitorType: String
+        # @param TmplLanguage: 模板语言 en/zh
+        # @type TmplLanguage: String
+
+        attr_accessor :TmplID, :TmplName, :TmplContents, :CreateTime, :UpdateTime, :LastModifier, :Creator, :MonitorType, :TmplLanguage
+
+        def initialize(tmplid=nil, tmplname=nil, tmplcontents=nil, createtime=nil, updatetime=nil, lastmodifier=nil, creator=nil, monitortype=nil, tmpllanguage=nil)
+          @TmplID = tmplid
+          @TmplName = tmplname
+          @TmplContents = tmplcontents
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @LastModifier = lastmodifier
+          @Creator = creator
+          @MonitorType = monitortype
+          @TmplLanguage = tmpllanguage
+        end
+
+        def deserialize(params)
+          @TmplID = params['TmplID']
+          @TmplName = params['TmplName']
+          unless params['TmplContents'].nil?
+            @TmplContents = NoticeContentTmplItem.new
+            @TmplContents.deserialize(params['TmplContents'])
+          end
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @LastModifier = params['LastModifier']
+          @Creator = params['Creator']
+          @MonitorType = params['MonitorType']
+          @TmplLanguage = params['TmplLanguage']
+        end
+      end
+
+      # 通知内容模板绑定告警策略数量
+      class NoticeContentTmplBindPolicyCount < TencentCloud::Common::AbstractModel
+        # @param NoticeContentTmplID: 通知内容模板ID
+        # @type NoticeContentTmplID: String
+        # @param BindCount: 绑定告警策略数量
+        # @type BindCount: Integer
+
+        attr_accessor :NoticeContentTmplID, :BindCount
+
+        def initialize(noticecontenttmplid=nil, bindcount=nil)
+          @NoticeContentTmplID = noticecontenttmplid
+          @BindCount = bindcount
+        end
+
+        def deserialize(params)
+          @NoticeContentTmplID = params['NoticeContentTmplID']
+          @BindCount = params['BindCount']
         end
       end
 

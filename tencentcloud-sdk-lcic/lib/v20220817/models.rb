@@ -4106,6 +4106,54 @@ module TencentCloud
         end
       end
 
+      # LoginOriginIdWithRoom请求参数结构体
+      class LoginOriginIdWithRoomRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>低代码互动课堂的SdkAppId。</p>
+        # @type SdkAppId: Integer
+        # @param OriginId: <p>用户在客户系统的Id，需要在同一应用下唯一。</p>
+        # @type OriginId: String
+        # @param RoomId: <p>课堂 ID</p>
+        # @type RoomId: Integer
+
+        attr_accessor :SdkAppId, :OriginId, :RoomId
+
+        def initialize(sdkappid=nil, originid=nil, roomid=nil)
+          @SdkAppId = sdkappid
+          @OriginId = originid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @OriginId = params['OriginId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # LoginOriginIdWithRoom返回参数结构体
+      class LoginOriginIdWithRoomResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>用户Id。</p>
+        # @type UserId: String
+        # @param Token: <p>登录/注册成功后返回登录态token。有效期7天。</p>
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserId, :Token, :RequestId
+
+        def initialize(userid=nil, token=nil, requestid=nil)
+          @UserId = userid
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # LoginUser请求参数结构体
       class LoginUserRequest < TencentCloud::Common::AbstractModel
         # @param UserId: 注册获取的用户id。
@@ -4127,6 +4175,50 @@ module TencentCloud
         # @param UserId: 用户Id。
         # @type UserId: String
         # @param Token: 注册成功后返回登录态token，有效期7天。token过期后可以通过调用“登录”或“源账号登录”进行更新。
+        # @type Token: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :UserId, :Token, :RequestId
+
+        def initialize(userid=nil, token=nil, requestid=nil)
+          @UserId = userid
+          @Token = token
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @Token = params['Token']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # LoginUserWithRoom请求参数结构体
+      class LoginUserWithRoomRequest < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>注册获取的用户id。</p>
+        # @type UserId: String
+        # @param RoomId: <p>课堂 ID</p>
+        # @type RoomId: Integer
+
+        attr_accessor :UserId, :RoomId
+
+        def initialize(userid=nil, roomid=nil)
+          @UserId = userid
+          @RoomId = roomid
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @RoomId = params['RoomId']
+        end
+      end
+
+      # LoginUserWithRoom返回参数结构体
+      class LoginUserWithRoomResponse < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>用户Id。</p>
+        # @type UserId: String
+        # @param Token: <p>注册成功后返回登录态token，有效期7天。token过期后可以通过调用“登录”或“源账号登录”进行更新。</p>
         # @type Token: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

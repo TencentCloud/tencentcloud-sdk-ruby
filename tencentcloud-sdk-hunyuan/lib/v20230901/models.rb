@@ -605,6 +605,112 @@ module TencentCloud
         end
       end
 
+      # CreateGlossaryEntry请求参数结构体
+      class CreateGlossaryEntryRequest < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库 ID
+        # @type GlossaryId: String
+        # @param Entries: 术语条目列表，单次请求限制100个
+        # @type Entries: Array
+
+        attr_accessor :GlossaryId, :Entries
+
+        def initialize(glossaryid=nil, entries=nil)
+          @GlossaryId = glossaryid
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentrycreateitem_tmp = GlossaryEntryCreateItem.new
+              glossaryentrycreateitem_tmp.deserialize(i)
+              @Entries << glossaryentrycreateitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGlossaryEntry返回参数结构体
+      class CreateGlossaryEntryResponse < TencentCloud::Common::AbstractModel
+        # @param Entries: 成功创建的术语条目
+        # @type Entries: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Entries, :RequestId
+
+        def initialize(entries=nil, requestid=nil)
+          @Entries = entries
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentry_tmp = GlossaryEntry.new
+              glossaryentry_tmp.deserialize(i)
+              @Entries << glossaryentry_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGlossary请求参数结构体
+      class CreateGlossaryRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 术语库名称，限制50个字符
+        # @type Name: String
+        # @param Source: 源语言代码，取值范围：zh(中文)、en(英语)、fr(法语)、pt(葡萄牙语)、es(西班牙语)、ja(日语)、tr(土耳其语)、ru(俄语)、ar(阿拉伯语)、ko(韩语)、th(泰语)、it(意大利语)、de(德语)、vi(越南语)、ms(马来语)、id(印尼语)、yue(粤语)、zh-TR(繁体中文)、hi(印地语)、fil(菲律宾语)、pl(波兰语)、cs(捷克语)、nl(荷兰语)、km(高棉语)、my(缅甸语)、fa(波斯语)、gu(古吉拉特语)、ur(乌尔都语)、te(泰卢固语)、mr(马拉地语)、he(希伯来语)、bn(孟加拉语)、ta(泰米尔语)、uk(乌克兰语)、bo(藏语)、kk(哈萨克语)、mn(蒙古语)、ug(维吾尔语)
+        # @type Source: String
+        # @param Target: 目标语言代码，取值范围：zh(中文)、en(英语)、fr(法语)、pt(葡萄牙语)、es(西班牙语)、ja(日语)、tr(土耳其语)、ru(俄语)、ar(阿拉伯语)、ko(韩语)、th(泰语)、it(意大利语)、de(德语)、vi(越南语)、ms(马来语)、id(印尼语)、yue(粤语)、zh-TR(繁体中文)、hi(印地语)、fil(菲律宾语)、pl(波兰语)、cs(捷克语)、nl(荷兰语)、km(高棉语)、my(缅甸语)、fa(波斯语)、gu(古吉拉特语)、ur(乌尔都语)、te(泰卢固语)、mr(马拉地语)、he(希伯来语)、bn(孟加拉语)、ta(泰米尔语)、uk(乌克兰语)、bo(藏语)、kk(哈萨克语)、mn(蒙古语)、ug(维吾尔语)
+        # @type Target: String
+        # @param Description: 术语库描述，限制255个字符
+        # @type Description: String
+
+        attr_accessor :Name, :Source, :Target, :Description
+
+        def initialize(name=nil, source=nil, target=nil, description=nil)
+          @Name = name
+          @Source = source
+          @Target = target
+          @Description = description
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Source = params['Source']
+          @Target = params['Target']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateGlossary返回参数结构体
+      class CreateGlossaryResponse < TencentCloud::Common::AbstractModel
+        # @param Name: 术语库名称
+        # @type Name: String
+        # @param GlossaryId: 术语库唯一 ID
+        # @type GlossaryId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Name, :GlossaryId, :RequestId
+
+        def initialize(name=nil, glossaryid=nil, requestid=nil)
+          @Name = name
+          @GlossaryId = glossaryid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @GlossaryId = params['GlossaryId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateThread请求参数结构体
       class CreateThreadRequest < TencentCloud::Common::AbstractModel
 
@@ -648,6 +754,81 @@ module TencentCloud
             @ToolResources = ThreadToolResources.new
             @ToolResources.deserialize(params['ToolResources'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGlossaryEntry请求参数结构体
+      class DeleteGlossaryEntryRequest < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库 ID
+        # @type GlossaryId: String
+        # @param Entries: 需要更新的术语条目列表，单次请求限制100个
+        # @type Entries: Array
+
+        attr_accessor :GlossaryId, :Entries
+
+        def initialize(glossaryid=nil, entries=nil)
+          @GlossaryId = glossaryid
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentrydeleteitem_tmp = GlossaryEntryDeleteItem.new
+              glossaryentrydeleteitem_tmp.deserialize(i)
+              @Entries << glossaryentrydeleteitem_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGlossaryEntry返回参数结构体
+      class DeleteGlossaryEntryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGlossary请求参数结构体
+      class DeleteGlossaryRequest < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库 ID
+        # @type GlossaryId: String
+
+        attr_accessor :GlossaryId
+
+        def initialize(glossaryid=nil)
+          @GlossaryId = glossaryid
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+        end
+      end
+
+      # DeleteGlossary返回参数结构体
+      class DeleteGlossaryResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1291,6 +1472,122 @@ module TencentCloud
         end
       end
 
+      # 术语库
+      class Glossary < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库唯一 ID
+        # @type GlossaryId: String
+        # @param Name: 术语库名称
+        # @type Name: String
+        # @param Description: 术语库描述
+        # @type Description: String
+        # @param Source: 源语言代码
+        # @type Source: String
+        # @param Target: 目标语言代码
+        # @type Target: String
+
+        attr_accessor :GlossaryId, :Name, :Description, :Source, :Target
+
+        def initialize(glossaryid=nil, name=nil, description=nil, source=nil, target=nil)
+          @GlossaryId = glossaryid
+          @Name = name
+          @Description = description
+          @Source = source
+          @Target = target
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @Source = params['Source']
+          @Target = params['Target']
+        end
+      end
+
+      # 术语条目
+      class GlossaryEntry < TencentCloud::Common::AbstractModel
+        # @param SourceTerm: 源语言术语，限制1000字符
+        # @type SourceTerm: String
+        # @param TargetTerm: 目标语言术语，限制1000字符
+        # @type TargetTerm: String
+        # @param EntryId: 术语条目 ID
+        # @type EntryId: String
+
+        attr_accessor :SourceTerm, :TargetTerm, :EntryId
+
+        def initialize(sourceterm=nil, targetterm=nil, entryid=nil)
+          @SourceTerm = sourceterm
+          @TargetTerm = targetterm
+          @EntryId = entryid
+        end
+
+        def deserialize(params)
+          @SourceTerm = params['SourceTerm']
+          @TargetTerm = params['TargetTerm']
+          @EntryId = params['EntryId']
+        end
+      end
+
+      # 术语条目
+      class GlossaryEntryCreateItem < TencentCloud::Common::AbstractModel
+        # @param SourceTerm: 源语言术语，限制1000字符
+        # @type SourceTerm: String
+        # @param TargetTerm: 目标语言术语，限制1000字符
+        # @type TargetTerm: String
+
+        attr_accessor :SourceTerm, :TargetTerm
+
+        def initialize(sourceterm=nil, targetterm=nil)
+          @SourceTerm = sourceterm
+          @TargetTerm = targetterm
+        end
+
+        def deserialize(params)
+          @SourceTerm = params['SourceTerm']
+          @TargetTerm = params['TargetTerm']
+        end
+      end
+
+      # 术语条目
+      class GlossaryEntryDeleteItem < TencentCloud::Common::AbstractModel
+        # @param EntryId: 术语条目 ID
+        # @type EntryId: String
+
+        attr_accessor :EntryId
+
+        def initialize(entryid=nil)
+          @EntryId = entryid
+        end
+
+        def deserialize(params)
+          @EntryId = params['EntryId']
+        end
+      end
+
+      # 术语条目
+      class GlossaryEntryUpdateItem < TencentCloud::Common::AbstractModel
+        # @param EntryId: 术语条目 ID
+        # @type EntryId: String
+        # @param SourceTerm: 源语言术语，限制1000字符
+        # @type SourceTerm: String
+        # @param TargetTerm: 目标语言术语，限制1000字符
+        # @type TargetTerm: String
+
+        attr_accessor :EntryId, :SourceTerm, :TargetTerm
+
+        def initialize(entryid=nil, sourceterm=nil, targetterm=nil)
+          @EntryId = entryid
+          @SourceTerm = sourceterm
+          @TargetTerm = targetterm
+        end
+
+        def deserialize(params)
+          @EntryId = params['EntryId']
+          @SourceTerm = params['SourceTerm']
+          @TargetTerm = params['TargetTerm']
+        end
+      end
+
       # GroupChatCompletions请求参数结构体
       class GroupChatCompletionsRequest < TencentCloud::Common::AbstractModel
         # @param Model: 模型名称，可选值包括 hunyuan-large-role-group。各模型介绍请阅读 [产品概述](https://cloud.tencent.com/document/product/1729/104753) 中的说明。注意：不同的模型计费不同，请根据 [购买指南](https://cloud.tencent.com/document/product/1729/97731) 按需调用。
@@ -1697,6 +1994,128 @@ module TencentCloud
 
         def deserialize(params)
           @Text = params['Text']
+        end
+      end
+
+      # ListGlossaryEntry请求参数结构体
+      class ListGlossaryEntryRequest < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库 ID
+        # @type GlossaryId: String
+        # @param Page: 页码，默认 1
+        # @type Page: Integer
+        # @param PageSize: 每页数量，默认 10，最大200
+        # @type PageSize: Integer
+
+        attr_accessor :GlossaryId, :Page, :PageSize
+
+        def initialize(glossaryid=nil, page=nil, pagesize=nil)
+          @GlossaryId = glossaryid
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListGlossaryEntry返回参数结构体
+      class ListGlossaryEntryResponse < TencentCloud::Common::AbstractModel
+        # @param Entries: 术语条目列表
+        # @type Entries: Array
+        # @param Total: 条目总数量
+        # @type Total: Integer
+        # @param Page: 当前页码
+        # @type Page: Integer
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Entries, :Total, :Page, :PageSize, :RequestId
+
+        def initialize(entries=nil, total=nil, page=nil, pagesize=nil, requestid=nil)
+          @Entries = entries
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentry_tmp = GlossaryEntry.new
+              glossaryentry_tmp.deserialize(i)
+              @Entries << glossaryentry_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ListGlossary请求参数结构体
+      class ListGlossaryRequest < TencentCloud::Common::AbstractModel
+        # @param Page: 页码，默认 1
+        # @type Page: Integer
+        # @param PageSize: 每页数量，默认 10，最大 100
+        # @type PageSize: Integer
+
+        attr_accessor :Page, :PageSize
+
+        def initialize(page=nil, pagesize=nil)
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListGlossary返回参数结构体
+      class ListGlossaryResponse < TencentCloud::Common::AbstractModel
+        # @param Glossaries: 术语库列表
+        # @type Glossaries: Array
+        # @param Total: 术语库总数量
+        # @type Total: Integer
+        # @param Page: 当前页码
+        # @type Page: Integer
+        # @param PageSize: 每页数量
+        # @type PageSize: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Glossaries, :Total, :Page, :PageSize, :RequestId
+
+        def initialize(glossaries=nil, total=nil, page=nil, pagesize=nil, requestid=nil)
+          @Glossaries = glossaries
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Glossaries'].nil?
+            @Glossaries = []
+            params['Glossaries'].each do |i|
+              glossary_tmp = Glossary.new
+              glossary_tmp.deserialize(i)
+              @Glossaries << glossary_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -3078,6 +3497,60 @@ module TencentCloud
         def deserialize(params)
           @Role = params['Role']
           @Content = params['Content']
+        end
+      end
+
+      # UpdateGlossaryEntry请求参数结构体
+      class UpdateGlossaryEntryRequest < TencentCloud::Common::AbstractModel
+        # @param GlossaryId: 术语库 ID
+        # @type GlossaryId: String
+        # @param Entries: 需要更新的术语条目列表，单次请求限制100个
+        # @type Entries: Array
+
+        attr_accessor :GlossaryId, :Entries
+
+        def initialize(glossaryid=nil, entries=nil)
+          @GlossaryId = glossaryid
+          @Entries = entries
+        end
+
+        def deserialize(params)
+          @GlossaryId = params['GlossaryId']
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentryupdateitem_tmp = GlossaryEntryUpdateItem.new
+              glossaryentryupdateitem_tmp.deserialize(i)
+              @Entries << glossaryentryupdateitem_tmp
+            end
+          end
+        end
+      end
+
+      # UpdateGlossaryEntry返回参数结构体
+      class UpdateGlossaryEntryResponse < TencentCloud::Common::AbstractModel
+        # @param Entries: 成功更新的术语条目
+        # @type Entries: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Entries, :RequestId
+
+        def initialize(entries=nil, requestid=nil)
+          @Entries = entries
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Entries'].nil?
+            @Entries = []
+            params['Entries'].each do |i|
+              glossaryentry_tmp = GlossaryEntry.new
+              glossaryentry_tmp.deserialize(i)
+              @Entries << glossaryentry_tmp
+            end
+          end
+          @RequestId = params['RequestId']
         end
       end
 

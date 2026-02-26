@@ -82,6 +82,61 @@ module TencentCloud
         end
       end
 
+      # DescribeAigcVideoJob请求参数结构体
+      class DescribeAigcVideoJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务ID。
+
+        # 示例值：1194931538865782784
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeAigcVideoJob返回参数结构体
+      class DescribeAigcVideoJobResponse < TencentCloud::Common::AbstractModel
+        # @param Status: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # 示例值：RUN
+        # @type Status: String
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # 示例值：FailedOperation.DriverFailed
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # 示例值：驱动失败
+        # @type ErrorMessage: String
+        # @param ResultUrl: 结果视频 URL。有效期 24 小时。
+
+        # 示例值：https://console.cloud.tencent.com/result.mp4
+        # @type ResultUrl: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorCode, :ErrorMessage, :ResultUrl, :RequestId
+
+        def initialize(status=nil, errorcode=nil, errormessage=nil, resulturl=nil, requestid=nil)
+          @Status = status
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @ResultUrl = resulturl
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @ResultUrl = params['ResultUrl']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeHumanActorJob请求参数结构体
       class DescribeHumanActorJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务ID。
@@ -781,6 +836,65 @@ module TencentCloud
         end
       end
 
+      # SubmitAigcVideoJob请求参数结构体
+      class SubmitAigcVideoJobRequest < TencentCloud::Common::AbstractModel
+        # @param Vendor: <p>模型名称。</p><p>枚举值：</p><p>● Vidu；</p><p>● Kling：可灵；</p><p>● SA；</p><p>● VO；</p><p>● HY：混元；</p><p>● YT：优图；</p><p>示例值：Vidu</p>
+        # @type Vendor: String
+        # @param Model: <p>模型版本。</p><p>按照【厂商-版本号】</p><p>枚举值：</p><p>● 当ModelName为Vidu时，可选值[q2, q2-pro, q2-turbo]</p><p>● 当ModelName为Kling时，可选值[v1.6, v2.0, v2.1, v2.5 , v2.6]</p><p>● 当ModelName为SA时，可选值[SA2]</p><p>● 当ModelName为VO时，可选值[V3, V3.1, V3-Fast, V3.1-Fast]</p><p>● 当ModelName为HY时，默认选择：v1.5</p><p>● 当ModelName为YT时，默认值选择：v2.0</p>
+        # @type Model: String
+        # @param ModelParam: <p>模型参数Json-Format字符串</p>
+        # @type ModelParam: String
+        # @param Prompt: <p>正向文本提示词。不能超过2000个字符</p><p>示例值：一只小猫在草地奔跑</p>
+        # @type Prompt: String
+        # @param LogoAdd: <p>为生成结果图添加显式水印标识的开关，默认为1。<br>1：添加。<br>0：不添加。<br>其他数值：默认按1处理。<br>建议您使用显著标识来提示结果图使用了 AI 绘画技术，是 AI 生成的图片。<br>示例值：1</p>
+        # @type LogoAdd: Integer
+        # @param LogoParam: <p>标识内容设置。<br>默认在生成结果图右下角添加“图片由 AI 生成”字样，您可根据自身需要替换为其他的标识图片。</p>
+        # @type LogoParam: :class:`Tencentcloud::Vclm.v20240523.models.LogoParam`
+
+        attr_accessor :Vendor, :Model, :ModelParam, :Prompt, :LogoAdd, :LogoParam
+
+        def initialize(vendor=nil, model=nil, modelparam=nil, prompt=nil, logoadd=nil, logoparam=nil)
+          @Vendor = vendor
+          @Model = model
+          @ModelParam = modelparam
+          @Prompt = prompt
+          @LogoAdd = logoadd
+          @LogoParam = logoparam
+        end
+
+        def deserialize(params)
+          @Vendor = params['Vendor']
+          @Model = params['Model']
+          @ModelParam = params['ModelParam']
+          @Prompt = params['Prompt']
+          @LogoAdd = params['LogoAdd']
+          unless params['LogoParam'].nil?
+            @LogoParam = LogoParam.new
+            @LogoParam.deserialize(params['LogoParam'])
+          end
+        end
+      end
+
+      # SubmitAigcVideoJob返回参数结构体
+      class SubmitAigcVideoJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobId: <p>任务ID。</p>
+        # @type JobId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobId, :RequestId
+
+        def initialize(jobid=nil, requestid=nil)
+          @JobId = jobid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SubmitHumanActorJob请求参数结构体
       class SubmitHumanActorJobRequest < TencentCloud::Common::AbstractModel
         # @param Prompt: 文本提示词，不能超过5000字符。
@@ -1348,7 +1462,7 @@ module TencentCloud
 
       # SubmitVideoFaceFusionJob请求参数结构体
       class SubmitVideoFaceFusionJobRequest < TencentCloud::Common::AbstractModel
-        # @param VideoUrl: 视频素材下载地址。用户自定义模版视频下载地址，使用前需要先调用视频审核接口进行内容审核。视频限制：分辨率≤4k，fps≤25，视频大小≤1G，时长≤20 秒，支持格式mp4。
+        # @param VideoUrl: 视频素材下载地址。用户自定义模板视频下载地址，使用前需要先调用视频审核接口进行内容审核。视频限制：分辨率≤4k，fps≤25，视频大小≤1G，时长≤20 秒，支持格式mp4。
 
         # 输入视频建议：
         # 姿态：人脸相对镜头水平方向角度转动不超过 90°,垂直方向角度转动不超过 20°。遮挡：脸部遮挡面积不超过 50%，不要完全遮挡五官，不要有半透明遮挡（强光，玻璃，透明眼镜等）、以及细碎离散的脸部遮挡（如飘落的花瓣）。妆容及光照：避免浓妆、复杂妆容，避免复杂光照、闪烁，这些属性无法完全恢复，并对稳定性有影响。针对特殊表情和微表情，针对局部肌肉控制下的微表情，以及过于夸张的特殊表情等不保证表情效果完全恢复。

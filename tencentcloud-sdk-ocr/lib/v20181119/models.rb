@@ -1751,6 +1751,65 @@ module TencentCloud
         end
       end
 
+      # DescribeMarkEssayAgentJob请求参数结构体
+      class DescribeMarkEssayAgentJobRequest < TencentCloud::Common::AbstractModel
+        # @param JobId: 任务唯一ID。由服务端生成。
+        # @type JobId: String
+
+        attr_accessor :JobId
+
+        def initialize(jobid=nil)
+          @JobId = jobid
+        end
+
+        def deserialize(params)
+          @JobId = params['JobId']
+        end
+      end
+
+      # DescribeMarkEssayAgentJob返回参数结构体
+      class DescribeMarkEssayAgentJobResponse < TencentCloud::Common::AbstractModel
+        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @type Angle: Float
+        # @param SentenceSuggests: 配置结构化文本信息。
+        # @type SentenceSuggests: Array
+        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorCode: String
+        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @type ErrorMessage: String
+        # @param JobStatus: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @type JobStatus: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Angle, :SentenceSuggests, :ErrorCode, :ErrorMessage, :JobStatus, :RequestId
+
+        def initialize(angle=nil, sentencesuggests=nil, errorcode=nil, errormessage=nil, jobstatus=nil, requestid=nil)
+          @Angle = angle
+          @SentenceSuggests = sentencesuggests
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+          @JobStatus = jobstatus
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Angle = params['Angle']
+          unless params['SentenceSuggests'].nil?
+            @SentenceSuggests = []
+            params['SentenceSuggests'].each do |i|
+              markessaysuggestions_tmp = MarkEssaySuggestions.new
+              markessaysuggestions_tmp.deserialize(i)
+              @SentenceSuggests << markessaysuggestions_tmp
+            end
+          end
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
+          @JobStatus = params['JobStatus']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQuestionMarkAgentJob请求参数结构体
       class DescribeQuestionMarkAgentJobRequest < TencentCloud::Common::AbstractModel
         # @param JobId: 任务唯一ID。由服务端生成。
@@ -6699,6 +6758,66 @@ module TencentCloud
         end
       end
 
+      # 作文批改建议
+      class MarkEssaySuggestions < TencentCloud::Common::AbstractModel
+        # @param ID: 作文批改序号
+        # @type ID: Integer
+        # @param Type: 批改类型：主要包括：词汇、语句
+        # @type Type: String
+        # @param SubType: 子类型，基于Type返回二级类型
+
+        # 词汇： 错别字、使用拼音、词语误用、词语冗余、词汇贫乏、多字/漏字
+
+        # 语句：语法硬伤、逻辑问题、表达不佳、标点误用、优美句子
+        # @type SubType: String
+        # @param Origin: 原文内容
+        # @type Origin: String
+        # @param Replace: 批改后的内容
+        # @type Replace: String
+        # @param Message: 点评内容
+        # @type Message: String
+        # @param Positions: array[][]二维数组，原文内容可能存在跨行的句子，会有多组坐标返回
+
+        # 切图区域的4个角点坐标, 是个长度为8的数组
+
+        # [0,1,2,3,4,5,6,7]
+
+        # (0,1) 左上角坐标
+        # (2,3) 右上角坐标
+        # (4,5) 右下角坐标
+        # (6,7) 左下角坐标
+        # @type Positions: Array
+
+        attr_accessor :ID, :Type, :SubType, :Origin, :Replace, :Message, :Positions
+
+        def initialize(id=nil, type=nil, subtype=nil, origin=nil, replace=nil, message=nil, positions=nil)
+          @ID = id
+          @Type = type
+          @SubType = subtype
+          @Origin = origin
+          @Replace = replace
+          @Message = message
+          @Positions = positions
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Type = params['Type']
+          @SubType = params['SubType']
+          @Origin = params['Origin']
+          @Replace = params['Replace']
+          @Message = params['Message']
+          unless params['Positions'].nil?
+            @Positions = []
+            params['Positions'].each do |i|
+              positions_tmp = Positions.new
+              positions_tmp.deserialize(i)
+              @Positions << positions_tmp
+            end
+          end
+        end
+      end
+
       # 整张试卷所有题目批改信息
       class MarkInfo < TencentCloud::Common::AbstractModel
         # @param MarkItemTitle: 题目的题干信息
@@ -8062,6 +8181,30 @@ module TencentCloud
             @ImageCoordinates = ImageCoordinates.new
             @ImageCoordinates.deserialize(params['ImageCoordinates'])
           end
+        end
+      end
+
+      # 这是OCR在高精度识别下返回的坐标值，采用的是由一个数组表示4个顶点的坐标构成，如[0,1,2,3,4,5,6,7]
+      # - (0,1) 左上角坐标
+      # - (2,3) 右上角坐标
+      # - (4,5) 右下角坐标
+      # - (6,7) 左下角坐标
+      class Positions < TencentCloud::Common::AbstractModel
+        # @param Position: 这是OCR在高精度识别下返回的坐标值，采用的是由一个数组表示4个顶点的坐标构成，如[0,1,2,3,4,5,6,7]
+        # - (0,1) 左上角坐标
+        # - (2,3) 右上角坐标
+        # - (4,5) 右下角坐标
+        # - (6,7) 左下角坐标
+        # @type Position: Array
+
+        attr_accessor :Position
+
+        def initialize(position=nil)
+          @Position = position
+        end
+
+        def deserialize(params)
+          @Position = params['Position']
         end
       end
 
@@ -11517,6 +11660,54 @@ module TencentCloud
 
         def deserialize(params)
           @JobId = params['JobId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # SubmitMarkEssayAgentJob请求参数结构体
+      class SubmitMarkEssayAgentJobRequest < TencentCloud::Common::AbstractModel
+        # @param ImageBase64List: 图片/PDF的 Base64 值。要求Base64不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。  示例值：/9j/4AAQSkZJRg.....s97n//2Q==
+        # @type ImageBase64List: Array
+        # @param ImageUrlList: 图片/PDF的 Url 地址。要求图片经Base64编码后不超过10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。图片下载时间不超过 3 秒。图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。  示例值：https://ocr-demo-1254418846.cos.ap-guangzhou.myqcloud.com/general/GeneralAccurateOCR/GeneralAccurateOCR1.jpg
+        # @type ImageUrlList: Array
+        # @param PdfPageNumber: 需要识别的PDF页面的对应页码，仅支持PDF单页识别，默认值为1。 示例值：1
+        # @type PdfPageNumber: Integer
+        # @param QuestionConfigMap: 批改信息输出配置，当key对应为1表示开启配置开关。  当key为StructureAndContent  value为1 表示SentenceSuggest返回篇章结构和内容信息，默认只返回词汇、语句
+        # @type QuestionConfigMap: String
+
+        attr_accessor :ImageBase64List, :ImageUrlList, :PdfPageNumber, :QuestionConfigMap
+
+        def initialize(imagebase64list=nil, imageurllist=nil, pdfpagenumber=nil, questionconfigmap=nil)
+          @ImageBase64List = imagebase64list
+          @ImageUrlList = imageurllist
+          @PdfPageNumber = pdfpagenumber
+          @QuestionConfigMap = questionconfigmap
+        end
+
+        def deserialize(params)
+          @ImageBase64List = params['ImageBase64List']
+          @ImageUrlList = params['ImageUrlList']
+          @PdfPageNumber = params['PdfPageNumber']
+          @QuestionConfigMap = params['QuestionConfigMap']
+        end
+      end
+
+      # SubmitMarkEssayAgentJob返回参数结构体
+      class SubmitMarkEssayAgentJobResponse < TencentCloud::Common::AbstractModel
+        # @param JobIds: 任务唯一ID。由服务端生成。 示例值：1334797167793684480
+        # @type JobIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :JobIds, :RequestId
+
+        def initialize(jobids=nil, requestid=nil)
+          @JobIds = jobids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @JobIds = params['JobIds']
           @RequestId = params['RequestId']
         end
       end

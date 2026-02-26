@@ -2999,17 +2999,17 @@ module TencentCloud
 
       # 生命周期管理策略信息
       class LifecyclePolicy < TencentCloud::Common::AbstractModel
-        # @param CreateTime: 生命周期管理策略创建的时间
+        # @param CreateTime: <p>生命周期管理策略创建的时间</p>
         # @type CreateTime: String
-        # @param LifecyclePolicyID: 生命周期管理策略ID
+        # @param LifecyclePolicyID: <p>生命周期管理策略ID</p>
         # @type LifecyclePolicyID: String
-        # @param LifecyclePolicyName: 生命周期管理策略名称
+        # @param LifecyclePolicyName: <p>生命周期管理策略名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifecyclePolicyName: String
-        # @param LifecycleRules: 生命周期管理策略关联的管理规则列表
+        # @param LifecycleRules: <p>生命周期管理策略关联的管理规则列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifecycleRules: Array
-        # @param Paths: 生命周期管理策略关联目录的绝对路径列表
+        # @param Paths: <p>生命周期管理策略关联目录的绝对路径列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Paths: Array
 

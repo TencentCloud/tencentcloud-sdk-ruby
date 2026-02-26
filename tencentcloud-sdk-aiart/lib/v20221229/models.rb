@@ -100,7 +100,7 @@ module TencentCloud
       class FaceInfo < TencentCloud::Common::AbstractModel
         # @param ImageUrls: 用户图 URL 列表
         # @type ImageUrls: Array
-        # @param TemplateFaceRect: 模版图人脸坐标。
+        # @param TemplateFaceRect: 模板图人脸坐标。
         # @type TemplateFaceRect: :class:`Tencentcloud::Aiart.v20221229.models.Rect`
 
         attr_accessor :ImageUrls, :TemplateFaceRect

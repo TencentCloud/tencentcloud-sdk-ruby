@@ -2631,6 +2631,110 @@ module TencentCloud
         end
       end
 
+      # 云联网策略路由下一跳
+      class CcnPolicyBasedRoutingNextHop < TencentCloud::Common::AbstractModel
+        # @param PolicyBasedRoutingNextHopId: 策略路由下一跳ID
+        # @type PolicyBasedRoutingNextHopId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param NextHopRegion: 下一跳地域
+        # @type NextHopRegion: String
+        # @param InstanceId: 关联实例ID
+        # @type InstanceId: String
+        # @param Zone: 可用区
+        # @type Zone: String
+        # @param State: 状态(ENABLE/DISABLE)
+        # @type State: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param InstanceType: 关联实例类型[VPC,DIRECTCONNECT,VPNGW]
+        # @type InstanceType: String
+        # @param NextHopResourceType: 下一跳资源类型[HAVIP,GWLB_ENDPOINT]
+        # @type NextHopResourceType: String
+        # @param NextHopResourceId: 下一跳资源ID
+        # @type NextHopResourceId: String
+        # @param NextHopIp: 下一跳资源ip
+        # @type NextHopIp: String
+        # @param PolicyBasedRoutingRulesCount: 0
+        # @type PolicyBasedRoutingRulesCount: Integer
+
+        attr_accessor :PolicyBasedRoutingNextHopId, :Name, :NextHopRegion, :InstanceId, :Zone, :State, :Description, :InstanceType, :NextHopResourceType, :NextHopResourceId, :NextHopIp, :PolicyBasedRoutingRulesCount
+
+        def initialize(policybasedroutingnexthopid=nil, name=nil, nexthopregion=nil, instanceid=nil, zone=nil, state=nil, description=nil, instancetype=nil, nexthopresourcetype=nil, nexthopresourceid=nil, nexthopip=nil, policybasedroutingrulescount=nil)
+          @PolicyBasedRoutingNextHopId = policybasedroutingnexthopid
+          @Name = name
+          @NextHopRegion = nexthopregion
+          @InstanceId = instanceid
+          @Zone = zone
+          @State = state
+          @Description = description
+          @InstanceType = instancetype
+          @NextHopResourceType = nexthopresourcetype
+          @NextHopResourceId = nexthopresourceid
+          @NextHopIp = nexthopip
+          @PolicyBasedRoutingRulesCount = policybasedroutingrulescount
+        end
+
+        def deserialize(params)
+          @PolicyBasedRoutingNextHopId = params['PolicyBasedRoutingNextHopId']
+          @Name = params['Name']
+          @NextHopRegion = params['NextHopRegion']
+          @InstanceId = params['InstanceId']
+          @Zone = params['Zone']
+          @State = params['State']
+          @Description = params['Description']
+          @InstanceType = params['InstanceType']
+          @NextHopResourceType = params['NextHopResourceType']
+          @NextHopResourceId = params['NextHopResourceId']
+          @NextHopIp = params['NextHopIp']
+          @PolicyBasedRoutingRulesCount = params['PolicyBasedRoutingRulesCount']
+        end
+      end
+
+      # 查询云联网策略路由匹配规则
+      class CcnPolicyBasedRoutingRule < TencentCloud::Common::AbstractModel
+        # @param PolicyBasedRoutingNextHopId: 策略路由下一跳ID
+        # @type PolicyBasedRoutingNextHopId: String
+        # @param InstanceType: 实例类型[VPC,DIRECTCONNECT,VPNGW]
+        # @type InstanceType: String
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param SourceCidrBlock: 源地址CIDR
+        # @type SourceCidrBlock: String
+        # @param DestinationCidrBlock: 目的地址CIDR
+        # @type DestinationCidrBlock: String
+        # @param Priority: 优先级
+        # @type Priority: Integer
+        # @param Description: 描述
+        # @type Description: String
+        # @param PolicyBasedRoutingRuleId: 策略路由匹配策略ID
+        # @type PolicyBasedRoutingRuleId: String
+
+        attr_accessor :PolicyBasedRoutingNextHopId, :InstanceType, :InstanceId, :SourceCidrBlock, :DestinationCidrBlock, :Priority, :Description, :PolicyBasedRoutingRuleId
+
+        def initialize(policybasedroutingnexthopid=nil, instancetype=nil, instanceid=nil, sourcecidrblock=nil, destinationcidrblock=nil, priority=nil, description=nil, policybasedroutingruleid=nil)
+          @PolicyBasedRoutingNextHopId = policybasedroutingnexthopid
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @SourceCidrBlock = sourcecidrblock
+          @DestinationCidrBlock = destinationcidrblock
+          @Priority = priority
+          @Description = description
+          @PolicyBasedRoutingRuleId = policybasedroutingruleid
+        end
+
+        def deserialize(params)
+          @PolicyBasedRoutingNextHopId = params['PolicyBasedRoutingNextHopId']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @SourceCidrBlock = params['SourceCidrBlock']
+          @DestinationCidrBlock = params['DestinationCidrBlock']
+          @Priority = params['Priority']
+          @Description = params['Description']
+          @PolicyBasedRoutingRuleId = params['PolicyBasedRoutingRuleId']
+        end
+      end
+
       # 云联网（CCN）地域出带宽上限
       class CcnRegionBandwidthLimit < TencentCloud::Common::AbstractModel
         # @param Region: 地域，例如：ap-guangzhou
@@ -3862,6 +3966,121 @@ module TencentCloud
         def deserialize(params)
           @BandwidthPackageId = params['BandwidthPackageId']
           @BandwidthPackageIds = params['BandwidthPackageIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCcnPolicyBasedRoutingNextHop请求参数结构体
+      class CreateCcnPolicyBasedRoutingNextHopRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param NextHopRegion: 下一跳地域
+        # @type NextHopRegion: String
+        # @param InstanceId: 关联实例ID
+        # @type InstanceId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param InstanceType: 关联实例类型[VPC,DIRECTCONNECT,VPNGW]
+        # @type InstanceType: String
+        # @param State: 状态
+        # @type State: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param NextHopResourceType: 下一跳资源类型[HAVIP, GWLB_ENDPOINT]]
+        # @type NextHopResourceType: String
+        # @param NextHopResourceId: 下一跳资源ID
+        # @type NextHopResourceId: String
+
+        attr_accessor :CcnId, :NextHopRegion, :InstanceId, :Name, :InstanceType, :State, :Description, :NextHopResourceType, :NextHopResourceId
+
+        def initialize(ccnid=nil, nexthopregion=nil, instanceid=nil, name=nil, instancetype=nil, state=nil, description=nil, nexthopresourcetype=nil, nexthopresourceid=nil)
+          @CcnId = ccnid
+          @NextHopRegion = nexthopregion
+          @InstanceId = instanceid
+          @Name = name
+          @InstanceType = instancetype
+          @State = state
+          @Description = description
+          @NextHopResourceType = nexthopresourcetype
+          @NextHopResourceId = nexthopresourceid
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @NextHopRegion = params['NextHopRegion']
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @InstanceType = params['InstanceType']
+          @State = params['State']
+          @Description = params['Description']
+          @NextHopResourceType = params['NextHopResourceType']
+          @NextHopResourceId = params['NextHopResourceId']
+        end
+      end
+
+      # CreateCcnPolicyBasedRoutingNextHop返回参数结构体
+      class CreateCcnPolicyBasedRoutingNextHopResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyBasedRoutingNextHopId: 策略路由下一跳ID
+        # @type PolicyBasedRoutingNextHopId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyBasedRoutingNextHopId, :RequestId
+
+        def initialize(policybasedroutingnexthopid=nil, requestid=nil)
+          @PolicyBasedRoutingNextHopId = policybasedroutingnexthopid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyBasedRoutingNextHopId = params['PolicyBasedRoutingNextHopId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateCcnPolicyBasedRoutingRules请求参数结构体
+      class CreateCcnPolicyBasedRoutingRulesRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param CcnPolicyBasedRoutingRuleSet: 云联网策略路由匹配规则
+        # @type CcnPolicyBasedRoutingRuleSet: Array
+
+        attr_accessor :CcnId, :CcnPolicyBasedRoutingRuleSet
+
+        def initialize(ccnid=nil, ccnpolicybasedroutingruleset=nil)
+          @CcnId = ccnid
+          @CcnPolicyBasedRoutingRuleSet = ccnpolicybasedroutingruleset
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          unless params['CcnPolicyBasedRoutingRuleSet'].nil?
+            @CcnPolicyBasedRoutingRuleSet = []
+            params['CcnPolicyBasedRoutingRuleSet'].each do |i|
+              ccnpolicybasedroutingrule_tmp = CcnPolicyBasedRoutingRule.new
+              ccnpolicybasedroutingrule_tmp.deserialize(i)
+              @CcnPolicyBasedRoutingRuleSet << ccnpolicybasedroutingrule_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCcnPolicyBasedRoutingRules返回参数结构体
+      class CreateCcnPolicyBasedRoutingRulesResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyBasedRoutingRuleIdSet: 策略路由匹配规则ID
+        # @type PolicyBasedRoutingRuleIdSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyBasedRoutingRuleIdSet, :RequestId
+
+        def initialize(policybasedroutingruleidset=nil, requestid=nil)
+          @PolicyBasedRoutingRuleIdSet = policybasedroutingruleidset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyBasedRoutingRuleIdSet = params['PolicyBasedRoutingRuleIdSet']
           @RequestId = params['RequestId']
         end
       end
@@ -7766,6 +7985,78 @@ module TencentCloud
         end
       end
 
+      # DeleteCcnPolicyBasedRoutingNextHop请求参数结构体
+      class DeleteCcnPolicyBasedRoutingNextHopRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param PolicyBasedRoutingNextHopIds: 策略路由下一跳ID
+        # @type PolicyBasedRoutingNextHopIds: Array
+
+        attr_accessor :CcnId, :PolicyBasedRoutingNextHopIds
+
+        def initialize(ccnid=nil, policybasedroutingnexthopids=nil)
+          @CcnId = ccnid
+          @PolicyBasedRoutingNextHopIds = policybasedroutingnexthopids
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @PolicyBasedRoutingNextHopIds = params['PolicyBasedRoutingNextHopIds']
+        end
+      end
+
+      # DeleteCcnPolicyBasedRoutingNextHop返回参数结构体
+      class DeleteCcnPolicyBasedRoutingNextHopResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCcnPolicyBasedRoutingRule请求参数结构体
+      class DeleteCcnPolicyBasedRoutingRuleRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param PolicyBasedRoutingRuleIds: 策略路由匹配规则ID
+        # @type PolicyBasedRoutingRuleIds: Array
+
+        attr_accessor :CcnId, :PolicyBasedRoutingRuleIds
+
+        def initialize(ccnid=nil, policybasedroutingruleids=nil)
+          @CcnId = ccnid
+          @PolicyBasedRoutingRuleIds = policybasedroutingruleids
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @PolicyBasedRoutingRuleIds = params['PolicyBasedRoutingRuleIds']
+        end
+      end
+
+      # DeleteCcnPolicyBasedRoutingRule返回参数结构体
+      class DeleteCcnPolicyBasedRoutingRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCcn请求参数结构体
       class DeleteCcnRequest < TencentCloud::Common::AbstractModel
         # @param CcnId: CCN实例ID。形如：ccn-f49l6u0z。
@@ -10502,6 +10793,116 @@ module TencentCloud
               @InstanceSet << ccnattachedinstance_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnPolicyBasedRoutingNextHop请求参数结构体
+      class DescribeCcnPolicyBasedRoutingNextHopRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网 ID
+        # @type CcnId: String
+        # @param Offset: 偏移量
+        # @type Offset: String
+        # @param Limit: 返回数量
+        # @type Limit: String
+
+        attr_accessor :CcnId, :Offset, :Limit
+
+        def initialize(ccnid=nil, offset=nil, limit=nil)
+          @CcnId = ccnid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCcnPolicyBasedRoutingNextHop返回参数结构体
+      class DescribeCcnPolicyBasedRoutingNextHopResponse < TencentCloud::Common::AbstractModel
+        # @param CcnPolicyBasedRoutingNextHopSet: 云联网策略路由下一跳信息
+        # @type CcnPolicyBasedRoutingNextHopSet: Array
+        # @param TotalCount: 符合条件的对象数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnPolicyBasedRoutingNextHopSet, :TotalCount, :RequestId
+
+        def initialize(ccnpolicybasedroutingnexthopset=nil, totalcount=nil, requestid=nil)
+          @CcnPolicyBasedRoutingNextHopSet = ccnpolicybasedroutingnexthopset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CcnPolicyBasedRoutingNextHopSet'].nil?
+            @CcnPolicyBasedRoutingNextHopSet = []
+            params['CcnPolicyBasedRoutingNextHopSet'].each do |i|
+              ccnpolicybasedroutingnexthop_tmp = CcnPolicyBasedRoutingNextHop.new
+              ccnpolicybasedroutingnexthop_tmp.deserialize(i)
+              @CcnPolicyBasedRoutingNextHopSet << ccnpolicybasedroutingnexthop_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCcnPolicyBasedRoutingRule请求参数结构体
+      class DescribeCcnPolicyBasedRoutingRuleRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网 ID
+        # @type CcnId: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 返回数量
+        # @type Limit: Integer
+
+        attr_accessor :CcnId, :Offset, :Limit
+
+        def initialize(ccnid=nil, offset=nil, limit=nil)
+          @CcnId = ccnid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCcnPolicyBasedRoutingRule返回参数结构体
+      class DescribeCcnPolicyBasedRoutingRuleResponse < TencentCloud::Common::AbstractModel
+        # @param CcnPolicyBasedRoutingRuleSet: 云联网策略路由下一跳信息
+        # @type CcnPolicyBasedRoutingRuleSet: Array
+        # @param TotalCount: 符合条件的对象数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CcnPolicyBasedRoutingRuleSet, :TotalCount, :RequestId
+
+        def initialize(ccnpolicybasedroutingruleset=nil, totalcount=nil, requestid=nil)
+          @CcnPolicyBasedRoutingRuleSet = ccnpolicybasedroutingruleset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CcnPolicyBasedRoutingRuleSet'].nil?
+            @CcnPolicyBasedRoutingRuleSet = []
+            params['CcnPolicyBasedRoutingRuleSet'].each do |i|
+              ccnpolicybasedroutingrule_tmp = CcnPolicyBasedRoutingRule.new
+              ccnpolicybasedroutingrule_tmp.deserialize(i)
+              @CcnPolicyBasedRoutingRuleSet << ccnpolicybasedroutingrule_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -21274,6 +21675,114 @@ module TencentCloud
 
       # ModifyCcnAttribute返回参数结构体
       class ModifyCcnAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCcnPolicyBasedRoutingNextHopAttribute请求参数结构体
+      class ModifyCcnPolicyBasedRoutingNextHopAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param PolicyBasedRoutingNextHopId: 策略路由下一跳ID
+        # @type PolicyBasedRoutingNextHopId: String
+        # @param Name: 名称
+        # @type Name: String
+        # @param Description: 描述
+        # @type Description: String
+        # @param NextHopRegion: 下一跳地域
+        # @type NextHopRegion: String
+        # @param InstanceType: 实例类型[VPC,DIRECTCONNECT,VPNGW]
+        # @type InstanceType: String
+        # @param InstanceId: 关联实例ID
+        # @type InstanceId: String
+        # @param NextHopResourceType: 下一跳资源类型[HAVIP,GWLB_ENDPOINT]
+        # @type NextHopResourceType: String
+        # @param NextHopResourceId: 下一跳资源ID
+        # @type NextHopResourceId: String
+        # @param State: 状态
+        # @type State: String
+
+        attr_accessor :CcnId, :PolicyBasedRoutingNextHopId, :Name, :Description, :NextHopRegion, :InstanceType, :InstanceId, :NextHopResourceType, :NextHopResourceId, :State
+
+        def initialize(ccnid=nil, policybasedroutingnexthopid=nil, name=nil, description=nil, nexthopregion=nil, instancetype=nil, instanceid=nil, nexthopresourcetype=nil, nexthopresourceid=nil, state=nil)
+          @CcnId = ccnid
+          @PolicyBasedRoutingNextHopId = policybasedroutingnexthopid
+          @Name = name
+          @Description = description
+          @NextHopRegion = nexthopregion
+          @InstanceType = instancetype
+          @InstanceId = instanceid
+          @NextHopResourceType = nexthopresourcetype
+          @NextHopResourceId = nexthopresourceid
+          @State = state
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @PolicyBasedRoutingNextHopId = params['PolicyBasedRoutingNextHopId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @NextHopRegion = params['NextHopRegion']
+          @InstanceType = params['InstanceType']
+          @InstanceId = params['InstanceId']
+          @NextHopResourceType = params['NextHopResourceType']
+          @NextHopResourceId = params['NextHopResourceId']
+          @State = params['State']
+        end
+      end
+
+      # ModifyCcnPolicyBasedRoutingNextHopAttribute返回参数结构体
+      class ModifyCcnPolicyBasedRoutingNextHopAttributeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCcnPolicyBasedRoutingRuleAttribute请求参数结构体
+      class ModifyCcnPolicyBasedRoutingRuleAttributeRequest < TencentCloud::Common::AbstractModel
+        # @param CcnId: 云联网ID
+        # @type CcnId: String
+        # @param PolicyBasedRoutingRuleId: 策略路由匹配规则ID
+        # @type PolicyBasedRoutingRuleId: String
+        # @param Description: 描述
+        # @type Description: String
+
+        attr_accessor :CcnId, :PolicyBasedRoutingRuleId, :Description
+
+        def initialize(ccnid=nil, policybasedroutingruleid=nil, description=nil)
+          @CcnId = ccnid
+          @PolicyBasedRoutingRuleId = policybasedroutingruleid
+          @Description = description
+        end
+
+        def deserialize(params)
+          @CcnId = params['CcnId']
+          @PolicyBasedRoutingRuleId = params['PolicyBasedRoutingRuleId']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyCcnPolicyBasedRoutingRuleAttribute返回参数结构体
+      class ModifyCcnPolicyBasedRoutingRuleAttributeResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

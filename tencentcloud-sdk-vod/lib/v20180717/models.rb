@@ -7729,44 +7729,31 @@ module TencentCloud
 
       # CreateAigcImageTask请求参数结构体
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param ModelName: 模型名称。取值：
-        # <li>GEM：Gemini；</li>
-        # <li>Qwen：千问。</li>
-        # <li>Hunyuan：混元。</li>
-        # <li>Vidu：生数。</li>
-        # <li>Kling：可灵。</li>
+        # @param ModelName: <p>模型名称。取值：</p><li>GEM：Gemini；</li><li>Qwen：千问。</li><li>Hunyuan：混元。</li><li>Vidu：生数。</li><li>Kling：可灵。</li>
         # @type ModelName: String
-        # @param ModelVersion: 模型版本。取值：
-        # <li>当 ModelName 是 GEM，可选值为 2.5、3.0；</li>
-        # <li>当 ModelName 是 Qwen，可选值为 0925；</li>
-        # <li>当 ModelName 是 Hunyuan，可选值为 3.0；</li>
-        # <li>当 ModelName 是 Vidu，可选值为 q2；</li>
-        # <li>当 ModelName 是 Kling，可选值为 2.1；</li>
+        # @param ModelVersion: <p>模型版本。取值：<li>当 ModelName 是 GEM，可选值为 2.5；</li><li>当 ModelName 是 Qwen，可选值为 0925；</li><li>当 ModelName 是 Hunyuan，可选值为 3.0；</li><li>当 ModelName 是 Vidu，可选值为 q2；</li><li>当 ModelName 是 Kling，可选值为 2.1；</li></p>
         # @type ModelVersion: String
-        # @param FileInfos: AIGC 生图任务的输入图片的文件信息。默认只支持指定1个。下列模型可传多张参考图：
-        # * GEM 2.5：0～3张图片；
-        # * GEM 3.0：0～14张图片；
-        # * Vidu q2：0～7张图片，图片支持 png、jpeg、jpg、webp格式，图片像素不能小于 128x128，且比例需要小于1:4或4:1；
+        # @param FileInfos: <p>AIGC 生图任务的输入图片的文件信息。默认只支持指定1个。下列模型可传多张参考图：<li>GEM 2.5：0～3张图片；</li><li>Vidu q2：0～7张图片，图片支持 png、jpeg、jpg、webp格式，图片像素不能小于 128x128，且比例需要小于1:4或4:1；</li></p>
         # @type FileInfos: Array
-        # @param Prompt: 生成图片的提示词。当 FileInfos 为空时，此参数必填。
+        # @param Prompt: <p>生成图片的提示词。当 FileInfos 为空时，此参数必填。</p>
         # @type Prompt: String
-        # @param NegativePrompt: 要阻止模型生成图片的提示词。
+        # @param NegativePrompt: <p>要阻止模型生成图片的提示词。</p>
         # @type NegativePrompt: String
-        # @param EnhancePrompt: 是否自动优化提示词。开启时将自动优化传入的 Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li>
+        # @param EnhancePrompt: <p>是否自动优化提示词。开启时将自动优化传入的 Prompt，以提升生成质量。取值有： <li>Enabled：开启；</li> <li>Disabled：关闭；</li></p>
         # @type EnhancePrompt: String
-        # @param OutputConfig: 生图任务的输出媒体文件配置。
+        # @param OutputConfig: <p>生图任务的输出媒体文件配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.AigcImageOutputConfig`
-        # @param InputRegion: 输入文件的区域信息。当文件url是国外地址时候，可选Oversea。默认Mainland。
+        # @param InputRegion: <p>输入文件的区域信息。当文件url是国外地址时候，可选Oversea。默认Mainland。</p>
         # @type InputRegion: String
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
         attr_accessor :SubAppId, :ModelName, :ModelVersion, :FileInfos, :Prompt, :NegativePrompt, :EnhancePrompt, :OutputConfig, :InputRegion, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
@@ -7816,7 +7803,7 @@ module TencentCloud
 
       # CreateAigcImageTask返回参数结构体
       class CreateAigcImageTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

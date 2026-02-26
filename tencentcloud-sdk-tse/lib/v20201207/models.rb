@@ -710,6 +710,8 @@ module TencentCloud
         # @type LimitBy: String
         # @param ExternalRedis: 外部redis配置
         # @type ExternalRedis: :class:`Tencentcloud::Tse.v20201207.models.ExternalRedis`
+        # @param GlobalConfigId: 全局配置中的redis配置
+        # @type GlobalConfigId: String
         # @param Policy: 计数器策略
         # local 单机
         # redis  默认redis
@@ -737,15 +739,16 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LimitRules: Array
 
-        attr_accessor :Enabled, :QpsThresholds, :Path, :Header, :LimitBy, :ExternalRedis, :Policy, :RateLimitResponse, :RateLimitResponseUrl, :ResponseType, :HideClientHeaders, :LineUpTime, :IsDelay, :BasicLimitQpsThresholds, :LimitRules
+        attr_accessor :Enabled, :QpsThresholds, :Path, :Header, :LimitBy, :ExternalRedis, :GlobalConfigId, :Policy, :RateLimitResponse, :RateLimitResponseUrl, :ResponseType, :HideClientHeaders, :LineUpTime, :IsDelay, :BasicLimitQpsThresholds, :LimitRules
 
-        def initialize(enabled=nil, qpsthresholds=nil, path=nil, header=nil, limitby=nil, externalredis=nil, policy=nil, ratelimitresponse=nil, ratelimitresponseurl=nil, responsetype=nil, hideclientheaders=nil, lineuptime=nil, isdelay=nil, basiclimitqpsthresholds=nil, limitrules=nil)
+        def initialize(enabled=nil, qpsthresholds=nil, path=nil, header=nil, limitby=nil, externalredis=nil, globalconfigid=nil, policy=nil, ratelimitresponse=nil, ratelimitresponseurl=nil, responsetype=nil, hideclientheaders=nil, lineuptime=nil, isdelay=nil, basiclimitqpsthresholds=nil, limitrules=nil)
           @Enabled = enabled
           @QpsThresholds = qpsthresholds
           @Path = path
           @Header = header
           @LimitBy = limitby
           @ExternalRedis = externalredis
+          @GlobalConfigId = globalconfigid
           @Policy = policy
           @RateLimitResponse = ratelimitresponse
           @RateLimitResponseUrl = ratelimitresponseurl
@@ -774,6 +777,7 @@ module TencentCloud
             @ExternalRedis = ExternalRedis.new
             @ExternalRedis.deserialize(params['ExternalRedis'])
           end
+          @GlobalConfigId = params['GlobalConfigId']
           @Policy = params['Policy']
           unless params['RateLimitResponse'].nil?
             @RateLimitResponse = RateLimitResponse.new

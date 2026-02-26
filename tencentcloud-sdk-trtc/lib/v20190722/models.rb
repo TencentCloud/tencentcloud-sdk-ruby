@@ -6500,7 +6500,15 @@ module TencentCloud
         # @type APIKey: String
         # @param Model: TTS的模型，当前固定为：flow_01_turbo
         # @type Model: String
-        # @param Language:  需要合成的语言（ISO 639-1），支持 zh（中文）、en（英文）、yue（粤语）、ja（日语）、ko（韩语），默认自动识别
+        # @param Language:  需要合成的语言（ISO 639-1），默认自动识别，支持的语言如下：
+        # - zh（中文）
+        # - en（英文）
+        # - yue（粤语）
+        # - ja（日语）
+        # - ko（韩语）
+        # - ar（阿拉伯语）
+        # - id（印尼语）
+        # - th（泰语）
         # @type Language: String
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language

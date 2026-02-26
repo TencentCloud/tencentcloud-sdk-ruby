@@ -17,6 +17,70 @@
 module TencentCloud
   module Ses
     module V20201002
+      # 垃圾投诉数据
+      class AbuseReport < TencentCloud::Common::AbstractModel
+        # @param DeliverTime: 发送时间
+        # @type DeliverTime: String
+        # @param OriginalMailFrom: 发信地址
+        # @type OriginalMailFrom: String
+        # @param OriginalRcptTo: 收信地址
+        # @type OriginalRcptTo: String
+        # @param FromDomain: 发信域名
+        # @type FromDomain: String
+        # @param ComplainTime: 投诉时间
+        # @type ComplainTime: String
+        # @param Mta: 收信域名
+        # @type Mta: String
+        # @param SourceIp: 来源ip
+        # @type SourceIp: String
+        # @param InsertTime: 数据时间
+        # @type InsertTime: String
+        # @param TemplateId: 模板id
+        # @type TemplateId: String
+        # @param BulkId: bulkId
+        # @type BulkId: String
+        # @param MessageId: 邮件Message-Id
+        # @type MessageId: String
+        # @param AbuseTime: 投诉时间
+        # @type AbuseTime: String
+        # @param Subject: 邮件主题
+        # @type Subject: String
+
+        attr_accessor :DeliverTime, :OriginalMailFrom, :OriginalRcptTo, :FromDomain, :ComplainTime, :Mta, :SourceIp, :InsertTime, :TemplateId, :BulkId, :MessageId, :AbuseTime, :Subject
+
+        def initialize(delivertime=nil, originalmailfrom=nil, originalrcptto=nil, fromdomain=nil, complaintime=nil, mta=nil, sourceip=nil, inserttime=nil, templateid=nil, bulkid=nil, messageid=nil, abusetime=nil, subject=nil)
+          @DeliverTime = delivertime
+          @OriginalMailFrom = originalmailfrom
+          @OriginalRcptTo = originalrcptto
+          @FromDomain = fromdomain
+          @ComplainTime = complaintime
+          @Mta = mta
+          @SourceIp = sourceip
+          @InsertTime = inserttime
+          @TemplateId = templateid
+          @BulkId = bulkid
+          @MessageId = messageid
+          @AbuseTime = abusetime
+          @Subject = subject
+        end
+
+        def deserialize(params)
+          @DeliverTime = params['DeliverTime']
+          @OriginalMailFrom = params['OriginalMailFrom']
+          @OriginalRcptTo = params['OriginalRcptTo']
+          @FromDomain = params['FromDomain']
+          @ComplainTime = params['ComplainTime']
+          @Mta = params['Mta']
+          @SourceIp = params['SourceIp']
+          @InsertTime = params['InsertTime']
+          @TemplateId = params['TemplateId']
+          @BulkId = params['BulkId']
+          @MessageId = params['MessageId']
+          @AbuseTime = params['AbuseTime']
+          @Subject = params['Subject']
+        end
+      end
+
       # 地址级退订配置
       class AddressUnsubscribeConfigData < TencentCloud::Common::AbstractModel
         # @param Address: 发信地址
@@ -975,6 +1039,85 @@ module TencentCloud
           @EmailSenderName = params['EmailSenderName']
           @CreatedTimestamp = params['CreatedTimestamp']
           @SmtpPwdType = params['SmtpPwdType']
+        end
+      end
+
+      # GetAbuseReport请求参数结构体
+      class GetAbuseReportRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: 起始时间
+        # @type StartTime: String
+        # @param EndTime: 结束时间
+        # @type EndTime: String
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param Limit: 限制数量（默认为1000）
+        # @type Limit: Integer
+        # @param FromDomain: 发信域名
+        # @type FromDomain: String
+        # @param FromAddress: 发信地址
+        # @type FromAddress: String
+        # @param Mta: 收信域名
+        # @type Mta: String
+        # @param ToAddress: 收信地址
+        # @type ToAddress: String
+        # @param TemplateId: 模版id
+        # @type TemplateId: String
+
+        attr_accessor :StartTime, :EndTime, :Offset, :Limit, :FromDomain, :FromAddress, :Mta, :ToAddress, :TemplateId
+
+        def initialize(starttime=nil, endtime=nil, offset=nil, limit=nil, fromdomain=nil, fromaddress=nil, mta=nil, toaddress=nil, templateid=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @FromDomain = fromdomain
+          @FromAddress = fromaddress
+          @Mta = mta
+          @ToAddress = toaddress
+          @TemplateId = templateid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @FromDomain = params['FromDomain']
+          @FromAddress = params['FromAddress']
+          @Mta = params['Mta']
+          @ToAddress = params['ToAddress']
+          @TemplateId = params['TemplateId']
+        end
+      end
+
+      # GetAbuseReport返回参数结构体
+      class GetAbuseReportResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 打开日志数据
+        # @type Data: Array
+        # @param TotalCount: 总条数
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              abusereport_tmp = AbuseReport.new
+              abusereport_tmp.deserialize(i)
+              @Data << abusereport_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
         end
       end
 

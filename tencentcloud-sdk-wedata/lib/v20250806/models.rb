@@ -3028,8 +3028,22 @@ module TencentCloud
         # @type ExecutionTTLMinute: Integer
         # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
         # @type WaitExecutionTotalTTLMinute: Integer
+        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
+        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
+        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
+        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
+        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
+        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
+        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
+        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
+        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
+        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
+        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
+        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
+        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :SelfDepend, :UpstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy
         extend Gem::Deprecate
         deprecate :ScheduleRunType, :none, 2026, 2
         deprecate :ScheduleRunType=, :none, 2026, 2
@@ -3044,7 +3058,7 @@ module TencentCloud
         deprecate :WaitExecutionTotalTTL, :none, 2026, 2
         deprecate :WaitExecutionTotalTTL=, :none, 2026, 2
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -3074,6 +3088,7 @@ module TencentCloud
           @MaxRetryNumber = maxretrynumber
           @ExecutionTTLMinute = executionttlminute
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -3141,6 +3156,7 @@ module TencentCloud
           @MaxRetryNumber = params['MaxRetryNumber']
           @ExecutionTTLMinute = params['ExecutionTTLMinute']
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -3351,10 +3367,24 @@ module TencentCloud
         # @type ParamTaskInList: Array
         # @param TaskOutputRegistryList: 产出登记
         # @type TaskOutputRegistryList: Array
+        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
+        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
+        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
+        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
+        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
+        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
+        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
+        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
+        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
+        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
+        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
+        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
+        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -3365,6 +3395,7 @@ module TencentCloud
           @ParamTaskOutList = paramtaskoutlist
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -3406,6 +3437,7 @@ module TencentCloud
               @TaskOutputRegistryList << taskdataregistry_tmp
             end
           end
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -12970,9 +13002,9 @@ module TencentCloud
       class ListTriggerWorkflowRunsRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
         # @type ProjectId: String
-        # @param Filters: 过滤参数,工作流名称或ID查询名称：Keyword,工作流ID查询名称：WorkflowId,文件夹查询名称：FolderId,负责人查询名称：InChargeUin, 工作流执行id: ExecutionId
+        # @param Filters: 过滤参数, 工作流名称或ID查询名称: Keyword, 工作流ID查询名称: WorkflowId,文件夹查询名称: FolderId, 负责人查询名称: InChargeUin, 工作流执行id: ExecutionId, 计划调度时间区间: ScheduleTimeGreaterEqual, ScheduleTimeLessEqual
         # @type Filters: Array
-        # @param OrderFields: 排序字段，排序字段名称	如下开始时间：CreateTime，结束时间：EndTime
+        # @param OrderFields: 排序字段，排序字段名称	如下开始时间：CreateTime，结束时间：EndTime，计划调度时间：ScheduleTime
         # @type OrderFields: Array
         # @param PageNumber: 页码
         # @type PageNumber: Integer
@@ -19341,10 +19373,19 @@ module TencentCloud
         # @param TableGuid: 表唯一标识
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TableGuid: String
+        # @param CatalogName: Catalog名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CatalogName: String
+        # @param DatasourceName: 数据源名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatasourceName: String
+        # @param QualifiedName: Catalog(如有).数据库(如有).表名名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type QualifiedName: String
 
-        attr_accessor :DatasourceId, :DatabaseName, :TableName, :PartitionName, :DataFlowType, :TablePhysicalId, :DbGuid, :TableGuid
+        attr_accessor :DatasourceId, :DatabaseName, :TableName, :PartitionName, :DataFlowType, :TablePhysicalId, :DbGuid, :TableGuid, :CatalogName, :DatasourceName, :QualifiedName
 
-        def initialize(datasourceid=nil, databasename=nil, tablename=nil, partitionname=nil, dataflowtype=nil, tablephysicalid=nil, dbguid=nil, tableguid=nil)
+        def initialize(datasourceid=nil, databasename=nil, tablename=nil, partitionname=nil, dataflowtype=nil, tablephysicalid=nil, dbguid=nil, tableguid=nil, catalogname=nil, datasourcename=nil, qualifiedname=nil)
           @DatasourceId = datasourceid
           @DatabaseName = databasename
           @TableName = tablename
@@ -19353,6 +19394,9 @@ module TencentCloud
           @TablePhysicalId = tablephysicalid
           @DbGuid = dbguid
           @TableGuid = tableguid
+          @CatalogName = catalogname
+          @DatasourceName = datasourcename
+          @QualifiedName = qualifiedname
         end
 
         def deserialize(params)
@@ -19364,6 +19408,9 @@ module TencentCloud
           @TablePhysicalId = params['TablePhysicalId']
           @DbGuid = params['DbGuid']
           @TableGuid = params['TableGuid']
+          @CatalogName = params['CatalogName']
+          @DatasourceName = params['DatasourceName']
+          @QualifiedName = params['QualifiedName']
         end
       end
 
@@ -20357,8 +20404,23 @@ module TencentCloud
         # @param WaitExecutionTotalTTLMinute: 超时处理策略 等待总时长耗时超时（单位：分钟）默认为 -1
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WaitExecutionTotalTTLMinute: Integer
+        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
+        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
+        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
+        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
+        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
+        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
+        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
+        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
+        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
+        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
+        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
+        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
+        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute
+        attr_accessor :CycleType, :ScheduleTimeZone, :CrontabExpression, :StartTime, :EndTime, :ExecutionStartTime, :ExecutionEndTime, :CalendarOpen, :CalendarId, :CalendarName, :SelfDepend, :UpstreamDependencyConfigList, :DownstreamDependencyConfigList, :EventListenerList, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :InitStrategy, :ScheduleRunType, :DownStreamDependencyConfigList, :RunPriority, :RetryWait, :MaxRetryAttempts, :ExecutionTTL, :WaitExecutionTotalTTL, :ScheduleType, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :DependencyTriggerPolicy
         extend Gem::Deprecate
         deprecate :ScheduleRunType, :none, 2026, 2
         deprecate :ScheduleRunType=, :none, 2026, 2
@@ -20375,7 +20437,7 @@ module TencentCloud
         deprecate :WaitExecutionTotalTTL, :none, 2026, 2
         deprecate :WaitExecutionTotalTTL=, :none, 2026, 2
 
-        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil)
+        def initialize(cycletype=nil, scheduletimezone=nil, crontabexpression=nil, starttime=nil, endtime=nil, executionstarttime=nil, executionendtime=nil, calendaropen=nil, calendarid=nil, calendarname=nil, selfdepend=nil, upstreamdependencyconfiglist=nil, downstreamdependencyconfiglist=nil, eventlistenerlist=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, initstrategy=nil, scheduleruntype=nil, runpriority=nil, retrywait=nil, maxretryattempts=nil, executionttl=nil, waitexecutiontotalttl=nil, scheduletype=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, dependencytriggerpolicy=nil)
           @CycleType = cycletype
           @ScheduleTimeZone = scheduletimezone
           @CrontabExpression = crontabexpression
@@ -20407,6 +20469,7 @@ module TencentCloud
           @MaxRetryNumber = maxretrynumber
           @ExecutionTTLMinute = executionttlminute
           @WaitExecutionTotalTTLMinute = waitexecutiontotalttlminute
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -20483,6 +20546,7 @@ module TencentCloud
           @MaxRetryNumber = params['MaxRetryNumber']
           @ExecutionTTLMinute = params['ExecutionTTLMinute']
           @WaitExecutionTotalTTLMinute = params['WaitExecutionTotalTTLMinute']
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -20980,10 +21044,13 @@ module TencentCloud
         # @param ExecutionStartTime: 运行开始时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
+        # @param DependencyTriggerPolicy: 依赖策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime
+        attr_accessor :ProjectId, :ProjectName, :WorkflowId, :WorkflowName, :TaskId, :TaskName, :TaskType, :UserUinInCharge, :UserNameInCharge, :FolderId, :FolderName, :TaskTypeId, :ExecutionState, :ExecutionStartTime, :DependencyTriggerPolicy
 
-        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil)
+        def initialize(projectid=nil, projectname=nil, workflowid=nil, workflowname=nil, taskid=nil, taskname=nil, tasktype=nil, useruinincharge=nil, usernameincharge=nil, folderid=nil, foldername=nil, tasktypeid=nil, executionstate=nil, executionstarttime=nil, dependencytriggerpolicy=nil)
           @ProjectId = projectid
           @ProjectName = projectname
           @WorkflowId = workflowid
@@ -20998,6 +21065,7 @@ module TencentCloud
           @TaskTypeId = tasktypeid
           @ExecutionState = executionstate
           @ExecutionStartTime = executionstarttime
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -21015,6 +21083,7 @@ module TencentCloud
           @TaskTypeId = params['TaskTypeId']
           @ExecutionState = params['ExecutionState']
           @ExecutionStartTime = params['ExecutionStartTime']
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -21338,6 +21407,9 @@ module TencentCloud
         # @param CreateTime: 创建时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param ScheduleTime: 计划调度时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTime: String
         # @param UpdateTime: 更新时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
@@ -21455,10 +21527,13 @@ module TencentCloud
         # @param ExecutionResult: 任务执行结果
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionResult: String
+        # @param DependencyTriggerPolicy: 依赖策略
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult
+        attr_accessor :ExecutionId, :ExecutionState, :ProjectId, :WorkflowId, :WorkflowExecutionId, :TaskId, :TaskType, :TaskVersionId, :TriggerType, :WaitTime, :ResourceGroup, :ErrorCode, :ExecuteUserUin, :CreaterUin, :JobId, :CreateTime, :ScheduleTime, :UpdateTime, :DependenceFinishedTime, :QueueStartTime, :PendingStartTime, :ExecutionStartTime, :ExecutionEndTime, :QueueCostTime, :ExecutionTime, :AllCostTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :RetryTimes, :LeftCoordinate, :TopCoordinate, :ResourceGroupId, :ErrorCodeStr, :CreateUin, :IssueTime, :TaskName, :WorkflowName, :ExecuteUserName, :RerunTimes, :IsLatestExecution, :TaskExecutionState, :CycleType, :UserNameInCharge, :UserUinInCharge, :ResourceGroupName, :Timezone, :FolderId, :FolderName, :ProjectName, :TaskTypeId, :WorkflowParams, :SupportRerun, :WorkflowExecutionState, :ExecutionResult, :DependencyTriggerPolicy
 
-        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil)
+        def initialize(executionid=nil, executionstate=nil, projectid=nil, workflowid=nil, workflowexecutionid=nil, taskid=nil, tasktype=nil, taskversionid=nil, triggertype=nil, waittime=nil, resourcegroup=nil, errorcode=nil, executeuseruin=nil, createruin=nil, jobid=nil, createtime=nil, scheduletime=nil, updatetime=nil, dependencefinishedtime=nil, queuestarttime=nil, pendingstarttime=nil, executionstarttime=nil, executionendtime=nil, queuecosttime=nil, executiontime=nil, allcosttime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, retrytimes=nil, leftcoordinate=nil, topcoordinate=nil, resourcegroupid=nil, errorcodestr=nil, createuin=nil, issuetime=nil, taskname=nil, workflowname=nil, executeusername=nil, reruntimes=nil, islatestexecution=nil, taskexecutionstate=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil, resourcegroupname=nil, timezone=nil, folderid=nil, foldername=nil, projectname=nil, tasktypeid=nil, workflowparams=nil, supportrerun=nil, workflowexecutionstate=nil, executionresult=nil, dependencytriggerpolicy=nil)
           @ExecutionId = executionid
           @ExecutionState = executionstate
           @ProjectId = projectid
@@ -21475,6 +21550,7 @@ module TencentCloud
           @CreaterUin = createruin
           @JobId = jobid
           @CreateTime = createtime
+          @ScheduleTime = scheduletime
           @UpdateTime = updatetime
           @DependenceFinishedTime = dependencefinishedtime
           @QueueStartTime = queuestarttime
@@ -21514,6 +21590,7 @@ module TencentCloud
           @SupportRerun = supportrerun
           @WorkflowExecutionState = workflowexecutionstate
           @ExecutionResult = executionresult
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -21533,6 +21610,7 @@ module TencentCloud
           @CreaterUin = params['CreaterUin']
           @JobId = params['JobId']
           @CreateTime = params['CreateTime']
+          @ScheduleTime = params['ScheduleTime']
           @UpdateTime = params['UpdateTime']
           @DependenceFinishedTime = params['DependenceFinishedTime']
           @QueueStartTime = params['QueueStartTime']
@@ -21572,6 +21650,7 @@ module TencentCloud
           @SupportRerun = params['SupportRerun']
           @WorkflowExecutionState = params['WorkflowExecutionState']
           @ExecutionResult = params['ExecutionResult']
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -21607,10 +21686,25 @@ module TencentCloud
         # @param TaskOutputRegistryList: 产出登记
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskOutputRegistryList: Array
+        # @param DependencyTriggerPolicy: - 任务依赖运行条件，默认为ALL_SUCCESS，暂时只支持工作流调度项目下配置
+        # - ALL_SUCCESS： 全部成功：所有上游依赖任务都达到终态时，进行依赖判断，如果上游全部都成功，则依赖判断成功，否则如果上游有一个跳过运行，则标记为跳过运行，其余情况标记为上游失败
+        # - ALL_FAILED：全部失败：所有上游依赖任务都达到终态时，进行依赖判断，如果上游状态都是失败或者上游失败，则依赖判断成功，否则就标记为跳过运行
+        # - ALL_DONE：全部完成：所有上游依赖任务都达到终态时，进行依赖判断，直接是依赖判断成功
+        # - ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行
+        # - ALL_SKIPPED：上游全部都跳过: 所有上游依赖任务都达到终态时，进行依赖判断，所有的上游都是跳过状态才算依赖判断成功，否则当前节点就是跳过运行
+        # - ONE_FAILED：至少一个失败: 上游只要有一个失败了，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有失败，则跳过运行
+        # - ONE_SUCCESS：至少一个成功：上游只要有一个成功，就进行依赖判断，且依赖判断成功，如果上游全部完成但是没有成功，则跳过运行
+        # - ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游
+        # - NONE_FAILED：上游全部完成，没有失败: 所有上游依赖任务都达到终态时，进行依赖判断，如果上游都是成功或者跳过运行，则依赖判断成功，否则标记为上游失败
+        # - ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行
+        # - NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行
+        # - ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DependencyTriggerPolicy: String
 
-        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList
+        attr_accessor :UpstreamDependencyConfigList, :RunPriorityType, :RetryWaitMinute, :MaxRetryNumber, :ExecutionTTLMinute, :WaitExecutionTotalTTLMinute, :AllowRedoType, :ParamTaskOutList, :ParamTaskInList, :TaskOutputRegistryList, :DependencyTriggerPolicy
 
-        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil)
+        def initialize(upstreamdependencyconfiglist=nil, runprioritytype=nil, retrywaitminute=nil, maxretrynumber=nil, executionttlminute=nil, waitexecutiontotalttlminute=nil, allowredotype=nil, paramtaskoutlist=nil, paramtaskinlist=nil, taskoutputregistrylist=nil, dependencytriggerpolicy=nil)
           @UpstreamDependencyConfigList = upstreamdependencyconfiglist
           @RunPriorityType = runprioritytype
           @RetryWaitMinute = retrywaitminute
@@ -21621,6 +21715,7 @@ module TencentCloud
           @ParamTaskOutList = paramtaskoutlist
           @ParamTaskInList = paramtaskinlist
           @TaskOutputRegistryList = taskoutputregistrylist
+          @DependencyTriggerPolicy = dependencytriggerpolicy
         end
 
         def deserialize(params)
@@ -21662,6 +21757,7 @@ module TencentCloud
               @TaskOutputRegistryList << taskdataregistry_tmp
             end
           end
+          @DependencyTriggerPolicy = params['DependencyTriggerPolicy']
         end
       end
 
@@ -22051,6 +22147,9 @@ module TencentCloud
         # @param CreateTime: 工作流触发时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
+        # @param ScheduleTime: 计划调度时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ScheduleTime: String
         # @param ExecutionStartTime: 执行开始时间戳
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionStartTime: String
@@ -22121,9 +22220,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UserUinInCharge: String
 
-        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge
+        attr_accessor :AppId, :ProjectId, :WorkflowName, :WorkflowId, :ExecutionId, :TriggerId, :TriggerType, :CreateTime, :ScheduleTime, :ExecutionStartTime, :ExecutionEndTime, :ExecutionCostTime, :QueueCostTime, :PendingCostTime, :ExecutionState, :ExecuteUserUin, :ExecuteUserName, :ErrorCodeStr, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :RerunTimes, :SelectedTaskIds, :PendingStartTime, :QueueStartTime, :EndTime, :FolderId, :FolderName, :PlannedSchedulingTime, :CycleType, :UserNameInCharge, :UserUinInCharge
 
-        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil)
+        def initialize(appid=nil, projectid=nil, workflowname=nil, workflowid=nil, executionid=nil, triggerid=nil, triggertype=nil, createtime=nil, scheduletime=nil, executionstarttime=nil, executionendtime=nil, executioncosttime=nil, queuecosttime=nil, pendingcosttime=nil, executionstate=nil, executeuseruin=nil, executeusername=nil, errorcodestr=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, reruntimes=nil, selectedtaskids=nil, pendingstarttime=nil, queuestarttime=nil, endtime=nil, folderid=nil, foldername=nil, plannedschedulingtime=nil, cycletype=nil, usernameincharge=nil, useruinincharge=nil)
           @AppId = appid
           @ProjectId = projectid
           @WorkflowName = workflowname
@@ -22132,6 +22231,7 @@ module TencentCloud
           @TriggerId = triggerid
           @TriggerType = triggertype
           @CreateTime = createtime
+          @ScheduleTime = scheduletime
           @ExecutionStartTime = executionstarttime
           @ExecutionEndTime = executionendtime
           @ExecutionCostTime = executioncosttime
@@ -22166,6 +22266,7 @@ module TencentCloud
           @TriggerId = params['TriggerId']
           @TriggerType = params['TriggerType']
           @CreateTime = params['CreateTime']
+          @ScheduleTime = params['ScheduleTime']
           @ExecutionStartTime = params['ExecutionStartTime']
           @ExecutionEndTime = params['ExecutionEndTime']
           @ExecutionCostTime = params['ExecutionCostTime']

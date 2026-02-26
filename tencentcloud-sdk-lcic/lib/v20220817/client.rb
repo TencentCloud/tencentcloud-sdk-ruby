@@ -1544,6 +1544,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用源账号登录课堂，源账号为注册时填入的originId
+
+        # @param request: Request instance for LoginOriginIdWithRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::LoginOriginIdWithRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::LoginOriginIdWithRoomResponse`
+        def LoginOriginIdWithRoom(request)
+          body = send_request('LoginOriginIdWithRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LoginOriginIdWithRoomResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 登录
 
         # @param request: Request instance for LoginUser.
@@ -1554,6 +1578,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = LoginUserResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 登录课堂
+
+        # @param request: Request instance for LoginUserWithRoom.
+        # @type request: :class:`Tencentcloud::lcic::V20220817::LoginUserWithRoomRequest`
+        # @rtype: :class:`Tencentcloud::lcic::V20220817::LoginUserWithRoomResponse`
+        def LoginUserWithRoom(request)
+          body = send_request('LoginUserWithRoom', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = LoginUserWithRoomResponse.new
             model.deserialize(response['Response'])
             model
           else

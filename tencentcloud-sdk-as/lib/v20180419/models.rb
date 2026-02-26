@@ -70,8 +70,8 @@ module TencentCloud
 
         attr_accessor :AutoScalingGroupId, :ActivityId, :ActivityType, :StatusCode, :StatusMessage, :Cause, :Description, :StartTime, :EndTime, :CreatedTime, :ActivityRelatedInstanceSet, :StatusMessageSimplified, :LifecycleActionResultSet, :DetailedStatusMessageSet, :InvocationResultSet, :RelatedInstanceSet
         extend Gem::Deprecate
-        deprecate :ActivityRelatedInstanceSet, :none, 2025, 12
-        deprecate :ActivityRelatedInstanceSet=, :none, 2025, 12
+        deprecate :ActivityRelatedInstanceSet, :none, 2026, 2
+        deprecate :ActivityRelatedInstanceSet=, :none, 2026, 2
 
         def initialize(autoscalinggroupid=nil, activityid=nil, activitytype=nil, statuscode=nil, statusmessage=nil, cause=nil, description=nil, starttime=nil, endtime=nil, createdtime=nil, activityrelatedinstanceset=nil, statusmessagesimplified=nil, lifecycleactionresultset=nil, detailedstatusmessageset=nil, invocationresultset=nil, relatedinstanceset=nil)
           @AutoScalingGroupId = autoscalinggroupid
@@ -2762,8 +2762,8 @@ module TencentCloud
 
         attr_accessor :SecurityService, :MonitorService, :AutomationService, :AutomationToolsService
         extend Gem::Deprecate
-        deprecate :AutomationService, :none, 2025, 12
-        deprecate :AutomationService=, :none, 2025, 12
+        deprecate :AutomationService, :none, 2026, 2
+        deprecate :AutomationService=, :none, 2026, 2
 
         def initialize(securityservice=nil, monitorservice=nil, automationservice=nil, automationtoolsservice=nil)
           @SecurityService = securityservice
@@ -3000,25 +3000,29 @@ module TencentCloud
 
       # 应用型负载均衡器标识信息
       class ForwardLoadBalancerIdentification < TencentCloud::Common::AbstractModel
-        # @param LoadBalancerId: 负载均衡器ID
+        # @param LoadBalancerId: <p>负载均衡器ID</p>
         # @type LoadBalancerId: String
-        # @param ListenerId: 应用型负载均衡监听器 ID
+        # @param ListenerId: <p>应用型负载均衡监听器 ID</p>
         # @type ListenerId: String
-        # @param LocationId: 转发规则ID，注意：针对七层监听器此参数必填
+        # @param LocationId: <p>转发规则ID，注意：针对七层监听器此参数必填</p>
         # @type LocationId: String
+        # @param PortList: <p>监听器或转发路径需解绑的端口号列表。</p><p>取值范围：[1, 65535]</p><p>不传递该参数时，默认解绑指定监听器或转发路径关联的所有端口。</p>
+        # @type PortList: Array
 
-        attr_accessor :LoadBalancerId, :ListenerId, :LocationId
+        attr_accessor :LoadBalancerId, :ListenerId, :LocationId, :PortList
 
-        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil)
+        def initialize(loadbalancerid=nil, listenerid=nil, locationid=nil, portlist=nil)
           @LoadBalancerId = loadbalancerid
           @ListenerId = listenerid
           @LocationId = locationid
+          @PortList = portlist
         end
 
         def deserialize(params)
           @LoadBalancerId = params['LoadBalancerId']
           @ListenerId = params['ListenerId']
           @LocationId = params['LocationId']
+          @PortList = params['PortList']
         end
       end
 

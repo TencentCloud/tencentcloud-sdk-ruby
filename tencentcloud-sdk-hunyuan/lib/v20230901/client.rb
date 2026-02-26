@@ -113,6 +113,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义术语库，在翻译时自动将源语言术语替换为指定的目标语言译文，确保专业术语翻译的一致性和准确性。
+
+        # @param request: Request instance for CreateGlossary.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::CreateGlossaryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::CreateGlossaryResponse`
+        def CreateGlossary(request)
+          body = send_request('CreateGlossary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlossaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 添加术语条目。
+
+        # @param request: Request instance for CreateGlossaryEntry.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::CreateGlossaryEntryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::CreateGlossaryEntryResponse`
+        def CreateGlossaryEntry(request)
+          body = send_request('CreateGlossaryEntry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGlossaryEntryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 腾讯混元大模型是由腾讯研发的大语言模型，具备强大的中文创作能力，复杂语境下的逻辑推理能力，以及可靠的任务执行能力。本接口支持流式或非流式调用，当使用流式调用时为 SSE 协议。
 
         #  1. 本接口暂不支持返回图片内容。
@@ -128,6 +176,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateThreadResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除术语库。
+
+        # @param request: Request instance for DeleteGlossary.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::DeleteGlossaryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::DeleteGlossaryResponse`
+        def DeleteGlossary(request)
+          body = send_request('DeleteGlossary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlossaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除术语条目。
+
+        # @param request: Request instance for DeleteGlossaryEntry.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::DeleteGlossaryEntryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::DeleteGlossaryEntryResponse`
+        def DeleteGlossaryEntry(request)
+          body = send_request('DeleteGlossaryEntry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGlossaryEntryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -412,6 +508,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询术语库。
+
+        # @param request: Request instance for ListGlossary.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::ListGlossaryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::ListGlossaryResponse`
+        def ListGlossary(request)
+          body = send_request('ListGlossary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListGlossaryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询术语条目。
+
+        # @param request: Request instance for ListGlossaryEntry.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::ListGlossaryEntryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::ListGlossaryEntryResponse`
+        def ListGlossaryEntry(request)
+          body = send_request('ListGlossaryEntry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListGlossaryEntryResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 混元生图（多轮对话）接口基于混元大模型，将根据输入的文本描述生成图像，支持通过多轮对话的方式不断调整图像内容。分为提交任务和查询任务2个接口。
         # 提交任务：输入文本和前置对话 ID 等，提交一个混元生图多轮对话异步任务，获得任务 ID。
         # 查询任务：根据任务 ID 查询任务的处理状态、处理结果，任务处理完成后可获得在上一轮对话基础上继续生成的图像结果。
@@ -584,6 +728,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = TextToImageLiteResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新术语条目。
+
+        # @param request: Request instance for UpdateGlossaryEntry.
+        # @type request: :class:`Tencentcloud::hunyuan::V20230901::UpdateGlossaryEntryRequest`
+        # @rtype: :class:`Tencentcloud::hunyuan::V20230901::UpdateGlossaryEntryResponse`
+        def UpdateGlossaryEntry(request)
+          body = send_request('UpdateGlossaryEntry', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateGlossaryEntryResponse.new
             model.deserialize(response['Response'])
             model
           else

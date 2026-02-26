@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除通知内容模板
+
+        # @param request: Request instance for DeleteNoticeContentTmpls.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DeleteNoticeContentTmplsRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DeleteNoticeContentTmplsResponse`
+        def DeleteNoticeContentTmpls(request)
+          body = send_request('DeleteNoticeContentTmpls', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNoticeContentTmplsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 按需查询告警的通知历史
 
         # @param request: Request instance for DescribeAlarmNotifyHistories.
@@ -63,6 +87,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAlarmNotifyHistoriesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据查询条件获取自定义通知内容模板，若所有查询条件空，则获取账号下所有模板
+
+        # @param request: Request instance for DescribeNoticeContentTmpl.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::DescribeNoticeContentTmplRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::DescribeNoticeContentTmplResponse`
+        def DescribeNoticeContentTmpl(request)
+          body = send_request('DescribeNoticeContentTmpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNoticeContentTmplResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改通知内容模板
+
+        # @param request: Request instance for ModifyNoticeContentTmpl.
+        # @type request: :class:`Tencentcloud::monitor::V20230616::ModifyNoticeContentTmplRequest`
+        # @rtype: :class:`Tencentcloud::monitor::V20230616::ModifyNoticeContentTmplResponse`
+        def ModifyNoticeContentTmpl(request)
+          body = send_request('ModifyNoticeContentTmpl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNoticeContentTmplResponse.new
             model.deserialize(response['Response'])
             model
           else
