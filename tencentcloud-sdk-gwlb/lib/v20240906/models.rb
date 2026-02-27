@@ -165,10 +165,6 @@ module TencentCloud
         # @type Tags: Array
         # @param ForwardingMode: <p>流量分发方式</p><ul><li>STATELESS：无状态</li><li>STATEFUL： 有状态</li></ul>
         # @type ForwardingMode: String
-        # @param TcpIdleConnectTimeout: <p>TCP协议连接空闲超时时间，可配置60s-6000s，默认350s。</p>
-        # @type TcpIdleConnectTimeout: Integer
-        # @param OthersIdleConnectTimeout: <p>其他协议连接空闲超时时间，可配置5s-180s，默认120s</p>
-        # @type OthersIdleConnectTimeout: Integer
         # @param RescheduleUnbindRs: <p>重新调度功能内的解绑后端服务开关，开关打开后解绑后端服务会触发重新调度。</p>
         # @type RescheduleUnbindRs: Boolean
         # @param RescheduleUnbindRsStartTime: <p>解绑RS后开启重调度的时间，可配置0s-3600s，默认0s</p>
@@ -178,9 +174,9 @@ module TencentCloud
         # @param RescheduleUnhealthyStartTime: <p>后端服务健康探测异常后开启重调度的时间，可配置0s-3600s，默认0s</p>
         # @type RescheduleUnhealthyStartTime: Integer
 
-        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Protocol, :HealthCheck, :ScheduleAlgorithm, :AllDeadToAlive, :Tags, :ForwardingMode, :TcpIdleConnectTimeout, :OthersIdleConnectTimeout, :RescheduleUnbindRs, :RescheduleUnbindRsStartTime, :RescheduleUnhealthy, :RescheduleUnhealthyStartTime
+        attr_accessor :TargetGroupName, :VpcId, :Port, :TargetGroupInstances, :Protocol, :HealthCheck, :ScheduleAlgorithm, :AllDeadToAlive, :Tags, :ForwardingMode, :RescheduleUnbindRs, :RescheduleUnbindRsStartTime, :RescheduleUnhealthy, :RescheduleUnhealthyStartTime
 
-        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, alldeadtoalive=nil, tags=nil, forwardingmode=nil, tcpidleconnecttimeout=nil, othersidleconnecttimeout=nil, rescheduleunbindrs=nil, rescheduleunbindrsstarttime=nil, rescheduleunhealthy=nil, rescheduleunhealthystarttime=nil)
+        def initialize(targetgroupname=nil, vpcid=nil, port=nil, targetgroupinstances=nil, protocol=nil, healthcheck=nil, schedulealgorithm=nil, alldeadtoalive=nil, tags=nil, forwardingmode=nil, rescheduleunbindrs=nil, rescheduleunbindrsstarttime=nil, rescheduleunhealthy=nil, rescheduleunhealthystarttime=nil)
           @TargetGroupName = targetgroupname
           @VpcId = vpcid
           @Port = port
@@ -191,8 +187,6 @@ module TencentCloud
           @AllDeadToAlive = alldeadtoalive
           @Tags = tags
           @ForwardingMode = forwardingmode
-          @TcpIdleConnectTimeout = tcpidleconnecttimeout
-          @OthersIdleConnectTimeout = othersidleconnecttimeout
           @RescheduleUnbindRs = rescheduleunbindrs
           @RescheduleUnbindRsStartTime = rescheduleunbindrsstarttime
           @RescheduleUnhealthy = rescheduleunhealthy
@@ -227,8 +221,6 @@ module TencentCloud
             end
           end
           @ForwardingMode = params['ForwardingMode']
-          @TcpIdleConnectTimeout = params['TcpIdleConnectTimeout']
-          @OthersIdleConnectTimeout = params['OthersIdleConnectTimeout']
           @RescheduleUnbindRs = params['RescheduleUnbindRs']
           @RescheduleUnbindRsStartTime = params['RescheduleUnbindRsStartTime']
           @RescheduleUnhealthy = params['RescheduleUnhealthy']
@@ -1046,10 +1038,6 @@ module TencentCloud
         # @type HealthCheck: :class:`Tencentcloud::Gwlb.v20240906.models.TargetGroupHealthCheck`
         # @param AllDeadToAlive: <p>是否支持全死全活。</p>
         # @type AllDeadToAlive: Boolean
-        # @param TcpIdleConnectTimeout: <p>TCP协议连接空闲超时时间，可配置60s-6000s，默认350s。</p>
-        # @type TcpIdleConnectTimeout: Integer
-        # @param OthersIdleConnectTimeout: <p>其他协议连接空闲超时时间，可配置5s-180s，默认120s</p>
-        # @type OthersIdleConnectTimeout: Integer
         # @param RescheduleUnbindRs: <p>重新调度功能内的解绑后端服务开关，开关打开后解绑后端服务会触发重新调度。</p>
         # @type RescheduleUnbindRs: Boolean
         # @param RescheduleUnbindRsStartTime: <p>解绑RS后开启重调度的时间，可配置0s-3600s，默认0s</p>
@@ -1059,15 +1047,13 @@ module TencentCloud
         # @param RescheduleUnhealthyStartTime: <p>后端服务健康探测异常后开启重调度的时间，可配置0s-3600s，默认0s</p>
         # @type RescheduleUnhealthyStartTime: Integer
 
-        attr_accessor :TargetGroupId, :TargetGroupName, :HealthCheck, :AllDeadToAlive, :TcpIdleConnectTimeout, :OthersIdleConnectTimeout, :RescheduleUnbindRs, :RescheduleUnbindRsStartTime, :RescheduleUnhealthy, :RescheduleUnhealthyStartTime
+        attr_accessor :TargetGroupId, :TargetGroupName, :HealthCheck, :AllDeadToAlive, :RescheduleUnbindRs, :RescheduleUnbindRsStartTime, :RescheduleUnhealthy, :RescheduleUnhealthyStartTime
 
-        def initialize(targetgroupid=nil, targetgroupname=nil, healthcheck=nil, alldeadtoalive=nil, tcpidleconnecttimeout=nil, othersidleconnecttimeout=nil, rescheduleunbindrs=nil, rescheduleunbindrsstarttime=nil, rescheduleunhealthy=nil, rescheduleunhealthystarttime=nil)
+        def initialize(targetgroupid=nil, targetgroupname=nil, healthcheck=nil, alldeadtoalive=nil, rescheduleunbindrs=nil, rescheduleunbindrsstarttime=nil, rescheduleunhealthy=nil, rescheduleunhealthystarttime=nil)
           @TargetGroupId = targetgroupid
           @TargetGroupName = targetgroupname
           @HealthCheck = healthcheck
           @AllDeadToAlive = alldeadtoalive
-          @TcpIdleConnectTimeout = tcpidleconnecttimeout
-          @OthersIdleConnectTimeout = othersidleconnecttimeout
           @RescheduleUnbindRs = rescheduleunbindrs
           @RescheduleUnbindRsStartTime = rescheduleunbindrsstarttime
           @RescheduleUnhealthy = rescheduleunhealthy
@@ -1082,8 +1068,6 @@ module TencentCloud
             @HealthCheck.deserialize(params['HealthCheck'])
           end
           @AllDeadToAlive = params['AllDeadToAlive']
-          @TcpIdleConnectTimeout = params['TcpIdleConnectTimeout']
-          @OthersIdleConnectTimeout = params['OthersIdleConnectTimeout']
           @RescheduleUnbindRs = params['RescheduleUnbindRs']
           @RescheduleUnbindRsStartTime = params['RescheduleUnbindRsStartTime']
           @RescheduleUnhealthy = params['RescheduleUnhealthy']

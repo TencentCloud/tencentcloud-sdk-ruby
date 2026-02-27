@@ -1795,6 +1795,109 @@ module TencentCloud
         end
       end
 
+      # DescribeApmSQLInjectionDetail请求参数结构体
+      class DescribeApmSQLInjectionDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 业务系统 ID
+        # @type InstanceId: String
+        # @param Limit: 限制
+        # @type Limit: Integer
+        # @param Offset: 偏移量
+        # @type Offset: Integer
+        # @param StartTime: 秒级时间戳
+        # @type StartTime: Integer
+        # @param EndTime: 秒级时间戳
+        # @type EndTime: Integer
+        # @param OrderBy: 排序
+        # @type OrderBy: :class:`Tencentcloud::Apm.v20210622.models.OrderBy`
+        # @param Filters: 查询过滤条件
+        # @type Filters: Array
+        # @param GroupBy: 聚合维度
+        # @type GroupBy: Array
+        # @param Metrics: 指标列表
+        # @type Metrics: Array
+
+        attr_accessor :InstanceId, :Limit, :Offset, :StartTime, :EndTime, :OrderBy, :Filters, :GroupBy, :Metrics
+
+        def initialize(instanceid=nil, limit=nil, offset=nil, starttime=nil, endtime=nil, orderby=nil, filters=nil, groupby=nil, metrics=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+          @StartTime = starttime
+          @EndTime = endtime
+          @OrderBy = orderby
+          @Filters = filters
+          @GroupBy = groupby
+          @Metrics = metrics
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['OrderBy'].nil?
+            @OrderBy = OrderBy.new
+            @OrderBy.deserialize(params['OrderBy'])
+          end
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @GroupBy = params['GroupBy']
+          unless params['Metrics'].nil?
+            @Metrics = []
+            params['Metrics'].each do |i|
+              querymetricitem_tmp = QueryMetricItem.new
+              querymetricitem_tmp.deserialize(i)
+              @Metrics << querymetricitem_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeApmSQLInjectionDetail返回参数结构体
+      class DescribeApmSQLInjectionDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Tags: SQL相关维度信息
+        # @type Tags: Array
+        # @param Records: 链路相关信息
+        # @type Records: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Tags, :Records, :RequestId
+
+        def initialize(tags=nil, records=nil, requestid=nil)
+          @Tags = tags
+          @Records = records
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              apmtag_tmp = ApmTag.new
+              apmtag_tmp.deserialize(i)
+              @Tags << apmtag_tmp
+            end
+          end
+          unless params['Records'].nil?
+            @Records = []
+            params['Records'].each do |i|
+              apmmetricrecord_tmp = ApmMetricRecord.new
+              apmmetricrecord_tmp.deserialize(i)
+              @Records << apmmetricrecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeApmSampleConfig请求参数结构体
       class DescribeApmSampleConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统ID

@@ -1151,38 +1151,40 @@ module TencentCloud
 
       # 沙箱工具结构体
       class SandboxTool < TencentCloud::Common::AbstractModel
-        # @param ToolId: 沙箱工具唯一标识符
+        # @param ToolId: <p>沙箱工具唯一标识符</p>
         # @type ToolId: String
-        # @param ToolName: 沙箱工具名称，长度 1-50 字符，支持中英文、数字、下划线。同一 AppId 下沙箱工具名称必须唯一
+        # @param ToolName: <p>沙箱工具名称，长度 1-50 字符，支持中英文、数字、下划线。同一 AppId 下沙箱工具名称必须唯一</p>
         # @type ToolName: String
-        # @param ToolType: 沙箱工具类型，取值：browser（浏览器工具）、code-interpreter（代码解释器工具）、computer（计算机控制工具）、mobile（移动设备工具）
+        # @param ToolType: <p>沙箱工具类型，取值：browser（浏览器工具）、code-interpreter（代码解释器工具）、computer（计算机控制工具）、mobile（移动设备工具）</p>
         # @type ToolType: String
-        # @param Status: 沙箱工具状态，取值：CREATING（创建中）、ACTIVE（可用）、DELETING（删除中）、FAILED（失败）
+        # @param Status: <p>沙箱工具状态，取值：CREATING（创建中）、ACTIVE（可用）、DELETING（删除中）、FAILED（失败）</p>
         # @type Status: String
-        # @param Description: 沙箱工具描述信息，最大长度 200 字符
+        # @param Description: <p>沙箱工具描述信息，最大长度 200 字符</p>
         # @type Description: String
-        # @param DefaultTimeoutSeconds: 默认超时时间，支持格式：5m、300s、1h 等，不指定则使用系统默认值（5 分钟）。最大 24 小时
+        # @param DefaultTimeoutSeconds: <p>默认超时时间，支持格式：5m、300s、1h 等，不指定则使用系统默认值（5 分钟）。最大 24 小时</p>
         # @type DefaultTimeoutSeconds: Integer
-        # @param NetworkConfiguration: 网络配置
+        # @param NetworkConfiguration: <p>网络配置</p>
         # @type NetworkConfiguration: :class:`Tencentcloud::Ags.v20250920.models.NetworkConfiguration`
-        # @param Tags: 标签规格，包含资源标签绑定关系。用于为沙箱工具绑定标签，支持多种资源类型的标签绑定
+        # @param Tags: <p>标签规格，包含资源标签绑定关系。用于为沙箱工具绑定标签，支持多种资源类型的标签绑定</p>
         # @type Tags: Array
-        # @param CreateTime: 沙箱工具创建时间，格式：ISO8601
+        # @param CreateTime: <p>沙箱工具创建时间，格式：ISO8601</p>
         # @type CreateTime: String
-        # @param UpdateTime: 沙箱工具更新时间，格式：ISO8601
+        # @param UpdateTime: <p>沙箱工具更新时间，格式：ISO8601</p>
         # @type UpdateTime: String
-        # @param RoleArn: 沙箱工具绑定角色ARN
+        # @param RoleArn: <p>沙箱工具绑定角色ARN</p>
         # @type RoleArn: String
-        # @param StorageMounts: 沙箱工具中实例存储挂载配置
+        # @param StorageMounts: <p>沙箱工具中实例存储挂载配置</p>
         # @type StorageMounts: Array
-        # @param CustomConfiguration: 沙箱工具自定义配置
+        # @param CustomConfiguration: <p>沙箱工具自定义配置</p>
         # @type CustomConfiguration: :class:`Tencentcloud::Ags.v20250920.models.CustomConfigurationDetail`
-        # @param LogConfiguration: 沙箱工具日志推送相关配置
+        # @param LogConfiguration: <p>沙箱工具日志推送相关配置</p>
         # @type LogConfiguration: :class:`Tencentcloud::Ags.v20250920.models.LogConfiguration`
+        # @param StatusReason: <p>用于说明沙箱工具处于该状态的原因</p>
+        # @type StatusReason: String
 
-        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration
+        attr_accessor :ToolId, :ToolName, :ToolType, :Status, :Description, :DefaultTimeoutSeconds, :NetworkConfiguration, :Tags, :CreateTime, :UpdateTime, :RoleArn, :StorageMounts, :CustomConfiguration, :LogConfiguration, :StatusReason
 
-        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil)
+        def initialize(toolid=nil, toolname=nil, tooltype=nil, status=nil, description=nil, defaulttimeoutseconds=nil, networkconfiguration=nil, tags=nil, createtime=nil, updatetime=nil, rolearn=nil, storagemounts=nil, customconfiguration=nil, logconfiguration=nil, statusreason=nil)
           @ToolId = toolid
           @ToolName = toolname
           @ToolType = tooltype
@@ -1197,6 +1199,7 @@ module TencentCloud
           @StorageMounts = storagemounts
           @CustomConfiguration = customconfiguration
           @LogConfiguration = logconfiguration
+          @StatusReason = statusreason
         end
 
         def deserialize(params)
@@ -1237,6 +1240,7 @@ module TencentCloud
             @LogConfiguration = LogConfiguration.new
             @LogConfiguration.deserialize(params['LogConfiguration'])
           end
+          @StatusReason = params['StatusReason']
         end
       end
 

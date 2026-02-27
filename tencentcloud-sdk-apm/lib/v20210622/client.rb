@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询SQL注入详情信息
+
+        # @param request: Request instance for DescribeApmSQLInjectionDetail.
+        # @type request: :class:`Tencentcloud::apm::V20210622::DescribeApmSQLInjectionDetailRequest`
+        # @rtype: :class:`Tencentcloud::apm::V20210622::DescribeApmSQLInjectionDetailResponse`
+        def DescribeApmSQLInjectionDetail(request)
+          body = send_request('DescribeApmSQLInjectionDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApmSQLInjectionDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询采样配置接口
 
         # @param request: Request instance for DescribeApmSampleConfig.

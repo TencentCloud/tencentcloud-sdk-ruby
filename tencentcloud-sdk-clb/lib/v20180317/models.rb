@@ -17,6 +17,49 @@
 module TencentCloud
   module Clb
     module V20180317
+      # AssociateCustomizedConfig请求参数结构体
+      class AssociateCustomizedConfigRequest < TencentCloud::Common::AbstractModel
+        # @param UconfigId: 配置ID
+        # @type UconfigId: String
+        # @param BindList: 关联的server或location
+        # @type BindList: Array
+
+        attr_accessor :UconfigId, :BindList
+
+        def initialize(uconfigid=nil, bindlist=nil)
+          @UconfigId = uconfigid
+          @BindList = bindlist
+        end
+
+        def deserialize(params)
+          @UconfigId = params['UconfigId']
+          unless params['BindList'].nil?
+            @BindList = []
+            params['BindList'].each do |i|
+              binditem_tmp = BindItem.new
+              binditem_tmp.deserialize(i)
+              @BindList << binditem_tmp
+            end
+          end
+        end
+      end
+
+      # AssociateCustomizedConfig返回参数结构体
+      class AssociateCustomizedConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AssociateTargetGroups请求参数结构体
       class AssociateTargetGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Associations: 绑定的关系数组，目标组类型需要一致。
@@ -549,6 +592,34 @@ module TencentCloud
           @Vport = params['Vport']
           @Url = params['Url']
           @UconfigId = params['UconfigId']
+        end
+      end
+
+      # 配置绑定关系
+      class BindItem < TencentCloud::Common::AbstractModel
+        # @param LoadBalancerId: 配置绑定的CLB ID
+        # @type LoadBalancerId: String
+        # @param ListenerId: 配置绑定的监听器ID
+        # @type ListenerId: String
+        # @param Domain: 配置绑定的域名
+        # @type Domain: String
+        # @param LocationId: 配置绑定的规则
+        # @type LocationId: String
+
+        attr_accessor :LoadBalancerId, :ListenerId, :Domain, :LocationId
+
+        def initialize(loadbalancerid=nil, listenerid=nil, domain=nil, locationid=nil)
+          @LoadBalancerId = loadbalancerid
+          @ListenerId = listenerid
+          @Domain = domain
+          @LocationId = locationid
+        end
+
+        def deserialize(params)
+          @LoadBalancerId = params['LoadBalancerId']
+          @ListenerId = params['ListenerId']
+          @Domain = params['Domain']
+          @LocationId = params['LocationId']
         end
       end
 
@@ -4367,6 +4438,49 @@ module TencentCloud
           @Status = params['Status']
           @LoadBalancerIds = params['LoadBalancerIds']
           @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DisassociateCustomizedConfig请求参数结构体
+      class DisassociateCustomizedConfigRequest < TencentCloud::Common::AbstractModel
+        # @param UconfigId: 配置ID
+        # @type UconfigId: String
+        # @param BindList: 解绑的列表
+        # @type BindList: Array
+
+        attr_accessor :UconfigId, :BindList
+
+        def initialize(uconfigid=nil, bindlist=nil)
+          @UconfigId = uconfigid
+          @BindList = bindlist
+        end
+
+        def deserialize(params)
+          @UconfigId = params['UconfigId']
+          unless params['BindList'].nil?
+            @BindList = []
+            params['BindList'].each do |i|
+              binditem_tmp = BindItem.new
+              binditem_tmp.deserialize(i)
+              @BindList << binditem_tmp
+            end
+          end
+        end
+      end
+
+      # DisassociateCustomizedConfig返回参数结构体
+      class DisassociateCustomizedConfigResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

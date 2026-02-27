@@ -13863,26 +13863,38 @@ module TencentCloud
 
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 网络组id(cynosdbmysql-grp-前缀开头)或集群id
+        # @param InstanceId: 网络组id(cynosdbmysql-grp-前缀开头)或集群id（例如 cynosdbmysql-xxxxxxxx前缀）,当通过实例IP地址三元组（UniqVpcId、Vip、Vport）配置安全组时，该字段必须设置为集群ID（例如 cynosdbmysql-xxxxxxxx前缀）。
         # @type InstanceId: String
         # @param SecurityGroupIds: 要修改的安全组ID列表，一个或者多个安全组ID组成的数组。
         # 注意：该入参会全量替换存量已有集合，非增量更新。修改需传入预期的全量集合。
         # @type SecurityGroupIds: Array
         # @param Zone: 可用区
         # @type Zone: String
+        # @param UniqVpcId: 实例所属VPC网络ID,（UniqVpcId、Vip 和 Vport 三个参数需同时指定，用于唯一标识网络实例）
+        # @type UniqVpcId: String
+        # @param Vip: 实例IP地址,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例
+        # @type Vip: String
+        # @param Vport: 实例端口,实例IP地址三元组UniqVpcId、Vip 和 Vport) 三个参数需同时指定，用于唯一标识网络实实例
+        # @type Vport: Integer
 
-        attr_accessor :InstanceId, :SecurityGroupIds, :Zone
+        attr_accessor :InstanceId, :SecurityGroupIds, :Zone, :UniqVpcId, :Vip, :Vport
 
-        def initialize(instanceid=nil, securitygroupids=nil, zone=nil)
+        def initialize(instanceid=nil, securitygroupids=nil, zone=nil, uniqvpcid=nil, vip=nil, vport=nil)
           @InstanceId = instanceid
           @SecurityGroupIds = securitygroupids
           @Zone = zone
+          @UniqVpcId = uniqvpcid
+          @Vip = vip
+          @Vport = vport
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SecurityGroupIds = params['SecurityGroupIds']
           @Zone = params['Zone']
+          @UniqVpcId = params['UniqVpcId']
+          @Vip = params['Vip']
+          @Vport = params['Vport']
         end
       end
 

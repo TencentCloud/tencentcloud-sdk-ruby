@@ -3406,6 +3406,81 @@ module TencentCloud
         end
       end
 
+      # DescribeEMREventList请求参数结构体
+      class DescribeEMREventListRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 集群ID
+        # @type InstanceId: String
+        # @param StartTime: 查询事件的开始时间
+        # @type StartTime: Integer
+        # @param EndTime: 查询事件的结束时间
+        # @type EndTime: Integer
+        # @param Host: 事件触发的IP
+        # @type Host: String
+        # @param Role: 事件受影响服务角色
+        # @type Role: String
+        # @param Name: 事件名称
+        # @type Name: String
+        # @param Offset: 事件列表的偏移量
+        # @type Offset: Integer
+        # @param Limit: 事件列表的Limit
+        # @type Limit: Integer
+
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Host, :Role, :Name, :Offset, :Limit
+
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, host=nil, role=nil, name=nil, offset=nil, limit=nil)
+          @InstanceId = instanceid
+          @StartTime = starttime
+          @EndTime = endtime
+          @Host = host
+          @Role = role
+          @Name = name
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Host = params['Host']
+          @Role = params['Role']
+          @Name = params['Name']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeEMREventList返回参数结构体
+      class DescribeEMREventListResponse < TencentCloud::Common::AbstractModel
+        # @param EventList: 事件详情列表
+        # @type EventList: Array
+        # @param TotalNum: 符合的事件总量
+        # @type TotalNum: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EventList, :TotalNum, :RequestId
+
+        def initialize(eventlist=nil, totalnum=nil, requestid=nil)
+          @EventList = eventlist
+          @TotalNum = totalnum
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['EventList'].nil?
+            @EventList = []
+            params['EventList'].each do |i|
+              emreventlistitem_tmp = EMREventListItem.new
+              emreventlistitem_tmp.deserialize(i)
+              @EventList << emreventlistitem_tmp
+            end
+          end
+          @TotalNum = params['TotalNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEmrApplicationStatics请求参数结构体
       class DescribeEmrApplicationStaticsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 集群id
@@ -6332,6 +6407,38 @@ module TencentCloud
           @LimitCpu = params['LimitCpu']
           @RequestMemory = params['RequestMemory']
           @LimitMemory = params['LimitMemory']
+        end
+      end
+
+      # 事件详情列表
+      class EMREventListItem < TencentCloud::Common::AbstractModel
+        # @param Host: 事件受影响ip
+        # @type Host: String
+        # @param Role: 事件受影响的服务角色
+        # @type Role: String
+        # @param Name: 事件名称
+        # @type Name: String
+        # @param Detail: 事件告警详情
+        # @type Detail: String
+        # @param CreateTime: 事件发生时间
+        # @type CreateTime: String
+
+        attr_accessor :Host, :Role, :Name, :Detail, :CreateTime
+
+        def initialize(host=nil, role=nil, name=nil, detail=nil, createtime=nil)
+          @Host = host
+          @Role = role
+          @Name = name
+          @Detail = detail
+          @CreateTime = createtime
+        end
+
+        def deserialize(params)
+          @Host = params['Host']
+          @Role = params['Role']
+          @Name = params['Name']
+          @Detail = params['Detail']
+          @CreateTime = params['CreateTime']
         end
       end
 

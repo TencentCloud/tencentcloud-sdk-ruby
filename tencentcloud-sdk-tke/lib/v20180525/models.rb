@@ -2121,7 +2121,7 @@ module TencentCloud
         # @type IsExtranet: Boolean
         # @param Domain: 设置域名
         # @type Domain: String
-        # @param SecurityGroup: 使用的安全组，只有外网访问需要传递（开启外网访问且不使用已有clb时必传）。获取方式：https://cloud.tencent.com/document/api/215/15808
+        # @param SecurityGroup: 使用的安全组（开启内外网访问且不使用已有clb时可传，内网访问需要先找clb侧加白使用）。获取方式：https://cloud.tencent.com/document/api/215/15808
         # @type SecurityGroup: String
         # @param ExtensiveParameters: 创建lb参数，只有外网访问需要设置，是一个json格式化后的字符串：{"InternetAccessible":{"InternetChargeType":"TRAFFIC_POSTPAID_BY_HOUR","InternetMaxBandwidthOut":200},"VipIsp":"","BandwidthPackageId":""}。
         # 各个参数意义：
@@ -6282,12 +6282,14 @@ module TencentCloud
         # @type SecurityGroup: String
         # @param ClusterIntranetSubnetId: 内网访问所属子网
         # @type ClusterIntranetSubnetId: String
+        # @param IntranetSecurityGroup: 内网安全组
+        # @type IntranetSecurityGroup: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :ClusterExternalDomain, :ClusterIntranetDomain, :SecurityGroup, :ClusterIntranetSubnetId, :RequestId
+        attr_accessor :CertificationAuthority, :ClusterExternalEndpoint, :ClusterIntranetEndpoint, :ClusterDomain, :ClusterExternalACL, :ClusterExternalDomain, :ClusterIntranetDomain, :SecurityGroup, :ClusterIntranetSubnetId, :IntranetSecurityGroup, :RequestId
 
-        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, clusterexternaldomain=nil, clusterintranetdomain=nil, securitygroup=nil, clusterintranetsubnetid=nil, requestid=nil)
+        def initialize(certificationauthority=nil, clusterexternalendpoint=nil, clusterintranetendpoint=nil, clusterdomain=nil, clusterexternalacl=nil, clusterexternaldomain=nil, clusterintranetdomain=nil, securitygroup=nil, clusterintranetsubnetid=nil, intranetsecuritygroup=nil, requestid=nil)
           @CertificationAuthority = certificationauthority
           @ClusterExternalEndpoint = clusterexternalendpoint
           @ClusterIntranetEndpoint = clusterintranetendpoint
@@ -6297,6 +6299,7 @@ module TencentCloud
           @ClusterIntranetDomain = clusterintranetdomain
           @SecurityGroup = securitygroup
           @ClusterIntranetSubnetId = clusterintranetsubnetid
+          @IntranetSecurityGroup = intranetsecuritygroup
           @RequestId = requestid
         end
 
@@ -6310,6 +6313,7 @@ module TencentCloud
           @ClusterIntranetDomain = params['ClusterIntranetDomain']
           @SecurityGroup = params['SecurityGroup']
           @ClusterIntranetSubnetId = params['ClusterIntranetSubnetId']
+          @IntranetSecurityGroup = params['IntranetSecurityGroup']
           @RequestId = params['RequestId']
         end
       end

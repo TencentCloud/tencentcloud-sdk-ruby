@@ -366,17 +366,17 @@ module TencentCloud
 
       # 数据库实例规格
       class ClassInfo < TencentCloud::Common::AbstractModel
-        # @param SpecCode: 规格ID
+        # @param SpecCode: <p>规格ID</p>
         # @type SpecCode: String
-        # @param CPU: CPU核数
+        # @param CPU: <p>CPU核数</p>
         # @type CPU: Integer
-        # @param Memory: 内存大小，单位：MB
+        # @param Memory: <p>内存大小，单位：MB</p>
         # @type Memory: Integer
-        # @param MaxStorage: 该规格所支持最大存储容量，单位：GB
+        # @param MaxStorage: <p>该规格所支持最大存储容量，单位：GB</p>
         # @type MaxStorage: Integer
-        # @param MinStorage: 该规格所支持最小存储容量，单位：GB
+        # @param MinStorage: <p>该规格所支持最小存储容量，单位：GB</p>
         # @type MinStorage: Integer
-        # @param QPS: 该规格的预估QPS
+        # @param QPS: <p>该规格的预估QPS</p>
         # @type QPS: Integer
 
         attr_accessor :SpecCode, :CPU, :Memory, :MaxStorage, :MinStorage, :QPS
@@ -1258,8 +1258,8 @@ module TencentCloud
 
         attr_accessor :Zone, :MasterDBInstanceId, :SpecCode, :Storage, :InstanceCount, :Period, :VpcId, :SubnetId, :InstanceChargeType, :AutoVoucher, :VoucherIds, :AutoRenewFlag, :ProjectId, :ActivityId, :ReadOnlyGroupId, :TagList, :SecurityGroupIds, :NeedSupportIpv6, :Name, :DBVersion, :DedicatedClusterId, :DeletionProtection
         extend Gem::Deprecate
-        deprecate :DBVersion, :none, 2025, 11
-        deprecate :DBVersion=, :none, 2025, 11
+        deprecate :DBVersion, :none, 2026, 2
+        deprecate :DBVersion=, :none, 2026, 2
 
         def initialize(zone=nil, masterdbinstanceid=nil, speccode=nil, storage=nil, instancecount=nil, period=nil, vpcid=nil, subnetid=nil, instancechargetype=nil, autovoucher=nil, voucherids=nil, autorenewflag=nil, projectid=nil, activityid=nil, readonlygroupid=nil, taglist=nil, securitygroupids=nil, needsupportipv6=nil, name=nil, dbversion=nil, dedicatedclusterid=nil, deletionprotection=nil)
           @Zone = zone
@@ -1549,119 +1549,89 @@ module TencentCloud
 
       # 描述实例的详细信息
       class DBInstance < TencentCloud::Common::AbstractModel
-        # @param Region: 实例所属地域，如: ap-guangzhou，对应RegionSet的Region字段。
+        # @param Region: <p>实例所属地域，如: ap-guangzhou，对应RegionSet的Region字段。</p>
         # @type Region: String
-        # @param Zone: 实例所属可用区， 如：ap-guangzhou-3，对应ZoneSet的Zone字段。
+        # @param Zone: <p>实例所属可用区， 如：ap-guangzhou-3，对应ZoneSet的Zone字段。</p>
         # @type Zone: String
-        # @param VpcId: 私有网络ID，形如vpc-e6w23k31。有效的VpcId可通过登录控制台查询；也可以调用接口 [DescribeVpcs](https://cloud.tencent.com/document/api/215/15778) ，从接口返回中的unVpcId字段获取。
+        # @param VpcId: <p>私有网络ID，形如vpc-e6w23k31。有效的VpcId可通过登录控制台查询；也可以调用接口 <a href="https://cloud.tencent.com/document/api/215/15778">DescribeVpcs</a> ，从接口返回中的unVpcId字段获取。</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络子网ID，形如subnet-51lcif9y。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 [DescribeSubnets ](https://cloud.tencent.com/document/api/215/15784)，从接口返回中的unSubnetId字段获取。
+        # @param SubnetId: <p>私有网络子网ID，形如subnet-51lcif9y。有效的私有网络子网ID可通过登录控制台查询；也可以调用接口 <a href="https://cloud.tencent.com/document/api/215/15784">DescribeSubnets </a>，从接口返回中的unSubnetId字段获取。</p>
         # @type SubnetId: String
-        # @param DBInstanceId: 实例ID。
+        # @param DBInstanceId: <p>实例ID。</p>
         # @type DBInstanceId: String
-        # @param DBInstanceName: 实例名称。
+        # @param DBInstanceName: <p>实例名称。</p>
         # @type DBInstanceName: String
-        # @param DBInstanceStatus: 实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolating（隔离中）、isolated（已隔离）、disisolating（解隔离中）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）、upgrading（内核版本升级中）、audit-switching（审计状态变更中）、primary-switching（主备切换中）、offlining(下线中)、deployment changing（可用区变更中）、cloning（恢复数据中）、parameter modifying（参数修改中）、log-switching（日志状态变更中）、restoring（恢复中）、expanding（变配中）
+        # @param DBInstanceStatus: <p>实例状态，分别为：applying（申请中）、init(待初始化)、initing(初始化中)、running(运行中)、limited run（受限运行）、isolating（隔离中）、isolated（已隔离）、disisolating（解隔离中）、recycling（回收中）、recycled（已回收）、job running（任务执行中）、offline（下线）、migrating（迁移中）、expanding（扩容中）、waitSwitch（等待切换）、switching（切换中）、readonly（只读）、restarting（重启中）、network changing（网络变更中）、upgrading（内核版本升级中）、audit-switching（审计状态变更中）、primary-switching（主备切换中）、offlining(下线中)、deployment changing（可用区变更中）、cloning（恢复数据中）、parameter modifying（参数修改中）、log-switching（日志状态变更中）、restoring（恢复中）、expanding（变配中）</p>
         # @type DBInstanceStatus: String
-        # @param DBInstanceMemory: 实例分配的内存大小，单位：GB
+        # @param DBInstanceMemory: <p>实例分配的内存大小，单位：GB</p>
         # @type DBInstanceMemory: Integer
-        # @param DBInstanceStorage: 实例分配的存储空间大小，单位：GB
+        # @param DBInstanceStorage: <p>实例分配的存储空间大小，单位：GB</p>
         # @type DBInstanceStorage: Integer
-        # @param DBInstanceCpu: 实例分配的CPU数量，单位：个
+        # @param DBInstanceCpu: <p>实例分配的CPU数量，单位：个</p>
         # @type DBInstanceCpu: Integer
-        # @param DBInstanceClass: 售卖规格ID
+        # @param DBInstanceClass: <p>售卖规格ID</p>
         # @type DBInstanceClass: String
-        # @param DBMajorVersion: PostgreSQL大版本号，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取，目前支持10，11，12，13，14，15这几个大版本。
+        # @param DBMajorVersion: <p>PostgreSQL大版本号，版本信息可从<a href="https://cloud.tencent.com/document/api/409/89018">DescribeDBVersions</a>获取，目前支持10，11，12，13，14，15这几个大版本。</p>
         # @type DBMajorVersion: String
-        # @param DBVersion: PostgreSQL社区大版本+小版本号，如12.4，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # @param DBVersion: <p>PostgreSQL社区大版本+小版本号，如12.4，版本信息可从<a href="https://cloud.tencent.com/document/api/409/89018">DescribeDBVersions</a>获取。</p>
         # @type DBVersion: String
-        # @param DBKernelVersion: PostgreSQL内核版本号，如v12.7_r1.8，版本信息可从[DescribeDBVersions](https://cloud.tencent.com/document/api/409/89018)获取。
+        # @param DBKernelVersion: <p>PostgreSQL内核版本号，如v12.7_r1.8，版本信息可从<a href="https://cloud.tencent.com/document/api/409/89018">DescribeDBVersions</a>获取。</p>
         # @type DBKernelVersion: String
-        # @param DBInstanceType: 实例类型，类型有：
-        # <li>primary：主实例</li>
-        # <li>readonly：只读实例</li>
-        # <li>guard：灾备实例</li>
-        # <li>temp：临时实例</li>
+        # @param DBInstanceType: <p>实例类型，类型有：</p><li>primary：主实例</li><li>readonly：只读实例</li><li>guard：灾备实例</li><li>temp：临时实例</li>
         # @type DBInstanceType: String
-        # @param DBInstanceVersion: 实例版本，目前只支持standard（双机高可用版, 一主一从）。
+        # @param DBInstanceVersion: <p>实例版本，目前只支持standard（双机高可用版, 一主一从）。</p>
         # @type DBInstanceVersion: String
-        # @param DBCharset: 实例字符集，目前只支持：
-        # <li> UTF8</li>
-        # <li> LATIN1</li>
+        # @param DBCharset: <p>实例字符集，目前只支持：</p><li> UTF8</li><li> LATIN1</li>
         # @type DBCharset: String
-        # @param CreateTime: 实例创建时间。
+        # @param CreateTime: <p>实例创建时间。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 实例执行最后一次更新的时间。
+        # @param UpdateTime: <p>实例执行最后一次更新的时间。</p>
         # @type UpdateTime: String
-        # @param ExpireTime: 实例到期时间。
+        # @param ExpireTime: <p>实例到期时间。</p>
         # @type ExpireTime: String
-        # @param IsolatedTime: 实例隔离时间。
+        # @param IsolatedTime: <p>实例隔离时间。</p>
         # @type IsolatedTime: String
-        # @param PayType: 计费模式：
-        # <li>prepaid：包年包月,预付费</li>
-        # <li>postpaid：按量计费，后付费</li>
+        # @param PayType: <p>计费模式：</p><li>prepaid：包年包月,预付费</li><li>postpaid：按量计费，后付费</li>
         # @type PayType: String
-        # @param AutoRenew: 是否自动续费：
-        # <li>0：手动续费</li>
-        # <li>1：自动续费</li>
-        # 默认值：0
+        # @param AutoRenew: <p>是否自动续费：</p><li>0：手动续费</li><li>1：自动续费</li>默认值：0
         # @type AutoRenew: Integer
-        # @param DBInstanceNetInfo: 实例网络连接信息。
+        # @param DBInstanceNetInfo: <p>实例网络连接信息。</p>
         # @type DBInstanceNetInfo: Array
-        # @param Type: 机器类型。
+        # @param Type: <p>机器类型。</p>
         # @type Type: String
-        # @param AppId: 用户的AppId。
+        # @param AppId: <p>用户的AppId。</p>
         # @type AppId: Integer
-        # @param Uid: 实例的Uid。
+        # @param Uid: <p>实例的Uid。</p>
         # @type Uid: Integer
-        # @param ProjectId: 项目ID。
+        # @param ProjectId: <p>项目ID。</p>
         # @type ProjectId: Integer
-        # @param TagList: 实例绑定的标签信息。
+        # @param TagList: <p>实例绑定的标签信息。</p>
         # @type TagList: Array
-        # @param MasterDBInstanceId: 主实例信息，仅在实例为只读实例时返回。
+        # @param MasterDBInstanceId: <p>主实例信息，仅在实例为只读实例时返回。</p>
         # @type MasterDBInstanceId: String
-        # @param ReadOnlyInstanceNum: 只读实例数量。
+        # @param ReadOnlyInstanceNum: <p>只读实例数量。</p>
         # @type ReadOnlyInstanceNum: Integer
-        # @param StatusInReadonlyGroup: 只读实例在只读组中的状态。
+        # @param StatusInReadonlyGroup: <p>只读实例在只读组中的状态。</p>
         # @type StatusInReadonlyGroup: String
-        # @param OfflineTime: 下线时间。
+        # @param OfflineTime: <p>下线时间。</p>
         # @type OfflineTime: String
-        # @param DBNodeSet: 实例的节点信息。
+        # @param DBNodeSet: <p>实例的节点信息。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DBNodeSet: Array
-        # @param IsSupportTDE: 实例是否支持TDE数据加密：
-        # <li>0：不支持</li>
-        # <li>1：支持</li>
-        # 默认值：0
-        # TDE数据加密可参考[数据透明加密概述](https://cloud.tencent.com/document/product/409/71748)
+        # @param IsSupportTDE: <p>实例是否支持TDE数据加密：</p><li>0：不支持</li><li>1：支持</li>默认值：0TDE数据加密可参考[数据透明加密概述](https://cloud.tencent.com/document/product/409/71748)
         # @type IsSupportTDE: Integer
-        # @param DBEngine: 数据库引擎，支持：
-        # <li>postgresql：云数据库PostgreSQL</li>
-        # <li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL</li>
-        # 默认值：postgresql
+        # @param DBEngine: <p>数据库引擎，支持：</p><li>postgresql：云数据库PostgreSQL</li><li>mssql_compatible：MSSQL兼容-云数据库PostgreSQL</li>默认值：postgresql
         # @type DBEngine: String
-        # @param DBEngineConfig: 数据库引擎的配置信息，配置格式如下：
-        # {"$key1":"$value1", "$key2":"$value2"}
-        # 各引擎支持如下：
-        # mssql_compatible引擎：
-        # <li>migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。</li>
-        # <li>defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下：
-        # "af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。</li>
-        # <li>serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下："bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。</li>
+        # @param DBEngineConfig: <p>数据库引擎的配置信息，配置格式如下：<br>{&quot;$key1&quot;:&quot;$value1&quot;, &quot;$key2&quot;:&quot;$value2&quot;}<br>各引擎支持如下：<br>mssql_compatible引擎：</p><li>migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。</li><li>defaultLocale：排序区域规则，可选参数，在初始化后不可修改，默认为en_US，可选值如下："af_ZA", "sq_AL", "ar_DZ", "ar_BH", "ar_EG", "ar_IQ", "ar_JO", "ar_KW", "ar_LB", "ar_LY", "ar_MA", "ar_OM", "ar_QA", "ar_SA", "ar_SY", "ar_TN", "ar_AE", "ar_YE", "hy_AM", "az_Cyrl_AZ", "az_Latn_AZ", "eu_ES", "be_BY", "bg_BG", "ca_ES", "zh_HK", "zh_MO", "zh_CN", "zh_SG", "zh_TW", "hr_HR", "cs_CZ", "da_DK", "nl_BE", "nl_NL", "en_AU", "en_BZ", "en_CA", "en_IE", "en_JM", "en_NZ", "en_PH", "en_ZA", "en_TT", "en_GB", "en_US", "en_ZW", "et_EE", "fo_FO", "fa_IR", "fi_FI", "fr_BE", "fr_CA", "fr_FR", "fr_LU", "fr_MC", "fr_CH", "mk_MK", "ka_GE", "de_AT", "de_DE", "de_LI", "de_LU", "de_CH", "el_GR", "gu_IN", "he_IL", "hi_IN", "hu_HU", "is_IS", "id_ID", "it_IT", "it_CH", "ja_JP", "kn_IN", "kok_IN", "ko_KR", "ky_KG", "lv_LV", "lt_LT", "ms_BN", "ms_MY", "mr_IN", "mn_MN", "nb_NO", "nn_NO", "pl_PL", "pt_BR", "pt_PT", "pa_IN", "ro_RO", "ru_RU", "sa_IN", "sr_Cyrl_RS", "sr_Latn_RS", "sk_SK", "sl_SI", "es_AR", "es_BO", "es_CL", "es_CO", "es_CR", "es_DO", "es_EC", "es_SV", "es_GT", "es_HN", "es_MX", "es_NI", "es_PA", "es_PY","es_PE", "es_PR", "es_ES", "es_TRADITIONAL", "es_UY", "es_VE", "sw_KE", "sv_FI", "sv_SE", "tt_RU", "te_IN", "th_TH", "tr_TR", "uk_UA", "ur_IN", "ur_PK", "uz_Cyrl_UZ", "uz_Latn_UZ", "vi_VN"。</li><li>serverCollationName：排序规则名称，可选参数，在初始化后不可修改，默认为sql_latin1_general_cp1_ci_as，可选值如下："bbf_unicode_general_ci_as", "bbf_unicode_cp1_ci_as", "bbf_unicode_CP1250_ci_as", "bbf_unicode_CP1251_ci_as", "bbf_unicode_cp1253_ci_as", "bbf_unicode_cp1254_ci_as", "bbf_unicode_cp1255_ci_as", "bbf_unicode_cp1256_ci_as", "bbf_unicode_cp1257_ci_as", "bbf_unicode_cp1258_ci_as", "bbf_unicode_cp874_ci_as", "sql_latin1_general_cp1250_ci_as", "sql_latin1_general_cp1251_ci_as", "sql_latin1_general_cp1_ci_as", "sql_latin1_general_cp1253_ci_as", "sql_latin1_general_cp1254_ci_as", "sql_latin1_general_cp1255_ci_as","sql_latin1_general_cp1256_ci_as", "sql_latin1_general_cp1257_ci_as", "sql_latin1_general_cp1258_ci_as", "chinese_prc_ci_as", "cyrillic_general_ci_as", "finnish_swedish_ci_as", "french_ci_as", "japanese_ci_as", "korean_wansung_ci_as", "latin1_general_ci_as", "modern_spanish_ci_as", "polish_ci_as", "thai_ci_as", "traditional_spanish_ci_as", "turkish_ci_as", "ukrainian_ci_as", "vietnamese_ci_as"。</li>
         # @type DBEngineConfig: String
-        # @param NetworkAccessList: 实例网络信息列表（此字段已废弃）
+        # @param NetworkAccessList: <p>实例网络信息列表（此字段已废弃）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NetworkAccessList: Array
-        # @param SupportIpv6: 实例是否支持Ipv6：
-        # <li>0：否</li>
-        # <li>1：是</li>
-        # 默认值：0
+        # @param SupportIpv6: <p>实例是否支持Ipv6：</p><li>0：否</li><li>1：是</li>默认值：0
         # @type SupportIpv6: Integer
-        # @param ExpandedCpu: 实例已经弹性扩容的cpu核数
+        # @param ExpandedCpu: <p>实例已经弹性扩容的cpu核数</p>
         # @type ExpandedCpu: Integer
-        # @param DeletionProtection: 实例是否开启删除保护，取值如下：
-        # - true：开启删除保护
-        # - false：关闭删除保护
+        # @param DeletionProtection: <p>实例是否开启删除保护，取值如下：</p><ul><li>true：开启删除保护</li><li>false：关闭删除保护</li></ul>
         # @type DeletionProtection: Boolean
 
         attr_accessor :Region, :Zone, :VpcId, :SubnetId, :DBInstanceId, :DBInstanceName, :DBInstanceStatus, :DBInstanceMemory, :DBInstanceStorage, :DBInstanceCpu, :DBInstanceClass, :DBMajorVersion, :DBVersion, :DBKernelVersion, :DBInstanceType, :DBInstanceVersion, :DBCharset, :CreateTime, :UpdateTime, :ExpireTime, :IsolatedTime, :PayType, :AutoRenew, :DBInstanceNetInfo, :Type, :AppId, :Uid, :ProjectId, :TagList, :MasterDBInstanceId, :ReadOnlyInstanceNum, :StatusInReadonlyGroup, :OfflineTime, :DBNodeSet, :IsSupportTDE, :DBEngine, :DBEngineConfig, :NetworkAccessList, :SupportIpv6, :ExpandedCpu, :DeletionProtection
@@ -5040,8 +5010,8 @@ module TencentCloud
 
         attr_accessor :Storage, :Memory, :DBInstanceId, :InstanceChargeType, :Cpu
         extend Gem::Deprecate
-        deprecate :InstanceChargeType, :none, 2025, 11
-        deprecate :InstanceChargeType=, :none, 2025, 11
+        deprecate :InstanceChargeType, :none, 2026, 2
+        deprecate :InstanceChargeType=, :none, 2026, 2
 
         def initialize(storage=nil, memory=nil, dbinstanceid=nil, instancechargetype=nil, cpu=nil)
           @Storage = storage
@@ -7357,31 +7327,31 @@ module TencentCloud
 
       # 描述一种规格的信息
       class SpecItemInfo < TencentCloud::Common::AbstractModel
-        # @param SpecCode: 规格ID
+        # @param SpecCode: <p>规格ID</p>
         # @type SpecCode: String
-        # @param Version: PostgreSQL的版本编号
+        # @param Version: <p>PostgreSQL的版本编号</p>
         # @type Version: String
-        # @param VersionName: 内核编号对应的完整版本名称
+        # @param VersionName: <p>内核编号对应的完整版本名称</p>
         # @type VersionName: String
-        # @param Cpu: CPU核数
+        # @param Cpu: <p>CPU核数</p>
         # @type Cpu: Integer
-        # @param Memory: 内存大小，单位：MB
+        # @param Memory: <p>内存大小，单位：MB</p>
         # @type Memory: Integer
-        # @param MaxStorage: 该规格所支持最大存储容量，单位：GB
+        # @param MaxStorage: <p>该规格所支持最大存储容量，单位：GB</p>
         # @type MaxStorage: Integer
-        # @param MinStorage: 该规格所支持最小存储容量，单位：GB
+        # @param MinStorage: <p>该规格所支持最小存储容量，单位：GB</p>
         # @type MinStorage: Integer
-        # @param Qps: 该规格的预估QPS
+        # @param Qps: <p>该规格的预估QPS</p>
         # @type Qps: Integer
-        # @param Pid: 【该字段废弃】
+        # @param Pid: <p>【该字段废弃】</p>
         # @type Pid: Integer
-        # @param Type: 机器类型
+        # @param Type: <p>机器类型</p>
         # @type Type: String
-        # @param MajorVersion: PostgreSQL的主要版本编号
+        # @param MajorVersion: <p>PostgreSQL的主要版本编号</p>
         # @type MajorVersion: String
-        # @param KernelVersion: PostgreSQL的内核版本编号
+        # @param KernelVersion: <p>PostgreSQL的内核版本编号</p>
         # @type KernelVersion: String
-        # @param IsSupportTDE: 是否支持TDE数据加密功能，0-不支持，1-支持
+        # @param IsSupportTDE: <p>是否支持TDE数据加密功能，0-不支持，1-支持</p>
         # @type IsSupportTDE: Integer
 
         attr_accessor :SpecCode, :Version, :VersionName, :Cpu, :Memory, :MaxStorage, :MinStorage, :Qps, :Pid, :Type, :MajorVersion, :KernelVersion, :IsSupportTDE

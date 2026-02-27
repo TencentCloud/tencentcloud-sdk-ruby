@@ -9002,15 +9002,18 @@ module TencentCloud
         # @type LinuxUid: Integer
         # @param LinuxGid: 子账号在Linux下的GID
         # @type LinuxGid: Integer
+        # @param LinuxUserName: 子账号在Linux下的用户名
+        # @type LinuxUserName: String
 
-        attr_accessor :Uin, :SubUin, :SubUinName, :LinuxUid, :LinuxGid
+        attr_accessor :Uin, :SubUin, :SubUinName, :LinuxUid, :LinuxGid, :LinuxUserName
 
-        def initialize(uin=nil, subuin=nil, subuinname=nil, linuxuid=nil, linuxgid=nil)
+        def initialize(uin=nil, subuin=nil, subuinname=nil, linuxuid=nil, linuxgid=nil, linuxusername=nil)
           @Uin = uin
           @SubUin = subuin
           @SubUinName = subuinname
           @LinuxUid = linuxuid
           @LinuxGid = linuxgid
+          @LinuxUserName = linuxusername
         end
 
         def deserialize(params)
@@ -9019,6 +9022,7 @@ module TencentCloud
           @SubUinName = params['SubUinName']
           @LinuxUid = params['LinuxUid']
           @LinuxGid = params['LinuxGid']
+          @LinuxUserName = params['LinuxUserName']
         end
       end
 
