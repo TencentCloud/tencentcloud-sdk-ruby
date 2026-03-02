@@ -4481,25 +4481,31 @@ module TencentCloud
 
       # DescribeSlowLogUserHostStats请求参数结构体
       class DescribeSlowLogUserHostStatsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
         # @type InstanceId: String
-        # @param StartTime: 查询范围的开始时间，时间格式如：2019-09-10 12:13:14。
+        # @param StartTime: 查询范围的开始时间，格式: "yyyy-MM-dd'T'HH:mm:ssXXX"。
         # @type StartTime: String
-        # @param EndTime: 查询范围的结束时间，时间格式如：2019-09-10 12:13:14。
+        # @param EndTime: 查询范围的结束时间，格式: "yyyy-MM-dd'T'HH:mm:ssXXX"。
         # @type EndTime: String
         # @param Product: 服务产品类型，支持值："mysql" - 云数据库 MySQL；"cynosdb" - 云数据库 TDSQL-C for MySQL，默认为"mysql"。
         # @type Product: String
         # @param Md5: SQL模板的MD5值
         # @type Md5: String
+        # @param InstanceProxyId: 仅Redis产品使用；实例Proxy ID。
+        # @type InstanceProxyId: String
+        # @param Cmd: 仅Redis产品使用；命令。
+        # @type Cmd: String
 
-        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :Md5
+        attr_accessor :InstanceId, :StartTime, :EndTime, :Product, :Md5, :InstanceProxyId, :Cmd
 
-        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, md5=nil)
+        def initialize(instanceid=nil, starttime=nil, endtime=nil, product=nil, md5=nil, instanceproxyid=nil, cmd=nil)
           @InstanceId = instanceid
           @StartTime = starttime
           @EndTime = endtime
           @Product = product
           @Md5 = md5
+          @InstanceProxyId = instanceproxyid
+          @Cmd = cmd
         end
 
         def deserialize(params)
@@ -4508,6 +4514,8 @@ module TencentCloud
           @EndTime = params['EndTime']
           @Product = params['Product']
           @Md5 = params['Md5']
+          @InstanceProxyId = params['InstanceProxyId']
+          @Cmd = params['Cmd']
         end
       end
 

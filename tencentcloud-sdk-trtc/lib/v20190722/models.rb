@@ -4634,10 +4634,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 2
-        deprecate :Model=, :none, 2026, 2
-        deprecate :TranslationLanguage, :none, 2026, 2
-        deprecate :TranslationLanguage=, :none, 2026, 2
+        deprecate :Model, :none, 2026, 3
+        deprecate :Model=, :none, 2026, 3
+        deprecate :TranslationLanguage, :none, 2026, 3
+        deprecate :TranslationLanguage=, :none, 2026, 3
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5792,12 +5792,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 2
-        deprecate :VideoEncodeParams=, :none, 2026, 2
-        deprecate :AudioEncodeParams, :none, 2026, 2
-        deprecate :AudioEncodeParams=, :none, 2026, 2
-        deprecate :SourceUrl, :none, 2026, 2
-        deprecate :SourceUrl=, :none, 2026, 2
+        deprecate :VideoEncodeParams, :none, 2026, 3
+        deprecate :VideoEncodeParams=, :none, 2026, 3
+        deprecate :AudioEncodeParams, :none, 2026, 3
+        deprecate :AudioEncodeParams=, :none, 2026, 3
+        deprecate :SourceUrl, :none, 2026, 3
+        deprecate :SourceUrl=, :none, 2026, 3
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil)
           @SdkAppId = sdkappid
@@ -6513,8 +6513,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 2
-        deprecate :APIKey=, :none, 2026, 2
+        deprecate :APIKey, :none, 2026, 3
+        deprecate :APIKey=, :none, 2026, 3
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6590,8 +6590,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 2
-        deprecate :APIKey=, :none, 2026, 2
+        deprecate :APIKey, :none, 2026, 3
+        deprecate :APIKey=, :none, 2026, 3
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil)
           @Text = text
@@ -6683,10 +6683,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 2
-        deprecate :IMAdminUserId=, :none, 2026, 2
-        deprecate :IMAdminUserSig, :none, 2026, 2
-        deprecate :IMAdminUserSig=, :none, 2026, 2
+        deprecate :IMAdminUserId, :none, 2026, 3
+        deprecate :IMAdminUserId=, :none, 2026, 3
+        deprecate :IMAdminUserSig, :none, 2026, 3
+        deprecate :IMAdminUserSig=, :none, 2026, 3
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -7270,7 +7270,7 @@ module TencentCloud
         # @type SdkAppId: Integer
         # @param VoiceName: 声音克隆的名称, 只允许使用数字、字母、下划线，不能超过36位
         # @type VoiceName: String
-        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在10秒～180秒之间
+        # @param PromptAudio: 声音克隆的参考音频，必须为16k单声道的wav的base64字符串， 长度在6秒～180秒之间
         # @type PromptAudio: String
         # @param APIKey: TTS的API密钥
         # @type APIKey: String
@@ -7282,6 +7282,9 @@ module TencentCloud
         # @type Language: String
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language
+        extend Gem::Deprecate
+        deprecate :APIKey, :none, 2026, 3
+        deprecate :APIKey=, :none, 2026, 3
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil)
           @SdkAppId = sdkappid

@@ -2218,8 +2218,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 2
-        deprecate :SegmentSet=, :none, 2026, 2
+        deprecate :SegmentSet, :none, 2026, 3
+        deprecate :SegmentSet=, :none, 2026, 3
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -4244,31 +4244,34 @@ module TencentCloud
 
       # AIGC 生图任务信息
       class AigcImageTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @param Status: <p>任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li></p>
         # @type Status: String
-        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @param ErrCode: <p>错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param ErrCodeExt: <p>扩展错误码。空字符串表示成功，其它值表示失败。</p><p>枚举值：</p><ul><li>RequestLimitExceeded： 模型调用超出并发限制。</li><li>InvalidParameter.VoilationContent： 输入 prompt 违反内容安全策略。</li><li>InvalidParameterValue： 参数错误。</li><li>FailedOperation： 模型任务堆积。</li><li>InternalError： 内部错误。</li></ul>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @param Progress: <p>任务进度，取值范围 [0-100] 。</p>
         # @type Progress: Integer
-        # @param Input: AIGC 生图任务的输入信息。
+        # @param Input: <p>AIGC 生图任务的输入信息。</p>
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTaskInput`
-        # @param Output: AIGC 生图任务的输出信息。
+        # @param Output: <p>AIGC 生图任务的输出信息。</p>
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AigcImageTaskOutput`
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
+          @ErrCodeExt = errcodeext
           @Message = message
           @Progress = progress
           @Input = input
@@ -4281,6 +4284,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Status = params['Status']
           @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
           @Message = params['Message']
           @Progress = params['Progress']
           unless params['Input'].nil?
@@ -4456,78 +4460,9 @@ module TencentCloud
 
       # AIGC 统计数据
       class AigcUsageDataItem < TencentCloud::Common::AbstractModel
-        # @param Specification: AIGC规格。
-        # 取值有：
-        # <li>Qwen2.0</li>
-        # <li>Hunyuan3.0_1K</li>
-        # <li>Hunyuan3.0_2K</li>
-        # <li>Hunyuan3.0_4K</li>
-        # <li>Mingmou1.0_1K</li>
-        # <li>Mingmou1.0_2K</li>
-        # <li>Mingmou1.0_4K</li>
-        # <li>ViduQ2_T2i_1080P</li>
-        # <li>ViduQ2_T2i_2K</li>
-        # <li>ViduQ2_T2i_4K</li>
-        # <li>ViduQ2_I2i_1080P</li>
-        # <li>ViduQ2_I2i_2K</li>
-        # <li>ViduQ2_I2i_4K</li>
-        # <li>ViduQ2_Refer2i_1080P</li>
-        # <li>ViduQ2_Refer2i_2K</li>
-        # <li>ViduQ2_Refer2i_4K</li>
-        # <li>Kling2.1_T2i_1K2K</li>
-        # <li>Kling2.1_T2i_4K</li>
-        # <li>Kling2.1_Refer2i_1K</li>
-        # <li>Kling2.1_Refer2i_2K</li>
-        # <li>Kling2.1_Refer2i_4K</li>
-        # <li>Veo3.1Standard</li>
-        # <li>Veo3.1Fast</li>
-        # <li>Kling2.0&2.1std_720P</li>
-        # <li>Kling2.0&2.1pro_1080P</li>
-        # <li>Kling2.5pro_720P</li>
-        # <li>Kling2.5pro_1080P</li>
-        # <li>KlingO1_720P</li>
-        # <li>KlingO1_1080P</li>
-        # <li>KlingO1_NoVideo_720P</li>
-        # <li>KlingO1_NoVideo_1080P</li>
-        # <li>Kling2.6</li>
-        # <li>Kling2.6Sound</li>
-        # <li>Kling2.6MotionControl_720P</li>
-        # <li>Kling2.6MotionControl_1080P</li>
-        # <li>Kling_Avatar_I2v_720P</li>
-        # <li>Kling_Avatar_I2v_1080P</li>
-        # <li>Kling_Identifyface</li>
-        # <li>Hailuo02&2.3_768P</li>
-        # <li>Hailuo02&2.3_1080P</li>
-        # <li>Hailuo2.3fast_768P</li>
-        # <li>Hailuo2.3fast_1080P</li>
-        # <li>ViduQ2_720P</li>
-        # <li>ViduQ2_720P_OffPeak</li>
-        # <li>ViduQ2_1080P</li>
-        # <li>ViduQ2_1080P_OffPeak</li>
-        # <li>ViduQ2pro_720P</li>
-        # <li>ViduQ2pro_720P_OffPeak</li>
-        # <li>ViduQ2pro_1080P</li>
-        # <li>ViduQ2pro_1080P_OffPeak</li>
-        # <li>ViduQ2turbo_720P</li>
-        # <li>ViduQ2turbo_720P_OffPeak</li>
-        # <li>ViduQ2turbo_1080P</li>
-        # <li>ViduQ2turbo_1080P_OffPeak</li>
-        # <li>ViduQ3pro_720P</li>
-        # <li>ViduQ3pro_720P_OffPeak</li>
-        # <li>ViduQ3pro_1080P</li>
-        # <li>ViduQ3pro_1080P_OffPeak</li>
-        # <li>Vidu_TemplateEffect</li>
-        # <li>Hunyuan1.5_720P</li>
-        # <li>Hunyuan1.5_1080P</li>
-        # <li>Mingmou1.0_720P</li>
-        # <li>Mingmou1.0_1080P</li>
-        # <li>ImageProductImage</li>
-        # <li>ImageChangeClothes</li>
-        # <li>VideoProductShowcase</li>
-        # <li>ImageOutPainting</li>
-        # <li>unknown</li>
+        # @param Specification: <p>AIGC规格。<br>取值有：</p><li>Qwen2.0</li><li>Hunyuan3.0_1K</li><li>Hunyuan3.0_2K</li><li>Hunyuan3.0_4K</li><li>Mingmou1.0_1K</li><li>Mingmou1.0_2K</li><li>Mingmou1.0_4K</li><li>ViduQ2_T2i_1080P</li><li>ViduQ2_T2i_2K</li><li>ViduQ2_T2i_4K</li><li>ViduQ2_I2i_1080P</li><li>ViduQ2_I2i_2K</li><li>ViduQ2_I2i_4K</li><li>ViduQ2_Refer2i_1080P</li><li>ViduQ2_Refer2i_2K</li><li>ViduQ2_Refer2i_4K</li><li>Kling2.1_T2i_1K2K</li><li>Kling2.1_T2i_4K</li><li>Kling2.1_Refer2i_1K</li><li>Kling2.1_Refer2i_2K</li><li>Kling2.1_Refer2i_4K</li><li>Veo3.1Standard</li><li>Veo3.1Fast</li><li>Kling2.0&amp;2.1std_720P</li><li>Kling2.0&amp;2.1pro_1080P</li><li>Kling2.5pro_720P</li><li>Kling2.5pro_1080P</li><li>KlingO1_720P</li><li>KlingO1_1080P</li><li>KlingO1_NoVideo_720P</li><li>KlingO1_NoVideo_1080P</li><li>Kling2.6</li><li>Kling2.6Sound</li><li>Kling2.6MotionControl_720P</li><li>Kling2.6MotionControl_1080P</li><li>Kling_Avatar_I2v_720P</li><li>Kling_Avatar_I2v_1080P</li><li>Kling_Identifyface</li><li>Hailuo02&amp;2.3_768P</li><li>Hailuo02&amp;2.3_1080P</li><li>Hailuo2.3fast_768P</li><li>Hailuo2.3fast_1080P</li><li>ViduQ2_720P</li><li>ViduQ2_720P_OffPeak</li><li>ViduQ2_1080P</li><li>ViduQ2_1080P_OffPeak</li><li>ViduQ2_Refer_540P_OffPeak</li><li>ViduQ2_Refer_720P</li><li>ViduQ2_Refer_720P_OffPeak</li><li>ViduQ2_Refer_1080P</li><li>ViduQ2_Refer_1080P_OffPeak</li><li>ViduQ2pro_720P</li><li>ViduQ2pro_720P_OffPeak</li><li>ViduQ2pro_1080P</li><li>ViduQ2pro_1080P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_720P</li><li>ViduQ2pro_Refer_720P_OffPeak</li><li>ViduQ2pro_Refer_1080P</li><li>ViduQ2pro_Refer_1080P_OffPeak</li><li>ViduQ2turbo_720P</li><li>ViduQ2turbo_720P_OffPeak</li><li>ViduQ2turbo_1080P</li><li>ViduQ2turbo_1080P_OffPeak</li><li>ViduQ3pro_540P</li><li>ViduQ3pro_540P_OffPeak</li><li>ViduQ3pro_720P</li><li>ViduQ3pro_720P_OffPeak</li><li>ViduQ3pro_1080P</li><li>ViduQ3pro_1080P_OffPeak</li><li>Vidu_TemplateEffect</li><li>Hunyuan1.5_720P</li><li>Hunyuan1.5_1080P</li><li>Mingmou1.0_720P</li><li>Mingmou1.0_1080P</li><li>ImageProductImage</li><li>ImageChangeClothes</li><li>VideoProductShowcase</li><li>ImageOutPainting</li><li>unknown</li>
         # @type Specification: String
-        # @param DataSet: 用量数据。
+        # @param DataSet: <p>用量数据。</p>
         # @type DataSet: Array
 
         attr_accessor :Specification, :DataSet
@@ -4661,31 +4596,34 @@ module TencentCloud
 
       # AIGC 生视频任务信息
       class AigcVideoTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
-        # @param Status: 任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li>
+        # @param Status: <p>任务状态，取值：<li>PROCESSING：处理中；</li><li>FINISH：已完成。</li></p>
         # @type Status: String
-        # @param ErrCode: 错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。
+        # @param ErrCode: <p>错误码。源异常时返回非0错误码，返回0时请使用各个具体任务的 ErrCode。</p>
         # @type ErrCode: Integer
-        # @param Message: 错误信息。
+        # @param ErrCodeExt: <p>扩展错误码。</p><p>枚举值：</p><ul><li>RequestLimitExceeded： 调用超出并发限制。</li><li>InvalidParameter.VoilationContent： 输入 prompt 违反内容安全策略。</li><li>InvalidParameterValue： 参数错误。</li><li>FailedOperation： 模型任务堆积。</li><li>InternalError： 内部错误。</li></ul>
+        # @type ErrCodeExt: String
+        # @param Message: <p>错误信息。</p>
         # @type Message: String
-        # @param Progress: 任务进度，取值范围 [0-100] 。
+        # @param Progress: <p>任务进度，取值范围 [0-100] 。</p>
         # @type Progress: Integer
-        # @param Input: AIGC 生视频任务的输入信息。
+        # @param Input: <p>AIGC 生视频任务的输入信息。</p>
         # @type Input: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTaskInput`
-        # @param Output: AIGC 生视频任务的输出信息。
+        # @param Output: <p>AIGC 生视频任务的输出信息。</p>
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.AigcVideoTaskOutput`
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
 
-        attr_accessor :TaskId, :Status, :ErrCode, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
+        attr_accessor :TaskId, :Status, :ErrCode, :ErrCodeExt, :Message, :Progress, :Input, :Output, :SessionId, :SessionContext
 
-        def initialize(taskid=nil, status=nil, errcode=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(taskid=nil, status=nil, errcode=nil, errcodeext=nil, message=nil, progress=nil, input=nil, output=nil, sessionid=nil, sessioncontext=nil)
           @TaskId = taskid
           @Status = status
           @ErrCode = errcode
+          @ErrCodeExt = errcodeext
           @Message = message
           @Progress = progress
           @Input = input
@@ -4698,6 +4636,7 @@ module TencentCloud
           @TaskId = params['TaskId']
           @Status = params['Status']
           @ErrCode = params['ErrCode']
+          @ErrCodeExt = params['ErrCodeExt']
           @Message = params['Message']
           @Progress = params['Progress']
           unless params['Input'].nil?
@@ -5217,8 +5156,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 2
-        deprecate :SubtitleFormat=, :none, 2026, 2
+        deprecate :SubtitleFormat, :none, 2026, 3
+        deprecate :SubtitleFormat=, :none, 2026, 3
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -5261,8 +5200,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 2
-        deprecate :SubtitleFormat=, :none, 2026, 2
+        deprecate :SubtitleFormat, :none, 2026, 3
+        deprecate :SubtitleFormat=, :none, 2026, 3
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -7731,9 +7670,9 @@ module TencentCloud
       class CreateAigcImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param ModelName: <p>模型名称。取值：</p><li>GEM：Gemini；</li><li>Qwen：千问。</li><li>Hunyuan：混元。</li><li>Vidu：生数。</li><li>Kling：可灵。</li>
+        # @param ModelName: <p>模型名称。取值：</p><li>Qwen：千问。</li><li>Hunyuan：混元。</li><li>Vidu：生数。</li><li>Kling：可灵。</li>
         # @type ModelName: String
-        # @param ModelVersion: <p>模型版本。取值：<li>当 ModelName 是 GEM，可选值为 2.5；</li><li>当 ModelName 是 Qwen，可选值为 0925；</li><li>当 ModelName 是 Hunyuan，可选值为 3.0；</li><li>当 ModelName 是 Vidu，可选值为 q2；</li><li>当 ModelName 是 Kling，可选值为 2.1；</li></p>
+        # @param ModelVersion: <p>模型版本。取值：<li>当 ModelName 是 Qwen，可选值为 0925；</li><li>当 ModelName 是 Hunyuan，可选值为 3.0；</li><li>当 ModelName 是 Vidu，可选值为 q2；</li><li>当 ModelName 是 Kling，可选值为 2.1；</li></p>
         # @type ModelVersion: String
         # @param FileInfos: <p>AIGC 生图任务的输入图片的文件信息。默认只支持指定1个。下列模型可传多张参考图：<li>GEM 2.5：0～3张图片；</li><li>Vidu q2：0～7张图片，图片支持 png、jpeg、jpg、webp格式，图片像素不能小于 128x128，且比例需要小于1:4或4:1；</li></p>
         # @type FileInfos: Array
@@ -9053,8 +8992,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 2
-        deprecate :AiRecognitionTask=, :none, 2026, 2
+        deprecate :AiRecognitionTask, :none, 2026, 3
+        deprecate :AiRecognitionTask=, :none, 2026, 3
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -12859,8 +12798,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 2
-        deprecate :DomainName=, :none, 2026, 2
+        deprecate :DomainName, :none, 2026, 3
+        deprecate :DomainName=, :none, 2026, 3
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -14463,8 +14402,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 2
-        deprecate :Offset=, :none, 2026, 2
+        deprecate :Offset, :none, 2026, 3
+        deprecate :Offset=, :none, 2026, 3
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -14508,8 +14447,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 2
-        deprecate :TotalCount=, :none, 2026, 2
+        deprecate :TotalCount, :none, 2026, 3
+        deprecate :TotalCount=, :none, 2026, 3
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -17414,8 +17353,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 2
-        deprecate :Uid=, :none, 2026, 2
+        deprecate :Uid, :none, 2026, 3
+        deprecate :Uid=, :none, 2026, 3
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -18943,8 +18882,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :FileId, :Definition, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 2
-        deprecate :ImportTasks=, :none, 2026, 2
+        deprecate :ImportTasks, :none, 2026, 3
+        deprecate :ImportTasks=, :none, 2026, 3
 
         def initialize(subappid=nil, fileid=nil, definition=nil, importtasks=nil)
           @SubAppId = subappid
@@ -20514,8 +20453,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 2
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 2
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 3
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 3
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -20569,8 +20508,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 2
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 2
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 3
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 3
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -22179,8 +22118,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 2
-        deprecate :Transitions=, :none, 2026, 2
+        deprecate :Transitions, :none, 2026, 3
+        deprecate :Transitions=, :none, 2026, 3
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -25811,10 +25750,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 2
-        deprecate :ErrCode=, :none, 2026, 2
-        deprecate :Message, :none, 2026, 2
-        deprecate :Message=, :none, 2026, 2
+        deprecate :ErrCode, :none, 2026, 3
+        deprecate :ErrCode=, :none, 2026, 3
+        deprecate :Message, :none, 2026, 3
+        deprecate :Message=, :none, 2026, 3
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -25928,8 +25867,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 2
-        deprecate :AiRecognitionTask=, :none, 2026, 2
+        deprecate :AiRecognitionTask, :none, 2026, 3
+        deprecate :AiRecognitionTask=, :none, 2026, 3
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -26180,28 +26119,31 @@ module TencentCloud
 
       # ProcessImageAsync请求参数结构体
       class ProcessImageAsyncRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param FileId: 需要进行图片处理的FileId。
+        # @param FileId: <p>需要进行图片处理的FileId。不能与Url同时输入。</p>
         # @type FileId: String
-        # @param ImageTaskInput: 图片处理参数。
+        # @param Url: <p>需要进行图片处理的Url。不能与FileId同时输入。</p>
+        # @type Url: String
+        # @param ImageTaskInput: <p>图片处理参数。</p>
         # @type ImageTaskInput: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncTaskInput`
-        # @param OutputConfig: 图片处理任务的输出媒体文件配置。
+        # @param OutputConfig: <p>图片处理任务的输出媒体文件配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Vod.v20180717.models.ProcessImageAsyncOutputConfig`
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，音画质重生完成回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param TasksPriority: 任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。
+        # @param TasksPriority: <p>任务的优先级，数值越大优先级越高，取值范围是 -10 到 10，不填代表 0。</p>
         # @type TasksPriority: Integer
-        # @param ExtInfo: 保留字段，特殊用途时使用。
+        # @param ExtInfo: <p>保留字段，特殊用途时使用。</p>
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :FileId, :ImageTaskInput, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
+        attr_accessor :SubAppId, :FileId, :Url, :ImageTaskInput, :OutputConfig, :SessionId, :SessionContext, :TasksPriority, :ExtInfo
 
-        def initialize(subappid=nil, fileid=nil, imagetaskinput=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
+        def initialize(subappid=nil, fileid=nil, url=nil, imagetaskinput=nil, outputconfig=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, extinfo=nil)
           @SubAppId = subappid
           @FileId = fileid
+          @Url = url
           @ImageTaskInput = imagetaskinput
           @OutputConfig = outputconfig
           @SessionId = sessionid
@@ -26213,6 +26155,7 @@ module TencentCloud
         def deserialize(params)
           @SubAppId = params['SubAppId']
           @FileId = params['FileId']
+          @Url = params['Url']
           unless params['ImageTaskInput'].nil?
             @ImageTaskInput = ProcessImageAsyncTaskInput.new
             @ImageTaskInput.deserialize(params['ImageTaskInput'])
@@ -26230,7 +26173,7 @@ module TencentCloud
 
       # ProcessImageAsync返回参数结构体
       class ProcessImageAsyncResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -26822,8 +26765,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 2
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 2
+        deprecate :ProductInstanceResourceSet, :none, 2026, 3
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 3
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -29260,8 +29203,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 2
-        deprecate :AiRecognitionTask=, :none, 2026, 2
+        deprecate :AiRecognitionTask, :none, 2026, 3
+        deprecate :AiRecognitionTask=, :none, 2026, 3
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil)
           @Name = name
@@ -29438,10 +29381,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 2
-        deprecate :Status=, :none, 2026, 2
-        deprecate :Message, :none, 2026, 2
-        deprecate :Message=, :none, 2026, 2
+        deprecate :Status, :none, 2026, 3
+        deprecate :Status=, :none, 2026, 3
+        deprecate :Message, :none, 2026, 3
+        deprecate :Message=, :none, 2026, 3
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -29801,8 +29744,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 2
-        deprecate :ReviewResultSet=, :none, 2026, 2
+        deprecate :ReviewResultSet, :none, 2026, 3
+        deprecate :ReviewResultSet=, :none, 2026, 3
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -31323,8 +31266,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 2
-        deprecate :Precision=, :none, 2026, 2
+        deprecate :Precision, :none, 2026, 3
+        deprecate :Precision=, :none, 2026, 3
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -32241,8 +32184,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 2
-        deprecate :CycleConfig=, :none, 2026, 2
+        deprecate :CycleConfig, :none, 2026, 3
+        deprecate :CycleConfig=, :none, 2026, 3
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -32903,8 +32846,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 2
-        deprecate :Definition=, :none, 2026, 2
+        deprecate :Definition, :none, 2026, 3
+        deprecate :Definition=, :none, 2026, 3
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch

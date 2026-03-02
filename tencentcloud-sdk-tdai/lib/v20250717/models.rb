@@ -25,6 +25,8 @@ module TencentCloud
         # @type AgentName: String
         # @param AgentInternalName: 智能体类型
         # @type AgentInternalName: String
+        # @param DeployPlace: 架构：共享版-intranet，企业版-userVpc
+        # @type DeployPlace: String
         # @param AgentStatus: 智能体状态
         # @type AgentStatus: String
         # @param DefaultVersion: 默认版本
@@ -42,12 +44,13 @@ module TencentCloud
         # @param UpdateTime: 更新时间
         # @type UpdateTime: String
 
-        attr_accessor :AgentId, :AgentName, :AgentInternalName, :AgentStatus, :DefaultVersion, :AgentType, :Description, :Creator, :CreateTime, :Updater, :UpdateTime
+        attr_accessor :AgentId, :AgentName, :AgentInternalName, :DeployPlace, :AgentStatus, :DefaultVersion, :AgentType, :Description, :Creator, :CreateTime, :Updater, :UpdateTime
 
-        def initialize(agentid=nil, agentname=nil, agentinternalname=nil, agentstatus=nil, defaultversion=nil, agenttype=nil, description=nil, creator=nil, createtime=nil, updater=nil, updatetime=nil)
+        def initialize(agentid=nil, agentname=nil, agentinternalname=nil, deployplace=nil, agentstatus=nil, defaultversion=nil, agenttype=nil, description=nil, creator=nil, createtime=nil, updater=nil, updatetime=nil)
           @AgentId = agentid
           @AgentName = agentname
           @AgentInternalName = agentinternalname
+          @DeployPlace = deployplace
           @AgentStatus = agentstatus
           @DefaultVersion = defaultversion
           @AgentType = agenttype
@@ -62,6 +65,7 @@ module TencentCloud
           @AgentId = params['AgentId']
           @AgentName = params['AgentName']
           @AgentInternalName = params['AgentInternalName']
+          @DeployPlace = params['DeployPlace']
           @AgentStatus = params['AgentStatus']
           @DefaultVersion = params['DefaultVersion']
           @AgentType = params['AgentType']
@@ -348,15 +352,15 @@ module TencentCloud
 
       # CreateAgentInstance请求参数结构体
       class CreateAgentInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param AgentId: 智能体ID
+        # @param AgentId: <p>智能体ID</p>
         # @type AgentId: String
-        # @param AgentVersion: 智能体版本
+        # @param AgentVersion: <p>智能体版本</p>
         # @type AgentVersion: String
-        # @param InstanceName: 实例名
+        # @param InstanceName: <p>实例名</p>
         # @type InstanceName: String
-        # @param Parameters: 智能体实例的参数列表
+        # @param Parameters: <p>智能体实例的参数列表</p>
         # @type Parameters: Array
-        # @param Tags: 资源的标签信息
+        # @param Tags: <p>资源的标签信息</p>
         # @type Tags: Array
 
         attr_accessor :AgentId, :AgentVersion, :InstanceName, :Parameters, :Tags
@@ -394,9 +398,9 @@ module TencentCloud
 
       # CreateAgentInstance返回参数结构体
       class CreateAgentInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 智能体实例ID
+        # @param InstanceId: <p>智能体实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 智能体实例名称
+        # @param InstanceName: <p>智能体实例名称</p>
         # @type InstanceName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -782,16 +786,19 @@ module TencentCloud
         # @type AgentInternalName: String
         # @param AgentStatus: 智能体状态，为空时查询所有，如果填写则会根据AgentStatus筛选
         # @type AgentStatus: String
+        # @param DeployPlace: 架构，共享版-intranet，企业版-userVpc
+        # @type DeployPlace: String
 
-        attr_accessor :Offset, :Limit, :AgentId, :AgentName, :AgentInternalName, :AgentStatus
+        attr_accessor :Offset, :Limit, :AgentId, :AgentName, :AgentInternalName, :AgentStatus, :DeployPlace
 
-        def initialize(offset=nil, limit=nil, agentid=nil, agentname=nil, agentinternalname=nil, agentstatus=nil)
+        def initialize(offset=nil, limit=nil, agentid=nil, agentname=nil, agentinternalname=nil, agentstatus=nil, deployplace=nil)
           @Offset = offset
           @Limit = limit
           @AgentId = agentid
           @AgentName = agentname
           @AgentInternalName = agentinternalname
           @AgentStatus = agentstatus
+          @DeployPlace = deployplace
         end
 
         def deserialize(params)
@@ -801,6 +808,7 @@ module TencentCloud
           @AgentName = params['AgentName']
           @AgentInternalName = params['AgentInternalName']
           @AgentStatus = params['AgentStatus']
+          @DeployPlace = params['DeployPlace']
         end
       end
 

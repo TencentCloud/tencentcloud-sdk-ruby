@@ -1445,6 +1445,10 @@ module TencentCloud
         # @type Prompt: String
         # @param Images: <p>垫图url列表，base64后大小不超过10MB，支持 jpg jpeg png webp格式，最多3张图</p>
         # @type Images: Array
+        # @param SkillType: <p>选择适配的生图能力类型。</p><p>枚举值：</p><ul><li>default： 通用生图</li><li>cover： 文章封面</li><li>ppt： 幻灯片PPT</li><li>poster： 创意海报</li></ul><p>默认值：default</p>
+        # @type SkillType: String
+        # @param GeneratedImageCount: <p>生成的结果图片数量<br>取值范围： </p><ul><li>default：通用生图任务（1）</li><li>cover:：封面（1）</li><li>ppt：幻灯片页数（1～20）</li><li>poster：生成图片张数（1）</li></ul><p>默认值：1</p>
+        # @type GeneratedImageCount: Integer
         # @param Resolution: <p>生成图分辨率，默认1024:1024：</p><ul><li>宽高维度均在 [512, 2048] 像素范围内;</li><li>宽高乘积（即图像面积）不超过 1024×1024 像素;</li></ul>
         # @type Resolution: String
         # @param Seed: <p>随机种子，默认随机。<br>不传：随机种子生成。<br>正数：固定种子生成。<br>扩写开启时固定种子不生效，将保持随机。</p>
@@ -1456,11 +1460,13 @@ module TencentCloud
         # @param Revise: <p>是否开启prompt改写，为空时默认开启，改写预计会增加20s左右耗时。<br>0：关闭改写<br>1：开启改写<br>建议默认开启，如果关闭改写，需要调用方自己接改写，否则对生图效果有较大影响，改写方法可以参考：<a href="https://github.com/Tencent-Hunyuan/HunyuanImage-3.0/tree/main/PE">改写</a><br>示例值：1</p>
         # @type Revise: Integer
 
-        attr_accessor :Prompt, :Images, :Resolution, :Seed, :LogoAdd, :LogoParam, :Revise
+        attr_accessor :Prompt, :Images, :SkillType, :GeneratedImageCount, :Resolution, :Seed, :LogoAdd, :LogoParam, :Revise
 
-        def initialize(prompt=nil, images=nil, resolution=nil, seed=nil, logoadd=nil, logoparam=nil, revise=nil)
+        def initialize(prompt=nil, images=nil, skilltype=nil, generatedimagecount=nil, resolution=nil, seed=nil, logoadd=nil, logoparam=nil, revise=nil)
           @Prompt = prompt
           @Images = images
+          @SkillType = skilltype
+          @GeneratedImageCount = generatedimagecount
           @Resolution = resolution
           @Seed = seed
           @LogoAdd = logoadd
@@ -1471,6 +1477,8 @@ module TencentCloud
         def deserialize(params)
           @Prompt = params['Prompt']
           @Images = params['Images']
+          @SkillType = params['SkillType']
+          @GeneratedImageCount = params['GeneratedImageCount']
           @Resolution = params['Resolution']
           @Seed = params['Seed']
           @LogoAdd = params['LogoAdd']

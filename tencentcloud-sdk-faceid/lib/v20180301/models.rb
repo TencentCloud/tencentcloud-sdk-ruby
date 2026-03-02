@@ -319,8 +319,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2026, 2
-        deprecate :Idcard=, :none, 2026, 2
+        deprecate :Idcard, :none, 2026, 3
+        deprecate :Idcard=, :none, 2026, 3
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -1417,19 +1417,19 @@ module TencentCloud
 
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
-        # @param EncryptList: 在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段
+        # @param EncryptList: <p>在使用加密服务时，填入要被加密的字段。本接口中可填入加密后的一个或多个字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EncryptList: Array
-        # @param CiphertextBlob: 加密后的对称密钥，关于密钥的生成和使用请查阅<a href="https://cloud.tencent.com/document/product/1007/47180">数据加密</a> 文档。
+        # @param CiphertextBlob: <p>加密后的对称密钥，关于密钥的生成和使用请查阅<a href="https://www.tencentcloud.com/document/product/1061/77849">数据加密</a> 文档。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CiphertextBlob: String
-        # @param Iv: 有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。
+        # @param Iv: <p>有加密需求的用户，传入CBC加密的初始向量（客户自定义字符串，长度16字符）。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Iv: String
-        # @param Algorithm: 加密使用的算法（支持'AES-256-CBC'、'SM4-GCM'），不传默认为'AES-256-CBC'
+        # @param Algorithm: <p>加密使用的算法（支持&#39;AES-256-CBC&#39;、&#39;SM4-GCM&#39;），不传默认为&#39;AES-256-CBC&#39;</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Algorithm: String
-        # @param TagList: SM4-GCM算法生成的消息摘要（校验消息完整性时使用）
+        # @param TagList: <p>SM4-GCM算法生成的消息摘要（校验消息完整性时使用）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TagList: Array
 
@@ -3108,8 +3108,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2026, 2
-        deprecate :AsrResultSimilarity=, :none, 2026, 2
+        deprecate :AsrResultSimilarity, :none, 2026, 3
+        deprecate :AsrResultSimilarity=, :none, 2026, 3
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo

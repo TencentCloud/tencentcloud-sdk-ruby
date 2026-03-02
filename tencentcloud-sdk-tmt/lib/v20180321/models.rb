@@ -273,31 +273,11 @@ module TencentCloud
 
       # ImageTranslateLLM请求参数结构体
       class ImageTranslateLLMRequest < TencentCloud::Common::AbstractModel
-        # @param Data: 图片数据的Base64字符串，经Base64编码后不超过 9M，分辨率建议600*800以上，支持PNG、JPG、JPEG格式。
+        # @param Data: <p>图片数据的Base64字符串，经Base64编码后不超过 9M，分辨率建议600*800以上，支持PNG、JPG、JPEG格式。</p>
         # @type Data: String
-        # @param Target: 目标语言，支持语言列表：
-
-        # - 中文：zh
-        # - 繁体（中国台湾）：zh-TW
-        # - 繁体（中国香港）：zh-HK
-        # - 英文：en
-        # - 日语：ja
-        # - 韩语：ko
-        # - 泰语：th
-        # - 越南语：vi
-        # - 俄语：ru
-        # - 德语：de
-        # - 法语：fr
-        # - 阿拉伯语：ar
-        # - 西班牙语：es
-        # - 意大利语：it
-        # - 印度尼西亚语：id
-        # - 马来西亚语：ms
-        # - 葡萄牙语：pt
-        # - 土耳其语：tr
-        # -
+        # @param Target: <p>目标语言，支持语言列表：</p><ul><li>中文：zh</li><li>繁体（中国台湾）：zh-TW</li><li>繁体（中国香港）：zh-HK</li><li>英文：en</li><li>日语：ja</li><li>韩语：ko</li><li>泰语：th</li><li>越南语：vi</li><li>俄语：ru</li><li>德语：de</li><li>法语：fr</li><li>阿拉伯语：ar</li><li>西班牙语：es</li><li>意大利语：it</li><li>印度尼西亚语：id</li><li>马来西亚语：ms</li><li>葡萄牙语：pt</li><li>土耳其语：tr<br>-</li></ul>
         # @type Target: String
-        # @param Url: 输入图 Url。 使用Url的时候，Data参数需要传入""。 图片限制：小于 10MB，分辨率建议600*800以上，格式支持 jpg、jpeg、png。
+        # @param Url: <p>输入图 Url。 使用Url的时候，Data参数需要传入&quot;&quot;。 图片限制：小于 10MB，分辨率建议600*800以上，格式支持 jpg、jpeg、png。</p>
         # @type Url: String
 
         attr_accessor :Data, :Target, :Url
@@ -317,19 +297,19 @@ module TencentCloud
 
       # ImageTranslateLLM返回参数结构体
       class ImageTranslateLLMResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 图片数据的Base64字符串，输出格式为JPG。
+        # @param Data: <p>图片数据的Base64字符串，输出格式为JPG。</p>
         # @type Data: String
-        # @param Source: 原文本主要源语言。
+        # @param Source: <p>原文本主要源语言。</p>
         # @type Source: String
-        # @param Target: 目标翻译语言。
+        # @param Target: <p>目标翻译语言。</p>
         # @type Target: String
-        # @param SourceText: 图片中的全部原文本。
+        # @param SourceText: <p>图片中的全部原文本。</p>
         # @type SourceText: String
-        # @param TargetText: 图片中全部译文。
+        # @param TargetText: <p>图片中全部译文。</p>
         # @type TargetText: String
-        # @param Angle: 逆时针图片角度，取值范围为0-359
+        # @param Angle: <p>逆时针图片角度，取值范围为0-359</p>
         # @type Angle: Float
-        # @param TransDetails: 翻译详情信息
+        # @param TransDetails: <p>翻译详情信息</p>
         # @type TransDetails: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -584,10 +564,10 @@ module TencentCloud
 
         attr_accessor :SessionUuid, :Source, :Target, :AudioFormat, :Seq, :IsEnd, :Data, :ProjectId, :Mode, :TransType
         extend Gem::Deprecate
-        deprecate :Mode, :none, 2025, 11
-        deprecate :Mode=, :none, 2025, 11
-        deprecate :TransType, :none, 2025, 11
-        deprecate :TransType=, :none, 2025, 11
+        deprecate :Mode, :none, 2026, 3
+        deprecate :Mode=, :none, 2026, 3
+        deprecate :TransType, :none, 2026, 3
+        deprecate :TransType=, :none, 2026, 3
 
         def initialize(sessionuuid=nil, source=nil, target=nil, audioformat=nil, seq=nil, isend=nil, data=nil, projectid=nil, mode=nil, transtype=nil)
           @SessionUuid = sessionuuid
