@@ -39,24 +39,25 @@ module TencentCloud
 
       # 容器运行时安全，子策略信息
       class AbnormalProcessChildRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleMode: 策略模式，   RULE_MODE_RELEASE: 放行
-        #    RULE_MODE_ALERT: 告警
-        #    RULE_MODE_HOLDUP:拦截
+        # @param RuleMode: <p>策略模式，   RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
         # @type RuleMode: String
-        # @param ProcessPath: 进程路径
+        # @param ProcessPath: <p>进程路径</p>
         # @type ProcessPath: String
-        # @param RuleId: 子策略id
+        # @param RuleId: <p>子策略id</p>
         # @type RuleId: String
-        # @param RuleLevel: 威胁等级，HIGH:高，MIDDLE:中，LOW:低
+        # @param RuleLevel: <p>威胁等级，HIGH:高，MIDDLE:中，LOW:低</p>
         # @type RuleLevel: String
+        # @param CmdLine: <p>命令行参数</p>
+        # @type CmdLine: String
 
-        attr_accessor :RuleMode, :ProcessPath, :RuleId, :RuleLevel
+        attr_accessor :RuleMode, :ProcessPath, :RuleId, :RuleLevel, :CmdLine
 
-        def initialize(rulemode=nil, processpath=nil, ruleid=nil, rulelevel=nil)
+        def initialize(rulemode=nil, processpath=nil, ruleid=nil, rulelevel=nil, cmdline=nil)
           @RuleMode = rulemode
           @ProcessPath = processpath
           @RuleId = ruleid
           @RuleLevel = rulelevel
+          @CmdLine = cmdline
         end
 
         def deserialize(params)
@@ -64,6 +65,7 @@ module TencentCloud
           @ProcessPath = params['ProcessPath']
           @RuleId = params['RuleId']
           @RuleLevel = params['RuleLevel']
+          @CmdLine = params['CmdLine']
         end
       end
 
@@ -116,113 +118,86 @@ module TencentCloud
 
       # 容器运行时安全异常进程信息
       class AbnormalProcessEventInfo < TencentCloud::Common::AbstractModel
-        # @param ProcessPath: 进程目录
+        # @param ProcessPath: <p>进程目录</p>
         # @type ProcessPath: String
-        # @param EventType: 事件类型，MALICE_PROCESS_START:恶意进程启动
+        # @param EventType: <p>事件类型，MALICE_PROCESS_START:恶意进程启动</p>
         # @type EventType: String
-        # @param MatchRuleName: 命中规则名称，PROXY_TOOL：代理软件，TRANSFER_CONTROL：横向渗透，ATTACK_CMD：恶意命令，REVERSE_SHELL：反弹shell，FILELESS：无文件程序执行，RISK_CMD：高危命令，ABNORMAL_CHILD_PROC：敏感服务异常子进程启动，USER_DEFINED_RULE：用户自定义规则
+        # @param MatchRuleName: <p>命中规则名称，PROXY_TOOL：代理软件，TRANSFER_CONTROL：横向渗透，ATTACK_CMD：恶意命令，REVERSE_SHELL：反弹shell，FILELESS：无文件程序执行，RISK_CMD：高危命令，ABNORMAL_CHILD_PROC：敏感服务异常子进程启动，USER_DEFINED_RULE：用户自定义规则</p>
         # @type MatchRuleName: String
-        # @param FoundTime: 生成时间
+        # @param FoundTime: <p>生成时间</p>
         # @type FoundTime: String
-        # @param ContainerName: 容器名
+        # @param ContainerName: <p>容器名</p>
         # @type ContainerName: String
-        # @param ImageName: 镜像名
+        # @param ImageName: <p>镜像名</p>
         # @type ImageName: String
-        # @param Behavior: 动作执行结果，    BEHAVIOR_NONE: 无
-        #     BEHAVIOR_ALERT: 告警
-        #     BEHAVIOR_RELEASE：放行
-        #     BEHAVIOR_HOLDUP_FAILED:拦截失败
-        #     BEHAVIOR_HOLDUP_SUCCESSED：拦截失败
+        # @param Behavior: <p>动作执行结果，    BEHAVIOR_NONE: 无<br>    BEHAVIOR_ALERT: 告警<br>    BEHAVIOR_RELEASE：放行<br>    BEHAVIOR_HOLDUP_FAILED:拦截失败<br>    BEHAVIOR_HOLDUP_SUCCESSED：拦截失败</p>
         # @type Behavior: String
-        # @param Status: 状态，EVENT_UNDEAL:事件未处理
-        #     EVENT_DEALED:事件已经处理
-        #     EVENT_INGNORE：事件已经忽略
+        # @param Status: <p>状态，EVENT_UNDEAL:事件未处理<br>    EVENT_DEALED:事件已经处理<br>    EVENT_INGNORE：事件已经忽略</p>
         # @type Status: String
-        # @param Id: 事件记录的唯一id
+        # @param Id: <p>事件记录的唯一id</p>
         # @type Id: String
-        # @param ImageId: 镜像id，用于跳转
+        # @param ImageId: <p>镜像id，用于跳转</p>
         # @type ImageId: String
-        # @param ContainerId: 容器id，用于跳转
+        # @param ContainerId: <p>容器id，用于跳转</p>
         # @type ContainerId: String
-        # @param Solution: 事件解决方案
+        # @param Solution: <p>事件解决方案</p>
         # @type Solution: String
-        # @param Description: 事件详细描述
+        # @param Description: <p>事件详细描述</p>
         # @type Description: String
-        # @param MatchRuleId: 命中策略id
+        # @param MatchRuleId: <p>命中策略id</p>
         # @type MatchRuleId: String
-        # @param MatchAction: 命中规则行为：
-        # RULE_MODE_RELEASE 放行
-        # RULE_MODE_ALERT  告警
-        # RULE_MODE_HOLDUP 拦截
+        # @param MatchAction: <p>命中规则行为：<br>RULE_MODE_RELEASE 放行<br>RULE_MODE_ALERT  告警<br>RULE_MODE_HOLDUP 拦截</p>
         # @type MatchAction: String
-        # @param MatchProcessPath: 命中规则进程信息
+        # @param MatchProcessPath: <p>命中规则进程信息</p>
         # @type MatchProcessPath: String
-        # @param RuleExist: 规则是否存在
+        # @param RuleExist: <p>规则是否存在</p>
         # @type RuleExist: Boolean
-        # @param EventCount: 事件数量
+        # @param EventCount: <p>事件数量</p>
         # @type EventCount: Integer
-        # @param LatestFoundTime: 最近生成时间
+        # @param LatestFoundTime: <p>最近生成时间</p>
         # @type LatestFoundTime: String
-        # @param RuleId: 规则组Id
+        # @param RuleId: <p>规则组Id</p>
         # @type RuleId: String
-        # @param MatchGroupName: 命中策略名称：SYSTEM_DEFINED_RULE （系统策略）或  用户自定义的策略名字
+        # @param MatchGroupName: <p>命中策略名称：SYSTEM_DEFINED_RULE （系统策略）或  用户自定义的策略名字</p>
         # @type MatchGroupName: String
-        # @param MatchRuleLevel: 命中规则等级，HIGH：高危，MIDDLE：中危，LOW：低危。
+        # @param MatchRuleLevel: <p>命中规则等级，HIGH：高危，MIDDLE：中危，LOW：低危。</p>
         # @type MatchRuleLevel: String
-        # @param ContainerNetStatus: 网络状态
-        # 未隔离  	NORMAL
-        # 已隔离		ISOLATED
-        # 隔离中		ISOLATING
-        # 隔离失败	ISOLATE_FAILED
-        # 解除隔离中  RESTORING
-        # 解除隔离失败 RESTORE_FAILED
+        # @param ContainerNetStatus: <p>网络状态<br>未隔离      NORMAL<br>已隔离        ISOLATED<br>隔离中        ISOLATING<br>隔离失败    ISOLATE_FAILED<br>解除隔离中  RESTORING<br>解除隔离失败 RESTORE_FAILED</p>
         # @type ContainerNetStatus: String
-        # @param ContainerNetSubStatus: 容器子状态
-        # "AGENT_OFFLINE"       //Agent离线
-        # "NODE_DESTROYED"      //节点已销毁
-        # "CONTAINER_EXITED"    //容器已退出
-        # "CONTAINER_DESTROYED" //容器已销毁
-        # "SHARED_HOST"         // 容器与主机共享网络
-        # "RESOURCE_LIMIT"      //隔离操作资源超限
-        # "UNKNOW"              // 原因未知
+        # @param ContainerNetSubStatus: <p>容器子状态<br>&quot;AGENT_OFFLINE&quot;       //Agent离线<br>&quot;NODE_DESTROYED&quot;      //节点已销毁<br>&quot;CONTAINER_EXITED&quot;    //容器已退出<br>&quot;CONTAINER_DESTROYED&quot; //容器已销毁<br>&quot;SHARED_HOST&quot;         // 容器与主机共享网络<br>&quot;RESOURCE_LIMIT&quot;      //隔离操作资源超限<br>&quot;UNKNOW&quot;              // 原因未知</p>
         # @type ContainerNetSubStatus: String
-        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @param ContainerIsolateOperationSrc: <p>容器隔离操作来源</p>
         # @type ContainerIsolateOperationSrc: String
-        # @param ContainerStatus: 容器状态
-        # 正在运行: RUNNING
-        # 暂停: PAUSED
-        # 停止: STOPPED
-        # 已经创建: CREATED
-        # 已经销毁: DESTROYED
-        # 正在重启中: RESTARTING
-        # 迁移中: REMOVING
+        # @param ContainerStatus: <p>容器状态<br>正在运行: RUNNING<br>暂停: PAUSED<br>停止: STOPPED<br>已经创建: CREATED<br>已经销毁: DESTROYED<br>正在重启中: RESTARTING<br>迁移中: REMOVING</p>
         # @type ContainerStatus: String
-        # @param ClusterID: 集群ID
+        # @param ClusterID: <p>集群ID</p>
         # @type ClusterID: String
-        # @param NodeType: 节点类型：NORMAL普通节点、SUPER超级节点
+        # @param NodeType: <p>节点类型：NORMAL普通节点、SUPER超级节点</p>
         # @type NodeType: String
-        # @param PodName: pod 名称
+        # @param PodName: <p>pod 名称</p>
         # @type PodName: String
-        # @param PodIP: pod ip
+        # @param PodIP: <p>pod ip</p>
         # @type PodIP: String
-        # @param NodeUniqueID: 集群id
+        # @param NodeUniqueID: <p>集群id</p>
         # @type NodeUniqueID: String
-        # @param PublicIP: 节点公网ip
+        # @param PublicIP: <p>节点公网ip</p>
         # @type PublicIP: String
-        # @param NodeName: 节点名称
+        # @param NodeName: <p>节点名称</p>
         # @type NodeName: String
-        # @param NodeID: 节点id
+        # @param NodeID: <p>节点id</p>
         # @type NodeID: String
-        # @param HostID: uuid
+        # @param HostID: <p>uuid</p>
         # @type HostID: String
-        # @param HostIP: 节点内网ip
+        # @param HostIP: <p>节点内网ip</p>
         # @type HostIP: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
+        # @param CmdLine: <p>命令行参数</p>
+        # @type CmdLine: String
 
-        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :ClusterID, :NodeType, :PodName, :PodIP, :NodeUniqueID, :PublicIP, :NodeName, :NodeID, :HostID, :HostIP, :ClusterName
+        attr_accessor :ProcessPath, :EventType, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :MatchGroupName, :MatchRuleLevel, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :ClusterID, :NodeType, :PodName, :PodIP, :NodeUniqueID, :PublicIP, :NodeName, :NodeID, :HostID, :HostIP, :ClusterName, :CmdLine
 
-        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, clusterid=nil, nodetype=nil, podname=nil, podip=nil, nodeuniqueid=nil, publicip=nil, nodename=nil, nodeid=nil, hostid=nil, hostip=nil, clustername=nil)
+        def initialize(processpath=nil, eventtype=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, matchgroupname=nil, matchrulelevel=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, clusterid=nil, nodetype=nil, podname=nil, podip=nil, nodeuniqueid=nil, publicip=nil, nodename=nil, nodeid=nil, hostid=nil, hostip=nil, clustername=nil, cmdline=nil)
           @ProcessPath = processpath
           @EventType = eventtype
           @MatchRuleName = matchrulename
@@ -260,6 +235,7 @@ module TencentCloud
           @HostID = hostid
           @HostIP = hostip
           @ClusterName = clustername
+          @CmdLine = cmdline
         end
 
         def deserialize(params)
@@ -300,6 +276,7 @@ module TencentCloud
           @HostID = params['HostID']
           @HostIP = params['HostIP']
           @ClusterName = params['ClusterName']
+          @CmdLine = params['CmdLine']
         end
       end
 
@@ -448,24 +425,25 @@ module TencentCloud
 
       # 容器运行时安全，访问控制子策略信息
       class AccessControlChildRuleInfo < TencentCloud::Common::AbstractModel
-        # @param RuleMode: 策略模式,  RULE_MODE_RELEASE: 放行
-        #    RULE_MODE_ALERT: 告警
-        #    RULE_MODE_HOLDUP:拦截
+        # @param RuleMode: <p>策略模式,  RULE_MODE_RELEASE: 放行<br>   RULE_MODE_ALERT: 告警<br>   RULE_MODE_HOLDUP:拦截</p>
         # @type RuleMode: String
-        # @param ProcessPath: 进程路径
+        # @param ProcessPath: <p>进程路径</p>
         # @type ProcessPath: String
-        # @param TargetFilePath: 被访问文件路径，仅仅在访问控制生效
+        # @param TargetFilePath: <p>被访问文件路径，仅仅在访问控制生效</p>
         # @type TargetFilePath: String
-        # @param RuleId: 子策略id
+        # @param RuleId: <p>子策略id</p>
         # @type RuleId: String
+        # @param CmdLine: <p>命令行参数</p>
+        # @type CmdLine: String
 
-        attr_accessor :RuleMode, :ProcessPath, :TargetFilePath, :RuleId
+        attr_accessor :RuleMode, :ProcessPath, :TargetFilePath, :RuleId, :CmdLine
 
-        def initialize(rulemode=nil, processpath=nil, targetfilepath=nil, ruleid=nil)
+        def initialize(rulemode=nil, processpath=nil, targetfilepath=nil, ruleid=nil, cmdline=nil)
           @RuleMode = rulemode
           @ProcessPath = processpath
           @TargetFilePath = targetfilepath
           @RuleId = ruleid
+          @CmdLine = cmdline
         end
 
         def deserialize(params)
@@ -473,6 +451,7 @@ module TencentCloud
           @ProcessPath = params['ProcessPath']
           @TargetFilePath = params['TargetFilePath']
           @RuleId = params['RuleId']
+          @CmdLine = params['CmdLine']
         end
       end
 
@@ -521,115 +500,88 @@ module TencentCloud
 
       # 容器运行时安全访问控制事件信息
       class AccessControlEventInfo < TencentCloud::Common::AbstractModel
-        # @param ProcessName: 进程名称
+        # @param ProcessName: <p>进程名称</p>
         # @type ProcessName: String
-        # @param MatchRuleName: 命中规则名称
+        # @param MatchRuleName: <p>命中规则名称</p>
         # @type MatchRuleName: String
-        # @param FoundTime: 生成时间
+        # @param FoundTime: <p>生成时间</p>
         # @type FoundTime: String
-        # @param ContainerName: 容器名
+        # @param ContainerName: <p>容器名</p>
         # @type ContainerName: String
-        # @param ImageName: 镜像名
+        # @param ImageName: <p>镜像名</p>
         # @type ImageName: String
-        # @param Behavior: 动作执行结果，   BEHAVIOR_NONE: 无
-        #     BEHAVIOR_ALERT: 告警
-        #     BEHAVIOR_RELEASE：放行
-        #     BEHAVIOR_HOLDUP_FAILED:拦截失败
-        #     BEHAVIOR_HOLDUP_SUCCESSED：拦截失败
+        # @param Behavior: <p>动作执行结果，   BEHAVIOR_NONE: 无<br>    BEHAVIOR_ALERT: 告警<br>    BEHAVIOR_RELEASE：放行<br>    BEHAVIOR_HOLDUP_FAILED:拦截失败<br>    BEHAVIOR_HOLDUP_SUCCESSED：拦截失败</p>
         # @type Behavior: String
-        # @param Status: 状态0:未处理  “EVENT_UNDEAL”:事件未处理
-        #     "EVENT_DEALED":事件已经处理
-        #     "EVENT_INGNORE"：事件已经忽略
+        # @param Status: <p>状态0:未处理  “EVENT_UNDEAL”:事件未处理<br>    &quot;EVENT_DEALED&quot;:事件已经处理<br>    &quot;EVENT_INGNORE&quot;：事件已经忽略</p>
         # @type Status: String
-        # @param Id: 事件记录的唯一id
+        # @param Id: <p>事件记录的唯一id</p>
         # @type Id: String
-        # @param FileName: 文件名称
+        # @param FileName: <p>文件名称</p>
         # @type FileName: String
-        # @param EventType: 事件类型， FILE_ABNORMAL_READ:文件异常读取
+        # @param EventType: <p>事件类型， FILE_ABNORMAL_READ:文件异常读取</p>
         # @type EventType: String
-        # @param ImageId: 镜像id, 用于跳转
+        # @param ImageId: <p>镜像id, 用于跳转</p>
         # @type ImageId: String
-        # @param ContainerId: 容器id, 用于跳转
+        # @param ContainerId: <p>容器id, 用于跳转</p>
         # @type ContainerId: String
-        # @param Solution: 事件解决方案
+        # @param Solution: <p>事件解决方案</p>
         # @type Solution: String
-        # @param Description: 事件详细描述
+        # @param Description: <p>事件详细描述</p>
         # @type Description: String
-        # @param MatchRuleId: 命中策略id
+        # @param MatchRuleId: <p>命中策略id</p>
         # @type MatchRuleId: String
-        # @param MatchAction: 命中规则行为：
-        # RULE_MODE_RELEASE 放行
-        # RULE_MODE_ALERT  告警
-        # RULE_MODE_HOLDUP 拦截
+        # @param MatchAction: <p>命中规则行为：<br>RULE_MODE_RELEASE 放行<br>RULE_MODE_ALERT  告警<br>RULE_MODE_HOLDUP 拦截</p>
         # @type MatchAction: String
-        # @param MatchProcessPath: 命中规则进程信息
+        # @param MatchProcessPath: <p>命中规则进程信息</p>
         # @type MatchProcessPath: String
-        # @param MatchFilePath: 命中规则文件信息
+        # @param MatchFilePath: <p>命中规则文件信息</p>
         # @type MatchFilePath: String
-        # @param FilePath: 文件路径，包含名字
+        # @param FilePath: <p>文件路径，包含名字</p>
         # @type FilePath: String
-        # @param RuleExist: 规则是否存在
+        # @param RuleExist: <p>规则是否存在</p>
         # @type RuleExist: Boolean
-        # @param EventCount: 事件数量
+        # @param EventCount: <p>事件数量</p>
         # @type EventCount: Integer
-        # @param LatestFoundTime: 最近生成时间
+        # @param LatestFoundTime: <p>最近生成时间</p>
         # @type LatestFoundTime: String
-        # @param RuleId: 规则组id
+        # @param RuleId: <p>规则组id</p>
         # @type RuleId: String
-        # @param ContainerNetStatus: 网络状态
-        # 未隔离  	NORMAL
-        # 已隔离		ISOLATED
-        # 隔离中		ISOLATING
-        # 隔离失败	ISOLATE_FAILED
-        # 解除隔离中  RESTORING
-        # 解除隔离失败 RESTORE_FAILED
+        # @param ContainerNetStatus: <p>网络状态<br>未隔离      NORMAL<br>已隔离        ISOLATED<br>隔离中        ISOLATING<br>隔离失败    ISOLATE_FAILED<br>解除隔离中  RESTORING<br>解除隔离失败 RESTORE_FAILED</p>
         # @type ContainerNetStatus: String
-        # @param ContainerNetSubStatus: 容器子状态
-        # "AGENT_OFFLINE"       //Agent离线
-        # "NODE_DESTROYED"      //节点已销毁
-        # "CONTAINER_EXITED"    //容器已退出
-        # "CONTAINER_DESTROYED" //容器已销毁
-        # "SHARED_HOST"         // 容器与主机共享网络
-        # "RESOURCE_LIMIT"      //隔离操作资源超限
-        # "UNKNOW"              // 原因未知
+        # @param ContainerNetSubStatus: <p>容器子状态<br>&quot;AGENT_OFFLINE&quot;       //Agent离线<br>&quot;NODE_DESTROYED&quot;      //节点已销毁<br>&quot;CONTAINER_EXITED&quot;    //容器已退出<br>&quot;CONTAINER_DESTROYED&quot; //容器已销毁<br>&quot;SHARED_HOST&quot;         // 容器与主机共享网络<br>&quot;RESOURCE_LIMIT&quot;      //隔离操作资源超限<br>&quot;UNKNOW&quot;              // 原因未知</p>
         # @type ContainerNetSubStatus: String
-        # @param ContainerIsolateOperationSrc: 容器隔离操作来源
+        # @param ContainerIsolateOperationSrc: <p>容器隔离操作来源</p>
         # @type ContainerIsolateOperationSrc: String
-        # @param ContainerStatus: 容器状态
-        # 正在运行: RUNNING
-        # 暂停: PAUSED
-        # 停止: STOPPED
-        # 已经创建: CREATED
-        # 已经销毁: DESTROYED
-        # 正在重启中: RESTARTING
-        # 迁移中: REMOVING
+        # @param ContainerStatus: <p>容器状态<br>正在运行: RUNNING<br>暂停: PAUSED<br>停止: STOPPED<br>已经创建: CREATED<br>已经销毁: DESTROYED<br>正在重启中: RESTARTING<br>迁移中: REMOVING</p>
         # @type ContainerStatus: String
-        # @param NodeName: 节点名称：如果是超级节点，展示的实质上是它的node_id
+        # @param NodeName: <p>节点名称：如果是超级节点，展示的实质上是它的node_id</p>
         # @type NodeName: String
-        # @param PodName: pod名称
+        # @param PodName: <p>pod名称</p>
         # @type PodName: String
-        # @param PodIP: pod ip
+        # @param PodIP: <p>pod ip</p>
         # @type PodIP: String
-        # @param NodeType: 节点类型：NORMAL普通节点、SUPER超级节点
+        # @param NodeType: <p>节点类型：NORMAL普通节点、SUPER超级节点</p>
         # @type NodeType: String
-        # @param ClusterID: 集群id
+        # @param ClusterID: <p>集群id</p>
         # @type ClusterID: String
-        # @param NodeUniqueID: 节点的唯一id，主要是超级节点使用
+        # @param NodeUniqueID: <p>节点的唯一id，主要是超级节点使用</p>
         # @type NodeUniqueID: String
-        # @param PublicIP: 节点公网IP
+        # @param PublicIP: <p>节点公网IP</p>
         # @type PublicIP: String
-        # @param NodeID: 节点id
+        # @param NodeID: <p>节点id</p>
         # @type NodeID: String
-        # @param HostID: uuid
+        # @param HostID: <p>uuid</p>
         # @type HostID: String
-        # @param HostIP: 节点内网ip
+        # @param HostIP: <p>节点内网ip</p>
         # @type HostIP: String
-        # @param ClusterName: 集群名称
+        # @param ClusterName: <p>集群名称</p>
         # @type ClusterName: String
+        # @param CmdLine: <p>命令行参数</p>
+        # @type CmdLine: String
 
-        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :NodeName, :PodName, :PodIP, :NodeType, :ClusterID, :NodeUniqueID, :PublicIP, :NodeID, :HostID, :HostIP, :ClusterName
+        attr_accessor :ProcessName, :MatchRuleName, :FoundTime, :ContainerName, :ImageName, :Behavior, :Status, :Id, :FileName, :EventType, :ImageId, :ContainerId, :Solution, :Description, :MatchRuleId, :MatchAction, :MatchProcessPath, :MatchFilePath, :FilePath, :RuleExist, :EventCount, :LatestFoundTime, :RuleId, :ContainerNetStatus, :ContainerNetSubStatus, :ContainerIsolateOperationSrc, :ContainerStatus, :NodeName, :PodName, :PodIP, :NodeType, :ClusterID, :NodeUniqueID, :PublicIP, :NodeID, :HostID, :HostIP, :ClusterName, :CmdLine
 
-        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, nodename=nil, podname=nil, podip=nil, nodetype=nil, clusterid=nil, nodeuniqueid=nil, publicip=nil, nodeid=nil, hostid=nil, hostip=nil, clustername=nil)
+        def initialize(processname=nil, matchrulename=nil, foundtime=nil, containername=nil, imagename=nil, behavior=nil, status=nil, id=nil, filename=nil, eventtype=nil, imageid=nil, containerid=nil, solution=nil, description=nil, matchruleid=nil, matchaction=nil, matchprocesspath=nil, matchfilepath=nil, filepath=nil, ruleexist=nil, eventcount=nil, latestfoundtime=nil, ruleid=nil, containernetstatus=nil, containernetsubstatus=nil, containerisolateoperationsrc=nil, containerstatus=nil, nodename=nil, podname=nil, podip=nil, nodetype=nil, clusterid=nil, nodeuniqueid=nil, publicip=nil, nodeid=nil, hostid=nil, hostip=nil, clustername=nil, cmdline=nil)
           @ProcessName = processname
           @MatchRuleName = matchrulename
           @FoundTime = foundtime
@@ -668,6 +620,7 @@ module TencentCloud
           @HostID = hostid
           @HostIP = hostip
           @ClusterName = clustername
+          @CmdLine = cmdline
         end
 
         def deserialize(params)
@@ -709,6 +662,7 @@ module TencentCloud
           @HostID = params['HostID']
           @HostIP = params['HostIP']
           @ClusterName = params['ClusterName']
+          @CmdLine = params['CmdLine']
         end
       end
 
@@ -3672,8 +3626,8 @@ module TencentCloud
 
         attr_accessor :Component, :Version, :FixedVersion, :Path, :Type, :Name
         extend Gem::Deprecate
-        deprecate :Component, :none, 2026, 1
-        deprecate :Component=, :none, 2026, 1
+        deprecate :Component, :none, 2026, 3
+        deprecate :Component=, :none, 2026, 3
 
         def initialize(component=nil, version=nil, fixedversion=nil, path=nil, type=nil, name=nil)
           @Component = component
@@ -4125,8 +4079,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanType, :Id, :ExcludeIDs, :IsLatest, :ScanScope, :RegistryType, :Namespace, :ContainerRunning, :Timeout
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(all=nil, images=nil, scantype=nil, id=nil, excludeids=nil, islatest=nil, scanscope=nil, registrytype=nil, namespace=nil, containerrunning=nil, timeout=nil)
           @All = all
@@ -4289,8 +4243,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil)
           @Enable = enable
@@ -4366,8 +4320,8 @@ module TencentCloud
 
         attr_accessor :All, :Images, :ScanVul, :ScanVirus, :ScanRisk, :Filters, :ExcludeImageIds, :ContainerRunning, :ScanScope, :Timeout, :IsOneClickScanningTask
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(all=nil, images=nil, scanvul=nil, scanvirus=nil, scanrisk=nil, filters=nil, excludeimageids=nil, containerrunning=nil, scanscope=nil, timeout=nil, isoneclickscanningtask=nil)
           @All = all
@@ -9339,8 +9293,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :OsName, :ScanVirusError, :ScanVulError, :LayerInfo, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :ImageSize, :ImageId, :RegistryRegion, :ImageCreateTime, :SensitiveInfoCnt, :Id, :Solution, :Reason, :RequestId
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 1
-        deprecate :SentiveInfoCnt=, :none, 2026, 1
+        deprecate :SentiveInfoCnt, :none, 2026, 3
+        deprecate :SentiveInfoCnt=, :none, 2026, 3
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, layerinfo=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, imagesize=nil, imageid=nil, registryregion=nil, imagecreatetime=nil, sensitiveinfocnt=nil, id=nil, solution=nil, reason=nil, requestid=nil)
           @ImageDigest = imagedigest
@@ -10506,8 +10460,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanVirus, :ScanRisk, :ScanVul, :All, :Images, :ContainerRunning, :ScanScope, :ScanEndTime, :ExcludeImages, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scanvirus=nil, scanrisk=nil, scanvul=nil, all=nil, images=nil, containerrunning=nil, scanscope=nil, scanendtime=nil, excludeimages=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -13957,8 +13911,8 @@ module TencentCloud
 
         attr_accessor :Enable, :ScanTime, :ScanPeriod, :ScanType, :All, :Images, :Id, :Latest, :ScanEndTime, :RegistryType, :ContainerRunning, :ScanScope, :Namespace, :ExcludeImageAssetIds, :LastScanTime, :ScanResult, :RequestId
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(enable=nil, scantime=nil, scanperiod=nil, scantype=nil, all=nil, images=nil, id=nil, latest=nil, scanendtime=nil, registrytype=nil, containerrunning=nil, scanscope=nil, namespace=nil, excludeimageassetids=nil, lastscantime=nil, scanresult=nil, requestid=nil)
           @Enable = enable
@@ -17660,13 +17614,16 @@ module TencentCloud
       class DescribeSecLogJoinTypeListResponse < TencentCloud::Common::AbstractModel
         # @param List: 接入日志列表
         # @type List: Array
+        # @param MsgLanguage: 语言类型
+        # @type MsgLanguage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :List, :RequestId
+        attr_accessor :List, :MsgLanguage, :RequestId
 
-        def initialize(list=nil, requestid=nil)
+        def initialize(list=nil, msglanguage=nil, requestid=nil)
           @List = list
+          @MsgLanguage = msglanguage
           @RequestId = requestid
         end
 
@@ -17679,6 +17636,7 @@ module TencentCloud
               @List << seclogjoininfo_tmp
             end
           end
+          @MsgLanguage = params['MsgLanguage']
           @RequestId = params['RequestId']
         end
       end
@@ -22121,8 +22079,8 @@ module TencentCloud
 
         attr_accessor :ImageDigest, :ImageRepoAddress, :RegistryType, :ImageName, :ImageTag, :ImageSize, :ScanTime, :ScanStatus, :VulCnt, :VirusCnt, :RiskCnt, :SentiveInfoCnt, :IsTrustImage, :OsName, :ScanVirusError, :ScanVulError, :InstanceId, :InstanceName, :Namespace, :ScanRiskError, :ScanVirusProgress, :ScanVulProgress, :ScanRiskProgress, :ScanRemainTime, :CveStatus, :RiskStatus, :VirusStatus, :Progress, :IsAuthorized, :RegistryRegion, :Id, :ImageId, :ImageCreateTime, :IsLatestImage, :LowLevelVulCnt, :MediumLevelVulCnt, :HighLevelVulCnt, :CriticalLevelVulCnt, :ContainerCnt, :ComponentCnt, :IsRunning, :HasNeedFixVul, :SensitiveInfoCnt, :RecommendedFix, :Solution, :Reason
         extend Gem::Deprecate
-        deprecate :SentiveInfoCnt, :none, 2026, 1
-        deprecate :SentiveInfoCnt=, :none, 2026, 1
+        deprecate :SentiveInfoCnt, :none, 2026, 3
+        deprecate :SentiveInfoCnt=, :none, 2026, 3
 
         def initialize(imagedigest=nil, imagerepoaddress=nil, registrytype=nil, imagename=nil, imagetag=nil, imagesize=nil, scantime=nil, scanstatus=nil, vulcnt=nil, viruscnt=nil, riskcnt=nil, sentiveinfocnt=nil, istrustimage=nil, osname=nil, scanviruserror=nil, scanvulerror=nil, instanceid=nil, instancename=nil, namespace=nil, scanriskerror=nil, scanvirusprogress=nil, scanvulprogress=nil, scanriskprogress=nil, scanremaintime=nil, cvestatus=nil, riskstatus=nil, virusstatus=nil, progress=nil, isauthorized=nil, registryregion=nil, id=nil, imageid=nil, imagecreatetime=nil, islatestimage=nil, lowlevelvulcnt=nil, mediumlevelvulcnt=nil, highlevelvulcnt=nil, criticallevelvulcnt=nil, containercnt=nil, componentcnt=nil, isrunning=nil, hasneedfixvul=nil, sensitiveinfocnt=nil, recommendedfix=nil, solution=nil, reason=nil)
           @ImageDigest = imagedigest
@@ -28540,8 +28498,8 @@ module TencentCloud
 
         attr_accessor :ScanPeriod, :Enable, :ScanTime, :ScanType, :Images, :All, :Id, :Latest, :ContainerRunning, :ScanEndTime, :ScanScope, :RegistryType, :Namespace, :ExcludeImageAssetIds
         extend Gem::Deprecate
-        deprecate :All, :none, 2026, 1
-        deprecate :All=, :none, 2026, 1
+        deprecate :All, :none, 2026, 3
+        deprecate :All=, :none, 2026, 3
 
         def initialize(scanperiod=nil, enable=nil, scantime=nil, scantype=nil, images=nil, all=nil, id=nil, latest=nil, containerrunning=nil, scanendtime=nil, scanscope=nil, registrytype=nil, namespace=nil, excludeimageassetids=nil)
           @ScanPeriod = scanperiod

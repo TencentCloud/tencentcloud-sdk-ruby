@@ -9027,30 +9027,31 @@ module TencentCloud
 
       # CreateLLMComprehendTemplate请求参数结构体
       class CreateLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Level: 解析级别，可选值为：
-        # - Audio: 音频级解析
-        # - Video: 视频级解析
+        # @param Level: <p>解析级别，可选值为：</p><ul><li>Audio: 音频级解析</li><li>Video: 视频级解析</li></ul>
         # @type Level: String
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 大模型解析模板名称，长度限制：64 个字符。
+        # @param Name: <p>大模型解析模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 大模型解析模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>大模型解析模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param Summary: 分段摘要解析配置
+        # @param Summary: <p>分段摘要解析配置</p>
         # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummary`
-        # @param Asr: 文本转录解析配置
+        # @param Asr: <p>文本转录解析配置</p>
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsr`
+        # @param FaceRecognition: <p>人脸识别配置</p>
+        # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognition`
 
-        attr_accessor :Level, :SubAppId, :Name, :Comment, :Summary, :Asr
+        attr_accessor :Level, :SubAppId, :Name, :Comment, :Summary, :Asr, :FaceRecognition
 
-        def initialize(level=nil, subappid=nil, name=nil, comment=nil, summary=nil, asr=nil)
+        def initialize(level=nil, subappid=nil, name=nil, comment=nil, summary=nil, asr=nil, facerecognition=nil)
           @Level = level
           @SubAppId = subappid
           @Name = name
           @Comment = comment
           @Summary = summary
           @Asr = asr
+          @FaceRecognition = facerecognition
         end
 
         def deserialize(params)
@@ -9066,12 +9067,16 @@ module TencentCloud
             @Asr = LLMComprehendAsr.new
             @Asr.deserialize(params['Asr'])
           end
+          unless params['FaceRecognition'].nil?
+            @FaceRecognition = LLMComprehendFaceRecognition.new
+            @FaceRecognition.deserialize(params['FaceRecognition'])
+          end
         end
       end
 
       # CreateLLMComprehendTemplate返回参数结构体
       class CreateLLMComprehendTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param Definition: 大模型理解模板的唯一标识
+        # @param Definition: <p>大模型理解模板的唯一标识</p>
         # @type Definition: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19394,6 +19399,70 @@ module TencentCloud
         end
       end
 
+      # 大模型解析人脸识别配置
+      class LLMComprehendFaceRecognition < TencentCloud::Common::AbstractModel
+        # @param Switch: 
+        # @type Switch: String
+        # @param Score: 
+        # @type Score: Float
+        # @param DefaultLibraryLabelSet: 
+        # @type DefaultLibraryLabelSet: Array
+        # @param UserDefineLibraryLabelSet: 
+        # @type UserDefineLibraryLabelSet: Array
+        # @param FaceLibrary: 
+        # @type FaceLibrary: String
+
+        attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
+
+        def initialize(switch=nil, score=nil, defaultlibrarylabelset=nil, userdefinelibrarylabelset=nil, facelibrary=nil)
+          @Switch = switch
+          @Score = score
+          @DefaultLibraryLabelSet = defaultlibrarylabelset
+          @UserDefineLibraryLabelSet = userdefinelibrarylabelset
+          @FaceLibrary = facelibrary
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Score = params['Score']
+          @DefaultLibraryLabelSet = params['DefaultLibraryLabelSet']
+          @UserDefineLibraryLabelSet = params['UserDefineLibraryLabelSet']
+          @FaceLibrary = params['FaceLibrary']
+        end
+      end
+
+      # 大模型解析人脸识别配置
+      class LLMComprehendFaceRecognitionForUpdate < TencentCloud::Common::AbstractModel
+        # @param Switch: 
+        # @type Switch: String
+        # @param Score: 
+        # @type Score: Float
+        # @param DefaultLibraryLabelSet: 
+        # @type DefaultLibraryLabelSet: Array
+        # @param UserDefineLibraryLabelSet: 
+        # @type UserDefineLibraryLabelSet: Array
+        # @param FaceLibrary: 
+        # @type FaceLibrary: String
+
+        attr_accessor :Switch, :Score, :DefaultLibraryLabelSet, :UserDefineLibraryLabelSet, :FaceLibrary
+
+        def initialize(switch=nil, score=nil, defaultlibrarylabelset=nil, userdefinelibrarylabelset=nil, facelibrary=nil)
+          @Switch = switch
+          @Score = score
+          @DefaultLibraryLabelSet = defaultlibrarylabelset
+          @UserDefineLibraryLabelSet = userdefinelibrarylabelset
+          @FaceLibrary = facelibrary
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Score = params['Score']
+          @DefaultLibraryLabelSet = params['DefaultLibraryLabelSet']
+          @UserDefineLibraryLabelSet = params['UserDefineLibraryLabelSet']
+          @FaceLibrary = params['FaceLibrary']
+        end
+      end
+
       # 大模型解析分段摘要解析配置
       class LLMComprehendSummary < TencentCloud::Common::AbstractModel
         # @param Switch: 分段摘要任务开关，可选值：
@@ -23429,26 +23498,26 @@ module TencentCloud
 
       # ModifyLLMComprehendTemplate请求参数结构体
       class ModifyLLMComprehendTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Definition: 大模型理解模板的唯一标识
+        # @param Definition: <p>大模型理解模板的唯一标识</p>
         # @type Definition: Integer
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Name: 大模型解析模板名称，长度限制：64 个字符。
+        # @param Name: <p>大模型解析模板名称，长度限制：64 个字符。</p>
         # @type Name: String
-        # @param Comment: 大模型解析模板描述信息，长度限制：256 个字符。
+        # @param Comment: <p>大模型解析模板描述信息，长度限制：256 个字符。</p>
         # @type Comment: String
-        # @param Model: 解析模型，可选值为：
-        # - Basic: 基础模型
-        # - Pro: 优化模型
+        # @param Model: <p>解析模型，可选值为：</p><ul><li>Basic: 基础模型</li><li>Pro: 优化模型</li></ul>
         # @type Model: String
-        # @param Summary: 分段摘要解析配置
+        # @param Summary: <p>分段摘要解析配置</p>
         # @type Summary: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendSummaryForUpdate`
-        # @param Asr: 文本转录解析配置
+        # @param Asr: <p>文本转录解析配置</p>
         # @type Asr: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendAsrForUpdate`
+        # @param FaceRecognition: <p>人脸识别配置</p>
+        # @type FaceRecognition: :class:`Tencentcloud::Vod.v20180717.models.LLMComprehendFaceRecognitionForUpdate`
 
-        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Model, :Summary, :Asr
+        attr_accessor :Definition, :SubAppId, :Name, :Comment, :Model, :Summary, :Asr, :FaceRecognition
 
-        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, model=nil, summary=nil, asr=nil)
+        def initialize(definition=nil, subappid=nil, name=nil, comment=nil, model=nil, summary=nil, asr=nil, facerecognition=nil)
           @Definition = definition
           @SubAppId = subappid
           @Name = name
@@ -23456,6 +23525,7 @@ module TencentCloud
           @Model = model
           @Summary = summary
           @Asr = asr
+          @FaceRecognition = facerecognition
         end
 
         def deserialize(params)
@@ -23471,6 +23541,10 @@ module TencentCloud
           unless params['Asr'].nil?
             @Asr = LLMComprehendAsrForUpdate.new
             @Asr.deserialize(params['Asr'])
+          end
+          unless params['FaceRecognition'].nil?
+            @FaceRecognition = LLMComprehendFaceRecognitionForUpdate.new
+            @FaceRecognition.deserialize(params['FaceRecognition'])
           end
         end
       end
@@ -30982,29 +31056,30 @@ module TencentCloud
 
       # SearchMediaBySemantics请求参数结构体
       class SearchMediaBySemanticsRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <b>点播[应用](/document/product/266/14574) ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b>
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
         # @type SubAppId: Integer
-        # @param Text: 需要进行搜索的内容
+        # @param Text: <p>需要进行搜索的内容</p>
         # @type Text: String
-        # @param Limit: 返回的记录条数，默认值：20。
+        # @param Limit: <p>返回的记录条数，默认值：20。</p><p>取值范围：[1, 100]</p>
         # @type Limit: Integer
-        # @param Categories: 文件类型。匹配集合中的任意元素： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li>
+        # @param Categories: <p>文件类型。匹配集合中的任意元素： <li>Video: 视频文件</li> <li>Audio: 音频文件</li> <li>Image: 图片文件</li></p>
         # @type Categories: Array
-        # @param Tags: 标签集合，匹配集合中任意元素。 <li>单个标签长度限制：32个字符。</li> <li>数组长度限制：16。</li>
+        # @param Tags: <p>标签集合，匹配集合中任意元素。</p><p>入参限制：单个标签长度限制：32个字符。数组长度限制：16。</p>
         # @type Tags: Array
-        # @param TaskTypes: 搜索的任务类型，可选值有：
-        # - AiAnalysis.DescriptionTask
-        # - SmartSubtitle.AsrFullTextTask
+        # @param Persons: <p>人物集合，匹配出现了所有传入人物的片段</p><p>入参限制：数组长度限制：16</p>
+        # @type Persons: Array
+        # @param TaskTypes: <p>搜索的任务类型，可选值有： </p><ul><li>AiAnalysis.DescriptionTask </li><li>SmartSubtitle.AsrFullTextTask</li></ul>
         # @type TaskTypes: Array
 
-        attr_accessor :SubAppId, :Text, :Limit, :Categories, :Tags, :TaskTypes
+        attr_accessor :SubAppId, :Text, :Limit, :Categories, :Tags, :Persons, :TaskTypes
 
-        def initialize(subappid=nil, text=nil, limit=nil, categories=nil, tags=nil, tasktypes=nil)
+        def initialize(subappid=nil, text=nil, limit=nil, categories=nil, tags=nil, persons=nil, tasktypes=nil)
           @SubAppId = subappid
           @Text = text
           @Limit = limit
           @Categories = categories
           @Tags = tags
+          @Persons = persons
           @TaskTypes = tasktypes
         end
 
@@ -31014,13 +31089,14 @@ module TencentCloud
           @Limit = params['Limit']
           @Categories = params['Categories']
           @Tags = params['Tags']
+          @Persons = params['Persons']
           @TaskTypes = params['TaskTypes']
         end
       end
 
       # SearchMediaBySemantics返回参数结构体
       class SearchMediaBySemanticsResponse < TencentCloud::Common::AbstractModel
-        # @param SearchResults: 媒体列表。
+        # @param SearchResults: <p>媒体列表。</p>
         # @type SearchResults: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

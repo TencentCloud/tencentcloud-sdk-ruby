@@ -508,9 +508,9 @@ module TencentCloud
 
       # SubmitHunyuan3DPartJob请求参数结构体
       class SubmitHunyuan3DPartJobRequest < TencentCloud::Common::AbstractModel
-        # @param File: 需进行组件生成的3D模型文件，仅支持FBX格式。
+        # @param File: <p>需进行组件生成的3D模型文件，仅支持FBX格式。</p>
         # @type File: :class:`Tencentcloud::Ai3d.v20250513.models.InputFile3D`
-        # @param Model: 组件生成模型版本，默认为1.0，可选项：1.0，1.5；
+        # @param Model: <p>组件生成模型版本，默认为1.5</p><p>枚举值：</p><ul><li>1.5： 1.5模型</li></ul><p>默认值：1.5</p>
         # @type Model: String
 
         attr_accessor :File, :Model
@@ -531,7 +531,7 @@ module TencentCloud
 
       # SubmitHunyuan3DPartJob返回参数结构体
       class SubmitHunyuan3DPartJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID。
+        # @param JobId: <p>任务ID。</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -551,56 +551,25 @@ module TencentCloud
 
       # SubmitHunyuanTo3DProJob请求参数结构体
       class SubmitHunyuanTo3DProJobRequest < TencentCloud::Common::AbstractModel
-        # @param Model: 混元生3D生成模型版本，默认为3.0，可选项：3.0，3.1
-        # 选择3.1版本时，LowPoly参数不可用。
+        # @param Model: <p>混元生3D生成模型版本，默认为3.0，可选项：3.0，3.1<br>选择3.1版本时，LowPoly参数不可用。</p>
         # @type Model: String
-        # @param Prompt: 文生3D，3D内容的描述，中文正向提示词。
-        # 最多支持1024个 utf-8 字符。
-        # ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。
+        # @param Prompt: <p>文生3D，3D内容的描述，中文正向提示词。<br>最多支持1024个 utf-8 字符。<br>ImageBase64、ImageUrl和 Prompt必填其一，且Prompt和ImageBase64/ImageUrl不能同时存在。</p>
         # @type Prompt: String
-        # @param ImageBase64: 输入图 Base64 数据。
-        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤6m (因base64编码后会大30%左右)
-        # 格式: jpg，png，jpeg，webp.
-        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
+        # @param ImageBase64: <p>输入图 Base64 数据。<br>大小: 单边分辨率要求不小于128，不大于5000，大小≤6m (因base64编码后会大30%左右)<br>格式: jpg，png，jpeg，webp.<br>lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 输入图Url
-        # 大小: 单边分辨率要求不小于128，不大于5000，大小≤8m
-        # 格式: jpg，png，jpeg，webp.
-        # lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。
+        # @param ImageUrl: <p>输入图Url<br>大小: 单边分辨率要求不小于128，不大于5000，大小≤8m<br>格式: jpg，png，jpeg，webp.<br>lmageBase64、lmageUr和 Prompt必填其一，且Prompt和lmageBase64/mageUr不能同时存在。</p>
         # @type ImageUrl: String
-        # @param MultiViewImages: 多视角的模型图片，视角参考值：
-        # left：左视图；
-        # right：右视图；
-        # back：后视图；
-        # top：顶视图（仅3.1版本支持）；
-        # bottom：底视图（仅3.1版本支持）；
-        # left_front：左前45°视图（仅3.1版本支持）；
-        # right_front：右前45°视图（仅3.1版本支持）；
-
-        # 每个视角仅限制一张图片。
-        # ●图片大小限制：编码后所有图片大小总和不可超过8M。（base64编码下图片大小总和不超过6M，因base64编码后图片大小会大30%左右）
-        # ●图片分辨率限制：单边分辨率小于5000且大于128。
-        # ●支持图片格式：支持jpg或png
+        # @param MultiViewImages: <p>多视角的模型图片，视角参考值：<br>left：左视图；<br>right：右视图；<br>back：后视图；<br>top：顶视图（仅3.1版本支持）；<br>bottom：底视图（仅3.1版本支持）；<br>left_front：左前45°视图（仅3.1版本支持）；<br>right_front：右前45°视图（仅3.1版本支持）；</p><p>每个视角仅限制一张图片。<br>●图片大小限制：编码后所有图片大小总和不可超过8M。（base64编码下图片大小总和不超过6M，因base64编码后图片大小会大30%左右）<br>●图片分辨率限制：单边分辨率小于5000且大于128。<br>●支持图片格式：支持jpg或png</p>
         # @type MultiViewImages: Array
-        # @param EnablePBR: 是否开启 PBR材质生成，默认 false。
+        # @param EnablePBR: <p>是否开启 PBR材质生成，默认 false。</p>
         # @type EnablePBR: Boolean
-        # @param FaceCount: 生成3D模型的面数，默认值为500000。
-        # 可支持生成面数范围，参考值：10000-1500000。
-        # GenerateType中选择LowPoly时，参考值：3000-1500000。
+        # @param FaceCount: <p>生成3D模型的面数，默认值为500000。可支持生成面数范围，参考值：3000-1500000。GenerateType中选择LowPoly时，此参数不生效。</p><p>取值范围：[3000, 1500000]</p>
         # @type FaceCount: Integer
-        # @param GenerateType: 生成任务类型，默认Normal，参考值：
-        # Normal：可生成带纹理的几何模型。
-        # LowPoly：可生成智能拓扑后的模型，选择此参数时，面数最低可到达3000面。
-        # Geometry：可生成不带纹理的几何模型（白模），选择此任务时，EnablePBR参数不生效。
-        # Sketch：可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。
+        # @param GenerateType: <p>生成任务类型，默认Normal，参考值：<br>Normal：可生成带纹理的几何模型。<br>LowPoly：可生成智能拓扑后的模型，FaceCount参数不生效。<br>Geometry：可生成不带纹理的几何模型（白模），EnablePBR参数不生效。<br>Sketch：可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。</p><p>枚举值：</p><ul><li>Normal： 可生成带纹理的几何模型</li><li>LowPoly： 可生成智能拓扑后的模型，FaceCount参数不生效。</li><li>Geometry： 可生成不带纹理的几何模型（白模），EnablePBR参数不生效。</li><li>Sketch： 可输入草图或线稿图生成模型，此模式下prompt和ImageUrl/ImageBase64可一起输入。</li></ul>
         # @type GenerateType: String
-        # @param PolygonType: 该参数仅在GenerateType中选择LowPoly模式可生效。
-
-        # 多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:
-        # triangle: 三角形面。
-        # quadrilateral: 四边形面与三角形面混合生成。
+        # @param PolygonType: <p>该参数仅在GenerateType中选择LowPoly模式可生效。</p><p>多边形类型，表示模型的表面由几边形网格构成，默认为triangle,参考值:<br>triangle: 三角形面。<br>quadrilateral: 四边形面与三角形面混合生成。</p>
         # @type PolygonType: String
-        # @param ResultFormat: 生成模型的格式，仅限制生成一种格式； 生成模型文件组默认返回obj、glb格式（开启时Geometry参数时，默认为glb格式）； 可选值：STL，USDZ，FBX；
+        # @param ResultFormat: <p>生成模型的格式，仅限制生成一种格式； 生成模型文件组默认返回obj、glb格式（开启时Geometry参数时，默认为glb格式）； 可选值：STL，USDZ，FBX；</p>
         # @type ResultFormat: String
 
         attr_accessor :Model, :Prompt, :ImageBase64, :ImageUrl, :MultiViewImages, :EnablePBR, :FaceCount, :GenerateType, :PolygonType, :ResultFormat
@@ -641,7 +610,7 @@ module TencentCloud
 
       # SubmitHunyuanTo3DProJob返回参数结构体
       class SubmitHunyuanTo3DProJobResponse < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务ID（有效期24小时）
+        # @param JobId: <p>任务ID（有效期24小时）</p>
         # @type JobId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1967,16 +1967,19 @@ module TencentCloud
         # @type DisplayName: String
         # @param SystemDisk: 系统盘的信息
         # @type SystemDisk: :class:`Tencentcloud::Tke.v20220501.models.Disk`
+        # @param SecurityGroupIDs: 安全组列表
+        # @type SecurityGroupIDs: Array
         # @param InstanceChargePrepaid: 节点预付费信息
         # @type InstanceChargePrepaid: :class:`Tencentcloud::Tke.v20220501.models.InstanceChargePrepaid`
 
-        attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :InstanceChargePrepaid
+        attr_accessor :ClusterId, :MachineNames, :DisplayName, :SystemDisk, :SecurityGroupIDs, :InstanceChargePrepaid
 
-        def initialize(clusterid=nil, machinenames=nil, displayname=nil, systemdisk=nil, instancechargeprepaid=nil)
+        def initialize(clusterid=nil, machinenames=nil, displayname=nil, systemdisk=nil, securitygroupids=nil, instancechargeprepaid=nil)
           @ClusterId = clusterid
           @MachineNames = machinenames
           @DisplayName = displayname
           @SystemDisk = systemdisk
+          @SecurityGroupIDs = securitygroupids
           @InstanceChargePrepaid = instancechargeprepaid
         end
 
@@ -1988,6 +1991,7 @@ module TencentCloud
             @SystemDisk = Disk.new
             @SystemDisk.deserialize(params['SystemDisk'])
           end
+          @SecurityGroupIDs = params['SecurityGroupIDs']
           unless params['InstanceChargePrepaid'].nil?
             @InstanceChargePrepaid = InstanceChargePrepaid.new
             @InstanceChargePrepaid.deserialize(params['InstanceChargePrepaid'])
@@ -3111,10 +3115,14 @@ module TencentCloud
         # @type InstanceTypes: Array
         # @param Replicas: 期望节点数
         # @type Replicas: Integer
-        # @param UpdateExistedNode: 是否更新存量节点
+        # @param UpdateExistedNode: 是否更新存量节点MetaData(包括： metadata、annotation、label)
         # @type UpdateExistedNode: Boolean
         # @param DataDisks: 数据盘列表
         # @type DataDisks: Array
+        # @param UpdateMachineManagement: 节点management参数存量更新开关，有enable（打开）、disable（关闭）两个状态可选
+
+        # management包括：nameserver、host、kubelet、kernel参数
+        # @type UpdateMachineManagement: String
         # @param KeyIds: ssh公钥id数组
         # @type KeyIds: Array
         # @param DeletePolicy: 节点移出策略，有Random（随机）、Newest（优先移出最新实例）、Oldest（优先移出最旧实例）三种可选，默认是Newest
@@ -3126,9 +3134,9 @@ module TencentCloud
         # @param Password: 原生节点池密码
         # @type Password: String
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :UpdateMachineManagement, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, keyids=nil, deletepolicy=nil, gpuconfigs=nil, automationservice=nil, password=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, updatemachinemanagement=nil, keyids=nil, deletepolicy=nil, gpuconfigs=nil, automationservice=nil, password=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -3148,6 +3156,7 @@ module TencentCloud
           @Replicas = replicas
           @UpdateExistedNode = updateexistednode
           @DataDisks = datadisks
+          @UpdateMachineManagement = updatemachinemanagement
           @KeyIds = keyids
           @DeletePolicy = deletepolicy
           @GPUConfigs = gpuconfigs
@@ -3200,6 +3209,7 @@ module TencentCloud
               @DataDisks << datadisk_tmp
             end
           end
+          @UpdateMachineManagement = params['UpdateMachineManagement']
           @KeyIds = params['KeyIds']
           @DeletePolicy = params['DeletePolicy']
           unless params['GPUConfigs'].nil?

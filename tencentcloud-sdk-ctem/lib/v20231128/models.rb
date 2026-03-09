@@ -1526,12 +1526,14 @@ module TencentCloud
         # @type EnterpriseUidList: Array
         # @param Filters: 查询数组
         # @type Filters: Array
-        # @param CustomerId: 企业ID
+        # @param CustomerId: <p>企业ID</p>
         # @type CustomerId: Integer
+        # @param OrderBy: <p>排序方式</p>
+        # @type OrderBy: String
 
-        attr_accessor :IsAggregation, :Offset, :Limit, :Ignored, :UpdateAtEnd, :CreateAtEnd, :UpdateAtStart, :CreateAtStart, :Format, :IsNew, :CustomerIdList, :EnterpriseUidList, :Filters, :CustomerId
+        attr_accessor :IsAggregation, :Offset, :Limit, :Ignored, :UpdateAtEnd, :CreateAtEnd, :UpdateAtStart, :CreateAtStart, :Format, :IsNew, :CustomerIdList, :EnterpriseUidList, :Filters, :CustomerId, :OrderBy
 
-        def initialize(isaggregation=nil, offset=nil, limit=nil, ignored=nil, updateatend=nil, createatend=nil, updateatstart=nil, createatstart=nil, format=nil, isnew=nil, customeridlist=nil, enterpriseuidlist=nil, filters=nil, customerid=nil)
+        def initialize(isaggregation=nil, offset=nil, limit=nil, ignored=nil, updateatend=nil, createatend=nil, updateatstart=nil, createatstart=nil, format=nil, isnew=nil, customeridlist=nil, enterpriseuidlist=nil, filters=nil, customerid=nil, orderby=nil)
           @IsAggregation = isaggregation
           @Offset = offset
           @Limit = limit
@@ -1546,6 +1548,7 @@ module TencentCloud
           @EnterpriseUidList = enterpriseuidlist
           @Filters = filters
           @CustomerId = customerid
+          @OrderBy = orderby
         end
 
         def deserialize(params)
@@ -1570,14 +1573,15 @@ module TencentCloud
             end
           end
           @CustomerId = params['CustomerId']
+          @OrderBy = params['OrderBy']
         end
       end
 
       # DescribeApiSecs返回参数结构体
       class DescribeApiSecsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param List: API安全数组
+        # @param List: <p>API安全数组</p>
         # @type List: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

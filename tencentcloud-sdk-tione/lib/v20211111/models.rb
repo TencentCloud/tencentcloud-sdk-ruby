@@ -91,15 +91,18 @@ module TencentCloud
         # @type CreateTime: String
         # @param Status: token状态
         # @type Status: String
+        # @param Id: token的唯一id，与value一一对应，重置后id也会一并变化
+        # @type Id: String
 
-        attr_accessor :Value, :Name, :Description, :CreateTime, :Status
+        attr_accessor :Value, :Name, :Description, :CreateTime, :Status, :Id
 
-        def initialize(value=nil, name=nil, description=nil, createtime=nil, status=nil)
+        def initialize(value=nil, name=nil, description=nil, createtime=nil, status=nil, id=nil)
           @Value = value
           @Name = name
           @Description = description
           @CreateTime = createtime
           @Status = status
+          @Id = id
         end
 
         def deserialize(params)
@@ -108,6 +111,7 @@ module TencentCloud
           @Description = params['Description']
           @CreateTime = params['CreateTime']
           @Status = params['Status']
+          @Id = params['Id']
         end
       end
 
@@ -1033,10 +1037,12 @@ module TencentCloud
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
         # @param VolumeSourceGooseFS: GooseFS存储配置
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
+        # @param Description: 描述
+        # @type Description: String
 
-        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :Description
 
-        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil)
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, description=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConf = resourceconf
@@ -1061,6 +1067,7 @@ module TencentCloud
           @ImageType = imagetype
           @SSHConfig = sshconfig
           @VolumeSourceGooseFS = volumesourcegoosefs
+          @Description = description
         end
 
         def deserialize(params)
@@ -1120,6 +1127,7 @@ module TencentCloud
             @VolumeSourceGooseFS = GooseFS.new
             @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
+          @Description = params['Description']
         end
       end
 
@@ -4123,15 +4131,19 @@ module TencentCloud
       class DescribeTrainingTaskRequest < TencentCloud::Common::AbstractModel
         # @param Id: 训练任务ID
         # @type Id: String
+        # @param InstanceId: 训练任务实例ID
+        # @type InstanceId: String
 
-        attr_accessor :Id
+        attr_accessor :Id, :InstanceId
 
-        def initialize(id=nil)
+        def initialize(id=nil, instanceid=nil)
           @Id = id
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -6163,10 +6175,12 @@ module TencentCloud
         # @type SSHConfig: :class:`Tencentcloud::Tione.v20211111.models.SSHConfig`
         # @param Envs: 自定义环境变量
         # @type Envs: Array
+        # @param Description: 描述
+        # @type Description: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :AutoStopping, :DirectInternetAccess, :RootAccess, :LogEnable, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :Envs
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :AutoStopping, :DirectInternetAccess, :RootAccess, :LogEnable, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSizeInGB, :VolumeSourceType, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :Envs, :Description
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, logenable=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, envs=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, autostopping=nil, directinternetaccess=nil, rootaccess=nil, logenable=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesizeingb=nil, volumesourcetype=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, envs=nil, description=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -6192,6 +6206,7 @@ module TencentCloud
           @ImageType = imagetype
           @SSHConfig = sshconfig
           @Envs = envs
+          @Description = description
         end
 
         def deserialize(params)
@@ -6256,6 +6271,7 @@ module TencentCloud
               @Envs << envvar_tmp
             end
           end
+          @Description = params['Description']
         end
       end
 
@@ -6518,10 +6534,13 @@ module TencentCloud
         # @param AppId: Appid
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: String
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime, :AppId
+        attr_accessor :Id, :Name, :LifecycleScriptId, :PodName, :UpdateTime, :DirectInternetAccess, :ResourceGroupId, :Tags, :AutoStopping, :AdditionalCodeRepoIds, :AutomaticStopTime, :ResourceConf, :DefaultCodeRepoId, :EndTime, :LogEnable, :LogConfig, :VpcId, :SubnetId, :Status, :RuntimeInSeconds, :CreateTime, :StartTime, :ChargeStatus, :RootAccess, :BillingInfos, :VolumeSizeInGB, :FailureReason, :ChargeType, :InstanceTypeAlias, :ResourceGroupName, :VolumeSourceType, :VolumeSourceCFS, :DataConfigs, :Message, :DataSource, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :ResourceGroupInstanceId, :SubUinName, :JobCreateTime, :AppId, :Description
 
-        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil, appid=nil)
+        def initialize(id=nil, name=nil, lifecyclescriptid=nil, podname=nil, updatetime=nil, directinternetaccess=nil, resourcegroupid=nil, tags=nil, autostopping=nil, additionalcoderepoids=nil, automaticstoptime=nil, resourceconf=nil, defaultcoderepoid=nil, endtime=nil, logenable=nil, logconfig=nil, vpcid=nil, subnetid=nil, status=nil, runtimeinseconds=nil, createtime=nil, starttime=nil, chargestatus=nil, rootaccess=nil, billinginfos=nil, volumesizeingb=nil, failurereason=nil, chargetype=nil, instancetypealias=nil, resourcegroupname=nil, volumesourcetype=nil, volumesourcecfs=nil, dataconfigs=nil, message=nil, datasource=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, resourcegroupinstanceid=nil, subuinname=nil, jobcreatetime=nil, appid=nil, description=nil)
           @Id = id
           @Name = name
           @LifecycleScriptId = lifecyclescriptid
@@ -6566,6 +6585,7 @@ module TencentCloud
           @SubUinName = subuinname
           @JobCreateTime = jobcreatetime
           @AppId = appid
+          @Description = description
         end
 
         def deserialize(params)
@@ -6645,6 +6665,7 @@ module TencentCloud
           @SubUinName = params['SubUinName']
           @JobCreateTime = params['JobCreateTime']
           @AppId = params['AppId']
+          @Description = params['Description']
         end
       end
 
@@ -6737,10 +6758,13 @@ module TencentCloud
         # @type AppId: String
         # @param ExposePortConfig: 容器服务暴露端口配置
         # @type ExposePortConfig: :class:`Tencentcloud::Tione.v20211111.models.ExposePortConfig`
+        # @param Description: 描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig, :Description
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil, description=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -6772,6 +6796,7 @@ module TencentCloud
           @SubUinName = subuinname
           @AppId = appid
           @ExposePortConfig = exposeportconfig
+          @Description = description
         end
 
         def deserialize(params)
@@ -6828,6 +6853,7 @@ module TencentCloud
             @ExposePortConfig = ExposePortConfig.new
             @ExposePortConfig.deserialize(params['ExposePortConfig'])
           end
+          @Description = params['Description']
         end
       end
 

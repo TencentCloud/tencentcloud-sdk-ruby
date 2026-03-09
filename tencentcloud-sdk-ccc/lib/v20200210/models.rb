@@ -4553,17 +4553,17 @@ module TencentCloud
 
       # DescribeStaffInfoList请求参数结构体
       class DescribeStaffInfoListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param PageSize: 分页尺寸，上限 9999
+        # @param PageSize: <p>分页尺寸，上限 9999</p>
         # @type PageSize: Integer
-        # @param PageNumber: 分页页码，从 0 开始
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
         # @type PageNumber: Integer
-        # @param StaffMail: 坐席账号，查询单个坐席时使用
+        # @param StaffMail: <p>坐席账号，查询单个坐席时使用</p>
         # @type StaffMail: String
-        # @param ModifiedTime: 查询修改时间大于等于ModifiedTime的坐席时使用
+        # @param ModifiedTime: <p>查询修改时间大于等于ModifiedTime的坐席时使用</p>
         # @type ModifiedTime: Integer
-        # @param SkillGroupId: 技能组ID
+        # @param SkillGroupId: <p>技能组ID</p>
         # @type SkillGroupId: Integer
 
         attr_accessor :SdkAppId, :PageSize, :PageNumber, :StaffMail, :ModifiedTime, :SkillGroupId
@@ -4589,9 +4589,9 @@ module TencentCloud
 
       # DescribeStaffInfoList返回参数结构体
       class DescribeStaffInfoListResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 坐席用户总数
+        # @param TotalCount: <p>坐席用户总数</p>
         # @type TotalCount: Integer
-        # @param StaffList: 坐席用户信息列表
+        # @param StaffList: <p>坐席用户信息列表</p>
         # @type StaffList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4738,11 +4738,11 @@ module TencentCloud
 
       # DescribeTelCallInfo请求参数结构体
       class DescribeTelCallInfoRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStamp: 起始时间戳，Unix 时间戳(查询维度仅支持天，例如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
+        # @param StartTimeStamp: <p>起始时间戳，Unix 时间戳(查询维度仅支持天，例如查询5月1日应该传startTime:&quot;2023-05-01 00:00:00&quot;,&quot;endTime&quot;:&quot;2023-05-01 23:59:59&quot;的时间戳,查5月1日和5月2日的应该传startTime:&quot;2023-05-01 00:00:00&quot;,&quot;endTime&quot;:&quot;2023-05-02 23:59:59&quot;的时间戳)</p>
         # @type StartTimeStamp: Integer
-        # @param EndTimeStamp: 结束时间戳，Unix 时间戳，查询时间范围最大为90天(查询维度仅支持天，例如查询5月1日应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-01 23:59:59"的时间戳,查5月1日和5月2日的应该传startTime:"2023-05-01 00:00:00","endTime":"2023-05-02 23:59:59"的时间戳)
+        # @param EndTimeStamp: <p>结束时间戳，Unix 时间戳，查询时间范围最大为90天(查询维度仅支持天，例如查询5月1日应该传startTime:&quot;2023-05-01 00:00:00&quot;,&quot;endTime&quot;:&quot;2023-05-01 23:59:59&quot;的时间戳,查5月1日和5月2日的应该传startTime:&quot;2023-05-01 00:00:00&quot;,&quot;endTime&quot;:&quot;2023-05-02 23:59:59&quot;的时间戳)</p>
         # @type EndTimeStamp: Integer
-        # @param SdkAppIdList: 应用ID列表，多个ID时，返回值为多个ID使用总和
+        # @param SdkAppIdList: <p>应用ID列表，多个ID时，返回值为多个ID使用总和</p>
         # @type SdkAppIdList: Array
 
         attr_accessor :StartTimeStamp, :EndTimeStamp, :SdkAppIdList
@@ -4762,19 +4762,19 @@ module TencentCloud
 
       # DescribeTelCallInfo返回参数结构体
       class DescribeTelCallInfoResponse < TencentCloud::Common::AbstractModel
-        # @param TelCallOutCount: 呼出套餐包消耗分钟数
+        # @param TelCallOutCount: <p>呼出套餐包消耗分钟数</p>
         # @type TelCallOutCount: Integer
-        # @param TelCallInCount: 呼入套餐包消耗分钟数
+        # @param TelCallInCount: <p>呼入套餐包消耗分钟数</p>
         # @type TelCallInCount: Integer
-        # @param SeatUsedCount: 坐席使用统计个数
+        # @param SeatUsedCount: <p>坐席使用统计个数</p>
         # @type SeatUsedCount: Integer
-        # @param VoipCallInCount: 音频套餐包消耗分钟数
+        # @param VoipCallInCount: <p>音频套餐包消耗分钟数</p>
         # @type VoipCallInCount: Integer
-        # @param VOIPCallInCount: 音频套餐包消耗分钟数
+        # @param VOIPCallInCount: <p>音频套餐包消耗分钟数</p>
         # @type VOIPCallInCount: Integer
-        # @param AsrOfflineCount: 离线语音转文字套餐包消耗分钟数
+        # @param AsrOfflineCount: <p>离线语音转文字套餐包消耗分钟数</p>
         # @type AsrOfflineCount: Integer
-        # @param AsrRealtimeCount: 实时语音转文字套餐包消耗分钟数
+        # @param AsrRealtimeCount: <p>实时语音转文字套餐包消耗分钟数</p>
         # @type AsrRealtimeCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

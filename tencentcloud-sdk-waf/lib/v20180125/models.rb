@@ -1769,6 +1769,49 @@ module TencentCloud
         end
       end
 
+      # api安全敏感规则列表
+      class ApiSecSensitiveRule < TencentCloud::Common::AbstractModel
+        # @param RuleName: 身份证号，唯一主键
+        # @type RuleName: String
+        # @param Source: 表示OS系统内置，"custom"表示客户自定义
+        # @type Source: String
+        # @param Status: 开关状态，0：表示关，1表示开
+        # @type Status: Integer
+        # @param Level: 风险等级，100，200,300表示低中高三个等级
+        # @type Level: String
+        # @param Timestamp: 修改时间，默认0，表示没有进行修改
+        # @type Timestamp: Integer
+        # @param CustomRule: 自定义规则部分
+        # @type CustomRule: :class:`Tencentcloud::Waf.v20180125.models.ApiSecCustomSensitiveRule`
+        # @param IsPan: 是否泛化 0:不泛化，1:泛化
+        # @type IsPan: Integer
+
+        attr_accessor :RuleName, :Source, :Status, :Level, :Timestamp, :CustomRule, :IsPan
+
+        def initialize(rulename=nil, source=nil, status=nil, level=nil, timestamp=nil, customrule=nil, ispan=nil)
+          @RuleName = rulename
+          @Source = source
+          @Status = status
+          @Level = level
+          @Timestamp = timestamp
+          @CustomRule = customrule
+          @IsPan = ispan
+        end
+
+        def deserialize(params)
+          @RuleName = params['RuleName']
+          @Source = params['Source']
+          @Status = params['Status']
+          @Level = params['Level']
+          @Timestamp = params['Timestamp']
+          unless params['CustomRule'].nil?
+            @CustomRule = ApiSecCustomSensitiveRule.new
+            @CustomRule.deserialize(params['CustomRule'])
+          end
+          @IsPan = params['IsPan']
+        end
+      end
+
       # 地域信息
       class Area < TencentCloud::Common::AbstractModel
         # @param Country: 国家，除了标准的国家外还支持国内、国外这两个特殊的标识
@@ -6197,6 +6240,148 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeApiSecSensitiveRuleList请求参数结构体
+      class DescribeApiSecSensitiveRuleListRequest < TencentCloud::Common::AbstractModel
+        # @param Domain: 域名
+        # @type Domain: String
+        # @param IsQueryApiExtractRule: 是否查询api提取规则策略，true表示查询
+        # @type IsQueryApiExtractRule: Boolean
+        # @param IsQueryApiPrivilegeRule: 是否查询api鉴权规则
+        # @type IsQueryApiPrivilegeRule: Boolean
+        # @param IsQueryApiSceneRule: 是否查询api场景规则
+        # @type IsQueryApiSceneRule: Boolean
+        # @param RuleName: 查询鉴权配置的时候，该rule只返回鉴权配置的规则
+        # @type RuleName: String
+        # @param IsQueryApiCustomEventRule: 是否查询api自定义事件规则
+        # @type IsQueryApiCustomEventRule: Boolean
+        # @param IsQueryApiExcludeRule: 是否查询无效api排除策略
+        # @type IsQueryApiExcludeRule: Boolean
+
+        attr_accessor :Domain, :IsQueryApiExtractRule, :IsQueryApiPrivilegeRule, :IsQueryApiSceneRule, :RuleName, :IsQueryApiCustomEventRule, :IsQueryApiExcludeRule
+
+        def initialize(domain=nil, isqueryapiextractrule=nil, isqueryapiprivilegerule=nil, isqueryapiscenerule=nil, rulename=nil, isqueryapicustomeventrule=nil, isqueryapiexcluderule=nil)
+          @Domain = domain
+          @IsQueryApiExtractRule = isqueryapiextractrule
+          @IsQueryApiPrivilegeRule = isqueryapiprivilegerule
+          @IsQueryApiSceneRule = isqueryapiscenerule
+          @RuleName = rulename
+          @IsQueryApiCustomEventRule = isqueryapicustomeventrule
+          @IsQueryApiExcludeRule = isqueryapiexcluderule
+        end
+
+        def deserialize(params)
+          @Domain = params['Domain']
+          @IsQueryApiExtractRule = params['IsQueryApiExtractRule']
+          @IsQueryApiPrivilegeRule = params['IsQueryApiPrivilegeRule']
+          @IsQueryApiSceneRule = params['IsQueryApiSceneRule']
+          @RuleName = params['RuleName']
+          @IsQueryApiCustomEventRule = params['IsQueryApiCustomEventRule']
+          @IsQueryApiExcludeRule = params['IsQueryApiExcludeRule']
+        end
+      end
+
+      # DescribeApiSecSensitiveRuleList返回参数结构体
+      class DescribeApiSecSensitiveRuleListResponse < TencentCloud::Common::AbstractModel
+        # @param Data: api敏感规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: Array
+        # @param Total: 规则数量
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Status: 自定义敏感检测规则总开关
+        # @type Status: Integer
+        # @param RuleNameList: 非内置规则的rulename列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RuleNameList: Array
+        # @param ApiExtractRule: api提取规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiExtractRule: Array
+        # @param ApiSecPrivilegeRule: api鉴权规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiSecPrivilegeRule: Array
+        # @param ApiSecSceneRule: api场景规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiSecSceneRule: Array
+        # @param ApiSecCustomEventRule: 自定义事件规则
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiSecCustomEventRule: Array
+        # @param ApiExcludeRule: 无效api排除规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ApiExcludeRule: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :Total, :Status, :RuleNameList, :ApiExtractRule, :ApiSecPrivilegeRule, :ApiSecSceneRule, :ApiSecCustomEventRule, :ApiExcludeRule, :RequestId
+
+        def initialize(data=nil, total=nil, status=nil, rulenamelist=nil, apiextractrule=nil, apisecprivilegerule=nil, apisecscenerule=nil, apiseccustomeventrule=nil, apiexcluderule=nil, requestid=nil)
+          @Data = data
+          @Total = total
+          @Status = status
+          @RuleNameList = rulenamelist
+          @ApiExtractRule = apiextractrule
+          @ApiSecPrivilegeRule = apisecprivilegerule
+          @ApiSecSceneRule = apisecscenerule
+          @ApiSecCustomEventRule = apiseccustomeventrule
+          @ApiExcludeRule = apiexcluderule
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              apisecsensitiverule_tmp = ApiSecSensitiveRule.new
+              apisecsensitiverule_tmp.deserialize(i)
+              @Data << apisecsensitiverule_tmp
+            end
+          end
+          @Total = params['Total']
+          @Status = params['Status']
+          @RuleNameList = params['RuleNameList']
+          unless params['ApiExtractRule'].nil?
+            @ApiExtractRule = []
+            params['ApiExtractRule'].each do |i|
+              apisecextractrule_tmp = ApiSecExtractRule.new
+              apisecextractrule_tmp.deserialize(i)
+              @ApiExtractRule << apisecextractrule_tmp
+            end
+          end
+          unless params['ApiSecPrivilegeRule'].nil?
+            @ApiSecPrivilegeRule = []
+            params['ApiSecPrivilegeRule'].each do |i|
+              apisecprivilegerule_tmp = ApiSecPrivilegeRule.new
+              apisecprivilegerule_tmp.deserialize(i)
+              @ApiSecPrivilegeRule << apisecprivilegerule_tmp
+            end
+          end
+          unless params['ApiSecSceneRule'].nil?
+            @ApiSecSceneRule = []
+            params['ApiSecSceneRule'].each do |i|
+              apisecscenerule_tmp = ApiSecSceneRule.new
+              apisecscenerule_tmp.deserialize(i)
+              @ApiSecSceneRule << apisecscenerule_tmp
+            end
+          end
+          unless params['ApiSecCustomEventRule'].nil?
+            @ApiSecCustomEventRule = []
+            params['ApiSecCustomEventRule'].each do |i|
+              apiseccustomeventrule_tmp = ApiSecCustomEventRule.new
+              apiseccustomeventrule_tmp.deserialize(i)
+              @ApiSecCustomEventRule << apiseccustomeventrule_tmp
+            end
+          end
+          unless params['ApiExcludeRule'].nil?
+            @ApiExcludeRule = []
+            params['ApiExcludeRule'].each do |i|
+              apisecexcluderule_tmp = ApiSecExcludeRule.new
+              apisecexcluderule_tmp.deserialize(i)
+              @ApiExcludeRule << apisecexcluderule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

@@ -2760,13 +2760,11 @@ module TencentCloud
 
       # DescribeClasses请求参数结构体
       class DescribeClassesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区名称。可以通过接口[DescribeZones](https://cloud.tencent.com/document/product/409/16769)获取。
+        # @param Zone: <p>可用区名称。可以通过接口<a href="https://cloud.tencent.com/document/product/409/16769">DescribeZones</a>获取。</p>
         # @type Zone: String
-        # @param DBEngine: 数据库引擎，支持：
-        # 1、postgresql（云数据库PostgreSQL）；
-        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
+        # @param DBEngine: <p>数据库引擎，支持：<br>1、postgresql（云数据库PostgreSQL）；<br>2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；</p>
         # @type DBEngine: String
-        # @param DBMajorVersion: 数据库主版本号。例如12，13，可以通过接口[DescribeDBVersions](https://cloud.tencent.com/document/product/409/89018)获取。
+        # @param DBMajorVersion: <p>数据库主版本号。例如12，13，可以通过接口<a href="https://cloud.tencent.com/document/product/409/89018">DescribeDBVersions</a>获取。</p>
         # @type DBMajorVersion: String
 
         attr_accessor :Zone, :DBEngine, :DBMajorVersion
@@ -2786,7 +2784,7 @@ module TencentCloud
 
       # DescribeClasses返回参数结构体
       class DescribeClassesResponse < TencentCloud::Common::AbstractModel
-        # @param ClassInfoSet: 数据库规格列表
+        # @param ClassInfoSet: <p>数据库规格列表</p>
         # @type ClassInfoSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3335,7 +3333,7 @@ module TencentCloud
 
       # DescribeDBVersions返回参数结构体
       class DescribeDBVersionsResponse < TencentCloud::Common::AbstractModel
-        # @param VersionSet: 数据库版本号信息列表
+        # @param VersionSet: <p>数据库版本号信息列表</p>
         # @type VersionSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4069,12 +4067,9 @@ module TencentCloud
 
       # DescribeProductConfig请求参数结构体
       class DescribeProductConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区名称
+        # @param Zone: <p>可用区名称</p>
         # @type Zone: String
-        # @param DBEngine: 数据库引擎，支持：
-        # 1、postgresql（云数据库PostgreSQL）；
-        # 2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；
-        # 如不指定默认使用postgresql。
+        # @param DBEngine: <p>数据库引擎，支持：<br>1、postgresql（云数据库PostgreSQL）；<br>2、mssql_compatible（MSSQL兼容-云数据库PostgreSQL）；<br>如不指定默认使用postgresql。</p>
         # @type DBEngine: String
 
         attr_accessor :Zone, :DBEngine
@@ -4092,7 +4087,7 @@ module TencentCloud
 
       # DescribeProductConfig返回参数结构体
       class DescribeProductConfigResponse < TencentCloud::Common::AbstractModel
-        # @param SpecInfoList: 售卖规格列表。
+        # @param SpecInfoList: <p>售卖规格列表。</p>
         # @type SpecInfoList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6179,9 +6174,9 @@ module TencentCloud
 
       # ModifySwitchTimePeriod请求参数结构体
       class ModifySwitchTimePeriodRequest < TencentCloud::Common::AbstractModel
-        # @param DBInstanceId: 处于等待切换状态中的实例ID。可通过[DescribeDBInstances](https://cloud.tencent.com/document/api/409/16773)接口获取
+        # @param DBInstanceId: <p>处于等待切换状态中的实例ID。可通过<a href="https://cloud.tencent.com/document/api/409/16773">DescribeDBInstances</a>接口获取</p>
         # @type DBInstanceId: String
-        # @param SwitchTag: 入参取值为 0 ，代表立即切换。
+        # @param SwitchTag: <p>入参取值为 0 ，代表立即切换。</p>
         # @type SwitchTag: Integer
 
         attr_accessor :DBInstanceId, :SwitchTag

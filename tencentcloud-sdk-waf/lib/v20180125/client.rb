@@ -1229,6 +1229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取api安全敏感规则列表
+
+        # @param request: Request instance for DescribeApiSecSensitiveRuleList.
+        # @type request: :class:`Tencentcloud::waf::V20180125::DescribeApiSecSensitiveRuleListRequest`
+        # @rtype: :class:`Tencentcloud::waf::V20180125::DescribeApiSecSensitiveRuleListResponse`
+        def DescribeApiSecSensitiveRuleList(request)
+          body = send_request('DescribeApiSecSensitiveRuleList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeApiSecSensitiveRuleListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取地域封禁配置包括地域封禁开关，设置封禁的地区信息
 
         # @param request: Request instance for DescribeAreaBanAreas.

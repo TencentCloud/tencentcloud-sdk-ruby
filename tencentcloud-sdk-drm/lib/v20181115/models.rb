@@ -766,9 +766,9 @@ module TencentCloud
 
       # 播放控制参数
       class PlaybackPolicy < TencentCloud::Common::AbstractModel
-        # @param LicenseDurationSeconds: 播放许可证的有效期
+        # @param LicenseDurationSeconds: <p>播放许可证的有效期</p><p>单位：秒</p>
         # @type LicenseDurationSeconds: Integer
-        # @param PlaybackDurationSeconds: 开始播放后，允许最长播放时间
+        # @param PlaybackDurationSeconds: <p>开始播放后，允许最长播放时间</p><p>单位：秒</p>
         # @type PlaybackDurationSeconds: Integer
 
         attr_accessor :LicenseDurationSeconds, :PlaybackDurationSeconds

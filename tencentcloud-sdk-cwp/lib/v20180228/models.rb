@@ -16393,16 +16393,19 @@ module TencentCloud
         # @type PeriodModifyCount: Integer
         # @param Granularity: 日志存储时长单位，年year/月month/天day
         # @type Granularity: String
+        # @param MsgLanguage: 语言类型
+        # @type MsgLanguage: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Type, :Period, :PeriodModifyCount, :Granularity, :RequestId
+        attr_accessor :Type, :Period, :PeriodModifyCount, :Granularity, :MsgLanguage, :RequestId
 
-        def initialize(type=nil, period=nil, periodmodifycount=nil, granularity=nil, requestid=nil)
+        def initialize(type=nil, period=nil, periodmodifycount=nil, granularity=nil, msglanguage=nil, requestid=nil)
           @Type = type
           @Period = period
           @PeriodModifyCount = periodmodifycount
           @Granularity = granularity
+          @MsgLanguage = msglanguage
           @RequestId = requestid
         end
 
@@ -16411,6 +16414,7 @@ module TencentCloud
           @Period = params['Period']
           @PeriodModifyCount = params['PeriodModifyCount']
           @Granularity = params['Granularity']
+          @MsgLanguage = params['MsgLanguage']
           @RequestId = params['RequestId']
         end
       end
@@ -33331,14 +33335,17 @@ module TencentCloud
         # @type Period: Integer
         # @param Granularity: 日志存储时长单位，年year/月month/天day
         # @type Granularity: String
+        # @param MsgLanguage: 语言类型
+        # @type MsgLanguage: String
 
-        attr_accessor :IsModifyPeriod, :Type, :Period, :Granularity
+        attr_accessor :IsModifyPeriod, :Type, :Period, :Granularity, :MsgLanguage
 
-        def initialize(ismodifyperiod=nil, type=nil, period=nil, granularity=nil)
+        def initialize(ismodifyperiod=nil, type=nil, period=nil, granularity=nil, msglanguage=nil)
           @IsModifyPeriod = ismodifyperiod
           @Type = type
           @Period = period
           @Granularity = granularity
+          @MsgLanguage = msglanguage
         end
 
         def deserialize(params)
@@ -33346,6 +33353,7 @@ module TencentCloud
           @Type = params['Type']
           @Period = params['Period']
           @Granularity = params['Granularity']
+          @MsgLanguage = params['MsgLanguage']
         end
       end
 
