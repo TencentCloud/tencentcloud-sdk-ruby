@@ -4297,8 +4297,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 2
-        deprecate :Angel=, :none, 2026, 2
+        deprecate :Angel, :none, 2026, 3
+        deprecate :Angel=, :none, 2026, 3
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4404,8 +4404,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Language, :Angel, :PdfPageSize, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 2
-        deprecate :Angel=, :none, 2026, 2
+        deprecate :Angel, :none, 2026, 3
+        deprecate :Angel=, :none, 2026, 3
 
         def initialize(textdetections=nil, language=nil, angel=nil, pdfpagesize=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4501,8 +4501,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 2
-        deprecate :Angel=, :none, 2026, 2
+        deprecate :Angel, :none, 2026, 3
+        deprecate :Angel=, :none, 2026, 3
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4648,8 +4648,8 @@ module TencentCloud
 
         attr_accessor :TextDetections, :Angel, :Angle, :RequestId
         extend Gem::Deprecate
-        deprecate :Angel, :none, 2026, 2
-        deprecate :Angel=, :none, 2026, 2
+        deprecate :Angel, :none, 2026, 3
+        deprecate :Angel=, :none, 2026, 3
 
         def initialize(textdetections=nil, angel=nil, angle=nil, requestid=nil)
           @TextDetections = textdetections
@@ -4850,8 +4850,8 @@ module TencentCloud
 
         attr_accessor :ReturnHeadImage, :DetectFake, :ImageBase64, :ImageUrl
         extend Gem::Deprecate
-        deprecate :DetectFake, :none, 2026, 2
-        deprecate :DetectFake=, :none, 2026, 2
+        deprecate :DetectFake, :none, 2026, 3
+        deprecate :DetectFake=, :none, 2026, 3
 
         def initialize(returnheadimage=nil, detectfake=nil, imagebase64=nil, imageurl=nil)
           @ReturnHeadImage = returnheadimage
@@ -4916,10 +4916,10 @@ module TencentCloud
 
         attr_accessor :CnName, :EnName, :TelexCode, :Sex, :Birthday, :Permanent, :IdNum, :Symbol, :FirstIssueDate, :CurrentIssueDate, :FakeDetectResult, :HeadImage, :SmallHeadImage, :WarningCode, :WarnCardInfos, :WindowEmbeddedText, :RequestId
         extend Gem::Deprecate
-        deprecate :FakeDetectResult, :none, 2026, 2
-        deprecate :FakeDetectResult=, :none, 2026, 2
-        deprecate :WarningCode, :none, 2026, 2
-        deprecate :WarningCode=, :none, 2026, 2
+        deprecate :FakeDetectResult, :none, 2026, 3
+        deprecate :FakeDetectResult=, :none, 2026, 3
+        deprecate :WarningCode, :none, 2026, 3
+        deprecate :WarningCode=, :none, 2026, 3
 
         def initialize(cnname=nil, enname=nil, telexcode=nil, sex=nil, birthday=nil, permanent=nil, idnum=nil, symbol=nil, firstissuedate=nil, currentissuedate=nil, fakedetectresult=nil, headimage=nil, smallheadimage=nil, warningcode=nil, warncardinfos=nil, windowembeddedtext=nil, requestid=nil)
           @CnName = cnname
@@ -5341,44 +5341,27 @@ module TencentCloud
 
       # IDCardOCR请求参数结构体
       class IDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。</p>
         # @type ImageUrl: String
-        # @param CardSide: FRONT：身份证有照片的一面（人像面），
-        # BACK：身份证有国徽的一面（国徽面），
-        # 该参数如果不填，将为您自动判断身份证正反面。
+        # @param CardSide: <p>FRONT：身份证有照片的一面（人像面），<br>BACK：身份证有国徽的一面（国徽面），<br>该参数如果不填，将为您自动判断身份证正反面。</p>
         # @type CardSide: String
-        # @param Config: 以下可选字段均为bool 类型，默认false：
-        # CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）
-        # CropPortrait，人像照片裁剪（自动抠取身份证头像区域）
-        # CopyWarn，复印件告警
-        # BorderCheckWarn，边框不完整和框内遮挡告警
-        # ReshootWarn，屏幕翻拍告警
-        # DetectPsWarn，疑似存在PS痕迹告警（CardWarnType参数为 Advanced时同时开启电子身份证告警）
-        # TempIdWarn，临时身份证告警
-        # InvalidDateWarn，身份证有效日期不合法告警
-        # Quality，图片质量分数（评价图片的模糊程度）
-        # MultiCardDetect，是否开启正反面同框识别（仅支持二代身份证正反页同框识别或临时身份证正反页同框识别）
-        # ReflectWarn，是否开启反光检测
-        # SDK 设置方式参考：Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
-        # API 3.0 Explorer 设置方式参考：Config = {"CropIdCard":true,"CropPortrait":true}
+        # @param Config: <p>以下可选字段均为bool 类型，默认false：<br>CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）<br>CropPortrait，人像照片裁剪（自动抠取身份证头像区域）<br>CopyWarn，复印件告警<br>BorderCheckWarn，边框不完整和框内遮挡告警<br>ReshootWarn，屏幕翻拍告警<br>DetectPsWarn，疑似存在PS痕迹告警（CardWarnType参数为 Advanced时同时开启电子身份证、水印告警）<br>TempIdWarn，临时身份证告警<br>InvalidDateWarn，身份证有效日期不合法告警<br>Quality，图片质量分数（评价图片的模糊程度）<br>MultiCardDetect，是否开启正反面同框识别（仅支持二代身份证正反页同框识别或临时身份证正反页同框识别）<br>ReflectWarn，是否开启反光检测<br>SDK 设置方式参考：Config = Json.stringify({&quot;CropIdCard&quot;:true,&quot;CropPortrait&quot;:true})<br>API 3.0 Explorer 设置方式参考：Config = {&quot;CropIdCard&quot;:true,&quot;CropPortrait&quot;:true}</p>
         # @type Config: String
-        # @param EnableRecognitionRectify: 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
+        # @param EnableRecognitionRectify: <p>默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。</p>
         # @type EnableRecognitionRectify: Boolean
-        # @param EnableReflectDetail: 默认值为false。
-
-        # 此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的"ReflectWarn":true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。
+        # @param EnableReflectDetail: <p>默认值为false。</p><p>此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的&quot;ReflectWarn&quot;:true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。</p>
         # @type EnableReflectDetail: Boolean
-        # @param EnableDateVerify: 用于控制是否开启日期校验，默认值为true，打开会进行日期校验。
+        # @param EnableDateVerify: <p>用于控制是否开启日期校验，默认值为true，打开会进行日期校验。</p>
         # @type EnableDateVerify: Boolean
-        # @param CardWarnType: Basic：使用基础卡证告警能力（含基础PS告警）； Advanced：开启进阶PS告警能力，PS告警效果更佳但需要更长耗时；建议测试对比后选用，默认值为 Basic
+        # @param CardWarnType: <p>Basic：使用基础卡证告警能力（含基础PS告警）； Advanced：开启进阶PS告警能力，PS告警效果更佳但需要更长耗时；建议测试对比后选用，默认值为 Basic</p>
         # @type CardWarnType: String
 
         attr_accessor :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :EnableDateVerify, :CardWarnType
         extend Gem::Deprecate
-        deprecate :EnableDateVerify, :none, 2026, 2
-        deprecate :EnableDateVerify=, :none, 2026, 2
+        deprecate :EnableDateVerify, :none, 2026, 3
+        deprecate :EnableDateVerify=, :none, 2026, 3
 
         def initialize(imagebase64=nil, imageurl=nil, cardside=nil, config=nil, enablerecognitionrectify=nil, enablereflectdetail=nil, enabledateverify=nil, cardwarntype=nil)
           @ImageBase64 = imagebase64
@@ -5405,40 +5388,25 @@ module TencentCloud
 
       # IDCardOCR返回参数结构体
       class IDCardOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 姓名（人像面）
+        # @param Name: <p>姓名（人像面）</p>
         # @type Name: String
-        # @param Sex: 性别（人像面）
+        # @param Sex: <p>性别（人像面）</p>
         # @type Sex: String
-        # @param Nation: 民族（人像面）
+        # @param Nation: <p>民族（人像面）</p>
         # @type Nation: String
-        # @param Birth: 出生日期（人像面）
+        # @param Birth: <p>出生日期（人像面）</p>
         # @type Birth: String
-        # @param Address: 地址（人像面）
+        # @param Address: <p>地址（人像面）</p>
         # @type Address: String
-        # @param IdNum: 身份证号（人像面）
+        # @param IdNum: <p>身份证号（人像面）</p>
         # @type IdNum: String
-        # @param Authority: 发证机关（国徽面）
+        # @param Authority: <p>发证机关（国徽面）</p>
         # @type Authority: String
-        # @param ValidDate: 证件有效期（国徽面）
+        # @param ValidDate: <p>证件有效期（国徽面）</p>
         # @type ValidDate: String
-        # @param AdvancedInfo: 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
-        # IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
-        # Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
-        # Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
-        # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
-        # WarnInfos，告警信息，Code 告警码列表和释义：
-        # -9100 身份证有效日期不合法告警，
-        # -9101 身份证边框不完整告警，
-        # -9102 身份证复印件告警（黑白及彩色复印件）,
-        # -9108 身份证复印件告警（仅黑白复印件），
-        # -9103 身份证翻拍告警，
-        # -9105 身份证框内遮挡告警，
-        # -9104 临时身份证告警，
-        # -9106 身份证疑似存在PS痕迹告警，
-        # -9107 身份证反光告警，
-        # -9110 电子身份证告警
+        # @param AdvancedInfo: <p>扩展信息，不请求则不返回，具体输入参考示例3和示例4。<br>IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；<br>Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；<br>Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;<br>BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;<br>WarnInfos，告警信息，Code 告警码列表和释义：<br>-9100 身份证有效日期不合法告警，<br>-9101 身份证边框不完整告警，<br>-9102 身份证复印件告警（黑白及彩色复印件）,<br>-9108 身份证复印件告警（仅黑白复印件），<br>-9103 身份证翻拍告警，<br>-9105 身份证框内遮挡告警，<br>-9104 临时身份证告警，<br>-9106 身份证疑似存在PS痕迹告警，<br>-9107 身份证反光告警，<br>-9110 电子身份证告警，<br>-9111 水印告警（仅CardWarnType参数为Advanced时）</p>
         # @type AdvancedInfo: String
-        # @param ReflectDetailInfos: 反光点覆盖区域详情结果，具体内容请点击左侧链接
+        # @param ReflectDetailInfos: <p>反光点覆盖区域详情结果，具体内容请点击左侧链接</p>
         # @type ReflectDetailInfos: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6303,10 +6271,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Address, :Sex, :Warn, :Image, :AdvancedInfo, :Type, :Birthday, :MyKadNumber, :WarnCardInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 2
-        deprecate :Warn=, :none, 2026, 2
-        deprecate :AdvancedInfo, :none, 2026, 2
-        deprecate :AdvancedInfo=, :none, 2026, 2
+        deprecate :Warn, :none, 2026, 3
+        deprecate :Warn=, :none, 2026, 3
+        deprecate :AdvancedInfo, :none, 2026, 3
+        deprecate :AdvancedInfo=, :none, 2026, 3
 
         def initialize(id=nil, name=nil, address=nil, sex=nil, warn=nil, image=nil, advancedinfo=nil, type=nil, birthday=nil, mykadnumber=nil, warncardinfos=nil, requestid=nil)
           @ID = id
@@ -6408,10 +6376,10 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :DateOfBirth, :Sex, :DateOfExpiration, :IssuingCountry, :Nationality, :Warn, :Image, :AdvancedInfo, :CodeSet, :CodeCrc, :Surname, :GivenName, :Type, :PassportRecognizeInfos, :WarnCardInfos, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :Warn, :none, 2026, 2
-        deprecate :Warn=, :none, 2026, 2
-        deprecate :AdvancedInfo, :none, 2026, 2
-        deprecate :AdvancedInfo=, :none, 2026, 2
+        deprecate :Warn, :none, 2026, 3
+        deprecate :Warn=, :none, 2026, 3
+        deprecate :AdvancedInfo, :none, 2026, 3
+        deprecate :AdvancedInfo=, :none, 2026, 3
 
         def initialize(id=nil, name=nil, dateofbirth=nil, sex=nil, dateofexpiration=nil, issuingcountry=nil, nationality=nil, warn=nil, image=nil, advancedinfo=nil, codeset=nil, codecrc=nil, surname=nil, givenname=nil, type=nil, passportrecognizeinfos=nil, warncardinfos=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -9000,40 +8968,23 @@ module TencentCloud
 
       # RecognizeEncryptedIDCardOCR请求参数结构体
       class RecognizeEncryptedIDCardOCRRequest < TencentCloud::Common::AbstractModel
-        # @param EncryptedBody: 请求体被加密后的密文（Base64编码），本接口只支持加密传输
+        # @param EncryptedBody: <p>请求体被加密后的密文（Base64编码），本接口只支持加密传输</p>
         # @type EncryptedBody: String
-        # @param Encryption: 敏感数据加密信息。对传入信息有加密需求的用户可使用此参数，详情请点击左侧链接。
+        # @param Encryption: <p>敏感数据加密信息。对传入信息有加密需求的用户可使用此参数，详情请点击左侧链接。</p>
         # @type Encryption: :class:`Tencentcloud::Ocr.v20181119.models.Encryption`
-        # @param ImageBase64: 图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
+        # @param ImageBase64: <p>图片的 Base64 值。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。</p>
         # @type ImageBase64: String
-        # @param ImageUrl: 图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。
+        # @param ImageUrl: <p>图片的 Url 地址。要求图片经Base64编码后不超过 10M，分辨率建议500*800以上，支持PNG、JPG、JPEG、BMP格式。建议卡片部分占据图片2/3以上。图片下载时间不超过 3 秒。建议图片存储于腾讯云，可保障更高的下载速度和稳定性。</p>
         # @type ImageUrl: String
-        # @param CardSide: FRONT：身份证有照片的一面（人像面），
-        # BACK：身份证有国徽的一面（国徽面），
-        # 该参数如果不填，将为您自动判断身份证正反面。
+        # @param CardSide: <p>FRONT：身份证有照片的一面（人像面），<br>BACK：身份证有国徽的一面（国徽面），<br>该参数如果不填，将为您自动判断身份证正反面。</p>
         # @type CardSide: String
-        # @param Config: 以下可选字段均为bool 类型，默认false：
-        # CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）
-        # CropPortrait，人像照片裁剪（自动抠取身份证头像区域）
-        # CopyWarn，复印件告警
-        # BorderCheckWarn，边框不完整和框内遮挡告警
-        # ReshootWarn，屏幕翻拍告警
-        # DetectPsWarn，疑似存在PS痕迹告警（CardWarnType参数为 Advanced时同时开启电子身份证告警）
-        # TempIdWarn，临时身份证告警
-        # InvalidDateWarn，身份证有效日期不合法告警
-        # Quality，图片质量分数（评价图片的模糊程度）
-        # MultiCardDetect，是否开启正反面同框识别（仅支持二代身份证正反页同框识别或临时身份证正反页同框识别）
-        # ReflectWarn，是否开启反光检测
-        # SDK 设置方式参考：Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
-        # API 3.0 Explorer 设置方式参考：Config = {"CropIdCard":true,"CropPortrait":true}
+        # @param Config: <p>以下可选字段均为bool 类型，默认false：<br>CropIdCard，身份证照片裁剪（去掉证件外多余的边缘、自动矫正拍摄角度）<br>CropPortrait，人像照片裁剪（自动抠取身份证头像区域）<br>CopyWarn，复印件告警<br>BorderCheckWarn，边框不完整和框内遮挡告警<br>ReshootWarn，屏幕翻拍告警<br>DetectPsWarn，疑似存在PS痕迹告警（CardWarnType参数为 Advanced时同时开启电子身份证、水印告警）<br>TempIdWarn，临时身份证告警<br>InvalidDateWarn，身份证有效日期不合法告警<br>Quality，图片质量分数（评价图片的模糊程度）<br>MultiCardDetect，是否开启正反面同框识别（仅支持二代身份证正反页同框识别或临时身份证正反页同框识别）<br>ReflectWarn，是否开启反光检测<br>SDK 设置方式参考：Config = Json.stringify({&quot;CropIdCard&quot;:true,&quot;CropPortrait&quot;:true})<br>API 3.0 Explorer 设置方式参考：Config = {&quot;CropIdCard&quot;:true,&quot;CropPortrait&quot;:true}</p>
         # @type Config: String
-        # @param EnableRecognitionRectify: 默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。
+        # @param EnableRecognitionRectify: <p>默认值为true，打开识别结果纠正开关。开关开启后，身份证号、出生日期、性别，三个字段会进行矫正补齐，统一结果输出；若关闭此开关，以上三个字段不会进行矫正补齐，保持原始识别结果输出，若原图出现篡改情况，这三个字段的识别结果可能会不统一。</p>
         # @type EnableRecognitionRectify: Boolean
-        # @param EnableReflectDetail: 默认值为false。
-
-        # 此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的"ReflectWarn":true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。
+        # @param EnableReflectDetail: <p>默认值为false。</p><p>此开关需要在反光检测开关开启下才会生效（即此开关生效的前提是config入参里的&quot;ReflectWarn&quot;:true），若EnableReflectDetail设置为true，则会返回反光点覆盖区域详情。反光点覆盖区域详情分为四部分：人像照片位置、国徽位置、识别字段位置、其他位置。一个反光点允许覆盖多个区域，且一张图片可能存在多个反光点。</p>
         # @type EnableReflectDetail: Boolean
-        # @param CardWarnType: Basic：使用基础卡证告警能力（含基础PS告警）； Advanced：开启进阶PS告警能力，PS告警效果更佳但需要更长耗时；建议测试对比后选用，默认值为 Basic
+        # @param CardWarnType: <p>Basic：使用基础卡证告警能力（含基础PS告警）； Advanced：开启进阶PS告警能力，PS告警效果更佳但需要更长耗时；建议测试对比后选用，默认值为 Basic</p>
         # @type CardWarnType: String
 
         attr_accessor :EncryptedBody, :Encryption, :ImageBase64, :ImageUrl, :CardSide, :Config, :EnableRecognitionRectify, :EnableReflectDetail, :CardWarnType
@@ -9068,44 +9019,29 @@ module TencentCloud
 
       # RecognizeEncryptedIDCardOCR返回参数结构体
       class RecognizeEncryptedIDCardOCRResponse < TencentCloud::Common::AbstractModel
-        # @param Name: 姓名（人像面）
+        # @param Name: <p>姓名（人像面）</p>
         # @type Name: String
-        # @param Sex: 性别（人像面）
+        # @param Sex: <p>性别（人像面）</p>
         # @type Sex: String
-        # @param Nation: 民族（人像面）
+        # @param Nation: <p>民族（人像面）</p>
         # @type Nation: String
-        # @param Birth: 出生日期（人像面）
+        # @param Birth: <p>出生日期（人像面）</p>
         # @type Birth: String
-        # @param Address: 地址（人像面）
+        # @param Address: <p>地址（人像面）</p>
         # @type Address: String
-        # @param IdNum: 身份证号（人像面）
+        # @param IdNum: <p>身份证号（人像面）</p>
         # @type IdNum: String
-        # @param Authority: 发证机关（国徽面）
+        # @param Authority: <p>发证机关（国徽面）</p>
         # @type Authority: String
-        # @param ValidDate: 证件有效期（国徽面）
+        # @param ValidDate: <p>证件有效期（国徽面）</p>
         # @type ValidDate: String
-        # @param AdvancedInfo: 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
-        # IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
-        # Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
-        # Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
-        # BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
-        # WarnInfos，告警信息，Code 告警码列表和释义：
-        # -9100 身份证有效日期不合法告警，
-        # -9101 身份证边框不完整告警，
-        # -9102 身份证复印件告警（黑白及彩色复印件）,
-        # -9108 身份证复印件告警（仅黑白复印件），
-        # -9103 身份证翻拍告警，
-        # -9105 身份证框内遮挡告警，
-        # -9104 临时身份证告警，
-        # -9106 身份证疑似存在PS痕迹告警，
-        # -9107 身份证反光告警，
-        # -9110 电子身份证告警
+        # @param AdvancedInfo: <p>扩展信息，不请求则不返回，具体输入参考示例3和示例4。<br>IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；<br>Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；<br>Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;<br>BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;<br>WarnInfos，告警信息，Code 告警码列表和释义：<br>-9100 身份证有效日期不合法告警，<br>-9101 身份证边框不完整告警，<br>-9102 身份证复印件告警（黑白及彩色复印件）,<br>-9108 身份证复印件告警（仅黑白复印件），<br>-9103 身份证翻拍告警，<br>-9105 身份证框内遮挡告警，<br>-9104 临时身份证告警，<br>-9106 身份证疑似存在PS痕迹告警，<br>-9107 身份证反光告警，<br>-9110 电子身份证告警，<br>-9111 水印告警（仅CardWarnType参数为Advanced时），</p>
         # @type AdvancedInfo: String
-        # @param ReflectDetailInfos: 反光点覆盖区域详情结果，具体内容请点击左侧链接
+        # @param ReflectDetailInfos: <p>反光点覆盖区域详情结果，具体内容请点击左侧链接</p>
         # @type ReflectDetailInfos: Array
-        # @param EncryptedBody: 加密后的数据（Base64编码）
+        # @param EncryptedBody: <p>加密后的数据（Base64编码）</p>
         # @type EncryptedBody: String
-        # @param Encryption: 敏感数据加密信息
+        # @param Encryption: <p>敏感数据加密信息</p>
         # @type Encryption: :class:`Tencentcloud::Ocr.v20181119.models.Encryption`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9800,62 +9736,6 @@ module TencentCloud
         end
       end
 
-      # RecognizeTableMultiOCR请求参数结构体
-      class RecognizeTableMultiOCRRequest < TencentCloud::Common::AbstractModel
-        # @param ImageBase64: 图片/PDF的 Base64 值。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片的 ImageUrl、ImageBase64 必须提供一个，如果都提供，只使用 ImageUrl。
-        # @type ImageBase64: String
-        # @param ImageUrl: 图片/PDF的 Url 地址。 要求图片/PDF经Base64编码后不超过 10M，分辨率建议600*800以上，支持PNG、JPG、JPEG、BMP、PDF格式。 图片支持的像素范围：需介于20-10000px之间。 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。非腾讯云存储的 Url 速度和稳定性可能受一定影响。
-        # @type ImageUrl: String
-        # @param PdfStartPageNumber: 文档的起始页码。  当传入文件是PDF型时，用来指定识别的起始页码，识别的页码包含当前值。
-        # @type PdfStartPageNumber: Integer
-        # @param PdfEndPageNumber: 文档的结束页码。 当传入文件是PDF类型时，用来指定识别的结束页码，识别的页码包含当前值。单次调用最多支持识别3页内容，即PdfEndPageNumber-PdfStartPageNumber需要不大于3。
-        # @type PdfEndPageNumber: Integer
-        # @param DataFormat: 配置选项，支持配置输出数据格式。
-
-        # * **Mdbase64** 返回 base64 编码的 markdown 格式文本。
-        # * **Excelbase64** 返回 base64 编码的 excel 文件。
-        # @type DataFormat: String
-
-        attr_accessor :ImageBase64, :ImageUrl, :PdfStartPageNumber, :PdfEndPageNumber, :DataFormat
-
-        def initialize(imagebase64=nil, imageurl=nil, pdfstartpagenumber=nil, pdfendpagenumber=nil, dataformat=nil)
-          @ImageBase64 = imagebase64
-          @ImageUrl = imageurl
-          @PdfStartPageNumber = pdfstartpagenumber
-          @PdfEndPageNumber = pdfendpagenumber
-          @DataFormat = dataformat
-        end
-
-        def deserialize(params)
-          @ImageBase64 = params['ImageBase64']
-          @ImageUrl = params['ImageUrl']
-          @PdfStartPageNumber = params['PdfStartPageNumber']
-          @PdfEndPageNumber = params['PdfEndPageNumber']
-          @DataFormat = params['DataFormat']
-        end
-      end
-
-      # RecognizeTableMultiOCR返回参数结构体
-      class RecognizeTableMultiOCRResponse < TencentCloud::Common::AbstractModel
-        # @param DataBase64: Base64 编码后的 Excel 数据或 Markdown 数据。  注意：此字段可能返回空，表示取不到有效值。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type DataBase64: String
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :DataBase64, :RequestId
-
-        def initialize(database64=nil, requestid=nil)
-          @DataBase64 = database64
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          @DataBase64 = params['DataBase64']
-          @RequestId = params['RequestId']
-        end
-      end
-
       # RecognizeTableOCR请求参数结构体
       class RecognizeTableOCRRequest < TencentCloud::Common::AbstractModel
         # @param ImageBase64: 图片/PDF的 Base64 值。
@@ -10013,8 +9893,8 @@ module TencentCloud
 
         attr_accessor :ID, :ThaiName, :EnFirstName, :EnLastName, :IssueDate, :ExpirationDate, :EnIssueDate, :EnExpirationDate, :Birthday, :EnBirthday, :Religion, :SerialNumber, :Address, :LaserID, :PortraitImage, :WarnCardInfos, :AdvancedInfo, :CardCount, :RequestId
         extend Gem::Deprecate
-        deprecate :AdvancedInfo, :none, 2026, 2
-        deprecate :AdvancedInfo=, :none, 2026, 2
+        deprecate :AdvancedInfo, :none, 2026, 3
+        deprecate :AdvancedInfo=, :none, 2026, 3
 
         def initialize(id=nil, thainame=nil, enfirstname=nil, enlastname=nil, issuedate=nil, expirationdate=nil, enissuedate=nil, enexpirationdate=nil, birthday=nil, enbirthday=nil, religion=nil, serialnumber=nil, address=nil, laserid=nil, portraitimage=nil, warncardinfos=nil, advancedinfo=nil, cardcount=nil, requestid=nil)
           @ID = id
@@ -11613,8 +11493,8 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber
         extend Gem::Deprecate
-        deprecate :PdfPageNumber, :none, 2026, 2
-        deprecate :PdfPageNumber=, :none, 2026, 2
+        deprecate :PdfPageNumber, :none, 2026, 3
+        deprecate :PdfPageNumber=, :none, 2026, 3
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil)
           @ImageBase64 = imagebase64
@@ -11731,10 +11611,10 @@ module TencentCloud
 
         attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :BoolSingleQuestion, :EnableDeepThink, :QuestionConfigMap, :ReferenceAnswer
         extend Gem::Deprecate
-        deprecate :BoolSingleQuestion, :none, 2026, 2
-        deprecate :BoolSingleQuestion=, :none, 2026, 2
-        deprecate :EnableDeepThink, :none, 2026, 2
-        deprecate :EnableDeepThink=, :none, 2026, 2
+        deprecate :BoolSingleQuestion, :none, 2026, 3
+        deprecate :BoolSingleQuestion=, :none, 2026, 3
+        deprecate :EnableDeepThink, :none, 2026, 3
+        deprecate :EnableDeepThink=, :none, 2026, 3
 
         def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, boolsinglequestion=nil, enabledeepthink=nil, questionconfigmap=nil, referenceanswer=nil)
           @ImageBase64 = imagebase64

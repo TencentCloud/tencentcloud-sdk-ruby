@@ -304,8 +304,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :TextUrl, :ModelType, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 2
-        deprecate :TagInfos=, :none, 2026, 2
+        deprecate :TagInfos, :none, 2026, 3
+        deprecate :TagInfos=, :none, 2026, 3
 
         def initialize(modelname=nil, texturl=nil, modeltype=nil, taginfos=nil)
           @ModelName = modelname
@@ -397,8 +397,8 @@ module TencentCloud
 
         attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
         extend Gem::Deprecate
-        deprecate :ReinforceHotword, :none, 2026, 2
-        deprecate :ReinforceHotword=, :none, 2026, 2
+        deprecate :ReinforceHotword, :none, 2026, 3
+        deprecate :ReinforceHotword=, :none, 2026, 3
 
         def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
           @EngineModelType = enginemodeltype
@@ -796,8 +796,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 2
-        deprecate :TagInfos=, :none, 2026, 2
+        deprecate :TagInfos, :none, 2026, 3
+        deprecate :TagInfos=, :none, 2026, 3
 
         def initialize(taginfos=nil, offset=nil, limit=nil)
           @TagInfos = taginfos
@@ -921,8 +921,8 @@ module TencentCloud
 
         attr_accessor :TagInfos, :Limit, :Offset
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 2
-        deprecate :TagInfos=, :none, 2026, 2
+        deprecate :TagInfos, :none, 2026, 3
+        deprecate :TagInfos=, :none, 2026, 3
 
         def initialize(taginfos=nil, limit=nil, offset=nil)
           @TagInfos = taginfos
@@ -1222,8 +1222,8 @@ module TencentCloud
 
         attr_accessor :ModelName, :DictName, :ModelId, :ModelType, :ServiceType, :ModelState, :AtUpdated, :TagInfos
         extend Gem::Deprecate
-        deprecate :TagInfos, :none, 2026, 2
-        deprecate :TagInfos=, :none, 2026, 2
+        deprecate :TagInfos, :none, 2026, 3
+        deprecate :TagInfos=, :none, 2026, 3
 
         def initialize(modelname=nil, dictname=nil, modelid=nil, modeltype=nil, servicetype=nil, modelstate=nil, atupdated=nil, taginfos=nil)
           @ModelName = modelname
@@ -1334,50 +1334,53 @@ module TencentCloud
 
       # 单句的详细识别结果，包含单个词的时间偏移，一般用于生成字幕的场景。
       class SentenceDetail < TencentCloud::Common::AbstractModel
-        # @param FinalSentence: 单句最终识别结果
+        # @param FinalSentence: <p>单句最终识别结果</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FinalSentence: String
-        # @param SliceSentence: 单句中间识别结果，使用空格拆分为多个词
+        # @param SliceSentence: <p>单句中间识别结果，使用空格拆分为多个词</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SliceSentence: String
-        # @param WrittenText: 口语转书面语结果，开启改功能才有值
+        # @param WrittenText: <p>口语转书面语结果，开启该功能才有值</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WrittenText: String
-        # @param StartMs: 单句开始时间（毫秒）
+        # @param StartMs: <p>单句开始时间（毫秒）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartMs: Integer
-        # @param EndMs: 单句结束时间（毫秒）
+        # @param EndMs: <p>单句结束时间（毫秒）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndMs: Integer
-        # @param WordsNum: 单句中词个数
+        # @param WordsNum: <p>单句中词个数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WordsNum: Integer
-        # @param Words: 单句中词详情
+        # @param Words: <p>单句中词详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Words: Array
-        # @param SpeechSpeed: 单句语速，单位：字数/秒
+        # @param SpeechSpeed: <p>单句语速，单位：字数/秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeechSpeed: Float
-        # @param SpeakerId: 声道或说话人 Id（请求中如果设置了 speaker_diarization或者ChannelNum为双声道，可区分说话人或声道）
-        # 单声道话者分离时不同的值代表不同的说话人； 8k双声道话者分离时speakerId的值为0代表左声道，值为1代表右声道。
+        # @param SpeakerId: <p>声道或说话人 Id（请求中如果设置了 speaker_diarization或者ChannelNum为双声道，可区分说话人或声道）<br>单声道话者分离时不同的值代表不同的说话人； 8k双声道话者分离时speakerId的值为0代表左声道，值为1代表右声道。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SpeakerId: Integer
-        # @param EmotionalEnergy: 情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。
+        # @param EmotionalEnergy: <p>情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionalEnergy: Float
-        # @param SilenceTime: 本句与上一句之间的静音时长
+        # @param SilenceTime: <p>本句与上一句之间的静音时长</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SilenceTime: Integer
-        # @param EmotionType: 情绪类型（可能为空，有2种情况 1、没有对应资源包；2、情绪跟语音效果相关，如果情绪不够强烈时可能无法识别）
+        # @param EmotionType: <p>情绪类型（可能为空，有2种情况 1、没有对应资源包；2、情绪跟语音效果相关，如果情绪不够强烈时可能无法识别）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EmotionType: Array
-        # @param KeyWordResults: 关键词识别结果列表
+        # @param KeyWordResults: <p>关键词识别结果列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeyWordResults: Array
+        # @param LangType: <p>多语言识别类型</p><ul><li>中文    chinese</li><li>英语    english</li><li>日语    japanese</li><li>韩语    korean</li><li>阿拉伯语    arabic</li><li>菲律宾语    filipino</li><li>法语    french</li><li>印地语    hindi</li><li>印尼语    indonesian</li><li>马来语    malay</li><li>葡萄牙语    portugal</li><li>西班牙语    spanish</li><li>泰语    thai</li><li>土耳其语    turkish</li><li>越南语    vietnam</li><li>德语    german</li></ul>
+        # @type LangType: String
+        # @param SpeakerRoleName: <p>说话人角色名称</p>
+        # @type SpeakerRoleName: String
 
-        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType, :KeyWordResults
+        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType, :KeyWordResults, :LangType, :SpeakerRoleName
 
-        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil, keywordresults=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil, keywordresults=nil, langtype=nil, speakerrolename=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @WrittenText = writtentext
@@ -1391,6 +1394,8 @@ module TencentCloud
           @SilenceTime = silencetime
           @EmotionType = emotiontype
           @KeyWordResults = keywordresults
+          @LangType = langtype
+          @SpeakerRoleName = speakerrolename
         end
 
         def deserialize(params)
@@ -1421,6 +1426,8 @@ module TencentCloud
               @KeyWordResults << keywordresult_tmp
             end
           end
+          @LangType = params['LangType']
+          @SpeakerRoleName = params['SpeakerRoleName']
         end
       end
 
@@ -1505,14 +1512,14 @@ module TencentCloud
 
         attr_accessor :EngSerViceType, :SourceType, :VoiceFormat, :ProjectId, :SubServiceType, :Url, :UsrAudioKey, :Data, :DataLen, :WordInfo, :FilterDirty, :FilterModal, :FilterPunc, :ConvertNumMode, :HotwordId, :CustomizationId, :ReinforceHotword, :HotwordList, :InputSampleRate, :ReplaceTextId
         extend Gem::Deprecate
-        deprecate :ProjectId, :none, 2026, 2
-        deprecate :ProjectId=, :none, 2026, 2
-        deprecate :SubServiceType, :none, 2026, 2
-        deprecate :SubServiceType=, :none, 2026, 2
-        deprecate :UsrAudioKey, :none, 2026, 2
-        deprecate :UsrAudioKey=, :none, 2026, 2
-        deprecate :ReinforceHotword, :none, 2026, 2
-        deprecate :ReinforceHotword=, :none, 2026, 2
+        deprecate :ProjectId, :none, 2026, 3
+        deprecate :ProjectId=, :none, 2026, 3
+        deprecate :SubServiceType, :none, 2026, 3
+        deprecate :SubServiceType=, :none, 2026, 3
+        deprecate :UsrAudioKey, :none, 2026, 3
+        deprecate :UsrAudioKey=, :none, 2026, 3
+        deprecate :ReinforceHotword, :none, 2026, 3
+        deprecate :ReinforceHotword=, :none, 2026, 3
 
         def initialize(engservicetype=nil, sourcetype=nil, voiceformat=nil, projectid=nil, subservicetype=nil, url=nil, usraudiokey=nil, data=nil, datalen=nil, wordinfo=nil, filterdirty=nil, filtermodal=nil, filterpunc=nil, convertnummode=nil, hotwordid=nil, customizationid=nil, reinforcehotword=nil, hotwordlist=nil, inputsamplerate=nil, replacetextid=nil)
           @EngSerViceType = engservicetype

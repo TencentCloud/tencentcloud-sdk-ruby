@@ -74,10 +74,10 @@ module TencentCloud
 
         attr_accessor :Account, :LoginAccount, :LoginPassword, :DeviceId, :InstanceId, :Password, :PrivateKey, :PrivateKeyPassword, :Exe, :Drivers, :Width, :Height, :IntranetAccess, :AutoManageAccessCredential
         extend Gem::Deprecate
-        deprecate :LoginAccount, :none, 2026, 2
-        deprecate :LoginAccount=, :none, 2026, 2
-        deprecate :LoginPassword, :none, 2026, 2
-        deprecate :LoginPassword=, :none, 2026, 2
+        deprecate :LoginAccount, :none, 2026, 3
+        deprecate :LoginAccount=, :none, 2026, 3
+        deprecate :LoginPassword, :none, 2026, 3
+        deprecate :LoginPassword=, :none, 2026, 3
 
         def initialize(account=nil, loginaccount=nil, loginpassword=nil, deviceid=nil, instanceid=nil, password=nil, privatekey=nil, privatekeypassword=nil, exe=nil, drivers=nil, width=nil, height=nil, intranetaccess=nil, automanageaccesscredential=nil)
           @Account = account
@@ -5968,8 +5968,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 2
-        deprecate :Status=, :none, 2026, 2
+        deprecate :Status, :none, 2026, 3
+        deprecate :Status=, :none, 2026, 3
 
         def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
           @ResourceId = resourceid
@@ -8156,8 +8156,8 @@ module TencentCloud
 
         attr_accessor :Id, :InstanceId, :Name, :ApCode, :PublicIp, :PrivateIp, :Status, :Reason, :ExitCode, :StartTime, :EndTime, :StdOut, :StdErr, :DeviceName, :Account
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 2
-        deprecate :Name=, :none, 2026, 2
+        deprecate :Name, :none, 2026, 3
+        deprecate :Name=, :none, 2026, 3
 
         def initialize(id=nil, instanceid=nil, name=nil, apcode=nil, publicip=nil, privateip=nil, status=nil, reason=nil, exitcode=nil, starttime=nil, endtime=nil, stdout=nil, stderr=nil, devicename=nil, account=nil)
           @Id = id

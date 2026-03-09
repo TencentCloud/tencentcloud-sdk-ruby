@@ -19,28 +19,30 @@ module TencentCloud
     module V20201229
       # CreateImageModerationAsyncTask请求参数结构体
       class CreateImageModerationAsyncTaskRequest < TencentCloud::Common::AbstractModel
-        # @param CallbackUrl: 接收审核信息回调地址，审核过程中产生的所有结果发送至此地址。
+        # @param CallbackUrl: <p>接收审核信息回调地址，审核过程中产生的所有结果发送至此地址。</p>
         # @type CallbackUrl: String
-        # @param BizType: 该字段表示策略的具体编号，用于接口调度，在内容安全控制台中可配置。若不传入Biztype参数（留空），则代表采用默认的识别策略；传入则会在审核时根据业务场景采取不同的审核策略。<br>备注：Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。
+        # @param BizType: <p>该字段表示策略的具体编号，用于接口调度，在内容安全控制台中可配置。若不传入Biztype参数（留空），则代表采用默认的识别策略；传入则会在审核时根据业务场景采取不同的审核策略。<br>备注：Biztype仅为数字、字母与下划线的组合，长度为3-32个字符；不同Biztype关联不同的业务场景与识别能力策略，调用前请确认正确的Biztype。</p>
         # @type BizType: String
-        # @param DataId: 该字段表示您为待检测对象分配的数据ID，传入后可方便您对文件进行标识和管理。<br>取值：由英文字母（大小写均可）、数字及四个特殊符号（_，-，@，#）组成，**长度不超过64个字符**。
+        # @param DataId: <p>该字段表示您为待检测对象分配的数据ID，传入后可方便您对文件进行标识和管理。<br>取值：由英文字母（大小写均可）、数字及四个特殊符号（_，-，@，#）组成，<strong>长度不超过64个字符</strong>。</p>
         # @type DataId: String
-        # @param FileContent: 该字段表示待检测图片文件内容的Base64编码，图片**大小不超过10MB**，建议**分辨率不低于256x256**，否则可能会影响识别效果。<br>备注： **该字段与FileUrl必须选择输入其中一个**。
+        # @param FileContent: <p>该字段表示待检测图片文件内容的Base64编码，图片<strong>大小不超过10MB</strong>，建议<strong>分辨率不低于256x256</strong>，否则可能会影响识别效果。<br>备注： <strong>该字段与FileUrl必须选择输入其中一个</strong>。</p>
         # @type FileContent: String
-        # @param FileUrl: 该字段表示待检测图片文件的访问链接，图片支持PNG、JPG、JPEG、BMP、GIF、WEBP格式，**大小不超过100MB**，建议**分辨率不低于256x256**；图片下载时间限制为3秒，超过则会返回下载超时；由于网络安全策略，**送审带重定向的链接，可能引起下载失败**，请尽量避免，比如Http返回302状态码的链接，可能导致接口返回ResourceUnavailable.ImageDownloadError。<br>备注：**该字段与FileContent必须选择输入其中一个**。
+        # @param FileUrl: <p>该字段表示待检测图片文件的访问链接，图片支持PNG、JPG、JPEG、BMP、GIF、WEBP格式，<strong>大小不超过100MB</strong>，建议<strong>分辨率不低于256x256</strong>；图片下载时间限制为3秒，超过则会返回下载超时；由于网络安全策略，<strong>送审带重定向的链接，可能引起下载失败</strong>，请尽量避免，比如Http返回302状态码的链接，可能导致接口返回ResourceUnavailable.ImageDownloadError。<br>备注：<strong>该字段与FileContent必须选择输入其中一个</strong>。</p>
         # @type FileUrl: String
-        # @param Interval: **GIF/长图检测专用**，用于表示GIF截帧频率（每隔多少张图片抽取一帧进行检测），长图则按照长边：短边取整计算要切割的总图数；默认值为0，此时只会检测GIF的第一帧或对长图不进行切分处理。<br>备注：Interval与MaxFrames参数需要组合使用。例如，Interval=3, MaxFrames=400，则代表在检测GIF/长图时，将每间隔2帧检测一次且最多检测400帧。
+        # @param Interval: <p><strong>GIF/长图检测专用</strong>，用于表示GIF截帧频率（每隔多少张图片抽取一帧进行检测），长图则按照长边：短边取整计算要切割的总图数；默认值为0，此时只会检测GIF的第一帧或对长图不进行切分处理。<br>备注：Interval与MaxFrames参数需要组合使用。例如，Interval=3, MaxFrames=400，则代表在检测GIF/长图时，将每间隔2帧检测一次且最多检测400帧。</p>
         # @type Interval: Integer
-        # @param MaxFrames: **GIF/长图检测专用**，用于标识最大截帧数量；默认值为1，此时只会检测输入GIF的第一帧或对长图不进行切分处理（可能会造成处理超时）。<br>备注：Interval与MaxFrames参数需要组合使用。例如，Interval=3, MaxFrames=400，则代表在检测GIF/长图时，将每间隔2帧检测一次且最多检测400帧。
+        # @param MaxFrames: <p><strong>GIF/长图检测专用</strong>，用于标识最大截帧数量；默认值为1，此时只会检测输入GIF的第一帧或对长图不进行切分处理（可能会造成处理超时）。<br>备注：Interval与MaxFrames参数需要组合使用。例如，Interval=3, MaxFrames=400，则代表在检测GIF/长图时，将每间隔2帧检测一次且最多检测400帧。</p>
         # @type MaxFrames: Integer
-        # @param User: 该字段表示待检测对象对应的用户相关信息，若填入则可甄别相应违规风险用户。
+        # @param User: <p>该字段表示待检测对象对应的用户相关信息，若填入则可甄别相应违规风险用户。</p>
         # @type User: :class:`Tencentcloud::Ims.v20201229.models.User`
-        # @param Device: 该字段表示待检测对象对应的设备相关信息，若填入则可甄别相应违规风险设备。
+        # @param Device: <p>该字段表示待检测对象对应的设备相关信息，若填入则可甄别相应违规风险设备。</p>
         # @type Device: :class:`Tencentcloud::Ims.v20201229.models.Device`
+        # @param Type: <p>服务类型，可为空，默认为 IMAGE。</p><p>枚举值：</p><ul><li>IMAGE： 一般图片异步检测</li><li>IMAGE_LLM： 大模型图片异步检测</li></ul>
+        # @type Type: String
 
-        attr_accessor :CallbackUrl, :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device
+        attr_accessor :CallbackUrl, :BizType, :DataId, :FileContent, :FileUrl, :Interval, :MaxFrames, :User, :Device, :Type
 
-        def initialize(callbackurl=nil, biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil)
+        def initialize(callbackurl=nil, biztype=nil, dataid=nil, filecontent=nil, fileurl=nil, interval=nil, maxframes=nil, user=nil, device=nil, type=nil)
           @CallbackUrl = callbackurl
           @BizType = biztype
           @DataId = dataid
@@ -50,6 +52,7 @@ module TencentCloud
           @MaxFrames = maxframes
           @User = user
           @Device = device
+          @Type = type
         end
 
         def deserialize(params)
@@ -68,12 +71,13 @@ module TencentCloud
             @Device = Device.new
             @Device.deserialize(params['Device'])
           end
+          @Type = params['Type']
         end
       end
 
       # CreateImageModerationAsyncTask返回参数结构体
       class CreateImageModerationAsyncTaskResponse < TencentCloud::Common::AbstractModel
-        # @param DataId: 该字段用于返回检测对象对应请求参数中的DataId。
+        # @param DataId: <p>该字段用于返回检测对象对应请求参数中的DataId。</p>
         # @type DataId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

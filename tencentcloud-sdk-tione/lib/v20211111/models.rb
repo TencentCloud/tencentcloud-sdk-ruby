@@ -785,10 +785,12 @@ module TencentCloud
         # @type VolumeMounts: Array
         # @param SchedulingStrategy: 调度策略 [binpack] 优先占满整机，尽量避免碎卡（默认值）[spread] 优先分散在各个节点，确保服务高可用
         # @type SchedulingStrategy: String
+        # @param GatewayLogConfig: 网关日志投递相关配置
+        # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :ServiceDescription, :ChargeType, :ResourceGroupId, :ModelInfo, :ImageInfo, :Env, :Resources, :InstanceType, :ScaleMode, :Replicas, :HorizontalPodAutoscaler, :LogEnable, :LogConfig, :AuthorizationEnable, :Tags, :NewVersion, :CronScaleJobs, :ScaleStrategy, :HybridBillingPrepaidReplicas, :CreateSource, :ModelHotUpdateEnable, :ScheduledAction, :VolumeMount, :ServiceLimit, :CallbackUrl, :ModelTurboEnable, :ServiceCategory, :Command, :ServiceEIP, :CommandBase64, :ServicePort, :DeployType, :InstancePerReplicas, :TerminationGracePeriodSeconds, :PreStopCommand, :GrpcEnable, :HealthProbe, :RollingUpdate, :Sidecar, :VolumeMounts, :SchedulingStrategy, :GatewayLogConfig
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, servicedescription=nil, chargetype=nil, resourcegroupid=nil, modelinfo=nil, imageinfo=nil, env=nil, resources=nil, instancetype=nil, scalemode=nil, replicas=nil, horizontalpodautoscaler=nil, logenable=nil, logconfig=nil, authorizationenable=nil, tags=nil, newversion=nil, cronscalejobs=nil, scalestrategy=nil, hybridbillingprepaidreplicas=nil, createsource=nil, modelhotupdateenable=nil, scheduledaction=nil, volumemount=nil, servicelimit=nil, callbackurl=nil, modelturboenable=nil, servicecategory=nil, command=nil, serviceeip=nil, commandbase64=nil, serviceport=nil, deploytype=nil, instanceperreplicas=nil, terminationgraceperiodseconds=nil, prestopcommand=nil, grpcenable=nil, healthprobe=nil, rollingupdate=nil, sidecar=nil, volumemounts=nil, schedulingstrategy=nil, gatewaylogconfig=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @ServiceDescription = servicedescription
@@ -832,6 +834,7 @@ module TencentCloud
           @Sidecar = sidecar
           @VolumeMounts = volumemounts
           @SchedulingStrategy = schedulingstrategy
+          @GatewayLogConfig = gatewaylogconfig
         end
 
         def deserialize(params)
@@ -942,6 +945,10 @@ module TencentCloud
             end
           end
           @SchedulingStrategy = params['SchedulingStrategy']
+          unless params['GatewayLogConfig'].nil?
+            @GatewayLogConfig = LogConfig.new
+            @GatewayLogConfig.deserialize(params['GatewayLogConfig'])
+          end
         end
       end
 
@@ -8245,10 +8252,12 @@ module TencentCloud
         # @type MonitorSource: String
         # @param SubUinName: 子用户的 nickname
         # @type SubUinName: String
+        # @param GatewayLogConfig: 网关日志投递相关配置
+        # @type GatewayLogConfig: :class:`Tencentcloud::Tione.v20211111.models.LogConfig`
 
-        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName
+        attr_accessor :ServiceGroupId, :ServiceGroupName, :CreatedBy, :CreateTime, :UpdateTime, :Uin, :ServiceCount, :RunningServiceCount, :Services, :Status, :Tags, :LatestVersion, :BusinessStatus, :BillingInfo, :CreateSource, :WeightUpdateStatus, :ReplicasCount, :AvailableReplicasCount, :SubUin, :AppId, :AuthorizationEnable, :AuthTokens, :MonitorSource, :SubUinName, :GatewayLogConfig
 
-        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil)
+        def initialize(servicegroupid=nil, servicegroupname=nil, createdby=nil, createtime=nil, updatetime=nil, uin=nil, servicecount=nil, runningservicecount=nil, services=nil, status=nil, tags=nil, latestversion=nil, businessstatus=nil, billinginfo=nil, createsource=nil, weightupdatestatus=nil, replicascount=nil, availablereplicascount=nil, subuin=nil, appid=nil, authorizationenable=nil, authtokens=nil, monitorsource=nil, subuinname=nil, gatewaylogconfig=nil)
           @ServiceGroupId = servicegroupid
           @ServiceGroupName = servicegroupname
           @CreatedBy = createdby
@@ -8273,6 +8282,7 @@ module TencentCloud
           @AuthTokens = authtokens
           @MonitorSource = monitorsource
           @SubUinName = subuinname
+          @GatewayLogConfig = gatewaylogconfig
         end
 
         def deserialize(params)
@@ -8321,6 +8331,10 @@ module TencentCloud
           end
           @MonitorSource = params['MonitorSource']
           @SubUinName = params['SubUinName']
+          unless params['GatewayLogConfig'].nil?
+            @GatewayLogConfig = LogConfig.new
+            @GatewayLogConfig.deserialize(params['GatewayLogConfig'])
+          end
         end
       end
 

@@ -817,41 +817,41 @@ module TencentCloud
 
       # 传统型负载均衡监听器信息
       class ClassicalListener < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 负载均衡监听器ID
+        # @param ListenerId: <p>负载均衡监听器ID</p>
         # @type ListenerId: String
-        # @param ListenerPort: 负载均衡监听器端口
+        # @param ListenerPort: <p>负载均衡监听器端口</p>
         # @type ListenerPort: Integer
-        # @param InstancePort: 监听器后端转发端口
+        # @param InstancePort: <p>监听器后端转发端口</p>
         # @type InstancePort: Integer
-        # @param ListenerName: 监听器名称
+        # @param ListenerName: <p>监听器名称</p>
         # @type ListenerName: String
-        # @param Protocol: 监听器协议类型
+        # @param Protocol: <p>监听器协议类型</p>
         # @type Protocol: String
-        # @param SessionExpire: 会话保持时间
+        # @param SessionExpire: <p>会话保持时间</p>
         # @type SessionExpire: Integer
-        # @param HealthSwitch: 是否开启了健康检查：1（开启）、0（关闭）
+        # @param HealthSwitch: <p>是否开启了健康检查：1（开启）、0（关闭）</p>
         # @type HealthSwitch: Integer
-        # @param TimeOut: 响应超时时间
+        # @param TimeOut: <p>响应超时时间</p><p>单位：秒</p>
         # @type TimeOut: Integer
-        # @param IntervalTime: 检查间隔
+        # @param IntervalTime: <p>检查间隔</p><p>单位：秒</p>
         # @type IntervalTime: Integer
-        # @param HealthNum: 健康阈值
+        # @param HealthNum: <p>健康阈值</p>
         # @type HealthNum: Integer
-        # @param UnhealthNum: 不健康阈值
+        # @param UnhealthNum: <p>不健康阈值</p>
         # @type UnhealthNum: Integer
-        # @param HttpHash: 传统型公网负载均衡 监听器的请求均衡方法。空字符串或wrr 表示按权重轮询，ip_hash 表示根据访问的源 IP 进行一致性哈希方式来分发，least_conn表示按最小连接数。
+        # @param HttpHash: <p>传统型公网负载均衡 监听器的请求均衡方法。空字符串或wrr 表示按权重轮询，ip_hash 表示根据访问的源 IP 进行一致性哈希方式来分发，least_conn表示按最小连接数。</p>
         # @type HttpHash: String
-        # @param HttpCode: 传统型公网负载均衡的 HTTP、HTTPS 监听器的健康检查返回码。具体可参考创建监听器中对该字段的解释
+        # @param HttpCode: <p>传统型公网负载均衡的 HTTP、HTTPS 监听器的健康检查返回码。具体可参考创建监听器中对该字段的解释</p>
         # @type HttpCode: Integer
-        # @param HttpCheckPath: 传统型公网负载均衡的 HTTP、HTTPS 监听器的健康检查路径
+        # @param HttpCheckPath: <p>传统型公网负载均衡的 HTTP、HTTPS 监听器的健康检查路径</p>
         # @type HttpCheckPath: String
-        # @param SSLMode: 传统型公网负载均衡的 HTTPS 监听器的认证方式
+        # @param SSLMode: <p>传统型公网负载均衡的 HTTPS 监听器的认证方式</p>
         # @type SSLMode: String
-        # @param CertId: 传统型公网负载均衡的 HTTPS 监听器的服务端证书 ID
+        # @param CertId: <p>传统型公网负载均衡的 HTTPS 监听器的服务端证书 ID</p>
         # @type CertId: String
-        # @param CertCaId: 传统型公网负载均衡的 HTTPS 监听器的客户端证书 ID
+        # @param CertCaId: <p>传统型公网负载均衡的 HTTPS 监听器的客户端证书 ID</p>
         # @type CertCaId: String
-        # @param Status: 监听器的状态，0 表示创建中，1 表示运行中
+        # @param Status: <p>监听器的状态，0 表示创建中，1 表示运行中</p>
         # @type Status: Integer
 
         attr_accessor :ListenerId, :ListenerPort, :InstancePort, :ListenerName, :Protocol, :SessionExpire, :HealthSwitch, :TimeOut, :IntervalTime, :HealthNum, :UnhealthNum, :HttpHash, :HttpCode, :HttpCheckPath, :SSLMode, :CertId, :CertCaId, :Status
@@ -1388,8 +1388,8 @@ module TencentCloud
 
         attr_accessor :LogsetName, :Period, :LogsetType
         extend Gem::Deprecate
-        deprecate :Period, :none, 2026, 2
-        deprecate :Period=, :none, 2026, 2
+        deprecate :Period, :none, 2026, 3
+        deprecate :Period=, :none, 2026, 3
 
         def initialize(logsetname=nil, period=nil, logsettype=nil)
           @LogsetName = logsetname
@@ -5234,67 +5234,67 @@ module TencentCloud
 
       # 监听器的信息
       class Listener < TencentCloud::Common::AbstractModel
-        # @param ListenerId: 负载均衡监听器 ID
+        # @param ListenerId: <p>负载均衡监听器 ID</p>
         # @type ListenerId: String
-        # @param Protocol: 监听器协议，可选值：TCP、UDP、HTTP、HTTPS、TCP_SSL、QUIC
+        # @param Protocol: <p>监听器协议，可选值：TCP、UDP、HTTP、HTTPS、TCP_SSL、QUIC</p>
         # @type Protocol: String
-        # @param Port: 监听器端口，端口范围：1-65535
+        # @param Port: <p>监听器端口，端口范围：1-65535</p>
         # @type Port: Integer
-        # @param Certificate: 监听器绑定的证书信息
+        # @param Certificate: <p>监听器绑定的证书信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Certificate: :class:`Tencentcloud::Clb.v20180317.models.CertificateOutput`
-        # @param HealthCheck: 监听器的健康检查信息
+        # @param HealthCheck: <p>监听器的健康检查信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HealthCheck: :class:`Tencentcloud::Clb.v20180317.models.HealthCheck`
-        # @param Scheduler: 请求的调度方式。 WRR、LEAST_CONN、IP_HASH分别表示按权重轮询、最小连接数、IP Hash。
+        # @param Scheduler: <p>请求的调度方式。 WRR、LEAST_CONN、IP_HASH分别表示按权重轮询、最小连接数、IP Hash。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Scheduler: String
-        # @param SessionExpireTime: 会话保持时间，单位：秒。可选值：30~3600，默认 0，默认不开启。此参数仅适用于TCP/UDP监听器。
+        # @param SessionExpireTime: <p>会话保持时间，单位：秒。可选值：30~3600，默认 0，默认不开启。此参数仅适用于TCP/UDP监听器。</p><p>单位：秒</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SessionExpireTime: Integer
-        # @param SniSwitch: 是否开启SNI特性，1：表示开启，0：表示不开启（本参数仅对于HTTPS监听器有意义）
+        # @param SniSwitch: <p>是否开启SNI特性，1：表示开启，0：表示不开启（本参数仅对于HTTPS监听器有意义）</p>
         # @type SniSwitch: Integer
-        # @param Rules: 监听器下的全部转发规则（本参数仅对于HTTP/HTTPS监听器有意义）
+        # @param Rules: <p>监听器下的全部转发规则（本参数仅对于HTTP/HTTPS监听器有意义）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Rules: Array
-        # @param ListenerName: 监听器的名称
+        # @param ListenerName: <p>监听器的名称</p>
         # @type ListenerName: String
-        # @param CreateTime: 监听器的创建时间。
+        # @param CreateTime: <p>监听器的创建时间。</p>
         # @type CreateTime: String
-        # @param EndPort: 端口段结束端口，端口范围：2-65535
+        # @param EndPort: <p>端口段结束端口，端口范围：2-65535</p>
         # @type EndPort: Integer
-        # @param TargetType: 后端服务器类型，可选值：NODE、POLARIS、TARGETGROUP、TARGETGROUP-V2
+        # @param TargetType: <p>后端服务器类型，可选值：NODE、POLARIS、TARGETGROUP、TARGETGROUP-V2</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetType: String
-        # @param TargetGroup: 绑定的目标组基本信息；当监听器绑定目标组时，会返回该字段
+        # @param TargetGroup: <p>绑定的目标组基本信息；当监听器绑定目标组时，会返回该字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroup: :class:`Tencentcloud::Clb.v20180317.models.BasicTargetGroupInfo`
-        # @param SessionType: 会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。
+        # @param SessionType: <p>会话保持类型。NORMAL表示默认会话保持类型。QUIC_CID 表示根据Quic Connection ID做会话保持。</p>
         # @type SessionType: String
-        # @param KeepaliveEnable: 是否开启长连接，1开启，0关闭，（本参数仅对于HTTP/HTTPS监听器有意义）
+        # @param KeepaliveEnable: <p>是否开启长连接，1开启，0关闭，（本参数仅对于HTTP/HTTPS监听器有意义）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type KeepaliveEnable: Integer
-        # @param Toa: 仅支持Nat64 CLB TCP监听器
+        # @param Toa: <p>仅支持Nat64 CLB TCP监听器</p>
         # @type Toa: Boolean
-        # @param DeregisterTargetRst: 重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。
+        # @param DeregisterTargetRst: <p>重新调度功能，解绑后端服务开关，打开此开关，当解绑后端服务时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type DeregisterTargetRst: Boolean
-        # @param AttrFlags: 监听器的属性
+        # @param AttrFlags: <p>监听器的属性</p>
         # @type AttrFlags: Array
-        # @param TargetGroupList: 绑定的目标组列表
+        # @param TargetGroupList: <p>绑定的目标组列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TargetGroupList: Array
-        # @param MaxConn: 监听器最大连接数，-1表示监听器维度不限速。
+        # @param MaxConn: <p>监听器最大连接数，-1表示监听器维度不限速。</p>
         # @type MaxConn: Integer
-        # @param MaxCps: 监听器最大新增连接数，-1表示监听器维度不限速。
+        # @param MaxCps: <p>监听器最大新增连接数，-1表示监听器维度不限速。</p>
         # @type MaxCps: Integer
-        # @param IdleConnectTimeout: 空闲连接超时时间，仅支持TCP监听器。默认值:900；共享型实例和独占型实例取值范围：300～900，性能容量型实例取值范围:300～1980。
+        # @param IdleConnectTimeout: <p>空闲连接超时时间，仅支持TCP监听器。默认值:900；共享型实例和独占型实例取值范围：300～900，性能容量型实例取值范围:300～1980。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IdleConnectTimeout: Integer
-        # @param RescheduleInterval: 重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。触发重新调度后，长连接将会在设置的调度时间内断开并完成重新分配。
+        # @param RescheduleInterval: <p>重新调度触发持续时间，取值0~3600s。仅TCP/UDP监听器支持。触发重新调度后，长连接将会在设置的调度时间内断开并完成重新分配。</p><p>单位：秒</p>
         # @type RescheduleInterval: Integer
-        # @param DataCompressMode: 数据压缩模式
+        # @param DataCompressMode: <p>数据压缩模式</p>
         # @type DataCompressMode: String
-        # @param RescheduleStartTime: 重新调度启动时间，配置了重新调度启动时间后，会在启动时间到达时触发重新调度。
+        # @param RescheduleStartTime: <p>重新调度启动时间，配置了重新调度启动时间后，会在启动时间到达时触发重新调度。</p>
         # @type RescheduleStartTime: Integer
 
         attr_accessor :ListenerId, :Protocol, :Port, :Certificate, :HealthCheck, :Scheduler, :SessionExpireTime, :SniSwitch, :Rules, :ListenerName, :CreateTime, :EndPort, :TargetType, :TargetGroup, :SessionType, :KeepaliveEnable, :Toa, :DeregisterTargetRst, :AttrFlags, :TargetGroupList, :MaxConn, :MaxCps, :IdleConnectTimeout, :RescheduleInterval, :DataCompressMode, :RescheduleStartTime
@@ -5697,8 +5697,8 @@ module TencentCloud
 
         attr_accessor :LoadBalancerId, :LoadBalancerName, :LoadBalancerType, :Forward, :Domain, :LoadBalancerVips, :Status, :CreateTime, :StatusTime, :ProjectId, :VpcId, :OpenBgp, :Snat, :Isolation, :Log, :SubnetId, :Tags, :SecureGroups, :TargetRegionInfo, :AnycastZone, :AddressIPVersion, :NumericalVpcId, :VipIsp, :MasterZone, :BackupZoneSet, :IsolatedTime, :ExpireTime, :ChargeType, :NetworkAttributes, :PrepaidAttributes, :LogSetId, :LogTopicId, :AddressIPv6, :ExtraInfo, :IsDDos, :ConfigId, :LoadBalancerPassToTarget, :ExclusiveCluster, :IPv6Mode, :SnatPro, :SnatIps, :SlaType, :IsBlock, :IsBlockTime, :LocalBgp, :ClusterTag, :MixIpTarget, :Zones, :NfvInfo, :HealthLogSetId, :HealthLogTopicId, :ClusterIds, :AttributeFlags, :LoadBalancerDomain, :Egress, :Exclusive, :TargetCount, :AssociateEndpoint, :AvailableZoneAffinityInfo
         extend Gem::Deprecate
-        deprecate :Log, :none, 2026, 2
-        deprecate :Log=, :none, 2026, 2
+        deprecate :Log, :none, 2026, 3
+        deprecate :Log=, :none, 2026, 3
 
         def initialize(loadbalancerid=nil, loadbalancername=nil, loadbalancertype=nil, forward=nil, domain=nil, loadbalancervips=nil, status=nil, createtime=nil, statustime=nil, projectid=nil, vpcid=nil, openbgp=nil, snat=nil, isolation=nil, log=nil, subnetid=nil, tags=nil, securegroups=nil, targetregioninfo=nil, anycastzone=nil, addressipversion=nil, numericalvpcid=nil, vipisp=nil, masterzone=nil, backupzoneset=nil, isolatedtime=nil, expiretime=nil, chargetype=nil, networkattributes=nil, prepaidattributes=nil, logsetid=nil, logtopicid=nil, addressipv6=nil, extrainfo=nil, isddos=nil, configid=nil, loadbalancerpasstotarget=nil, exclusivecluster=nil, ipv6mode=nil, snatpro=nil, snatips=nil, slatype=nil, isblock=nil, isblocktime=nil, localbgp=nil, clustertag=nil, mixiptarget=nil, zones=nil, nfvinfo=nil, healthlogsetid=nil, healthlogtopicid=nil, clusterids=nil, attributeflags=nil, loadbalancerdomain=nil, egress=nil, exclusive=nil, targetcount=nil, associateendpoint=nil, availablezoneaffinityinfo=nil)
           @LoadBalancerId = loadbalancerid
@@ -6553,7 +6553,7 @@ module TencentCloud
         # @type ProxyProtocol: Boolean
         # @param SnatEnable: <p>是否开启SNAT（源IP替换），True（开启）、False（关闭）。默认为关闭。注意：SnatEnable开启时会替换客户端源IP，此时<code>透传客户端源IP</code>选项关闭，反之亦然。</p>
         # @type SnatEnable: Boolean
-        # @param DataCompressMode: <p>数据压缩模式</p>
+        # @param DataCompressMode: <p>数据压缩模式</p><p>枚举值：</p><ul><li>transparent： 透明模式（默认值）</li><li>compatibility： 兼容模式（开启 gzip 兼容压缩配置）</li></ul>
         # @type DataCompressMode: String
         # @param RescheduleTargetZeroWeight: <p>重新调度功能，权重调为0开关，打开此开关，后端服务器权重调为0时触发重新调度。仅TCP/UDP监听器支持。</p>
         # @type RescheduleTargetZeroWeight: Boolean
@@ -7798,10 +7798,10 @@ module TencentCloud
 
         attr_accessor :ListenerId, :Targets, :LocationId, :Domain, :Url, :Weight
         extend Gem::Deprecate
-        deprecate :Domain, :none, 2026, 2
-        deprecate :Domain=, :none, 2026, 2
-        deprecate :Url, :none, 2026, 2
-        deprecate :Url=, :none, 2026, 2
+        deprecate :Domain, :none, 2026, 3
+        deprecate :Domain=, :none, 2026, 3
+        deprecate :Url, :none, 2026, 3
+        deprecate :Url=, :none, 2026, 3
 
         def initialize(listenerid=nil, targets=nil, locationid=nil, domain=nil, url=nil, weight=nil)
           @ListenerId = listenerid
@@ -8911,8 +8911,8 @@ module TencentCloud
 
         attr_accessor :IP, :Port, :HealthStatus, :TargetId, :HealthStatusDetail, :HealthStatusDetial, :TargetGroupId, :Weight
         extend Gem::Deprecate
-        deprecate :HealthStatusDetial, :none, 2026, 2
-        deprecate :HealthStatusDetial=, :none, 2026, 2
+        deprecate :HealthStatusDetial, :none, 2026, 3
+        deprecate :HealthStatusDetial=, :none, 2026, 3
 
         def initialize(ip=nil, port=nil, healthstatus=nil, targetid=nil, healthstatusdetail=nil, healthstatusdetial=nil, targetgroupid=nil, weight=nil)
           @IP = ip

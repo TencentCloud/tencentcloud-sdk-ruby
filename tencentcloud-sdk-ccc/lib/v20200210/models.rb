@@ -3586,23 +3586,23 @@ module TencentCloud
 
       # DescribeFlashSMSList请求参数结构体
       class DescribeFlashSMSListRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param StartTimestamp: 起始时间戳，Unix 秒级时间戳，最大支持近180天。
+        # @param StartTimestamp: <p>起始时间戳，Unix 秒级时间戳，最大支持近180天。</p>
         # @type StartTimestamp: Integer
-        # @param EndTimestamp: 结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。
+        # @param EndTimestamp: <p>结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。</p>
         # @type EndTimestamp: Integer
-        # @param DeliveryNumber: 闪信投递号码（被叫号码）
+        # @param DeliveryNumber: <p>闪信投递号码（被叫号码）</p>
         # @type DeliveryNumber: String
-        # @param ServingNumber: 呼叫关联的系统号码
+        # @param ServingNumber: <p>呼叫关联的系统号码</p>
         # @type ServingNumber: String
-        # @param SessionId: 会话 ID
+        # @param SessionId: <p>会话 ID</p>
         # @type SessionId: String
-        # @param DeliveryStatus: 投递结果 1 为成功，其他为失败
+        # @param DeliveryStatus: <p>投递结果 1 为成功，其他为失败</p>
         # @type DeliveryStatus: Integer
-        # @param PageSize: 分页大小，默认 20，最大 100
+        # @param PageSize: <p>分页大小，默认 20，最大 1000</p><p>取值范围：[20, 1000]</p><p>单位：条</p><p>默认值：20</p>
         # @type PageSize: Integer
-        # @param PageNumber: 分页页码，从 0 开始
+        # @param PageNumber: <p>分页页码，从 0 开始</p>
         # @type PageNumber: Integer
 
         attr_accessor :SdkAppId, :StartTimestamp, :EndTimestamp, :DeliveryNumber, :ServingNumber, :SessionId, :DeliveryStatus, :PageSize, :PageNumber
@@ -3634,9 +3634,9 @@ module TencentCloud
 
       # DescribeFlashSMSList返回参数结构体
       class DescribeFlashSMSListResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 记录总数
+        # @param Total: <p>记录总数</p>
         # @type Total: Integer
-        # @param FlashSMSList: 闪信记录列表
+        # @param FlashSMSList: <p>闪信记录列表</p>
         # @type FlashSMSList: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4314,13 +4314,13 @@ module TencentCloud
 
       # DescribeSessionDetail请求参数结构体
       class DescribeSessionDetailRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
+        # @param SdkAppId: <p>应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc</p>
         # @type SdkAppId: Integer
-        # @param SessionId: 通话的 session id
+        # @param SessionId: <p>通话的 session id</p>
         # @type SessionId: String
-        # @param StartTimestamp: 起始时间戳，Unix 秒级时间戳，最大支持近180天。
+        # @param StartTimestamp: <p>起始时间戳，Unix 秒级时间戳，最大支持近180天。</p>
         # @type StartTimestamp: Integer
-        # @param EndTimestamp: 结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。
+        # @param EndTimestamp: <p>结束时间戳，Unix 秒级时间戳，结束时间与开始时间的区间范围小于90天。</p>
         # @type EndTimestamp: Integer
 
         attr_accessor :SdkAppId, :SessionId, :StartTimestamp, :EndTimestamp
@@ -4342,58 +4342,62 @@ module TencentCloud
 
       # DescribeSessionDetail返回参数结构体
       class DescribeSessionDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Caller: 主叫号码
+        # @param Caller: <p>主叫号码</p>
         # @type Caller: String
-        # @param Callee: 被叫号码
+        # @param Callee: <p>被叫号码</p>
         # @type Callee: String
-        # @param CallType: 通话类型 1 呼出 2 呼入 3 音频呼入 5 预测式外呼 6 内线呼叫
+        # @param CallType: <p>通话类型 1 呼出 2 呼入 3 音频呼入 5 预测式外呼 6 内线呼叫</p>
         # @type CallType: Integer
-        # @param StartTimeStamp: 开始时间戳，Unix 秒级时间戳
+        # @param StartTimeStamp: <p>开始时间戳，Unix 秒级时间戳</p>
         # @type StartTimeStamp: Integer
-        # @param RingTimestamp: 振铃时间戳，UNIX 秒级时间戳
+        # @param RingTimestamp: <p>振铃时间戳，UNIX 秒级时间戳</p>
         # @type RingTimestamp: Integer
-        # @param AcceptTimestamp: 接听时间戳，UNIX 秒级时间戳
+        # @param AcceptTimestamp: <p>接听时间戳，UNIX 秒级时间戳</p>
         # @type AcceptTimestamp: Integer
-        # @param EndedTimestamp: 结束时间戳，UNIX 秒级时间戳
+        # @param EndedTimestamp: <p>结束时间戳，UNIX 秒级时间戳</p>
         # @type EndedTimestamp: Integer
-        # @param QueuedTimestamp: 进入排队时间，Unix 秒级时间戳
+        # @param QueuedTimestamp: <p>进入排队时间，Unix 秒级时间戳</p>
         # @type QueuedTimestamp: Integer
-        # @param StaffUserId: 座席账号
+        # @param StaffUserId: <p>座席账号</p>
         # @type StaffUserId: String
-        # @param EndStatus: 参考 DescribeTelCdr 接口 EndStatus 字段
+        # @param EndStatus: <p>参考 DescribeTelCdr 接口 EndStatus 字段</p>
         # @type EndStatus: Integer
-        # @param QueuedSkillGroupId: 排队技能组 ID
+        # @param QueuedSkillGroupId: <p>排队技能组 ID</p>
         # @type QueuedSkillGroupId: Integer
-        # @param QueuedSkillGroupName: 排队技能组名称
+        # @param QueuedSkillGroupName: <p>排队技能组名称</p>
         # @type QueuedSkillGroupName: String
-        # @param RecordURL: 录音链接，带鉴权和有效期，获取之后请在24 小时内拉取，不要持久化此链接。如此链接已过期，请重新调用此接口获取新的链接
+        # @param RecordURL: <p>录音链接，带鉴权和有效期，获取之后请在24 小时内拉取，不要持久化此链接。如此链接已过期，请重新调用此接口获取新的链接</p>
         # @type RecordURL: String
-        # @param CustomRecordURL: 录音转存第三方 COS 链接
+        # @param CustomRecordURL: <p>录音转存第三方 COS 链接</p>
         # @type CustomRecordURL: String
-        # @param AsrURL: 录音文本信息链接，带鉴权和有效期，获取之后请在24 小时拉取，不要持久化此链接。如此链接已过期，请重新调用此接口获取新的链接
+        # @param AsrURL: <p>录音文本信息链接，带鉴权和有效期，获取之后请在24 小时拉取，不要持久化此链接。如此链接已过期，请重新调用此接口获取新的链接</p>
         # @type AsrURL: String
-        # @param VoicemailRecordURL: 语音留言录音链接
+        # @param VoicemailRecordURL: <p>语音留言录音链接</p>
         # @type VoicemailRecordURL: Array
-        # @param VoicemailAsrURL: 语音留言录音文本信息链接，需在控制台购买离线语音识别套餐包并开启离线语音识别开关
+        # @param VoicemailAsrURL: <p>语音留言录音文本信息链接，需在控制台购买离线语音识别套餐包并开启离线语音识别开关</p>
         # @type VoicemailAsrURL: Array
-        # @param IVRKeyPressed: IVR 按键信息
+        # @param IVRKeyPressed: <p>IVR 按键信息</p>
         # @type IVRKeyPressed: Array
-        # @param PostIVRKeyPressed: 满意度按键信息
+        # @param PostIVRKeyPressed: <p>满意度按键信息</p>
         # @type PostIVRKeyPressed: Array
-        # @param HungUpSide: 挂机方 seat 座席 user 用户 system 系统
+        # @param HungUpSide: <p>挂机方 seat 座席 user 用户 system 系统</p>
         # @type HungUpSide: String
-        # @param UUI: 客户自定义数据（User-to-User Interface）
+        # @param UUI: <p>客户自定义数据（User-to-User Interface）</p>
         # @type UUI: String
-        # @param Events: 通话中的事件列表
+        # @param Events: <p>通话中的事件列表</p>
         # @type Events: Array
-        # @param ServeParticipants: 服务参与者列表
+        # @param ServeParticipants: <p>服务参与者列表</p>
         # @type ServeParticipants: Array
+        # @param SysHangupReason: <p>接通后系统挂断原因状态码</p><p><a href="https://cloud.tencent.com/document/product/679/123938">详见</a></p>
+        # @type SysHangupReason: Integer
+        # @param SysHangupReasonString: <p>接通后系统挂断原因</p><p><a href="https://cloud.tencent.com/document/product/679/123938">详见</a></p>
+        # @type SysHangupReasonString: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Caller, :Callee, :CallType, :StartTimeStamp, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :QueuedTimestamp, :StaffUserId, :EndStatus, :QueuedSkillGroupId, :QueuedSkillGroupName, :RecordURL, :CustomRecordURL, :AsrURL, :VoicemailRecordURL, :VoicemailAsrURL, :IVRKeyPressed, :PostIVRKeyPressed, :HungUpSide, :UUI, :Events, :ServeParticipants, :RequestId
+        attr_accessor :Caller, :Callee, :CallType, :StartTimeStamp, :RingTimestamp, :AcceptTimestamp, :EndedTimestamp, :QueuedTimestamp, :StaffUserId, :EndStatus, :QueuedSkillGroupId, :QueuedSkillGroupName, :RecordURL, :CustomRecordURL, :AsrURL, :VoicemailRecordURL, :VoicemailAsrURL, :IVRKeyPressed, :PostIVRKeyPressed, :HungUpSide, :UUI, :Events, :ServeParticipants, :SysHangupReason, :SysHangupReasonString, :RequestId
 
-        def initialize(caller=nil, callee=nil, calltype=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, queuedtimestamp=nil, staffuserid=nil, endstatus=nil, queuedskillgroupid=nil, queuedskillgroupname=nil, recordurl=nil, customrecordurl=nil, asrurl=nil, voicemailrecordurl=nil, voicemailasrurl=nil, ivrkeypressed=nil, postivrkeypressed=nil, hungupside=nil, uui=nil, events=nil, serveparticipants=nil, requestid=nil)
+        def initialize(caller=nil, callee=nil, calltype=nil, starttimestamp=nil, ringtimestamp=nil, accepttimestamp=nil, endedtimestamp=nil, queuedtimestamp=nil, staffuserid=nil, endstatus=nil, queuedskillgroupid=nil, queuedskillgroupname=nil, recordurl=nil, customrecordurl=nil, asrurl=nil, voicemailrecordurl=nil, voicemailasrurl=nil, ivrkeypressed=nil, postivrkeypressed=nil, hungupside=nil, uui=nil, events=nil, serveparticipants=nil, syshangupreason=nil, syshangupreasonstring=nil, requestid=nil)
           @Caller = caller
           @Callee = callee
           @CallType = calltype
@@ -4417,6 +4421,8 @@ module TencentCloud
           @UUI = uui
           @Events = events
           @ServeParticipants = serveparticipants
+          @SysHangupReason = syshangupreason
+          @SysHangupReasonString = syshangupreasonstring
           @RequestId = requestid
         end
 
@@ -4472,6 +4478,8 @@ module TencentCloud
               @ServeParticipants << serveparticipant_tmp
             end
           end
+          @SysHangupReason = params['SysHangupReason']
+          @SysHangupReasonString = params['SysHangupReasonString']
           @RequestId = params['RequestId']
         end
       end

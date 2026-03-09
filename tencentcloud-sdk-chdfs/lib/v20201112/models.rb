@@ -1424,11 +1424,11 @@ module TencentCloud
 
       # ModifyMountPoint请求参数结构体
       class ModifyMountPointRequest < TencentCloud::Common::AbstractModel
-        # @param MountPointId: 挂载点ID
+        # @param MountPointId: <p>挂载点ID</p>
         # @type MountPointId: String
-        # @param MountPointName: 挂载点名称
+        # @param MountPointName: <p>挂载点名称</p>
         # @type MountPointName: String
-        # @param MountPointStatus: 挂载点状态
+        # @param MountPointStatus: <p>挂载点状态</p><p>枚举值：</p><ul><li>1： 打开</li><li>2： 关闭</li></ul>
         # @type MountPointStatus: Integer
 
         attr_accessor :MountPointId, :MountPointName, :MountPointStatus

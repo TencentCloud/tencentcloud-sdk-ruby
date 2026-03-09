@@ -195,27 +195,27 @@ module TencentCloud
 
       # 验证码统计图Obj
       class CaptchaStatisticObj < TencentCloud::Common::AbstractModel
-        # @param ActionTotal: 请求总量
+        # @param ActionTotal: <p>请求总量</p>
         # @type ActionTotal: Integer
-        # @param VerifyTotal: 验证总量
+        # @param VerifyTotal: <p>验证总量</p>
         # @type VerifyTotal: Integer
-        # @param VerifyThroughTotal: 验证通过总量
+        # @param VerifyThroughTotal: <p>验证通过总量</p>
         # @type VerifyThroughTotal: Integer
-        # @param VerifyInterceptTotal: 验证拦截总量
+        # @param VerifyInterceptTotal: <p>验证拦截总量</p>
         # @type VerifyInterceptTotal: Integer
-        # @param TicketTotal: 票据校验总量
+        # @param TicketTotal: <p>票据校验总量</p>
         # @type TicketTotal: Integer
-        # @param TicketThroughTotal: 票据通过总量
+        # @param TicketThroughTotal: <p>票据通过总量</p>
         # @type TicketThroughTotal: Integer
-        # @param TicketInterceptTotal: 票据拦截总量
+        # @param TicketInterceptTotal: <p>票据拦截总量</p>
         # @type TicketInterceptTotal: Integer
-        # @param RequestTrend: 请求趋势图
+        # @param RequestTrend: <p>请求趋势图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestTrend: Array
-        # @param InterceptPerTrend: 拦截率趋势图
+        # @param InterceptPerTrend: <p>拦截率趋势图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InterceptPerTrend: Array
-        # @param TicketCheckTrend: 票据校验趋势图
+        # @param TicketCheckTrend: <p>票据校验趋势图</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TicketCheckTrend: Array
 
@@ -1346,13 +1346,13 @@ module TencentCloud
 
       # GetRequestStatistics请求参数结构体
       class GetRequestStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param CaptchaAppId: 验证码AppId
+        # @param CaptchaAppId: <p>验证码AppId</p>
         # @type CaptchaAppId: String
-        # @param StartTimeStr: 开始时间字符串
+        # @param StartTimeStr: <p>开始时间字符串</p>
         # @type StartTimeStr: String
-        # @param EndTimeStr: 结束时间字符串
+        # @param EndTimeStr: <p>结束时间字符串</p>
         # @type EndTimeStr: String
-        # @param Dimension: 查询粒度
+        # @param Dimension: <p>查询粒度</p>
         # @type Dimension: String
 
         attr_accessor :CaptchaAppId, :StartTimeStr, :EndTimeStr, :Dimension
@@ -1374,12 +1374,12 @@ module TencentCloud
 
       # GetRequestStatistics返回参数结构体
       class GetRequestStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询后数据块
+        # @param Data: <p>查询后数据块</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
-        # @param CaptchaCode: 验证码返回码
+        # @param CaptchaCode: <p>验证码返回码</p>
         # @type CaptchaCode: Integer
-        # @param CaptchaMsg: 验证码返回信息
+        # @param CaptchaMsg: <p>验证码返回信息</p>
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1466,11 +1466,11 @@ module TencentCloud
 
       # GetTotalRequestStatistics请求参数结构体
       class GetTotalRequestStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStr: 开始时间字符串
+        # @param StartTimeStr: <p>开始时间字符串</p>
         # @type StartTimeStr: String
-        # @param EndTimeStr: 结束时间字符串
+        # @param EndTimeStr: <p>结束时间字符串</p>
         # @type EndTimeStr: String
-        # @param Dimension: 查询粒度
+        # @param Dimension: <p>查询粒度</p>
         # @type Dimension: String
 
         attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
@@ -1490,12 +1490,12 @@ module TencentCloud
 
       # GetTotalRequestStatistics返回参数结构体
       class GetTotalRequestStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 查询后数据块
+        # @param Data: <p>查询后数据块</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
-        # @param CaptchaCode: 验证码返回码
+        # @param CaptchaCode: <p>验证码返回码</p>
         # @type CaptchaCode: Integer
-        # @param CaptchaMsg: 验证码返回信息
+        # @param CaptchaMsg: <p>验证码返回信息</p>
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1522,14 +1522,11 @@ module TencentCloud
 
       # GetTotalTicketStatistics请求参数结构体
       class GetTotalTicketStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param StartTimeStr: 开始时间
+        # @param StartTimeStr: <p>开始时间</p>
         # @type StartTimeStr: String
-        # @param EndTimeStr: 结束时间
+        # @param EndTimeStr: <p>结束时间</p>
         # @type EndTimeStr: String
-        # @param Dimension: 查询粒度
-        # 分钟：“1”
-        # 小时：“2”
-        # 天：“3”
+        # @param Dimension: <p>查询粒度<br>分钟：“1”<br>小时：“2”<br>天：“3”</p>
         # @type Dimension: String
 
         attr_accessor :StartTimeStr, :EndTimeStr, :Dimension
@@ -1549,12 +1546,12 @@ module TencentCloud
 
       # GetTotalTicketStatistics返回参数结构体
       class GetTotalTicketStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 返回数据
+        # @param Data: <p>返回数据</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Data: :class:`Tencentcloud::Captcha.v20190722.models.CaptchaStatisticObj`
-        # @param CaptchaCode: 返回码
+        # @param CaptchaCode: <p>返回码</p>
         # @type CaptchaCode: Integer
-        # @param CaptchaMsg: 返回信息
+        # @param CaptchaMsg: <p>返回信息</p>
         # @type CaptchaMsg: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

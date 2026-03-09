@@ -99,43 +99,43 @@ module TencentCloud
 
       # 命令详情。
       class Command < TencentCloud::Common::AbstractModel
-        # @param CommandId: 命令ID。
+        # @param CommandId: <p>命令ID。</p>
         # @type CommandId: String
-        # @param CommandName: 命令名称。
+        # @param CommandName: <p>命令名称。</p>
         # @type CommandName: String
-        # @param Description: 命令描述。
+        # @param Description: <p>命令描述。</p>
         # @type Description: String
-        # @param Content: Base64编码后的命令内容。
+        # @param Content: <p>Base64编码后的命令内容。</p>
         # @type Content: String
-        # @param CommandType: 命令类型。取值为 SHELL、POWERSHELL、BAT 之一。
+        # @param CommandType: <p>命令类型。取值为 SHELL、POWERSHELL、BAT 之一。</p>
         # @type CommandType: String
-        # @param WorkingDirectory: 命令执行路径。
+        # @param WorkingDirectory: <p>命令执行路径。</p>
         # @type WorkingDirectory: String
-        # @param Timeout: 命令超时时间。
+        # @param Timeout: <p>命令超时时间。</p><p>单位：秒</p><p>指定 OutputCOSBucketUrl 参数时，超时时间将包含命令输出上传 COS 的耗时</p>
         # @type Timeout: Integer
-        # @param CreatedTime: 命令创建时间。格式为：YYYY-MM-DDThh:mm:ssZ
+        # @param CreatedTime: <p>命令创建时间。格式为：YYYY-MM-DDThh:mm:ssZ</p>
         # @type CreatedTime: String
-        # @param UpdatedTime: 命令更新时间。格式为：YYYY-MM-DDThh:mm:ssZ
+        # @param UpdatedTime: <p>命令更新时间。格式为：YYYY-MM-DDThh:mm:ssZ</p>
         # @type UpdatedTime: String
-        # @param EnableParameter: 是否启用自定义参数功能。
+        # @param EnableParameter: <p>是否启用自定义参数功能。</p>
         # @type EnableParameter: Boolean
-        # @param DefaultParameters: 自定义参数的默认取值。
+        # @param DefaultParameters: <p>自定义参数的默认取值。</p>
         # @type DefaultParameters: String
-        # @param DefaultParameterConfs: 自定义参数的默认取值。
+        # @param DefaultParameterConfs: <p>自定义参数的默认取值。</p>
         # @type DefaultParameterConfs: Array
-        # @param Scenes: 命令关联的场景
+        # @param Scenes: <p>命令关联的场景</p>
         # @type Scenes: Array
-        # @param FormattedDescription: 命令的结构化描述。公共命令有值，用户命令为空字符串。
+        # @param FormattedDescription: <p>命令的结构化描述。公共命令有值，用户命令为空字符串。</p>
         # @type FormattedDescription: String
-        # @param CreatedBy: 命令创建者。TAT 代表公共命令，USER 代表个人命令。
+        # @param CreatedBy: <p>命令创建者。</p><p>枚举值：</p><ul><li>TAT： 公共命令</li><li>USER： 个人创建的命令</li></ul>
         # @type CreatedBy: String
-        # @param Tags: 命令关联的标签列表。
+        # @param Tags: <p>命令关联的标签列表。</p>
         # @type Tags: Array
-        # @param Username: 在实例上执行命令的用户名。
+        # @param Username: <p>在实例上执行命令的用户名。</p>
         # @type Username: String
-        # @param OutputCOSBucketUrl: 日志上传的cos bucket 地址。
+        # @param OutputCOSBucketUrl: <p>日志上传的cos bucket 地址。</p>
         # @type OutputCOSBucketUrl: String
-        # @param OutputCOSKeyPrefix: 日志在cos bucket中的目录。
+        # @param OutputCOSKeyPrefix: <p>日志在cos bucket中的目录。</p>
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :CreatedTime, :UpdatedTime, :EnableParameter, :DefaultParameters, :DefaultParameterConfs, :Scenes, :FormattedDescription, :CreatedBy, :Tags, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix
@@ -2079,42 +2079,29 @@ module TencentCloud
 
       # ModifyCommand请求参数结构体
       class ModifyCommandRequest < TencentCloud::Common::AbstractModel
-        # @param CommandId: 命令ID。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取。
+        # @param CommandId: <p>命令ID。可通过 <a href="https://cloud.tencent.com/document/api/1340/52681">DescribeCommands(查询命令详情)</a> 接口获取。</p>
         # @type CommandId: String
-        # @param CommandName: 命令名称。名称仅支持中文、英文、数字、下划线、分隔符"-"、小数点，最大长度不能超60个字节。
+        # @param CommandName: <p>命令名称。名称仅支持中文、英文、数字、下划线、分隔符&quot;-&quot;、小数点，最大长度不能超60个字节。</p>
         # @type CommandName: String
-        # @param Description: 命令描述。不超过120字符。
+        # @param Description: <p>命令描述。不超过120字符。</p>
         # @type Description: String
-        # @param Content: Base64编码后的命令内容，长度不可超过64KB。
+        # @param Content: <p>Base64编码后的命令内容，长度不可超过64KB。</p>
         # @type Content: String
-        # @param CommandType: 命令类型，目前支持取值：SHELL、POWERSHELL、BAT。
+        # @param CommandType: <p>命令类型，目前支持取值：SHELL、POWERSHELL、BAT。</p>
         # @type CommandType: String
-        # @param WorkingDirectory: 命令执行路径。
+        # @param WorkingDirectory: <p>命令执行路径。</p>
         # @type WorkingDirectory: String
-        # @param Timeout: 命令超时时间。取值范围[1, 86400]。
+        # @param Timeout: <p>命令超时时间。</p><p>取值范围：[1, 86400]</p><p>单位：秒</p><p>默认值：60</p><p>指定 OutputCOSBucketUrl 参数时，超时时间将包含命令输出上传 COS 的耗时</p>
         # @type Timeout: Integer
-        # @param DefaultParameters: 启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{"varA": "222"}。
-        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
-        # 采取整体全覆盖式修改，即修改时必须提供所有新默认值。
-        # 仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
-        # key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。
-        # 自定义参数最多20个。
-        # 自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。
+        # @param DefaultParameters: <p>启用自定义参数功能时，自定义参数的默认取值。字段类型为json encoded string。如：{&quot;varA&quot;: &quot;222&quot;}。<br>参数不支持同时指定 <code>DefaultParameters</code> 和 <code>DefaultParameterConfs</code> 。<br>采取整体全覆盖式修改，即修改时必须提供所有新默认值。<br>仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 <a href="https://cloud.tencent.com/document/api/1340/52681">DescribeCommands(查询命令详情)</a> 接口获取命令的 EnableParameter 设置。<br>key为自定义参数名称，value为该参数的默认取值。kv均为字符串型。<br>自定义参数最多20个。<br>自定义参数名称需符合以下规范：字符数目上限64，可选范围【a-zA-Z0-9-_】。</p>
         # @type DefaultParameters: String
-        # @param DefaultParameterConfs: 自定义参数数组。如果 InvokeCommand 时未提供参数取值，将使用这里的默认值进行替换。
-        # 参数不支持同时指定 `DefaultParameters` 和 `DefaultParameterConfs` 。
-        # 仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 [DescribeCommands(查询命令详情)](https://cloud.tencent.com/document/api/1340/52681) 接口获取命令的 EnableParameter 设置。
-        # 自定义参数最多20个。
+        # @param DefaultParameterConfs: <p>自定义参数数组。如果 InvokeCommand 时未提供参数取值，将使用这里的默认值进行替换。<br>参数不支持同时指定 <code>DefaultParameters</code> 和 <code>DefaultParameterConfs</code> 。<br>仅在命令的 EnableParameter 为 true 时，才允许修改此参数。可通过 <a href="https://cloud.tencent.com/document/api/1340/52681">DescribeCommands(查询命令详情)</a> 接口获取命令的 EnableParameter 设置。<br>自定义参数最多20个。</p>
         # @type DefaultParameterConfs: Array
-        # @param Username: 在 CVM 或 Lighthouse 实例中执行命令的用户名称。
-        # 使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。
+        # @param Username: <p>在 CVM 或 Lighthouse 实例中执行命令的用户名称。<br>使用最小权限执行命令是权限管理的最佳实践，建议您以普通用户身份执行云助手命令。</p>
         # @type Username: String
-        # @param OutputCOSBucketUrl: 指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。
+        # @param OutputCOSBucketUrl: <p>指定日志上传的cos bucket 地址，必须以https开头，如 https://BucketName-123454321.cos.ap-beijing.myqcloud.com。</p>
         # @type OutputCOSBucketUrl: String
-        # @param OutputCOSKeyPrefix: 指定日志在cos bucket中的目录，目录命名有如下规则：
-        # 1. 可用数字、中英文和可见字符的组合，长度最多为60。
-        # 2. 用 / 分割路径，可快速创建子目录。
-        # 3. 不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。
+        # @param OutputCOSKeyPrefix: <p>指定日志在cos bucket中的目录，目录命名有如下规则：</p><ol><li>可用数字、中英文和可见字符的组合，长度最多为60。</li><li>用 / 分割路径，可快速创建子目录。</li><li>不允许连续 / ；不允许以 / 开头；不允许以..作为文件夹名称。</li></ol>
         # @type OutputCOSKeyPrefix: String
 
         attr_accessor :CommandId, :CommandName, :Description, :Content, :CommandType, :WorkingDirectory, :Timeout, :DefaultParameters, :DefaultParameterConfs, :Username, :OutputCOSBucketUrl, :OutputCOSKeyPrefix

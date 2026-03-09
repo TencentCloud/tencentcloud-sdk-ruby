@@ -147,6 +147,62 @@ module TencentCloud
         end
       end
 
+      # AddApplication请求参数结构体
+      class AddApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param MpApplicationName: 新建应用的应用名
+        # @type MpApplicationName: String
+        # @param Remark: 新建设备的备注
+        # @type Remark: String
+        # @param MpApplicationKey: 新建应用的base64密钥字符串，非必选，如果不填写则由系统自动生成
+        # @type MpApplicationKey: String
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
+
+        attr_accessor :MpApplicationName, :Remark, :MpApplicationKey, :AccessScope
+
+        def initialize(mpapplicationname=nil, remark=nil, mpapplicationkey=nil, accessscope=nil)
+          @MpApplicationName = mpapplicationname
+          @Remark = remark
+          @MpApplicationKey = mpapplicationkey
+          @AccessScope = accessscope
+        end
+
+        def deserialize(params)
+          @MpApplicationName = params['MpApplicationName']
+          @Remark = params['Remark']
+          @MpApplicationKey = params['MpApplicationKey']
+          @AccessScope = params['AccessScope']
+        end
+      end
+
+      # AddApplication返回参数结构体
+      class AddApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param MpApplicationId: 应用ID
+        # @type MpApplicationId: String
+        # @param MpApplicationKey: 经过加密算法加密后的base64格式密钥
+        # @type MpApplicationKey: String
+        # @param MpApplicationName: 应用名
+        # @type MpApplicationName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MpApplicationId, :MpApplicationKey, :MpApplicationName, :RequestId
+
+        def initialize(mpapplicationid=nil, mpapplicationkey=nil, mpapplicationname=nil, requestid=nil)
+          @MpApplicationId = mpapplicationid
+          @MpApplicationKey = mpapplicationkey
+          @MpApplicationName = mpapplicationname
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MpApplicationId = params['MpApplicationId']
+          @MpApplicationKey = params['MpApplicationKey']
+          @MpApplicationName = params['MpApplicationName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # AddDevice请求参数结构体
       class AddDeviceRequest < TencentCloud::Common::AbstractModel
         # @param DeviceName: 新建设备的名称
@@ -401,6 +457,61 @@ module TencentCloud
 
         def deserialize(params)
           @EncryptedKey = params['EncryptedKey']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 应用id列表
+      class DelApplicationList < TencentCloud::Common::AbstractModel
+        # @param MpApplicationId: 应用id
+        # @type MpApplicationId: String
+
+        attr_accessor :MpApplicationId
+
+        def initialize(mpapplicationid=nil)
+          @MpApplicationId = mpapplicationid
+        end
+
+        def deserialize(params)
+          @MpApplicationId = params['MpApplicationId']
+        end
+      end
+
+      # DeleteApplication请求参数结构体
+      class DeleteApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param MpApplicationIdList: 应用id列表
+        # @type MpApplicationIdList: Array
+
+        attr_accessor :MpApplicationIdList
+
+        def initialize(mpapplicationidlist=nil)
+          @MpApplicationIdList = mpapplicationidlist
+        end
+
+        def deserialize(params)
+          unless params['MpApplicationIdList'].nil?
+            @MpApplicationIdList = []
+            params['MpApplicationIdList'].each do |i|
+              delapplicationlist_tmp = DelApplicationList.new
+              delapplicationlist_tmp.deserialize(i)
+              @MpApplicationIdList << delapplicationlist_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteApplication返回参数结构体
+      class DeleteApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -1001,6 +1112,58 @@ module TencentCloud
           @DevGroup = params['DevGroup']
           @LicenseType = params['LicenseType']
           @AppId = params['AppId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetApplication请求参数结构体
+      class GetApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param MpApplicationId: 应用id
+        # @type MpApplicationId: String
+
+        attr_accessor :MpApplicationId
+
+        def initialize(mpapplicationid=nil)
+          @MpApplicationId = mpapplicationid
+        end
+
+        def deserialize(params)
+          @MpApplicationId = params['MpApplicationId']
+        end
+      end
+
+      # GetApplication返回参数结构体
+      class GetApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param MpApplicationId: 应用ID
+        # @type MpApplicationId: String
+        # @param MpApplicationKey: 经过加密算法加密后的base64格式密钥
+        # @type MpApplicationKey: String
+        # @param MpApplicationName: 应用名
+        # @type MpApplicationName: String
+        # @param Remark: 设备的备注
+        # @type Remark: String
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :MpApplicationId, :MpApplicationKey, :MpApplicationName, :Remark, :AccessScope, :RequestId
+
+        def initialize(mpapplicationid=nil, mpapplicationkey=nil, mpapplicationname=nil, remark=nil, accessscope=nil, requestid=nil)
+          @MpApplicationId = mpapplicationid
+          @MpApplicationKey = mpapplicationkey
+          @MpApplicationName = mpapplicationname
+          @Remark = remark
+          @AccessScope = accessscope
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @MpApplicationId = params['MpApplicationId']
+          @MpApplicationKey = params['MpApplicationKey']
+          @MpApplicationName = params['MpApplicationName']
+          @Remark = params['Remark']
+          @AccessScope = params['AccessScope']
           @RequestId = params['RequestId']
         end
       end
@@ -2995,6 +3158,86 @@ module TencentCloud
           @NetInfoName = params['NetInfoName']
           @PublicIP = params['PublicIP']
           @Current = params['Current']
+        end
+      end
+
+      # UpdateApplicationInfo请求参数结构体
+      class UpdateApplicationInfoRequest < TencentCloud::Common::AbstractModel
+        # @param MpApplicationId: 应用ID
+        # @type MpApplicationId: String
+        # @param MpApplicationName: 新建应用的应用名
+        # @type MpApplicationName: String
+        # @param Remark: 新建设备的备注
+        # @type Remark: String
+        # @param AccessScope: 接入环境。0：公有云网关；1：自有网关；2：公有云网关和自有网关。不填默认公有云网关。 具体含义： 公有云网关：即该设备只能接入公有云网关（就近接入） 自有网关：即该设备只能接入已经注册上线的自有网关（就近接入或固定ip接入） 公有云网关和自有网关：即该设备同时可以接入公有云网关和已经注册上线的自有网关（就近接入或固定ip接入）
+        # @type AccessScope: Integer
+
+        attr_accessor :MpApplicationId, :MpApplicationName, :Remark, :AccessScope
+
+        def initialize(mpapplicationid=nil, mpapplicationname=nil, remark=nil, accessscope=nil)
+          @MpApplicationId = mpapplicationid
+          @MpApplicationName = mpapplicationname
+          @Remark = remark
+          @AccessScope = accessscope
+        end
+
+        def deserialize(params)
+          @MpApplicationId = params['MpApplicationId']
+          @MpApplicationName = params['MpApplicationName']
+          @Remark = params['Remark']
+          @AccessScope = params['AccessScope']
+        end
+      end
+
+      # UpdateApplicationInfo返回参数结构体
+      class UpdateApplicationInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # UpdateApplicationKey请求参数结构体
+      class UpdateApplicationKeyRequest < TencentCloud::Common::AbstractModel
+        # @param MpApplicationKey: 应用的base64密钥字符串
+        # @type MpApplicationKey: String
+        # @param MpApplicationId: 应用ID
+        # @type MpApplicationId: String
+
+        attr_accessor :MpApplicationKey, :MpApplicationId
+
+        def initialize(mpapplicationkey=nil, mpapplicationid=nil)
+          @MpApplicationKey = mpapplicationkey
+          @MpApplicationId = mpapplicationid
+        end
+
+        def deserialize(params)
+          @MpApplicationKey = params['MpApplicationKey']
+          @MpApplicationId = params['MpApplicationId']
+        end
+      end
+
+      # UpdateApplicationKey返回参数结构体
+      class UpdateApplicationKeyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

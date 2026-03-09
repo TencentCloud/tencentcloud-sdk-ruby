@@ -780,6 +780,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建网络应用
+
+        # @param request: Request instance for CreateNetworkApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::CreateNetworkApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::CreateNetworkApplicationResponse`
+        def CreateNetworkApplication(request)
+          body = send_request('CreateNetworkApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateNetworkApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建通知内容。
 
         # @param request: Request instance for CreateNoticeContent.
@@ -1540,6 +1564,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteMetricSubscribeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除网络应用
+
+        # @param request: Request instance for DeleteNetworkApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DeleteNetworkApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DeleteNetworkApplicationResponse`
+        def DeleteNetworkApplication(request)
+          body = send_request('DeleteNetworkApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteNetworkApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2683,6 +2731,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取网络应用详情
+
+        # @param request: Request instance for DescribeNetworkApplicationDetail.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeNetworkApplicationDetailRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeNetworkApplicationDetailResponse`
+        def DescribeNetworkApplicationDetail(request)
+          body = send_request('DescribeNetworkApplicationDetail', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNetworkApplicationDetailResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取网络应用列表
+
+        # @param request: Request instance for DescribeNetworkApplications.
+        # @type request: :class:`Tencentcloud::cls::V20201016::DescribeNetworkApplicationsRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::DescribeNetworkApplicationsResponse`
+        def DescribeNetworkApplications(request)
+          body = send_request('DescribeNetworkApplications', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeNetworkApplicationsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取通知内容列表
 
         # @param request: Request instance for DescribeNoticeContents.
@@ -3630,6 +3726,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyMetricSubscribeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改网络应用
+
+        # @param request: Request instance for ModifyNetworkApplication.
+        # @type request: :class:`Tencentcloud::cls::V20201016::ModifyNetworkApplicationRequest`
+        # @rtype: :class:`Tencentcloud::cls::V20201016::ModifyNetworkApplicationResponse`
+        def ModifyNetworkApplication(request)
+          body = send_request('ModifyNetworkApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyNetworkApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else

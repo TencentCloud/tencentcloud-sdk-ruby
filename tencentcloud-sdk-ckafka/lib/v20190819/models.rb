@@ -391,13 +391,13 @@ module TencentCloud
 
       # BatchModifyGroupOffsets请求参数结构体
       class BatchModifyGroupOffsetsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupName: 消费分组名称
+        # @param GroupName: <p>消费分组名称</p>
         # @type GroupName: String
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param Partitions: partition信息
+        # @param Partitions: <p>partition信息</p>
         # @type Partitions: Array
-        # @param TopicName: 指定topic，默认所有topic
+        # @param TopicName: <p>指定topic，默认所有topic</p>
         # @type TopicName: Array
 
         attr_accessor :GroupName, :InstanceId, :Partitions, :TopicName
@@ -426,7 +426,7 @@ module TencentCloud
 
       # BatchModifyGroupOffsets返回参数结构体
       class BatchModifyGroupOffsetsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1761,8 +1761,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2025, 12
-        deprecate :PrivateLinkParam=, :none, 2025, 12
+        deprecate :PrivateLinkParam, :none, 2026, 3
+        deprecate :PrivateLinkParam=, :none, 2026, 3
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -1922,22 +1922,25 @@ module TencentCloud
 
       # 创建后付费接口返回的 Data 数据结构
       class CreateInstancePostData < TencentCloud::Common::AbstractModel
-        # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
+        # @param FlowId: <p>CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。</p>
         # @type FlowId: Integer
-        # @param DealNames: 订单号列表
+        # @param DealNames: <p>订单号列表</p>
         # @type DealNames: Array
-        # @param InstanceId: ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        # @param InstanceId: <p>ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id</p>
         # @type InstanceId: String
-        # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
+        # @param DealNameInstanceIdMapping: <p>订单和购买实例对应映射列表</p>
         # @type DealNameInstanceIdMapping: Array
+        # @param EventId: <p>CAM鉴权返回的eventId</p>
+        # @type EventId: String
 
-        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping
+        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping, :EventId
 
-        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil)
+        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil, eventid=nil)
           @FlowId = flowid
           @DealNames = dealnames
           @InstanceId = instanceid
           @DealNameInstanceIdMapping = dealnameinstanceidmapping
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -1952,6 +1955,7 @@ module TencentCloud
               @DealNameInstanceIdMapping << dealinstancedto_tmp
             end
           end
+          @EventId = params['EventId']
         end
       end
 
@@ -1984,22 +1988,25 @@ module TencentCloud
 
       # 创建预付费接口返回的Data
       class CreateInstancePreData < TencentCloud::Common::AbstractModel
-        # @param FlowId: CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。
+        # @param FlowId: <p>CreateInstancePre返回固定为0，不能作为CheckTaskStatus的查询条件。只是为了保证和后台数据结构对齐。</p>
         # @type FlowId: Integer
-        # @param DealNames: 订单号列表
+        # @param DealNames: <p>订单号列表</p>
         # @type DealNames: Array
-        # @param InstanceId: ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id
+        # @param InstanceId: <p>ckafka集群实例Id，当购买多个实例时，默认返回购买的第一个实例 id</p>
         # @type InstanceId: String
-        # @param DealNameInstanceIdMapping: 订单和购买实例对应映射列表
+        # @param DealNameInstanceIdMapping: <p>订单和购买实例对应映射列表</p>
         # @type DealNameInstanceIdMapping: Array
+        # @param EventId: <p>CAM鉴权返回的eventId</p>
+        # @type EventId: String
 
-        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping
+        attr_accessor :FlowId, :DealNames, :InstanceId, :DealNameInstanceIdMapping, :EventId
 
-        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil)
+        def initialize(flowid=nil, dealnames=nil, instanceid=nil, dealnameinstanceidmapping=nil, eventid=nil)
           @FlowId = flowid
           @DealNames = dealnames
           @InstanceId = instanceid
           @DealNameInstanceIdMapping = dealnameinstanceidmapping
+          @EventId = eventid
         end
 
         def deserialize(params)
@@ -2014,6 +2021,7 @@ module TencentCloud
               @DealNameInstanceIdMapping << dealinstancedto_tmp
             end
           end
+          @EventId = params['EventId']
         end
       end
 
@@ -2142,8 +2150,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2025, 12
-        deprecate :DeleteRouteTimestamp=, :none, 2025, 12
+        deprecate :DeleteRouteTimestamp, :none, 2026, 3
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 3
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -2574,41 +2582,41 @@ module TencentCloud
 
       # CreateTopic请求参数结构体
       class CreateTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例Id，可通过DescribeInstances接口获取。
+        # @param InstanceId: <p>实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param TopicName: 只能包含字母、数字、下划线、“-”、“.”
+        # @param TopicName: <p>只能包含字母、数字、下划线、“-”、“.”</p>
         # @type TopicName: String
-        # @param PartitionNum: Partition个数，大于0
+        # @param PartitionNum: <p>Partition个数，大于0</p>
         # @type PartitionNum: Integer
-        # @param ReplicaNum: 副本个数，不能多于 broker 数，最大为3
+        # @param ReplicaNum: <p>副本个数，不能多于 broker 数，最大为3</p>
         # @type ReplicaNum: Integer
-        # @param EnableWhiteList: ip白名单开关, 1:打开  0:关闭，默认不打开
+        # @param EnableWhiteList: <p>ip白名单开关, 1:打开  0:关闭，默认不打开</p>
         # @type EnableWhiteList: Integer
-        # @param IpWhiteList: Ip白名单列表，配额限制，enableWhileList=1时必选
+        # @param IpWhiteList: <p>Ip白名单列表，配额限制，enableWhileList=1时必选</p>
         # @type IpWhiteList: Array
-        # @param CleanUpPolicy: 清理日志策略，日志清理模式，默认为"delete"。"delete"：日志按保存时间删除，"compact"：日志按 key 压缩，"compact, delete"：日志按 key 压缩且会按保存时间删除。
+        # @param CleanUpPolicy: <p>清理日志策略，日志清理模式，默认为&quot;delete&quot;。&quot;delete&quot;：日志按保存时间删除，&quot;compact&quot;：日志按 key 压缩，&quot;compact, delete&quot;：日志按 key 压缩且会按保存时间删除。</p>
         # @type CleanUpPolicy: String
-        # @param Note: 主题备注，是一个不超过 64 个字符的字符串，可以用字母和数字为首字符，剩余部分可以包含字母、数字和横划线(-)
+        # @param Note: <p>主题备注</p><p>入参限制：不超过 64 个字符</p>
         # @type Note: String
-        # @param MinInsyncReplicas: 最小同步副本数，默认为1
+        # @param MinInsyncReplicas: <p>最小同步副本数</p><p>默认值：1</p><p>最小值为1</p>
         # @type MinInsyncReplicas: Integer
-        # @param UncleanLeaderElectionEnable: 是否允许未同步的副本选为leader，0:不允许，1:允许，默认不允许
+        # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为leader，0:不允许，1:允许，默认不允许</p>
         # @type UncleanLeaderElectionEnable: Integer
-        # @param RetentionMs: 可选参数。消息保留时间，单位ms，当前最小值为60000。默认值为7200000ms（2小时），最大值为7776000000 ms（90天）。
+        # @param RetentionMs: <p>可选参数，消息保留时间</p><p>取值范围：[60000, 7776000000]</p><p>单位：毫秒</p><p>默认值：7200000</p>
         # @type RetentionMs: Integer
-        # @param SegmentMs: Segment分片滚动的时长，单位ms，最小值为86400000ms（1天）。
+        # @param SegmentMs: <p>Segment分片滚动的时长</p><p>单位：毫秒</p><p>默认值：86400000</p><p>最小值为86400000ms（1天）</p>
         # @type SegmentMs: Integer
-        # @param MaxMessageBytes: 主题消息最大值，单位为 Byte，最小值1024Bytes(即1KB)，最大值为12582912Bytes（即12MB）
+        # @param MaxMessageBytes: <p>主题消息最大值，单位为 Byte，最小值1024Bytes(即1KB)，最大值为12582912Bytes（即12MB）</p>
         # @type MaxMessageBytes: Integer
-        # @param EnableAclRule: 预设ACL规则, 1:打开  0:关闭，默认不打开
+        # @param EnableAclRule: <p>预设ACL规则, 1:打开  0:关闭，默认不打开</p>
         # @type EnableAclRule: Integer
-        # @param AclRuleName: 预设ACL规则的名称
+        # @param AclRuleName: <p>预设ACL规则的名称</p>
         # @type AclRuleName: String
-        # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位Byte, 当前最小值为1073741824。
+        # @param RetentionBytes: <p>可选, 保留文件大小. 默认为-1,单位Byte, 当前最小值为1073741824。</p><p>取值范围：[1073741824, 1099511627776]</p><p>单位：字节</p><p>特殊值：-1表示无限制</p>
         # @type RetentionBytes: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param LogMsgTimestampType: 消息保存的时间类型:CreateTime/LogAppendTime
+        # @param LogMsgTimestampType: <p>消息保存的时间类型:CreateTime/LogAppendTime</p>
         # @type LogMsgTimestampType: String
 
         attr_accessor :InstanceId, :TopicName, :PartitionNum, :ReplicaNum, :EnableWhiteList, :IpWhiteList, :CleanUpPolicy, :Note, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :SegmentMs, :MaxMessageBytes, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :LogMsgTimestampType
@@ -2681,7 +2689,7 @@ module TencentCloud
 
       # CreateTopic返回参数结构体
       class CreateTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回创建结果
+        # @param Result: <p>返回创建结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateTopicResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3586,7 +3594,7 @@ module TencentCloud
 
       # DeleteInstancePre请求参数结构体
       class DeleteInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id，可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -3602,7 +3610,7 @@ module TencentCloud
 
       # DeleteInstancePre返回参数结构体
       class DeleteInstancePreResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3849,32 +3857,17 @@ module TencentCloud
         # @type ModifyType: Integer
         # @param MigrateFlag: 是否迁移标志
         # @type MigrateFlag: Boolean
-        # @param MigrateCostTime: 迁移预计耗时(稳定模式)秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MigrateCostTime: Integer
-        # @param UpgradeStrategy: 升配模式(1:稳定模式，2:高速模式)
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type UpgradeStrategy: Integer
-        # @param MigrateCostTimeHighSpeed: 迁移预计耗时(高速模式)秒
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type MigrateCostTimeHighSpeed: Integer
 
-        attr_accessor :ModifyType, :MigrateFlag, :MigrateCostTime, :UpgradeStrategy, :MigrateCostTimeHighSpeed
+        attr_accessor :ModifyType, :MigrateFlag
 
-        def initialize(modifytype=nil, migrateflag=nil, migratecosttime=nil, upgradestrategy=nil, migratecosttimehighspeed=nil)
+        def initialize(modifytype=nil, migrateflag=nil)
           @ModifyType = modifytype
           @MigrateFlag = migrateflag
-          @MigrateCostTime = migratecosttime
-          @UpgradeStrategy = upgradestrategy
-          @MigrateCostTimeHighSpeed = migratecosttimehighspeed
         end
 
         def deserialize(params)
           @ModifyType = params['ModifyType']
           @MigrateFlag = params['MigrateFlag']
-          @MigrateCostTime = params['MigrateCostTime']
-          @UpgradeStrategy = params['UpgradeStrategy']
-          @MigrateCostTimeHighSpeed = params['MigrateCostTimeHighSpeed']
         end
       end
 
@@ -5142,17 +5135,17 @@ module TencentCloud
 
       # DescribeGroupOffsets请求参数结构体
       class DescribeGroupOffsetsRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param Group: Kafka 消费分组
+        # @param Group: <p>Kafka 消费分组</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40840">DescribeGroup</a></p>
         # @type Group: String
-        # @param Topics: group 订阅的主题名称数组，如果没有该数组，则表示指定的 group 下所有 topic 信息
+        # @param Topics: <p>group 订阅的主题名称数组，如果没有该数组，则表示指定的 group 下所有 topic 信息</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40847">DescribeTopic</a></p>
         # @type Topics: Array
-        # @param SearchWord: 模糊匹配 topicName
+        # @param SearchWord: <p>模糊匹配 topicName</p>
         # @type SearchWord: String
-        # @param Offset: 本次查询的偏移位置，默认为0
+        # @param Offset: <p>本次查询的偏移位置，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 本次返回结果的最大个数，默认为50，最大值为50
+        # @param Limit: <p>本次返回结果的最大个数，默认为50，最大值为50</p>
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :Group, :Topics, :SearchWord, :Offset, :Limit
@@ -5178,7 +5171,7 @@ module TencentCloud
 
       # DescribeGroupOffsets返回参数结构体
       class DescribeGroupOffsetsResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupOffsetResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5201,15 +5194,15 @@ module TencentCloud
 
       # DescribeGroup请求参数结构体
       class DescribeGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param SearchWord: 搜索关键字
+        # @param SearchWord: <p>搜索关键字</p>
         # @type SearchWord: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 最大返回数量
+        # @param Limit: <p>最大返回数量</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param Filters: 仅支持 GroupState 筛选,   支持的筛选状态有 Empty/Stable  注意：该参数只能在2.8/3.2 版本生效
+        # @param Filters: <p>仅支持 GroupState 筛选,   支持的筛选状态有 Empty/Stable  注意：该参数只能在2.8/3.2 版本生效</p>
         # @type Filters: Array
 
         attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :Filters
@@ -5240,7 +5233,7 @@ module TencentCloud
 
       # DescribeGroup返回参数结构体
       class DescribeGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.GroupResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5302,31 +5295,31 @@ module TencentCloud
 
       # DescribeInstancesDetail请求参数结构体
       class DescribeInstancesDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: （过滤条件）按照实例ID过滤
+        # @param InstanceId: <p>（过滤条件）按照实例ID过滤</p>
         # @type InstanceId: String
-        # @param SearchWord: （过滤条件）按照实例名,实例Id,可用区,私有网络id,子网id 过滤，支持模糊查询
+        # @param SearchWord: <p>（过滤条件）按照实例名,实例Id,可用区,私有网络id,子网id 过滤，支持模糊查询</p>
         # @type SearchWord: String
-        # @param Status: （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
+        # @param Status: <p>（过滤条件）实例的状态，不填默认返回全部</p><p>枚举值：</p><ul><li>-1： 创建失败</li><li>0： 创建中</li><li>1： 运行中</li><li>2： 删除中</li><li>3： 已删除</li><li>4： 删除失败</li><li>5： 隔离中</li><li>7： 升级中</li></ul>
         # @type Status: Array
-        # @param Offset: 偏移量，不填默认为0。
+        # @param Offset: <p>偏移量，不填默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认10，最大值20。
+        # @param Limit: <p>返回数量，不填则默认10，最大值20。</p>
         # @type Limit: Integer
-        # @param TagKey: 匹配标签key值。
+        # @param TagKey: <p>匹配标签key值。</p>
         # @type TagKey: String
-        # @param Filters: 过滤器。filter.Name 支持('Ip', 'VpcId', 'SubNetId', 'InstanceType','InstanceId') ,filter.Values最多传递10个值.
+        # @param Filters: <p>过滤器。filter.Name 支持(&#39;Ip&#39;, &#39;VpcId&#39;, &#39;SubNetId&#39;, &#39;InstanceType&#39;,&#39;InstanceId&#39;) ,filter.Values最多传递10个值.</p>
         # @type Filters: Array
-        # @param InstanceIds: 已经废弃， 使用InstanceIdList
+        # @param InstanceIds: <p>已经废弃， 使用InstanceIdList</p>
         # @type InstanceIds: String
-        # @param InstanceIdList: 按照实例ID过滤
+        # @param InstanceIdList: <p>按照实例ID过滤</p>
         # @type InstanceIdList: Array
-        # @param TagList: 根据标签列表过滤实例（取交集）
+        # @param TagList: <p>根据标签列表过滤实例（取交集）</p>
         # @type TagList: Array
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2025, 12
-        deprecate :InstanceIds=, :none, 2025, 12
+        deprecate :InstanceIds, :none, 2026, 3
+        deprecate :InstanceIds=, :none, 2026, 3
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5371,7 +5364,7 @@ module TencentCloud
 
       # DescribeInstancesDetail返回参数结构体
       class DescribeInstancesDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的实例详情结果对象
+        # @param Result: <p>返回的实例详情结果对象</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceDetailResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5394,25 +5387,25 @@ module TencentCloud
 
       # DescribeInstances请求参数结构体
       class DescribeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: （查询条件）按照ckafka集群实例Id过滤
+        # @param InstanceId: <p>（查询条件）按照ckafka集群实例Id过滤</p>
         # @type InstanceId: String
-        # @param SearchWord: 搜索词   ex:（查询条件）按照实例名称过滤，支持模糊查询
+        # @param SearchWord: <p>搜索词   ex:（查询条件）按照实例名称过滤，支持模糊查询</p>
         # @type SearchWord: String
-        # @param Status: （查询条件）实例的状态  0：创建中，1：运行中，2：删除中，5: 隔离中,  7:升级中 不填默认返回全部
+        # @param Status: <p>（查询条件）实例的状态 不填默认返回全部</p><p>枚举值：</p><ul><li>-1： 创建失败</li><li>0： 创建中</li><li>1： 运行中</li><li>2： 删除中</li><li>3： 已删除</li><li>4： 删除失败</li><li>5： 隔离中</li><li>7： 升级中</li></ul>
         # @type Status: Array
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: <p>偏移量，不填默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认10，最大值100
+        # @param Limit: <p>返回数量，不填则默认10，最大值100</p>
         # @type Limit: Integer
-        # @param TagKey: 已废弃。匹配标签key值。
+        # @param TagKey: <p>已废弃。匹配标签key值。</p>
         # @type TagKey: String
-        # @param VpcId: （查询条件）私有网络Id
+        # @param VpcId: <p>（查询条件）私有网络Id</p>
         # @type VpcId: String
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2025, 12
-        deprecate :TagKey=, :none, 2025, 12
+        deprecate :TagKey, :none, 2026, 3
+        deprecate :TagKey=, :none, 2026, 3
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -5437,7 +5430,7 @@ module TencentCloud
 
       # DescribeInstances返回参数结构体
       class DescribeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的结果
+        # @param Result: <p>返回的结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5460,26 +5453,28 @@ module TencentCloud
 
       # DescribeModifyType请求参数结构体
       class DescribeModifyTypeRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p>
         # @type InstanceId: String
-        # @param BandWidth: 升配后的带宽，单位mb
+        # @param BandWidth: <p>升配后的带宽，单位mb</p>
         # @type BandWidth: Integer
-        # @param DiskSize: 升配后的磁盘，单位G
+        # @param DiskSize: <p>升配后的磁盘，单位G</p>
         # @type DiskSize: Integer
-        # @param DiskType: 磁盘类型，例如 CLOUD_PREMIUM
+        # @param DiskType: <p>磁盘类型，例如 CLOUD_PREMIUM</p>
         # @type DiskType: String
-        # @param Partition: 分区数量
+        # @param Partition: <p>分区数量</p>
         # @type Partition: Integer
-        # @param Topic: topic数量
+        # @param Topic: <p>topic数量</p>
         # @type Topic: Integer
-        # @param Type: 实例类型例如 sp_ckafka_profession
+        # @param Type: <p>实例类型例如 sp_ckafka_profession</p>
         # @type Type: String
-        # @param ModifyEntry: 变配入口
+        # @param ModifyEntry: <p>变配入口</p>
         # @type ModifyEntry: String
+        # @param ModifyZone: <p>是否可用区变更  false: 非可用区变更  true: 可用区变更  默认false</p>
+        # @type ModifyZone: Boolean
 
-        attr_accessor :InstanceId, :BandWidth, :DiskSize, :DiskType, :Partition, :Topic, :Type, :ModifyEntry
+        attr_accessor :InstanceId, :BandWidth, :DiskSize, :DiskType, :Partition, :Topic, :Type, :ModifyEntry, :ModifyZone
 
-        def initialize(instanceid=nil, bandwidth=nil, disksize=nil, disktype=nil, partition=nil, topic=nil, type=nil, modifyentry=nil)
+        def initialize(instanceid=nil, bandwidth=nil, disksize=nil, disktype=nil, partition=nil, topic=nil, type=nil, modifyentry=nil, modifyzone=nil)
           @InstanceId = instanceid
           @BandWidth = bandwidth
           @DiskSize = disksize
@@ -5488,6 +5483,7 @@ module TencentCloud
           @Topic = topic
           @Type = type
           @ModifyEntry = modifyentry
+          @ModifyZone = modifyzone
         end
 
         def deserialize(params)
@@ -5499,12 +5495,13 @@ module TencentCloud
           @Topic = params['Topic']
           @Type = params['Type']
           @ModifyEntry = params['ModifyEntry']
+          @ModifyZone = params['ModifyZone']
         end
       end
 
       # DescribeModifyType返回参数结构体
       class DescribeModifyTypeResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的变配类型结构
+        # @param Result: <p>返回的变配类型结构</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.DescModifyType`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5570,13 +5567,13 @@ module TencentCloud
 
       # DescribeRegion请求参数结构体
       class DescribeRegionRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 返回最大结果数
+        # @param Limit: <p>返回最大结果数</p>
         # @type Limit: Integer
-        # @param Business: 业务字段，可忽略
+        # @param Business: <p>业务字段，可忽略</p><p>枚举值：</p><ul><li>ckafka： ckafka业务</li><li>cmq： cmq业务</li></ul><p>默认值：ckafka</p>
         # @type Business: String
-        # @param CdcId: cdc专有集群业务字段，可忽略
+        # @param CdcId: <p>cdc专有集群业务字段，可忽略</p>
         # @type CdcId: String
 
         attr_accessor :Offset, :Limit, :Business, :CdcId
@@ -5598,7 +5595,7 @@ module TencentCloud
 
       # DescribeRegion返回参数结构体
       class DescribeRegionResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回地域枚举结果列表
+        # @param Result: <p>返回地域枚举结果列表</p>
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5625,11 +5622,11 @@ module TencentCloud
 
       # DescribeRoute请求参数结构体
       class DescribeRouteRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param RouteId: 路由Id
+        # @param RouteId: <p>路由Id</p>
         # @type RouteId: Integer
-        # @param MainRouteFlag: 是否显示主路由，true时会在返回原路由列表的基础上,再额外展示实例创建时的主路由信息(且不被InternalFlag/UsedFor等参数过滤影响)
+        # @param MainRouteFlag: <p>是否显示主路由，true时会在返回原路由列表的基础上,再额外展示实例创建时的主路由信息(且不被InternalFlag/UsedFor等参数过滤影响)</p>
         # @type MainRouteFlag: Boolean
 
         attr_accessor :InstanceId, :RouteId, :MainRouteFlag
@@ -5649,7 +5646,7 @@ module TencentCloud
 
       # DescribeRoute返回参数结构体
       class DescribeRouteResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的路由信息结果集
+        # @param Result: <p>返回的路由信息结果集</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.RouteResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5819,21 +5816,21 @@ module TencentCloud
 
       # DescribeTopicDetail请求参数结构体
       class DescribeTopicDetailRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id，可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param SearchWord: （过滤条件）按照topicName过滤，支持模糊查询
+        # @param SearchWord: <p>（过滤条件）按照topicName过滤，支持模糊查询</p>
         # @type SearchWord: String
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: <p>偏移量，不填默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认 20，取值要大于0
+        # @param Limit: <p>返回数量，不填则默认 20，取值要大于0</p>
         # @type Limit: Integer
-        # @param AclRuleName: Acl预设策略名称
+        # @param AclRuleName: <p>Acl预设策略名称</p>
         # @type AclRuleName: String
-        # @param OrderBy: 根据特定的属性排序(目前支持PartitionNum/CreateTime)，默认值为CreateTime。
+        # @param OrderBy: <p>根据特定的属性排序(目前支持PartitionNum/CreateTime)，默认值为CreateTime。</p><p>该参数为空时，默认按CreateTime倒序排序</p>
         # @type OrderBy: String
-        # @param OrderType: 0-顺序、1-倒序，默认值为0。
+        # @param OrderType: <p>0-顺序、1-倒序，默认值为0。</p>
         # @type OrderType: Integer
-        # @param Filters: 目前支持 ReplicaNum （副本数）筛选
+        # @param Filters: <p>目前支持 ReplicaNum （副本数）筛选</p>
         # @type Filters: Array
 
         attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName, :OrderBy, :OrderType, :Filters
@@ -5870,7 +5867,7 @@ module TencentCloud
 
       # DescribeTopicDetail返回参数结构体
       class DescribeTopicDetailResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的主题详情实体
+        # @param Result: <p>返回的主题详情实体</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicDetailResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5995,15 +5992,15 @@ module TencentCloud
 
       # DescribeTopic请求参数结构体
       class DescribeTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param SearchWord: 过滤条件，按照 topicName 过滤，支持模糊查询
+        # @param SearchWord: <p>过滤条件，按照 topicName 过滤，支持模糊查询</p>
         # @type SearchWord: String
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: <p>偏移量，不填默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认为20，最大值为50
+        # @param Limit: <p>返回数量，不填则默认为20，最大值为50</p>
         # @type Limit: Integer
-        # @param AclRuleName: Acl预设策略名称
+        # @param AclRuleName: <p>Acl预设策略名称</p>
         # @type AclRuleName: String
 
         attr_accessor :InstanceId, :SearchWord, :Offset, :Limit, :AclRuleName
@@ -6027,7 +6024,7 @@ module TencentCloud
 
       # DescribeTopic返回参数结构体
       class DescribeTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的结果
+        # @param Result: <p>返回的结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6050,13 +6047,13 @@ module TencentCloud
 
       # DescribeTopicSubscribeGroup请求参数结构体
       class DescribeTopicSubscribeGroupRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param TopicName: 主题名
+        # @param TopicName: <p>主题名</p>
         # @type TopicName: String
-        # @param Offset: 分页时的起始位置
+        # @param Offset: <p>分页时的起始位置</p>
         # @type Offset: Integer
-        # @param Limit: 分页时的个数
+        # @param Limit: <p>分页时的个数</p><p>默认值：20</p>
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :TopicName, :Offset, :Limit
@@ -6078,7 +6075,7 @@ module TencentCloud
 
       # DescribeTopicSubscribeGroup返回参数结构体
       class DescribeTopicSubscribeGroupResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicSubscribeGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6101,15 +6098,15 @@ module TencentCloud
 
       # DescribeTopicSyncReplica请求参数结构体
       class DescribeTopicSyncReplicaRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param TopicName: 主题名称
+        # @param TopicName: <p>主题名称</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40847">DescribeTopic</a></p>
         # @type TopicName: String
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: <p>偏移量，不填默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认值为20，必须大于0。
+        # @param Limit: <p>返回数量，默认值为20，必须大于0。</p>
         # @type Limit: Integer
-        # @param OutOfSyncReplicaOnly: 仅筛选未同步副本
+        # @param OutOfSyncReplicaOnly: <p>仅筛选未同步副本</p>
         # @type OutOfSyncReplicaOnly: Boolean
 
         attr_accessor :InstanceId, :TopicName, :Offset, :Limit, :OutOfSyncReplicaOnly
@@ -6133,7 +6130,7 @@ module TencentCloud
 
       # DescribeTopicSyncReplica返回参数结构体
       class DescribeTopicSyncReplicaResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回topic 副本详情
+        # @param Result: <p>返回topic 副本详情</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.TopicInSyncReplicaResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6156,17 +6153,17 @@ module TencentCloud
 
       # DescribeTypeInstances请求参数结构体
       class DescribeTypeInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: （过滤条件）按照实例ID过滤
+        # @param InstanceId: <p>（过滤条件）按照实例ID过滤</p>
         # @type InstanceId: String
-        # @param SearchWord: （过滤条件）按照实例名称过滤，支持模糊查询
+        # @param SearchWord: <p>（过滤条件）按照实例名称过滤，支持模糊查询</p>
         # @type SearchWord: String
-        # @param Status: （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部
+        # @param Status: <p>（过滤条件）实例的状态，不填默认返回全部</p><p>枚举值：</p><ul><li>-1： 创建失败</li><li>0： 创建中</li><li>1： 运行中</li><li>2： 删除中</li><li>3： 已删除</li><li>4： 删除失败</li><li>5： 隔离中</li><li>7： 升级中</li></ul>
         # @type Status: Array
-        # @param Offset: 偏移量，不填默认为0
+        # @param Offset: <p>偏移量，不填默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，不填则默认10，最大值100
+        # @param Limit: <p>返回数量，不填则默认10，最大值100</p>
         # @type Limit: Integer
-        # @param TagKey: 匹配标签key值。
+        # @param TagKey: <p>匹配标签key值。</p>
         # @type TagKey: String
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey
@@ -6192,7 +6189,7 @@ module TencentCloud
 
       # DescribeTypeInstances返回参数结构体
       class DescribeTypeInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的结果
+        # @param Result: <p>返回的结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.InstanceResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6215,13 +6212,13 @@ module TencentCloud
 
       # DescribeUser请求参数结构体
       class DescribeUserRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param SearchWord: 按照名称过滤
+        # @param SearchWord: <p>按照名称过滤</p><p>支持模糊匹配</p>
         # @type SearchWord: String
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量
+        # @param Limit: <p>返回数量</p><p>默认值：20</p>
         # @type Limit: Integer
 
         attr_accessor :InstanceId, :SearchWord, :Offset, :Limit
@@ -6243,7 +6240,7 @@ module TencentCloud
 
       # DescribeUser返回参数结构体
       class DescribeUserResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.UserResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6976,13 +6973,13 @@ module TencentCloud
 
       # FetchMessageByOffset请求参数结构体
       class FetchMessageByOffsetRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id，可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id，可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param Topic: 主题名，可通过[DescribeTopic](https://cloud.tencent.com/document/product/597/40847)接口获取
+        # @param Topic: <p>主题名，可通过<a href="https://cloud.tencent.com/document/product/597/40847">DescribeTopic</a>接口获取</p>
         # @type Topic: String
-        # @param Partition: 分区id
+        # @param Partition: <p>分区id</p>
         # @type Partition: Integer
-        # @param Offset: 位点信息
+        # @param Offset: <p>位点信息</p>
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Topic, :Partition, :Offset
@@ -7004,7 +7001,7 @@ module TencentCloud
 
       # FetchMessageByOffset返回参数结构体
       class FetchMessageByOffsetResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.ConsumerRecord`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7027,15 +7024,15 @@ module TencentCloud
 
       # FetchMessageListByOffset请求参数结构体
       class FetchMessageListByOffsetRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param Topic: 主题名
+        # @param Topic: <p>主题名</p>
         # @type Topic: String
-        # @param Partition: 分区id
+        # @param Partition: <p>分区id</p>
         # @type Partition: Integer
-        # @param Offset: 位点信息
+        # @param Offset: <p>位点信息</p>
         # @type Offset: Integer
-        # @param SinglePartitionRecordNumber: 最大查询条数，默认20，最大20
+        # @param SinglePartitionRecordNumber: <p>最大查询条数，默认20，最大20</p>
         # @type SinglePartitionRecordNumber: Integer
 
         attr_accessor :InstanceId, :Topic, :Partition, :Offset, :SinglePartitionRecordNumber
@@ -7059,7 +7056,7 @@ module TencentCloud
 
       # FetchMessageListByOffset返回参数结构体
       class FetchMessageListByOffsetResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果。注意，列表中不返回具体的消息内容（key、value），如果需要查询具体消息内容，请使用FetchMessageByOffset接口
+        # @param Result: <p>返回结果。注意，列表中不返回具体的消息内容（key、value），如果需要查询具体消息内容，请使用FetchMessageByOffset接口</p>
         # @type Result: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7967,10 +7964,14 @@ module TencentCloud
         # @type UncleanLeaderElectionEnable: Integer
         # @param DeleteProtectionEnable: <p>实例删除保护开关: 1 开启 0 关闭</p>
         # @type DeleteProtectionEnable: Integer
+        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：bytes<br>默认值：-1
+        # @type RetentionBytes: Integer
+        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p>单位：ms
+        # @type TransactionalIdExpirationMs: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :SystemMaintenanceTime, :MaxMessageByte, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
+        attr_accessor :InstanceId, :InstanceName, :VipList, :Vip, :Vport, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :Healthy, :HealthyMessage, :CreateTime, :MsgRetentionTime, :Config, :RemainderPartitions, :RemainderTopics, :CreatedPartitions, :CreatedTopics, :Tags, :ExpireTime, :ZoneIds, :Version, :MaxGroupNum, :Cvm, :InstanceType, :Features, :RetentionTimeConfig, :MaxConnection, :PublicNetwork, :DeleteRouteTimestamp, :RemainingPartitions, :RemainingTopics, :DynamicDiskConfig, :SystemMaintenanceTime, :MaxMessageByte, :InstanceChargeType, :ElasticBandwidthSwitch, :ElasticBandwidthOpenStatus, :ClusterType, :FreePartitionNumber, :ElasticFloatBandwidth, :CustomCertId, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :TransactionalIdExpirationMs
 
-        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, systemmaintenancetime=nil, maxmessagebyte=nil, instancechargetype=nil, elasticbandwidthswitch=nil, elasticbandwidthopenstatus=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
+        def initialize(instanceid=nil, instancename=nil, viplist=nil, vip=nil, vport=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, healthy=nil, healthymessage=nil, createtime=nil, msgretentiontime=nil, config=nil, remainderpartitions=nil, remaindertopics=nil, createdpartitions=nil, createdtopics=nil, tags=nil, expiretime=nil, zoneids=nil, version=nil, maxgroupnum=nil, cvm=nil, instancetype=nil, features=nil, retentiontimeconfig=nil, maxconnection=nil, publicnetwork=nil, deleteroutetimestamp=nil, remainingpartitions=nil, remainingtopics=nil, dynamicdiskconfig=nil, systemmaintenancetime=nil, maxmessagebyte=nil, instancechargetype=nil, elasticbandwidthswitch=nil, elasticbandwidthopenstatus=nil, clustertype=nil, freepartitionnumber=nil, elasticfloatbandwidth=nil, customcertid=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @VipList = viplist
@@ -8017,6 +8018,8 @@ module TencentCloud
           @CustomCertId = customcertid
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @DeleteProtectionEnable = deleteprotectionenable
+          @RetentionBytes = retentionbytes
+          @TransactionalIdExpirationMs = transactionalidexpirationms
         end
 
         def deserialize(params)
@@ -8089,6 +8092,8 @@ module TencentCloud
           @CustomCertId = params['CustomCertId']
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @DeleteProtectionEnable = params['DeleteProtectionEnable']
+          @RetentionBytes = params['RetentionBytes']
+          @TransactionalIdExpirationMs = params['TransactionalIdExpirationMs']
         end
       end
 
@@ -8218,10 +8223,12 @@ module TencentCloud
         # @type ClusterType: String
         # @param Features: <p>实例功能列表</p>
         # @type Features: Array
+        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：byte<br>默认值：-1<br><p>实例级别消息保留大小</p>
+        # @type RetentionBytes: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :VipList, :Status, :Bandwidth, :DiskSize, :ZoneId, :VpcId, :SubnetId, :RenewFlag, :Healthy, :HealthyMessage, :CreateTime, :ExpireTime, :IsInternal, :TopicNum, :Tags, :Version, :ZoneIds, :Cvm, :InstanceType, :DiskType, :MaxTopicNumber, :MaxPartitionNumber, :RebalanceTime, :PartitionNumber, :PublicNetworkChargeType, :PublicNetwork, :ClusterType, :Features, :RetentionBytes
 
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil, clustertype=nil, features=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, viplist=nil, status=nil, bandwidth=nil, disksize=nil, zoneid=nil, vpcid=nil, subnetid=nil, renewflag=nil, healthy=nil, healthymessage=nil, createtime=nil, expiretime=nil, isinternal=nil, topicnum=nil, tags=nil, version=nil, zoneids=nil, cvm=nil, instancetype=nil, disktype=nil, maxtopicnumber=nil, maxpartitionnumber=nil, rebalancetime=nil, partitionnumber=nil, publicnetworkchargetype=nil, publicnetwork=nil, clustertype=nil, features=nil, retentionbytes=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
@@ -8254,6 +8261,7 @@ module TencentCloud
           @PublicNetwork = publicnetwork
           @ClusterType = clustertype
           @Features = features
+          @RetentionBytes = retentionbytes
         end
 
         def deserialize(params)
@@ -8303,6 +8311,7 @@ module TencentCloud
           @PublicNetwork = params['PublicNetwork']
           @ClusterType = params['ClusterType']
           @Features = params['Features']
+          @RetentionBytes = params['RetentionBytes']
         end
       end
 
@@ -8464,28 +8473,31 @@ module TencentCloud
 
       # 实例版本信息
       class InstanceVersion < TencentCloud::Common::AbstractModel
-        # @param KafkaVersion: ckafka集群实例版本
+        # @param KafkaVersion: <p>ckafka集群实例版本</p>
         # @type KafkaVersion: String
-        # @param CurBrokerVersion: broker版本信息
+        # @param CurBrokerVersion: <p>broker版本信息</p>
         # @type CurBrokerVersion: String
-        # @param LatestBrokerVersion: 最新版本信息
+        # @param LatestBrokerVersion: <p>最新版本信息</p>
         # @type LatestBrokerVersion: Array
-        # @param AllowUpgradeHighVersion: 允许跨大版本内核升级
+        # @param AllowUpgradeHighVersion: <p>允许跨大版本内核升级</p>
         # @type AllowUpgradeHighVersion: Boolean
-        # @param HighVersionSet: 允许升级的大版本
+        # @param HighVersionSet: <p>允许升级的大版本</p>
         # @type HighVersionSet: Array
-        # @param AllowAutoDeleteTimestamp: 允许小版本号配置自动删除消费者组
+        # @param AllowAutoDeleteTimestamp: <p>允许小版本号配置自动删除消费者组</p>
         # @type AllowAutoDeleteTimestamp: Boolean
+        # @param AllowModifyTxnIdExpiration: <p>允许修改事务ID过期时间配置</p>
+        # @type AllowModifyTxnIdExpiration: Boolean
 
-        attr_accessor :KafkaVersion, :CurBrokerVersion, :LatestBrokerVersion, :AllowUpgradeHighVersion, :HighVersionSet, :AllowAutoDeleteTimestamp
+        attr_accessor :KafkaVersion, :CurBrokerVersion, :LatestBrokerVersion, :AllowUpgradeHighVersion, :HighVersionSet, :AllowAutoDeleteTimestamp, :AllowModifyTxnIdExpiration
 
-        def initialize(kafkaversion=nil, curbrokerversion=nil, latestbrokerversion=nil, allowupgradehighversion=nil, highversionset=nil, allowautodeletetimestamp=nil)
+        def initialize(kafkaversion=nil, curbrokerversion=nil, latestbrokerversion=nil, allowupgradehighversion=nil, highversionset=nil, allowautodeletetimestamp=nil, allowmodifytxnidexpiration=nil)
           @KafkaVersion = kafkaversion
           @CurBrokerVersion = curbrokerversion
           @LatestBrokerVersion = latestbrokerversion
           @AllowUpgradeHighVersion = allowupgradehighversion
           @HighVersionSet = highversionset
           @AllowAutoDeleteTimestamp = allowautodeletetimestamp
+          @AllowModifyTxnIdExpiration = allowmodifytxnidexpiration
         end
 
         def deserialize(params)
@@ -8502,6 +8514,7 @@ module TencentCloud
           @AllowUpgradeHighVersion = params['AllowUpgradeHighVersion']
           @HighVersionSet = params['HighVersionSet']
           @AllowAutoDeleteTimestamp = params['AllowAutoDeleteTimestamp']
+          @AllowModifyTxnIdExpiration = params['AllowModifyTxnIdExpiration']
         end
       end
 
@@ -8961,11 +8974,11 @@ module TencentCloud
 
       # ModifyAclRule请求参数结构体
       class ModifyAclRuleRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param RuleName: ACL规则名
+        # @param RuleName: <p>ACL规则名</p>
         # @type RuleName: String
-        # @param IsApplied: 修改预设规则时传入,是否应用到新增的Topic
+        # @param IsApplied: <p>修改预设规则时传入,是否应用到新增的Topic</p><p>枚举值：</p><ul><li>0： 不允许应用到新增的topic</li><li>1： 允许应用到新增的topic</li></ul><p>默认值：0</p>
         # @type IsApplied: Integer
 
         attr_accessor :InstanceId, :RuleName, :IsApplied
@@ -8985,7 +8998,7 @@ module TencentCloud
 
       # ModifyAclRule返回参数结构体
       class ModifyAclRuleResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 规则的唯一表示Key
+        # @param Result: <p>规则的唯一表示Key</p>
         # @type Result: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9336,35 +9349,41 @@ module TencentCloud
 
       # ModifyInstanceAttributes请求参数结构体
       class ModifyInstanceAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id,可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param MsgRetentionTime: 实例日志的最长保留时间，单位分钟，最大90天，最小为1min
+        # @param MsgRetentionTime: <p>实例日志的最长保留时间，单位分钟，最大90天，最小为1min</p>
         # @type MsgRetentionTime: Integer
-        # @param InstanceName: ckafka集群实例Name
+        # @param InstanceName: <p>ckafka集群实例Name</p>
         # @type InstanceName: String
-        # @param Config: 实例配置
+        # @param Config: <p>实例配置</p>
         # @type Config: :class:`Tencentcloud::Ckafka.v20190819.models.ModifyInstanceAttributesConfig`
-        # @param DynamicRetentionConfig: 动态消息保留策略配置
+        # @param DynamicRetentionConfig: <p>动态消息保留策略配置</p>
         # @type DynamicRetentionConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicRetentionTime`
-        # @param RebalanceTime: 用于修改升级版本或升配定时任务的执行时间，Unix时间戳，精确到秒
+        # @param RebalanceTime: <p>用于修改升级版本或升配定时任务的执行时间，Unix时间戳，精确到秒</p>
         # @type RebalanceTime: Integer
-        # @param PublicNetwork: 公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写
+        # @param PublicNetwork: <p>公网带宽 最小3Mbps  最大999Mbps 仅专业版支持填写</p>
         # @type PublicNetwork: Integer
-        # @param DynamicDiskConfig: 动态硬盘扩容策略配置
+        # @param DynamicDiskConfig: <p>动态硬盘扩容策略配置</p>
         # @type DynamicDiskConfig: :class:`Tencentcloud::Ckafka.v20190819.models.DynamicDiskConfig`
-        # @param MaxMessageByte: 实例级别单条消息大小（单位byte)  最大 12582912(不包含)  最小1024(不包含)
+        # @param MaxMessageByte: <p>实例级别单条消息大小（单位byte)  最大 12582912(不包含)  最小1024(不包含)</p>
         # @type MaxMessageByte: Integer
-        # @param UncleanLeaderElectionEnable: 是否允许未同步的副本选为 leader: 1 开启  0 关闭
+        # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为 leader: 1 开启  0 关闭</p>
         # @type UncleanLeaderElectionEnable: Integer
-        # @param DeleteProtectionEnable: 实例删除保护开关: 1 开启  0 关闭
+        # @param DeleteProtectionEnable: <p>实例删除保护开关: 1 开启  0 关闭</p>
         # @type DeleteProtectionEnable: Integer
+        # @param RetentionBytes: <p>实例级别消息保留大小</p>单位：byte<br>默认值：-1<br><p>实例级别消息保留大小</p>
+        # @type RetentionBytes: Integer
+        # @param AdminSecurity: <p>是否封禁高风险admin接口; true则封禁高风险adminApi; 关闭后不支持打开,仅专业版支持; 默认是false 对高风险admin接口不做处理</p>
+        # @type AdminSecurity: Boolean
+        # @param TransactionalIdExpirationMs: <p>事务ID最大空闲时间，超时未提交的事务将被标记为过期</p>取值范围：[3600000, 604800000]<br>单位：ms
+        # @type TransactionalIdExpirationMs: Integer
 
-        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable
+        attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2025, 12
-        deprecate :DynamicDiskConfig=, :none, 2025, 12
+        deprecate :DynamicDiskConfig, :none, 2026, 3
+        deprecate :DynamicDiskConfig=, :none, 2026, 3
 
-        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil)
+        def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
           @MsgRetentionTime = msgretentiontime
           @InstanceName = instancename
@@ -9376,6 +9395,9 @@ module TencentCloud
           @MaxMessageByte = maxmessagebyte
           @UncleanLeaderElectionEnable = uncleanleaderelectionenable
           @DeleteProtectionEnable = deleteprotectionenable
+          @RetentionBytes = retentionbytes
+          @AdminSecurity = adminsecurity
+          @TransactionalIdExpirationMs = transactionalidexpirationms
         end
 
         def deserialize(params)
@@ -9399,12 +9421,15 @@ module TencentCloud
           @MaxMessageByte = params['MaxMessageByte']
           @UncleanLeaderElectionEnable = params['UncleanLeaderElectionEnable']
           @DeleteProtectionEnable = params['DeleteProtectionEnable']
+          @RetentionBytes = params['RetentionBytes']
+          @AdminSecurity = params['AdminSecurity']
+          @TransactionalIdExpirationMs = params['TransactionalIdExpirationMs']
         end
       end
 
       # ModifyInstanceAttributes返回参数结构体
       class ModifyInstanceAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9427,16 +9452,13 @@ module TencentCloud
 
       # ModifyInstancePre请求参数结构体
       class ModifyInstancePreRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id,可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param DiskSize: 磁盘大小 单位 GB     最大值为500000,步长100
-        # 可以通过以下链接查看规格限制：https://cloud.tencent.com/document/product/597/122562
+        # @param DiskSize: <p>磁盘大小 单位 GB     最大值为500000,步长100可以通过以下链接查看规格限制：https://cloud.tencent.com/document/product/597/122562</p>
         # @type DiskSize: Integer
-        # @param BandWidth: 峰值带宽 单位 MB/s
-        # 可以通过以下链接查看规格限制及对应步长: https://cloud.tencent.com/document/product/597/11745
+        # @param BandWidth: <p>峰值带宽 单位 MB/s可以通过以下链接查看规格限制及对应步长: https://cloud.tencent.com/document/product/597/11745</p>
         # @type BandWidth: Integer
-        # @param Partition: 分区上限 最大值: 40000, 步长: 100
-        # 可以通过以下链接查看规格限制: https://cloud.tencent.com/document/product/597/122563
+        # @param Partition: <p>分区上限 最大值: 40000, 步长: 100可以通过以下链接查看规格限制: https://cloud.tencent.com/document/product/597/122563</p>
         # @type Partition: Integer
 
         attr_accessor :InstanceId, :DiskSize, :BandWidth, :Partition
@@ -9458,7 +9480,7 @@ module TencentCloud
 
       # ModifyInstancePre返回参数结构体
       class ModifyInstancePreResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 变更预付费实例配置返回结构
+        # @param Result: <p>变更预付费实例配置返回结构</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.CreateInstancePreResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9611,43 +9633,43 @@ module TencentCloud
 
       # ModifyTopicAttributes请求参数结构体
       class ModifyTopicAttributesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id
+        # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param TopicName: 主题名
+        # @param TopicName: <p>主题名</p>
         # @type TopicName: String
-        # @param Note: 主题备注，是一个不超过64个字符的字符串，必须以字母为首字符，剩余部分可以包含字母、数字和横划线-。
+        # @param Note: <p>主题备注</p><p>入参限制：不超过64个字符</p><p>默认值：&quot;&quot;</p>
         # @type Note: String
-        # @param EnableWhiteList: IP 白名单开关，1：打开；0：关闭。
+        # @param EnableWhiteList: <p>IP 白名单开关，1：打开；0：关闭。</p>
         # @type EnableWhiteList: Integer
-        # @param MinInsyncReplicas: 默认为1。
+        # @param MinInsyncReplicas: <p>最小同步副本数</p><p>默认值：1</p><p>最小值为1</p>
         # @type MinInsyncReplicas: Integer
-        # @param UncleanLeaderElectionEnable: 默认为 0，0：false；1：true。
+        # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为leader</p><p>枚举值：</p><ul><li>0： 不允许</li><li>1： 允许</li></ul><p>默认值：0</p>
         # @type UncleanLeaderElectionEnable: Integer
-        # @param RetentionMs: 消息保留时间，单位：ms，当前最小值为60000ms。
+        # @param RetentionMs: <p>Segment分片滚动的时长</p><p>单位：毫秒</p><p>默认值：86400000</p><p>最小值为86400000ms（1天）</p>
         # @type RetentionMs: Integer
-        # @param MaxMessageBytes: 主题消息最大值，单位为 Byte，最大值为12582912Byte（即12MB）。
+        # @param MaxMessageBytes: <p>主题消息最大值</p><p>取值范围：[1024, 12582912]</p><p>单位：Bytes</p>
         # @type MaxMessageBytes: Integer
-        # @param SegmentMs: Segment 分片滚动的时长，单位：ms，当前最小值86400000ms。
+        # @param SegmentMs: <p>Segment 分片滚动的时长</p><p>单位：毫秒</p><p>最小值为86400000ms（1天）</p>
         # @type SegmentMs: Integer
-        # @param CleanUpPolicy: 消息删除策略，可以选择delete 或者compact
+        # @param CleanUpPolicy: <p>消息删除策略，可以选择delete 或者compact</p>
         # @type CleanUpPolicy: String
-        # @param IpWhiteList: Ip白名单列表，配额限制，enableWhileList=1时必选
+        # @param IpWhiteList: <p>Ip白名单列表，配额限制，enableWhileList=1时必选</p>
         # @type IpWhiteList: Array
-        # @param EnableAclRule: 预设ACL规则, 1:打开  0:关闭，默认不打开
+        # @param EnableAclRule: <p>预设ACL规则, 1:打开  0:关闭，默认不打开</p>
         # @type EnableAclRule: Integer
-        # @param AclRuleName: ACL规则名
+        # @param AclRuleName: <p>ACL规则名</p>
         # @type AclRuleName: String
-        # @param RetentionBytes: 可选, 保留文件大小. 默认为-1,单位bytes, 当前最小值为1048576B
+        # @param RetentionBytes: <p>可选, 保留文件大小</p><p>取值范围：[1073741824, 1099511627776]</p><p>单位：Bytes</p><p>默认值：-1</p><p>特殊值：-1表示无限制</p>
         # @type RetentionBytes: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param QuotaProducerByteRate: 生产限流，单位 MB/s；设置为-1，则生产不限流
+        # @param QuotaProducerByteRate: <p>生产限流，单位 MB/s；设置为-1，则生产不限流</p>
         # @type QuotaProducerByteRate: Integer
-        # @param QuotaConsumerByteRate: 消费限流，单位 MB/s；设置为-1，则消费不限流
+        # @param QuotaConsumerByteRate: <p>消费限流，单位 MB/s；设置为-1，则消费不限流</p>
         # @type QuotaConsumerByteRate: Integer
-        # @param ReplicaNum: topic副本数  最小值 1,最大值 3
+        # @param ReplicaNum: <p>topic副本数  最小值 1,最大值 3</p>
         # @type ReplicaNum: Integer
-        # @param LogMsgTimestampType: 消息保存的时间类型：CreateTime/LogAppendTime
+        # @param LogMsgTimestampType: <p>消息保存的时间类型：CreateTime/LogAppendTime</p>
         # @type LogMsgTimestampType: String
 
         attr_accessor :InstanceId, :TopicName, :Note, :EnableWhiteList, :MinInsyncReplicas, :UncleanLeaderElectionEnable, :RetentionMs, :MaxMessageBytes, :SegmentMs, :CleanUpPolicy, :IpWhiteList, :EnableAclRule, :AclRuleName, :RetentionBytes, :Tags, :QuotaProducerByteRate, :QuotaConsumerByteRate, :ReplicaNum, :LogMsgTimestampType
@@ -9706,7 +9728,7 @@ module TencentCloud
 
       # ModifyTopicAttributes返回参数结构体
       class ModifyTopicAttributesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回结果
+        # @param Result: <p>返回结果</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10731,9 +10753,9 @@ module TencentCloud
 
       # RenewCkafkaInstance请求参数结构体
       class RenewCkafkaInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka集群实例Id,可通过[DescribeInstances](https://cloud.tencent.com/document/product/597/40835)接口获取
+        # @param InstanceId: <p>ckafka集群实例Id,可通过<a href="https://cloud.tencent.com/document/product/597/40835">DescribeInstances</a>接口获取</p>
         # @type InstanceId: String
-        # @param TimeSpan: 续费时长, 默认为1, 单位是月
+        # @param TimeSpan: <p>续费时长, 默认为1, 单位是月</p>
         # @type TimeSpan: Integer
 
         attr_accessor :InstanceId, :TimeSpan
@@ -10771,7 +10793,7 @@ module TencentCloud
 
       # RenewCkafkaInstance返回参数结构体
       class RenewCkafkaInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回值
+        # @param Result: <p>返回值</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.RenewCkafkaInstanceResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -10894,38 +10916,34 @@ module TencentCloud
 
       # 路由实体对象
       class Route < TencentCloud::Common::AbstractModel
-        # @param AccessType: 实例接入方式
-        # 0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)
-        # 1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
-        # 2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）
-        # 3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）
+        # @param AccessType: <p>实例接入方式0：PLAINTEXT (明文方式，没有带用户信息老版本及社区版本都支持)1：SASL_PLAINTEXT（明文方式，不过在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）2：SSL（SSL加密通信，没有带用户信息，老版本及社区版本都支持）3：SASL_SSL（SSL加密通信，在数据开始时，会通过SASL方式登录鉴权，仅社区版本支持）</p>
         # @type AccessType: Integer
-        # @param RouteId: 路由Id
+        # @param RouteId: <p>路由Id</p>
         # @type RouteId: Integer
-        # @param VipType: 路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)
+        # @param VipType: <p>路由网络类型(3:vpc路由;7:内部支撑路由;1:公网路由)</p>
         # @type VipType: Integer
-        # @param VipList: 虚拟IP列表
+        # @param VipList: <p>虚拟IP列表</p>
         # @type VipList: Array
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Domain: String
-        # @param DomainPort: 域名port
+        # @param DomainPort: <p>域名port</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainPort: Integer
-        # @param DeleteTimestamp: 时间戳
+        # @param DeleteTimestamp: <p>时间戳</p>
         # @type DeleteTimestamp: String
-        # @param Subnet: 子网Id
+        # @param Subnet: <p>子网Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Subnet: String
-        # @param BrokerVipList: 虚拟IP列表(1对1 broker节点)
+        # @param BrokerVipList: <p>虚拟IP列表(1对1 broker节点)</p>
         # @type BrokerVipList: Array
-        # @param VpcId: 私有网络Id
+        # @param VpcId: <p>私有网络Id</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VpcId: String
-        # @param Note: 备注信息
+        # @param Note: <p>备注信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Note: String
-        # @param Status: 路由的状态。1: 创建中，2: 创建成功，3: 创建失败，4: 删除中，6: 删除失败
+        # @param Status: <p>路由的状态。1: 创建中，2: 创建成功，3: 创建失败，4: 删除中，6: 删除失败</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: Integer
 
@@ -12580,31 +12598,31 @@ module TencentCloud
 
       # zone信息实体
       class ZoneInfo < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 可用区
+        # @param ZoneId: <p>可用区</p>
         # @type ZoneId: String
-        # @param IsInternalApp: 是否内部APP
+        # @param IsInternalApp: <p>是否内部APP</p><p>枚举值：</p><ul><li>0： 外部</li><li>1： 内部</li></ul><p>默认值：0</p>
         # @type IsInternalApp: Integer
-        # @param AppId: 应用标识
+        # @param AppId: <p>应用标识</p>
         # @type AppId: Integer
-        # @param Flag: 可用区是否售罄标识，true表示已售罄，false表示未售罄。
+        # @param Flag: <p>可用区是否售罄标识，true表示已售罄，false表示未售罄。</p>
         # @type Flag: Boolean
-        # @param ZoneName: 可用区名称
+        # @param ZoneName: <p>可用区名称</p>
         # @type ZoneName: String
-        # @param ZoneStatus: 可用区状态  枚举示例:  3: 开启，4: 关闭;  可用区状态以SoldOut为准
+        # @param ZoneStatus: <p>可用区状态</p><p>枚举值：</p><ul><li>3： 开启</li><li>4： 关闭</li></ul><p>可用区状态以SoldOut为准</p>
         # @type ZoneStatus: Integer
-        # @param Exflag: 额外标识
+        # @param Exflag: <p>额外标识</p>
         # @type Exflag: String
-        # @param SoldOut: true为售罄，false为未售罄
+        # @param SoldOut: <p>true为售罄，false为未售罄</p>
         # @type SoldOut: String
-        # @param SalesInfo: 标准版售罄信息
+        # @param SalesInfo: <p>标准版售罄信息</p>
         # @type SalesInfo: Array
-        # @param ExtraFlag: 额外标识
+        # @param ExtraFlag: <p>额外标识</p>
         # @type ExtraFlag: String
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2025, 12
-        deprecate :Exflag=, :none, 2025, 12
+        deprecate :Exflag, :none, 2026, 3
+        deprecate :Exflag=, :none, 2026, 3
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid

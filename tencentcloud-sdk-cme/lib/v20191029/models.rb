@@ -682,8 +682,8 @@ module TencentCloud
 
         attr_accessor :Platform, :Name, :Owner, :Category, :Mode, :AspectRatio, :Description, :SwitcherProjectInput, :LiveStreamClipProjectInput, :VideoEditProjectInput, :VideoSegmentationProjectInput, :StreamConnectProjectInput, :RecordReplayProjectInput, :MediaCastProjectInput
         extend Gem::Deprecate
-        deprecate :AspectRatio, :none, 2025, 12
-        deprecate :AspectRatio=, :none, 2025, 12
+        deprecate :AspectRatio, :none, 2026, 3
+        deprecate :AspectRatio=, :none, 2026, 3
 
         def initialize(platform=nil, name=nil, owner=nil, category=nil, mode=nil, aspectratio=nil, description=nil, switcherprojectinput=nil, livestreamclipprojectinput=nil, videoeditprojectinput=nil, videosegmentationprojectinput=nil, streamconnectprojectinput=nil, recordreplayprojectinput=nil, mediacastprojectinput=nil)
           @Platform = platform
@@ -2616,8 +2616,8 @@ module TencentCloud
 
         attr_accessor :MediaKey, :Definition, :StorageId
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2025, 12
-        deprecate :Definition=, :none, 2025, 12
+        deprecate :Definition, :none, 2026, 3
+        deprecate :Definition=, :none, 2026, 3
 
         def initialize(mediakey=nil, definition=nil, storageid=nil)
           @MediaKey = mediakey
@@ -3587,8 +3587,8 @@ module TencentCloud
 
         attr_accessor :MaterialId, :MaterialType, :Owner, :Name, :CreateTime, :UpdateTime, :ClassPath, :PresetTagSet, :TagSet, :PreviewUrl, :TagInfoSet
         extend Gem::Deprecate
-        deprecate :TagInfoSet, :none, 2025, 12
-        deprecate :TagInfoSet=, :none, 2025, 12
+        deprecate :TagInfoSet, :none, 2026, 3
+        deprecate :TagInfoSet=, :none, 2026, 3
 
         def initialize(materialid=nil, materialtype=nil, owner=nil, name=nil, createtime=nil, updatetime=nil, classpath=nil, presettagset=nil, tagset=nil, previewurl=nil, taginfoset=nil)
           @MaterialId = materialid
@@ -4243,15 +4243,15 @@ module TencentCloud
 
       # 雪碧图
       class MediaImageSpriteInfo < TencentCloud::Common::AbstractModel
-        # @param Height: 雪碧图小图的高度。
+        # @param Height: <p>雪碧图小图的高度。</p>
         # @type Height: Integer
-        # @param Width: 雪碧图小图的宽度。
+        # @param Width: <p>雪碧图小图的宽度。</p>
         # @type Width: Integer
-        # @param TotalCount: 雪碧图小图的总数量。
+        # @param TotalCount: <p>雪碧图小图的总数量。</p>
         # @type TotalCount: Integer
-        # @param ImageUrlSet: 截取雪碧图输出的地址。
+        # @param ImageUrlSet: <p>截取雪碧图输出的地址。</p>
         # @type ImageUrlSet: Array
-        # @param WebVttUrl: 雪碧图子图位置与时间关系的 WebVtt 文件地址。WebVtt 文件表明了各个雪碧图小图对应的时间点，以及在雪碧大图里的坐标位置，一般被播放器用于实现预览。
+        # @param WebVttUrl: <p>雪碧图子图位置与时间关系的 WebVtt 文件地址。WebVtt 文件表明了各个雪碧图小图对应的时间点，以及在雪碧大图里的坐标位置，一般被播放器用于实现预览。</p>
         # @type WebVttUrl: String
 
         attr_accessor :Height, :Width, :TotalCount, :ImageUrlSet, :WebVttUrl
@@ -4275,23 +4275,23 @@ module TencentCloud
 
       # 文件元信息。
       class MediaMetaData < TencentCloud::Common::AbstractModel
-        # @param Size: 大小。
+        # @param Size: <p>大小。</p>
         # @type Size: Integer
-        # @param Container: 容器类型。
+        # @param Container: <p>容器类型。</p>
         # @type Container: String
-        # @param Bitrate: 视频流码率平均值与音频流码率平均值之和，单位：bps。
+        # @param Bitrate: <p>视频流码率平均值与音频流码率平均值之和，单位：bps。</p>
         # @type Bitrate: Integer
-        # @param Height: 视频流高度的最大值，单位：px。
+        # @param Height: <p>视频流高度的最大值，单位：px。</p>
         # @type Height: Integer
-        # @param Width: 视频流宽度的最大值，单位：px。
+        # @param Width: <p>视频流宽度的最大值，单位：px。</p>
         # @type Width: Integer
-        # @param Duration: 时长，单位：秒。
+        # @param Duration: <p>时长，单位：秒。</p>
         # @type Duration: Float
-        # @param Rotate: 视频拍摄时的选择角度，单位：度
+        # @param Rotate: <p>视频拍摄时的选择角度，单位：度</p>
         # @type Rotate: Integer
-        # @param VideoStreamInfoSet: 视频流信息。
+        # @param VideoStreamInfoSet: <p>视频流信息。</p>
         # @type VideoStreamInfoSet: Array
-        # @param AudioStreamInfoSet: 音频流信息。
+        # @param AudioStreamInfoSet: <p>音频流信息。</p>
         # @type AudioStreamInfoSet: Array
 
         attr_accessor :Size, :Container, :Bitrate, :Height, :Width, :Duration, :Rotate, :VideoStreamInfoSet, :AudioStreamInfoSet
@@ -5653,8 +5653,8 @@ module TencentCloud
 
         attr_accessor :FileId, :MaterialId, :Operator, :OperationType, :Owner, :ClassPath, :TaskId, :SourceContext
         extend Gem::Deprecate
-        deprecate :Operator, :none, 2025, 12
-        deprecate :Operator=, :none, 2025, 12
+        deprecate :Operator, :none, 2026, 3
+        deprecate :Operator=, :none, 2026, 3
 
         def initialize(fileid=nil, materialid=nil, operator=nil, operationtype=nil, owner=nil, classpath=nil, taskid=nil, sourcecontext=nil)
           @FileId = fileid
@@ -6545,36 +6545,21 @@ module TencentCloud
 
       # 视频导出扩展参数
       class VideoExportExtensionArgs < TencentCloud::Common::AbstractModel
-        # @param Container: 封装格式，可选值：
-        # <li>mp4 </li>
-        # <li>mov </li>
-        # 不填则使用视频导出编码配置。
+        # @param Container: <p>封装格式，可选值：</p><li>mp4 </li><li>mov </li>不填则使用视频导出编码配置。
         # @type Container: String
-        # @param ShortEdge: 视频短边尺寸，取值范围： [128, 4096]，单位：px。
-        # 视频最后的分辨率，根据短边尺寸和宽高比进行计算。
-        # 例如：项目的宽高比是 16：9 ：
-        # <li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li>
-        # <li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720</li>
-        # 不填则使用视频导出编码配置。
+        # @param ShortEdge: <p>视频短边尺寸，取值范围： [128, 4096]，单位：px。<br>视频最后的分辨率，根据短边尺寸和宽高比进行计算。<br>例如：项目的宽高比是 16：9 ：</p><li>短边尺寸为 1080，则导出视频的分辨率为 1920 * 1080。</li><li>短边尺寸为 720，则导出视频的分辨率为 1280 * 720</li>不填则使用视频导出编码配置。
         # @type ShortEdge: Integer
-        # @param VideoBitrate: 指定码率，单位 bps。当该参数为 0 时则不强制限定码率。
-        # 不填则使用视频导出编码配置。
+        # @param VideoBitrate: <p>指定码率，单位 bps。当该参数为 0 时则不强制限定码率。<br>不填则使用视频导出编码配置。</p>
         # @type VideoBitrate: Integer
-        # @param FrameRate: 帧率。取值范围：[15, 60]，不填默认值为 25。
+        # @param FrameRate: <p>帧率。取值范围：[15, 60]，不填默认值为 25。</p><p>单位：帧</p>
         # @type FrameRate: Float
-        # @param RemoveVideo: 是否去除视频数据，可选值：
-        # <li>0：保留；</li>
-        # <li>1：去除。</li>
-        # 不填则使用视频导出编码配置。
+        # @param RemoveVideo: <p>是否去除视频数据，可选值：</p><li>0：保留；</li><li>1：去除。</li>不填则使用视频导出编码配置。
         # @type RemoveVideo: Integer
-        # @param RemoveAudio: 是否去除音频数据，可选值：
-        # <li>0：保留；</li>
-        # <li>1：去除。</li>
-        # 不填则使用视频导出编码配置。
+        # @param RemoveAudio: <p>是否去除音频数据，可选值：</p><li>0：保留；</li><li>1：去除。</li>不填则使用视频导出编码配置。
         # @type RemoveAudio: Integer
-        # @param StartTime: 片段起始时间，单位：毫秒。
+        # @param StartTime: <p>片段起始时间，单位：毫秒。</p>
         # @type StartTime: Integer
-        # @param EndTime: 片段结束时间，单位：毫秒。
+        # @param EndTime: <p>片段结束时间，单位：毫秒。</p>
         # @type EndTime: Integer
 
         attr_accessor :Container, :ShortEdge, :VideoBitrate, :FrameRate, :RemoveVideo, :RemoveAudio, :StartTime, :EndTime

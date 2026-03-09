@@ -3581,7 +3581,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 同步执行 TWeSee 语义理解任务
+        # 上传文件并同步执行 TWeSee 语义理解任务
 
         # @param request: Request instance for InvokeTWeSeeRecognitionTaskWithFile.
         # @type request: :class:`Tencentcloud::iotexplorer::V20190423::InvokeTWeSeeRecognitionTaskWithFileRequest`

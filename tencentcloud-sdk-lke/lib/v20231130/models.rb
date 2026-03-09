@@ -1712,8 +1712,8 @@ module TencentCloud
 
         attr_accessor :AttrBizId, :AttrKey, :AttrName, :LabelNames, :IsUpdating, :Status, :StatusDesc, :LabelTotalCount
         extend Gem::Deprecate
-        deprecate :AttrKey, :none, 2026, 2
-        deprecate :AttrKey=, :none, 2026, 2
+        deprecate :AttrKey, :none, 2026, 3
+        deprecate :AttrKey=, :none, 2026, 3
 
         def initialize(attrbizid=nil, attrkey=nil, attrname=nil, labelnames=nil, isupdating=nil, status=nil, statusdesc=nil, labeltotalcount=nil)
           @AttrBizId = attrbizid
@@ -3118,8 +3118,8 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :KnowledgeType
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 2
-        deprecate :EmbeddingModel=, :none, 2026, 2
+        deprecate :EmbeddingModel, :none, 2026, 3
+        deprecate :EmbeddingModel=, :none, 2026, 3
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, knowledgetype=nil)
           @KnowledgeName = knowledgename
@@ -4010,10 +4010,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 2
-        deprecate :StartTime=, :none, 2026, 2
-        deprecate :EndTime, :none, 2026, 2
-        deprecate :EndTime=, :none, 2026, 2
+        deprecate :StartTime, :none, 2026, 3
+        deprecate :StartTime=, :none, 2026, 3
+        deprecate :EndTime, :none, 2026, 3
+        deprecate :EndTime=, :none, 2026, 3
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5216,10 +5216,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :AppType, :SubScenes, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 2
-        deprecate :StartTime=, :none, 2026, 2
-        deprecate :EndTime, :none, 2026, 2
-        deprecate :EndTime=, :none, 2026, 2
+        deprecate :StartTime, :none, 2026, 3
+        deprecate :StartTime=, :none, 2026, 3
+        deprecate :EndTime, :none, 2026, 3
+        deprecate :EndTime=, :none, 2026, 3
 
         def initialize(uinaccount=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, apptype=nil, subscenes=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -5328,10 +5328,10 @@ module TencentCloud
 
         attr_accessor :UinAccount, :LoginUin, :LoginSubAccountUin, :SubBizType, :ModelName, :StartTime, :EndTime, :AppBizIds, :SubScenes, :AppType, :SpaceId, :StatStartTime, :StatEndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 2
-        deprecate :StartTime=, :none, 2026, 2
-        deprecate :EndTime, :none, 2026, 2
-        deprecate :EndTime=, :none, 2026, 2
+        deprecate :StartTime, :none, 2026, 3
+        deprecate :StartTime=, :none, 2026, 3
+        deprecate :EndTime, :none, 2026, 3
+        deprecate :EndTime=, :none, 2026, 3
 
         def initialize(uinaccount=nil, loginuin=nil, loginsubaccountuin=nil, subbiztype=nil, modelname=nil, starttime=nil, endtime=nil, appbizids=nil, subscenes=nil, apptype=nil, spaceid=nil, statstarttime=nil, statendtime=nil)
           @UinAccount = uinaccount
@@ -6000,8 +6000,8 @@ module TencentCloud
 
         attr_accessor :DocBizId, :FileName, :FileType, :FileSize, :FileUrl, :DocId, :CreateTime
         extend Gem::Deprecate
-        deprecate :DocBizId, :none, 2026, 2
-        deprecate :DocBizId=, :none, 2026, 2
+        deprecate :DocBizId, :none, 2026, 3
+        deprecate :DocBizId=, :none, 2026, 3
 
         def initialize(docbizid=nil, filename=nil, filetype=nil, filesize=nil, fileurl=nil, docid=nil, createtime=nil)
           @DocBizId = docbizid
@@ -6683,8 +6683,8 @@ module TencentCloud
 
         attr_accessor :Type, :BotAppKey, :VisitorBizId, :VisitorLabels
         extend Gem::Deprecate
-        deprecate :VisitorLabels, :none, 2026, 2
-        deprecate :VisitorLabels=, :none, 2026, 2
+        deprecate :VisitorLabels, :none, 2026, 3
+        deprecate :VisitorLabels=, :none, 2026, 3
 
         def initialize(type=nil, botappkey=nil, visitorbizid=nil, visitorlabels=nil)
           @Type = type
@@ -7824,10 +7824,10 @@ module TencentCloud
 
         attr_accessor :KnowledgeName, :KnowledgeDescription, :EmbeddingModel, :QaExtractModel, :OwnerStaffId
         extend Gem::Deprecate
-        deprecate :EmbeddingModel, :none, 2026, 2
-        deprecate :EmbeddingModel=, :none, 2026, 2
-        deprecate :QaExtractModel, :none, 2026, 2
-        deprecate :QaExtractModel=, :none, 2026, 2
+        deprecate :EmbeddingModel, :none, 2026, 3
+        deprecate :EmbeddingModel=, :none, 2026, 3
+        deprecate :QaExtractModel, :none, 2026, 3
+        deprecate :QaExtractModel=, :none, 2026, 3
 
         def initialize(knowledgename=nil, knowledgedescription=nil, embeddingmodel=nil, qaextractmodel=nil, ownerstaffid=nil)
           @KnowledgeName = knowledgename
@@ -8108,8 +8108,8 @@ module TencentCloud
 
         attr_accessor :AppBizId, :BotBizId, :PageNumber, :PageSize, :ChannelType, :ChannelStatus
         extend Gem::Deprecate
-        deprecate :BotBizId, :none, 2026, 2
-        deprecate :BotBizId=, :none, 2026, 2
+        deprecate :BotBizId, :none, 2026, 3
+        deprecate :BotBizId=, :none, 2026, 3
 
         def initialize(appbizid=nil, botbizid=nil, pagenumber=nil, pagesize=nil, channeltype=nil, channelstatus=nil)
           @AppBizId = appbizid
@@ -14110,8 +14110,8 @@ module TencentCloud
 
         attr_accessor :RunEnv, :AppBizId, :WorkflowRunId, :WorkflowId, :Name, :Output, :State, :FailMessage, :TotalTokens, :CreateTime, :StartTime, :EndTime, :DialogJson, :Query, :MainModelName, :CustomVariables, :WorkflowGraph, :LatestMessage
         extend Gem::Deprecate
-        deprecate :DialogJson, :none, 2026, 2
-        deprecate :DialogJson=, :none, 2026, 2
+        deprecate :DialogJson, :none, 2026, 3
+        deprecate :DialogJson=, :none, 2026, 3
 
         def initialize(runenv=nil, appbizid=nil, workflowrunid=nil, workflowid=nil, name=nil, output=nil, state=nil, failmessage=nil, totaltokens=nil, createtime=nil, starttime=nil, endtime=nil, dialogjson=nil, query=nil, mainmodelname=nil, customvariables=nil, workflowgraph=nil, latestmessage=nil)
           @RunEnv = runenv

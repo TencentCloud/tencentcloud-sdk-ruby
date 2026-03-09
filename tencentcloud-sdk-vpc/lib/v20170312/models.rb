@@ -629,12 +629,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2026, 2
-        deprecate :AddressTemplateName=, :none, 2026, 2
-        deprecate :From, :none, 2026, 2
-        deprecate :From=, :none, 2026, 2
-        deprecate :To, :none, 2026, 2
-        deprecate :To=, :none, 2026, 2
+        deprecate :AddressTemplateName, :none, 2026, 3
+        deprecate :AddressTemplateName=, :none, 2026, 3
+        deprecate :From, :none, 2026, 3
+        deprecate :From=, :none, 2026, 3
+        deprecate :To, :none, 2026, 3
+        deprecate :To=, :none, 2026, 3
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -809,8 +809,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2026, 2
-        deprecate :ApplicableForCLB=, :none, 2026, 2
+        deprecate :ApplicableForCLB, :none, 2026, 3
+        deprecate :ApplicableForCLB=, :none, 2026, 3
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3541,8 +3541,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2026, 2
-        deprecate :ConfilctId=, :none, 2026, 2
+        deprecate :ConfilctId, :none, 2026, 3
+        deprecate :ConfilctId=, :none, 2026, 3
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -3986,7 +3986,7 @@ module TencentCloud
         # @type State: String
         # @param Description: 描述
         # @type Description: String
-        # @param NextHopResourceType: 下一跳资源类型[HAVIP, GWLB_ENDPOINT]]
+        # @param NextHopResourceType: 下一跳资源类型[HAVIP, GWLB_ENDPOINT]
         # @type NextHopResourceType: String
         # @param NextHopResourceId: 下一跳资源ID
         # @type NextHopResourceId: String
@@ -4095,7 +4095,7 @@ module TencentCloud
         # @type QosLevel: String
         # @param InstanceChargeType: 计费模式，`PREPAID`：表示预付费，即包年包月，`POSTPAID`：表示后付费，即按量计费。默认：`POSTPAID`。
         # @type InstanceChargeType: String
-        # @param InstanceMeteringType: 计量模式
+        # @param InstanceMeteringType: 计量模式,`BANDWIDTH`：表示带宽,即带宽计量模式，`TRAFFIC`：表示流量,即流量计量模式。
         # @type InstanceMeteringType: String
         # @param BandwidthLimitType: 限速类型，`OUTER_REGION_LIMIT`表示地域出口限速，`INTER_REGION_LIMIT`为地域间限速，默认为`OUTER_REGION_LIMIT`。预付费模式仅支持地域间限速，后付费模式支持地域间限速和地域出口限速。
         # @type BandwidthLimitType: String
@@ -5116,8 +5116,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 2
-        deprecate :SubnetId=, :none, 2026, 2
+        deprecate :SubnetId, :none, 2026, 3
+        deprecate :SubnetId=, :none, 2026, 3
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -6858,8 +6858,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2026, 2
-        deprecate :IsPassService=, :none, 2026, 2
+        deprecate :IsPassService, :none, 2026, 3
+        deprecate :IsPassService=, :none, 2026, 3
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -7502,10 +7502,12 @@ module TencentCloud
         # @type SamlData: String
         # @param Tags: 指定绑定的标签列表
         # @type Tags: Array
+        # @param DnsServers: DNS Server 地址
+        # @type DnsServers: :class:`Tencentcloud::Vpc.v20170312.models.DnsServers`
 
-        attr_accessor :VpnGatewayId, :SslVpnServerName, :RemoteAddress, :LocalAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags
+        attr_accessor :VpnGatewayId, :SslVpnServerName, :RemoteAddress, :LocalAddress, :SslVpnProtocol, :SslVpnPort, :IntegrityAlgorithm, :EncryptAlgorithm, :Compress, :SsoEnabled, :AccessPolicyEnabled, :SamlData, :Tags, :DnsServers
 
-        def initialize(vpngatewayid=nil, sslvpnservername=nil, remoteaddress=nil, localaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil, tags=nil)
+        def initialize(vpngatewayid=nil, sslvpnservername=nil, remoteaddress=nil, localaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, integrityalgorithm=nil, encryptalgorithm=nil, compress=nil, ssoenabled=nil, accesspolicyenabled=nil, samldata=nil, tags=nil, dnsservers=nil)
           @VpnGatewayId = vpngatewayid
           @SslVpnServerName = sslvpnservername
           @RemoteAddress = remoteaddress
@@ -7519,6 +7521,7 @@ module TencentCloud
           @AccessPolicyEnabled = accesspolicyenabled
           @SamlData = samldata
           @Tags = tags
+          @DnsServers = dnsservers
         end
 
         def deserialize(params)
@@ -7541,6 +7544,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['DnsServers'].nil?
+            @DnsServers = DnsServers.new
+            @DnsServers.deserialize(params['DnsServers'])
           end
         end
       end
@@ -11779,6 +11786,48 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeDesignatedZones请求参数结构体
+      class DescribeDesignatedZonesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeDesignatedZones返回参数结构体
+      class DescribeDesignatedZonesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 用户可选的可用区总数
+        # @type TotalCount: Integer
+        # @param DesignatedZoneInfo: 用户可选的可用区详细信息
+        # @type DesignatedZoneInfo: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :DesignatedZoneInfo, :RequestId
+
+        def initialize(totalcount=nil, designatedzoneinfo=nil, requestid=nil)
+          @TotalCount = totalcount
+          @DesignatedZoneInfo = designatedzoneinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['DesignatedZoneInfo'].nil?
+            @DesignatedZoneInfo = []
+            params['DesignatedZoneInfo'].each do |i|
+              designatedzoneinfodict_tmp = DesignatedZoneInfoDict.new
+              designatedzoneinfodict_tmp.deserialize(i)
+              @DesignatedZoneInfo << designatedzoneinfodict_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -16709,8 +16758,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2026, 2
-        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 2
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 3
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 3
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -17605,6 +17654,30 @@ module TencentCloud
             end
           end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 用户可选的可用区信息
+      class DesignatedZoneInfoDict < TencentCloud::Common::AbstractModel
+        # @param DesignatedZone: 可用区Id
+        # @type DesignatedZone: String
+        # @param DesignatedZoneName: 可用区名称
+        # @type DesignatedZoneName: String
+        # @param DesignatedZoneType: 可用区类型
+        # @type DesignatedZoneType: String
+
+        attr_accessor :DesignatedZone, :DesignatedZoneName, :DesignatedZoneType
+
+        def initialize(designatedzone=nil, designatedzonename=nil, designatedzonetype=nil)
+          @DesignatedZone = designatedzone
+          @DesignatedZoneName = designatedzonename
+          @DesignatedZoneType = designatedzonetype
+        end
+
+        def deserialize(params)
+          @DesignatedZone = params['DesignatedZone']
+          @DesignatedZoneName = params['DesignatedZoneName']
+          @DesignatedZoneType = params['DesignatedZoneType']
         end
       end
 
@@ -18643,6 +18716,26 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # SSL VPN Server DnsServers
+      class DnsServers < TencentCloud::Common::AbstractModel
+        # @param PrimaryDns: 主DNS配置
+        # @type PrimaryDns: String
+        # @param SecondaryDns: 备DNS配置
+        # @type SecondaryDns: String
+
+        attr_accessor :PrimaryDns, :SecondaryDns
+
+        def initialize(primarydns=nil, secondarydns=nil)
+          @PrimaryDns = primarydns
+          @SecondaryDns = secondarydns
+        end
+
+        def deserialize(params)
+          @PrimaryDns = params['PrimaryDns']
+          @SecondaryDns = params['SecondaryDns']
         end
       end
 
@@ -19973,8 +20066,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2026, 2
-        deprecate :IntegrityAlgorith=, :none, 2026, 2
+        deprecate :IntegrityAlgorith, :none, 2026, 3
+        deprecate :IntegrityAlgorith=, :none, 2026, 3
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -21385,10 +21478,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 2
-        deprecate :StartTime=, :none, 2026, 2
-        deprecate :EndTime, :none, 2026, 2
-        deprecate :EndTime=, :none, 2026, 2
+        deprecate :StartTime, :none, 2026, 3
+        deprecate :StartTime=, :none, 2026, 3
+        deprecate :EndTime, :none, 2026, 3
+        deprecate :EndTime=, :none, 2026, 3
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -24414,10 +24507,12 @@ module TencentCloud
         # @type SsoEnabled: Boolean
         # @param SamlData: SAML-DATA
         # @type SamlData: String
+        # @param DnsServers: DNS Server地址
+        # @type DnsServers: :class:`Tencentcloud::Vpc.v20170312.models.DnsServers`
 
-        attr_accessor :SslVpnServerId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :SsoEnabled, :SamlData
+        attr_accessor :SslVpnServerId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :SsoEnabled, :SamlData, :DnsServers
 
-        def initialize(sslvpnserverid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, ssoenabled=nil, samldata=nil)
+        def initialize(sslvpnserverid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, ssoenabled=nil, samldata=nil, dnsservers=nil)
           @SslVpnServerId = sslvpnserverid
           @SslVpnServerName = sslvpnservername
           @LocalAddress = localaddress
@@ -24429,6 +24524,7 @@ module TencentCloud
           @Compress = compress
           @SsoEnabled = ssoenabled
           @SamlData = samldata
+          @DnsServers = dnsservers
         end
 
         def deserialize(params)
@@ -24443,6 +24539,10 @@ module TencentCloud
           @Compress = params['Compress']
           @SsoEnabled = params['SsoEnabled']
           @SamlData = params['SamlData']
+          unless params['DnsServers'].nil?
+            @DnsServers = DnsServers.new
+            @DnsServers.deserialize(params['DnsServers'])
+          end
         end
       end
 
@@ -24778,12 +24878,17 @@ module TencentCloud
 
       # NAT地域地区对象
       class NatRegionInfoWithArea < TencentCloud::Common::AbstractModel
+        # @param Region: 地域ID，如：ap-guangzhou。
+        # @type Region: String
 
+        attr_accessor :Region
 
-        def initialize()
+        def initialize(region=nil)
+          @Region = region
         end
 
         def deserialize(params)
+          @Region = params['Region']
         end
       end
 
@@ -29016,10 +29121,12 @@ module TencentCloud
         # @type AccessPolicy: Array
         # @param SpName: CAM服务提供商Name
         # @type SpName: String
+        # @param DnsServers: DNS Server地址
+        # @type DnsServers: :class:`Tencentcloud::Vpc.v20170312.models.DnsServers`
 
-        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy, :SpName
+        attr_accessor :VpcId, :SslVpnServerId, :VpnGatewayId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :MaxConnection, :WanIp, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :CreateTime, :State, :SsoEnabled, :EiamApplicationId, :AccessPolicyEnabled, :AccessPolicy, :SpName, :DnsServers
 
-        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil, ssoenabled=nil, eiamapplicationid=nil, accesspolicyenabled=nil, accesspolicy=nil, spname=nil)
+        def initialize(vpcid=nil, sslvpnserverid=nil, vpngatewayid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, maxconnection=nil, wanip=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, createtime=nil, state=nil, ssoenabled=nil, eiamapplicationid=nil, accesspolicyenabled=nil, accesspolicy=nil, spname=nil, dnsservers=nil)
           @VpcId = vpcid
           @SslVpnServerId = sslvpnserverid
           @VpnGatewayId = vpngatewayid
@@ -29040,6 +29147,7 @@ module TencentCloud
           @AccessPolicyEnabled = accesspolicyenabled
           @AccessPolicy = accesspolicy
           @SpName = spname
+          @DnsServers = dnsservers
         end
 
         def deserialize(params)
@@ -29070,6 +29178,10 @@ module TencentCloud
             end
           end
           @SpName = params['SpName']
+          unless params['DnsServers'].nil?
+            @DnsServers = DnsServers.new
+            @DnsServers.deserialize(params['DnsServers'])
+          end
         end
       end
 

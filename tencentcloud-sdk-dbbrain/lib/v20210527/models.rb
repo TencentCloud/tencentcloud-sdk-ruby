@@ -1135,6 +1135,71 @@ module TencentCloud
         end
       end
 
+      # CreateMongoDBKillTask请求参数结构体
+      class CreateMongoDBKillTaskRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: kill会话任务的关联实例ID。
+        # @type InstanceId: String
+        # @param Duration: 任务持续时间，单位秒，手动关闭任务传-1。
+        # @type Duration: Integer
+        # @param Product: 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
+        # @type Product: String
+        # @param Host: 任务过滤条件，客户端IP。
+        # @type Host: String
+        # @param DB: 命名空间
+        # @type DB: Array
+        # @param Type: update,insert,query,getmore,remove,killcursors,command,compressed,none
+        # @type Type: String
+        # @param Time: kill任务过滤条件，会话持续时长，单位秒。
+        # @type Time: Integer
+
+        attr_accessor :InstanceId, :Duration, :Product, :Host, :DB, :Type, :Time
+
+        def initialize(instanceid=nil, duration=nil, product=nil, host=nil, db=nil, type=nil, time=nil)
+          @InstanceId = instanceid
+          @Duration = duration
+          @Product = product
+          @Host = host
+          @DB = db
+          @Type = type
+          @Time = time
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Duration = params['Duration']
+          @Product = params['Product']
+          @Host = params['Host']
+          @DB = params['DB']
+          @Type = params['Type']
+          @Time = params['Time']
+        end
+      end
+
+      # CreateMongoDBKillTask返回参数结构体
+      class CreateMongoDBKillTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Status: kill会话任务创建成功返回1
+        # @type Status: Integer
+        # @param ErrorMsg: 异常信息
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMsg: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Status, :ErrorMsg, :RequestId
+
+        def initialize(status=nil, errormsg=nil, requestid=nil)
+          @Status = status
+          @ErrorMsg = errormsg
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @ErrorMsg = params['ErrorMsg']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProxySessionKillTask请求参数结构体
       class CreateProxySessionKillTaskRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。

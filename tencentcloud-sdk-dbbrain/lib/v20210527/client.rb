@@ -293,6 +293,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建中断会话的任务。
+
+        # @param request: Request instance for CreateMongoDBKillTask.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::CreateMongoDBKillTaskRequest`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::CreateMongoDBKillTaskResponse`
+        def CreateMongoDBKillTask(request)
+          body = send_request('CreateMongoDBKillTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateMongoDBKillTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建中止所有代理节点连接会话的异步任务。当前仅支持 Redis。得到的返回值为异步任务 id，可以作为参数传入接口 DescribeProxySessionKillTasks 查询kill会话任务执行状态。
 
         # @param request: Request instance for CreateProxySessionKillTask.

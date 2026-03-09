@@ -2818,8 +2818,8 @@ module TencentCloud
 
         attr_accessor :SegmentSet, :SubtitlePath, :OutputStorage
         extend Gem::Deprecate
-        deprecate :OutputStorage, :none, 2026, 2
-        deprecate :OutputStorage=, :none, 2026, 2
+        deprecate :OutputStorage, :none, 2026, 3
+        deprecate :OutputStorage=, :none, 2026, 3
 
         def initialize(segmentset=nil, subtitlepath=nil, outputstorage=nil)
           @SegmentSet = segmentset
@@ -8767,8 +8767,8 @@ module TencentCloud
 
         attr_accessor :OutputName, :Description, :Protocol, :OutputRegion, :OutputType, :OutputKind, :SRTSettings, :RTMPSettings, :RTPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 2
-        deprecate :PidSelector=, :none, 2026, 2
+        deprecate :PidSelector, :none, 2026, 3
+        deprecate :PidSelector=, :none, 2026, 3
 
         def initialize(outputname=nil, description=nil, protocol=nil, outputregion=nil, outputtype=nil, outputkind=nil, srtsettings=nil, rtmpsettings=nil, rtpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamselector=nil)
           @OutputName = outputname
@@ -13102,8 +13102,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :OutputType, :OutputKind, :Description, :Protocol, :OutputAddressList, :OutputRegion, :SRTSettings, :RTPSettings, :RTMPSettings, :RTMPPullSettings, :AllowIpList, :RTSPPullSettings, :HLSPullSettings, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :PidSelector, :StreamUrls, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 2
-        deprecate :PidSelector=, :none, 2026, 2
+        deprecate :PidSelector, :none, 2026, 3
+        deprecate :PidSelector=, :none, 2026, 3
 
         def initialize(outputid=nil, outputname=nil, outputtype=nil, outputkind=nil, description=nil, protocol=nil, outputaddresslist=nil, outputregion=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, rtmppullsettings=nil, allowiplist=nil, rtsppullsettings=nil, hlspullsettings=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, pidselector=nil, streamurls=nil, streamselector=nil)
           @OutputId = outputid
@@ -15911,32 +15911,30 @@ module TencentCloud
 
       # EditMedia请求参数结构体
       class EditMediaRequest < TencentCloud::Common::AbstractModel
-        # @param FileInfos: 输入的视频文件信息。
+        # @param FileInfos: <p>输入的视频文件信息。</p>
         # @type FileInfos: Array
-        # @param OutputStorage: 媒体处理输出文件的目标存储。
+        # @param OutputStorage: <p>媒体处理输出文件的目标存储。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputObjectPath: 媒体处理输出文件的目标路径。
-
-        # 注意：对于复杂合成任务，路径中的文件名只可为数字、字母、-、_ 的组合，最长 64 个字符。
+        # @param OutputObjectPath: <p>媒体处理输出文件的目标路径。</p><p>注意：对于复杂合成任务，路径中的文件名只可为数字、字母、-、_ 的组合，最长 64 个字符。</p>
         # @type OutputObjectPath: String
-        # @param OutputConfig: 【剪辑】任务生成的文件配置。
+        # @param OutputConfig: <p>【剪辑】任务生成的文件配置。</p>
         # @type OutputConfig: :class:`Tencentcloud::Mps.v20190612.models.EditMediaOutputConfig`
-        # @param ComposeConfig: 【合成】任务配置。
-
-        # 注意：当其不为空时，认为是合成任务，否则按剪辑任务处理。
+        # @param ComposeConfig: <p>【合成】任务配置。</p><p>注意：当其不为空时，认为是合成任务，否则按剪辑任务处理。</p>
         # @type ComposeConfig: :class:`Tencentcloud::Mps.v20190612.models.ComposeMediaConfig`
-        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @param TaskNotifyConfig: <p>任务的事件通知信息，不填代表不获取事件通知。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param TasksPriority: 任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。
+        # @param TasksPriority: <p>任务优先级，数值越大优先级越高，取值范围是-10到 10，不填代表0。</p>
         # @type TasksPriority: Integer
-        # @param SessionId: 用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
+        # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。</p>
+        # @type ResourceId: String
 
-        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :OutputConfig, :ComposeConfig, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext
+        attr_accessor :FileInfos, :OutputStorage, :OutputObjectPath, :OutputConfig, :ComposeConfig, :TaskNotifyConfig, :TasksPriority, :SessionId, :SessionContext, :ResourceId
 
-        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, outputconfig=nil, composeconfig=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil)
+        def initialize(fileinfos=nil, outputstorage=nil, outputobjectpath=nil, outputconfig=nil, composeconfig=nil, tasknotifyconfig=nil, taskspriority=nil, sessionid=nil, sessioncontext=nil, resourceid=nil)
           @FileInfos = fileinfos
           @OutputStorage = outputstorage
           @OutputObjectPath = outputobjectpath
@@ -15946,6 +15944,7 @@ module TencentCloud
           @TasksPriority = taskspriority
           @SessionId = sessionid
           @SessionContext = sessioncontext
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -15977,12 +15976,13 @@ module TencentCloud
           @TasksPriority = params['TasksPriority']
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
+          @ResourceId = params['ResourceId']
         end
       end
 
       # EditMedia返回参数结构体
       class EditMediaResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 编辑视频的任务 ID，可以通过该 ID 查询编辑任务的状态。
+        # @param TaskId: <p>编辑视频的任务 ID，可以通过该 ID 查询编辑任务的状态。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -16329,8 +16329,8 @@ module TencentCloud
 
         attr_accessor :TaskType, :EvaluationTypeSet, :EvaluationRangeType, :ContrastInfoSet, :ContrastMediaSet, :ContrastTemplateSet, :StartTime, :EndTime, :StartFrameIndex, :EndFrameIndex, :ResolutionAlignmentMode, :BitrateSet, :VCRFSet
         extend Gem::Deprecate
-        deprecate :ContrastInfoSet, :none, 2026, 2
-        deprecate :ContrastInfoSet=, :none, 2026, 2
+        deprecate :ContrastInfoSet, :none, 2026, 3
+        deprecate :ContrastInfoSet=, :none, 2026, 3
 
         def initialize(tasktype=nil, evaluationtypeset=nil, evaluationrangetype=nil, contrastinfoset=nil, contrastmediaset=nil, contrasttemplateset=nil, starttime=nil, endtime=nil, startframeindex=nil, endframeindex=nil, resolutionalignmentmode=nil, bitrateset=nil, vcrfset=nil)
           @TaskType = tasktype
@@ -18921,10 +18921,10 @@ module TencentCloud
 
         attr_accessor :QualityControlResults, :DiagnoseResults, :QualityControlResultSet, :DiagnoseResultSet
         extend Gem::Deprecate
-        deprecate :QualityControlResults, :none, 2026, 2
-        deprecate :QualityControlResults=, :none, 2026, 2
-        deprecate :DiagnoseResults, :none, 2026, 2
-        deprecate :DiagnoseResults=, :none, 2026, 2
+        deprecate :QualityControlResults, :none, 2026, 3
+        deprecate :QualityControlResults=, :none, 2026, 3
+        deprecate :DiagnoseResults, :none, 2026, 3
+        deprecate :DiagnoseResults=, :none, 2026, 3
 
         def initialize(qualitycontrolresults=nil, diagnoseresults=nil, qualitycontrolresultset=nil, diagnoseresultset=nil)
           @QualityControlResults = qualitycontrolresults
@@ -22122,8 +22122,8 @@ module TencentCloud
 
         attr_accessor :OutputId, :OutputName, :Description, :Protocol, :OutputKind, :SRTSettings, :RTPSettings, :RTMPSettings, :AllowIpList, :MaxConcurrent, :SecurityGroupIds, :Zones, :RISTSettings, :OutputType, :PidSelector, :StreamSelector
         extend Gem::Deprecate
-        deprecate :PidSelector, :none, 2026, 2
-        deprecate :PidSelector=, :none, 2026, 2
+        deprecate :PidSelector, :none, 2026, 3
+        deprecate :PidSelector=, :none, 2026, 3
 
         def initialize(outputid=nil, outputname=nil, description=nil, protocol=nil, outputkind=nil, srtsettings=nil, rtpsettings=nil, rtmpsettings=nil, allowiplist=nil, maxconcurrent=nil, securitygroupids=nil, zones=nil, ristsettings=nil, outputtype=nil, pidselector=nil, streamselector=nil)
           @OutputId = outputid
@@ -24799,49 +24799,36 @@ module TencentCloud
 
       # ProcessLiveStream请求参数结构体
       class ProcessLiveStreamRequest < TencentCloud::Common::AbstractModel
-        # @param Url: 直播流 URL（必须是直播流地址，支持 rtmp，hls 和 flv, trtc,webrtc,srt等）。
-        # trtc地址如下：
-        #  trtc: //trtc.rtc.qq.com/mps/`<roomid>`?sdkappid=`<sdkappid>`&userid=`<userid>`&usersig=<`usersig>`
-        # `<roomid>` 为trtc的房间号id, 为数字
-        # `<sdkappid>` 为trtc的sdk app id
-        # `<userid>` 为服务进入房间的用户id,可以区分谁是机器人
-        # <`usersig>` 为trtc 用户的签名
-
-        # webrtc 支持[LEB](https://cloud.tencent.com/product/leb)的直播流，地址获取请[参考](https://cloud.tencent.com/document/product/267/32720)
-
-        # srt支持地址请[参考](https://ffmpeg.org/ffmpeg-protocols.html#srt)
-
+        # @param Url: <p>直播流 URL（必须是直播流地址，支持 rtmp，hls 和 flv, trtc,webrtc,srt等）。<br>trtc地址如下：<br> trtc: //trtc.rtc.qq.com/mps/<code>&lt;roomid&gt;</code>?sdkappid=<code>&lt;sdkappid&gt;</code>&amp;userid=<code>&lt;userid&gt;</code>&amp;usersig=&lt;<code>usersig&gt;</code><br><code>&lt;roomid&gt;</code> 为trtc的房间号id, 为数字<br><code>&lt;sdkappid&gt;</code> 为trtc的sdk app id<br><code>&lt;userid&gt;</code> 为服务进入房间的用户id,可以区分谁是机器人<br>&lt;<code>usersig&gt;</code> 为trtc 用户的签名</p><p>webrtc 支持<a href="https://cloud.tencent.com/product/leb">LEB</a>的直播流，地址获取请<a href="https://cloud.tencent.com/document/product/267/32720">参考</a></p><p>srt支持地址请<a href="https://ffmpeg.org/ffmpeg-protocols.html#srt">参考</a></p>
         # @type Url: String
-        # @param TaskNotifyConfig: 任务的事件通知信息，用于指定直播流处理的结果。
+        # @param TaskNotifyConfig: <p>任务的事件通知信息，用于指定直播流处理的结果。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.LiveStreamTaskNotifyConfig`
-        # @param OutputStorage: 直播流处理输出文件的目标存储。如处理有文件输出，该参数为必填项。
+        # @param OutputStorage: <p>直播流处理输出文件的目标存储。如处理有文件输出，该参数为必填项。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
-        # @param OutputDir: 直播流处理生成的文件输出的目标目录，如`/movie/201909/`，如果不填为 `/` 目录。
+        # @param OutputDir: <p>直播流处理生成的文件输出的目标目录，如<code>/movie/201909/</code>，如果不填为 <code>/</code> 目录。</p>
         # @type OutputDir: String
-        # @param AiContentReviewTask: 视频内容审核类型任务参数。
+        # @param AiContentReviewTask: <p>视频内容审核类型任务参数。</p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Mps.v20190612.models.AiContentReviewTaskInput`
-        # @param AiRecognitionTask: 视频内容识别类型任务参数。
+        # @param AiRecognitionTask: <p>视频内容识别类型任务参数。</p>
         # @type AiRecognitionTask: :class:`Tencentcloud::Mps.v20190612.models.AiRecognitionTaskInput`
-        # @param AiAnalysisTask: 视频内容分析类型任务参数。
+        # @param AiAnalysisTask: <p>视频内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Mps.v20190612.models.AiAnalysisTaskInput`
-        # @param AiQualityControlTask: 媒体质检类型任务参数。
+        # @param AiQualityControlTask: <p>媒体质检类型任务参数。</p>
         # @type AiQualityControlTask: :class:`Tencentcloud::Mps.v20190612.models.AiQualityControlTaskInput`
-        # @param SmartSubtitlesTask: 智能字幕任务参数。
+        # @param SmartSubtitlesTask: <p>智能字幕任务参数。</p>
         # @type SmartSubtitlesTask: :class:`Tencentcloud::Mps.v20190612.models.LiveSmartSubtitlesTaskInput`
-        # @param SessionId: 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
+        # @param SessionId: <p>用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
-        # @param SessionContext: 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
+        # @param SessionContext: <p>来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
-        # @param ScheduleId: 直播编排ID。
-        # 注意1：对于OutputStorage、OutputDir参数：
-        # <li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li>
-        # <li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若对直播流发起处理（ProcessLiveStream）有输出，将覆盖原有编排的默认输出。</li>
-        # 注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessLiveStream）有设置，将覆盖原有编排的默认回调。
+        # @param ScheduleId: <p>直播编排ID。<br>注意1：对于OutputStorage、OutputDir参数：</p><li>当服务编排中子任务节点配置了OutputStorage、OutputDir时，该子任务节点中配置的输出作为子任务的输出。</li><li>当服务编排中子任务节点没有配置OutputStorage、OutputDir时，若对直播流发起处理（ProcessLiveStream）有输出，将覆盖原有编排的默认输出。</li>注意2：对于TaskNotifyConfig参数，若创建任务接口（ProcessLiveStream）有设置，将覆盖原有编排的默认回调。
         # @type ScheduleId: Integer
+        # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为帐号主资源ID。</p>
+        # @type ResourceId: String
 
-        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SmartSubtitlesTask, :SessionId, :SessionContext, :ScheduleId
+        attr_accessor :Url, :TaskNotifyConfig, :OutputStorage, :OutputDir, :AiContentReviewTask, :AiRecognitionTask, :AiAnalysisTask, :AiQualityControlTask, :SmartSubtitlesTask, :SessionId, :SessionContext, :ScheduleId, :ResourceId
 
-        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil)
+        def initialize(url=nil, tasknotifyconfig=nil, outputstorage=nil, outputdir=nil, aicontentreviewtask=nil, airecognitiontask=nil, aianalysistask=nil, aiqualitycontroltask=nil, smartsubtitlestask=nil, sessionid=nil, sessioncontext=nil, scheduleid=nil, resourceid=nil)
           @Url = url
           @TaskNotifyConfig = tasknotifyconfig
           @OutputStorage = outputstorage
@@ -24854,6 +24841,7 @@ module TencentCloud
           @SessionId = sessionid
           @SessionContext = sessioncontext
           @ScheduleId = scheduleid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -24890,12 +24878,13 @@ module TencentCloud
           @SessionId = params['SessionId']
           @SessionContext = params['SessionContext']
           @ScheduleId = params['ScheduleId']
+          @ResourceId = params['ResourceId']
         end
       end
 
       # ProcessLiveStream返回参数结构体
       class ProcessLiveStreamResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID
+        # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

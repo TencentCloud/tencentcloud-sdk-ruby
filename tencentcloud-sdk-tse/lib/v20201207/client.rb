@@ -413,6 +413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建泳道组
+
+        # @param request: Request instance for CreateGovernanceLaneGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::CreateGovernanceLaneGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::CreateGovernanceLaneGroupsResponse`
+        def CreateGovernanceLaneGroups(request)
+          body = send_request('CreateGovernanceLaneGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateGovernanceLaneGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建治理中心命名空间
 
         # @param request: Request instance for CreateGovernanceNamespaces.
@@ -975,6 +999,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteGovernanceInstancesByHostResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除泳道组
+
+        # @param request: Request instance for DeleteGovernanceLaneGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DeleteGovernanceLaneGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DeleteGovernanceLaneGroupsResponse`
+        def DeleteGovernanceLaneGroups(request)
+          body = send_request('DeleteGovernanceLaneGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteGovernanceLaneGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1805,6 +1853,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询泳道组列表
+
+        # @param request: Request instance for DescribeGovernanceLaneGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::DescribeGovernanceLaneGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::DescribeGovernanceLaneGroupsResponse`
+        def DescribeGovernanceLaneGroups(request)
+          body = send_request('DescribeGovernanceLaneGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeGovernanceLaneGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询服务治理中心命名空间列表
 
         # @param request: Request instance for DescribeGovernanceNamespaces.
@@ -2559,6 +2631,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyGovernanceInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建泳道组
+
+        # @param request: Request instance for ModifyGovernanceLaneGroups.
+        # @type request: :class:`Tencentcloud::tse::V20201207::ModifyGovernanceLaneGroupsRequest`
+        # @rtype: :class:`Tencentcloud::tse::V20201207::ModifyGovernanceLaneGroupsResponse`
+        def ModifyGovernanceLaneGroups(request)
+          body = send_request('ModifyGovernanceLaneGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyGovernanceLaneGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else

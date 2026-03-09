@@ -2493,8 +2493,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 1
-        deprecate :Enable=, :none, 2026, 1
+        deprecate :Enable, :none, 2026, 3
+        deprecate :Enable=, :none, 2026, 3
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @Name = name
@@ -2833,8 +2833,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 1
-        deprecate :LogFormat=, :none, 2026, 1
+        deprecate :LogFormat, :none, 2026, 3
+        deprecate :LogFormat=, :none, 2026, 3
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -4370,6 +4370,50 @@ module TencentCloud
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateNetworkApplication请求参数结构体
+      class CreateNetworkApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>网络应用名称：长度不超过64字符，名称不能重复。</p><ul><li>只能包含以下字符：<ul><li>英文字母（大小写）</li><li>数字</li><li>下划线</li><li>连字符（减号）</li><li>汉字</li></ul></li><li>至少包含一个字符</li><li>不能包含空格</li><li>不能包含其他特殊字符（如 @、#、$、% 等）</li></ul>
+        # @type Name: String
+        # @param LogsetId: <p>日志集ID</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/58624">获取日志集列表</a>获取日志集Id。</li></ul>
+        # @type LogsetId: String
+        # @param TopicName: <p>主题名称。名称限制如下：</p><ul><li>不能为空字符串</li><li>不能包含字符&#39;|&#39;</li><li>不能使用以下名称[&quot;cls_service_log&quot;,&quot;loglistener_status&quot;,&quot;loglistener_alarm&quot;,&quot;loglistener_business&quot;,&quot;cls_service_metric&quot;]</li></ul>
+        # @type TopicName: String
+
+        attr_accessor :Name, :LogsetId, :TopicName
+
+        def initialize(name=nil, logsetid=nil, topicname=nil)
+          @Name = name
+          @LogsetId = logsetid
+          @TopicName = topicname
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @LogsetId = params['LogsetId']
+          @TopicName = params['TopicName']
+        end
+      end
+
+      # CreateNetworkApplication返回参数结构体
+      class CreateNetworkApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: <p>网络应用id</p>
+        # @type NetworkAppId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :NetworkAppId, :RequestId
+
+        def initialize(networkappid=nil, requestid=nil)
+          @NetworkAppId = networkappid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
           @RequestId = params['RequestId']
         end
       end
@@ -6429,6 +6473,38 @@ module TencentCloud
 
       # DeleteMetricSubscribe返回参数结构体
       class DeleteMetricSubscribeResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteNetworkApplication请求参数结构体
+      class DeleteNetworkApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: <p>网络应用id。</p>
+        # @type NetworkAppId: String
+
+        attr_accessor :NetworkAppId
+
+        def initialize(networkappid=nil)
+          @NetworkAppId = networkappid
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
+        end
+      end
+
+      # DeleteNetworkApplication返回参数结构体
+      class DeleteNetworkApplicationResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9526,6 +9602,107 @@ module TencentCloud
         end
       end
 
+      # DescribeNetworkApplicationDetail请求参数结构体
+      class DescribeNetworkApplicationDetailRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: <p>网络应用id</p>
+        # @type NetworkAppId: String
+
+        attr_accessor :NetworkAppId
+
+        def initialize(networkappid=nil)
+          @NetworkAppId = networkappid
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
+        end
+      end
+
+      # DescribeNetworkApplicationDetail返回参数结构体
+      class DescribeNetworkApplicationDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Info: <p>查询指定的网络应用详情</p>
+        # @type Info: :class:`Tencentcloud::Cls.v20201016.models.NetworkApplicationDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Info, :RequestId
+
+        def initialize(info=nil, requestid=nil)
+          @Info = info
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Info'].nil?
+            @Info = NetworkApplicationDetail.new
+            @Info.deserialize(params['Info'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeNetworkApplications请求参数结构体
+      class DescribeNetworkApplicationsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>过滤项</p><ul><li><p>name<br>按照【任务名称】进行过滤。模糊匹配方式查询。<br>类型：String<br>必选：否</p></li><li><p>networkAppId<br>按照【网络应用id】进行过滤。<br>类型：String<br>必选：否</p></li></ul><p>每次请求的Filters的上限为10，Filter.Values的上限为10。</p>
+        # @type Filters: Array
+        # @param Offset: <p>分页的偏移量，默认值为0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页单页限制数目，默认值为20，最大值100。</p>
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeNetworkApplications返回参数结构体
+      class DescribeNetworkApplicationsResponse < TencentCloud::Common::AbstractModel
+        # @param Infos: <p>符合查询条件的大模型性能剖析任务列表</p>
+        # @type Infos: Array
+        # @param Total: <p>符合查询条件的任务总数。</p>
+        # @type Total: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Infos, :Total, :RequestId
+
+        def initialize(infos=nil, total=nil, requestid=nil)
+          @Infos = infos
+          @Total = total
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Infos'].nil?
+            @Infos = []
+            params['Infos'].each do |i|
+              networkapplicationinfo_tmp = NetworkApplicationInfo.new
+              networkapplicationinfo_tmp.deserialize(i)
+              @Infos << networkapplicationinfo_tmp
+            end
+          end
+          @Total = params['Total']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeNoticeContents请求参数结构体
       class DescribeNoticeContentsRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <li> name
@@ -10437,15 +10614,15 @@ module TencentCloud
 
       # 数据湖计算服务（Data Lake Compute，简称DLC）数据字段配置信息
       class DlcFiledInfo < TencentCloud::Common::AbstractModel
-        # @param ClsField: cls日志中的字段名
+        # @param ClsField: <p>cls日志中的字段名</p>
         # @type ClsField: String
-        # @param DlcField: 数据湖计算服务表的列名
+        # @param DlcField: <p>数据湖计算服务表的列名</p>
         # @type DlcField: String
-        # @param DlcFieldType: 数据湖计算服务字段类型
+        # @param DlcFieldType: <p>数据湖计算服务字段类型</p><p>枚举值：</p><ul><li>int|string|struct等： 参考 <a href="https://cloud.tencent.com/document/product/1342/53778#Column">DLC  cloumn中的Type 定义 </a></li></ul>
         # @type DlcFieldType: String
-        # @param FillField: 解析失败填充字段
+        # @param FillField: <p>解析失败填充字段</p>
         # @type FillField: String
-        # @param Disable: 是否禁用
+        # @param Disable: <p>是否禁用</p>
         # @type Disable: Boolean
 
         attr_accessor :ClsField, :DlcField, :DlcFieldType, :FillField, :Disable
@@ -10537,11 +10714,11 @@ module TencentCloud
 
       # 数据湖计算服务（Data Lake Compute，简称DLC）数据分区配置
       class DlcPartitionInfo < TencentCloud::Common::AbstractModel
-        # @param ClsField: cls日志中的字段名
+        # @param ClsField: <p>cls日志中的字段名</p>
         # @type ClsField: String
-        # @param DlcField: dlc表的列名
+        # @param DlcField: <p>dlc表的列名</p>
         # @type DlcField: String
-        # @param DlcFieldType: dlc字段类型
+        # @param DlcFieldType: <p>请参考 <a href="https://cloud.tencent.com/document/product/1342/53778#Column">DLC  cloumn中的Type 定义 </a></p><p>枚举值：</p><ul><li>int|string|array等： 请参考 <a href="https://cloud.tencent.com/document/product/1342/53778#Column">DLC  cloumn中的Type 定义 </a></li></ul>
         # @type DlcFieldType: String
 
         attr_accessor :ClsField, :DlcField, :DlcFieldType
@@ -10992,37 +11169,35 @@ module TencentCloud
 
       # 日志导出信息
       class ExportInfo < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题ID
+        # @param TopicId: <p>日志主题ID</p>
         # @type TopicId: String
-        # @param ExportId: 日志导出任务ID
+        # @param ExportId: <p>日志导出任务ID</p>
         # @type ExportId: String
-        # @param Query: 日志导出查询语句
+        # @param Query: <p>日志导出查询语句</p>
         # @type Query: String
-        # @param FileName: 日志导出文件名
+        # @param FileName: <p>日志导出文件名</p>
         # @type FileName: String
-        # @param FileSize: 日志文件大小
+        # @param FileSize: <p>日志文件大小</p><p>单位：Byte</p>
         # @type FileSize: Integer
-        # @param Order: 日志导出时间排序
+        # @param Order: <p>日志导出时间排序</p>
         # @type Order: String
-        # @param Format: 日志导出格式
+        # @param Format: <p>日志导出格式</p>
         # @type Format: String
-        # @param Count: 日志导出数量
+        # @param Count: <p>日志导出数量</p>
         # @type Count: Integer
-        # @param Status: 日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中
+        # @param Status: <p>日志下载状态。Processing:导出正在进行中，Completed:导出完成，Failed:导出失败，Expired:日志导出已过期(三天有效期), Queuing 排队中</p>
         # @type Status: String
-        # @param From: 日志导出起始时间，毫秒时间戳
+        # @param From: <p>日志导出起始时间，毫秒时间戳</p>
         # @type From: Integer
-        # @param To: 日志导出结束时间，毫秒时间戳
+        # @param To: <p>日志导出结束时间，毫秒时间戳</p>
         # @type To: Integer
-        # @param CosPath: 日志导出路径,有效期一个小时，请尽快使用该路径下载。
+        # @param CosPath: <p>日志导出路径,有效期一个小时，请尽快使用该路径下载。</p>
         # @type CosPath: String
-        # @param CreateTime: 日志导出创建时间
-        # 时间格式：yyyy-MM-dd HH:mm:ss
+        # @param CreateTime: <p>日志导出创建时间<br>时间格式：yyyy-MM-dd HH:mm:ss</p>
         # @type CreateTime: String
-        # @param SyntaxRule: 语法规则。 默认值为0。
-        # 0：Lucene语法，1：CQL语法。
+        # @param SyntaxRule: <p>语法规则。 默认值为0。<br>0：Lucene语法，1：CQL语法。</p>
         # @type SyntaxRule: Integer
-        # @param DerivedFields: 导出字段
+        # @param DerivedFields: <p>导出字段</p>
         # @type DerivedFields: Array
 
         attr_accessor :TopicId, :ExportId, :Query, :FileName, :FileSize, :Order, :Format, :Count, :Status, :From, :To, :CosPath, :CreateTime, :SyntaxRule, :DerivedFields
@@ -11475,18 +11650,39 @@ module TencentCloud
 
       # GetMetricLabelValues请求参数结构体
       class GetMetricLabelValuesRequest < TencentCloud::Common::AbstractModel
+        # @param TopicId: <p>时序主题id</p>
+        # @type TopicId: String
+        # @param LabelName: <p>时序label名称</p>
+        # @type LabelName: String
+        # @param Start: <p>起始时间</p>
+        # @type Start: Integer
+        # @param End: <p>结束时间</p>
+        # @type End: Integer
+        # @param Match: <p>Label匹配规则</p>
+        # @type Match: Array
 
+        attr_accessor :TopicId, :LabelName, :Start, :End, :Match
 
-        def initialize()
+        def initialize(topicid=nil, labelname=nil, start=nil, _end=nil, match=nil)
+          @TopicId = topicid
+          @LabelName = labelname
+          @Start = start
+          @End = _end
+          @Match = match
         end
 
         def deserialize(params)
+          @TopicId = params['TopicId']
+          @LabelName = params['LabelName']
+          @Start = params['Start']
+          @End = params['End']
+          @Match = params['Match']
         end
       end
 
       # GetMetricLabelValues返回参数结构体
       class GetMetricLabelValuesResponse < TencentCloud::Common::AbstractModel
-        # @param Values: 时序metric label values
+        # @param Values: <p>时序metric label values</p>
         # @type Values: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13274,8 +13470,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmNoticeIds, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 1
-        deprecate :Enable=, :none, 2026, 1
+        deprecate :Enable, :none, 2026, 3
+        deprecate :Enable=, :none, 2026, 3
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmnoticeids=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil)
           @AlarmId = alarmid
@@ -13573,8 +13769,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 1
-        deprecate :LogFormat=, :none, 2026, 1
+        deprecate :LogFormat, :none, 2026, 3
+        deprecate :LogFormat=, :none, 2026, 3
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -14206,28 +14402,27 @@ module TencentCloud
 
       # ModifyDlcDeliver请求参数结构体
       class ModifyDlcDeliverRequest < TencentCloud::Common::AbstractModel
-        # @param TopicId: 日志主题id。
-        # - 通过[获取日志主题列表](https://cloud.tencent.com/document/product/614/56454)获取日志主题Id。
+        # @param TopicId: <p>日志主题id。</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type TopicId: String
-        # @param TaskId: 任务id。
+        # @param TaskId: <p>任务id。</p>
         # @type TaskId: String
-        # @param Name: 名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。
+        # @param Name: <p>名称：长度不超过64字符，以字母开头，接受0-9,a-z,A-Z, _,-,中文字符。</p>
         # @type Name: String
-        # @param DeliverType: 投递类型。0:批投递,1:实时投递
+        # @param DeliverType: <p>投递类型。0:批投递,1:实时投递</p>
         # @type DeliverType: Integer
-        # @param StartTime: 投递时间范围的开始时间
+        # @param StartTime: <p>投递时间范围的开始时间</p>
         # @type StartTime: Integer
-        # @param EndTime: 投递时间范围的结束时间。 如果为空，则表示不限时
+        # @param EndTime: <p>投递时间范围的结束时间。 如果为空，则表示不限时</p>
         # @type EndTime: Integer
-        # @param MaxSize: 投递文件大小,单位MB。 DeliverType=0时必填，范围 5<= MaxSize <= 256。
+        # @param MaxSize: <p>投递文件大小,单位MB。 DeliverType=0时必填，范围 5&lt;= MaxSize &lt;= 256。</p>
         # @type MaxSize: Integer
-        # @param Interval: 投递间隔，单位秒。 DeliverType=0时必填，范围 300<= Interval <=900。
+        # @param Interval: <p>投递间隔，单位秒。 DeliverType=0时必填，范围 300&lt;= Interval &lt;=900。</p>
         # @type Interval: Integer
-        # @param DlcInfo: dlc配置信息
+        # @param DlcInfo: <p>dlc配置信息</p>
         # @type DlcInfo: :class:`Tencentcloud::Cls.v20201016.models.DlcInfo`
-        # @param HasServicesLog: 是否开启投递服务日志。1关闭，2开启。默认开启
+        # @param HasServicesLog: <p>是否开启投递服务日志。1关闭，2开启。默认开启</p>
         # @type HasServicesLog: Integer
-        # @param Status: 任务状态。
+        # @param Status: <p>任务状态。</p><p>枚举值：</p><ul><li>1： 运行</li><li>2： 停止</li></ul>
         # @type Status: Integer
 
         attr_accessor :TopicId, :TaskId, :Name, :DeliverType, :StartTime, :EndTime, :MaxSize, :Interval, :DlcInfo, :HasServicesLog, :Status
@@ -14976,6 +15171,42 @@ module TencentCloud
         end
       end
 
+      # ModifyNetworkApplication请求参数结构体
+      class ModifyNetworkApplicationRequest < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: <p>网络应用id</p>
+        # @type NetworkAppId: String
+        # @param Name: <p>网络应用名称：长度不超过64字符，名称不能重复。</p><ul><li>只能包含以下字符：<ul><li>英文字母（大小写）</li><li>数字</li><li>下划线</li><li>连字符（减号）</li><li>汉字</li></ul></li><li>至少包含一个字符</li><li>不能包含空格</li><li>不能包含其他特殊字符（如 @、#、$、% 等）</li></ul>
+        # @type Name: String
+
+        attr_accessor :NetworkAppId, :Name
+
+        def initialize(networkappid=nil, name=nil)
+          @NetworkAppId = networkappid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
+          @Name = params['Name']
+        end
+      end
+
+      # ModifyNetworkApplication返回参数结构体
+      class ModifyNetworkApplicationResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNoticeContent请求参数结构体
       class ModifyNoticeContentRequest < TencentCloud::Common::AbstractModel
         # @param NoticeContentId: 通知内容模板ID。-通过[获取通知内容模板](https://cloud.tencent.com/document/api/614/111714)获取通知内容模板ID
@@ -15647,6 +15878,106 @@ module TencentCloud
         end
       end
 
+      # 网络应用任务详情
+      class NetworkApplicationDetail < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: 网络应用Id
+        # @type NetworkAppId: String
+        # @param Name: 网络应用名称
+        # @type Name: String
+        # @param Region: 地域code
+        # @type Region: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param Token: 应用token
+        # @type Token: String
+        # @param Uin: 主账号id
+        # @type Uin: Integer
+        # @param SubUin: 子账号id
+        # @type SubUin: Integer
+        # @param CreateTime: 创建时间，秒级时间戳
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，秒级时间戳
+        # @type UpdateTime: Integer
+
+        attr_accessor :NetworkAppId, :Name, :Region, :TopicId, :LogsetId, :Token, :Uin, :SubUin, :CreateTime, :UpdateTime
+
+        def initialize(networkappid=nil, name=nil, region=nil, topicid=nil, logsetid=nil, token=nil, uin=nil, subuin=nil, createtime=nil, updatetime=nil)
+          @NetworkAppId = networkappid
+          @Name = name
+          @Region = region
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Token = token
+          @Uin = uin
+          @SubUin = subuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
+          @Name = params['Name']
+          @Region = params['Region']
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Token = params['Token']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 网络应用任务信息
+      class NetworkApplicationInfo < TencentCloud::Common::AbstractModel
+        # @param NetworkAppId: 网络应用Id
+        # @type NetworkAppId: String
+        # @param Name: 网络应用名称
+        # @type Name: String
+        # @param Region: 地域code
+        # @type Region: String
+        # @param TopicId: 日志主题id
+        # @type TopicId: String
+        # @param LogsetId: 日志集id
+        # @type LogsetId: String
+        # @param Uin: 主账号id
+        # @type Uin: Integer
+        # @param SubUin: 子账号id
+        # @type SubUin: Integer
+        # @param CreateTime: 创建时间，秒级时间戳
+        # @type CreateTime: Integer
+        # @param UpdateTime: 更新时间，秒级时间戳
+        # @type UpdateTime: Integer
+
+        attr_accessor :NetworkAppId, :Name, :Region, :TopicId, :LogsetId, :Uin, :SubUin, :CreateTime, :UpdateTime
+
+        def initialize(networkappid=nil, name=nil, region=nil, topicid=nil, logsetid=nil, uin=nil, subuin=nil, createtime=nil, updatetime=nil)
+          @NetworkAppId = networkappid
+          @Name = name
+          @Region = region
+          @TopicId = topicid
+          @LogsetId = logsetid
+          @Uin = uin
+          @SubUin = subuin
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @NetworkAppId = params['NetworkAppId']
+          @Name = params['Name']
+          @Region = params['Region']
+          @TopicId = params['TopicId']
+          @LogsetId = params['LogsetId']
+          @Uin = params['Uin']
+          @SubUin = params['SubUin']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # 通知内容模板详细配置
       class NoticeContent < TencentCloud::Common::AbstractModel
         # @param Type: 渠道类型
@@ -16209,8 +16540,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 1
-        deprecate :DstTopicName=, :none, 2026, 1
+        deprecate :DstTopicName, :none, 2026, 3
+        deprecate :DstTopicName=, :none, 2026, 3
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -17848,8 +18179,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 1
-        deprecate :HashKey=, :none, 2026, 1
+        deprecate :HashKey, :none, 2026, 3
+        deprecate :HashKey=, :none, 2026, 3
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -18002,10 +18333,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 1
-        deprecate :Headers=, :none, 2026, 1
-        deprecate :Body, :none, 2026, 1
-        deprecate :Body=, :none, 2026, 1
+        deprecate :Headers, :none, 2026, 3
+        deprecate :Headers=, :none, 2026, 3
+        deprecate :Body, :none, 2026, 3
+        deprecate :Body=, :none, 2026, 3
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

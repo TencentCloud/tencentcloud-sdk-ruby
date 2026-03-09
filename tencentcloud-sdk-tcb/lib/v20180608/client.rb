@@ -77,30 +77,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
-
-        # @param request: Request instance for BindEnvGateway.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::BindEnvGatewayRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::BindEnvGatewayResponse`
-        def BindEnvGateway(request)
-          body = send_request('BindEnvGateway', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = BindEnvGatewayResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 检查是否开通Tcb服务
 
         # @param request: Request instance for CheckTcbService.
@@ -111,54 +87,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CheckTcbServiceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # TCB云API统一入口
-
-        # @param request: Request instance for CommonServiceAPI.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CommonServiceAPIRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CommonServiceAPIResponse`
-        def CommonServiceAPI(request)
-          body = send_request('CommonServiceAPI', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CommonServiceAPIResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建云开发项目
-
-        # @param request: Request instance for CreateAndDeployCloudBaseProject.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateAndDeployCloudBaseProjectRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateAndDeployCloudBaseProjectResponse`
-        def CreateAndDeployCloudBaseProject(request)
-          body = send_request('CreateAndDeployCloudBaseProject', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateAndDeployCloudBaseProjectResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -258,54 +186,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
-
-        # @param request: Request instance for CreateCloudBaseRunResource.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateCloudBaseRunResourceRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateCloudBaseRunResourceResponse`
-        def CreateCloudBaseRunResource(request)
-          body = send_request('CreateCloudBaseRunResource', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateCloudBaseRunResourceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建服务版本
-
-        # @param request: Request instance for CreateCloudBaseRunServerVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CreateCloudBaseRunServerVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateCloudBaseRunServerVersionResponse`
-        def CreateCloudBaseRunServerVersion(request)
-          body = send_request('CreateCloudBaseRunServerVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreateCloudBaseRunServerVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于购买云开发环境。
         # 该接口会自动下单并支付，会在腾讯云账户中扣除余额（余额不足会下单失败）。
         # 该接口支持自动扣除代金券（AutoVoucher=true时），符合条件的代金券会被自动扣除。
@@ -360,6 +240,8 @@ module TencentCloud
 
         # 开通Mysql
 
+        # 开通后，可通过 [DescribeCreateMySQLResult ](https://cloud.tencent.com/document/api/876/128185) 查询开通结果
+
         # @param request: Request instance for CreateMySQL.
         # @type request: :class:`Tencentcloud::tcb::V20180608::CreateMySQLRequest`
         # @rtype: :class:`Tencentcloud::tcb::V20180608::CreateMySQLResponse`
@@ -368,30 +250,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateMySQLResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 开通后付费资源
-
-        # @param request: Request instance for CreatePostpayPackage.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::CreatePostpayPackageRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::CreatePostpayPackageResponse`
-        def CreatePostpayPackage(request)
-          body = send_request('CreatePostpayPackage', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = CreatePostpayPackageResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -478,6 +336,35 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除合法域名。
+        # 云开发会校验网页应用请求的来源域名，您需要将来源域名加入到WEB安全域名列表中。
+        # 可以通过接口 [DescribeAuthDomains](https://cloud.tencent.com/document/product/876/42151) 获取当前已绑定生效的安全域名。
+
+        # 注意⚠️
+        # 安全域名被删除之后，可能会引起跨域问题，请谨慎操作。
+
+        # @param request: Request instance for DeleteAuthDomain.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteAuthDomainRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteAuthDomainResponse`
+        def DeleteAuthDomain(request)
+          body = send_request('DeleteAuthDomain', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAuthDomainResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除网关API
 
         # @param request: Request instance for DeleteCloudBaseGWAPI.
@@ -512,78 +399,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteCloudBaseGWDomainResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除云项目
-
-        # @param request: Request instance for DeleteCloudBaseProjectLatestVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteCloudBaseProjectLatestVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteCloudBaseProjectLatestVersionResponse`
-        def DeleteCloudBaseProjectLatestVersion(request)
-          body = send_request('DeleteCloudBaseProjectLatestVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteCloudBaseProjectLatestVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除服务版本
-
-        # @param request: Request instance for DeleteCloudBaseRunServerVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteCloudBaseRunServerVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteCloudBaseRunServerVersionResponse`
-        def DeleteCloudBaseRunServerVersion(request)
-          body = send_request('DeleteCloudBaseRunServerVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteCloudBaseRunServerVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 删除网关某版本
-
-        # @param request: Request instance for DeleteGatewayVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteGatewayVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteGatewayVersionResponse`
-        def DeleteGatewayVersion(request)
-          body = send_request('DeleteGatewayVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteGatewayVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -646,54 +461,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 删除安全网关路由
-
-        # @param request: Request instance for DeleteWxGatewayRoute.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DeleteWxGatewayRouteRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DeleteWxGatewayRouteResponse`
-        def DeleteWxGatewayRoute(request)
-          body = send_request('DeleteWxGatewayRoute', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DeleteWxGatewayRouteResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询活动记录信息
-
-        # @param request: Request instance for DescribeActivityRecord.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeActivityRecordRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeActivityRecordResponse`
-        def DescribeActivityRecord(request)
-          body = send_request('DescribeActivityRecord', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeActivityRecordResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口用于获取当前环境的安全域名列表。
         # 云开发会校验网页应用请求的来源域名，您需要将来源域名加入到WEB安全域名列表中。
         # 可以通过接口 [CreateAuthDomain](https://cloud.tencent.com/document/product/876/42764) 增加安全域名。
@@ -730,54 +497,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBaasPackageListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取计费相关信息
-
-        # @param request: Request instance for DescribeBillingInfo.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeBillingInfoRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeBillingInfoResponse`
-        def DescribeBillingInfo(request)
-          body = send_request('DescribeBillingInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeBillingInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询服务版本的详情
-
-        # @param request: Request instance for DescribeCbrServerVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCbrServerVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCbrServerVersionResponse`
-        def DescribeCbrServerVersion(request)
-          body = send_request('DescribeCbrServerVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCbrServerVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -864,199 +583,8 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取云开发项目列表
-
-        # @param request: Request instance for DescribeCloudBaseProjectLatestVersionList.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectLatestVersionListRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectLatestVersionListResponse`
-        def DescribeCloudBaseProjectLatestVersionList(request)
-          body = send_request('DescribeCloudBaseProjectLatestVersionList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseProjectLatestVersionListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 云项目部署列表
-
-        # @param request: Request instance for DescribeCloudBaseProjectVersionList.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectVersionListRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseProjectVersionListResponse`
-        def DescribeCloudBaseProjectVersionList(request)
-          body = send_request('DescribeCloudBaseProjectVersionList', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseProjectVersionListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查看容器托管的集群状态
-
-        # @param request: Request instance for DescribeCloudBaseRunResource.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunResourceRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunResourceResponse`
-        def DescribeCloudBaseRunResource(request)
-          body = send_request('DescribeCloudBaseRunResource', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunResourceResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查看容器托管的集群状态扩展使用
-
-        # @param request: Request instance for DescribeCloudBaseRunResourceForExtend.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunResourceForExtendRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunResourceForExtendResponse`
-        def DescribeCloudBaseRunResourceForExtend(request)
-          body = send_request('DescribeCloudBaseRunResourceForExtend', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunResourceForExtendResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询单个服务的详情，版本以及详情
-
-        # @param request: Request instance for DescribeCloudBaseRunServer.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunServerRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunServerResponse`
-        def DescribeCloudBaseRunServer(request)
-          body = send_request('DescribeCloudBaseRunServer', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunServerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询服务版本的详情，CPU和MEM  请使用CPUSize和MemSize
-
-        # @param request: Request instance for DescribeCloudBaseRunServerVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunServerVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunServerVersionResponse`
-        def DescribeCloudBaseRunServerVersion(request)
-          body = send_request('DescribeCloudBaseRunServerVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunServerVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询服务版本详情(新)
-
-        # @param request: Request instance for DescribeCloudBaseRunVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionResponse`
-        def DescribeCloudBaseRunVersion(request)
-          body = send_request('DescribeCloudBaseRunVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunVersionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询版本历史
-
-        # @param request: Request instance for DescribeCloudBaseRunVersionSnapshot.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionSnapshotRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCloudBaseRunVersionSnapshotResponse`
-        def DescribeCloudBaseRunVersionSnapshot(request)
-          body = send_request('DescribeCloudBaseRunVersionSnapshot', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCloudBaseRunVersionSnapshotResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询开通Mysql结果，Mysql开通成功后，可通过接口设置数据库账号相关功能包括但不限于【创建账号、删除账号、查询可授权权限列表、查询账号已有权限、修改主机、修改配置、修改账号库表权限】、集群操作相关【查询集群参数、修改集群参数】，连接设置相关【关闭外网、开通外网、查询集群信息】，备份回档相关【创建手动回档、删除手动回档、修改自动备份配置信息、查询备份文件列表、集群回档、查询任务列表、获取table列表、获取集群数据库列表、查询备份下载地址】，相关功能接口文档：[TDSQL-C MySQL API文档](https://cloud.tencent.com/document/product/1003/48106)
+        # 查询开通Mysql结果，`Response.Data.Status = "notexist"` 表示未开通，如果未开通，可以调用 [CreateMySQL](https://cloud.tencent.com/document/api/876/128186) 来开通
+        #  `Response.Data. Status = "success"` 表示开通成功，Mysql开通成功后，可通过接口设置数据库账号相关功能包括但不限于【创建账号、删除账号、查询可授权权限列表、查询账号已有权限、修改主机、修改配置、修改账号库表权限】、集群操作相关【查询集群参数、修改集群参数】，连接设置相关【关闭外网、开通外网、查询集群信息】，备份回档相关【创建手动回档、删除手动回档、修改自动备份配置信息、查询备份文件列表、集群回档、查询任务列表、获取table列表、获取集群数据库列表、查询备份下载地址】，相关功能接口文档：[TDSQL-C MySQL API文档](https://cloud.tencent.com/document/product/1003/48106)
 
         # @param request: Request instance for DescribeCreateMySQLResult.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCreateMySQLResultRequest`
@@ -1066,30 +594,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCreateMySQLResultResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 根据用户传入的指标, 拉取一段时间内的监控数据。
-
-        # @param request: Request instance for DescribeCurveData.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeCurveDataRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeCurveDataResponse`
-        def DescribeCurveData(request)
-          body = send_request('DescribeCurveData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeCurveDataResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1114,30 +618,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDatabaseACLResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取下载文件信息
-
-        # @param request: Request instance for DescribeDownloadFile.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeDownloadFileRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeDownloadFileResponse`
-        def DescribeDownloadFile(request)
-          body = send_request('DescribeDownloadFile', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeDownloadFileResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1185,54 +665,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 获取环境下单地域
-
-        # @param request: Request instance for DescribeEnvDealRegion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvDealRegionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvDealRegionResponse`
-        def DescribeEnvDealRegion(request)
-          body = send_request('DescribeEnvDealRegion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEnvDealRegionResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询后付费免费配额信息
-
-        # @param request: Request instance for DescribeEnvFreeQuota.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvFreeQuotaRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvFreeQuotaResponse`
-        def DescribeEnvFreeQuota(request)
-          body = send_request('DescribeEnvFreeQuota', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEnvFreeQuotaResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询环境个数上限
 
         # @param request: Request instance for DescribeEnvLimit.
@@ -1243,30 +675,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeEnvLimitResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询环境后付费计费详情
-
-        # @param request: Request instance for DescribeEnvPostpaidDeduct.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvPostpaidDeductRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvPostpaidDeductResponse`
-        def DescribeEnvPostpaidDeduct(request)
-          body = send_request('DescribeEnvPostpaidDeduct', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeEnvPostpaidDeductResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1305,127 +713,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 描述扩展上传文件信息
-
-        # @param request: Request instance for DescribeExtensionUploadInfo.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeExtensionUploadInfoRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeExtensionUploadInfoResponse`
-        def DescribeExtensionUploadInfo(request)
-          body = send_request('DescribeExtensionUploadInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeExtensionUploadInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取增值包计费相关信息
-
-        # @param request: Request instance for DescribeExtraPkgBillingInfo.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeExtraPkgBillingInfoRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeExtraPkgBillingInfoResponse`
-        def DescribeExtraPkgBillingInfo(request)
-          body = send_request('DescribeExtraPkgBillingInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeExtraPkgBillingInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询网关监控数据
-
-        # @param request: Request instance for DescribeGatewayCurveData.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayCurveDataRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayCurveDataResponse`
-        def DescribeGatewayCurveData(request)
-          body = send_request('DescribeGatewayCurveData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayCurveDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询网关版本信息
-        # 暂不鉴权
-
-        # @param request: Request instance for DescribeGatewayVersions.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayVersionsRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeGatewayVersionsResponse`
-        def DescribeGatewayVersions(request)
-          body = send_request('DescribeGatewayVersions', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGatewayVersionsResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 根据用户传入的指标, 拉取一段时间内的监控数据。
-
-        # @param request: Request instance for DescribeGraphData.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeGraphDataRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeGraphDataResponse`
-        def DescribeGraphData(request)
-          body = send_request('DescribeGraphData', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeGraphDataResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询静态托管域名任务状态
 
         # @param request: Request instance for DescribeHostingDomainTask.
@@ -1450,7 +737,9 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 销毁Mysql
+        # 查询Mysql集群信息
+
+        # 调用该接口前需要先查询Mysql是否开通，可通过 [DescribeCreateMySQLResult ](https://cloud.tencent.com/document/api/876/128185) 查询，只有已开通的才能查到集群信息
 
         # @param request: Request instance for DescribeMySQLClusterDetail.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeMySQLClusterDetailRequest`
@@ -1484,54 +773,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMySQLTaskStatusResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询后付费资源免费量
-
-        # @param request: Request instance for DescribePostpayFreeQuotas.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePostpayFreeQuotasRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePostpayFreeQuotasResponse`
-        def DescribePostpayFreeQuotas(request)
-          body = send_request('DescribePostpayFreeQuotas', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePostpayFreeQuotasResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 获取后付费免费额度
-
-        # @param request: Request instance for DescribePostpayPackageFreeQuotas.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribePostpayPackageFreeQuotasRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribePostpayPackageFreeQuotasResponse`
-        def DescribePostpayPackageFreeQuotas(request)
-          body = send_request('DescribePostpayPackageFreeQuotas', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribePostpayPackageFreeQuotasResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1581,57 +822,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSafeRuleResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询后付费短信资源量
-        # 1 有免费包的返回SmsFreeQuota结构所有字段
-        # 2 没有免费包，有付费包，付费返回复用SmsFreeQuota结构，其中只有 TodayUsedQuota 字段有效
-        # 3 都没有返回为空数组
-
-        # @param request: Request instance for DescribeSmsQuotas.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeSmsQuotasRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeSmsQuotasResponse`
-        def DescribeSmsQuotas(request)
-          body = send_request('DescribeSmsQuotas', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSmsQuotasResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查询环境1分钱抵扣信息
-
-        # @param request: Request instance for DescribeSpecialCostItems.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeSpecialCostItemsRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeSpecialCostItemsResponse`
-        def DescribeSpecialCostItems(request)
-          body = send_request('DescribeSpecialCostItems', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeSpecialCostItemsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1718,30 +908,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 查询用户活动信息
-
-        # @param request: Request instance for DescribeUserActivityInfo.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeUserActivityInfoRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeUserActivityInfoResponse`
-        def DescribeUserActivityInfo(request)
-          body = send_request('DescribeUserActivityInfo', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeUserActivityInfoResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 查询tcb用户列表
 
         # @param request: Request instance for DescribeUserList.
@@ -1752,54 +918,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeUserListResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查看安全网关路由
-
-        # @param request: Request instance for DescribeWxGatewayRoutes.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeWxGatewayRoutesRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeWxGatewayRoutesResponse`
-        def DescribeWxGatewayRoutes(request)
-          body = send_request('DescribeWxGatewayRoutes', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWxGatewayRoutesResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 查看安全网关
-
-        # @param request: Request instance for DescribeWxGateways.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeWxGatewaysRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeWxGatewaysResponse`
-        def DescribeWxGateways(request)
-          body = send_request('DescribeWxGateways', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = DescribeWxGatewaysResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1848,6 +966,8 @@ module TencentCloud
         end
 
         # 销毁Mysql
+
+        # 销毁后可以通过 [DescribeMySQLTaskStatus](https://cloud.tencent.com/document/api/876/128183) 接口查询销毁结果，如果 `Response.Data. Status = FAILED ` 表示销毁失败，可以重新调用销毁接口重试
 
         # @param request: Request instance for DestroyMySQL.
         # @type request: :class:`Tencentcloud::tcb::V20180608::DestroyMySQLRequest`
@@ -1919,78 +1039,6 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建云应用服务
-
-        # @param request: Request instance for EstablishCloudBaseRunServer.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::EstablishCloudBaseRunServerRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::EstablishCloudBaseRunServerResponse`
-        def EstablishCloudBaseRunServer(request)
-          body = send_request('EstablishCloudBaseRunServer', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = EstablishCloudBaseRunServerResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 创建或修改安全网关路由
-
-        # @param request: Request instance for EstablishWxGatewayRoute.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::EstablishWxGatewayRouteRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::EstablishWxGatewayRouteResponse`
-        def EstablishWxGatewayRoute(request)
-          body = send_request('EstablishWxGatewayRoute', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = EstablishWxGatewayRouteResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 批量冻结
-
-        # @param request: Request instance for FreezeCloudBaseRunServers.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::FreezeCloudBaseRunServersRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::FreezeCloudBaseRunServersResponse`
-        def FreezeCloudBaseRunServers(request)
-          body = send_request('FreezeCloudBaseRunServers', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = FreezeCloudBaseRunServersResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
         # 本接口(ListTables)用于查询所有表信息，包括表名、表中数据条数、表中数据量、索引个数及索引的大小等
 
         # @param request: Request instance for ListTables.
@@ -2025,54 +1073,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCloudBaseGWAPIResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改容器内的版本流量配置
-
-        # @param request: Request instance for ModifyCloudBaseRunServerFlowConf.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerFlowConfRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerFlowConfResponse`
-        def ModifyCloudBaseRunServerFlowConf(request)
-          body = send_request('ModifyCloudBaseRunServerFlowConf', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyCloudBaseRunServerFlowConfResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 修改服务版本的副本数，环境变量
-
-        # @param request: Request instance for ModifyCloudBaseRunServerVersion.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerVersionRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyCloudBaseRunServerVersionResponse`
-        def ModifyCloudBaseRunServerVersion(request)
-          body = send_request('ModifyCloudBaseRunServerVersion', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = ModifyCloudBaseRunServerVersionResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2185,16 +1185,17 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 设置网关版本的流量比例
+        # 设置数据库安全规则。
+        # 安全规则，用于控制C端用户的访问权限。详见 [安全规则介绍 ](https://cloud.tencent.com/document/product/876/123478)。
 
-        # @param request: Request instance for ModifyGatewayVersionTraffic.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyGatewayVersionTrafficRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyGatewayVersionTrafficResponse`
-        def ModifyGatewayVersionTraffic(request)
-          body = send_request('ModifyGatewayVersionTraffic', request.serialize)
+        # @param request: Request instance for ModifySafeRule.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifySafeRuleRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifySafeRuleResponse`
+        def ModifySafeRule(request)
+          body = send_request('ModifySafeRule', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ModifyGatewayVersionTrafficResponse.new
+            model = ModifySafeRuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2283,16 +1284,16 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 更新活动详情
+        # 本接口用于执行数据库命令
 
-        # @param request: Request instance for ReplaceActivityRecord.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::ReplaceActivityRecordRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::ReplaceActivityRecordResponse`
-        def ReplaceActivityRecord(request)
-          body = send_request('ReplaceActivityRecord', request.serialize)
+        # @param request: Request instance for RunCommands.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::RunCommandsRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::RunCommandsResponse`
+        def RunCommands(request)
+          body = send_request('RunCommands', request.serialize)
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
-            model = ReplaceActivityRecordResponse.new
+            model = RunCommandsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2308,6 +1309,8 @@ module TencentCloud
         end
 
         # 执行SQL语句
+
+        # 调用该接口前需要先查询Mysql是否开通，可通过 [DescribeCreateMySQLResult ](https://cloud.tencent.com/document/api/876/128185) 查询，只有开通成功才能操作
 
         # @param request: Request instance for RunSql.
         # @type request: :class:`Tencentcloud::tcb::V20180608::RunSqlRequest`
@@ -2341,30 +1344,6 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchClsLogResponse.new
-            model.deserialize(response['Response'])
-            model
-          else
-            code = response['Response']['Error']['Code']
-            message = response['Response']['Error']['Message']
-            reqid = response['Response']['RequestId']
-            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
-          end
-        rescue TencentCloud::Common::TencentCloudSDKException => e
-          raise e
-        rescue StandardError => e
-          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
-        end
-
-        # 批量解冻服务
-
-        # @param request: Request instance for UnfreezeCloudBaseRunServers.
-        # @type request: :class:`Tencentcloud::tcb::V20180608::UnfreezeCloudBaseRunServersRequest`
-        # @rtype: :class:`Tencentcloud::tcb::V20180608::UnfreezeCloudBaseRunServersResponse`
-        def UnfreezeCloudBaseRunServers(request)
-          body = send_request('UnfreezeCloudBaseRunServers', request.serialize)
-          response = JSON.parse(body)
-          if response['Response'].key?('Error') == false
-            model = UnfreezeCloudBaseRunServersResponse.new
             model.deserialize(response['Response'])
             model
           else

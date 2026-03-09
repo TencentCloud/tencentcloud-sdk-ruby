@@ -44,8 +44,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2025, 12
-        deprecate :GitInfo=, :none, 2025, 12
+        deprecate :GitInfo, :none, 2026, 3
+        deprecate :GitInfo=, :none, 2026, 3
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -84,9 +84,9 @@ module TencentCloud
 
       # 云服务器配置。
       class CVMOption < TencentCloud::Common::AbstractModel
-        # @param Zone: 云服务器可用区。
+        # @param Zone: <p>云服务器可用区。</p>
         # @type Zone: String
-        # @param InstanceType: 云服务器实例规格。
+        # @param InstanceType: <p>云服务器实例规格。详情参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格</a>描述</p>
         # @type InstanceType: String
 
         attr_accessor :Zone, :InstanceType
@@ -128,22 +128,21 @@ module TencentCloud
 
       # 计算集群配置。
       class ClusterOption < TencentCloud::Common::AbstractModel
-        # @param Zone: 计算集群可用区。
+        # @param Zone: <p>计算集群可用区。</p>
         # @type Zone: String
-        # @param Type: 计算集群类型，取值范围：
-        # - KUBERNETES
+        # @param Type: <p>计算集群类型，取值范围：</p><ul><li>KUBERNETES</li></ul>
         # @type Type: String
-        # @param ServiceCidr: 计算集群Service CIDR，不能与VPC网段重合。
+        # @param ServiceCidr: <p>计算集群Service CIDR，不能与VPC网段重合。</p>
         # @type ServiceCidr: String
-        # @param ResourceQuota: 资源配额。
+        # @param ResourceQuota: <p>资源配额。</p>
         # @type ResourceQuota: :class:`Tencentcloud::Omics.v20221128.models.ResourceQuota`
-        # @param LimitRange: 限制范围。
+        # @param LimitRange: <p>限制范围。</p>
         # @type LimitRange: :class:`Tencentcloud::Omics.v20221128.models.LimitRange`
-        # @param SystemNodeInstanceType: 系统节点池实例规格。
+        # @param SystemNodeInstanceType: <p>系统节点池实例规格。详情参见<a href="https://cloud.tencent.com/document/product/213/11518">实例规格</a>描述</p>
         # @type SystemNodeInstanceType: String
-        # @param SystemNodeCount: 系统节点池实例数量。
+        # @param SystemNodeCount: <p>系统节点池实例数量。</p>
         # @type SystemNodeCount: Integer
-        # @param AutoUpgradeClusterLevel: 纳管环境自动升配
+        # @param AutoUpgradeClusterLevel: <p>纳管环境自动升配</p>
         # @type AutoUpgradeClusterLevel: Boolean
 
         attr_accessor :Zone, :Type, :ServiceCidr, :ResourceQuota, :LimitRange, :SystemNodeInstanceType, :SystemNodeCount, :AutoUpgradeClusterLevel
@@ -1657,8 +1656,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2025, 12
-        deprecate :Option=, :none, 2025, 12
+        deprecate :Option, :none, 2026, 3
+        deprecate :Option=, :none, 2026, 3
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

@@ -4423,8 +4423,8 @@ module TencentCloud
 
         attr_accessor :Id, :Uuid, :Name, :Level, :Rule, :Decription, :Operator, :IsGlobal, :Status, :CreateTime, :ModifyTime, :Hostip, :Uuids, :White, :DealOldEvents, :Description
         extend Gem::Deprecate
-        deprecate :Decription, :none, 2026, 2
-        deprecate :Decription=, :none, 2026, 2
+        deprecate :Decription, :none, 2026, 3
+        deprecate :Decription=, :none, 2026, 3
 
         def initialize(id=nil, uuid=nil, name=nil, level=nil, rule=nil, decription=nil, operator=nil, isglobal=nil, status=nil, createtime=nil, modifytime=nil, hostip=nil, uuids=nil, white=nil, dealoldevents=nil, description=nil)
           @Id = id
@@ -16948,16 +16948,16 @@ module TencentCloud
 
         attr_accessor :MachineCnt, :TencentCloudMachineCnt, :AliCloudMachineCnt, :BaiduCloudMachineCnt, :IDCMachineCnt, :OtherCloudMachineCnt, :ProtectMachineCnt, :BaseMachineCnt, :SpecialtyMachineCnt, :FlagshipMachineCnt, :RiskMachineCnt, :CompareYesterdayRiskMachineCnt, :CompareYesterdayNotProtectMachineCnt, :CompareYesterdayDeadlineMachineCnt, :DeadlineMachineCnt, :NotProtectMachineCnt, :LHGeneralDiscountCnt, :CompareYesterdayMachineCnt, :MachineDestroyAfterOfflineHours, :CloudFrom, :RequestId
         extend Gem::Deprecate
-        deprecate :TencentCloudMachineCnt, :none, 2026, 2
-        deprecate :TencentCloudMachineCnt=, :none, 2026, 2
-        deprecate :AliCloudMachineCnt, :none, 2026, 2
-        deprecate :AliCloudMachineCnt=, :none, 2026, 2
-        deprecate :BaiduCloudMachineCnt, :none, 2026, 2
-        deprecate :BaiduCloudMachineCnt=, :none, 2026, 2
-        deprecate :IDCMachineCnt, :none, 2026, 2
-        deprecate :IDCMachineCnt=, :none, 2026, 2
-        deprecate :OtherCloudMachineCnt, :none, 2026, 2
-        deprecate :OtherCloudMachineCnt=, :none, 2026, 2
+        deprecate :TencentCloudMachineCnt, :none, 2026, 3
+        deprecate :TencentCloudMachineCnt=, :none, 2026, 3
+        deprecate :AliCloudMachineCnt, :none, 2026, 3
+        deprecate :AliCloudMachineCnt=, :none, 2026, 3
+        deprecate :BaiduCloudMachineCnt, :none, 2026, 3
+        deprecate :BaiduCloudMachineCnt=, :none, 2026, 3
+        deprecate :IDCMachineCnt, :none, 2026, 3
+        deprecate :IDCMachineCnt=, :none, 2026, 3
+        deprecate :OtherCloudMachineCnt, :none, 2026, 3
+        deprecate :OtherCloudMachineCnt=, :none, 2026, 3
 
         def initialize(machinecnt=nil, tencentcloudmachinecnt=nil, alicloudmachinecnt=nil, baiducloudmachinecnt=nil, idcmachinecnt=nil, othercloudmachinecnt=nil, protectmachinecnt=nil, basemachinecnt=nil, specialtymachinecnt=nil, flagshipmachinecnt=nil, riskmachinecnt=nil, compareyesterdayriskmachinecnt=nil, compareyesterdaynotprotectmachinecnt=nil, compareyesterdaydeadlinemachinecnt=nil, deadlinemachinecnt=nil, notprotectmachinecnt=nil, lhgeneraldiscountcnt=nil, compareyesterdaymachinecnt=nil, machinedestroyafterofflinehours=nil, cloudfrom=nil, requestid=nil)
           @MachineCnt = machinecnt
@@ -18559,6 +18559,150 @@ module TencentCloud
           @BruteAttackSuccessNum = params['BruteAttackSuccessNum']
           @VulNum = params['VulNum']
           @BaseLineNum = params['BaseLineNum']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePatchEffectHostList请求参数结构体
+      class DescribePatchEffectHostListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: 补丁id
+        # @type KbId: Integer
+        # @param Limit: 分页limit 最大100
+        # @type Limit: Integer
+        # @param Offset: 分页偏移量
+        # @type Offset: Integer
+        # @param Filters: 过滤条件：
+        # <li>HostVersion : uint64类型 非必填 版本信息 : 0-基础版 1-专业版 2-旗舰版 3-轻量版 </li>
+        # <li>InstanceState : string类型 非必填 主机状态 : "PENDING"-创建中 "LAUNCH_FAILED"-创建失败 "RUNNING"-运行中 "STOPPED"-关机 "STARTING"-开机中 "STOPPING"-关机中 "REBOOTING"-重启中 "SHUTDOWN"-待销毁 "TERMINATING"-销毁中 "UNKNOWN"-未知（针对非腾讯云机器，且客户端离线的场景）</li>
+        # <li>Status : uint64类型 非必填 处理状态 0表示待处理，1表示忽略，3表示已修复</li>
+        # <li>HostName : string类型 非必填 主机名称</li>
+        # <li>InstanceID : string类型 非必填 主机id</li>
+        # <li>IpAddress : string类型 非必填 主机的ip地址</li>
+        # <li>Uuid : string类型 非必填 主机uuid</li>
+        # @type Filters: Array
+
+        attr_accessor :KbId, :Limit, :Offset, :Filters
+
+        def initialize(kbid=nil, limit=nil, offset=nil, filters=nil)
+          @KbId = kbid
+          @Limit = limit
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribePatchEffectHostList返回参数结构体
+      class DescribePatchEffectHostListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 影响主机总数
+        # @type TotalCount: Integer
+        # @param PatchEffectHostList: 补丁影响主机列表
+        # @type PatchEffectHostList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PatchEffectHostList, :RequestId
+
+        def initialize(totalcount=nil, patcheffecthostlist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PatchEffectHostList = patcheffecthostlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PatchEffectHostList'].nil?
+            @PatchEffectHostList = []
+            params['PatchEffectHostList'].each do |i|
+              patcheffecthostlist_tmp = PatchEffectHostList.new
+              patcheffecthostlist_tmp.deserialize(i)
+              @PatchEffectHostList << patcheffecthostlist_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePatchInfo请求参数结构体
+      class DescribePatchInfoRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: 补丁id
+        # @type KbId: Integer
+
+        attr_accessor :KbId
+
+        def initialize(kbid=nil)
+          @KbId = kbid
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+        end
+      end
+
+      # DescribePatchInfo返回参数结构体
+      class DescribePatchInfoResponse < TencentCloud::Common::AbstractModel
+        # @param KbNo: kb编号
+        # @type KbNo: String
+        # @param PatchName: kb名称
+        # @type PatchName: String
+        # @param PublishTime: kb 发布日期
+        # @type PublishTime: String
+        # @param ReferUrl: 参考链接
+        # @type ReferUrl: String
+        # @param VulCount: 包含漏洞数
+        # @type VulCount: Integer
+        # @param RelateVulInfoList: 补丁关联的漏洞详情列表
+        # @type RelateVulInfoList: Array
+        # @param KbId: 补丁id
+        # @type KbId: Integer
+        # @param RelateVulCveId: 关联的漏洞CveId，多个id由","分隔
+        # @type RelateVulCveId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :KbNo, :PatchName, :PublishTime, :ReferUrl, :VulCount, :RelateVulInfoList, :KbId, :RelateVulCveId, :RequestId
+
+        def initialize(kbno=nil, patchname=nil, publishtime=nil, referurl=nil, vulcount=nil, relatevulinfolist=nil, kbid=nil, relatevulcveid=nil, requestid=nil)
+          @KbNo = kbno
+          @PatchName = patchname
+          @PublishTime = publishtime
+          @ReferUrl = referurl
+          @VulCount = vulcount
+          @RelateVulInfoList = relatevulinfolist
+          @KbId = kbid
+          @RelateVulCveId = relatevulcveid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @KbNo = params['KbNo']
+          @PatchName = params['PatchName']
+          @PublishTime = params['PublishTime']
+          @ReferUrl = params['ReferUrl']
+          @VulCount = params['VulCount']
+          unless params['RelateVulInfoList'].nil?
+            @RelateVulInfoList = []
+            params['RelateVulInfoList'].each do |i|
+              relatevulinfo_tmp = RelateVulInfo.new
+              relatevulinfo_tmp.deserialize(i)
+              @RelateVulInfoList << relatevulinfo_tmp
+            end
+          end
+          @KbId = params['KbId']
+          @RelateVulCveId = params['RelateVulCveId']
           @RequestId = params['RequestId']
         end
       end
@@ -24825,6 +24969,79 @@ module TencentCloud
         end
       end
 
+      # DescribeWindowsPatchList请求参数结构体
+      class DescribeWindowsPatchListRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: 分页参数
+        # @type Limit: Integer
+        # @param Order: 排序顺序：desc 默认asc
+        # @type Order: String
+        # @param By: 可选排序字段
+        # <li>PublishTime</li>
+        # <li>LastScanTime</li>
+        # <li>HostCount</li>
+        # @type By: String
+        # @param Offset: 偏移量，默认为0
+        # @type Offset: Integer
+        # @param Filters: 过滤条件。  <li>Status : string类型 非必填 处理状态 0待处理,1忽略,3修复</li><li>ShowNew : int类型 非必填 展示最新版本 1-开启 0-关闭</li><li>Name : string类型 非必填 补丁名称</li><li>KbNo : string类型 非必填 补丁编号</li><li>VulName : string类型 非必填 漏洞名称</li><li>CVEId : string类型 非必填 漏洞CVE编号</li><li>Uuid : string类型 非必填 主机uuid</li>
+        # @type Filters: Array
+
+        attr_accessor :Limit, :Order, :By, :Offset, :Filters
+
+        def initialize(limit=nil, order=nil, by=nil, offset=nil, filters=nil)
+          @Limit = limit
+          @Order = order
+          @By = by
+          @Offset = offset
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @By = params['By']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filters_tmp = Filters.new
+              filters_tmp.deserialize(i)
+              @Filters << filters_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeWindowsPatchList返回参数结构体
+      class DescribeWindowsPatchListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 补丁和漏洞的总数
+        # @type TotalCount: Integer
+        # @param PatchInfoList: Windows补丁信息列表
+        # @type PatchInfoList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :PatchInfoList, :RequestId
+
+        def initialize(totalcount=nil, patchinfolist=nil, requestid=nil)
+          @TotalCount = totalcount
+          @PatchInfoList = patchinfolist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['PatchInfoList'].nil?
+            @PatchInfoList = []
+            params['PatchInfoList'].each do |i|
+              eventpatchinfo_tmp = EventPatchInfo.new
+              eventpatchinfo_tmp.deserialize(i)
+              @PatchInfoList << eventpatchinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DestroyOrder请求参数结构体
       class DestroyOrderRequest < TencentCloud::Common::AbstractModel
         # @param ResourceId: 资源ID
@@ -25283,6 +25500,70 @@ module TencentCloud
           @Method = params['Method']
           @AttackLevel = params['AttackLevel']
           @DefenseState = params['DefenseState']
+        end
+      end
+
+      # 补丁详细信息
+      class EventPatchInfo < TencentCloud::Common::AbstractModel
+        # @param Name: 补丁名
+        # @type Name: String
+        # @param KbNo: 补丁编号
+        # @type KbNo: String
+        # @param PublishTime: 披露时间
+        # @type PublishTime: String
+        # @param EffectHostCount: 影响主机数量
+        # @type EffectHostCount: Integer
+        # @param RelateVulCount: 关联的漏洞数
+        # @type RelateVulCount: Integer
+        # @param RelateVulList: 关联的漏洞编号数组
+        # @type RelateVulList: Array
+        # @param IsNew: 是否为最新披露，0否，1是，默认为否
+        # @type IsNew: Integer
+        # @param LastScanTime: 最后扫描时间
+        # @type LastScanTime: String
+        # @param Status: 0待处理,1忽略,3修复
+        # @type Status: Integer
+        # @param KbPreCondition: 安装该kb的前置条件，一般为其他kb，且可能有多个，kb之间用", "分隔
+        # @type KbPreCondition: String
+        # @param RelatedProduct: 该kb关联的windows product名称
+        # @type RelatedProduct: String
+        # @param KbId: 补丁id
+        # @type KbId: Integer
+        # @param Ids: 相关kb事件的id集合
+        # @type Ids: String
+
+        attr_accessor :Name, :KbNo, :PublishTime, :EffectHostCount, :RelateVulCount, :RelateVulList, :IsNew, :LastScanTime, :Status, :KbPreCondition, :RelatedProduct, :KbId, :Ids
+
+        def initialize(name=nil, kbno=nil, publishtime=nil, effecthostcount=nil, relatevulcount=nil, relatevullist=nil, isnew=nil, lastscantime=nil, status=nil, kbprecondition=nil, relatedproduct=nil, kbid=nil, ids=nil)
+          @Name = name
+          @KbNo = kbno
+          @PublishTime = publishtime
+          @EffectHostCount = effecthostcount
+          @RelateVulCount = relatevulcount
+          @RelateVulList = relatevullist
+          @IsNew = isnew
+          @LastScanTime = lastscantime
+          @Status = status
+          @KbPreCondition = kbprecondition
+          @RelatedProduct = relatedproduct
+          @KbId = kbid
+          @Ids = ids
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @KbNo = params['KbNo']
+          @PublishTime = params['PublishTime']
+          @EffectHostCount = params['EffectHostCount']
+          @RelateVulCount = params['RelateVulCount']
+          @RelateVulList = params['RelateVulList']
+          @IsNew = params['IsNew']
+          @LastScanTime = params['LastScanTime']
+          @Status = params['Status']
+          @KbPreCondition = params['KbPreCondition']
+          @RelatedProduct = params['RelatedProduct']
+          @KbId = params['KbId']
+          @Ids = params['Ids']
         end
       end
 
@@ -27104,10 +27385,10 @@ module TencentCloud
 
         attr_accessor :Filters, :Fileds, :Fields, :Where
         extend Gem::Deprecate
-        deprecate :Fileds, :none, 2026, 2
-        deprecate :Fileds=, :none, 2026, 2
-        deprecate :Fields, :none, 2026, 2
-        deprecate :Fields=, :none, 2026, 2
+        deprecate :Fileds, :none, 2026, 3
+        deprecate :Fileds=, :none, 2026, 3
+        deprecate :Fields, :none, 2026, 3
+        deprecate :Fields=, :none, 2026, 3
 
         def initialize(filters=nil, fileds=nil, fields=nil, where=nil)
           @Filters = filters
@@ -27678,6 +27959,60 @@ module TencentCloud
 
         def deserialize(params)
           @DownloadUrl = params['DownloadUrl']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExportPatchEffectHostList请求参数结构体
+      class ExportPatchEffectHostListRequest < TencentCloud::Common::AbstractModel
+        # @param KbId: 补丁id
+        # @type KbId: Integer
+        # @param Filters: 过滤条件：
+        # <li>ProtectType : uint64类型 非必填 防护版本类型  0表示BASIC_VERSION，1表示Flagship </li>
+        # <li>InstanceState : string类型 非必填 主机状态 : "PENDING"-创建中 "LAUNCH_FAILED"-创建失败 "RUNNING"-运行中 "STOPPED"-关机 "STARTING"-开机中 "STOPPING"-关机中 "REBOOTING"-重启中 "SHUTDOWN"-待销毁 "TERMINATING"-销毁中 "UNKNOWN"-未知（针对非腾讯云机器，且客户端离线的场景） </li>
+        # <li>Status : uint64类型 非必填 处理状态 0表示待处理，1表示忽略，3表示已修复</li>
+        # <li>HostName : string类型 非必填 主机名称 </li>
+        # <li>InstanceID : string类型 非必填 主机id </li>
+        # <li>IpAddress : string类型 非必填 主机的ip地址 </li>
+        # <li>Uuid : string类型 非必填 主机uuid</li>
+        # @type Filters: Array
+
+        attr_accessor :KbId, :Filters
+
+        def initialize(kbid=nil, filters=nil)
+          @KbId = kbid
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @KbId = params['KbId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ExportPatchEffectHostList返回参数结构体
+      class ExportPatchEffectHostListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出任务Id , 可通过ExportTasks 接口下载
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
@@ -28848,6 +29183,54 @@ module TencentCloud
       # ExportWebPageEventList返回参数结构体
       class ExportWebPageEventListResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: 任务id 可通过 ExportTasks接口下载
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ExportWindowsPatchList请求参数结构体
+      class ExportWindowsPatchListRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件。
+        # <li>Status : String类型 非必填 处理状态 0待处理,1忽略,3修复</li>
+        # <li>ShowNew : int类型 非必填 展示最新版本 0-开启 1-关闭</li>
+        # <li>Name : string类型 非必填 补丁名称 </li>
+        # <li>KbNo : string类型 非必填 补丁编号 </li>
+        # <li>Uuid : string类型 非必填 主机uuid</li>
+        # @type Filters: Array
+
+        attr_accessor :Filters
+
+        def initialize(filters=nil)
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # ExportWindowsPatchList返回参数结构体
+      class ExportWindowsPatchListResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 导出文件Id 可通过ExportTasks接口下载
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -34979,6 +35362,85 @@ module TencentCloud
         end
       end
 
+      # 补丁影响主机列表
+      class PatchEffectHostList < TencentCloud::Common::AbstractModel
+        # @param HostVersion: 版本信息：0-基础版 1-专业版 2-旗舰版 3-轻量版
+        # @type HostVersion: Integer
+        # @param InstanceState: 实例状态: "PENDING"-创建中 "LAUNCH_FAILED"-创建失败 "RUNNING"-运行中 "STOPPED"-关机 "STARTING"-表示开机中 "STOPPING"-表示关机中 "REBOOTING"-重启中 "SHUTDOWN"-表示停止待销毁 "TERMINATING"-表示销毁中
+        # @type InstanceState: String
+        # @param FirstScanTime: 首次扫描时间
+        # @type FirstScanTime: String
+        # @param LatestScanTime: 最近扫描时间
+        # @type LatestScanTime: String
+        # @param FixStatus: 修复状态：0-未进行修复；1-修复中；2-修复失败；3-修复成功；4-修复超时
+        # @type FixStatus: Integer
+        # @param MachineExtraInfo: 主机基础信息
+        # @type MachineExtraInfo: :class:`Tencentcloud::Cwp.v20180228.models.MachineExtraInfo`
+        # @param Uuid: 主机安全Uuid
+        # @type Uuid: String
+        # @param Quuid: CVM或BM机器唯一Uuid
+        # @type Quuid: String
+        # @param Id: 事件id
+        # @type Id: Integer
+        # @param Status: 状态：0: 待处理 1:忽略  3:已修复  5:检测中 6:修复中 7: 回滚中 8:修复失败
+        # @type Status: Integer
+        # @param LatestFixTime: 修复时间
+        # @type LatestFixTime: String
+        # @param KbId: KB id
+        # @type KbId: Integer
+        # @param RestartRequired: 是否需要重启 0不需要，1需要
+        # @type RestartRequired: Integer
+        # @param RegionId: 可用区ID
+        # @type RegionId: Integer
+        # @param MachineType: 机器类型信息
+        # @type MachineType: String
+        # @param HasSnapshot: 修复任务是否创建了快照： 0-未创建，其他-已创建
+        # @type HasSnapshot: Integer
+
+        attr_accessor :HostVersion, :InstanceState, :FirstScanTime, :LatestScanTime, :FixStatus, :MachineExtraInfo, :Uuid, :Quuid, :Id, :Status, :LatestFixTime, :KbId, :RestartRequired, :RegionId, :MachineType, :HasSnapshot
+
+        def initialize(hostversion=nil, instancestate=nil, firstscantime=nil, latestscantime=nil, fixstatus=nil, machineextrainfo=nil, uuid=nil, quuid=nil, id=nil, status=nil, latestfixtime=nil, kbid=nil, restartrequired=nil, regionid=nil, machinetype=nil, hassnapshot=nil)
+          @HostVersion = hostversion
+          @InstanceState = instancestate
+          @FirstScanTime = firstscantime
+          @LatestScanTime = latestscantime
+          @FixStatus = fixstatus
+          @MachineExtraInfo = machineextrainfo
+          @Uuid = uuid
+          @Quuid = quuid
+          @Id = id
+          @Status = status
+          @LatestFixTime = latestfixtime
+          @KbId = kbid
+          @RestartRequired = restartrequired
+          @RegionId = regionid
+          @MachineType = machinetype
+          @HasSnapshot = hassnapshot
+        end
+
+        def deserialize(params)
+          @HostVersion = params['HostVersion']
+          @InstanceState = params['InstanceState']
+          @FirstScanTime = params['FirstScanTime']
+          @LatestScanTime = params['LatestScanTime']
+          @FixStatus = params['FixStatus']
+          unless params['MachineExtraInfo'].nil?
+            @MachineExtraInfo = MachineExtraInfo.new
+            @MachineExtraInfo.deserialize(params['MachineExtraInfo'])
+          end
+          @Uuid = params['Uuid']
+          @Quuid = params['Quuid']
+          @Id = params['Id']
+          @Status = params['Status']
+          @LatestFixTime = params['LatestFixTime']
+          @KbId = params['KbId']
+          @RestartRequired = params['RestartRequired']
+          @RegionId = params['RegionId']
+          @MachineType = params['MachineType']
+          @HasSnapshot = params['HasSnapshot']
+        end
+      end
+
       # 补丁信息详情
       class PatchInfoDetail < TencentCloud::Common::AbstractModel
         # @param KBNo: KB编号
@@ -36568,6 +37030,46 @@ module TencentCloud
               @ZoneSet << zoneinfo_tmp
             end
           end
+        end
+      end
+
+      # Windows补丁关联的漏洞信息
+      class RelateVulInfo < TencentCloud::Common::AbstractModel
+        # @param CveId: CVEid
+        # @type CveId: String
+        # @param Name: 漏洞名
+        # @type Name: String
+        # @param Label: 漏洞标签
+        # @type Label: String
+        # @param Level: 漏洞等级
+        # @type Level: Integer
+        # @param CVSS: CVSS评分
+        # @type CVSS: Float
+        # @param PublishTime: 漏洞披露时间
+        # @type PublishTime: String
+        # @param Id: 漏洞id
+        # @type Id: Integer
+
+        attr_accessor :CveId, :Name, :Label, :Level, :CVSS, :PublishTime, :Id
+
+        def initialize(cveid=nil, name=nil, label=nil, level=nil, cvss=nil, publishtime=nil, id=nil)
+          @CveId = cveid
+          @Name = name
+          @Label = label
+          @Level = level
+          @CVSS = cvss
+          @PublishTime = publishtime
+          @Id = id
+        end
+
+        def deserialize(params)
+          @CveId = params['CveId']
+          @Name = params['Name']
+          @Label = params['Label']
+          @Level = params['Level']
+          @CVSS = params['CVSS']
+          @PublishTime = params['PublishTime']
+          @Id = params['Id']
         end
       end
 

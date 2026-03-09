@@ -113,10 +113,12 @@ module TencentCloud
         # @type InstanceAdvancedSettingsOverrides: Array
         # @param ImageId: 节点镜像
         # @type ImageId: String
+        # @param NodeType: 直接添加为原生节点
+        # @type NodeType: String
 
-        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions, :InstanceAdvancedSettingsOverrides, :ImageId
+        attr_accessor :ClusterId, :InstanceIds, :InstanceAdvancedSettings, :EnhancedService, :LoginSettings, :HostName, :SecurityGroupIds, :NodePool, :SkipValidateOptions, :InstanceAdvancedSettingsOverrides, :ImageId, :NodeType
 
-        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil, instanceadvancedsettingsoverrides=nil, imageid=nil)
+        def initialize(clusterid=nil, instanceids=nil, instanceadvancedsettings=nil, enhancedservice=nil, loginsettings=nil, hostname=nil, securitygroupids=nil, nodepool=nil, skipvalidateoptions=nil, instanceadvancedsettingsoverrides=nil, imageid=nil, nodetype=nil)
           @ClusterId = clusterid
           @InstanceIds = instanceids
           @InstanceAdvancedSettings = instanceadvancedsettings
@@ -128,6 +130,7 @@ module TencentCloud
           @SkipValidateOptions = skipvalidateoptions
           @InstanceAdvancedSettingsOverrides = instanceadvancedsettingsoverrides
           @ImageId = imageid
+          @NodeType = nodetype
         end
 
         def deserialize(params)
@@ -161,6 +164,7 @@ module TencentCloud
             end
           end
           @ImageId = params['ImageId']
+          @NodeType = params['NodeType']
         end
       end
 
@@ -2895,7 +2899,7 @@ module TencentCloud
         # @type ZoneInstanceCountISPSet: Array
         # @param Password: 密码
         # @type Password: String
-        # @param InternetMaxBandwidthOut: 公网带宽
+        # @param InternetMaxBandwidthOut: 公网带宽，单位为Mbps
         # @type InternetMaxBandwidthOut: Integer
         # @param ImageId: 镜像id
         # @type ImageId: String
@@ -15928,7 +15932,7 @@ module TencentCloud
         # @type ClusterId: String
         # @param NodePoolId: 节点池id
         # @type NodePoolId: String
-        # @param DesiredCapacity: 节点池所关联的伸缩组的期望实例数
+        # @param DesiredCapacity: 节点池所关联的伸缩组的期望实例数，单位个
         # @type DesiredCapacity: Integer
 
         attr_accessor :ClusterId, :NodePoolId, :DesiredCapacity

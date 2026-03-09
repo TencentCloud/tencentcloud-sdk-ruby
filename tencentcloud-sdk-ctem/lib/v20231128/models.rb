@@ -2932,11 +2932,11 @@ module TencentCloud
 
       # DescribeJobRecordDetails请求参数结构体
       class DescribeJobRecordDetailsRequest < TencentCloud::Common::AbstractModel
-        # @param Module: 数据类型，包括：enterprise(企业架构)，domain(主域名)，sub_domain(子域名)，asset(主机资产)，port(端口服务)，http(网站资产)，vul(漏洞信息)，app(APP)，wechat_applet(微信小程序)，wechat_official_account(微信公众号)，github(Github泄露)，manage(后台识别)，config(目录爆破)，dark_web(暗网泄露)，net_disk(文库网盘泄露)，social_engineering(员工信息)，supply_chain(供应链信息)，weak_password(弱口令)，sensitive_info(敏感信息泄露)，suspicious_asset(影子资产)
+        # @param Module: <p>数据类型，包括：enterprise(企业架构)，domain(主域名)，sub_domain(子域名)，asset(主机资产)，port(端口服务)，http(网站资产)，vul(漏洞信息)，app(APP)，wechat_applet(微信小程序)，wechat_official_account(微信公众号)，github(Github泄露)，manage(后台识别)，config(目录爆破)，dark_web(暗网泄露)，net_disk(文库网盘泄露)，social_engineering(员工信息)，supply_chain(供应链信息)，weak_password(弱口令)，sensitive_info(敏感信息泄露)，suspicious_asset(影子资产)</p>
         # @type Module: String
-        # @param Id: 结果id
+        # @param Id: <p>结果id</p>
         # @type Id: Integer
-        # @param JobRecordId: 任务id
+        # @param JobRecordId: <p>任务id</p>
         # @type JobRecordId: Integer
 
         attr_accessor :Module, :Id, :JobRecordId
@@ -2956,18 +2956,21 @@ module TencentCloud
 
       # DescribeJobRecordDetails返回参数结构体
       class DescribeJobRecordDetailsResponse < TencentCloud::Common::AbstractModel
-        # @param Total: 总数
+        # @param Total: <p>总数</p>
         # @type Total: Integer
-        # @param List: 数组
+        # @param List: <p>数组</p>
         # @type List: Array
+        # @param EnterpriseEquityPath: <p>持股路径</p>
+        # @type EnterpriseEquityPath: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Total, :List, :RequestId
+        attr_accessor :Total, :List, :EnterpriseEquityPath, :RequestId
 
-        def initialize(total=nil, list=nil, requestid=nil)
+        def initialize(total=nil, list=nil, enterpriseequitypath=nil, requestid=nil)
           @Total = total
           @List = list
+          @EnterpriseEquityPath = enterpriseequitypath
           @RequestId = requestid
         end
 
@@ -2979,6 +2982,14 @@ module TencentCloud
               displayjobrecorddetail_tmp = DisplayJobRecordDetail.new
               displayjobrecorddetail_tmp.deserialize(i)
               @List << displayjobrecorddetail_tmp
+            end
+          end
+          unless params['EnterpriseEquityPath'].nil?
+            @EnterpriseEquityPath = []
+            params['EnterpriseEquityPath'].each do |i|
+              equity_tmp = Equity.new
+              equity_tmp.deserialize(i)
+              @EnterpriseEquityPath << equity_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -6278,6 +6289,30 @@ module TencentCloud
           @QrCode = params['QrCode']
           @Description = params['Description']
           @RecordSubject = params['RecordSubject']
+        end
+      end
+
+      # 股权路径
+      class Equity < TencentCloud::Common::AbstractModel
+        # @param EnterpriseUid: <p>企业ID</p>
+        # @type EnterpriseUid: String
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param ShareholdingRatio: <p>持股比例</p>
+        # @type ShareholdingRatio: String
+
+        attr_accessor :EnterpriseUid, :Name, :ShareholdingRatio
+
+        def initialize(enterpriseuid=nil, name=nil, shareholdingratio=nil)
+          @EnterpriseUid = enterpriseuid
+          @Name = name
+          @ShareholdingRatio = shareholdingratio
+        end
+
+        def deserialize(params)
+          @EnterpriseUid = params['EnterpriseUid']
+          @Name = params['Name']
+          @ShareholdingRatio = params['ShareholdingRatio']
         end
       end
 

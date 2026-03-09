@@ -1156,7 +1156,7 @@ module TencentCloud
       class Disk < TencentCloud::Common::AbstractModel
         # @param DiskType: 云盘类型
         # @type DiskType: String
-        # @param DiskSize: 云盘大小(G）
+        # @param DiskSize: 云盘大小 (G）
         # @type DiskSize: Integer
         # @param AutoFormatAndMount: 是否自动化格式盘并挂载
         # @type AutoFormatAndMount: Boolean
@@ -1167,16 +1167,24 @@ module TencentCloud
         # @param DiskId: 云盘ID
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DiskId: String
+        # @param Encrypt: 加密系统盘
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encrypt: String
+        # @param KmsKeyId: 自定义 KMS ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyId: String
 
-        attr_accessor :DiskType, :DiskSize, :AutoFormatAndMount, :FileSystem, :MountTarget, :DiskId
+        attr_accessor :DiskType, :DiskSize, :AutoFormatAndMount, :FileSystem, :MountTarget, :DiskId, :Encrypt, :KmsKeyId
 
-        def initialize(disktype=nil, disksize=nil, autoformatandmount=nil, filesystem=nil, mounttarget=nil, diskid=nil)
+        def initialize(disktype=nil, disksize=nil, autoformatandmount=nil, filesystem=nil, mounttarget=nil, diskid=nil, encrypt=nil, kmskeyid=nil)
           @DiskType = disktype
           @DiskSize = disksize
           @AutoFormatAndMount = autoformatandmount
           @FileSystem = filesystem
           @MountTarget = mounttarget
           @DiskId = diskid
+          @Encrypt = encrypt
+          @KmsKeyId = kmskeyid
         end
 
         def deserialize(params)
@@ -1186,6 +1194,8 @@ module TencentCloud
           @FileSystem = params['FileSystem']
           @MountTarget = params['MountTarget']
           @DiskId = params['DiskId']
+          @Encrypt = params['Encrypt']
+          @KmsKeyId = params['KmsKeyId']
         end
       end
 
@@ -1669,7 +1679,7 @@ module TencentCloud
 
       # 公网带宽
       class InternetAccessible < TencentCloud::Common::AbstractModel
-        # @param MaxBandwidthOut: 带宽
+        # @param MaxBandwidthOut: 带宽，单位为Mbps
         # @type MaxBandwidthOut: Integer
         # @param ChargeType: 网络计费方式
         # @type ChargeType: String

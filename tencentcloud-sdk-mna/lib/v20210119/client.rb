@@ -53,6 +53,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 新建应用
+
+        # @param request: Request instance for AddApplication.
+        # @type request: :class:`Tencentcloud::mna::V20210119::AddApplicationRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::AddApplicationResponse`
+        def AddApplication(request)
+          body = send_request('AddApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = AddApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建设备记录
 
         # @param request: Request instance for AddDevice.
@@ -173,6 +197,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除应用
+
+        # @param request: Request instance for DeleteApplication.
+        # @type request: :class:`Tencentcloud::mna::V20210119::DeleteApplicationRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::DeleteApplicationResponse`
+        def DeleteApplication(request)
+          body = send_request('DeleteApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteApplicationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除设备信息
 
         # @param request: Request instance for DeleteDevice.
@@ -279,6 +327,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = GetActiveDeviceCountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 应用查询
+
+        # @param request: Request instance for GetApplication.
+        # @type request: :class:`Tencentcloud::mna::V20210119::GetApplicationRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::GetApplicationResponse`
+        def GetApplication(request)
+          body = send_request('GetApplication', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetApplicationResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -975,6 +1047,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SetNotifyUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新应用信息
+
+        # @param request: Request instance for UpdateApplicationInfo.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateApplicationInfoRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateApplicationInfoResponse`
+        def UpdateApplicationInfo(request)
+          body = send_request('UpdateApplicationInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateApplicationInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新应用密钥
+
+        # @param request: Request instance for UpdateApplicationKey.
+        # @type request: :class:`Tencentcloud::mna::V20210119::UpdateApplicationKeyRequest`
+        # @rtype: :class:`Tencentcloud::mna::V20210119::UpdateApplicationKeyResponse`
+        def UpdateApplicationKey(request)
+          body = send_request('UpdateApplicationKey', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateApplicationKeyResponse.new
             model.deserialize(response['Response'])
             model
           else

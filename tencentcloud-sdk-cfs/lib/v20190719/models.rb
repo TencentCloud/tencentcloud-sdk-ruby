@@ -3581,7 +3581,7 @@ module TencentCloud
 
       # ScaleUpFileSystem请求参数结构体
       class ScaleUpFileSystemRequest < TencentCloud::Common::AbstractModel
-        # @param FileSystemId: 文件系统Id,该参数通过查询文件系统列表接口获取
+        # @param FileSystemId: 文件系统ID，通过查询文件系统列表获取；[DescribeCfsFileSystems](https://cloud.tencent.com/document/product/582/38170)
         # @type FileSystemId: String
         # @param TargetCapacity: 扩容的目标容量（单位GiB）
         # @type TargetCapacity: Integer
@@ -3712,36 +3712,36 @@ module TencentCloud
 
       # 快照信息
       class SnapshotInfo < TencentCloud::Common::AbstractModel
-        # @param CreationTime: 创建快照时间
+        # @param CreationTime: <p>创建快照时间</p>
         # @type CreationTime: String
-        # @param SnapshotName: 快照名称
+        # @param SnapshotName: <p>快照名称</p>
         # @type SnapshotName: String
-        # @param SnapshotId: 快照ID
+        # @param SnapshotId: <p>快照ID</p>
         # @type SnapshotId: String
-        # @param Status: 快照状态，creating-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败
+        # @param Status: <p>快照状态，creating-创建中；available-运行中；deleting-删除中；rollbacking-new 创建新文件系统中；create-failed 创建失败</p>
         # @type Status: String
-        # @param RegionName: 地域名称
+        # @param RegionName: <p>地域名称</p>
         # @type RegionName: String
-        # @param FileSystemId: 文件系统ID
+        # @param FileSystemId: <p>文件系统ID</p>
         # @type FileSystemId: String
-        # @param Size: 快照大小
+        # @param Size: <p>快照大小</p><p>单位：MiB</p>
         # @type Size: Integer
-        # @param AliveDay: 保留时长天
+        # @param AliveDay: <p>保留时长天</p>
         # @type AliveDay: Integer
-        # @param Percent: 快照进度百分比，1表示1% 范围1-100
+        # @param Percent: <p>快照进度百分比，1表示1% 范围1-100</p>
         # @type Percent: Integer
-        # @param AppId: 账号ID
+        # @param AppId: <p>账号ID</p>
         # @type AppId: Integer
-        # @param DeleteTime: 快照删除时间
+        # @param DeleteTime: <p>快照删除时间</p>
         # @type DeleteTime: String
-        # @param FsName: 文件系统名称
+        # @param FsName: <p>文件系统名称</p>
         # @type FsName: String
-        # @param Tags: 快照标签
+        # @param Tags: <p>快照标签</p>
         # @type Tags: Array
-        # @param SnapshotType: 快照类型，general为通用系列快照，turbo为Turbo系列快照
+        # @param SnapshotType: <p>快照类型，general为通用系列快照，turbo为Turbo系列快照</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotType: String
-        # @param SnapshotTime: 实际快照时间，反映快照对应文件系统某个时刻的数据。
+        # @param SnapshotTime: <p>实际快照时间，反映快照对应文件系统某个时刻的数据。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotTime: String
 
@@ -3949,9 +3949,9 @@ module TencentCloud
 
       # 分层存储详细信息
       class TieringDetailInfo < TencentCloud::Common::AbstractModel
-        # @param TieringSizeInBytes: 低频存储容量
+        # @param TieringSizeInBytes: <p>低频存储容量</p><p>单位：Byte, B, 字节</p>
         # @type TieringSizeInBytes: Integer
-        # @param SecondaryTieringSizeInBytes: 冷存储容量
+        # @param SecondaryTieringSizeInBytes: <p>冷存储容量</p><p>单位：Byte, B, 字节</p>
         # @type SecondaryTieringSizeInBytes: Integer
 
         attr_accessor :TieringSizeInBytes, :SecondaryTieringSizeInBytes

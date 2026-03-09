@@ -5792,6 +5792,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询补丁影响的主机信息列表
+
+        # @param request: Request instance for DescribePatchEffectHostList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribePatchEffectHostListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribePatchEffectHostListResponse`
+        def DescribePatchEffectHostList(request)
+          body = send_request('DescribePatchEffectHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePatchEffectHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 补丁详情
+
+        # @param request: Request instance for DescribePatchInfo.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribePatchInfoRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribePatchInfoResponse`
+        def DescribePatchInfo(request)
+          body = send_request('DescribePatchInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePatchInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本地提权信息详情
 
         # @param request: Request instance for DescribePrivilegeEventInfo.
@@ -8384,6 +8432,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取补丁信息列表
+
+        # @param request: Request instance for DescribeWindowsPatchList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::DescribeWindowsPatchListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::DescribeWindowsPatchListResponse`
+        def DescribeWindowsPatchList(request)
+          body = send_request('DescribeWindowsPatchList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeWindowsPatchListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # DestroyOrder  该接口可以对资源销毁.
 
         # @param request: Request instance for DestroyOrder.
@@ -9488,6 +9560,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 导出补丁影响主机列表
+
+        # @param request: Request instance for ExportPatchEffectHostList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportPatchEffectHostListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportPatchEffectHostListResponse`
+        def ExportPatchEffectHostList(request)
+          body = send_request('ExportPatchEffectHostList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportPatchEffectHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 导出本地提权事件
 
         # @param request: Request instance for ExportPrivilegeEvents.
@@ -10026,6 +10122,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ExportWebPageEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 导出Windows补丁列表
+
+        # @param request: Request instance for ExportWindowsPatchList.
+        # @type request: :class:`Tencentcloud::cwp::V20180228::ExportWindowsPatchListRequest`
+        # @rtype: :class:`Tencentcloud::cwp::V20180228::ExportWindowsPatchListResponse`
+        def ExportWindowsPatchList(request)
+          body = send_request('ExportWindowsPatchList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ExportWindowsPatchListResponse.new
             model.deserialize(response['Response'])
             model
           else

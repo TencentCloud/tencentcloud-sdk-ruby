@@ -2059,12 +2059,29 @@ module TencentCloud
 
       # CreateAuditKeywordLib请求参数结构体
       class CreateAuditKeywordLibRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>自定义词库名称。</p>
+        # @type Name: String
+        # @param Description: <p>自定义词库名称描述。</p>
+        # @type Description: String
+        # @param Suggestion: <p>处理建议。<br>可取值：Review 疑似，Block 违规。</p>
+        # @type Suggestion: String
+        # @param MatchType: <p>匹配模式。<br>可取值：ExactMatch 精确匹配， FuzzyMatch 模糊匹配。</p>
+        # @type MatchType: String
 
+        attr_accessor :Name, :Description, :Suggestion, :MatchType
 
-        def initialize()
+        def initialize(name=nil, description=nil, suggestion=nil, matchtype=nil)
+          @Name = name
+          @Description = description
+          @Suggestion = suggestion
+          @MatchType = matchtype
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Description = params['Description']
+          @Suggestion = params['Suggestion']
+          @MatchType = params['MatchType']
         end
       end
 
@@ -6275,20 +6292,33 @@ module TencentCloud
 
       # DescribeDeliverLogDownList请求参数结构体
       class DescribeDeliverLogDownListRequest < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>开始时间。UTC 格式，例如：2022-02-09T12:36:42Z。<br>注意：</p><ol><li>北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</li></ol>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。UTC 格式，例如：2022-02-09T12:36:42Z。<br>注意：</p><ol><li>结束时间 - 开始时间 &lt;=7天。</li><li>北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式说明</a>。</li></ol>
+        # @type EndTime: String
+        # @param DeliverDomains: <p>域名列表。</p>
+        # @type DeliverDomains: Array
 
+        attr_accessor :StartTime, :EndTime, :DeliverDomains
 
-        def initialize()
+        def initialize(starttime=nil, endtime=nil, deliverdomains=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+          @DeliverDomains = deliverdomains
         end
 
         def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @DeliverDomains = params['DeliverDomains']
         end
       end
 
       # DescribeDeliverLogDownList返回参数结构体
       class DescribeDeliverLogDownListResponse < TencentCloud::Common::AbstractModel
-        # @param LogInfoList: 日志信息列表。
+        # @param LogInfoList: <p>日志信息列表。</p>
         # @type LogInfoList: Array
-        # @param TotalNum: 总条数。
+        # @param TotalNum: <p>总条数。</p>
         # @type TotalNum: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12063,29 +12093,29 @@ module TencentCloud
         # @type CasterName: String
         # @param Description: <p>导播台的描述，最大允许长度256</p>
         # @type Description: String
-        # @param RecordTemplateId: <p>录制模板id。默认为0。当使用直播录制功能时，可将使用的录制模版填入。该接口仅保存字段，不涉及任何录制功能。</p>
+        # @param RecordTemplateId: <p>录制模板id。默认为0。当使用直播录制功能时，可将使用的录制模板填入。该接口仅保存字段，不涉及任何录制功能。</p>
         # @type RecordTemplateId: Integer
-        # @param RecordStatus: <p>录制状态，当调用录制接口后，可通过该字段保存录制状态。0：未录制 1：录制中该接口仅保存字段，不涉及任何录制处理。</p>
+        # @param RecordStatus: <p>录制状态，当调用录制接口后，可通过该字段保存录制状态。<br>0：未录制<br>1：录制中<br>该接口仅保存字段，不涉及任何录制处理。</p>
         # @type RecordStatus: Integer
-        # @param ExpireTime: <p>导播台的过期时间戳。值为-1或unix时间戳。默认值为-1。 当值为-1时，表示该导播台永不过期。 当值为正常unix时间戳时，导播台将在该时间过期。导播台过期后，预监与主监画面将自动停止，转推自动停止。 点播、直播url将停止转拉，推流url需自行停止推流。</p>
+        # @param ExpireTime: <p>导播台的过期时间戳。值为-1或unix时间戳。<br>默认值为-1。<br>当值为-1时，表示该导播台永不过期。<br>当值为正常unix时间戳时，导播台将在该时间过期。<br>导播台过期后，预监与主监画面将自动停止，转推自动停止。<br>点播、直播url将停止转拉，推流url需自行停止推流。</p>
         # @type ExpireTime: Integer
-        # @param DelayTime: <p>导播台延时播放时间，单位为秒。 默认为0，最大支持300秒</p>
+        # @param DelayTime: <p>导播台延时播放时间，单位为秒。<br>默认为0，最大支持300秒</p>
         # @type DelayTime: Integer
-        # @param TransitionType: <p>导播台转场类型。 默认为空。 允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。</p>
+        # @param TransitionType: <p>导播台转场类型。<br>默认为空。<br>允许使用通过DescribeCasterTransitionTypes接口中查询到的转场类型。</p>
         # @type TransitionType: String
-        # @param PgmWidth: <p>导播台主监输出的宽度，单位为像素。 默认为1280，最大允许4096。</p>
+        # @param PgmWidth: <p>导播台主监输出的宽度，单位为像素。<br>默认为1280，最大允许4096。</p>
         # @type PgmWidth: Integer
-        # @param PgmHeight: <p>导播台主监输出的高度，单位为像素。 默认为720，最大允许2160。</p>
+        # @param PgmHeight: <p>导播台主监输出的高度，单位为像素。<br>默认为720，最大允许2160。</p>
         # @type PgmHeight: Integer
-        # @param PgmFps: <p>导播台主监输出的帧率。 默认为0，表示随源输出。 最大支持60。</p>
+        # @param PgmFps: <p>导播台主监输出的帧率。<br>默认为0，表示随源输出。 最大支持60。</p>
         # @type PgmFps: Integer
-        # @param PgmBitRate: <p>导播台主监输出的码率，单位为kbps。 默认为0，表示随源的码率输出。 最大允许10000kbps。</p>
+        # @param PgmBitRate: <p>导播台主监输出的码率，单位为kbps。<br>默认为0，表示随源的码率输出。<br>最大允许10000kbps。</p>
         # @type PgmBitRate: Integer
-        # @param FeeType: <p>导播台的计费类型。 0 通用型 1 播单型。 注： 本参数暂无作用。</p>
+        # @param FeeType: <p>导播台的计费类型。<br>0 通用型<br>1 播单型。<br>注： 本参数暂无作用。</p>
         # @type FeeType: Integer
-        # @param RecordTaskId: <p>录制接口返回的taskid注：该接口只做字段保存，不涉及录制操作。</p>
+        # @param RecordTaskId: <p>录制接口返回的taskid<br>注：该接口只做字段保存，不涉及录制操作。</p>
         # @type RecordTaskId: String
-        # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。 可选项：[0, 128, 192, 256] 默认值为0，表示随源的音频码率输出。</p>
+        # @param PgmAudioBitRate: <p>导播台主监输出的音频码率，单位为kbps。<br>可选项：[0, 128, 192, 256]<br>默认值为0，表示随源的音频码率输出。</p>
         # @type PgmAudioBitRate: Integer
 
         attr_accessor :CasterId, :CasterName, :Description, :RecordTemplateId, :RecordStatus, :ExpireTime, :DelayTime, :TransitionType, :PgmWidth, :PgmHeight, :PgmFps, :PgmBitRate, :FeeType, :RecordTaskId, :PgmAudioBitRate

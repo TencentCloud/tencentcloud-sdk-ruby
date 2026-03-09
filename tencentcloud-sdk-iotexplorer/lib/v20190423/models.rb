@@ -100,8 +100,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 2
-        deprecate :MiniProgramAppId=, :none, 2026, 2
+        deprecate :MiniProgramAppId, :none, 2026, 3
+        deprecate :MiniProgramAppId=, :none, 2026, 3
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 2
-        deprecate :DeviceList=, :none, 2026, 2
+        deprecate :DeviceList, :none, 2026, 3
+        deprecate :DeviceList=, :none, 2026, 3
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -2763,10 +2763,16 @@ module TencentCloud
         # @type InstanceId: String
         # @param CustomTools: 自定义工具配置，最多可创建10个
         # @type CustomTools: String
+        # @param WebhookTools: WebHook工具配置(JSON字符串格式)
+        # @type WebhookTools: String
+        # @param BotType: 智能体模板类型
+        # @type BotType: String
+        # @param RAGConfig: 知识库相关配置(JSON字符串格式)
+        # @type RAGConfig: String
 
-        attr_accessor :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :InstanceId, :CustomTools
+        attr_accessor :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :InstanceId, :CustomTools, :WebhookTools, :BotType, :RAGConfig
 
-        def initialize(name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, instanceid=nil, customtools=nil)
+        def initialize(name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, instanceid=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Name = name
           @Description = description
           @TargetLanguage = targetlanguage
@@ -2776,6 +2782,9 @@ module TencentCloud
           @AgentConfig = agentconfig
           @InstanceId = instanceid
           @CustomTools = customtools
+          @WebhookTools = webhooktools
+          @BotType = bottype
+          @RAGConfig = ragconfig
         end
 
         def deserialize(params)
@@ -2800,6 +2809,9 @@ module TencentCloud
           end
           @InstanceId = params['InstanceId']
           @CustomTools = params['CustomTools']
+          @WebhookTools = params['WebhookTools']
+          @BotType = params['BotType']
+          @RAGConfig = params['RAGConfig']
         end
       end
 
@@ -7297,8 +7309,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 2
-        deprecate :ModelId=, :none, 2026, 2
+        deprecate :ModelId, :none, 2026, 3
+        deprecate :ModelId=, :none, 2026, 3
 
         def initialize(modelid=nil, sn=nil, errcode=nil, expiretime=nil)
           @ModelId = modelid
@@ -9014,8 +9026,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 2
-        deprecate :MiniProgramAppId=, :none, 2026, 2
+        deprecate :MiniProgramAppId, :none, 2026, 3
+        deprecate :MiniProgramAppId=, :none, 2026, 3
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -11492,10 +11504,16 @@ module TencentCloud
         # @type AgentConfig: :class:`Tencentcloud::Iotexplorer.v20190423.models.TalkAgentConfigInfo`
         # @param CustomTools: 自定义工具配置，最多可创建10个
         # @type CustomTools: String
+        # @param WebhookTools: WebHook工具配置(JSON字符串格式)
+        # @type WebhookTools: String
+        # @param BotType: 智能体模板类型
+        # @type BotType: String
+        # @param RAGConfig: 知识库相关配置(JSON字符串格式)
+        # @type RAGConfig: String
 
-        attr_accessor :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :CustomTools
+        attr_accessor :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :CustomTools, :WebhookTools, :BotType, :RAGConfig
 
-        def initialize(botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, customtools=nil)
+        def initialize(botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @BotId = botid
           @Name = name
           @Description = description
@@ -11505,6 +11523,9 @@ module TencentCloud
           @TTSConfig = ttsconfig
           @AgentConfig = agentconfig
           @CustomTools = customtools
+          @WebhookTools = webhooktools
+          @BotType = bottype
+          @RAGConfig = ragconfig
         end
 
         def deserialize(params)
@@ -11529,6 +11550,9 @@ module TencentCloud
             @AgentConfig.deserialize(params['AgentConfig'])
           end
           @CustomTools = params['CustomTools']
+          @WebhookTools = params['WebhookTools']
+          @BotType = params['BotType']
+          @RAGConfig = params['RAGConfig']
         end
       end
 
@@ -13149,8 +13173,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 2
-        deprecate :ModelId=, :none, 2026, 2
+        deprecate :ModelId, :none, 2026, 3
+        deprecate :ModelId=, :none, 2026, 3
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -13180,10 +13204,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 2
-        deprecate :ModelId=, :none, 2026, 2
-        deprecate :ActiveNum, :none, 2026, 2
-        deprecate :ActiveNum=, :none, 2026, 2
+        deprecate :ModelId, :none, 2026, 3
+        deprecate :ModelId=, :none, 2026, 3
+        deprecate :ActiveNum, :none, 2026, 3
+        deprecate :ActiveNum=, :none, 2026, 3
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn
@@ -13256,13 +13280,19 @@ module TencentCloud
         # @type BoundProducts: Array
         # @param CustomTools: 自定义工具列表，最多可创建10个
         # @type CustomTools: String
+        # @param WebhookTools: WebHook工具配置(JSON字符串格式)
+        # @type WebhookTools: String
+        # @param BotType: 智能体模板类型
+        # @type BotType: String
+        # @param RAGConfig: 知识库相关配置(JSON字符串格式)
+        # @type RAGConfig: String
 
-        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools
+        attr_accessor :Uin, :AppId, :InstanceId, :BotId, :Name, :Description, :TargetLanguage, :STTConfig, :LLMConfig, :TTSConfig, :AgentConfig, :ProductList, :CreateTime, :UpdateTime, :BoundProducts, :CustomTools, :WebhookTools, :BotType, :RAGConfig
         extend Gem::Deprecate
-        deprecate :ProductList, :none, 2026, 2
-        deprecate :ProductList=, :none, 2026, 2
+        deprecate :ProductList, :none, 2026, 3
+        deprecate :ProductList=, :none, 2026, 3
 
-        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil)
+        def initialize(uin=nil, appid=nil, instanceid=nil, botid=nil, name=nil, description=nil, targetlanguage=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, agentconfig=nil, productlist=nil, createtime=nil, updatetime=nil, boundproducts=nil, customtools=nil, webhooktools=nil, bottype=nil, ragconfig=nil)
           @Uin = uin
           @AppId = appid
           @InstanceId = instanceid
@@ -13279,6 +13309,9 @@ module TencentCloud
           @UpdateTime = updatetime
           @BoundProducts = boundproducts
           @CustomTools = customtools
+          @WebhookTools = webhooktools
+          @BotType = bottype
+          @RAGConfig = ragconfig
         end
 
         def deserialize(params)
@@ -13320,6 +13353,9 @@ module TencentCloud
             end
           end
           @CustomTools = params['CustomTools']
+          @WebhookTools = params['WebhookTools']
+          @BotType = params['BotType']
+          @RAGConfig = params['RAGConfig']
         end
       end
 
@@ -13353,10 +13389,16 @@ module TencentCloud
         # @type DefaultVoiceType: Integer
         # @param FastVoiceType: 复刻音色
         # @type FastVoiceType: String
+        # @param SubtitleCallbackUrl: 实时字幕回调地址，支持HTTP/HTTPS
+        # @type SubtitleCallbackUrl: String
+        # @param SubtitleCallbackSignKey: 回调签名密钥，最大32字符，用于HMAC SHA256签名
+        # @type SubtitleCallbackSignKey: String
+        # @param SubtitleCallbackTimeout: 字幕推送超时时间（秒），参考TRTC规范
+        # @type SubtitleCallbackTimeout: Integer
 
-        attr_accessor :SessionTimeout, :InterruptionEnabled, :MaxContextTokens, :IdleDetection, :EmotionEnabled, :SemanticVADEnabled, :SemanticVADSensitivity, :SilenceTime, :NoiseFilterEnabled, :LongTermMemoryEnabled, :SystemPrompt, :GreetingMessage, :DefaultVoiceType, :FastVoiceType
+        attr_accessor :SessionTimeout, :InterruptionEnabled, :MaxContextTokens, :IdleDetection, :EmotionEnabled, :SemanticVADEnabled, :SemanticVADSensitivity, :SilenceTime, :NoiseFilterEnabled, :LongTermMemoryEnabled, :SystemPrompt, :GreetingMessage, :DefaultVoiceType, :FastVoiceType, :SubtitleCallbackUrl, :SubtitleCallbackSignKey, :SubtitleCallbackTimeout
 
-        def initialize(sessiontimeout=nil, interruptionenabled=nil, maxcontexttokens=nil, idledetection=nil, emotionenabled=nil, semanticvadenabled=nil, semanticvadsensitivity=nil, silencetime=nil, noisefilterenabled=nil, longtermmemoryenabled=nil, systemprompt=nil, greetingmessage=nil, defaultvoicetype=nil, fastvoicetype=nil)
+        def initialize(sessiontimeout=nil, interruptionenabled=nil, maxcontexttokens=nil, idledetection=nil, emotionenabled=nil, semanticvadenabled=nil, semanticvadsensitivity=nil, silencetime=nil, noisefilterenabled=nil, longtermmemoryenabled=nil, systemprompt=nil, greetingmessage=nil, defaultvoicetype=nil, fastvoicetype=nil, subtitlecallbackurl=nil, subtitlecallbacksignkey=nil, subtitlecallbacktimeout=nil)
           @SessionTimeout = sessiontimeout
           @InterruptionEnabled = interruptionenabled
           @MaxContextTokens = maxcontexttokens
@@ -13371,6 +13413,9 @@ module TencentCloud
           @GreetingMessage = greetingmessage
           @DefaultVoiceType = defaultvoicetype
           @FastVoiceType = fastvoicetype
+          @SubtitleCallbackUrl = subtitlecallbackurl
+          @SubtitleCallbackSignKey = subtitlecallbacksignkey
+          @SubtitleCallbackTimeout = subtitlecallbacktimeout
         end
 
         def deserialize(params)
@@ -13391,6 +13436,9 @@ module TencentCloud
           @GreetingMessage = params['GreetingMessage']
           @DefaultVoiceType = params['DefaultVoiceType']
           @FastVoiceType = params['FastVoiceType']
+          @SubtitleCallbackUrl = params['SubtitleCallbackUrl']
+          @SubtitleCallbackSignKey = params['SubtitleCallbackSignKey']
+          @SubtitleCallbackTimeout = params['SubtitleCallbackTimeout']
         end
       end
 

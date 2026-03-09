@@ -80,6 +80,63 @@ module TencentCloud
         end
       end
 
+      # 路由规则来源服务的请求规则配置详情
+      class Argument < TencentCloud::Common::AbstractModel
+        # @param Type: 类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Key: key值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Key: String
+        # @param Value: 匹配条件参数
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: :class:`Tencentcloud::Tse.v20201207.models.ArgumentValue`
+
+        attr_accessor :Type, :Key, :Value
+
+        def initialize(type=nil, key=nil, value=nil)
+          @Type = type
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Key = params['Key']
+          unless params['Value'].nil?
+            @Value = ArgumentValue.new
+            @Value.deserialize(params['Value'])
+          end
+        end
+      end
+
+      # 被调服务配置表达式
+      class ArgumentValue < TencentCloud::Common::AbstractModel
+        # @param Type: 表达式类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: 匹配值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Value: String
+        # @param ValueType: 值类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ValueType: String
+
+        attr_accessor :Type, :Value, :ValueType
+
+        def initialize(type=nil, value=nil, valuetype=nil)
+          @Type = type
+          @Value = value
+          @ValueType = valuetype
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Value = params['Value']
+          @ValueType = params['ValueType']
+        end
+      end
+
       # 指标伸缩行为
       class AutoScalerBehavior < TencentCloud::Common::AbstractModel
         # @param ScaleUp: 扩容行为配置
@@ -831,8 +888,8 @@ module TencentCloud
 
         attr_accessor :StrategyId, :StrategyName, :CreateTime, :ModifyTime, :Description, :Config, :GatewayId, :CronConfig, :MaxReplicas
         extend Gem::Deprecate
-        deprecate :MaxReplicas, :none, 2026, 2
-        deprecate :MaxReplicas=, :none, 2026, 2
+        deprecate :MaxReplicas, :none, 2026, 3
+        deprecate :MaxReplicas=, :none, 2026, 3
 
         def initialize(strategyid=nil, strategyname=nil, createtime=nil, modifytime=nil, description=nil, config=nil, gatewayid=nil, cronconfig=nil, maxreplicas=nil)
           @StrategyId = strategyid
@@ -893,16 +950,16 @@ module TencentCloud
 
         attr_accessor :MaxReplicas, :Metrics, :Enabled, :CreateTime, :ModifyTime, :StrategyId, :AutoScalerId, :Behavior
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 2
-        deprecate :Enabled=, :none, 2026, 2
-        deprecate :CreateTime, :none, 2026, 2
-        deprecate :CreateTime=, :none, 2026, 2
-        deprecate :ModifyTime, :none, 2026, 2
-        deprecate :ModifyTime=, :none, 2026, 2
-        deprecate :StrategyId, :none, 2026, 2
-        deprecate :StrategyId=, :none, 2026, 2
-        deprecate :AutoScalerId, :none, 2026, 2
-        deprecate :AutoScalerId=, :none, 2026, 2
+        deprecate :Enabled, :none, 2026, 3
+        deprecate :Enabled=, :none, 2026, 3
+        deprecate :CreateTime, :none, 2026, 3
+        deprecate :CreateTime=, :none, 2026, 3
+        deprecate :ModifyTime, :none, 2026, 3
+        deprecate :ModifyTime=, :none, 2026, 3
+        deprecate :StrategyId, :none, 2026, 3
+        deprecate :StrategyId=, :none, 2026, 3
+        deprecate :AutoScalerId, :none, 2026, 3
+        deprecate :AutoScalerId=, :none, 2026, 3
 
         def initialize(maxreplicas=nil, metrics=nil, enabled=nil, createtime=nil, modifytime=nil, strategyid=nil, autoscalerid=nil, behavior=nil)
           @MaxReplicas = maxreplicas
@@ -1023,14 +1080,14 @@ module TencentCloud
 
         attr_accessor :Enabled, :Params, :CreateTime, :ModifyTime, :StrategyId
         extend Gem::Deprecate
-        deprecate :Enabled, :none, 2026, 2
-        deprecate :Enabled=, :none, 2026, 2
-        deprecate :CreateTime, :none, 2026, 2
-        deprecate :CreateTime=, :none, 2026, 2
-        deprecate :ModifyTime, :none, 2026, 2
-        deprecate :ModifyTime=, :none, 2026, 2
-        deprecate :StrategyId, :none, 2026, 2
-        deprecate :StrategyId=, :none, 2026, 2
+        deprecate :Enabled, :none, 2026, 3
+        deprecate :Enabled=, :none, 2026, 3
+        deprecate :CreateTime, :none, 2026, 3
+        deprecate :CreateTime=, :none, 2026, 3
+        deprecate :ModifyTime, :none, 2026, 3
+        deprecate :ModifyTime=, :none, 2026, 3
+        deprecate :StrategyId, :none, 2026, 3
+        deprecate :StrategyId=, :none, 2026, 3
 
         def initialize(enabled=nil, params=nil, createtime=nil, modifytime=nil, strategyid=nil)
           @Enabled = enabled
@@ -1708,10 +1765,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 2
-        deprecate :CronScalerConfig=, :none, 2026, 2
-        deprecate :MaxReplicas, :none, 2026, 2
-        deprecate :MaxReplicas=, :none, 2026, 2
+        deprecate :CronScalerConfig, :none, 2026, 3
+        deprecate :CronScalerConfig=, :none, 2026, 3
+        deprecate :MaxReplicas, :none, 2026, 3
+        deprecate :MaxReplicas=, :none, 2026, 3
 
         def initialize(gatewayid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -1754,8 +1811,8 @@ module TencentCloud
 
         attr_accessor :Result, :StrategyId, :RequestId
         extend Gem::Deprecate
-        deprecate :Result, :none, 2026, 2
-        deprecate :Result=, :none, 2026, 2
+        deprecate :Result, :none, 2026, 3
+        deprecate :Result=, :none, 2026, 3
 
         def initialize(result=nil, strategyid=nil, requestid=nil)
           @Result = result
@@ -1841,10 +1898,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :BindDomains, :CertId, :Name, :Key, :Crt
         extend Gem::Deprecate
-        deprecate :Key, :none, 2026, 2
-        deprecate :Key=, :none, 2026, 2
-        deprecate :Crt, :none, 2026, 2
-        deprecate :Crt=, :none, 2026, 2
+        deprecate :Key, :none, 2026, 3
+        deprecate :Key=, :none, 2026, 3
+        deprecate :Crt, :none, 2026, 3
+        deprecate :Crt=, :none, 2026, 3
 
         def initialize(gatewayid=nil, binddomains=nil, certid=nil, name=nil, key=nil, crt=nil)
           @GatewayId = gatewayid
@@ -2179,8 +2236,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 2
-        deprecate :ForceHttps=, :none, 2026, 2
+        deprecate :ForceHttps, :none, 2026, 3
+        deprecate :ForceHttps=, :none, 2026, 3
 
         def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -2822,6 +2879,53 @@ module TencentCloud
       # CreateGovernanceInstances返回参数结构体
       class CreateGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 创建是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateGovernanceLaneGroups请求参数结构体
+      class CreateGovernanceLaneGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param LaneGroups: 泳道组规则列表
+        # @type LaneGroups: Array
+
+        attr_accessor :InstanceId, :LaneGroups
+
+        def initialize(instanceid=nil, lanegroups=nil)
+          @InstanceId = instanceid
+          @LaneGroups = lanegroups
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['LaneGroups'].nil?
+            @LaneGroups = []
+            params['LaneGroups'].each do |i|
+              governancelanegroup_tmp = GovernanceLaneGroup.new
+              governancelanegroup_tmp.deserialize(i)
+              @LaneGroups << governancelanegroup_tmp
+            end
+          end
+        end
+      end
+
+      # CreateGovernanceLaneGroups返回参数结构体
+      class CreateGovernanceLaneGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否创建成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3957,6 +4061,136 @@ module TencentCloud
       # DeleteGovernanceInstances返回参数结构体
       class DeleteGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 操作是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 泳道组
+      class DeleteGovernanceLaneGroup < TencentCloud::Common::AbstractModel
+        # @param Name: 泳道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ID: 泳道组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param TrafficEntries: 泳道入口服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficEntries: Array
+        # @param Destinations: 泳道服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destinations: Array
+        # @param Description: 泳道组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Revision: 规则内容摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Consistency: 规则一致性状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: String
+        # @param Rules: 泳道规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+
+        attr_accessor :Name, :ID, :TrafficEntries, :Destinations, :Description, :Revision, :CreateTime, :ModifyTime, :Consistency, :Rules
+
+        def initialize(name=nil, id=nil, trafficentries=nil, destinations=nil, description=nil, revision=nil, createtime=nil, modifytime=nil, consistency=nil, rules=nil)
+          @Name = name
+          @ID = id
+          @TrafficEntries = trafficentries
+          @Destinations = destinations
+          @Description = description
+          @Revision = revision
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Consistency = consistency
+          @Rules = rules
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ID = params['ID']
+          unless params['TrafficEntries'].nil?
+            @TrafficEntries = []
+            params['TrafficEntries'].each do |i|
+              lanetrafficentry_tmp = LaneTrafficEntry.new
+              lanetrafficentry_tmp.deserialize(i)
+              @TrafficEntries << lanetrafficentry_tmp
+            end
+          end
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              governanceservicedestination_tmp = GovernanceServiceDestination.new
+              governanceservicedestination_tmp.deserialize(i)
+              @Destinations << governanceservicedestination_tmp
+            end
+          end
+          @Description = params['Description']
+          @Revision = params['Revision']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Consistency = params['Consistency']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              governancelanerule_tmp = GovernanceLaneRule.new
+              governancelanerule_tmp.deserialize(i)
+              @Rules << governancelanerule_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceLaneGroups请求参数结构体
+      class DeleteGovernanceLaneGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param LaneGroups: 泳道组规则列表
+        # @type LaneGroups: Array
+
+        attr_accessor :InstanceId, :LaneGroups
+
+        def initialize(instanceid=nil, lanegroups=nil)
+          @InstanceId = instanceid
+          @LaneGroups = lanegroups
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['LaneGroups'].nil?
+            @LaneGroups = []
+            params['LaneGroups'].each do |i|
+              deletegovernancelanegroup_tmp = DeleteGovernanceLaneGroup.new
+              deletegovernancelanegroup_tmp.deserialize(i)
+              @LaneGroups << deletegovernancelanegroup_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteGovernanceLaneGroups返回参数结构体
+      class DeleteGovernanceLaneGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否创建成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6102,6 +6336,73 @@ module TencentCloud
         end
       end
 
+      # DescribeGovernanceLaneGroups请求参数结构体
+      class DescribeGovernanceLaneGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param Offset: 分页查询偏移量
+        # @type Offset: Integer
+        # @param Limit: 分页条数
+        # @type Limit: Integer
+        # @param Name: 泳道名称
+        # @type Name: String
+        # @param GroupID: 泳道ID
+        # @type GroupID: String
+        # @param Brief: 是否展示泳道规则列表
+        # @type Brief: Boolean
+
+        attr_accessor :InstanceId, :Offset, :Limit, :Name, :GroupID, :Brief
+
+        def initialize(instanceid=nil, offset=nil, limit=nil, name=nil, groupid=nil, brief=nil)
+          @InstanceId = instanceid
+          @Offset = offset
+          @Limit = limit
+          @Name = name
+          @GroupID = groupid
+          @Brief = brief
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Name = params['Name']
+          @GroupID = params['GroupID']
+          @Brief = params['Brief']
+        end
+      end
+
+      # DescribeGovernanceLaneGroups返回参数结构体
+      class DescribeGovernanceLaneGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Total: 总数
+        # @type Total: Integer
+        # @param LaneGroups: 泳道规则列表
+        # @type LaneGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Total, :LaneGroups, :RequestId
+
+        def initialize(total=nil, lanegroups=nil, requestid=nil)
+          @Total = total
+          @LaneGroups = lanegroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['LaneGroups'].nil?
+            @LaneGroups = []
+            params['LaneGroups'].each do |i|
+              governancelanegroup_tmp = GovernanceLaneGroup.new
+              governancelanegroup_tmp.deserialize(i)
+              @LaneGroups << governancelanegroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeGovernanceNamespaces请求参数结构体
       class DescribeGovernanceNamespacesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: tse实例id
@@ -7297,8 +7598,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Type, :TypeList
         extend Gem::Deprecate
-        deprecate :Type, :none, 2026, 2
-        deprecate :Type=, :none, 2026, 2
+        deprecate :Type, :none, 2026, 3
+        deprecate :Type=, :none, 2026, 3
 
         def initialize(gatewayid=nil, type=nil, typelist=nil)
           @GatewayId = gatewayid
@@ -8094,6 +8395,189 @@ module TencentCloud
         end
       end
 
+      # 泳道组
+      class GovernanceLaneGroup < TencentCloud::Common::AbstractModel
+        # @param Name: 泳道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param ID: 泳道组ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param TrafficEntries: 泳道入口服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficEntries: Array
+        # @param Destinations: 泳道服务列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Destinations: Array
+        # @param Description: 泳道组描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param Rules: 该泳道组下的所有泳道规则列表
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Rules: Array
+        # @param Revision: 规则内容摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Consistency: 规则一致性状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Consistency: String
+
+        attr_accessor :Name, :ID, :TrafficEntries, :Destinations, :Description, :Rules, :Revision, :CreateTime, :ModifyTime, :Consistency
+
+        def initialize(name=nil, id=nil, trafficentries=nil, destinations=nil, description=nil, rules=nil, revision=nil, createtime=nil, modifytime=nil, consistency=nil)
+          @Name = name
+          @ID = id
+          @TrafficEntries = trafficentries
+          @Destinations = destinations
+          @Description = description
+          @Rules = rules
+          @Revision = revision
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @Consistency = consistency
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @ID = params['ID']
+          unless params['TrafficEntries'].nil?
+            @TrafficEntries = []
+            params['TrafficEntries'].each do |i|
+              lanetrafficentry_tmp = LaneTrafficEntry.new
+              lanetrafficentry_tmp.deserialize(i)
+              @TrafficEntries << lanetrafficentry_tmp
+            end
+          end
+          unless params['Destinations'].nil?
+            @Destinations = []
+            params['Destinations'].each do |i|
+              governanceservicedestination_tmp = GovernanceServiceDestination.new
+              governanceservicedestination_tmp.deserialize(i)
+              @Destinations << governanceservicedestination_tmp
+            end
+          end
+          @Description = params['Description']
+          unless params['Rules'].nil?
+            @Rules = []
+            params['Rules'].each do |i|
+              governancelanerule_tmp = GovernanceLaneRule.new
+              governancelanerule_tmp.deserialize(i)
+              @Rules << governancelanerule_tmp
+            end
+          end
+          @Revision = params['Revision']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @Consistency = params['Consistency']
+        end
+      end
+
+      # 泳道规则
+      class GovernanceLaneRule < TencentCloud::Common::AbstractModel
+        # @param ID: 泳道规则ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ID: String
+        # @param Name: 泳道名称
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Name: String
+        # @param LaneGroup: 泳道所属泳道组
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneGroup: String
+        # @param Enable: 泳道规则启用状态
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param TrafficLabels: 流量标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficLabels: Array
+        # @param TrafficMatchMode: 多个流量标签匹配方式
+        # AND：与
+        # OR：或
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TrafficMatchMode: String
+        # @param LaneMatchMode: 泳道匹配方式
+        # STRICT：严格匹配
+        # PERMISSIVE：宽松匹配
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneMatchMode: String
+        # @param TrafficGray: 泳道灰度规则
+        # @type TrafficGray: :class:`Tencentcloud::Tse.v20201207.models.TrafficGray`
+        # @param Description: 泳道规则描述
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Description: String
+        # @param LaneLabelValue: 泳道标签内容
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LaneLabelValue: String
+        # @param CreateTime: 创建时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param EnableTime: 启用时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableTime: String
+        # @param ModifyTime: 修改时间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyTime: String
+        # @param Priority: 泳道规则优先级
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Priority: Integer
+        # @param Revision: 规则摘要
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Revision: String
+
+        attr_accessor :ID, :Name, :LaneGroup, :Enable, :TrafficLabels, :TrafficMatchMode, :LaneMatchMode, :TrafficGray, :Description, :LaneLabelValue, :CreateTime, :EnableTime, :ModifyTime, :Priority, :Revision
+
+        def initialize(id=nil, name=nil, lanegroup=nil, enable=nil, trafficlabels=nil, trafficmatchmode=nil, lanematchmode=nil, trafficgray=nil, description=nil, lanelabelvalue=nil, createtime=nil, enabletime=nil, modifytime=nil, priority=nil, revision=nil)
+          @ID = id
+          @Name = name
+          @LaneGroup = lanegroup
+          @Enable = enable
+          @TrafficLabels = trafficlabels
+          @TrafficMatchMode = trafficmatchmode
+          @LaneMatchMode = lanematchmode
+          @TrafficGray = trafficgray
+          @Description = description
+          @LaneLabelValue = lanelabelvalue
+          @CreateTime = createtime
+          @EnableTime = enabletime
+          @ModifyTime = modifytime
+          @Priority = priority
+          @Revision = revision
+        end
+
+        def deserialize(params)
+          @ID = params['ID']
+          @Name = params['Name']
+          @LaneGroup = params['LaneGroup']
+          @Enable = params['Enable']
+          unless params['TrafficLabels'].nil?
+            @TrafficLabels = []
+            params['TrafficLabels'].each do |i|
+              argument_tmp = Argument.new
+              argument_tmp.deserialize(i)
+              @TrafficLabels << argument_tmp
+            end
+          end
+          @TrafficMatchMode = params['TrafficMatchMode']
+          @LaneMatchMode = params['LaneMatchMode']
+          unless params['TrafficGray'].nil?
+            @TrafficGray = TrafficGray.new
+            @TrafficGray.deserialize(params['TrafficGray'])
+          end
+          @Description = params['Description']
+          @LaneLabelValue = params['LaneLabelValue']
+          @CreateTime = params['CreateTime']
+          @EnableTime = params['EnableTime']
+          @ModifyTime = params['ModifyTime']
+          @Priority = params['Priority']
+          @Revision = params['Revision']
+        end
+      end
+
       # 治理中心命名空间
       class GovernanceNamespace < TencentCloud::Common::AbstractModel
         # @param Name: 命名空间名称。
@@ -8425,6 +8909,40 @@ module TencentCloud
         end
       end
 
+      # 服务实例组
+      class GovernanceServiceDestination < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Service: 服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param Labels: 实例标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+
+        attr_accessor :Namespace, :Service, :Labels
+
+        def initialize(namespace=nil, service=nil, labels=nil)
+          @Namespace = namespace
+          @Service = service
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Service = params['Service']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              routingdestinationrulelabel_tmp = RoutingDestinationRuleLabel.new
+              routingdestinationrulelabel_tmp.deserialize(i)
+              @Labels << routingdestinationrulelabel_tmp
+            end
+          end
+        end
+      end
+
       # 治理中心服务入参
       class GovernanceServiceInput < TencentCloud::Common::AbstractModel
         # @param Name: 服务名。
@@ -8704,8 +9222,8 @@ module TencentCloud
 
         attr_accessor :Total, :CertificatesList, :Pages
         extend Gem::Deprecate
-        deprecate :Pages, :none, 2026, 2
-        deprecate :Pages=, :none, 2026, 2
+        deprecate :Pages, :none, 2026, 3
+        deprecate :Pages=, :none, 2026, 3
 
         def initialize(total=nil, certificateslist=nil, pages=nil)
           @Total = total
@@ -8846,8 +9364,8 @@ module TencentCloud
 
         attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 2
-        deprecate :ForceHttps=, :none, 2026, 2
+        deprecate :ForceHttps, :none, 2026, 3
+        deprecate :ForceHttps=, :none, 2026, 3
 
         def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @ID = id
@@ -9328,6 +9846,69 @@ module TencentCloud
         end
       end
 
+      # 标签
+      class Label < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键名称
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # 泳道入口信息
+      class LaneTrafficEntry < TencentCloud::Common::AbstractModel
+        # @param EntryType:    // type == "polarismesh.cn/gateway/tse-gateway, 则 selector 为 TSEGatewaySelector
+        #    // type == "polarismesh.cn/gateway/spring-cloud-gateway", 则 selector 为 ServiceGatewaySelector
+        #    // type == "polarismesh.cn/service, 则 selector 为 ServiceSelector
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EntryType: String
+        # @param TSEGatewaySelector: TSE云原生网关选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TSEGatewaySelector: :class:`Tencentcloud::Tse.v20201207.models.TSEGatewaySelector`
+        # @param ServiceGatewaySelector: 微服务网关选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceGatewaySelector: :class:`Tencentcloud::Tse.v20201207.models.ServiceGatewaySelector`
+        # @param ServiceSelector: 普通微服务选择器
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ServiceSelector: :class:`Tencentcloud::Tse.v20201207.models.ServiceSelector`
+
+        attr_accessor :EntryType, :TSEGatewaySelector, :ServiceGatewaySelector, :ServiceSelector
+
+        def initialize(entrytype=nil, tsegatewayselector=nil, servicegatewayselector=nil, serviceselector=nil)
+          @EntryType = entrytype
+          @TSEGatewaySelector = tsegatewayselector
+          @ServiceGatewaySelector = servicegatewayselector
+          @ServiceSelector = serviceselector
+        end
+
+        def deserialize(params)
+          @EntryType = params['EntryType']
+          unless params['TSEGatewaySelector'].nil?
+            @TSEGatewaySelector = TSEGatewaySelector.new
+            @TSEGatewaySelector.deserialize(params['TSEGatewaySelector'])
+          end
+          unless params['ServiceGatewaySelector'].nil?
+            @ServiceGatewaySelector = ServiceGatewaySelector.new
+            @ServiceGatewaySelector.deserialize(params['ServiceGatewaySelector'])
+          end
+          unless params['ServiceSelector'].nil?
+            @ServiceSelector = ServiceSelector.new
+            @ServiceSelector.deserialize(params['ServiceSelector'])
+          end
+        end
+      end
+
       # 参数限流的规则
       class LimitRule < TencentCloud::Common::AbstractModel
         # @param Filters: 请求匹配条件
@@ -9550,10 +10131,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :StrategyId, :StrategyName, :Description, :Config, :CronScalerConfig, :MaxReplicas, :CronConfig
         extend Gem::Deprecate
-        deprecate :CronScalerConfig, :none, 2026, 2
-        deprecate :CronScalerConfig=, :none, 2026, 2
-        deprecate :MaxReplicas, :none, 2026, 2
-        deprecate :MaxReplicas=, :none, 2026, 2
+        deprecate :CronScalerConfig, :none, 2026, 3
+        deprecate :CronScalerConfig=, :none, 2026, 3
+        deprecate :MaxReplicas, :none, 2026, 3
+        deprecate :MaxReplicas=, :none, 2026, 3
 
         def initialize(gatewayid=nil, strategyid=nil, strategyname=nil, description=nil, config=nil, cronscalerconfig=nil, maxreplicas=nil, cronconfig=nil)
           @GatewayId = gatewayid
@@ -9688,10 +10269,10 @@ module TencentCloud
 
         attr_accessor :GatewayId, :Id, :Name, :Key, :Crt, :BindDomains, :CertId, :CertSource
         extend Gem::Deprecate
-        deprecate :Name, :none, 2026, 2
-        deprecate :Name=, :none, 2026, 2
-        deprecate :BindDomains, :none, 2026, 2
-        deprecate :BindDomains=, :none, 2026, 2
+        deprecate :Name, :none, 2026, 3
+        deprecate :Name=, :none, 2026, 3
+        deprecate :BindDomains, :none, 2026, 3
+        deprecate :BindDomains=, :none, 2026, 3
 
         def initialize(gatewayid=nil, id=nil, name=nil, key=nil, crt=nil, binddomains=nil, certid=nil, certsource=nil)
           @GatewayId = gatewayid
@@ -9885,8 +10466,8 @@ module TencentCloud
 
         attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority
         extend Gem::Deprecate
-        deprecate :ForceHttps, :none, 2026, 2
-        deprecate :ForceHttps=, :none, 2026, 2
+        deprecate :ForceHttps, :none, 2026, 3
+        deprecate :ForceHttps=, :none, 2026, 3
 
         def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil)
           @GatewayId = gatewayid
@@ -10294,6 +10875,53 @@ module TencentCloud
       # ModifyGovernanceInstances返回参数结构体
       class ModifyGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
         # @param Result: 修改是否成功。
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGovernanceLaneGroups请求参数结构体
+      class ModifyGovernanceLaneGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 引擎实例ID
+        # @type InstanceId: String
+        # @param LaneGroups: 泳道组规则列表
+        # @type LaneGroups: Array
+
+        attr_accessor :InstanceId, :LaneGroups
+
+        def initialize(instanceid=nil, lanegroups=nil)
+          @InstanceId = instanceid
+          @LaneGroups = lanegroups
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          unless params['LaneGroups'].nil?
+            @LaneGroups = []
+            params['LaneGroups'].each do |i|
+              governancelanegroup_tmp = GovernanceLaneGroup.new
+              governancelanegroup_tmp.deserialize(i)
+              @LaneGroups << governancelanegroup_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyGovernanceLaneGroups返回参数结构体
+      class ModifyGovernanceLaneGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param Result: 是否创建成功
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11300,6 +11928,38 @@ module TencentCloud
         end
       end
 
+      # 目标服务实例实例标签信息
+      class RoutingDestinationRuleLabel < TencentCloud::Common::AbstractModel
+        # @param LabelKey: 标签键
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelKey: String
+        # @param LabelValue: 标签值
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+        # @param LabelType: 表达式类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelType: String
+        # @param LabelValueType: 值类型
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValueType: String
+
+        attr_accessor :LabelKey, :LabelValue, :LabelType, :LabelValueType
+
+        def initialize(labelkey=nil, labelvalue=nil, labeltype=nil, labelvaluetype=nil)
+          @LabelKey = labelkey
+          @LabelValue = labelvalue
+          @LabelType = labeltype
+          @LabelValueType = labelvaluetype
+        end
+
+        def deserialize(params)
+          @LabelKey = params['LabelKey']
+          @LabelValue = params['LabelValue']
+          @LabelType = params['LabelType']
+          @LabelValueType = params['LabelValueType']
+        end
+      end
+
       # 限流规则的Filter
       class RuleFilter < TencentCloud::Common::AbstractModel
         # @param Key: 限流条件的Key
@@ -11545,6 +12205,40 @@ module TencentCloud
         end
       end
 
+      # 微服务网关选择器
+      class ServiceGatewaySelector < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Service: 服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param Labels: 实例标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+
+        attr_accessor :Namespace, :Service, :Labels
+
+        def initialize(namespace=nil, service=nil, labels=nil)
+          @Namespace = namespace
+          @Service = service
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Service = params['Service']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
+        end
+      end
+
       # 服务治理相关的信息
       class ServiceGovernanceInfo < TencentCloud::Common::AbstractModel
         # @param EngineRegion: 引擎所在的地域
@@ -11629,6 +12323,40 @@ module TencentCloud
             end
           end
           @SubPassword = params['SubPassword']
+        end
+      end
+
+      # 普通服务选择器
+      class ServiceSelector < TencentCloud::Common::AbstractModel
+        # @param Namespace: 命名空间
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Namespace: String
+        # @param Service: 服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Service: String
+        # @param Labels: 实例标签
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Labels: Array
+
+        attr_accessor :Namespace, :Service, :Labels
+
+        def initialize(namespace=nil, service=nil, labels=nil)
+          @Namespace = namespace
+          @Service = service
+          @Labels = labels
+        end
+
+        def deserialize(params)
+          @Namespace = params['Namespace']
+          @Service = params['Service']
+          unless params['Labels'].nil?
+            @Labels = []
+            params['Labels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @Labels << label_tmp
+            end
+          end
         end
       end
 
@@ -11755,6 +12483,56 @@ module TencentCloud
           @Name = params['Name']
           @Type = params['Type']
           @Capacity = params['Capacity']
+        end
+      end
+
+      # 网关服务信息匹配条件
+      class TSEGatewaySelector < TencentCloud::Common::AbstractModel
+        # @param GatewayId: 网关引擎实例ID
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GatewayId: String
+        # @param Services: 网关服务
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Services: Array
+
+        attr_accessor :GatewayId, :Services
+
+        def initialize(gatewayid=nil, services=nil)
+          @GatewayId = gatewayid
+          @Services = services
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @Services = params['Services']
+        end
+      end
+
+      # 泳道流量灰度规则
+      class TrafficGray < TencentCloud::Common::AbstractModel
+        # @param Mode: 流量灰度规则，按比例灰度或预热方式
+        # @type Mode: String
+        # @param Percent: 按比例灰度的百分比值1-100
+        # @type Percent: Integer
+        # @param IntervalSecond: 预热的间隔
+        # @type IntervalSecond: Integer
+        # @param Curvature: 预热的曲度
+        # @type Curvature: Integer
+
+        attr_accessor :Mode, :Percent, :IntervalSecond, :Curvature
+
+        def initialize(mode=nil, percent=nil, intervalsecond=nil, curvature=nil)
+          @Mode = mode
+          @Percent = percent
+          @IntervalSecond = intervalsecond
+          @Curvature = curvature
+        end
+
+        def deserialize(params)
+          @Mode = params['Mode']
+          @Percent = params['Percent']
+          @IntervalSecond = params['IntervalSecond']
+          @Curvature = params['Curvature']
         end
       end
 
@@ -12087,8 +12865,8 @@ module TencentCloud
 
         attr_accessor :EnableActiveHealthCheck, :ActiveHealthCheck, :EnablePassiveHealthCheck, :PassiveHealthCheck, :Successes, :Failures, :Timeouts, :HealthyHttpStatuses, :UnhealthyHttpStatuses, :IgnoreZeroWeightNodes, :ZeroWeightHeathCheck
         extend Gem::Deprecate
-        deprecate :IgnoreZeroWeightNodes, :none, 2026, 2
-        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 2
+        deprecate :IgnoreZeroWeightNodes, :none, 2026, 3
+        deprecate :IgnoreZeroWeightNodes=, :none, 2026, 3
 
         def initialize(enableactivehealthcheck=nil, activehealthcheck=nil, enablepassivehealthcheck=nil, passivehealthcheck=nil, successes=nil, failures=nil, timeouts=nil, healthyhttpstatuses=nil, unhealthyhttpstatuses=nil, ignorezeroweightnodes=nil, zeroweightheathcheck=nil)
           @EnableActiveHealthCheck = enableactivehealthcheck

@@ -392,6 +392,7 @@ module TencentCloud
         # @param Type: 对比类型：builtin（内置校验）、independent（独立校验）。默认为builtin，mongodb及redis链路不支持独立校验。
         # @type Type: String
         # @param CompareMode: 校验类型，枚举值：structureCheck-结构校验(目前仅postgresql支持)、full-全量校验、increment-增量校验(如果勾选了增量校验，Method只能选dataCheck)、advanceObject-数据库信息校验(目前仅mongodb支持)
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CompareMode: Array
         # @param ReCheckTime: 复检次数
         # @type ReCheckTime: Integer
@@ -1496,7 +1497,7 @@ module TencentCloud
         # @type NodeType: String
         # @param Info: 实例具体的连接信息，如ip、port、接入方式等
         # @type Info: Array
-        # @param Supplier: 实例服务提供商，如:"aliyun","others"
+        # @param Supplier: 实例服务提供商，如:"others","aliyun","aws"
         # @type Supplier: String
         # @param ExtraAttr: 此参数为数组类型，可以传多个键值对结构对象。
         # MongoDB可定义如下的参数：
@@ -1560,49 +1561,49 @@ module TencentCloud
 
       # 数据库信息
       class DBInfo < TencentCloud::Common::AbstractModel
-        # @param Role: 表示节点角色，针对分布式数据库，如mongodb中的mongos节点。tdsqlmysql的可选项：proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填。
+        # @param Role: <p>表示节点角色，针对分布式数据库，如mongodb中的mongos节点。tdsqlmysql的可选项：proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填。</p>
         # @type Role: String
-        # @param DbKernel: 内核版本，针对mariadb的不同内核版本等
+        # @param DbKernel: <p>内核版本，针对mariadb的不同内核版本等</p>
         # @type DbKernel: String
-        # @param Host: 实例的IP地址，对于公网、专线、VPN、云联网、自研上云、VPC等接入方式此项必填
+        # @param Host: <p>实例的IP地址，对于公网、专线、VPN、云联网、自研上云、VPC等接入方式此项必填</p>
         # @type Host: String
-        # @param Port: 实例的端口，对于公网、云主机自建、专线、VPN、云联网、自研上云、VPC等接入方式此项必填
+        # @param Port: <p>实例的端口，对于公网、云主机自建、专线、VPN、云联网、自研上云、VPC等接入方式此项必填</p>
         # @type Port: Integer
-        # @param User: 实例的用户名
+        # @param User: <p>实例的用户名</p>
         # @type User: String
-        # @param Password: 实例的密码
+        # @param Password: <p>实例的密码</p>
         # @type Password: String
-        # @param CvmInstanceId: CVM实例短ID，格式如：ins-olgl39y8；与云服务器控制台页面显示的实例ID相同；如果接入类型为云主机自建的方式，此项必填
+        # @param CvmInstanceId: <p>CVM实例短ID，格式如：ins-olgl39y8；与云服务器控制台页面显示的实例ID相同；如果接入类型为云主机自建的方式，此项必填</p>
         # @type CvmInstanceId: String
-        # @param UniqVpnGwId: VPN网关ID，格式如：vpngw-9ghexg7q；如果接入类型为vpncloud的方式，此项必填
+        # @param UniqVpnGwId: <p>VPN网关ID，格式如：vpngw-9ghexg7q；如果接入类型为vpncloud的方式，此项必填</p>
         # @type UniqVpnGwId: String
-        # @param UniqDcgId: 专线网关ID，格式如：dcg-0rxtqqxb；如果接入类型为专线接入的方式，此项必填
+        # @param UniqDcgId: <p>专线网关ID，格式如：dcg-0rxtqqxb；如果接入类型为专线接入的方式，此项必填</p>
         # @type UniqDcgId: String
-        # @param InstanceId: 数据库实例ID，格式如：cdb-powiqx8q；如果接入类型为云数据库的方式，此项必填
+        # @param InstanceId: <p>数据库实例ID，格式如：cdb-powiqx8q；如果接入类型为云数据库的方式，此项必填</p>
         # @type InstanceId: String
-        # @param CcnGwId: 云联网ID，如：ccn-afp6kltc 注意：此字段可能返回 null，表示取不到有效值。
+        # @param CcnGwId: <p>云联网ID，如：ccn-afp6kltc 注意：此字段可能返回 null，表示取不到有效值。</p>
         # @type CcnGwId: String
-        # @param VpcId: 私有网络ID，格式如：vpc-92jblxto；如果接入类型为vpc、vpncloud、ccn、dcg的方式，此项必填
+        # @param VpcId: <p>私有网络ID，格式如：vpc-92jblxto；如果接入类型为vpc、vpncloud、ccn、dcg的方式，此项必填</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络下的子网ID，格式如：subnet-3paxmkdz；如果接入类型为vpc、vpncloud、ccn、dcg的方式，此项必填
+        # @param SubnetId: <p>私有网络下的子网ID，格式如：subnet-3paxmkdz；如果接入类型为vpc、vpncloud、ccn、dcg的方式，此项必填</p>
         # @type SubnetId: String
-        # @param EngineVersion: 数据库版本，当实例为RDS实例时才有效，格式如：5.6或者5.7，默认为5.6
+        # @param EngineVersion: <p>数据库版本，当实例为RDS实例时才有效，格式如：5.6或者5.7，默认为5.6</p>
         # @type EngineVersion: String
-        # @param Account: 实例所属账号
+        # @param Account: <p>实例所属账号</p>
         # @type Account: String
-        # @param AccountRole: 跨账号迁移时的角色,只允许[a-zA-Z0-9\-\_]+
+        # @param AccountRole: <p>跨账号迁移时的角色,只允许[a-zA-Z0-9-_]+</p>
         # @type AccountRole: String
-        # @param AccountMode: 资源所属账号 为空或self(表示本账号内资源)、other(表示其他账户资源)
+        # @param AccountMode: <p>资源所属账号 为空或self(表示本账号内资源)、other(表示其他账户资源)</p>
         # @type AccountMode: String
-        # @param TmpSecretId: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。
+        # @param TmpSecretId: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。</p>
         # @type TmpSecretId: String
-        # @param TmpSecretKey: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。
+        # @param TmpSecretKey: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。</p>
         # @type TmpSecretKey: String
-        # @param TmpToken: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。
+        # @param TmpToken: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号迁移文档(https://cloud.tencent.com/document/product/571/54117)第4节中关于角色的定义。</p>
         # @type TmpToken: String
-        # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
+        # @param EncryptConn: <p>是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted</p>
         # @type EncryptConn: String
-        # @param SetId: tdsql的分片id。如节点类型为set必填。
+        # @param SetId: <p>tdsql的分片id。如节点类型为set必填。</p>
         # @type SetId: String
 
         attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :SetId
@@ -4039,65 +4040,65 @@ module TencentCloud
 
       # 数据同步中的描述源端和目的端的信息
       class Endpoint < TencentCloud::Common::AbstractModel
-        # @param Region: 地域英文名，如：ap-guangzhou
+        # @param Region: <p>地域英文名，如：ap-guangzhou</p>
         # @type Region: String
-        # @param Role: 节点类型，proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填
+        # @param Role: <p>节点类型，proxy表示节点类型为主机，set表示节点类型为节点。proxy类型必须填在数组第一项。tdsqlmysql类型的源/目标配置必填</p>
         # @type Role: String
-        # @param DbKernel: 数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql。注意TDSQL-C MySQL、TDSQL PostgreSQL无需填写此项值。
+        # @param DbKernel: <p>数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql。注意TDSQL-C MySQL、TDSQL PostgreSQL无需填写此项值。</p>
         # @type DbKernel: String
-        # @param InstanceId: 数据库实例ID，格式如：cdb-powiqx8q
+        # @param InstanceId: <p>数据库实例ID，格式如：cdb-powiqx8q</p>
         # @type InstanceId: String
-        # @param Ip: 实例的IP地址，接入类型为非cdb时此项必填
+        # @param Ip: <p>实例的IP地址，接入类型为非cdb时此项必填</p>
         # @type Ip: String
-        # @param Port: 实例端口，接入类型为非cdb时此项必填
+        # @param Port: <p>实例端口，接入类型为非cdb时此项必填</p>
         # @type Port: Integer
-        # @param User: 用户名，对于访问需要用户名密码认证的实例必填
+        # @param User: <p>用户名，对于访问需要用户名密码认证的实例必填</p>
         # @type User: String
-        # @param Password: 密码，对于访问需要用户名密码认证的实例必填
+        # @param Password: <p>密码，对于访问需要用户名密码认证的实例必填</p>
         # @type Password: String
-        # @param DbName: 数据库名，数据库为cdwpg时，需要提供
+        # @param DbName: <p>数据库名，数据库为cdwpg时，需要提供</p>
         # @type DbName: String
-        # @param VpcId: 私有网络ID，对于私有网络、专线、VPN的接入方式此项必填，格式如：vpc-92jblxto
+        # @param VpcId: <p>私有网络ID，对于私有网络、专线、VPN的接入方式此项必填，格式如：vpc-92jblxto</p>
         # @type VpcId: String
-        # @param SubnetId: 私有网络下的子网ID，对于私有网络、专线、VPN的接入方式此项必填，格式如：subnet-3paxmkdz
+        # @param SubnetId: <p>私有网络下的子网ID，对于私有网络、专线、VPN的接入方式此项必填，格式如：subnet-3paxmkdz</p>
         # @type SubnetId: String
-        # @param CvmInstanceId: CVM实例短ID，格式如：ins-olgl39y8，与云服务器控制台页面显示的实例ID相同。如果是CVM自建实例，需要传递此字段
+        # @param CvmInstanceId: <p>CVM实例短ID，格式如：ins-olgl39y8，与云服务器控制台页面显示的实例ID相同。如果是CVM自建实例，需要传递此字段</p>
         # @type CvmInstanceId: String
-        # @param UniqDcgId: 专线网关ID，对于专线接入类型此项必填，格式如：dcg-0rxtqqxb
+        # @param UniqDcgId: <p>专线网关ID，对于专线接入类型此项必填，格式如：dcg-0rxtqqxb</p>
         # @type UniqDcgId: String
-        # @param UniqVpnGwId: VPN网关ID，对于vpn接入类型此项必填，格式如：vpngw-9ghexg7q
+        # @param UniqVpnGwId: <p>VPN网关ID，对于vpn接入类型此项必填，格式如：vpngw-9ghexg7q</p>
         # @type UniqVpnGwId: String
-        # @param CcnId: 云联网ID，对于云联网接入类型此项必填，如：ccn-afp6kltc
+        # @param CcnId: <p>云联网ID，对于云联网接入类型此项必填，如：ccn-afp6kltc</p>
         # @type CcnId: String
-        # @param Supplier: 云厂商类型，当实例为RDS实例时，填写为aliyun, 其他情况均填写others，默认为others
+        # @param Supplier: <p>云厂商类型，当实例为RDS实例时，填写为aliyun, 其他情况均填写others，默认为others</p>
         # @type Supplier: String
-        # @param EngineVersion: 数据库版本，当实例为RDS实例时才有效，其他实例忽略，格式如：5.6或者5.7，默认为5.6
+        # @param EngineVersion: <p>数据库版本，当实例为RDS实例时才有效，其他实例忽略，格式如：5.6或者5.7，默认为5.6</p>
         # @type EngineVersion: String
-        # @param Account: 实例所属账号，如果为跨账号实例此项必填
+        # @param Account: <p>实例所属账号，如果为跨账号实例此项必填</p>
         # @type Account: String
-        # @param AccountMode: 资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)
+        # @param AccountMode: <p>资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)</p>
         # @type AccountMode: String
-        # @param AccountRole: 跨账号同步时的角色，只允许[a-zA-Z0-9\-\_]+，如果为跨账号实例此项必填
+        # @param AccountRole: <p>跨账号同步时的角色，只允许[a-zA-Z0-9-_]+，如果为跨账号实例此项必填</p>
         # @type AccountRole: String
-        # @param RoleExternalId: 外部角色id
+        # @param RoleExternalId: <p>外部角色id</p>
         # @type RoleExternalId: String
-        # @param TmpSecretId: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。
+        # @param TmpSecretId: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。</p>
         # @type TmpSecretId: String
-        # @param TmpSecretKey: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。
+        # @param TmpSecretKey: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。</p>
         # @type TmpSecretKey: String
-        # @param TmpToken: 临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。
+        # @param TmpToken: <p>临时密钥Id，可通过申请扮演角色临时访问凭证获取临时密钥https://cloud.tencent.com/document/product/1312/48197，其中角色资源RoleArn的定义可参考DTS跨账号同步文档(https://cloud.tencent.com/document/product/571/68729)第4节中关于角色的定义。</p>
         # @type TmpToken: String
-        # @param EncryptConn: 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
+        # @param EncryptConn: <p>是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted</p>
         # @type EncryptConn: String
-        # @param DatabaseNetEnv: 数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；
+        # @param DatabaseNetEnv: <p>数据库所属网络环境，AccessType为云联网(ccn)时必填， UserIDC表示用户IDC、TencentVPC表示腾讯云VPC；</p>
         # @type DatabaseNetEnv: String
-        # @param CcnOwnerUin: 数据库为跨账号云联网下的实例时、表示云联网所属主账号
+        # @param CcnOwnerUin: <p>数据库为跨账号云联网下的实例时、表示云联网所属主账号</p>
         # @type CcnOwnerUin: String
-        # @param ChildInstanceId: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的ID
+        # @param ChildInstanceId: <p>数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的ID</p>
         # @type ChildInstanceId: String
-        # @param ChildInstanceType: 数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的类型、例如：只读实例传ro、读写实例传rw
+        # @param ChildInstanceType: <p>数据库为cynos、且是cynos集群内的一个子数据库实例时、该参数为该子实例的类型、例如：只读实例传ro、读写实例传rw</p>
         # @type ChildInstanceType: String
-        # @param SetId: tdsql的分片id。如节点类型为set必填。
+        # @param SetId: <p>tdsql的分片id。如节点类型为set必填。</p>
         # @type SetId: String
 
         attr_accessor :Region, :Role, :DbKernel, :InstanceId, :Ip, :Port, :User, :Password, :DbName, :VpcId, :SubnetId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :CcnId, :Supplier, :EngineVersion, :Account, :AccountMode, :AccountRole, :RoleExternalId, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :DatabaseNetEnv, :CcnOwnerUin, :ChildInstanceId, :ChildInstanceType, :SetId
@@ -4529,9 +4530,7 @@ module TencentCloud
         # @type EndTime: String
         # @param BriefMsg: 迁移任务错误信息
         # @type BriefMsg: String
-        # @param Status: 任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(中止中)、completing(完成中)、
-        # pausing(暂停中)、
-        # manualPaused(已暂停)
+        # @param Status: 任务状态，取值为：creating(创建中)、created(创建完成)、checking(校验中)、checkPass(校验通过)、checkNotPass(校验不通过)、readyRun(准备运行)、running(任务运行)、readyComplete(准备完成)、success(任务成功)、failed(任务失败)、stopping(终止中)、completing(完成中)、pausing(暂停中)、manualPaused(已暂停)、resumableErr(可重试错误)、resuming(重试中)、unknown(未知状态)、error(任务错误)、canceled(已取消)
         # @type Status: String
         # @param RunMode: 任务运行模式，值包括：immediate(立即运行)，timed(定时运行)
         # @type RunMode: String
@@ -5230,23 +5229,23 @@ module TencentCloud
 
       # ModifyMigrationJob请求参数结构体
       class ModifyMigrationJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务id，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param JobId: <p>任务id，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type JobId: String
-        # @param RunMode: 运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)
+        # @param RunMode: <p>运行模式，取值如：immediate(表示立即运行)、timed(表示定时运行)</p>
         # @type RunMode: String
-        # @param MigrateOption: 迁移任务配置选项，描述任务如何执行迁移等一系列配置信息；字段下的RateLimitOption不可配置、如果需要修改任务的限速信息、请在任务运行后通过ModifyMigrateRateLimit接口修改
+        # @param MigrateOption: <p>迁移任务配置选项，描述任务如何执行迁移等一系列配置信息；字段下的RateLimitOption不可配置、如果需要修改任务的限速信息、请在任务运行后通过ModifyMigrateRateLimit接口修改</p>
         # @type MigrateOption: :class:`Tencentcloud::Dts.v20211206.models.MigrateOption`
-        # @param SrcInfo: 源实例信息
+        # @param SrcInfo: <p>源实例信息</p>
         # @type SrcInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param DstInfo: 目标实例信息
+        # @param DstInfo: <p>目标实例信息</p>
         # @type DstInfo: :class:`Tencentcloud::Dts.v20211206.models.DBEndpointInfo`
-        # @param JobName: 迁移任务名称，最大长度128
+        # @param JobName: <p>迁移任务名称，最大长度128</p>
         # @type JobName: String
-        # @param ExpectRunTime: 期待启动时间，当RunMode取值为timed时，此值必填，形如："2006-01-02 15:04:05"
+        # @param ExpectRunTime: <p>期待启动时间，当RunMode取值为timed时，此值必填，形如：&quot;2006-01-02 15:04:05&quot;</p>
         # @type ExpectRunTime: String
-        # @param Tags: 标签信息
+        # @param Tags: <p>标签信息</p>
         # @type Tags: Array
-        # @param AutoRetryTimeRangeMinutes: 自动重试的时间段、可设置5至720分钟、0表示不重试
+        # @param AutoRetryTimeRangeMinutes: <p>自动重试的时间段、可设置5至720分钟、0表示不重试</p>
         # @type AutoRetryTimeRangeMinutes: Integer
 
         attr_accessor :JobId, :RunMode, :MigrateOption, :SrcInfo, :DstInfo, :JobName, :ExpectRunTime, :Tags, :AutoRetryTimeRangeMinutes

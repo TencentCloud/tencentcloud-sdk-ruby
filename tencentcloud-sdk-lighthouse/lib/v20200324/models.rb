@@ -1340,17 +1340,17 @@ module TencentCloud
 
       # 数据盘价格
       class DataDiskPrice < TencentCloud::Common::AbstractModel
-        # @param DiskId: 云硬盘ID。
+        # @param DiskId: <p>云硬盘ID。</p>
         # @type DiskId: String
-        # @param OriginalDiskPrice: 云硬盘单价。
+        # @param OriginalDiskPrice: <p>云硬盘单价。</p><p>单位：元</p>
         # @type OriginalDiskPrice: Float
-        # @param OriginalPrice: 云硬盘总价。
+        # @param OriginalPrice: <p>云硬盘总价。</p><p>单位：元</p>
         # @type OriginalPrice: Float
-        # @param Discount: 折扣。
+        # @param Discount: <p>折扣。</p>
         # @type Discount: Float
-        # @param DiscountPrice: 折后总价。
+        # @param DiscountPrice: <p>折后总价。</p><p>单位：元</p>
         # @type DiscountPrice: Float
-        # @param InstanceId: 数据盘挂载的实例ID。
+        # @param InstanceId: <p>数据盘挂载的实例ID。</p>
         # @type InstanceId: String
 
         attr_accessor :DiskId, :OriginalDiskPrice, :OriginalPrice, :Discount, :DiscountPrice, :InstanceId
@@ -4294,19 +4294,15 @@ module TencentCloud
 
       # 计费项目明细。
       class DetailPrice < TencentCloud::Common::AbstractModel
-        # @param PriceName: 描述计费项目名称，目前取值
-        # <li>"DiskSpace"代表云硬盘空间收费项。</li>
-        # <li>"DiskBackupQuota"代表数据盘备份点配额收费项。</li>
-        # <li>"Instance"代表实例收费项。</li>
-        # <li>"SystemDiskBackupQuota"代表系统盘备份点配额收费项。</li>
+        # @param PriceName: <p>描述计费项目名称，目前取值</p><li>"DiskSpace"代表云硬盘空间收费项。</li><li>"DiskBackupQuota"代表数据盘备份点配额收费项。</li><li>"Instance"代表实例收费项。</li><li>"SystemDiskBackupQuota"代表系统盘备份点配额收费项。</li>
         # @type PriceName: String
-        # @param OriginUnitPrice: 计费项维度单价。
+        # @param OriginUnitPrice: <p>计费项维度单价。</p><p>单位：元</p>
         # @type OriginUnitPrice: Float
-        # @param OriginalPrice: 计费项维度总价。
+        # @param OriginalPrice: <p>计费项维度总价。</p><p>单位：元</p>
         # @type OriginalPrice: Float
-        # @param Discount: 计费项维度折扣。
+        # @param Discount: <p>计费项维度折扣。</p>
         # @type Discount: Float
-        # @param DiscountPrice: 计费项维度折后总价。
+        # @param DiscountPrice: <p>计费项维度折后总价。</p><p>单位：元</p>
         # @type DiscountPrice: Float
 
         attr_accessor :PriceName, :OriginUnitPrice, :OriginalPrice, :Discount, :DiscountPrice
@@ -4366,20 +4362,17 @@ module TencentCloud
 
       # 套餐折扣详情（仅用于控制台调用询价相关接口返回）。
       class DiscountDetail < TencentCloud::Common::AbstractModel
-        # @param TimeSpan: 计费时长。
+        # @param TimeSpan: <p>计费时长。</p>
         # @type TimeSpan: Integer
-        # @param TimeUnit: 时间单位。
-        # 取值为：
-        # - m - 月
-        # - d - 日
+        # @param TimeUnit: <p>时间单位。<br>取值为：</p><ul><li>m - 月</li><li>d - 日</li></ul>
         # @type TimeUnit: String
-        # @param TotalCost: 总价。
+        # @param TotalCost: <p>总价。</p><p>单位：元</p>
         # @type TotalCost: Float
-        # @param RealTotalCost: 折后总价。
+        # @param RealTotalCost: <p>折后总价。</p><p>单位：元</p>
         # @type RealTotalCost: Float
-        # @param Discount: 折扣。
+        # @param Discount: <p>折扣。</p>
         # @type Discount: Float
-        # @param PolicyDetail: 具体折扣详情。
+        # @param PolicyDetail: <p>具体折扣详情。</p>
         # @type PolicyDetail: :class:`Tencentcloud::Lighthouse.v20200324.models.PolicyDetail`
 
         attr_accessor :TimeSpan, :TimeUnit, :TotalCost, :RealTotalCost, :Discount, :PolicyDetail
@@ -4667,21 +4660,17 @@ module TencentCloud
 
       # 云硬盘配置
       class DiskConfig < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区。
+        # @param Zone: <p>可用区。</p>
         # @type Zone: String
-        # @param DiskType: 云硬盘类型。枚举值如下：
-
-        # <li>CLOUD_BASIC：普通云硬盘</li>
-        # <li>CLOUD_PREMIUM：高性能云硬盘</li>
-        # <li>CLOUD_SSD：SSD云硬盘</li>
+        # @param DiskType: <p>云硬盘类型。枚举值如下：</p><li>CLOUD_BASIC：普通云硬盘</li><li>CLOUD_PREMIUM：高性能云硬盘</li><li>CLOUD_SSD：SSD云硬盘</li>
         # @type DiskType: String
-        # @param DiskSalesState: 云硬盘可售卖状态。
+        # @param DiskSalesState: <p>云硬盘可售卖状态。</p>
         # @type DiskSalesState: String
-        # @param MaxDiskSize: 最大云硬盘大小。
+        # @param MaxDiskSize: <p>最大云硬盘大小。</p><p>单位：GB</p>
         # @type MaxDiskSize: Integer
-        # @param MinDiskSize: 最小云硬盘大小。
+        # @param MinDiskSize: <p>最小云硬盘大小。</p><p>单位：GB</p>
         # @type MinDiskSize: Integer
-        # @param DiskStepSize: 云硬盘步长。
+        # @param DiskStepSize: <p>云硬盘步长。</p><p>单位：GB</p>
         # @type DiskStepSize: Integer
 
         attr_accessor :Zone, :DiskType, :DiskSalesState, :MaxDiskSize, :MinDiskSize, :DiskStepSize
@@ -5997,17 +5986,17 @@ module TencentCloud
 
       # 关于Lighthouse Instance实例的价格信息。
       class InstancePrice < TencentCloud::Common::AbstractModel
-        # @param OriginalBundlePrice: 套餐单价原价。
+        # @param OriginalBundlePrice: <p>套餐单价原价。</p><p>单位：元</p>
         # @type OriginalBundlePrice: Float
-        # @param OriginalPrice: 原价。
+        # @param OriginalPrice: <p>原价。</p><p>单位：元</p>
         # @type OriginalPrice: Float
-        # @param Discount: 折扣。
+        # @param Discount: <p>折扣。</p>
         # @type Discount: Float
-        # @param DiscountPrice: 折后价。
+        # @param DiscountPrice: <p>折后价。</p><p>单位：元</p>
         # @type DiscountPrice: Float
-        # @param Currency: 价格货币单位。取值范围CNY:人民币。USD:美元。
+        # @param Currency: <p>价格货币单位。取值范围CNY:人民币。USD:美元。</p>
         # @type Currency: String
-        # @param DetailPrices: 计费项目明细。
+        # @param DetailPrices: <p>计费项目明细。</p>
         # @type DetailPrices: Array
 
         attr_accessor :OriginalBundlePrice, :OriginalPrice, :Discount, :DiscountPrice, :Currency, :DetailPrices
@@ -8754,9 +8743,9 @@ module TencentCloud
 
       # 总计价格信息
       class TotalPrice < TencentCloud::Common::AbstractModel
-        # @param OriginalPrice: 原始总计价格。
+        # @param OriginalPrice: <p>原始总计价格。</p><p>单位：元</p>
         # @type OriginalPrice: Float
-        # @param DiscountPrice: 折扣总计价格。
+        # @param DiscountPrice: <p>折扣总计价格。</p><p>单位：元</p>
         # @type DiscountPrice: Float
 
         attr_accessor :OriginalPrice, :DiscountPrice

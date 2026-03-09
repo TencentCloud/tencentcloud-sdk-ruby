@@ -122,149 +122,155 @@ module TencentCloud
 
       # 查询应用配置返回参数
       class ApmAppConfig < TencentCloud::Common::AbstractModel
-        # @param InstanceKey: 实例ID
+        # @param InstanceKey: <p>实例ID</p>
         # @type InstanceKey: String
-        # @param ServiceName: 服务名
+        # @param ServiceName: <p>服务名</p>
         # @type ServiceName: String
-        # @param UrlConvergenceSwitch: URL收敛开关
+        # @param UrlConvergenceSwitch: <p>URL收敛开关</p>
         # @type UrlConvergenceSwitch: Integer
-        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @param UrlConvergenceThreshold: <p>URL收敛阈值</p>
         # @type UrlConvergenceThreshold: Integer
-        # @param UrlConvergence: URL收敛正则
+        # @param UrlConvergence: <p>URL收敛正则</p>
         # @type UrlConvergence: String
-        # @param ExceptionFilter: 异常过滤正则
+        # @param ExceptionFilter: <p>异常过滤正则</p>
         # @type ExceptionFilter: String
-        # @param ErrorCodeFilter: 错误码过滤
+        # @param ErrorCodeFilter: <p>错误码过滤</p>
         # @type ErrorCodeFilter: String
-        # @param Components: 服务组件类型
+        # @param Components: <p>服务组件类型</p>
         # @type Components: String
-        # @param UrlExclude: URL排除正则
+        # @param UrlExclude: <p>URL排除正则</p>
         # @type UrlExclude: String
-        # @param LogSource: 日志来源
+        # @param LogSource: <p>日志来源</p>
         # @type LogSource: String
-        # @param LogRegion: 日志所在地域
+        # @param LogRegion: <p>日志所在地域</p>
         # @type LogRegion: String
-        # @param IsRelatedLog: 是否开启日志 0 关 1 开
+        # @param IsRelatedLog: <p>是否开启日志 0 关 1 开</p>
         # @type IsRelatedLog: Integer
-        # @param LogTopicID: 日志主题ID
+        # @param LogTopicID: <p>日志主题ID</p>
         # @type LogTopicID: String
-        # @param IgnoreOperationName: 需过滤的接口名
+        # @param IgnoreOperationName: <p>需过滤的接口名</p>
         # @type IgnoreOperationName: String
-        # @param LogSet: CLS日志集 | ES集群ID
+        # @param LogSet: <p>CLS日志集 | ES集群ID</p>
         # @type LogSet: String
-        # @param TraceRateLimit: 探针每秒上报trace数
+        # @param TraceRateLimit: <p>探针每秒上报trace数</p>
         # @type TraceRateLimit: Integer
-        # @param EnableSnapshot: 是否开启线程剖析
+        # @param EnableSnapshot: <p>是否开启线程剖析</p>
         # @type EnableSnapshot: Boolean
-        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @param SnapshotTimeout: <p>线程剖析超时阈值</p>
         # @type SnapshotTimeout: Integer
-        # @param AgentEnable: 是否开启agent
+        # @param AgentEnable: <p>是否开启agent</p>
         # @type AgentEnable: Boolean
-        # @param InstrumentList: 组件列表
+        # @param InstrumentList: <p>组件列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstrumentList: Array
-        # @param TraceSquash: 是否开启链路压缩
+        # @param TraceSquash: <p>是否开启链路压缩</p>
         # @type TraceSquash: Boolean
-        # @param EventEnable: 是否开启应用诊断开关
+        # @param EventEnable: <p>是否开启应用诊断开关</p>
         # @type EventEnable: Boolean
-        # @param AgentOperationConfigView: 探针接口相关配置
+        # @param AgentOperationConfigView: <p>探针接口相关配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AgentOperationConfigView: :class:`Tencentcloud::Apm.v20210622.models.AgentOperationConfigView`
-        # @param EnableLogConfig: 是否开启应用日志配置
+        # @param EnableLogConfig: <p>是否开启应用日志配置</p>
         # @type EnableLogConfig: Boolean
-        # @param ServiceID: 应用ID
+        # @param ServiceID: <p>应用ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ServiceID: String
-        # @param EnableDashboardConfig: 应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）
+        # @param EnableDashboardConfig: <p>应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableDashboardConfig: Boolean
-        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # @param IsRelatedDashboard: <p>是否关联dashboard： 0 关 1 开</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: dashboard ID
+        # @param DashboardTopicID: <p>dashboard ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DashboardTopicID: String
-        # @param EnableSecurityConfig: 是否开启应用级别配置
+        # @param EnableSecurityConfig: <p>是否开启应用级别配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableSecurityConfig: Boolean
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @param IsInstrumentationVulnerabilityScan: <p>是否开启组件漏洞检测</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
+        # @param IsSqlInjectionAnalysis: <p>是否开启SQL注入分析</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsSqlInjectionAnalysis: Integer
-        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令执行分析
+        # @param IsRemoteCommandExecutionAnalysis: <p>是否开启远程命令执行分析</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsRemoteCommandExecutionAnalysis: Integer
-        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测分析
+        # @param IsMemoryHijackingAnalysis: <p>是否开启内存马检测分析</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsMemoryHijackingAnalysis: Integer
-        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @param LogIndexType: <p>CLS索引类型(0=全文索引，1=键值索引)</p>
         # @type LogIndexType: Integer
-        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogTraceIdKey: <p>traceId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogTraceIdKey: String
-        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @param IsDeleteAnyFileAnalysis: <p>是否开启删除任意文件检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDeleteAnyFileAnalysis: Integer
-        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @param IsReadAnyFileAnalysis: <p>是否开启读取任意文件检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsReadAnyFileAnalysis: Integer
-        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @param IsUploadAnyFileAnalysis: <p>是否开启上传任意文件检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsUploadAnyFileAnalysis: Integer
-        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @param IsIncludeAnyFileAnalysis: <p>是否开启包含任意文件检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsIncludeAnyFileAnalysis: Integer
-        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @param IsDirectoryTraversalAnalysis: <p>是否开启目录遍历检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDirectoryTraversalAnalysis: Integer
-        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @param IsTemplateEngineInjectionAnalysis: <p>是否开启模板引擎注入检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsTemplateEngineInjectionAnalysis: Integer
-        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @param IsScriptEngineInjectionAnalysis: <p>是否开启脚本引擎注入检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsScriptEngineInjectionAnalysis: Integer
-        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @param IsExpressionInjectionAnalysis: <p>是否开启表达式注入检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsExpressionInjectionAnalysis: Integer
-        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @param IsJNDIInjectionAnalysis: <p>是否开启JNDI注入检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsJNDIInjectionAnalysis: Integer
-        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @param IsJNIInjectionAnalysis: <p>是否开启JNI注入检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsJNIInjectionAnalysis: Integer
-        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @param IsWebshellBackdoorAnalysis: <p>是否开启Webshell后门检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsWebshellBackdoorAnalysis: Integer
-        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @param IsDeserializationAnalysis: <p>是否开启反序列化检测（0-关闭，1-开启）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsDeserializationAnalysis: Integer
-        # @param UrlAutoConvergenceEnable: 接口名称自动收敛开关（0-关闭，1-开启）
+        # @param UrlAutoConvergenceEnable: <p>接口名称自动收敛开关（0-关闭，1-开启）</p>
         # @type UrlAutoConvergenceEnable: Boolean
-        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @param UrlLongSegmentThreshold: <p>URL长分段收敛阈值</p>
         # @type UrlLongSegmentThreshold: Integer
-        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @param UrlNumberSegmentThreshold: <p>URL数字分段收敛阈值</p>
         # @type UrlNumberSegmentThreshold: Integer
-        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @param DisableMemoryUsed: <p>探针熔断内存阈值</p>
         # @type DisableMemoryUsed: Integer
-        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @param DisableCpuUsed: <p>探针熔断CPU阈值</p>
         # @type DisableCpuUsed: Integer
-        # @param DbStatementParametersEnabled: 是否开启SQL参数获取
+        # @param DbStatementParametersEnabled: <p>是否开启SQL参数获取</p>
         # @type DbStatementParametersEnabled: Boolean
-        # @param SlowSQLThresholds: 慢SQL阈值
+        # @param SlowSQLThresholds: <p>慢SQL阈值</p>
         # @type SlowSQLThresholds: Array
-        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @param EnableDesensitizationRule: <p>是否开启脱敏规则</p>
         # @type EnableDesensitizationRule: Integer
-        # @param DesensitizationRule: 脱敏规则
+        # @param DesensitizationRule: <p>脱敏规则</p>
         # @type DesensitizationRule: String
-        # @param LogSpanIdKey: spanId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogSpanIdKey: <p>spanId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogSpanIdKey: String
-        # @param AutoProfilingConfig: 自动性能剖析配置
+        # @param AutoProfilingConfig: <p>自动性能剖析配置</p>
         # @type AutoProfilingConfig: :class:`Tencentcloud::Apm.v20210622.models.AutoProfilingConfig`
+        # @param EnableThresholdConfig: <p>阈值配置开关。true 表示使用应用级阈值；false 表示使用业务系统级阈值</p>
+        # @type EnableThresholdConfig: Boolean
+        # @param ErrRateThreshold: <p>错误率阈值（%），用于判断应用健康状态为&quot;红色&quot;</p>
+        # @type ErrRateThreshold: Integer
+        # @param ResponseDurationWarningThreshold: <p>响应时间预警阈值（ms），用于判断应用健康状态为&quot;黄色&quot;</p>
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig
+        attr_accessor :InstanceKey, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :ExceptionFilter, :ErrorCodeFilter, :Components, :UrlExclude, :LogSource, :LogRegion, :IsRelatedLog, :LogTopicID, :IgnoreOperationName, :LogSet, :TraceRateLimit, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :EventEnable, :AgentOperationConfigView, :EnableLogConfig, :ServiceID, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :EnableSecurityConfig, :IsInstrumentationVulnerabilityScan, :IsSqlInjectionAnalysis, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :LogIndexType, :LogTraceIdKey, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold
 
-        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil)
+        def initialize(instancekey=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, exceptionfilter=nil, errorcodefilter=nil, components=nil, urlexclude=nil, logsource=nil, logregion=nil, isrelatedlog=nil, logtopicid=nil, ignoreoperationname=nil, logset=nil, traceratelimit=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, eventenable=nil, agentoperationconfigview=nil, enablelogconfig=nil, serviceid=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, enablesecurityconfig=nil, isinstrumentationvulnerabilityscan=nil, issqlinjectionanalysis=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, logindextype=nil, logtraceidkey=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -323,6 +329,9 @@ module TencentCloud
           @DesensitizationRule = desensitizationrule
           @LogSpanIdKey = logspanidkey
           @AutoProfilingConfig = autoprofilingconfig
+          @EnableThresholdConfig = enablethresholdconfig
+          @ErrRateThreshold = errratethreshold
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -404,67 +413,118 @@ module TencentCloud
             @AutoProfilingConfig = AutoProfilingConfig.new
             @AutoProfilingConfig.deserialize(params['AutoProfilingConfig'])
           end
+          @EnableThresholdConfig = params['EnableThresholdConfig']
+          @ErrRateThreshold = params['ErrRateThreshold']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 
       # 应用相关的配置列表项
       class ApmApplicationConfigView < TencentCloud::Common::AbstractModel
-        # @param InstanceKey: 业务系统 ID
+        # @param InstanceKey: <p>业务系统 ID</p>
         # @type InstanceKey: String
-        # @param ServiceName: 应用名
+        # @param ServiceName: <p>应用名</p>
         # @type ServiceName: String
-        # @param OperationNameFilter: 接口过滤
+        # @param OperationNameFilter: <p>接口过滤</p>
         # @type OperationNameFilter: String
-        # @param ExceptionFilter: 错误类型过滤
+        # @param ExceptionFilter: <p>错误类型过滤</p>
         # @type ExceptionFilter: String
-        # @param ErrorCodeFilter: HTTP 状态码过滤
+        # @param ErrorCodeFilter: <p>HTTP 状态码过滤</p>
         # @type ErrorCodeFilter: String
-        # @param EventEnable: 应用诊断开关（已废弃）
+        # @param EventEnable: <p>应用诊断开关（已废弃）</p>
         # @type EventEnable: Boolean
-        # @param UrlConvergenceSwitch: URL 收敛开关 0 关 1 开
+        # @param UrlConvergenceSwitch: <p>URL 收敛开关 0 关 1 开</p>
         # @type UrlConvergenceSwitch: Integer
-        # @param UrlConvergenceThreshold: URL 收敛阈值
+        # @param UrlConvergenceThreshold: <p>URL 收敛阈值</p>
         # @type UrlConvergenceThreshold: Integer
-        # @param UrlConvergence: URL 收敛规则正则
+        # @param UrlConvergence: <p>URL 收敛规则正则</p>
         # @type UrlConvergence: String
-        # @param UrlExclude: URL 排除规则正则
+        # @param UrlExclude: <p>URL 排除规则正则</p>
         # @type UrlExclude: String
-        # @param IsRelatedLog: 是否开启日志 0 关 1 开
+        # @param IsRelatedLog: <p>是否开启日志 0 关 1 开</p>
         # @type IsRelatedLog: Integer
-        # @param LogSource: 日志源
+        # @param LogSource: <p>日志源</p>
         # @type LogSource: String
-        # @param LogSet: 日志集
+        # @param LogSet: <p>日志集</p>
         # @type LogSet: String
-        # @param LogTopicID: 日志主题
+        # @param LogTopicID: <p>日志主题</p>
         # @type LogTopicID: String
-        # @param SnapshotEnable: 方法栈快照开关 true 开启 false 关闭
+        # @param SnapshotEnable: <p>方法栈快照开关 true 开启 false 关闭</p>
         # @type SnapshotEnable: Boolean
-        # @param SnapshotTimeout: 慢调用监听触发阈值
+        # @param SnapshotTimeout: <p>慢调用监听触发阈值</p>
         # @type SnapshotTimeout: Integer
-        # @param AgentEnable: 探针总开关
+        # @param AgentEnable: <p>探针总开关</p>
         # @type AgentEnable: Boolean
-        # @param InstrumentList: 组件列表开关（已废弃）
+        # @param InstrumentList: <p>组件列表开关（已废弃）</p>
         # @type InstrumentList: Array
-        # @param TraceSquash: 链路压缩开关（已废弃）
+        # @param TraceSquash: <p>链路压缩开关（已废弃）</p>
         # @type TraceSquash: Boolean
-        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @param AgentIgnoreOperation: <p>链路过滤配置</p>
+        # @type AgentIgnoreOperation: String
+        # @param EnableSecurityConfig: <p>开启应用安全开关</p>
+        # @type EnableSecurityConfig: Boolean
+        # @param IsSqlInjectionAnalysis: <p>是否开启SQL注入检测</p>
+        # @type IsSqlInjectionAnalysis: Integer
+        # @param IsInstrumentationVulnerabilityScan: <p>是否开启组件漏洞检测</p>
+        # @type IsInstrumentationVulnerabilityScan: Integer
+        # @param IsRemoteCommandExecutionAnalysis: <p>是否开启远程命令执行检测</p>
+        # @type IsRemoteCommandExecutionAnalysis: Integer
+        # @param IsMemoryHijackingAnalysis: <p>是否开启内存泄漏检测</p>
+        # @type IsMemoryHijackingAnalysis: Integer
+        # @param IsDeleteAnyFileAnalysis: <p>是否开启删除任意文件检测</p>
+        # @type IsDeleteAnyFileAnalysis: Integer
+        # @param IsReadAnyFileAnalysis: <p>是否开启读取任意文件检测</p>
+        # @type IsReadAnyFileAnalysis: Integer
+        # @param IsUploadAnyFileAnalysis: <p>是否开启上传任意文件检测</p>
+        # @type IsUploadAnyFileAnalysis: Integer
+        # @param IsIncludeAnyFileAnalysis: <p>是否开启包含任意文件检测</p>
+        # @type IsIncludeAnyFileAnalysis: Integer
+        # @param IsDirectoryTraversalAnalysis: <p>是否开启目录遍历检测</p>
+        # @type IsDirectoryTraversalAnalysis: Integer
+        # @param IsTemplateEngineInjectionAnalysis: <p>是否开启模板引擎注入检测</p>
+        # @type IsTemplateEngineInjectionAnalysis: Integer
+        # @param IsScriptEngineInjectionAnalysis: <p>是否开启脚本引擎注入检测</p>
+        # @type IsScriptEngineInjectionAnalysis: Integer
+        # @param IsExpressionInjectionAnalysis: <p>是否开启表达式注入检测</p>
+        # @type IsExpressionInjectionAnalysis: Integer
+        # @param IsJndiInjectionAnalysis: <p>是否开启JNDI注入检测</p>
+        # @type IsJndiInjectionAnalysis: Integer
+        # @param IsJniInjectionAnalysis: <p>是否开启JNI注入检测</p>
+        # @type IsJniInjectionAnalysis: Integer
+        # @param IsWebshellBackdoorAnalysis: <p>是否开启Webshell后门检测</p>
+        # @type IsWebshellBackdoorAnalysis: Integer
+        # @param IsDeserializationAnalysis: <p>是否开启反序列化检测</p>
+        # @type IsDeserializationAnalysis: Integer
+        # @param EnableDashboardConfig: <p>是否开启控制台开关</p>
+        # @type EnableDashboardConfig: Boolean
+        # @param IsRelatedDashboard: <p>是否关联Dashboard</p>
+        # @type IsRelatedDashboard: Integer
+        # @param DashboardTopicID: <p>Dashboard topic</p>
+        # @type DashboardTopicID: String
+        # @param DisableMemoryUsed: <p>探针熔断内存阈值</p>
         # @type DisableMemoryUsed: Integer
-        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @param DisableCpuUsed: <p>探针熔断CPU阈值</p>
         # @type DisableCpuUsed: Integer
-        # @param DbStatementParametersEnabled: 是否开启SQL参数获取
+        # @param DbStatementParametersEnabled: <p>是否开启SQL参数获取</p>
         # @type DbStatementParametersEnabled: Boolean
-        # @param SlowSQLThresholds: 慢SQL阈值
+        # @param SlowSQLThresholds: <p>慢SQL阈值</p>
         # @type SlowSQLThresholds: Array
-        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @param EnableDesensitizationRule: <p>是否开启脱敏规则</p>
         # @type EnableDesensitizationRule: Integer
-        # @param DesensitizationRule: 脱敏规则
+        # @param DesensitizationRule: <p>脱敏规则</p>
         # @type DesensitizationRule: String
-        # @param AutoProfilingConfig: 自动性能剖析任务配置
+        # @param AutoProfilingConfig: <p>自动性能剖析任务配置</p>
         # @type AutoProfilingConfig: :class:`Tencentcloud::Apm.v20210622.models.AutoProfilingConfig`
+        # @param EnableThresholdConfig: <p>阈值配置开关</p>
+        # @type EnableThresholdConfig: Boolean
+        # @param ErrRateThreshold: <p>错误率阈值</p><p>单位：%</p>
+        # @type ErrRateThreshold: Integer
+        # @param ResponseDurationWarningThreshold: <p>响应时间预警阈值</p><p>单位：ms</p>
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :AutoProfilingConfig
+        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :AgentIgnoreOperation, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJndiInjectionAnalysis, :IsJniInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold
 
-        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, autoprofilingconfig=nil)
+        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, agentignoreoperation=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @OperationNameFilter = operationnamefilter
@@ -484,6 +544,27 @@ module TencentCloud
           @AgentEnable = agentenable
           @InstrumentList = instrumentlist
           @TraceSquash = tracesquash
+          @AgentIgnoreOperation = agentignoreoperation
+          @EnableSecurityConfig = enablesecurityconfig
+          @IsSqlInjectionAnalysis = issqlinjectionanalysis
+          @IsInstrumentationVulnerabilityScan = isinstrumentationvulnerabilityscan
+          @IsRemoteCommandExecutionAnalysis = isremotecommandexecutionanalysis
+          @IsMemoryHijackingAnalysis = ismemoryhijackinganalysis
+          @IsDeleteAnyFileAnalysis = isdeleteanyfileanalysis
+          @IsReadAnyFileAnalysis = isreadanyfileanalysis
+          @IsUploadAnyFileAnalysis = isuploadanyfileanalysis
+          @IsIncludeAnyFileAnalysis = isincludeanyfileanalysis
+          @IsDirectoryTraversalAnalysis = isdirectorytraversalanalysis
+          @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
+          @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
+          @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
+          @IsJndiInjectionAnalysis = isjndiinjectionanalysis
+          @IsJniInjectionAnalysis = isjniinjectionanalysis
+          @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
+          @IsDeserializationAnalysis = isdeserializationanalysis
+          @EnableDashboardConfig = enabledashboardconfig
+          @IsRelatedDashboard = isrelateddashboard
+          @DashboardTopicID = dashboardtopicid
           @DisableMemoryUsed = disablememoryused
           @DisableCpuUsed = disablecpuused
           @DbStatementParametersEnabled = dbstatementparametersenabled
@@ -491,6 +572,9 @@ module TencentCloud
           @EnableDesensitizationRule = enabledesensitizationrule
           @DesensitizationRule = desensitizationrule
           @AutoProfilingConfig = autoprofilingconfig
+          @EnableThresholdConfig = enablethresholdconfig
+          @ErrRateThreshold = errratethreshold
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -520,6 +604,27 @@ module TencentCloud
             end
           end
           @TraceSquash = params['TraceSquash']
+          @AgentIgnoreOperation = params['AgentIgnoreOperation']
+          @EnableSecurityConfig = params['EnableSecurityConfig']
+          @IsSqlInjectionAnalysis = params['IsSqlInjectionAnalysis']
+          @IsInstrumentationVulnerabilityScan = params['IsInstrumentationVulnerabilityScan']
+          @IsRemoteCommandExecutionAnalysis = params['IsRemoteCommandExecutionAnalysis']
+          @IsMemoryHijackingAnalysis = params['IsMemoryHijackingAnalysis']
+          @IsDeleteAnyFileAnalysis = params['IsDeleteAnyFileAnalysis']
+          @IsReadAnyFileAnalysis = params['IsReadAnyFileAnalysis']
+          @IsUploadAnyFileAnalysis = params['IsUploadAnyFileAnalysis']
+          @IsIncludeAnyFileAnalysis = params['IsIncludeAnyFileAnalysis']
+          @IsDirectoryTraversalAnalysis = params['IsDirectoryTraversalAnalysis']
+          @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
+          @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
+          @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
+          @IsJndiInjectionAnalysis = params['IsJndiInjectionAnalysis']
+          @IsJniInjectionAnalysis = params['IsJniInjectionAnalysis']
+          @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
+          @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
+          @EnableDashboardConfig = params['EnableDashboardConfig']
+          @IsRelatedDashboard = params['IsRelatedDashboard']
+          @DashboardTopicID = params['DashboardTopicID']
           @DisableMemoryUsed = params['DisableMemoryUsed']
           @DisableCpuUsed = params['DisableCpuUsed']
           @DbStatementParametersEnabled = params['DbStatementParametersEnabled']
@@ -537,6 +642,9 @@ module TencentCloud
             @AutoProfilingConfig = AutoProfilingConfig.new
             @AutoProfilingConfig.deserialize(params['AutoProfilingConfig'])
           end
+          @EnableThresholdConfig = params['EnableThresholdConfig']
+          @ErrRateThreshold = params['ErrRateThreshold']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 
@@ -3171,120 +3279,126 @@ module TencentCloud
 
       # ModifyApmApplicationConfig请求参数结构体
       class ModifyApmApplicationConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 业务系统 ID
+        # @param InstanceId: <p>业务系统 ID</p>
         # @type InstanceId: String
-        # @param ServiceName: 应用名
+        # @param ServiceName: <p>应用名</p>
         # @type ServiceName: String
-        # @param UrlConvergenceSwitch: URL收敛开关,0 关 | 1 开
+        # @param UrlConvergenceSwitch: <p>URL收敛开关,0 关 | 1 开</p>
         # @type UrlConvergenceSwitch: Integer
-        # @param UrlConvergenceThreshold: URL收敛阈值
+        # @param UrlConvergenceThreshold: <p>URL收敛阈值</p>
         # @type UrlConvergenceThreshold: Integer
-        # @param ExceptionFilter: 异常过滤正则规则，逗号分隔
+        # @param ExceptionFilter: <p>异常过滤正则规则，逗号分隔</p>
         # @type ExceptionFilter: String
-        # @param UrlConvergence: URL收敛正则规则，逗号分隔
+        # @param UrlConvergence: <p>URL收敛正则规则，逗号分隔</p>
         # @type UrlConvergence: String
-        # @param ErrorCodeFilter: 错误码过滤，逗号分隔
+        # @param ErrorCodeFilter: <p>错误码过滤，逗号分隔</p>
         # @type ErrorCodeFilter: String
-        # @param UrlExclude: URL排除正则规则，逗号分隔
+        # @param UrlExclude: <p>URL排除正则规则，逗号分隔</p>
         # @type UrlExclude: String
-        # @param IsRelatedLog: 日志开关 0 关 1 开
+        # @param IsRelatedLog: <p>日志开关 0 关 1 开</p>
         # @type IsRelatedLog: Integer
-        # @param LogRegion: 日志地域
+        # @param LogRegion: <p>日志地域</p>
         # @type LogRegion: String
-        # @param LogTopicID: 日志主题ID
+        # @param LogTopicID: <p>日志主题ID</p>
         # @type LogTopicID: String
-        # @param LogSet: CLS 日志集 | ES 集群ID
+        # @param LogSet: <p>CLS 日志集 | ES 集群ID</p>
         # @type LogSet: String
-        # @param LogSource: 日志来源 CLS | ES
+        # @param LogSource: <p>日志来源 CLS | ES</p>
         # @type LogSource: String
-        # @param IgnoreOperationName: 需过滤的接口
+        # @param IgnoreOperationName: <p>需过滤的接口</p>
         # @type IgnoreOperationName: String
-        # @param EnableSnapshot: 是否开启线程剖析
+        # @param EnableSnapshot: <p>是否开启线程剖析</p>
         # @type EnableSnapshot: Boolean
-        # @param SnapshotTimeout: 线程剖析超时阈值
+        # @param SnapshotTimeout: <p>线程剖析超时阈值</p>
         # @type SnapshotTimeout: Integer
-        # @param AgentEnable: 是否开启agent
+        # @param AgentEnable: <p>是否开启agent</p>
         # @type AgentEnable: Boolean
-        # @param TraceSquash: 是否开启链路压缩
+        # @param TraceSquash: <p>是否开启链路压缩</p>
         # @type TraceSquash: Boolean
-        # @param EventEnable: 是否开启应用诊断的开关
+        # @param EventEnable: <p>是否开启应用诊断的开关</p>
         # @type EventEnable: Boolean
-        # @param InstrumentList: 组件列表
+        # @param InstrumentList: <p>组件列表</p>
         # @type InstrumentList: Array
-        # @param AgentOperationConfigView: 探针接口相关配置
+        # @param AgentOperationConfigView: <p>探针接口相关配置</p>
         # @type AgentOperationConfigView: :class:`Tencentcloud::Apm.v20210622.models.AgentOperationConfigView`
-        # @param EnableLogConfig: 是否开启应用日志配置
+        # @param EnableLogConfig: <p>是否开启应用日志配置</p>
         # @type EnableLogConfig: Boolean
-        # @param EnableDashboardConfig: 应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）
+        # @param EnableDashboardConfig: <p>应用是否开启dashboard配置： false 关（与业务系统保持一致）/true 开（应用级配置）</p>
         # @type EnableDashboardConfig: Boolean
-        # @param IsRelatedDashboard: 是否关联dashboard： 0 关 1 开
+        # @param IsRelatedDashboard: <p>是否关联dashboard： 0 关 1 开</p>
         # @type IsRelatedDashboard: Integer
-        # @param DashboardTopicID: dashboard ID
+        # @param DashboardTopicID: <p>dashboard ID</p>
         # @type DashboardTopicID: String
-        # @param LogIndexType: CLS索引类型(0=全文索引，1=键值索引)
+        # @param LogIndexType: <p>CLS索引类型(0=全文索引，1=键值索引)</p>
         # @type LogIndexType: Integer
-        # @param LogTraceIdKey: traceId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogTraceIdKey: <p>traceId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogTraceIdKey: String
-        # @param EnableSecurityConfig: 是否开启应用安全配置
+        # @param EnableSecurityConfig: <p>是否开启应用安全配置</p>
         # @type EnableSecurityConfig: Boolean
-        # @param IsSqlInjectionAnalysis: 是否开启SQL注入分析
+        # @param IsSqlInjectionAnalysis: <p>是否开启SQL注入分析</p>
         # @type IsSqlInjectionAnalysis: Integer
-        # @param IsInstrumentationVulnerabilityScan: 是否开启组件漏洞检测
+        # @param IsInstrumentationVulnerabilityScan: <p>是否开启组件漏洞检测</p>
         # @type IsInstrumentationVulnerabilityScan: Integer
-        # @param IsRemoteCommandExecutionAnalysis: 是否开启远程命令检测
+        # @param IsRemoteCommandExecutionAnalysis: <p>是否开启远程命令检测</p>
         # @type IsRemoteCommandExecutionAnalysis: Integer
-        # @param IsMemoryHijackingAnalysis: 是否开启内存马检测
+        # @param IsMemoryHijackingAnalysis: <p>是否开启内存马检测</p>
         # @type IsMemoryHijackingAnalysis: Integer
-        # @param IsDeleteAnyFileAnalysis: 是否开启删除任意文件检测（0-关闭，1-开启）
+        # @param IsDeleteAnyFileAnalysis: <p>是否开启删除任意文件检测（0-关闭，1-开启）</p>
         # @type IsDeleteAnyFileAnalysis: Integer
-        # @param IsReadAnyFileAnalysis: 是否开启读取任意文件检测（0-关闭，1-开启）
+        # @param IsReadAnyFileAnalysis: <p>是否开启读取任意文件检测（0-关闭，1-开启）</p>
         # @type IsReadAnyFileAnalysis: Integer
-        # @param IsUploadAnyFileAnalysis: 是否开启上传任意文件检测（0-关闭，1-开启）
+        # @param IsUploadAnyFileAnalysis: <p>是否开启上传任意文件检测（0-关闭，1-开启）</p>
         # @type IsUploadAnyFileAnalysis: Integer
-        # @param IsIncludeAnyFileAnalysis: 是否开启包含任意文件检测（0-关闭，1-开启）
+        # @param IsIncludeAnyFileAnalysis: <p>是否开启包含任意文件检测（0-关闭，1-开启）</p>
         # @type IsIncludeAnyFileAnalysis: Integer
-        # @param IsDirectoryTraversalAnalysis: 是否开启目录遍历检测（0-关闭，1-开启）
+        # @param IsDirectoryTraversalAnalysis: <p>是否开启目录遍历检测（0-关闭，1-开启）</p>
         # @type IsDirectoryTraversalAnalysis: Integer
-        # @param IsTemplateEngineInjectionAnalysis: 是否开启模板引擎注入检测（0-关闭，1-开启）
+        # @param IsTemplateEngineInjectionAnalysis: <p>是否开启模板引擎注入检测（0-关闭，1-开启）</p>
         # @type IsTemplateEngineInjectionAnalysis: Integer
-        # @param IsScriptEngineInjectionAnalysis: 是否开启脚本引擎注入检测（0-关闭，1-开启）
+        # @param IsScriptEngineInjectionAnalysis: <p>是否开启脚本引擎注入检测（0-关闭，1-开启）</p>
         # @type IsScriptEngineInjectionAnalysis: Integer
-        # @param IsExpressionInjectionAnalysis: 是否开启表达式注入检测（0-关闭，1-开启）
+        # @param IsExpressionInjectionAnalysis: <p>是否开启表达式注入检测（0-关闭，1-开启）</p>
         # @type IsExpressionInjectionAnalysis: Integer
-        # @param IsJNDIInjectionAnalysis: 是否开启JNDI注入检测（0-关闭，1-开启）
+        # @param IsJNDIInjectionAnalysis: <p>是否开启JNDI注入检测（0-关闭，1-开启）</p>
         # @type IsJNDIInjectionAnalysis: Integer
-        # @param IsJNIInjectionAnalysis: 是否开启JNI注入检测（0-关闭，1-开启）
+        # @param IsJNIInjectionAnalysis: <p>是否开启JNI注入检测（0-关闭，1-开启）</p>
         # @type IsJNIInjectionAnalysis: Integer
-        # @param IsWebshellBackdoorAnalysis: 是否开启Webshell后门检测（0-关闭，1-开启）
+        # @param IsWebshellBackdoorAnalysis: <p>是否开启Webshell后门检测（0-关闭，1-开启）</p>
         # @type IsWebshellBackdoorAnalysis: Integer
-        # @param IsDeserializationAnalysis: 是否开启反序列化检测（0-关闭，1-开启）
+        # @param IsDeserializationAnalysis: <p>是否开启反序列化检测（0-关闭，1-开启）</p>
         # @type IsDeserializationAnalysis: Integer
-        # @param UrlAutoConvergenceEnable: 接口自动收敛开关,0 关 | 1 开
+        # @param UrlAutoConvergenceEnable: <p>接口自动收敛开关,0 关 | 1 开</p>
         # @type UrlAutoConvergenceEnable: Boolean
-        # @param UrlLongSegmentThreshold: URL长分段收敛阈值
+        # @param UrlLongSegmentThreshold: <p>URL长分段收敛阈值</p>
         # @type UrlLongSegmentThreshold: Integer
-        # @param UrlNumberSegmentThreshold: URL数字分段收敛阈值
+        # @param UrlNumberSegmentThreshold: <p>URL数字分段收敛阈值</p>
         # @type UrlNumberSegmentThreshold: Integer
-        # @param DisableMemoryUsed: 探针熔断内存阈值
+        # @param DisableMemoryUsed: <p>探针熔断内存阈值</p>
         # @type DisableMemoryUsed: Integer
-        # @param DisableCpuUsed: 探针熔断CPU阈值
+        # @param DisableCpuUsed: <p>探针熔断CPU阈值</p>
         # @type DisableCpuUsed: Integer
-        # @param DbStatementParametersEnabled: 是否开启SQL参数获取
+        # @param DbStatementParametersEnabled: <p>是否开启SQL参数获取</p>
         # @type DbStatementParametersEnabled: Boolean
-        # @param SlowSQLThresholds: 慢SQL阈值
+        # @param SlowSQLThresholds: <p>慢SQL阈值</p>
         # @type SlowSQLThresholds: Array
-        # @param EnableDesensitizationRule: 是否开启脱敏规则
+        # @param EnableDesensitizationRule: <p>是否开启脱敏规则</p>
         # @type EnableDesensitizationRule: Integer
-        # @param DesensitizationRule: 脱敏规则
+        # @param DesensitizationRule: <p>脱敏规则</p>
         # @type DesensitizationRule: String
-        # @param LogSpanIdKey: spanId的索引key: 当CLS索引类型为键值索引时生效
+        # @param LogSpanIdKey: <p>spanId的索引key: 当CLS索引类型为键值索引时生效</p>
         # @type LogSpanIdKey: String
-        # @param AutoProfilingConfig: 自动性能剖析任务配置
+        # @param AutoProfilingConfig: <p>自动性能剖析任务配置</p>
         # @type AutoProfilingConfig: :class:`Tencentcloud::Apm.v20210622.models.AutoProfilingConfig`
+        # @param EnableThresholdConfig: <p>阈值配置开关。true 表示使用应用级阈值；false 表示使用业务系统级阈值</p>
+        # @type EnableThresholdConfig: Boolean
+        # @param ErrRateThreshold: <p>错误率阈值（%），用于判断应用健康状态为&quot;红色&quot;</p>
+        # @type ErrRateThreshold: Integer
+        # @param ResponseDurationWarningThreshold: <p>响应时间预警阈值（ms），用于判断应用健康状态为&quot;黄色&quot;</p>
+        # @type ResponseDurationWarningThreshold: Integer
 
-        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig
+        attr_accessor :InstanceId, :ServiceName, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :ExceptionFilter, :UrlConvergence, :ErrorCodeFilter, :UrlExclude, :IsRelatedLog, :LogRegion, :LogTopicID, :LogSet, :LogSource, :IgnoreOperationName, :EnableSnapshot, :SnapshotTimeout, :AgentEnable, :TraceSquash, :EventEnable, :InstrumentList, :AgentOperationConfigView, :EnableLogConfig, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :LogIndexType, :LogTraceIdKey, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :UrlAutoConvergenceEnable, :UrlLongSegmentThreshold, :UrlNumberSegmentThreshold, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :LogSpanIdKey, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold
 
-        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil)
+        def initialize(instanceid=nil, servicename=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, exceptionfilter=nil, urlconvergence=nil, errorcodefilter=nil, urlexclude=nil, isrelatedlog=nil, logregion=nil, logtopicid=nil, logset=nil, logsource=nil, ignoreoperationname=nil, enablesnapshot=nil, snapshottimeout=nil, agentenable=nil, tracesquash=nil, eventenable=nil, instrumentlist=nil, agentoperationconfigview=nil, enablelogconfig=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, logindextype=nil, logtraceidkey=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, urlautoconvergenceenable=nil, urllongsegmentthreshold=nil, urlnumbersegmentthreshold=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, logspanidkey=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil)
           @InstanceId = instanceid
           @ServiceName = servicename
           @UrlConvergenceSwitch = urlconvergenceswitch
@@ -3340,6 +3454,9 @@ module TencentCloud
           @DesensitizationRule = desensitizationrule
           @LogSpanIdKey = logspanidkey
           @AutoProfilingConfig = autoprofilingconfig
+          @EnableThresholdConfig = enablethresholdconfig
+          @ErrRateThreshold = errratethreshold
+          @ResponseDurationWarningThreshold = responsedurationwarningthreshold
         end
 
         def deserialize(params)
@@ -3418,6 +3535,9 @@ module TencentCloud
             @AutoProfilingConfig = AutoProfilingConfig.new
             @AutoProfilingConfig.deserialize(params['AutoProfilingConfig'])
           end
+          @EnableThresholdConfig = params['EnableThresholdConfig']
+          @ErrRateThreshold = params['ErrRateThreshold']
+          @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
         end
       end
 

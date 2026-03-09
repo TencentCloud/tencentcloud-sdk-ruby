@@ -6267,10 +6267,14 @@ module TencentCloud
         # @type CreateTime: String
         # @param UpdateTime: 规则最近更新时间
         # @type UpdateTime: String
+        # @param RulePartition: 规则分区，1最前分区，2中间分区，3最后分区
+        # @type RulePartition: Integer
+        # @param Scope: 规则生效范围，SG安全组，LH轻量服务器
+        # @type Scope: String
 
-        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id, :DnsParseCount, :CreateTime, :UpdateTime
+        attr_accessor :OrderIndex, :RuleUuid, :Uuid, :SourceId, :SourceType, :TargetId, :TargetType, :Protocol, :Port, :Strategy, :Status, :Detail, :AclTags, :IsNew, :Region, :IsDelay, :ServiceTemplateId, :SouInstanceName, :SouPublicIp, :SouPrivateIp, :SouCidr, :SouParameterName, :InstanceName, :PublicIp, :PrivateIp, :Cidr, :ParameterName, :ProtocolPortName, :BetaList, :Id, :DnsParseCount, :CreateTime, :UpdateTime, :RulePartition, :Scope
 
-        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil, dnsparsecount=nil, createtime=nil, updatetime=nil)
+        def initialize(orderindex=nil, ruleuuid=nil, uuid=nil, sourceid=nil, sourcetype=nil, targetid=nil, targettype=nil, protocol=nil, port=nil, strategy=nil, status=nil, detail=nil, acltags=nil, isnew=nil, region=nil, isdelay=nil, servicetemplateid=nil, souinstancename=nil, soupublicip=nil, souprivateip=nil, soucidr=nil, souparametername=nil, instancename=nil, publicip=nil, privateip=nil, cidr=nil, parametername=nil, protocolportname=nil, betalist=nil, id=nil, dnsparsecount=nil, createtime=nil, updatetime=nil, rulepartition=nil, scope=nil)
           @OrderIndex = orderindex
           @RuleUuid = ruleuuid
           @Uuid = uuid
@@ -6304,6 +6308,8 @@ module TencentCloud
           @DnsParseCount = dnsparsecount
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @RulePartition = rulepartition
+          @Scope = scope
         end
 
         def deserialize(params)
@@ -6350,6 +6356,8 @@ module TencentCloud
           end
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @RulePartition = params['RulePartition']
+          @Scope = params['Scope']
         end
       end
 
@@ -10136,10 +10144,12 @@ module TencentCloud
         # @type Enable: String
         # @param Uid: 规则对应的唯一内部id
         # @type Uid: String
+        # @param Scope: 规则生效范围，SG安全组，LH轻量服务器
+        # @type Scope: String
 
-        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable, :Uid
+        attr_accessor :SourceContent, :SourceType, :DestContent, :DestType, :RuleAction, :Description, :OrderIndex, :Protocol, :Port, :ServiceTemplateId, :Id, :Enable, :Uid, :Scope
 
-        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil, id=nil, enable=nil, uid=nil)
+        def initialize(sourcecontent=nil, sourcetype=nil, destcontent=nil, desttype=nil, ruleaction=nil, description=nil, orderindex=nil, protocol=nil, port=nil, servicetemplateid=nil, id=nil, enable=nil, uid=nil, scope=nil)
           @SourceContent = sourcecontent
           @SourceType = sourcetype
           @DestContent = destcontent
@@ -10153,6 +10163,7 @@ module TencentCloud
           @Id = id
           @Enable = enable
           @Uid = uid
+          @Scope = scope
         end
 
         def deserialize(params)
@@ -10169,6 +10180,7 @@ module TencentCloud
           @Id = params['Id']
           @Enable = params['Enable']
           @Uid = params['Uid']
+          @Scope = params['Scope']
         end
       end
 
@@ -10198,16 +10210,19 @@ module TencentCloud
         # @type RuleUuid: Integer
         # @param Sequence: 规则序号
         # @type Sequence: Integer
+        # @param Scope: 规则生效范围，SG安全组，LH轻量服务器
+        # @type Scope: String
 
-        attr_accessor :SourceContent, :DestContent, :Protocol, :Description, :RuleUuid, :Sequence
+        attr_accessor :SourceContent, :DestContent, :Protocol, :Description, :RuleUuid, :Sequence, :Scope
 
-        def initialize(sourcecontent=nil, destcontent=nil, protocol=nil, description=nil, ruleuuid=nil, sequence=nil)
+        def initialize(sourcecontent=nil, destcontent=nil, protocol=nil, description=nil, ruleuuid=nil, sequence=nil, scope=nil)
           @SourceContent = sourcecontent
           @DestContent = destcontent
           @Protocol = protocol
           @Description = description
           @RuleUuid = ruleuuid
           @Sequence = sequence
+          @Scope = scope
         end
 
         def deserialize(params)
@@ -10217,6 +10232,7 @@ module TencentCloud
           @Description = params['Description']
           @RuleUuid = params['RuleUuid']
           @Sequence = params['Sequence']
+          @Scope = params['Scope']
         end
       end
 
